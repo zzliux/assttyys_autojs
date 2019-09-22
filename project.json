@@ -1,0 +1,14 @@
+{
+    "assets": [],
+    "build": {
+        "build_number": 0,
+        "build_time": 0
+    },
+    "useFeatures": [],
+    "main": "main.js",
+    "name": "assttyys",
+    "packageName": "cn.zzliux.assttyys",
+    "scripts": {},
+    "versionCode": 1,
+    "versionName": "0.0.1"
+}
