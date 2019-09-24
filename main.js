@@ -8,26 +8,7 @@ if (!requestScreenCapture()) {
 
 var zzFloaty = require('./zz_modules/zzFloaty');
 
-var mainLayout = <frame>
-    <vertical>
-        <viewpager id="webpager">
-            <frame>
-                <vertical>
-                    <text text="功能选择" textSize="16sp"/>
-                    <input id="input_funcSelect" text="1,2" />
-                </vertical>
-            </frame>
-            <frame>
-                <vertical>
-                    <text text="调试配置界面" textSize="22sp" />
-                </vertical>
-            </frame>
-        </viewpager>
-    </vertical>
-    <horizontal gravity="bottom|right">
-        <button id="runScript" text="运行"/>
-    </horizontal>
-</frame>;
+var mainLayout = require('./mainLayout');
 
 zzFloaty.init({
     storage: storages.create('assttyys'),
@@ -40,6 +21,7 @@ zzFloaty.init({
         assttyys.saveUserConfig();
     },
     onLoaded: function () {
+        assttyys.initUI();
         assttyys.bindEvents();
     },
     beforeExit: function () {
@@ -58,6 +40,24 @@ var assttyys = {
     mainWin: zzFloaty.mainWin,
 
     scriptThread: null,
+
+    initUI: function () {
+        var that = this;
+
+        var funcEnableList = [
+            {
+                funcId: 1,
+                funcName: '准备'
+            },{
+                funcId: 2,
+                funcName: '退出结算'
+            },
+        ]
+        that.mainWin.funcEnableList.setDataSource(funcEnableList);
+        for (var i = 0; i < funcEnableList.length; i++) {
+            console.log(that.mainWin['funcCard_' + funcEnableList[i].funcId]);
+        }
+    },
 
     /**
      * 保存用户配置
@@ -144,8 +144,5 @@ var assttyys = {
 
 // 不结束
 setInterval(() => {
-    if (!assttyys.scriptThread) {
-        // zzFloaty.togWin.action.setColorFilter(colors.argb(0, 0, 0, 0));
-    }
-    // console.log(assttyys.scriptThread);
+    
 }, 1000);
