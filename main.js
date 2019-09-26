@@ -44,7 +44,7 @@ var assttyys = {
     initUI: function () {
         var that = this;
 
-        var funcEnableList = [
+        var funcList = [
             {
                 funcId: 1,
                 funcName: '准备'
@@ -53,10 +53,13 @@ var assttyys = {
                 funcName: '退出结算'
             },
         ]
-        that.mainWin.funcEnableList.setDataSource(funcEnableList);
-        for (var i = 0; i < funcEnableList.length; i++) {
-            console.log(that.mainWin['funcCard_' + funcEnableList[i].funcId]);
-        }
+        that.mainWin.funcList.setDataSource(funcList);
+        that.mainWin.funcList.on('item_bind', function (itemView, itemHolder) {
+            console.log(itemView);
+            // for (var i = 0; i < funcList.length; i++) {
+            //     console.log(that.mainWin['funcCard_' + funcList[i].funcId]);
+            // }
+        });
     },
 
     /**
