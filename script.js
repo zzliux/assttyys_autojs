@@ -57,8 +57,10 @@ var myScript = {
         }
 
         while (true) {
-
+            var t1 = new Date();
             this.memImage = captureScreen();
+            var t2 = new Date();
+            console.log(t2.getTime() - t1.getTime());
 
             for (let i = 0; i < numberFuncArr.length; i++) {
                 var funcObj = this.numberToFuncConfig[numberFuncArr[i]];
