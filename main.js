@@ -94,12 +94,20 @@ var assttyys = {
 
         ui.showFloaty.on('click', function () {
             if (null !== that.floaty) {
-                that.floaty.getEngine().forceStop()
+                // that.floaty.getEngine().forceStop()
             }
-            that.floaty = engines.execScriptFile('./zz_modules/dqFloaty.js');
-            toastLog('run dqFloaty');
+            // that.floaty = engines.execScriptFile('./zz_modules/dqFloaty.js');
+            threads.start(function () {
+                var dqFloaty = require('./zz_modules/dqFloaty');
+                dqFloaty.render();
+                toastLog('run dqFloaty');
+            });
         })
     }
 };
 
 assttyys.init();
+
+setInterval(function () {
+    // 保活？
+}, 1000);
