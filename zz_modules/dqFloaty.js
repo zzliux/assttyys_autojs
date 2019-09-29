@@ -8,7 +8,7 @@
  * 待解决:
  *     (1)悬浮窗初始化的on事件. 没有找到这个方法目前用定时器解决此问题
  *     (2)补间动画结束的on事件. 试了很多都不可行目前用多线程解决此问题
- *     (3)快速双击主按钮会报错
+ *     (3)快速双击主按钮会报错 (勉强修复了)
  */
 
 //悬浮窗logo
@@ -48,10 +48,17 @@ function dqFloaty() {
     var logo_buys = false;//全局: 开启和关闭时占用状态 防止多次点击触发
     var logo_fx = true//全局: 悬浮按钮所在的方向 真左 假右
     var time_0, time_1, time_3//全局: 定时器 点击退出悬浮窗时定时器关闭
+
     //可修改参数
     var logo_ms = 200//全局:  动画播放时间
     var DHK_ms = 200//全局:  对话框动画播放时间
     var tint_color = "#00000"//全局:  对话框图片颜色
+
+    var dm = context.getResources().getDisplayMetrics();
+    var screenOrien = true; // true为竖屏
+    if (dm.widthPixels > dm.heightPixels) {
+        screenOrien = false;
+    }
 
 
     /**
@@ -103,14 +110,15 @@ function dqFloaty() {
             <img id="logo_click" w="*" h="*" src="#ffffff" alpha="0" />
         </frame>
     )
-    win_1.setPosition(-30, device.height / 2)//悬浮按钮定位
+    win_1.setPosition(-30, dm.heightPixels / 2)//悬浮按钮定位
 
     var win_2 = floaty.rawWindow(
-        <frame id="logo" w="{{device.width}}px" h="44" alpha="0" >//悬浮按钮 弹性替身
+        <frame id="logo" h="44" alpha="0" >//悬浮按钮 弹性替身
             <img w="44" h="44" src="#ffffff" circle="true" alpha="0.8" />
             <img id="img_logo" w="32" h="32" src="https://pro.autojs.org/images/logo.png" margin="6 6" />
         </frame>
     )
+    win_2.logo.getLayoutParams().width = dm.widthPixels;
     win_2.setTouchable(false);//设置弹性替身不接收触摸消息
 
     /**
@@ -119,6 +127,7 @@ function dqFloaty() {
     var XY = [], XY1 = [], TT = [], TT1 = [], img_dp = {}, dpZ = 0, logo_right = 0, dpB = 0, dp_H = 0
     events.broadcast.on("定时器关闭", function (X) { clearInterval(X) })
     events.broadcast.on("悬浮开关", function (X) {
+        logo_buys = true
         ui.run(function () {
             switch (X) {
                 case true:
@@ -131,14 +140,17 @@ function dqFloaty() {
                     win.setTouchable(false);
                     logo_switch = false
             }
+            logo_buys = false;
         })
 
     });
 
     events.broadcast.on("悬浮显示", function (X1) {
+        logo_buys = true;
         ui.run(function () {
             win_2.logo.attr("alpha", "0");
             win_1.logo.attr("alpha", "0.4");
+            logo_buys = false;
         })
     });
 
@@ -167,7 +179,7 @@ function dqFloaty() {
                 img_dp.w = parseInt(dpZ * 9)//计算logo左边隐藏时 X值
                 img_dp.ww = parseInt(dpZ * (44 - 9))//计算logo右边隐藏时 X值
                 logo_right = win.id_2.getX() - parseInt(dpZ * 22)
-                win_1.setPosition(0 - img_dp.w, device.height / 2)
+                win_1.setPosition(0 - img_dp.w, dm.heightPixels / 2)
                 win.id_logo.setVisibility(4)
                 win.id_logo.attr("alpha", "1")
                 events.broadcast.emit("定时器关闭", terid)
@@ -177,6 +189,18 @@ function dqFloaty() {
 
     time_0 = setInterval(() => {
 
+        // 处理屏幕旋转
+        var screenOrien2 = true;
+        if (dm.widthPixels > dm.heightPixels) {
+            screenOrien2 = false;
+        }
+        if (screenOrien2 != screenOrien) {
+            screenOrien = screenOrien2;
+            ui.run(function () {
+                win_1.setPosition(-30, dm.heightPixels / 2)//悬浮按钮定位
+                win_2.logo.getLayoutParams().width = dm.widthPixels;
+            });
+        }
     }, 1000)
 
     /**
@@ -197,14 +221,30 @@ function dqFloaty() {
         img_down()
     })
 
+    var scriptThread = null;
     win.id_2_click.on("click", () => {
-        toastLog("启动脚本")
         img_down()
+        if (null != scriptThread) {
+            scriptThread.interrupt();
+        }
+        scriptThread = threads.start(function () {
+            var script = require('../script');
+            script.run();
+        });
+        win_1.img_logo.setColorFilter(colors.argb(255, 255, 153, 0));
+        win_2.img_logo.setColorFilter(colors.argb(255, 255, 153, 0));
+        toastLog("启动脚本")
     })
 
     win.id_3_click.on("click", () => {
-        toastLog("结束脚本")
         img_down()
+        if (null != scriptThread) {
+            scriptThread.interrupt();
+        }
+        win_1.img_logo.setColorFilter(colors.argb(0, 255, 153, 0));
+        win_2.img_logo.setColorFilter(colors.argb(0, 255, 153, 0));
+        toastLog("结束脚本")
+        
     })
 
     win.id_4_click.on("click", () => {
@@ -263,7 +303,6 @@ function dqFloaty() {
             slY[0], slY[1], slY[2], slY[3], slY[4]);
         set.setDuration(logo_ms);
         threads.start(function () {//动画的结束事件一直没有明白 只能拿线程代替了
-            logo_buys = true
             if (logo_switch) {
                 events.broadcast.emit("悬浮开关", true)
                 sleep(logo_ms)
@@ -271,7 +310,6 @@ function dqFloaty() {
                 sleep(logo_ms + 100)
                 events.broadcast.emit("悬浮开关", false)
             }
-            logo_buys = false
         });
         set.start();
     }
@@ -351,7 +389,7 @@ function dqFloaty() {
                     G_Y = windowY + (event.getRawY() - y)
                     win_1.logo.attr("alpha", "0.4")
 
-                    if (windowX + (event.getRawX() - x) < device.width / 2) {
+                    if (windowX + (event.getRawX() - x) < dm.widthPixels / 2) {
                         logo_fx = true
                         animator = ObjectAnimator.ofFloat(win_2.logo, "translationX", windowX + (event.getRawX() - x), 0 - img_dp.w);
                         mTimeInterpolator = new BounceInterpolator();
@@ -363,21 +401,18 @@ function dqFloaty() {
                         animator.start();
                     } else {
                         logo_fx = false
-                        animator = ObjectAnimator.ofFloat(win_2.logo, "translationX", windowX + (event.getRawX() - x), device.width - img_dp.ww);
+                        animator = ObjectAnimator.ofFloat(win_2.logo, "translationX", windowX + (event.getRawX() - x), dm.widthPixels - img_dp.ww);
                         mTimeInterpolator = new BounceInterpolator();
                         animator.setInterpolator(mTimeInterpolator);
                         animator.setDuration(300);
                         win_2.logo.attr("alpha", "0.4")//动画替身上场
                         win_1.logo.attr("alpha", "0");//悬浮按钮隐藏
-                        win_1.setPosition(device.width - img_dp.ww, G_Y)//悬浮按钮移动到终点位置等待替身动画结束
+                        win_1.setPosition(dm.widthPixels - img_dp.ww, G_Y)//悬浮按钮移动到终点位置等待替身动画结束
                         animator.start();
                     }
                     threads.start(function () {//动画的结束事件一直没有明白 只能拿线程代替了
-                        logo_buys = true
                         sleep(logo_ms + 100)
                         events.broadcast.emit("悬浮显示", 0)
-
-                        logo_buys = false
                     });
                 }
                 yd = false

@@ -1,11 +1,14 @@
 "ui";
 
+importClass(android.content.Intent);
+
+
 var mainLayout = require('./mainLayout');
 var zzUtils = require('./zz_modules/zzUtils');
 
 var assttyys = {
     
-    floaty: null,
+    floatyThread: null,
 
     init: function () {
         ui.layout(mainLayout);
@@ -64,11 +67,27 @@ var assttyys = {
                 funcId: 1,
                 funcName: '准备',
                 enable: true
-            },{
+            }, {
                 funcId: 2,
                 funcName: '退出结算',
                 enable: true
-            },
+            }, {
+                funcId: 3,
+                funcName: '接受邀请',
+                enable: true
+            }, {
+                funcId: 4,
+                funcName: '接受自动邀请',
+                enable: true
+            }, {
+                funcId: 5,
+                funcName: '组队挑战',
+                enable: true
+            }, {
+                funcId: 6,
+                funcName: '组队三人挑战',
+                enable: false
+            }
         ]
         ui.funcList.setDataSource(funcList);
         ui.funcList.on('item_bind', function (itemView, itemHolder) {
@@ -93,15 +112,21 @@ var assttyys = {
         });
 
         ui.showFloaty.on('click', function () {
-            if (null !== that.floaty) {
-                // that.floaty.getEngine().forceStop()
+            if (null === that.floatyThread) {
+                that.floatyThread = threads.start(function () {
+                    var dqFloaty = require('./zz_modules/dqFloaty');
+                    dqFloaty.render();
+                    toastLog('run dqFloaty');
+                });
             }
-            // that.floaty = engines.execScriptFile('./zz_modules/dqFloaty.js');
-            threads.start(function () {
-                var dqFloaty = require('./zz_modules/dqFloaty');
-                dqFloaty.render();
-                toastLog('run dqFloaty');
+            
+            
+            var i = app.intent({
+                action: Intent.ACTION_MAIN,
+                category: Intent.CATEGORY_HOME
             });
+            context.startActivity(i);
+            
         })
     }
 };
@@ -111,3 +136,4 @@ assttyys.init();
 setInterval(function () {
     // 保活？
 }, 1000);
+

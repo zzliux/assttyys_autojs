@@ -11,6 +11,7 @@ var myScript = {
         afterClickDelayRandom: 200, // 点击后延时随机数
         colorSimilar: 30, // 颜色相似度(比较时三个点的颜色差之和小于该值时表示相等))
         isShowToast: true,
+        numberFunc: '1,2' 
     },
 
 
@@ -49,9 +50,7 @@ var myScript = {
      * 脚本入口
      */
     run: function () {
-        sleep(2000);
-        toast('脚本开始执行。');
-        var numberFuncArr = this.userConfigs.input_funcSelect.split(',');
+        var numberFuncArr = this.userConfigs.numberFunc.split(',');
         for (let i = 0; i < numberFuncArr.length; i++) {
             numberFuncArr[i] = parseInt(numberFuncArr[i]);
         }
