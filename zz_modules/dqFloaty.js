@@ -228,8 +228,16 @@ function dqFloaty() {
             scriptThread.interrupt();
         }
         scriptThread = threads.start(function () {
-            var script = require('../script');
-            script.run();
+            try {
+                var script = require('../script');
+                script.run();
+            } catch (e) {
+                console.log(e);
+                ui.run(function () {
+                    win_1.img_logo.setColorFilter(colors.argb(0, 255, 153, 0));
+                    win_2.img_logo.setColorFilter(colors.argb(0, 255, 153, 0));
+                });
+            } 
         });
         win_1.img_logo.setColorFilter(colors.argb(255, 255, 153, 0));
         win_2.img_logo.setColorFilter(colors.argb(255, 255, 153, 0));
@@ -244,17 +252,12 @@ function dqFloaty() {
         win_1.img_logo.setColorFilter(colors.argb(0, 255, 153, 0));
         win_2.img_logo.setColorFilter(colors.argb(0, 255, 153, 0));
         toastLog("结束脚本")
-        
-    })
+    });
 
     win.id_4_click.on("click", () => {
-        设置();
+        events.broadcast.emit('DQFLOATY_SETTING_CLICK', '');
         img_down();
-    })
-
-    function 设置() {
-        toastLog('点击了设置。');
-    }
+    });
 
 
     /**

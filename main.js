@@ -2,6 +2,9 @@
 
 importClass(android.content.Intent);
 
+// threads.start(function () {
+//     console.show();
+// });
 
 var mainLayout = require('./mainLayout');
 var zzUtils = require('./zz_modules/zzUtils');
@@ -116,7 +119,6 @@ var assttyys = {
                 that.floatyThread = threads.start(function () {
                     var dqFloaty = require('./zz_modules/dqFloaty');
                     dqFloaty.render();
-                    toastLog('run dqFloaty');
                 });
             }
             
@@ -127,11 +129,38 @@ var assttyys = {
             });
             context.startActivity(i);
             
-        })
+        });
+        
+        ui.autoService.on("check", function(checked) {
+            // 用户勾选无障碍服务的选项时，跳转到页面让用户去开启
+            if(checked && auto.service == null) {
+                app.startActivity({
+                    action: "android.settings.ACCESSIBILITY_SETTINGS"
+                });
+            }
+            if(!checked && auto.service != null){
+                auto.service.disableSelf();
+            }
+        });
+
+        // 当用户回到本界面时，resume事件会被触发
+        ui.emitter.on("resume", function() {
+            // 此时根据无障碍服务的开启情况，同步开关的状态
+            ui.autoService.checked = auto.service != null;
+        });
     }
 };
 
 assttyys.init();
+
+// 点击设置
+events.broadcast.on('DQFLOATY_SETTING_CLICK', function () {
+    var i = new android.content.Intent(context, activity.class);
+    context.startActivity(i);
+});
+
+
+
 
 setInterval(function () {
     // 保活？

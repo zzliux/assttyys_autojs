@@ -1,5 +1,7 @@
 var funcConfig = require('./funcConfig');
 
+
+
 /**
  * 必须实现两个方法：setUserConfigs, run
  */
@@ -50,6 +52,12 @@ var myScript = {
      * 脚本入口
      */
     run: function () {
+        //请求竖屏截图
+        if (!requestScreenCapture()) {
+            toast("请求截图失败");
+            return;
+        }
+
         var numberFuncArr = this.userConfigs.numberFunc.split(',');
         for (let i = 0; i < numberFuncArr.length; i++) {
             numberFuncArr[i] = parseInt(numberFuncArr[i]);
