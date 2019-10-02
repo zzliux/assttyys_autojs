@@ -57,11 +57,7 @@ myScript.prototype = {
             }
         }
         while (true) {
-            var t1 = new Date();
             this.memImage = captureScreen();
-            var t2 = new Date();
-            console.log(t2.getTime() - t1.getTime());
-            console.log(scriptFuncList.length);
             for (let i = 0, iLen = scriptFuncList.length; i < iLen; i++) {
                 result = this.commonClick(scriptFuncList[i]);
                 if (result) {
@@ -70,7 +66,6 @@ myScript.prototype = {
                     break;
                 }
             }
-
             sleep(this.userConfigs.loopDelay);
         }
     },
@@ -82,9 +77,16 @@ myScript.prototype = {
         if (null === this.memImage) {
             this.memImage = captureScreen();
         }
+        // 如果data是个数组，直接走公共方法
+        // 如果data是个函数的话直接执行这个函数，函数里面的逻辑由配置参数直接自己实现
         var data = funcObj.data;
+        if (typeof data === 'function') {
+            return data(this);
+        }
         for (var k = 0, kLen = data.length; k < kLen; k++) {
             kData = funcObj.data[k];
+            console.log(k);
+            var isJudged = true;
             var judgePoints = kData.judgePoints;
             for (let i = 0, iLen = judgePoints.length; i < iLen; i++) {
                 var jp = judgePoints[i];
@@ -92,9 +94,10 @@ myScript.prototype = {
                 try {
                     var co = images.pixel(this.memImage, jp.x, jp.y);
                     isColorSimilar = images.detectsColor(this.memImage, jp.c, jp.x, jp.y, this.userConfigs.colorSimilar, 'diff');
-                    console.log('[assttyys] co: ' + co);
-                    console.log('[assttyys] c: ' + co);
-                    console.log('[assttyys] isColorSimilar: ' + isColorSimilar);
+
+                    // console.log('[assttyys] jp.c: ' + jp.c);
+                    // console.log('[assttyys] co: ' + co);
+                    // console.log('[assttyys] isColorSimilar: ' + isColorSimilar);
                 } catch (e) {
                     // 不管它
                     console.log('isColorSimilar calc error!' + e);
@@ -102,22 +105,25 @@ myScript.prototype = {
                 }
                 // 匹配点不相似 || 非匹配点相似
                 if (!(jp.i && isColorSimilar) || (!jp.i && isColorSimilar)) {
-                    return false;
+                    isJudged = false;
+                    break;
                 }
             }
-            var operaPoints = kData.operaPoints;
-            console.log(operaPoints);
-            for (let i = 0, iLen = operaPoints.length; i < iLen; i++) {
-                console.log('[assttyys] operaPoints: ' + i);
-                var op = operaPoints[i];
-                var x = op.x + parseInt(random(0, op.ox));
-                var y = op.y + parseInt(random(0, op.oy));
-                // this.ra.tap(x, y); 不起作用, 不管它
-                Tap(x, y);
-                var delay = op.ad + this.userConfigs.afterClickDelay + parseInt(random(0, this.userConfigs.afterClickDelayRandom));
-                sleep(delay);
+            if (isJudged) {
+                var operaPoints = kData.operaPoints;
+                console.log(operaPoints);
+                for (let i = 0, iLen = operaPoints.length; i < iLen; i++) {
+                    console.log('[assttyys] operaPoints: ' + i);
+                    var op = operaPoints[i];
+                    var x = op.x + parseInt(random(0, op.ox));
+                    var y = op.y + parseInt(random(0, op.oy));
+                    // this.ra.tap(x, y); 不起作用, 不管它
+                    Tap(x, y);
+                    var delay = op.ad + this.userConfigs.afterClickDelay + parseInt(random(0, this.userConfigs.afterClickDelayRandom));
+                    sleep(delay);
+                }
+                return true;
             }
-            return true;
         }
         return false;
     }
