@@ -221,16 +221,19 @@ function dqFloaty() {
         img_down()
     })
 
+    // 启动脚本
     var scriptThread = null;
     win.id_2_click.on("click", () => {
         img_down()
         if (null != scriptThread) {
             scriptThread.interrupt();
         }
+        var script = require('../script');
         scriptThread = threads.start(function () {
             try {
-                var script = require('../script');
-                script.run();
+                var scriptNew = new script();
+                scriptNew.setUserConfigs(); // 不传参数，默认从storage里面读配置
+                scriptNew.run();
             } catch (e) {
                 console.log(e);
                 ui.run(function () {
@@ -241,9 +244,9 @@ function dqFloaty() {
         });
         win_1.img_logo.setColorFilter(colors.argb(255, 255, 153, 0));
         win_2.img_logo.setColorFilter(colors.argb(255, 255, 153, 0));
-        toastLog("启动脚本")
     })
 
+    // 停止脚本
     win.id_3_click.on("click", () => {
         img_down()
         if (null != scriptThread) {

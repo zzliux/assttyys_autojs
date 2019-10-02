@@ -17,7 +17,7 @@ module.exports = <drawer id="drawer" bg="#eeeeeeee">
                                 <horizontal gravity="center|right" h="auto" w="auto">
                                     <img h="30" w="30" id="listUp" src="@drawable/ic_keyboard_arrow_up_black_48dp" clickable="true" bg="?android:attr/selectableItemBackgroundBorderless" />
                                     <img h="30" w="30" id="listDown" src="@drawable/ic_keyboard_arrow_down_black_48dp" clickable="true" bg="?android:attr/selectableItemBackgroundBorderless" />
-                                    <checkbox id="checkbox" marginRight="6" checked="{{this.enable}}" />
+                                    <checkbox id="checkEnable" marginRight="6" checked="{{this.enable}}" />
                                 </horizontal>
                             </horizontal>
                         </card>
