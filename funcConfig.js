@@ -151,5 +151,34 @@ module.exports = [
                 ]
             }
         ]
+    },
+    {
+        id: 6,
+        name: '组队挑战',
+        data: [{
+            judgePoints: [
+                { x: 1900, y: 929, c: '#D4B066', i: true },
+                { x: 1763, y: 1001, c: '#D7B56D', i: true },
+                { x: 1815, y: 985, c: '#382720', i: true },
+            ],
+            operaPoints: [
+                { x: 1784, y: 913, ox: 93, oy: 101, ad: 500 },
+            ]
+        }]
+    },
+    {
+        id: 7,
+        name: '组队三人挑战',
+        data: [{
+            judgePoints: [
+                { x: 1900, y: 929, c: '#D4B066', i: true },
+                { x: 1763, y: 1001, c: '#D7B56D', i: true },
+                { x: 1815, y: 985, c: '#382720', i: true },
+                { x: 1633, y: 379, c: '#FFFFFE', i: false },
+            ],
+            operaPoints: [
+                { x: 1784, y: 913, ox: 93, oy: 101, ad: 500 },
+            ]
+        }]
     }
 ]

@@ -230,6 +230,7 @@ function dqFloaty() {
         }
         var script = require('../script');
         scriptThread = threads.start(function () {
+            toastLog('启动脚本');
             try {
                 var scriptNew = new script();
                 scriptNew.setUserConfigs(); // 不传参数，默认从storage里面读配置

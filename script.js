@@ -36,6 +36,7 @@ myScript.prototype = {
                 funcList: funcList
             });
         }
+        console.log(this.userConfigs);
     },
 
     /**
@@ -94,7 +95,8 @@ myScript.prototype = {
                     var co = images.pixel(this.memImage, jp.x, jp.y);
                     isColorSimilar = images.detectsColor(this.memImage, jp.c, jp.x, jp.y, this.userConfigs.colorSimilar, 'diff');
 
-                    // console.log('[assttyys] jp.c: ' + jp.c);
+                    // console.log('[assttyys] jp: ');
+                    // console.log(jp);
                     // console.log('[assttyys] co: ' + co);
                     // console.log('[assttyys] isColorSimilar: ' + isColorSimilar);
                 } catch (e) {
@@ -103,16 +105,18 @@ myScript.prototype = {
                     console.log('memImage.width = ' + this.memImage.getWidth() + ', memImage.height = ' + this.memImage.getHeight());
                 }
                 // 匹配点不相似 || 非匹配点相似
-                if (!(jp.i && isColorSimilar) || (!jp.i && isColorSimilar)) {
+                if ((jp.i && !isColorSimilar) || (!jp.i && isColorSimilar)) {
                     isJudged = false;
                     break;
                 }
             }
             if (isJudged) {
                 var operaPoints = kData.operaPoints;
+                console.log('[assttyys] judgePoints: ');
+                console.log(judgePoints);
+                console.log('[assttyys] operaPoints: ');
                 console.log(operaPoints);
                 for (let i = 0, iLen = operaPoints.length; i < iLen; i++) {
-                    console.log('[assttyys] operaPoints: ' + i);
                     var op = operaPoints[i];
                     var x = op.x + parseInt(random(0, op.ox));
                     var y = op.y + parseInt(random(0, op.oy));

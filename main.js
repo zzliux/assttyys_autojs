@@ -5,7 +5,7 @@ importClass(android.content.Intent);
 
 threads.start(function () {
     //请求截图权限
-    if (!requestScreenCapture()) {
+    if (!requestScreenCapture(true)) {
         toast("请求截图失败");
         exit();
     }
@@ -34,6 +34,7 @@ var assttyys = {
         //创建选项菜单(右上角)
         ui.emitter.on("create_options_menu", menu=>{
             menu.add("设置");
+            menu.add("重置配置");
             menu.add("关于");
         });
         
@@ -66,6 +67,10 @@ var assttyys = {
                     break;
                 case "关于":
                     alert("关于", "还没有关于");
+                    break;
+                case "重置配置":
+                    that.ass.put('funcList', []);
+                    ui.finish();
                     break;
             }
             e.consumed = true;
