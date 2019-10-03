@@ -94,5 +94,62 @@ module.exports = [
                 ]
             },
         ]
+    },
+    {
+        id: 3,
+        name: '接受协作',
+        data: [{
+            judgePoints: [
+                { x: 1254, y: 618, c: '#59B560', i: true },
+                { x: 1279, y: 771, c: '#DE6D5D', i: true },
+                { x: 1277, y: 601, c: '#2D212D', i: true },
+                { x: 1279, y: 741, c: '#312533', i: true },
+            ],
+            operaPoints: [
+                { x: 1252, y: 595, ox: 56, oy: 65, ad: 500 },
+            ]
+        }]
+    },
+    {
+        id: 4,
+        name: '拒绝协作',
+        data: [{
+            judgePoints: [
+                { x: 1254, y: 618, c: '#59B560', i: true },
+                { x: 1279, y: 771, c: '#DE6D5D', i: true },
+                { x: 1277, y: 601, c: '#2D212D', i: true },
+                { x: 1279, y: 741, c: '#312533', i: true },
+            ],
+            operaPoints: [
+                { x: 1253, y: 748, ox: 55, oy: 59, ad: 500 },
+            ]
+        }]
+    },
+    {
+        id: 5,
+        name: '接受邀请',
+        data: [
+            { // 自动接受邀请
+                judgePoints: [
+                    { x: 67, y: 378, c: '#DB725F', i: true },
+                    { x: 215, y: 388, c: '#55B262', i: true },
+                    { x: 350, y: 376, c: '#EDC490', i: true },
+                    { x: 372, y: 404, c: '#5BB462', i: true },
+                ],
+                operaPoints: [
+                    { x: 327, y: 353, ox: 57, oy: 62, ad: 500 },
+                ]
+            },
+            { // 接受邀请
+                judgePoints: [
+                    { x: 67, y: 378, c: '#DB725F', i: true },
+                    { x: 215, y: 388, c: '#55B262', i: true },
+                    { x: 298, y: 411, c: '#E7DECD', i: true },
+                ],
+                operaPoints: [
+                    { x: 181, y: 354, ox: 59, oy: 60, ad: 500 },
+                ]
+            }
+        ]
     }
 ]

@@ -85,7 +85,6 @@ myScript.prototype = {
         }
         for (var k = 0, kLen = data.length; k < kLen; k++) {
             kData = funcObj.data[k];
-            console.log(k);
             var isJudged = true;
             var judgePoints = kData.judgePoints;
             for (let i = 0, iLen = judgePoints.length; i < iLen; i++) {
