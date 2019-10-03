@@ -1,3 +1,11 @@
+var multiColor = {};
+var multiColorNames = ['结界_0勋章', '结界_1勋章', '结界_2勋章', '结界_3勋章', '结界_4勋章', '结界_5勋章', '结界_进攻'];
+for (let i = 0; i < multiColorNames.length; i++) {
+    multiColor[multiColorNames[i]] = require('./multi_colors/' + multiColorNames[i]);
+}
+
+
+
 module.exports = [
     null, // 0 放着占位,后续可能会放必执行的东西
     {
@@ -178,6 +186,247 @@ module.exports = [
             ],
             operaPoints: [
                 { x: 1784, y: 913, ox: 93, oy: 101, ad: 500 },
+            ]
+        }]
+    },
+    {
+        id: 8,
+        name: '取消确定框点确定',
+        data: [
+            { // 未点确定
+                judgePoints: [
+                    { x: 705, y: 649, c: '#DD6950', i: true },
+                    { x: 1064, y: 643, c: '#F4B25E', i: true },
+                    { x: 956, y: 644, c: '#CCB49A', i: true },
+                    { x: 838, y: 544, c: '#9D8770', i: true },
+                ],
+                operaPoints: [
+                    { x: 827, y: 518, ox: 258, oy: 43, ad: 100 },
+                    { x: 1018, y: 612, ox: 242, oy: 71, ad: 500 },
+                ]
+            },
+            { // 已点确定或者没有确定
+                judgePoints: [
+                    { x: 705, y: 649, c: '#DD6950', i: true },
+                    { x: 1064, y: 643, c: '#F4B25E', i: true },
+                    { x: 956, y: 644, c: '#CCB49A', i: true },
+                ],
+                operaPoints: [
+                    { x: 1018, y: 612, ox: 242, oy: 71, ad: 500 },
+                ]
+            },
+        ]
+    },
+    {
+        id: 9,
+        name: '御魂/御灵/业原火挑战',
+        data: [{
+            judgePoints: [
+                { x: 389, y: 156, c: '#483727', i: true },
+                { x: 1369, y: 737, c: '#F4B25E', i: true },
+                { x: 1499, y: 744, c: '#F4B25E', i: true },
+            ],
+            operaPoints: [
+                { x: 1346, y: 709, ox: 171, oy: 71, ad: 500 },
+            ]
+        }]
+    },
+    {
+        id: 10,
+        name: '结界_进攻',
+        data: function (_self) {
+            // 多点找色
+            var point = images.findMultiColors(_self.memImage, multiColor['结界_进攻'].firstColor, multiColor['结界_进攻'].colors, { region: [388, 434, 1357, 636], threshold: _self.userConfigs.multiColorSimilar });
+            console.log(point);
+            if (!point) return false;
+            Tap(point.x + random(0, 190), point.y + random(0, 86));
+            var delay = 2000 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
+            sleep(delay);
+            return true;
+        }
+    },
+    {
+        id: 11,
+        name: '结界_0勋章',
+        data: function (_self) {
+            var sceneJudge = {
+                data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
+                    judgePoints: [
+                        { x: 264, y: 75, c: '#483727', i: true },
+                        { x: 1308, y: 78, c: '#483727', i: true },
+                        { x: 1118, y: 76, c: '#E5C25A', i: true },
+                    ],
+                    operaPoints: []
+                }]
+            }
+            if (!_self.commonClick(sceneJudge)) return false;
+
+            // 多点找色
+            var t1 = new Date();
+            var point = images.findMultiColors(_self.memImage, multiColor['结界_0勋章'].firstColor, multiColor['结界_0勋章'].colors, { region: [200, 141, 1531, 603], threshold: _self.userConfigs.multiColorSimilar });
+            var t2 = new Date();
+            console.log('结界_0勋章:单次多点找色时间: ' + (t2 - t1));
+            if (!point) return false;
+            Tap(point.x + random(0, 340), point.y + random(0, 161));
+            var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
+            sleep(delay);
+            return true;
+        }
+    },
+    {
+        id: 12,
+        name: '结界_1勋章',
+        data: function (_self) {
+            var sceneJudge = {
+                data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
+                    judgePoints: [
+                        { x: 264, y: 75, c: '#483727', i: true },
+                        { x: 1308, y: 78, c: '#483727', i: true },
+                        { x: 1118, y: 76, c: '#E5C25A', i: true },
+                    ],
+                    operaPoints: []
+                }]
+            }
+            if (!_self.commonClick(sceneJudge)) return false;
+
+            // 多点找色
+            var t1 = new Date();
+            var point = images.findMultiColors(_self.memImage, multiColor['结界_1勋章'].firstColor, multiColor['结界_1勋章'].colors, { region: [200, 141, 1531, 603], threshold: _self.userConfigs.multiColorSimilar });
+            var t2 = new Date();
+            console.log('结界_1勋章:单次多点找色时间: ' + (t2 - t1));
+            if (!point) return false;
+            Tap(point.x + random(0, 340), point.y + random(0, 161));
+            var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
+            sleep(delay);
+            return true;
+        }
+    },
+    {
+        id: 13,
+        name: '结界_2勋章',
+        data: function (_self) {
+            var sceneJudge = {
+                data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
+                    judgePoints: [
+                        { x: 264, y: 75, c: '#483727', i: true },
+                        { x: 1308, y: 78, c: '#483727', i: true },
+                        { x: 1118, y: 76, c: '#E5C25A', i: true },
+                    ],
+                    operaPoints: []
+                }]
+            }
+            if (!_self.commonClick(sceneJudge)) return false;
+
+            // 多点找色
+            var t1 = new Date();
+            var point = images.findMultiColors(_self.memImage, multiColor['结界_2勋章'].firstColor, multiColor['结界_2勋章'].colors, { region: [200, 141, 1531, 603], threshold: _self.userConfigs.multiColorSimilar });
+            var t2 = new Date();
+            console.log('结界_2勋章:单次多点找色时间: ' + (t2 - t1));
+            if (!point) return false;
+            Tap(point.x + random(0, 340), point.y + random(0, 161));
+            var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
+            sleep(delay);
+            return true;
+        }
+    },
+    {
+        id: 14,
+        name: '结界_3勋章',
+        data: function (_self) {
+            var sceneJudge = {
+                data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
+                    judgePoints: [
+                        { x: 264, y: 75, c: '#483727', i: true },
+                        { x: 1308, y: 78, c: '#483727', i: true },
+                        { x: 1118, y: 76, c: '#E5C25A', i: true },
+                    ],
+                    operaPoints: []
+                }]
+            }
+            if (!_self.commonClick(sceneJudge)) return false;
+
+            // 多点找色
+            var t1 = new Date();
+            var point = images.findMultiColors(_self.memImage, multiColor['结界_3勋章'].firstColor, multiColor['结界_3勋章'].colors, { region: [200, 141, 1531, 603], threshold: _self.userConfigs.multiColorSimilar });
+            var t2 = new Date();
+            console.log('结界_3勋章:单次多点找色时间: ' + (t2 - t1));
+            if (!point) return false;
+            Tap(point.x + random(0, 340), point.y + random(0, 161));
+            var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
+            sleep(delay);
+            return true;
+        }
+    },
+    {
+        id: 15,
+        name: '结界_4勋章',
+        data: function (_self) {
+            var sceneJudge = {
+                data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
+                    judgePoints: [
+                        { x: 264, y: 75, c: '#483727', i: true },
+                        { x: 1308, y: 78, c: '#483727', i: true },
+                        { x: 1118, y: 76, c: '#E5C25A', i: true },
+                    ],
+                    operaPoints: []
+                }]
+            }
+            if (!_self.commonClick(sceneJudge)) return false;
+
+            // 多点找色
+            var t1 = new Date();
+            var point = images.findMultiColors(_self.memImage, multiColor['结界_4勋章'].firstColor, multiColor['结界_4勋章'].colors, { region: [200, 141, 1531, 603], threshold: _self.userConfigs.multiColorSimilar });
+            var t2 = new Date();
+            console.log('结界_4勋章:单次多点找色时间: ' + (t2 - t1));
+            if (!point) return false;
+            Tap(point.x + random(0, 340), point.y + random(0, 161));
+            var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
+            sleep(delay);
+            return true;
+        }
+    },
+    {
+        id: 16,
+        name: '结界_5勋章',
+        data: function (_self) {
+            var sceneJudge = {
+                data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
+                    judgePoints: [
+                        { x: 264, y: 75, c: '#483727', i: true },
+                        { x: 1308, y: 78, c: '#483727', i: true },
+                        { x: 1118, y: 76, c: '#E5C25A', i: true },
+                    ],
+                    operaPoints: []
+                }]
+            }
+            if (!_self.commonClick(sceneJudge)) return false;
+
+            // 多点找色
+            var mc = multiColor['结界_5勋章'];
+            var t1 = new Date();
+            var point = images.findMultiColors(_self.memImage, mc.firstColor, mc.colors, { region: [200, 141, 1531, 603], threshold: _self.userConfigs.multiColorSimilar });
+            var t2 = new Date();
+            console.log('结界_5勋章:单次多点找色时间: ' + (t2 - t1));
+
+            if (!point) return false;
+            Tap(point.x + random(0, 340), point.y + random(0, 161));
+            var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
+            sleep(delay);
+            return true;
+        }
+    },
+    {
+        id: 17,
+        name: '结界_个人_3次刷新',
+        data: [{
+            judgePoints: [
+                { x: 264, y: 75, c: '#483727', i: true },
+                { x: 1308, y: 78, c: '#483727', i: true },
+                { x: 766, y: 837, c: '#FCBA30', i: true }, // 3次达摩左边
+                { x: 887, y: 838, c: '#363D57', i: true }, // 3次达摩右边，如果大于3次就刷新的话直接注释这一行，如果只有3次就刷新的话就保留这一行
+            ],
+            operaPoints: [
+                { x: 1448, y: 774, ox: 206, oy: 74, ad: 500 },
             ]
         }]
     }
