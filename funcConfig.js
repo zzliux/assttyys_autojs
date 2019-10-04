@@ -202,7 +202,7 @@ module.exports = [
                 ],
                 operaPoints: [
                     { x: 827, y: 518, ox: 258, oy: 43, ad: 100 },
-                    { x: 1018, y: 612, ox: 242, oy: 71, ad: 500 },
+                    { x: 1018, y: 612, ox: 242, oy: 71, ad: 2000 },
                 ]
             },
             { // 已点确定或者没有确定
@@ -212,7 +212,7 @@ module.exports = [
                     { x: 956, y: 644, c: '#CCB49A', i: true },
                 ],
                 operaPoints: [
-                    { x: 1018, y: 612, ox: 242, oy: 71, ad: 500 },
+                    { x: 1018, y: 612, ox: 242, oy: 71, ad: 2000 },
                 ]
             },
         ]

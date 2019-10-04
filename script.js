@@ -9,7 +9,7 @@ var myScript = function () {
         afterClickDelay: 200, // 点击后延时
         afterClickDelayRandom: 200, // 点击后延时随机数
         colorSimilar: 30, // 颜色相似度(比较时三个点的颜色差之和小于该值时表示相等))
-        multiColorSimilar: 40,
+        multiColorSimilar: 4,
         isShowToast: true,
         funcList: [],
     };
