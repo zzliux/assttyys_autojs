@@ -145,6 +145,16 @@ var assttyys = {
             // 此时根据无障碍服务的开启情况，同步开关的状态
             ui.autoService.checked = auto.service != null;
         });
+
+        // 点击返回回到桌面，不退出程序
+        ui.emitter.on("back_pressed", function (e) {
+            e.consumed = true;
+            var i = app.intent({
+                action: Intent.ACTION_MAIN,
+                category: Intent.CATEGORY_HOME
+            });
+            context.startActivity(i);
+        });
         
         // 点击设置
         events.broadcast.on('DQFLOATY_SETTING_CLICK', function () {
