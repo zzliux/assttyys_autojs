@@ -6,7 +6,12 @@ module.exports = <drawer id="drawer" bg="#eeeeeeee">
         </appbar>
         <viewpager id="viewpager">
             <frame>
-                <vertical h="*" padding="0 10 0 0">
+                <vertical h="*" padding="0 10 0 60">
+                    <horizontal w="*"padding="10 5">
+                        <text textSize="16sp">功能预设</text>
+                        <spinner id="preFunc" entries="" />
+                        <button id="fitPreFunc" text="确定"/>
+                    </horizontal>
                     <list id="funcList">
                         <card w="*" h="40" id="card" margin="10 5" clickable="true" cardCornerRadius="2dp" cardElevation="1dp" foreground="?android:attr/selectableItemBackgroundBorderless">
                             <horizontal gravity="center_vertical">

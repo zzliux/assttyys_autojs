@@ -1,7 +1,7 @@
 var multiColor = {};
 var multiColorNames = ['结界_0勋章', '结界_1勋章', '结界_2勋章', '结界_3勋章', '结界_4勋章', '结界_5勋章', '结界_进攻'];
 for (let i = 0; i < multiColorNames.length; i++) {
-    multiColor[multiColorNames[i]] = require('./multi_colors/' + multiColorNames[i]);
+    multiColor[multiColorNames[i]] = require('../multi_colors/' + multiColorNames[i]);
 }
 
 
@@ -72,7 +72,7 @@ module.exports = [
             { // 退出结算(打开的胜利达摩)
                 judgePoints: [
                     { x: 732, y: 932, c: '#3783D1', i: true },
-                    { x: 1023, y: 791, c: '#BF391E', i: true },
+                    { x: 838, y: 939, c: '#73290C', i: true },
                     { x: 897, y: 927, c: '#300205', i: true },
                 ],
                 operaPoints: [

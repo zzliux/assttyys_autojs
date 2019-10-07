@@ -1,6 +1,9 @@
 "ui";
 
 importClass(android.content.Intent);
+importClass(android.widget.ArrayAdapter);
+importClass(android.R);
+importClass(java.util.ArrayList);
 
 
 threads.start(function () {
@@ -17,7 +20,15 @@ var zzUtils = require('./zz_modules/zzUtils');
 var assttyys = {
     
     floatyThread: null,
+
+    /**
+     *  funcId: funcConfig[i].id,
+     *  funcName: funcConfig[i].name,
+     *  enable: false
+     */
     funcList: [],
+
+    preFuncList: [],
     ass: storages.create('assttyys'),
 
     init: function () {
@@ -33,7 +44,6 @@ var assttyys = {
 
         //创建选项菜单(右上角)
         ui.emitter.on("create_options_menu", menu=>{
-            menu.add("设置");
             menu.add("重置配置");
             menu.add("关于");
         });
@@ -54,6 +64,43 @@ var assttyys = {
                 icon: "@drawable/ic_exit_to_app_black_48dp"
             }
         ]);
+        
+        this.initPreFuncSpinner();
+    },
+
+    initPreFuncSpinner: function () {
+        var preFuncList = require('./config/preFuncConfig');
+        var userFuncList = this.ass.get('userFuncList') || [];
+
+        // 合并两个对象, 以用户设置的为准
+        for (var i = 0; i < userFuncList.length; i++) {
+            var flag = false;
+            for (var j = 0; j < preFuncList.length; j++) {
+                if (preFuncList[j].name == userFuncList[i].name) {
+                    preFuncList[j] = userFuncList[i];
+                    flag = true;
+                    break;
+                }
+            }
+            if (!flag) {
+                preFuncList.push(userFuncList[i]);
+            }
+        }
+        this.preFuncList = preFuncList;
+        
+        var spinner = ui.preFunc;
+        var  preFuncStrList = [];
+        for (var i = 0; i < preFuncList.length; i++) {
+            preFuncStrList.push(preFuncList[i].name);
+        }
+        var data_list = new ArrayList(preFuncStrList);
+
+        //适配器
+        var arr_adapter = new ArrayAdapter(context, android.R.layout.simple_spinner_item, data_list);
+        //设置样式
+        arr_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //加载适配器
+        spinner.setAdapter(arr_adapter);
     },
 
     bindEvents: function () {
@@ -62,9 +109,6 @@ var assttyys = {
         //监听选项菜单点击
         ui.emitter.on("options_item_selected", (e, item)=>{
             switch(item.getTitle()){
-                case "设置":
-                    alert("设置", "还没有设置");
-                    break;
                 case "关于":
                     alert("关于", "还没有关于");
                     break;
@@ -155,6 +199,41 @@ var assttyys = {
             });
             context.startActivity(i);
         });
+
+        // 功能预设-确定按钮
+        ui.fitPreFunc.on('click', function () {
+            var pos = ui.preFunc.getSelectedItemPosition();
+            var funcNumbers = that.preFuncList[pos].funcNumbers;
+            var enbs = [];
+            for (var j = 0; j < funcNumbers.length; j++) {
+                for (var i = 0; i < that.funcList.length; i++) {
+                    if (funcNumbers[j] == that.funcList[i].funcId) {
+                        that.funcList[i].enable = true;
+                        enbs.push(that.funcList[i]);
+                        break;
+                    }
+                }
+            }
+            var newFunclist = [];
+            for (var i = 0; i < enbs.length; i++) {
+                newFunclist.push(enbs[i]);
+            }
+            for(var i = 0; i < that.funcList.length; i++) {
+                var flag = true;
+                for(var j = 0; j < enbs.length; j++) {
+                    if (enbs[j].funcId == that.funcList[i].funcId) {
+                        flag = false;
+                        break;
+                    }
+                }
+                if (flag) {
+                    that.funcList[i].enable = false;
+                    newFunclist.push(that.funcList[i]);
+                }
+            }
+            that.funcList = newFunclist;
+            ui.funcList.setDataSource(that.funcList);
+        });
         
         // 点击设置
         events.broadcast.on('DQFLOATY_SETTING_CLICK', function () {
@@ -166,7 +245,7 @@ var assttyys = {
     initData: function () {
         var that = this;
         
-        var funcConfig = require('./funcConfig');
+        var funcConfig = require('./config/funcConfig');
         this.funcList = this.ass.get('funcList') || [];
         // 已配置和所有配置的合并一下，使新开发的功能不做别的干预也能出现在配置列表
         for (let i = 1, iLen = funcConfig.length; i < iLen; i++) {
