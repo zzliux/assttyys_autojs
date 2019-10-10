@@ -9,6 +9,7 @@ var myScript = function () {
         afterClickDelay: 200, // 点击后延时
         afterClickDelayRandom: 200, // 点击后延时随机数
         colorSimilar: 15, // 颜色相似度(比较时三个点的颜色差之和小于该值时表示相等))
+        continuityTimeToStop: 20, // 连续执行20次相同功能后停止脚本, 有可能一个功能会被连续执行多次，这个值不宜过低，比如说退出结算，容易连续执行8次左右
         multiColorSimilar: 4,
         isShowToast: true,
         funcList: [],
@@ -58,11 +59,25 @@ myScript.prototype = {
                 }
             }
         }
+        var continuityCount = 0;
+        var lastFunc = -1;
         while (true) {
             this.memImage = captureScreen();
             for (let i = 0, iLen = scriptFuncList.length; i < iLen; i++) {
                 result = this.commonClick(scriptFuncList[i]);
                 if (result) {
+                    if (scriptFuncList[i].id == lastFunc) {
+                        continuityCount++;
+                        console.log('[assttyys]continuityCount: ' + continuityCount);
+                        if (continuityCount >= this.userConfigs.continuityTimeToStop) {
+                            toastLog('连续执行' + scriptFuncList[i].name + '达到' + continuityCount + '次, 脚本停止');
+                            // 广播停止脚本
+                            events.broadcast.emit('DQFLOATY_STOP_CLICK', '');
+                        }
+                    } else {
+                        lastFunc = scriptFuncList[i].id;
+                        continuityCount = 1;
+                    }
                     console.log('[assttyys] run success: ' + scriptFuncList[i].name);
                     toastLog(scriptFuncList[i].name);
                     break;
@@ -123,6 +138,8 @@ myScript.prototype = {
                     var y = op.y + parseInt(random(0, op.oy));
                     // this.ra.tap(x, y); 不起作用, 不管它
                     Tap(x, y);
+                    // var tapResult = shell('input tap ' + x + ' ' + y, true);
+                    // console.log(tapResult);
                     var delay = op.ad + this.userConfigs.afterClickDelay + parseInt(random(0, this.userConfigs.afterClickDelayRandom));
                     sleep(delay);
                 }

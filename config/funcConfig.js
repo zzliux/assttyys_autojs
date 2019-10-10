@@ -237,7 +237,6 @@ module.exports = [
         data: function (_self) {
             // 多点找色
             var point = images.findMultiColors(_self.memImage, multiColor['结界_进攻'].firstColor, multiColor['结界_进攻'].colors, { region: [388, 434, 1357, 636], threshold: _self.userConfigs.multiColorSimilar });
-            console.log(point);
             if (!point) return false;
             Tap(point.x + random(0, 190), point.y + random(0, 86));
             var delay = 2000 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
@@ -424,10 +423,68 @@ module.exports = [
                 { x: 1308, y: 78, c: '#483727', i: true },
                 { x: 766, y: 837, c: '#FCBA30', i: true }, // 3次达摩左边
                 { x: 887, y: 838, c: '#363D57', i: true }, // 3次达摩右边，如果大于3次就刷新的话直接注释这一行，如果只有3次就刷新的话就保留这一行
+                { x: 1503, y: 814, c: '#F4B25E', i: true }, // 亮着的刷新按钮上的一个点
             ],
             operaPoints: [
                 { x: 1448, y: 774, ox: 206, oy: 74, ad: 500 },
             ]
         }]
-    }
+    },
+    {
+        id: 18,
+        name: '结界_个人_3次刷新CD等待', // 该功能会在判定处于cd时sleep30秒，且后面的功能不会执行
+        data: function (_self) {
+            var sceneJudge = {
+                data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
+                    judgePoints: [
+                        { x: 264, y: 75, c: '#483727', i: true },
+                        { x: 1308, y: 78, c: '#483727', i: true },
+                        { x: 766, y: 837, c: '#FCBA30', i: true }, // 3次达摩左边
+                        { x: 887, y: 838, c: '#363D57', i: true }, // 3次达摩右边，如果大于3次就刷新的话直接注释这一行，如果只有3次就刷新的话就保留这一行
+                        { x: 1564, y: 827, c: '#B0A7A0', i: true }, // 灭着的刷新按钮上的一个点
+                    ],
+                    operaPoints: []
+                }]
+            }
+            if (!_self.commonClick(sceneJudge)) return false;
+            sleep(30000);
+            return true;
+        }
+    },
+    {
+        id: 19,
+        name: '结界_个人_地图进入突破界面',
+        data: [{
+            judgePoints: [
+                { x: 52, y: 1039, c: '#633E2B', i: true },
+                { x: 65, y: 87, c: '#EDF6FD', i: true },
+                { x: 1531, y: 1066, c: '#6D4333', i: true },
+                { x: 1740, y: 236, c: '#D8D2C2', i: true },
+            ],
+            operaPoints: [
+                { x: 414, y: 953, ox: 94, oy: 93, ad: 500 },
+            ]
+        }]
+    },
+    {
+        id: 20,
+        name: '结界_寮突_CD等待',
+        data: function (_self) {
+            var sceneJudge = {
+                data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
+                    judgePoints: [
+                        { x: 264, y: 75, c: '#483727', i: true },
+                        { x: 1308, y: 78, c: '#483727', i: true },
+                        { x: 434, y: 837, c: '#3A3128', i: true }, // 数字0上随便取了3个点，不知道效果怎样
+                        { x: 421, y: 837, c: '#3A3128', i: true }, // 数字0上随便取了3个点，不知道效果怎样
+                        { x: 428, y: 837, c: '#D0BFAD', i: true }, // 数字0上随便取了3个点，不知道效果怎样
+                    ],
+                    operaPoints: []
+                }]
+            }
+            if (!_self.commonClick(sceneJudge)) return false;
+            sleep(30000);
+            return true;
+        }
+    },
 ]

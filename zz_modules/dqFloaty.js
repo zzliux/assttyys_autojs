@@ -46,8 +46,8 @@ function dqFloaty() {
         
     var logo_switch = false;//全局: 悬浮窗的开启关闭检测
     var logo_buys = false;//全局: 开启和关闭时占用状态 防止多次点击触发
-    var logo_fx = true//全局: 悬浮按钮所在的方向 真左 假右
-    var time_0, time_1, time_3//全局: 定时器 点击退出悬浮窗时定时器关闭
+    var logo_fx = false;//全局: 悬浮按钮所在的方向 真左 假右
+    var time_0, time_1, time_3;//全局: 定时器 点击退出悬浮窗时定时器关闭
 
     //可修改参数
     var logo_ms = 200//全局:  动画播放时间
@@ -110,7 +110,7 @@ function dqFloaty() {
             <img id="logo_click" w="*" h="*" src="#ffffff" alpha="0" />
         </frame>
     )
-    win_1.setPosition(-30, dm.heightPixels / 2)//悬浮按钮定位
+    win_1.setPosition(dm.widthPixels - 105, dm.heightPixels / 2) //悬浮按钮定位
 
     var win_2 = floaty.rawWindow(
         <frame id="logo" h="44" alpha="0" >//悬浮按钮 弹性替身
@@ -179,7 +179,7 @@ function dqFloaty() {
                 img_dp.w = parseInt(dpZ * 9)//计算logo左边隐藏时 X值
                 img_dp.ww = parseInt(dpZ * (44 - 9))//计算logo右边隐藏时 X值
                 logo_right = win.id_2.getX() - parseInt(dpZ * 22)
-                win_1.setPosition(0 - img_dp.w, dm.heightPixels / 2)
+                win_1.setPosition(dm.widthPixels - 105, dm.heightPixels / 2) //悬浮按钮定位
                 win.id_logo.setVisibility(4)
                 win.id_logo.attr("alpha", "1")
                 events.broadcast.emit("定时器关闭", terid)
@@ -197,7 +197,8 @@ function dqFloaty() {
         if (screenOrien2 != screenOrien) {
             screenOrien = screenOrien2;
             ui.run(function () {
-                win_1.setPosition(-30, dm.heightPixels / 2)//悬浮按钮定位
+                logo_fx = false;
+                win_1.setPosition(dm.widthPixels - 105, dm.heightPixels / 2) //悬浮按钮定位
                 win_2.logo.getLayoutParams().width = dm.widthPixels;
             });
         }
@@ -249,6 +250,17 @@ function dqFloaty() {
 
     // 停止脚本
     win.id_3_click.on("click", () => {
+        img_down()
+        if (null != scriptThread) {
+            scriptThread.interrupt();
+        }
+        win_1.img_logo.setColorFilter(colors.argb(0, 255, 153, 0));
+        win_2.img_logo.setColorFilter(colors.argb(0, 255, 153, 0));
+        toastLog("结束脚本")
+    });
+
+    // 点击设置
+    events.broadcast.on('DQFLOATY_STOP_CLICK', function () {
         img_down()
         if (null != scriptThread) {
             scriptThread.interrupt();

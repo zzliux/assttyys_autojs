@@ -5,15 +5,23 @@ module.exports = [
     },
     {
         name: '双人车司机',
-        funcNumbers: [1, 2, 4, 6]
+        funcNumbers: [1, 8, 2, 4, 6]
     },
     {
         name: '三人车司机',
-        funcNumbers: [1, 2, 4, 7]
+        funcNumbers: [1, 8, 2, 4, 7]
+    },
+    {
+        name: '乘客',
+        funcNumbers: [1, 2, 4]
     },
     {
         name: '个人突破三次刷新',
-        funcNumbers: [1, 2, 4, 8, 10, 17, 15, 16, 14, 13, 12, 11]
+        funcNumbers: [1, 2, 4, 8, 10, 18, 17, 15, 16, 14, 13, 12, 11, 19]
+    },
+    {
+        name: '寮突破',
+        funcNumbers: [1, 2, 4, 8, 10, 20, 15, 16, 14, 13, 12, 11]
     },
     {
         name: '个人御魂/御灵/业原火',
