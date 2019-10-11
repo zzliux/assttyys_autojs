@@ -10,12 +10,10 @@ module.exports = <drawer id="drawer" bg="#eeeeeeee">
                     <horizontal w="*"padding="10 5">
                         <text textSize="16sp">功能预设</text>
                         <spinner id="preFunc" entries="" />
-                        <button id="fitPreFunc" text="确定"/>
                     </horizontal>
                     <list id="funcList">
                         <card w="*" h="40" id="card" margin="10 5" clickable="true" cardCornerRadius="2dp" cardElevation="1dp" foreground="?android:attr/selectableItemBackgroundBorderless">
                             <horizontal gravity="center_vertical">
-                                <View bg="#e91363" h="*" w="10" />
                                 <vertical padding="10 8" h="auto" w="auto" layout_weight="1">
                                     <text id="title" text="{{this.funcId + ' ' + this.funcName}}" textColor="#222222" textSize="16sp" maxLines="1" />
                                 </vertical>

@@ -2,6 +2,7 @@
 
 importClass(android.content.Intent);
 importClass(android.widget.ArrayAdapter);
+importClass(android.widget.AdapterView);
 importClass(android.R);
 importClass(java.util.ArrayList);
 
@@ -69,6 +70,8 @@ var assttyys = {
     },
 
     initPreFuncSpinner: function () {
+        var that = this;
+        
         var preFuncList = require('./config/preFuncConfig');
         var userFuncList = this.ass.get('userFuncList') || [];
 
@@ -95,12 +98,57 @@ var assttyys = {
         }
         var data_list = new ArrayList(preFuncStrList);
 
-        //适配器
+        // 适配器
         var arr_adapter = new ArrayAdapter(context, android.R.layout.simple_spinner_item, data_list);
-        //设置样式
+        // 设置样式
         arr_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //加载适配器
+        // 加载适配器
         spinner.setAdapter(arr_adapter);
+
+
+        // 选择事件
+        // http://www.makaidong.com/%E5%8D%9A%E5%AE%A2%E5%9B%AD%E6%8E%92%E8%A1%8C/30189.shtml
+        // 3. rhino如何实现java接口
+        var selectedListener = {
+            onItemSelected: function (parent, view, position, id) {
+                if (position === 0) {
+                    return;
+                }
+                var pos = position;
+                var funcNumbers = that.preFuncList[pos].funcNumbers;
+                var enbs = [];
+                for (var j = 0; j < funcNumbers.length; j++) {
+                    for (var i = 0; i < that.funcList.length; i++) {
+                        if (funcNumbers[j] == that.funcList[i].funcId) {
+                            that.funcList[i].enable = true;
+                            enbs.push(that.funcList[i]);
+                            break;
+                        }
+                    }
+                }
+                var newFunclist = [];
+                for (var i = 0; i < enbs.length; i++) {
+                    newFunclist.push(enbs[i]);
+                }
+                for(var i = 0; i < that.funcList.length; i++) {
+                    var flag = true;
+                    for(var j = 0; j < enbs.length; j++) {
+                        if (enbs[j].funcId == that.funcList[i].funcId) {
+                            flag = false;
+                            break;
+                        }
+                    }
+                    if (flag) {
+                        that.funcList[i].enable = false;
+                        newFunclist.push(that.funcList[i]);
+                    }
+                }
+                that.funcList = newFunclist;
+                ui.funcList.setDataSource(that.funcList);
+            },
+            onNothingSelected: function (parent) { }
+        };
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(selectedListener));
     },
 
     bindEvents: function () {
@@ -110,7 +158,7 @@ var assttyys = {
         ui.emitter.on("options_item_selected", (e, item)=>{
             switch(item.getTitle()){
                 case "关于":
-                    alert("关于", "还没有关于");
+                    alert("关于", "作者：zzliux\n开源地址：https://gitee.com/zzliux/assttyys_autojs");
                     break;
                 case "重置配置":
                     that.ass.put('funcList', []);
@@ -202,43 +250,10 @@ var assttyys = {
             context.startActivity(i);
         });
 
-        // 功能预设-确定按钮
-        ui.fitPreFunc.on('click', function () {
-            var pos = ui.preFunc.getSelectedItemPosition();
-            var funcNumbers = that.preFuncList[pos].funcNumbers;
-            var enbs = [];
-            for (var j = 0; j < funcNumbers.length; j++) {
-                for (var i = 0; i < that.funcList.length; i++) {
-                    if (funcNumbers[j] == that.funcList[i].funcId) {
-                        that.funcList[i].enable = true;
-                        enbs.push(that.funcList[i]);
-                        break;
-                    }
-                }
-            }
-            var newFunclist = [];
-            for (var i = 0; i < enbs.length; i++) {
-                newFunclist.push(enbs[i]);
-            }
-            for(var i = 0; i < that.funcList.length; i++) {
-                var flag = true;
-                for(var j = 0; j < enbs.length; j++) {
-                    if (enbs[j].funcId == that.funcList[i].funcId) {
-                        flag = false;
-                        break;
-                    }
-                }
-                if (flag) {
-                    that.funcList[i].enable = false;
-                    newFunclist.push(that.funcList[i]);
-                }
-            }
-            that.funcList = newFunclist;
-            ui.funcList.setDataSource(that.funcList);
-        });
-        
         // 点击设置
         events.broadcast.on('DQFLOATY_SETTING_CLICK', function () {
+            // 广播停止脚本
+            events.broadcast.emit('DQFLOATY_STOP_CLICK', '');
             var i = new android.content.Intent(context, activity.class);
             context.startActivity(i);
         });
