@@ -76,7 +76,7 @@ module.exports = [
                     { x: 897, y: 927, c: '#300205', i: true },
                 ],
                 operaPoints: [
-                    { x: 29, y: 180, ox: 194, oy: 620, ad: 500 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 3000 },
                 ]
             },
             { // 个人退出结算(失败太鼓)
@@ -87,7 +87,7 @@ module.exports = [
                     { x: 705, y: 265, c: '#BAAA90', i: true },
                 ],
                 operaPoints: [
-                    { x: 29, y: 180, ox: 194, oy: 620, ad: 500 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 3000 },
                 ]
             },
             { // 组队退出结算(失败太鼓)
@@ -98,7 +98,7 @@ module.exports = [
                     { x: 703, y: 186, c: '#B9A990', i: true },
                 ],
                 operaPoints: [
-                    { x: 29, y: 180, ox: 194, oy: 620, ad: 500 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 3000 },
                 ]
             },
         ]

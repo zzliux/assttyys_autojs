@@ -13,7 +13,7 @@ module.exports = [
     },
     {
         name: '乘客',
-        funcNumbers: [1, 2, 4]
+        funcNumbers: [1, 2, 4, 5]
     },
     {
         name: '个人突破三次刷新',
@@ -21,7 +21,7 @@ module.exports = [
     },
     {
         name: '寮突破',
-        funcNumbers: [1, 2, 4, 8, 10, 20, 15, 16, 14, 13, 12, 11]
+        funcNumbers: [1, 2, 4, 10, 20, 15, 16, 14, 13, 12, 11]
     },
     {
         name: '个人御魂/御灵/业原火',
