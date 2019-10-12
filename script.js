@@ -137,7 +137,8 @@ myScript.prototype = {
                     var x = op.x + parseInt(random(0, op.ox));
                     var y = op.y + parseInt(random(0, op.oy));
                     // this.ra.tap(x, y); 不起作用, 不管它
-                    Tap(x, y);
+                    // Tap(x, y); 有时不起作用
+                    press(x, y, random(10, 100));
                     // var tapResult = shell('input tap ' + x + ' ' + y, true);
                     // console.log(tapResult);
                     var delay = op.ad + this.userConfigs.afterClickDelay + parseInt(random(0, this.userConfigs.afterClickDelayRandom));

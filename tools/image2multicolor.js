@@ -25,13 +25,13 @@ var result = {
     firstColor: getPixColor(imgData, 1, 1),
     colors: [],
 }
-var stepLen = 10;
+var stepLen = 1;
 // 因为四个角是透明颜色了，只能把外围一圈全部忽略了
 for (var x = 1; x < imgData.width - 1; x += stepLen) {
     for (var y = 1; y < imgData.height - 1; y += stepLen) {
         var color = getPixColor(imgData, x, y);
         if (color === alphaColor || (x == 1 && y == 1)) continue;
-        result.colors.push([x, y, color]);
+        result.colors.push([x - 1, y - 1, color]);
     }
 }
 

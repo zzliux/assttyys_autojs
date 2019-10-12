@@ -1,5 +1,5 @@
 var multiColor = {};
-var multiColorNames = ['结界_0勋章', '结界_1勋章', '结界_2勋章', '结界_3勋章', '结界_4勋章', '结界_5勋章', '结界_进攻'];
+var multiColorNames = ['结界_0勋章', '结界_1勋章', '结界_2勋章', '结界_3勋章', '结界_4勋章', '结界_5勋章', '结界_进攻', '探索_经验怪标记'];
 for (let i = 0; i < multiColorNames.length; i++) {
     multiColor[multiColorNames[i]] = require('../multi_colors/' + multiColorNames[i]);
 }
@@ -236,7 +236,7 @@ module.exports = [
         name: '结界_进攻',
         data: function (_self) {
             // 多点找色
-            var point = images.findMultiColors(_self.memImage, multiColor['结界_进攻'].firstColor, multiColor['结界_进攻'].colors, { region: [388, 434, 1357, 636], threshold: _self.userConfigs.multiColorSimilar });
+            var point = images.findMultiColors(_self.memImage, multiColor['结界_进攻'].firstColor, multiColor['结界_进攻'].colors, { region: [388, 434, 1357, 900], threshold: _self.userConfigs.multiColorSimilar });
             if (!point) return false;
             Tap(point.x + random(0, 190), point.y + random(0, 86));
             var delay = 2000 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
@@ -262,7 +262,7 @@ module.exports = [
 
             // 多点找色
             var t1 = new Date();
-            var point = images.findMultiColors(_self.memImage, multiColor['结界_0勋章'].firstColor, multiColor['结界_0勋章'].colors, { region: [200, 141, 1616, 957], threshold: _self.userConfigs.multiColorSimilar });
+            var point = images.findMultiColors(_self.memImage, multiColor['结界_0勋章'].firstColor, multiColor['结界_0勋章'].colors, { region: [200, 141, 1357, 900], threshold: _self.userConfigs.multiColorSimilar });
             var t2 = new Date();
             console.log('结界_0勋章:单次多点找色时间: ' + (t2 - t1));
             if (!point) return false;
@@ -290,7 +290,7 @@ module.exports = [
 
             // 多点找色
             var t1 = new Date();
-            var point = images.findMultiColors(_self.memImage, multiColor['结界_1勋章'].firstColor, multiColor['结界_1勋章'].colors, { region: [200, 141, 1616, 957], threshold: _self.userConfigs.multiColorSimilar });
+            var point = images.findMultiColors(_self.memImage, multiColor['结界_1勋章'].firstColor, multiColor['结界_1勋章'].colors, { region: [200, 141, 1357, 900], threshold: _self.userConfigs.multiColorSimilar });
             var t2 = new Date();
             console.log('结界_1勋章:单次多点找色时间: ' + (t2 - t1));
             if (!point) return false;
@@ -318,7 +318,7 @@ module.exports = [
 
             // 多点找色
             var t1 = new Date();
-            var point = images.findMultiColors(_self.memImage, multiColor['结界_2勋章'].firstColor, multiColor['结界_2勋章'].colors, { region: [200, 141, 1616, 957], threshold: _self.userConfigs.multiColorSimilar });
+            var point = images.findMultiColors(_self.memImage, multiColor['结界_2勋章'].firstColor, multiColor['结界_2勋章'].colors, { region: [200, 141, 1357, 900], threshold: _self.userConfigs.multiColorSimilar });
             var t2 = new Date();
             console.log('结界_2勋章:单次多点找色时间: ' + (t2 - t1));
             if (!point) return false;
@@ -346,7 +346,7 @@ module.exports = [
 
             // 多点找色
             var t1 = new Date();
-            var point = images.findMultiColors(_self.memImage, multiColor['结界_3勋章'].firstColor, multiColor['结界_3勋章'].colors, { region: [200, 141, 1616, 957], threshold: _self.userConfigs.multiColorSimilar });
+            var point = images.findMultiColors(_self.memImage, multiColor['结界_3勋章'].firstColor, multiColor['结界_3勋章'].colors, { region: [200, 141, 1357, 900], threshold: _self.userConfigs.multiColorSimilar });
             var t2 = new Date();
             console.log('结界_3勋章:单次多点找色时间: ' + (t2 - t1));
             if (!point) return false;
@@ -374,7 +374,7 @@ module.exports = [
 
             // 多点找色
             var t1 = new Date();
-            var point = images.findMultiColors(_self.memImage, multiColor['结界_4勋章'].firstColor, multiColor['结界_4勋章'].colors, { region: [200, 141, 1616, 957], threshold: _self.userConfigs.multiColorSimilar });
+            var point = images.findMultiColors(_self.memImage, multiColor['结界_4勋章'].firstColor, multiColor['结界_4勋章'].colors, { region: [200, 141, 1357, 900], threshold: _self.userConfigs.multiColorSimilar });
             var t2 = new Date();
             console.log('结界_4勋章:单次多点找色时间: ' + (t2 - t1));
             if (!point) return false;
@@ -402,7 +402,7 @@ module.exports = [
 
             // 多点找色
             var t1 = new Date();
-            var point = images.findMultiColors(_self.memImage, multiColor['结界_5勋章'].firstColor, multiColor['结界_5勋章'].colors, { region: [200, 141, 1616, 957], threshold: _self.userConfigs.multiColorSimilar });
+            var point = images.findMultiColors(_self.memImage, multiColor['结界_5勋章'].firstColor, multiColor['结界_5勋章'].colors, { region: [200, 141, 1357, 900], threshold: _self.userConfigs.multiColorSimilar });
             var t2 = new Date();
             console.log('结界_5勋章:单次多点找色时间: ' + (t2 - t1));
 
@@ -486,4 +486,63 @@ module.exports = [
             return true;
         }
     },
+    {
+        id: 21,
+        name: '探索_地图进入最后一章',
+        data: [{
+            judgePoints: [
+                { x: 52, y: 1039, c: '#633E2B', i: true },
+                { x: 65, y: 87, c: '#EDF6FD', i: true },
+                { x: 1531, y: 1066, c: '#6D4333', i: true },
+                { x: 1740, y: 236, c: '#D8D2C2', i: true },
+            ],
+            operaPoints: [
+                { x: 1585, y: 837, ox: 291, oy: 146, ad: 1500 },
+            ]
+        }]
+    },
+    {
+        id: 22,
+        name: '探索_最后一章确认界面点击探索',
+        data: [{
+            judgePoints: [
+                { x: 562, y: 194, c: '#483727', i: true },
+                { x: 1326, y: 199, c: '#483727', i: true },
+                { x: 1361, y: 812, c: '#F5B15E', i: true },
+                { x: 740, y: 644, c: '#C9AF96', i: true },
+            ],
+            operaPoints: [
+                { x: 667, y: 306, ox: 87, oy: 62, ad: 500 },
+                { x: 1333, y: 776, ox: 172, oy: 63, ad: 1500 },
+            ]
+        }]
+    },
+    {
+        id: 23,
+        name: '探索_挑战经验怪',
+        data: function (_self) {
+            var sceneJudge = {
+                data: [{ // 用来判断是不是探索小怪的场景，直接用多点找色的话会在此占用太多资源
+                    judgePoints: [
+                        { x: 61, y: 99, c: '#ECF5FC', i: true },
+                        { x: 59, y: 808, c: '#524B5B', i: true },
+                        { x: 1686, y: 79, c: '#E1CAA0', i: true },
+                    ],
+                    operaPoints: []
+                }]
+            }
+            if (!_self.commonClick(sceneJudge)) return false;
+            var t1 = new Date();
+            var point = images.findMultiColors(_self.memImage, multiColor['探索_经验怪标记'].firstColor, multiColor['探索_经验怪标记'].colors, { region: [200, 360, 1520, 700], threshold: 8 });
+            var t2 = new Date();
+            console.log('探索_经验怪标记:单次多点找色时间: ' + (t2 - t1));
+            if (null != point) {
+                // TODO 从内向外多点找色，可点击的挑战图标，可能会处理为不停的进行多点找色，找不到的时候放大区域
+                // press(point.x, point.y, 1000);
+                // toastLog(point);
+            }
+
+            return false;
+        }
+    }
 ]
