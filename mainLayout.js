@@ -8,7 +8,7 @@ module.exports = <drawer id="drawer" bg="#eeeeeeee">
             <frame>
                 <vertical h="*" padding="0 10 0 60">
                     <horizontal w="*"padding="10 5">
-                        <text textSize="16sp">功能预设</text>
+                        <text textSize="16sp">方案</text>
                         <spinner id="preFunc" entries="" />
                     </horizontal>
                     <list id="funcList">

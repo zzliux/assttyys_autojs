@@ -240,7 +240,7 @@ module.exports = [
         name: '结界_进攻',
         data: function (_self) {
             // 多点找色
-            var point = images.findMultiColors(_self.memImage, multiColor['结界_进攻'].firstColor, multiColor['结界_进攻'].colors, { region: [388, 434, 1357, 636], threshold: _self.userConfigs.multiColorSimilar });
+            var point = images.findMultiColors(_self.memImage, multiColor['结界_进攻'].firstColor, multiColor['结界_进攻'].colors, { region: [388, 434, 1531, 636], threshold: _self.userConfigs.multiColorSimilar });
             if (!point) return false;
             Tap(point.x + random(0, 190), point.y + random(0, 86));
             var delay = 2000 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
@@ -266,7 +266,7 @@ module.exports = [
 
             // 多点找色
             var t1 = new Date();
-            var point = images.findMultiColors(_self.memImage, multiColor['结界_0勋章'].firstColor, multiColor['结界_0勋章'].colors, { region: [200, 141, 1357, 900], threshold: _self.userConfigs.multiColorSimilar });
+            var point = images.findMultiColors(_self.memImage, multiColor['结界_0勋章'].firstColor, multiColor['结界_0勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
             var t2 = new Date();
             console.log('结界_0勋章:单次多点找色时间: ' + (t2 - t1));
             if (!point) return false;
@@ -294,7 +294,7 @@ module.exports = [
 
             // 多点找色
             var t1 = new Date();
-            var point = images.findMultiColors(_self.memImage, multiColor['结界_1勋章'].firstColor, multiColor['结界_1勋章'].colors, { region: [200, 141, 1357, 900], threshold: _self.userConfigs.multiColorSimilar });
+            var point = images.findMultiColors(_self.memImage, multiColor['结界_1勋章'].firstColor, multiColor['结界_1勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
             var t2 = new Date();
             console.log('结界_1勋章:单次多点找色时间: ' + (t2 - t1));
             if (!point) return false;
@@ -322,7 +322,7 @@ module.exports = [
 
             // 多点找色
             var t1 = new Date();
-            var point = images.findMultiColors(_self.memImage, multiColor['结界_2勋章'].firstColor, multiColor['结界_2勋章'].colors, { region: [200, 141, 1357, 900], threshold: _self.userConfigs.multiColorSimilar });
+            var point = images.findMultiColors(_self.memImage, multiColor['结界_2勋章'].firstColor, multiColor['结界_2勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
             var t2 = new Date();
             console.log('结界_2勋章:单次多点找色时间: ' + (t2 - t1));
             if (!point) return false;
@@ -350,7 +350,7 @@ module.exports = [
 
             // 多点找色
             var t1 = new Date();
-            var point = images.findMultiColors(_self.memImage, multiColor['结界_3勋章'].firstColor, multiColor['结界_3勋章'].colors, { region: [200, 141, 1357, 900], threshold: _self.userConfigs.multiColorSimilar });
+            var point = images.findMultiColors(_self.memImage, multiColor['结界_3勋章'].firstColor, multiColor['结界_3勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
             var t2 = new Date();
             console.log('结界_3勋章:单次多点找色时间: ' + (t2 - t1));
             if (!point) return false;
@@ -378,7 +378,7 @@ module.exports = [
 
             // 多点找色
             var t1 = new Date();
-            var point = images.findMultiColors(_self.memImage, multiColor['结界_4勋章'].firstColor, multiColor['结界_4勋章'].colors, { region: [200, 141, 1357, 900], threshold: _self.userConfigs.multiColorSimilar });
+            var point = images.findMultiColors(_self.memImage, multiColor['结界_4勋章'].firstColor, multiColor['结界_4勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
             var t2 = new Date();
             console.log('结界_4勋章:单次多点找色时间: ' + (t2 - t1));
             if (!point) return false;
@@ -406,7 +406,7 @@ module.exports = [
 
             // 多点找色
             var t1 = new Date();
-            var point = images.findMultiColors(_self.memImage, multiColor['结界_5勋章'].firstColor, multiColor['结界_5勋章'].colors, { region: [200, 141, 1357, 900], threshold: _self.userConfigs.multiColorSimilar });
+            var point = images.findMultiColors(_self.memImage, multiColor['结界_5勋章'].firstColor, multiColor['结界_5勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
             var t2 = new Date();
             console.log('结界_5勋章:单次多点找色时间: ' + (t2 - t1));
 

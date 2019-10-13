@@ -16,10 +16,11 @@ threads.start(function () {
 });
 
 var mainLayout = require('./mainLayout');
-var zzUtils = require('./zz_modules/zzUtils');
+// var zzUtils = require('./zz_modules/zzUtils');
+var globalPreFuncList = require('./config/preFuncConfig');
 
 var assttyys = {
-    
+
     floatyThread: null,
 
     /**
@@ -44,11 +45,12 @@ var assttyys = {
         var that = this;
 
         //创建选项菜单(右上角)
-        ui.emitter.on("create_options_menu", menu=>{
+        ui.emitter.on("create_options_menu", menu => {
+            menu.add('方案管理');
             menu.add("重置配置");
             menu.add("关于");
         });
-        
+
         activity.setSupportActionBar(ui.toolbar);
 
         //设置滑动页面的标题
@@ -65,15 +67,19 @@ var assttyys = {
                 icon: "@drawable/ic_exit_to_app_black_48dp"
             }
         ]);
-        
+
         this.initPreFuncSpinner();
     },
 
     initPreFuncSpinner: function () {
         var that = this;
-        
-        var preFuncList = require('./config/preFuncConfig');
+        // console.log(this.ass.get('userFuncList'));
+        // this.ass.put('userFuncList', null);
         var userFuncList = this.ass.get('userFuncList') || [];
+        var preFuncList = [];
+        for (var i = 0; i < globalPreFuncList.length; i++) {
+            preFuncList.push(globalPreFuncList[i]);
+        }
 
         // 合并两个对象, 以用户设置的为准
         for (var i = 0; i < userFuncList.length; i++) {
@@ -90,7 +96,7 @@ var assttyys = {
             }
         }
         this.preFuncList = preFuncList;
-        
+
         var spinner = ui.preFunc;
         var  preFuncStrList = [];
         for (var i = 0; i < preFuncList.length; i++) {
@@ -126,9 +132,9 @@ var assttyys = {
                         }
                     }
                 }
-                var newFunclist = [];
+                var newFuncList = [];
                 for (var i = 0; i < enbs.length; i++) {
-                    newFunclist.push(enbs[i]);
+                    newFuncList.push(enbs[i]);
                 }
                 for(var i = 0; i < that.funcList.length; i++) {
                     var flag = true;
@@ -140,10 +146,10 @@ var assttyys = {
                     }
                     if (flag) {
                         that.funcList[i].enable = false;
-                        newFunclist.push(that.funcList[i]);
+                        newFuncList.push(that.funcList[i]);
                     }
                 }
-                that.funcList = newFunclist;
+                that.funcList = newFuncList;
                 ui.funcList.setDataSource(that.funcList);
             },
             onNothingSelected: function (parent) { }
@@ -161,8 +167,15 @@ var assttyys = {
                     alert("关于", "作者：zzliux\n开源地址：https://gitee.com/zzliux/assttyys_autojs");
                     break;
                 case "重置配置":
-                    that.ass.put('funcList', []);
-                    ui.finish();
+                    dialogs.confirm('提示', '重置配置后所有配置将被重置并退出程序，确认？', function (is) {
+                        if (!is) return;
+                        that.ass.put('funcList', []);
+                        that.ass.put('userFuncList', []);
+                        ui.finish();
+                    });
+                    break;
+                case '方案管理':
+                    that.savePrevFuncEvent();
                     break;
             }
             e.consumed = true;
@@ -211,7 +224,7 @@ var assttyys = {
                     dqFloaty.render();
                 });
             }
-            
+
             // var i = app.intent({
             //     action: Intent.ACTION_MAIN,
             //     category: Intent.CATEGORY_HOME
@@ -219,9 +232,9 @@ var assttyys = {
             // context.startActivity(i);
 
             launchApp('阴阳师');
-            
+
         });
-        
+
         ui.autoService.on("check", function(checked) {
             // 用户勾选无障碍服务的选项时，跳转到页面让用户去开启
             if(checked && auto.service == null) {
@@ -261,7 +274,7 @@ var assttyys = {
 
     initData: function () {
         var that = this;
-        
+ 
         var funcConfig = require('./config/funcConfig');
         this.funcList = this.ass.get('funcList') || [];
         // 已配置和所有配置的合并一下，使新开发的功能不做别的干预也能出现在配置列表
@@ -282,6 +295,82 @@ var assttyys = {
             }
         }
         ui.funcList.setDataSource(this.funcList);
+    },
+
+
+    savePrevFuncEvent: function () {
+        var that = this;
+        dialogs.select('操作', ['另存当前方案', '覆盖已有方案', '删除已有方案'], function (operId) {
+            if (operId == 0) {
+                dialogs.rawInput('请输入方案名', '', function (prevFuncName) {
+                    if (null == prevFuncName || '' == prevFuncName) return;
+                    that.savePrevUserFunc(prevFuncName);
+                    that.initPreFuncSpinner();
+                });
+            } else if (operId == 1) {
+                var userFuncList = that.ass.get('userFuncList') || [];
+                var funcNameList = [];
+                for (let i = 0; i < userFuncList.length; i++) {
+                    funcNameList.push(userFuncList[i].name);
+                }
+                dialogs.select('选择要覆盖的方案', funcNameList, function (coverOperId) {
+                    if (coverOperId == -1) return;
+                    that.savePrevUserFunc(funcNameList[coverOperId]);
+                    that.initPreFuncSpinner();
+                });
+            } else if (operId == 2) {
+                var userFuncList = that.ass.get('userFuncList') || [];
+                var funcNameList = [];
+                for (let i = 0; i < userFuncList.length; i++) {
+                    funcNameList.push(userFuncList[i].name);
+                }
+                dialogs.select('选择要删除的方案', funcNameList, function (deleteOperId) {
+                    if (deleteOperId == -1) return;
+                    that.deletePrevUserFunc(funcNameList[deleteOperId]);
+                    that.initPreFuncSpinner();
+                });
+            }
+        });
+
+    },
+    
+    savePrevUserFunc: function (prevFuncName) {
+        var that = this;
+        var userFuncList = that.ass.get('userFuncList') || [];
+        var funcNumbers = [];
+        for (let i = 0; i < that.funcList.length; i++) {
+            if (that.funcList[i].enable) {
+                funcNumbers.push(that.funcList[i].funcId);
+            }
+        }
+        var flag = true;
+        for (let i = 0; i < userFuncList.length; i++) {
+            if (userFuncList[i].name == prevFuncName) {
+                flag = false;
+                userFuncList[i].funcNumbers = funcNumbers;
+                break;
+            }
+        }
+        if (flag) {
+            userFuncList.push({
+                name: prevFuncName,
+                funcNumbers: funcNumbers
+            });
+        }
+        that.ass.put('userFuncList', userFuncList);
+        toastLog('已保存');
+    },
+
+    deletePrevUserFunc: function (prevFuncName) {
+        var userFuncList = this.ass.get('userFuncList') || [];
+        var toSave = [];
+        for (let i = 0; i < userFuncList.length; i++) {
+            if (userFuncList[i].name != prevFuncName) {
+                toSave.push(userFuncList[i]);
+            }
+        }
+        this.ass.put('userFuncList', toSave);
+        toastLog('已保存');
     }
 };
 
