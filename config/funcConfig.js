@@ -1,8 +1,10 @@
 var multiColor = {};
-var multiColorNames = ['结界_0勋章', '结界_1勋章', '结界_2勋章', '结界_3勋章', '结界_4勋章', '结界_5勋章', '结界_进攻', '探索_经验怪标记'];
+var multiColorNames = ['结界_0勋章', '结界_1勋章', '结界_2勋章', '结界_3勋章', '结界_4勋章', '结界_5勋章', '结界_进攻', '探索_经验怪标记', '探索_挑战图标', '探索_式神满级标记', '探索_挑战BOSS图标'];
 for (let i = 0; i < multiColorNames.length; i++) {
     multiColor[multiColorNames[i]] = require('../multi_colors/' + multiColorNames[i]);
 }
+
+var bezierSwiper = require('../zz_modules/bezierSwiper');
 
 
 
@@ -76,7 +78,9 @@ module.exports = [
                     { x: 897, y: 927, c: '#300205', i: true },
                 ],
                 operaPoints: [
-                    { x: 29, y: 180, ox: 194, oy: 620, ad: 3000 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 500 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 500 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 1000 },
                 ]
             },
             { // 个人退出结算(失败太鼓)
@@ -236,7 +240,7 @@ module.exports = [
         name: '结界_进攻',
         data: function (_self) {
             // 多点找色
-            var point = images.findMultiColors(_self.memImage, multiColor['结界_进攻'].firstColor, multiColor['结界_进攻'].colors, { region: [388, 434, 1357, 900], threshold: _self.userConfigs.multiColorSimilar });
+            var point = images.findMultiColors(_self.memImage, multiColor['结界_进攻'].firstColor, multiColor['结界_进攻'].colors, { region: [388, 434, 1357, 636], threshold: _self.userConfigs.multiColorSimilar });
             if (!point) return false;
             Tap(point.x + random(0, 190), point.y + random(0, 86));
             var delay = 2000 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
@@ -521,28 +525,119 @@ module.exports = [
         id: 23,
         name: '探索_挑战经验怪',
         data: function (_self) {
-            var sceneJudge = {
+            var count = 5;
+            while (count--) {
+                var sceneJudge = {
+                    data: [{ // 用来判断是不是探索小怪的场景，直接用多点找色的话会在此占用太多资源
+                        judgePoints: [
+                            { x: 61, y: 99, c: '#ECF5FC', i: true },
+                            { x: 59, y: 808, c: '#524B5B', i: true },
+                            { x: 1686, y: 79, c: '#E1CAA0', i: true },
+                        ],
+                        operaPoints: []
+                    }]
+                }
+                if (!_self.commonClick(sceneJudge)) return false;
+    
+                // 如果是boss就直接挑战
+                var t1 = new Date();
+                var point0 = images.findMultiColors(_self.memImage, multiColor['探索_挑战BOSS图标'].firstColor, multiColor['探索_挑战BOSS图标'].colors, { region: [40, 187, 1598, 468], threshold: 10 });
+                var t2 = new Date();
+                console.log('探索_挑战BOSS图标:单次多点找色时间: ' + (t2 - t1));
+                if (null != point0) {
+                    press(point0.x + random(0, 68), point0.y + random(0, 66), random(200, 500));
+                    sleep(1000 + _self.userConfigs.afterClickDelay + random(0, _self.userConfigs.afterClickDelayRandom));
+                    return true;
+                }
+    
+                // 找经验怪挑战
+                var t1 = new Date();
+                var point = images.findMultiColors(_self.memImage, multiColor['探索_经验怪标记'].firstColor, multiColor['探索_经验怪标记'].colors, { region: [200, 360, 1520, 700], threshold: 10 });
+                var t2 = new Date();
+                console.log('探索_经验怪标记:单次多点找色时间: ' + (t2 - t1));
+                if (null != point) {
+                    // 从内向外多点找色，可点击的挑战图标，可能会处理为不停的进行多点找色，找不到的时候放大区域
+                    let l = 5 * 7 // 搜索区域宽高,5倍 "探索_经验怪标记" 的宽高，当这个区域找不到时，l以倍数增长，直到找到为止或者达到一定次数, 这样处理的话会找重复的地方
+                    for (let tryTimes = 1; tryTimes <= 14; tryTimes++, l += 5 * 7) { // 尝试 14 次, 大概算了一下，14次内基本可以找到，找不到的话就滑屏
+                        let region = [point.x -  l / 2, point.y - l, l, l];
+                        if (region[0] < 0) region[0] = 0;
+                        if (region[1] < 0) region[1] = 0;
+                        if (region[0] + region[2] > 1920) region[2] = 1920 - region[0];
+                        if (region[1] + region[3] > 1080) region[3] = 1080 - region[1];
+
+                        let pointChange = images.findMultiColors(_self.memImage, multiColor['探索_挑战图标'].firstColor, multiColor['探索_挑战图标'].colors, { region: region, threshold: _self.userConfigs.multiColorSimilar });
+                        if (null != pointChange) {
+                            press(pointChange.x + random(0, 77), pointChange.y + random(0, 91), random(10, 200));
+                            sleep(1000 + _self.userConfigs.afterClickDelay + random(0, _self.userConfigs.afterClickDelayRandom));
+                            return true;
+                        }
+                    }
+                }
+                // 屏幕右往坐滑
+                bezierSwiper.swipe(1476 + random(0, 180), 179 + random(0, 626), 600 + random(0, 262), 228 + random(0, 745), random(300, 600));
+                sleep(200);
+                _self.memImage = captureScreen();
+            }
+
+            var outScene = {
                 data: [{ // 用来判断是不是探索小怪的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
                         { x: 61, y: 99, c: '#ECF5FC', i: true },
                         { x: 59, y: 808, c: '#524B5B', i: true },
                         { x: 1686, y: 79, c: '#E1CAA0', i: true },
                     ],
+                    operaPoints: [
+                        { x: 46, y: 70, ox: 61, oy: 51, ad: 700 },
+                        { x: 1052, y: 583, ox: 220, oy: 45, ad: 2000}
+                    ]
+                }]
+            }
+            return _self.commonClick(outScene);
+        }
+    },
+    {
+        id: 24,
+        name: '探索_打手换素材',
+        data: function (_self) {
+            var sceneJudge = {
+                data: [{ // 用来判断是不是准备的场景，直接用多点找色的话会在此占用太多资源
+                    judgePoints: [
+                        { x: 1782, y: 845, c: '#FFF3D1', i: true },
+                        { x: 1733, y: 835, c: '#FFF3D1', i: true },
+                        { x: 1754, y: 822, c: '#D3AE79', i: true },
+                    ],
                     operaPoints: []
                 }]
             }
             if (!_self.commonClick(sceneJudge)) return false;
-            var t1 = new Date();
-            var point = images.findMultiColors(_self.memImage, multiColor['探索_经验怪标记'].firstColor, multiColor['探索_经验怪标记'].colors, { region: [200, 360, 1520, 700], threshold: 8 });
-            var t2 = new Date();
-            console.log('探索_经验怪标记:单次多点找色时间: ' + (t2 - t1));
-            if (null != point) {
-                // TODO 从内向外多点找色，可点击的挑战图标，可能会处理为不停的进行多点找色，找不到的时候放大区域
-                // press(point.x, point.y, 1000);
-                // toastLog(point);
-            }
 
+            // 找满级标记
+            var t1 = new Date();
+            var point = images.findMultiColors(_self.memImage, multiColor['探索_式神满级标记'].firstColor, multiColor['探索_式神满级标记'].colors, { region: [532, 388, 793, 299], threshold: 15 });
+            var t2 = new Date();
+            if (null != point) {
+                let clickPoints = {
+                    data: [{
+                        judgePoints: [],
+                        operaPoints: [
+                            { x: 448, y: 731, ox: 554, oy: 202, ad: 0}, // 把换式神的界面点出来
+                            { x: 448, y: 731, ox: 554, oy: 202, ad: 0}, // 把换式神的界面点出来
+                            { x: 448, y: 731, ox: 554, oy: 202, ad: 1400}, // 把换式神的界面点出来
+                            { x: 65, y: 952, ox: 78, oy: 78, ad: 500 }, // 全部
+                            { x: 66, y: 446, ox: 74, oy: 74, ad: 1000}, // 素材
+                        ]
+                    }]
+                }
+                _self.commonClick(clickPoints);
+                // 第一个素材换到左边
+                bezierSwiper.swipe(261 + random(0, 148), 752 + random(0, 254), 179 + random(0, 201), 566 + random(0, 88), random(600, 800));
+                sleep(random(200, 500));
+                // 第二个素材换到右边
+                bezierSwiper.swipe(456 + random(0, 80), 758 + random(0, 241), 877 + random(0, 160), 566 + random(0, 88), random(1000, 1200));
+                sleep(random(200, 500));
+
+            };
             return false;
         }
-    }
+    },
 ]

@@ -26,5 +26,9 @@ module.exports = [
     {
         name: '个人御魂/御灵/业原火',
         funcNumbers: [1, 2, 4, 9]
-    }
+    },
+    {
+        name: '单人狗粮',
+        funcNumbers: [24, 1, 4, 2, 23, 21, 22]
+    },
 ];

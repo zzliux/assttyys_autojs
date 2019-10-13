@@ -8,7 +8,7 @@ var bezierSwiper = function () {
 }
 
 bezierSwiper.prototype.swipe = function (x0, y0, x1, y1, time) {
-    var stepLength = 0.15; // 步长， 实际也需要调整
+    var stepLength = 0.1; // 步长， 实际也需要调整
     var regionOffset = [-300, -300, 300, 300]; // 需要调整
     var gestureArgs = [time];
     // 生存两个随机的 p1 和 p2
@@ -73,7 +73,7 @@ bezierSwiper.prototype.calculateBezierPointForCubic = function (t, p0, p1, p2, p
 //     var a = new bezierSwiper();
 //     var cnt = 20;
 //     while (cnt--) {
-//         a.swipe(1080/2, 1920/5, 1080/2, 1920*4/5, random( , 1000));
+//         a.swipe(1080/2, 1920/5, 1080/2, 1920*4/5, random( 200, 1000));
 //         sleep(200);
 //     }
 // }

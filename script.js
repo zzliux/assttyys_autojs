@@ -68,7 +68,7 @@ myScript.prototype = {
                 if (result) {
                     if (scriptFuncList[i].id == lastFunc) {
                         continuityCount++;
-                        console.log('[assttyys]continuityCount: ' + continuityCount);
+                        console.log('[assttyys] continuityCount: ' + continuityCount);
                         if (continuityCount >= this.userConfigs.continuityTimeToStop) {
                             toastLog('连续执行' + scriptFuncList[i].name + '达到' + continuityCount + '次, 脚本停止');
                             // 广播停止脚本
@@ -79,7 +79,7 @@ myScript.prototype = {
                         continuityCount = 1;
                     }
                     console.log('[assttyys] run success: ' + scriptFuncList[i].name);
-                    toastLog(scriptFuncList[i].name);
+                    // toastLog(scriptFuncList[i].name);
                     break;
                 }
             }

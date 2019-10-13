@@ -1,4 +1,4 @@
-multianjian2multiauto("9FB5C7","159|116|777D82,218|116|777D82,278|116|747A7F,397|116|7A8085,447|8|A2BBCB");
+multianjian2multiauto("0F203A","20|-1|C0B3F7,67|72|091A2F,9|73|FAFFFF,7|95|9891E6,-66|263|1A1D78");
 
 
 /**
@@ -23,8 +23,8 @@ function multianjian2multiauto(firstColor, colors) {
 }
 
 function coloranjian2colorauto(color) {
-    var r = color.substring(4, 2);
-    var g = color.substring(2, 2);
+    var r = color.substring(4, 6);
+    var g = color.substring(2, 4);
     var b = color.substring(0, 2);
-    return '#' + r + g+ b;
+    return (('#' + r) + g) + b;
 }
