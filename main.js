@@ -219,6 +219,12 @@ var assttyys = {
         });
 
         ui.showFloaty.on('click', function () {
+
+            if (!ui.autoService.checked) {
+                toastLog('请开启无障碍权限');
+                return;
+            }
+
             that.ass.put('funcList', that.funcList);
 
             if (null === that.floatyThread) {
@@ -228,20 +234,16 @@ var assttyys = {
                 });
             }
 
-
             if (null == that.currentPackage) {
                 var i = app.intent({
                     action: Intent.ACTION_MAIN,
-                    category: Intent.CATEGORY_HOME
+                    category: Intent.CATEGORY_HOME,
+                    flags: ['ACTIVITY_NEW_TASK'],
                 });
                 context.startActivity(i);
             } else {
                 launch(that.currentPackage);
             }
-
-
-            // launchApp('阴阳师');
-
         });
 
         ui.autoService.checked = auto.service != null;
@@ -269,7 +271,8 @@ var assttyys = {
             e.consumed = true;
             var i = app.intent({
                 action: Intent.ACTION_MAIN,
-                category: Intent.CATEGORY_HOME
+                category: Intent.CATEGORY_HOME,
+                flags: ['ACTIVITY_NEW_TASK']
             });
             context.startActivity(i);
         });
