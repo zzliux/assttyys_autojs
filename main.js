@@ -32,6 +32,9 @@ var assttyys = {
 
     preFuncList: [],
     ass: storages.create('assttyys'),
+    
+    // 最近活动包名，用于启动脚本快速返回界面
+    currentPackage: null,
 
     init: function () {
         ui.layout(mainLayout);
@@ -225,19 +228,27 @@ var assttyys = {
                 });
             }
 
-            // var i = app.intent({
-            //     action: Intent.ACTION_MAIN,
-            //     category: Intent.CATEGORY_HOME
-            // });
-            // context.startActivity(i);
 
-            launchApp('阴阳师');
+            if (null == that.currentPackage) {
+                var i = app.intent({
+                    action: Intent.ACTION_MAIN,
+                    category: Intent.CATEGORY_HOME
+                });
+                context.startActivity(i);
+            } else {
+                launch(that.currentPackage);
+            }
+
+
+            // launchApp('阴阳师');
 
         });
 
+        ui.autoService.checked = auto.service != null;
         ui.autoService.on("check", function(checked) {
             // 用户勾选无障碍服务的选项时，跳转到页面让用户去开启
             if(checked && auto.service == null) {
+                toastLog('请在无障碍中将assttyys开启');
                 app.startActivity({
                     action: "android.settings.ACCESSIBILITY_SETTINGS"
                 });
@@ -266,6 +277,7 @@ var assttyys = {
         // 点击设置
         events.broadcast.on('DQFLOATY_SETTING_CLICK', function () {
             // 广播停止脚本
+            that.currentPackage = currentPackage();
             events.broadcast.emit('DQFLOATY_STOP_CLICK', '');
             var i = new android.content.Intent(context, activity.class);
             context.startActivity(i);

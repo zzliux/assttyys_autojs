@@ -267,7 +267,6 @@ function dqFloaty() {
         }
         win_1.img_logo.setColorFilter(colors.argb(0, 255, 153, 0));
         win_2.img_logo.setColorFilter(colors.argb(0, 255, 153, 0));
-        toastLog("结束脚本")
     });
 
     win.id_4_click.on("click", () => {

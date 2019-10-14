@@ -242,7 +242,7 @@ module.exports = [
             // 多点找色
             var point = images.findMultiColors(_self.memImage, multiColor['结界_进攻'].firstColor, multiColor['结界_进攻'].colors, { region: [388, 434, 1531, 636], threshold: _self.userConfigs.multiColorSimilar });
             if (!point) return false;
-            Tap(point.x + random(0, 190), point.y + random(0, 86));
+            press(point.x + random(0, 190), point.y + random(0, 86), random(200, 500));
             var delay = 2000 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
@@ -270,7 +270,7 @@ module.exports = [
             var t2 = new Date();
             console.log('结界_0勋章:单次多点找色时间: ' + (t2 - t1));
             if (!point) return false;
-            Tap(point.x + random(0, 340), point.y + random(0, 161));
+            press(point.x + random(0, 340), point.y + random(0, 161), random(200, 500));
             var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
@@ -298,7 +298,7 @@ module.exports = [
             var t2 = new Date();
             console.log('结界_1勋章:单次多点找色时间: ' + (t2 - t1));
             if (!point) return false;
-            Tap(point.x + random(0, 340), point.y + random(0, 161));
+            press(point.x + random(0, 340), point.y + random(0, 161), random(200, 500));
             var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
@@ -326,7 +326,7 @@ module.exports = [
             var t2 = new Date();
             console.log('结界_2勋章:单次多点找色时间: ' + (t2 - t1));
             if (!point) return false;
-            Tap(point.x + random(0, 340), point.y + random(0, 161));
+            press(point.x + random(0, 340), point.y + random(0, 161), random(200, 500));
             var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
@@ -354,7 +354,7 @@ module.exports = [
             var t2 = new Date();
             console.log('结界_3勋章:单次多点找色时间: ' + (t2 - t1));
             if (!point) return false;
-            Tap(point.x + random(0, 340), point.y + random(0, 161));
+            press(point.x + random(0, 340), point.y + random(0, 161), random(200, 500));
             var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
@@ -382,7 +382,7 @@ module.exports = [
             var t2 = new Date();
             console.log('结界_4勋章:单次多点找色时间: ' + (t2 - t1));
             if (!point) return false;
-            Tap(point.x + random(0, 340), point.y + random(0, 161));
+            press(point.x + random(0, 340), point.y + random(0, 161), random(200, 500));
             var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
@@ -411,7 +411,7 @@ module.exports = [
             console.log('结界_5勋章:单次多点找色时间: ' + (t2 - t1));
 
             if (!point) return false;
-            Tap(point.x + random(0, 340), point.y + random(0, 161));
+            press(point.x + random(0, 340), point.y + random(0, 161), random(200, 500));
             var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
