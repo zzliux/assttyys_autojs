@@ -1,8 +1,13 @@
 ## TODOs
 
-### 调试参数配置
+### ~~调试参数配置~~(基本上可以说是完成了吧)
 
 ### 自定义Toast，缩小时间，调整位置不挡在脚本需要判断的位置
+
+### 支持ROOT/免ROOT运行
+- ~~免ROOT通过无障碍点击~~
+- ROOT通过RootAutomator（目前好像有点问题，有的时候会点不了）
+    - 官方似乎没有支持ROOT版本的gesture，需手动根据touchDown->touchMove->touchMove....->touchUp来实现，但中间的延时需要控制好。
 
 ### ~~自定义方案~~
 
