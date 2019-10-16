@@ -18,6 +18,7 @@ threads.start(function () {
 var mainLayout = require('./mainLayout');
 // var zzUtils = require('./zz_modules/zzUtils');
 var globalPreFuncList = require('./config/preFuncConfig');
+var configList = require('./config/configConfig');
 
 var assttyys = {
 
@@ -32,17 +33,38 @@ var assttyys = {
 
     preFuncList: [],
     ass: storages.create('assttyys'),
+    configConfigItemData: [],
     
     // 最近活动包名，用于启动脚本快速返回界面
     currentPackage: null,
 
     init: function () {
-        ui.layout(mainLayout);
+        var mainLayoutA = this.preHandleLayoutStr(mainLayout);
+        ui.layout(mainLayoutA);
         this.initUI();
         this.bindEvents();
         this.initData();
     },
 
+    preHandleLayoutStr: function (layoutStr) {
+        var configXML = '';
+        // 外层遍历category
+        for (let i = 0; i < configList.length; i++) {
+            configXML += '<text textSize="16sp" margin="5 10 0 10">' + configList[i].categoryName + '</text>';
+            let itemData = configList[i].itemData;
+            // 内层遍历每个参数
+            for (let j = 0; j < itemData.length; j++) {
+                configXML += '<horizontal w="*" h="40" margin="10 0">';
+                if ('integer' == itemData[j].fieldType) {
+                    this.configConfigItemData.push(itemData[j]);
+                    configXML += '<input id="' + itemData[j].fieldName + '" text="' + itemData[j].default + '" textSize="14sp" w="50"/>'; 
+                }
+                configXML += '<text textSize="16sp">' + itemData[j].itemName + '</text>'
+                configXML += '</horizontal>';
+            }
+        }
+        return java.lang.String.valueOf(layoutStr).replace('<LX-CONFIGCONFIG/>', configXML);
+    },
 
     initUI: function () {
         var that = this;
@@ -174,6 +196,7 @@ var assttyys = {
                         if (!is) return;
                         that.ass.put('funcList', []);
                         that.ass.put('userFuncList', []);
+                        that.ass.put('userConfigConfig', {});
                         ui.finish();
                     });
                     break;
@@ -226,6 +249,20 @@ var assttyys = {
             }
 
             that.ass.put('funcList', that.funcList);
+
+            var userConfigConfig = {};
+            for (let i = 0; i < that.configConfigItemData.length; i++) {
+                if ('integer' == that.configConfigItemData[i].fieldType) {
+                    var fieldName = that.configConfigItemData[i].fieldName;
+                    var text = ui[fieldName].text();
+                    if (!/^\d+$/.test(text)) {
+                        toastLog('配置项[' + that.configConfigItemData[i].itemName + ']请填入整数。');
+                        return;
+                    }
+                    userConfigConfig[fieldName] = java.lang.Integer.parseInt(text);
+                }
+            }
+            that.ass.put('userConfigConfig', userConfigConfig);
 
             if (null === that.floatyThread) {
                 that.floatyThread = threads.start(function () {
@@ -282,7 +319,8 @@ var assttyys = {
             // 广播停止脚本
             that.currentPackage = currentPackage();
             events.broadcast.emit('DQFLOATY_STOP_CLICK', '');
-            var i = new android.content.Intent(context, activity.class);
+            var i = new Intent(context, activity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(i);
         });
     },
@@ -310,6 +348,19 @@ var assttyys = {
             }
         }
         ui.funcList.setDataSource(this.funcList);
+
+        // 设置配置
+        var userConfigConfig = this.ass.get('userConfigConfig') || {};
+        for (let i = 0; i < this.configConfigItemData.length; i++) {
+            var fieldName = this.configConfigItemData[i].fieldName;
+            if (typeof ui[fieldName] != 'undefined') {
+                if ('integer' == this.configConfigItemData[i].fieldType) {
+                    if (typeof userConfigConfig[fieldName] != 'undefined') {
+                        ui[fieldName].text(java.lang.String.valueOf(userConfigConfig[fieldName]).replace('.0', ''));
+                    }
+                }
+            }
+        }
     },
 
 

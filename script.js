@@ -10,7 +10,7 @@ var myScript = function () {
         afterClickDelayRandom: 200, // 点击后延时随机数
         colorSimilar: 15, // 颜色相似度(比较时三个点的颜色差之和小于该值时表示相等))
         continuityTimeToStop: 20, // 连续执行20次相同功能后停止脚本, 有可能一个功能会被连续执行多次，这个值不宜过低，比如说退出结算，容易连续执行8次左右
-        multiColorSimilar: 4,
+        multiColorSimilar: 4, // 多点找色相似度
         isShowToast: true,
         funcList: [],
     };
@@ -34,9 +34,9 @@ myScript.prototype = {
         } else {
             var ass = storages.create('assttyys');
             var funcList = ass.get('funcList');
-            this.userConfigs = deepObjectMerge(this.userConfigs, {
-                funcList: funcList
-            });
+            var userConfigConfig = ass.get('userConfigConfig') || {};
+            userConfigConfig.funcList = funcList
+            this.userConfigs = deepObjectMerge(this.userConfigs, userConfigConfig);
         }
         console.log(this.userConfigs);
     },

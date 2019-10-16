@@ -30,7 +30,7 @@ module.exports = <drawer id="drawer" bg="#eeeeeeee">
             </frame>
             <frame>
                 <vertical>
-                    <text text="调试配置界面" textSize="22sp" />
+                    <LX-CONFIGCONFIG/>
                 </vertical>
             </frame>
         </viewpager>
