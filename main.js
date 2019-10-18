@@ -58,6 +58,9 @@ var assttyys = {
                 if ('integer' == itemData[j].fieldType) {
                     this.configConfigItemData.push(itemData[j]);
                     configXML += '<input id="' + itemData[j].fieldName + '" text="' + itemData[j].default + '" textSize="14sp" w="50"/>'; 
+                } else if ('boolean' == itemData[j].fieldType) {
+                    this.configConfigItemData.push(itemData[j]);
+                    configXML += '<checkbox id="' + itemData[j].fieldName + '" checked="{{' + itemData[j].default + '}}" w="50" />';                    
                 }
                 configXML += '<text textSize="16sp">' + itemData[j].itemName + '</text>'
                 configXML += '</horizontal>';
@@ -260,6 +263,9 @@ var assttyys = {
                         return;
                     }
                     userConfigConfig[fieldName] = java.lang.Integer.parseInt(text);
+                } else if ('boolean' == that.configConfigItemData[i].fieldType) {
+                    var fieldName = that.configConfigItemData[i].fieldName;
+                    userConfigConfig[fieldName] = ui[fieldName].isChecked();
                 }
             }
             that.ass.put('userConfigConfig', userConfigConfig);
@@ -353,11 +359,13 @@ var assttyys = {
         var userConfigConfig = this.ass.get('userConfigConfig') || {};
         for (let i = 0; i < this.configConfigItemData.length; i++) {
             var fieldName = this.configConfigItemData[i].fieldName;
-            if (typeof ui[fieldName] != 'undefined') {
+            if (typeof ui[fieldName] != 'undefined' && null != userConfigConfig[fieldName]) {
                 if ('integer' == this.configConfigItemData[i].fieldType) {
                     if (typeof userConfigConfig[fieldName] != 'undefined') {
                         ui[fieldName].text(java.lang.String.valueOf(userConfigConfig[fieldName]).replace('.0', ''));
                     }
+                } else if ('boolean' == this.configConfigItemData[i].fieldType) {
+                    ui[fieldName].setChecked(userConfigConfig[fieldName]);
                 }
             }
         }

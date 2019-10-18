@@ -3,6 +3,12 @@ module.exports = [
         categoryName: '通用配置',
         itemData: [
             {
+                itemName: 'ROOT运行',
+                fieldName: 'runAsRoot',
+                fieldType: 'boolean',
+                default: false
+            },
+            {
                 itemName: '循环延时',
                 fieldName: 'loopDelay',
                 fieldType: 'integer',

@@ -4,7 +4,7 @@ for (let i = 0; i < multiColorNames.length; i++) {
     multiColor[multiColorNames[i]] = require('../multi_colors/' + multiColorNames[i]);
 }
 
-var bezierSwiper = require('../zz_modules/bezierSwiper');
+
 
 
 
@@ -242,7 +242,11 @@ module.exports = [
             // 多点找色
             var point = images.findMultiColors(_self.memImage, multiColor['结界_进攻'].firstColor, multiColor['结界_进攻'].colors, { region: [388, 434, 1531, 636], threshold: _self.userConfigs.multiColorSimilar });
             if (!point) return false;
-            press(point.x + random(0, 190), point.y + random(0, 86), random(200, 500));
+            if (_self.userConfigs.runAsRoot) {
+                _self.RA.press(point.x + random(0, 190), point.y + random(0, 86), random(100, 200));
+            } else {
+                press(point.x + random(0, 190), point.y + random(0, 86), random(100, 200));
+            }
             var delay = 2000 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
@@ -270,7 +274,11 @@ module.exports = [
             var t2 = new Date();
             console.log('结界_0勋章:单次多点找色时间: ' + (t2 - t1));
             if (!point) return false;
-            press(point.x + random(0, 340), point.y + random(0, 161), random(200, 500));
+            if (_self.userConfigs.runAsRoot) {
+                _self.RA.press(point.x + random(0, 340), point.y + random(0, 161), random(100, 200));
+            } else {
+                press(point.x + random(0, 340), point.y + random(0, 161), random(100, 200));
+            }
             var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
@@ -298,7 +306,11 @@ module.exports = [
             var t2 = new Date();
             console.log('结界_1勋章:单次多点找色时间: ' + (t2 - t1));
             if (!point) return false;
-            press(point.x + random(0, 340), point.y + random(0, 161), random(200, 500));
+            if (_self.userConfigs.runAsRoot) {
+                _self.RA.press(point.x + random(0, 340), point.y + random(0, 161), random(100, 200));
+            } else {
+                press(point.x + random(0, 340), point.y + random(0, 161), random(100, 200));
+            }
             var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
@@ -326,7 +338,11 @@ module.exports = [
             var t2 = new Date();
             console.log('结界_2勋章:单次多点找色时间: ' + (t2 - t1));
             if (!point) return false;
-            press(point.x + random(0, 340), point.y + random(0, 161), random(200, 500));
+            if (_self.userConfigs.runAsRoot) {
+                _self.RA.press(point.x + random(0, 340), point.y + random(0, 161), random(100, 200));
+            } else {
+                press(point.x + random(0, 340), point.y + random(0, 161), random(100, 200));
+            }
             var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
@@ -354,7 +370,11 @@ module.exports = [
             var t2 = new Date();
             console.log('结界_3勋章:单次多点找色时间: ' + (t2 - t1));
             if (!point) return false;
-            press(point.x + random(0, 340), point.y + random(0, 161), random(200, 500));
+            if (_self.userConfigs.runAsRoot) {
+                _self.RA.press(point.x + random(0, 340), point.y + random(0, 161), random(100, 200));
+            } else {
+                press(point.x + random(0, 340), point.y + random(0, 161), random(100, 200));
+            }
             var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
@@ -382,7 +402,11 @@ module.exports = [
             var t2 = new Date();
             console.log('结界_4勋章:单次多点找色时间: ' + (t2 - t1));
             if (!point) return false;
-            press(point.x + random(0, 340), point.y + random(0, 161), random(200, 500));
+            if (_self.userConfigs.runAsRoot) {
+                _self.RA.press(point.x + random(0, 340), point.y + random(0, 161), random(100, 200));
+            } else {
+                press(point.x + random(0, 340), point.y + random(0, 161), random(100, 200));
+            }
             var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
@@ -411,7 +435,11 @@ module.exports = [
             console.log('结界_5勋章:单次多点找色时间: ' + (t2 - t1));
 
             if (!point) return false;
-            press(point.x + random(0, 340), point.y + random(0, 161), random(200, 500));
+            if (_self.userConfigs.runAsRoot) {
+                _self.RA.press(point.x + random(0, 340), point.y + random(0, 161), random(100, 200));
+            } else {
+                press(point.x + random(0, 340), point.y + random(0, 161), random(100, 200));
+            }
             var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
@@ -545,7 +573,11 @@ module.exports = [
                 var t2 = new Date();
                 console.log('探索_挑战BOSS图标:单次多点找色时间: ' + (t2 - t1));
                 if (null != point0) {
-                    press(point0.x + random(0, 68), point0.y + random(0, 66), random(200, 500));
+                    if (_self.userConfigs.runAsRoot) {
+                        _self.RA.press(point0.x + random(0, 68), point0.y + random(0, 66), random(100, 200));
+                    } else {
+                        press(point0.x + random(0, 68), point0.y + random(0, 66), random(100, 200));
+                    }
                     sleep(1000 + _self.userConfigs.afterClickDelay + random(0, _self.userConfigs.afterClickDelayRandom));
                     return true;
                 }
@@ -567,14 +599,19 @@ module.exports = [
 
                         let pointChange = images.findMultiColors(_self.memImage, multiColor['探索_挑战图标'].firstColor, multiColor['探索_挑战图标'].colors, { region: region, threshold: _self.userConfigs.multiColorSimilar });
                         if (null != pointChange) {
-                            press(pointChange.x + random(0, 77), pointChange.y + random(0, 91), random(10, 200));
+                            if (_self.userConfigs.runAsRoot) {
+                                _self.RA.press(pointChange.x + random(0, 77), pointChange.y + random(0, 91), random(10, 200));
+                            } else {
+                                press(pointChange.x + random(0, 77), pointChange.y + random(0, 91), random(10, 200));
+                            }
                             sleep(1000 + _self.userConfigs.afterClickDelay + random(0, _self.userConfigs.afterClickDelayRandom));
                             return true;
                         }
                     }
                 }
                 // 屏幕右往坐滑
-                bezierSwiper.swipe(1476 + random(0, 180), 179 + random(0, 626), 600 + random(0, 262), 228 + random(0, 745), random(300, 600));
+                console.log(_self.bezierSwiper);
+                _self.bezierSwiper.swipe(1476 + random(0, 180), 179 + random(0, 626), 600 + random(0, 262), 228 + random(0, 745), random(300, 600));
                 sleep(200);
                 _self.memImage = captureScreen();
             }
@@ -630,11 +667,11 @@ module.exports = [
                 }
                 _self.commonClick(clickPoints);
                 // 第一个素材换到左边
-                bezierSwiper.swipe(261 + random(0, 148), 752 + random(0, 254), 179 + random(0, 201), 566 + random(0, 88), random(600, 800));
-                sleep(random(200, 500));
+                _self.bezierSwiper.swipe(261 + random(0, 148), 752 + random(0, 254), 179 + random(0, 201), 566 + random(0, 88), random(600, 800));
+                sleep(random(100, 200));
                 // 第二个素材换到右边
-                bezierSwiper.swipe(456 + random(0, 80), 758 + random(0, 241), 877 + random(0, 160), 566 + random(0, 88), random(1000, 1200));
-                sleep(random(200, 500));
+                _self.bezierSwiper.swipe(456 + random(0, 80), 758 + random(0, 241), 877 + random(0, 160), 566 + random(0, 88), random(1000, 1200));
+                sleep(random(100, 200));
 
             };
             return false;
