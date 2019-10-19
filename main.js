@@ -58,11 +58,16 @@ var assttyys = {
                 if ('integer' == itemData[j].fieldType) {
                     this.configConfigItemData.push(itemData[j]);
                     configXML += '<input id="' + itemData[j].fieldName + '" text="' + itemData[j].default + '" textSize="14sp" w="50"/>'; 
+                    configXML += '<text textSize="16sp">' + itemData[j].itemName + '</text>';
                 } else if ('boolean' == itemData[j].fieldType) {
                     this.configConfigItemData.push(itemData[j]);
                     configXML += '<checkbox id="' + itemData[j].fieldName + '" checked="{{' + itemData[j].default + '}}" w="50" />';                    
+                    configXML += '<text textSize="16sp">' + itemData[j].itemName + '</text>';
+                } else if ('select' == itemData[j].fieldType) {
+                    this.configConfigItemData.push(itemData[j]);
+                    configXML += '<text textSize="16sp">' + itemData[j].itemName + '</text>';
+                    configXML += '<spinner id="' + itemData[j].fieldName + '" entries="' + itemData[j].dataList.join('|') + '" />';
                 }
-                configXML += '<text textSize="16sp">' + itemData[j].itemName + '</text>'
                 configXML += '</horizontal>';
             }
         }
@@ -255,8 +260,8 @@ var assttyys = {
 
             var userConfigConfig = {};
             for (let i = 0; i < that.configConfigItemData.length; i++) {
+                var fieldName = that.configConfigItemData[i].fieldName;
                 if ('integer' == that.configConfigItemData[i].fieldType) {
-                    var fieldName = that.configConfigItemData[i].fieldName;
                     var text = ui[fieldName].text();
                     if (!/^\d+$/.test(text)) {
                         toastLog('配置项[' + that.configConfigItemData[i].itemName + ']请填入整数。');
@@ -264,8 +269,9 @@ var assttyys = {
                     }
                     userConfigConfig[fieldName] = java.lang.Integer.parseInt(text);
                 } else if ('boolean' == that.configConfigItemData[i].fieldType) {
-                    var fieldName = that.configConfigItemData[i].fieldName;
                     userConfigConfig[fieldName] = ui[fieldName].isChecked();
+                } else if ('select' == that.configConfigItemData[i].fieldType) {
+                    userConfigConfig[fieldName] = java.lang.Integer.parseInt(ui[fieldName].getSelectedItemPosition());
                 }
             }
             that.ass.put('userConfigConfig', userConfigConfig);
@@ -358,14 +364,15 @@ var assttyys = {
         // 设置配置
         var userConfigConfig = this.ass.get('userConfigConfig') || {};
         for (let i = 0; i < this.configConfigItemData.length; i++) {
-            var fieldName = this.configConfigItemData[i].fieldName;
-            if (typeof ui[fieldName] != 'undefined' && null != userConfigConfig[fieldName]) {
+            let fieldName = this.configConfigItemData[i].fieldName;
+            let userValue = userConfigConfig[fieldName];
+            if (typeof ui[fieldName] != 'undefined' && null != userValue) {
                 if ('integer' == this.configConfigItemData[i].fieldType) {
-                    if (typeof userConfigConfig[fieldName] != 'undefined') {
-                        ui[fieldName].text(java.lang.String.valueOf(userConfigConfig[fieldName]).replace('.0', ''));
-                    }
+                    ui[fieldName].text(java.lang.String.valueOf(userValue).replace('.0', ''));
                 } else if ('boolean' == this.configConfigItemData[i].fieldType) {
-                    ui[fieldName].setChecked(userConfigConfig[fieldName]);
+                    ui[fieldName].setChecked(userValue);
+                } else if ('select' == this.configConfigItemData[i].fieldType) {
+                    ui[fieldName].setSelection(userValue);
                 }
             }
         }

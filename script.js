@@ -1,5 +1,5 @@
 var funcConfig = require('./config/funcConfig');
-var BezierSwiper = require('./zz_modules/bezierSwiper');
+var MyAutomator = require('./zz_modules/MyAutomator');
 
 var myScript = function () {
 
@@ -12,18 +12,15 @@ var myScript = function () {
         continuityTimeToStop: 20, // 连续执行20次相同功能后停止脚本, 有可能一个功能会被连续执行多次，这个值不宜过低，比如说退出结算，容易连续执行8次左右
         multiColorSimilar: 4, // 多点找色相似度
         isShowToast: true,
-        runAsRoot: false, // Root执行
+        tapType: 0, // 0 无障碍， 1 RootAutomator， 2 Shell
         funcList: [],
     };
 
     // 放在内存中的图片，每次都从这个图片中搞
     this.memImage = null;
 
-    // RootAutomator
-    this.RA = null;
-
-    // bezierSwiper
-    this.bezierSwiper = null;
+    // press 和 swipe在这里面
+    this.automator = null;
 }
 
 /**
@@ -53,12 +50,7 @@ myScript.prototype = {
      */
     run: function () {
 
-        if (this.userConfigs.runAsRoot) {
-            this.RA = new RootAutomator();
-            this.bezierSwiper = new BezierSwiper(this.RA);
-        } else {
-            this.bezierSwiper = new BezierSwiper();
-        }
+        this.automator = new MyAutomator(this.userConfigs.tapType);
 
         var scriptFuncList = [];
         for (let i = 0, iLen = this.userConfigs.funcList.length; i < iLen; i++) {
@@ -150,11 +142,7 @@ myScript.prototype = {
                     var op = operaPoints[i];
                     var x = op.x + parseInt(random(0, op.ox));
                     var y = op.y + parseInt(random(0, op.oy));
-                    if (this.userConfigs.runAsRoot) {
-                        this.RA.press(x, y, random(10, 100));
-                    } else {
-                        press(x, y, random(10, 100));
-                    }
+                    this.automator.press(x, y, random(10, 100));
                     var delay = op.ad + this.userConfigs.afterClickDelay + parseInt(random(0, this.userConfigs.afterClickDelayRandom));
                     sleep(delay);
                 }

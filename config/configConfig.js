@@ -3,9 +3,10 @@ module.exports = [
         categoryName: '通用配置',
         itemData: [
             {
-                itemName: 'ROOT运行',
-                fieldName: 'runAsRoot',
-                fieldType: 'boolean',
+                itemName: '模拟点击方式',
+                fieldName: 'tapType',
+                fieldType: 'select',
+                dataList: ['无障碍', 'RootAutomator', 'Shell'],
                 default: false
             },
             {
