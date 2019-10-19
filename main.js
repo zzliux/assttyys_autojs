@@ -38,12 +38,49 @@ var assttyys = {
     // 最近活动包名，用于启动脚本快速返回界面
     currentPackage: null,
 
+    // 授权状态
+    authorizationStatus: false,
+
     init: function () {
+        this.initAuthorizationStatus();
         var mainLayoutA = this.preHandleLayoutStr(mainLayout);
         ui.layout(mainLayoutA);
         this.initUI();
         this.bindEvents();
         this.initData();
+    },
+
+    initAuthorizationStatus: function () {
+        var that = this;
+        threads.start(function () {
+            toastLog('授权校验中。。');
+            // 通过gitee的本项目的issue进行授权
+            var r = http.get('https://gitee.com/api/v5/repos/zzliux/assttyys_autojs/issues/I13OUG/comments');
+            if (200 != r.statusCode) {
+                toastLog('授权失败: statusCode = ' + r.statusCode);
+                console.log("授权失败: statusCode = " + r.statusCode);
+                console.log("授权失败: body = " + r.body.string());
+            } else {
+                var jsonStr = r.body.string();
+                console.log("授权请求成功: body = " + jsonStr);
+                var commentList = JSON.parse(jsonStr);
+                var imei = device.getIMEI();
+                for (let i = 0; i < commentList.length; i++) {
+                    if (commentList[i].body.indexOf(imei) > -1) {
+                        that.authorizationStatus = true;
+                        toastLog('授权成功。');
+                        break;
+                    }
+                }
+                if (!that.authorizationStatus) {
+                    alert('IMEI：' + imei + ' 授权失败。');
+                    ui.run(function () {
+                        ui.finish();
+                    });
+                }
+            }
+
+        });
     },
 
     preHandleLayoutStr: function (layoutStr) {
@@ -233,7 +270,7 @@ var assttyys = {
                     that.funcList[pos] = that.funcList[pos - 1];
                     that.funcList[pos - 1]  = t;
                 }
-            })
+            });
             itemView.listDown.on('click', function () {
                 var pos = itemHolder.getPosition();
                 if (pos + 1 < that.funcList.length) {
@@ -242,7 +279,7 @@ var assttyys = {
                     that.funcList[pos] = that.funcList[pos + 1];
                     that.funcList[pos + 1]  = t;
                 }
-            })
+            });
             itemView.checkEnable.on('check', function (checked) {
                 let item = itemHolder.item;
                 item.enable = checked;
@@ -250,6 +287,11 @@ var assttyys = {
         });
 
         ui.showFloaty.on('click', function () {
+
+            if (!that.authorizationStatus) {
+                toastLog('未授权！');
+                return;
+            }
 
             if (!ui.autoService.checked) {
                 toastLog('请开启无障碍权限');

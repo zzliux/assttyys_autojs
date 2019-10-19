@@ -61,7 +61,7 @@ BezierSwiper.prototype.swipe = function (x0, y0, x1, y1, time) {
             }
             this.RA.touchMove(parseInt(gestureArgs[i][0]), parseInt(gestureArgs[i][1]));
         }
-        this.RA.touchMove(parseInt(gestureArgs[gestureArgs.length - 1][0]), parseInt(gestureArgs[gestureArgs.length - 1][0]));
+        this.RA.touchMove(parseInt(gestureArgs[gestureArgs.length - 1][0]), parseInt(gestureArgs[gestureArgs.length - 1][1]));
         this.RA.touchUp();
         console.log(new Date().getTime() - downTime);
     } else {
