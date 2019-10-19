@@ -31,4 +31,12 @@ module.exports = [
         name: '单人狗粮',
         funcNumbers: [24, 1, 4, 2, 23, 21, 22]
     },
+    {
+        name: '组队狗粮_司机',
+        funcNumbers: [27, 1, 4, 2, 26, 23, 21, 25, 8]
+    },
+    {
+        name: '组队狗粮_打手',
+        funcNumbers: [24, 1, 4, 2, 25, 5]
+    }
 ];

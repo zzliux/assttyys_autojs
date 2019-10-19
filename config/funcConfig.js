@@ -37,6 +37,8 @@ module.exports = [
                 ],
                 operaPoints: [
                     { x: 29, y: 180, ox: 194, oy: 620, ad: 500 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 500 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 500 },
                 ]
             },
             { // 个人退出结算(胜利太鼓)
@@ -631,7 +633,7 @@ module.exports = [
                 _self.commonClick(clickPoints);
                 // 第一个素材换到左边
                 _self.automator.swipe(261 + random(0, 148), 752 + random(0, 254), 179 + random(0, 201), 566 + random(0, 88), random(800, 1000));
-                sleep(random(100, 200));
+                sleep(random(500, 600));
                 // 第二个素材换到右边
                 _self.automator.swipe(456 + random(0, 80), 758 + random(0, 241), 877 + random(0, 160), 566 + random(0, 88), random(1000, 1200));
                 sleep(random(100, 200));
@@ -640,4 +642,81 @@ module.exports = [
             return false;
         }
     },
+    {
+        id: 25,
+        name: '探索_单人时退出',
+        data: [{ // 用来判断是不是探索小怪的场景，直接用多点找色的话会在此占用太多资源
+            judgePoints: [
+                { x: 61, y: 99, c: '#ECF5FC', i: true },
+                { x: 59, y: 808, c: '#524B5B', i: true },
+                { x: 1686, y: 79, c: '#E1CAA0', i: true },
+                { x: 88, y: 692, c: '#FAFCF1', i: false },
+            ],
+            operaPoints: [
+                { x: 46, y: 70, ox: 61, oy: 51, ad: 700 },
+                { x: 1052, y: 583, ox: 220, oy: 45, ad: 2000}
+            ]
+        }]
+    },
+    {
+        id: 26,
+        name: '探索_最后一章确认界面邀请好友', // TODO，邀请最近组队
+        data: [{
+            judgePoints: [
+                { x: 562, y: 194, c: '#483727', i: true },
+                { x: 1326, y: 199, c: '#483727', i: true },
+                { x: 1361, y: 812, c: '#F5B15E', i: true },
+                { x: 740, y: 644, c: '#C9AF96', i: true },
+            ],
+            operaPoints: [
+                { x: 888, y: 773, ox: 180, oy: 74, ad: 1500 },
+                { x: 1076, y: 827, ox: 170, oy: 64, ad: 3000 },
+            ]
+        }]
+    },
+    {
+        id: 27,
+        name: '探索_司机换素材',
+        data: function (_self) {
+            var sceneJudge = {
+                data: [{ // 用来判断是不是准备的场景，直接用多点找色的话会在此占用太多资源
+                    judgePoints: [
+                        { x: 1782, y: 845, c: '#FFF3D1', i: true },
+                        { x: 1733, y: 835, c: '#FFF3D1', i: true },
+                        { x: 1754, y: 822, c: '#D3AE79', i: true },
+                    ],
+                    operaPoints: []
+                }]
+            }
+            if (!_self.commonClick(sceneJudge)) return false;
+
+            // 找满级标记
+            var t1 = new Date();
+            var point = images.findMultiColors(_self.memImage, multiColor['探索_式神满级标记'].firstColor, multiColor['探索_式神满级标记'].colors, { region: [16, 435, 900, 547], threshold: 15 });
+            var t2 = new Date();
+            if (null != point) {
+                let clickPoints = {
+                    data: [{
+                        judgePoints: [],
+                        operaPoints: [
+                            { x: 448, y: 731, ox: 554, oy: 202, ad: 0}, // 把换式神的界面点出来
+                            { x: 448, y: 731, ox: 554, oy: 202, ad: 0}, // 把换式神的界面点出来
+                            { x: 448, y: 731, ox: 554, oy: 202, ad: 1400}, // 把换式神的界面点出来
+                            { x: 65, y: 952, ox: 78, oy: 78, ad: 500 }, // 全部
+                            { x: 66, y: 446, ox: 74, oy: 74, ad: 1000}, // 素材
+                        ]
+                    }]
+                }
+                _self.commonClick(clickPoints);
+                // 第一个素材换到左边
+                _self.automator.swipe(261 + random(0, 148), 752 + random(0, 254), 475 + random(0, 111), 480 + random(0, 107), random(800, 1000));
+                sleep(random(500, 600));
+                // 第二个素材换到右边
+                _self.automator.swipe(456 + random(0, 80), 758 + random(0, 241), 1383 + random(0, 107), 479 + random(0, 121), random(1000, 1200));
+                sleep(random(100, 200));
+
+            };
+            return false;
+        }
+    }
 ]
