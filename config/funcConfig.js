@@ -1,5 +1,5 @@
 var multiColor = {};
-var multiColorNames = ['结界_0勋章', '结界_1勋章', '结界_2勋章', '结界_3勋章', '结界_4勋章', '结界_5勋章', '结界_进攻', '探索_经验怪标记', '探索_挑战图标', '探索_式神满级标记', '探索_挑战BOSS图标'];
+var multiColorNames = ['结界_0勋章', '结界_1勋章', '结界_2勋章', '结界_3勋章', '结界_4勋章', '结界_5勋章', '结界_进攻', '探索_经验怪标记', '探索_挑战图标', '探索_式神满级标记', '探索_挑战BOSS图标', '最近组队'];
 for (let i = 0; i < multiColorNames.length; i++) {
     multiColor[multiColorNames[i]] = require('../multi_colors/' + multiColorNames[i]);
 }
@@ -624,7 +624,7 @@ module.exports = [
                         operaPoints: [
                             { x: 448, y: 731, ox: 554, oy: 202, ad: 0}, // 把换式神的界面点出来
                             { x: 448, y: 731, ox: 554, oy: 202, ad: 0}, // 把换式神的界面点出来
-                            { x: 448, y: 731, ox: 554, oy: 202, ad: 1400}, // 把换式神的界面点出来
+                            { x: 448, y: 731, ox: 554, oy: 202, ad: 3000}, // 把换式神的界面点出来
                             { x: 65, y: 952, ox: 78, oy: 78, ad: 500 }, // 全部
                             { x: 66, y: 446, ox: 74, oy: 74, ad: 1000}, // 素材
                         ]
@@ -661,18 +661,44 @@ module.exports = [
     {
         id: 26,
         name: '探索_最后一章确认界面邀请好友', // TODO，邀请最近组队
-        data: [{
-            judgePoints: [
-                { x: 562, y: 194, c: '#483727', i: true },
-                { x: 1326, y: 199, c: '#483727', i: true },
-                { x: 1361, y: 812, c: '#F5B15E', i: true },
-                { x: 740, y: 644, c: '#C9AF96', i: true },
-            ],
-            operaPoints: [
-                { x: 888, y: 773, ox: 180, oy: 74, ad: 1500 },
-                { x: 1076, y: 827, ox: 170, oy: 64, ad: 3000 },
-            ]
-        }]
+        data: function (_self) {
+            var sceneJudge = {
+                data: [{
+                    judgePoints: [
+                        { x: 562, y: 194, c: '#483727', i: true },
+                        { x: 1326, y: 199, c: '#483727', i: true },
+                        { x: 1361, y: 812, c: '#F5B15E', i: true },
+                        { x: 740, y: 644, c: '#C9AF96', i: true },
+                    ],
+                    operaPoints: [
+                        { x: 888, y: 773, ox: 180, oy: 74, ad: 3000 },
+                        // { x: 1076, y: 827, ox: 170, oy: 64, ad: 3000 },
+                    ]
+                }]
+            };
+            // 点击组队
+            if (!_self.commonClick(sceneJudge)) return false;
+
+            _self.memImage = captureScreen();
+            var point = images.findMultiColors(_self.memImage, multiColor['最近组队'].firstColor, multiColor['最近组队'].colors, { region: [478, 194, 937, 683], threshold: 15 });
+            if (null != point) {
+                toastLog('邀请最近组队');
+                // 点最近组队好友
+                _self.automator.press(point.x + random(0, 390), point.y + random(0, 108), random(10, 100));
+                sleep(200 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom)));
+                // 邀请
+                _self.automator.press(1076 + random(0, 170), 827 + random(0, 64), random(10, 100));
+                sleep(2000 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom)));
+            } else {
+                // 点第一个好友
+                // _self.automator.press(539 + random(0, 397), 283 + random(0, 110), random(10, 100));
+                sleep(200 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom)));
+                // 邀请
+                _self.automator.press(1076 + random(0, 170), 827 + random(0, 64), random(10, 100));
+                sleep(2000 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom)));
+            }
+            return true;
+        }
     },
     {
         id: 27,
@@ -701,7 +727,7 @@ module.exports = [
                         operaPoints: [
                             { x: 448, y: 731, ox: 554, oy: 202, ad: 0}, // 把换式神的界面点出来
                             { x: 448, y: 731, ox: 554, oy: 202, ad: 0}, // 把换式神的界面点出来
-                            { x: 448, y: 731, ox: 554, oy: 202, ad: 1400}, // 把换式神的界面点出来
+                            { x: 448, y: 731, ox: 554, oy: 202, ad: 3000}, // 把换式神的界面点出来
                             { x: 65, y: 952, ox: 78, oy: 78, ad: 500 }, // 全部
                             { x: 66, y: 446, ox: 74, oy: 74, ad: 1000}, // 素材
                         ]
