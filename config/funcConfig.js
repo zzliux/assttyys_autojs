@@ -744,5 +744,23 @@ module.exports = [
             };
             return false;
         }
+    },
+    {
+        id: 28,
+        name: '大江山之战_修罗战场_挑战',
+        data: [
+            {
+                judgePoints: [
+                    { x: 766, y: 863, c: '#F4B25E', i: true },
+                    { x: 766, y: 912, c: '#F5B15E', i: true },
+                    { x: 1176, y: 861, c: '#F4B25C', i: true },
+                    { x: 1128, y: 912, c: '#F4B25C', i: true },
+                    { x: 1450, y: 52, c: '#381E0D', i: true },
+                ],
+                operaPoints: [
+                    { x: 1015, y: 857, ox: 214, oy: 57, ad: 2000 },
+                ]
+            }
+        ]
     }
 ]
