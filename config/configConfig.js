@@ -7,7 +7,12 @@ module.exports = [
                 fieldName: 'tapType',
                 fieldType: 'select',
                 dataList: ['无障碍', 'RootAutomator', 'Shell'],
-                default: false
+            },
+            {
+                itemName: '坐标反转',
+                fieldName: 'dirctionReverse',
+                fieldType: 'boolean',
+                default: false,
             },
             {
                 itemName: '循环延时',

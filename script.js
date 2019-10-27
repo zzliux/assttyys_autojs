@@ -13,6 +13,7 @@ var myScript = function () {
         multiColorSimilar: 4, // 多点找色相似度
         isShowToast: true,
         tapType: 0, // 0 无障碍， 1 RootAutomator， 2 Shell
+        dirctionReverse: false, // 坐标反转
         funcList: [],
     };
 
@@ -50,7 +51,7 @@ myScript.prototype = {
      */
     run: function () {
 
-        this.automator = new MyAutomator(this.userConfigs.tapType);
+        this.automator = new MyAutomator(this.userConfigs.tapType, this.userConfigs.dirctionReverse);
 
         var scriptFuncList = [];
         for (let i = 0, iLen = this.userConfigs.funcList.length; i < iLen; i++) {

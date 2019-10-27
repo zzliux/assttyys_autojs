@@ -9,10 +9,10 @@ module.exports = <drawer id="drawer" bg="#eeeeeeee">
                 <vertical h="*" padding="0 10 0 60">
                     <horizontal w="*"padding="10 5">
                         <text textSize="16sp">方案</text>
-                        <spinner id="preFunc" entries="" />
+                        <spinner id="preFunc" entries="" textColor="#000000" />
                     </horizontal>
                     <list id="funcList">
-                        <card w="*" h="40" id="card" margin="10 5" clickable="true" cardCornerRadius="2dp" cardElevation="1dp" foreground="?android:attr/selectableItemBackgroundBorderless">
+                        <card w="*" h="40" id="card" bg="#ffffff" margin="10 5" clickable="true" cardCornerRadius="2dp" cardElevation="1dp" foreground="?android:attr/selectableItemBackgroundBorderless">
                             <horizontal gravity="center_vertical">
                                 <vertical padding="10 8" h="auto" w="auto" layout_weight="1">
                                     <text id="title" text="{{this.funcId + ' ' + this.funcName}}" textColor="#222222" textSize="16sp" maxLines="1" />

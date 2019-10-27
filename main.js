@@ -8,8 +8,11 @@ importClass(java.util.ArrayList);
 
 
 threads.start(function () {
-    //请求截图权限
-    if (!requestScreenCapture(true)) {
+    let dm = context.getResources().getDisplayMetrics();
+    // 请求截图权限
+    // 解决模拟器横竖屏截图问题，如果是宽大于高的话，就当做是竖屏截图（未进行屏幕旋转）
+    // 否则是横屏截图（进行屏幕旋转了）
+    if (!requestScreenCapture(dm.widthPixels < dm.heightPixels)) {
         toast("请求截图失败");
         exit();
     }
@@ -62,7 +65,7 @@ var assttyys = {
                 console.log("授权失败: body = " + r.body.string());
             } else {
                 var jsonStr = r.body.string();
-                console.log("授权请求成功: body = " + jsonStr);
+                // console.log("授权请求成功: body = " + jsonStr);
                 var commentList = JSON.parse(jsonStr);
                 var imei = device.getIMEI();
                 for (let i = 0; i < commentList.length; i++) {
@@ -181,7 +184,7 @@ var assttyys = {
         // 加载适配器
         spinner.setAdapter(arr_adapter);
 
-
+        
         // 选择事件
         // http://www.makaidong.com/%E5%8D%9A%E5%AE%A2%E5%9B%AD%E6%8E%92%E8%A1%8C/30189.shtml
         // 3. rhino如何实现java接口
