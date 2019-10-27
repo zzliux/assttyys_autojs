@@ -2,9 +2,9 @@
  * 作者:  大柒
  * 功能:  Auto.js悬浮按钮样例(补间动画)
  * 日期:  2019/04/06
- * 备注:  
+ * 备注:
  *    pro和免费版都可正常使用
- * 
+ *
  * 待解决:
  *     (1)悬浮窗初始化的on事件. 没有找到这个方法目前用定时器解决此问题
  *     (2)补间动画结束的on事件. 试了很多都不可行目前用多线程解决此问题
@@ -42,8 +42,8 @@ importClass(android.widget.ImageView)
 importClass(android.widget.TextView)
 
 function dqFloaty() {
-    
-        
+
+
     var logo_switch = false;//全局: 悬浮窗的开启关闭检测
     var logo_buys = false;//全局: 开启和关闭时占用状态 防止多次点击触发
     var logo_fx = false;//全局: 悬浮按钮所在的方向 真左 假右
@@ -64,8 +64,8 @@ function dqFloaty() {
     /**
      * 需要三个悬浮窗一起协作达到Auto.js悬浮窗效果
      * win  子菜单悬浮窗 处理子菜单选项点击事件
-     * win_1  主悬浮按钮 
-     * win_2  悬浮按钮动画替身,只有在手指移动主按钮的时候才会被触发 
+     * win_1  主悬浮按钮
+     * win_2  悬浮按钮动画替身,只有在手指移动主按钮的时候才会被触发
      * 触发时,替身Y值会跟主按钮Y值绑定一起,手指弹起时代替主按钮显示跳动的小球动画
      */
     var win = floaty.rawWindow(
@@ -242,7 +242,7 @@ function dqFloaty() {
                     win_1.img_logo.setColorFilter(colors.argb(0, 255, 153, 0));
                     win_2.img_logo.setColorFilter(colors.argb(0, 255, 153, 0));
                 });
-            } 
+            }
         });
         win_1.img_logo.setColorFilter(colors.argb(255, 255, 153, 0));
         win_2.img_logo.setColorFilter(colors.argb(255, 255, 153, 0));

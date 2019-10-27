@@ -190,44 +190,47 @@ var assttyys = {
         // 3. rhino如何实现java接口
         var selectedListener = {
             onItemSelected: function (parent, view, position, id) {
-                if (position === 0) {
-                    return;
-                }
-                var pos = position;
-                var funcNumbers = that.preFuncList[pos].funcNumbers;
-                var enbs = [];
-                for (var j = 0; j < funcNumbers.length; j++) {
-                    for (var i = 0; i < that.funcList.length; i++) {
-                        if (funcNumbers[j] == that.funcList[i].funcId) {
-                            that.funcList[i].enable = true;
-                            enbs.push(that.funcList[i]);
-                            break;
-                        }
-                    }
-                }
-                var newFuncList = [];
-                for (var i = 0; i < enbs.length; i++) {
-                    newFuncList.push(enbs[i]);
-                }
-                for(var i = 0; i < that.funcList.length; i++) {
-                    var flag = true;
-                    for(var j = 0; j < enbs.length; j++) {
-                        if (enbs[j].funcId == that.funcList[i].funcId) {
-                            flag = false;
-                            break;
-                        }
-                    }
-                    if (flag) {
-                        that.funcList[i].enable = false;
-                        newFuncList.push(that.funcList[i]);
-                    }
-                }
-                that.funcList = newFuncList;
-                ui.funcList.setDataSource(that.funcList);
+                that.setFuncListByPreFuncListId(position);
             },
             onNothingSelected: function (parent) { }
         };
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(selectedListener));
+    },
+
+    setFuncListByPreFuncListId: function (pos) {
+        if (pos === 0) {
+            return;
+        }
+        var funcNumbers = this.preFuncList[pos].funcNumbers;
+        var enbs = [];
+        for (var j = 0; j < funcNumbers.length; j++) {
+            for (var i = 0; i < this.funcList.length; i++) {
+                if (funcNumbers[j] == this.funcList[i].funcId) {
+                    this.funcList[i].enable = true;
+                    enbs.push(this.funcList[i]);
+                    break;
+                }
+            }
+        }
+        var newFuncList = [];
+        for (var i = 0; i < enbs.length; i++) {
+            newFuncList.push(enbs[i]);
+        }
+        for(var i = 0; i < this.funcList.length; i++) {
+            var flag = true;
+            for(var j = 0; j < enbs.length; j++) {
+                if (enbs[j].funcId == this.funcList[i].funcId) {
+                    flag = false;
+                    break;
+                }
+            }
+            if (flag) {
+                this.funcList[i].enable = false;
+                newFuncList.push(this.funcList[i]);
+            }
+        }
+        this.funcList = newFuncList;
+        ui.funcList.setDataSource(this.funcList);
     },
 
     bindEvents: function () {
@@ -358,6 +361,9 @@ var assttyys = {
         ui.emitter.on("resume", function() {
             // 此时根据无障碍服务的开启情况，同步开关的状态
             ui.autoService.checked = auto.service != null;
+
+            // 更新列表数据
+            // that.initData();
         });
 
         // 点击返回回到桌面，不退出程序
@@ -376,9 +382,29 @@ var assttyys = {
             // 广播停止脚本
             that.currentPackage = currentPackage();
             events.broadcast.emit('DQFLOATY_STOP_CLICK', '');
-            var i = new Intent(context, activity.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(i);
+
+            let items = [];
+            for (let i = 0; i < that.preFuncList.length; i++) {
+                items.push(that.preFuncList[i].name);
+            }
+
+            dialogs.build({
+                title: '选择方案',
+                itemsSelectMode : 'select',
+                items: items,
+                negative: '取消',
+                neutral: '打开主界面',
+            }).on('item_select', (index, item) => {
+                toastLog('设置方案：' + item);
+                that.setFuncListByPreFuncListId(index);
+            }).on('negative', () => {
+
+            }).on('neutral', ()=>{
+                var i = new Intent(context, activity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(i);
+            }).show();
+
         });
     },
 
