@@ -231,6 +231,7 @@ var assttyys = {
         }
         this.funcList = newFuncList;
         ui.funcList.setDataSource(this.funcList);
+        this.ass.put('funcList', this.funcList);
     },
 
     bindEvents: function () {
