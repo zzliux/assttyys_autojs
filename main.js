@@ -389,22 +389,37 @@ var assttyys = {
                 items.push(that.preFuncList[i].name);
             }
 
-            dialogs.build({
-                title: '选择方案',
-                itemsSelectMode : 'select',
-                items: items,
-                negative: '取消',
-                neutral: '打开主界面',
-            }).on('item_select', (index, item) => {
-                toastLog('设置方案：' + item);
-                that.setFuncListByPreFuncListId(index);
-            }).on('negative', () => {
-
-            }).on('neutral', ()=>{
-                var i = new Intent(context, activity.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(i);
-            }).show();
+            if (device.sdkInt >= 23) {
+                dialogs.build({
+                    title: '选择方案',
+                    itemsSelectMode : 'select',
+                    items: items,
+                    negative: '取消',
+                    neutral: '打开主界面',
+                }).on('item_select', (index, item) => {
+                    toastLog('设置方案：' + item);
+                    that.setFuncListByPreFuncListId(index);
+                }).on('negative', () => {
+    
+                }).on('neutral', () => {
+                    var i = new Intent(context, activity.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(i);
+                }).show();
+            } else {
+                items[0] = '打开主界面';
+                dialogs.select('选择方案', items, function (index) {
+                    if (index == -1) return;
+                    if (index == 0) {
+                        var i = new Intent(context, activity.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(i);
+                    } else {
+                        toastLog('设置方案：' + items[index]);
+                        that.setFuncListByPreFuncListId(index);
+                    }
+                });
+            }
 
         });
     },
