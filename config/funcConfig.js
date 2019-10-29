@@ -107,6 +107,17 @@ module.exports = [
                     { x: 29, y: 180, ox: 194, oy: 620, ad: 3000 },
                 ]
             },
+            { // 大岳丸活动 大江山退出结算，后续可能会删除该场景判断
+                judgePoints: [
+                    { x: 982, y: 261, c: '#821A11', i: true },
+                    { x: 907, y: 342, c: '#CDB17F', i: true },
+                    { x: 1007, y: 327, c: '#971C14', i: true },
+                    { x: 1128, y: 256, c: '#D3B47E', i: true },
+                ],
+                operaPoints: [
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 3000 },
+                ]
+            },
         ]
     },
     {
@@ -759,6 +770,24 @@ module.exports = [
                 ],
                 operaPoints: [
                     { x: 1015, y: 857, ox: 214, oy: 57, ad: 2000 },
+                ]
+            }
+        ]
+    },
+    {
+        id: 29,
+        name: '大江山之战_海国退治_挑战',
+        data: [
+            {
+                judgePoints: [
+                    { x: 263, y: 964, c: '#2A2220', i: true },
+                    { x: 1475, y: 883, c: '#E0C195', i: true },
+                    { x: 1626, y: 893, c: '#DEA86C', i: true },
+                    { x: 1564, y: 844, c: '#25251D', i: true },
+                    { x: 1564, y: 870, c: '#E2B985', i: true },
+                ],
+                operaPoints: [
+                    { x: 1475, y: 819, ox: 143, oy: 117, ad: 2000 },
                 ]
             }
         ]
