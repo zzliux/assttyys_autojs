@@ -48,9 +48,11 @@ MyAutomator.prototype = {
         }
 
         if (this.tapType == 0) {
-            this.bezierSwiper.swipe(x0, y0, x1, y1, delay);
+            // this.bezierSwiper.swipe(x0, y0, x1, y1, delay);
+            swipe(x0, y0, x1, y1, delay);
         } else if (this.tapType == 1) {
-            this.bezierSwiper.swipe(x0, y0, x1, y1, delay);
+            // this.bezierSwiper.swipe(x0, y0, x1, y1, delay);
+            this.RA.swipe(x0, y0, x1, y1, delay);
         } else if (this.tapType == 2) {
             this.shell.execAndWaitFor('input swipe ' + x0 + ' ' + y0 + ' ' + x1 + ' ' + y1 + ' ' + delay);
         }

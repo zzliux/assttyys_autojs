@@ -100,7 +100,7 @@ module.exports = [
                 judgePoints: [
                     { x: 688, y: 197, c: '#564F5F', i: true },
                     { x: 754, y: 204, c: '#5C5366', i: true },
-                    { x: 707, y: 145, c: '#524B5B', i: true },
+                    { x: 707, y: 145, c: '#524A5A', i: true },
                     { x: 703, y: 186, c: '#B9A990', i: true },
                 ],
                 operaPoints: [
@@ -543,9 +543,9 @@ module.exports = [
                 var sceneJudge = {
                     data: [{ // 用来判断是不是探索小怪的场景，直接用多点找色的话会在此占用太多资源
                         judgePoints: [
-                            { x: 61, y: 99, c: '#ECF5FC', i: true },
-                            { x: 59, y: 808, c: '#524B5B', i: true },
-                            { x: 1686, y: 79, c: '#E1CAA0', i: true },
+                            { x: 61, y: 99, c: '#EDF5FD', i: true },
+                            { x: 59, y: 808, c: '#524A5A', i: true },
+                            { x: 1686, y: 79, c: '#CBA173', i: true },
                         ],
                         operaPoints: []
                     }]
@@ -595,9 +595,9 @@ module.exports = [
             var outScene = {
                 data: [{ // 用来判断是不是探索小怪的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
-                        { x: 61, y: 99, c: '#ECF5FC', i: true },
-                        { x: 59, y: 808, c: '#524B5B', i: true },
-                        { x: 1686, y: 79, c: '#E1CAA0', i: true },
+                        { x: 61, y: 99, c: '#EDF5FD', i: true },
+                        { x: 59, y: 808, c: '#524A5A', i: true },
+                        { x: 1686, y: 79, c: '#CBA173', i: true },
                     ],
                     operaPoints: [
                         { x: 46, y: 70, ox: 61, oy: 51, ad: 700 },
@@ -658,9 +658,9 @@ module.exports = [
         name: '探索_单人时退出',
         data: [{ // 用来判断是不是探索小怪的场景，直接用多点找色的话会在此占用太多资源
             judgePoints: [
-                { x: 61, y: 99, c: '#ECF5FC', i: true },
-                { x: 59, y: 808, c: '#524B5B', i: true },
-                { x: 1686, y: 79, c: '#E1CAA0', i: true },
+                { x: 61, y: 99, c: '#EDF5FD', i: true },
+                { x: 59, y: 808, c: '#524A5A', i: true },
+                { x: 1686, y: 79, c: '#CBA173', i: true },
                 { x: 88, y: 692, c: '#FAFCF1', i: false },
             ],
             operaPoints: [

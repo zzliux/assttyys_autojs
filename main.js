@@ -127,7 +127,7 @@ var assttyys = {
         activity.setSupportActionBar(ui.toolbar);
 
         //设置滑动页面的标题
-        ui.viewpager.setTitles(["功能配置", "调试配置"]);
+        ui.viewpager.setTitles(['功能配置', '调试配置']);
         //让滑动页面和标签栏联动
         ui.tabs.setupWithViewPager(ui.viewpager);
 
@@ -136,8 +136,12 @@ var assttyys = {
 
         ui.menu.setDataSource([
             {
-                title: "退出",
-                icon: "@drawable/ic_exit_to_app_black_48dp"
+                title: '检查更新',
+                icon: '@drawable/ic_autorenew_black_48dp'
+            },
+            {
+                title: '退出',
+                icon: '@drawable/ic_exit_to_app_black_48dp'
             }
         ]);
 
@@ -262,8 +266,11 @@ var assttyys = {
         // 点击退出
         ui.menu.on("item_click", item => {
             switch (item.title) {
-                case "退出":
+                case '退出':
                     ui.finish();
+                    break;
+                case '检查更新':
+                    that.checkUpdate();
                     break;
             }
         });
@@ -539,6 +546,45 @@ var assttyys = {
         }
         this.ass.put('userFuncList', toSave);
         toastLog('已保存');
+    },
+
+    checkUpdate: function () {
+        threads.start(function () {
+            var r = http.get('https://gitee.com/api/v5/repos/zzliux/assttyys_autojs/issues/I148NB');
+            if (r.statusCode != 200) {
+                toastLog('检查失败。');
+            }
+            var data = null;
+            try {
+                data = JSON.parse(r.body.string());
+            } catch (e) {
+                toastLog('检查失败。');
+                return;
+            }
+            var nowVersion = require('./version');
+            // version: 0.0.1_build_20191030_01\r\ndownloadLink
+            var regResult = data.body.match(/version:\s*(.+)/);
+            if (!regResult) {
+                toastLog('解析版本失败');
+                return;
+            }
+            var newVersion = regResult[1];
+            if (nowVersion != newVersion) {
+                regResult = data.body.match(/description:\s*(.+)/);
+                var desc = regResult[1] || '';
+                regResult = data.body.match(/downloadLink:\s*(.+)/);
+                var downloadLink = regResult[1];
+                if (!downloadLink.match(/^https?:\/\//)) {
+                    downloadLink = 'https://gitee.com/zzliux/assttyys_autojs/issues/I148NB';
+                }
+                var is = dialogs.confirm('检查到更新', desc + '\n是否下载？');
+                if (is) {
+                    app.openUrl(downloadLink);
+                }
+            } else {
+                toastLog('你已经是最新版了。');
+            }
+        });
     }
 };
 
