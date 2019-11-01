@@ -24,8 +24,6 @@ MyAutomator.prototype = {
             let tmpx = dm.heightPixels - y;
             y = x;
             x = tmpx;
-            toastLog('x: ' + x);
-            toastLog('y: ' + y);
         }
         if (this.tapType == 0) {
             press(x, y, delay);

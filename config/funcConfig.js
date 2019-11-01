@@ -1,6 +1,6 @@
 var multiColor = {};
 var multiColorNames = ['结界_0勋章', '结界_1勋章', '结界_2勋章', '结界_3勋章', '结界_4勋章', '结界_5勋章', '结界_进攻', '探索_经验怪标记', '探索_挑战图标', '探索_式神满级标记', '探索_挑战BOSS图标', '最近组队'];
-for (let i = 0; i < multiColorNames.length; i++) {
+for (var i = 0; i < multiColorNames.length; i++) {
     multiColor[multiColorNames[i]] = require('../multi_colors/' + multiColorNames[i]);
 }
 
@@ -538,7 +538,7 @@ module.exports = [
         id: 23,
         name: '探索_挑战经验怪',
         data: function (_self) {
-            var count = 5;
+            var count = 3;
             while (count--) {
                 var sceneJudge = {
                     data: [{ // 用来判断是不是探索小怪的场景，直接用多点找色的话会在此占用太多资源
@@ -566,28 +566,36 @@ module.exports = [
                 // 找经验怪挑战
                 var t1 = new Date();
                 var point = images.findMultiColors(_self.memImage, multiColor['探索_经验怪标记'].firstColor, multiColor['探索_经验怪标记'].colors, { region: [200, 360, 1520, 700], threshold: 10 });
+                // 如果没有经验怪标记的话就重找
+                var cnt1 = 2;
+                while (null == point && --cnt1 >= 0) {
+                    sleep(200);
+                    _self.memImage = captureScreen();
+                    point = images.findMultiColors(_self.memImage, multiColor['探索_经验怪标记'].firstColor, multiColor['探索_经验怪标记'].colors, { region: [200, 360, 1520, 700], threshold: 10 });
+                }
                 var t2 = new Date();
                 console.log('探索_经验怪标记:单次多点找色时间: ' + (t2 - t1));
                 if (null != point) {
                     // 从内向外多点找色，可点击的挑战图标，可能会处理为不停的进行多点找色，找不到的时候放大区域
-                    let l = 5 * 7 // 搜索区域宽高,5倍 "探索_经验怪标记" 的宽高，当这个区域找不到时，l以倍数增长，直到找到为止或者达到一定次数, 这样处理的话会找重复的地方
-                    for (let tryTimes = 1; tryTimes <= 14; tryTimes++, l += 5 * 7) { // 尝试 14 次, 大概算了一下，14次内基本可以找到，找不到的话就滑屏
-                        let region = [point.x -  l / 2, point.y - l, l, l];
+                    var l = 5 * 7 // 搜索区域宽高,5倍 "探索_经验怪标记" 的宽高，当这个区域找不到时，l以倍数增长，直到找到为止或者达到一定次数, 这样处理的话会找重复的地方
+                    for (var tryTimes = 1; tryTimes <= 14; tryTimes++, l += 5 * 7) { // 尝试 14 次, 大概算了一下，14次内基本可以找到，找不到的话就滑屏
+                        var region = [point.x -  l / 2, point.y - l - 40, l, l];
                         if (region[0] < 0) region[0] = 0;
                         if (region[1] < 0) region[1] = 0;
                         if (region[0] + region[2] > 1920) region[2] = 1920 - region[0];
                         if (region[1] + region[3] > 1080) region[3] = 1080 - region[1];
 
-                        let pointChange = images.findMultiColors(_self.memImage, multiColor['探索_挑战图标'].firstColor, multiColor['探索_挑战图标'].colors, { region: region, threshold: _self.userConfigs.multiColorSimilar });
+                        var pointChange = images.findMultiColors(_self.memImage, multiColor['探索_挑战图标'].firstColor, multiColor['探索_挑战图标'].colors, { region: region, threshold: _self.userConfigs.multiColorSimilar });
                         if (null != pointChange) {
                             _self.automator.press(pointChange.x + random(0, 77), pointChange.y + random(0, 91), random(10, 100));
                             sleep(1000 + _self.userConfigs.afterClickDelay + random(0, _self.userConfigs.afterClickDelayRandom));
+                            console.log('[assttyys]: successS tryTimes: ' + tryTimes);
                             return true;
                         }
                     }
                 }
                 // 屏幕右往坐滑
-                _self.automator.swipe(1476 + random(0, 180), 179 + random(0, 626), 600 + random(0, 262), 228 + random(0, 745), random(300, 600));
+                _self.automator.swipe(1476 + random(0, 180), 179 + random(0, 626), 200 + random(0, 262), 228 + random(0, 745), random(300, 600));
                 sleep(200);
                 _self.memImage = captureScreen();
             }
@@ -629,7 +637,7 @@ module.exports = [
             var point = images.findMultiColors(_self.memImage, multiColor['探索_式神满级标记'].firstColor, multiColor['探索_式神满级标记'].colors, { region: [532, 388, 793, 299], threshold: 15 });
             var t2 = new Date();
             if (null != point) {
-                let clickPoints = {
+                var clickPoints = {
                     data: [{
                         judgePoints: [],
                         operaPoints: [
@@ -728,11 +736,9 @@ module.exports = [
             if (!_self.commonClick(sceneJudge)) return false;
 
             // 找满级标记
-            var t1 = new Date();
             var point = images.findMultiColors(_self.memImage, multiColor['探索_式神满级标记'].firstColor, multiColor['探索_式神满级标记'].colors, { region: [16, 435, 900, 547], threshold: 15 });
-            var t2 = new Date();
             if (null != point) {
-                let clickPoints = {
+                var clickPoints = {
                     data: [{
                         judgePoints: [],
                         operaPoints: [

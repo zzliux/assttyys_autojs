@@ -115,7 +115,7 @@ myScript.prototype = {
                 var jp = judgePoints[i];
                 var isColorSimilar = false;
                 try {
-                    var co = images.pixel(this.memImage, jp.x, jp.y);
+                    // var co = images.pixel(this.memImage, jp.x, jp.y);
                     isColorSimilar = images.detectsColor(this.memImage, jp.c, jp.x, jp.y, this.userConfigs.colorSimilar, 'diff');
 
                     // console.log('[assttyys] jp: ');
@@ -135,10 +135,10 @@ myScript.prototype = {
             }
             if (isJudged) {
                 var operaPoints = kData.operaPoints;
-                console.log('[assttyys] judgePoints: ');
-                console.log(judgePoints);
-                console.log('[assttyys] operaPoints: ');
-                console.log(operaPoints);
+                // console.log('[assttyys] judgePoints: ');
+                // console.log(judgePoints);
+                // console.log('[assttyys] operaPoints: ');
+                // console.log(operaPoints);
                 for (let i = 0, iLen = operaPoints.length; i < iLen; i++) {
                     var op = operaPoints[i];
                     var x = op.x + parseInt(random(0, op.ox));
