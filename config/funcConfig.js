@@ -7,7 +7,6 @@ for (var i = 0; i < multiColorNames.length; i++) {
 
 
 
-
 module.exports = [
     null, // 0 放着占位,后续可能会放必执行的东西
     {
@@ -251,7 +250,8 @@ module.exports = [
     {
         id: 10,
         name: '结界_进攻',
-        data: function (_self) {
+        data: function () {
+            var _self = this;
             // 多点找色
             var point = images.findMultiColors(_self.memImage, multiColor['结界_进攻'].firstColor, multiColor['结界_进攻'].colors, { region: [388, 434, 1531, 636], threshold: _self.userConfigs.multiColorSimilar });
             if (!point) return false;
@@ -264,7 +264,8 @@ module.exports = [
     {
         id: 11,
         name: '结界_0勋章',
-        data: function (_self) {
+        data: function () {
+            var _self = this;
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
@@ -278,10 +279,7 @@ module.exports = [
             if (!_self.commonClick(sceneJudge)) return false;
 
             // 多点找色
-            var t1 = new Date();
             var point = images.findMultiColors(_self.memImage, multiColor['结界_0勋章'].firstColor, multiColor['结界_0勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
-            var t2 = new Date();
-            console.log('结界_0勋章:单次多点找色时间: ' + (t2 - t1));
             if (!point) return false;
             _self.automator.press(point.x + random(0, 340), point.y + random(0, 161), random(10, 100));
             var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
@@ -292,7 +290,8 @@ module.exports = [
     {
         id: 12,
         name: '结界_1勋章',
-        data: function (_self) {
+        data: function () {
+            var _self = this;
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
@@ -306,10 +305,7 @@ module.exports = [
             if (!_self.commonClick(sceneJudge)) return false;
 
             // 多点找色
-            var t1 = new Date();
             var point = images.findMultiColors(_self.memImage, multiColor['结界_1勋章'].firstColor, multiColor['结界_1勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
-            var t2 = new Date();
-            console.log('结界_1勋章:单次多点找色时间: ' + (t2 - t1));
             if (!point) return false;
             _self.automator.press(point.x + random(0, 340), point.y + random(0, 161), random(10, 100));
             var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
@@ -320,7 +316,8 @@ module.exports = [
     {
         id: 13,
         name: '结界_2勋章',
-        data: function (_self) {
+        data: function () {
+            var _self = this;
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
@@ -334,10 +331,7 @@ module.exports = [
             if (!_self.commonClick(sceneJudge)) return false;
 
             // 多点找色
-            var t1 = new Date();
             var point = images.findMultiColors(_self.memImage, multiColor['结界_2勋章'].firstColor, multiColor['结界_2勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
-            var t2 = new Date();
-            console.log('结界_2勋章:单次多点找色时间: ' + (t2 - t1));
             if (!point) return false;
             _self.automator.press(point.x + random(0, 340), point.y + random(0, 161), random(10, 100));
             var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
@@ -348,7 +342,8 @@ module.exports = [
     {
         id: 14,
         name: '结界_3勋章',
-        data: function (_self) {
+        data: function () {
+            var _self = this;
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
@@ -362,10 +357,7 @@ module.exports = [
             if (!_self.commonClick(sceneJudge)) return false;
 
             // 多点找色
-            var t1 = new Date();
             var point = images.findMultiColors(_self.memImage, multiColor['结界_3勋章'].firstColor, multiColor['结界_3勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
-            var t2 = new Date();
-            console.log('结界_3勋章:单次多点找色时间: ' + (t2 - t1));
             if (!point) return false;
             _self.automator.press(point.x + random(0, 340), point.y + random(0, 161), random(10, 100));
             var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
@@ -376,7 +368,8 @@ module.exports = [
     {
         id: 15,
         name: '结界_4勋章',
-        data: function (_self) {
+        data: function () {
+            var _self = this;
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
@@ -390,10 +383,7 @@ module.exports = [
             if (!_self.commonClick(sceneJudge)) return false;
 
             // 多点找色
-            var t1 = new Date();
             var point = images.findMultiColors(_self.memImage, multiColor['结界_4勋章'].firstColor, multiColor['结界_4勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
-            var t2 = new Date();
-            console.log('结界_4勋章:单次多点找色时间: ' + (t2 - t1));
             if (!point) return false;
             _self.automator.press(point.x + random(0, 340), point.y + random(0, 161), random(10, 100));
             var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
@@ -404,7 +394,8 @@ module.exports = [
     {
         id: 16,
         name: '结界_5勋章',
-        data: function (_self) {
+        data: function () {
+            var _self = this;
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
@@ -418,11 +409,7 @@ module.exports = [
             if (!_self.commonClick(sceneJudge)) return false;
 
             // 多点找色
-            var t1 = new Date();
             var point = images.findMultiColors(_self.memImage, multiColor['结界_5勋章'].firstColor, multiColor['结界_5勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
-            var t2 = new Date();
-            console.log('结界_5勋章:单次多点找色时间: ' + (t2 - t1));
-
             if (!point) return false;
             _self.automator.press(point.x + random(0, 340), point.y + random(0, 161), random(10, 100));
             var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
@@ -449,7 +436,8 @@ module.exports = [
     {
         id: 18,
         name: '结界_个人_3次刷新CD等待', // 该功能会在判定处于cd时sleep30秒，且后面的功能不会执行
-        data: function (_self) {
+        data: function () {
+            var _self = this;
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
@@ -485,7 +473,8 @@ module.exports = [
     {
         id: 20,
         name: '结界_寮突_CD等待',
-        data: function (_self) {
+        data: function () {
+            var _self = this;
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
@@ -537,8 +526,9 @@ module.exports = [
     {
         id: 23,
         name: '探索_挑战经验怪',
-        data: function (_self) {
-            var count = 3;
+        data: function () {
+            var _self = this;
+            var count = 4;
             while (count--) {
                 var sceneJudge = {
                     data: [{ // 用来判断是不是探索小怪的场景，直接用多点找色的话会在此占用太多资源
@@ -553,10 +543,7 @@ module.exports = [
                 if (!_self.commonClick(sceneJudge)) return false;
     
                 // 如果是boss就直接挑战
-                var t1 = new Date();
                 var point0 = images.findMultiColors(_self.memImage, multiColor['探索_挑战BOSS图标'].firstColor, multiColor['探索_挑战BOSS图标'].colors, { region: [40, 187, 1598, 468], threshold: 10 });
-                var t2 = new Date();
-                console.log('探索_挑战BOSS图标:单次多点找色时间: ' + (t2 - t1));
                 if (null != point0) {
                     _self.automator.press(point0.x + random(0, 68), point0.y + random(0, 66), random(10, 100));
                     sleep(1000 + _self.userConfigs.afterClickDelay + random(0, _self.userConfigs.afterClickDelayRandom));
@@ -564,18 +551,22 @@ module.exports = [
                 }
     
                 // 找经验怪挑战
-                var t1 = new Date();
                 var point = images.findMultiColors(_self.memImage, multiColor['探索_经验怪标记'].firstColor, multiColor['探索_经验怪标记'].colors, { region: [200, 360, 1520, 700], threshold: 10 });
                 // 如果没有经验怪标记的话就重找
                 var cnt1 = 2;
                 while (null == point && --cnt1 >= 0) {
                     sleep(200);
-                    _self.memImage = captureScreen();
+                    _self.captureScreen();
                     point = images.findMultiColors(_self.memImage, multiColor['探索_经验怪标记'].firstColor, multiColor['探索_经验怪标记'].colors, { region: [200, 360, 1520, 700], threshold: 10 });
                 }
-                var t2 = new Date();
-                console.log('探索_经验怪标记:单次多点找色时间: ' + (t2 - t1));
-                if (null != point) {
+                if (null != point && false) {
+                    toastLog('------------');
+                    console.log('-------------');
+                    for (var key in point) {
+                        console.log('[' + typeof point[key] + ']' + key);
+                    }
+                    console.log('--------------');
+                    sleep(10000)
                     // 从内向外多点找色，可点击的挑战图标，可能会处理为不停的进行多点找色，找不到的时候放大区域
                     var l = 5 * 7 // 搜索区域宽高,5倍 "探索_经验怪标记" 的宽高，当这个区域找不到时，l以倍数增长，直到找到为止或者达到一定次数, 这样处理的话会找重复的地方
                     for (var tryTimes = 1; tryTimes <= 14; tryTimes++, l += 5 * 7) { // 尝试 14 次, 大概算了一下，14次内基本可以找到，找不到的话就滑屏
@@ -594,10 +585,12 @@ module.exports = [
                         }
                     }
                 }
-                // 屏幕右往坐滑
-                _self.automator.swipe(1476 + random(0, 180), 179 + random(0, 626), 200 + random(0, 262), 228 + random(0, 745), random(300, 600));
-                sleep(200);
-                _self.memImage = captureScreen();
+                if (count) {
+                    // 屏幕右往坐滑
+                    _self.automator.swipe(1476 + random(0, 180), 179 + random(0, 626), 200 + random(0, 262), 228 + random(0, 745), random(300, 600));
+                    sleep(200);
+                    _self.captureScreen();
+                }
             }
 
             var outScene = {
@@ -619,7 +612,8 @@ module.exports = [
     {
         id: 24,
         name: '探索_打手换素材',
-        data: function (_self) {
+        data: function () {
+            var _self = this;
             var sceneJudge = {
                 data: [{ // 用来判断是不是准备的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
@@ -633,9 +627,7 @@ module.exports = [
             if (!_self.commonClick(sceneJudge)) return false;
 
             // 找满级标记
-            var t1 = new Date();
             var point = images.findMultiColors(_self.memImage, multiColor['探索_式神满级标记'].firstColor, multiColor['探索_式神满级标记'].colors, { region: [532, 388, 793, 299], threshold: 15 });
-            var t2 = new Date();
             if (null != point) {
                 var clickPoints = {
                     data: [{
@@ -651,10 +643,10 @@ module.exports = [
                 }
                 _self.commonClick(clickPoints);
                 // 第一个素材换到左边
-                _self.automator.swipe(261 + random(0, 148), 752 + random(0, 254), 179 + random(0, 201), 566 + random(0, 88), random(800, 1000));
+                _self.automator.swipe(261 + random(0, 148), 752 + random(0, 254), 179 + random(0, 201), 546 + random(0, 88), random(800, 1000));
                 sleep(random(500, 600));
                 // 第二个素材换到右边
-                _self.automator.swipe(456 + random(0, 80), 758 + random(0, 241), 877 + random(0, 160), 566 + random(0, 88), random(1000, 1200));
+                _self.automator.swipe(456 + random(0, 80), 758 + random(0, 241), 877 + random(0, 160), 546 + random(0, 88), random(1000, 1200));
                 sleep(random(100, 200));
 
             };
@@ -680,7 +672,8 @@ module.exports = [
     {
         id: 26,
         name: '探索_最后一章确认界面邀请好友', // TODO，邀请最近组队
-        data: function (_self) {
+        data: function () {
+            var _self = this;
             var sceneJudge = {
                 data: [{
                     judgePoints: [
@@ -698,7 +691,7 @@ module.exports = [
             // 点击组队
             if (!_self.commonClick(sceneJudge)) return false;
 
-            _self.memImage = captureScreen();
+            _self.captureScreen();
             var point = images.findMultiColors(_self.memImage, multiColor['最近组队'].firstColor, multiColor['最近组队'].colors, { region: [478, 194, 937, 683], threshold: 15 });
             if (null != point) {
                 toastLog('邀请最近组队');
@@ -722,7 +715,8 @@ module.exports = [
     {
         id: 27,
         name: '探索_司机换素材',
-        data: function (_self) {
+        data: function () {
+            var _self = this;
             var sceneJudge = {
                 data: [{ // 用来判断是不是准备的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
@@ -752,10 +746,10 @@ module.exports = [
                 }
                 _self.commonClick(clickPoints);
                 // 第一个素材换到左边
-                _self.automator.swipe(261 + random(0, 148), 752 + random(0, 254), 475 + random(0, 111), 480 + random(0, 107), random(800, 1000));
+                _self.automator.swipe(261 + random(0, 148), 752 + random(0, 254), 475 + random(0, 111), 470 + random(0, 107), random(800, 1000));
                 sleep(random(500, 600));
                 // 第二个素材换到右边
-                _self.automator.swipe(456 + random(0, 80), 758 + random(0, 241), 1383 + random(0, 107), 479 + random(0, 121), random(1000, 1200));
+                _self.automator.swipe(456 + random(0, 80), 758 + random(0, 241), 1383 + random(0, 107), 470 + random(0, 107), random(1000, 1200));
                 sleep(random(100, 200));
 
             };
@@ -797,5 +791,34 @@ module.exports = [
                 ]
             }
         ]
-    }
+    },
+    {
+        id: 30,
+        name: '结界_个人_刷新',
+        data: [{
+            judgePoints: [
+                { x: 264, y: 75, c: '#483727', i: true },
+                { x: 1308, y: 78, c: '#483727', i: true },
+                { x: 1503, y: 814, c: '#F4B25E', i: true }, // 亮着的刷新按钮上的一个点
+            ],
+            operaPoints: [
+                { x: 1448, y: 774, ox: 206, oy: 74, ad: 500 },
+            ]
+        }]
+    },
+    {
+        id: 31,
+        name: '准备界面直接退出',
+        data: [{
+            judgePoints: [
+                { x: 1782, y: 845, c: '#FFF3D1', i: true },
+                { x: 1733, y: 835, c: '#FFF3D1', i: true },
+                { x: 1754, y: 822, c: '#D3AE79', i: true },
+            ],
+            operaPoints: [
+                { x: 27, y: 27, ox: 53, oy: 44, ad: 2000 },
+                { x: 1025, y: 601, ox: 169, oy: 64, ad: 500 },
+            ]
+        }]
+    },
 ]

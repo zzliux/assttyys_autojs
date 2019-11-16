@@ -69,7 +69,7 @@ myScript.prototype = {
         var continuityCount = 0;
         var lastFunc = -1;
         while (true) {
-            this.memImage = captureScreen();
+            this.captureScreen();
             for (let i = 0, iLen = scriptFuncList.length; i < iLen; i++) {
                 result = this.commonClick(scriptFuncList[i]);
                 if (result) {
@@ -99,13 +99,13 @@ myScript.prototype = {
      */
     commonClick: function (funcObj) {
         if (null === this.memImage) {
-            this.memImage = captureScreen();
+            this.captureScreen();
         }
         // 如果data是个数组，直接走公共方法
         // 如果data是个函数的话直接执行这个函数，函数里面的逻辑由配置参数直接自己实现
         var data = funcObj.data;
         if (typeof data === 'function') {
-            return data(this);
+            return data.call(this);
         }
         for (var k = 0, kLen = data.length; k < kLen; k++) {
             kData = funcObj.data[k];
@@ -151,6 +151,10 @@ myScript.prototype = {
             }
         }
         return false;
+    },
+
+    captureScreen: function () {
+        this.memImage = captureScreen();
     }
 }
 
