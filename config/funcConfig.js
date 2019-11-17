@@ -559,14 +559,7 @@ module.exports = [
                     _self.captureScreen();
                     point = images.findMultiColors(_self.memImage, multiColor['探索_经验怪标记'].firstColor, multiColor['探索_经验怪标记'].colors, { region: [200, 360, 1520, 700], threshold: 10 });
                 }
-                if (null != point && false) {
-                    toastLog('------------');
-                    console.log('-------------');
-                    for (var key in point) {
-                        console.log('[' + typeof point[key] + ']' + key);
-                    }
-                    console.log('--------------');
-                    sleep(10000)
+                if (null != point) {
                     // 从内向外多点找色，可点击的挑战图标，可能会处理为不停的进行多点找色，找不到的时候放大区域
                     var l = 5 * 7 // 搜索区域宽高,5倍 "探索_经验怪标记" 的宽高，当这个区域找不到时，l以倍数增长，直到找到为止或者达到一定次数, 这样处理的话会找重复的地方
                     for (var tryTimes = 1; tryTimes <= 14; tryTimes++, l += 5 * 7) { // 尝试 14 次, 大概算了一下，14次内基本可以找到，找不到的话就滑屏
