@@ -6,7 +6,7 @@ module.exports = [
                 itemName: '模拟点击方式',
                 fieldName: 'tapType',
                 fieldType: 'select',
-                dataList: ['无障碍', 'RootAutomator', 'Shell'],
+                dataList: ['无障碍', 'RootAutomator', 'Shell', '普通Root'],
             },
             {
                 itemName: '坐标反转',

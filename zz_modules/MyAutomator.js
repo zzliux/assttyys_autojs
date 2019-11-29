@@ -3,7 +3,7 @@
  */
 
 function MyAutomator(tapType, dirctionReverse) {
-    this.tapType = tapType; // 0 无障碍， 1 RootAutomator， 2 Shell
+    this.tapType = tapType; // 0 无障碍， 1 RootAutomator， 2 Shell， 3 普通Root
     this.dirctionReverse = dirctionReverse;
     if (tapType == 0) {
         var BezierSwiper = require('./bezierSwiper');
@@ -14,6 +14,8 @@ function MyAutomator(tapType, dirctionReverse) {
         this.bezierSwiper = new BezierSwiper(this.RA);
     } else if (tapType == 2) {
         this.shell = new Shell(true);
+    } else if (tapType == 3) {
+        // none
     }
 }
 
@@ -31,6 +33,8 @@ MyAutomator.prototype = {
             this.RA.press(x, y, delay);
         } else if (this.tapType == 2) {
             this.shell.execAndWaitFor('input swipe ' + x + ' ' + y + ' ' + x + ' ' + y + ' ' + delay);
+        } else if (this.tapType == 3) {
+            Tap(x, y); // 忽略点击时长, 官方不支持
         }
     },
 
@@ -53,6 +57,8 @@ MyAutomator.prototype = {
             this.RA.swipe(x0, y0, x1, y1, delay);
         } else if (this.tapType == 2) {
             this.shell.execAndWaitFor('input swipe ' + x0 + ' ' + y0 + ' ' + x1 + ' ' + y1 + ' ' + delay);
+        } else if (this.tapType == 3) {
+            Swipe(x0, y0, x1, y1, delay);
         }
     }
 };
