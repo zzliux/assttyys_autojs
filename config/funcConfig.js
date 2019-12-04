@@ -235,17 +235,43 @@ module.exports = [
     },
     {
         id: 9,
-        name: '御魂/御灵/业原火挑战',
-        data: [{
-            judgePoints: [
-                { x: 389, y: 156, c: '#483727', i: true },
-                { x: 1369, y: 737, c: '#F4B25E', i: true },
-                { x: 1499, y: 744, c: '#F4B25E', i: true },
-            ],
-            operaPoints: [
-                { x: 1346, y: 709, ox: 171, oy: 71, ad: 500 },
-            ]
-        }]
+        name: '御魂/御灵挑战',
+        data: [
+            //     {
+            //     judgePoints: [
+            //         { x: 389, y: 156, c: '#483727', i: true },
+            //         { x: 1369, y: 737, c: '#F4B25E', i: true },
+            //         { x: 1499, y: 744, c: '#F4B25E', i: true },
+            //     ],
+            //     operaPoints: [
+            //         { x: 1346, y: 709, ox: 171, oy: 71, ad: 500 },
+            //     ]
+            // }
+            { // 御灵
+                judgePoints: [
+                    { x: 1719, y: 898, c: '#e3dac2', i: true },
+                    { x: 1839, y: 51, c: '#d4ae83', i: true },
+                    { x: 62, y: 53, c: '#c2cbe3', i: true },
+                    { x: 318, y: 60, c: '#593716', i: true },
+                    { x: 1793, y: 1007, c: '#371f16', i: true },
+                ],
+                operaPoints: [
+                    { x: 1655, y: 887, ox: 124, oy: 145, ad: 500 },
+                ]
+            },
+            { // 御魂
+                judgePoints: [
+                    { x: 1727, y: 903, c: '#e3dac2', i: true },
+                    { x: 1828, y: 89, c: '#cda476', i: true },
+                    { x: 61, y: 70, c: '#c4cce5', i: true },
+                    { x: 1794, y: 963, c: '#e2d9c1', i: true },
+                    { x: 1795, y: 1025, c: '#371f16', i: true },
+                ],
+                operaPoints: [
+                    { x: 1670, y: 893, ox: 130, oy: 136, ad: 500 },
+                ]
+            }
+        ]
     },
     {
         id: 10,
