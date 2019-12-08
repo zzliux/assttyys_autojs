@@ -8,16 +8,6 @@ importClass(android.R);
 importClass(java.util.ArrayList);
 
 
-threads.start(function () {
-    let dm = context.getResources().getDisplayMetrics();
-    // 请求截图权限
-    // 解决模拟器横竖屏截图问题，如果是宽大于高的话，就当做是竖屏截图（未进行屏幕旋转）
-    // 否则是横屏截图（进行屏幕旋转了）
-    if (!requestScreenCapture(dm.widthPixels < dm.heightPixels)) {
-        toast("请求截图失败");
-        exit();
-    }
-});
 
 var mainLayout = require('./mainLayout');
 // var zzUtils = require('./zz_modules/zzUtils');
@@ -55,6 +45,7 @@ var assttyys = {
     init: function () {
         this.initLogConfig();
         this.initAuthorizationStatus();
+        this.initScreenCaptruePermission();
         var mainLayoutA = this.preHandleLayoutStr(mainLayout);
         ui.layout(mainLayoutA);
         this.initUI();
@@ -70,7 +61,7 @@ var assttyys = {
             this.logDir = '/sdcard/assttyys/logs/';
         }
         if (!this.logFile) {
-            this.logFile = (new Date()).format('Ymdhis') + '.log';
+            this.logFile = (new Date()).format('YmdHis') + '.log';
         }
         console.setGlobalLogConfig({
             file: this.logDir + this.logFile
@@ -82,18 +73,37 @@ var assttyys = {
      */
     showLogs: function () {
         var that = this;
-
-        var logFiles = files.listDir(that.logDir, function(name){
+        var logFiles = files.listDir(that.logDir, function (name) {
             return name.endsWith(".log") && files.isFile(files.join(that.logDir, name));
         });
         dialogs.select('选择日志文件', logFiles, function (index) {
+            if (index == -1) return; // 取消操作
             var i = app.intent({
                 action: Intent.ACTION_VIEW,
                 flags: [Intent.FLAG_ACTIVITY_NEW_TASK, Intent.FLAG_GRANT_READ_URI_PERMISSION],
                 type: 'text/plain',
-                data: 'file://' + that.logDir + that.logFile
+                data: 'file://' + that.logDir + logFiles[index]
             });
             context.startActivity(i);
+        });
+    },
+
+    /**
+     * 初始化截图权限
+     */
+    initScreenCaptruePermission: function (){
+        threads.start(function () {
+            let dm = context.getResources().getDisplayMetrics();
+            let wm = context.getSystemService(context.WINDOW_SERVICE);
+            wm.getDefaultDisplay().getRealMetrics(dm);
+            console.log('设备分辨率: ' + dm.widthPixels + '*' + dm.heightPixels);
+            // 请求截图权限
+            // 解决模拟器横竖屏截图问题，如果是宽大于高的话，就当做是竖屏截图（未进行屏幕旋转）
+            // 否则是横屏截图（进行屏幕旋转了）
+            if (!requestScreenCapture(dm.widthPixels < dm.heightPixels)) {
+                toast("请求截图失败");
+                exit();
+            }
         });
     },
 

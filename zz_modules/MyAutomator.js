@@ -23,6 +23,8 @@ MyAutomator.prototype = {
     press: function (x, y, delay) {
         if (this.dirctionReverse) {
             let dm = context.getResources().getDisplayMetrics();
+            let wm = context.getSystemService(context.WINDOW_SERVICE);
+            wm.getDefaultDisplay().getRealMetrics(dm);
             let tmpx = dm.heightPixels - y;
             y = x;
             x = tmpx;
@@ -41,6 +43,8 @@ MyAutomator.prototype = {
     swipe: function (x0, y0, x1, y1, delay) {
         if (this.dirctionReverse) {
             let dm = context.getResources().getDisplayMetrics();
+            let wm = context.getSystemService(context.WINDOW_SERVICE);
+            wm.getDefaultDisplay().getRealMetrics(dm);
             let tmpx = dm.heightPixels - y0;
             y0 = x0;
             x0 = tmpx;

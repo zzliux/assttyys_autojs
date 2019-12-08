@@ -55,6 +55,8 @@ function dqFloaty() {
     var tint_color = "#00000"//全局:  对话框图片颜色
 
     var dm = context.getResources().getDisplayMetrics();
+    let wm = context.getSystemService(context.WINDOW_SERVICE);
+    wm.getDefaultDisplay().getRealMetrics(dm);
     var screenOrien = true; // true为竖屏
     if (dm.widthPixels > dm.heightPixels) {
         screenOrien = false;
@@ -179,7 +181,7 @@ function dqFloaty() {
                 img_dp.w = parseInt(dpZ * 9)//计算logo左边隐藏时 X值
                 img_dp.ww = parseInt(dpZ * (44 - 9))//计算logo右边隐藏时 X值
                 logo_right = win.id_2.getX() - parseInt(dpZ * 22)
-                win_1.setPosition(dm.widthPixels - 105, dm.heightPixels / 2) //悬浮按钮定位
+                win_1.setPosition(dm.widthPixels - img_dp.ww, dm.heightPixels / 2) //悬浮按钮定位
                 win.id_logo.setVisibility(4)
                 win.id_logo.attr("alpha", "1")
                 events.broadcast.emit("定时器关闭", terid)
@@ -198,7 +200,7 @@ function dqFloaty() {
             screenOrien = screenOrien2;
             ui.run(function () {
                 logo_fx = false;
-                win_1.setPosition(dm.widthPixels - 105, dm.heightPixels / 2) //悬浮按钮定位
+                win_1.setPosition(dm.widthPixels - img_dp.ww, dm.heightPixels / 2) //悬浮按钮定位
                 win_2.logo.getLayoutParams().width = dm.widthPixels;
             });
         }
@@ -387,22 +389,22 @@ function dqFloaty() {
                 if (logo_buys) { return }//如果在动画正在播放中则退出事件 无操作
                 if (Math.abs(event.getRawY() - y) < 30 && Math.abs(event.getRawX() - x) < 30) {
                     if (logo_switch) {
-                        logo_switch = false
-                        win_1.logo.attr("alpha", "0.4")
+                        logo_switch = false;
+                        win_1.logo.attr("alpha", "0.4");
                     } else if (logo_fx) {
                         win.setPosition(windowX + (event.getRawX() - x),
                             windowY + (event.getRawY() - y) - img_dp.h_b);
-                        win.id_logo.setVisibility(0)
+                        win.id_logo.setVisibility(0);
                         logo_switch = true
-                        win_1.logo.attr("alpha", "0.9")
+                        win_1.logo.attr("alpha", "0.9");
                     } else {
                         win.setPosition(win_1.getX() + (event.getRawX() - x) - logo_right,
                             win_1.getY() + (event.getRawY() - y) - img_dp.h_b);
-                        win.id_logo.setVisibility(0)
-                        logo_switch = true
-                        win_1.logo.attr("alpha", "0.9")
+                        win.id_logo.setVisibility(0);
+                        logo_switch = true;
+                        win_1.logo.attr("alpha", "0.9");
                     }
-                    动画()
+                    动画();
                 } else if (!logo_switch) {
                     G_Y = windowY + (event.getRawY() - y)
                     win_1.logo.attr("alpha", "0.4")
@@ -413,9 +415,9 @@ function dqFloaty() {
                         mTimeInterpolator = new BounceInterpolator();
                         animator.setInterpolator(mTimeInterpolator);
                         animator.setDuration(300);
-                        win_2.logo.attr("alpha", "0.4")//动画 替身上场
-                        win_1.logo.attr("alpha", "0");//悬浮按钮隐藏
-                        win_1.setPosition(0 - img_dp.w, G_Y)//悬浮按钮移动到终点位置等待替身动画结束
+                        win_2.logo.attr("alpha", "0.4"); //动画 替身上场
+                        win_1.logo.attr("alpha", "0"); //悬浮按钮隐藏
+                        win_1.setPosition(0 - img_dp.w, G_Y); //悬浮按钮移动到终点位置等待替身动画结束
                         animator.start();
                     } else {
                         logo_fx = false

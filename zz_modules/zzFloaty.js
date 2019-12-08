@@ -49,6 +49,9 @@ var zzFloaty = {
     init: function (option) {
 
         var dm = context.getResources().getDisplayMetrics();
+        let wm = context.getSystemService(context.WINDOW_SERVICE);
+        wm.getDefaultDisplay().getRealMetrics(dm);
+
         this.screenX = dm.widthPixels;
         this.screenY = dm.heightPixels;
 
@@ -98,6 +101,9 @@ var zzFloaty = {
             switch (event.getAction()) {
                 case event.ACTION_DOWN:
                     var dm = context.getResources().getDisplayMetrics();
+                    let wm = context.getSystemService(context.WINDOW_SERVICE);
+                    wm.getDefaultDisplay().getRealMetrics(dm);
+
                     that.screenX = dm.widthPixels;
                     that.screenY = dm.heightPixels;
 
@@ -197,6 +203,9 @@ var zzFloaty = {
      */
     mainWinShow: function () {
         var dm = context.getResources().getDisplayMetrics();
+        let wm = context.getSystemService(context.WINDOW_SERVICE);
+        wm.getDefaultDisplay().getRealMetrics(dm);
+
         this.screenX = dm.widthPixels;
         this.screenY = dm.heightPixels;
 
