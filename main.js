@@ -3,6 +3,7 @@
 importClass(android.content.Intent);
 importClass(android.widget.ArrayAdapter);
 importClass(android.widget.AdapterView);
+importClass(android.net.Uri);
 importClass(android.R);
 importClass(java.util.ArrayList);
 
@@ -22,6 +23,7 @@ var mainLayout = require('./mainLayout');
 // var zzUtils = require('./zz_modules/zzUtils');
 var globalPreFuncList = require('./config/preFuncConfig');
 var configList = require('./config/configConfig');
+require('./zz_modules/dateFormatter');
 
 var assttyys = {
 
@@ -44,7 +46,14 @@ var assttyys = {
     // 授权状态
     authorizationStatus: false,
 
+    // 日志目录
+    logDir: '/sdcard/assttyys/logs/',
+
+    // 日志文件名
+    logFile: null,
+
     init: function () {
+        this.initLogConfig();
         this.initAuthorizationStatus();
         var mainLayoutA = this.preHandleLayoutStr(mainLayout);
         ui.layout(mainLayoutA);
@@ -53,6 +62,44 @@ var assttyys = {
         this.initData();
     },
 
+    /**
+     * 初始化日志配置
+     */
+    initLogConfig: function () {
+        if (!this.logDir) {
+            this.logDir = '/sdcard/assttyys/logs/';
+        }
+        if (!this.logFile) {
+            this.logFile = (new Date()).format('Ymdhis') + '.log';
+        }
+        console.setGlobalLogConfig({
+            file: this.logDir + this.logFile
+        });
+    },
+
+    /**
+     * 查看日志
+     */
+    showLogs: function () {
+        var that = this;
+
+        var logFiles = files.listDir(that.logDir, function(name){
+            return name.endsWith(".log") && files.isFile(files.join(that.logDir, name));
+        });
+        dialogs.select('选择日志文件', logFiles, function (index) {
+            var i = app.intent({
+                action: Intent.ACTION_VIEW,
+                flags: [Intent.FLAG_ACTIVITY_NEW_TASK, Intent.FLAG_GRANT_READ_URI_PERMISSION],
+                type: 'text/plain',
+                data: 'file://' + that.logDir + that.logFile
+            });
+            context.startActivity(i);
+        });
+    },
+
+    /**
+     * 初始化授权状态
+     */
     initAuthorizationStatus: function () {
         var that = this;
         threads.start(function () {
@@ -82,7 +129,6 @@ var assttyys = {
                     });
                 }
             }
-
         });
     },
 
@@ -119,6 +165,7 @@ var assttyys = {
 
         //创建选项菜单(右上角)
         ui.emitter.on("create_options_menu", menu => {
+            menu.add('查看日志');
             menu.add('方案管理');
             menu.add("重置配置");
             menu.add("关于");
@@ -259,6 +306,9 @@ var assttyys = {
                 case '方案管理':
                     that.savePrevFuncEvent();
                     break;
+                case '查看日志':
+                    that.showLogs();
+                    break;
             }
             e.consumed = true;
         });
@@ -383,6 +433,11 @@ var assttyys = {
                 flags: ['ACTIVITY_NEW_TASK']
             });
             context.startActivity(i);
+        });
+
+        // 点击日志的按钮
+        events.broadcast.on('DQFLOATY_LOG_CLICK', function () {
+            that.showLogs();
         });
 
         // 点击设置

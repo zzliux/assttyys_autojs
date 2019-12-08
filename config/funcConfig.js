@@ -237,16 +237,6 @@ module.exports = [
         id: 9,
         name: '御魂/御灵挑战',
         data: [
-            //     {
-            //     judgePoints: [
-            //         { x: 389, y: 156, c: '#483727', i: true },
-            //         { x: 1369, y: 737, c: '#F4B25E', i: true },
-            //         { x: 1499, y: 744, c: '#F4B25E', i: true },
-            //     ],
-            //     operaPoints: [
-            //         { x: 1346, y: 709, ox: 171, oy: 71, ad: 500 },
-            //     ]
-            // }
             { // 御灵
                 judgePoints: [
                     { x: 1719, y: 898, c: '#e3dac2', i: true },

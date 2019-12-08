@@ -49,7 +49,7 @@ module.exports = [
                 fieldName: 'multiColorSimilar',
                 fieldType: 'integer',
                 default: 4
-            },
+            }
         ]
     }
 ];

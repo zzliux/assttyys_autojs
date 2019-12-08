@@ -1,6 +1,5 @@
 var funcConfig = require('./config/funcConfig');
 var MyAutomator = require('./zz_modules/MyAutomator');
-
 var myScript = function () {
 
     // 用户配置

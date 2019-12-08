@@ -209,23 +209,23 @@ function dqFloaty() {
      */
     function img_down() {
         win_1.logo.attr("alpha", "0.4")
-        logo_switch = false
-        动画()
+        logo_switch = false;
+        动画();
     }
     win.id_0_click.on("click", () => {
-        toastLog("个人中心")
-        img_down()
+        toastLog("个人中心");
+        img_down();
     })
 
     win.id_1_click.on("click", () => {
-        toastLog("日志")
-        img_down()
+        img_down();
+        events.broadcast.emit('DQFLOATY_LOG_CLICK', '');
     })
 
     // 启动脚本
     var scriptThread = null;
     win.id_2_click.on("click", () => {
-        img_down()
+        img_down();
         if (null != scriptThread) {
             scriptThread.interrupt();
         }
@@ -250,13 +250,13 @@ function dqFloaty() {
 
     // 停止脚本
     win.id_3_click.on("click", () => {
-        img_down()
+        img_down();
         if (null != scriptThread) {
             scriptThread.interrupt();
         }
         win_1.img_logo.setColorFilter(colors.argb(0, 255, 153, 0));
         win_2.img_logo.setColorFilter(colors.argb(0, 255, 153, 0));
-        toastLog("结束脚本")
+        toastLog("结束脚本");
     });
 
     // 点击设置
