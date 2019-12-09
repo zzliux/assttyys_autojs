@@ -9,7 +9,7 @@ var BezierSwiper = function (RA) {
     }
     this.dm = context.getResources().getDisplayMetrics();
     let wm = context.getSystemService(context.WINDOW_SERVICE);
-    wm.getDefaultDisplay().getRealMetrics(dm);
+    wm.getDefaultDisplay().getRealMetrics(this.dm);
 }
 
 BezierSwiper.prototype.swipe = function (x0, y0, x1, y1, time) {
