@@ -193,6 +193,10 @@ var assttyys = {
 
         ui.menu.setDataSource([
             {
+                title: '应用设置',
+                icon: '@drawable/ic_build_black_48dp'
+            },
+            {
                 title: '检查更新',
                 icon: '@drawable/ic_autorenew_black_48dp'
             },
@@ -332,6 +336,8 @@ var assttyys = {
                 case '检查更新':
                     that.checkUpdate();
                     break;
+                case '应用设置':
+                    app.startActivity('settings');
             }
         });
 
