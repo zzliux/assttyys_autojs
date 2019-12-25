@@ -240,7 +240,7 @@ module.exports = [
             { // 御灵
                 judgePoints: [
                     { x: 1719, y: 898, c: '#e3dac2', i: true },
-                    { x: 1839, y: 51, c: '#d4ae83', i: true },
+                    { x: 1839, y: 51, c: '#32221f', i: true },
                     { x: 62, y: 53, c: '#c2cbe3', i: true },
                     { x: 318, y: 60, c: '#593716', i: true },
                     { x: 1793, y: 1007, c: '#371f16', i: true },
