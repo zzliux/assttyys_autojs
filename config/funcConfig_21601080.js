@@ -1,11 +1,8 @@
 var multiColor = {};
 var multiColorNames = ['结界_0勋章', '结界_1勋章', '结界_2勋章', '结界_3勋章', '结界_4勋章', '结界_5勋章', '结界_进攻', '探索_经验怪标记', '探索_挑战图标', '探索_式神满级标记', '探索_挑战BOSS图标', '最近组队'];
 for (var i = 0; i < multiColorNames.length; i++) {
-    multiColor[multiColorNames[i]] = require('../multi_colors/' + multiColorNames[i]);
+    multiColor[multiColorNames[i]] = require('../multi_colors/21601080/' + multiColorNames[i]);
 }
-
-
-
 
 module.exports = [
     null, // 0 放着占位,后续可能会放必执行的东西
@@ -15,11 +12,11 @@ module.exports = [
         data: [
             {
                 judgePoints: [
-                    { x: 1782, y: 845, c: '#FFF3D1', i: true },
-                    { x: 1733, y: 835, c: '#FFF3D1', i: true },
-                    { x: 1754, y: 822, c: '#D3AE79', i: true },
+                    { x: 62, y: 62, c: 0xd4c4a3, i: true},
+                    { x: 2020, y: 818, c: 0xfff3d3, i: true},
+                    { x: 2021, y: 845, c: 0xfff3d3, i: true},
                 ],
-                operaPoints: [{ x: 1679, y: 770, ox: 151, oy: 122, ad: 2000 }]
+                operaPoints: [{ x: 1911, y: 773, ox: 155, oy: 126, ad: 2000 }]
             }
         ],
     },
@@ -29,94 +26,84 @@ module.exports = [
         data: [
             { // 退出结算(左上角战斗数据图标识别),最优，速度最快
                 judgePoints: [
-                    { x: 76, y: 89, c: '#371F13', i: true },
-                    { x: 125, y: 61, c: '#FCECD3', i: true },
-                    { x: 156, y: 114, c: '#31190D', i: true },
-                    { x: 85, y: 126, c: '#E8D3B8', i: true },
+                    { x:  120, y:   61, c: 0xfdedd4, i: true},
+                    { x:  153, y:  118, c: 0x311810, i: true},
+                    { x:   78, y:   86, c: 0x392010, i: true},
+                    { x:  109, y:  134, c: 0xeddcbb, i: true},
+
                 ],
                 operaPoints: [
-                    { x: 29, y: 180, ox: 194, oy: 620, ad: 500 },
-                    { x: 29, y: 180, ox: 194, oy: 620, ad: 500 },
-                    { x: 29, y: 180, ox: 194, oy: 620, ad: 500 },
+                    { x: 41, y: 207, ox: 240, oy: 660, ad: 500 },
+                    { x: 41, y: 207, ox: 240, oy: 660, ad: 500 },
+                    { x: 41, y: 207, ox: 240, oy: 660, ad: 500 },
                 ]
             },
             { // 个人退出结算(胜利太鼓)
                 judgePoints: [
-                    { x: 720, y: 239, c: '#831B12', i: true },
-                    { x: 683, y: 310, c: '#9F1A11', i: true },
-                    { x: 768, y: 304, c: '#A11C13', i: true },
-                    { x: 719, y: 280, c: '#CFBFA6', i: true },
+                    { x:  843, y:  242, c: 0x841b12, i: true},
+                    { x:  805, y:  304, c: 0x9c1c12, i: true},
+                    { x:  880, y:  314, c: 0xa51b12, i: true},
+                    { x:  840, y:  287, c: 0xd0c0a9, i: true},
                 ],
                 operaPoints: [
-                    { x: 29, y: 180, ox: 194, oy: 620, ad: 500 },
+                    { x: 41, y: 207, ox: 240, oy: 660, ad: 500 },
                 ]
             },
             { // 组队退出结算(胜利太鼓)
                 judgePoints: [
-                    { x: 684, y: 225, c: '#9C1C11', i: true },
-                    { x: 765, y: 219, c: '#9F1B0F', i: true },
-                    { x: 727, y: 164, c: '#821B14', i: true },
-                    { x: 722, y: 196, c: '#D0C1AA', i: true },
+                    { x:  841, y:  167, c: 0x7c1a13, i: true},
+                    { x:  806, y:  218, c: 0x9c1c12, i: true},
+                    { x:  881, y:  229, c: 0xa51b12, i: true},
+                    { x:  842, y:  200, c: 0xd0c0a9, i: true},
                 ],
                 operaPoints: [
-                    { x: 29, y: 180, ox: 194, oy: 620, ad: 500 },
+                    { x: 41, y: 207, ox: 240, oy: 660, ad: 500 },
                 ]
             },
             { // 退出结算(未打开的胜利达摩)
                 judgePoints: [
-                    { x: 889, y: 477, c: '#000000', i: true },
-                    { x: 1015, y: 476, c: '#000000', i: true },
-                    { x: 864, y: 597, c: '#CA271E', i: true },
+                    { x: 1004, y:  474, c: 0x020101, i: true},
+                    { x: 1134, y:  472, c: 0x020101, i: true},
+                    { x: 1011, y:  578, c: 0xba3a1f, i: true},
+                    { x: 1184, y:  720, c: 0x350204, i: true},
                 ],
                 operaPoints: [
-                    { x: 29, y: 180, ox: 194, oy: 620, ad: 500 },
+                    { x: 41, y: 207, ox: 240, oy: 660, ad: 500 },
                 ]
             },
             { // 退出结算(打开的胜利达摩)
                 judgePoints: [
-                    { x: 732, y: 932, c: '#3783D1', i: true },
-                    { x: 838, y: 939, c: '#73290C', i: true },
-                    { x: 897, y: 927, c: '#300205', i: true },
+                    { x:  853, y:  931, c: 0x3c8ace, i: true},
+                    { x:  988, y:  934, c: 0x350204, i: true},
+                    { x: 1171, y:  927, c: 0x350204, i: true},
                 ],
                 operaPoints: [
-                    { x: 29, y: 180, ox: 194, oy: 620, ad: 500 },
-                    { x: 29, y: 180, ox: 194, oy: 620, ad: 500 },
-                    // { x: 29, y: 180, ox: 194, oy: 620, ad: 1000 },
+                    { x: 41, y: 207, ox: 240, oy: 660, ad: 500 },
+                    { x: 41, y: 207, ox: 240, oy: 660, ad: 500 },
                 ]
             },
             { // 个人退出结算(失败太鼓)
                 judgePoints: [
-                    { x: 668, y: 280, c: '#5B5265', i: true },
-                    { x: 756, y: 288, c: '#5B5265', i: true },
-                    { x: 704, y: 228, c: '#514A5A', i: true },
-                    { x: 705, y: 265, c: '#BAAA90', i: true },
+                    { x:  819, y:  224, c: 0x514b5c, i: true},
+                    { x:  792, y:  268, c: 0x5b5265, i: true},
+                    { x:  867, y:  285, c: 0x5b5265, i: true},
+                    { x:  825, y:  265, c: 0xbbaa92, i: true},
                 ],
                 operaPoints: [
-                    { x: 29, y: 180, ox: 194, oy: 620, ad: 3000 },
+                    { x: 41, y: 207, ox: 240, oy: 660, ad: 500 },
                 ]
             },
             { // 组队退出结算(失败太鼓)
                 judgePoints: [
-                    { x: 688, y: 197, c: '#564F5F', i: true },
-                    { x: 754, y: 204, c: '#5C5366', i: true },
-                    { x: 707, y: 145, c: '#524A5A', i: true },
-                    { x: 703, y: 186, c: '#B9A990', i: true },
+                    { x:  821, y:  159, c: 0x4c4453, i: true},
+                    { x:  783, y:  188, c: 0x5b5265, i: true},
+                    { x:  855, y:  206, c: 0x5b5265, i: true},
+                    { x:  825, y:  182, c: 0xbbaa92, i: true},
                 ],
                 operaPoints: [
-                    { x: 29, y: 180, ox: 194, oy: 620, ad: 3000 },
+                    { x: 41, y: 207, ox: 240, oy: 660, ad: 500 },
                 ]
-            },
-            { // 大岳丸活动 大江山退出结算，后续可能会删除该场景判断
-                judgePoints: [
-                    { x: 982, y: 261, c: '#821A11', i: true },
-                    { x: 907, y: 342, c: '#CDB17F', i: true },
-                    { x: 1007, y: 327, c: '#971C14', i: true },
-                    { x: 1128, y: 256, c: '#D3B47E', i: true },
-                ],
-                operaPoints: [
-                    { x: 29, y: 180, ox: 194, oy: 620, ad: 3000 },
-                ]
-            },
+            }
         ]
     },
     {
@@ -124,13 +111,13 @@ module.exports = [
         name: '接受协作',
         data: [{
             judgePoints: [
-                { x: 1254, y: 618, c: '#59B560', i: true },
-                { x: 1279, y: 771, c: '#DE6D5D', i: true },
-                { x: 1277, y: 601, c: '#2D212D', i: true },
-                { x: 1279, y: 741, c: '#312533', i: true },
+                { x: 1403, y:  631, c: 0x58b361, i: true},
+                { x: 1405, y:  765, c: 0xe06d5c, i: true},
+                { x: 1367, y:  778, c: 0x302324, i: true},
+                { x:  965, y:  243, c: 0xb29178, i: true},
             ],
             operaPoints: [
-                { x: 1252, y: 595, ox: 56, oy: 65, ad: 500 },
+                { x: 1363, y: 593, ox: 66, oy: 73, ad: 500 },
             ]
         }]
     },
@@ -139,13 +126,13 @@ module.exports = [
         name: '拒绝协作',
         data: [{
             judgePoints: [
-                { x: 1254, y: 618, c: '#59B560', i: true },
-                { x: 1279, y: 771, c: '#DE6D5D', i: true },
-                { x: 1277, y: 601, c: '#2D212D', i: true },
-                { x: 1279, y: 741, c: '#312533', i: true },
+                { x: 1403, y:  631, c: 0x58b361, i: true},
+                { x: 1405, y:  765, c: 0xe06d5c, i: true},
+                { x: 1367, y:  778, c: 0x302324, i: true},
+                { x:  965, y:  243, c: 0xb29178, i: true},
             ],
             operaPoints: [
-                { x: 1253, y: 748, ox: 55, oy: 59, ad: 500 },
+                { x: 1366, y: 746, ox: 68, oy: 66, ad: 500 },
             ]
         }]
     },
@@ -155,23 +142,23 @@ module.exports = [
         data: [
             { // 自动接受邀请
                 judgePoints: [
-                    { x: 67, y: 378, c: '#DB725F', i: true },
-                    { x: 215, y: 388, c: '#55B262', i: true },
-                    { x: 350, y: 376, c: '#EDC490', i: true },
-                    { x: 372, y: 404, c: '#5BB462', i: true },
+                    { x:   63, y:  373, c: 0xe06d5c, i: true},
+                    { x:  216, y:  388, c: 0x58b361, i: true},
+                    { x:  352, y:  376, c: 0xedc492, i: true},
+                    { x:  433, y:  416, c: 0xe9e0d0, i: true},
                 ],
                 operaPoints: [
-                    { x: 327, y: 353, ox: 57, oy: 62, ad: 500 },
+                    { x: 326, y: 353, ox: 60, oy: 64, ad: 500 },
                 ]
             },
             { // 接受邀请
                 judgePoints: [
-                    { x: 67, y: 378, c: '#DB725F', i: true },
-                    { x: 215, y: 388, c: '#55B262', i: true },
-                    { x: 298, y: 411, c: '#E7DECD', i: true },
+                    { x:   62, y:  373, c: 0xe06d5c, i: true},
+                    { x:  211, y:  389, c: 0x58b361, i: true},
+                    { x:  290, y:  409, c: 0xe9e0d0, i: true},
                 ],
                 operaPoints: [
-                    { x: 181, y: 354, ox: 59, oy: 60, ad: 500 },
+                    { x: 181, y: 353, ox: 58, oy: 63, ad: 500 },
                 ]
             }
         ]
@@ -181,12 +168,12 @@ module.exports = [
         name: '组队挑战',
         data: [{
             judgePoints: [
-                { x: 1900, y: 929, c: '#D4B066', i: true },
-                { x: 1763, y: 1001, c: '#D7B56D', i: true },
-                { x: 1815, y: 985, c: '#382720', i: true },
+                { x: 2021, y:  915, c: 0xf1e096, i: true},
+                { x: 2132, y: 1020, c: 0xe5c35d, i: true},
+                { x: 2009, y: 1000, c: 0xdebd73, i: true},
             ],
             operaPoints: [
-                { x: 1784, y: 913, ox: 93, oy: 101, ad: 500 },
+                { x: 2029, y: 926, ox: 81, oy: 83, ad: 500 },
             ]
         }]
     },
@@ -195,13 +182,14 @@ module.exports = [
         name: '组队三人挑战',
         data: [{
             judgePoints: [
-                { x: 1900, y: 929, c: '#D4B066', i: true },
-                { x: 1763, y: 1001, c: '#D7B56D', i: true },
-                { x: 1815, y: 985, c: '#382720', i: true },
-                { x: 1633, y: 379, c: '#FFFFFE', i: false },
+                { x: 2021, y:  915, c: 0xf1e096, i: true},
+                { x: 2132, y: 1020, c: 0xe5c35d, i: true},
+                { x: 2009, y: 1000, c: 0xdebd73, i: true},
+                { x: 1085, y:  380, c: 0xffffff, i: false},
+                { x: 1752, y:  380, c: 0xffffff, i: false},
             ],
             operaPoints: [
-                { x: 1784, y: 913, ox: 93, oy: 101, ad: 500 },
+                { x: 2029, y: 926, ox: 81, oy: 83, ad: 500 },
             ]
         }]
     },
@@ -209,23 +197,25 @@ module.exports = [
         id: 8,
         name: '取消确定框点确定',
         data: [
-            { // 未点确定
+            { // 未点默认邀请队友
                 judgePoints: [
-                    { x: 705, y: 649, c: '#DD6950', i: true },
-                    { x: 1064, y: 643, c: '#F4B25E', i: true },
-                    { x: 956, y: 644, c: '#CCB49A', i: true },
-                    { x: 838, y: 544, c: '#9D8770', i: true },
+                    { x:  778, y:  391, c: 0xccb49b, i: true},
+                    { x: 1381, y:  409, c: 0xccb49b, i: true},
+                    { x:  963, y:  538, c: 0x9d8771, i: true},
+                    { x:  993, y:  644, c: 0xdd6951, i: true},
+                    { x: 1180, y:  644, c: 0xf4b25f, i: true},
                 ],
                 operaPoints: [
-                    { x: 827, y: 518, ox: 258, oy: 43, ad: 100 },
-                    { x: 1018, y: 612, ox: 242, oy: 71, ad: 2000 },
+                    { x: 943, y: 522, ox: 273, oy: 46, ad: 100 },
+                    { x: 1133, y: 610, ox: 248, oy: 74, ad: 2000 },
                 ]
             },
-            { // 已点确定或者没有确定
+            { // 已点默认邀请队友或者没有默认邀请队友
                 judgePoints: [
-                    { x: 705, y: 649, c: '#DD6950', i: true },
-                    { x: 1064, y: 643, c: '#F4B25E', i: true },
-                    { x: 956, y: 644, c: '#CCB49A', i: true },
+                    { x:  778, y:  391, c: 0xccb49b, i: true},
+                    { x: 1381, y:  409, c: 0xccb49b, i: true},
+                    { x:  993, y:  644, c: 0xdd6951, i: true},
+                    { x: 1180, y:  644, c: 0xf4b25f, i: true},
                 ],
                 operaPoints: [
                     { x: 1018, y: 612, ox: 242, oy: 71, ad: 2000 },
@@ -239,26 +229,24 @@ module.exports = [
         data: [
             { // 御灵
                 judgePoints: [
-                    { x: 1719, y: 898, c: '#e3dac2', i: true },
-                    { x: 1839, y: 51, c: '#32221f', i: true },
-                    { x: 62, y: 53, c: '#c2cbe3', i: true },
-                    { x: 318, y: 60, c: '#593716', i: true },
-                    { x: 1793, y: 1007, c: '#371f16', i: true },
+                    { x: 1931, y:   75, c: 0xd7b287, i: true},
+                    { x: 2071, y:   92, c: 0xcba173, i: true},
+                    { x: 1829, y:  900, c: 0xe2d9c1, i: true},
+                    { x: 1909, y: 1014, c: 0x371f16, i: true},
                 ],
                 operaPoints: [
-                    { x: 1655, y: 887, ox: 124, oy: 145, ad: 500 },
+                    { x: 1783, y: 894, ox: 101, oy: 122, ad: 500 },
                 ]
             },
             { // 御魂
                 judgePoints: [
-                    { x: 1727, y: 903, c: '#e3dac2', i: true },
-                    { x: 1828, y: 89, c: '#cda476', i: true },
-                    { x: 61, y: 70, c: '#c4cce5', i: true },
-                    { x: 1794, y: 963, c: '#e2d9c1', i: true },
-                    { x: 1795, y: 1025, c: '#371f16', i: true },
+                    { x: 1926, y:   77, c: 0xd7b287, i: true},
+                    { x: 2085, y:   74, c: 0xd4ae82, i: true},
+                    { x: 1846, y:  917, c: 0xe2d9c1, i: true},
+                    { x: 1926, y: 1015, c: 0x382016, i: true},
                 ],
                 operaPoints: [
-                    { x: 1670, y: 893, ox: 130, oy: 136, ad: 500 },
+                    { x: 1794, y: 900, ox: 122, oy: 116, ad: 500 },
                 ]
             }
         ]
@@ -271,7 +259,7 @@ module.exports = [
             // 多点找色
             var point = images.findMultiColors(_self.memImage, multiColor['结界_进攻'].firstColor, multiColor['结界_进攻'].colors, { region: [388, 434, 1531, 636], threshold: _self.userConfigs.multiColorSimilar });
             if (!point) return false;
-            _self.automator.press(point.x + random(0, 190), point.y + random(0, 86), random(10, 100));
+            _self.automator.press(point.x + random(0, 167), point.y + random(0, 79), random(10, 100));
             var delay = 2000 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
@@ -279,15 +267,15 @@ module.exports = [
     },
     {
         id: 11,
-        name: '结界_0勋章',
+        name: '结界_0勋章', // 这个多点取色取的是框框左上角内，而不是像1920*1080那个分辨率取点从头像右边作为firstColor
         data: function () {
             var _self = this;
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
-                        { x: 264, y: 75, c: '#483727', i: true },
-                        { x: 1308, y: 78, c: '#483727', i: true },
-                        { x: 1118, y: 76, c: '#E5C25A', i: true },
+                        { x:  671, y:   74, c: 0x483726, i: true},
+                        { x: 1610, y:   78, c: 0x483726, i: true},
+                        { x: 1896, y:  102, c: 0xf3d2d2, i: true},
                     ],
                     operaPoints: []
                 }]
@@ -297,7 +285,7 @@ module.exports = [
             // 多点找色
             var point = images.findMultiColors(_self.memImage, multiColor['结界_0勋章'].firstColor, multiColor['结界_0勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
             if (!point) return false;
-            _self.automator.press(point.x + random(0, 340), point.y + random(0, 161), random(10, 100));
+            _self.automator.press(point.x + random(140, 457), point.y + random(0, 154), random(10, 100));
             var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
@@ -311,9 +299,9 @@ module.exports = [
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
-                        { x: 264, y: 75, c: '#483727', i: true },
-                        { x: 1308, y: 78, c: '#483727', i: true },
-                        { x: 1118, y: 76, c: '#E5C25A', i: true },
+                        { x:  671, y:   74, c: 0x483726, i: true},
+                        { x: 1610, y:   78, c: 0x483726, i: true},
+                        { x: 1896, y:  102, c: 0xf3d2d2, i: true},
                     ],
                     operaPoints: []
                 }]
@@ -323,7 +311,7 @@ module.exports = [
             // 多点找色
             var point = images.findMultiColors(_self.memImage, multiColor['结界_1勋章'].firstColor, multiColor['结界_1勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
             if (!point) return false;
-            _self.automator.press(point.x + random(0, 340), point.y + random(0, 161), random(10, 100));
+            _self.automator.press(point.x + random(140, 457), point.y + random(0, 154), random(10, 100));
             var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
@@ -331,15 +319,15 @@ module.exports = [
     },
     {
         id: 13,
-        name: '结界_2勋章',
+        name: '结界_2勋章（开发中）',
         data: function () {
             var _self = this;
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
-                        { x: 264, y: 75, c: '#483727', i: true },
-                        { x: 1308, y: 78, c: '#483727', i: true },
-                        { x: 1118, y: 76, c: '#E5C25A', i: true },
+                        { x:  671, y:   74, c: 0x483726, i: true},
+                        { x: 1610, y:   78, c: 0x483726, i: true},
+                        { x: 1896, y:  102, c: 0xf3d2d2, i: true},
                     ],
                     operaPoints: []
                 }]
@@ -349,7 +337,7 @@ module.exports = [
             // 多点找色
             var point = images.findMultiColors(_self.memImage, multiColor['结界_2勋章'].firstColor, multiColor['结界_2勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
             if (!point) return false;
-            _self.automator.press(point.x + random(0, 340), point.y + random(0, 161), random(10, 100));
+            _self.automator.press(point.x + random(140, 457), point.y + random(0, 154), random(10, 100));
             var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
@@ -357,15 +345,15 @@ module.exports = [
     },
     {
         id: 14,
-        name: '结界_3勋章',
+        name: '结界_3勋章（开发中）',
         data: function () {
             var _self = this;
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
-                        { x: 264, y: 75, c: '#483727', i: true },
-                        { x: 1308, y: 78, c: '#483727', i: true },
-                        { x: 1118, y: 76, c: '#E5C25A', i: true },
+                        { x:  671, y:   74, c: 0x483726, i: true},
+                        { x: 1610, y:   78, c: 0x483726, i: true},
+                        { x: 1896, y:  102, c: 0xf3d2d2, i: true},
                     ],
                     operaPoints: []
                 }]
@@ -375,7 +363,7 @@ module.exports = [
             // 多点找色
             var point = images.findMultiColors(_self.memImage, multiColor['结界_3勋章'].firstColor, multiColor['结界_3勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
             if (!point) return false;
-            _self.automator.press(point.x + random(0, 340), point.y + random(0, 161), random(10, 100));
+            _self.automator.press(point.x + random(140, 457), point.y + random(0, 154), random(10, 100));
             var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
@@ -383,15 +371,15 @@ module.exports = [
     },
     {
         id: 15,
-        name: '结界_4勋章',
+        name: '结界_4勋章（开发中）',
         data: function () {
             var _self = this;
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
-                        { x: 264, y: 75, c: '#483727', i: true },
-                        { x: 1308, y: 78, c: '#483727', i: true },
-                        { x: 1118, y: 76, c: '#E5C25A', i: true },
+                        { x:  671, y:   74, c: 0x483726, i: true},
+                        { x: 1610, y:   78, c: 0x483726, i: true},
+                        { x: 1896, y:  102, c: 0xf3d2d2, i: true},
                     ],
                     operaPoints: []
                 }]
@@ -401,7 +389,7 @@ module.exports = [
             // 多点找色
             var point = images.findMultiColors(_self.memImage, multiColor['结界_4勋章'].firstColor, multiColor['结界_4勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
             if (!point) return false;
-            _self.automator.press(point.x + random(0, 340), point.y + random(0, 161), random(10, 100));
+            _self.automator.press(point.x + random(140, 457), point.y + random(0, 154), random(10, 100));
             var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
@@ -409,15 +397,15 @@ module.exports = [
     },
     {
         id: 16,
-        name: '结界_5勋章',
+        name: '结界_5勋章（开发中）',
         data: function () {
             var _self = this;
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
-                        { x: 264, y: 75, c: '#483727', i: true },
-                        { x: 1308, y: 78, c: '#483727', i: true },
-                        { x: 1118, y: 76, c: '#E5C25A', i: true },
+                        { x:  671, y:   74, c: 0x483726, i: true},
+                        { x: 1610, y:   78, c: 0x483726, i: true},
+                        { x: 1896, y:  102, c: 0xf3d2d2, i: true},
                     ],
                     operaPoints: []
                 }]
@@ -427,7 +415,7 @@ module.exports = [
             // 多点找色
             var point = images.findMultiColors(_self.memImage, multiColor['结界_5勋章'].firstColor, multiColor['结界_5勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
             if (!point) return false;
-            _self.automator.press(point.x + random(0, 340), point.y + random(0, 161), random(10, 100));
+            _self.automator.press(point.x + random(140, 457), point.y + random(0, 154), random(10, 100));
             var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
@@ -438,14 +426,14 @@ module.exports = [
         name: '结界_个人_3次刷新',
         data: [{
             judgePoints: [
-                { x: 264, y: 75, c: '#483727', i: true },
-                { x: 1308, y: 78, c: '#483727', i: true },
-                { x: 766, y: 837, c: '#FCBA30', i: true }, // 3次达摩左边
-                { x: 887, y: 838, c: '#363D57', i: true }, // 3次达摩右边，如果大于3次就刷新的话直接注释这一行，如果只有3次就刷新的话就保留这一行
-                { x: 1503, y: 814, c: '#F4B25E', i: true }, // 亮着的刷新按钮上的一个点
+                { x:  896, y:  836, c: 0xfdca31, i: true}, // 3次达摩左边
+                { x:  985, y:  837, c: 0x363e57, i: true}, // 3次达摩右边，如果大于3次就刷新的话直接注释这一行，如果只有3次就刷新的话就保留这一行
+                { x: 1614, y:  817, c: 0xf4b25f, i: true}, // 亮着的刷新按钮上的一个点
+                { x:  801, y:   77, c: 0x483726, i: true},
+                { x: 1344, y:   78, c: 0x483726, i: true},
             ],
             operaPoints: [
-                { x: 1448, y: 774, ox: 206, oy: 74, ad: 500 },
+                { x: 1575, y: 781, ox: 235, oy: 61, ad: 500 },
             ]
         }]
     },
@@ -457,11 +445,11 @@ module.exports = [
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
-                        { x: 264, y: 75, c: '#483727', i: true },
-                        { x: 1308, y: 78, c: '#483727', i: true },
-                        { x: 766, y: 837, c: '#FCBA30', i: true }, // 3次达摩左边
-                        { x: 887, y: 838, c: '#363D57', i: true }, // 3次达摩右边，如果大于3次就刷新的话直接注释这一行，如果只有3次就刷新的话就保留这一行
-                        { x: 1564, y: 827, c: '#B0A7A0', i: true }, // 灭着的刷新按钮上的一个点
+                        { x:  896, y:  836, c: 0xfdca31, i: true}, // 3次达摩左边
+                        { x:  985, y:  837, c: 0x363e57, i: true}, // 3次达摩右边，如果大于3次就刷新的话直接注释这一行，如果只有3次就刷新的话就保留这一行
+                        { x: 1581, y:  809, c: 0xb0a8a0, i: true}, // 灭着的刷新按钮上的一个点
+                        { x:  801, y:   77, c: 0x483726, i: true},
+                        { x: 1344, y:   78, c: 0x483726, i: true},
                     ],
                     operaPoints: []
                 }]
@@ -476,19 +464,20 @@ module.exports = [
         name: '结界_个人_地图进入突破界面',
         data: [{
             judgePoints: [
-                { x: 52, y: 1039, c: '#633E2B', i: true },
-                { x: 65, y: 87, c: '#EDF6FD', i: true },
-                { x: 1531, y: 1066, c: '#6D4333', i: true },
-                { x: 1740, y: 236, c: '#D8D2C2', i: true },
+                { x: 1926, y:   57, c: 0xd7b287, i: true},
+                { x: 2077, y:   50, c: 0xd4ae82, i: true},
+                { x: 1982, y:  237, c: 0xd8d0bf, i: true},
+                { x:  381, y: 1048, c: 0x68402f, i: true},
+                { x:  430, y:  961, c: 0xe5d4c4, i: true},
             ],
             operaPoints: [
-                { x: 414, y: 953, ox: 94, oy: 93, ad: 500 },
+                { x: 416, y: 951, ox: 96, oy: 103, ad: 500 },
             ]
         }]
     },
     {
         id: 20,
-        name: '结界_寮突_CD等待',
+        name: '结界_寮突_CD等待（开发中）',
         data: function () {
             var _self = this;
             var sceneJudge = {
@@ -510,7 +499,7 @@ module.exports = [
     },
     {
         id: 21,
-        name: '探索_地图进入最后一章',
+        name: '探索_地图进入最后一章（开发中）',
         data: [{
             judgePoints: [
                 { x: 52, y: 1039, c: '#633E2B', i: true },
@@ -525,7 +514,7 @@ module.exports = [
     },
     {
         id: 22,
-        name: '探索_最后一章确认界面点击探索',
+        name: '探索_最后一章确认界面点击探索（开发中）',
         data: [{
             judgePoints: [
                 { x: 562, y: 194, c: '#483727', i: true },
@@ -541,7 +530,7 @@ module.exports = [
     },
     {
         id: 23,
-        name: '探索_挑战经验怪',
+        name: '探索_挑战经验怪（开发中）',
         data: function () {
             var _self = this;
             var count = 4;
@@ -620,7 +609,7 @@ module.exports = [
     },
     {
         id: 24,
-        name: '探索_打手换素材',
+        name: '探索_打手换素材（开发中）',
         data: function () {
             var _self = this;
             var sceneJudge = {
@@ -664,7 +653,7 @@ module.exports = [
     },
     {
         id: 25,
-        name: '探索_单人时退出',
+        name: '探索_单人时退出（开发中）',
         data: [{ // 用来判断是不是探索小怪的场景，直接用多点找色的话会在此占用太多资源
             judgePoints: [
                 { x: 61, y: 99, c: '#EDF5FD', i: true },
@@ -680,7 +669,7 @@ module.exports = [
     },
     {
         id: 26,
-        name: '探索_最后一章确认界面邀请好友', // TODO，邀请最近组队
+        name: '探索_最后一章确认界面邀请好友（开发中）', // TODO，邀请最近组队
         data: function () {
             var _self = this;
             var sceneJudge = {
@@ -723,7 +712,7 @@ module.exports = [
     },
     {
         id: 27,
-        name: '探索_司机换素材',
+        name: '探索_司机换素材（开发中）',
         data: function () {
             var _self = this;
             var sceneJudge = {
@@ -767,7 +756,7 @@ module.exports = [
     },
     {
         id: 28,
-        name: '大江山之战_修罗战场_挑战',
+        name: '大江山之战_修罗战场_挑战（已废弃）',
         data: [
             {
                 judgePoints: [
@@ -785,7 +774,7 @@ module.exports = [
     },
     {
         id: 29,
-        name: '大江山之战_海国退治_挑战',
+        name: '大江山之战_海国退治_挑战（已废弃）',
         data: [
             {
                 judgePoints: [
@@ -806,18 +795,18 @@ module.exports = [
         name: '结界_个人_刷新',
         data: [{
             judgePoints: [
-                { x: 264, y: 75, c: '#483727', i: true },
-                { x: 1308, y: 78, c: '#483727', i: true },
-                { x: 1503, y: 814, c: '#F4B25E', i: true }, // 亮着的刷新按钮上的一个点
+                { x: 1614, y:  817, c: 0xf4b25f, i: true}, // 亮着的刷新按钮上的一个点
+                { x:  801, y:   77, c: 0x483726, i: true},
+                { x: 1344, y:   78, c: 0x483726, i: true},
             ],
             operaPoints: [
-                { x: 1448, y: 774, ox: 206, oy: 74, ad: 500 },
+                { x: 1575, y: 781, ox: 235, oy: 61, ad: 500 },
             ]
         }]
     },
     {
         id: 31,
-        name: '准备界面直接退出',
+        name: '准备界面直接退出（开发中）',
         data: [{
             judgePoints: [
                 { x: 1782, y: 845, c: '#FFF3D1', i: true },

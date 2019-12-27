@@ -7,10 +7,12 @@ importClass(android.net.Uri);
 importClass(android.R);
 importClass(java.util.ArrayList);
 
+let dm = context.getResources().getDisplayMetrics();
+let wm = context.getSystemService(context.WINDOW_SERVICE);
+wm.getDefaultDisplay().getRealMetrics(dm);
 
 
 var mainLayout = require('./mainLayout');
-// var zzUtils = require('./zz_modules/zzUtils');
 var globalPreFuncList = require('./config/preFuncConfig');
 var configList = require('./config/configConfig');
 require('./zz_modules/dateFormatter');
@@ -93,9 +95,6 @@ var assttyys = {
      */
     initScreenCaptruePermission: function (){
         threads.start(function () {
-            let dm = context.getResources().getDisplayMetrics();
-            let wm = context.getSystemService(context.WINDOW_SERVICE);
-            wm.getDefaultDisplay().getRealMetrics(dm);
             console.log('设备分辨率: ' + dm.widthPixels + '*' + dm.heightPixels);
             // 请求截图权限
             // 解决模拟器横竖屏截图问题，如果是宽大于高的话，就当做是竖屏截图（未进行屏幕旋转）
@@ -504,14 +503,29 @@ var assttyys = {
 
     initData: function () {
         var that = this;
- 
-        var funcConfig = require('./config/funcConfig');
+
+        var configConfigPath = './config/funcConfig_' + dm.widthPixels + dm.heightPixels;
+        if (dm.widthPixels < dm.heightPixels) {
+            configConfigPath = './config/funcConfig_' + dm.heightPixels + dm.widthPixels;
+        }
+
+        var funcConfig;
+        try {
+            funcConfig = require(configConfigPath);
+        } catch (err) {
+            toastLog('脚本不支持当前分辨率' + dm.widthPixels + '*' + dm.heightPixels + '，加载默认分辨率1920*1080脚本');
+            configConfigPath = './config/funcConfig_19201080';
+            funcConfig = require(configConfigPath);
+        }
+
         this.funcList = this.ass.get('funcList') || [];
         // 已配置和所有配置的合并一下，使新开发的功能不做别的干预也能出现在配置列表
         for (let i = 1, iLen = funcConfig.length; i < iLen; i++) {
             var flag = true;
             for (let j = 0, jLen = this.funcList.length; j < jLen; j++) {
                 if (funcConfig[i].id == this.funcList[j].funcId) {
+                    // 强行更新funcConfig中的名字到已配置的funcList中去，保证名字每次都是从funcConfig中取的
+                    this.funcList[j].funcName = funcConfig[i].name;
                     flag = false;
                     break;
                 }
@@ -524,6 +538,7 @@ var assttyys = {
                 });
             }
         }
+        console.log(this.funcList);
         ui.funcList.setDataSource(this.funcList);
 
         // 设置配置

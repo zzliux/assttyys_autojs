@@ -1,5 +1,9 @@
-var funcConfig = require('./config/funcConfig');
 var MyAutomator = require('./zz_modules/MyAutomator');
+
+let dm = context.getResources().getDisplayMetrics();
+let wm = context.getSystemService(context.WINDOW_SERVICE);
+wm.getDefaultDisplay().getRealMetrics(dm);
+
 var myScript = function () {
 
     // 用户配置
@@ -49,6 +53,20 @@ myScript.prototype = {
      * 脚本入口
      */
     run: function () {
+
+        var configConfigPath = './config/funcConfig_' + dm.widthPixels + dm.heightPixels;
+        if (dm.widthPixels < dm.heightPixels) {
+            configConfigPath = './config/funcConfig_' + dm.heightPixels + dm.widthPixels;
+        }
+
+        var funcConfig;
+        try {
+            funcConfig = require(configConfigPath);
+        } catch (err) {
+            console.log('script.js: 脚本不支持当前分辨率' + dm.widthPixels + '*' + dm.heightPixels + '，加载默认分辨率1920*1080脚本');
+            configConfigPath = './config/funcConfig_19201080';
+            funcConfig = require(configConfigPath);
+        }
 
         this.automator = new MyAutomator(this.userConfigs.tapType, this.userConfigs.dirctionReverse);
 
