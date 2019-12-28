@@ -698,7 +698,7 @@ module.exports = [
                 sleep(2000 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom)));
             } else {
                 // 点第一个好友
-                // _self.automator.press(539 + random(0, 397), 283 + random(0, 110), random(10, 100));
+                _self.automator.press(539 + random(0, 397), 283 + random(0, 110), random(10, 100));
                 sleep(200 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom)));
                 // 邀请
                 _self.automator.press(1076 + random(0, 170), 827 + random(0, 64), random(10, 100));
