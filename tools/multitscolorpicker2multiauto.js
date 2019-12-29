@@ -1,4 +1,4 @@
-findMultiColorInRegionFuzzy( 0xc7b69e, "458|2|0xc6b59d,161|118|0x827d76,218|118|0xb3a28b,279|117|0xb3a28b,339|118|0xb3a28b,399|116|0xb3a28b", 90, 499, 478, 0, 0);
+findMultiColorInRegionFuzzy( 0xc6ae9d, "463|11|0xc9b8a0,168|123|0x7f7a74,227|123|0x7f7a74,286|123|0x807b74,346|123|0x7f7a74,406|124|0xb3a28b", 90, 499, 478, 0, 0)
 
 function findMultiColorInRegionFuzzy(firstColor, colors, a, b, c, d, e) {
     var ret = {
