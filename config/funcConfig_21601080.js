@@ -1,3 +1,4 @@
+var zzUtils = require('../zz_modules/zzUtils');
 var multiColor = {};
 var multiColorNames = ['结界_0勋章', '结界_1勋章', '结界_2勋章', '结界_3勋章', '结界_4勋章', '结界_5勋章', '结界_进攻', '探索_经验怪标记', '探索_挑战图标', '探索_式神满级标记', '探索_挑战BOSS图标', '最近组队'];
 for (var i = 0; i < multiColorNames.length; i++) {
@@ -832,4 +833,31 @@ module.exports = [
             ]
         }]
     },
+    {
+        id: 32,
+        name: '发现鬼王_点击',
+        data: function () {
+            var res = this.commonClick({
+                data: [{
+                    judgePoints: [
+                        { x:   38, y:  335, c: 0xfdf5e5, i: true },
+                        { x:   30, y:  387, c: 0xb4a593, i: true },
+                        { x:   48, y:  397, c: 0xcc8a41, i: true },
+                        { x:   86, y:  408, c: 0xb4a593, i: true },
+                        { x:  779, y:  426, c: 0xdcd3c6, i: true },
+                    ],
+                    operaPoints: [{ x: 129, y: 358, ox: 630, oy: 100, ad: 2000 }]
+                }]
+            });
+            if (res) {
+                zzUtils.sendNotification({
+                    title: 'assttyys',
+                    content: '发现鬼王了！',
+                    ticker: '发现鬼王了！'
+                });
+                device.vibrate(2000);
+            }
+            return res;
+        }
+    }
 ]
