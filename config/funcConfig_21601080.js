@@ -859,5 +859,69 @@ module.exports = [
             }
             return res;
         }
+    }, {
+        id: 33,
+        name: '缘结之镜_小纸人寻路（开发中）',
+        data: function () {
+            var res = this.commonClick({
+                data: [{
+                    judgePoints: [
+                        { x: 1834, y:  815, c: 0xf1c89a, i: true },
+                        { x: 1244, y:   18, c: 0xd66867, i: true },
+                        { x:   61, y:   71, c: 0xe8f1f8, i: true },
+                        { x: 1368, y:  997, c: 0x5a3719, i: true },
+                        { x: 1357, y:  990, c: 0xddbb4d, i: true },
+                        { x: 1603, y:  998, c: 0x202454, i: true }, // 自动挑战图标上的一个点
+                    ],
+                    operaPoints: [{ x: 1591, y: 986, ox: 29, oy: 25, ad: 1000 }]
+                }]
+            });
+            if (res) {
+                var res2 = false;
+                var cnt = 30;
+                do {
+                    this.captureScreen();
+                    res2 = this.commonClick({
+                        data: [{
+                            judgePoints: [
+                                { x: 1834, y:  815, c: 0xf1c89a, i: true },
+                                { x: 1244, y:   18, c: 0xd66867, i: true },
+                                { x:   61, y:   71, c: 0xe8f1f8, i: true },
+                                { x: 1368, y:  997, c: 0x5a3719, i: true },
+                                { x: 1357, y:  990, c: 0xddbb4d, i: true },
+                                { x: 1603, y:  998, c: 0x202454, i: false }, // 自动挑战图标上的一个点
+                            ],
+                            operaPoints: []
+                        }]
+                    });
+                    sleep(1000);
+                } while (res2 && cnt--); 
+                if (cnt < 30) {
+                    zzUtils.sendNotification({
+                        title: '请手动操作',
+                        content: '请手动操作',
+                        ticker: '请手动操作'
+                    });
+                }   
+            }
+            return res;
+        }
+    }, {
+        id: 34,
+        name : '缘结之镜_挑战',
+        data: [{
+            judgePoints: [
+                { x: 1594, y:  772, c: 0xd7bfa5, i: true },
+                { x: 1585, y:  786, c: 0xd7ba8e, i: true },
+                { x: 1343, y:  768, c: 0xd8bb9d, i: true },
+                { x: 1373, y:  771, c: 0xdcc8ad, i: true },
+                { x: 1376, y:  813, c: 0x060405, i: true },
+                { x: 1592, y:  800, c: 0x000100, i: true },
+                { x: 1643, y:  161, c: 0xd2c29e, i: true },
+                { x: 1339, y:  161, c: 0xd2c29e, i: true },
+                { x: 1035, y:  161, c: 0xd1c1a0, i: true },
+            ],
+            operaPoints: [{ x: 1528, y: 773, ox: 103, oy: 91, ad: 1000 }]
+        }]
     }
 ]
