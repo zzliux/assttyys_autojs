@@ -928,5 +928,52 @@ module.exports = [
             ],
             operaPoints: [{ x: 1528, y: 773, ox: 103, oy: 91, ad: 1000 }]
         }]
+    }, {
+        id: 35,
+        name: '万事屋_事件领取(开发中)',
+        data: function () {
+            var ret = this.commonClick({
+                data: [{
+                    judgePoints: [
+                        { x:   70, y:   71, c: 0xf8e6a4, i: true },
+                        { x: 1050, y: 1033, c: 0x4e331e, i: true },
+                        { x: 1551, y: 1011, c: 0xf6d7a8, i: true },
+                        { x: 1733, y:  925, c: 0xf0e0a2, i: true },
+                        { x: 1796, y:  924, c: 0x433323, i: true },
+                    ],
+                    operaPoints: [{ x: 1533, y: 957, ox: 74, oy: 79, ad: 1000 }]
+                }]
+            });
+            if (ret) {
+                var cd = random(this.userConfigs.wsw_sjlq_cd_down, this.userConfigs.wsw_sjlq_cd_up);
+                toastLog('等待CD: ' + cd + 'ms');
+                sleep(cd);
+            }
+        }
+    }, {
+        id: 36,
+        name: '万事屋_事件获得奖励(开发中)',
+        data: function () {
+            var ret = this.commonClick({
+                data: [{
+                    judgePoints: [
+                        { x:  556, y:  352, c: 0x3a2921, i: true },
+                        { x:  582, y:  351, c: 0x3b2b1c, i: true },
+                        { x: 1245, y:  356, c: 0x3c2b21, i: true },
+                        { x: 1272, y:  356, c: 0x3b2b1b, i: true },
+                        { x: 1009, y:  360, c: 0xeadaa6, i: true },
+                        { x:  901, y:  312, c: 0xfff1ce, i: true },
+                    ],
+                    operaPoints: [{ x: 1166, y: 718, ox: 319, oy: 325, ad: 3000 }]
+                }]
+            });
+            if (ret) {
+                zzUtils.sendNotification({
+                    title: '万事屋自动领奖励, 请查看是否有其它需要手动操作的事件',
+                    content: '万事屋自动领奖励, 请查看是否有其它需要手动操作的事件',
+                    ticker: '万事屋自动领奖励, 请查看是否有其它需要手动操作的事件'
+                });
+            }
+        }
     }
 ]
