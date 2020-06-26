@@ -477,7 +477,7 @@ module.exports = [
                 { x:  284, y:  643, c: 0xe3d3c2, i: true },
             ],
             operaPoints: [
-                { x: 280, y: 361, ox: 57, oy: 71, ad: 500 },
+                { x: 280, y: 631, ox: 57, oy: 71, ad: 500 },
             ]
         }]
     },
