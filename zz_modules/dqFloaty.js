@@ -198,6 +198,7 @@ function dqFloaty() {
         }
         if (screenOrien2 != screenOrien) {
             screenOrien = screenOrien2;
+            wm.getDefaultDisplay().getRealMetrics(dm);
             ui.run(function () {
                 logo_fx = false;
                 win_1.setPosition(dm.widthPixels - img_dp.ww, dm.heightPixels / 2) //悬浮按钮定位

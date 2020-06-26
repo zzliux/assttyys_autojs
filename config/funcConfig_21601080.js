@@ -1,3 +1,4 @@
+var zzUtils = require('../zz_modules/zzUtils');
 var multiColor = {};
 var multiColorNames = ['结界_0勋章', '结界_1勋章', '结界_2勋章', '结界_3勋章', '结界_4勋章', '结界_5勋章', '结界_进攻', '探索_经验怪标记', '探索_挑战图标', '探索_式神满级标记', '探索_挑战BOSS图标', '最近组队'];
 for (var i = 0; i < multiColorNames.length; i++) {
@@ -832,4 +833,142 @@ module.exports = [
             ]
         }]
     },
+    {
+        id: 32,
+        name: '发现鬼王_点击',
+        data: function () {
+            var res = this.commonClick({
+                data: [{
+                    judgePoints: [
+                        { x:   38, y:  335, c: 0xfdf5e5, i: true },
+                        { x:   30, y:  387, c: 0xb4a593, i: true },
+                        { x:   48, y:  397, c: 0xcc8a41, i: true },
+                        { x:   86, y:  408, c: 0xb4a593, i: true },
+                        { x:  779, y:  426, c: 0xdcd3c6, i: true },
+                    ],
+                    operaPoints: [{ x: 129, y: 358, ox: 630, oy: 100, ad: 2000 }]
+                }]
+            });
+            if (res) {
+                zzUtils.sendNotification({
+                    title: 'assttyys',
+                    content: '发现鬼王了！',
+                    ticker: '发现鬼王了！'
+                });
+                device.vibrate(2000);
+            }
+            return res;
+        }
+    }, {
+        id: 33,
+        name: '缘结之镜_小纸人寻路（开发中）',
+        data: function () {
+            var res = this.commonClick({
+                data: [{
+                    judgePoints: [
+                        { x: 1834, y:  815, c: 0xf1c89a, i: true },
+                        { x: 1244, y:   18, c: 0xd66867, i: true },
+                        { x:   61, y:   71, c: 0xe8f1f8, i: true },
+                        { x: 1368, y:  997, c: 0x5a3719, i: true },
+                        { x: 1357, y:  990, c: 0xddbb4d, i: true },
+                        { x: 1603, y:  998, c: 0x202454, i: true }, // 自动挑战图标上的一个点
+                    ],
+                    operaPoints: [{ x: 1591, y: 986, ox: 29, oy: 25, ad: 1000 }]
+                }]
+            });
+            if (res) {
+                var res2 = false;
+                var cnt = 30;
+                do {
+                    this.captureScreen();
+                    res2 = this.commonClick({
+                        data: [{
+                            judgePoints: [
+                                { x: 1834, y:  815, c: 0xf1c89a, i: true },
+                                { x: 1244, y:   18, c: 0xd66867, i: true },
+                                { x:   61, y:   71, c: 0xe8f1f8, i: true },
+                                { x: 1368, y:  997, c: 0x5a3719, i: true },
+                                { x: 1357, y:  990, c: 0xddbb4d, i: true },
+                                { x: 1603, y:  998, c: 0x202454, i: false }, // 自动挑战图标上的一个点
+                            ],
+                            operaPoints: []
+                        }]
+                    });
+                    sleep(1000);
+                } while (res2 && cnt--); 
+                if (cnt < 30) {
+                    zzUtils.sendNotification({
+                        title: '请手动操作',
+                        content: '请手动操作',
+                        ticker: '请手动操作'
+                    });
+                }   
+            }
+            return res;
+        }
+    }, {
+        id: 34,
+        name : '缘结之镜_挑战',
+        data: [{
+            judgePoints: [
+                { x: 1594, y:  772, c: 0xd7bfa5, i: true },
+                { x: 1585, y:  786, c: 0xd7ba8e, i: true },
+                { x: 1343, y:  768, c: 0xd8bb9d, i: true },
+                { x: 1373, y:  771, c: 0xdcc8ad, i: true },
+                { x: 1376, y:  813, c: 0x060405, i: true },
+                { x: 1592, y:  800, c: 0x000100, i: true },
+                { x: 1643, y:  161, c: 0xd2c29e, i: true },
+                { x: 1339, y:  161, c: 0xd2c29e, i: true },
+                { x: 1035, y:  161, c: 0xd1c1a0, i: true },
+            ],
+            operaPoints: [{ x: 1528, y: 773, ox: 103, oy: 91, ad: 1000 }]
+        }]
+    }, {
+        id: 35,
+        name: '万事屋_事件领取(开发中)',
+        data: function () {
+            var ret = this.commonClick({
+                data: [{
+                    judgePoints: [
+                        { x:   70, y:   71, c: 0xf8e6a4, i: true },
+                        { x: 1050, y: 1033, c: 0x4e331e, i: true },
+                        { x: 1551, y: 1011, c: 0xf6d7a8, i: true },
+                        { x: 1733, y:  925, c: 0xf0e0a2, i: true },
+                        { x: 1796, y:  924, c: 0x433323, i: true },
+                    ],
+                    operaPoints: [{ x: 1533, y: 957, ox: 74, oy: 79, ad: 1000 }]
+                }]
+            });
+            if (ret) {
+                var cd = random(this.userConfigs.wsw_sjlq_cd_down, this.userConfigs.wsw_sjlq_cd_up);
+                toastLog('等待CD: ' + cd + 'ms');
+                sleep(cd);
+            }
+        }
+    }, {
+        id: 36,
+        name: '万事屋_事件获得奖励(开发中)',
+        data: function () {
+            var ret = this.commonClick({
+                data: [{
+                    judgePoints: [
+                        { x:  556, y:  352, c: 0x3a2921, i: true },
+                        { x:  582, y:  351, c: 0x3b2b1c, i: true },
+                        { x: 1245, y:  356, c: 0x3c2b21, i: true },
+                        { x: 1272, y:  356, c: 0x3b2b1b, i: true },
+                        { x: 1009, y:  360, c: 0xeadaa6, i: true },
+                        { x:  901, y:  312, c: 0xfff1ce, i: true },
+                    ],
+                    operaPoints: [{ x: 1166, y: 718, ox: 319, oy: 325, ad: 3000 }]
+                }]
+            });
+            if (ret) {
+                zzUtils.sendNotification({
+                    title: '万事屋自动领奖励, 请查看是否有其它需要手动操作的事件',
+                    content: '万事屋自动领奖励, 请查看是否有其它需要手动操作的事件',
+                    ticker: '万事屋自动领奖励, 请查看是否有其它需要手动操作的事件'
+                });
+            }
+        }
+    }
 ]

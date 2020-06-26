@@ -142,7 +142,7 @@ var assttyys = {
     },
 
     preHandleLayoutStr: function (layoutStr) {
-        var configXML = '';
+        var configXML = '<ScrollView><vertical>';
         // 外层遍历category
         for (let i = 0; i < configList.length; i++) {
             configXML += '<text textSize="16sp" margin="5 10 0 10">' + configList[i].categoryName + '</text>';
@@ -152,11 +152,11 @@ var assttyys = {
                 configXML += '<horizontal w="*" h="40" margin="10 0">';
                 if ('integer' == itemData[j].fieldType) {
                     this.configConfigItemData.push(itemData[j]);
-                    configXML += '<input id="' + itemData[j].fieldName + '" text="' + itemData[j].default + '" textSize="14sp" w="50"/>'; 
+                    configXML += '<input id="' + itemData[j].fieldName + '" text="' + itemData[j].default + '" textSize="14sp" w="80"/>'; 
                     configXML += '<text textSize="16sp">' + itemData[j].itemName + '</text>';
                 } else if ('boolean' == itemData[j].fieldType) {
                     this.configConfigItemData.push(itemData[j]);
-                    configXML += '<checkbox id="' + itemData[j].fieldName + '" checked="{{' + itemData[j].default + '}}" w="50" />';                    
+                    configXML += '<checkbox id="' + itemData[j].fieldName + '" checked="{{' + itemData[j].default + '}}" w="80" />';                    
                     configXML += '<text textSize="16sp">' + itemData[j].itemName + '</text>';
                 } else if ('select' == itemData[j].fieldType) {
                     this.configConfigItemData.push(itemData[j]);
@@ -166,6 +166,7 @@ var assttyys = {
                 configXML += '</horizontal>';
             }
         }
+        configXML += '</vertical></ScrollView>';
         return java.lang.String.valueOf(layoutStr).replace('<LX-CONFIGCONFIG/>', configXML);
     },
 

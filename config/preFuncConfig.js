@@ -8,6 +8,10 @@ module.exports = [
         funcNumbers: [1, 8, 2, 4, 6]
     },
     {
+        name: '万事屋_事件领取',
+        funcNumbers: [35, 36]
+    },
+    {
         name: '三人车司机',
         funcNumbers: [1, 8, 2, 4, 7]
     },

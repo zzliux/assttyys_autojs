@@ -1,5 +1,21 @@
 module.exports = [
     {
+        categoryName: '万事屋_事件领取',
+        itemData: [
+            {
+                itemName: '执行CD下界(ms)',
+                fieldName: 'wsw_sjlq_cd_down',
+                fieldType: 'integer',
+                default: 30000
+            }, {
+                itemName: '执行CD上界(ms)',
+                fieldName: 'wsw_sjlq_cd_up',
+                fieldType: 'integer',
+                default: 60000
+            }
+        ]
+    },
+    {
         categoryName: '通用配置',
         itemData: [
             {
