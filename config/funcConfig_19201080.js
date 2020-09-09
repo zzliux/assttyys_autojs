@@ -491,16 +491,21 @@ module.exports = [
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
-                        { x: 264, y: 75, c: '#483727', i: true },
-                        { x: 1308, y: 78, c: '#483727', i: true },
-                        { x: 434, y: 837, c: '#3A3128', i: true }, // 数字0上随便取了3个点，不知道效果怎样
-                        { x: 421, y: 837, c: '#3A3128', i: true }, // 数字0上随便取了3个点，不知道效果怎样
-                        { x: 428, y: 837, c: '#D0BFAD', i: true }, // 数字0上随便取了3个点，不知道效果怎样
+                        { x:   70, y:   71, c: 0xeff4fb, i: true },
+                        { x:  379, y:  169, c: 0xa7967e, i: true },
+                        { x:  209, y:  212, c: 0x34354d, i: true },
+                        { x: 1174, y:  167, c: 0xb6ab92, i: true },
+                        { x:  519, y:  839, c: 0x292622, i: true }, // 数字0上的5个点
+                        { x:  527, y:  839, c: 0xc3bcb4, i: true },
+                        { x:  533, y:  839, c: 0x37342f, i: true },
+                        { x:  526, y:  824, c: 0xc3bdb6, i: true },
+                        { x:  526, y:  827, c: 0x3e3a36, i: true },
                     ],
                     operaPoints: []
                 }]
             }
             if (!_self.commonClick(sceneJudge)) return false;
+            toastLog('寮突CD等待');
             sleep(30000);
             return true;
         }

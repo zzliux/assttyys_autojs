@@ -486,13 +486,14 @@ module.exports = [
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
-                        { x:  801, y:   77, c: 0x483726, i: true },
-                        { x: 1344, y:   78, c: 0x483726, i: true },
-                        { x:  554, y:  836, c: 0x36322d, i: true }, // 数字0上随便取的几个点
-                        { x:  554, y:  837, c: 0x36322d, i: true },
-                        { x:  541, y:  837, c: 0x39342f, i: true },
-                        { x:  541, y:  836, c: 0x3a3630, i: true },
-                        { x:  548, y:  836, c: 0xd0bfaf, i: true },
+                        { x:   67, y:   71, c: 0xeff5fb, i: true },
+                        { x:  587, y:  167, c: 0xa8977f, i: true },
+                        { x:  312, y:  248, c: 0x36354b, i: true },
+                        { x:  634, y:  837, c: 0xc3bdb6, i: true }, // 数字0上随便取的几个点
+                        { x:  639, y:  838, c: 0x2b2824, i: true },
+                        { x:  644, y:  838, c: 0xc3bcb3, i: true },
+                        { x:  653, y:  838, c: 0x383530, i: true },
+                        { x:  646, y:  824, c: 0xc3bdb6, i: true },
                     ],
                     operaPoints: []
                 }]
