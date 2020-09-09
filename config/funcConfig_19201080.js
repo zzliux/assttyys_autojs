@@ -258,7 +258,7 @@ module.exports = [
             // 多点找色
             var point = images.findMultiColors(_self.memImage, multiColor['结界_进攻'].firstColor, multiColor['结界_进攻'].colors, { region: [388, 434, 1531, 636], threshold: _self.userConfigs.multiColorSimilar });
             if (!point) return false;
-            _self.automator.press(point.x + random(0, 190), point.y + random(0, 86), random(10, 100));
+            _self.automator.press(point.x + random(0, 180), point.y + random(0, 72), random(10, 100));
             var delay = 2000 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
@@ -272,9 +272,10 @@ module.exports = [
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
-                        { x: 264, y: 75, c: '#483727', i: true },
-                        { x: 1308, y: 78, c: '#483727', i: true },
-                        { x: 1118, y: 76, c: '#E5C25A', i: true },
+                        { x:   70, y:   71, c: 0xeff4fb, i: true },
+                        { x:  379, y:  169, c: 0xa7967e, i: true },
+                        { x:  209, y:  212, c: 0x34354d, i: true },
+                        { x: 1174, y:  167, c: 0xb6ab92, i: true },
                     ],
                     operaPoints: []
                 }]
@@ -284,7 +285,7 @@ module.exports = [
             // 多点找色
             var point = images.findMultiColors(_self.memImage, multiColor['结界_0勋章'].firstColor, multiColor['结界_0勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
             if (!point) return false;
-            _self.automator.press(point.x + random(0, 340), point.y + random(0, 161), random(10, 100));
+            _self.automator.press(point.x + random(0, 280), point.y + random(0, 161), random(10, 100));
             var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
@@ -298,9 +299,10 @@ module.exports = [
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
-                        { x: 264, y: 75, c: '#483727', i: true },
-                        { x: 1308, y: 78, c: '#483727', i: true },
-                        { x: 1118, y: 76, c: '#E5C25A', i: true },
+                        { x:   70, y:   71, c: 0xeff4fb, i: true },
+                        { x:  379, y:  169, c: 0xa7967e, i: true },
+                        { x:  209, y:  212, c: 0x34354d, i: true },
+                        { x: 1174, y:  167, c: 0xb6ab92, i: true },
                     ],
                     operaPoints: []
                 }]
@@ -310,7 +312,7 @@ module.exports = [
             // 多点找色
             var point = images.findMultiColors(_self.memImage, multiColor['结界_1勋章'].firstColor, multiColor['结界_1勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
             if (!point) return false;
-            _self.automator.press(point.x + random(0, 340), point.y + random(0, 161), random(10, 100));
+            _self.automator.press(point.x + random(0, 280), point.y + random(0, 161), random(10, 100));
             var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
@@ -324,9 +326,10 @@ module.exports = [
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
-                        { x: 264, y: 75, c: '#483727', i: true },
-                        { x: 1308, y: 78, c: '#483727', i: true },
-                        { x: 1118, y: 76, c: '#E5C25A', i: true },
+                        { x:   70, y:   71, c: 0xeff4fb, i: true },
+                        { x:  379, y:  169, c: 0xa7967e, i: true },
+                        { x:  209, y:  212, c: 0x34354d, i: true },
+                        { x: 1174, y:  167, c: 0xb6ab92, i: true },
                     ],
                     operaPoints: []
                 }]
@@ -336,7 +339,7 @@ module.exports = [
             // 多点找色
             var point = images.findMultiColors(_self.memImage, multiColor['结界_2勋章'].firstColor, multiColor['结界_2勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
             if (!point) return false;
-            _self.automator.press(point.x + random(0, 340), point.y + random(0, 161), random(10, 100));
+            _self.automator.press(point.x + random(0, 280), point.y + random(0, 161), random(10, 100));
             var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
@@ -350,9 +353,10 @@ module.exports = [
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
-                        { x: 264, y: 75, c: '#483727', i: true },
-                        { x: 1308, y: 78, c: '#483727', i: true },
-                        { x: 1118, y: 76, c: '#E5C25A', i: true },
+                        { x:   70, y:   71, c: 0xeff4fb, i: true },
+                        { x:  379, y:  169, c: 0xa7967e, i: true },
+                        { x:  209, y:  212, c: 0x34354d, i: true },
+                        { x: 1174, y:  167, c: 0xb6ab92, i: true },
                     ],
                     operaPoints: []
                 }]
@@ -362,7 +366,7 @@ module.exports = [
             // 多点找色
             var point = images.findMultiColors(_self.memImage, multiColor['结界_3勋章'].firstColor, multiColor['结界_3勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
             if (!point) return false;
-            _self.automator.press(point.x + random(0, 340), point.y + random(0, 161), random(10, 100));
+            _self.automator.press(point.x + random(0, 280), point.y + random(0, 161), random(10, 100));
             var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
@@ -376,9 +380,10 @@ module.exports = [
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
-                        { x: 264, y: 75, c: '#483727', i: true },
-                        { x: 1308, y: 78, c: '#483727', i: true },
-                        { x: 1118, y: 76, c: '#E5C25A', i: true },
+                        { x:   70, y:   71, c: 0xeff4fb, i: true },
+                        { x:  379, y:  169, c: 0xa7967e, i: true },
+                        { x:  209, y:  212, c: 0x34354d, i: true },
+                        { x: 1174, y:  167, c: 0xb6ab92, i: true },
                     ],
                     operaPoints: []
                 }]
@@ -388,7 +393,7 @@ module.exports = [
             // 多点找色
             var point = images.findMultiColors(_self.memImage, multiColor['结界_4勋章'].firstColor, multiColor['结界_4勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
             if (!point) return false;
-            _self.automator.press(point.x + random(0, 340), point.y + random(0, 161), random(10, 100));
+            _self.automator.press(point.x + random(0, 280), point.y + random(0, 161), random(10, 100));
             var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
@@ -402,9 +407,10 @@ module.exports = [
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
-                        { x: 264, y: 75, c: '#483727', i: true },
-                        { x: 1308, y: 78, c: '#483727', i: true },
-                        { x: 1118, y: 76, c: '#E5C25A', i: true },
+                        { x:   70, y:   71, c: 0xeff4fb, i: true },
+                        { x:  379, y:  169, c: 0xa7967e, i: true },
+                        { x:  209, y:  212, c: 0x34354d, i: true },
+                        { x: 1174, y:  167, c: 0xb6ab92, i: true },
                     ],
                     operaPoints: []
                 }]
@@ -414,7 +420,7 @@ module.exports = [
             // 多点找色
             var point = images.findMultiColors(_self.memImage, multiColor['结界_5勋章'].firstColor, multiColor['结界_5勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
             if (!point) return false;
-            _self.automator.press(point.x + random(0, 340), point.y + random(0, 161), random(10, 100));
+            _self.automator.press(point.x + random(0, 280), point.y + random(0, 161), random(10, 100));
             var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
@@ -425,14 +431,16 @@ module.exports = [
         name: '结界_个人_3次刷新',
         data: [{
             judgePoints: [
-                { x: 264, y: 75, c: '#483727', i: true },
-                { x: 1308, y: 78, c: '#483727', i: true },
-                { x: 766, y: 837, c: '#FCBA30', i: true }, // 3次达摩左边
-                { x: 887, y: 838, c: '#363D57', i: true }, // 3次达摩右边，如果大于3次就刷新的话直接注释这一行，如果只有3次就刷新的话就保留这一行
-                { x: 1503, y: 814, c: '#F4B25E', i: true }, // 亮着的刷新按钮上的一个点
+                { x:   70, y:   71, c: 0xeff4fb, i: true },
+                { x:  379, y:  169, c: 0xa7967e, i: true },
+                { x:  209, y:  212, c: 0x34354d, i: true },
+                { x: 1174, y:  167, c: 0xb6ab92, i: true },
+                { x:  955, y:  915, c: 0xfd9429, i: true }, // 3次达摩左边
+                { x: 1063, y:  918, c: 0x363b5b, i: true }, // 3次达摩右边，如果大于3次就刷新的话直接注释这一行，如果只有3次就刷新的话就保留这一行
+                { x: 1800, y:  302, c: 0xefdfc6, i: true }, // 亮着的刷新按钮上的一个点
             ],
             operaPoints: [
-                { x: 1448, y: 774, ox: 206, oy: 74, ad: 500 },
+                { x: 1777, y: 278, ox: 49, oy: 53, ad: 500 },
             ]
         }]
     },
@@ -444,11 +452,13 @@ module.exports = [
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
-                        { x: 264, y: 75, c: '#483727', i: true },
-                        { x: 1308, y: 78, c: '#483727', i: true },
-                        { x: 766, y: 837, c: '#FCBA30', i: true }, // 3次达摩左边
-                        { x: 887, y: 838, c: '#363D57', i: true }, // 3次达摩右边，如果大于3次就刷新的话直接注释这一行，如果只有3次就刷新的话就保留这一行
-                        { x: 1564, y: 827, c: '#B0A7A0', i: true }, // 灭着的刷新按钮上的一个点
+                        { x:   70, y:   71, c: 0xeff4fb, i: true },
+                        { x:  379, y:  169, c: 0xa7967e, i: true },
+                        { x:  209, y:  212, c: 0x34354d, i: true },
+                        { x: 1174, y:  167, c: 0xb6ab92, i: true },
+                        { x:  955, y:  915, c: 0xfd9429, i: true }, // 3次达摩左边
+                        { x: 1063, y:  918, c: 0x363b5b, i: true }, // 3次达摩右边，如果大于3次就刷新的话直接注释这一行，如果只有3次就刷新的话就保留这一行
+                        { x: 1799, y:  312, c: 0xe4e3e4, i: true }, // 灭着的刷新按钮上的一个点
                     ],
                     operaPoints: []
                 }]
@@ -793,12 +803,14 @@ module.exports = [
         name: '结界_个人_刷新',
         data: [{
             judgePoints: [
-                { x: 264, y: 75, c: '#483727', i: true },
-                { x: 1308, y: 78, c: '#483727', i: true },
-                { x: 1503, y: 814, c: '#F4B25E', i: true }, // 亮着的刷新按钮上的一个点
+                { x:   70, y:   71, c: 0xeff4fb, i: true },
+                { x:  379, y:  169, c: 0xa7967e, i: true },
+                { x:  209, y:  212, c: 0x34354d, i: true },
+                { x: 1174, y:  167, c: 0xb6ab92, i: true },
+                { x: 1800, y:  302, c: 0xefdfc6, i: true }, // 亮着的刷新按钮上的一个点
             ],
             operaPoints: [
-                { x: 1448, y: 774, ox: 206, oy: 74, ad: 500 },
+                { x: 1777, y: 278, ox: 49, oy: 53, ad: 500 },
             ]
         }]
     },
