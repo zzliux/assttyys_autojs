@@ -2,7 +2,11 @@ var zzUtils = require('../zz_modules/zzUtils');
 var multiColor = {};
 var multiColorNames = ['结界_0勋章', '结界_1勋章', '结界_2勋章', '结界_3勋章', '结界_4勋章', '结界_5勋章', '结界_进攻', '探索_经验怪标记', '探索_挑战图标', '探索_式神满级标记', '探索_挑战BOSS图标', '最近组队'];
 for (var i = 0; i < multiColorNames.length; i++) {
-    multiColor[multiColorNames[i]] = require('../multi_colors/19201080/' + multiColorNames[i]);
+    var t = require('../multi_colors/19201080/' + multiColorNames[i]);
+    multiColor[multiColorNames[i]] = {
+        firstColor: zzUtils.parseColorToGraphicHelper(t.firstColor),
+        colors: zzUtils.parseColorToGraphicHelper(t.colors)
+    };
 }
 
 module.exports = [
@@ -25,19 +29,40 @@ module.exports = [
         id: 2,
         name: '退出结算',
         data: [
-            { // 退出结算(左上角战斗数据图标识别),最优，速度最快
+            { // 退出结算(左上角战斗数据图标),最优，速度最快
                 judgePoints: [
-                    { x: 76, y: 89, c: '#371F13', i: true },
-                    { x: 125, y: 61, c: '#FCECD3', i: true },
-                    { x: 156, y: 114, c: '#31190D', i: true },
-                    { x: 85, y: 126, c: '#E8D3B8', i: true },
+                    { x:  118, y:   88, c: 0x3c2a20, i: true },
+                    { x:  130, y:  100, c: 0xa7865c, i: true },
+                    { x:  117, y:  125, c: 0x392920, i: true },
+                    { x:  106, y:  101, c: 0xaa8855, i: true },
+                    { x:   92, y:  101, c: 0x3c2c1e, i: true },
                 ],
                 operaPoints: [
-                    { x: 29, y: 180, ox: 194, oy: 620, ad: 500 },
-                    { x: 29, y: 180, ox: 194, oy: 620, ad: 500 },
-                    { x: 29, y: 180, ox: 194, oy: 620, ad: 500 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 50 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 50 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 50 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 50 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 50 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 50 },
                 ]
             },
+            { // 退出结算(左上角贪吃鬼，左下角战斗数据识别), 提高识别速度
+                judgePoints: [
+                    { x:  120, y:  976, c: 0x3c2a21, i: true },
+                    { x:  107, y:  984, c: 0xaf8d62, i: true },
+                    { x:   95, y:   97, c: 0xefeeee, i: true },
+                    { x:  157, y:   85, c: 0x19110b, i: true },
+                ],
+                operaPoints: [
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 50 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 50 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 50 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 50 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 50 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 50 },
+                ]
+            },
+            
             { // 个人退出结算(胜利太鼓)
                 judgePoints: [
                     { x: 720, y: 239, c: '#831B12', i: true },
@@ -46,7 +71,9 @@ module.exports = [
                     { x: 719, y: 280, c: '#CFBFA6', i: true },
                 ],
                 operaPoints: [
-                    { x: 29, y: 180, ox: 194, oy: 620, ad: 500 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 100 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 100 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 100 },
                 ]
             },
             { // 组队退出结算(胜利太鼓)
@@ -57,7 +84,9 @@ module.exports = [
                     { x: 722, y: 196, c: '#D0C1AA', i: true },
                 ],
                 operaPoints: [
-                    { x: 29, y: 180, ox: 194, oy: 620, ad: 500 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 100 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 100 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 100 },
                 ]
             },
             { // 退出结算(未打开的胜利达摩)
@@ -67,7 +96,9 @@ module.exports = [
                     { x: 864, y: 597, c: '#CA271E', i: true },
                 ],
                 operaPoints: [
-                    { x: 29, y: 180, ox: 194, oy: 620, ad: 500 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 100 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 100 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 100 },
                 ]
             },
             { // 退出结算(打开的胜利达摩)
@@ -77,8 +108,9 @@ module.exports = [
                     { x: 897, y: 927, c: '#300205', i: true },
                 ],
                 operaPoints: [
-                    { x: 29, y: 180, ox: 194, oy: 620, ad: 500 },
-                    { x: 29, y: 180, ox: 194, oy: 620, ad: 500 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 100 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 100 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 100 },
                     // { x: 29, y: 180, ox: 194, oy: 620, ad: 1000 },
                 ]
             },
@@ -256,7 +288,7 @@ module.exports = [
         data: function () {
             var _self = this;
             // 多点找色
-            var point = images.findMultiColors(_self.memImage, multiColor['结界_进攻'].firstColor, multiColor['结界_进攻'].colors, { region: [388, 434, 1531, 636], threshold: _self.userConfigs.multiColorSimilar });
+            var point = _self.graphicHelper.findMultiColors(_self.memImage, multiColor['结界_进攻'].firstColor, multiColor['结界_进攻'].colors, { region: [388, 434, 1531, 636], threshold: _self.userConfigs.multiColorSimilar });
             if (!point) return false;
             _self.automator.press(point.x + random(0, 180), point.y + random(0, 72), random(10, 100));
             var delay = 2000 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
@@ -283,10 +315,10 @@ module.exports = [
             if (!_self.commonClick(sceneJudge)) return false;
 
             // 多点找色
-            var point = images.findMultiColors(_self.memImage, multiColor['结界_0勋章'].firstColor, multiColor['结界_0勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
+            var point = _self.graphicHelper.findMultiColors(_self.memImage, multiColor['结界_0勋章'].firstColor, multiColor['结界_0勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
             if (!point) return false;
             _self.automator.press(point.x + random(0, 280), point.y + random(0, 161), random(10, 100));
-            var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
+            var delay = 500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
         }
@@ -310,10 +342,10 @@ module.exports = [
             if (!_self.commonClick(sceneJudge)) return false;
 
             // 多点找色
-            var point = images.findMultiColors(_self.memImage, multiColor['结界_1勋章'].firstColor, multiColor['结界_1勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
+            var point = _self.graphicHelper.findMultiColors(_self.memImage, multiColor['结界_1勋章'].firstColor, multiColor['结界_1勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
             if (!point) return false;
             _self.automator.press(point.x + random(0, 280), point.y + random(0, 161), random(10, 100));
-            var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
+            var delay = 500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
         }
@@ -337,10 +369,10 @@ module.exports = [
             if (!_self.commonClick(sceneJudge)) return false;
 
             // 多点找色
-            var point = images.findMultiColors(_self.memImage, multiColor['结界_2勋章'].firstColor, multiColor['结界_2勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
+            var point = _self.graphicHelper.findMultiColors(_self.memImage, multiColor['结界_2勋章'].firstColor, multiColor['结界_2勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
             if (!point) return false;
             _self.automator.press(point.x + random(0, 280), point.y + random(0, 161), random(10, 100));
-            var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
+            var delay = 500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
         }
@@ -364,10 +396,10 @@ module.exports = [
             if (!_self.commonClick(sceneJudge)) return false;
 
             // 多点找色
-            var point = images.findMultiColors(_self.memImage, multiColor['结界_3勋章'].firstColor, multiColor['结界_3勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
+            var point = _self.graphicHelper.findMultiColors(_self.memImage, multiColor['结界_3勋章'].firstColor, multiColor['结界_3勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
             if (!point) return false;
             _self.automator.press(point.x + random(0, 280), point.y + random(0, 161), random(10, 100));
-            var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
+            var delay = 500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
         }
@@ -391,10 +423,10 @@ module.exports = [
             if (!_self.commonClick(sceneJudge)) return false;
 
             // 多点找色
-            var point = images.findMultiColors(_self.memImage, multiColor['结界_4勋章'].firstColor, multiColor['结界_4勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
+            var point = _self.graphicHelper.findMultiColors(_self.memImage, multiColor['结界_4勋章'].firstColor, multiColor['结界_4勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
             if (!point) return false;
             _self.automator.press(point.x + random(0, 280), point.y + random(0, 161), random(10, 100));
-            var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
+            var delay = 500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
         }
@@ -418,10 +450,10 @@ module.exports = [
             if (!_self.commonClick(sceneJudge)) return false;
 
             // 多点找色
-            var point = images.findMultiColors(_self.memImage, multiColor['结界_5勋章'].firstColor, multiColor['结界_5勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
+            var point = _self.graphicHelper.findMultiColors(_self.memImage, multiColor['结界_5勋章'].firstColor, multiColor['结界_5勋章'].colors, { region: [200, 141, 1531, 900], threshold: _self.userConfigs.multiColorSimilar });
             if (!point) return false;
             _self.automator.press(point.x + random(0, 280), point.y + random(0, 161), random(10, 100));
-            var delay = 1500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
+            var delay = 500 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
             sleep(delay);
             return true;
         }
@@ -561,7 +593,7 @@ module.exports = [
                 if (!_self.commonClick(sceneJudge)) return false;
     
                 // 如果是boss就直接挑战
-                var point0 = images.findMultiColors(_self.memImage, multiColor['探索_挑战BOSS图标'].firstColor, multiColor['探索_挑战BOSS图标'].colors, { region: [40, 187, 1598, 468], threshold: 10 });
+                var point0 = _self.graphicHelper.findMultiColors(_self.memImage, multiColor['探索_挑战BOSS图标'].firstColor, multiColor['探索_挑战BOSS图标'].colors, { region: [40, 187, 1598, 468], threshold: 10 });
                 if (null != point0) {
                     _self.automator.press(point0.x + random(0, 68), point0.y + random(0, 66), random(10, 100));
                     sleep(1000 + _self.userConfigs.afterClickDelay + random(0, _self.userConfigs.afterClickDelayRandom));
@@ -569,13 +601,13 @@ module.exports = [
                 }
     
                 // 找经验怪挑战
-                var point = images.findMultiColors(_self.memImage, multiColor['探索_经验怪标记'].firstColor, multiColor['探索_经验怪标记'].colors, { region: [200, 360, 1520, 700], threshold: 10 });
+                var point = _self.graphicHelper.findMultiColors(_self.memImage, multiColor['探索_经验怪标记'].firstColor, multiColor['探索_经验怪标记'].colors, { region: [200, 360, 1520, 700], threshold: 12 });
                 // 如果没有经验怪标记的话就重找
                 var cnt1 = 2;
                 while (null == point && --cnt1 >= 0) {
                     sleep(200);
                     _self.captureScreen();
-                    point = images.findMultiColors(_self.memImage, multiColor['探索_经验怪标记'].firstColor, multiColor['探索_经验怪标记'].colors, { region: [200, 360, 1520, 700], threshold: 10 });
+                    point = _self.graphicHelper.findMultiColors(_self.memImage, multiColor['探索_经验怪标记'].firstColor, multiColor['探索_经验怪标记'].colors, { region: [200, 360, 1520, 700], threshold: 12 });
                 }
                 if (null != point) {
                     // 从内向外多点找色，可点击的挑战图标，可能会处理为不停的进行多点找色，找不到的时候放大区域
@@ -587,7 +619,7 @@ module.exports = [
                         if (region[0] + region[2] > 1920) region[2] = 1920 - region[0];
                         if (region[1] + region[3] > 1080) region[3] = 1080 - region[1];
 
-                        var pointChange = images.findMultiColors(_self.memImage, multiColor['探索_挑战图标'].firstColor, multiColor['探索_挑战图标'].colors, { region: region, threshold: _self.userConfigs.multiColorSimilar });
+                        var pointChange = _self.graphicHelper.findMultiColors(_self.memImage, multiColor['探索_挑战图标'].firstColor, multiColor['探索_挑战图标'].colors, { region: region, threshold: _self.userConfigs.multiColorSimilar });
                         if (null != pointChange) {
                             _self.automator.press(pointChange.x + random(0, 77), pointChange.y + random(0, 91), random(10, 100));
                             sleep(1000 + _self.userConfigs.afterClickDelay + random(0, _self.userConfigs.afterClickDelayRandom));
@@ -598,7 +630,7 @@ module.exports = [
                 }
                 if (count) {
                     // 屏幕右往坐滑
-                    _self.automator.swipe(1476 + random(0, 180), 179 + random(0, 626), 200 + random(0, 262), 228 + random(0, 745), random(300, 600));
+                    _self.automator.swipe(1476 + random(0, 180), 166 + random(0, 109), 200 + random(0, 262), 228 + random(0, 745), random(300, 500));
                     sleep(200);
                     _self.captureScreen();
                 }
@@ -638,7 +670,7 @@ module.exports = [
             if (!_self.commonClick(sceneJudge)) return false;
 
             // 找满级标记
-            var point = images.findMultiColors(_self.memImage, multiColor['探索_式神满级标记'].firstColor, multiColor['探索_式神满级标记'].colors, { region: [532, 388, 793, 299], threshold: 15 });
+            var point = _self.graphicHelper.findMultiColors(_self.memImage, multiColor['探索_式神满级标记'].firstColor, multiColor['探索_式神满级标记'].colors, { region: [532, 388, 793, 299], threshold: 15 });
             if (null != point) {
                 var clickPoints = {
                     data: [{
@@ -646,7 +678,7 @@ module.exports = [
                         operaPoints: [
                             { x: 448, y: 731, ox: 554, oy: 202, ad: 0}, // 把换式神的界面点出来
                             { x: 448, y: 731, ox: 554, oy: 202, ad: 0}, // 把换式神的界面点出来
-                            { x: 448, y: 731, ox: 554, oy: 202, ad: 3000}, // 把换式神的界面点出来
+                            { x: 448, y: 731, ox: 554, oy: 202, ad: 1500}, // 把换式神的界面点出来
                             { x: 65, y: 952, ox: 78, oy: 78, ad: 500 }, // 全部
                             { x: 66, y: 446, ox: 74, oy: 74, ad: 1000}, // 素材
                         ]
@@ -659,7 +691,6 @@ module.exports = [
                 // 第二个素材换到右边
                 _self.automator.swipe(456 + random(0, 80), 758 + random(0, 241), 877 + random(0, 160), 546 + random(0, 88), random(1000, 1200));
                 sleep(random(100, 200));
-
             };
             return false;
         }
@@ -703,7 +734,7 @@ module.exports = [
             if (!_self.commonClick(sceneJudge)) return false;
 
             _self.captureScreen();
-            var point = images.findMultiColors(_self.memImage, multiColor['最近组队'].firstColor, multiColor['最近组队'].colors, { region: [478, 194, 937, 683], threshold: 15 });
+            var point = _self.graphicHelper.findMultiColors(_self.memImage, multiColor['最近组队'].firstColor, multiColor['最近组队'].colors, { region: [478, 194, 937, 683], threshold: 15 });
             if (null != point) {
                 toastLog('邀请最近组队');
                 // 点最近组队好友
@@ -741,7 +772,7 @@ module.exports = [
             if (!_self.commonClick(sceneJudge)) return false;
 
             // 找满级标记
-            var point = images.findMultiColors(_self.memImage, multiColor['探索_式神满级标记'].firstColor, multiColor['探索_式神满级标记'].colors, { region: [16, 435, 900, 547], threshold: 15 });
+            var point = _self.graphicHelper.findMultiColors(_self.memImage, multiColor['探索_式神满级标记'].firstColor, multiColor['探索_式神满级标记'].colors, { region: [16, 435, 900, 547], threshold: 15 });
             if (null != point) {
                 var clickPoints = {
                     data: [{
@@ -749,7 +780,7 @@ module.exports = [
                         operaPoints: [
                             { x: 448, y: 731, ox: 554, oy: 202, ad: 0}, // 把换式神的界面点出来
                             { x: 448, y: 731, ox: 554, oy: 202, ad: 0}, // 把换式神的界面点出来
-                            { x: 448, y: 731, ox: 554, oy: 202, ad: 3000}, // 把换式神的界面点出来
+                            { x: 448, y: 731, ox: 554, oy: 202, ad: 1500}, // 把换式神的界面点出来
                             { x: 65, y: 952, ox: 78, oy: 78, ad: 500 }, // 全部
                             { x: 66, y: 446, ox: 74, oy: 74, ad: 1000}, // 素材
                         ]

@@ -46,5 +46,37 @@ module.exports = {
                 .build();
         }
         manager.notify(1, notification);
+    },
+
+    parseColorToGraphicHelper: function (color) {
+        var ret = null;
+        if (Array.isArray(color) && color.length 
+            && Array.isArray(color[0]) && 3 == color[0].length) { // color的第二个参数path
+            ret = [];
+            for (var i = 0; i < color.length; i++) {
+                ret.push(this.parseColor(color[i]));
+            }
+        } else {
+            ret = this.parseColor(color);
+        }
+        return ret;
+    },
+
+    parseColor: function (color) {
+        var ret = null;
+        if (typeof color === 'string') { // '#rrggbb' => [r, g, b]
+            ret = [Number('0x' + color.substr(1, 2)), Number('0x' + color.substr(3, 2)), Number('0x' + color.substr(5, 2))];
+        } else if (Array.isArray(color) && 3 == color.length) { // [x, y, color] => [x, y, r, g, b]
+            var colorRGB = this.parseColor(color[2]);
+            ret = [];
+            ret.push(color[0]);
+            ret.push(color[1]);
+            ret.push(colorRGB[0]);
+            ret.push(colorRGB[1]);
+            ret.push(colorRGB[2]);
+        } else if (typeof color === 'number') { // 0xRRGGBB => [r, g, b]
+            ret = [color >> 16, (0x00FF & (color >> 8)), (0x0000FF & color)];
+        }
+        return ret;
     }
 }

@@ -1,4 +1,5 @@
 "ui";
+runtime.loadDex("./lib/scriptlib.dex");
 
 importClass(android.content.Intent);
 importClass(android.widget.ArrayAdapter);

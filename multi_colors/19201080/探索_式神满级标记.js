@@ -1,1 +1,1 @@
-module.exports = {"firstColor":"#EFA236","colors":[[6,20,"#F6E126"],[24,19,"#FADF1E"],[19,0,"#EAA21C"]]};
+module.exports = {"firstColor":15509553,"colors":[[-1,23,16641056],[10,14,16567313],[17,12,16039444],[18,0,16425756]]}

@@ -1,4 +1,5 @@
 var MyAutomator = require('./zz_modules/MyAutomator');
+var helperBridge = require('./zz_modules/graphicHelperBridge');
 
 let dm = context.getResources().getDisplayMetrics();
 let wm = context.getSystemService(context.WINDOW_SERVICE);
@@ -25,6 +26,8 @@ var myScript = function () {
 
     // press 和 swipe在这里面
     this.automator = null;
+
+    this.graphicHelper = helperBridge;
 }
 
 /**
@@ -115,9 +118,6 @@ myScript.prototype = {
      * @param {Object} funcObj 
      */
     commonClick: function (funcObj) {
-        if (null === this.memImage) {
-            this.captureScreen();
-        }
         // 如果data是个数组，直接走公共方法
         // 如果data是个函数的话直接执行这个函数，函数里面的逻辑由配置参数直接自己实现
         var data = funcObj.data;
@@ -126,24 +126,8 @@ myScript.prototype = {
         }
         for (var k = 0, kLen = data.length; k < kLen; k++) {
             kData = funcObj.data[k];
-            var isJudged = true;
             var judgePoints = kData.judgePoints;
-            for (let i = 0, iLen = judgePoints.length; i < iLen; i++) {
-                var jp = judgePoints[i];
-                var isColorSimilar = false;
-                try {
-                    isColorSimilar = images.detectsColor(this.memImage, jp.c, jp.x, jp.y, this.userConfigs.colorSimilar, 'diff');
-                } catch (e) {
-                    // 不管它
-                    console.log('isColorSimilar calc error!' + e);
-                    console.log('memImage.width = ' + this.memImage.getWidth() + ', memImage.height = ' + this.memImage.getHeight());
-                }
-                // 匹配点不相似 || 非匹配点相似
-                if ((jp.i && !isColorSimilar) || (!jp.i && isColorSimilar)) {
-                    isJudged = false;
-                    break;
-                }
-            }
+            var isJudged = this.graphicHelper.detectsMultiColors(judgePoints, this.userConfigs.colorSimilar);
             if (isJudged) {
                 var operaPoints = kData.operaPoints;
                 for (let i = 0, iLen = operaPoints.length; i < iLen; i++) {
@@ -161,7 +145,7 @@ myScript.prototype = {
     },
 
     captureScreen: function () {
-        this.memImage = captureScreen();
+        this.graphicHelper.keepScreen();
     }
 }
 
