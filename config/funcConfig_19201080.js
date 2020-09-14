@@ -1002,5 +1002,18 @@ module.exports = [
                 });
             }
         }
+    }, {
+        id: 37,
+        name : '幻境间隙_挑战',
+        data: [{
+            judgePoints: [
+                { x: 1728, y:  907, c: 0xe4d8c1, i: true },
+                { x: 1767, y:  910, c: 0xded2b9, i: true },
+                { x: 1803, y:  889, c: 0x593726, i: true },
+                { x: 1746, y: 1013, c: 0xe4dac1, i: true },
+                { x: 1513, y:  233, c: 0xe7d5cf, i: true },
+            ],
+            operaPoints: [{ x: 1688, y: 899, ox: 114, oy: 124, ad: 1000 }]
+        }]
     }
 ]
