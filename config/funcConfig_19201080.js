@@ -304,10 +304,11 @@ module.exports = [
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
-                        { x:   70, y:   71, c: 0xeff4fb, i: true },
-                        { x:  379, y:  169, c: 0xa7967e, i: true },
-                        { x:  209, y:  212, c: 0x34354d, i: true },
-                        { x: 1174, y:  167, c: 0xb6ab92, i: true },
+                        { x:  793, y:  141, c: 0x543e2c, i: true },
+                        { x: 1327, y:  148, c: 0x523929, i: true },
+                        { x: 1810, y:  198, c: 0xedd2cb, i: true },
+                        { x: 1081, y:  140, c: 0x583716, i: true },
+                        { x:  969, y:  146, c: 0xf8f3e0, i: true },
                     ],
                     operaPoints: []
                 }]
@@ -331,10 +332,11 @@ module.exports = [
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
-                        { x:   70, y:   71, c: 0xeff4fb, i: true },
-                        { x:  379, y:  169, c: 0xa7967e, i: true },
-                        { x:  209, y:  212, c: 0x34354d, i: true },
-                        { x: 1174, y:  167, c: 0xb6ab92, i: true },
+                        { x:  793, y:  141, c: 0x543e2c, i: true },
+                        { x: 1327, y:  148, c: 0x523929, i: true },
+                        { x: 1810, y:  198, c: 0xedd2cb, i: true },
+                        { x: 1081, y:  140, c: 0x583716, i: true },
+                        { x:  969, y:  146, c: 0xf8f3e0, i: true },
                     ],
                     operaPoints: []
                 }]
@@ -358,10 +360,11 @@ module.exports = [
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
-                        { x:   70, y:   71, c: 0xeff4fb, i: true },
-                        { x:  379, y:  169, c: 0xa7967e, i: true },
-                        { x:  209, y:  212, c: 0x34354d, i: true },
-                        { x: 1174, y:  167, c: 0xb6ab92, i: true },
+                        { x:  793, y:  141, c: 0x543e2c, i: true },
+                        { x: 1327, y:  148, c: 0x523929, i: true },
+                        { x: 1810, y:  198, c: 0xedd2cb, i: true },
+                        { x: 1081, y:  140, c: 0x583716, i: true },
+                        { x:  969, y:  146, c: 0xf8f3e0, i: true },
                     ],
                     operaPoints: []
                 }]
@@ -385,10 +388,11 @@ module.exports = [
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
-                        { x:   70, y:   71, c: 0xeff4fb, i: true },
-                        { x:  379, y:  169, c: 0xa7967e, i: true },
-                        { x:  209, y:  212, c: 0x34354d, i: true },
-                        { x: 1174, y:  167, c: 0xb6ab92, i: true },
+                        { x:  793, y:  141, c: 0x543e2c, i: true },
+                        { x: 1327, y:  148, c: 0x523929, i: true },
+                        { x: 1810, y:  198, c: 0xedd2cb, i: true },
+                        { x: 1081, y:  140, c: 0x583716, i: true },
+                        { x:  969, y:  146, c: 0xf8f3e0, i: true },
                     ],
                     operaPoints: []
                 }]
@@ -412,10 +416,11 @@ module.exports = [
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
-                        { x:   70, y:   71, c: 0xeff4fb, i: true },
-                        { x:  379, y:  169, c: 0xa7967e, i: true },
-                        { x:  209, y:  212, c: 0x34354d, i: true },
-                        { x: 1174, y:  167, c: 0xb6ab92, i: true },
+                        { x:  793, y:  141, c: 0x543e2c, i: true },
+                        { x: 1327, y:  148, c: 0x523929, i: true },
+                        { x: 1810, y:  198, c: 0xedd2cb, i: true },
+                        { x: 1081, y:  140, c: 0x583716, i: true },
+                        { x:  969, y:  146, c: 0xf8f3e0, i: true },
                     ],
                     operaPoints: []
                 }]
@@ -439,10 +444,11 @@ module.exports = [
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
-                        { x:   70, y:   71, c: 0xeff4fb, i: true },
-                        { x:  379, y:  169, c: 0xa7967e, i: true },
-                        { x:  209, y:  212, c: 0x34354d, i: true },
-                        { x: 1174, y:  167, c: 0xb6ab92, i: true },
+                        { x:  793, y:  141, c: 0x543e2c, i: true },
+                        { x: 1327, y:  148, c: 0x523929, i: true },
+                        { x: 1810, y:  198, c: 0xedd2cb, i: true },
+                        { x: 1081, y:  140, c: 0x583716, i: true },
+                        { x:  969, y:  146, c: 0xf8f3e0, i: true },
                     ],
                     operaPoints: []
                 }]
@@ -463,16 +469,17 @@ module.exports = [
         name: '结界_个人_3次刷新',
         data: [{
             judgePoints: [
-                { x:   70, y:   71, c: 0xeff4fb, i: true },
-                { x:  379, y:  169, c: 0xa7967e, i: true },
-                { x:  209, y:  212, c: 0x34354d, i: true },
-                { x: 1174, y:  167, c: 0xb6ab92, i: true },
-                { x:  955, y:  915, c: 0xfd9429, i: true }, // 3次达摩左边
-                { x: 1063, y:  918, c: 0x363b5b, i: true }, // 3次达摩右边，如果大于3次就刷新的话直接注释这一行，如果只有3次就刷新的话就保留这一行
-                { x: 1800, y:  302, c: 0xefdfc6, i: true }, // 亮着的刷新按钮上的一个点
+                { x:  793, y:  141, c: 0x543e2c, i: true },
+                { x: 1327, y:  148, c: 0x523929, i: true },
+                { x: 1810, y:  198, c: 0xedd2cb, i: true },
+                { x: 1081, y:  140, c: 0x583716, i: true },
+                { x:  969, y:  146, c: 0xf8f3e0, i: true },
+                { x:  596, y:  914, c: 0xfca730, i: true }, // 3次达摩左边
+                { x:  713, y:  913, c: 0x383c59, i: true }, // 3次达摩右边，如果大于3次就刷新的话直接注释这一行，如果只有3次就刷新的话就保留这一行
+                { x: 1479, y:  898, c: 0xf4b25f, i: true }, // 亮着的刷新按钮上的一个点
             ],
             operaPoints: [
-                { x: 1777, y: 278, ox: 49, oy: 53, ad: 500 },
+                { x: 1454, y: 863, ox: 242, oy: 68, ad: 500 },
             ]
         }]
     },
@@ -484,13 +491,14 @@ module.exports = [
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
-                        { x:   70, y:   71, c: 0xeff4fb, i: true },
-                        { x:  379, y:  169, c: 0xa7967e, i: true },
-                        { x:  209, y:  212, c: 0x34354d, i: true },
-                        { x: 1174, y:  167, c: 0xb6ab92, i: true },
-                        { x:  955, y:  915, c: 0xfd9429, i: true }, // 3次达摩左边
-                        { x: 1063, y:  918, c: 0x363b5b, i: true }, // 3次达摩右边，如果大于3次就刷新的话直接注释这一行，如果只有3次就刷新的话就保留这一行
-                        { x: 1799, y:  312, c: 0xe4e3e4, i: true }, // 灭着的刷新按钮上的一个点
+                        { x:  793, y:  141, c: 0x543e2c, i: true },
+                        { x: 1327, y:  148, c: 0x523929, i: true },
+                        { x: 1810, y:  198, c: 0xedd2cb, i: true },
+                        { x: 1081, y:  140, c: 0x583716, i: true },
+                        { x:  969, y:  146, c: 0xf8f3e0, i: true },
+                        { x:  596, y:  914, c: 0xfca730, i: true }, // 3次达摩左边
+                        { x:  713, y:  913, c: 0x383c59, i: true }, // 3次达摩右边，如果大于3次就刷新的话直接注释这一行，如果只有3次就刷新的话就保留这一行
+                        { x: 1479, y:  898, c: 0xf4b25f, i: false }, // 亮着的刷新按钮上的一个点
                     ],
                     operaPoints: []
                 }]
@@ -523,15 +531,16 @@ module.exports = [
             var sceneJudge = {
                 data: [{ // 用来判断是不是结界突破的场景，直接用多点找色的话会在此占用太多资源
                     judgePoints: [
-                        { x:   70, y:   71, c: 0xeff4fb, i: true },
-                        { x:  379, y:  169, c: 0xa7967e, i: true },
-                        { x:  209, y:  212, c: 0x34354d, i: true },
-                        { x: 1174, y:  167, c: 0xb6ab92, i: true },
-                        { x:  519, y:  839, c: 0x292622, i: true }, // 数字0上的5个点
-                        { x:  527, y:  839, c: 0xc3bcb4, i: true },
-                        { x:  533, y:  839, c: 0x37342f, i: true },
-                        { x:  526, y:  824, c: 0xc3bdb6, i: true },
-                        { x:  526, y:  827, c: 0x3e3a36, i: true },
+                        { x:  793, y:  141, c: 0x543e2c, i: true },
+                        { x: 1327, y:  148, c: 0x523929, i: true },
+                        { x: 1810, y:  198, c: 0xedd2cb, i: true },
+                        { x: 1081, y:  140, c: 0x583716, i: true },
+                        { x:  969, y:  146, c: 0xf8f3e0, i: true },
+                        { x:  418, y:  865, c: 0x2c2824, i: true }, // 数字0上的5个点
+                        { x:  423, y:  864, c: 0xa89786, i: true },
+                        { x:  423, y:  863, c: 0xa79786, i: true },
+                        { x:  431, y:  861, c: 0x3a352f, i: true },
+                        { x:  431, y:  862, c: 0x37322d, i: true },
                     ],
                     operaPoints: []
                 }]
