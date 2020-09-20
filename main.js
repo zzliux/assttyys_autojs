@@ -102,7 +102,7 @@ var assttyys = {
             // 否则是横屏截图（进行屏幕旋转了）
             if (!requestScreenCapture(dm.widthPixels < dm.heightPixels)) {
                 toast("请求截图失败");
-                exit();
+                exit(); // 截图权限用ui处理不好
             }
         });
     },
@@ -379,6 +379,11 @@ var assttyys = {
                 return;
             }
 
+            if (!ui.floatyPermission.checked) {
+                toastLog('请开启悬浮权限');
+                return;
+            }
+
             that.ass.put('funcList', that.funcList);
 
             var userConfigConfig = {};
@@ -432,10 +437,24 @@ var assttyys = {
             }
         });
 
+        ui.floatyPermission.on('check', function (checked) {
+            if (checked) {
+                if (!floaty.checkPermission()) {
+                    floaty.requestPermission();
+                }
+            } else {
+                if (floaty.checkPermission()) {
+                    ui.floatyPermission.checked = true;
+                }
+            }
+        });
+
         // 当用户回到本界面时，resume事件会被触发
         ui.emitter.on("resume", function() {
             // 此时根据无障碍服务的开启情况，同步开关的状态
             ui.autoService.checked = auto.service != null;
+
+            ui.floatyPermission.checked = !!floaty.checkPermission();
 
             // 更新列表数据
             // that.initData();

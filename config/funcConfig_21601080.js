@@ -8,7 +8,6 @@ for (var i = 0; i < multiColorNames.length; i++) {
         colors: zzUtils.parseColorToGraphicHelper(t.colors)
     };
 }
-
 module.exports = [
     null, // 0 放着占位,后续可能会放必执行的东西
     {
@@ -108,6 +107,7 @@ module.exports = [
                 operaPoints: [
                     { x: 41, y: 207, ox: 240, oy: 660, ad: 100 },
                     { x: 41, y: 207, ox: 240, oy: 660, ad: 100 },
+                    { x: 41, y: 207, ox: 240, oy: 660, ad: 1000 },
                 ]
             },
             { // 个人退出结算(失败太鼓)
@@ -476,7 +476,7 @@ module.exports = [
                 { x: 1172, y:  132, c: 0x5f4937, i: true },
             ],
             operaPoints: [
-                { x: 1872, y: 859, ox: 246, oy: 74, ad: 500 },
+                { x: 1574, y: 863, ox: 240, oy: 67, ad: 500 },
             ]
         }]
     },
@@ -857,12 +857,15 @@ module.exports = [
         name: '结界_个人_刷新',
         data: [{
             judgePoints: [
-                { x: 1614, y:  817, c: 0xf4b25f, i: true }, // 亮着的刷新按钮上的一个点
-                { x:  801, y:   77, c: 0x483726, i: true },
-                { x: 1344, y:   78, c: 0x483726, i: true },
+                { x: 1609, y:  890, c: 0xf4b25f, i: true }, // 亮着的刷新按钮上的一个点
+                { x:  416, y:  121, c: 0x3b393d, i: true },
+                { x: 1045, y:   72, c: 0x4d4a53, i: true },
+                { x: 1930, y:  199, c: 0xebdac9, i: true },
+                { x: 1046, y:  131, c: 0xf8f3e0, i: true },
+                { x: 1172, y:  132, c: 0x5f4937, i: true },
             ],
             operaPoints: [
-                { x: 1575, y: 781, ox: 235, oy: 61, ad: 500 },
+                { x: 1574, y: 863, ox: 240, oy: 67, ad: 500 },
             ]
         }]
     },

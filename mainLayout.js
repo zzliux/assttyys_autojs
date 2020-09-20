@@ -35,11 +35,15 @@ module.exports = <drawer id="drawer" bg="#eeeeeeee">
             </frame>
         </viewpager>
     </vertical>
-    <vertical layout_gravity="left" bg="#ffffff" w="280">
+    <vertical layout_gravity="left" bg="#ffffff" w="280" clickable="true">
         <img w="280" h="200" scaleType="fitXY" src="http://images.shejidaren.com/wp-content/uploads/2014/10/023746fki.jpg"/>
         <frame w="*">
-            <img w="50" h="50" padding="16" src="@drawable/ic_settings_black_48dp" tint="#009688"/>
+            <img w="50" h="50" padding="16" src="@drawable/ic_touch_app_black_48dp" tint="#009688"/>
             <Switch id="autoService" layout_gravity="center|right" marginLeft="40" text="无障碍服务" checked="{{auto.service != null}}" padding="8 8 8 8" textSize="15sp"/>
+        </frame>
+        <frame w="*">
+            <img w="50" h="50" padding="16" src="@drawable/ic_tab_unselected_black_48dp" tint="#009688"/>
+            <Switch id="floatyPermission" layout_gravity="center|right" marginLeft="40" text="悬浮权限" checked="{{!!floaty.checkPermission()}}" padding="8 8 8 8" textSize="15sp"/>
         </frame>
         <list id="menu">
             <horizontal bg="?selectableItemBackground" w="*">

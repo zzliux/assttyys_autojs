@@ -111,7 +111,7 @@ module.exports = [
                     { x: 29, y: 180, ox: 194, oy: 620, ad: 100 },
                     { x: 29, y: 180, ox: 194, oy: 620, ad: 100 },
                     { x: 29, y: 180, ox: 194, oy: 620, ad: 100 },
-                    // { x: 29, y: 180, ox: 194, oy: 620, ad: 1000 },
+                    { x: 29, y: 180, ox: 194, oy: 620, ad: 1000 },
                 ]
             },
             { // 个人退出结算(失败太鼓)
@@ -848,14 +848,15 @@ module.exports = [
         name: '结界_个人_刷新',
         data: [{
             judgePoints: [
-                { x:   70, y:   71, c: 0xeff4fb, i: true },
-                { x:  379, y:  169, c: 0xa7967e, i: true },
-                { x:  209, y:  212, c: 0x34354d, i: true },
-                { x: 1174, y:  167, c: 0xb6ab92, i: true },
-                { x: 1800, y:  302, c: 0xefdfc6, i: true }, // 亮着的刷新按钮上的一个点
+                { x:  793, y:  141, c: 0x543e2c, i: true },
+                { x: 1327, y:  148, c: 0x523929, i: true },
+                { x: 1810, y:  198, c: 0xedd2cb, i: true },
+                { x: 1081, y:  140, c: 0x583716, i: true },
+                { x:  969, y:  146, c: 0xf8f3e0, i: true },
+                { x: 1479, y:  898, c: 0xf4b25f, i: true }, // 亮着的刷新按钮上的一个点
             ],
             operaPoints: [
-                { x: 1777, y: 278, ox: 49, oy: 53, ad: 500 },
+                { x: 1454, y: 863, ox: 242, oy: 68, ad: 500 },
             ]
         }]
     },
