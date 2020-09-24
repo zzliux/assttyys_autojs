@@ -1034,5 +1034,32 @@ module.exports = [
             ],
             operaPoints: [{ x: 1927, y: 897, ox: 119, oy: 116, ad: 1000 }]
         }]
+    }, {
+        id: 38,
+        name: '恶灵巢穴_挑战',
+        data: [{
+            judgePoints: [
+                { x:   50, y:   64, c: 0xf0f0f8, i: true },
+                { x: 1622, y:  908, c: 0xdbd3d3, i: true },
+                { x: 1872, y:  898, c: 0xdbd5d3, i: true },
+                { x: 1098, y:  910, c: 0x583716, i: true },
+            ],
+            operaPoints: [{ x: 1820, y: 898, ox: 118, oy: 122, ad: 1000 }]
+        }]
+    }, {
+        id: 39,
+        name: '御魂过多确认',
+        data: [{
+            judgePoints: [
+                { x: 1025, y:  614, c: 0xf4b25f, i: true },
+                { x:  928, y:  539, c: 0xcbb59e, i: true },
+                { x:  854, y:  381, c: 0xcbb59e, i: true },
+                { x: 1145, y:  629, c: 0xf4b25f, i: true },
+                { x: 1275, y:  633, c: 0xcbb59e, i: true },
+                { x:  993, y:  597, c: 0x993333, i: true },
+                { x: 1168, y:  670, c: 0x923d2c, i: true },
+            ],
+            operaPoints: [{ x: 993, y: 597, ox: 175, oy: 73, ad: 1000 }]
+        }]
     }
 ]

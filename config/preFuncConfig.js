@@ -4,20 +4,20 @@ module.exports = [
         funcNumbers: []
     },
     {
-        name: '幻境间隙',
-        funcNumbers: [1, 2, 4, 37]
+        name: '恶灵巢穴',
+        funcNumbers: [1, 2, 4, 38, 39]
     },
     {
         name: '双人车司机',
-        funcNumbers: [1, 8, 2, 4, 6]
+        funcNumbers: [1, 8, 2, 4, 6, 39]
     },
     {
         name: '三人车司机',
-        funcNumbers: [1, 8, 2, 4, 7]
+        funcNumbers: [1, 8, 2, 4, 7, 39]
     },
     {
         name: '乘客',
-        funcNumbers: [1, 2, 4, 5]
+        funcNumbers: [1, 2, 4, 5, 39]
     },
     {
         name: '个人突破三次刷新',
@@ -29,19 +29,19 @@ module.exports = [
     },
     {
         name: '个人御魂/御灵/业原火',
-        funcNumbers: [1, 2, 4, 9]
+        funcNumbers: [1, 2, 4, 9, 38]
     },
     {
         name: '单人狗粮',
-        funcNumbers: [24, 1, 4, 2, 23, 21, 22]
+        funcNumbers: [24, 1, 4, 2, 23, 21, 22, 39]
     },
     {
         name: '组队狗粮_司机',
-        funcNumbers: [27, 1, 4, 2, 6, 23, 21, 25, 8]
+        funcNumbers: [27, 1, 4, 2, 6, 23, 21, 25, 8, 39]
     },
     {
         name: '组队狗粮_打手',
-        funcNumbers: [24, 1, 4, 2, 25, 5]
+        funcNumbers: [24, 1, 4, 2, 25, 5, 39]
     },
     {
         name: '个人突破_降级',
