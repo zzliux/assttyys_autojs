@@ -230,7 +230,8 @@ function dqFloaty() {
     win.id_2_click.on("click", () => {
         img_down();
         if (null != scriptThread) {
-            scriptThread.interrupt();
+            // scriptThread.interrupt();
+            return;
         }
         var script = require('../script');
         scriptThread = threads.start(function () {
@@ -256,10 +257,11 @@ function dqFloaty() {
         img_down();
         if (null != scriptThread) {
             scriptThread.interrupt();
+            scriptThread = null;
+            toastLog("结束脚本");
+            win_1.img_logo.setColorFilter(colors.argb(0, 255, 153, 0));
+            win_2.img_logo.setColorFilter(colors.argb(0, 255, 153, 0));
         }
-        win_1.img_logo.setColorFilter(colors.argb(0, 255, 153, 0));
-        win_2.img_logo.setColorFilter(colors.argb(0, 255, 153, 0));
-        toastLog("结束脚本");
     });
 
     // 点击设置

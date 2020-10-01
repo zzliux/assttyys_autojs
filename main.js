@@ -534,6 +534,7 @@ var assttyys = {
         try {
             funcConfig = require(configConfigPath);
         } catch (err) {
+            console.log(err);
             toastLog('脚本不支持当前分辨率' + dm.widthPixels + '*' + dm.heightPixels + '，加载默认分辨率1920*1080脚本');
             configConfigPath = './config/funcConfig_19201080';
             funcConfig = require(configConfigPath);

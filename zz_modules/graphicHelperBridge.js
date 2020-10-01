@@ -26,6 +26,21 @@ var bridge = {
     },
 
     /**
+     * 用法同上，只不过这个方法的找色为每个点所在的宫的所有点都去比较一次
+     * @param {*} _img 
+     * @param {*} firstColor 
+     * @param {*} path 
+     * @param {*} options 
+     */
+    findMultiColorsPalace: function (_img, firstColor, path, options) {
+        var sim = parseInt((255 - options.threshold) * 100 / 255);
+        var ret = this.graphicHelper.FindMultiColor(options.region[0], options.region[1], options.region[0] + options.region[2], options.region[1] + options.region[3],
+            firstColor, path, sim, 1);
+        if (ret.x == -1) return null;
+        return ret;
+    },
+
+    /**
      * 
      * @param {*} judgePoints 
      * judgePoints: [
@@ -47,7 +62,6 @@ var bridge = {
             toPush.push(judgePoints[i].i ? 1 : 0);
             to.push(toPush);
         }
-        // console.log(to);
         return this.graphicHelper.CompareColorExEx(to, colorSimilar, 0, 0, 0);
     }
 }

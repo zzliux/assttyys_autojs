@@ -4,10 +4,6 @@ module.exports = [
         funcNumbers: []
     },
     {
-        name: '恶灵巢穴',
-        funcNumbers: [1, 2, 4, 38, 39]
-    },
-    {
         name: '双人车司机',
         funcNumbers: [1, 8, 2, 4, 6, 39]
     },
@@ -29,7 +25,7 @@ module.exports = [
     },
     {
         name: '个人御魂/御灵/业原火',
-        funcNumbers: [1, 2, 4, 9, 38]
+        funcNumbers: [1, 2, 4, 9, 39]
     },
     {
         name: '单人狗粮',
