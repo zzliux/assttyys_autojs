@@ -240,9 +240,14 @@ function dqFloaty() {
                 var scriptNew = new script();
                 scriptNew.setUserConfigs(); // 不传参数，默认从storage里面读配置
                 scriptNew.run();
+                // 执行正常结束
+                scriptThread = null;
+                win_1.img_logo.setColorFilter(colors.argb(0, 255, 153, 0));
+                win_2.img_logo.setColorFilter(colors.argb(0, 255, 153, 0));
             } catch (e) {
                 console.log(e);
                 ui.run(function () {
+                    scriptThread = null;
                     win_1.img_logo.setColorFilter(colors.argb(0, 255, 153, 0));
                     win_2.img_logo.setColorFilter(colors.argb(0, 255, 153, 0));
                 });
@@ -269,6 +274,7 @@ function dqFloaty() {
         img_down()
         if (null != scriptThread) {
             scriptThread.interrupt();
+            scriptThread = null;
         }
         win_1.img_logo.setColorFilter(colors.argb(0, 255, 153, 0));
         win_2.img_logo.setColorFilter(colors.argb(0, 255, 153, 0));

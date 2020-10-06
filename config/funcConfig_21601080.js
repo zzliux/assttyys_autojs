@@ -808,39 +808,13 @@ module.exports = [
     },
     {
         id: 28,
-        name: '大江山之战_修罗战场_挑战（已废弃）',
-        data: [
-            {
-                judgePoints: [
-                    { x: 766, y: 863, c: '#F4B25E', i: true },
-                    { x: 766, y: 912, c: '#F5B15E', i: true },
-                    { x: 1176, y: 861, c: '#F4B25C', i: true },
-                    { x: 1128, y: 912, c: '#F4B25C', i: true },
-                    { x: 1450, y: 52, c: '#381E0D', i: true },
-                ],
-                operaPoints: [
-                    { x: 1015, y: 857, ox: 214, oy: 57, ad: 2000 },
-                ]
-            }
-        ]
+        name: '大江山之战_修罗战场_挑战(废弃)',
+        data: []
     },
     {
         id: 29,
-        name: '大江山之战_海国退治_挑战（已废弃）',
-        data: [
-            {
-                judgePoints: [
-                    { x: 263, y: 964, c: '#2A2220', i: true },
-                    { x: 1475, y: 883, c: '#E0C195', i: true },
-                    { x: 1626, y: 893, c: '#DEA86C', i: true },
-                    { x: 1564, y: 844, c: '#25251D', i: true },
-                    { x: 1564, y: 870, c: '#E2B985', i: true },
-                ],
-                operaPoints: [
-                    { x: 1475, y: 819, ox: 143, oy: 117, ad: 2000 },
-                ]
-            }
-        ]
+        name: '大江山之战_海国退治_挑战(废弃)',
+        data: []
     },
     {
         id: 30,
@@ -902,140 +876,28 @@ module.exports = [
         }
     }, {
         id: 33,
-        name: '缘结之镜_小纸人寻路（开发中）',
-        data: function () {
-            var res = this.commonClick({
-                data: [{
-                    judgePoints: [
-                        { x: 1834, y:  815, c: 0xf1c89a, i: true },
-                        { x: 1244, y:   18, c: 0xd66867, i: true },
-                        { x:   61, y:   71, c: 0xe8f1f8, i: true },
-                        { x: 1368, y:  997, c: 0x5a3719, i: true },
-                        { x: 1357, y:  990, c: 0xddbb4d, i: true },
-                        { x: 1603, y:  998, c: 0x202454, i: true }, // 自动挑战图标上的一个点
-                    ],
-                    operaPoints: [{ x: 1591, y: 986, ox: 29, oy: 25, ad: 1000 }]
-                }]
-            });
-            if (res) {
-                var res2 = false;
-                var cnt = 30;
-                do {
-                    this.captureScreen();
-                    res2 = this.commonClick({
-                        data: [{
-                            judgePoints: [
-                                { x: 1834, y:  815, c: 0xf1c89a, i: true },
-                                { x: 1244, y:   18, c: 0xd66867, i: true },
-                                { x:   61, y:   71, c: 0xe8f1f8, i: true },
-                                { x: 1368, y:  997, c: 0x5a3719, i: true },
-                                { x: 1357, y:  990, c: 0xddbb4d, i: true },
-                                { x: 1603, y:  998, c: 0x202454, i: false }, // 自动挑战图标上的一个点
-                            ],
-                            operaPoints: []
-                        }]
-                    });
-                    sleep(1000);
-                } while (res2 && cnt--); 
-                if (cnt < 30) {
-                    zzUtils.sendNotification({
-                        title: '请手动操作',
-                        content: '请手动操作',
-                        ticker: '请手动操作'
-                    });
-                }   
-            }
-            return res;
-        }
+        name: '缘结之镜_小纸人寻路(废弃)',
+        data: []
     }, {
         id: 34,
-        name : '缘结之镜_挑战',
-        data: [{
-            judgePoints: [
-                { x: 1594, y:  772, c: 0xd7bfa5, i: true },
-                { x: 1585, y:  786, c: 0xd7ba8e, i: true },
-                { x: 1343, y:  768, c: 0xd8bb9d, i: true },
-                { x: 1373, y:  771, c: 0xdcc8ad, i: true },
-                { x: 1376, y:  813, c: 0x060405, i: true },
-                { x: 1592, y:  800, c: 0x000100, i: true },
-                { x: 1643, y:  161, c: 0xd2c29e, i: true },
-                { x: 1339, y:  161, c: 0xd2c29e, i: true },
-                { x: 1035, y:  161, c: 0xd1c1a0, i: true },
-            ],
-            operaPoints: [{ x: 1528, y: 773, ox: 103, oy: 91, ad: 1000 }]
-        }]
+        name : '缘结之镜_挑战(废弃)',
+        data: []
     }, {
         id: 35,
-        name: '万事屋_事件领取(开发中)',
-        data: function () {
-            var ret = this.commonClick({
-                data: [{
-                    judgePoints: [
-                        { x:   70, y:   71, c: 0xf8e6a4, i: true },
-                        { x: 1050, y: 1033, c: 0x4e331e, i: true },
-                        { x: 1551, y: 1011, c: 0xf6d7a8, i: true },
-                        { x: 1733, y:  925, c: 0xf0e0a2, i: true },
-                        { x: 1796, y:  924, c: 0x433323, i: true },
-                    ],
-                    operaPoints: [{ x: 1533, y: 957, ox: 74, oy: 79, ad: 1000 }]
-                }]
-            });
-            if (ret) {
-                var cd = random(this.userConfigs.wsw_sjlq_cd_down, this.userConfigs.wsw_sjlq_cd_up);
-                toastLog('等待CD: ' + cd + 'ms');
-                sleep(cd);
-            }
-        }
+        name: '万事屋_事件领取(废弃)',
+        data: []
     }, {
         id: 36,
-        name: '万事屋_事件获得奖励(开发中)',
-        data: function () {
-            var ret = this.commonClick({
-                data: [{
-                    judgePoints: [
-                        { x:  556, y:  352, c: 0x3a2921, i: true },
-                        { x:  582, y:  351, c: 0x3b2b1c, i: true },
-                        { x: 1245, y:  356, c: 0x3c2b21, i: true },
-                        { x: 1272, y:  356, c: 0x3b2b1b, i: true },
-                        { x: 1009, y:  360, c: 0xeadaa6, i: true },
-                        { x:  901, y:  312, c: 0xfff1ce, i: true },
-                    ],
-                    operaPoints: [{ x: 1166, y: 718, ox: 319, oy: 325, ad: 3000 }]
-                }]
-            });
-            if (ret) {
-                zzUtils.sendNotification({
-                    title: '万事屋自动领奖励, 请查看是否有其它需要手动操作的事件',
-                    content: '万事屋自动领奖励, 请查看是否有其它需要手动操作的事件',
-                    ticker: '万事屋自动领奖励, 请查看是否有其它需要手动操作的事件'
-                });
-            }
-        }
+        name: '万事屋_事件获得奖励(废弃)',
+        data: []
     }, {
         id: 37,
-        name : '幻境间隙_挑战',
-        data: [{
-            judgePoints: [
-                { x: 1962, y:  909, c: 0xe2d7c2, i: true },
-                { x: 2005, y:  908, c: 0xded1b9, i: true },
-                { x: 1633, y:  234, c: 0xe7d5cf, i: true },
-                { x: 1994, y:  939, c: 0x272420, i: true },
-                { x: 1995, y:  954, c: 0xe4d9c4, i: true },
-            ],
-            operaPoints: [{ x: 1927, y: 897, ox: 119, oy: 116, ad: 1000 }]
-        }]
+        name : '幻境间隙_挑战(废弃)',
+        data: []
     }, {
         id: 38,
-        name: '恶灵巢穴_挑战',
-        data: [{
-            judgePoints: [
-                { x:   50, y:   64, c: 0xf0f0f8, i: true },
-                { x: 1622, y:  908, c: 0xdbd3d3, i: true },
-                { x: 1872, y:  898, c: 0xdbd5d3, i: true },
-                { x: 1098, y:  910, c: 0x583716, i: true },
-            ],
-            operaPoints: [{ x: 1820, y: 898, ox: 118, oy: 122, ad: 1000 }]
-        }]
+        name: '恶灵巢穴_挑战(废弃)',
+        data: []
     }, {
         id: 39,
         name: '御魂过多确认',
