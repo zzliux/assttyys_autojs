@@ -1,17 +1,18 @@
 module.exports = [
     {
-        categoryName: '万事屋_事件领取',
+        categoryName: '自动停止配置',
         itemData: [
             {
-                itemName: '执行CD下界(ms)',
-                fieldName: 'wsw_sjlq_cd_down',
+                itemName: '自动停止时间下界(单位min)',
+                fieldName: 'auto_stop_lower_bound',
                 fieldType: 'integer',
-                default: 30000
-            }, {
-                itemName: '执行CD上界(ms)',
-                fieldName: 'wsw_sjlq_cd_up',
+                default: 60,
+            },
+            {
+                itemName: '自动停止时间上界(单位min,-1为不自动停止)',
+                fieldName: 'auto_stop_upper_bound',
                 fieldType: 'integer',
-                default: 60000
+                default: -1,
             }
         ]
     },

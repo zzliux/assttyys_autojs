@@ -1,5 +1,6 @@
 var MyAutomator = require('./zz_modules/MyAutomator');
 var helperBridge = require('./zz_modules/graphicHelperBridge');
+require('./zz_modules/dateFormatter');
 
 let dm = context.getResources().getDisplayMetrics();
 let wm = context.getSystemService(context.WINDOW_SERVICE);
@@ -56,12 +57,12 @@ myScript.prototype = {
      * 脚本入口
      */
     run: function () {
-
+        
         var configConfigPath = './config/funcConfig_' + dm.widthPixels + dm.heightPixels;
         if (dm.widthPixels < dm.heightPixels) {
             configConfigPath = './config/funcConfig_' + dm.heightPixels + dm.widthPixels;
         }
-
+        
         var funcConfig;
         try {
             funcConfig = require(configConfigPath);
@@ -70,9 +71,9 @@ myScript.prototype = {
             configConfigPath = './config/funcConfig_19201080';
             funcConfig = require(configConfigPath);
         }
-
+        
         this.automator = new MyAutomator(this.userConfigs.tapType, this.userConfigs.dirctionReverse);
-
+        
         var scriptFuncList = [];
         for (let i = 0, iLen = this.userConfigs.funcList.length; i < iLen; i++) {
             var funcI = this.userConfigs.funcList[i];
@@ -86,9 +87,30 @@ myScript.prototype = {
                 }
             }
         }
+
+        var loopTime = 0;
+        var nowTime = new Date().getTime();
+        var endTime = 0;
+        if (this.userConfigs.auto_stop_upper_bound == -1) {
+            toastLog('启动脚本');
+        } else {
+            loopTime = random(this.userConfigs.auto_stop_lower_bound, this.userConfigs.auto_stop_upper_bound) * 60000;
+            endTime = nowTime + loopTime;
+            var nowDate = new Date();
+            var endDate = new Date();
+            endDate.setTime(endTime);
+            toastLog('当前时间为' + nowDate.format('Y-m-d H:i:s') + '，脚本将于' + endDate.format('Y-m-d H:i:s') + '后停止（执行时间' + (loopTime / 60000).toFixed(0) + 'min）');
+        }
         var continuityCount = 0;
         var lastFunc = -1;
         while (true) {
+            if (endTime && new Date().getTime() >= endTime) {
+                toastLog('当前时间为' + new Date().format('Y-m-d H:i:s') + '，脚本停止。')
+                sleep(2000);
+                // 广播停止脚本
+                events.broadcast.emit('DQFLOATY_STOP_CLICK', '');
+                sleep(2000);
+            }
             this.captureScreen();
             for (let i = 0, iLen = scriptFuncList.length; i < iLen; i++) {
                 result = this.commonClick(scriptFuncList[i]);

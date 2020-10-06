@@ -675,7 +675,7 @@ module.exports = [
             if (!_self.commonClick(sceneJudge)) return false;
 
             // 找满级标记
-            var point = _self.graphicHelper.findMultiColors(_self.memImage, multiColor['探索_式神满级标记'].firstColor, multiColor['探索_式神满级标记'].colors, { region: [656, 393, 739, 341], threshold: 15 });
+            var point = _self.graphicHelper.findMultiColorsPalace(_self.memImage, multiColor['探索_式神满级标记'].firstColor, multiColor['探索_式神满级标记'].colors, { region: [656, 393, 739, 341], threshold: 15 });
             if (null != point) {
                 var clickPoints = {
                     data: [{
@@ -781,7 +781,7 @@ module.exports = [
             if (!_self.commonClick(sceneJudge)) return false;
 
             // 找满级标记
-            var point = _self.graphicHelper.findMultiColors(_self.memImage, multiColor['探索_式神满级标记'].firstColor, multiColor['探索_式神满级标记'].colors, { region: [106, 446, 833, 522], threshold: 15 });
+            var point = _self.graphicHelper.findMultiColorsPalace(_self.memImage, multiColor['探索_式神满级标记'].firstColor, multiColor['探索_式神满级标记'].colors, { region: [106, 446, 833, 522], threshold: 15 });
             if (null != point) {
                 var clickPoints = {
                     data: [{

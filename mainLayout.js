@@ -32,6 +32,7 @@ module.exports = <drawer id="drawer" bg="#eeeeeeee">
                 <vertical>
                     <LX-CONFIGCONFIG/>
                 </vertical>
+                <fab id="showFloaty2" w="auto" h="auto" src="@drawable/ic_check_black_48dp" margin="16" layout_gravity="bottom|right" tint="#ffffff" />
             </frame>
         </viewpager>
     </vertical>

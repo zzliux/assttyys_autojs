@@ -368,59 +368,11 @@ var assttyys = {
         });
 
         ui.showFloaty.on('click', function () {
+            that.showFloaty();
+        });
 
-            if (!that.authorizationStatus) {
-                toastLog('未授权！');
-                return;
-            }
-
-            if (!ui.autoService.checked) {
-                toastLog('请开启无障碍权限');
-                return;
-            }
-
-            if (!ui.floatyPermission.checked) {
-                toastLog('请开启悬浮权限');
-                return;
-            }
-
-            that.ass.put('funcList', that.funcList);
-
-            var userConfigConfig = {};
-            for (let i = 0; i < that.configConfigItemData.length; i++) {
-                var fieldName = that.configConfigItemData[i].fieldName;
-                if ('integer' == that.configConfigItemData[i].fieldType) {
-                    var text = ui[fieldName].text();
-                    if (!/^\d+$/.test(text)) {
-                        toastLog('配置项[' + that.configConfigItemData[i].itemName + ']请填入整数。');
-                        return;
-                    }
-                    userConfigConfig[fieldName] = java.lang.Integer.parseInt(text);
-                } else if ('boolean' == that.configConfigItemData[i].fieldType) {
-                    userConfigConfig[fieldName] = ui[fieldName].isChecked();
-                } else if ('select' == that.configConfigItemData[i].fieldType) {
-                    userConfigConfig[fieldName] = java.lang.Integer.parseInt(ui[fieldName].getSelectedItemPosition());
-                }
-            }
-            that.ass.put('userConfigConfig', userConfigConfig);
-
-            if (null === that.floatyThread) {
-                that.floatyThread = threads.start(function () {
-                    var dqFloaty = require('./zz_modules/dqFloaty');
-                    dqFloaty.render();
-                });
-            }
-
-            if (null == that.currentPackage) {
-                var i = app.intent({
-                    action: Intent.ACTION_MAIN,
-                    category: Intent.CATEGORY_HOME,
-                    flags: ['ACTIVITY_NEW_TASK'],
-                });
-                context.startActivity(i);
-            } else {
-                launch(that.currentPackage);
-            }
+        ui.showFloaty2.on('click', function () {
+            that.showFloaty();
         });
 
         ui.autoService.checked = auto.service != null;
@@ -520,6 +472,63 @@ var assttyys = {
             }
 
         });
+    },
+
+    showFloaty: function () {
+        var that = this;
+
+        if (!that.authorizationStatus) {
+            toastLog('未授权！');
+            return;
+        }
+
+        if (!ui.autoService.checked) {
+            toastLog('请开启无障碍权限');
+            return;
+        }
+
+        if (!ui.floatyPermission.checked) {
+            toastLog('请开启悬浮权限');
+            return;
+        }
+
+        that.ass.put('funcList', that.funcList);
+
+        var userConfigConfig = {};
+        for (let i = 0; i < that.configConfigItemData.length; i++) {
+            var fieldName = that.configConfigItemData[i].fieldName;
+            if ('integer' == that.configConfigItemData[i].fieldType) {
+                var text = ui[fieldName].text();
+                if (!/^-?\d+$/.test(text)) {
+                    toastLog('配置项[' + that.configConfigItemData[i].itemName + ']请填入整数。');
+                    return;
+                }
+                userConfigConfig[fieldName] = java.lang.Integer.parseInt(text);
+            } else if ('boolean' == that.configConfigItemData[i].fieldType) {
+                userConfigConfig[fieldName] = ui[fieldName].isChecked();
+            } else if ('select' == that.configConfigItemData[i].fieldType) {
+                userConfigConfig[fieldName] = java.lang.Integer.parseInt(ui[fieldName].getSelectedItemPosition());
+            }
+        }
+        that.ass.put('userConfigConfig', userConfigConfig);
+
+        if (null === that.floatyThread) {
+            that.floatyThread = threads.start(function () {
+                var dqFloaty = require('./zz_modules/dqFloaty');
+                dqFloaty.render();
+            });
+        }
+
+        if (null == that.currentPackage) {
+            var i = app.intent({
+                action: Intent.ACTION_MAIN,
+                category: Intent.CATEGORY_HOME,
+                flags: ['ACTIVITY_NEW_TASK'],
+            });
+            context.startActivity(i);
+        } else {
+            launch(that.currentPackage);
+        }
     },
 
     initData: function () {

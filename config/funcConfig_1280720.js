@@ -701,7 +701,10 @@ module.exports = [
                 _self.commonClick(clickPoints);
                 // 第一个素材换到右边
                 _self.automator.swipe(203 + random(0, 37), 551 + random(0, 64), 618 + random(0, 46), 324 + random(0, 72), random(300, 500));
-                sleep(random(700, 900));
+                sleep(random(200, 400));
+                // 再拉一下列表，保证回到原来的位置
+                _self.automator.swipe(203 + random(0, 37), 551 + random(0, 64), 337 + random(0, 30), 564 + random(0, 50), random(300, 500));
+                sleep(random(200, 400));
                 // 第二个素材换到左边
                 _self.automator.swipe(337 + random(0, 30), 564 + random(0, 50), 183 + random(0, 45), 321 + random(0, 76), random(300, 500));
                 sleep(random(500, 600));
@@ -765,11 +768,13 @@ module.exports = [
                 _self.commonClick(clickPoints);
                 // 第一个素材换到右边
                 _self.automator.swipe(203 + random(0, 37), 551 + random(0, 64), 920 + random(0, 38), 335 + random(0, 47), random(500, 800));
-                sleep(random(700, 900));
+                sleep(random(200, 400));
+                // 再拉一下列表，保证回到原来的位置
+                _self.automator.swipe(203 + random(0, 37), 551 + random(0, 64), 337 + random(0, 30), 564 + random(0, 50), random(300, 500));
+                sleep(random(200, 400));
                 // 第二个素材换到左边
                 _self.automator.swipe(337 + random(0, 30), 564 + random(0, 50), 334 + random(0, 29), 334 + random(0, 55), random(300, 500));
                 sleep(random(500, 600));
-
             };
             return false;
         }
