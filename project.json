@@ -1,14 +1,29 @@
 {
-    "assets": [],
-    "build": {
-        "build_number": 0,
-        "build_time": 0
+    "name": "assttyys_ng",
+    "mainScriptFile": "dist/app.js",
+    "main": "dist/app.js",
+    "launchConfig": {
+        "hideLogs": true,
+        "stableMode": true,
+        "splashText": "AUTO.PRO"
     },
-    "useFeatures": [],
-    "main": "main.js",
-    "name": "assttyys",
-    "packageName": "com.xixdaoq.rsicybi",
-    "scripts": {},
-    "versionCode": 1,
-    "versionName": "0.0.4_build_20201006"
+    "ignore": [
+        "build",
+        "node_modules",
+        "config",
+        "src",
+        "test",
+        ".babelrc",
+        "jsconfig.json",
+        "tsconfig.json",
+        "package-lock.json",
+        "package.json",
+        "webpack.config.js",
+        "LICENSE",
+        "README.md",
+        ".gitignore"
+    ],
+    "packageName": "com.example.html",
+    "versionName": "1.0.0",
+    "versionCode": 1
 }

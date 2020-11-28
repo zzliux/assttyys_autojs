@@ -1,0 +1,86 @@
+const FuncList = [{
+	id: 1,
+	name: '准备',
+	checked: false,
+	config: [{
+		desc: '准备后绿标',
+		config: [{
+			name: 'enabled',
+			desc: '是否启用',
+			type: 'switch',
+			default: false
+		}, {
+			name: 'position',
+			desc: '标记位置',
+			type: 'list',
+			data: ['五人-左1', '五人-左2', '五人-左3', '五人-左4', '五人-左5', '三人-左1', '三人-左2', '三人-左3'],
+			default: '五人-左1'
+		}]
+	}]
+}, {
+	id: 2,
+	name: '退出结算',
+	checked: false
+}, {
+	id: 3,
+	name: '接受协作',
+	checked: false
+}, {
+	id: 4,
+	name: '拒绝协作',
+	checked: false
+}, {
+	id: 5,
+	name: '接受邀请',
+	checked: false
+}, {
+	id: 6,
+	name: '组队挑战',
+	checked: false
+}, {
+	id: 7,
+	name: '组队三人挑战',
+	checked: false
+}, {
+	id: 8,
+	name: '取消确定框点确定',
+	checked: false
+}, {
+	id: 9,
+	name: '御魂/御灵挑战',
+	checked: false
+}, {
+	id: 10,
+	name: '结界_进攻',
+	checked: false
+}, {
+	id: 11,
+	name: '结界_刷新',
+	checked: false
+}, {
+	id: 12,
+	name: '结界_0勋章',
+	checked: false
+}, {
+	id: 13,
+	name: '结界_1勋章',
+	checked: false
+}, {
+	id: 14,
+	name: '结界_2勋章',
+	checked: false
+}, {
+	id: 15,
+	name: '结界_3勋章',
+	checked: false
+}, {
+	id: 16,
+	name: '结界_4勋章',
+	checked: false
+}, {
+	id: 17,
+	name: '结界_5勋章',
+	checked: false
+}];
+
+export default FuncList;
