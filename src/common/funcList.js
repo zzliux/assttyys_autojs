@@ -8,13 +8,15 @@ const FuncList = [{
 			name: 'enabled',
 			desc: '是否启用',
 			type: 'switch',
-			default: false
+			default: false,
+			value: null,
 		}, {
 			name: 'position',
 			desc: '标记位置',
 			type: 'list',
 			data: ['五人-左1', '五人-左2', '五人-左3', '五人-左4', '五人-左5', '三人-左1', '三人-左2', '三人-左3'],
-			default: '五人-左1'
+			default: '五人-左1',
+			value: null,
 		}]
 	}]
 }, {

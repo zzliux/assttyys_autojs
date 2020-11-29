@@ -7,11 +7,11 @@
       fixed
     />
     <router-view class="rv"></router-view>
-    <van-tabbar v-model="tagNavId" fixed @change="changeTagNav">
-      <van-tabbar-item icon="home-o">Home</van-tabbar-item>
-      <van-tabbar-item icon="search">Search</van-tabbar-item>
-      <van-tabbar-item icon="friends-o">Me</van-tabbar-item>
-      <van-tabbar-item icon="setting-o">Settings</van-tabbar-item>
+    <van-tabbar fixed route>
+      <van-tabbar-item replace to="/home" icon="home-o">Home</van-tabbar-item>
+      <van-tabbar-item replcae to="/search" icon="search">Search</van-tabbar-item>
+      <van-tabbar-item replace to="/me" icon="friends-o">Me</van-tabbar-item>
+      <van-tabbar-item replace to="/settings" icon="setting-o">Settings</van-tabbar-item>
     </van-tabbar>
   </div>
 </template>
@@ -26,16 +26,8 @@ Vue.use(NavBar);
 
 export default {
   data() {
-    return {
-      tagNavId: 0,
-    };
   },
   methods: {
-    changeTagNav() {
-      this.$router.replace(
-        ["/home", "/search", "/me", "/settings"][this.tagNavId]
-      );
-    },
     navLeft() {
       this.$router.back();
     }
