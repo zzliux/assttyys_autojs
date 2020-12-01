@@ -25,12 +25,19 @@ const FuncList = [{
 	checked: false
 }, {
 	id: 3,
-	name: '接受协作',
-	checked: false
-}, {
-	id: 4,
-	name: '拒绝协作',
-	checked: false
+	name: '悬赏协作',
+	checked: false,
+	config: [{
+		desc: '',
+		config: [{
+			name: 'type',
+			desc: '悬赏协作',
+			type: 'list',
+			data: ['拒绝', '接受'],
+			default: '拒绝',
+			value: null,
+		}]
+	}]
 }, {
 	id: 5,
 	name: '接受邀请',
@@ -38,11 +45,18 @@ const FuncList = [{
 }, {
 	id: 6,
 	name: '组队挑战',
-	checked: false
-}, {
-	id: 7,
-	name: '组队三人挑战',
-	checked: false
+	checked: false,
+	config: [{
+		desc: '',
+		config: [{
+			name: 'type',
+			desc: '组队挑战',
+			type: 'list',
+			data: ['有人就开', '双人', '三人'],
+			default: '双人',
+			value: null,
+		}]
+	}]
 }, {
 	id: 8,
 	name: '取消确定框点确定',
@@ -53,36 +67,38 @@ const FuncList = [{
 	checked: false
 }, {
 	id: 10,
-	name: '结界_进攻',
+	name: '结界_进攻按钮',
 	checked: false
 }, {
 	id: 11,
-	name: '结界_刷新',
-	checked: false
+	name: '结界_刷新按钮',
+	checked: false,
+	config: [{
+		desc: '',
+		config: [{
+			name: 'type',
+			desc: '刷新条件',
+			type: 'list',
+			data: ['三次刷新', '直接刷新'],
+			default: '三次刷新',
+			value: null,
+		}]
+	}]
 }, {
 	id: 12,
-	name: '结界_0勋章',
-	checked: false
-}, {
-	id: 13,
-	name: '结界_1勋章',
-	checked: false
-}, {
-	id: 14,
-	name: '结界_2勋章',
-	checked: false
-}, {
-	id: 15,
-	name: '结界_3勋章',
-	checked: false
-}, {
-	id: 16,
-	name: '结界_4勋章',
-	checked: false
-}, {
-	id: 17,
-	name: '结界_5勋章',
-	checked: false
+	name: '结界_勋章点击',
+	checked: false,
+	config: [{
+		desc: '',
+		config: [{
+			name: 'priority',
+			desc: '挑战顺序',
+			type: 'list',
+			data: ['4->5->3->2->1->0', '5->4->3->2->1->0', '0->1->2->3->4->5'],
+			default: '4->5->3->2->1->0',
+			value: null,
+		}]
+	}]
 }];
 
 export default FuncList;

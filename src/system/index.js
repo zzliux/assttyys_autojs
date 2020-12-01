@@ -1,5 +1,5 @@
 
-import core, { closeForeground } from '@auto.pro/core'
+import core, { closeForeground, setSystemUiVisibility } from '@auto.pro/core'
 import { run } from '@auto.pro/webview'
 import { fromEvent, race, timer } from 'rxjs'
 import { share, exhaustMap, tap } from 'rxjs/operators'
@@ -14,6 +14,7 @@ core({
 export const webview = run('file://' + files.path('dist/index.html'), {
     afterLayout() {
         // setSystemUiVisibility('有状态栏的沉浸式界面')
+        // activity.getWindow().setStatusBarColor(android.graphics.Color.TRANSPARENT);
     }
 })
 
