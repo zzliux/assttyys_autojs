@@ -37,9 +37,9 @@ module.exports = [
                     { x:   77, y:   82, c: 0x3a2a22, i: true },
                 ],
                 operaPoints: [
-                    { x: 1070, y: 101, ox: 120, oy: 488, ad: 50 },
-                    { x: 1070, y: 101, ox: 120, oy: 488, ad: 50 },
-                    { x: 1070, y: 101, ox: 120, oy: 488, ad: 50 },
+                    { x: 1070, y: 101, ox: 120, oy: 488, ad: 200 },
+                    { x: 1070, y: 101, ox: 120, oy: 488, ad: 200 },
+                    { x: 1070, y: 101, ox: 120, oy: 488, ad: 1000 },
                 ]
             },
             { // 退出结算(左下角战斗数据图标)
@@ -49,8 +49,8 @@ module.exports = [
                     { x:   88, y:  663, c: 0xa77d54, i: true },
                 ],
                 operaPoints: [
-                    { x: 1070, y: 101, ox: 120, oy: 488, ad: 50 },
-                    { x: 1070, y: 101, ox: 120, oy: 488, ad: 50 },
+                    { x: 1070, y: 101, ox: 120, oy: 488, ad: 200 },
+                    { x: 1070, y: 101, ox: 120, oy: 488, ad: 1000 },
                 ]
             },
             { // 退出结算(左上角贪吃鬼)
@@ -61,9 +61,9 @@ module.exports = [
                     { x:  102, y:   58, c: 0x25160a, i: true },
                 ],
                 operaPoints: [
-                    { x: 1070, y: 101, ox: 120, oy: 488, ad: 50 },
-                    { x: 1070, y: 101, ox: 120, oy: 488, ad: 50 },
-                    { x: 1070, y: 101, ox: 120, oy: 488, ad: 50 },
+                    { x: 1070, y: 101, ox: 120, oy: 488, ad: 200 },
+                    { x: 1070, y: 101, ox: 120, oy: 488, ad: 200 },
+                    { x: 1070, y: 101, ox: 120, oy: 488, ad: 1000 },
                 ]
             },
             
@@ -76,9 +76,8 @@ module.exports = [
                     { x:  813, y:  155, c: 0xffffff, i: true },
                 ],
                 operaPoints: [
-                    { x: 1070, y: 101, ox: 120, oy: 488, ad: 50 },
-                    { x: 1070, y: 101, ox: 120, oy: 488, ad: 50 },
-                    { x: 1070, y: 101, ox: 120, oy: 488, ad: 50 },
+                    { x: 1070, y: 101, ox: 120, oy: 488, ad: 200 },
+                    { x: 1070, y: 101, ox: 120, oy: 488, ad: 1000 },
                 ]
             },
             { // 组队退出结算(胜利太鼓)
@@ -89,9 +88,9 @@ module.exports = [
                     { x:  821, y:   93, c: 0xf7efd0, i: true },
                 ],
                 operaPoints: [
-                    { x: 1070, y: 101, ox: 120, oy: 488, ad: 50 },
-                    { x: 1070, y: 101, ox: 120, oy: 488, ad: 50 },
-                    { x: 1070, y: 101, ox: 120, oy: 488, ad: 50 },
+                    { x: 1070, y: 101, ox: 120, oy: 488, ad: 200 },
+                    { x: 1070, y: 101, ox: 120, oy: 488, ad: 200 },
+                    { x: 1070, y: 101, ox: 120, oy: 488, ad: 200 },
                 ]
             },
             { // 退出结算(打开的胜利达摩)
@@ -103,7 +102,7 @@ module.exports = [
                     { x:  697, y:  424, c: 0x49382c, i: true },
                 ],
                 operaPoints: [
-                    { x: 1070, y: 101, ox: 120, oy: 488, ad: 500 },
+                    { x: 1070, y: 101, ox: 120, oy: 488, ad: 1000 },
                 ]
             },
             { // 个人退出结算(失败太鼓)
@@ -866,5 +865,87 @@ module.exports = [
             ],
             operaPoints: [{ x: 580, y: 398, ox: 119, oy: 48, ad: 1000 }]
         }]
+    }, {
+        id: 40,
+        name: '超鬼王_发现超鬼王',
+        data: [{
+            judgePoints: [
+                { x:   45, y:   43, c: 0xc2cbe2, i: true },
+                { x:  248, y:   43, c: 0xa08e78, i: true },
+                { x: 1185, y:  611, c: 0xf3dab1, i: true },
+                { x:  155, y:  164, c: 0x855928, i: true },
+            ],
+            operaPoints: [{ x: 1160, y: 583, ox: 58, oy: 51, ad: 1000 }]
+        }]
+    }, {
+        id: 41,
+        name: '超鬼王_挑战',
+        data: [{
+            judgePoints: [
+                { x:   48, y:   47, c: 0xc2cbe3, i: true },
+                { x:  249, y:   47, c: 0xa29079, i: true },
+                { x: 1137, y:  600, c: 0xd6c69c, i: true },
+                { x: 1196, y:  620, c: 0xd9c090, i: true },
+            ],
+            operaPoints: [{ x: 1133, y: 579, ox: 78, oy: 69, ad: 1000 }]
+        }]
+    }, {
+        id: 42,
+        name: '探索_挑战无差别',
+        data: function () {
+            var _self = this;
+            var count = 4;
+            while (count--) {
+                var sceneJudge = {
+                    data: [{ // 用来判断是不是探索小怪的场景，直接用多点找色的话会在此占用太多资源
+                        judgePoints: [
+                            { x:   39, y:   68, c: 0xeff5fb, i: true },
+                            { x:   35, y:  578, c: 0x922f58, i: true },
+                            { x: 1126, y:   35, c: 0xd7b389, i: true },
+                        ],
+                        operaPoints: []
+                    }]
+                }
+                if (!_self.commonClick(sceneJudge)) return false;
+    
+                // 如果是boss就直接挑战
+                var point0 = _self.graphicHelper.findMultiColorsPalace(_self.memImage, multiColor['探索_挑战BOSS图标'].firstColor, multiColor['探索_挑战BOSS图标'].colors, { region: [75, 140, 1070, 228], threshold: 10 });
+                if (null != point0) {
+                    _self.automator.press(point0.x + random(0, 35), point0.y + random(0, 57), random(10, 100));
+                    sleep(1000 + _self.userConfigs.afterClickDelay + random(0, _self.userConfigs.afterClickDelayRandom));
+                    return true;
+                }
+                
+                var pointChange = _self.graphicHelper.findMultiColorsPalace(_self.memImage, multiColor['探索_挑战图标'].firstColor, multiColor['探索_挑战图标'].colors, { region: [75, 140, 1070, 400], threshold: _self.userConfigs.multiColorSimilar });
+                if (null != pointChange) {
+                    _self.automator.press(pointChange.x + random(0, 40), pointChange.y + random(0, 40), random(10, 100));
+                    sleep(1000 + _self.userConfigs.afterClickDelay + random(0, _self.userConfigs.afterClickDelayRandom));
+                    return true;
+                }
+                
+                if (count) {
+                    // 屏幕右往坐滑
+                    _self.automator.swipe(1039 + random(0, 180), 129 + random(0, 52), 87 + random(0, 128), 235 + random(0, 380), random(300, 500));
+                    sleep(200);
+                    _self.captureScreen();
+                }
+            }
+
+            // 退出
+            var outScene = {
+                data: [{ // 用来判断是不是探索小怪的场景，直接用多点找色的话会在此占用太多资源
+                    judgePoints: [
+                        { x:   39, y:   68, c: 0xeff5fb, i: true },
+                        { x:   35, y:  578, c: 0x922f58, i: true },
+                        { x: 1126, y:   35, c: 0xd7b389, i: true },
+                    ],
+                    operaPoints: [
+                        { x: 36, y: 48, ox: 35, oy: 30, ad: 700 },
+                        { x: 701, y: 389, ox: 146, oy: 29, ad: 1000}
+                    ]
+                }]
+            }
+            return _self.commonClick(outScene);
+        }
     }
 ]

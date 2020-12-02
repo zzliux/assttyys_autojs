@@ -38,9 +38,9 @@ module.exports = [
                     { x:   92, y:  101, c: 0x3c2c1e, i: true },
                 ],
                 operaPoints: [
-                    { x: 1603, y: 152, ox: 212, oy: 821, ad: 50 },
-                    { x: 1603, y: 152, ox: 212, oy: 821, ad: 50 },
-                    { x: 1603, y: 152, ox: 212, oy: 821, ad: 50 },
+                    { x: 1603, y: 152, ox: 212, oy: 821, ad: 200 },
+                    { x: 1603, y: 152, ox: 212, oy: 821, ad: 200 },
+                    { x: 1603, y: 152, ox: 212, oy: 821, ad: 1000 },
                 ]
             },
             { // 退出结算(左上角贪吃鬼，左下角战斗数据识别), 提高识别速度
@@ -51,9 +51,9 @@ module.exports = [
                     { x:  157, y:   85, c: 0x19110b, i: true },
                 ],
                 operaPoints: [
-                    { x: 1603, y: 152, ox: 212, oy: 821, ad: 50 },
-                    { x: 1603, y: 152, ox: 212, oy: 821, ad: 50 },
-                    { x: 1603, y: 152, ox: 212, oy: 821, ad: 50 },
+                    { x: 1603, y: 152, ox: 212, oy: 821, ad: 200 },
+                    { x: 1603, y: 152, ox: 212, oy: 821, ad: 200 },
+                    { x: 1603, y: 152, ox: 212, oy: 821, ad: 1000 },
                 ]
             },
             
@@ -66,7 +66,7 @@ module.exports = [
                 ],
                 operaPoints: [
                     { x: 1603, y: 152, ox: 212, oy: 821, ad: 100 },
-                    { x: 1603, y: 152, ox: 212, oy: 821, ad: 100 },
+                    { x: 1603, y: 152, ox: 212, oy: 821, ad: 1000 },
                 ]
             },
             { // 组队退出结算(胜利太鼓)
@@ -78,7 +78,7 @@ module.exports = [
                 ],
                 operaPoints: [
                     { x: 1603, y: 152, ox: 212, oy: 821, ad: 100 },
-                    { x: 1603, y: 152, ox: 212, oy: 821, ad: 100 },
+                    { x: 1603, y: 152, ox: 212, oy: 821, ad: 1000 },
                 ]
             },
             { // 退出结算(未打开的胜利达摩)
@@ -98,7 +98,7 @@ module.exports = [
                     { x: 897, y: 927, c: '#300205', i: true },
                 ],
                 operaPoints: [
-                    { x: 1603, y: 152, ox: 212, oy: 821, ad: 100 },
+                    { x: 1603, y: 152, ox: 212, oy: 821, ad: 1000 },
                 ]
             },
             { // 个人退出结算(失败太鼓)
@@ -905,5 +905,87 @@ module.exports = [
             ],
             operaPoints: [{ x: 870, y: 597, ox: 180, oy: 73, ad: 1000 }]
         }]
-    }
+    }, {
+        id: 40,
+        name: '超鬼王_发现超鬼王',
+        data: [{
+            judgePoints: [
+                { x:   68, y:   68, c: 0xc2cbe3, i: true },
+                { x:  372, y:   67, c: 0xa29079, i: true },
+                { x:  205, y:  249, c: 0x9c6321, i: true },
+                { x: 1778, y:  916, c: 0xf6ddb4, i: true },
+                { x: 1794, y:  857, c: 0x5b4f48, i: true },
+            ],
+            operaPoints: [{ x: 1746, y: 872, ox: 81, oy: 89, ad: 1000 }]
+        }]
+    }, {
+        id: 41,
+        name: '超鬼王_挑战',
+        data: [{
+            judgePoints: [
+                { x:   64, y:   67, c: 0xc4cce1, i: true },
+                { x:  369, y:   71, c: 0xa28f79, i: true },
+                { x: 1697, y:  899, c: 0xe4d3b1, i: true },
+                { x: 1775, y:  937, c: 0x3c1e0c, i: true },
+                { x: 1805, y:  953, c: 0xd8c8a0, i: true },
+            ],
+            operaPoints: [{ x: 1700, y: 868, ox: 116, oy: 128, ad: 1000 }]
+        }]
+    }, {
+        id: 42,
+        name: '探索_挑战无差别',
+        data: function () {
+            var _self = this;
+            var count = 4;
+            while (count--) {
+                var sceneJudge = {
+                    data: [{ // 用来判断是不是探索小怪的场景，直接用多点找色的话会在此占用太多资源
+                        judgePoints: [
+                            { x: 61, y: 99, c: '#EDF5FD', i: true },
+                            { x: 59, y: 808, c: '#524A5A', i: true },
+                            { x: 1686, y: 79, c: '#CBA173', i: true },
+                        ],
+                        operaPoints: []
+                    }]
+                }
+                if (!_self.commonClick(sceneJudge)) return false;
+    
+                // 如果是boss就直接挑战
+                var point0 = _self.graphicHelper.findMultiColors(_self.memImage, multiColor['探索_挑战BOSS图标'].firstColor, multiColor['探索_挑战BOSS图标'].colors, { region: [40, 187, 1598, 468], threshold: 10 });
+                if (null != point0) {
+                    _self.automator.press(point0.x + random(0, 68), point0.y + random(0, 66), random(10, 100));
+                    sleep(1000 + _self.userConfigs.afterClickDelay + random(0, _self.userConfigs.afterClickDelayRandom));
+                    return true;
+                }
+    
+                var pointChange = _self.graphicHelper.findMultiColors(_self.memImage, multiColor['探索_挑战图标'].firstColor, multiColor['探索_挑战图标'].colors, { region: [40, 187, 1598, 613], threshold: _self.userConfigs.multiColorSimilar });
+                if (null != pointChange) {
+                    _self.automator.press(pointChange.x + random(0, 77), pointChange.y + random(0, 91), random(10, 100));
+                    sleep(1000 + _self.userConfigs.afterClickDelay + random(0, _self.userConfigs.afterClickDelayRandom));
+                    return true;
+                }
+                if (count) {
+                    // 屏幕右往坐滑
+                    _self.automator.swipe(1476 + random(0, 180), 166 + random(0, 109), 200 + random(0, 262), 228 + random(0, 745), random(300, 500));
+                    sleep(200);
+                    _self.captureScreen();
+                }
+            }
+
+            var outScene = {
+                data: [{ // 用来判断是不是探索小怪的场景，直接用多点找色的话会在此占用太多资源
+                    judgePoints: [
+                        { x: 61, y: 99, c: '#EDF5FD', i: true },
+                        { x: 59, y: 808, c: '#524A5A', i: true },
+                        { x: 1686, y: 79, c: '#CBA173', i: true },
+                    ],
+                    operaPoints: [
+                        { x: 46, y: 70, ox: 61, oy: 51, ad: 700 },
+                        { x: 1052, y: 583, ox: 220, oy: 45, ad: 2000}
+                    ]
+                }]
+            }
+            return _self.commonClick(outScene);
+        }
+    },
 ]

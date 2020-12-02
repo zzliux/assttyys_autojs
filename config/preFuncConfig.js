@@ -4,6 +4,14 @@ module.exports = [
         funcNumbers: []
     },
     {
+        name: '超鬼王',
+        funcNumbers: [1, 2, 4, 40, 41]
+    },
+    { 
+        name: '无差别探索',
+        funcNumbers: [24, 1, 4, 2, 42, 21, 22, 39]
+    },
+    {
         name: '双人车司机',
         funcNumbers: [1, 8, 2, 4, 6, 39]
     },

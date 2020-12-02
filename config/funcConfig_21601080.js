@@ -40,9 +40,9 @@ module.exports = [
                     { x:  119, y:   91, c: 0x3c2a20, i: true },
                 ],
                 operaPoints: [
-                    { x: 1849, y: 186, ox: 160, oy: 794, ad: 50 },
-                    { x: 1849, y: 186, ox: 160, oy: 794, ad: 50 },
-                    { x: 1849, y: 186, ox: 160, oy: 794, ad: 50 },
+                    { x: 1849, y: 186, ox: 160, oy: 794, ad: 200 },
+                    { x: 1849, y: 186, ox: 160, oy: 794, ad: 200 },
+                    { x: 1849, y: 186, ox: 160, oy: 794, ad: 1000 },
                 ]
             },
             { // 退出结算(左上角贪吃鬼图标),最优，速度最快
@@ -54,9 +54,9 @@ module.exports = [
                     { x:  131, y:   97, c: 0x5e5252, i: true },
                 ],
                 operaPoints: [
-                    { x: 1849, y: 186, ox: 160, oy: 794, ad: 50 },
-                    { x: 1849, y: 186, ox: 160, oy: 794, ad: 50 },
-                    { x: 1849, y: 186, ox: 160, oy: 794, ad: 50 },
+                    { x: 1849, y: 186, ox: 160, oy: 794, ad: 200 },
+                    { x: 1849, y: 186, ox: 160, oy: 794, ad: 200 },
+                    { x: 1849, y: 186, ox: 160, oy: 794, ad: 1000 },
                 ]
             },
             { // 个人退出结算(胜利太鼓)
@@ -67,7 +67,7 @@ module.exports = [
                     { x:  840, y:  287, c: 0xd0c0a9, i: true },
                 ],
                 operaPoints: [
-                    { x: 1849, y: 186, ox: 160, oy: 794, ad: 100 },
+                    { x: 1849, y: 186, ox: 160, oy: 794, ad: 1000 },
                 ]
             },
             { // 组队退出结算(胜利太鼓)
@@ -78,7 +78,7 @@ module.exports = [
                     { x:  842, y:  200, c: 0xd0c0a9, i: true },
                 ],
                 operaPoints: [
-                    { x: 1849, y: 186, ox: 160, oy: 794, ad: 100 },
+                    { x: 1849, y: 186, ox: 160, oy: 794, ad: 1000 },
                 ]
             },
             { // 退出结算(未打开的胜利达摩)
@@ -99,7 +99,7 @@ module.exports = [
                     { x: 1171, y:  927, c: 0x350204, i: true },
                 ],
                 operaPoints: [
-                    { x: 1849, y: 186, ox: 160, oy: 794, ad: 500 },
+                    { x: 1849, y: 186, ox: 160, oy: 794, ad: 1000 },
                 ]
             },
             { // 个人退出结算(失败太鼓)
@@ -913,5 +913,92 @@ module.exports = [
             ],
             operaPoints: [{ x: 993, y: 597, ox: 175, oy: 73, ad: 1000 }]
         }]
-    }
+    }, {
+        id: 40,
+        name: '超鬼王_发现超鬼王',
+        data: [{
+            judgePoints: [
+                { x:   64, y:   67, c: 0xc4cce1, i: true },
+                { x:  373, y:   69, c: 0xa29079, i: true },
+                { x:  211, y:  270, c: 0xf4e3c1, i: true },
+                { x: 1897, y:  917, c: 0xf1d8af, i: true },
+                { x: 1912, y:  860, c: 0x655644, i: true },
+            ],
+            operaPoints: [{ x: 1864, y: 873, ox: 77, oy: 85, ad: 1000 }]
+        }]
+    }, {
+        id: 41,
+        name: '超鬼王_挑战',
+        data: [{
+            judgePoints: [
+                { x:   66, y:   69, c: 0xc5cce0, i: true },
+                { x:  370, y:   70, c: 0xa28f79, i: true },
+                { x: 1832, y:  905, c: 0xe5d4b3, i: true },
+                { x: 1892, y:  972, c: 0xe8d8b9, i: true },
+                { x: 1849, y:  918, c: 0x3c1e0c, i: true },
+            ],
+            operaPoints: [{ x: 1816, y: 870, ox: 120, oy: 95, ad: 1000 }]
+        }]
+    }, {
+        id: 42,
+        name: '探索_挑战无差别',
+        data: function () {
+            var _self = this;
+            var count = 4;
+            while (count--) {
+                var sceneJudge = {
+                    data: [{ // 用来判断是不是探索小怪的场景，直接用多点找色的话会在此占用太多资源
+                        judgePoints: [
+                            { x:   59, y:   93, c: 0xedf5fd, i: true },
+                            { x: 1929, y:   54, c: 0xd7b287, i: true },
+                            { x: 2078, y:   51, c: 0xd4ae82, i: true },
+                            { x:   51, y:  868, c: 0x943152, i: true },
+                            { x:  122, y: 1034, c: 0x2e3e2f, i: true },
+                        ],
+                        operaPoints: []
+                    }]
+                }
+                if (!_self.commonClick(sceneJudge)) return false;
+    
+                // 如果是boss就直接挑战
+                var point0 = _self.graphicHelper.findMultiColors(_self.memImage, multiColor['探索_挑战BOSS图标'].firstColor, multiColor['探索_挑战BOSS图标'].colors, { region: [84, 200, 2024, 512], threshold: 10 });
+                if (null != point0) {
+                    _self.automator.press(point0.x + random(0, 68), point0.y + random(0, 66), random(10, 100));
+                    sleep(1000 + _self.userConfigs.afterClickDelay + random(0, _self.userConfigs.afterClickDelayRandom));
+                    return true;
+                }
+
+                var pointChange = _self.graphicHelper.findMultiColors(_self.memImage, multiColor['探索_挑战图标'].firstColor, multiColor['探索_挑战图标'].colors, { region: [84, 200, 2024, 600], threshold: _self.userConfigs.multiColorSimilar });
+                if (null != pointChange) {
+                    _self.automator.press(pointChange.x + random(0, 70), pointChange.y + random(0, 85), random(10, 100));
+                    sleep(1000 + _self.userConfigs.afterClickDelay + random(0, _self.userConfigs.afterClickDelayRandom));
+                    return true;
+                }
+
+                if (count) {
+                    // 屏幕右往坐滑
+                    _self.automator.swipe(1658 + random(0, 390), 176 + random(0, 166), 298 + random(0, 234), 270 + random(0, 516), random(300, 600));
+                    sleep(200);
+                    _self.captureScreen();
+                }
+            }
+
+            var outScene = {
+                data: [{ // 用来判断是不是探索小怪的场景，直接用多点找色的话会在此占用太多资源
+                    judgePoints: [
+                        { x:   59, y:   93, c: 0xedf5fd, i: true },
+                        { x: 1929, y:   54, c: 0xd7b287, i: true },
+                        { x: 2078, y:   51, c: 0xd4ae82, i: true },
+                        { x:   51, y:  868, c: 0x943152, i: true },
+                        { x:  122, y: 1034, c: 0x2e3e2f, i: true },
+                    ],
+                    operaPoints: [
+                        { x:   44, y:  68, ox:  63, oy: 62, ad: 700  },
+                        { x: 1174, y: 584, ox: 215, oy: 44, ad: 2000 }
+                    ]
+                }]
+            }
+            return _self.commonClick(outScene);
+        }
+    },
 ]

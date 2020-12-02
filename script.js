@@ -127,8 +127,6 @@ myScript.prototype = {
                         lastFunc = scriptFuncList[i].id;
                         continuityCount = 1;
                     }
-                    console.log('[assttyys] run success: ' + scriptFuncList[i].name);
-                    // toastLog(scriptFuncList[i].name);
                     break;
                 }
             }
@@ -160,6 +158,7 @@ myScript.prototype = {
                     var delay = op.ad + this.userConfigs.afterClickDelay + parseInt(random(0, this.userConfigs.afterClickDelayRandom));
                     sleep(delay);
                 }
+                console.log('[assttyys] run success: ' + funcObj.name + '_' + k);
                 return true;
             }
         }
