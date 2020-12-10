@@ -26,6 +26,7 @@ Vue.use(NavBar);
 
 export default {
   data() {
+    return {}
   },
   methods: {
     navLeft() {
