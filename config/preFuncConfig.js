@@ -4,14 +4,6 @@ module.exports = [
         funcNumbers: []
     },
     {
-        name: '超鬼王',
-        funcNumbers: [1, 2, 4, 40, 41]
-    },
-    { 
-        name: '无差别探索',
-        funcNumbers: [24, 1, 4, 2, 42, 21, 22, 39]
-    },
-    {
         name: '双人车司机',
         funcNumbers: [1, 8, 2, 4, 6, 39]
     },
@@ -25,7 +17,7 @@ module.exports = [
     },
     {
         name: '个人突破三次刷新',
-        funcNumbers: [1, 2, 4, 8, 10, 18, 17, 15, 16, 14, 13, 12, 11, 19, 30]
+        funcNumbers: [1, 2, 4, 8, 43, 10, 18, 17, 15, 16, 14, 13, 12, 11, 19, 30]
     },
     {
         name: '寮突破',
@@ -39,6 +31,10 @@ module.exports = [
         name: '单人狗粮',
         funcNumbers: [24, 1, 4, 2, 23, 21, 22, 39]
     },
+    { 
+        name: '无差别探索',
+        funcNumbers: [24, 1, 4, 2, 42, 21, 22, 39]
+    },
     {
         name: '组队狗粮_司机',
         funcNumbers: [27, 1, 4, 2, 6, 23, 21, 25, 8, 39]
@@ -47,8 +43,4 @@ module.exports = [
         name: '组队狗粮_打手',
         funcNumbers: [24, 1, 4, 2, 25, 5, 39]
     },
-    {
-        name: '个人突破_降级',
-        funcNumbers: [31, 2, 4, 8, 10, 11, 12, 13, 14, 15, 16, 19, 30]
-    }
 ];

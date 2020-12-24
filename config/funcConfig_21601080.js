@@ -1000,5 +1000,22 @@ module.exports = [
             }
             return _self.commonClick(outScene);
         }
-    },
+    },  {
+        id: 43,
+        name: '个人突破_突破券检查(待开发)',
+        data: [{
+            judgePoints: [
+                { x:   81, y:  106, c: 0x644924, i: true },
+                { x:  550, y:   93, c: 0x5a4131, i: true },
+                { x:  722, y:   93, c: 0x583716, i: true },
+                { x:  682, y:  103, c: 0xf8f3e0, i: true },
+                { x: 1209, y:  131, c: 0xebdac9, i: true },
+                { x: 1056, y:   33, c: 0xeee9d6, i: true }, // 0/30中0上面的几个点
+                { x: 1061, y:   34, c: 0x2f2423, i: true },
+                { x: 1065, y:   34, c: 0xe5dfce, i: true },
+                { x: 1061, y:   29, c: 0x312324, i: true },
+            ],
+            operaPoints: []
+        }]
+    }
 ]
