@@ -1002,18 +1002,18 @@ module.exports = [
         }
     },  {
         id: 43,
-        name: '个人突破_突破券检查(待开发)',
+        name: '个人突破_突破券检查',
         data: [{
             judgePoints: [
-                { x:   81, y:  106, c: 0x644924, i: true },
-                { x:  550, y:   93, c: 0x5a4131, i: true },
-                { x:  722, y:   93, c: 0x583716, i: true },
-                { x:  682, y:  103, c: 0xf8f3e0, i: true },
-                { x: 1209, y:  131, c: 0xebdac9, i: true },
-                { x: 1056, y:   33, c: 0xeee9d6, i: true }, // 0/30中0上面的几个点
-                { x: 1061, y:   34, c: 0x2f2423, i: true },
-                { x: 1065, y:   34, c: 0xe5dfce, i: true },
-                { x: 1061, y:   29, c: 0x312324, i: true },
+                { x:  416, y:  121, c: 0x3b393d, i: true },
+                { x: 1045, y:   72, c: 0x4d4a53, i: true },
+                { x: 1930, y:  199, c: 0xebdac9, i: true },
+                { x: 1046, y:  131, c: 0xf8f3e0, i: true },
+                { x: 1172, y:  132, c: 0x5f4937, i: true },
+                { x: 1712, y:   38, c: 0xd3ccbd, i: true },
+                { x: 1704, y:   50, c: 0xf2ecda, i: true },
+                { x: 1705, y:   48, c: 0xdbd5c5, i: true },
+                { x: 1718, y:   51, c: 0xe4dfce, i: true },
             ],
             operaPoints: []
         }]
