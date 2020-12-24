@@ -112,7 +112,7 @@ function dqFloaty() {
             <img id="logo_click" w="*" h="*" src="#ffffff" alpha="0" />
         </frame>
     )
-    win_1.setPosition(dm.widthPixels - 105, dm.heightPixels / 2) //悬浮按钮定位
+    win_1.setPosition(dm.widthPixels - 105, 60) //悬浮按钮定位
 
     var win_2 = floaty.rawWindow(
         <frame id="logo" h="44" alpha="0" >//悬浮按钮 弹性替身
@@ -181,7 +181,7 @@ function dqFloaty() {
                 img_dp.w = parseInt(dpZ * 9)//计算logo左边隐藏时 X值
                 img_dp.ww = parseInt(dpZ * (44 - 9))//计算logo右边隐藏时 X值
                 logo_right = win.id_2.getX() - parseInt(dpZ * 22)
-                win_1.setPosition(dm.widthPixels - img_dp.ww, dm.heightPixels / 2) //悬浮按钮定位
+                win_1.setPosition(dm.widthPixels - img_dp.ww, 60) //悬浮按钮定位
                 win.id_logo.setVisibility(4)
                 win.id_logo.attr("alpha", "1")
                 events.broadcast.emit("定时器关闭", terid)
@@ -201,7 +201,7 @@ function dqFloaty() {
             wm.getDefaultDisplay().getRealMetrics(dm);
             ui.run(function () {
                 logo_fx = false;
-                win_1.setPosition(dm.widthPixels - img_dp.ww, dm.heightPixels / 2) //悬浮按钮定位
+                win_1.setPosition(dm.widthPixels - img_dp.ww, 60) //悬浮按钮定位
                 win_2.logo.getLayoutParams().width = dm.widthPixels;
             });
         }
