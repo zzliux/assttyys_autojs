@@ -274,12 +274,32 @@ module.exports = [
         name: '结界_进攻',
         data: function () {
             var _self = this;
-            // 多点找色
-            var point = _self.graphicHelper.findMultiColors(_self.memImage, multiColor['结界_进攻'].firstColor, multiColor['结界_进攻'].colors, { region: [388, 434, 1531, 636], threshold: _self.userConfigs.multiColorSimilar });
-            if (!point) return false;
-            _self.automator.press(point.x + random(0, 180), point.y + random(0, 72), random(10, 100));
-            var delay = 2000 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
-            sleep(delay);
+            var leftTimes = _self.userConfigs.tupo_exit_on_fight_times;
+            var flag = false;
+            while (leftTimes--) {
+                // 多点找色
+                var point = _self.graphicHelper.findMultiColors(_self.memImage, multiColor['结界_进攻'].firstColor, multiColor['结界_进攻'].colors, { region: [388, 434, 1531, 636], threshold: _self.userConfigs.multiColorSimilar });
+                if (!point) {
+                    if (flag) {
+                        break;
+                    } else {
+                        return false;
+                    }
+                }
+                _self.automator.press(point.x + random(0, 180), point.y + random(0, 72), random(10, 100));
+                var delay = 2000 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
+                sleep(delay);
+                console.log('[assttyys] 结界进攻 leftTimes: ' + leftTimes);
+                flag = true;
+                _self.captureScreen();
+            }
+            if (leftTimes < 0) { // 连续尝试点了这么多次进攻都没进攻得上，点击右上角的叉叉
+                _self.automator.press(1780 + random(0, 28), 172 + random(0, 59), random(10, 100));
+                sleep(random(300, 600));
+                _self.automator.press(1780 + random(0, 28), 172 + random(0, 59), random(10, 100));
+                sleep(random(1200, 2400));
+                console.log('[assttyys] 结界进攻 退出地图');
+            }
             return true;
         }
     },
@@ -989,7 +1009,7 @@ module.exports = [
         }
     },  {
         id: 43,
-        name: '个人突破_突破券检查',
+        name: '结界_个人_突破券检查',
         data: [{
             judgePoints: [
                 { x:  793, y:  141, c: 0x543e2c, i: true },
@@ -1004,5 +1024,44 @@ module.exports = [
             ],
             operaPoints: []
         }]
+    }, {
+        id: 44,
+        name: '结界_寮突_地图进入突破界面',
+        data: [{
+            judgePoints: [
+                { x: 52, y: 1039, c: '#633E2B', i: true },
+                { x: 65, y: 87, c: '#EDF6FD', i: true },
+                { x: 1531, y: 1066, c: '#6D4333', i: true },
+                { x: 1740, y: 236, c: '#D8D2C2', i: true },
+            ],
+            operaPoints: [
+                { x: 414, y: 953, ox: 94, oy: 93, ad: 1500 },
+                { x: 1812, y: 546, ox: 31, oy: 135, ad: 1500 },
+            ]
+        }]
+    }, {
+        id: 45,
+        name: '结界_寮突_翻页',
+        data: function () {
+            var sceneJudge = {
+                data: [{
+                    judgePoints: [
+                        { x:  793, y:  141, c: 0x543e2c, i: true },
+                        { x: 1327, y:  148, c: 0x523929, i: true },
+                        { x: 1810, y:  198, c: 0xedd2cb, i: true },
+                        { x: 1081, y:  140, c: 0x583716, i: true },
+                        { x:  969, y:  146, c: 0xf8f3e0, i: true },
+                    ],
+                    operaPoints: []
+                }]
+            }
+            if (this.commonClick(sceneJudge)) {
+                var delayTime = random(1000, 2000);
+                this.automator.swipe(641 + random(0, 957), 913 + random(0, 41), 633 + random(0, 961), 350 + random(0, 85), delayTime);
+                sleep(delayTime);
+                return true;
+            }
+            return false;
+        }
     }
 ]

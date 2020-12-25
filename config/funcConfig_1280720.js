@@ -288,12 +288,32 @@ module.exports = [
         name: '结界_进攻',
         data: function () {
             var _self = this;
-            // 多点找色
-            var point = _self.graphicHelper.findMultiColorsPalace(_self.memImage, multiColor['结界_进攻'].firstColor, multiColor['结界_进攻'].colors, { region: [306, 210, 860, 462], threshold: _self.userConfigs.multiColorSimilar });
-            if (!point) return false;
-            _self.automator.press(point.x + random(0, 115), point.y + random(0, 44), random(10, 100));
-            var delay = 2000 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
-            sleep(delay);
+            var leftTimes = _self.userConfigs.tupo_exit_on_fight_times;
+            var flag = false;
+            while (leftTimes--) {
+                // 多点找色
+                var point = _self.graphicHelper.findMultiColorsPalace(_self.memImage, multiColor['结界_进攻'].firstColor, multiColor['结界_进攻'].colors, { region: [306, 210, 860, 462], threshold: _self.userConfigs.multiColorSimilar });
+                if (!point) {
+                    if (flag) {
+                        break;
+                    } else {
+                        return false;
+                    }
+                }
+                _self.automator.press(point.x + random(0, 115), point.y + random(0, 44), random(10, 100));
+                var delay = 2000 + _self.userConfigs.afterClickDelay + parseInt(random(0, _self.userConfigs.afterClickDelayRandom));
+                sleep(delay);
+                console.log('[assttyys] 结界进攻 leftTimes: ' + leftTimes);
+                flag = true;
+                _self.captureScreen();
+            }
+            if (leftTimes < 0) { // 连续尝试点了这么多次进攻都没进攻得上，点击右上角的叉叉
+                _self.automator.press(1185 + random(0, 12), 114 + random(0, 34), random(10, 100));
+                sleep(random(300, 600));
+                _self.automator.press(1185 + random(0, 12), 114 + random(0, 34), random(10, 100));
+                sleep(random(1200, 2400));
+                console.log('[assttyys] 结界进攻 退出地图');
+            }
             return true;
         }
     },
@@ -947,9 +967,9 @@ module.exports = [
             }
             return _self.commonClick(outScene);
         }
-    },  {
+    }, {
         id: 43,
-        name: '个人突破_突破券检查',
+        name: '结界_个人_突破券检查',
         data: [{
             judgePoints: [
                 { x:   81, y:  106, c: 0x644924, i: true },
@@ -964,5 +984,45 @@ module.exports = [
             ],
             operaPoints: []
         }]
+    }, {
+        id: 44,
+        name: '结界_寮突_地图进入突破界面',
+        data: [{
+            judgePoints: [
+                { x: 1169, y:  147, c: 0xd4cebf, i: true },
+                { x:   20, y:  694, c: 0x64402f, i: true },
+                { x:   43, y:   59, c: 0xeff5fb, i: true },
+                { x: 1125, y:   36, c: 0xd7b389, i: true },
+                { x: 1044, y:  708, c: 0x694330, i: true },
+            ],
+            operaPoints: [
+                { x:  278, y: 627, ox: 66, oy: 74, ad: 1500 },
+                { x: 1207, y: 364, ox: 21, oy: 91, ad: 1500 },
+            ]
+        }]
+    }, {
+        id: 45,
+        name: '结界_寮突_翻页',
+        data: function () {
+            var sceneJudge = {
+                data: [{
+                    judgePoints: [
+                        { x:   81, y:  106, c: 0x644924, i: true },
+                        { x:  550, y:   93, c: 0x5a4131, i: true },
+                        { x:  722, y:   93, c: 0x583716, i: true },
+                        { x:  682, y:  103, c: 0xf8f3e0, i: true },
+                        { x: 1209, y:  131, c: 0xebdac9, i: true },
+                    ],
+                    operaPoints: []
+                }]
+            }
+            if (this.commonClick(sceneJudge)) {
+                var delayTime = random(1000, 2000);
+                this.automator.swipe(434 + random(0, 620), 598 + random(0, 34), 422 + random(0, 639), 250 + random(0, 53), delayTime);
+                sleep(delayTime);
+                return true;
+            }
+            return false;
+        }
     }
 ]

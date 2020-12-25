@@ -17,6 +17,17 @@ module.exports = [
         ]
     },
     {
+        categoryName: '突破配置',
+        itemData: [
+            {
+                itemName: '尝试点击进攻x次后退出界面',
+                fieldName: 'tupo_exit_on_fight_times',
+                fieldType: 'integer',
+                default: 3
+            }
+        ]
+    },
+    {
         categoryName: '通用配置',
         itemData: [
             {
