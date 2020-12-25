@@ -1030,7 +1030,14 @@ module.exports = [
                 { x: 1930, y:  199, c: 0xebdac9, i: true },
                 { x: 1046, y:  131, c: 0xf8f3e0, i: true },
                 { x: 1172, y:  132, c: 0x5f4937, i: true },
-                { x: 1712, y:   38, c: 0xd3ccbd, i: true },
+                { x: 1683, y:   37, c: 0x312223, i: true },// 0/30中0左面的几个点
+                { x: 1691, y:   37, c: 0x312223, i: true },
+                { x: 1697, y:   42, c: 0x312223, i: true },
+                { x: 1698, y:   54, c: 0x312223, i: true },
+                { x: 1690, y:   63, c: 0x312223, i: true },
+                { x: 1690, y:   49, c: 0x312223, i: true },
+                { x: 1691, y:   49, c: 0x312223, i: true },
+                { x: 1712, y:   38, c: 0xd3ccbd, i: true },// 0/30中0上面的几个点
                 { x: 1704, y:   50, c: 0xf2ecda, i: true },
                 { x: 1705, y:   48, c: 0xdbd5c5, i: true },
                 { x: 1718, y:   51, c: 0xe4dfce, i: true },

@@ -977,6 +977,13 @@ module.exports = [
                 { x:  722, y:   93, c: 0x583716, i: true },
                 { x:  682, y:  103, c: 0xf8f3e0, i: true },
                 { x: 1209, y:  131, c: 0xebdac9, i: true },
+                { x: 1042, y:   25, c: 0x312325, i: true },// 0/30中0左面的几个点
+                { x: 1047, y:   25, c: 0x312325, i: true },
+                { x: 1046, y:   33, c: 0x312325, i: true },
+                { x: 1048, y:   33, c: 0x312325, i: true },
+                { x: 1047, y:   41, c: 0x312325, i: true },
+                { x: 1051, y:   36, c: 0x312325, i: true },
+                { x: 1050, y:   29, c: 0x312325, i: true },
                 { x: 1056, y:   33, c: 0xeee9d6, i: true }, // 0/30中0上面的几个点
                 { x: 1061, y:   34, c: 0x2f2423, i: true },
                 { x: 1065, y:   34, c: 0xe5dfce, i: true },
