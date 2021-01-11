@@ -14,7 +14,7 @@
             enabled: true,
             position: '五人-左1'
         }
-    }
+    },
     commonConfig: { // 通用参数
         clickDelay: 200, // 点击后固定延时
         clickDelayRandom: 1000, // 点击后延时随机数

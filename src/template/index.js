@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from "vue-router";
 import 'vant/lib/index.css';
 import App from './App.vue';
+import '../mock/promptMock';
 
 Vue.use(VueRouter);
 

@@ -1,14 +1,13 @@
 <template>
   <div>
-    <van-cell-group id="itemBox">
-      <draggable v-model="funcList" handle=".handle-area" @end="reSort">
+    <van-cell-group id="itemBox" :title="'方案 - ' + this.params.schemeName">
+      <draggable v-model="funcList" handle=".handle-area" @end="reSortAndSave">
         <van-cell
           class="item"
           center
           v-for="item in funcList"
           :key="item.id"
-          :title="item.name"
-          is-link
+          :title="item.name + (item.config && item.config.length ? ' *': '')"
           @click="itemClick($event, item)"
         >
           <template>
@@ -60,13 +59,32 @@ Vue.use(Picker);
 
 export default {
   data() {
+    var schemeConfig = prompt('getScheme', JSON.stringify(this.$route.query.schemeName));
+
+
     let fl = _.cloneDeep(dfuncList);
     fl.forEach(item => {
-      (item.config || []).forEach(iItem => {
+      if (!item.config) {
+        item.config = [];
+      }
+      item.config.forEach(iItem => {
         iItem.config.forEach(iIItem => {
           iIItem.value = iIItem.default;
         });
       });
+      // 已保存的方案和funcList
+      if (schemeConfig.list.indexOf(item.id) !== -1) {
+        item.checked = true
+        item.config.forEach(iItem => {
+          iItem.config.forEach(iIItem => {
+            if (schemeConfig.config[item.id] && schemeConfig.config[item.id][iIItem.name]) {
+              iIItem.value = schemeConfig.config[item.id][iIItem.name];
+            } else {
+              iIItem.value = iIItem.default;
+            }
+          });
+        });
+      }
     });
 
     return {
@@ -90,11 +108,12 @@ export default {
         Toast(`加载方案 [ ${this.params.schemeName} ] `);
       }
     }
+    this.reSort();
   },
   methods: {
     toggleSwitchEvent(value) {
       setTimeout(() => {
-        this.reSort();
+        this.reSortAndSave();
       }, 100);
     },
     reSort() {
@@ -103,6 +122,10 @@ export default {
         list[item.checked + 0].push(item);
       });
       this.funcList = [...list[1], ...list[0]];
+    },
+    reSortAndSave() {
+      this.reSort();
+      this.saveScheme();
     },
     itemClick(e, item) {
       if (e.target.className.match(/switch|handle/)) {
@@ -113,7 +136,7 @@ export default {
         this.configModalObject = item;
         this.configModalShow = true;
       } else {
-        Toast('无可配置项');
+        // Toast('无可配置项');
       }
     },
     showItemConfigList(e, configItemItem) {
@@ -124,6 +147,16 @@ export default {
     configItemItemPickerConfirm(text, _index) {
       this.curItemItem.value = text;
       this.configItemItemShowPicker = false;
+    },
+    saveScheme() {
+      if (this.params && this.params.schemeName) {
+        var r = prompt('saveScheme', JSON.stringify({
+          name: '测试方案',
+          funcList: _.cloneDeep(this.funcList)
+        }));
+      } else {
+        Toast(`参数错误：params.schemeName为空`);
+      }
     }
   }
 };

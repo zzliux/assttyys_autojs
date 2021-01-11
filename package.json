@@ -6,8 +6,8 @@
     "scripts": {
         "start": "npx webpack --config config/index.js --watch --mode=development",
         "build": "npx webpack --config config/index.js --mode=production",
-        "html": "webpack-dev-server --config config/webpack.html.config.js --mode=development",
-        "vue": "webpack-dev-server --config config/webpack.vue.config.js --mode=development"
+        "html": "npx webpack-dev-server --config config/webpack.html.config.js --mode=development",
+        "vue": "npx webpack-dev-server --config config/webpack.vue.config.js --mode=development"
     },
     "author": "",
     "license": "ISC",

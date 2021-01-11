@@ -31,7 +31,7 @@ const FuncList = [{
 		desc: '',
 		config: [{
 			name: 'type',
-			desc: '悬赏协作',
+			desc: '操作',
 			type: 'list',
 			data: ['拒绝', '接受'],
 			default: '拒绝',
