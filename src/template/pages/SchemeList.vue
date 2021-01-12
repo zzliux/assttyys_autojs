@@ -1,7 +1,11 @@
 <template>
   <div>
     <van-cell-group id="itemBox" title="方案列表">
-      <draggable v-model="schemeList" handle=".handle-area" @end="saveSchemeList">
+      <draggable
+        v-model="schemeList"
+        handle=".handle-area"
+        @end="saveSchemeList"
+      >
         <van-cell
           class="item"
           center
@@ -11,8 +15,15 @@
           @click="schemeClickEvent($event, item)"
         >
           <template>
-            <span class="handle-area"><van-icon class="handle" size="18" name="bars" /></span>
-            <span class="star-area" @click="schemeStarEvent($event, item)"><van-icon class="star" size="18" :name="item.star ? 'star' : 'star-o'" /></span>
+            <span class="handle-area"
+              ><van-icon class="handle" size="18" name="bars"
+            /></span>
+            <span class="star-area" @click="schemeStarEvent($event, item)"
+              ><van-icon
+                class="star"
+                size="18"
+                :name="item.star ? 'star' : 'star-o'"
+            /></span>
           </template>
         </van-cell>
       </draggable>
@@ -21,10 +32,10 @@
 </template>
 <script>
 import Vue from "vue";
-import { Cell, CellGroup, Switch, Icon, Toast, Popup, Form, Field, Picker } from "vant";
-import draggable from 'vuedraggable'
+import { Cell, CellGroup, Icon, Toast } from "vant";
+import draggable from "vuedraggable";
 import dSchemeList from "../../common/schemeList";
-import _ from 'lodash';
+import _ from "lodash";
 
 Vue.use(Cell);
 Vue.use(CellGroup);
@@ -41,33 +52,33 @@ export default {
     draggable,
   },
   mounted() {
-      this.$EventBus.$emit('toggleShowNavLeft', false);
+    this.$EventBus.$emit("toggleShowNavLeft", false);
   },
   methods: {
     saveSchemeList() {
-        prompt('saveSchemeList', JSON.stringify(this.schemeList));
+      prompt("saveSchemeList", JSON.stringify(this.schemeList));
     },
     schemeClickEvent(e, item) {
       if (e.target.className.match(/handle|star/)) {
         return;
       }
       this.$router.push({
-            path: '/funclist',
-            query: {
-                schemeName: item.schemeName
-            }
-        })
+        path: "/funcList",
+        query: {
+          schemeName: item.schemeName,
+        },
+      });
     },
     schemeStarEvent(e, item) {
-        item.star = !item.star;
-        this.saveSchemeList();
-        if (item.star) {
-            Toast('收藏成功');
-        } else {
-            Toast('已取消收藏');
-        }
-    }
-  }
+      item.star = !item.star;
+      this.saveSchemeList();
+      if (item.star) {
+        Toast("收藏成功");
+      } else {
+        Toast("已取消收藏");
+      }
+    },
+  },
 };
 </script>
 

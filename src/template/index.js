@@ -10,25 +10,30 @@ var router = new VueRouter({
 	routes: [{
 		path:"/",
 		name: 'schemeList',
+		meta: {
+			index: 0
+		},
 		component: () => import('./pages/SchemeList.vue')
 	}, {
 		path:"/schemeList",
 		name: 'schemeList',
+		meta: {
+			index: 0
+		},
 		component: () => import('./pages/SchemeList.vue')
 	}, {
 		path:"/me",
 		name: 'me',
+		meta: {
+			index: 0
+		},
 		component: () => import('./pages/Me.vue')
 	}, {
-		path:"/search",
-		name: 'search',
-		component: () => import('./pages/Search.vue')
-	}, {
-		path:"/settings",
-		name: 'settings',
-		component: () => import('./pages/Settings.vue')
-	}, {
-		path:"/funclist",
+		path:"/funcList",
+		name: 'funcList',
+		meta: {
+			index: 1
+		},
 		component: () => import('./pages/FuncList.vue')
 	}]
 });
