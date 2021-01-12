@@ -7,7 +7,7 @@
 ## 返回值（例）
 ```javascript
 {
-    name: '寮突破', // 方案名
+    schemeName: '寮突破', // 方案名
     list: [1, 2, 4, 10, 20, 15, 16, 14, 13, 12, 11], // funcList中的id集合
     config: { // 方案中的配置，如返回空的话使用默认配置
         '1': { // key为功能的ID（1表示准备）
@@ -23,7 +23,35 @@
 }
 ```
 
-# saveScheme（保存方案）
+# saveSchemeList （保存方案列表）
+## 参数
+| 参数名 | 类型 | 描述 |
+| --- | --- | --- |
+| schemeList | Array | 方案列表，每个元素结构如下 |
+```javascript
+{
+    id: 3
+    schemeName: '寮突破',
+    type: 'inner' // inner-预设方案, user-用户方案
+    star: false // 是否收藏，收藏的方案可通过悬浮球进行切换
+    list: [1, 2, 4, 10, 20, 15, 16, 14, 13, 12, 11], // funcList中的id集合
+    config: { // 方案中的配置，如返回空的话使用默认配置
+        '1': { // key为功能的ID（1表示准备）
+            enabled: false,
+            position: '五人-左1'
+        }
+    },
+    commonConfig: { // 通用参数
+        clickDelay: 200, // 点击后固定延时
+        clickDelayRandom: 1000, // 点击后延时随机数
+        // 等
+    }
+}
+```
+## 返回值
+void
+
+# saveScheme （保存方案）
 修改方案的功能启用的细节以及每个功能的详细配置
 ## 参数
 | 参数名 | 类型 | 描述 |

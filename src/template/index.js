@@ -9,12 +9,12 @@ Vue.use(VueRouter);
 var router = new VueRouter({
 	routes: [{
 		path:"/",
-		name: 'home',
-		component: () => import('./pages/Home.vue')
+		name: 'schemeList',
+		component: () => import('./pages/SchemeList.vue')
 	}, {
-		path:"/home",
-		name: 'home',
-		component: () => import('./pages/Home.vue')
+		path:"/schemeList",
+		name: 'schemeList',
+		component: () => import('./pages/SchemeList.vue')
 	}, {
 		path:"/me",
 		name: 'me',
@@ -32,7 +32,8 @@ var router = new VueRouter({
 		component: () => import('./pages/FuncList.vue')
 	}]
 });
-
+// 事件总线
+Vue.prototype.$EventBus = new Vue();
 new Vue({
 	el: '#app',
 	router,

@@ -2,16 +2,14 @@
   <div>
     <van-nav-bar
       title="ASSTTYYS NG"
-      left-arrow
+      :left-arrow="showNavLeft"
       @click-left="navLeft"
       fixed
     />
     <router-view class="rv"></router-view>
     <van-tabbar fixed route>
-      <van-tabbar-item replace to="/home" icon="home-o">Home</van-tabbar-item>
-      <van-tabbar-item replcae to="/search" icon="search">Search</van-tabbar-item>
-      <van-tabbar-item replace to="/me" icon="friends-o">Me</van-tabbar-item>
-      <van-tabbar-item replace to="/settings" icon="setting-o">Settings</van-tabbar-item>
+      <van-tabbar-item replace to="/schemeList" icon="home-o">方案列表</van-tabbar-item>
+      <van-tabbar-item replace to="/me" icon="friends-o">我</van-tabbar-item>
     </van-tabbar>
   </div>
 </template>
@@ -26,14 +24,27 @@ Vue.use(NavBar);
 
 export default {
   data() {
-    return {}
+    return {
+      showNavLeft: false
+    }
   },
   methods: {
     navLeft() {
       this.$router.back();
+    },
+    toggleShowNavLeft(shown) {
+      if(shown === undefined) {
+        this.showNavLeft = !this.showNavLeft;
+      } else {
+        this.showNavLeft = !!shown;
+      }
     }
   },
   mounted() {
+    var self = this;
+    this.$EventBus.$on('toggleShowNavLeft', data => {
+      self.toggleShowNavLeft(data);
+    })
   }
 };
 </script>

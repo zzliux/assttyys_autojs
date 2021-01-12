@@ -1,7 +1,7 @@
 const promptMock = {
     getScheme: function (schemeName) {
         return {
-            name: schemeName, // 方案名
+            schemeName: schemeName, // 方案名
             list: [1, 2, 4, 10, 20, 15, 16, 14, 13, 12, 11], // funcList中的id集合
             config: { // 方案中的配置，如返回空的话使用默认配置
                 '1': { // key为功能的ID（1表示准备）
@@ -17,6 +17,9 @@ const promptMock = {
         }
     },
     saveScheme: function () {
+        return 'success';
+    },
+    saveSchemeList: function () {
         return 'success';
     }
 };

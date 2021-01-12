@@ -1,0 +1,85 @@
+<template>
+  <div>
+    <van-cell-group id="itemBox" title="方案列表">
+      <draggable v-model="schemeList" handle=".handle-area" @end="saveSchemeList">
+        <van-cell
+          class="item"
+          center
+          v-for="item in schemeList"
+          :key="item.id"
+          :title="item.schemeName"
+          @click="schemeClickEvent($event, item)"
+        >
+          <template>
+            <span class="handle-area"><van-icon class="handle" size="18" name="bars" /></span>
+            <span class="star-area" @click="schemeStarEvent($event, item)"><van-icon class="star" size="18" :name="item.star ? 'star' : 'star-o'" /></span>
+          </template>
+        </van-cell>
+      </draggable>
+    </van-cell-group>
+  </div>
+</template>
+<script>
+import Vue from "vue";
+import { Cell, CellGroup, Switch, Icon, Toast, Popup, Form, Field, Picker } from "vant";
+import draggable from 'vuedraggable'
+import dSchemeList from "../../common/schemeList";
+import _ from 'lodash';
+
+Vue.use(Cell);
+Vue.use(CellGroup);
+Vue.use(Icon);
+Vue.use(Toast);
+
+export default {
+  data() {
+    return {
+      schemeList: _.cloneDeep(dSchemeList),
+    };
+  },
+  components: {
+    draggable,
+  },
+  mounted() {
+      this.$EventBus.$emit('toggleShowNavLeft', false);
+  },
+  methods: {
+    saveSchemeList() {
+        prompt('saveSchemeList', JSON.stringify(this.schemeList));
+    },
+    schemeClickEvent(e, item) {
+      if (e.target.className.match(/handle|star/)) {
+        return;
+      }
+      this.$router.push({
+            path: '/funclist',
+            query: {
+                schemeName: item.schemeName
+            }
+        })
+    },
+    schemeStarEvent(e, item) {
+        item.star = !item.star;
+        this.saveSchemeList();
+        if (item.star) {
+            Toast('收藏成功');
+        } else {
+            Toast('已取消收藏');
+        }
+    }
+  }
+};
+</script>
+
+<style scoped>
+.item {
+  height: 48px;
+}
+.star-area,
+.handle-area {
+  margin-top: 8px;
+  height: 24px;
+  width: 36px;
+  display: inline-block;
+}
+</style>

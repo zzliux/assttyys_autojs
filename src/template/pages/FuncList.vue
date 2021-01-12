@@ -109,6 +109,7 @@ export default {
       }
     }
     this.reSort();
+    this.$EventBus.$emit('toggleShowNavLeft', true);
   },
   methods: {
     toggleSwitchEvent(value) {
@@ -167,7 +168,7 @@ export default {
   height: 48px;
 }
 .handle {
-  margin-right: 5px;
+  margin-right: 18px;
 }
 .handle-area {
   margin-top: 8px;
