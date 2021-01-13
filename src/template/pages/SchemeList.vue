@@ -1,33 +1,40 @@
 <template>
   <div>
-    <van-cell-group id="itemBox" title="方案列表">
-      <draggable
-        v-model="schemeList"
-        handle=".handle-area"
-        @end="saveSchemeList"
-      >
-        <van-cell
-          class="item"
-          center
-          v-for="item in schemeList"
-          :key="item.id"
-          :title="item.schemeName"
-          @click="schemeClickEvent($event, item)"
+    <div class="navbar_box">
+      <van-nav-bar
+        title="ASSTTYYS NG"
+      />
+    </div>
+    <div class="rv_inner">
+      <van-cell-group id="itemBox" title="方案列表">
+        <draggable
+          v-model="schemeList"
+          handle=".handle-area"
+          @end="saveSchemeList"
         >
-          <template>
-            <span class="handle-area"
-              ><van-icon class="handle" size="18" name="bars"
-            /></span>
-            <span class="star-area" @click="schemeStarEvent($event, item)"
-              ><van-icon
-                class="star"
-                size="18"
-                :name="item.star ? 'star' : 'star-o'"
-            /></span>
-          </template>
-        </van-cell>
-      </draggable>
-    </van-cell-group>
+          <van-cell
+            class="item"
+            center
+            v-for="item in schemeList"
+            :key="item.id"
+            :title="item.schemeName"
+            @click="schemeClickEvent($event, item)"
+          >
+            <template>
+              <span class="handle-area"
+                ><van-icon class="handle" size="18" name="bars"
+              /></span>
+              <span class="star-area" @click="schemeStarEvent($event, item)"
+                ><van-icon
+                  class="star"
+                  size="18"
+                  :name="item.star ? 'star' : 'star-o'"
+              /></span>
+            </template>
+          </van-cell>
+        </draggable>
+      </van-cell-group>
+    </div>
   </div>
 </template>
 <script>

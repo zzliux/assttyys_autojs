@@ -61,6 +61,7 @@ void
 {
     schemeName: '寮突破', // 方案名
     funcList: funcList, // 结构见 /src/common/funcList.js
+    commonConfig: commonConfig, // 见getScheme中的commonConfig
 }
 ```
 ### 返回值

@@ -1,12 +1,5 @@
 <template>
   <div style="width: 100%; height: 100%;">
-    <div class="navbar_box">
-      <van-nav-bar
-        title="ASSTTYYS NG"
-        :left-arrow="showNavLeft"
-        @click-left="navLeft"
-      />
-    </div>
     <div class="rv_box">
       <transition :name="transitionName">
         <router-view class="rv"></router-view>
@@ -33,7 +26,6 @@ export default {
   data() {
     return {
       transitionName: "slide-right",
-      showNavLeft: false,
     };
   },
   methods: {
@@ -114,8 +106,10 @@ body {
   transform: translate3d(100%, 0, 0);
 }
 .rv {
-  margin: 46px 0px 50px 0px;
   width: 100%;
+}
+.rv_inner {
+  margin: 46px 0px 50px 0px;
 }
 .rv_box {
   width: 100%;
