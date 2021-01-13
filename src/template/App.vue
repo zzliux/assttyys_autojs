@@ -1,20 +1,23 @@
 <template>
-  <div style="width: 100%; height: 100%">
-    <van-nav-bar
-      title="ASSTTYYS NG"
-      :left-arrow="showNavLeft"
-      @click-left="navLeft"
-      fixed
-    />
-    <div style="position: relative; overflow-x: hidden; width: 100%; height: 100%">
+  <div style="width: 100%; height: 100%;">
+    <div class="navbar_box">
+      <van-nav-bar
+        title="ASSTTYYS NG"
+        :left-arrow="showNavLeft"
+        @click-left="navLeft"
+      />
+    </div>
+    <div class="rv_box">
       <transition :name="transitionName">
         <router-view class="rv"></router-view>
       </transition>
     </div>
-    <van-tabbar fixed route>
-      <van-tabbar-item replace to="/schemeList" icon="orders-o">方案列表</van-tabbar-item>
-      <van-tabbar-item replace to="/me" icon="friends-o">我</van-tabbar-item>
-    </van-tabbar>
+    <div class="tabbar_box">
+      <van-tabbar route>
+        <van-tabbar-item replace to="/" icon="orders-o">方案列表</van-tabbar-item>
+        <van-tabbar-item replace to="/me" icon="friends-o">我</van-tabbar-item>
+      </van-tabbar>
+    </div>
   </div>
 </template>
 
@@ -29,7 +32,7 @@ Vue.use(NavBar);
 export default {
   data() {
     return {
-      transitionName: "",
+      transitionName: "slide-right",
       showNavLeft: false,
     };
   },
@@ -48,7 +51,6 @@ export default {
   watch: {
     //使用watch 监听$router的变化
     $route(to, from) {
-      console.log(arguments);
       //如果to索引大于from索引,判断为前进状态,反之则为后退状态
       if (to.meta.index > from.meta.index) {
         //设置动画名称
@@ -56,7 +58,6 @@ export default {
       } else {
         this.transitionName = "slide-right";
       }
-
     },
   },
   mounted() {
@@ -82,8 +83,8 @@ body {
 .slide-left-enter-active,
 .slide-left-leave-active,
 .slide-right-enter-active,
-.slide-right-leave-acive {
-  transition: all .3s;
+.slide-right-leave-active {
+  transition: all .3s ease-in-out;
   width: 100%;
   position: absolute;
   overflow: hidden;
@@ -98,9 +99,8 @@ body {
   transform: translate3d(0, 0, 0);
 }
 .slide-left-leave-to {
-  transform: translate3d(100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
 }
-
 .slide-right-enter {
   transform: translate3d(-100%, 0, 0);
 }
@@ -111,12 +111,29 @@ body {
   transform: translate3d(0, 0, 0);
 }
 .slide-right-leave-to {
-  transform: translate3d(-100%, 0, 0);
+  transform: translate3d(100%, 0, 0);
 }
-</style>
-<style scoped>
 .rv {
   margin: 46px 0px 50px 0px;
-  overflow-x: hidden;
+  width: 100%;
+}
+.rv_box {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  position: relative;
+}
+.navbar_box {
+  z-index: 1;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+.tabbar_box {
+  z-index: 1;
+  position: fixed;
+  left: 0;
+  bottom: 0;
 }
 </style>

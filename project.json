@@ -21,6 +21,8 @@
         "webpack.config.js",
         "LICENSE",
         "README.md",
+        "README_AUTO_TEMPLATE_VUE.md",
+        "docs",
         ".gitignore"
     ],
     "packageName": "com.example.html",
