@@ -105,6 +105,15 @@ body {
 .slide-right-leave-to {
   transform: translate3d(100%, 0, 0);
 }
+.flip-list-move {
+  transition: transform .2s;
+}
+.no-move {
+  transition: transform 0s;
+}
+.sortable-chosen.sortable-fallback.sortable-drag {
+  opacity: .3 !important;
+}
 .rv {
   width: 100%;
 }

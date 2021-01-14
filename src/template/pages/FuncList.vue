@@ -17,20 +17,22 @@
 
     <div class="rv_inner">
       <van-cell-group id="itemBox" :title="'方案 - ' + this.params.schemeName">
-        <draggable v-model="funcList" handle=".handle-area" @end="reSort">
-          <van-cell
-            class="item"
-            center
-            v-for="item in funcList"
-            :key="item.id"
-            :title="item.name + (item.config && item.config.length ? ' *': '')"
-            @click="showConfig($event, item)"
-          >
-            <template>
-              <span class="handle-area"><van-icon class="handle" size="18" name="bars" /></span>
-              <van-switch class="itemSwitch" @change="toggleSwitchEvent" v-model="item.checked" size="18" />
-            </template>
-          </van-cell>
+        <draggable v-model="funcList" handle=".handle-area" v-bind="dragOptions" @start="dragTransition = true" @end="dragEnd">
+          <transition-group type="transition" :name="!dragTransition ? 'flip-list' : null">
+            <div v-for="item in funcList" :key="item.id">
+              <van-cell
+                class="item"
+                center
+                :title="item.name + (item.config && item.config.length ? ' *': '')"
+                @click="showConfig($event, item)"
+              >
+                <template>
+                  <span class="handle-area"><van-icon class="handle" size="18" name="bars" /></span>
+                  <van-switch class="itemSwitch" @change="toggleSwitchEvent" v-model="item.checked" size="18" />
+                </template>
+              </van-cell>
+            </div>
+          </transition-group>
         </draggable>
       </van-cell-group>
     </div>
@@ -136,6 +138,7 @@ export default {
     });
 
     return {
+      dragTransition: false,
       funcList: fl,
       commonConfig: {
         name: '公共配置',
@@ -154,6 +157,16 @@ export default {
   components: {
     draggable,
   },
+  computed: {
+    dragOptions() {
+      return {
+        animation: 200,
+        group: "description",
+        disabled: false,
+        ghostClass: "ghost"
+      };
+    }
+  },
   mounted() {
     if (this.params) {
       if (this.params.schemeName) {
@@ -168,6 +181,10 @@ export default {
       setTimeout(() => {
         this.reSort();
       }, 100);
+    },
+    dragEnd() {
+      this.dragTransition = false;
+      this.reSort();
     },
     reSort() {
       let list = [[], []];

@@ -10,6 +10,7 @@
         <draggable
           v-model="schemeList"
           handle=".handle-area"
+          v-bind="dragOptions"
           @end="saveSchemeList"
         >
           <van-cell
@@ -21,15 +22,14 @@
             @click="schemeClickEvent($event, item)"
           >
             <template>
-              <span class="handle-area"
-                ><van-icon class="handle" size="18" name="bars"
-              /></span>
-              <span class="star-area" @click="schemeStarEvent($event, item)"
-                ><van-icon
+              <span class="handle-area"><van-icon class="handle" size="18" name="bars"/></span>
+              <span class="star-area" @click="schemeStarEvent($event, item)">
+                <van-icon
                   class="star"
                   size="18"
                   :name="item.star ? 'star' : 'star-o'"
-              /></span>
+                />
+              </span>
             </template>
           </van-cell>
         </draggable>
@@ -60,6 +60,16 @@ export default {
   },
   mounted() {
     this.$EventBus.$emit("toggleShowNavLeft", false);
+  },
+  computed: {
+    dragOptions() {
+      return {
+        animation: 200,
+        group: "description",
+        disabled: false,
+        ghostClass: "ghost"
+      };
+    }
   },
   methods: {
     saveSchemeList() {
