@@ -10,7 +10,7 @@
       </van-nav-bar>
     </div>
     <div class="rv_inner">
-      <van-cell-group id="itemBox" title="方案列表">
+      <van-cell-group class="itemBox" title="方案列表">
         <draggable
           :scroll-sensitivity="100"
           :force-fallback="true"

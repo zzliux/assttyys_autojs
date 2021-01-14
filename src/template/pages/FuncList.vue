@@ -16,7 +16,7 @@
     </div>
 
     <div class="rv_inner">
-      <van-cell-group id="itemBox" :title="'方案 - ' + this.params.schemeName">
+      <van-cell-group class="itemBox" :title="'方案 - ' + this.params.schemeName">
         <draggable
           v-model="funcList"
           handle=".handle-area"

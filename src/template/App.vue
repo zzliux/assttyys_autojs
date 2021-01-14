@@ -139,4 +139,7 @@ body {
   left: 0;
   bottom: 0;
 }
+.itemBox .van-cell:active {
+  background-color: #f2f3f5;
+}
 </style>
