@@ -1,0 +1,16 @@
+{
+  "id": "2328038",
+  "name": "assttyys_ng",
+  "font_family": "iconfont",
+  "css_prefix_text": "iconfont-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "5900853",
+      "name": "发布色块",
+      "font_class": "fabusekuai",
+      "unicode": "ec46",
+      "unicode_decimal": 60486
+    }
+  ]
+}

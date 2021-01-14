@@ -17,7 +17,15 @@
 
     <div class="rv_inner">
       <van-cell-group id="itemBox" :title="'方案 - ' + this.params.schemeName">
-        <draggable v-model="funcList" handle=".handle-area" v-bind="dragOptions" @start="dragTransition = true" @end="dragEnd">
+        <draggable
+          v-model="funcList"
+          handle=".handle-area"
+          :scroll-sensitivity="100"
+          :force-fallback="true"
+          v-bind="dragOptions"
+          @start="dragTransition = true"
+          @end="dragEnd"
+        >
           <transition-group type="transition" :name="!dragTransition ? 'flip-list' : null">
             <div v-for="item in funcList" :key="item.id">
               <van-cell

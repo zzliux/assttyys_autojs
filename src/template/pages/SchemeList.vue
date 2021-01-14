@@ -3,11 +3,17 @@
     <div class="navbar_box">
       <van-nav-bar
         title="ASSTTYYS NG"
-      />
+      >
+        <template #right>
+          <van-icon class-prefix="iconfont" name="fabusekuai" size="18" color="#1989fa"/>
+        </template>
+      </van-nav-bar>
     </div>
     <div class="rv_inner">
       <van-cell-group id="itemBox" title="方案列表">
         <draggable
+          :scroll-sensitivity="100"
+          :force-fallback="true"
           v-model="schemeList"
           handle=".handle-area"
           v-bind="dragOptions"
@@ -23,11 +29,13 @@
           >
             <template>
               <span class="handle-area"><van-icon class="handle" size="18" name="bars"/></span>
-              <span class="star-area" @click="schemeStarEvent($event, item)">
+              <span class="star-area">
                 <van-icon
                   class="star"
                   size="18"
                   :name="item.star ? 'star' : 'star-o'"
+                  :color="item.star ? '#1989fa' : null"
+                  @click="schemeStarEvent($event, item)"
                 />
               </span>
             </template>
