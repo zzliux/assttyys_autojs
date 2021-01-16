@@ -107,8 +107,7 @@ Vue.use(Picker);
 
 export default {
   data() {
-    var schemeConfig = prompt('getScheme', JSON.stringify(this.$route.query.schemeName));
-
+    var schemeConfig = JSON.parse(prompt('getScheme', JSON.stringify(this.$route.query.schemeName)));
 
     let fl = _.cloneDeep(dfuncList);
     fl.forEach(item => {

@@ -1,6 +1,8 @@
+import defaultSchemeList from '../common/schemeList';
+
 const promptMock = {
     getScheme: function (schemeName) {
-        return {
+        return JSON.stringify({
             schemeName: schemeName, // 方案名
             list: [1, 2, 4, 10, 20, 15, 16, 14, 13, 12, 11], // funcList中的id集合
             config: { // 方案中的配置，如返回空的话使用默认配置
@@ -14,7 +16,10 @@ const promptMock = {
                 clickDelayRandom: 1000, // 点击后延时随机数
                 // 等
             }
-        }
+        });
+    },
+    getSchemeList: function () {
+        return defaultSchemeList;
     },
     saveScheme: function () {
         return 'success';

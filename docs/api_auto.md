@@ -7,6 +7,7 @@
 ## 返回值（例）
 ```javascript
 {
+    id: '5',
     schemeName: '寮突破', // 方案名
     list: [1, 2, 4, 10, 20, 15, 16, 14, 13, 12, 11], // funcList中的id集合
     config: { // 方案中的配置，如返回空的话使用默认配置
@@ -21,6 +22,16 @@
         // 等
     }
 }
+```
+
+# getSchemeList （获取方案列表）
+## 参数
+void
+
+
+## 返回值（例）
+```javascript
+见schemeList.js
 ```
 
 # saveSchemeList （保存方案列表）
@@ -51,7 +62,7 @@
 ## 返回值
 void
 
-# saveScheme （保存方案）
+# `saveScheme` （保存方案）
 修改方案的功能启用的细节以及每个功能的详细配置
 ## 参数
 | 参数名 | 类型 | 描述 |
@@ -59,9 +70,20 @@ void
 | option | Object | 参数详情如下 |
 ```javascript
 {
+    id: '5',
     schemeName: '寮突破', // 方案名
-    funcList: funcList, // 结构见 /src/common/funcList.js
-    commonConfig: commonConfig, // 见getScheme中的commonConfig
+    list: [1, 2, 4, 10, 20, 15, 16, 14, 13, 12, 11], // funcList中启用的id集合
+    config: { // 方案中的配置，如返回空的话使用默认配置
+        '1': { // key为功能的ID（1表示准备）
+            enabled: true,
+            position: '五人-左1'
+        }
+    },
+    commonConfig: { // 通用参数
+        clickDelay: 200, // 点击后固定延时
+        clickDelayRandom: 1000, // 点击后延时随机数
+        // 等
+    }
 }
 ```
 ### 返回值

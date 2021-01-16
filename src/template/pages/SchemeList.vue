@@ -68,6 +68,8 @@ export default {
   },
   mounted() {
     this.$EventBus.$emit("toggleShowNavLeft", false);
+    let savedSchemeList = JSON.parse(prompt("getSchemeList"));
+    this.schemeList = savedSchemeList;
   },
   computed: {
     dragOptions() {

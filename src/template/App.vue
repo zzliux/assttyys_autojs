@@ -5,12 +5,12 @@
         <router-view class="rv"></router-view>
       </transition>
     </div>
-    <div class="tabbar_box">
+    <!-- <div class="tabbar_box">
       <van-tabbar route>
         <van-tabbar-item replace to="/" icon="orders-o">方案列表</van-tabbar-item>
         <van-tabbar-item replace to="/me" icon="friends-o">我</van-tabbar-item>
       </van-tabbar>
-    </div>
+    </div> -->
   </div>
 </template>
 
