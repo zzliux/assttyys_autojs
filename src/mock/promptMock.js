@@ -19,7 +19,7 @@ const promptMock = {
         });
     },
     getSchemeList: function () {
-        return defaultSchemeList;
+        return JSON.stringify(defaultSchemeList);
     },
     saveScheme: function () {
         return 'success';
@@ -33,7 +33,7 @@ const promptMock = {
 window.prompt = function (apiName, apiValue) {
     if (promptMock[apiName]) {
         if (typeof promptMock[apiName] === 'function') {
-            return promptMock[apiName](JSON.parse(apiValue));
+            return promptMock[apiName](apiValue && JSON.parse(apiValue));
         } else {
             return promptMock[apiName];
         }

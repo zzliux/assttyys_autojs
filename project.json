@@ -5,7 +5,7 @@
     "launchConfig": {
         "hideLogs": true,
         "stableMode": true,
-        "splashText": "AUTO.PRO"
+        "splashText": "Powered By AutoJS Pro"
     },
     "ignore": [
         "build",
@@ -25,7 +25,7 @@
         "docs",
         ".gitignore"
     ],
-    "packageName": "com.example.html",
-    "versionName": "1.0.0",
+    "packageName": "com.zzliux.assttyysng",
+    "versionName": "0.0.1.dev",
     "versionCode": 1
 }

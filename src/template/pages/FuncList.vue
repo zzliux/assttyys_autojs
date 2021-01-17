@@ -240,7 +240,7 @@ export default {
 
 <style scoped>
 .item {
-  height: 48px;
+  height: 44px;
 }
 .handle {
   margin-right: 18px;
