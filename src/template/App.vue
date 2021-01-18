@@ -32,13 +32,6 @@ export default {
     navLeft() {
       this.$router.back();
     },
-    toggleShowNavLeft(shown) {
-      if (shown === undefined) {
-        this.showNavLeft = !this.showNavLeft;
-      } else {
-        this.showNavLeft = !!shown;
-      }
-    },
   },
   watch: {
     //使用watch 监听$router的变化
@@ -53,10 +46,6 @@ export default {
     },
   },
   mounted() {
-    var self = this;
-    this.$EventBus.$on("toggleShowNavLeft", (data) => {
-      self.toggleShowNavLeft(data);
-    });
   },
 };
 </script>

@@ -78,6 +78,9 @@ module.exports = {
             title: 'ASSTTYYS NG',
             template: './src/template/index.html'
         }),
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        new webpack.ProvidePlugin({
+            AutoWeb: '@auto.pro/web',
+        })
     ]
 }

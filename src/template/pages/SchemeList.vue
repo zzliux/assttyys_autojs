@@ -133,9 +133,11 @@ export default {
     draggable,
   },
   mounted() {
-    this.$EventBus.$emit("toggleShowNavLeft", false);
-    let savedSchemeList = JSON.parse(prompt("getSchemeList"));
-    this.schemeList = savedSchemeList;
+    var self = this;
+    AutoWeb.auto("getSchemeList", null, function (savedSchemeList) {
+      self.schemeList = savedSchemeList
+    })
+
   },
   computed: {
     dragOptions() {
@@ -149,7 +151,7 @@ export default {
   },
   methods: {
     saveSchemeList() {
-      prompt("saveSchemeList", JSON.stringify(this.schemeList));
+      AutoWeb.auto('saveSchemeList', this.schemeList);
     },
     schemeClickEvent(e, item) {
       if (!this.canDirect) return;

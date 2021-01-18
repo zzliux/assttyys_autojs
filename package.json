@@ -40,8 +40,9 @@
         "webpack-obfuscator": "^2.6.0"
     },
     "dependencies": {
-        "@auto.pro/core": "^9.1.0",
-        "@auto.pro/webview": "^9.1.0",
+        "@auto.pro/core": "^9.1.2",
+        "@auto.pro/web": "^1.0.7",
+        "@auto.pro/webview": "^9.1.5",
         "@babel/polyfill": "^7.12.1",
         "basscss": "^8.1.0",
         "bulma": "^0.9.1",

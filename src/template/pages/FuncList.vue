@@ -107,7 +107,8 @@ Vue.use(Picker);
 
 export default {
   data() {
-    var schemeConfig = JSON.parse(prompt('getScheme', JSON.stringify(this.$route.query.schemeName)));
+    // TODO, 放到mounted中去
+    var schemeConfig = AutoWeb.auto('getScheme', this.$route.query.schemeName);
 
     let fl = _.cloneDeep(dfuncList);
     fl.forEach(item => {
@@ -181,7 +182,6 @@ export default {
       }
     }
     this.reSort();
-    this.$EventBus.$emit('toggleShowNavLeft', true);
   },
   methods: {
     toggleSwitchEvent(value) {
@@ -224,12 +224,13 @@ export default {
       if (this.params && this.params.schemeName) {
         var commonConfig = {}; // TODO
 
-        var r = prompt('saveScheme', JSON.stringify({
+        AutoWeb.auto('saveScheme', {
           name: this.params.schemeName,
           funcList: _.cloneDeep(this.funcList),
           commonConfig: commonConfig
-        }));
-        Toast(`保存成功`);
+        }, function (r) {
+          Toast(`保存成功`);
+        });
       } else {
         Toast(`参数错误：params.schemeName为空`);
       }
