@@ -26,7 +26,7 @@
             center
             v-for="(item, index) of schemeList"
             :key="index"
-            @open="canDirect = false"
+            @open="itemOpen"
             @close="canDirect = true"
             :before-close="itemBeforeClose"
           >
@@ -64,6 +64,11 @@
                 square
                 text="复制"
                 @click="swipeCellCurrentAction = 'copy'; swipeCellCurrentIndex = index"
+            /><van-button
+                type="warning"
+                square
+                text="修改"
+                @click="swipeCellCurrentAction = 'modify'; swipeCellCurrentIndex = index"
             /></template>
           </van-swipe-cell>
         </draggable>
@@ -96,7 +101,7 @@
 </template>
 <script>
 import Vue from "vue";
-import { Cell, SwipeCell, CellGroup, Icon, Toast, Button, Dialog, Field } from "vant";
+import { Cell, SwipeCell, CellGroup, Icon, Toast, Button, Dialog, Field, Notify } from "vant";
 import draggable from "vuedraggable";
 import dSchemeList from "../../common/schemeList";
 import _ from "lodash";
@@ -109,6 +114,7 @@ Vue.use(Toast);
 Vue.use(Button);
 Vue.use(Dialog);
 Vue.use(Field);
+Vue.use(Notify);
 
 export default {
   data() {
@@ -167,7 +173,12 @@ export default {
         Toast("已取消收藏");
       }
     },
-    addSchemeClickEvent(e) {},
+    addSchemeClickEvent(e) {
+      this.schemeNameInputType = 'add';
+      this.newSchemeName = null;
+      this.newScheme = null;
+      this.schemeNameInputShow = true;
+    },
     addScheme(scheme, callback) {
       var maxId = 0;
       this.schemeList.forEach(item => {
@@ -179,11 +190,15 @@ export default {
       this.schemeList.push(scheme);
       this.saveSchemeList();
     },
+    itemOpen() {
+      this.canDirect = false;
+      console.log(arguments);
+    },
     itemBeforeClose(option) {
       switch (option.position) {
         case 'left':
         case 'cell':
-        case 'outside':
+        // case 'outside':
           option.instance.close();
           break;
         case 'right':
@@ -196,10 +211,14 @@ export default {
               this.saveSchemeList();
               Toast("已删除");
             }).catch(()=>{});
-          } else if ('copy' == this.swipeCellCurrentAction) {
+          } else if ('copy' === this.swipeCellCurrentAction) {
             this.schemeNameInputType = 'copy';
             this.schemeNameInputShow = true;
             this.newScheme = _.cloneDeep(this.schemeList[this.swipeCellCurrentIndex]);
+          } else if ('modify' === this.swipeCellCurrentAction) {
+            this.schemeNameInputType = 'modify';
+            this.newSchemeName = this.schemeList[this.swipeCellCurrentIndex].schemeName;
+            this.schemeNameInputShow = true;
           }
           break;
       }
@@ -207,17 +226,56 @@ export default {
     },
     schemeNameInputBeforeClose(action, done) {
       if ('cancel' === action) {
+        this.newScheme = null;
+        this.newSchemeName = null;
         done(true);
       } else {
+        if (!this.newSchemeName) {
+          Notify({ type: 'warning', message: '请输入方案名。' });
+          done(false);
+          return;
+        }
+        
         if ('copy' === this.schemeNameInputType) {
+          for (let i = 0; i < this.schemeList.length; i++) {
+            if (this.schemeList[i].schemeName == this.newSchemeName) {
+              Notify({ type: 'warning', message: '存在重复的方案名，请重新输入。' });
+              done(false);
+              return;
+            }
+          }
           this.newScheme.schemeName = this.newSchemeName;
           this.addScheme(this.newScheme);
           Toast("已复制");
           done(true);
+          this.newScheme = null;
+          this.newSchemeName = null;
         } else if ('add' == this.schemeNameInputType) {
-          // TODO
-        } else {
-          // TOOD
+          for (let i = 0; i < this.schemeList.length; i++) {
+            if (this.schemeList[i].schemeName == this.newSchemeName) {
+              Notify({ type: 'warning', message: '存在重复的方案名，请重新输入。' });
+              done(false);
+              return;
+            }
+          }
+          this.addScheme({
+            id: null,
+            schemeName: this.newSchemeName,
+            star: false,
+            list: [],
+            config: {},
+            commonConfig: {}
+          });
+          done(true);
+          this.newScheme = null;
+          this.newSchemeName = null;
+        } else if ('modify' === this.schemeNameInputType) {
+          this.schemeList[this.swipeCellCurrentIndex].schemeName = this.newSchemeName;
+          this.saveSchemeList();
+          Toast('修改成功');
+          done(true);
+          this.newScheme = null;
+          this.newSchemeName = null;
         }
       }
     }
