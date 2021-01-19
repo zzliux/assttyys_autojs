@@ -1,6 +1,6 @@
 import defaultSchemeList from '../common/schemeList';
 
-const promptMock = {
+const promptMockData = {
     getScheme: function (schemeName) {
         return {
             schemeName: schemeName, // 方案名
@@ -30,15 +30,35 @@ const promptMock = {
 };
 
 // 注入修改prompt
-window.prompt = function (apiName, apiValue) {
+window.promptMock = function (apiName, apiValue) {
     if (promptMock[apiName]) {
-        if (typeof promptMock[apiName] === 'function') {
-            return promptMock[apiName](apiValue && JSON.parse(apiValue));
+        let option = JSON.parse(apiValue);
+        let params = null;
+        let deviceFn = null;
+        if (option.PROMPT_CALLBACK) {
+            params = option.params
+            deviceFn = option.PROMPT_CALLBACK;
         } else {
-            return promptMock[apiName];
+            params = option;
+        }
+        let ret = null;
+        if (typeof promptMock[apiName] === 'function') {
+            ret = promptMock[apiName](apiValue && params);
+        } else {
+            ret = promptMock[apiName];
+        }
+        console.log(`[promptMock]apiName:${apiName}`);
+        console.log(`[promptMock]apiValue:${apiValue}`);
+        console.log(`[promptMock]returnData:${JSON.stringify(ret)}`);
+        if (deviceFn) {
+            window[deviceFn](ret);
+            AutoWeb.removeDevicelly(deviceFn);
+        } else {
+            return ret;
         }
     } else {
         throw new Error(`apiName[${apiName}] can not find in promptMock`);
     }
 }
-export default promptMock;
+
+export default promptMockData;

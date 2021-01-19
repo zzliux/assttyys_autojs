@@ -3,7 +3,9 @@ import VueRouter from "vue-router";
 import 'vant/lib/index.css';
 import './assets/icon/iconfont.css';
 import App from './App.vue';
-// import '../mock/promptMock';
+import '../mock/promptMock';
+AutoWeb.setMode('promptMock');
+
 
 Vue.use(VueRouter);
 
