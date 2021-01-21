@@ -4,7 +4,16 @@ import 'vant/lib/index.css';
 import './assets/icon/iconfont.css';
 import App from './App.vue';
 import '../mock/promptMock';
-AutoWeb.setMode('promptMock');
+if (localStorage && localStorage.debug) {
+	AutoWeb.setMode('promptMock');
+}
+AutoWeb.autoPromise = function (name, param) {
+	return new Promise(function (resolve, reject) {
+		AutoWeb.auto(name, param, function (result) {
+			resolve(result);
+		});
+	});
+}
 
 
 Vue.use(VueRouter);

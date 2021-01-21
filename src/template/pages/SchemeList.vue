@@ -194,13 +194,12 @@ export default {
     },
     itemOpen() {
       this.canDirect = false;
-      console.log(arguments);
     },
     itemBeforeClose(option) {
       switch (option.position) {
         case 'left':
         case 'cell':
-        // case 'outside':
+        case 'outside':
           option.instance.close();
           break;
         case 'right':

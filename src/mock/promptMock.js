@@ -31,7 +31,7 @@ const promptMockData = {
 
 // 注入修改prompt
 window.promptMock = function (apiName, apiValue) {
-    if (promptMock[apiName]) {
+    if (promptMockData[apiName]) {
         let option = JSON.parse(apiValue);
         let params = null;
         let deviceFn = null;
@@ -42,14 +42,14 @@ window.promptMock = function (apiName, apiValue) {
             params = option;
         }
         let ret = null;
-        if (typeof promptMock[apiName] === 'function') {
-            ret = promptMock[apiName](apiValue && params);
+        if (typeof promptMockData[apiName] === 'function') {
+            ret = promptMockData[apiName](apiValue && params);
         } else {
-            ret = promptMock[apiName];
+            ret = promptMockData[apiName];
         }
-        console.log(`[promptMock]apiName:${apiName}`);
-        console.log(`[promptMock]apiValue:${apiValue}`);
-        console.log(`[promptMock]returnData:${JSON.stringify(ret)}`);
+        console.log(`[promptMockData]apiName:${apiName}`);
+        console.log(`[promptMockData]apiValue:${apiValue}`);
+        console.log(`[promptMockData]returnData:${JSON.stringify(ret)}`);
         if (deviceFn) {
             window[deviceFn](ret);
             AutoWeb.removeDevicelly(deviceFn);

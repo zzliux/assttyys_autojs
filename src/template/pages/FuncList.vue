@@ -107,8 +107,45 @@ Vue.use(Picker);
 
 export default {
   data() {
-    // TODO, 放到mounted中去
-    var schemeConfig = AutoWeb.auto('getScheme', this.$route.query.schemeName);
+
+    return {
+      dragTransition: false,
+      funcList: dfuncList,
+      commonConfig: {
+        name: '公共配置',
+        config: dCommonConfig
+      },
+      params: this.$route.query,
+      configModalShow: false,
+      configModalObject: {
+        config: []
+      },
+      configItemItemShowPicker: false,
+      configItemItemPickerList: [],
+      curItemItem: null,
+    };
+  },
+  components: {
+    draggable,
+  },
+  computed: {
+    dragOptions() {
+      return {
+        animation: 200,
+        group: "description",
+        disabled: false,
+        ghostClass: "ghost"
+      };
+    }
+  },
+  async mounted() {
+    if (this.params) {
+      if (this.params.schemeName) {
+        Toast(`加载方案 [ ${this.params.schemeName} ] `);
+      }
+    }
+
+    var schemeConfig = await AutoWeb.autoPromise('getScheme', this.$route.query.schemeName);
 
     let fl = _.cloneDeep(dfuncList);
     fl.forEach(item => {
@@ -134,6 +171,7 @@ export default {
         });
       }
     });
+    this.funcList = fl;
 
     let cc = _.cloneDeep(dCommonConfig);
     cc.forEach(item => {
@@ -144,43 +182,7 @@ export default {
         iItem.value = iItem.default;
       });
     });
-
-    return {
-      dragTransition: false,
-      funcList: fl,
-      commonConfig: {
-        name: '公共配置',
-        config: cc
-      },
-      params: this.$route.query,
-      configModalShow: false,
-      configModalObject: {
-        config: []
-      },
-      configItemItemShowPicker: false,
-      configItemItemPickerList: [],
-      curItemItem: null,
-    };
-  },
-  components: {
-    draggable,
-  },
-  computed: {
-    dragOptions() {
-      return {
-        animation: 200,
-        group: "description",
-        disabled: false,
-        ghostClass: "ghost"
-      };
-    }
-  },
-  mounted() {
-    if (this.params) {
-      if (this.params.schemeName) {
-        Toast(`加载方案 [ ${this.params.schemeName} ] `);
-      }
-    }
+    this.commonConfig = cc;
     this.reSort();
   },
   methods: {

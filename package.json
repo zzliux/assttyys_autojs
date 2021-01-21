@@ -23,7 +23,7 @@
         "css-loader": "^4.3.0",
         "file-loader": "^6.2.0",
         "html-webpack-plugin": "^3.2.0",
-        "javascript-obfuscator": "^2.10.1",
+        "javascript-obfuscator": "^2.10.2",
         "mini-css-extract-plugin": "^0.11.3",
         "optimize-css-assets-webpack-plugin": "^5.0.4",
         "progress-bar-webpack-plugin": "^2.1.0",
@@ -42,7 +42,7 @@
     "dependencies": {
         "@auto.pro/core": "^9.1.2",
         "@auto.pro/web": "^1.0.7",
-        "@auto.pro/webview": "^9.1.5",
+        "@auto.pro/webview": "^9.1.6",
         "@babel/polyfill": "^7.12.1",
         "basscss": "^8.1.0",
         "bulma": "^0.9.1",

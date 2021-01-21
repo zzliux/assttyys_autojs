@@ -15,6 +15,11 @@ export const webview = run('file://' + files.path('dist/index.html'), {
     afterLayout() {
         // setSystemUiVisibility('有状态栏的沉浸式界面')
         activity.getWindow().setStatusBarColor(android.graphics.Color.TRANSPARENT);
+    },
+    chromeClientOption: {
+        onConsoleMessage: function (msg) {
+            console.log(msg.message());
+        }
     }
 })
 

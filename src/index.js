@@ -3,19 +3,19 @@ import { effect$ } from "@auto.pro/core"
 import defaultSchemeList from '@/common/schemeList';
 
 const storage = storages.create('asttyys_ng');
+// console.show();
 
 
 // 返回已保存的方案列表，如果未保存过，返回common中的schemeList
 webview.on("getSchemeList").subscribe(([param, done]) => {
     let savedSchemeList = storage.get("schemeList", defaultSchemeList);
-    console.log(savedSchemeList);
     done(savedSchemeList);
 });
 
 // 保存方案列表
 webview.on("saveSchemeList").subscribe(([schemeList, done]) => {
     storage.put("schemeList", schemeList);
-    console.log('schemeList已保存：' + schemeList);
+    console.log('schemeList已保存');
     done("success");
 });
 
