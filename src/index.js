@@ -25,7 +25,7 @@ webview.on("getScheme").subscribe(([schemeName, done]) => {
     for (let i = 0; i < savedSchemeList.length; i++) {
         if (savedSchemeList[i].schemeName === schemeName) {
             done(savedSchemeList[i]);
-            break;
+            return;
         }
     }
     done({});

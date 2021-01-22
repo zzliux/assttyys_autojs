@@ -144,7 +144,6 @@ export default {
         Toast(`加载方案 [ ${this.params.schemeName} ] `);
       }
     }
-
     var schemeConfig = await AutoWeb.autoPromise('getScheme', this.$route.query.schemeName);
 
     let fl = _.cloneDeep(dfuncList);
