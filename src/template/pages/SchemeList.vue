@@ -29,6 +29,7 @@
             @open="itemOpen"
             @close="canDirect = true"
             :before-close="itemBeforeClose"
+            :stop-propagation="true"
           >
             <template>
               <div
@@ -200,7 +201,9 @@ export default {
         case 'left':
         case 'cell':
         case 'outside':
-          option.instance.close();
+          if (!this.swipeCellCurrentAction) {
+            option.instance.close();
+          }
           break;
         case 'right':
           if ('delete' === this.swipeCellCurrentAction) {
@@ -211,7 +214,10 @@ export default {
               this.schemeList.splice(this.swipeCellCurrentIndex, 1);
               this.saveSchemeList();
               Toast("已删除");
-            }).catch(()=>{});
+              this.swipeCellCurrentAction = null;
+            }).catch(()=>{
+              this.swipeCellCurrentAction = null;
+            });
           } else if ('copy' === this.swipeCellCurrentAction) {
             this.schemeNameInputType = 'copy';
             this.schemeNameInputShow = true;
@@ -223,12 +229,12 @@ export default {
           }
           break;
       }
-      this.swipeCellCurrentAction = null;
     },
     schemeNameInputBeforeClose(action, done) {
       if ('cancel' === action) {
         this.newScheme = null;
         this.newSchemeName = null;
+        this.swipeCellCurrentAction = null;
         done(true);
       } else {
         if (!this.newSchemeName) {
@@ -248,6 +254,7 @@ export default {
           this.newScheme.schemeName = this.newSchemeName;
           this.addScheme(this.newScheme);
           Toast("已复制");
+          this.swipeCellCurrentAction = null;
           done(true);
           this.newScheme = null;
           this.newSchemeName = null;
@@ -267,6 +274,7 @@ export default {
             config: {},
             commonConfig: {}
           });
+          this.swipeCellCurrentAction = null;
           done(true);
           this.newScheme = null;
           this.newSchemeName = null;
@@ -274,6 +282,7 @@ export default {
           this.schemeList[this.swipeCellCurrentIndex].schemeName = this.newSchemeName;
           this.saveSchemeList();
           Toast('修改成功');
+          this.swipeCellCurrentAction = null;
           done(true);
           this.newScheme = null;
           this.newSchemeName = null;

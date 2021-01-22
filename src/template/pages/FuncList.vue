@@ -182,7 +182,8 @@ export default {
         iItem.value = iItem.default;
       });
     });
-    this.commonConfig = cc;
+    // TODO commonConfig还需要从方案里面取出来再合并一次
+    this.commonConfig.config = cc;
     this.reSort();
   },
   methods: {
@@ -224,13 +225,37 @@ export default {
     },
     saveScheme() {
       if (this.params && this.params.schemeName) {
-        var commonConfig = {}; // TODO
-
-        AutoWeb.auto('saveScheme', {
-          name: this.params.schemeName,
-          funcList: _.cloneDeep(this.funcList),
+        let list = [];
+        let config = {};
+        let commonConfig = {};
+        for (let i = 0; i < this.funcList.length; i++) {
+          if (this.funcList[i].checked) {
+            list.push(this.funcList[i].id);
+            for (let j = 0; j < this.funcList[i].config.length; j++) {
+              let configs = this.funcList[i].config[j].config;
+              for (let k = 0; k < configs.length; k++) {
+                if (!config[this.funcList[i].id]) {
+                  config[this.funcList[i].id] = {};
+                }
+                config[this.funcList[i].id][configs[k].name] = configs[k].value;
+              }
+            }
+          }
+        }
+        for (let i = 0; i < this.commonConfig.config.length; i++) {
+          let configs = this.commonConfig.config[i].config;
+          for (let j = 0; j < configs.length; j++) {
+            commonConfig[configs[j].name] = configs[j].value;
+          }
+        }
+        let toSave = {
+          schemeName: this.params.schemeName,
+          list: list,
+          config: config,
           commonConfig: commonConfig
-        }, function (r) {
+        }
+
+        AutoWeb.auto('saveScheme', toSave, function (r) {
           Toast(`保存成功`);
         });
       } else {

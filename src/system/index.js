@@ -28,15 +28,15 @@ events.on('exit', () => {
     closeForeground()
 })
 
-// 监听返回键并共享事件
-const back$ = fromEvent(ui.emitter, "back_pressed").pipe(share())
-back$.pipe(
-    exhaustMap((e) => {
-        toast("再次返回可退出")
-        e.consumed = true
-        return race(
-            back$.pipe(tap(() => (e.consumed = false))),
-            timer(2000)
-        )
-    })
-).subscribe()
+// // 监听返回键并共享事件
+// const back$ = fromEvent(ui.emitter, "back_pressed").pipe(share())
+// back$.pipe(
+//     exhaustMap((e) => {
+//         toast("再次返回可退出")
+//         e.consumed = true
+//         return race(
+//             back$.pipe(tap(() => (e.consumed = false))),
+//             timer(2000)
+//         )
+//     })
+// ).subscribe()

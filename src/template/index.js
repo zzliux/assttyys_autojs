@@ -4,14 +4,23 @@ import 'vant/lib/index.css';
 import './assets/icon/iconfont.css';
 import App from './App.vue';
 import '../mock/promptMock';
+
+let autoWebMode = 'prompt';
 if (localStorage && localStorage.debug) {
-	AutoWeb.setMode('promptMock');
+	autoWebMode = 'promptMock';
 }
-AutoWeb.autoPromise = function (name, param) {
+AutoWeb.setMode(autoWebMode);
+
+AutoWeb.autoPromise = function (eventname, params) {
 	return new Promise(function (resolve, reject) {
-		AutoWeb.auto(name, param, function (result) {
-			resolve(result);
-		});
+		const EVENT_ID = eventname + Date.now().toString();
+		AutoWeb.devicelly(EVENT_ID, function (p) {
+			resolve(p);
+		}, this, true);
+		return window[autoWebMode](eventname, JSON.stringify({
+			params,
+			PROMPT_CALLBACK: EVENT_ID
+		}));
 	});
 }
 
@@ -51,8 +60,23 @@ var router = new VueRouter({
 });
 // 事件总线
 Vue.prototype.$EventBus = new Vue();
-new Vue({
+var myApp = new Vue({
 	el: '#app',
 	router,
 	render: h => h(App),
 });
+window.routeBack = function () {
+	if (/^index|schemeList$/.test(myApp.$route.name)) {
+		if (window.routeBackFlag) {
+			AutoWeb.auto('exit');
+		} else {
+			window.routeBackFlag = true;
+			AutoWeb.auto('toast', '再按一次退出程序');
+			setTimeout(() => {
+				window.routeBackFlag = false;
+			}, 1000)
+		}
+	} else {
+		myApp.$router.back();
+	}
+}

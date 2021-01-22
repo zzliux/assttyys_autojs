@@ -48,7 +48,7 @@ window.promptMock = function (apiName, apiValue) {
             ret = promptMockData[apiName];
         }
         console.log(`[promptMockData]apiName:${apiName}`);
-        console.log(`[promptMockData]apiValue:${apiValue}`);
+        console.log(`[promptMockData]apiValue:${JSON.stringify(params)}`);
         console.log(`[promptMockData]returnData:${JSON.stringify(ret)}`);
         if (deviceFn) {
             window[deviceFn](ret);
