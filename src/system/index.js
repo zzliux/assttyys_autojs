@@ -6,7 +6,7 @@ import { share, exhaustMap, tap } from 'rxjs/operators'
 
 core({
     // needCap: true,
-    // needFloaty: true,
+    needFloaty: true,
     // needService: true,
     // needForeground: true,
 })

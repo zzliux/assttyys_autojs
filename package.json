@@ -41,6 +41,7 @@
     },
     "dependencies": {
         "@auto.pro/core": "^9.1.2",
+        "@auto.pro/floaty": "^9.1.2",
         "@auto.pro/web": "^1.0.7",
         "@auto.pro/webview": "^9.1.6",
         "@babel/polyfill": "^7.12.1",

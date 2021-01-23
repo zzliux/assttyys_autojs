@@ -1,6 +1,7 @@
 import { webview } from "@/system"
 import { effect$ } from "@auto.pro/core"
 import defaultSchemeList from '@/common/schemeList';
+import myFloaty from '@/system/myFloaty';
 
 const storage = storages.create('asttyys_ng');
 // console.show();
@@ -19,7 +20,7 @@ webview.on("saveSchemeList").subscribe(([schemeList, done]) => {
     done("success");
 });
 
-// TODO 获取方案
+// 获取方案
 webview.on("getScheme").subscribe(([schemeName, done]) => {
     let savedSchemeList = storage.get("schemeList", defaultSchemeList);
     for (let i = 0; i < savedSchemeList.length; i++) {
@@ -44,6 +45,20 @@ webview.on("saveScheme").subscribe(([scheme, done]) => {
     done("success");
 });
 
+webview.on("setCurrentScheme").subscribe(([schemeName, done]) => {
+    // TODO
+    done();
+});
+
+webview.on("startScript").subscribe(([_param, done]) => {
+    done();
+    context.startActivity(app.intent({
+        action: Intent.ACTION_MAIN,
+        category: Intent.CATEGORY_HOME,
+        flags: ['ACTIVITY_NEW_TASK']
+    }));
+});
+
 webview.on("toast").subscribe(([string, done]) => {
     done();
     toast(string);
@@ -54,12 +69,19 @@ webview.on("exit").subscribe(([_param, done]) => {
     exit();
 });
 
+
+
 // effect$是作业线程，当core的权限全部到位后，effect$才开始运作
 effect$.subscribe(() => {
     // 监听放在effect里，只有当权限到位后，监听才生效
+
+    
     toastLog("权限加载完成");
+
+    myFloaty.init();
+    
 });
- 
+
 ui.emitter.on("back_pressed", function (e) {
     e.consumed = true;
     webview.runHtmlFunction("routeBack");

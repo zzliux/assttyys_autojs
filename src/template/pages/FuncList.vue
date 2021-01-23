@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="height: 100%; width: 100%">
     <div class="navbar_box">
       <van-nav-bar
         title="ASSTTYYS NG"
@@ -43,6 +43,10 @@
           </transition-group>
         </draggable>
       </van-cell-group>
+    </div>
+
+    <div style="display: block; position: fixed; bottom: 0; width: 100%">
+      <van-button type="info" block @click="startBtnClickEvent">启动脚本</van-button>
     </div>
 
     <!-- 功能的参数配置 -->
@@ -89,7 +93,7 @@
 </template>
 <script>
 import Vue from "vue";
-import { Cell, CellGroup, Switch, Icon, Toast, Popup, Form, Field, Picker } from "vant";
+import { Cell, CellGroup, Switch, Icon, Button, Popup, Form, Field, Picker } from "vant";
 import draggable from 'vuedraggable'
 import dfuncList from "../../common/funcList";
 import dCommonConfig from "../../common/commonConfig";
@@ -99,7 +103,7 @@ Vue.use(Cell);
 Vue.use(CellGroup);
 Vue.use(Switch);
 Vue.use(Icon);
-Vue.use(Toast);
+Vue.use(Button);
 Vue.use(Popup);
 Vue.use(Form);
 Vue.use(Field);
@@ -141,7 +145,7 @@ export default {
   async mounted() {
     if (this.params) {
       if (this.params.schemeName) {
-        Toast(`加载方案 [ ${this.params.schemeName} ] `);
+        AutoWeb.auto('toast', `加载方案 [ ${this.params.schemeName} ] `);
       }
     }
     var schemeConfig = await AutoWeb.autoPromise('getScheme', this.$route.query.schemeName);
@@ -179,9 +183,13 @@ export default {
       }
       item.config.forEach(iItem => {
         iItem.value = iItem.default;
+        for (let key in schemeConfig.commonConfig) {
+          if (key === iItem.name) {
+            iItem.value = schemeConfig.commonConfig[key];
+          }
+        }
       });
     });
-    // TODO commonConfig还需要从方案里面取出来再合并一次
     this.commonConfig.config = cc;
     this.reSort();
   },
@@ -255,11 +263,15 @@ export default {
         }
 
         AutoWeb.auto('saveScheme', toSave, function (r) {
-          Toast(`保存成功`);
+          AutoWeb.auto('toast', `保存成功`);
         });
       } else {
-        Toast(`参数错误：params.schemeName为空`);
+        AutoWeb.auto('toast', `参数错误：params.schemeName为空`);
       }
+    },
+    async startBtnClickEvent() {
+      await AutoWeb.autoPromise('setCurrentScheme', this.params.schemeName);
+      await AutoWeb.autoPromise('startScript');
     }
   }
 };

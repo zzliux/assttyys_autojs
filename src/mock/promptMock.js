@@ -26,6 +26,8 @@ const promptMockData = {
     },
     saveSchemeList: function () {
         return 'success';
+    },
+    toast: function () {
     }
 };
 

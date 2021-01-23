@@ -2,14 +2,14 @@
   <div>
     <div class="navbar_box">
       <van-nav-bar title="ASSTTYYS NG">
-        <template #right>
+        <!-- <template #right>
           <van-icon
             class-prefix="iconfont"
             name="fabusekuai"
             size="18"
             color="#1989fa"
           />
-        </template>
+        </template> -->
       </van-nav-bar>
     </div>
     <div class="rv_inner">

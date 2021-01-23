@@ -107,7 +107,7 @@ body {
   width: 100%;
 }
 .rv_inner {
-  margin: 46px 0px 50px 0px;
+  padding: 46px 0px 50px 0px;
 }
 .rv_box {
   width: 100%;
