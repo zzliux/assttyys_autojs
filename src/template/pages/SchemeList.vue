@@ -27,7 +27,7 @@
             v-for="(item, index) of schemeList"
             :key="index"
             @open="itemOpen"
-            @close="canDirect = true"
+            @close="itemClose"
             :before-close="itemBeforeClose"
             :stop-propagation="true"
           >
@@ -120,7 +120,7 @@ Vue.use(Notify);
 export default {
   data() {
     return {
-      canDirect: true,
+      itemOpenList: [],
       swipeCellCurrentAction: null,
       swipeCellCurrentIndex: null,
       schemeNameInputShow: false,
@@ -155,7 +155,8 @@ export default {
       AutoWeb.auto('saveSchemeList', this.schemeList);
     },
     schemeClickEvent(e, item) {
-      if (!this.canDirect) return;
+      console.log(this.itemOpenList);
+      if (this.itemOpenList.length > 0) return;
       if (e.target.className.match(/handle|star/)) {
         return;
       }
@@ -194,7 +195,12 @@ export default {
       this.saveSchemeList();
     },
     itemOpen() {
-      this.canDirect = false;
+      // setTimeout(() => { this.itemOpenList.push(0) }, 200)
+      this.itemOpenList.push(0);
+    },
+    itemClose() {
+      setTimeout(() => { this.itemOpenList.pop() }, 200)
+      // this.itemOpenList.pop();
     },
     itemBeforeClose(option) {
       switch (option.position) {
