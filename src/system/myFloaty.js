@@ -8,7 +8,7 @@ var myFloaty = {
             logoSize: 30,
             initX: -10,
             duration: 150,
-            radius: 80,
+            radius: 60,
             angle: 60,
             items: [
                 {

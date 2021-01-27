@@ -102,7 +102,7 @@
 </template>
 <script>
 import Vue from "vue";
-import { Cell, SwipeCell, CellGroup, Icon, Toast, Button, Dialog, Field, Notify } from "vant";
+import { Cell, SwipeCell, CellGroup, Icon, Button, Dialog, Field, Notify } from "vant";
 import draggable from "vuedraggable";
 import dSchemeList from "../../common/schemeList";
 import _ from "lodash";
@@ -111,7 +111,6 @@ Vue.use(Cell);
 Vue.use(SwipeCell);
 Vue.use(CellGroup);
 Vue.use(Icon);
-Vue.use(Toast);
 Vue.use(Button);
 Vue.use(Dialog);
 Vue.use(Field);
@@ -172,9 +171,9 @@ export default {
       item.star = !item.star;
       this.saveSchemeList();
       if (item.star) {
-        Toast("收藏成功");
+        AutoWeb.auto('toast', "收藏成功");
       } else {
-        Toast("已取消收藏");
+        AutoWeb.auto('toast', "已取消收藏");
       }
     },
     addSchemeClickEvent(e) {
@@ -219,7 +218,7 @@ export default {
               option.instance.close();
               this.schemeList.splice(this.swipeCellCurrentIndex, 1);
               this.saveSchemeList();
-              Toast("已删除");
+              AutoWeb.auto('toast', "已删除");
               this.swipeCellCurrentAction = null;
             }).catch(()=>{
               this.swipeCellCurrentAction = null;
@@ -259,7 +258,7 @@ export default {
           }
           this.newScheme.schemeName = this.newSchemeName;
           this.addScheme(this.newScheme);
-          Toast("已复制");
+          AutoWeb.auto('toast', "已复制");
           this.swipeCellCurrentAction = null;
           done(true);
           this.newScheme = null;
@@ -287,7 +286,7 @@ export default {
         } else if ('modify' === this.schemeNameInputType) {
           this.schemeList[this.swipeCellCurrentIndex].schemeName = this.newSchemeName;
           this.saveSchemeList();
-          Toast('修改成功');
+          AutoWeb.auto('toast', '修改成功');
           this.swipeCellCurrentAction = null;
           done(true);
           this.newScheme = null;
