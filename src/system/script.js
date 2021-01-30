@@ -9,13 +9,16 @@ var script = {
     stopCallback: null,
     scheme: null,
     enabledFuncList: null,
-    setRunCallback: function (callback) {
+    keppScreen(mode) {
+        helperBridge.helper.KeepScreen(mode);
+    },
+    setRunCallback (callback) {
         this.runCallback = callback;
     },
-    setStopCallback: function (callback) {
+    setStopCallback (callback) {
         this.stopCallback = callback;
     },
-    initFuncList: function () {
+    initFuncList () {
         this.scheme = store.get('currentScheme', null);
         if (null === this.scheme) return;
         this.scheme.funcList = [];
@@ -35,8 +38,10 @@ var script = {
             }
         }
     },
-    run: function () {
+    run () {
         var self = this;
+        // helperBridge放进来，funcList里面operator执行时可以从this中取到helperBridge，解决直接导入helperBridge在端报错的问题
+        this.helperBridge = helperBridge;
         this.initFuncList();
         if (null === this.scheme) {
             if(typeof self.stopCallback === 'function') {
@@ -46,10 +51,8 @@ var script = {
         }
         this.runThread = threads.start(function () {
             try {
-                // var img = images.captureScreen()
-                // images.save(img, '/sdcard/1.png');
                 while (true) {
-                    helperBridge.helper.KeepScreen(false);
+                    this.keppScreen(false);
                     for (let i = 0; i < self.scheme.funcList.length; i++) {
                         let operator = self.scheme.funcList[i].operator;
                         if (typeof operator === 'function') {
@@ -82,7 +85,7 @@ var script = {
             this.runCallback();
         }
     },
-    stop: function () {
+    stop () {
         if (null !== this.runThread) {
             this.runThread.interrupt();
             if(typeof this.stopCallback === 'function') {

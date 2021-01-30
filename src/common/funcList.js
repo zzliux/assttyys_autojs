@@ -1,4 +1,4 @@
-import helperBridge from '@/system/helperBridge';
+// import helperBridge from '@/system/helperBridge';
 
 const normal = -1; //定义常量
 const left = 0;

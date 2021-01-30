@@ -30,34 +30,40 @@ export const helperBridge = {
             let regionX = null;
             let regionY = null;
             
-            if (oper[i][0] == center) {
-                // click(random(oper[i][1] * scale, oper[i][3] * scale), random(oper[i][2] * scale, oper[i][4] * scale));
-                regionWidth = (oper[i][3] - oper[i][1]) * scale;
-                regionHeight = (oper[i][4] - oper[i][2]) * scale;
-                regionX = screenWidth / 2 + (oper[i][1] - (devWidth / 2)) * scale
-                regionY = screenHeight / 2 + (oper[i][2] - (devHeight / 2)) * scale
-            } else if (oper[i][0] === left) {
-                regionWidth = (oper[i][3] - oper[i][1]) * scale;
-                regionHeight = (oper[i][4] - oper[i][2]) * scale;
-                regionX = oper[i][1] * scale;
-                regionY = oper[i][2] * scale;
-                // click(regionX + random(0, regionWidth), regionY + random(0, regionHeight));
-            } else if (oper[i][0] === right) {
-                regionWidth = (oper[i][3] - oper[i][1]) * scale;
-                regionHeight = (oper[i][4] - oper[i][2]) * scale;
-                regionX = screenWidth - ((devWidth - oper[i][1]) * scale);
-                regionY = oper[i][2] * scale;
-                // click(regionX + random(0, regionWidth), regionY + random(0, regionHeight));
-            } else if (oper[i][0] === normal) {
-                // TODO
-            }
+            // if (oper[i][0] == center) {
+            //     regionWidth = (oper[i][3] - oper[i][1]) * scale;
+            //     regionHeight = (oper[i][4] - oper[i][2]) * scale;
+            //     regionX = screenWidth / 2 + (oper[i][1] - (devWidth / 2)) * scale
+            //     regionY = screenHeight / 2 + (oper[i][2] - (devHeight / 2)) * scale
+            // } else if (oper[i][0] === left) {
+            //     regionWidth = (oper[i][3] - oper[i][1]) * scale;
+            //     regionHeight = (oper[i][4] - oper[i][2]) * scale;
+            //     regionX = oper[i][1] * scale;
+            //     regionY = oper[i][2] * scale;
+            // } else if (oper[i][0] === right) {
+            //     regionWidth = (oper[i][3] - oper[i][1]) * scale;
+            //     regionHeight = (oper[i][4] - oper[i][2]) * scale;
+            //     regionX = screenWidth - ((devWidth - oper[i][1]) * scale);
+            //     regionY = oper[i][2] * scale;
+            // } else if (oper[i][0] === normal) {
+            //     // TODO
+            // }
+            // oper[i] = [
+            //     regionX,
+            //     regionY,
+            //     regionX + regionWidth,
+            //     regionY + regionHeight,
+            //     oper[i][5]
+            // ];
+            let sr = this.helper.GetPoint(oper[i][1], oper[i][2], oper[i][0]);
+            let er = this.helper.GetPoint(oper[i][3], oper[i][4], oper[i][0]);
             oper[i] = [
-                regionX,
-                regionY,
-                regionX + regionWidth,
-                regionY + regionHeight,
+                sr.x,
+                sr.y,
+                er.x,
+                er.y,
                 oper[i][5]
-            ];
+            ]
         }
         return oper;
     },
