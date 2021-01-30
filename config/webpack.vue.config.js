@@ -66,7 +66,7 @@ module.exports = {
             //正在使用的是vue的运行时版本，而此版本中的编译器时不可用的，我们需要把它切换成运行时 + 编译的版本
             'vue$': 'vue/dist/vue.esm.js',// 'vue/dist/vue.common.js' for webpack 1
             //用@直接指引到src目录下，如：'./src/main'可以写成、'@/main'
-            '@': path.resolve(__dirname, './src'),
+            '@': path.resolve(__dirname, '../src'),
         }
     },
     devServer: {  //配置webpack-dev-server

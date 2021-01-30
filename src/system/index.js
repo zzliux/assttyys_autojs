@@ -1,11 +1,12 @@
+runtime.loadDex('./assets/lib/scriptlib.dex');
+importClass(com.scriptlib.AnchorGraphicHelper);
 
 import core, { closeForeground, setSystemUiVisibility, effect$ } from '@auto.pro/core'
 import { run } from '@auto.pro/webview'
-import { fromEvent, race, timer } from 'rxjs'
-import { share, exhaustMap, tap } from 'rxjs/operators'
 
 core({
-    // needCap: true,
+    needCap: '横屏',
+    capType: '同步',
     needFloaty: true,
     // needService: true,
     // needForeground: true,

@@ -2,27 +2,26 @@ import { webview } from "@/system"
 import { effect$ } from "@auto.pro/core"
 import defaultSchemeList from '@/common/schemeList';
 import myFloaty from '@/system/myFloaty';
-
-const storage = storages.create('asttyys_ng');
-// console.show();
-
+import store from '@/system/store';
+import helperBridge from "@/system/helperBridge";
+console.show();
 
 // 返回已保存的方案列表，如果未保存过，返回common中的schemeList
 webview.on("getSchemeList").subscribe(([param, done]) => {
-    let savedSchemeList = storage.get("schemeList", defaultSchemeList);
+    let savedSchemeList = store.get("schemeList", defaultSchemeList);
     done(savedSchemeList);
 });
 
 // 保存方案列表
 webview.on("saveSchemeList").subscribe(([schemeList, done]) => {
-    storage.put("schemeList", schemeList);
+    store.put("schemeList", schemeList);
     console.log('schemeList已保存');
     done("success");
 });
 
 // 获取方案
 webview.on("getScheme").subscribe(([schemeName, done]) => {
-    let savedSchemeList = storage.get("schemeList", defaultSchemeList);
+    let savedSchemeList = store.get("schemeList", defaultSchemeList);
     for (let i = 0; i < savedSchemeList.length; i++) {
         if (savedSchemeList[i].schemeName === schemeName) {
             done(savedSchemeList[i]);
@@ -33,7 +32,7 @@ webview.on("getScheme").subscribe(([schemeName, done]) => {
 });
 
 webview.on("saveScheme").subscribe(([scheme, done]) => {
-    let savedSchemeList = storage.get("schemeList", defaultSchemeList);
+    let savedSchemeList = store.get("schemeList", defaultSchemeList);
     for (let i = 0; i < savedSchemeList.length; i++) {
         if (savedSchemeList[i].schemeName === scheme.schemeName) {
             scheme.id = savedSchemeList[i].id;
@@ -41,12 +40,18 @@ webview.on("saveScheme").subscribe(([scheme, done]) => {
             break;
         }
     }
-    storage.put("schemeList", savedSchemeList);
+    store.put("schemeList", savedSchemeList);
     done("success");
 });
 
 webview.on("setCurrentScheme").subscribe(([schemeName, done]) => {
-    // TODO
+    let savedSchemeList = store.get("schemeList", defaultSchemeList);
+    for (let i = 0; i < savedSchemeList.length; i++) {
+        if (savedSchemeList[i].schemeName === schemeName) {
+            store.put('currentScheme', savedSchemeList[i]);
+            break;
+        }
+    }
     done();
 });
 
@@ -79,6 +84,8 @@ effect$.subscribe(() => {
     toastLog("权限加载完成");
 
     myFloaty.init();
+
+    helperBridge.init();
     
 });
 

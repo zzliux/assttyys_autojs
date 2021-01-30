@@ -120,7 +120,7 @@ body {
   position: fixed;
   width: 100%;
   left: 0;
-  top: 0;
+  top: 0px;
 }
 .tabbar_box {
   z-index: 1;

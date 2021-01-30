@@ -67,14 +67,18 @@ const config = {
 module.exports = (env, argv) => {
     if (argv.mode === 'development') {
         config.plugins = [
-            new CleanWebpackPlugin(),
+            new CleanWebpackPlugin({
+                cleanOnceBeforeBuildPatterns: []
+            }),
             compilePlugin,
             new ProgressPlugin()
         ]
         config.devtool = 'source-map'
     } else {
         config.plugins = [
-            new CleanWebpackPlugin(),
+            new CleanWebpackPlugin({
+                cleanOnceBeforeBuildPatterns: []
+            }),
             new JavascriptObfuscator({
                 compact: true,
                 identifierNamesGenerator: "dictionary",

@@ -59,9 +59,9 @@ const CommonConfig = [
             },
             {
                 name: 'colorSimilar',
-                desc: '定点判断颜色相似度',
+                desc: '多点比色相似度(%)',
                 type: 'integer',
-                default: 15,
+                default: 93,
                 value: null,
             },
             {
@@ -73,9 +73,9 @@ const CommonConfig = [
             },
             {
                 name: 'multiColorSimilar',
-                desc: '多点找色相似度',
+                desc: '多点找色相似度(%)',
                 type: 'integer',
-                default: 4,
+                default: 95,
                 value: null,
             }
         ]

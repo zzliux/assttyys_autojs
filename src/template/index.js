@@ -51,13 +51,6 @@ var router = new VueRouter({
 		},
 		component: () => import('./pages/SchemeList.vue')
 	}, {
-		path:"/me",
-		name: 'me',
-		meta: {
-			index: 0
-		},
-		component: () => import('./pages/Me.vue')
-	}, {
 		path:"/funcList",
 		name: 'funcList',
 		meta: {
