@@ -15,7 +15,7 @@ for (let i = 1024; i < 2048; i++) {
 }
 
 const compilePlugin = new AutoProWebpackPlugin({
-    ui: ["app"],
+    ui: ["auto"],
     // entry: {
     //     key: ''
     // }
@@ -26,7 +26,7 @@ const config = {
         app: path.resolve(__dirname, "../src/index.js"),
     },
     output: {
-        filename: "[name].js",
+        filename: "auto.js",
         path: path.resolve(__dirname, "../dist"),
         libraryTarget: "var"
         // libraryTarget: "commonjs2"

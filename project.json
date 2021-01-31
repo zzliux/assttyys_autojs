@@ -1,7 +1,7 @@
 {
     "name": "assttyys_ng",
-    "mainScriptFile": "dist/app.js",
-    "main": "dist/app.js",
+    "mainScriptFile": "dist/auto.js",
+    "main": "dist/auto.js",
     "launchConfig": {
         "hideLogs": true,
         "stableMode": true,

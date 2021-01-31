@@ -9,7 +9,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, '../dist'),
-        filename: "[name].[hash].js",
+        filename: "web.js",
         libraryTarget: 'umd'
     },
     module: {
@@ -81,6 +81,7 @@ module.exports = {
         new VueLoaderPlugin(),
         new webpack.ProvidePlugin({
             AutoWeb: '@auto.pro/web',
-        })
+        }),
+        new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 })
     ]
 }
