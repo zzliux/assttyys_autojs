@@ -8,7 +8,7 @@ core({
     needCap: '横屏',
     capType: '同步',
     needFloaty: true,
-    // needService: true,
+    needService: true,
     // needForeground: true,
 })
 

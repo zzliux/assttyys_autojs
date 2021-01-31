@@ -69,10 +69,10 @@ export const helperBridge = {
     },
 
     // [[1119, 504, 1227, 592, 2000]]
-    regionClick(transedOper) {
+    regionClick(transedOper, randomSleep) {
         transedOper.forEach(item => {
             click(random(item[0], item[2]), random(item[1], item[3]));
-            sleep(item[4]);
+            sleep(item[4] + random(0, randomSleep || 0));
         });
     }
 };

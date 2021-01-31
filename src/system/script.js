@@ -12,13 +12,13 @@ var script = {
     keepScreen(mode) {
         helperBridge.helper.KeepScreen(mode);
     },
-    setRunCallback (callback) {
+    setRunCallback(callback) {
         this.runCallback = callback;
     },
-    setStopCallback (callback) {
+    setStopCallback(callback) {
         this.stopCallback = callback;
     },
-    initFuncList () {
+    initFuncList() {
         this.scheme = store.get('currentScheme', null);
         if (null === this.scheme) return;
         this.scheme.funcList = [];
@@ -38,13 +38,13 @@ var script = {
             }
         }
     },
-    run () {
+    run() {
         var self = this;
         // helperBridge放进来，funcList里面operator执行时可以从this中取到helperBridge，解决直接导入helperBridge在端报错的问题
         this.helperBridge = helperBridge;
         this.initFuncList();
         if (null === this.scheme) {
-            if(typeof self.stopCallback === 'function') {
+            if (typeof self.stopCallback === 'function') {
                 self.stopCallback();
             }
             return;
@@ -54,29 +54,14 @@ var script = {
                 while (true) {
                     self.keepScreen(false);
                     for (let i = 0; i < self.scheme.funcList.length; i++) {
-                        let operator = self.scheme.funcList[i].operator;
-                        if (typeof operator === 'function') {
-                            operator.apply(this);
-                        } else {
-                            // TODO 公共
-                            operator.forEach(item => {
-                                let rs = helperBridge.helper.CompareColorEx(item.desc, self.scheme.commonConfig.colorSimilar, 0);
-                                if (rs) {
-                                    console.log('执行：' + self.scheme.funcList[i].name);
-                                    console.log(item.oper);
-                                    helperBridge.regionClick(item.oper);
-                                }
-                            });
-                        }
+                        self.oper(self.scheme.funcList[i]);
                     }
                     sleep(self.scheme.commonConfig.loopDelay);
-                    // console.log('运行中。');
                 }
-                
             } catch (e) {
                 self.runThread = null;
                 console.log(e);
-                if(typeof self.stopCallback === 'function') {
+                if (typeof self.stopCallback === 'function') {
                     self.stopCallback();
                 }
             }
@@ -85,14 +70,29 @@ var script = {
             this.runCallback();
         }
     },
-    stop () {
+    stop() {
         if (null !== this.runThread) {
             this.runThread.interrupt();
-            if(typeof this.stopCallback === 'function') {
+            if (typeof this.stopCallback === 'function') {
                 this.stopCallback();
             }
         }
         this.runThread = null;
+    },
+    oper(currFunc) {
+        let operator = currFunc.operator;
+        if (typeof operator === 'function') {
+            operator.apply(this);
+        } else {
+            // TODO 公共
+            operator.forEach((item, id) => {
+                let rs = helperBridge.helper.CompareColorEx(item.desc, this.scheme.commonConfig.colorSimilar, 0);
+                if (rs) {
+                    console.log('执行：' + currFunc.name + '_' + id);
+                    helperBridge.regionClick(item.oper, this.scheme.commonConfig.afterClickDelayRandom);
+                }
+            });
+        }
     }
 }
 
