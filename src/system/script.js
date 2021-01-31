@@ -9,7 +9,7 @@ var script = {
     stopCallback: null,
     scheme: null,
     enabledFuncList: null,
-    keppScreen(mode) {
+    keepScreen(mode) {
         helperBridge.helper.KeepScreen(mode);
     },
     setRunCallback (callback) {
@@ -52,7 +52,7 @@ var script = {
         this.runThread = threads.start(function () {
             try {
                 while (true) {
-                    this.keppScreen(false);
+                    self.keepScreen(false);
                     for (let i = 0; i < self.scheme.funcList.length; i++) {
                         let operator = self.scheme.funcList[i].operator;
                         if (typeof operator === 'function') {
