@@ -44,13 +44,6 @@ const CommonConfig = [
                 value: null,
             },
             {
-                name: 'afterClickDelay',
-                desc: '点击后延时',
-                type: 'integer',
-                default: 200,
-                value: null,
-            },
-            {
                 name: 'afterClickDelayRandom',
                 desc: '点击后延时随机数',
                 type: 'integer',
