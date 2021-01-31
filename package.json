@@ -46,14 +46,14 @@
         "@auto.pro/webview": "^9.1.6",
         "@babel/polyfill": "^7.12.1",
         "basscss": "^8.1.0",
-        "bulma": "^0.9.1",
+        "bulma": "^0.9.2",
         "es6-shim": "^0.35.6",
         "lodash": "^4.17.20",
         "rxjs": "^6.6.3",
         "uuid-js": "^0.7.5",
-        "vant": "^2.12.5",
+        "vant": "^2.12.6",
         "vue": "^2.6.12",
-        "vue-router": "^3.4.9",
+        "vue-router": "^3.5.1",
         "vuedraggable": "^2.24.3"
     }
 }

@@ -5,6 +5,7 @@
         title="ASSTTYYS NG"
         left-arrow
         @click-left="$router.back()"
+        :style="'padding-top: ' + (statusBarHeight || 0) + 'px'"
       >
          <template #right>
           <van-icon name="setting-o" size="18" @click="showConfig($event, commonConfig)"/>
@@ -15,7 +16,7 @@
       </van-nav-bar>
     </div>
 
-    <div class="rv_inner">
+    <div class="rv_inner" :style="'padding-top: '+ (46 + (statusBarHeight || 0)) + 'px'">
       <van-cell-group class="itemBox" :title="'方案 - ' + this.params.schemeName">
         <draggable
           v-model="funcList"
@@ -128,6 +129,9 @@ export default {
       configItemItemPickerList: [],
       curItemItem: null,
     };
+  },
+  props: {
+    statusBarHeight: Number
   },
   components: {
     draggable,

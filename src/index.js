@@ -55,6 +55,14 @@ webview.on("setCurrentScheme").subscribe(([schemeName, done]) => {
     done();
 });
 
+// todo使用core包的获取状态栏高度
+webview.on("getStatusBarHeight").subscribe(([_param, done]) => {
+    var resources = context.getResources();
+    var resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
+    var statusBarHeight = resources.getDimensionPixelSize(resourceId);
+    done(statusBarHeight);
+})
+
 webview.on("startScript").subscribe(([_param, done]) => {
     done();
     context.startActivity(app.intent({

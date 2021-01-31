@@ -1,5 +1,6 @@
 import { createFloaty } from '@auto.pro/floaty';
-import script from './script';
+import schemeDialog from '@/system/schemeDialog';
+import script from '@/system/script';
 
 importClass(android.content.Intent);
 
@@ -42,9 +43,9 @@ var myFloaty = {
                 {
                     id: 'setting',
                     color: '#bfc1c0',
-                    icon: 'ic_settings_black_48dp',
+                    icon: 'ic_format_indent_increase_black_48dp',
                     callback() {
-                        toastLog('还在开发中。');
+                        schemeDialog.show();
                     }
                 },
             ]

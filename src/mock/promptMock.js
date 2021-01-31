@@ -27,6 +27,7 @@ const promptMockData = {
     saveSchemeList: function () {
         return 'success';
     },
+    getStatusBarHeight: 20,
     toast: function () {
     }
 };

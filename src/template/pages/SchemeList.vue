@@ -1,7 +1,8 @@
 <template>
   <div>
     <div class="navbar_box">
-      <van-nav-bar title="ASSTTYYS NG">
+      <van-nav-bar title="ASSTTYYS NG" :style="'padding-top: ' + (statusBarHeight || 0) + 'px'">
+      <!-- <van-nav-bar title="ASSTTYYS NG" style="height: 66px;"> -->
         <!-- <template #right>
           <van-icon
             class-prefix="iconfont"
@@ -12,7 +13,7 @@
         </template> -->
       </van-nav-bar>
     </div>
-    <div class="rv_inner">
+    <div class="rv_inner" :style="'padding-top: '+ (46 + (statusBarHeight || 0)) + 'px'">
       <van-cell-group class="itemBox" title="方案列表">
         <draggable
           :scroll-sensitivity="100"
@@ -129,6 +130,9 @@ export default {
       schemeList: _.cloneDeep(dSchemeList),
     };
   },
+  props: {
+    statusBarHeight: Number
+  },
   components: {
     draggable,
   },
@@ -136,8 +140,7 @@ export default {
     var self = this;
     AutoWeb.auto("getSchemeList", null, function (savedSchemeList) {
       self.schemeList = savedSchemeList
-    })
-
+    });
   },
   computed: {
     dragOptions() {

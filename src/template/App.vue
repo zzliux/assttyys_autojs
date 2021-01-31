@@ -2,7 +2,7 @@
   <div style="width: 100%; height: 100%;">
     <div class="rv_box">
       <transition :name="transitionName">
-        <router-view class="rv"></router-view>
+        <router-view class="rv" :status-bar-height="statusBarHeight"></router-view>
       </transition>
     </div>
     <!-- <div class="tabbar_box">
@@ -26,6 +26,7 @@ export default {
   data() {
     return {
       transitionName: "slide-right",
+      statusBarHeight: 0
     };
   },
   methods: {
@@ -45,7 +46,8 @@ export default {
       }
     },
   },
-  mounted() {
+  async mounted() {
+    this.statusBarHeight = (await AutoWeb.autoPromise('getStatusBarHeight')) * 0.7;
   },
 };
 </script>

@@ -77,7 +77,7 @@ module.exports = (env, argv) => {
     } else {
         config.plugins = [
             new CleanWebpackPlugin({
-                cleanOnceBeforeBuildPatterns: []
+                // cleanOnceBeforeBuildPatterns: []
             }),
             new JavascriptObfuscator({
                 compact: true,
