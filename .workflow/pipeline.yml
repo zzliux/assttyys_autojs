@@ -13,11 +13,17 @@ stages:                                   # 构建阶段配置
   - stage:                                # 定义一个 ID 标识为 npm-build-stage ,名为 “npm Stage” 的阶段
       name: npm-build-stage
       displayName: 'npm Stage'
-      failFast: false                     # 允许快速失败，即当 Stage 中有任务失败时，直接结束整个 Stage
+      failFast: true                      # 允许快速失败，即当 Stage 中有任务失败时，直接结束整个 Stage
       steps:                              # 构建步骤配置
         - step: npmbuild@1                # 采用 npm 编译环境
-          name: npm-build                 # 定义一个 ID 标识为 npm-build ,名为 “npm Step” 的阶段
-          displayName: 'npm Step'
+          name: npm-install
+          displayName: '安装依赖'
           inputs:                         # 构建输入参数设定
             nodeVersion: 14.15            # 指定 node 环境版本为 14.15
-            goals: "npm run build"            # 输出 构建环境 Node 和 npm 信息
+            goals: "npm install"
+        - step: npmbuild@2 
+          name: npm-build
+          displayName: '打包构建'
+          inputs:
+            nodeVersion: 14.15
+            goals: "npm run build"
