@@ -19,6 +19,6 @@ stages:                                   # 构建阶段配置
             goals: "npm install && npm run build"
             uploadArtifact: true               # 构建完成后是否将构建物作为制品产出，非必填项，与下方上传参数需同时定义
             uploadArtifactOptions:             # 构建物上传参数，非必填项，与 `uploadArtifact` 参数需同时定义
-              artifactPath: './'         # 构建完成后要打包的构建物所在路径
+              artifactPath: ''         # 构建完成后要打包的构建物所在路径
               artifactRepository: 'assttyysngdevbuild'   # 制品库名称，可以理解为一批构建物的集合
               artifactName: 'assttyys_ng_dev_build'     # 构建物打包后的制品名
