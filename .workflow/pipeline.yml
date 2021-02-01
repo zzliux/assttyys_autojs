@@ -1,7 +1,3 @@
-# ========================================================
-# npm 构建参考流水线样例
-# 功能：输出当前 npm 构建环境的环境信息
-# ========================================================
 name: ng-dev-build                # 定义一个唯一 ID 标识为 gitee-go-npm-example，名称为 “npm-流水线示例” 的流水线
 displayName: '自动构建'
 triggers:                                 # 流水线触发器配置
@@ -21,3 +17,8 @@ stages:                                   # 构建阶段配置
           inputs:                         # 构建输入参数设定
             nodeVersion: 14.15            # 指定 node 环境版本为 14.15
             goals: "npm install && npm run build"
+            uploadArtifact: true               # 构建完成后是否将构建物作为制品产出，非必填项，与下方上传参数需同时定义
+            uploadArtifactOptions:             # 构建物上传参数，非必填项，与 `uploadArtifact` 参数需同时定义
+              artifactPath: './'         # 构建完成后要打包的构建物所在路径
+              artifactRepository: 'assttyysngdevbuild'   # 制品库名称，可以理解为一批构建物的集合
+              artifactName: 'assttyys_ng_dev_build'     # 构建物打包后的制品名
