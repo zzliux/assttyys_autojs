@@ -20,4 +20,4 @@ stages:                                   # 构建阶段配置
           displayName: 'npm Step'
           inputs:                         # 构建输入参数设定
             nodeVersion: 14.15            # 指定 node 环境版本为 14.15
-            goals: "npm build"            # 输出 构建环境 Node 和 npm 信息
+            goals: "npm run build"            # 输出 构建环境 Node 和 npm 信息
