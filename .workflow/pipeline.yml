@@ -8,12 +8,12 @@ commitMessage: ''                         # 通过匹配当前提交的 CommitMe
 stages:                                   # 构建阶段配置
   - stage:                                # 定义一个 ID 标识为 npm-build-stage ,名为 “npm Stage” 的阶段
       name: npm-build-stage
-      displayName: 'npm Stage'
+      displayName: 'build'
       failFast: true                      # 允许快速失败，即当 Stage 中有任务失败时，直接结束整个 Stage
       steps:                              # 构建步骤配置
         - step: npmbuild@1                # 采用 npm 编译环境
           name: npm-install
-          displayName: '安装依赖'
+          displayName: 'build'
           inputs:                         # 构建输入参数设定
             nodeVersion: 14.15            # 指定 node 环境版本为 14.15
             goals: |
