@@ -1,0 +1,30 @@
+name: ng-dev-build                # 定义一个唯一 ID 标识为 gitee-go-npm-example，名称为 “npm-流水线示例” 的流水线
+displayName: '自动构建'
+triggers:                                 # 流水线触发器配置
+  push:                                   # 设置 master 分支 在产生代码 push 时精确触发（PRECISE）构建
+    - matchType: PRECISE
+      branch: ng_dev
+commitMessage: ''                         # 通过匹配当前提交的 CommitMessage 决定是否执行流水线
+stages:                                   # 构建阶段配置
+  - stage:                                # 定义一个 ID 标识为 npm-build-stage ,名为 “npm Stage” 的阶段
+      name: npm-build-stage
+      displayName: 'npm Stage'
+      failFast: true                      # 允许快速失败，即当 Stage 中有任务失败时，直接结束整个 Stage
+      steps:                              # 构建步骤配置
+        - step: npmbuild@1                # 采用 npm 编译环境
+          name: npm-install
+          displayName: '安装依赖'
+          inputs:                         # 构建输入参数设定
+            nodeVersion: 14.15            # 指定 node 环境版本为 14.15
+            goals: |
+              npm install
+              npm run build
+              mkdir target
+              cp dist -r target/dist
+              cp assets -r target/assets
+              cp project.json target/project.json
+            uploadArtifact: true               # 构建完成后是否将构建物作为制品产出，非必填项，与下方上传参数需同时定义
+            uploadArtifactOptions:             # 构建物上传参数，非必填项，与 `uploadArtifact` 参数需同时定义
+              artifactPath: 'target'         # 构建完成后要打包的构建物所在路径
+              artifactRepository: 'assttyysngdevbuild'   # 制品库名称，可以理解为一批构建物的集合
+              artifactName: 'assttyys_ng_dev_build'     # 构建物打包后的制品名
