@@ -20,10 +20,4 @@ stages:                                   # 构建阶段配置
           displayName: '安装依赖'
           inputs:                         # 构建输入参数设定
             nodeVersion: 14.15            # 指定 node 环境版本为 14.15
-            goals: "npm install"
-        - step: npmbuild@1
-          name: npm-build
-          displayName: '打包构建'
-          inputs:
-            nodeVersion: 14.15
-            goals: "npm run build"
+            goals: "npm install && npm run build"
