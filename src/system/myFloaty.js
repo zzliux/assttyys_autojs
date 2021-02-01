@@ -17,6 +17,7 @@ var myFloaty = {
             duration: 150,
             radius: 60,
             angle: 90,
+            moveLimit: 15,
             items: [
                 {
                     id: 'home',

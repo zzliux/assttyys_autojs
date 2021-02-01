@@ -1,7 +1,7 @@
 runtime.loadDex('./assets/lib/scriptlib.dex');
 importClass(com.scriptlib.AnchorGraphicHelper);
 
-import core, { closeForeground, setSystemUiVisibility, effect$ } from '@auto.pro/core'
+import core, { closeForeground, setSystemUiVisibility, effect$, screenDirection$ } from '@auto.pro/core'
 import { run } from '@auto.pro/webview'
 
 core({
@@ -9,8 +9,9 @@ core({
     capType: '同步',
     needFloaty: true,
     needService: true,
+    needScreenListener: true,
     // needForeground: true,
-})
+});
 
 export const webview = run('file://' + files.path('dist/index.html'), {
     afterLayout() {
