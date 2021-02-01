@@ -54,7 +54,9 @@ var script = {
                 while (true) {
                     self.keepScreen(false);
                     for (let i = 0; i < self.scheme.funcList.length; i++) {
-                        self.oper(self.scheme.funcList[i]);
+                        if (self.oper(self.scheme.funcList[i])) {
+                            break;
+                        }
                     }
                     sleep(self.scheme.commonConfig.loopDelay);
                 }
@@ -80,18 +82,20 @@ var script = {
         this.runThread = null;
     },
     oper(currFunc) {
-        let operator = currFunc.operator;
-        if (typeof operator === 'function') {
-            operator.apply(this);
+        let operator = currFunc.operator; // 需要计算的坐标通过operater传进去使用
+        let operatorFunc = currFunc.operatorFunc;
+        if (typeof operatorFunc === 'function') {
+            return operatorFunc.call(null, this, operator);
         } else {
-            // TODO 公共
-            operator.forEach((item, id) => {
+            for (let id = 0; id < operator.length; id++) {
+                let item = operator[id];
                 let rs = helperBridge.helper.CompareColorEx(item.desc, this.scheme.commonConfig.colorSimilar, 0);
                 if (rs) {
                     console.log('执行：' + currFunc.name + '_' + id);
                     helperBridge.regionClick(item.oper, this.scheme.commonConfig.afterClickDelayRandom);
+                    return true;
                 }
-            });
+            }
         }
     }
 }
