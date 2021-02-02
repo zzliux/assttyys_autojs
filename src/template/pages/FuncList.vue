@@ -125,6 +125,7 @@ export default {
       configModalObject: {
         config: []
       },
+      scheme: null,
       configItemItemShowPicker: false,
       configItemItemPickerList: [],
       curItemItem: null,
@@ -153,6 +154,7 @@ export default {
       }
     }
     var schemeConfig = await AutoWeb.autoPromise('getScheme', this.$route.query.schemeName);
+    this.scheme = schemeConfig;
 
     let fl = _.cloneDeep(dfuncList);
     fl.forEach(item => {
@@ -261,6 +263,7 @@ export default {
         }
         let toSave = {
           schemeName: this.params.schemeName,
+          star: this.scheme.star,
           list: list,
           config: config,
           commonConfig: commonConfig

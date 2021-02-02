@@ -85,7 +85,10 @@ var script = {
         let operator = currFunc.operator; // 需要计算的坐标通过operater传进去使用
         let operatorFunc = currFunc.operatorFunc;
         if (typeof operatorFunc === 'function') {
-            return operatorFunc.call(null, this, operator);
+            if (operatorFunc.call(null, this, operator)) {
+                console.log('执行：' + currFunc.name);
+                return true;
+            }
         } else {
             for (let id = 0; id < operator.length; id++) {
                 let item = operator[id];

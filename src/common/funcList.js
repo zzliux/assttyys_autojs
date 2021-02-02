@@ -181,8 +181,30 @@ const FuncList = [{
 	}]
 }, {
 	id: 5,
-	name: '接受邀请 TODO',
-	checked: false
+	name: '接受邀请',
+	checked: false,
+	operator: [{
+		// 自动接受邀请
+		desc: [1280,720,
+			[[left,20,254,0x7e6750],
+			[left,45,248,0xdf6e5b],
+			[left,138,260,0x57b260],
+			[left,234,251,0xefc791],
+			[left,247,269,0x59b462],
+			[left,255,276,0x86705d],
+			[left,192,276,0xeadece]]
+		],
+		oper: [[left, 219,237, 254,275, 600]]
+	}, { // 接受一次邀请
+		desc: [1280,720,
+			[[left,128,255,0x58b361],
+			[left,45,257,0xdd6a59],
+			[left,79,222,0xe3d3c2],
+			[left,14,299,0xf1be36],
+			[left,176,291,0xefe5d6]]
+		],
+		oper: [[left, 120,239, 159,273, 600]]
+	}]
 }, {
 	id: 6,
 	name: '组队挑战 TODO',

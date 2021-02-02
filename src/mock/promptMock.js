@@ -28,6 +28,8 @@ const promptMockData = {
         return 'success';
     },
     getStatusBarHeight: 20,
+    setCurrentScheme: 'sucess',
+    startScript: 'sucess',
     toast: function () {
     }
 };
