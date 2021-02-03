@@ -8,10 +8,8 @@
         :style="'padding-top: ' + (statusBarHeight || 0) + 'px'"
       >
          <template #right>
-          <van-icon name="setting-o" size="18" @click="showConfig($event, commonConfig)"/>
-          &nbsp;&nbsp;
-          &nbsp;&nbsp;
-          <van-icon name="success" size="18" @click="saveScheme" />
+          <van-icon name="setting-o" size="18"  @click="showConfig($event, commonConfig)" />
+          <!-- <van-icon name="success" size="18" @click="saveScheme" /> -->
         </template>
       </van-nav-bar>
     </div>
@@ -28,20 +26,17 @@
           @end="dragEnd"
         >
           <transition-group type="transition" :name="!dragTransition ? 'flip-list' : null">
-            <div v-for="item in funcList" :key="item.id"
-              style="margin:5px 10px 5px 10px; border-radius:10px; overflow: hidden;"
-            >
-              <van-cell
-                class="item"
-                center
-                :title="item.name + (item.config && item.config.length ? ' *': '')"
-                @click="showConfig($event, item)"
+            <div
+              v-for="item in funcList" :key="item.id"
+              class="item"
+              center
+              @click="showConfig($event, item)"
               >
-                <template>
-                  <span class="handle-area"><van-icon class="handle" size="18" name="bars" /></span>
-                  <van-switch class="itemSwitch" @change="toggleSwitchEvent" v-model="item.checked" size="18" />
-                </template>
-              </van-cell>
+              <div class="item-title">{{item.name + (item.config && item.config.length ? ' *': '')}}</div>
+              <div class="item-value">
+                <span class="handle-area"><van-icon class="handle" size="18" name="bars" /></span>
+                <van-switch class="itemSwitch" @change="toggleSwitchEvent" v-model="item.checked" size="18" />
+              </div>
             </div>
           </transition-group>
         </draggable>
@@ -49,9 +44,24 @@
     </div>
 
     <div style="display: block; position: fixed; bottom: 0; width: 100%;">
-      <div style="margin: 5px 10px 5px 10px; border-radius:10px; overflow: hidden;">
-        <van-button type="info" block @click="startBtnClickEvent">启动脚本</van-button>
-      </div>
+      <van-row>
+        <van-col span="12">
+          <div style="margin: 5px 5px 5px 10px; border-radius:10px; overflow: hidden;">
+            <van-button type="info" block @click="saveScheme">
+              <i class="iconfont iconfont-baocun"></i> 保存
+              <!-- <van-icon name="setting-o"/> 保存 -->
+            </van-button>
+          </div>
+        </van-col>
+        <van-col span="12">
+          <div style="margin: 5px 10px 5px 5px; border-radius:10px; overflow: hidden;">
+            <van-button color="#FF9900" block @click="startBtnClickEvent">
+              <i class="iconfont iconfont-fabusekuai"></i> 启动
+              <!-- <van-icon name="play-circle" /> 启动 -->
+            </van-button>
+          </div>
+        </van-col>
+      </van-row>
     </div>
     <!-- 功能的参数配置 -->
     <van-popup class="configModal" v-model="configModalShow" closeable>
@@ -97,13 +107,14 @@
 </template>
 <script>
 import Vue from "vue";
-import { Cell, CellGroup, Switch, Icon, Button, Popup, Form, Field, Picker } from "vant";
+import { Col, Row , CellGroup, Switch, Icon, Button, Popup, Form, Field, Picker } from "vant";
 import draggable from 'vuedraggable'
 import dfuncList from "../../common/funcList";
 import dCommonConfig from "../../common/commonConfig";
 import _ from 'lodash';
 
-Vue.use(Cell);
+Vue.use(Col);
+Vue.use(Row);
 Vue.use(CellGroup);
 Vue.use(Switch);
 Vue.use(Icon);
@@ -153,7 +164,7 @@ export default {
   async mounted() {
     if (this.params) {
       if (this.params.schemeName) {
-        AutoWeb.auto('toast', `加载方案 [ ${this.params.schemeName} ] `);
+        // AutoWeb.auto('toast', `加载方案 [ ${this.params.schemeName} ] `);
       }
     }
     var schemeConfig = await AutoWeb.autoPromise('getScheme', this.$route.query.schemeName);
@@ -174,6 +185,7 @@ export default {
         item.checked = true
         item.config.forEach(iItem => {
           iItem.config.forEach(iIItem => {
+            if (!schemeConfig.config) return;
             if (schemeConfig.config[item.id] && schemeConfig.config[item.id][iIItem.name]) {
               iIItem.value = schemeConfig.config[item.id][iIItem.name];
             } else {
@@ -239,7 +251,7 @@ export default {
       this.curItemItem.value = text;
       this.configItemItemShowPicker = false;
     },
-    saveScheme() {
+    async saveScheme() {
       if (this.params && this.params.schemeName) {
         let list = [];
         let config = {};
@@ -272,14 +284,14 @@ export default {
           commonConfig: commonConfig
         }
 
-        AutoWeb.auto('saveScheme', toSave, function (r) {
-          AutoWeb.auto('toast', `保存成功`);
-        });
+        await AutoWeb.autoPromise('saveScheme', toSave);
+        await AutoWeb.autoPromise('toast', `保存成功`);
       } else {
-        AutoWeb.auto('toast', `参数错误：params.schemeName为空`);
+        await AutoWeb.autoPromise('toast', `参数错误：params.schemeName为空`);
       }
     },
     async startBtnClickEvent() {
+      await this.saveScheme();
       await AutoWeb.autoPromise('setCurrentScheme', this.params.schemeName);
       await AutoWeb.autoPromise('startScript');
     }
@@ -312,5 +324,24 @@ export default {
 }
 .configItemValue {
   text-align: right;
+}
+
+.item {
+  height: 44px;
+  margin:5px 10px 5px 10px;
+  border-radius:10px;
+  background-color: #fff;
+  overflow: hidden;
+  padding: 0px 10px;
+  font-size: 14px;
+}
+.item-title {
+  display: inline-block;
+  height: 44px;
+  line-height: 44px;
+}
+.item-value {
+  margin-top: 5px;
+  float: right;
 }
 </style>

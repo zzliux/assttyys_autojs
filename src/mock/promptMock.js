@@ -2,21 +2,12 @@ import defaultSchemeList from '../common/schemeList';
 
 const promptMockData = {
     getScheme: function (schemeName) {
-        return {
-            schemeName: schemeName, // 方案名
-            list: [1, 2, 4, 10, 20, 15, 16, 14, 13, 12, 11], // funcList中的id集合
-            config: { // 方案中的配置，如返回空的话使用默认配置
-                '1': { // key为功能的ID（1表示准备）
-                    enabled: true,
-                    position: '五人-左3'
-                }
-            },
-            commonConfig: { // 通用参数
-                clickDelay: 200, // 点击后固定延时
-                clickDelayRandom: 1000, // 点击后延时随机数
-                // 等
+        for (let i = 0; i < defaultSchemeList.length; i++) {
+            if (schemeName === defaultSchemeList[i].schemeName) {
+                return defaultSchemeList[i];
             }
-        };
+        }
+        return defaultSchemeList[0];
     },
     getSchemeList: function () {
         return defaultSchemeList;

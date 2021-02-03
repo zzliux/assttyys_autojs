@@ -308,14 +308,14 @@ export default {
 </script>
 
 <style scoped>
-.item {
-  height: 44px;
-}
 .star-area,
 .handle-area {
   margin-top: 8px;
   height: 24px;
   width: 36px;
   display: inline-block;
+}
+.item {
+  height: 44px;
 }
 </style>
