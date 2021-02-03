@@ -9,7 +9,7 @@ const SchemeList = [ // TODO
         id: 2,
         schemeName: '组队乘客',
         star: false,
-        list: [1, 2, 3, 4]
+        list: [1, 2, 3, 4],
     }
     // 完整demo
     // , {

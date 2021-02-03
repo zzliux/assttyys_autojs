@@ -26,6 +26,7 @@ export const webview = run('file://' + files.path('dist/index.html'), {
         }
     }
 });
+webview.webviewObject.clearCache(true);
 // webview.webviewObject.getSettings().setCacheMode(android.webkit.WebSettings.LOAD_NO_CACHE);
 
 // 监听退出事件，关闭前台服务

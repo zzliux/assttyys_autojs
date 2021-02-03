@@ -4,6 +4,7 @@ import defaultSchemeList from '@/common/schemeList';
 import myFloaty from '@/system/myFloaty';
 import store from '@/system/store';
 import helperBridge from "@/system/helperBridge";
+import { mergeSchemeList } from '@/common/tool';
 console.show();
 
 // 返回已保存的方案列表，如果未保存过，返回common中的schemeList
@@ -21,10 +22,11 @@ webview.on("saveSchemeList").subscribe(([schemeList, done]) => {
 
 // 获取方案
 webview.on("getScheme").subscribe(([schemeName, done]) => {
-    let savedSchemeList = store.get("schemeList", defaultSchemeList);
-    for (let i = 0; i < savedSchemeList.length; i++) {
-        if (savedSchemeList[i].schemeName === schemeName) {
-            done(savedSchemeList[i]);
+    let savedSchemeList = store.get("schemeList", []);
+    let schemeList = mergeSchemeList(savedSchemeList, defaultSchemeList);
+    for (let i = 0; i < schemeList.length; i++) {
+        if (schemeList[i].schemeName === schemeName) {
+            done(schemeList[i]);
             return;
         }
     }

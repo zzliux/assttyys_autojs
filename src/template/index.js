@@ -57,6 +57,13 @@ var router = new VueRouter({
 			index: 1
 		},
 		component: () => import('./pages/FuncList.vue')
+	}, {
+		path: '/settings',
+		name: 'settings',
+		meta: {
+			index: 1
+		},
+		component: () => import('./pages/Settings.vue')
 	}]
 });
 // 事件总线

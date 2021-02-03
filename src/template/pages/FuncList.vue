@@ -326,13 +326,16 @@ export default {
   text-align: right;
 }
 
+.item:active {
+  background-color: #f2f3f5;
+}
 .item {
   height: 44px;
   margin:5px 10px 5px 10px;
   border-radius:10px;
   background-color: #fff;
   overflow: hidden;
-  padding: 0px 10px;
+  padding: 0px 16px;
   font-size: 14px;
 }
 .item-title {

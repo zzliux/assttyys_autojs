@@ -5,12 +5,6 @@
         <router-view class="rv" :status-bar-height="statusBarHeight"></router-view>
       </transition>
     </div>
-    <!-- <div class="tabbar_box">
-      <van-tabbar route>
-        <van-tabbar-item replace to="/" icon="orders-o">方案列表</van-tabbar-item>
-        <van-tabbar-item replace to="/me" icon="friends-o">我</van-tabbar-item>
-      </van-tabbar>
-    </div> -->
   </div>
 </template>
 
@@ -58,7 +52,7 @@ html {
   height: 100%;
 }
 body {
-  background-color: #f7f8fa;
+  background-color: #f4f5f7;
   overflow: hidden;
   width: 100%;
   height: 100%;

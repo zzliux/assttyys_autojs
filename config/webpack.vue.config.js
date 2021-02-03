@@ -10,7 +10,8 @@ module.exports = (env, argv) => {
         },
         output: {
             path: path.resolve(__dirname, '../dist'),
-            filename: argv.mode === 'development' ? 'web.[hash].js' : "web.js",
+            // filename: argv.mode === 'development' ? 'web.[hash].js' : "web.js",
+            filename: 'web.js',
             libraryTarget: 'umd'
         },
         module: {
@@ -70,6 +71,7 @@ module.exports = (env, argv) => {
                 '@': path.resolve(__dirname, '../src'),
             }
         },
+        devtool: argv.mode === 'development' ? 'source-map' : false,
         devServer: {  //配置webpack-dev-server
             port: 3001,
             contentBase: './dist', // 指定托管的根目录

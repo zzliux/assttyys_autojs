@@ -2,15 +2,10 @@
   <div>
     <div class="navbar_box">
       <van-nav-bar title="ASSTTYYS NG" :style="'padding-top: ' + (statusBarHeight || 0) + 'px'">
-      <!-- <van-nav-bar title="ASSTTYYS NG" style="height: 66px;"> -->
-        <!-- <template #right>
-          <van-icon
-            class-prefix="iconfont"
-            name="fabusekuai"
-            size="18"
-            color="#1989fa"
-          />
-        </template> -->
+         <template #left>
+          <van-icon name="wap-nav" size="18" @click="$router.push('/settings')" />
+          <!-- <van-icon name="success" size="18" @click="saveScheme" /> -->
+        </template>
       </van-nav-bar>
     </div>
     <div class="rv_inner" :style="'padding-top: '+ (46 + (statusBarHeight || 0)) + 'px'">
@@ -63,6 +58,7 @@
                   type="danger"
                   square
                   text="删除"
+                  v-if="!item.inner"
                   @click="swipeCellCurrentAction = 'delete'; swipeCellCurrentIndex = index"
                 /><van-button
                   type="info"
@@ -111,6 +107,7 @@
 import Vue from "vue";
 import { Cell, SwipeCell, CellGroup, Icon, Button, Dialog, Field, Notify } from "vant";
 import draggable from "vuedraggable";
+import { mergeSchemeList } from "../../common/tool";
 import dSchemeList from "../../common/schemeList";
 import _ from "lodash";
 
@@ -133,7 +130,7 @@ export default {
       schemeNameInputType: null,
       newSchemeName: null,
       newScheme: null,
-      schemeList: _.cloneDeep(dSchemeList),
+      schemeList: [],
     };
   },
   props: {
@@ -145,7 +142,7 @@ export default {
   mounted() {
     var self = this;
     AutoWeb.auto("getSchemeList", null, function (savedSchemeList) {
-      self.schemeList = savedSchemeList
+      self.schemeList = mergeSchemeList(savedSchemeList, dSchemeList);
     });
   },
   computed: {
@@ -199,6 +196,8 @@ export default {
         }
       });
       scheme.id = maxId + 1;
+      scheme.star = false;
+      scheme.inner = false; // 新增的都是用户方案
       this.schemeList.push(scheme);
       this.saveSchemeList();
     },

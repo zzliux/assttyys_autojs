@@ -73,7 +73,7 @@ module.exports = (env, argv) => {
             compilePlugin,
             new ProgressPlugin()
         ]
-        config.devtool = 'source-map'
+        // config.devtool = 'source-map'
     } else {
         config.plugins = [
             new CleanWebpackPlugin({
