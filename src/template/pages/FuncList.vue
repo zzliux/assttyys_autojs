@@ -17,7 +17,7 @@
     </div>
 
     <div class="rv_inner" :style="'padding-top: '+ (46 + (statusBarHeight || 0)) + 'px'">
-      <van-cell-group class="itemBox" :title="'方案 - ' + this.params.schemeName">
+      <van-cell-group class="itemBox" :title="'方案 - ' + this.params.schemeName" style="background: transparent">
         <draggable
           v-model="funcList"
           handle=".handle-area"
@@ -28,7 +28,9 @@
           @end="dragEnd"
         >
           <transition-group type="transition" :name="!dragTransition ? 'flip-list' : null">
-            <div v-for="item in funcList" :key="item.id">
+            <div v-for="item in funcList" :key="item.id"
+              style="margin:5px 10px 5px 10px; border-radius:10px; overflow: hidden;"
+            >
               <van-cell
                 class="item"
                 center
@@ -46,10 +48,11 @@
       </van-cell-group>
     </div>
 
-    <div style="display: block; position: fixed; bottom: 0; width: 100%">
-      <van-button type="info" block @click="startBtnClickEvent">启动脚本</van-button>
+    <div style="display: block; position: fixed; bottom: 0; width: 100%;">
+      <div style="margin: 5px 10px 5px 10px; border-radius:10px; overflow: hidden;">
+        <van-button type="info" block @click="startBtnClickEvent">启动脚本</van-button>
+      </div>
     </div>
-
     <!-- 功能的参数配置 -->
     <van-popup class="configModal" v-model="configModalShow" closeable>
       <div class="configModalTitle">配置: {{configModalObject.name}}</div>

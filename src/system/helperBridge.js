@@ -8,8 +8,8 @@ const right = 2;
 
 const devWidth = 1280;
 const devHeight = 720;
-const screenWidth = getWidthPixels();
-const screenHeight = getHeightPixels();
+let screenWidth = getWidthPixels();
+let screenHeight = getHeightPixels();
 const scale = screenHeight / devHeight;
 if (screenWidth < screenHeight) {
     let t = screenWidth;

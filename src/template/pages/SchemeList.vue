@@ -14,7 +14,7 @@
       </van-nav-bar>
     </div>
     <div class="rv_inner" :style="'padding-top: '+ (46 + (statusBarHeight || 0)) + 'px'">
-      <van-cell-group class="itemBox" title="方案列表">
+      <van-cell-group class="itemBox" title="方案列表" style="background: transparent">
         <draggable
           :scroll-sensitivity="100"
           :force-fallback="true"
@@ -23,66 +23,72 @@
           v-bind="dragOptions"
           @end="saveSchemeList"
         >
-          <van-swipe-cell
-            center
+          <div
             v-for="(item, index) of schemeList"
             :key="index"
-            @open="itemOpen"
-            @close="itemClose"
-            :before-close="itemBeforeClose"
-            :stop-propagation="true"
+            style="margin:5px 10px 5px 10px; border-radius:10px; overflow: hidden;"
           >
-            <template>
-              <div
-                class="item van-cell van-cell--center"
-                @click="schemeClickEvent($event, item)"
-              >
-                <div class="van-cell__title">{{ item.schemeName }}</div>
-                <div class="van-cell__value">
-                  <span class="handle-area"
-                    ><van-icon class="handle" size="18" name="bars"
-                  /></span>
-                  <span class="star-area">
-                    <van-icon
-                      class="star"
-                      size="18"
-                      :name="item.star ? 'star' : 'star-o'"
-                      :color="item.star ? '#1989fa' : null"
-                      @click="schemeStarEvent($event, item)"
-                    />
-                  </span>
+            <van-swipe-cell
+              center
+              @open="itemOpen"
+              @close="itemClose"
+              :before-close="itemBeforeClose"
+              :stop-propagation="true"
+            >
+              <template>
+                <div
+                  class="item van-cell van-cell--center"
+                  @click="schemeClickEvent($event, item)"
+                >
+                  <div class="van-cell__title">{{ item.schemeName }}</div>
+                  <div class="van-cell__value">
+                    <span class="handle-area"
+                      ><van-icon class="handle" size="18" name="bars"
+                    /></span>
+                    <span class="star-area">
+                      <van-icon
+                        class="star"
+                        size="18"
+                        :name="item.star ? 'star' : 'star-o'"
+                        :color="item.star ? '#1989fa' : null"
+                        @click="schemeStarEvent($event, item)"
+                      />
+                    </span>
+                  </div>
                 </div>
-              </div>
-            </template>
+              </template>
 
-            <template #right
-              ><van-button
-                type="danger"
-                square
-                text="删除"
-                @click="swipeCellCurrentAction = 'delete'; swipeCellCurrentIndex = index"
+              <template #right
+                ><van-button
+                  type="danger"
+                  square
+                  text="删除"
+                  @click="swipeCellCurrentAction = 'delete'; swipeCellCurrentIndex = index"
+                /><van-button
+                  type="info"
+                  square
+                  text="复制"
+                  @click="swipeCellCurrentAction = 'copy'; swipeCellCurrentIndex = index"
               /><van-button
-                type="info"
-                square
-                text="复制"
-                @click="swipeCellCurrentAction = 'copy'; swipeCellCurrentIndex = index"
-            /><van-button
-                type="warning"
-                square
-                text="修改"
-                @click="swipeCellCurrentAction = 'modify'; swipeCellCurrentIndex = index"
-            /></template>
-          </van-swipe-cell>
-        </draggable>
-        <van-cell class="item" center @click="addSchemeClickEvent($event)">
-          <div style="text-align: center; height: 24px">
-            <van-icon
-              name="plus"
-              style="font-weight: bolder; vertical-align: middle"
-            />
-            <span style="position: relative; top: 2px">添加方案</span>
+                  type="warning"
+                  square
+                  text="修改"
+                  @click="swipeCellCurrentAction = 'modify'; swipeCellCurrentIndex = index"
+              /></template>
+            </van-swipe-cell>
           </div>
-        </van-cell>
+        </draggable>
+        <div style="margin:5px 10px 5px 10px; border-radius:10px; overflow: hidden;">
+          <van-cell class="item" center @click="addSchemeClickEvent($event)">
+            <div style="text-align: center; height: 24px;">
+              <van-icon
+                name="plus"
+                style="font-weight: bolder; vertical-align: middle"
+              />
+              <span style="position: relative; top: 2px">添加方案</span>
+            </div>
+          </van-cell>
+        </div>
       </van-cell-group>
 
       <van-dialog 

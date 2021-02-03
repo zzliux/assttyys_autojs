@@ -60,7 +60,8 @@ webview.on("getStatusBarHeight").subscribe(([_param, done]) => {
     var resources = context.getResources();
     var resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
     var statusBarHeight = resources.getDimensionPixelSize(resourceId);
-    done(statusBarHeight);
+    var density = context.getResources().getDisplayMetrics().density;
+    done(parseInt(statusBarHeight / density));
 })
 
 webview.on("startScript").subscribe(([_param, done]) => {

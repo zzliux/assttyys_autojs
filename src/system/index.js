@@ -12,6 +12,8 @@ core({
     needScreenListener: true,
     // needForeground: true,
 });
+context.deleteDatabase("webview.db");
+context.deleteDatabase("webviewCache.db");
 
 export const webview = run('file://' + files.path('dist/index.html'), {
     afterLayout() {
@@ -23,7 +25,8 @@ export const webview = run('file://' + files.path('dist/index.html'), {
             console.log(msg.message());
         }
     }
-})
+});
+// webview.webviewObject.getSettings().setCacheMode(android.webkit.WebSettings.LOAD_NO_CACHE);
 
 // 监听退出事件，关闭前台服务
 events.on('exit', () => {

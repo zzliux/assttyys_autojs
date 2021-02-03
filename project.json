@@ -23,7 +23,9 @@
         "README.md",
         "README_AUTO_TEMPLATE_VUE.md",
         "docs",
-        ".gitignore"
+        ".git",
+        ".gitignore",
+        ".workflow"
     ],
     "packageName": "com.zzliux.assttyysng",
     "versionName": "0.0.1.dev",
