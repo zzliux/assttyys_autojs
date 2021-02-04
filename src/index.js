@@ -75,6 +75,27 @@ webview.on("startScript").subscribe(([_param, done]) => {
     }));
 });
 
+webview.on("getSettings").subscribe(([_param, done]) => {
+    done([{
+        desc: '音量上键停脚本及程序',
+        name: 'stop_all_on_volumn_up',
+        type: 'autojs_inner_setting',
+        enabled: $settings.isEnabled('stop_all_on_volume_up')
+    }, {
+        desc: '前台服务',
+        name: 'foreground_service',
+        type: 'autojs_inner_setting',
+        enabled: $settings.isEnabled('foreground_service')
+    }]);
+});
+
+webview.on("saveSetting").subscribe(([item, done]) => {
+    if (item.type === 'autojs_inner_setting') {
+        $settings.setEnabled(item.name, item.enabled);
+    }
+    done();
+});
+
 webview.on("toast").subscribe(([string, done]) => {
     done();
     toast(string);

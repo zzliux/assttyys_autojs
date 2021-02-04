@@ -12,6 +12,19 @@ const promptMockData = {
     getSchemeList: function () {
         return defaultSchemeList;
     },
+    getSettings: function () {
+        return [{
+            desc: '音量上键停脚本及程序',
+            name: 'stop_all_on_volumn_up',
+            type: 'autojs_inner_setting',
+            enabled: true
+        }, {
+            desc: '前台服务',
+            name: 'foreground_service',
+            type: 'autojs_inner_setting',
+            enabled: false
+        }]
+    },
     saveScheme: function () {
         return 'success';
     },
@@ -21,6 +34,7 @@ const promptMockData = {
     getStatusBarHeight: 20,
     setCurrentScheme: 'sucess',
     startScript: 'sucess',
+    saveSetting: 'sucess',
     toast: function () {
     }
 };

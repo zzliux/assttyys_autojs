@@ -126,13 +126,12 @@ Vue.use(Picker);
 
 export default {
   data() {
-
     return {
       dragTransition: false,
-      funcList: dfuncList,
+      funcList: [],
       commonConfig: {
         name: '公共配置',
-        config: dCommonConfig
+        config: []
       },
       params: this.$route.query,
       configModalShow: false,
