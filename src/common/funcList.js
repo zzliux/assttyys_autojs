@@ -180,7 +180,7 @@ const FuncList = [{
 		}]
 	}]
 }, {
-	id: 5,
+	id: 4,
 	name: '接受邀请',
 	checked: false,
 	operator: [{
@@ -206,8 +206,8 @@ const FuncList = [{
 		oper: [[left, 120,239, 159,273, 600]]
 	}]
 }, {
-	id: 6,
-	name: '组队挑战 TODO',
+	id: 5,
+	name: '组队挑战',
 	checked: false,
 	config: [{
 		desc: '',
@@ -215,11 +215,57 @@ const FuncList = [{
 			name: 'type',
 			desc: '组队挑战',
 			type: 'list',
-			data: ['有人就开', '双人', '三人'],
-			default: '双人',
+			data: ['有人就开', '三人'],
+			default: '有人就开',
 			value: null,
 		}]
-	}]
+	}],
+	operator: [{
+		desc: [1280,720,
+			[[left,43,37,0xf5e6a8],
+			[right,1238,27,0xd7c5a2],
+			[right,1177,667,0xd8b871],
+			[right,1187,679,0xcda35d],
+			[right,1188,609,0xf1e096],
+			[left,60,39,0x84582f],
+			[left,19,47,0x281717]]
+		],
+	}, {
+		desc: [1280,720,
+			[[center,643,254,0xffffff]]
+		]
+	}, {
+		desc: [1280,720,
+			[[center,1088,253,0xffffff]]
+		]
+	}, {
+		oper: [[right, 1192,613, 1251,677, 2000]]
+	}], // 0-有人就开，1-第一个+号上的点，2-第二个+号上的点，如果1或者2任意一个匹配上了，说明人没满
+	operatorFunc(thisScript, thisOperator) {
+		let thisconf = thisScript.scheme.config['5']; // 获取配置
+		if (thisScript.oper({
+			name: '组队挑战_判断',
+			operator: [{ desc: thisOperator[0].desc }]
+		})) {
+			if (thisconf.type === '有人就开') {
+				thisScript.helperBridge.regionClick(thisOperator[3].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+				return true;
+			} else if (thisconf.type === '三人') {
+				if (!thisScript.oper({
+					name: '组队挑战_乘客1无人',
+					operator: [{ desc: thisOperator[1].desc }]
+				}) && !thisScript.oper({
+					name: '组队挑战_乘客2无人',
+					operator: [{ desc: thisOperator[2].desc }]
+				})) {
+					thisScript.helperBridge.regionClick(thisOperator[3].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 }, {
 	id: 8,
 	name: '取消确定框点确定 TODO',

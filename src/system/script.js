@@ -18,6 +18,8 @@ var script = {
     setStopCallback(callback) {
         this.stopCallback = callback;
     },
+    
+    // 将funcList中operator里面的desc和oper转换为适用当前正在分辨率的坐标
     initFuncList() {
         this.scheme = store.get('currentScheme', null);
         if (null === this.scheme) return;
@@ -29,8 +31,12 @@ var script = {
                     let operator = thisFuncList.operator;
                     if (operator && typeof operator !== 'function') {
                         for (let k = 0; k < operator.length; k++) {
-                            operator[k].desc = helperBridge.helper.GetCmpColorArray(operator[k].desc[0], operator[k].desc[1], operator[k].desc[2]);
-                            operator[k].oper = helperBridge.regionClickTrans(operator[k].oper);
+                            if (operator[k].desc) {
+                                operator[k].desc = helperBridge.helper.GetCmpColorArray(operator[k].desc[0], operator[k].desc[1], operator[k].desc[2]);
+                            }
+                            if (operator[k].oper) {
+                                operator[k].oper = helperBridge.regionClickTrans(operator[k].oper);
+                            }
                         }
                     }
                     this.scheme.funcList.push(thisFuncList);
@@ -95,7 +101,9 @@ var script = {
                 let rs = helperBridge.helper.CompareColorEx(item.desc, this.scheme.commonConfig.colorSimilar, 0);
                 if (rs) {
                     console.log('执行：' + currFunc.name + '_' + id);
-                    helperBridge.regionClick(item.oper, this.scheme.commonConfig.afterClickDelayRandom);
+                    if (item.oper) {
+                        helperBridge.regionClick(item.oper, this.scheme.commonConfig.afterClickDelayRandom);
+                    }
                     return true;
                 }
             }
