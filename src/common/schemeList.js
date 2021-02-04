@@ -1,16 +1,24 @@
-const SchemeList = [ // TODO
-    {
+const SchemeList = [{
         id: 1,
-        schemeName: '通用准备退出',
-        star: false,
-        list: [1, 2, 3],
-    },
-    {
-        id: 2,
-        schemeName: '组队乘客',
-        star: false,
-        list: [1, 2, 3, 4],
-    }
+    schemeName: '通用准备退出',
+    star: false,
+    list: [1, 2, 3],
+}, {
+    id: 2,
+    schemeName: '组队乘客',
+    star: false,
+    list: [1, 2, 3, 4],
+}, {
+    id: 3,
+    schemeName: '组队司机',
+    star: false,
+    list: [1, 2, 3, 5]
+}, {
+    id: 4,
+    schemeName: '个人御魂',
+    star: false,
+    list: [1, 2, 3, 6]
+}
     // 完整demo
     // , {
     //     id: 2,
