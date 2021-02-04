@@ -15,7 +15,7 @@ const promptMockData = {
     getSettings: function () {
         return [{
             desc: '音量上键停脚本及程序',
-            name: 'stop_all_on_volumn_up',
+            name: 'stop_all_on_volume_up',
             type: 'autojs_inner_setting',
             enabled: true
         }, {

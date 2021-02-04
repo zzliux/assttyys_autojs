@@ -5,7 +5,7 @@ import myFloaty from '@/system/myFloaty';
 import store from '@/system/store';
 import helperBridge from "@/system/helperBridge";
 import { mergeSchemeList } from '@/common/tool';
-console.show();
+// console.show();
 
 // 返回已保存的方案列表，如果未保存过，返回common中的schemeList
 webview.on("getSchemeList").subscribe(([param, done]) => {
@@ -78,7 +78,7 @@ webview.on("startScript").subscribe(([_param, done]) => {
 webview.on("getSettings").subscribe(([_param, done]) => {
     done([{
         desc: '音量上键停脚本及程序',
-        name: 'stop_all_on_volumn_up',
+        name: 'stop_all_on_volume_up',
         type: 'autojs_inner_setting',
         enabled: $settings.isEnabled('stop_all_on_volume_up')
     }, {
