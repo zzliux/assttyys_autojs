@@ -1,6 +1,7 @@
 import store from '@/system/store';
 import funcList from '@/common/funcList';
 import helperBridge from '@/system/helperBridge';
+import { getWidthPixels, getHeightPixels } from "@auto.pro/core";
 import _ from 'lodash';
 
 var script = {
@@ -9,6 +10,10 @@ var script = {
     stopCallback: null,
     scheme: null,
     enabledFuncList: null,
+    device: {
+        width: getWidthPixels(),
+        height: getHeightPixels()
+    },
     keepScreen(mode) {
         helperBridge.helper.KeepScreen(mode);
     },

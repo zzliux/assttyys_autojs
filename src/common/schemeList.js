@@ -1,5 +1,5 @@
 const SchemeList = [{
-        id: 1,
+    id: 1,
     schemeName: '通用准备退出',
     star: false,
     list: [1, 2, 3],
@@ -18,6 +18,11 @@ const SchemeList = [{
     schemeName: '个人御魂',
     star: false,
     list: [1, 2, 3, 6]
+}, {
+    id: 5,
+    schemeName: '个人突破 DOING',
+    star: false,
+    list: [1, 2, 3, 7, 8, 9]
 }
     // 完整demo
     // , {
