@@ -52,6 +52,14 @@ var script = {
                         for (let k = 0; k < operator.length; k++) {
                             if (operator[k].desc) {
                                 operator[k].desc = helperBridge.helper.GetCmpColorArray(operator[k].desc[0], operator[k].desc[1], operator[k].desc[2]);
+                                // for (let p = 0; p < operator[k].desc.length; p++) {
+                                //     let kkk = operator[k].desc[p];
+                                //     let tolog = [];
+                                //     for (let q = 0; q < kkk.length; q++) {
+                                //         tolog.push(kkk[q]);
+                                //     }
+                                //     console.log(tolog);
+                                // }
                             }
                             if (operator[k].oper) {
                                 operator[k].oper = helperBridge.regionClickTrans(operator[k].oper);

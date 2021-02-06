@@ -22,7 +22,14 @@ const SchemeList = [{
     id: 5,
     schemeName: '个人突破 DOING',
     star: false,
-    list: [1, 2, 3, 7, 8, 9]
+    list: [1, 2, 3, 11, 7, 8, 9, 10],
+    config: { '10': { type: '个人突破' } }
+}, {
+    id: 5,
+    schemeName: '寮突破 DOING',
+    star: false,
+    list: [1, 2, 3, 8, 9, 10],
+    config: { '10': { type: '寮突破' } }
 }
     // 完整demo
     // , {

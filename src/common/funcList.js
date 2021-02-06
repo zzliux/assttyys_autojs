@@ -322,9 +322,8 @@ const FuncList = [{
 		]
 	}]
 }, {
-	// TODO 转换多点找色的初始化
 	id: 8,
-	name: '结界_进攻 DOING',
+	name: '结界_进攻',
 	checked: false,
 	operator: [{
 		oper: [
@@ -342,7 +341,7 @@ const FuncList = [{
 	}
 }, {
 	id: 9,
-	name: '结界_勋章点击 DOING',
+	name: '结界_勋章点击',
 	checked: false,
 	config: [{
 		desc: '',
@@ -393,12 +392,82 @@ const FuncList = [{
 	}
 }, {
 	id: 10,
-	name: '取消确定框点确定 TODO',
-	checked: false
+	name: '地图进入突破界面',
+	checked: false,
+	config: [{
+		desc: '',
+		config: [{
+			name: 'type',
+			desc: '突破类型',
+			type: 'list',
+			data: ['个人突破', '寮突破'],
+			default: '个人突破',
+			value: null,
+		}]
+	}],
+	operator: [{
+		desc: [1280,720,
+			[[left,44,59,0xeff5fb],
+			[right,1126,35,0xd7b389],
+			[right,1225,33,0xd3af84],
+			[right,1169,147,0xd4cebf],
+			[left,34,693,0x643f2e],
+			[left,155,695,0x64402f],
+			[left,254,690,0x653d2c]]
+		],
+		oper: [
+			[left, 280,631, 334,695, 1500],
+			[center, 1210,366, 1254,453, 1500]
+		]
+	}],
+	operatorFunc(thisScript, thisOperator) {
+		let thisconf = thisScript.scheme.config['10']; // 获取配置
+		if ('个人突破' === thisconf.type) {
+			return thisScript.oper({
+				name: '地图进入个人突破',
+				operator: [{
+					desc: thisOperator[0].desc,
+					oper: [thisOperator[0].oper[0]]
+				}]
+			});
+		} else if ('寮突破' === thisconf.type) {
+			return thisScript.oper({
+				name: '地图进入寮突破',
+				operator: thisOperator
+			});
+		}
+		return false;
+	}
 }, {
 	id: 11,
-	name: '结界_进攻按钮 TODO',
-	checked: false
+	name: '结界_个人突破券判断',
+	checked: false,
+	operator: [{
+		desc: [1280,720, [
+			// 结界界面
+			[center,171,104,0x4a3624],
+			[center,564,89,0x5e4735],
+			[center,718,92,0x583716],
+			[center,728,86,0xdebc56],
+			[center,1210,130,0xebdac9],
+			[center,1076,104,0x4d3826], 
+			// 0 / 30上的0和左边的区域
+			[right,1056,34,0xefe9d7],
+			[right,1065,34,0xe5dfce],
+			[right,1061,34,0x2f2423],
+			[right,1065,37,0xebe5d4],
+			[right,1056,36,0xe6e0cf],
+			[right,1055,42,0x2d2121],
+			[right,1048,42,0x2d2222],
+			[right,1048,34,0x2f2424],
+			[right,1048,28,0x322324],
+			[right,1052,26,0x312323],
+			[right,1052,31,0x312323],
+			[right,1052,34,0x2f2423]
+		]
+		],
+		oper: [[center, -1, -1, -1, -1, 60000]]
+	}]
 }, {
 	id: 12,
 	name: '结界_刷新按钮 TODO',

@@ -32,7 +32,7 @@
               center
               @click="showConfig($event, item)"
               >
-              <div class="item-title">{{item.name + (item.config && item.config.length ? ' *': '')}}</div>
+              <div class="item-title">{{item.id + ' ' + item.name + (item.config && item.config.length ? ' *': '')}}</div>
               <div class="item-value">
                 <span class="handle-area"><van-icon class="handle" size="18" name="bars" /></span>
                 <van-switch class="itemSwitch" @change="toggleSwitchEvent" v-model="item.checked" size="18" />
@@ -169,32 +169,81 @@ export default {
     var schemeConfig = await AutoWeb.autoPromise('getScheme', this.$route.query.schemeName);
     this.scheme = schemeConfig;
 
-    let fl = _.cloneDeep(dfuncList);
-    fl.forEach(item => {
-      if (!item.config) {
-        item.config = [];
-      }
-      item.config.forEach(iItem => {
-        iItem.config.forEach(iIItem => {
-          iIItem.value = iIItem.default;
-        });
-      });
-      // 已保存的方案和funcList
-      if (schemeConfig.list.indexOf(item.id) !== -1) {
-        item.checked = true
-        item.config.forEach(iItem => {
-          iItem.config.forEach(iIItem => {
-            if (!schemeConfig.config) return;
-            if (schemeConfig.config[item.id] && schemeConfig.config[item.id][iIItem.name]) {
-              iIItem.value = schemeConfig.config[item.id][iIItem.name];
-            } else {
-              iIItem.value = iIItem.default;
-            }
-          });
-        });
+    // let fl = _.cloneDeep(dfuncList);
+    // fl.forEach(item => {
+    //   if (!item.config) {
+    //     item.config = [];
+    //   }
+    //   item.config.forEach(iItem => {
+    //     iItem.config.forEach(iIItem => {
+    //       iIItem.value = iIItem.default;
+    //     });
+    //   });
+    //   // 已保存的方案和funcList
+    //   if (schemeConfig.list.indexOf(item.id) !== -1) {
+    //     item.checked = true
+    //     item.config.forEach(iItem => {
+    //       iItem.config.forEach(iIItem => {
+    //         if (!schemeConfig.config) return;
+    //         if (schemeConfig.config[item.id] && schemeConfig.config[item.id][iIItem.name]) {
+    //           iIItem.value = schemeConfig.config[item.id][iIItem.name];
+    //         } else {
+    //           iIItem.value = iIItem.default;
+    //         }
+    //       });
+    //     });
+    //   }
+    // });
+    let fl = [];
+    schemeConfig.config = schemeConfig.config || {};
+    schemeConfig.list.forEach(id => {
+      for (let schemeOrigin of dfuncList) {
+        if (schemeOrigin.id === id) {
+          let item = _.cloneDeep(schemeOrigin);
+          if (!item.config) {
+            item.config = [];
+          }
+          if (schemeConfig.config[item.id]) {
+            item.config.forEach(iItem => {
+              iItem.config.forEach(iIItem => {
+                if (schemeConfig.config[item.id][iIItem.name]) {
+                  iIItem.value = schemeConfig.config[item.id][iIItem.name];
+                } else {
+                  iIItem.value = iIItem.default;
+                }
+              })
+            })
+          }
+          item.checked = true;
+          fl.push(item);
+          break;
+        }
       }
     });
-    this.funcList = fl;
+    let toAppend = [];
+    dfuncList.forEach(item => {
+      item = _.cloneDeep(item);
+      let flag = true;
+      for (let singleFl of fl) {
+        if (item.id === singleFl.id) {
+          flag = false;
+          break;
+        }
+      }
+      if (flag) {
+        if (!item.config) {
+          item.config = [];
+        }
+        item.config.forEach(iItem => {
+          iItem.config.forEach(iIItem => {
+            iIItem.value = iIItem.default;
+          });
+        });
+        toAppend.push(item);
+      }
+    });
+
+    this.funcList = [...fl, ...toAppend];
 
     let cc = _.cloneDeep(dCommonConfig);
     cc.forEach(item => {

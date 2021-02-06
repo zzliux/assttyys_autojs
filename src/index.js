@@ -35,14 +35,15 @@ webview.on("getScheme").subscribe(([schemeName, done]) => {
 
 webview.on("saveScheme").subscribe(([scheme, done]) => {
     let savedSchemeList = store.get("schemeList", defaultSchemeList);
-    for (let i = 0; i < savedSchemeList.length; i++) {
-        if (savedSchemeList[i].schemeName === scheme.schemeName) {
-            scheme.id = savedSchemeList[i].id;
-            savedSchemeList[i] = scheme;
+    let schemeList = mergeSchemeList(savedSchemeList, defaultSchemeList);
+    for (let i = 0; i < schemeList.length; i++) {
+        if (schemeList[i].schemeName === scheme.schemeName) {
+            scheme.id = schemeList[i].id;
+            schemeList[i] = scheme;
             break;
         }
     }
-    store.put("schemeList", savedSchemeList);
+    store.put("schemeList", schemeList);
     done("success");
 });
 

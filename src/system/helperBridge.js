@@ -20,7 +20,7 @@ if (screenWidth < screenHeight) {
 export const helperBridge = {
     helper: null,
     init: function () {
-        this.helper = new AnchorGraphicHelper(runtime, devWidth, devHeight, 0, 0, screenWidth, screenHeight);
+        this.helper = new AnchorGraphicHelper(runtime, devWidth, devHeight, 0, 0, screenWidth - 1, screenHeight - 1);
     },
     // [[right, 1119, 504, 1227, 592, 2000]]
     regionClickTrans(oper) {
