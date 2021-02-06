@@ -1,6 +1,7 @@
 import store from '@/system/store';
 import funcList from '@/common/funcList';
 import helperBridge from '@/system/helperBridge';
+import multiColor from '@/common/multiColors';
 import { getWidthPixels, getHeightPixels } from "@auto.pro/core";
 import _ from 'lodash';
 
@@ -10,12 +11,25 @@ var script = {
     stopCallback: null,
     scheme: null,
     enabledFuncList: null,
+    multiColor: null, // 多点找色用的，提前初始化，减轻运行中计算量
+    hasRedList: false, // KeepScreen(true)时会初始化redList，如果没有初始化的话这个值为false，方便在有需要的时候初始化redlist且不重复初始化
     device: {
         width: getWidthPixels(),
         height: getHeightPixels()
     },
     keepScreen(mode) {
         helperBridge.helper.KeepScreen(mode);
+        if (mode) {
+            this.hasRedList = true;
+        } else {
+            this.hasRedList = false;
+        }
+    },
+    initRedList() {
+        if (!this.hasRedList) {
+            helperBridge.helper.GetRedList();
+            this.hasRedList = true;
+        }
     },
     setRunCallback(callback) {
         this.runCallback = callback;
@@ -49,11 +63,42 @@ var script = {
             }
         }
     },
+    initMultiColor() {
+        let thisMultiColor = {};
+        for (let key in multiColor) {
+            thisMultiColor[key] = {
+                region: [0, 0, this.device.width, this.device.height],
+                desc: []
+            };
+            for (let desc of multiColor[key].desc) {
+                thisMultiColor[key].desc.push(this.helperBridge.helper.GetFindColorArray(desc[0], desc[1], desc[2]));
+            }
+            if (multiColor[key].region) {
+                let sr  = this.helperBridge.helper.GetPoint(multiColor[key].region[1], multiColor[key].region[2], multiColor[key].region[0]);
+                let er  = this.helperBridge.helper.GetPoint(multiColor[key].region[3], multiColor[key].region[4], multiColor[key].region[0]);
+                thisMultiColor[key].region = [sr.x, sr.y, er.x, er.y];
+            }
+        }
+        this.multiColor = thisMultiColor;
+    },
+    findMultiColor(key) {
+        this.initRedList();
+        let region = this.multiColor[key].region;
+        let desc = this.multiColor[key].desc;
+        for (let item of desc) {
+            let point = this.helperBridge.helper.FindMultiColor(region[0], region[1], region[2], region[3], item, this.scheme.commonConfig.multiColorSimilar, 1);
+            if (point.x !== -1) {
+                return point;
+            }
+        }
+        return null;
+    },
     run() {
         var self = this;
         // helperBridge放进来，funcList里面operator执行时可以从this中取到helperBridge，解决直接导入helperBridge在端报错的问题
         this.helperBridge = helperBridge;
         this.initFuncList();
+        this.initMultiColor();
         if (null === this.scheme) {
             if (typeof self.stopCallback === 'function') {
                 self.stopCallback();

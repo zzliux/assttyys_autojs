@@ -293,8 +293,21 @@ const FuncList = [{
 	id: 7,
 	name: '结界_三次刷新',
 	checked: false,
-	operator: [{ 
+	operator: [{  // CD
 		desc: [1280,720,
+			[[center,549,93,0x5a4130],
+			[center,720,93,0x583716],
+			[center,224,104,0x4a3525],
+			[center,997,127,0x958c83],
+			[center,400,610,0xffac2c],
+			[center,995,595, 0xAEA69E],
+			[center,646,97,0xf8f3e0]]
+		],
+		oper: [
+			[center, -1, -1, -1, -1, 30000],
+		]
+	}, {
+		desc: [1280,720, // 刷新
 			[[center,549,93,0x5a4130],
 			[center,720,93,0x583716],
 			[center,224,104,0x4a3525],
@@ -313,26 +326,16 @@ const FuncList = [{
 	id: 8,
 	name: '结界_进攻 DOING',
 	checked: false,
-	operator: [],
-	operatorFunc(thisScript) {
-		let attackDescOrigin = [1280,720,
-			[[center,657,362,0x993333],
-			[center,677,375,0xf4b25f],
-			[center,773,407,0xf5b25e],
-			[center,776,411,0x933e2d],
-			[center,702,383,0x282520],
-			[center,736,394,0x272420],
-			[center,704,385,0xf4b25f]]
-		];
-		thisScript.helperBridge.helper.GetRedList(); // 初始化RedList，用于多点找色
-		let attackDesc = thisScript.helperBridge.helper.GetFindColorArray(attackDescOrigin[0], attackDescOrigin[1], attackDescOrigin[2]);
-		let sr = thisScript.helperBridge.helper.GetPoint(304,317, center);
-		let er = thisScript.helperBridge.helper.GetPoint(1166,713, center);
-		let point = thisScript.helperBridge.helper.FindMultiColor(sr.x, sr.y, er.x, er.y, attackDesc, thisScript.scheme.commonConfig.multiColorSimilar, 1);
-		if (point.x != -1) {
-			console.log(11);
-			let clickRegion = thisScript.helperBridge.helper.GetPoint(119, 49, left);
-			thisScript.helperBridge.regionClick([[point.x, point.y, point.x + clickRegion.x, point.y + clickRegion.y, 2000]], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
+	operator: [{
+		oper: [
+			[left, 0, 0, 119, 49, 2000]
+		]
+	}],
+	operatorFunc(thisScript, thisOperator) {
+		let point = thisScript.findMultiColor('结界_进攻');
+		if (point) {
+			let oper = [[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
+			thisScript.helperBridge.regionClick(oper, 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
 			return true;
 		}
 		return false;
@@ -354,12 +357,15 @@ const FuncList = [{
 	}],
 	operator: [{
 		desc: [1280,720,
-			[[center,185,104,0x4c3624],
-			[center,1207,133,0xecdbca],
-			[center,555,97,0x5f4736],
-			[center,722,95,0x583716],
-			[center,1176,108,0x6b4a2b],
-			[center,152,338,0xd6c5b3]]
+			[[center,171,104,0x4a3624],
+			[center,564,89,0x5e4735],
+			[center,718,92,0x583716],
+			[center,728,86,0xdebc56],
+			[center,1210,130,0xebdac9],
+			[center,1076,104,0x4d3826]]
+		],
+		oper: [
+			[left, 0, 0, 214, 98, 500]
 		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
@@ -367,36 +373,21 @@ const FuncList = [{
 			name: '突破界面_判断',
 			operator: [{ desc: thisOperator[0].desc }]
 		})) {
-			thisScript.helperBridge.helper.GetRedList(); // 初始化RedList，用于多点找色
-			let multiColorMap = {
-				'5': [[1280,720,
-					[[center,574,155,0xdacbbc],
-					[center,590,234,0x88827d],
-					[center,629,234,0x8a857f],
-					[center,669,234,0x87827c],
-					[center,708,234,0x8a847f],
-					[center,747,234,0x88827d],
-					[center,780,162,0xdacebc]]
-				]]
+			let thisconf = thisScript.scheme.config['9']; // 获取配置
+			let priority = thisconf.priority.split('->');
+			let multiColorKey = [];
+			for (let item of priority) {
+				multiColorKey.push(`结界_${item}勋章`);
 			}
-			let priority = ['5'];
-			let multiColorArr = [];
-			let clickRegion = thisScript.helperBridge.helper.GetPoint(214, 98, left); // 获取可点击区域的长宽
-			for (let key of priority) {
-				let multiColorArrOrigin = multiColorMap[key];
-				for (let item of multiColorArrOrigin) {
-					multiColorArr.push(thisScript.helperBridge.helper.GetFindColorArray(item[0], item[1], item[2]));
-				}
-			}
-			let sr = thisScript.helperBridge.helper.GetPoint(124, 125, center); // 左上角
-			let er = thisScript.helperBridge.helper.GetPoint(1152, 545, center); // 右下角
-			for (let item of multiColorArr) {
-				let point = thisScript.helperBridge.helper.FindMultiColor(sr.x, sr.y, er.x, er.y, item, thisScript.scheme.commonConfig.multiColorSimilar, 1);
-				if (point.x != -1) {
-					thisScript.helperBridge.regionClick([[point.x, point.y, point.x + clickRegion.x, point.y + clickRegion.y, 500]], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
+			for (let key of multiColorKey) {
+				let point = thisScript.findMultiColor(key);
+				if (point) {
+					let oper = [[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
+					thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
 					return true;
 				}
 			}
+			return false;
 		}
 		return false;
 	}

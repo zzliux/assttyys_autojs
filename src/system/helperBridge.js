@@ -55,15 +55,13 @@ export const helperBridge = {
             //     regionY + regionHeight,
             //     oper[i][5]
             // ];
-            let sr = this.helper.GetPoint(oper[i][1], oper[i][2], oper[i][0]);
-            let er = this.helper.GetPoint(oper[i][3], oper[i][4], oper[i][0]);
-            oper[i] = [
-                sr.x,
-                sr.y,
-                er.x,
-                er.y,
-                oper[i][5]
-            ]
+            if (oper[i][1] === -1) {
+                oper[i] = [-1, -1, -1, -1, oper[i][5]            ]
+            } else {
+                let sr = this.helper.GetPoint(oper[i][1], oper[i][2], oper[i][0]);
+                let er = this.helper.GetPoint(oper[i][3], oper[i][4], oper[i][0]);
+                oper[i] = [sr.x, sr.y, er.x, er.y, oper[i][5]            ]
+            }
         }
         return oper;
     },
@@ -71,7 +69,9 @@ export const helperBridge = {
     // [[1119, 504, 1227, 592, 2000]]
     regionClick(transedOper, randomSleep) {
         transedOper.forEach(item => {
-            click(random(item[0], item[2]), random(item[1], item[3]));
+            if (item[0] >= 0) {
+                click(random(item[0], item[2]), random(item[1], item[3]));
+            }
             sleep(item[4] + random(0, randomSleep || 0));
         });
     }
