@@ -99,11 +99,11 @@ const FuncList = [{
 			[left, 69, 171, 170, 452, 400]
 		]
 	}, { // 已打开的达摩
-		desc: [1280, 720,
-			[[center, 556, 418, 0xdd9922],
-			[center, 536, 607, 0x712a0c],
-			[center, 652, 621, 0x320204],
-			[center, 489, 621, 0x3d82c6]]
+		desc: [1280,720,
+			[[center,482,611,0x3c82ca],
+			[center,487,620,0x3b84c6],
+			[center,588,619,0x300204],
+			[center,712,621,0x340204]]
 		],
 		oper: [
 			[left, 69, 171, 170, 452, 1000]
@@ -483,6 +483,40 @@ const FuncList = [{
 	// 		value: null,
 	// 	}]
 	// }]
+}, {
+	id: 99,
+	name: '百鬼料理屋_挑战',
+	operator: [{
+		desc: [1280,720,
+			[[left,54,30,0xf5e5a3],
+			[right,1189,573,0xfdddae],
+			[right,1206,41,0x2b2127],
+			[left,86,653,0x6b5443],
+			[center,454,55,0x9a5e45],
+			[center,1096,149,0x512a2c]]
+		],
+		oper: [[right, 1158,549, 1224,645, 2000]]
+	}, {
+		oper: [[right, 988,579, 1009,599, 1000]]
+	}],
+	operatorFunc(thisScript, thisOperator) {
+		let count = 2;
+		while (thisScript.oper({
+			name: '百鬼料理屋_挑战',
+			operator: [thisOperator[0]]
+		})) {
+			thisScript.keepScreen(false);
+			if (--count === 0) {
+				// thisScript.helperBridge.regionClick(thisOperator[1].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.stop();
+				break;
+			}
+		}
+		if (count < 2) {
+			return true;
+		}
+		return false;
+	}
 }];
 
 export default FuncList;

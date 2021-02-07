@@ -54,12 +54,10 @@ var myFloaty = {
         
         fy.status = 'stoped';
         fy.start = function () {
-            if (fy.status === 'running') return;
             fy.status = 'running';
             script.run();
         }
         fy.stop = function () {
-            if (fy.status === 'stoped') return;
             fy.status = 'stoped';
             script.stop();
         }
@@ -67,16 +65,18 @@ var myFloaty = {
         this.fy = fy;
 
         script.setRunCallback(function () {
-            ui.run(function() {
+            ui.post(function() {
                 fy.FLOATY.img_logo.setColorFilter(colors.argb(255, 255, 153, 0));
-                // fy.items[1].toggleIcon(1);
+                fy.status = 'running';
+                fy.items[1].toggleIcon(1);
             });
         });
 
         script.setStopCallback(function () {
-            ui.run(function() {
+            ui.post(function() {
                 fy.FLOATY.img_logo.setColorFilter(colors.argb(0, 255, 153, 0));
-                // fy.items[1].toggleIcon(0);
+                fy.status = 'stoped';
+                fy.items[1].toggleIcon(0);
             });
         });
     }
