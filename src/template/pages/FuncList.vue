@@ -275,7 +275,7 @@ export default {
     reSort() {
       let list = [[], []];
       this.funcList.forEach((item) => {
-        list[item.checked + 0].push(item);
+        list[!!item.checked + 0].push(item);
       });
       this.funcList = [...list[1], ...list[0]];
     },

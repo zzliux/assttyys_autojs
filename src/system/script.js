@@ -132,7 +132,7 @@ var script = {
                 }
             } catch (e) {
                 self.runThread = null;
-                console.log(e);
+                console.error(e);
                 if (typeof self.stopCallback === 'function') {
                     self.stopCallback();
                 }

@@ -90,6 +90,11 @@ webview.on("getSettings").subscribe(([_param, done]) => {
     }]);
 });
 
+webview.on("clearStorage").subscribe(([_param, done]) => {
+    storages.remove('asttyys_ng');
+    done();
+});
+
 webview.on("saveSetting").subscribe(([item, done]) => {
     if (item.type === 'autojs_inner_setting') {
         $settings.setEnabled(item.name, item.enabled);

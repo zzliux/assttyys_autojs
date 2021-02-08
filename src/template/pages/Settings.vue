@@ -32,7 +32,6 @@
           v-for="(item, id) of settings"
           :key="id"
           class="item"
-          center
         >
           <div class="item-title">
             {{item.desc}}
@@ -44,6 +43,19 @@
               v-model="item.enabled"
               size="18"
             />
+          </div>
+        </div>
+      </van-cell-group>
+
+      <br>
+      <van-cell-group
+        class="itemBox"
+        title=""
+        style="background: transparent"
+      >
+        <div class="item" @click="resetScheme">
+          <div class="item-title">
+            重置方案及功能
           </div>
         </div>
       </van-cell-group>
@@ -82,6 +94,18 @@ export default {
     async toggleSwitchEvent(e, item) {
       await AutoWeb.autoPromise('saveSetting', item);
     },
+    resetScheme() {
+      Dialog.confirm({
+        title: '提示',
+        message: '是否完全清空方案及相关配置？',
+      }).then(async () => {
+        await AutoWeb.autoPromise('clearStorage');
+        await AutoWeb.autoPromise('toast', '请手动重启脚本。');
+        await AutoWeb.autoPromise('exit');
+      }).catch(() => {
+        // on cancel
+      });
+    }
   },
 };
 </script>

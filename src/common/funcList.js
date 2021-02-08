@@ -325,16 +325,53 @@ const FuncList = [{
 	id: 8,
 	name: '结界_进攻',
 	checked: false,
+	config: [{
+		desc: '',
+		config: [{
+			name: 'count',
+			desc: '连续执行次数后执行完成',
+			type: 'list',
+			data: ['2', '3', '4', '5'],
+			default: '2',
+			value: null,
+		}, {
+			name: 'afterCountOper',
+			desc: '执行完成后的操作',
+			type: 'list',
+			data: ['停止脚本', '关闭界面'],
+			default: '停止脚本',
+			value: null,
+		}]
+	}],
 	operator: [{
 		oper: [
-			[left, 0, 0, 119, 49, 2000]
+			[left, 0, 0, 119, 49, 2000],
+			[center, 1188,115, 1225,151, 500],
 		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
-		let point = thisScript.findMultiColor('结界_进攻');
-		if (point) {
+		let thisConf = thisScript.scheme.config['8'];
+		let count = parseInt(thisConf.count);
+		let defaultCount = count;
+		let point = null;
+		while (point = thisScript.findMultiColor('结界_进攻')) {
 			let oper = [[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
 			thisScript.helperBridge.regionClick(oper, 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
+			thisScript.keepScreen(true);
+			console.log('结界_进攻:', count);
+			if (--count === 0) {
+				if ('停止脚本' === thisConf.afterCountOper) {
+					let oper = thisOperator[0].oper[1];
+					thisScript.helperBridge.regionClick([oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.stop();
+				} else if ('关闭界面' === thisConf.afterCountOper) {
+					let oper = thisOperator[0].oper[1];
+					thisScript.helperBridge.regionClick([oper, oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
+				}
+				break;
+			}
+		}
+		if (count < defaultCount) {
 			return true;
 		}
 		return false;
@@ -438,36 +475,6 @@ const FuncList = [{
 		}
 		return false;
 	}
-}, {
-	id: 11,
-	name: '结界_个人突破券判断',
-	checked: false,
-	operator: [{
-		desc: [1280,720, [
-			// 结界界面
-			[center,171,104,0x4a3624],
-			[center,564,89,0x5e4735],
-			[center,718,92,0x583716],
-			[center,728,86,0xdebc56],
-			[center,1210,130,0xebdac9],
-			[center,1076,104,0x4d3826], 
-			// 0 / 30上的0和左边的区域
-			[right,1056,34,0xefe9d7],
-			[right,1065,34,0xe5dfce],
-			[right,1061,34,0x2f2423],
-			[right,1065,37,0xebe5d4],
-			[right,1056,36,0xe6e0cf],
-			[right,1055,42,0x2d2121],
-			[right,1048,42,0x2d2222],
-			[right,1048,34,0x2f2424],
-			[right,1048,28,0x322324],
-			[right,1052,26,0x312323],
-			[right,1052,31,0x312323],
-			[right,1052,34,0x2f2423]
-		]
-		],
-		oper: [[center, -1, -1, -1, -1, 60000]]
-	}]
 }, {
 	id: 12,
 	name: '结界_刷新按钮 TODO',
