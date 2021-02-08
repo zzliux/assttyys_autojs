@@ -4,8 +4,6 @@ import script from '@/system/script';
 
 importClass(android.content.Intent);
 
-console.show();
-
 var myFloaty = {
     fy: null,
     init: function () {
