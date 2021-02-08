@@ -113,6 +113,12 @@ var script = {
             }
             return;
         }
+        // test start
+        let img = images.captureScreen();
+        img.saveTo('/sdcard/testimg.png');
+        img.recycle();
+        // test end
+        toastLog(`运行方案[${this.scheme.schemeName}]`);
         this.runThread = threads.start(function () {
             try {
                 while (true) {

@@ -1,11 +1,15 @@
 runtime.loadDex('./assets/lib/scriptlib.dex');
 importClass(com.scriptlib.AnchorGraphicHelper);
 
-import core, { closeForeground, setSystemUiVisibility, effect$, screenDirection$ } from '@auto.pro/core'
+import core, { closeForeground, setSystemUiVisibility, getWidthPixels, getHeightPixels } from '@auto.pro/core'
 import { run } from '@auto.pro/webview'
 
+let needCap = '竖屏';
+if (getWidthPixels() > getHeightPixels()) {
+    needCap = '横屏';
+}
 core({
-    needCap: '横屏',
+    needCap: needCap,
     capType: '同步',
     needFloaty: true,
     needService: true,
