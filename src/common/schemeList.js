@@ -30,6 +30,11 @@ const SchemeList = [{
     star: false,
     list: [1, 2, 3, 8, 9, 10],
     config: { '10': { type: '寮突破' } }
+}, {
+    id: 99,
+    schemeName: '百鬼料理屋',
+    star: false,
+    list: [1, 2, 3, 99],
 }
     // 完整demo
     // , {

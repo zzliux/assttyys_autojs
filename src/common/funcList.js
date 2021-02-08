@@ -488,12 +488,11 @@ const FuncList = [{
 	name: '百鬼料理屋_挑战',
 	operator: [{
 		desc: [1280,720,
-			[[left,54,30,0xf5e5a3],
-			[right,1189,573,0xfdddae],
-			[right,1206,41,0x2b2127],
-			[left,86,653,0x6b5443],
-			[center,454,55,0x9a5e45],
-			[center,1096,149,0x512a2c]]
+			[[right,1177,569,0xffd5a7],
+			[center,698,36,0x975e45],
+			[left,54,32,0xf1e19f],
+			[right,1183,38,0x2c2127],
+			[center,769,36,0xe7c65a]]
 		],
 		oper: [[right, 1158,549, 1224,645, 2000]]
 	}, {
