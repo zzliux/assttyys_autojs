@@ -4,6 +4,7 @@ import script from '@/system/script';
 
 importClass(android.content.Intent);
 
+console.show();
 
 var myFloaty = {
     fy: null,
@@ -18,38 +19,39 @@ var myFloaty = {
             radius: 60,
             angle: 90,
             moveLimit: 15,
-            items: [
-                {
-                    id: 'home',
-                    color: '#0099FF',
-                    icon: 'ic_home_black_48dp',
-                    callback() {
-                        var i = new Intent(context, activity.class);
-                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        context.startActivity(i);
-                    },
+            items: [{
+                id: 'home',
+                color: '#0099FF',
+                icon: 'ic_home_black_48dp',
+                callback() {
+                    var i = new Intent(activity, activity.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    context.startActivity(i);
+                    // app.startActivity(i);
+                    // console.log(context.getPackageName());
+                    // context.startActivity(context.getPackageManager().getLaunchIntentForPackage(context.getPackageName()).addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK));
+                    // app.launchPackage(context.getPackageName())
                 },
-                {
-                    id: 'run_stop',
-                    color: ['#08BC92', '#DC1C2C'],
-                    icon: ['ic_play_arrow_black_48dp', 'ic_stop_black_48dp'],
-                    callback() {
-                        if (fy.status === 'running') {
-                            fy.stop();
-                        } else if (fy.status === 'stoped') {
-                            fy.start();
-                        }
+            }, {
+                id: 'run_stop',
+                color: ['#08BC92', '#DC1C2C'],
+                icon: ['ic_play_arrow_black_48dp', 'ic_stop_black_48dp'],
+                callback() {
+                    if (fy.status === 'running') {
+                        fy.stop();
+                    } else if (fy.status === 'stoped') {
+                        fy.start();
                     }
-                },
-                {
-                    id: 'setting',
-                    color: '#bfc1c0',
-                    icon: 'ic_format_indent_increase_black_48dp',
-                    callback() {
-                        schemeDialog.show();
-                    }
-                },
-            ]
+                }
+            }, {
+                id: 'setting',
+                color: '#bfc1c0',
+                icon: 'ic_format_indent_increase_black_48dp',
+                callback() {
+                    schemeDialog.show();
+                }
+            },]
         });
         
         fy.status = 'stoped';
