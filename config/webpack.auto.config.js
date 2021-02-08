@@ -1,6 +1,6 @@
 const path = require("path")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
-const JavascriptObfuscator = require("webpack-obfuscator")
+// const JavascriptObfuscator = require("webpack-obfuscator")
 const AutoProWebpackPlugin = require('@auto.pro/webpack-plugin')
 const ProgressPlugin = require('progress-bar-webpack-plugin')
 
@@ -79,15 +79,15 @@ module.exports = (env, argv) => {
             new CleanWebpackPlugin({
                 // cleanOnceBeforeBuildPatterns: []
             }),
-            new JavascriptObfuscator({
-                compact: true,
-                identifierNamesGenerator: "dictionary",
-                identifiersDictionary: dictionary,
-                target: "node",
-                transformObjectKeys: false,
-                stringArray: true,
-                stringArrayEncoding: ['rc4'],
-            }),
+            // new JavascriptObfuscator({
+            //     compact: true,
+            //     identifierNamesGenerator: "dictionary",
+            //     identifiersDictionary: dictionary,
+            //     target: "node",
+            //     transformObjectKeys: false,
+            //     stringArray: true,
+            //     stringArrayEncoding: ['rc4'],
+            // }),
             compilePlugin,
             new ProgressPlugin()
         ]
