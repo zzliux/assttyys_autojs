@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 const SchemeList = [{
     id: 1,
     schemeName: '通用准备退出',
@@ -20,7 +22,7 @@ const SchemeList = [{
     list: [1, 2, 3, 6]
 }, {
     id: 5,
-    schemeName: '个人突破 DOING',
+    schemeName: '个人突破',
     star: false,
     list: [1, 2, 3, 7, 8, 9, 10],
     config: {
@@ -61,5 +63,16 @@ const SchemeList = [{
     //     }
     // }
 ];
+
+SchemeList.forEach((item, id) => {
+    SchemeList[id] = _.assignIn({
+        id: id + 1,
+        schemeName: '未命名',
+        star: false,
+        list: [],
+        config: {},
+        commonConfig: {}
+    }, item)
+});
 
 export default SchemeList;
