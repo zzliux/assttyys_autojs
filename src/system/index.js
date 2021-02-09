@@ -1,3 +1,4 @@
+runtime.unloadDex('./assets/lib/scriptlib.dex');
 runtime.loadDex('./assets/lib/scriptlib.dex');
 importClass(com.scriptlib.AnchorGraphicHelper);
 

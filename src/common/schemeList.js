@@ -1,4 +1,6 @@
 import _ from 'lodash';
+import funcList from './funcList';
+import commonConfigArr from './commonConfig';
 
 const SchemeList = [{
     id: 1,
@@ -14,7 +16,7 @@ const SchemeList = [{
     id: 3,
     schemeName: '组队司机',
     star: false,
-    list: [1, 2, 3, 5]
+    list: [1, 2, 3, 5],
 }, {
     id: 4,
     schemeName: '个人御魂',
@@ -30,7 +32,7 @@ const SchemeList = [{
         '10': { type: '个人突破' }
     }
 }, {
-    id: 5,
+    id: 6,
     schemeName: '寮突破 DOING',
     star: false,
     list: [1, 2, 3, 8, 9, 10],
@@ -64,15 +66,41 @@ const SchemeList = [{
     // }
 ];
 
+
+let commonConfig = {};
+for (let i = 0 ; i < commonConfigArr.length; i++) {
+    for (let j = 0; j < commonConfigArr[i].config.length; j++) {
+        let item = commonConfigArr[i].config[j];
+        commonConfig[item.name] = item.default;
+    }
+};
+let allConfig = {};
+for (let i = 0; i <funcList.length; i++) {
+    let configs = funcList[i].config;
+    if (configs) {
+        allConfig[funcList[i].id] = {};
+        for (let config of configs) {
+            config.config.forEach(item => {
+                allConfig[funcList[i].id][item.name] = item.default;
+            })
+        }
+    }
+}
+
 SchemeList.forEach((item, id) => {
-    SchemeList[id] = _.assignIn({
+    let thisConfig = {};
+    item.list.forEach(funcId => {
+        if (allConfig[funcId]) {
+            thisConfig[funcId] = allConfig[funcId];
+        }
+    });
+    SchemeList[id] = _.merge({}, {
         id: id + 1,
         schemeName: '未命名',
         star: false,
         list: [],
-        config: {},
-        commonConfig: {}
+        config: thisConfig,
+        commonConfig: commonConfig
     }, item)
 });
-
 export default SchemeList;
