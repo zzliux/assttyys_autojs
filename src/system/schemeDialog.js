@@ -14,7 +14,7 @@ export default {
             return item.schemeName
         }), i => {
             if (i < 0) return; // 取消
-            store.put('currenScheme', staredSchemeList[i]);
+            store.put('currentScheme', staredSchemeList[i]);
             toast('设置方案[' + staredSchemeList[i].schemeName + ']');
         })
     }
