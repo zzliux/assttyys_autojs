@@ -521,15 +521,15 @@ const FuncList = [{
 	}],
 	operator: [{
 		desc: [1280,720,
-			[[right,1177,569,0xffd5a7],
+			[[center,1177,569,0xffd5a7],
 			[center,698,36,0x975e45],
 			[left,54,32,0xf1e19f],
 			[right,1183,38,0x2c2127],
 			[center,769,36,0xe7c65a]]
 		],
-		oper: [[right, 1158,549, 1224,645, 2000]]
+		oper: [[center, 1158,549, 1224,645, 2000]]
 	}, {
-		oper: [[right, 988,579, 1009,599, 1000]]
+		oper: [[center, 988,579, 1009,599, 1000]]
 	}],
 	operatorFunc(thisScript, thisOperator) {
 		let count = parseInt(thisScript.scheme.config['99'].count);
