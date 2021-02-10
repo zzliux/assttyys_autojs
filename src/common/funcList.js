@@ -494,17 +494,34 @@ const FuncList = [{
 			[center, 674,407, 839,457, 2000]
 		]
 	}]
-	// config: [{
-	// 	desc: '',
-	// 	config: [{
-	// 		name: 'type',
-	// 		desc: '刷新条件',
-	// 		type: 'list',
-	// 		data: ['三次刷新', '直接刷新'],
-	// 		default: '三次刷新',
-	// 		value: null,
-	// 	}]
-	// }]
+}, {
+	id: 12,
+	name: '寮突破_翻页',
+	checked: false,
+	operator: [{
+		desc: [1280,720,
+			[[center,171,104,0x4a3624],
+			[center,564,89,0x5e4735],
+			[center,718,92,0x583716],
+			[center,728,86,0xdebc56],
+			[center,1210,130,0xebdac9],
+			[center,1076,104,0x4d3826]]
+		],
+		oper: [
+			[center, 428,592, 1071,643, 0],
+			[center, 431,149, 1064,239, 0]
+		]
+	}],
+	operatorFunc(thisScript, thisOperator) {
+		if (thisScript.oper({
+			name: '突破界面_判断',
+			operator: [{ desc: thisOperator[0].desc }]
+		})) {
+			thisScript.helperBridge.regionSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [800, 1600], 200);
+			return true;
+		}
+		return false;
+	}
 }, {
 	id: 99,
 	name: '百鬼料理屋_挑战',

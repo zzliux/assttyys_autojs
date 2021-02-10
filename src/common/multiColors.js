@@ -14,7 +14,7 @@ export default {
 			[center,702,383,0x282520],
 			[center,736,394,0x272420],
 			[center,704,385,0xf4b25f]]
-        ], [1280,720,
+        ]/*, [1280,720,
             [[center,600,492,0x993333],
             [center,719,540,0x923d2c],
             [center,702,509,0xf4b25f],
@@ -22,7 +22,7 @@ export default {
             [center,679,522,0x272420],
             [center,678,517,0xf4b25f],
             [center,649,510,0x2b2721]]
-        ]]
+        ]*/]
     },
     '结界_5勋章': {
         region: [center, 124, 125, 1152, 545],

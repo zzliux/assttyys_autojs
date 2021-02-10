@@ -17,8 +17,6 @@ core({
     needScreenListener: true,
     // needForeground: true,
 });
-context.deleteDatabase("webview.db");
-context.deleteDatabase("webviewCache.db");
 
 export const webview = run('file://' + files.path('dist/index.html'), {
     afterLayout() {

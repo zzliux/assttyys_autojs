@@ -35,7 +35,7 @@ const SchemeList = [{
     id: 6,
     schemeName: '寮突破 DOING',
     star: false,
-    list: [1, 2, 3, 8, 9, 10],
+    list: [1, 2, 3, 8, 9, 10, 12],
     config: {
         '8': { count: '2', afterCountOper: '关闭界面' },
         '10': { type: '寮突破' }
