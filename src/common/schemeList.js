@@ -26,7 +26,7 @@ const SchemeList = [{
     id: 5,
     schemeName: '个人突破',
     star: false,
-    list: [1, 2, 3, 7, 8, 9, 10],
+    list: [1, 2, 3, 7, 8, 9, 10, 11],
     config: {
         '8': { count: '2', afterCountOper: '停止脚本' },
         '10': { type: '个人突破' }
