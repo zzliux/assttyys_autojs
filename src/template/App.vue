@@ -5,28 +5,36 @@
         <router-view class="rv" :status-bar-height="statusBarHeight"></router-view>
       </transition>
     </div>
+    <van-popup closeable v-model="updateInfoShow" :style="{width: '100%'}">
+      <div style="padding: 20px;">
+        <div class="popup_version_title">已为你完成更新：</div>
+        <div v-for="(item, id) of updateInfoList" :key="id">
+          <!-- {{item.version}}....{{id}} -->
+          <div class="popup_version_version">{{item.version}}: </div>
+          <div class="popup_version_desc">{{item.desc}}</div>
+        </div>
+      </div>
+    </van-popup>
   </div>
 </template>
 
 <script>
 import Vue from "vue";
-import { Tabbar, TabbarItem, NavBar } from "vant";
+import { Tabbar, TabbarItem, NavBar, Popup } from "vant";
 
 Vue.use(Tabbar);
 Vue.use(TabbarItem);
 Vue.use(NavBar);
+Vue.use(Popup);
 
 export default {
   data() {
     return {
+      updateInfoList: [],
+      updateInfoShow: false,
       transitionName: "slide-right",
-      statusBarHeight: 0
+      statusBarHeight: 20
     };
-  },
-  methods: {
-    navLeft() {
-      this.$router.back();
-    },
   },
   watch: {
     //使用watch 监听$router的变化
@@ -42,10 +50,37 @@ export default {
   },
   async mounted() {
     this.statusBarHeight = (await AutoWeb.autoPromise('getStatusBarHeight'));
+
+    // 版本查询
+    let versionInfo = await AutoWeb.autoPromise('versionInfo');
+    let updateContent = [];
+    let versionIndex = -1;
+    for (let j = 0; j < versionInfo.versionList.length; j++) {
+      if (versionInfo.versionList[j].version === versionInfo.storeVersion) {
+        versionIndex = j;
+        break;
+      }
+    }
+    while (++versionIndex < versionInfo.versionList.length) {
+      updateContent.push(versionInfo.versionList[versionIndex]);
+    }
+    this.updateInfoList = updateContent.reverse();
+    this.updateInfoShow = !!this.updateInfoList.length;
   },
 };
 </script>
-
+<style scoped>
+.popup_version_title {
+  margin-bottom: 5px;
+}
+.popup_version_version {
+  margin-top: 5px;
+}
+.popup_version_desc {
+  padding-left: 10px;
+  white-space: pre-wrap;
+}
+</style>
 <style>
 html {
   width: 100%;

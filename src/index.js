@@ -2,9 +2,10 @@ import { webview } from "@/system"
 import { effect$ } from "@auto.pro/core"
 import defaultSchemeList from '@/common/schemeList';
 import myFloaty from '@/system/myFloaty';
-import store from '@/system/store';
+import store, { storeCommon } from '@/system/store';
 import helperBridge from "@/system/helperBridge";
 import { mergeSchemeList } from '@/common/tool';
+import version, {versionList} from '@/common/version';
 // console.show();
 
 // 返回已保存的方案列表，如果未保存过，返回common中的schemeList
@@ -93,6 +94,16 @@ webview.on("getSettings").subscribe(([_param, done]) => {
 webview.on("clearStorage").subscribe(([_param, done]) => {
     storages.remove('asttyys_ng');
     done();
+});
+
+webview.on("versionInfo").subscribe(([_param, done]) => {
+    // storages.remove('assttyys_ng_common');
+    let storeVersion = storeCommon.get("storeVersion", null);
+    done({
+        storeVersion: storeVersion,
+        versionList: versionList
+    });
+    storeCommon.put("storeVersion", version);
 });
 
 webview.on("saveSetting").subscribe(([item, done]) => {

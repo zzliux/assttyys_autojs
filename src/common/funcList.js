@@ -329,14 +329,14 @@ const FuncList = [{
 		desc: '',
 		config: [{
 			name: 'count',
-			desc: '连续执行次数后执行完成',
+			desc: '连续执行x次后执行完成',
 			type: 'list',
 			data: ['2', '3', '4', '5'],
 			default: '2',
 			value: null,
 		}, {
 			name: 'afterCountOper',
-			desc: '执行完成后的操作',
+			desc: '执行完成的操作',
 			type: 'list',
 			data: ['停止脚本', '关闭界面'],
 			default: '停止脚本',
@@ -476,9 +476,24 @@ const FuncList = [{
 		return false;
 	}
 }, {
-	id: 12,
-	name: '结界_刷新按钮 TODO',
+	id: 11,
+	name: '结界_刷新按钮',
 	checked: false,
+	operator: [{
+		desc: [1280,720, // 刷新
+			[[center,549,93,0x5a4130],
+			[center,720,93,0x583716],
+			[center,224,104,0x4a3525],
+			[center,997,127,0x958c83],
+			// [center,400,610,0xffac2c],
+			[center,995,595,0xf4b25f],
+			[center,646,97,0xf8f3e0]]
+		],
+		oper: [
+			[center, 970,573, 1130,621, 1500],
+			[center, 674,407, 839,457, 2000]
+		]
+	}]
 	// config: [{
 	// 	desc: '',
 	// 	config: [{
@@ -493,6 +508,17 @@ const FuncList = [{
 }, {
 	id: 99,
 	name: '百鬼料理屋_挑战',
+	config: [{
+		desc: '',
+		config: [{
+			name: 'count',
+			desc: '连续执行x次后执行完成',
+			type: 'list',
+			data: ['2', '3', '4', '5'],
+			default: '3',
+			value: null,
+		}]
+	}],
 	operator: [{
 		desc: [1280,720,
 			[[right,1177,569,0xffd5a7],
@@ -506,7 +532,7 @@ const FuncList = [{
 		oper: [[right, 988,579, 1009,599, 1000]]
 	}],
 	operatorFunc(thisScript, thisOperator) {
-		let count = 2;
+		let count = parseInt(thisScript.scheme.config['99'].count);
 		while (thisScript.oper({
 			name: '百鬼料理屋_挑战',
 			operator: [thisOperator[0]]

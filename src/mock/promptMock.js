@@ -1,4 +1,5 @@
 import defaultSchemeList from '../common/schemeList';
+import version, { versionList } from '../common/version';
 
 const promptMockData = {
     getScheme: function (schemeName) {
@@ -30,6 +31,12 @@ const promptMockData = {
     },
     saveSchemeList: function () {
         return 'success';
+    },
+    versionInfo: function (){
+        return {
+            storeVersion: versionList[0].version,
+            versionList: versionList
+        }
     },
     getStatusBarHeight: 20,
     setCurrentScheme: 'sucess',
