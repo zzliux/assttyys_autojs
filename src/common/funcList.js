@@ -425,8 +425,7 @@ const FuncList = [{
 			[center,786,293,0xdfd7cb],
 			[center,786,396,0x3d5534],
 			[center,652,349,0xdfd9cb],
-			[center,772,327,0xc1bfb3],
-			[center,512,475,0xe6e6e6]]
+			[center,772,327,0xc1bfb3]]
 		],
 		oper: [
 			[center, 492,289, 783,385, 500]
