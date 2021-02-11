@@ -75,9 +75,20 @@ export const helperBridge = {
             sleep(item[4] + random(0, randomSleep || 0));
         });
     },
+    regionSwipe(transedOperS, transedOperE, duration, randomSleep) {
+        const time = random(duration[0], duration[1])
+        swipe(
+            random(transedOperS[0], transedOperS[2]), // x1
+            random(transedOperS[1], transedOperS[3]), // y1
+            random(transedOperE[0], transedOperE[2]), // x2
+            random(transedOperE[1], transedOperE[3]), // y2
+            time // duration
+        );
+        sleep(time + random(0, randomSleep))
+    },
     // [1119, 504, 1227, 592, 2000]
     // type0-竖直方向，1-水平方向 TODO
-    regionSwipe(transedOperS, transedOperE, duration, randomSleep, type) {
+    regionBezierSwipe(transedOperS, transedOperE, duration, randomSleep, type) {
         const time = random(duration[0], duration[1])
         // swipe(
         //     random(transedOperS[0], transedOperS[2]), // x1

@@ -119,5 +119,41 @@ export default {
             [center,748,369,0xc9b6a4],
             [center,784,397,0xa49088]]
         ]]
+    },
+    '探索_挑战': {
+        region: [center, 87,178, 1257,547],
+        desc: [[1280,720,
+            [[center,229,254,0x422918],
+            [center,245,257,0xf8b6be],
+            [center,240,280,0x424a7b],
+            [center,261,295,0x31396b],
+            [center,269,315,0x1a0e05]]
+        ]]
+    },
+    '探索_挑战BOSS': {
+        region: [center, 87,178, 1257,547],
+        desc: [[1280,720,
+            [[center,595,247,0x2b1a09],
+            [center,628,236,0xf4b2ba],
+            [center,616,298,0xf4b2ba],
+            [center,658,289,0x2d180c],
+            [center,595,277,0x498daf]]
+        ]]
+    },
+    '准备界面_满级标识': {
+        region: [center, 413,221, 866,491],
+        desc: [[1280,720,
+            [[center,473,318,0xeca831],
+            [center,480,319,0xf89f22],
+            [center,472,334,0xf8e71b],
+            [center,489,333,0xf4e317],
+            [center,485,318,0xfaa31b]]
+        ], [1280,720,
+            [[center,740,403,0xe8a42f],
+            [center,748,404,0xfe9f18],
+            [center,753,403,0xf9a41e],
+            [center,745,418,0xcdbc00],
+            [center,756,419,0xf4e317]]
+        ]]
     }
 }

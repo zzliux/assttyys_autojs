@@ -41,6 +41,11 @@ const SchemeList = [{
         '10': { type: '寮突破' }
     }
 }, {
+    id: 7,
+    schemeName: '个人探索 DOING',
+    star: false,
+    list: [15, 1, 2, 3, 13, 14]
+}, {
     id: 99,
     schemeName: '百鬼料理屋',
     star: false,

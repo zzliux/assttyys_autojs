@@ -533,10 +533,152 @@ const FuncList = [{
 			name: '突破界面_判断',
 			operator: [{ desc: thisOperator[0].desc }]
 		})) {
-			thisScript.helperBridge.regionSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [800, 1600], 200);
+			thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [800, 1600], 200);
 			return true;
 		}
 		return false;
+	}
+}, {
+	id: 13,
+	name: '探索_地图进入最后一章',
+	checked: false,
+	operator: [{
+		desc: [1280,720,
+			[[left,24,689,0x633e2d],
+			[left,42,57,0xeff5fb],
+			[right,1120,37,0xd7b288],
+			[right,1228,47,0xcfa67c],
+			[right,1161,157,0xd8d0bf]]
+		],
+		oper: [
+			[right, 1056,557, 1246,643, 1500],
+			// [center, 446,201, 492,255, 200],
+			// [center, 889,517, 1002,559, 1000]
+		]
+	}, {
+		desc: [1280,720,
+			[[center,276,129,0x493624],
+			[center,867,131,0x493624],
+			[center,1043,147,0xeecccc],
+			[center,904,535,0xf4b25f],
+			[right,1121,35,0xd7b389],
+			[right,1222,32,0xd3af85]]
+		],
+		oper: [
+			[center, 446,201, 492,255, 200],
+			[center, 889,517, 1002,559, 1000]
+		]
+	}]
+}, {
+	id: 14,
+	name: '探索_点击挑战图标 DOING',
+	checked: false,
+	operator: [{
+		desc: [1280,720,
+			[[left,38,65,0xf1f5fb],
+			[left,36,570,0x983254],
+			[left,29,672,0x615a77],
+			[right,1124,36,0xd7b388],
+			[right,1225,49,0xcba375]]
+		],
+		oper: [
+			[left, 0, 0, 42, 51, 2000],
+			[right, 1121,117, 1224,209, 0],
+			[left, 46,215, 162,525, 0],
+			[left, 30,47, 71,85, 500],
+			[center, 702,388, 846,421, 500]
+		]
+	}],
+	operatorFunc(thisScript, thisOperator) {
+		let count = 3 + 1;
+		while (thisScript.oper({
+			name: '探索界面_判断',
+			operator: [{ desc: thisOperator[0].desc }]
+		})) {
+			let point = thisScript.findMultiColor('探索_挑战BOSS');
+			if (point) {
+				let oper = [[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
+				thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+				return true;
+			}
+			// TODO 挑战经验怪
+			point = thisScript.findMultiColor('探索_挑战');
+			if (point) {
+				let oper = [[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
+				thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+				return true;
+			} else {
+				if (--count === 0) {
+					thisScript.helperBridge.regionClick([thisOperator[0].oper[3], thisOperator[0].oper[4]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+					return false;
+				}
+				if (thisScript.oper({
+					name: '探索界面_判断',
+					operator: [{ desc: thisOperator[0].desc }]
+				})) {
+					thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[1], thisOperator[0].oper[2], [300, 800], 200);
+					thisScript.keepScreen(true);
+				} else {
+					return false;
+				}
+			}
+		}
+		return false;
+	}
+}, {
+	id: 15,
+	name: '探索_换狗粮 DOING',
+	operator: [{
+		desc: [1280, 720,
+			[[left, 34, 41, 0xd7c5a2],
+			[left, 109, 37, 0xd7c5a2],
+			[left, 183, 39, 0xd7c5a2],
+			[right, 1114, 660, 0xefd6a5],
+			[right, 1220, 659, 0xedcc99],
+			[right, 1218, 529, 0xe0c8a9],
+			[left,70,691,0xfff9f1],
+			[left,75,667,0xdc6d61]]
+		],
+		oper: [
+			[center, 215,475, 721,642, 200],
+			[center, 215,475, 721,642, 1500],
+			[left, 44,633, 97,682, 400],
+			[left, 44,295, 92,345, 400], // 素材
+			[left, 148,311, 195,361, 400], // N
+			[center, 205,551, 246,608, 0], // 第一个位置
+			[center, 336,555, 371,611, 0], // 第二个位置
+			[center, 184,339, 234,403, 0], // 待换的第一个位置
+			[center, 616,334, 669,389, 0], // 待换的第二个位置
+		]
+	}],
+	operatorFunc(thisScript, thisOperator) {
+		if (thisScript.oper({
+			name: '准备界面_判断',
+			operator: [{ desc: thisOperator[0].desc }]
+		})) {
+			if (thisScript.findMultiColor('准备界面_满级标识')) {
+				// 素材
+				while (thisScript.oper({
+					name: '换狗粮_step1',
+					operator: [{
+						desc: thisOperator[0].desc,
+						oper: [thisOperator[0].oper[0], thisOperator[0].oper[0]]
+					}]
+				})) {
+					sleep(500);
+					thisScript.keepScreen(false);
+				}
+				sleep(1500);
+				thisScript.helperBridge.regionClick([thisOperator[0].oper[2], thisOperator[0].oper[3]], thisScript.scheme.commonConfig.afterClickDelayRandom)
+				sleep(500);
+
+				thisScript.helperBridge.regionSwipe(thisOperator[0].oper[5], thisOperator[0].oper[7], [1200, 1500], 200);
+				thisScript.helperBridge.regionSwipe(thisOperator[0].oper[5], thisOperator[0].oper[6], [600, 800], 500);
+				thisScript.helperBridge.regionSwipe(thisOperator[0].oper[6], thisOperator[0].oper[8], [1200, 1500], 200);
+
+				return true;
+			}
+		}
 	}
 }, {
 	id: 99,
