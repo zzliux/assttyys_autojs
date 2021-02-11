@@ -341,6 +341,13 @@ const FuncList = [{
 			data: ['停止脚本', '关闭界面'],
 			default: '停止脚本',
 			value: null,
+		}, {
+			name: 'type',
+			desc: '突破类型',
+			type: 'list',
+			data: ['个人突破', '寮突破'],
+			default: '个人突破',
+			value: null,
 		}]
 	}],
 	operator: [{
@@ -354,6 +361,15 @@ const FuncList = [{
 		let count = parseInt(thisConf.count);
 		let defaultCount = count;
 		let point = null;
+		if ('寮突破' === thisConf.type) {
+			if (thisScript.findMultiColor('结界_进攻_灰')) {
+				let oper = thisOperator[0].oper[1];
+				thisScript.helperBridge.regionClick([oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
+				toastLog('寮突破CD, 30秒后再次检测');
+				sleep(30000);
+				return true;
+			}
+		}
 		while (point = thisScript.findMultiColor('结界_进攻')) {
 			let oper = [[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
 			thisScript.helperBridge.regionClick(oper, 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);

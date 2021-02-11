@@ -28,16 +28,16 @@ const SchemeList = [{
     star: false,
     list: [1, 2, 3, 7, 8, 9, 10, 11],
     config: {
-        '8': { count: '2', afterCountOper: '停止脚本' },
+        '8': { count: '2', afterCountOper: '停止脚本', type: '个人突破' },
         '10': { type: '个人突破' }
     }
 }, {
     id: 6,
-    schemeName: '寮突破 DOING',
+    schemeName: '寮突破',
     star: false,
     list: [1, 2, 3, 8, 9, 10, 12],
     config: {
-        '8': { count: '2', afterCountOper: '关闭界面' },
+        '8': { count: '2', afterCountOper: '关闭界面', type: '寮突破' },
         '10': { type: '寮突破' }
     }
 }, {

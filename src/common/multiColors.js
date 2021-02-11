@@ -14,7 +14,7 @@ export default {
 			[center,702,383,0x282520],
 			[center,736,394,0x272420],
 			[center,704,385,0xf4b25f]]
-        ]/*, [1280,720,
+        ], [1280,720,
             [[center,600,492,0x993333],
             [center,719,540,0x923d2c],
             [center,702,509,0xf4b25f],
@@ -22,7 +22,25 @@ export default {
             [center,679,522,0x272420],
             [center,678,517,0xf4b25f],
             [center,649,510,0x2b2721]]
-        ]*/]
+        ]]
+    },
+    '结界_进攻_灰': {
+        region: [center, 304,317, 1166,713],
+        desc: [[1280,720,
+            [[center,600,480,0x685f5f],
+            [center,639,493,0xb0a8a0],
+            [center,679,511,0x272420],
+            [center,712,523,0xafaaa2],
+            [center,719,533,0x8c837b],
+            [center,727,540,0xbfa98f]]
+        ], [1280,720,
+            [[center,601,497,0x665d5d],
+            [center,610,506,0xb0a8a0],
+            [center,712,540,0xafaaa2],
+            [center,720,546,0x685f5f],
+            [center,726,557,0xbfa98f],
+            [center,679,529,0x282521]]
+        ]]
     },
     '结界_5勋章': {
         region: [center, 124, 125, 1152, 545],
