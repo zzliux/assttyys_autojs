@@ -1,8 +1,8 @@
-import store from '@/system/store';
+import store, { storeCommon } from '@/system/store';
 import _ from 'lodash';
 
 export default {
-    show() {
+    show(myfloaty) {
         let staredSchemeList = _.filter(store.get('schemeList', []), item => {
             return item.star;
         });
@@ -15,7 +15,12 @@ export default {
         }), i => {
             if (i < 0) return; // 取消
             store.put('currentScheme', staredSchemeList[i]);
-            toast('设置方案[' + staredSchemeList[i].schemeName + ']');
+            let storeSettings = storeCommon.get('settings', {});
+            if (storeSettings.floaty_scheme_direct_run) {
+                myfloaty.fy.start();
+            } else {
+                toast('设置方案[' + staredSchemeList[i].schemeName + ']');
+            }
         })
     }
 }

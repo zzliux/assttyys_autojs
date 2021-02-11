@@ -78,6 +78,7 @@ webview.on("startScript").subscribe(([_param, done]) => {
 });
 
 webview.on("getSettings").subscribe(([_param, done]) => {
+    let storeSettings = storeCommon.get('settings', {});
     done([{
         desc: '音量上键停脚本及程序',
         name: 'stop_all_on_volume_up',
@@ -88,7 +89,25 @@ webview.on("getSettings").subscribe(([_param, done]) => {
         name: 'foreground_service',
         type: 'autojs_inner_setting',
         enabled: $settings.isEnabled('foreground_service')
+    }, {
+        desc: '悬浮选择方案后是否直接启动脚本',
+        name: 'floaty_scheme_direct_run',
+        type: 'assttyys_setting',
+        enabled: storeSettings.floaty_scheme_direct_run || false
     }]);
+});
+
+
+
+webview.on("saveSetting").subscribe(([item, done]) => {
+    if ('autojs_inner_setting' === item.type) {
+        $settings.setEnabled(item.name, item.enabled);
+    } else if ('assttyys_setting' === item.type){
+        let storeSettings = storeCommon.get('settings', {});
+        storeSettings[item.name] = item.enabled;
+        storeCommon.put('settings', storeSettings);
+    }
+    done();
 });
 
 webview.on("clearStorage").subscribe(([_param, done]) => {
@@ -104,13 +123,6 @@ webview.on("versionInfo").subscribe(([_param, done]) => {
         versionList: versionList
     });
     storeCommon.put("storeVersion", version);
-});
-
-webview.on("saveSetting").subscribe(([item, done]) => {
-    if (item.type === 'autojs_inner_setting') {
-        $settings.setEnabled(item.name, item.enabled);
-    }
-    done();
 });
 
 webview.on("toast").subscribe(([string, done]) => {

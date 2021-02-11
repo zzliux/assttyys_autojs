@@ -419,12 +419,34 @@ const FuncList = [{
 		oper: [
 			[left, 0, 0, 214, 98, 500]
 		]
+	}, {
+		desc: [1280,720,
+			[[center,570,290,0xded8ca],
+			[center,786,293,0xdfd7cb],
+			[center,786,396,0x3d5534],
+			[center,652,349,0xdfd9cb],
+			[center,772,327,0xc1bfb3],
+			[center,512,475,0xe6e6e6]]
+		],
+		oper: [
+			[center, 492,289, 783,385, 500]
+		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
 		if (thisScript.oper({
 			name: '突破界面_判断',
 			operator: [{ desc: thisOperator[0].desc }]
 		})) {
+			// 呱
+			if (thisScript.oper({
+				name: '个人突破_呱',
+				operator: [{
+					desc: thisOperator[1].desc,
+					oper: thisOperator[1].oper
+				}]
+			})) {
+				return true;
+			}
 			let thisconf = thisScript.scheme.config['9']; // 获取配置
 			let priority = thisconf.priority.split('->');
 			let multiColorKey = [];
@@ -673,7 +695,7 @@ const FuncList = [{
 				sleep(500);
 
 				thisScript.helperBridge.regionSwipe(thisOperator[0].oper[5], thisOperator[0].oper[7], [1200, 1500], 200);
-				thisScript.helperBridge.regionSwipe(thisOperator[0].oper[5], thisOperator[0].oper[6], [600, 800], 500);
+				thisScript.helperBridge.regionSwipe(thisOperator[0].oper[5], thisOperator[0].oper[6], [200, 400], 500);
 				thisScript.helperBridge.regionSwipe(thisOperator[0].oper[6], thisOperator[0].oper[8], [1200, 1500], 200);
 
 				return true;

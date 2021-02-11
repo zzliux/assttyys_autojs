@@ -3,8 +3,8 @@ import schemeDialog from '@/system/schemeDialog';
 import script from '@/system/script';
 
 importClass(android.content.Intent);
-
-var myFloaty = {
+// console.show();
+const myFloaty = {
     fy: null,
     init: function () {
         var self = this;
@@ -47,7 +47,7 @@ var myFloaty = {
                 color: '#bfc1c0',
                 icon: 'ic_format_indent_increase_black_48dp',
                 callback() {
-                    schemeDialog.show();
+                    schemeDialog.show(myFloaty);
                 }
             },]
         });
