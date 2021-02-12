@@ -24,6 +24,7 @@ const targetPath = 'assttyys_ng';
         await fsPromise.mkdir(targetPath);
         await recursiveCopy('assets', targetPath + '/assets');
         await recursiveCopy('dist', targetPath + '/dist');
+        await recursiveCopy('project.json', targetPath + '/project.json');
         await sleep(1000);
         await compressing.zip.compressDir(targetPath, targetPath + '.zip')
         await sleep(1000);

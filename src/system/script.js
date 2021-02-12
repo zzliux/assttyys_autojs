@@ -89,12 +89,13 @@ var script = {
         }
         this.multiColor = thisMultiColor;
     },
-    findMultiColor(key) {
+    findMultiColor(key, inRegion) {
         this.initRedList();
-        let region = this.multiColor[key].region;
+        let region = inRegion || this.multiColor[key].region;
         let desc = this.multiColor[key].desc;
+        let similar = this.multiColor[key].similar || this.scheme.commonConfig.multiColorSimilar
         for (let item of desc) {
-            let point = this.helperBridge.helper.FindMultiColor(region[0], region[1], region[2], region[3], item, this.scheme.commonConfig.multiColorSimilar, 1);
+            let point = this.helperBridge.helper.FindMultiColor(region[0], region[1], region[2], region[3], item, similar, 1);
             if (point.x !== -1) {
                 return point;
             }
