@@ -1,9 +1,11 @@
 import store, { storeCommon } from '@/system/store';
+import defaultSchemeList from '@/common/schemeList';
+// import { mergeSchemeList } from '@/common/tool';
 import _ from 'lodash';
 
 export default {
     show(myfloaty) {
-        let staredSchemeList = _.filter(store.get('schemeList', []), item => {
+        let staredSchemeList = _.filter(store.get('schemeList', defaultSchemeList), item => {
             return item.star;
         });
         if (staredSchemeList.length === 0) {
