@@ -90,6 +90,11 @@ webview.on("getSettings").subscribe(([_param, done]) => {
         type: 'autojs_inner_setting',
         enabled: $settings.isEnabled('foreground_service')
     }, {
+        desc: '忽略电池优化',
+        name: 'ignoreBatteryOptimization',
+        type: 'autojs_inner_setting_power_manage',
+        enabled: $power_manager.isIgnoringBatteryOptimizations()
+    }, {
         desc: '悬浮选择方案后是否直接启动脚本',
         name: 'floaty_scheme_direct_run',
         type: 'assttyys_setting',
@@ -102,6 +107,10 @@ webview.on("getSettings").subscribe(([_param, done]) => {
 webview.on("saveSetting").subscribe(([item, done]) => {
     if ('autojs_inner_setting' === item.type) {
         $settings.setEnabled(item.name, item.enabled);
+    } else if ('autojs_inner_setting_power_manage' === item.type) {
+        if (item.enabled) {
+            $power_manager.requestIgnoreBatteryOptimizations();
+        }
     } else if ('assttyys_setting' === item.type){
         let storeSettings = storeCommon.get('settings', {});
         storeSettings[item.name] = item.enabled;
