@@ -13,6 +13,7 @@ var script = {
     enabledFuncList: null,
     multiColor: null, // 多点找色用的，提前初始化，减轻运行中计算量
     hasRedList: false, // KeepScreen(true)时会初始化redList，如果没有初始化的话这个值为false，方便在有需要的时候初始化redlist且不重复初始化
+    global: null, // 每次启动重置为空对象，用于功能里面存变量
     device: {
         width: getWidthPixels(),
         height: getHeightPixels()
@@ -30,7 +31,7 @@ var script = {
             helperBridge.helper.GetRedList();
             this.hasRedList = true;
         }
-    },
+    },  
     setRunCallback(callback) {
         this.runCallback = callback;
     },
@@ -108,6 +109,7 @@ var script = {
         this.helperBridge = helperBridge;
         this.initFuncList();
         this.initMultiColor();
+        this.global = {};
         if (null === this.scheme) {
             if (typeof self.stopCallback === 'function') {
                 self.stopCallback();
@@ -115,9 +117,9 @@ var script = {
             return;
         }
         // test start
-        let img = images.captureScreen();
-        img.saveTo('/sdcard/testimg.png');
-        img.recycle();
+        // let img = images.captureScreen();
+        // img.saveTo('/sdcard/testimg.png');
+        // img.recycle();
         // test end
         toastLog(`运行方案[${this.scheme.schemeName}]`);
         this.runThread = threads.start(function () {

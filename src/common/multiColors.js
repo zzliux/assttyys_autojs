@@ -121,7 +121,7 @@ export default {
         ]]
     },
     '探索_经验标识': {
-        region: [center, 87,178, 1257,547],
+        region: [center, 42, 345, 1173, 700],
         similar: 95,
         desc: [[1280,720,
             [[left,946,516,0x9d2120],

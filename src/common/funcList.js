@@ -592,7 +592,7 @@ const FuncList = [{
 	}]
 }, {
 	id: 14,
-	name: '探索_点击挑战图标 DOING',
+	name: '探索_点击挑战图标',
 	config: [{
 		desc: '',
 		config: [{
@@ -623,7 +623,9 @@ const FuncList = [{
 		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
-		let count = 3 + 1;
+		if (thisScript.global.tsAttackSwhipeNum === undefined) {
+			thisScript.global.tsAttackSwhipeNum = 5;
+		}
 		let thisconf = thisScript.scheme.config['14'];
 		while (thisScript.oper({
 			name: '探索界面_判断',
@@ -633,28 +635,35 @@ const FuncList = [{
 			if (point) {
 				let oper = [[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
 				thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.global.tsAttackSwhipeNum = 1;
 				return true;
 			}
 			point = null;
 			// TODO 挑战经验怪
 			if ('打经验' === thisconf.type) {
-				let flagPoint = thisScript.findMultiColor('探索_经验标识');
-				if (null != flagPoint) {
-					let step = thisOperator[0].oper[5][2];
-                    // 从内向外多点找色，可点击的挑战图标，可能会处理为不停的进行多点找色，找不到的时候放大区域
-                    let l = step // 搜索区域宽高,5倍 "探索_经验怪标记" 的宽高，当这个区域找不到时，l以倍数增长，直到找到为止或者达到一定次数, 这样处理的话会找重复的地方
-                    for (let tryTimes = 1; tryTimes <= 15; tryTimes++, l += step) { // 尝试 12 次, 大概算了一下，12次内基本可以找到，找不到的话就滑屏
-                        let region = [flagPoint.x -  l / 2, flagPoint.y - l - 40, flagPoint.x + l / 2, flagPoint.y - 40];
-                        if (region[0] < 0) region[0] = 0;
-                        if (region[1] < 0) region[1] = 0;
-                        if (region[2] > thisOperator[0].oper[6][2]) region[2] = thisOperator[0].oper[6][2];
-                        if (region[3] > thisOperator[0].oper[6][3]) region[3] = thisOperator[0].oper[6][3];
-						point = thisScript.findMultiColor('探索_挑战', region);
-						if (point) {
-							break;
+				let trycnt = 3;
+				do {
+					let flagPoint = thisScript.findMultiColor('探索_经验标识');
+					if (null != flagPoint) {
+						let step = thisOperator[0].oper[5][2];
+						// 从内向外多点找色，可点击的挑战图标，可能会处理为不停的进行多点找色，找不到的时候放大区域
+						let l = step // 搜索区域宽高,5倍 "探索_经验怪标记" 的宽高，当这个区域找不到时，l以倍数增长，直到找到为止或者达到一定次数, 这样处理的话会找重复的地方
+						for (let tryTimes = 1; tryTimes <= 15; tryTimes++, l += step) { // 尝试 12 次, 大概算了一下，12次内基本可以找到，找不到的话就滑屏
+							let region = [flagPoint.x -  l / 2, flagPoint.y - l - 40, flagPoint.x + l / 2, flagPoint.y - 40];
+							if (region[0] < 0) region[0] = 0;
+							if (region[1] < 0) region[1] = 0;
+							if (region[2] > thisOperator[0].oper[6][2]) region[2] = thisOperator[0].oper[6][2];
+							if (region[3] > thisOperator[0].oper[6][3]) region[3] = thisOperator[0].oper[6][3];
+							point = thisScript.findMultiColor('探索_挑战', region);
+							if (point) {
+								break;
+							}
 						}
-                    }
-                }
+					} else {
+						sleep(500);
+						thisScript.keepScreen(true);
+					}
+				} while (!point && --trycnt > 0);
 			} else {
 				point = thisScript.findMultiColor('探索_挑战');
 			}
@@ -663,14 +672,16 @@ const FuncList = [{
 				thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
 				return true;
 			} else {
-				if (--count === 0) {
+				if (--thisScript.global.tsAttackSwhipeNum <= 0) {
 					thisScript.helperBridge.regionClick([thisOperator[0].oper[3], thisOperator[0].oper[4]], thisScript.scheme.commonConfig.afterClickDelayRandom);
-					return false;
+					thisScript.global.tsAttackSwhipeNum = undefined;
+					return true;
 				}
 				if (thisScript.oper({
 					name: '探索界面_判断',
 					operator: [{ desc: thisOperator[0].desc }]
 				})) {
+					toastLog(`剩余滑屏次数：${thisScript.global.tsAttackSwhipeNum}`);
 					thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[1], thisOperator[0].oper[2], [300, 800], 200);
 					thisScript.keepScreen(true);
 				} else {
@@ -682,7 +693,7 @@ const FuncList = [{
 	}
 }, {
 	id: 15,
-	name: '探索_换狗粮 DOING',
+	name: '探索_换狗粮',
 	operator: [{
 		desc: [1280, 720,
 			[[left, 34, 41, 0xd7c5a2],
@@ -727,7 +738,7 @@ const FuncList = [{
 				thisScript.helperBridge.regionClick([thisOperator[0].oper[2], thisOperator[0].oper[3]], thisScript.scheme.commonConfig.afterClickDelayRandom)
 				sleep(500);
 
-				thisScript.helperBridge.regionSwipe(thisOperator[0].oper[5], thisOperator[0].oper[7], [1200, 1500], 200);
+				thisScript.helperBridge.regionSwipe(thisOperator[0].oper[5], thisOperator[0].oper[7], [800, 1200], 200);
 				thisScript.helperBridge.regionSwipe(thisOperator[0].oper[5], thisOperator[0].oper[6], [200, 400], 500);
 				thisScript.helperBridge.regionSwipe(thisOperator[0].oper[6], thisOperator[0].oper[8], [1200, 1500], 200);
 
