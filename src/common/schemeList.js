@@ -102,6 +102,7 @@ SchemeList.forEach((item, id) => {
     SchemeList[id] = _.merge({}, {
         id: id + 1,
         schemeName: '未命名',
+        inner: true,
         star: false,
         list: [],
         config: thisConfig,
