@@ -19,10 +19,18 @@ if (screenWidth < screenHeight) {
 
 export const helperBridge = {
     helper: null,
+    helperPoly: {},
+    getHelper(dw, dh) {
+        if (!this.helperPoly[dw + '_' + dh]) {
+            this.helperPoly[dw + '_' + dh] = new AnchorGraphicHelper(runtime, dw, dh, 0, 0, screenWidth - 1, screenHeight - 1);
+        }
+        return this.helperPoly[dw + '_' + dh];
+    },
     init: function () {
         this.helper = new AnchorGraphicHelper(runtime, devWidth, devHeight, 0, 0, screenWidth - 1, screenHeight - 1);
+        this.helperPoly['1280_720'] = this.helper;
     },
-    // [[right, 1119, 504, 1227, 592, 2000]]
+    // [[right, 1280, 720, 1119, 504, 1227, 592, 2000]]
     regionClickTrans(oper) {
         for (let i = 0; i < oper.length; i++) {
             let regionWidth = null;
@@ -55,12 +63,12 @@ export const helperBridge = {
             //     regionY + regionHeight,
             //     oper[i][5]
             // ];
-            if (oper[i][1] === -1) {
-                oper[i] = [-1, -1, -1, -1, oper[i][5]            ]
+            if (oper[i][3] === -1) {
+                oper[i] = [-1, -1, -1, -1, oper[i][7]]
             } else {
-                let sr = this.helper.GetPoint(oper[i][1], oper[i][2], oper[i][0]);
-                let er = this.helper.GetPoint(oper[i][3], oper[i][4], oper[i][0]);
-                oper[i] = [sr.x, sr.y, er.x, er.y, oper[i][5]            ]
+                let sr = this.getHelper(oper[i][1], oper[i][2]).GetPoint(oper[i][3], oper[i][4], oper[i][0]);
+                let er = this.getHelper(oper[i][1], oper[i][2]).GetPoint(oper[i][5], oper[i][6], oper[i][0]);
+                oper[i] = [sr.x, sr.y, er.x, er.y, oper[i][7]]
             }
         }
         return oper;

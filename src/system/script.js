@@ -83,8 +83,8 @@ var script = {
                 thisMultiColor[key].desc.push(this.helperBridge.helper.GetFindColorArray(desc[0], desc[1], desc[2]));
             }
             if (multiColor[key].region) {
-                let sr  = this.helperBridge.helper.GetPoint(multiColor[key].region[1], multiColor[key].region[2], multiColor[key].region[0]);
-                let er  = this.helperBridge.helper.GetPoint(multiColor[key].region[3], multiColor[key].region[4], multiColor[key].region[0]);
+                let sr = this.helperBridge.getHelper(multiColor[key].region[1], multiColor[key].region[2]).GetPoint(multiColor[key].region[3], multiColor[key].region[4], multiColor[key].region[0]);
+                let er = this.helperBridge.getHelper(multiColor[key].region[1], multiColor[key].region[2]).GetPoint(multiColor[key].region[5], multiColor[key].region[6], multiColor[key].region[0]);
                 thisMultiColor[key].region = [sr.x, sr.y, er.x, er.y];
             }
         }
@@ -105,12 +105,20 @@ var script = {
     },
     run() {
         var self = this;
-        // helperBridge放进来，funcList里面operator执行时可以从this中取到helperBridge，解决直接导入helperBridge在端报错的问题
-        this.helperBridge = helperBridge;
-        this.initFuncList();
-        this.initMultiColor();
-        this.global = {};
-        if (null === this.scheme) {
+        try {
+            // helperBridge放进来，funcList里面operator执行时可以从this中取到helperBridge，解决直接导入helperBridge在端报错的问题
+            this.helperBridge = helperBridge;
+            this.initFuncList();
+            this.initMultiColor();
+            this.global = {};
+            if (null === this.scheme) {
+                if (typeof self.stopCallback === 'function') {
+                    self.stopCallback();
+                }
+                return;
+            }
+        } catch (e) {
+            console.error(e);
             if (typeof self.stopCallback === 'function') {
                 self.stopCallback();
             }

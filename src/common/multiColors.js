@@ -5,7 +5,7 @@ const right = 2;
 
 export default {
     '结界_进攻': {
-        region: [center, 304,317, 1166,713],
+        region: [center, 1280, 720, 304,317, 1166,713],
         desc: [[1280,720,
 			[[center,657,362,0x993333],
 			[center,677,375,0xf4b25f],
@@ -25,7 +25,7 @@ export default {
         ]]
     },
     '结界_进攻_灰': {
-        region: [center, 304,317, 1166,713],
+        region: [center, 1280, 720, 304,317, 1166,713],
         desc: [[1280,720,
             [[center,600,480,0x685f5f],
             [center,639,493,0xb0a8a0],
@@ -43,7 +43,7 @@ export default {
         ]]
     },
     '结界_5勋章': {
-        region: [center, 124, 125, 1152, 545],
+        region: [center, 1280, 720, 124, 125, 1152, 545],
         desc: [[1280,720,
             [[center,512,282,0xd8cabb],
             [center,728,289,0xdacdbc],
@@ -56,7 +56,7 @@ export default {
         ]]
     },
     '结界_4勋章': {
-        region: [center, 124, 125, 1152, 545],
+        region: [center, 1280, 720, 124, 125, 1152, 545],
         desc: [[1280,720,
             [[center,514,147,0xdacbbc],
             [center,725,155,0xdacebc],
@@ -69,7 +69,7 @@ export default {
         ]]
     },
     '结界_3勋章': {
-        region: [center, 124, 125, 1152, 545],
+        region: [center, 1280, 720, 124, 125, 1152, 545],
         desc: [[1280,720,
             [[center,511,281,0xd9cabb],
             [center,726,289,0xdacdbc],
@@ -82,7 +82,7 @@ export default {
         ]]
     },
     '结界_2勋章': {
-        region: [center, 124, 125, 1152, 545],
+        region: [center, 1280, 720, 124, 125, 1152, 545],
         desc: [[1280,720,
             [[center,901,153,0xd8caba],
             [center,1119,158,0xdacbbc],
@@ -95,7 +95,7 @@ export default {
         ]]
     },
     '结界_1勋章': {
-        region: [center, 124, 125, 1152, 545],
+        region: [center, 1280, 720, 124, 125, 1152, 545],
         desc: [[1280,720,
             [[center,510,142,0xd7c9b9],
             [center,732,149,0xd8c9ba],
@@ -108,7 +108,7 @@ export default {
         ]]
     },
     '结界_0勋章': {
-        region: [center, 124, 125, 1152, 545],
+        region: [center, 1280, 720, 124, 125, 1152, 545],
         desc: [[1280,720,
             [[center,567,286,0xd6c5b3],
             [center,784,297,0xdacdbc],
@@ -121,7 +121,7 @@ export default {
         ]]
     },
     '探索_经验标识': {
-        region: [center, 42, 345, 1173, 700],
+        region: [center, 1280, 720, 42, 345, 1173, 700],
         similar: 95,
         desc: [[1280,720,
             [[left,946,516,0x9d2120],
@@ -144,7 +144,7 @@ export default {
         ]]
     },
     '探索_挑战': {
-        region: [center, 87,178, 1257,547],
+        region: [center, 1280, 720, 87,178, 1257,547],
         desc: [[1280,720,
             [[center,229,254,0x422918],
             [center,245,257,0xf8b6be],
@@ -154,7 +154,7 @@ export default {
         ]]
     },
     '探索_挑战BOSS': {
-        region: [center, 87,178, 1257,547],
+        region: [center, 1280, 720, 87,178, 1257,547],
         desc: [[1280,720,
             [[center,595,247,0x2b1a09],
             [center,628,236,0xf4b2ba],
@@ -164,7 +164,7 @@ export default {
         ]]
     },
     '准备界面_满级标识': {
-        region: [center, 413,221, 866,491],
+        region: [center, 1280, 720, 413,221, 866,491],
         desc: [[1280,720,
             [[center,473,318,0xeca831],
             [center,480,319,0xf89f22],

@@ -19,7 +19,9 @@ const FuncList = [{
 			[right, 1218, 529, 0xe0c8a9]]
 		],
 		// 0-方向, 1-左上角x, 2-左上角y, 3-右下角x, 4-右下角y, 5-点击后延迟
-		oper: [[right, 1119, 504, 1227, 592, 2000]]
+		oper: [
+			[right, 1280, 720, 1119, 504, 1227, 592, 2000]
+		]
 	}],
 	// config: [{
 	// 	desc: '准备后绿标',
@@ -50,7 +52,7 @@ const FuncList = [{
 			[left, 77, 82, 0x3a2a22]]
 		],
 		oper: [
-			[left, 69, 171, 170, 452, 400]
+			[left, 1280, 720, 69, 171, 170, 452, 400]
 		]
 	}, { // 左上角的贪吃鬼图标
 		desc: [1280, 720,
@@ -60,7 +62,7 @@ const FuncList = [{
 			[left, 74, 90, 0x927150]]
 		],
 		oper: [
-			[left, 69, 171, 170, 452, 400]
+			[left, 1280, 720, 69, 171, 170, 452, 400]
 		]
 	}, { // 单人-胜利太鼓
 		desc: [1280, 720,
@@ -73,7 +75,7 @@ const FuncList = [{
 			[center, 510, 249, 0xd4c4ab]]
 		],
 		oper: [
-			[left, 69, 171, 170, 452, 400]
+			[left, 1280, 720, 69, 171, 170, 452, 400]
 		]
 	}, { // 组队-胜利太鼓
 		desc: [1280,720,
@@ -85,7 +87,7 @@ const FuncList = [{
 			[center,429,171,0xd6c9b1]]
 		],
 		oper: [
-			[left, 69, 171, 170, 452, 400]
+			[left, 1280, 720, 69, 171, 170, 452, 400]
 		]
 	}, {// 未打开的达摩
 		desc: [1280, 720,
@@ -96,7 +98,7 @@ const FuncList = [{
 			[center, 588, 486, 0x330202]]
 		],
 		oper: [
-			[left, 69, 171, 170, 452, 400]
+			[left, 1280, 720, 69, 171, 170, 452, 400]
 		]
 	}, { // 已打开的达摩
 		desc: [1280,720,
@@ -106,7 +108,7 @@ const FuncList = [{
 			[center,712,621,0x340204]]
 		],
 		oper: [
-			[left, 69, 171, 170, 452, 1000]
+			[left, 1280, 720, 69, 171, 170, 452, 1000]
 		]
 	}, { // 单人-失败太鼓
 		desc: [1280, 720,
@@ -118,7 +120,7 @@ const FuncList = [{
 			[center, 418, 210, 0xb6a388]]
 		],
 		oper: [
-			[left, 69, 171, 170, 452, 2000]
+			[left, 1280, 720, 69, 171, 170, 452, 2000]
 		]
 	}, { // 组队-失败太鼓
 		desc: [1280,720,
@@ -129,7 +131,7 @@ const FuncList = [{
 			[center,415,151,0xb8a589]]
 		],
 		oper: [
-			[left, 69, 171, 170, 452, 2000]
+			[left, 1280, 720, 69, 171, 170, 452, 2000]
 		]
 	}]
 }, {
@@ -144,9 +146,9 @@ const FuncList = [{
 			[center,849,422,0x53ae5b]]
 		],
 		oper: [
-			[center, 768,109, 796,138, 1000], // 关闭
-			[center, 833,397, 874,438, 1000], // 接受
-			[center, 835,500, 875,538, 1000], // 拒绝
+			[center, 1280, 720, 768,109, 796,138, 1000], // 关闭
+			[center, 1280, 720, 833,397, 874,438, 1000], // 接受
+			[center, 1280, 720, 835,500, 875,538, 1000], // 拒绝
 		]
 	}],
 	/**
@@ -194,7 +196,9 @@ const FuncList = [{
 			[left,255,276,0x86705d],
 			[left,192,276,0xeadece]]
 		],
-		oper: [[left, 219,237, 254,275, 600]]
+		oper: [
+			[left, 1280, 720, 219,237, 254,275, 600]
+		]
 	}, { // 接受一次邀请
 		desc: [1280,720,
 			[[left,128,255,0x58b361],
@@ -203,7 +207,9 @@ const FuncList = [{
 			[left,14,299,0xf1be36],
 			[left,176,291,0xefe5d6]]
 		],
-		oper: [[left, 120,239, 159,273, 600]]
+		oper: [
+			[left, 1280, 720, 120,239, 159,273, 600]
+		]
 	}]
 }, {
 	id: 5,
@@ -232,14 +238,16 @@ const FuncList = [{
 		],
 	}, {
 		desc: [1280,720,
-			[[center,643,254,0xffffff]]
+			[[center, 1280, 720,643,254,0xffffff]]
 		]
 	}, {
 		desc: [1280,720,
-			[[center,1088,253,0xffffff]]
+			[[center, 1280, 720,1088,253,0xffffff]]
 		]
 	}, {
-		oper: [[right, 1192,613, 1251,677, 2000]]
+		oper: [
+			[right, 1280, 720, 1192,613, 1251,677, 2000]
+		]
 	}], // 0-有人就开，1-第一个+号上的点，2-第二个+号上的点，如果1或者2任意一个匹配上了，说明人没满
 	operatorFunc(thisScript, thisOperator) {
 		if (thisScript.oper({
@@ -277,7 +285,9 @@ const FuncList = [{
 			[right,1161,608,0xded2bb],
 			[right,1207,671,0x372015]]
 		],
-		oper: [[right, 1116,602, 1197,683, 2000]]
+		oper: [
+			[right, 1280, 720, 1116,602, 1197,683, 2000]
+		]
 	}, { // 御灵
 		desc: [1280,720,
 			[[left,37,37,0xc3cce1],
@@ -287,7 +297,9 @@ const FuncList = [{
 			[right,1188,679,0x371f16],
 			[right,1091,663,0x472c1f]]
 		],
-		oper: [[right, 1104,595, 1196,681, 2000]]
+		oper: [
+			[right, 1280, 720, 1104,595, 1196,681, 2000]
+		]
 	}]
 }, {
 	id: 7,
@@ -304,7 +316,7 @@ const FuncList = [{
 			[center,646,97,0xf8f3e0]]
 		],
 		oper: [
-			[center, -1, -1, -1, -1, 30000],
+			[center, 1280, 720, -1, -1, -1, -1, 30000]
 		]
 	}, {
 		desc: [1280,720, // 刷新
@@ -317,8 +329,8 @@ const FuncList = [{
 			[center,646,97,0xf8f3e0]]
 		],
 		oper: [
-			[center, 970,573, 1130,621, 1500],
-			[center, 674,407, 839,457, 2000]
+			[center, 1280, 720, 970,573, 1130,621, 1500],
+			[center, 1280, 720, 674,407, 839,457, 2000]
 		]
 	}]
 }, {
@@ -352,8 +364,8 @@ const FuncList = [{
 	}],
 	operator: [{
 		oper: [
-			[left, 0, 0, 119, 49, 2000],
-			[center, 1188,115, 1225,151, 500],
+			[left, 1280, 720, 0, 0, 119, 49, 2000],
+			[center, 1280, 720, 1188,115, 1225,151, 500],
 		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
@@ -417,7 +429,7 @@ const FuncList = [{
 			[center,1076,104,0x4d3826]]
 		],
 		oper: [
-			[left, 0, 0, 214, 98, 500]
+			[left, 1280, 720, 0, 0, 214, 98, 500]
 		]
 	}, {
 		desc: [1280,720,
@@ -428,7 +440,7 @@ const FuncList = [{
 			[center,772,327,0xc1bfb3]]
 		],
 		oper: [
-			[center, 492,289, 783,385, 500]
+			[center, 1280, 720, 492,289, 783,385, 500]
 		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
@@ -457,6 +469,7 @@ const FuncList = [{
 				if (point) {
 					let oper = [[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
 					thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+					console.log(key);
 					return true;
 				}
 			}
@@ -490,8 +503,8 @@ const FuncList = [{
 			[left,254,690,0x653d2c]]
 		],
 		oper: [
-			[left, 280,631, 334,695, 1500],
-			[center, 1210,366, 1254,453, 1500]
+			[left, 1280, 720, 280,631, 334,695, 1500],
+			[center, 1280, 720, 1210,366, 1254,453, 1500]
 		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
@@ -527,8 +540,8 @@ const FuncList = [{
 			[center,646,97,0xf8f3e0]]
 		],
 		oper: [
-			[center, 970,573, 1130,621, 1500],
-			[center, 674,407, 839,457, 2000]
+			[center, 1280, 720, 970,573, 1130,621, 1500],
+			[center, 1280, 720, 674,407, 839,457, 2000]
 		]
 	}]
 }, {
@@ -545,8 +558,8 @@ const FuncList = [{
 			[center,1076,104,0x4d3826]]
 		],
 		oper: [
-			[center, 428,592, 1071,643, 0],
-			[center, 431,149, 1064,239, 0]
+			[center, 1280, 720, 428,592, 1071,643, 0],
+			[center, 1280, 720, 431,149, 1064,239, 0]
 		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
@@ -572,9 +585,7 @@ const FuncList = [{
 			[right,1161,157,0xd8d0bf]]
 		],
 		oper: [
-			[right, 1056,557, 1246,643, 1500],
-			// [center, 446,201, 492,255, 200],
-			// [center, 889,517, 1002,559, 1000]
+			[right, 1280, 720, 1056,557, 1246,643, 1500]
 		]
 	}, {
 		desc: [1280,720,
@@ -586,8 +597,8 @@ const FuncList = [{
 			[right,1222,32,0xd3af85]]
 		],
 		oper: [
-			[center, 446,201, 492,255, 200],
-			[center, 889,517, 1002,559, 1000]
+			[center, 1280, 720, 446,201, 492,255, 200],
+			[center, 1280, 720, 889,517, 1002,559, 1000]
 		]
 	}]
 }, {
@@ -613,13 +624,13 @@ const FuncList = [{
 			[right,1225,49,0xcba375]]
 		],
 		oper: [
-			[left, 0, 0, 42, 51, 2000],
-			[right, 1121,117, 1224,209, 0],
-			[left, 46,215, 162,525, 0],
-			[left, 30,47, 71,85, 500],
-			[center, 702,388, 846,421, 500],
-			[left, 0, 0, 16, 16, 0],
-			[right, 0, 0, 1275, 715, 0]
+			[left, 1280, 720, 0, 0, 42, 51, 2000],
+			[right, 1280, 720, 1121,117, 1224,209, 0],
+			[left, 1280, 720, 46,215, 162,525, 0],
+			[left, 1280, 720, 30,47, 71,85, 500],
+			[center, 1280, 720, 702,388, 846,421, 500],
+			[left, 1280, 720, 0, 0, 16, 16, 0],
+			[right, 1280, 720, 0, 0, 1275, 715, 0]
 		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
@@ -682,7 +693,7 @@ const FuncList = [{
 					operator: [{ desc: thisOperator[0].desc }]
 				})) {
 					// toastLog(`剩余滑屏次数：${thisScript.global.tsAttackSwhipeNum}`);
-					thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[1], thisOperator[0].oper[2], [300, 800], 200);
+					thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[1], thisOperator[0].oper[2], [800, 1200], 200);
 					thisScript.keepScreen(true);
 				} else {
 					return false;
@@ -706,15 +717,15 @@ const FuncList = [{
 			[left,75,667,0xdc6d61]]
 		],
 		oper: [
-			[center, 215,475, 721,642, 200],
-			[center, 215,475, 721,642, 1500],
-			[left, 44,633, 97,682, 400],
-			[left, 44,295, 92,345, 400], // 素材
-			[left, 148,311, 195,361, 400], // N
-			[center, 205,551, 246,608, 0], // 第一个位置
-			[center, 336,555, 371,611, 0], // 第二个位置
-			[center, 184,339, 234,403, 0], // 待换的第一个位置
-			[center, 616,334, 669,389, 0], // 待换的第二个位置
+			[center, 1280, 720, 215,475, 721,642, 200],
+			[center, 1280, 720, 215,475, 721,642, 1500],
+			[left, 1280, 720, 44,633, 97,682, 400],
+			[left, 1280, 720, 44,295, 92,345, 400], // 素材
+			[left, 1280, 720, 148,311, 195,361, 400], // N
+			[center, 1280, 720, 205,551, 246,608, 0], // 第一个位置
+			[center, 1280, 720, 336,555, 371,611, 0], // 第二个位置
+			[center, 1280, 720, 184,339, 234,403, 0], // 待换的第一个位置
+			[center, 1280, 720, 616,334, 669,389, 0], // 待换的第二个位置
 		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
@@ -768,9 +779,13 @@ const FuncList = [{
 			[right,1183,38,0x2c2127],
 			[center,769,36,0xe7c65a]]
 		],
-		oper: [[center, 1158,549, 1224,645, 2000]]
+		oper: [
+			[center, 1280, 720, 1158,549, 1224,645, 2000]
+		]
 	}, {
-		oper: [[center, 988,579, 1009,599, 1000]]
+		oper: [
+			[center, 1280, 720, 988,579, 1009,599, 1000]
+		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
 		let count = parseInt(thisScript.scheme.config['99'].count);
