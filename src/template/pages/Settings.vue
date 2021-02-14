@@ -53,6 +53,11 @@
         title=""
         style="background: transparent"
       >
+        <div class="item" @click="startActivityForLog">
+          <div class="item-title">
+            查看日志
+          </div>
+        </div>
         <div class="item" @click="resetScheme">
           <div class="item-title">
             重置方案及功能
@@ -93,6 +98,9 @@ export default {
   methods: {
     async toggleSwitchEvent(e, item) {
       await AutoWeb.autoPromise('saveSetting', item);
+    },
+    startActivityForLog() {
+      AutoWeb.autoPromise('startActivityForLog');
     },
     resetScheme() {
       Dialog.confirm({

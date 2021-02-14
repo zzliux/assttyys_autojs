@@ -14,6 +14,7 @@ module.exports = (env, argv) => {
             filename: 'web.js',
             libraryTarget: 'umd'
         },
+        mode: argv.mode,
         module: {
             rules: [
                 {

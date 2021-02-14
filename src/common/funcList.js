@@ -681,7 +681,7 @@ const FuncList = [{
 					name: '探索界面_判断',
 					operator: [{ desc: thisOperator[0].desc }]
 				})) {
-					toastLog(`剩余滑屏次数：${thisScript.global.tsAttackSwhipeNum}`);
+					// toastLog(`剩余滑屏次数：${thisScript.global.tsAttackSwhipeNum}`);
 					thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[1], thisOperator[0].oper[2], [300, 800], 200);
 					thisScript.keepScreen(true);
 				} else {

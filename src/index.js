@@ -119,6 +119,11 @@ webview.on("saveSetting").subscribe(([item, done]) => {
     done();
 });
 
+webview.on("startActivityForLog").subscribe(([_param, done]) => {
+    app.startActivity("console");
+    done();
+});
+
 webview.on("clearStorage").subscribe(([_param, done]) => {
     storages.remove('asttyys_ng');
     done();

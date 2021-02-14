@@ -34,7 +34,7 @@ const promptMockData = {
     },
     versionInfo: function (){
         return {
-            storeVersion: versionList[0].version,
+            storeVersion: versionList[versionList.length - 1].version,
             versionList: versionList
         }
     },

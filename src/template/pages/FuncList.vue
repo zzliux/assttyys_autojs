@@ -63,65 +63,26 @@
         </van-col>
       </van-row>
     </div>
-    <!-- 功能的参数配置 -->
-    <van-popup class="configModal" v-model="configModalShow" closeable>
-      <div class="configModalTitle">配置: {{configModalObject.name}}</div>
-      <van-cell-group v-for="(configItem) in configModalObject.config" :key="configItem.desc" :title="configItem.desc">
-        <!-- <van-cell v-for="(configItemItem) in configItem.config" :key="configItemItem.name" :title="configItemItem.desc">
-          <template v-if="'switch' == configItemItem.type">
-            <van-switch v-model="configItemItem.value" size="18" />
-          </template>
-          <template v-else-if="'list' == configItemItem.type">
-            <div class="configItemValue" @click="showItemConfigList($event, configItemItem)">{{configItemItem.value}}</div>
-          </template>
-        </van-cell> -->
-        <van-field
-          v-for="(configItemItem) in configItem.config" :key="configItemItem.name"
-          label-width="70%"
-          :label="configItemItem.desc"
-          :rules="[{ required: true, message: '必填' }]"
-        >
-          <template v-if="'integer' === configItemItem.type" #input>
-            <div class="van-field__body"><input type="number" v-model="configItemItem.value" class="van-field__control"></div>
-          </template>
-          <template v-else-if="'switch' === configItemItem.type" #input>
-            <van-switch v-model="configItemItem.value" size="20" />
-          </template>
-          <template v-else-if="'list' === configItemItem.type" #input>
-            <div class="configItemValue" @click="showItemConfigList($event, configItemItem)">{{configItemItem.value}}</div>
-          </template>
-        </van-field>
-      </van-cell-group>
-    </van-popup>
-
-    <!-- 功能的参数里面的list下拉单选 -->
-    <van-popup v-model="configItemItemShowPicker" position="bottom">
-      <van-picker
-        show-toolbar
-        :columns="configItemItemPickerList"
-        @confirm="configItemItemPickerConfirm"
-        @cancel="configItemItemShowPicker = false"
-      />
-    </van-popup>
+    <func-config-dialog
+      :show.sync="configModalShow"
+      :configModalObject.sync="configModalObject"
+    ></func-config-dialog>
   </div>
 </template>
 <script>
 import Vue from "vue";
-import { Col, Row , CellGroup, Switch, Icon, Button, Popup, Form, Field, Picker } from "vant";
+import { Col, Row, Switch, Icon, Button, Picker } from "vant";
 import draggable from 'vuedraggable'
 import dfuncList from "../../common/funcList";
 import dCommonConfig from "../../common/commonConfig";
 import _ from 'lodash';
+import funcConfigDialog from '../components/FuncConfigDialog.vue';
 
 Vue.use(Col);
 Vue.use(Row);
-Vue.use(CellGroup);
 Vue.use(Switch);
 Vue.use(Icon);
 Vue.use(Button);
-Vue.use(Popup);
-Vue.use(Form);
-Vue.use(Field);
 Vue.use(Picker);
 
 export default {
@@ -139,9 +100,6 @@ export default {
         config: []
       },
       scheme: null,
-      configItemItemShowPicker: false,
-      configItemItemPickerList: [],
-      curItemItem: null,
     };
   },
   props: {
@@ -149,6 +107,7 @@ export default {
   },
   components: {
     draggable,
+    funcConfigDialog,
   },
   computed: {
     dragOptions() {
@@ -290,15 +249,6 @@ export default {
         // Toast('无可配置项');
       }
     },
-    showItemConfigList(e, configItemItem) {
-      this.configItemItemShowPicker = true;
-      this.configItemItemPickerList = configItemItem.data;
-      this.curItemItem = configItemItem;
-    },
-    configItemItemPickerConfirm(text, _index) {
-      this.curItemItem.value = text;
-      this.configItemItemShowPicker = false;
-    },
     async saveScheme() {
       if (this.params && this.params.schemeName) {
         let list = [];
@@ -363,17 +313,6 @@ export default {
 .itemSwitch {
   margin-right: 5px;
 }
-.configModal {
-  width: 100%;
-}
-.configModalTitle {
-  padding-top: 16px;
-  padding-left: 16px;
-}
-.configItemValue {
-  text-align: right;
-}
-
 .item:active {
   background-color: #f2f3f5;
 }
