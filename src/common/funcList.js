@@ -6,6 +6,81 @@ const center = 1;
 const right = 2;
 
 const FuncList = [{
+	id: 0,
+	name: '结束判断',
+	checked: false,
+	operator: [],
+	config: [{
+		desc: '执行时间',
+		config: [{
+			name: 'jspd_enabled_zjsj',
+			desc: '是否启用',
+			type: 'switch',
+			default: false,
+			value: null,
+		}, {
+			name: 'jspd_times_zjsj',
+			desc: '执行时间(min)',
+			type: 'integer',
+			default: 30,
+		}, {
+			name: 'jspd_txpl_zjsj',
+			desc: '提醒频率(s)',
+			type: 'integer',
+			default: 60
+		}]
+	}, {
+		desc: '准备',
+		config: [{
+			name: 'jspd_enabled_1',
+			desc: '是否启用',
+			type: 'switch',
+			default: false,
+			value: null,
+		}, {
+			name: 'jspd_times_1',
+			desc: '执行次数',
+			type: 'integer',
+			default: 20,
+		}]
+	}],
+	operatorFunc(thisScript, thisOperator) {
+		let thisconf = thisScript.scheme.config['0'];
+		if (thisconf.jspd_enabled_zjsj) { // 执行时间
+			let currentNotifyDate = thisScript.global.currentNotifyDate;
+			if (!currentNotifyDate) {
+				toastLog(`脚本将于${cvtTime(thisconf.jspd_times_zjsj * 60)}后停止`);
+				currentNotifyDate = new  Date();
+				thisScript.global.currentNotifyDate = currentNotifyDate;
+			}
+			let now = new Date();
+			if (now.getTime() - currentNotifyDate.getTime() > thisconf.jspd_txpl_zjsj * 1000) {
+				let leftSec = (thisconf.jspd_times_zjsj * 60000 + thisScript.runDate.getTime() - now.getTime()) / 1000;
+				thisScript.global.currentNotifyDate = new Date();
+				toastLog(`脚本将于${cvtTime(leftSec)}后停止`);
+			}
+			if (thisScript.runDate.getTime() + thisconf.jspd_times_zjsj * 60000 < now.getTime()) {
+				toastLog('脚本已停止');
+				thisScript.stop();
+			}
+		}
+		if (thisconf.jspd_enabled_1) {
+			if (thisScript.runTimes['1'] >= thisconf.jspd_times_1) {
+				toastLog(`准备功能执行${thisScript.runTimes['1']}次后停止脚本`);
+				thisScript.step();
+			}
+		}
+		function cvtTime(s) {
+			if (s > 3600) {
+				return ((s / 3600).toFixed(2)) + '小时';
+			} else if (s > 60) {
+				return ((s / 60).toFixed(2)) + '分钟';
+			} else {
+				return ((s).toFixed(2)) + '秒';
+			}
+		}
+	}
+}, {
 	id: 1,
 	name: '准备',
 	checked: false,
@@ -585,7 +660,7 @@ const FuncList = [{
 			[right,1161,157,0xd8d0bf]]
 		],
 		oper: [
-			[right, 1280, 720, 1056,557, 1246,643, 1500]
+			[right, 1280, 720, 1056,557, 1246,643, 500]
 		]
 	}, {
 		desc: [1280,720,
@@ -613,6 +688,13 @@ const FuncList = [{
 			data: ['无差别', '打经验'],
 			default: '打经验',
 			value: null,
+		}, {
+			name: 'swipeTime',
+			desc: '划屏次数',
+			type: 'list',
+			data: ['2', '3', '4', '5', '6'],
+			default: '3',
+			value: null,
 		}]
 	}],
 	operator: [{
@@ -634,14 +716,15 @@ const FuncList = [{
 		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
-		if (thisScript.global.tsAttackSwhipeNum === undefined) {
-			thisScript.global.tsAttackSwhipeNum = 5;
-		}
 		let thisconf = thisScript.scheme.config['14'];
 		while (thisScript.oper({
 			name: '探索界面_判断',
 			operator: [{ desc: thisOperator[0].desc }]
 		})) {
+			if (thisScript.global.tsAttackSwhipeNum === undefined) {
+				thisScript.global.tsAttackSwhipeNum = parseInt(thisconf.swipeTime);
+				sleep(3000); // 从地图进来，先休息一下再进行判断
+			}
 			let point = thisScript.findMultiColor('探索_挑战BOSS');
 			if (point) {
 				let oper = [[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
@@ -652,7 +735,7 @@ const FuncList = [{
 			point = null;
 			// TODO 挑战经验怪
 			if ('打经验' === thisconf.type) {
-				let trycnt = 3;
+				let trycnt = 5;
 				do {
 					let flagPoint = thisScript.findMultiColor('探索_经验标识');
 					if (null != flagPoint) {
@@ -671,7 +754,7 @@ const FuncList = [{
 							}
 						}
 					} else {
-						sleep(500);
+						sleep(400);
 						thisScript.keepScreen(true);
 					}
 				} while (!point && --trycnt > 0);

@@ -144,7 +144,7 @@ export const helperBridge = {
         const curve = new Bezier(x1, y1, ...c1, ...c2, x2, y2);
         const points = curve.getLUT(16).map(p => [Math.floor(p['x']), Math.floor(p['y'])]);
         gesture(time, ...points);
-        sleep(randomSleep);
+        sleep(time + random(0, randomSleep));
     }
 };
 

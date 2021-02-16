@@ -13,6 +13,8 @@ var script = {
     enabledFuncList: null,
     multiColor: null, // 多点找色用的，提前初始化，减轻运行中计算量
     hasRedList: false, // KeepScreen(true)时会初始化redList，如果没有初始化的话这个值为false，方便在有需要的时候初始化redlist且不重复初始化
+    runDate: null,
+    runTimes: {},
     global: null, // 每次启动重置为空对象，用于功能里面存变量
     device: {
         width: getWidthPixels(),
@@ -110,6 +112,8 @@ var script = {
             this.helperBridge = helperBridge;
             this.initFuncList();
             this.initMultiColor();
+            this.runDate = new Date();
+            this.runTimes = {};
             this.global = {};
             if (null === this.scheme) {
                 if (typeof self.stopCallback === 'function') {
@@ -136,6 +140,10 @@ var script = {
                     self.keepScreen(false);
                     for (let i = 0; i < self.scheme.funcList.length; i++) {
                         if (self.oper(self.scheme.funcList[i])) {
+                            if (!self.runTimes[self.scheme.funcList[i].id]) {
+                                self.runTimes[self.scheme.funcList[i].id] = 0;
+                            }
+                            self.runTimes[self.scheme.funcList[i].id]++;
                             break;
                         }
                     }

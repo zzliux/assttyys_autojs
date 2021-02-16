@@ -6,27 +6,27 @@ const SchemeList = [{
     id: 1,
     schemeName: '通用准备退出',
     star: true,
-    list: [1, 2, 3],
+    list: [0, 1, 2, 3],
 }, {
     id: 2,
     schemeName: '组队乘客',
     star: true,
-    list: [1, 2, 3, 4],
+    list: [0, 1, 2, 3, 4],
 }, {
     id: 3,
     schemeName: '组队司机',
     star: true,
-    list: [1, 2, 3, 5],
+    list: [0, 1, 2, 3, 5],
 }, {
     id: 4,
     schemeName: '个人御魂',
     star: true,
-    list: [1, 2, 3, 6]
+    list: [0, 1, 2, 3, 6]
 }, {
     id: 5,
     schemeName: '个人突破',
     star: true,
-    list: [1, 2, 3, 7, 8, 9, 10, 11],
+    list: [0, 1, 2, 3, 7, 8, 9, 10, 11],
     config: {
         '8': { count: '2', afterCountOper: '停止脚本', type: '个人突破' },
         '10': { type: '个人突破' }
@@ -35,7 +35,7 @@ const SchemeList = [{
     id: 6,
     schemeName: '寮突破',
     star: true,
-    list: [1, 2, 3, 8, 9, 10, 12],
+    list: [0, 1, 2, 3, 8, 9, 10, 12],
     config: {
         '8': { count: '2', afterCountOper: '关闭界面', type: '寮突破' },
         '10': { type: '寮突破' }
@@ -44,19 +44,19 @@ const SchemeList = [{
     id: 7,
     schemeName: '个人探索',
     star: true,
-    list: [15, 1, 2, 3, 13, 14]
+    list: [0, 15, 1, 2, 3, 13, 14]
 }, {
     id: 99,
     schemeName: '百鬼料理屋',
     star: true,
-    list: [1, 2, 3, 99],
+    list: [0, 1, 2, 3, 99],
 }
     // 完整demo
     // , {
     //     id: 2,
     //     schemeName: '组队队长',
     //     star: false,
-    //     list: [], // funcList中的id集合
+    //     list: [0, ], // funcList中的id集合
     //     config: { // 方案中的配置，如返回空的话使用默认配置
     //         '1': { // key为功能的ID（1表示准备）
     //             enabled: false,
@@ -104,7 +104,7 @@ SchemeList.forEach((item, id) => {
         schemeName: '未命名',
         inner: true,
         star: false,
-        list: [],
+        list: [0, ],
         config: thisConfig,
         commonConfig: commonConfig
     }, item)
