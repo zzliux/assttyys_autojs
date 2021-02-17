@@ -84,6 +84,15 @@ const FuncList = [{
 	id: 1,
 	name: '准备',
 	checked: false,
+	config: [{
+		desc: '退出',
+		config: [{
+			name: 'exitBeforeReady',
+			desc: '准备前是否退出,常用于个人突破的降级',
+			type: 'switch',
+			default: false,
+		}],
+	}],
 	operator: [{
 		desc: [1280, 720,
 			[[left, 34, 41, 0xd7c5a2],
@@ -95,9 +104,31 @@ const FuncList = [{
 		],
 		// 0-方向, 1-左上角x, 2-左上角y, 3-右下角x, 4-右下角y, 5-点击后延迟
 		oper: [
-			[right, 1280, 720, 1119, 504, 1227, 592, 2000]
+			[right, 1280, 720, 1119, 504, 1227, 592, 2000], // 准备
+			[left, 1280, 720, 22,19, 52,47, 500], // 左上角返回
+			[left, 1280, 720, 683,401, 795,442, 500], // 确认
 		]
 	}],
+	operatorFunc(thisScript, thisOperator) {
+		let thisconf = thisScript.scheme.config['1'];
+		if (thisconf.exitBeforeReady) {
+			return thisScript.oper({
+				name: '准备界面_退出',
+				operator: [{
+					desc: thisOperator[0].desc,
+					oper: [thisOperator[0].oper[1], thisOperator[0].oper[2]]
+				}]
+			})
+		} else {
+			return thisScript.oper({
+				name: '准备',
+				operator: [{
+					desc: thisOperator[0].desc,
+					oper: [thisOperator[0].oper[0]]
+				}]
+			});
+		}
+	}
 	// config: [{
 	// 	desc: '准备后绿标',
 	// 	config: [{
@@ -504,7 +535,7 @@ const FuncList = [{
 			[center,1076,104,0x4d3826]]
 		],
 		oper: [
-			[left, 1280, 720, 0, 0, 214, 98, 500]
+			[left, 1280, 720, 30, 10, 200, 90, 500]
 		]
 	}, {
 		desc: [1280,720,
@@ -542,7 +573,12 @@ const FuncList = [{
 			for (let key of multiColorKey) {
 				let point = thisScript.findMultiColor(key);
 				if (point) {
-					let oper = [[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
+					let oper = [[
+						point.x + thisOperator[0].oper[0][0],
+						point.y + thisOperator[0].oper[0][1],
+						point.x + thisOperator[0].oper[0][2],
+						point.y + thisOperator[0].oper[0][3],
+						thisOperator[0].oper[0][4]]];
 					thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
 					console.log(key);
 					return true;

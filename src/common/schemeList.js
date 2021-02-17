@@ -32,6 +32,18 @@ const SchemeList = [{
         '10': { type: '个人突破' }
     }
 }, {
+    id: 5,
+    schemeName: '个人突破_降级',
+    star: true,
+    list: [0, 1, 2, 3, 8, 9, 10, 11],
+    config: {
+        '0': { jspd_enabled_1: true, jspd_times_1: 27 },
+        '1': { exitBeforeReady: true },
+        '8': { count: '2', afterCountOper: '停止脚本', type: '个人突破' },
+        '9': { priority: '0->1->2->3->4->5' },
+        '10': { type: '个人突破' }
+    }
+}, {
     id: 6,
     schemeName: '寮突破',
     star: true,

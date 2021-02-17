@@ -13,6 +13,9 @@ export const versionList = [{
 }, {
     version: '20210217_01_test',
     desc: '1.增加结束脚本功能，结束条件请在该功能中进行修改。\n2.优化探索挑战\n为确保正常使用, 请在设置中重置方案及功能',
+}, {
+    version: '20210217_02_test',
+    desc: '新增准备功能中可配置在准备界面退出，增加个人突破降级方案。\n为确保正常使用, 请在设置中重置方案及功能',
 }];
 
 export default versionList[versionList.length - 1].version;
