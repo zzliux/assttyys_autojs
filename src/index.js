@@ -79,7 +79,7 @@ webview.on("startScript").subscribe(([_param, done]) => {
 
 webview.on("getSettings").subscribe(([_param, done]) => {
     let storeSettings = storeCommon.get('settings', {});
-    done([{
+    let ret = [{
         desc: '音量上键停脚本及程序',
         name: 'stop_all_on_volume_up',
         type: 'autojs_inner_setting',
@@ -89,17 +89,22 @@ webview.on("getSettings").subscribe(([_param, done]) => {
         name: 'foreground_service',
         type: 'autojs_inner_setting',
         enabled: $settings.isEnabled('foreground_service')
-    }, {
-        desc: '忽略电池优化',
-        name: 'ignoreBatteryOptimization',
-        type: 'autojs_inner_setting_power_manage',
-        enabled: $power_manager.isIgnoringBatteryOptimizations()
-    }, {
+    }];
+    if (device.sdkInt >= 23) {
+        ret.push({
+            desc: '忽略电池优化',
+            name: 'ignoreBatteryOptimization',
+            type: 'autojs_inner_setting_power_manage',
+            enabled: $power_manager.isIgnoringBatteryOptimizations()
+        });
+    }
+    ret.push({
         desc: '悬浮选择方案后是否直接启动脚本',
         name: 'floaty_scheme_direct_run',
         type: 'assttyys_setting',
         enabled: storeSettings.floaty_scheme_direct_run || false
-    }]);
+    });
+    done(ret);
 });
 
 
@@ -164,6 +169,7 @@ effect$.subscribe(() => {
     
 });
 
+// 调试用，完成后取消注释
 ui.emitter.on("back_pressed", function (e) {
     e.consumed = true;
     webview.runHtmlFunction("routeBack");

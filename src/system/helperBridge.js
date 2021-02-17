@@ -5,6 +5,7 @@ const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
+const isRoot = device.sdkInt < 24;
 
 const devWidth = 1280;
 const devHeight = 720;
@@ -78,21 +79,36 @@ export const helperBridge = {
     regionClick(transedOper, randomSleep) {
         transedOper.forEach(item => {
             if (item[0] >= 0) {
-                click(random(item[0], item[2]), random(item[1], item[3]));
+                if (isRoot) {
+                    Tap(random(item[0], item[2]), random(item[1], item[3]));
+                } else {
+                    click(random(item[0], item[2]), random(item[1], item[3]));
+                }
             }
             sleep(item[4] + random(0, randomSleep || 0));
         });
     },
     regionSwipe(transedOperS, transedOperE, duration, randomSleep) {
         const time = random(duration[0], duration[1])
-        swipe(
-            random(transedOperS[0], transedOperS[2]), // x1
-            random(transedOperS[1], transedOperS[3]), // y1
-            random(transedOperE[0], transedOperE[2]), // x2
-            random(transedOperE[1], transedOperE[3]), // y2
-            time // duration
-        );
-        sleep(time + random(0, randomSleep))
+        if (isRoot) {
+            Swipe(
+                random(transedOperS[0], transedOperS[2]), // x1
+                random(transedOperS[1], transedOperS[3]), // y1
+                random(transedOperE[0], transedOperE[2]), // x2
+                random(transedOperE[1], transedOperE[3]), // y2
+                time // duration
+            );
+            sleep(time + random(0, randomSleep))
+        } else {
+            swipe(
+                random(transedOperS[0], transedOperS[2]), // x1
+                random(transedOperS[1], transedOperS[3]), // y1
+                random(transedOperE[0], transedOperE[2]), // x2
+                random(transedOperE[1], transedOperE[3]), // y2
+                time // duration
+            );
+            sleep(time + random(0, randomSleep))
+        }
     },
     // [1119, 504, 1227, 592, 2000]
     // type0-竖直方向，1-水平方向 TODO
@@ -111,6 +127,11 @@ export const helperBridge = {
         const y1 = random(transedOperS[1], transedOperS[3]);
         const x2 = random(transedOperE[0], transedOperE[2]);
         const y2 = random(transedOperE[1], transedOperE[3]);
+        if (isRoot) {
+            Swipe(x1, y1, x2, y2, time);
+            sleep(random(0, randomSleep));
+            return;
+        }
         const xMax = Math.max(x1, x2);
         const xMin = Math.min(x1, x2);
         const yMax = Math.max(y1, y2);

@@ -181,7 +181,12 @@ var script = {
         } else {
             for (let id = 0; id < operator.length; id++) {
                 let item = operator[id];
-                let rs = helperBridge.helper.CompareColorEx(item.desc, this.scheme.commonConfig.colorSimilar, 0);
+                let rs;
+                if (item.desc && item.desc.length) {
+                    rs = helperBridge.helper.CompareColorEx(item.desc, this.scheme.commonConfig.colorSimilar, 0);
+                } else {
+                    rs = true;
+                }
                 if (rs) {
                     console.log('执行：' + currFunc.name + '_' + id);
                     if (item.oper) {
