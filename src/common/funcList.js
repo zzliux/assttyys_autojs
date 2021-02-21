@@ -757,22 +757,22 @@ const FuncList = [{
 			name: '探索界面_判断',
 			operator: [{ desc: thisOperator[0].desc }]
 		})) {
-			if (thisScript.global.tsAttackSwhipeNum === undefined) {
-				thisScript.global.tsAttackSwhipeNum = parseInt(thisconf.swipeTime);
-				sleep(3000); // 从地图进来，先休息一下再进行判断
-			}
-			let point = thisScript.findMultiColor('探索_挑战BOSS');
-			if (point) {
-				let oper = [[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
-				thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
-				thisScript.global.tsAttackSwhipeNum = 1;
-				return true;
-			}
-			point = null;
+			// if (thisScript.global.tsAttackSwhipeNum === undefined) {
+			// 	thisScript.global.tsAttackSwhipeNum = parseInt(thisconf.swipeTime);
+			// 	sleep(3000); // 从地图进来，先休息一下再进行判断
+			// }
+			let point = null;
 			// TODO 挑战经验怪
 			if ('打经验' === thisconf.type) {
 				let trycnt = 5;
 				do {
+					point = thisScript.findMultiColor('探索_挑战BOSS');
+					if (point) {
+						let oper = [[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
+						thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+						thisScript.global.tsAttackSwhipeNum = 1;
+						return true;
+					}
 					let flagPoint = thisScript.findMultiColor('探索_经验标识');
 					if (null != flagPoint) {
 						let step = thisOperator[0].oper[5][2];
@@ -795,6 +795,13 @@ const FuncList = [{
 					}
 				} while (!point && --trycnt > 0);
 			} else {
+				point = thisScript.findMultiColor('探索_挑战BOSS');
+				if (point) {
+					let oper = [[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
+					thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.global.tsAttackSwhipeNum = 1;
+					return true;
+				}
 				point = thisScript.findMultiColor('探索_挑战');
 			}
 			if (point) {

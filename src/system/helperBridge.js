@@ -163,7 +163,17 @@ export const helperBridge = {
         }
 
         const curve = new Bezier(x1, y1, ...c1, ...c2, x2, y2);
-        const points = curve.getLUT(16).map(p => [Math.floor(p['x']), Math.floor(p['y'])]);
+        const pointsOrigin = curve.getLUT(200).map(p => [Math.floor(p['x']), Math.floor(p['y'])]);
+        let toRetain = [0, 1, 2, 3, 4, 5, 191, 192, 193, 194, 195, 196, 197, 198, 199];
+        for (let i = 190, stepLen = 1; i > 5; i -= stepLen, stepLen++) {
+            toRetain.push(i);
+        }
+        toRetain = toRetain.sort((a, b) => parseInt(a) - parseInt(b));
+        let points = [];
+        console.log(toRetain);
+        toRetain.forEach(item => {
+            points.push(pointsOrigin[item]);
+        });
         gesture(time, ...points);
         sleep(time + random(0, randomSleep));
     }
