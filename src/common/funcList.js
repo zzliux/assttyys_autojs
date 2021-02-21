@@ -757,10 +757,10 @@ const FuncList = [{
 			name: '探索界面_判断',
 			operator: [{ desc: thisOperator[0].desc }]
 		})) {
-			// if (thisScript.global.tsAttackSwhipeNum === undefined) {
-			// 	thisScript.global.tsAttackSwhipeNum = parseInt(thisconf.swipeTime);
-			// 	sleep(3000); // 从地图进来，先休息一下再进行判断
-			// }
+			if (thisScript.global.tsAttackSwhipeNum === undefined) {
+				thisScript.global.tsAttackSwhipeNum = parseInt(thisconf.swipeTime);
+				// sleep(3000); // 从地图进来，先休息一下再进行判断
+			}
 			let point = null;
 			// TODO 挑战经验怪
 			if ('打经验' === thisconf.type) {
