@@ -1,17 +1,20 @@
 <template>
-  <div style="width: 100%; height: 100%;">
+  <div style="width: 100%; height: 100%">
     <div class="rv_box">
       <transition :name="transitionName">
-        <router-view class="rv" :status-bar-height="statusBarHeight"></router-view>
+        <router-view
+          class="rv"
+          :status-bar-height="statusBarHeight"
+        ></router-view>
       </transition>
     </div>
-    <van-popup closeable v-model="updateInfoShow" :style="{width: '100%'}">
-      <div style="padding: 20px;">
+    <van-popup closeable v-model="updateInfoShow" :style="{ width: '100%' }">
+      <div style="padding: 20px">
         <div class="popup_version_title">已为你完成更新：</div>
         <div v-for="(item, id) of updateInfoList" :key="id">
           <!-- {{item.version}}....{{id}} -->
-          <div class="popup_version_version">{{item.version}}: </div>
-          <div class="popup_version_desc">{{item.desc}}</div>
+          <div class="popup_version_version">{{ item.version }}:</div>
+          <div class="popup_version_desc">{{ item.desc }}</div>
         </div>
       </div>
     </van-popup>
@@ -33,7 +36,7 @@ export default {
       updateInfoList: [],
       updateInfoShow: false,
       transitionName: "slide-right",
-      statusBarHeight: 20
+      statusBarHeight: 20,
     };
   },
   watch: {
@@ -49,10 +52,10 @@ export default {
     },
   },
   async mounted() {
-    this.statusBarHeight = (await AutoWeb.autoPromise('getStatusBarHeight'));
+    this.statusBarHeight = await AutoWeb.autoPromise("getStatusBarHeight");
 
     // 版本查询
-    let versionInfo = await AutoWeb.autoPromise('versionInfo');
+    let versionInfo = await AutoWeb.autoPromise("versionInfo");
     let updateContent = [];
     let versionIndex = -1;
     for (let j = 0; j < versionInfo.versionList.length; j++) {
@@ -66,6 +69,8 @@ export default {
     }
     this.updateInfoList = updateContent.reverse();
     this.updateInfoShow = !!this.updateInfoList.length;
+
+    await AutoWeb.autoPromise("initFloaty");
   },
 };
 </script>
@@ -96,7 +101,7 @@ body {
 .slide-left-leave-active,
 .slide-right-enter-active,
 .slide-right-leave-active {
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   width: 100%;
   position: absolute;
   overflow: hidden;
@@ -126,13 +131,13 @@ body {
   transform: translate3d(100%, 0, 0);
 }
 .flip-list-move {
-  transition: transform .2s;
+  transition: transform 0.2s;
 }
 .no-move {
   transition: transform 0s;
 }
 .sortable-chosen.sortable-fallback.sortable-drag {
-  opacity: .3 !important;
+  opacity: 0.3 !important;
 }
 .rv {
   width: 100%;

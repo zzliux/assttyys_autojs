@@ -43,6 +43,20 @@ const FuncList = [{
 			type: 'integer',
 			default: 20,
 		}]
+	}, {
+		desc: '退出结算',
+		config: [{
+			name: 'jspd_enabled_2',
+			desc: '是否启用',
+			type: 'switch',
+			default: false,
+			value: null,
+		}, {
+			name: 'jspd_times_2',
+			desc: '执行次数',
+			type: 'integer',
+			default: 20,
+		}]
 	}],
 	operatorFunc(thisScript, thisOperator) {
 		let thisconf = thisScript.scheme.config['0'];
@@ -67,6 +81,12 @@ const FuncList = [{
 		if (thisconf.jspd_enabled_1) {
 			if (thisScript.runTimes['1'] >= thisconf.jspd_times_1) {
 				toastLog(`准备功能执行${thisScript.runTimes['1']}次后停止脚本`);
+				thisScript.step();
+			}
+		}
+		if (thisconf.jspd_enabled_2) {
+			if (thisScript.runTimes['2'] >= thisconf.jspd_times_2) {
+				toastLog(`退出结算功能执行${thisScript.runTimes['2']}次后停止脚本`);
 				thisScript.step();
 			}
 		}
@@ -150,7 +170,18 @@ const FuncList = [{
 	id: 2,
 	name: '退出结算',
 	checked: false,
-	operator: [{ // 左上角的统计图标
+	operator: [{ // 已打开的达摩, 优先级最高
+		desc: [1280,720,
+			[[center,482,611,0x3c82ca],
+			[center,487,620,0x3b84c6],
+			[center,588,619,0x300204],
+			[center,712,621,0x340204]]
+		],
+		oper: [
+			[left, 1280, 720, 69, 171, 170, 452, 400],
+			[left, 1280, 720, 69, 171, 170, 452, 1000]
+		],
+	}, { // 左上角的统计图标
 		desc: [1280, 720,
 			[[left, 71, 65, 0xac8a5a],
 			[left, 80, 59, 0x3c2a21],
@@ -159,7 +190,8 @@ const FuncList = [{
 		],
 		oper: [
 			[left, 1280, 720, 69, 171, 170, 452, 400]
-		]
+		],
+		notForCnt: true,
 	}, { // 左上角的贪吃鬼图标
 		desc: [1280, 720,
 			[[left, 50, 66, 0x693430],
@@ -169,7 +201,8 @@ const FuncList = [{
 		],
 		oper: [
 			[left, 1280, 720, 69, 171, 170, 452, 400]
-		]
+		],
+		notForCnt: true,
 	}, { // 单人-胜利太鼓
 		desc: [1280, 720,
 			[[center, 481, 159, 0x841b12],
@@ -182,7 +215,8 @@ const FuncList = [{
 		],
 		oper: [
 			[left, 1280, 720, 69, 171, 170, 452, 400]
-		]
+		],
+		notForCnt: true,
 	}, { // 组队-胜利太鼓
 		desc: [1280,720,
 			[[center,482,104,0x851b11],
@@ -194,8 +228,9 @@ const FuncList = [{
 		],
 		oper: [
 			[left, 1280, 720, 69, 171, 170, 452, 400]
-		]
-	}, {// 未打开的达摩
+		],
+		notForCnt: true,
+	}, { // 未打开的达摩
 		desc: [1280, 720,
 			[[center, 667, 377, 0xba4618],
 			[center, 678, 316, 0x080808],
@@ -204,18 +239,9 @@ const FuncList = [{
 			[center, 588, 486, 0x330202]]
 		],
 		oper: [
-			[left, 1280, 720, 69, 171, 170, 452, 400]
-		]
-	}, { // 已打开的达摩
-		desc: [1280,720,
-			[[center,482,611,0x3c82ca],
-			[center,487,620,0x3b84c6],
-			[center,588,619,0x300204],
-			[center,712,621,0x340204]]
-		],
-		oper: [
 			[left, 1280, 720, 69, 171, 170, 452, 1000]
-		]
+		],
+		notForCnt: true,
 	}, { // 单人-失败太鼓
 		desc: [1280, 720,
 			[[center, 465, 151, 0x514a5c],
@@ -882,54 +908,6 @@ const FuncList = [{
 				return true;
 			}
 		}
-	}
-}, {
-	id: 99,
-	name: '百鬼料理屋_挑战',
-	config: [{
-		desc: '',
-		config: [{
-			name: 'count',
-			desc: '连续执行x次后执行完成',
-			type: 'list',
-			data: ['2', '3', '4', '5'],
-			default: '3',
-			value: null,
-		}]
-	}],
-	operator: [{
-		desc: [1280,720,
-			[[center,1177,569,0xffd5a7],
-			[center,698,36,0x975e45],
-			[left,54,32,0xf1e19f],
-			[right,1183,38,0x2c2127],
-			[center,769,36,0xe7c65a]]
-		],
-		oper: [
-			[center, 1280, 720, 1158,549, 1224,645, 2000]
-		]
-	}, {
-		oper: [
-			[center, 1280, 720, 988,579, 1009,599, 1000]
-		]
-	}],
-	operatorFunc(thisScript, thisOperator) {
-		let count = parseInt(thisScript.scheme.config['99'].count);
-		while (thisScript.oper({
-			name: '百鬼料理屋_挑战',
-			operator: [thisOperator[0]]
-		})) {
-			thisScript.keepScreen(false);
-			if (--count === 0) {
-				// thisScript.helperBridge.regionClick(thisOperator[1].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
-				thisScript.stop();
-				break;
-			}
-		}
-		if (count < 2) {
-			return true;
-		}
-		return false;
 	}
 }];
 

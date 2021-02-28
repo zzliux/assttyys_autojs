@@ -15,6 +15,7 @@ var script = {
     hasRedList: false, // KeepScreen(true)时会初始化redList，如果没有初始化的话这个值为false，方便在有需要的时候初始化redlist且不重复初始化
     runDate: null,
     runTimes: {},
+    lastFunc: null,
     global: null, // 每次启动重置为空对象，用于功能里面存变量
     device: {
         width: getWidthPixels(),
@@ -140,10 +141,6 @@ var script = {
                     self.keepScreen(false);
                     for (let i = 0; i < self.scheme.funcList.length; i++) {
                         if (self.oper(self.scheme.funcList[i])) {
-                            if (!self.runTimes[self.scheme.funcList[i].id]) {
-                                self.runTimes[self.scheme.funcList[i].id] = 0;
-                            }
-                            self.runTimes[self.scheme.funcList[i].id]++;
                             break;
                         }
                     }
@@ -189,6 +186,13 @@ var script = {
                 }
                 if (rs) {
                     console.log('执行：' + currFunc.name + '_' + id);
+                    if (!!currFunc.id && this.lastFunc !== currFunc.id && !item.notForCnt) {
+                        if (!this.runTimes[currFunc.id]) {
+                            this.runTimes[currFunc.id] = 0;
+                        }
+                        this.runTimes[currFunc.id]++;
+                        this.lastFunc = currFunc.id;
+                    }
                     if (item.oper) {
                         helperBridge.regionClick(item.oper, this.scheme.commonConfig.afterClickDelayRandom);
                     }

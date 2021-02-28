@@ -91,8 +91,7 @@ export default {
     statusBarHeight: Number,
   },
   async mounted() {
-    let settings = await AutoWeb.autoPromise('getSettings');
-    this.settings = settings;
+    this.settings = await AutoWeb.autoPromise('getSettings');
   },
   computed: {},
   methods: {

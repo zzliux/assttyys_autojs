@@ -170,7 +170,6 @@ export const helperBridge = {
         }
         toRetain = toRetain.sort((a, b) => parseInt(a) - parseInt(b));
         let points = [];
-        console.log(toRetain);
         toRetain.forEach(item => {
             points.push(pointsOrigin[item]);
         });

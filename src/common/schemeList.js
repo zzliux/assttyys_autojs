@@ -57,11 +57,6 @@ const SchemeList = [{
     schemeName: '个人探索',
     star: true,
     list: [0, 15, 1, 2, 3, 13, 14]
-}, {
-    id: 99,
-    schemeName: '百鬼料理屋',
-    star: true,
-    list: [0, 1, 2, 3, 99],
 }
     // 完整demo
     // , {

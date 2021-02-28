@@ -1,17 +1,20 @@
-import { webview } from "@/system"
-import { effect$ } from "@auto.pro/core"
+import { fromEvent } from 'rxjs';
+import { webview } from "@/system";
+import { effect$, screenDirection$ } from "@auto.pro/core";
 import defaultSchemeList from '@/common/schemeList';
 import myFloaty from '@/system/myFloaty';
 import store, { storeCommon } from '@/system/store';
 import helperBridge from "@/system/helperBridge";
 import { mergeSchemeList } from '@/common/tool';
+import _ from 'lodash';
 import version, {versionList} from '@/common/version';
 // console.show();
 
 // 返回已保存的方案列表，如果未保存过，返回common中的schemeList
 webview.on("getSchemeList").subscribe(([param, done]) => {
     let savedSchemeList = store.get("schemeList", defaultSchemeList);
-    done(savedSchemeList);
+    // 活动方案去除
+    done(_.filter(savedSchemeList, item => item.id != 99));
 });
 
 // 保存方案列表
@@ -98,12 +101,12 @@ webview.on("getSettings").subscribe(([_param, done]) => {
             enabled: $power_manager.isIgnoringBatteryOptimizations()
         });
     }
-    ret.push({
+    ret = [...ret, {
         desc: '悬浮选择方案后是否直接启动脚本',
         name: 'floaty_scheme_direct_run',
         type: 'assttyys_setting',
         enabled: storeSettings.floaty_scheme_direct_run || false
-    });
+    }];
     done(ret);
 });
 
@@ -124,6 +127,11 @@ webview.on("saveSetting").subscribe(([item, done]) => {
     done();
 });
 
+webview.on("initFloaty").subscribe(([_param, done]) => {
+    myFloaty.init();
+    done();
+});
+
 webview.on("startActivityForLog").subscribe(([_param, done]) => {
     app.startActivity("console");
     done();
@@ -137,16 +145,16 @@ webview.on("clearStorage").subscribe(([_param, done]) => {
 webview.on("versionInfo").subscribe(([_param, done]) => {
     // storages.remove('assttyys_ng_common');
     let storeVersion = storeCommon.get("storeVersion", null);
+    storeCommon.put("storeVersion", version);
     done({
         storeVersion: storeVersion,
         versionList: versionList
     });
-    storeCommon.put("storeVersion", version);
 });
 
 webview.on("toast").subscribe(([string, done]) => {
     done();
-    toast(string);
+    toastLog(string);
 });
 
 webview.on("exit").subscribe(([_param, done]) => {
@@ -159,18 +167,19 @@ webview.on("exit").subscribe(([_param, done]) => {
 // effect$是作业线程，当core的权限全部到位后，effect$才开始运作
 effect$.subscribe(() => {
     // 监听放在effect里，只有当权限到位后，监听才生效
-
-    
-    toastLog("权限加载完成");
-
-    myFloaty.init();
-
     helperBridge.init();
-    
+});
+
+fromEvent(ui.emitter, 'resume').subscribe(() => {
+    // context.getResources().getConfiguration().orientation === 1 ? '竖屏' : '横屏';
+    // 进入时如果是横屏，重置为竖屏
+    if (context.getResources().getConfiguration().orientation !== 1) {
+        activity.setRequestedOrientation(android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
 });
 
 // 调试用，完成后取消注释
-ui.emitter.on("back_pressed", function (e) {
+fromEvent(ui.emitter, 'back_pressed').subscribe((e) => {
     e.consumed = true;
     webview.runHtmlFunction("routeBack");
 });

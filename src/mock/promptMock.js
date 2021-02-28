@@ -42,8 +42,9 @@ const promptMockData = {
     setCurrentScheme: 'sucess',
     startScript: 'sucess',
     saveSetting: 'sucess',
-    toast: function () {
-    }
+    toast: function () {},
+    initFloaty: function () {},
+    startActivityForLog: function () {}
 };
 
 // 注入修改prompt
