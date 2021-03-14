@@ -44,15 +44,26 @@ export default {
     },
     '结界_5勋章': {
         region: [center, 1280, 720, 124, 125, 1152, 545],
+        // desc: [[1280,720,
+        //     [[center,512,282,0xd8cabb],
+        //     [center,728,289,0xdacdbc],
+        //     [center,532,362,0x86807b],
+        //     [center,572,362,0x86807b],
+        //     [center,611,362,0x86807b],
+        //     [center,651,362,0x87817c],
+        //     [center,690,362,0x86807b],
+        //     [center,728,391,0xa28f85]]
+        // ]]
         desc: [[1280,720,
-            [[center,512,282,0xd8cabb],
-            [center,728,289,0xdacdbc],
-            [center,532,362,0x86807b],
-            [center,572,362,0x86807b],
-            [center,611,362,0x86807b],
-            [center,651,362,0x87817c],
-            [center,690,362,0x86807b],
-            [center,728,391,0xa28f85]]
+            [[center,573,157,0xdacbbc],
+            [center,795,211,0xab9988],
+            [center,787,157,0xdacbbc],
+            [center,785,262,0xa39087],
+            [center,590,234,0x88827d],
+            [center,629,234,0x8a857f],
+            [center,669,234,0x87827c],
+            [center,708,234,0x8a847f],
+            [center,748,234,0x88827d]]
         ]]
     },
     '结界_4勋章': {
@@ -83,41 +94,74 @@ export default {
     },
     '结界_2勋章': {
         region: [center, 1280, 720, 124, 125, 1152, 545],
+        // desc: [[1280,720,
+        //     [[center,901,153,0xd8caba],
+        //     [center,1119,158,0xdacbbc],
+        //     [center,922,234,0x8a847f],
+        //     [center,962,234,0x88827d],
+        //     [center,1002,234,0xc9b6a4],
+        //     [center,1040,234,0xc9b6a4],
+        //     [center,1081,234,0xc9b6a4],
+        //     [center,1117,262,0xa49087]]
+        // ]]
         desc: [[1280,720,
-            [[center,901,153,0xd8caba],
-            [center,1119,158,0xdacbbc],
-            [center,922,234,0x8a847f],
-            [center,962,234,0x88827d],
-            [center,1002,234,0xc9b6a4],
-            [center,1040,234,0xc9b6a4],
-            [center,1081,234,0xc9b6a4],
-            [center,1117,262,0xa49087]]
+            [[center,242,427,0xdacbbc],
+            [center,456,428,0xd9c9bb],
+            [center,463,448,0xac9a89],
+            [center,453,532,0xa39087],
+            [center,257,504,0x87817c],
+            [center,297,504,0x86817b],
+            [center,337,504,0xc9b6a4],
+            [center,376,504,0xc9b6a4],
+            [center,417,504,0xc9b6a4]]
         ]]
     },
     '结界_1勋章': {
         region: [center, 1280, 720, 124, 125, 1152, 545],
+        // desc: [[1280,720,
+        //     [[center,510,142,0xd7c9b9],
+        //     [center,732,149,0xd8c9ba],
+        //     [center,532,224,0x8b8580],
+        //     [center,573,224,0xc9b6a4],
+        //     [center,611,224,0xc9b6a4],
+        //     [center,651,223,0xc9b6a4],
+        //     [center,691,223,0xc9b6a4],
+        //     [center,727,252,0xa49088]]
+        // ]]
         desc: [[1280,720,
-            [[center,510,142,0xd7c9b9],
-            [center,732,149,0xd8c9ba],
-            [center,532,224,0x8b8580],
-            [center,573,224,0xc9b6a4],
-            [center,611,224,0xc9b6a4],
-            [center,651,223,0xc9b6a4],
-            [center,691,223,0xc9b6a4],
-            [center,727,252,0xa49088]]
+            [[center,576,426,0xdacbbc],
+            [center,789,426,0xd8c8ba],
+            [center,785,532,0xa49088],
+            [center,795,456,0xab9988],
+            [center,590,504,0x86807b],
+            [center,631,504,0xc9b6a4],
+            [center,670,504,0xc9b6a4],
+            [center,710,504,0xc9b6a4],
+            [center,749,504,0xc9b6a4]]
         ]]
     },
     '结界_0勋章': {
         region: [center, 1280, 720, 124, 125, 1152, 545],
+        // desc: [[1280,720,
+        //     [[center,567,286,0xd6c5b3],
+        //     [center,784,297,0xdacdbc],
+        //     [center,589,369,0xc9b4a4],
+        //     [center,630,368,0xc9b6a4],
+        //     [center,670,368,0xc9b6a4],
+        //     [center,710,369,0xc9b6a4],
+        //     [center,748,369,0xc9b6a4],
+        //     [center,784,397,0xa49088]]
+        // ]]
         desc: [[1280,720,
-            [[center,567,286,0xd6c5b3],
-            [center,784,297,0xdacdbc],
-            [center,589,369,0xc9b4a4],
-            [center,630,368,0xc9b6a4],
-            [center,670,368,0xc9b6a4],
-            [center,710,369,0xc9b6a4],
-            [center,748,369,0xc9b6a4],
-            [center,784,397,0xa49088]]
+            [[center,562,158,0xdaccbc],
+            [center,789,157,0xd8c9ba],
+            [center,795,205,0xab9988],
+            [center,591,232,0xc9b5a4],
+            [center,629,233,0xc9b6a4],
+            [center,668,234,0xc9b6a4],
+            [center,709,232,0xc9b6a4],
+            [center,748,232,0xc9b6a4],
+            [center,785,262,0xa39087]]
         ]]
     },
     '探索_经验标识': {

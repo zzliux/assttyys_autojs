@@ -561,7 +561,7 @@ const FuncList = [{
 			[center,1076,104,0x4d3826]]
 		],
 		oper: [
-			[left, 1280, 720, 30, 10, 200, 90, 500]
+			[left, 1280, 720, 30, 10, 160, 80, 500]
 		]
 	}, {
 		desc: [1280,720,
@@ -604,6 +604,10 @@ const FuncList = [{
 						point.y + thisOperator[0].oper[0][1],
 						point.x + thisOperator[0].oper[0][2],
 						point.y + thisOperator[0].oper[0][3],
+						// point.x,
+						// point.y,
+						// point.x,
+						// point.y,
 						thisOperator[0].oper[0][4]]];
 					thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
 					console.log(key);
