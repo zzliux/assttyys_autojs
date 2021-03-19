@@ -44,16 +44,16 @@ export default {
     },
     '结界_5勋章': {
         region: [center, 1280, 720, 124, 125, 1152, 545],
-        desc: [[1280,720,
-            [[center,512,282,0xd8cabb],
-            [center,728,289,0xdacdbc],
-            [center,532,362,0x86807b],
-            [center,572,362,0x86807b],
-            [center,611,362,0x86807b],
-            [center,651,362,0x87817c],
-            [center,690,362,0x86807b],
-            [center,728,391,0xa28f85]]
-        ]]
+        // desc: [[1280,720,
+        //     [[center,512,282,0xd8cabb],
+        //     [center,728,289,0xdacdbc],
+        //     [center,532,362,0x86807b],
+        //     [center,572,362,0x86807b],
+        //     [center,611,362,0x86807b],
+        //     [center,651,362,0x87817c],
+        //     [center,690,362,0x86807b],
+        //     [center,728,391,0xa28f85]]
+        // ]]
         // desc: [[1280,720,
         //     [[center,573,157,0xdacbbc],
         //     [center,795,211,0xab9988],
@@ -65,6 +65,18 @@ export default {
         //     [center,708,234,0x8a847f],
         //     [center,748,234,0x88827d]]
         // ]]
+        desc: [[1280,720,
+            [[center,576,291,0xdacbbc],
+            [center,787,295,0xdacbbc],
+            [center,785,397,0xa39087],
+            [center,590,369,0x88817d],
+            [center,629,369,0x88827d],
+            [center,669,369,0x88827d],
+            [center,708,369,0x88827d],
+            [center,748,369,0x89837e],
+            [center,608,381,0xdcc7b9],
+            [center,610,360,0xddc5b6]]
+        ]]
     },
     '结界_4勋章': {
         region: [center, 1280, 720, 124, 125, 1152, 545],
