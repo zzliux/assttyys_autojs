@@ -1,6 +1,6 @@
 import { fromEvent } from 'rxjs';
 import { webview } from "@/system";
-import { effect$, screenDirection$ } from "@auto.pro/core";
+import { effect$, isRoot } from "@auto.pro/core";
 import defaultSchemeList from '@/common/schemeList';
 import myFloaty from '@/system/myFloaty';
 import store, { storeCommon } from '@/system/store';
@@ -82,7 +82,21 @@ webview.on("startScript").subscribe(([_param, done]) => {
 
 webview.on("getSettings").subscribe(([_param, done]) => {
     let storeSettings = storeCommon.get('settings', {});
-    let ret = [{
+    let ret = [];
+    if (device.sdkInt >= 24) { // 无障碍
+        ret.push({
+            desc: '无障碍服务',
+            name: 'autoService',
+            type: 'autojs_inner_setting_auto_service',
+            enabled: !!auto.service
+        });
+    }
+    ret = [...ret, {
+        desc: '悬浮窗权限',
+        name: 'floatyPerminssion',
+        type: 'autojs_inner_setting_floaty_permission',
+        enabled: floaty.checkPermission()
+    }, {
         desc: '音量上键停脚本及程序',
         name: 'stop_all_on_volume_up',
         type: 'autojs_inner_setting',
@@ -115,21 +129,56 @@ webview.on("getSettings").subscribe(([_param, done]) => {
 webview.on("saveSetting").subscribe(([item, done]) => {
     if ('autojs_inner_setting' === item.type) {
         $settings.setEnabled(item.name, item.enabled);
-    } else if ('autojs_inner_setting_power_manage' === item.type) {
+        done(true);
+    } else if ('autojs_inner_setting_power_manage' === item.type) { // 忽略电池优化
         if (item.enabled) {
             $power_manager.requestIgnoreBatteryOptimizations();
+            done(true);
+        } else {
+            done(false);
         }
-    } else if ('assttyys_setting' === item.type){
+    } else if ('autojs_inner_setting_auto_service' === item.type) { // 无障碍
+        if (item.enabled) {
+            // 启用无障碍服务
+            if (isRoot) {
+                $settings.setEnabled('enable_accessibility_service_by_root', true);
+            } else {
+                $settings.setEnabled('enable_accessibility_service_by_root', false);
+                toastLog('在回到程序前请手动开启无障碍服务');
+            }
+            threads.start(function () {
+                auto.waitFor();
+                done(true);
+            });
+        } else {
+            auto.service && auto.service.disableSelf();
+            done(true);
+        }
+    } else if ('autojs_inner_setting_floaty_permission' === item.type) {
+        if (item.enabled) {
+            floaty.requestPermission();
+            let count = 0;
+            let timmer = setInterval(function () {
+                count++;
+                if (count > 20) {
+                    clearInterval(timmer);
+                    done(false);
+                }
+                if (floaty.checkPermission()) {
+                    clearInterval(timmer);
+                    myFloaty.init();
+                    done(true);
+                }
+            }, 1000)
+        } else {
+            done(false);
+        }
+    } else if ('assttyys_setting' === item.type) {
         let storeSettings = storeCommon.get('settings', {});
         storeSettings[item.name] = item.enabled;
         storeCommon.put('settings', storeSettings);
+        done(true);
     }
-    done();
-});
-
-webview.on("initFloaty").subscribe(([_param, done]) => {
-    myFloaty.init();
-    done();
 });
 
 webview.on("startActivityForLog").subscribe(([_param, done]) => {
@@ -168,6 +217,9 @@ webview.on("exit").subscribe(([_param, done]) => {
 effect$.subscribe(() => {
     // 监听放在effect里，只有当权限到位后，监听才生效
     helperBridge.init();
+    if (floaty.checkPermission()) {
+        myFloaty.init();
+    }
 });
 
 fromEvent(ui.emitter, 'resume').subscribe(() => {

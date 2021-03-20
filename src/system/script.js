@@ -109,6 +109,10 @@ var script = {
     run() {
         var self = this;
         try {
+            if (device.sdkInt >= 24 && !auto.service) {
+                toastLog("请开启无障碍服务再启动脚本");
+                throw new Error('未开启无障碍服务');
+            }
             // helperBridge放进来，funcList里面operator执行时可以从this中取到helperBridge，解决直接导入helperBridge在端报错的问题
             this.helperBridge = helperBridge;
             this.initFuncList();

@@ -38,9 +38,10 @@
           </div>
           <div class="item-value">
             <van-switch
-              class="itemSwitch"
-              @change="toggleSwitchEvent($event, item)"
               v-model="item.enabled"
+              :loading="!!item.loading"
+              @change="toggleSwitchEvent($event, item)"
+              class="itemSwitch"
               size="18"
             />
           </div>
@@ -91,12 +92,21 @@ export default {
     statusBarHeight: Number,
   },
   async mounted() {
-    this.settings = await AutoWeb.autoPromise('getSettings');
+    let settings = (await AutoWeb.autoPromise('getSettings'));
+    settings.forEach(item => {
+      item.loading = false;
+    });
+    this.settings = settings;
   },
   computed: {},
   methods: {
     async toggleSwitchEvent(e, item) {
-      await AutoWeb.autoPromise('saveSetting', item);
+      item.loading = true;
+      let result = await AutoWeb.autoPromise('saveSetting', item);
+      item.loading = false;
+      if (!result) {
+        item.enabled = !item.enabled;
+      }
     },
     startActivityForLog() {
       AutoWeb.autoPromise('startActivityForLog');

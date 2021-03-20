@@ -14,8 +14,8 @@ if (getWidthPixels() > getHeightPixels()) {
 core({
     needCap: needCap,
     capType: '同步',
-    needFloaty: true,
-    needService: true,
+    // needFloaty: true,
+    // needService: true,
     needScreenListener: true,
     // needForeground: true,
 });

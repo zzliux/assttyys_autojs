@@ -16,6 +16,9 @@ export const versionList = [{
 }, {
     version: '20210217_02_test',
     desc: '新增准备功能中可配置在准备界面退出，增加个人突破降级方案。\n为确保正常使用, 请在设置中重置方案及功能',
+}, {
+    version: '20210320_01',
+    desc: '无障碍和悬浮权限修改为手动获取，开启后才能正常使用脚本'
 }];
 
 export default versionList[versionList.length - 1].version;

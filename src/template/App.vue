@@ -69,8 +69,6 @@ export default {
     }
     this.updateInfoList = updateContent.reverse();
     this.updateInfoShow = !!this.updateInfoList.length;
-
-    await AutoWeb.autoPromise("initFloaty");
   },
 };
 </script>
