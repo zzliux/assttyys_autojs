@@ -81,13 +81,13 @@ const FuncList = [{
 		if (thisconf.jspd_enabled_1) {
 			if (thisScript.runTimes['1'] >= thisconf.jspd_times_1) {
 				toastLog(`准备功能执行${thisScript.runTimes['1']}次后停止脚本`);
-				thisScript.step();
+				thisScript.stop();
 			}
 		}
 		if (thisconf.jspd_enabled_2) {
 			if (thisScript.runTimes['2'] >= thisconf.jspd_times_2) {
 				toastLog(`退出结算功能执行${thisScript.runTimes['2']}次后停止脚本`);
-				thisScript.step();
+				thisScript.stop();
 			}
 		}
 		function cvtTime(s) {
@@ -133,6 +133,7 @@ const FuncList = [{
 		let thisconf = thisScript.scheme.config['1'];
 		if (thisconf.exitBeforeReady) {
 			return thisScript.oper({
+				id: 1,
 				name: '准备界面_退出',
 				operator: [{
 					desc: thisOperator[0].desc,
@@ -141,6 +142,7 @@ const FuncList = [{
 			})
 		} else {
 			return thisScript.oper({
+				id: 1,
 				name: '准备',
 				operator: [{
 					desc: thisOperator[0].desc,

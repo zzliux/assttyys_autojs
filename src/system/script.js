@@ -189,7 +189,7 @@ var script = {
                     rs = true;
                 }
                 if (rs) {
-                    console.log('执行：' + currFunc.name + '_' + id);
+                    console.log(`执行：${currFunc.name}_${currFunc.id}_${this.lastFunc}_${id}`);
                     if (!!currFunc.id && this.lastFunc !== currFunc.id && !item.notForCnt) {
                         if (!this.runTimes[currFunc.id]) {
                             this.runTimes[currFunc.id] = 0;
