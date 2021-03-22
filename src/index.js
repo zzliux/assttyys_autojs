@@ -1,4 +1,4 @@
-import { fromEvent } from 'rxjs';
+import { fromEvent, of, timer } from 'rxjs';
 import { webview } from "@/system";
 import { effect$, isRoot } from "@auto.pro/core";
 import defaultSchemeList from '@/common/schemeList';
@@ -148,6 +148,7 @@ webview.on("saveSetting").subscribe(([item, done]) => {
             }
             threads.start(function () {
                 auto.waitFor();
+                myFloaty.init();
                 done(true);
             });
         } else {
@@ -156,6 +157,7 @@ webview.on("saveSetting").subscribe(([item, done]) => {
         }
     } else if ('autojs_inner_setting_floaty_permission' === item.type) {
         if (item.enabled) {
+            toastLog('在回到程序前请手动开启悬浮窗权限');
             floaty.requestPermission();
             let count = 0;
             let timmer = setInterval(function () {
@@ -166,7 +168,9 @@ webview.on("saveSetting").subscribe(([item, done]) => {
                 }
                 if (floaty.checkPermission()) {
                     clearInterval(timmer);
-                    myFloaty.init();
+                    if (auto.service) {
+                        myFloaty.init();
+                    }
                     done(true);
                 }
             }, 1000)
@@ -217,7 +221,7 @@ webview.on("exit").subscribe(([_param, done]) => {
 effect$.subscribe(() => {
     // 监听放在effect里，只有当权限到位后，监听才生效
     helperBridge.init();
-    if (floaty.checkPermission()) {
+    if (auto.service && floaty.checkPermission()) {
         myFloaty.init();
     }
 });

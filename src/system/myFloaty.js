@@ -7,6 +7,7 @@ importClass(android.content.Intent);
 const myFloaty = {
     fy: null,
     init: function () {
+        if (fy) return;
         var self = this;
         let fy = createFloaty({
             logo: 'https://pro.autojs.org/images/logo.png',
