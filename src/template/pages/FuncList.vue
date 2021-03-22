@@ -324,6 +324,7 @@ export default {
   overflow: hidden;
   padding: 0px 16px;
   font-size: 14px;
+  box-shadow: 1px 1px 2px #aaa
 }
 .item-title {
   display: inline-block;
