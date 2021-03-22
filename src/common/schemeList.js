@@ -57,6 +57,10 @@ const SchemeList = [{
     schemeName: '个人探索',
     star: true,
     list: [0, 15, 1, 2, 3, 13, 14]
+}, {
+    id: 8,
+    schemeName: '地鬼日常',
+    list: [1, 2, 16]
 }
     // 完整demo
     // , {

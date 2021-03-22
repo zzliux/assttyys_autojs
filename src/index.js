@@ -1,4 +1,4 @@
-import { fromEvent, of, timer } from 'rxjs';
+import { fromEvent } from 'rxjs';
 import { webview } from "@/system";
 import { effect$, isRoot } from "@auto.pro/core";
 import defaultSchemeList from '@/common/schemeList';

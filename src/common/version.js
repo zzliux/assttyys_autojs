@@ -19,6 +19,9 @@ export const versionList = [{
 }, {
     version: '20210320_01',
     desc: '无障碍和悬浮权限修改为手动获取，开启后才能正常使用脚本'
+}, {
+    version: '20210322_01',
+    desc: '新增地鬼日常'
 }];
 
 export default versionList[versionList.length - 1].version;

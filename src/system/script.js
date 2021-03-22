@@ -22,7 +22,7 @@ var script = {
         height: getHeightPixels()
     },
     keepScreen(mode) {
-        helperBridge.helper.KeepScreen(mode);
+        helperBridge.helper.KeepScreen(mode || false);
         if (mode) {
             this.hasRedList = true;
         } else {
@@ -171,7 +171,12 @@ var script = {
         }
         this.runThread = null;
     },
-    oper(currFunc) {
+    /**
+     * 
+     * @param {*} currFunc 
+     * @param {*} retest 重试时间
+     */
+    oper(currFunc, retest) {
         let operator = currFunc.operator; // 需要计算的坐标通过operater传进去使用
         let operatorFunc = currFunc.operatorFunc;
         if (typeof operatorFunc === 'function') {
@@ -189,6 +194,11 @@ var script = {
                     rs = true;
                 }
                 if (rs) {
+                    if (retest) {
+                        sleep(retest);
+                        this.keepScreen();
+                        return this.oper(currFunc);
+                    }
                     console.log(`执行：${currFunc.name}_${currFunc.id}_${this.lastFunc}_${id}`);
                     if (!!currFunc.id && this.lastFunc !== currFunc.id && !item.notForCnt) {
                         if (!this.runTimes[currFunc.id]) {
