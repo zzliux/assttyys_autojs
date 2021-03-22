@@ -148,7 +148,9 @@ webview.on("saveSetting").subscribe(([item, done]) => {
             }
             threads.start(function () {
                 auto.waitFor();
-                myFloaty.init();
+                if (floaty.checkPermission()) {
+                    myFloaty.init();
+                }
                 done(true);
             });
         } else {
