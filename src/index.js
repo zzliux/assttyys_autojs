@@ -170,7 +170,7 @@ webview.on("saveSetting").subscribe(([item, done]) => {
                 }
                 if (floaty.checkPermission()) {
                     clearInterval(timmer);
-                    if (auto.service) {
+                    if (auto.service || device.sdkInt < 24) {
                         myFloaty.init();
                     }
                     done(true);
@@ -223,7 +223,7 @@ webview.on("exit").subscribe(([_param, done]) => {
 effect$.subscribe(() => {
     // 监听放在effect里，只有当权限到位后，监听才生效
     helperBridge.init();
-    if (auto.service && floaty.checkPermission() || device.sdkInt < 24) {
+    if ((auto.service || device.sdkInt < 24) && floaty.checkPermission()) {
         myFloaty.init();
     }
 });
