@@ -61,6 +61,10 @@ const SchemeList = [{
     id: 8,
     schemeName: '地鬼日常',
     list: [1, 2, 16]
+}, {
+    id: 9,
+    schemeName: '百鬼夜行',
+    list: [3, 17, 18, 19, 20, 21]
 }
     // 完整demo
     // , {

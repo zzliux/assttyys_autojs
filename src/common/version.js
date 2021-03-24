@@ -22,6 +22,9 @@ export const versionList = [{
 }, {
     version: '20210322_01',
     desc: '新增地鬼日常'
+}, {
+    version: '20210324_01',
+    desc: '新增百鬼夜行'
 }];
 
 export default versionList[versionList.length - 1].version;

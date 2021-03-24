@@ -1007,6 +1007,138 @@ const FuncList = [{
 			return true;
 		}
 	}
+}, {
+	id: 17,
+	name: '百鬼夜行_邀请好友',
+	operator: [{
+		desc: [1280,720,
+			[[center,170,600,0xfff2ce],
+			[center,1128,594,0x402f1f],
+			[center,1084,202,0xe7d4cf],
+			[center,554,514,0x846866],
+			[center,195,156,0xf9edee]]
+		],
+		oper: [
+			[center, 1280, 720, 152,578, 190,623, 1500]
+		]
+	}, {
+		desc: [1280,720,
+			[[center,170,600,0xc3b99e],
+			[center,392,156,0xe7bc93],
+			[center,391,200,0xd7bfae],
+			[center,582,208,0xd7bfae],
+			[center,886,276,0xeac9a0],
+			[center,608,277,0xeac9a0],
+			[center,1084,202,0xb1a29e],
+			[center,1132,590,0x322518]]
+		],
+		oper: [
+			[center,1280,720, 468,233, 624,550, 500],
+			[center,1280,720, 731,229, 890,563, 500],
+		]
+	}],
+	operatorFunc(thisScript, thisOperator) {
+		return thisScript.oper({
+			id: 17,
+			name: '百鬼夜行_邀请好友',
+			operator: [thisOperator[0], {
+				desc: thisOperator[1].desc,
+				oper: [thisOperator[1].oper[random(0 ,1)]]
+			}]
+		});
+	}
+}, {
+	id: 18,
+	name: '百鬼夜行_挑战',
+	operator: [{
+		desc: [1280,720,
+			 [// [center,170,600,0xfff2ce],
+			[center,1128,594,0x402f1f],
+			[center,1084,202,0xe7d4cf],
+			[center,554,514,0x846866],
+			[center,195,156,0xf9edee]]
+		],
+		oper: [
+			[center, 1280, 720, 1084,576, 1138,628, 1500]
+		]
+	}]
+}, {
+	id: 19,
+	name: '百鬼夜行_选择鬼王挑战',
+	operator: [{
+		desc: [1280,720,
+			[[center,626,13,0x1b1420],
+			[center,45,45,0xf5e5a3],
+			[right,1177,574,0xc7a185],
+			[center,47,650,0x201018],
+			[center,997,628,0x7b4341]]
+		],
+		oper: [
+			[center, 1280, 720, 245,444, 304,522, 500], // 第一个怪物位置
+			[center, 1280, 720, 591,429, 654,504, 500], // 第二个怪物位置
+			[center, 1280, 720, 978,460, 1046,515, 500], // 第三个怪物位置
+			[center, 1280, 720, 1132,562, 1210,640, 5000], // 开始
+		]
+	}],
+	config: [{
+		desc: '',
+		config: [{
+			name: 'bossPosition',
+			desc: '选择第几个鬼王',
+			type: 'list',
+			data: ['1', '2', '3', '随机'],
+			default: '随机',
+			value: null,
+		}]
+	}],
+	operatorFunc(thisScript, thisOperator) {
+		let thisconf = thisScript.scheme.config['19'];
+		let oper = null;
+		if ('随机' === thisconf.bossPosition) {
+			oper = [thisOperator[0].oper[random(0, 2)], thisOperator[0].oper[3]];
+		} else {
+			oper = [thisOperator[0].oper[parseInt(thisconf.bossPosition) - 1], thisOperator[0].oper[3]];
+		}
+		return thisScript.oper({
+			id: '18',
+			name: '百鬼夜行_选择鬼王挑战',
+			operator: [{
+				desc: thisOperator[0].desc,
+				oper: oper
+			}]
+		})
+	}
+}, {
+	id: 20,
+	name: '百鬼夜行_随机散豆',
+	operator: [{
+		desc: [1280,720,
+			[[left,45,42,0xf5e5a3],
+			[center,242,657,0xf3b969],
+			[center,640,6,0x261c29],
+			[center,598,31,0x201723],
+			[center,458,583,0x4f1e2c]]
+		],
+		oper: [
+			[center, 1280, 720, 30,270, 1252,528, 500]
+		]
+	}]
+}, {
+	id: 21,
+	name: '百鬼夜行_退出结算',
+	operator: [{
+		desc: [1280,720,
+			[[center,204,277,0xf0f0df],
+			[center,133,122,0xb5b5d6],
+			[center,102,413,0xf5ede5],
+			[center,233,583,0xeeeae2],
+			[center,1164,245,0xefebe3],
+			[center,698,88,0x7b7b9c]]
+		],
+		oper: [
+			[center, 1280, 720, 71,75, 207,642, 2000]
+		]
+	}]
 }];
 
 export default FuncList;
