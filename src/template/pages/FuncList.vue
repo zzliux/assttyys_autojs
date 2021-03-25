@@ -46,7 +46,7 @@
     <div style="display: block; position: fixed; bottom: 0; width: 100%;">
       <van-row>
         <van-col span="12">
-          <div style="margin: 5px 5px 5px 10px; border-radius:10px; overflow: hidden;">
+          <div style="margin: 5px 5px 5px 10px; border-radius:10px; overflow: hidden;box-shadow: 4px 4px 8px #aaa">
             <van-button type="info" block @click="saveScheme">
               <i class="iconfont iconfont-baocun"></i> 保存
               <!-- <van-icon name="setting-o"/> 保存 -->
@@ -54,7 +54,7 @@
           </div>
         </van-col>
         <van-col span="12">
-          <div style="margin: 5px 10px 5px 5px; border-radius:10px; overflow: hidden;">
+          <div style="margin: 5px 10px 5px 5px; border-radius:10px; overflow: hidden;box-shadow: 4px 4px 8px #aaa">
             <van-button color="#FF9900" block @click="startBtnClickEvent">
               <i class="iconfont iconfont-fabusekuai"></i> 启动
               <!-- <van-icon name="play-circle" /> 启动 -->
@@ -298,6 +298,9 @@ export default {
 </script>
 
 <style scoped>
+.rv_inner {
+  padding: 46px 0px 56px 0px;
+}
 .item {
   height: 44px;
 }
@@ -324,7 +327,7 @@ export default {
   overflow: hidden;
   padding: 0px 16px;
   font-size: 14px;
-  box-shadow: 1px 1px 2px #aaa
+  box-shadow: 4px 4px 8px #aaa
 }
 .item-title {
   display: inline-block;

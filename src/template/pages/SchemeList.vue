@@ -21,7 +21,7 @@
           <div
             v-for="(item, index) of schemeList"
             :key="index"
-            style="margin:5px 10px 5px 10px; border-radius:10px; overflow: hidden; box-shadow: 1px 1px 2px #aaa;"
+            style="margin:5px 10px 5px 10px; border-radius:10px; overflow: hidden; box-shadow: 4px 4px 8px #aaa"
           >
             <van-swipe-cell
               center
@@ -74,7 +74,7 @@
             </van-swipe-cell>
           </div>
         </draggable>
-        <div style="margin:5px 10px 5px 10px; border-radius:10px; overflow: hidden; box-shadow: 1px 1px 2px #aaa">
+        <div style="margin:5px 10px 5px 10px; border-radius:10px; overflow: hidden; box-shadow: 4px 4px 8px #aaa">
           <van-cell class="item" center @click="addSchemeClickEvent($event)">
             <div style="text-align: center; height: 24px;">
               <van-icon

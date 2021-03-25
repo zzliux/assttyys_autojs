@@ -20,27 +20,18 @@ const targetPath = 'assttyys_ng';
 (async function () {
     try {
         await recursiveRemove(targetPath);
-        await sleep(1000);
         await fsPromise.mkdir(targetPath);
-        await recursiveCopy('assets', targetPath + '/assets');
-        await recursiveCopy('dist', targetPath + '/dist');
-        await recursiveCopy('project.json', targetPath + '/project.json');
-        await sleep(1000);
+        await Promise.all([
+            recursiveCopy('assets', targetPath + '/assets'),
+            recursiveCopy('dist', targetPath + '/dist'),
+            recursiveCopy('project.json', targetPath + '/project.json')
+        ]);
         await compressing.zip.compressDir(targetPath, targetPath + '.zip')
-        await sleep(1000);
         await recursiveRemove(targetPath);
     } catch (e) {
         console.error(e);
     }
 })();
-
-async function sleep(ms) {
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve();
-        }, ms);
-    })
-}
 
 async function recursiveRemove(src) {
     let isSrcExists = true;
@@ -52,19 +43,23 @@ async function recursiveRemove(src) {
     if (isSrcExists) {
         if ((await fsPromise.stat(src)).isDirectory()) {
             let files = await fsPromise.readdir(src);
+            let todo = [];
             for (let file of files) {
-                await recursiveRemove(src + '/' + file);
+                todo.push(recursiveRemove(src + '/' + file));
             }
-            await fsPromise.rmdir(src);
+            await Promise.all(todo);
+            return await fsPromise.rmdir(src);
         } else {
-            await fsPromise.unlink(src);
+            return await fsPromise.unlink(src);
         }
+    } else {
+        return new Promise(resolve => { resolve() });
     }
 }
 
 async function recursiveCopy(src, dest) {
     if (src.endsWith('.')) {
-        return;
+        return new Promise(resolve => { resolve() });
     }
     
     var isSrcExists = false;
@@ -85,32 +80,31 @@ async function recursiveCopy(src, dest) {
     if (isSrcExists) {
         if ((await fsPromise.stat(src)).isDirectory()) { // 复制目录
             if (isDestExists) { // 存在这个路径或者文件
-                if ((await fsPromise.stat(dest)).isDirectory()) { // 是目录就不管它
-                    
-                } else { // 不是目录就删掉它
+                if (!(await fsPromise.stat(dest)).isDirectory()) { // 不是目录就删掉它
                     await fsPromise.unlink(dest);
                 }
             } else { // 不存在，创建目录
                 await fsPromise.mkdir(dest);
             }
-            var files = await fsPromise.readdir(src);
+            let files = await fsPromise.readdir(src);
+            let todo = [];
             for (let file of files) {
-                // await recursiveCopy(src + '/' + file, dest + '/' + file);
-                await recursiveCopy(src + '/' + file, dest + '/' + file);
+                todo.push(recursiveCopy(src + '/' + file, dest + '/' + file));
             }
+            return Promise.all(todo);
         } else { // 复制文件
             if (isDestExists) { // 如果存在目标路径
                 if ((await fsPromise.stat(dest)).isDirectory()) { // 如果目标路径是文件夹就删了
-                    // await fsPromise.rmdir(dest, {
-                    //     recursive: true
-                    // });
-                    recursiveRemove(dest);
+                    return await recursiveRemove(dest);
                 } else { // 删除文件
-                    await fsPromise.unlink(dest);
+                    return await fsPromise.unlink(dest);
                 }
-            } 
-            await fsPromise.copyFile(src, dest)
+            } else {
+                return await fsPromise.copyFile(src, dest)
+            }
         }
+    } else {
+        return new Promise(resolve => { resolve() });
     }
 }
 
