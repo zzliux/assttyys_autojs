@@ -277,6 +277,7 @@ export default {
         let toSave = {
           schemeName: this.params.schemeName,
           star: this.scheme.star,
+          inner: this.scheme.inner,
           list: list,
           config: config,
           commonConfig: commonConfig
