@@ -12,17 +12,19 @@ export default {
             toast('还没有收藏任何方案哦~');
             return;
         }
-        dialogs.select('选择方案', _.map(staredSchemeList, item => {
-            return item.schemeName
-        }), i => {
-            if (i < 0) return; // 取消
-            store.put('currentScheme', staredSchemeList[i]);
-            let storeSettings = storeCommon.get('settings', {});
-            if (storeSettings.floaty_scheme_direct_run) {
-                myfloaty.fy.start();
-            } else {
-                toast('设置方案[' + staredSchemeList[i].schemeName + ']');
-            }
-        })
+        threads.start(function () {
+            dialogs.select('选择方案', _.map(staredSchemeList, item => {
+                return item.schemeName
+            }), i => {
+                if (i < 0) return; // 取消
+                store.put('currentScheme', staredSchemeList[i]);
+                let storeSettings = storeCommon.get('settings', {});
+                if (storeSettings.floaty_scheme_direct_run) {
+                    myfloaty.fy.start();
+                } else {
+                    toast('设置方案[' + staredSchemeList[i].schemeName + ']');
+                }
+            });
+        });
     }
 }

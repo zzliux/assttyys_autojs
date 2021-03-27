@@ -7,11 +7,12 @@ importClass(android.content.Intent);
 const myFloaty = {
     fy: null,
     init: function () {
-        if (fy) return;
+        if (this.fy) return;
         var self = this;
         let fy = createFloaty({
-            logo: 'https://pro.autojs.org/images/logo.png',
-            logoSize: 30,
+            // logo: 'https://pro.autojs.org/images/logo.png',
+            logo: 'file://' + files.cwd() + '/assets/img/ay_circle.png',
+            logoSize: 35,
             initX: -10,
             edge: -10,
             duration: 150,
@@ -23,6 +24,7 @@ const myFloaty = {
                 color: '#0099FF',
                 icon: 'ic_home_black_48dp',
                 callback() {
+                    fy.stop();
                     var i = new Intent(activity, activity.class);
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -48,6 +50,7 @@ const myFloaty = {
                 color: '#bfc1c0',
                 icon: 'ic_format_indent_increase_black_48dp',
                 callback() {
+                    fy.stop();
                     schemeDialog.show(myFloaty);
                 }
             },]
@@ -67,7 +70,7 @@ const myFloaty = {
 
         script.setRunCallback(function () {
             ui.post(function() {
-                fy.FLOATY.img_logo.setColorFilter(colors.argb(255, 255, 153, 0));
+                fy.FLOATY.img_logo.setColorFilter(colors.argb(255, 0, 204, 0));
                 fy.status = 'running';
                 fy.items[1].toggleIcon(1);
             });
@@ -75,7 +78,7 @@ const myFloaty = {
 
         script.setStopCallback(function () {
             ui.post(function() {
-                fy.FLOATY.img_logo.setColorFilter(colors.argb(0, 255, 153, 0));
+                fy.FLOATY.img_logo.setColorFilter(colors.argb(0, 0, 204, 0));
                 fy.status = 'stoped';
                 fy.items[1].toggleIcon(0);
             });
