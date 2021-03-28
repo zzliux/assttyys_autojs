@@ -8,7 +8,7 @@
         ></router-view>
       </transition>
     </div>
-    <van-popup closeable v-model="updateInfoShow" :style="{ width: '100%' }">
+    <van-popup closeable v-model="updateInfoShow" :style="{ width: '100%', maxHeight: '70%' }">
       <div style="padding: 20px">
         <div class="popup_version_title">已为你完成更新：</div>
         <div v-for="(item, id) of updateInfoList" :key="id">

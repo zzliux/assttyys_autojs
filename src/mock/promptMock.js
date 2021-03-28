@@ -26,6 +26,44 @@ const promptMockData = {
             enabled: false
         }]
     },
+    getToSetDefaultLaunchAppList() {
+        return [{
+            appName: 'assttyys_ng',
+            packageName: 'com.example.script161',
+            versionName: '1.0.0',
+            versionCode: 1,
+            appIcon: '',
+            referred: false
+        }, {
+            appName: '魅族游戏框架',
+            packageName: 'com.meizu.gamecenter.service',
+            versionName: '5.4.0',
+            versionCode: 5004000,
+            appIcon: '',
+            referred: false
+        }, {
+            appName: 'assttyys',
+            packageName: 'com.xixdaoq.rsicybi',
+            versionName: '0.0.4_build_20201001',
+            versionCode: 1,
+            appIcon: '',
+            referred: false
+        }, {
+            appName: '阴阳师',
+            packageName: 'com.netease.onmyoji.mz',
+            versionName: '1.6.6',
+            versionCode: 103,
+            appIcon: '',
+            referred: true
+        }, {
+            appName: 'AutoJsPro',
+            packageName: 'org.autojs.autojspro',
+            versionName: 'Pro 8.7.4-0',
+            versionCode: 8070400,
+            appIcon: '',
+            referred: false
+        }]
+    },
     saveScheme: function () {
         return 'success';
     },
@@ -44,7 +82,8 @@ const promptMockData = {
     saveSetting: 'sucess',
     toast: function () {},
     initFloaty: function () {},
-    startActivityForLog: function () {}
+    startActivityForLog: function () {},
+    saveToSetDefaultLaunchAppList: function () {},
 };
 
 // 注入修改prompt

@@ -1,3 +1,5 @@
+importClass(android.content.pm.ApplicationInfo);
+
 import { fromEvent } from 'rxjs';
 import { webview } from "@/system";
 import { effect$, isRoot } from "@auto.pro/core";
@@ -72,12 +74,65 @@ webview.on("getStatusBarHeight").subscribe(([_param, done]) => {
 })
 
 webview.on("startScript").subscribe(([_param, done]) => {
-    done();
-    context.startActivity(app.intent({
-        action: Intent.ACTION_MAIN,
-        category: Intent.CATEGORY_HOME,
-        flags: ['ACTIVITY_NEW_TASK']
-    }));
+    let storeSettings = storeCommon.get('settings', {});
+    let defaultLaunchAppList = storeSettings.defaultLaunchAppList || [];
+    if (defaultLaunchAppList.length == 0) {
+        done(null);
+        context.startActivity(app.intent({
+            action: Intent.ACTION_MAIN,
+            category: Intent.CATEGORY_HOME,
+            flags: ['ACTIVITY_NEW_TASK']
+        }));
+    } else if(defaultLaunchAppList.length === 1) {
+        done(null);
+        launchPackage(defaultLaunchAppList[0]);
+    } else {
+        let packages = context.getPackageManager().getInstalledPackages(0);
+        let appList = [];
+        let imgDirPath = files.cwd() + '/assets/img/packagesicons';
+        files.ensureDir(imgDirPath + '/');
+        
+        let storeSettings = storeCommon.get('settings', {});
+        let defaultLaunchAppList = storeSettings.defaultLaunchAppList || [];
+        
+        for (let i = 0; i < packages.size(); i++) {
+            let packageInfo = packages.get(i);
+            if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0 && defaultLaunchAppList.indexOf(packageInfo.packageName) !== -1) { // 非系统应用且在list中
+                try {
+                    let appIcon = packageInfo.applicationInfo.loadIcon(context.getPackageManager());
+                    // let appIconBase64 = null;
+                    let impPath = imgDirPath + '/' + packageInfo.packageName + '.png';
+                    if (appIcon.getBitmap && !files.exists(impPath)) {
+                        let baos = new java.io.ByteArrayOutputStream();
+                        let bmp = appIcon.getBitmap();
+                        bmp.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, baos);
+                        baos.flush();
+                        baos.close();
+                        bmp.recycle();
+                        (new java.io.FileOutputStream(impPath)).write(baos.toByteArray());
+                        // appIconBase64 = 'data:image/png;base64,' + android.util.Base64.encodeToString(baos.toByteArray(), android.util.Base64.DEFAULT);
+                    }
+                    
+                    let appInfo = {
+                        appName: packageInfo.applicationInfo.loadLabel(context.getPackageManager()).toString(), // 获取应用名称
+                        packageName: packageInfo.packageName, // 获取应用包名，可用于卸载和启动应用
+                        versionName: packageInfo.versionName, // 获取应用版本名
+                        versionCode: packageInfo.versionCode, // 获取应用版本号
+                        appIcon: impPath, // 获取应用图标
+                    }
+                    appList.push(appInfo);
+                } catch (e) {
+                    toastLog(e);
+                }
+            }
+        }
+        done(appList);
+    }
+});
+
+webview.on('launchPackage').subscribe(([packageName, done]) => {
+    done(true);
+    launchPackage(packageName);
 });
 
 webview.on("getSettings").subscribe(([_param, done]) => {
@@ -205,6 +260,59 @@ webview.on("versionInfo").subscribe(([_param, done]) => {
         storeVersion: storeVersion,
         versionList: versionList
     });
+});
+
+webview.on('getToSetDefaultLaunchAppList').subscribe(([_param, done]) => {
+    let packages = context.getPackageManager().getInstalledPackages(0);
+    let appList = [];
+    let imgDirPath = files.cwd() + '/assets/img/packagesicons';
+    files.ensureDir(imgDirPath + '/');
+    
+    let storeSettings = storeCommon.get('settings', {});
+    let defaultLaunchAppList = storeSettings.defaultLaunchAppList || [];
+    
+    for (let i = 0; i < packages.size(); i++) {
+        let packageInfo = packages.get(i);
+        if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) { // 非系统应用
+            try {
+                let appIcon = packageInfo.applicationInfo.loadIcon(context.getPackageManager());
+                // let appIconBase64 = null;
+                let impPath = imgDirPath + '/' + packageInfo.packageName + '.png';
+                if (appIcon.getBitmap && !files.exists(impPath)) {
+                    let baos = new java.io.ByteArrayOutputStream();
+                    let bmp = appIcon.getBitmap();
+                    bmp.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, baos);
+                    baos.flush();
+                    baos.close();
+                    bmp.recycle();
+                    (new java.io.FileOutputStream(impPath)).write(baos.toByteArray());
+                    // appIconBase64 = 'data:image/png;base64,' + android.util.Base64.encodeToString(baos.toByteArray(), android.util.Base64.DEFAULT);
+                }
+                
+                let appInfo = {
+                    appName: packageInfo.applicationInfo.loadLabel(context.getPackageManager()).toString(), // 获取应用名称
+                    packageName: packageInfo.packageName, // 获取应用包名，可用于卸载和启动应用
+                    versionName: packageInfo.versionName, // 获取应用版本名
+                    versionCode: packageInfo.versionCode, // 获取应用版本号
+                    appIcon: impPath, // 获取应用图标
+                    referred: defaultLaunchAppList.indexOf(packageInfo.packageName) !== -1,
+                }
+                appList.push(appInfo);
+            } catch (e) {
+                toastLog(e);
+            }
+        } else { // 系统应用
+     
+        }
+    }
+    done(appList);
+});
+
+webview.on('saveToSetDefaultLaunchAppList').subscribe(([packageNameList, done]) => {
+    let storeSettings = storeCommon.get('settings', {});
+    storeSettings.defaultLaunchAppList = packageNameList;
+    storeCommon.put('settings', storeSettings);
+    done(true);
 });
 
 webview.on("toast").subscribe(([string, done]) => {

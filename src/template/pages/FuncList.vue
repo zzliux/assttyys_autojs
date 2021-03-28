@@ -58,6 +58,7 @@
             <van-button color="#FF9900" block @click="startBtnClickEvent">
               <i class="iconfont iconfont-fabusekuai"></i> 启动
               <!-- <van-icon name="play-circle" /> 启动 -->
+              <van-loading v-if="startBtnClickEventLoading" style="display:inline-block" size="18" color="#fff" />
             </van-button>
           </div>
         </van-col>
@@ -67,16 +68,21 @@
       :show.sync="configModalShow"
       :configModalObject.sync="configModalObject"
     ></func-config-dialog>
+    <app-list-lauch-dialog
+      :show.sync="appListLauchDialogShown"
+      :appList.sync="appListLauchList"
+    ></app-list-lauch-dialog>
   </div>
 </template>
 <script>
 import Vue from "vue";
-import { Col, Row, Switch, Icon, Button, Picker } from "vant";
+import { Col, Row, Switch, Icon, Button, Picker, Loading } from "vant";
 import draggable from 'vuedraggable'
 import dfuncList from "../../common/funcList";
 import dCommonConfig from "../../common/commonConfig";
 import _ from 'lodash';
 import funcConfigDialog from '../components/FuncConfigDialog.vue';
+import appListLauchDialog from '../components/AppListLaunchDialog.vue';
 
 Vue.use(Col);
 Vue.use(Row);
@@ -84,6 +90,7 @@ Vue.use(Switch);
 Vue.use(Icon);
 Vue.use(Button);
 Vue.use(Picker);
+Vue.use(Loading);
 
 export default {
   data() {
@@ -100,6 +107,9 @@ export default {
         config: []
       },
       scheme: null,
+      appListLauchDialogShown: false,
+      appListLauchList: [],
+      startBtnClickEventLoading: false,
     };
   },
   props: {
@@ -108,6 +118,7 @@ export default {
   components: {
     draggable,
     funcConfigDialog,
+    appListLauchDialog
   },
   computed: {
     dragOptions() {
@@ -290,9 +301,15 @@ export default {
       }
     },
     async startBtnClickEvent() {
+      this.startBtnClickEventLoading = true;
       await this.saveScheme();
       await AutoWeb.autoPromise('setCurrentScheme', this.params.schemeName);
-      await AutoWeb.autoPromise('startScript');
+      let list = await AutoWeb.autoPromise('startScript');
+      this. startBtnClickEventLoading = false;
+      if (list) {
+        this.appListLauchDialogShown = true;
+        this.appListLauchList = list;
+      }
     }
   }
 };

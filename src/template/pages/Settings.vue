@@ -54,6 +54,12 @@
         title=""
         style="background: transparent"
       >
+        <div class="item" @click="setDefaultLaunchApp">
+          <div class="item-title">
+            关联启动应用
+          </div>
+          <van-loading v-if="setDefaultLaunchAppLoading" size="24" style="position: absolute; right: 32px; top: 11px" />
+        </div>
         <div class="item" @click="startActivityForLog">
           <div class="item-title">
             查看日志
@@ -66,11 +72,16 @@
         </div>
       </van-cell-group>
     </div>
+    <app-list-dialog
+      :show.sync="setDefaultLaunchAppDialogShown"
+      :appList.sync="toSetDefaultLaunchAppList"
+    ></app-list-dialog>
   </div>
 </template>
 <script>
 import Vue from "vue";
-import { Cell, CellGroup, Icon, Button, Dialog, Field, Notify, Switch } from "vant";
+import { Cell, CellGroup, Icon, Button, Dialog, Field, Notify, Switch, Loading } from "vant";
+import appListDialog from '../components/AppListRefDialog.vue';
 import _ from "lodash";
 
 Vue.use(Cell);
@@ -81,12 +92,19 @@ Vue.use(Dialog);
 Vue.use(Field);
 Vue.use(Notify);
 Vue.use(Switch);
+Vue.use(Loading);
 
 export default {
   data() {
     return {
       settings: [],
+      toSetDefaultLaunchAppList: [],
+      setDefaultLaunchAppDialogShown: false,
+      setDefaultLaunchAppLoading: false,
     };
+  },
+  components: {
+    appListDialog
   },
   props: {
     statusBarHeight: Number,
@@ -122,6 +140,13 @@ export default {
       }).catch(() => {
         // on cancel
       });
+    },
+    async setDefaultLaunchApp() {
+      if (this.setDefaultLaunchAppLoading) return;
+      this.setDefaultLaunchAppLoading = true;
+      this.toSetDefaultLaunchAppList = await AutoWeb.autoPromise('getToSetDefaultLaunchAppList');
+      this.setDefaultLaunchAppDialogShown = true;
+      this.setDefaultLaunchAppLoading = false;
     }
   },
 };
