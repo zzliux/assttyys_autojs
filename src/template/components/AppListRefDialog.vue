@@ -1,23 +1,25 @@
 <template>
   <div>
     <!-- 功能的参数配置 -->
-    <van-popup class="configModal" v-model="dialogShow" style="width: 100%; max-height: 70%">
-      <div style="padding: 16px 16px 10px 16px;">请选择需要关联启动的应用</div>
-      <div style="padding-bottom: 52px">
-        <div
-          :class="'item' + (app.referred ? ' referred': '')"
-          v-for="app in appList"
-          :key="app.packageName"
-          @click="app.referred = !app.referred"
-        >
-          <span class="logo"><img :src="app.appIcon"/></span>
-          <span class="item-content">
-            <div class="appName">{{app.appName}}</div>
-            <div class="packageName">{{app.packageName}}</div>
-          </span>
+    <van-popup class="configModal" v-model="dialogShow" style="width: 100%; height: 70%; overflow: hidden">
+      <div style="position: absolute; top: 0; padding: 16px 16px 10px 16px; width: 100%; z-index: 2002; background: #fff;">请选择需要关联启动的应用</div>
+      <div style="height: 100%; overflow: auto">
+        <div style="padding-top: 52px; padding-bottom: 52px">
+          <div
+            :class="'item' + (app.referred ? ' referred': '')"
+            v-for="app in appList"
+            :key="app.packageName"
+            @click="app.referred = !app.referred"
+          >
+            <span class="logo"><img :src="app.appIcon"/></span>
+            <span class="item-content">
+              <div class="appName">{{app.appName}}</div>
+              <div class="packageName">{{app.packageName}}</div>
+            </span>
+          </div>
         </div>
       </div>
-      <div style="display: block; position: fixed; bottom: 0; width: 100%;">
+      <div style="display: block; position: absolute; bottom: 0; width: 100%;">
         <van-row>
           <van-col span="12">
             <div style="margin: 5px 5px 5px 10px; border-radius:10px; overflow: hidden;box-shadow: 4px 4px 8px #aaa">

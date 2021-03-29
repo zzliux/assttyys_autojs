@@ -301,6 +301,7 @@ export default {
       }
     },
     async startBtnClickEvent() {
+      if (this.startBtnClickEventLoading) return;
       this.startBtnClickEventLoading = true;
       await this.saveScheme();
       await AutoWeb.autoPromise('setCurrentScheme', this.params.schemeName);

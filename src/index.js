@@ -100,17 +100,24 @@ webview.on("startScript").subscribe(([_param, done]) => {
             if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0 && defaultLaunchAppList.indexOf(packageInfo.packageName) !== -1) { // 非系统应用且在list中
                 try {
                     let appIcon = packageInfo.applicationInfo.loadIcon(context.getPackageManager());
-                    // let appIconBase64 = null;
                     let impPath = imgDirPath + '/' + packageInfo.packageName + '.png';
-                    if (appIcon.getBitmap && !files.exists(impPath)) {
+                    if (!files.exists(impPath)) {
+                        let bmp = null;
+                        if (appIcon.getBitmap) {
+                            bmp = appIcon.getBitmap();
+                        } else if (appIcon.getBackground && appIcon.getForeground) {
+                            bmp = android.graphics.Bitmap.createBitmap(appIcon.getIntrinsicWidth(), appIcon.getIntrinsicHeight(), android.graphics.Bitmap.Config.ARGB_8888);
+                            let canvas = new Canvas(bmp);
+                            appIcon.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+                            appIcon.draw(canvas);
+                        }
+                        if (!bmp) continue;
                         let baos = new java.io.ByteArrayOutputStream();
-                        let bmp = appIcon.getBitmap();
                         bmp.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, baos);
                         baos.flush();
                         baos.close();
                         bmp.recycle();
                         (new java.io.FileOutputStream(impPath)).write(baos.toByteArray());
-                        // appIconBase64 = 'data:image/png;base64,' + android.util.Base64.encodeToString(baos.toByteArray(), android.util.Base64.DEFAULT);
                     }
                     
                     let appInfo = {
@@ -276,17 +283,24 @@ webview.on('getToSetDefaultLaunchAppList').subscribe(([_param, done]) => {
         if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) { // 非系统应用
             try {
                 let appIcon = packageInfo.applicationInfo.loadIcon(context.getPackageManager());
-                // let appIconBase64 = null;
                 let impPath = imgDirPath + '/' + packageInfo.packageName + '.png';
-                if (appIcon.getBitmap && !files.exists(impPath)) {
+                if (!files.exists(impPath)) {
+                    let bmp = null;
+                    if (appIcon.getBitmap) {
+                        bmp = appIcon.getBitmap();
+                    } else if (appIcon.getBackground && appIcon.getForeground) {
+                        bmp = android.graphics.Bitmap.createBitmap(appIcon.getIntrinsicWidth(), appIcon.getIntrinsicHeight(), android.graphics.Bitmap.Config.ARGB_8888);
+                        let canvas = new Canvas(bmp);
+                        appIcon.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+                        appIcon.draw(canvas);
+                    }
+                    if (!bmp) continue;
                     let baos = new java.io.ByteArrayOutputStream();
-                    let bmp = appIcon.getBitmap();
                     bmp.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, baos);
                     baos.flush();
                     baos.close();
                     bmp.recycle();
                     (new java.io.FileOutputStream(impPath)).write(baos.toByteArray());
-                    // appIconBase64 = 'data:image/png;base64,' + android.util.Base64.encodeToString(baos.toByteArray(), android.util.Base64.DEFAULT);
                 }
                 
                 let appInfo = {
