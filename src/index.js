@@ -107,7 +107,7 @@ webview.on("startScript").subscribe(([_param, done]) => {
                             bmp = appIcon.getBitmap();
                         } else if (appIcon.getBackground && appIcon.getForeground) {
                             bmp = android.graphics.Bitmap.createBitmap(appIcon.getIntrinsicWidth(), appIcon.getIntrinsicHeight(), android.graphics.Bitmap.Config.ARGB_8888);
-                            let canvas = new Canvas(bmp);
+                            let canvas = new android.graphics.Canvas(bmp);
                             appIcon.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
                             appIcon.draw(canvas);
                         }
@@ -290,7 +290,7 @@ webview.on('getToSetDefaultLaunchAppList').subscribe(([_param, done]) => {
                         bmp = appIcon.getBitmap();
                     } else if (appIcon.getBackground && appIcon.getForeground) {
                         bmp = android.graphics.Bitmap.createBitmap(appIcon.getIntrinsicWidth(), appIcon.getIntrinsicHeight(), android.graphics.Bitmap.Config.ARGB_8888);
-                        let canvas = new Canvas(bmp);
+                        let canvas = new android.graphics.Canvas(bmp);
                         appIcon.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
                         appIcon.draw(canvas);
                     }
