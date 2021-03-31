@@ -67,10 +67,13 @@ const myFloaty = {
         }
 
         this.fy = fy;
+        ui.post(function() {
+            fy.FLOATY.img_logo.setColorFilter(colors.argb(255, 0, 0, 0));
+        });
 
         script.setRunCallback(function () {
             ui.post(function() {
-                fy.FLOATY.img_logo.setColorFilter(colors.argb(255, 0, 204, 0));
+                fy.FLOATY.img_logo.setColorFilter(colors.argb(255, 0x08, 0xbc, 0x92));
                 fy.status = 'running';
                 fy.items[1].toggleIcon(1);
             });
@@ -78,7 +81,7 @@ const myFloaty = {
 
         script.setStopCallback(function () {
             ui.post(function() {
-                fy.FLOATY.img_logo.setColorFilter(colors.argb(0, 0, 204, 0));
+                fy.FLOATY.img_logo.setColorFilter(colors.argb(255, 0, 0, 0));
                 fy.status = 'stoped';
                 fy.items[1].toggleIcon(0);
             });

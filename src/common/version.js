@@ -28,6 +28,9 @@ export const versionList = [{
 }, {
     version: '20210328_01',
     desc: '新增关联启动应用，在设置界面关联应用后通过功能列表点击启动后会根据关联的应用自动启动，若关联多个应用会在启动的时候进行提示，友好多渠道阴阳师玩家'
+}, {
+    version: '20210331_01',
+    desc: '新增抽厕纸'
 }];
 
 export default versionList[versionList.length - 1].version;

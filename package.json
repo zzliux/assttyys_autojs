@@ -41,7 +41,6 @@
         "webpack-obfuscator": "^2.6.0"
     },
     "dependencies": {
-        "@auto.pro/action": "^9.2.0",
         "@auto.pro/core": "^9.2.0",
         "@auto.pro/floaty": "^9.2.1",
         "@auto.pro/web": "^1.0.7",

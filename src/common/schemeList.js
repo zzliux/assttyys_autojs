@@ -65,6 +65,10 @@ const SchemeList = [{
     id: 9,
     schemeName: '百鬼夜行',
     list: [3, 17, 18, 19, 20, 21]
+}, {
+    id: 10,
+    schemeName: '抽厕纸',
+    list: [3, 22]
 }
     // 完整demo
     // , {
