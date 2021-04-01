@@ -275,12 +275,18 @@ webview.on("openOpenSource").subscribe(([_param, done]) => {
 });
 
 webview.on("mailTo").subscribe(([_param, done]) => {
-    context.startActivity(app.intent({
-        action: 'android.intent.action.SENDTO',
-        category: 'android.intent.category.BROWSABLE',
-        flags: ['ACTIVITY_NEW_TASK'],
-        data: 'mailto:zzliux@outlook.com'
-    }));
+    try {
+        context.startActivity(app.intent({
+            action: 'android.intent.action.SENDTO',
+            category: 'android.intent.category.BROWSABLE',
+            flags: ['ACTIVITY_NEW_TASK'],
+            data: 'mailto:zzliux@outlook.com'
+        }));
+    } catch (e) {
+        toastLog('未找到邮件类应用，已复制至剪贴板');
+        setClip('zzliux@outlook.com');
+        console.log(e);
+    }
     done();
 });
 
