@@ -77,7 +77,7 @@ export default {
   margin-bottom: 5px;
 }
 .popup_version_version {
-  margin-top: 5px;
+  margin-top: 15px;
 }
 .popup_version_desc {
   padding-left: 10px;

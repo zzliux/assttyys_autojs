@@ -2,7 +2,7 @@
   <div style="height: 100%; width: 100%">
     <div class="navbar_box">
       <van-nav-bar
-        title="ASSTTYYS NG"
+        title="功能列表 | ASSTTYYS NG"
         left-arrow
         @click-left="$router.back()"
         :style="'padding-top: ' + (statusBarHeight || 0) + 'px'"

@@ -269,6 +269,21 @@ webview.on("versionInfo").subscribe(([_param, done]) => {
     });
 });
 
+webview.on("openOpenSource").subscribe(([_param, done]) => {
+    app.openUrl('https://gitee.com/zzliux/assttyys_autojs');
+    done();
+});
+
+webview.on("mailTo").subscribe(([_param, done]) => {
+    context.startActivity(app.intent({
+        action: 'android.intent.action.SENDTO',
+        category: 'android.intent.category.BROWSABLE',
+        flags: ['ACTIVITY_NEW_TASK'],
+        data: 'mailto:zzliux@outlook.com'
+    }));
+    done();
+});
+
 webview.on('getToSetDefaultLaunchAppList').subscribe(([_param, done]) => {
     let packages = context.getPackageManager().getInstalledPackages(0);
     let appList = [];

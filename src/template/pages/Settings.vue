@@ -2,7 +2,7 @@
   <div>
     <div class="navbar_box">
       <van-nav-bar
-        title="ASSTTYYS NG"
+        title="设置 | ASSTTYYS NG"
         left-arrow
         @click-left="$router.back()"
         :style="'padding-top: ' + (statusBarHeight || 0) + 'px'"
@@ -47,8 +47,21 @@
           </div>
         </div>
       </van-cell-group>
-
-      <br>
+      <br />
+      <van-cell-group
+        class="itemBox"
+        title=""
+        style="background: transparent"
+      >
+      
+        <div class="item" style="position: relative;" @click="$router.push('/about')">
+          <div class="item-title">
+            关于项目与作者
+          </div>
+          <van-icon name="arrow" style="position: absolute; right: 15px; top: 15px" />
+        </div>
+      </van-cell-group>
+      <br />
       <van-cell-group
         class="itemBox"
         title=""
