@@ -1,4 +1,5 @@
 // import helperBridge from '@/system/helperBridge';
+import { search, questionSearch } from '@/common/tool';
 
 const normal = -1; //定义常量
 const left = 0;
@@ -1179,6 +1180,61 @@ const FuncList = [{
 	// 	]
 	// }
 	]
+}, {
+	id: 23,
+	name: '逢魔答题(需要安装OCR插件)',
+	operator: [{
+		desc: [1280,720,
+			[[center,456,96,0xa72c01],
+			[center,692,90,0xddcdc3],
+			[center,871,63,0xeecccc],
+			[center,818,610,0xc4b3a3],
+			[center,723,618,0xcfbcad]]
+		],
+	}],
+	operatorFunc(thisScript, thisOperator) {
+		if (thisScript.oper({
+			name: '逢魔答题_界面判断',
+			operator: [{ desc: thisOperator[0].desc }]
+		})) {
+			let screenImg = images.captureScreen();
+			// 识别问题
+			let toDetectQuestion = images.clip(screenImg, 429,163, 433, 72);
+			console.time('ocr.detect.question');
+			let resultQuestion = thisScript.getOcr().detect(toDetectQuestion.getBitmap(), 1);
+			console.timeEnd('ocr.detect.question');
+			toDetectQuestion.recycle();
+			let question = '';
+			for (let i = 0, len = resultQuestion.size(); i < len; i++) {
+				question += resultQuestion.get(i).text;
+			}
+			console.log(`识别题目: ${question}`);
+			
+			let stdQuestion = questionSearch(question);
+			console.log(`搜索题库:${JSON.stringify(stdQuestion)}`);
+
+			let toDetectAns = images.clip(screenImg, 426,252, 446,264);
+			console.time('ocr.detect.ans');
+			let resultAns = thisScript.getOcr().detect(toDetectAns.getBitmap(), 1);
+			console.timeEnd('ocr.detect.ans');
+			toDetectAns.recycle();
+			let ansList = [];
+			for (let i = 0, len = resultAns.size(); i < len; i++) {
+				let row = resultAns.get(i);
+				let frame = row.frame;
+       			let rect = [426 + frame.get(0), 252 + frame.get(1), 426 + frame.get(4), 252 + frame.get(5)];
+				ansList.push({
+					text: row.text,
+					rect: rect
+				});
+			}
+			let stdAns = search(ansList, 'text', stdQuestion.data.ans);
+			toastLog(`选择答案: ${stdAns.data.text}, 置信度为: ${(stdQuestion.similarity * stdAns.similarity).toFixed(4)}`);
+			thisScript.helperBridge.regionClick([[...stdAns.data.rect, 1000]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+			return true;
+		}
+		return false;
+	}
 }];
 
 export default FuncList;

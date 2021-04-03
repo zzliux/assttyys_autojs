@@ -2,6 +2,7 @@ import store from '@/system/store';
 import funcList from '@/common/funcList';
 import helperBridge from '@/system/helperBridge';
 import multiColor from '@/common/multiColors';
+import ocr from '@/system/ocr';
 import { getWidthPixels, getHeightPixels } from "@auto.pro/core";
 import _ from 'lodash';
 
@@ -14,6 +15,13 @@ var script = {
     multiColor: null, // 多点找色用的，提前初始化，减轻运行中计算量
     hasRedList: false, // KeepScreen(true)时会初始化redList，如果没有初始化的话这个值为false，方便在有需要的时候初始化redlist且不重复初始化
     runDate: null,
+    ocr: null, // 浩然的OCR
+    getOcr() {
+        if (!this.ocr) {
+            this.ocr = ocr();
+        }
+        return this.ocr;
+    },
     runTimes: {},
     lastFunc: null,
     global: null, // 每次启动重置为空对象，用于功能里面存变量
@@ -139,6 +147,7 @@ var script = {
         // img.recycle();
         // test end
         toastLog(`运行方案[${this.scheme.schemeName}]`);
+        // console.log(`运行方案[${this.scheme.schemeName}]`);
         this.runThread = threads.start(function () {
             try {
                 while (true) {
