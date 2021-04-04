@@ -69,12 +69,11 @@ const SchemeList = [{
     id: 10,
     schemeName: '抽厕纸',
     list: [3, 22]
+}, {
+    id: 11,
+    schemeName: '逢魔_DOING',
+    list: [3, 23, 24]
 }
-// , {
-//     id: 11,
-//     schemeName: '逢魔_DOING',
-//     list: [3, 23]
-// }
     // 完整demo
     // , {
     //     id: 2,

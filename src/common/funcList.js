@@ -1191,6 +1191,10 @@ const FuncList = [{
 			[center,818,610,0xc4b3a3],
 			[center,723,618,0xcfbcad]]
 		],
+		oper: [
+			[center, 1280, 720, 429,163, 433, 72, 0], // 问题区域
+			[center, 1280, 720, 426,252, 446,264, 0], // 答案区域
+		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
 		if (thisScript.oper({
@@ -1199,7 +1203,7 @@ const FuncList = [{
 		})) {
 			let screenImg = images.captureScreen();
 			// 识别问题
-			let toDetectQuestion = images.clip(screenImg, 429,163, 433, 72);
+			let toDetectQuestion = images.clip(screenImg, ...thisOperator[0].oper[0].slice(0, 4));
 			console.time('ocr.detect.question');
 			let resultQuestion = thisScript.getOcr().detect(toDetectQuestion.getBitmap(), 1);
 			console.timeEnd('ocr.detect.question');
@@ -1213,7 +1217,7 @@ const FuncList = [{
 			let stdQuestion = questionSearch(question);
 			console.log(`搜索题库:${JSON.stringify(stdQuestion)}`);
 
-			let toDetectAns = images.clip(screenImg, 426,252, 446,264);
+			let toDetectAns = images.clip(screenImg, ...thisOperator[0].oper[1].slice(0, 4));
 			console.time('ocr.detect.ans');
 			let resultAns = thisScript.getOcr().detect(toDetectAns.getBitmap(), 1);
 			console.timeEnd('ocr.detect.ans');
@@ -1222,7 +1226,12 @@ const FuncList = [{
 			for (let i = 0, len = resultAns.size(); i < len; i++) {
 				let row = resultAns.get(i);
 				let frame = row.frame;
-       			let rect = [426 + frame.get(0), 252 + frame.get(1), 426 + frame.get(4), 252 + frame.get(5)];
+				let rect = [
+					thisOperator[0].oper[1][0] + frame.get(0),
+					thisOperator[0].oper[1][1] + frame.get(1),
+					thisOperator[0].oper[1][0] + frame.get(4),
+					thisOperator[0].oper[1][1] + frame.get(5)
+				];
 				ansList.push({
 					text: row.text,
 					rect: rect
@@ -1230,11 +1239,28 @@ const FuncList = [{
 			}
 			let stdAns = search(ansList, 'text', stdQuestion.data.ans);
 			toastLog(`选择答案: ${stdAns.data.text}, 置信度为: ${(stdQuestion.similarity * stdAns.similarity).toFixed(4)}`);
-			thisScript.helperBridge.regionClick([[...stdAns.data.rect, 1000]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+			thisScript.helperBridge.regionClick([[...stdAns.data.rect, 1500]], thisScript.scheme.commonConfig.afterClickDelayRandom);
 			return true;
 		}
 		return false;
 	}
+}, {
+	id: 24,
+	name: '获得奖励确认',
+	operator: [{
+		desc: [1280,720,
+			[[center,424,328,0xbfa88f],
+			[center,408,237,0x382a1c],
+			[center,854,241,0x382a1c],
+			[center,669,242,0xe6d79c],
+			[center,869,327,0xb79e86],
+			[center,926,386,0x825e34],
+			[center,371,395,0x8b673e]]
+		],
+		oper: [
+			[left, 1280, 720, 69, 171, 170, 452, 500]
+		]
+	}]
 }];
 
 export default FuncList;

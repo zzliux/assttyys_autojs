@@ -31,6 +31,9 @@ export const versionList = [{
 }, {
     version: '20210331_01',
     desc: '新增抽厕纸'
+}, {
+    version: '20210404_01',
+    desc: '新增逢魔密信答题，需要使用完整的壳程序和安装Ocr-AjPlugin.apk插件才能使用，逢魔相关的其它功能正在开发中'
 }];
 
 export default versionList[versionList.length - 1].version;
