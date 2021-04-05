@@ -61,7 +61,7 @@ const SchemeList = [{
     id: 8,
     schemeName: '组队探索_队长',
     star: false,
-    list: [0, 15, 1, 2, 3, 5, 13, 14],
+    list: [0, 15, 1, 2, 3, 5, 14],
     config: {
         '15': { type: '队长' }
     }
