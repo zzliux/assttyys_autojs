@@ -1,7 +1,7 @@
 //导入插件
 let ocr = $plugins.load("com.hraps.ocr")
 
-let imagePath = './test4.png';
+let imagePath = './test2.png';
 
 //导入需识别的图片，请自行输入图片路径
 let img = images.read(imagePath)

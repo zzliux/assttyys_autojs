@@ -256,7 +256,7 @@ export default {
         ]]
     },
     '准备界面_满级标识': {
-        region: [center, 1280, 720, 413,221, 866,491],
+        region: [center, 1280, 720, 6,257, 866,640],
         desc: [[1280,720,
             [[center,473,318,0xeca831],
             [center,480,319,0xf89f22],

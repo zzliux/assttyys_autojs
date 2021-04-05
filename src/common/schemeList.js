@@ -59,18 +59,34 @@ const SchemeList = [{
     list: [0, 15, 1, 2, 3, 13, 14]
 }, {
     id: 8,
+    schemeName: '组队探索_队长',
+    star: false,
+    list: [0, 15, 1, 2, 3, 5, 13, 14],
+    config: {
+        '15': { type: '队长' }
+    }
+}, {
+    id: 8,
+    schemeName: '组队探索_打手',
+    star: false,
+    list: [0, 15, 1, 2, 3, 4, 25],
+    config: {
+        '15': { type: '打手' }
+    }
+}, {
+    id: 9,
     schemeName: '地鬼日常',
     list: [1, 2, 16]
 }, {
-    id: 9,
+    id: 10,
     schemeName: '百鬼夜行',
     list: [3, 17, 18, 19, 20, 21]
 }, {
-    id: 10,
+    id: 11,
     schemeName: '抽厕纸',
     list: [3, 22]
 }, {
-    id: 11,
+    id: 12,
     schemeName: '逢魔_DOING',
     list: [3, 23, 24]
 }
