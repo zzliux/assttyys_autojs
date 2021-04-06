@@ -88,7 +88,7 @@ const SchemeList = [{
 }, {
     id: 12,
     schemeName: '逢魔_DOING',
-    list: [3, 23, 24]
+    list: [1, 2, 3, 23, 24, 26]
 }
     // 完整demo
     // , {

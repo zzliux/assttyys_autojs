@@ -1279,6 +1279,18 @@ const FuncList = [{
 		oper: [
 			[left, 1280, 720, 69, 171, 170, 452, 500]
 		]
+	}, {
+		desc: [1280,720,
+			[[center,401,210,0x39291d],
+			[center,828,208,0x3c2a20],
+			[center,602,172,0xfbf2cd],
+			[center,917,418,0x8e6a41],
+			[center,370,430,0x8d6940],
+			[center,619,254,0xcbb59e]]
+		],
+		oper: [
+			[left, 1280, 720, 69, 171, 170, 452, 500]
+		]
 	}]
 	// 预留id 25: 现世逢魔 26:寻找首领 27:挑战首领 28:4次现式逢魔奖励
 }, {
@@ -1311,6 +1323,77 @@ const FuncList = [{
 			[center, 1280, 720, 700,386, 850,418, 1000]
 		]
 	}]
+}, {
+	id: '26',
+	name: '现世逢魔',
+	operator: [{
+		desc: [1280,720,
+			[[left,19,700,0x3c3841],
+			[left,42,46,0xc3cbdf],
+			[center,754,39,0x583716],
+			[center,1181,650,0xffffff],
+			[left,43,680,0xc7957c],
+			[left,54,676,0x433b42]]
+		],
+		oper: [
+			[right, 1280, 720, 1157,616, 1202,666, 5000], // 发现
+		]
+	}, {
+		desc: [1280,720,
+			// 4次逢魔
+			[[right,1240,505,0x8ebaf3],
+			[right,1220,430,0x91bbf3],
+			[right,1246,371,0x8cb9f3],
+			[right,1226,310,0x8fbdf1]]
+		],
+		oper: [
+			[right, 1280, 720, 1233,496, 1252,514, 3000],
+			[right, 1280, 720, 1215,425, 1228,440, 3000],
+			[right, 1280, 720, 1243,360, 1256,378, 3000],
+			[right, 1280, 720, 1219,298, 1235,315, 3000],
+		]
+	}, {
+		desc: [1280,720,
+			// 最后一次奖励
+			[[right,1243,264,0x5c4a6f],
+			[right,1224,262,0x5e4c6c]]
+		],
+		oper: [
+			[right, 1280, 720, 1223,208, 1246,251, 1500]
+		]
+	}],
+	operatorFunc(thisScript, thisOperator) {
+		if (thisScript.oper({
+			name: '现世逢魔_界面判断',
+			operator: [{ desc: thisOperator[0].desc }]
+		})) {
+			for (let i = 0; i < thisOperator[1].desc.length; i++) {
+				if (thisScript.oper({
+					name: `现世逢魔_第${i}次`,
+					operator: [{
+						desc: [thisOperator[1].desc[i]],
+						oper: [
+							thisOperator[0].oper[0],
+							thisOperator[1].oper[i]
+						]
+					}]
+				})) {
+					return true;
+				}
+			}
+			if (!thisScript.oper({
+				name: '现世逢魔_最后一次奖励',
+				operator: [{
+					desc: thisOperator[2].desc,
+				}]
+			})) {
+				thisScript.helperBridge.regionClick(thisOperator[2].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+				return true;
+			}
+			return false;
+		}
+		return false
+	}
 }];
 
 export default FuncList;
