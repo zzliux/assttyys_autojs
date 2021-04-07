@@ -1267,7 +1267,7 @@ const FuncList = [{
 	id: 24,
 	name: '获得奖励确认',
 	operator: [{
-		desc: [1280,720,
+		desc: [1280,720, // 奖励只有1排
 			[[center,424,328,0xbfa88f],
 			[center,408,237,0x382a1c],
 			[center,854,241,0x382a1c],
@@ -1280,7 +1280,7 @@ const FuncList = [{
 			[left, 1280, 720, 69, 171, 170, 452, 500]
 		]
 	}, {
-		desc: [1280,720,
+		desc: [1280,720, // 奖励有2排
 			[[center,401,210,0x39291d],
 			[center,828,208,0x3c2a20],
 			[center,602,172,0xfbf2cd],
@@ -1344,7 +1344,7 @@ const FuncList = [{
 			[[right,1240,505,0x8ebaf3],
 			[right,1220,430,0x91bbf3],
 			[right,1246,371,0x8cb9f3],
-			[right,1226,310,0x8fbdf1]]
+			[right,1226,310,0x8fbdf1],]
 		],
 		oper: [
 			[right, 1280, 720, 1233,496, 1252,514, 3000],
@@ -1360,6 +1360,42 @@ const FuncList = [{
 		],
 		oper: [
 			[right, 1280, 720, 1223,208, 1246,251, 1500]
+		]
+	}, { // 花钱的宝箱都不领
+		desc: [1280,720,
+			[[left,43,51,0x4f525c],
+			[center,436,338,0xcbb59e],
+			[center,803,342,0xcbb59e],
+			[center,578,444,0xf4b25f],
+			[center,537,213,0x694737],
+			[center,658,507,0x694837]]
+		],
+		oper: [
+			[left, 1280, 720, 69, 171, 170, 452, 500]
+		]
+	}, {
+		// 逢魔boss挑战
+		desc: [1280,720,
+			[[center,134,54,0xc3a765],
+			[center,1090,54,0xdbd3bf],
+			[center,1139,74,0xeecccc],
+			[center,1104,556,0xded0be],
+			[center,988,648,0x201d1a]]
+		],
+		oper: [
+			[center, 1280, 720, 1072,546, 1164,628, 1000]
+		]
+	}, {
+		// 神秘任务_不做
+		desc: [1280,720,
+			[[left,37,50,0x3c3e44],
+			[center,650,140,0xcaa85d],
+			[center,846,131,0xeecccc],
+			[center,564,339,0x86201f],
+			[center,566,234,0x852221]]
+		],
+		oper: [
+			[left, 1280, 720, 69, 171, 170, 452, 500]
 		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
@@ -1392,7 +1428,13 @@ const FuncList = [{
 			}
 			return false;
 		}
-		return false
+		if (thisScript.oper({
+			name: '宝箱_不领|逢魔boss挑战|神秘任务_不做',
+			operator: [thisOperator[3], thisOperator[4], thisOperator[5]]
+		})) {
+			return true;
+		}
+		return false;
 	}
 }];
 

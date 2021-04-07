@@ -20,7 +20,7 @@ const SchemeList = [{
 }, {
     id: 4,
     schemeName: '个人御魂',
-    star: true,
+    star: false,
     list: [0, 1, 2, 3, 6]
 }, {
     id: 5,
@@ -79,16 +79,17 @@ const SchemeList = [{
     list: [1, 2, 16]
 }, {
     id: 10,
+    schemeName: '逢魔日常',
+    star: true,
+    list: [1, 2, 3, 23, 24, 26]
+}, {
+    id: 11,
     schemeName: '百鬼夜行',
     list: [3, 17, 18, 19, 20, 21]
 }, {
-    id: 11,
+    id: 12,
     schemeName: '抽厕纸',
     list: [3, 22]
-}, {
-    id: 12,
-    schemeName: '逢魔_DOING',
-    list: [1, 2, 3, 23, 24, 26]
 }
     // 完整demo
     // , {

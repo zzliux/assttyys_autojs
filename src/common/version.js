@@ -37,6 +37,9 @@ export const versionList = [{
 }, {
     version: '20210405_01',
     desc: '新增组队狗粮。\n为确保正常使用, 请在设置中重置方案及功能',
+}, {
+    version: '20210407_01',
+    desc: '新增逢魔日常方案及相关功能，\n为确保正常使用, 请在设置中重置方案及功能, 并安装插件Ocr-AjPlugin.apk'
 }];
 
 export default versionList[versionList.length - 1].version;
