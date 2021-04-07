@@ -76,6 +76,7 @@ const SchemeList = [{
 }, {
     id: 9,
     schemeName: '地鬼日常',
+    star: true,
     list: [1, 2, 16]
 }, {
     id: 10,
