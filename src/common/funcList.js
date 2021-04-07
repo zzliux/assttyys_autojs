@@ -1324,7 +1324,7 @@ const FuncList = [{
 		]
 	}]
 }, {
-	id: '26',
+	id: 26,
 	name: '现世逢魔',
 	operator: [{
 		desc: [1280,720,
