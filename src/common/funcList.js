@@ -1397,6 +1397,19 @@ const FuncList = [{
 		oper: [
 			[left, 1280, 720, 69, 171, 170, 452, 500]
 		]
+	}, {
+		// 鬼王_挑战
+		desc: [1280,720,
+			[[center,114,54,0xc3a765],
+			[center,1139,73,0xeecccc],
+			[center,1117,565,0xead9ba],
+			[center,631,652,0x1f1c19],
+			[center,122,161,0xd4cac3],
+			[center,1121,611,0xf3d5a6]]
+		],
+		oper: [
+			[center, 1280, 720, 1075,550, 1150,631, 1000]
+		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
 		if (thisScript.oper({
@@ -1429,8 +1442,8 @@ const FuncList = [{
 			return false;
 		}
 		if (thisScript.oper({
-			name: '宝箱_不领|逢魔boss挑战|神秘任务_不做',
-			operator: [thisOperator[3], thisOperator[4], thisOperator[5]]
+			name: '宝箱_不领|逢魔boss挑战|神秘任务_不做|鬼王_挑战',
+			operator: [thisOperator[3], thisOperator[4], thisOperator[5], thisOperator[6]]
 		})) {
 			return true;
 		}

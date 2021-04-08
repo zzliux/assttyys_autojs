@@ -82,7 +82,7 @@ const SchemeList = [{
     id: 10,
     schemeName: '逢魔日常',
     star: true,
-    list: [1, 2, 3, 23, 24, 26]
+    list: [1, 2, 3, 23, 24, 26, 8]
 }, {
     id: 11,
     schemeName: '百鬼夜行',
