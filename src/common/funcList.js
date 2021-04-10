@@ -1256,6 +1256,7 @@ const FuncList = [{
 					rect: rect
 				});
 			}
+			console.log(`答案区域识别:${JSON.stringify(ansList)}`);
 			let stdAns = search(ansList, 'text', stdQuestion.data.ans);
 			toastLog(`选择答案: ${stdAns.data.text}, 置信度为: ${(stdQuestion.similarity * stdAns.similarity).toFixed(4)}`);
 			thisScript.helperBridge.regionClick([[...stdAns.data.rect, 1500]], thisScript.scheme.commonConfig.afterClickDelayRandom);

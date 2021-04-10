@@ -1,13 +1,13 @@
 //导入插件
 let ocr = $plugins.load("com.hraps.ocr")
 
-let imagePath = './test2.png';
+let imagePath = './test.png';
 
 //导入需识别的图片，请自行输入图片路径
 let img = images.read(imagePath)
 //识别图片
 console.time('ocr.detect');
-let results = ocr.detect(img.getBitmap(), 1)
+let results = ocr.detect(img.getBitmap(), 0.8)
 console.timeEnd('ocr.detect');
 console.info("过滤前结果数：" + results.size())
 //识别结果过滤
