@@ -280,5 +280,16 @@ export default {
             [center,403,303,0x583625],
             [center,415,289,0x613f27]]
         ]]
+    },
+    '准备_N卡': {
+        region: [center, 1280, 720, 121,485, 1016,656],
+        desc: [[1280,720,
+            [[center,544,506,0x382214],
+            [center,561,662,0x6fa8c9],
+            [center,576,663,0x6ea8c9],
+            [center,590,662,0x7a7a7a],
+            [center,604,662,0x777777],
+            [center,551,507,0xded8c6]]
+        ]]
     }
 }
