@@ -1,93 +1,72 @@
-const sh = new Shell(true);
-events.on('exit', function () {
-    sh.exit();
+// 'ui';
+
+let myShell = require('sh.js');
+let sh = new myShell('su');
+
+let trackingId = 0;
+
+let dm = new android.util.DisplayMetrics();
+activity.getWindowManager().getDefaultDisplay().getRealMetrics(dm);
+let winWidth = dm.widthPixels;
+let winHeight = dm.heightPixels;
+console.log(winWidth + ' * ' + winHeight);
+
+sh.exec('getevent -p', function (data) {
+    const r = data.match(/add device.+?:\s+(.+)\r?\n\s+name:\s+"input"/);
+    let inputEventPath = r[1];
+    console.log(inputEventPath);
+    touchDown(100, 100, inputEventPath);
+    sleep(1000);
+    touchMove(200, 100, inputEventPath);
+    sleep(1000);
+    touchMove(200, 200, inputEventPath);
+    sleep(1000);
+    touchUp(inputEventPath);
+    // sh.exec('getevent -l', function (data) {
+    //     console.log(data);
+    //     sh.destroy();
+    // });
+    // sh.exec('input swipe 100 100 200 200 500', function (_data) {
+    //     sh.destroy();
+    // });
 });
 
-// new myAutomator(sh);
-// const eventDeviceStr = sh.execAndWaitFor('getevent -p');
-// files.write('./eventDeviceStr', eventDeviceStr);
-execPromise(sh, 'getevent -p', 200).then(function (eventDeviceStr) {
-    files.write('./eventDeviceStr', eventDeviceStr);
-    const reg = /add device.+?:\s+(.+)\r?\n\s+name:\s+"(.+?)"/g;
-    const r = eventDeviceStr.match(reg);
-    console.log(r);
-});
+function touchDown(x, y, inputEventPath) {
+    // sh.exec('sendevent ' + inputEventPath + ' 3 57 33');
+    // sh.exec('sendevent ' + inputEventPath + ' 3 53 ' + x);
+    // sh.exec('sendevent ' + inputEventPath + ' 3 54 ' + y);
+    // sh.exec('sendevent ' + inputEventPath + ' 1 330 1');
+    // sh.exec('sendevent ' + inputEventPath + ' 0 0 0');
 
-// let arr1 = ['su', 'aosp:/ $ su'];
-// let arr2 = ['su', 'aosp:/ $ su', 'getevent -p'];
-function mixinRepeatKeywords(arr1, arr2) {
-    let arrIndex = 0;
-    for (let i = 1; i <= arr1.length && i <= arr2.length; i++) {
-        let sub1 = arr1.slice(arr1.length - i, arr1.length);
-        let sub2 = arr2.slice(0, i);
-
-        let flag = true;
-        for (let j = 0; j < sub1.length; j++) {
-            if (sub1[j] !== sub2[j]) {
-                flag = false;
-                break;
-            }
-        }
-        if (flag) {
-            arrIndex = i;
-            break;
-        }
-    }
-    return arr1.concat(arr2.slice(arrIndex, arr2.length));
-}
-// mixinRepeatKeywords(arr1, arr2);
-
-function execPromise(sh, cmd, overTime) {
-    
-    let outPutArr = [];
-    let outPutArr2 = [];
-    let lastOutPutDate = null;
-    let ret = new Promise(function (resolve, reject) {
-        // 计时器，超过overTime毫秒没有输出则计为已返回所有数据
-        const timmer = setInterval(function() {
-            if (lastOutPutDate && new Date().getTime() - lastOutPutDate.getTime() > overTime) {
-                clearInterval(timmer);
-                sh.setCallback({ onNewLine: function () { }});
-                files.write('./eventDeviceStrr', JSON.stringify(outPutArr2));
-                resolve(outPutArr.join('\n'));
-            }
-        }, 100)
-        sh.setCallback({
-            onNewLine: function (line) {
-                lastOutPutDate = new Date();
-                const arr = line.split(/\r?\n/);
-                outPutArr = mixinRepeatKeywords(outPutArr, arr);
-                outPutArr2.push(arr);
-
-                // const index = outPutArr.lastIndexOf(arr[0]);
-                // if (-1 !== index) {
-                //     outPutArr = outPutArr.slice(index, outPutArr.length - index).concat(arr);
-                // } else {
-                //     outPutArr = outPutArr.concat(arr);
-                // }
-            },
-            // onOutput: function (str) {
-            //     if (/( # | \$ )$/.test(str)) {
-            //         sh.setCallback({ onNewLine: function () { }, onOutput: function () {} });
-            //         resolve(outPutArr.join('\n'));
-            //     }
-            // }
-        });
-    });
-    sh.exec(cmd);
-    return ret;
-}
-/**
- * 建议给一个独立的shell对象进来，如果有setCallback的话调用该方法后的回调会消失
- * @param {*} shell 
- */
-function myAutomator(sh) {
-
-    // let eventDeviceStr = this.sh.execAndWaitFor('getevent -p');
-
-    // files.write('./eventDeviceStr', eventDeviceStr);
-    // let r = eventDeviceStr.match(/add device.+?:\s+(.+)\r?\n\s+name:\s+"(.+?)"/g);
-    // console.log(r);
+    sh.exec('sendevent ' + inputEventPath + ' 3 57 ' + (++trackingId));
+    sh.exec('sendevent ' + inputEventPath + ' 1 330 1');
+    //sh.exec('sendevent ' + inputEventPath + ' 1 BTN_TOOL_FINGER 0x00000001');
+    sh.exec('sendevent ' + inputEventPath + ' 3 53 ' + x);
+    sh.exec('sendevent ' + inputEventPath + ' 3 54 ' + y);
+    //sh.exec('sendevent ' + inputEventPath + ' 3 ABS_MT_PRESSURE 200');
+    sh.exec('sendevent ' + inputEventPath + ' 3 48 5');
+    sh.exec('sendevent ' + inputEventPath + ' 3 50 5');
+    sh.exec('sendevent ' + inputEventPath + ' 0 0 0');
 }
 
+function touchMove(x, y, inputEventPath) {
+    // sh.exec('sendevent ' + inputEventPath + ' 3 53 ' + x);
+    // sh.exec('sendevent ' + inputEventPath + ' 3 54 ' + y);
+    // sh.exec('sendevent ' + inputEventPath + ' 0 0 0');
 
+    sh.exec('sendevent ' + inputEventPath + ' 3 47 ' + 0);
+    sh.exec('sendevent ' + inputEventPath + ' 3 48 5');
+    sh.exec('sendevent ' + inputEventPath + ' 3 53 ' + x);
+    sh.exec('sendevent ' + inputEventPath + ' 3 54 ' + y);
+    sh.exec('sendevent ' + inputEventPath + ' 0 0 0');
+}
+
+function touchUp(inputEventPath) {
+    // sh.exec('sendevent ' + inputEventPath + ' 3 57 ffffffff');
+    // sh.exec('sendevent ' + inputEventPath + ' 1 330 0');
+    // sh.exec('sendevent ' + inputEventPath + ' 0 0 0');
+    sh.exec('sendevent ' + inputEventPath + ' 3 47 ' + 0);
+    sh.exec('sendevent ' + inputEventPath + ' 3 57 ' + trackingId);
+    sh.exec('sendevent ' + inputEventPath + ' 1 330 0');
+    sh.exec('sendevent ' + inputEventPath + ' 0 0 0');
+}

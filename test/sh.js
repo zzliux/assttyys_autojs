@@ -11,12 +11,9 @@ function myShell (flag) {
     this.successMsgDate = new Date();
     this.successMsg = '';
     this.execLock = threads.lock();
-    // this.execLock = new java.util.concurrent.locks.ReentrantLock();
     threads.start(function () {
         let s = null;
-        while (true) {
-            s = self.successReader.readLine(); // 这个会阻塞
-            // console.log(s);
+        while (s = self.successReader.readLine()) { // 这个会阻塞
             successMsgDate = new Date();
             self.successMsg += s + '\n';
         }
@@ -40,15 +37,13 @@ myShell.prototype.exec = function (command, overtime, callback) {
         overtime = overtime || 200;
     }
     let self = this;
-    threads.start(function () {
-        console.log(command + ':' + self.execLock);
+    // threads.start(function () {
         self.execLock.lock();
         self.writer.write(command);
         self.writer.newLine();
         self.writer.flush();
         self.successMsgDate = new Date();
         let timmer = setInterval(function () {
-            console.log(command + ':self.successMsgDate.getTime(): ' + self.successMsgDate.getTime());
             if (new Date().getTime() - self.successMsgDate.getTime() > overtime) {
                 clearInterval(timmer);
                 let result = self.successMsg
@@ -57,25 +52,40 @@ myShell.prototype.exec = function (command, overtime, callback) {
                 callback(result);
             }
         }, 50);
-    });
+    // });
+}
+
+myShell.prototype.destroy = function () {
+    this.writer.write('exit');
+    this.writer.newLine();
+    this.writer.flush();
+    this.writer.close();
+    this.successReader.close();
+    this.errorReader.close();
+    this.process.destroy();
 }
 
 
 if (typeof module == 'undefined') {
     module = {};
-    const sh = new myShell('su');
+    let sh = new myShell('su');
+    // events.on('exit', function () {
+        
+        sh.exec('input swipe 100 100 200 200 500', function (_res) {
+            sh.destroy();
+        });
+        // sleep(1000);
+    // });
 
-    sleep(1000);
-
-    sh.exec('getevent -p', function (eventDeviceStr) {
-        console.info('getevent -p');
-        files.write('eventDeviceStr', eventDeviceStr);
-    });
+    // sh.exec('getevent -p', function (eventDeviceStr) {
+    //     console.info('getevent -p');
+    //     files.write('eventDeviceStr', eventDeviceStr);
+    // });
     
-    sh.exec('ls -an', function (lsanstr) {
-        console.info('ls -an');
-        files.write('lsanstr', lsanstr)
-    });
+    // sh.exec('ls -an', function (lsanstr) {
+    //     console.info('ls -an');
+    //     files.write('lsanstr', lsanstr)
+    // });
     // sleep(1000);
 }
 
