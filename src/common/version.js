@@ -40,6 +40,9 @@ export const versionList = [{
 }, {
     version: '20210407_01',
     desc: '新增逢魔日常方案及相关功能，\n为确保正常使用, 请在设置中重置方案及功能, 并安装插件Ocr-AjPlugin.apk'
+}, {
+    version: '20210424_01',
+    desc: '关于项目中补充qq群信息，欢迎加入qq群: 864842180' 
 }];
 
 export default versionList[versionList.length - 1].version;

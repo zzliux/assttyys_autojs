@@ -55,6 +55,15 @@
             zzliux@outlook.com
           </div>
         </div>
+
+        <div class="item" @click="clipGroup">
+          <div class="item-title">
+            QQ群：
+          </div>
+          <div class="item-content">
+            864842180
+          </div>
+        </div>
       </van-cell-group>
     </div>
     <van-popup closeable v-model="versionInfoShow" :style="{ width: '100%', maxHeight: '70%' }">
@@ -110,6 +119,9 @@ export default {
     },
     mailTo() {
       AutoWeb.autoPromise('mailTo', null);
+    },
+    clipGroup() {
+      AutoWeb.autoPromise('copyToClip', 864842180);
     }
   },
 };
@@ -144,7 +156,7 @@ export default {
   display: inline-block;
   height: 44px;
   line-height: 44px;
-  width: 44px;
+  width: 66px;
   text-align: right;
 }
 .item-content {

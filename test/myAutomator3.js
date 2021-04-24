@@ -5,11 +5,11 @@ let sh = new myShell('su');
 
 let trackingId = 0;
 
-let dm = new android.util.DisplayMetrics();
-activity.getWindowManager().getDefaultDisplay().getRealMetrics(dm);
-let winWidth = dm.widthPixels;
-let winHeight = dm.heightPixels;
-console.log(winWidth + ' * ' + winHeight);
+// let dm = new android.util.DisplayMetrics();
+// activity.getWindowManager().getDefaultDisplay().getRealMetrics(dm);
+// let winWidth = dm.widthPixels;
+// let winHeight = dm.heightPixels;
+// console.log(winWidth + ' * ' + winHeight);
 
 sh.exec('getevent -p', function (data) {
     const r = data.match(/add device.+?:\s+(.+)\r?\n\s+name:\s+"input"/);

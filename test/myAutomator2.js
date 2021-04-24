@@ -18,7 +18,6 @@ events.on('exit', function(){
     ra.exit();
 });
 // ra.press(100, 100, 1000);
-console.log(RA.toString());
 ra.touchDown(100, 100);
 sleep(100);
 ra.touchMove(200, 200);

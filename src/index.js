@@ -290,6 +290,11 @@ webview.on("mailTo").subscribe(([_param, done]) => {
     done();
 });
 
+webview.on("copyToClip").subscribe(([str, done]) => {
+    setClip(str);
+    toastLog(`已复制 ${str} 至剪贴板`)
+});
+
 webview.on('getToSetDefaultLaunchAppList').subscribe(([_param, done]) => {
     let packages = context.getPackageManager().getInstalledPackages(0);
     let appList = [];
