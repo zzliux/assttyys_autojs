@@ -86,6 +86,10 @@ module.exports = (env, argv) => {
             new webpack.ProvidePlugin({
                 AutoWeb: '@auto.pro/web',
             }),
+            new webpack.DefinePlugin({
+                // 处理aj的api在前端引用时的报错
+                storages: { create: function (){} }
+            }),
             new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 })
         ]
     }

@@ -1,5 +1,5 @@
 // import helperBridge from '@/system/helperBridge';
-import { search, questionSearch } from '@/common/tool';
+import { search, questionSearch, setCurrentScheme } from '@/common/tool';
 
 const normal = -1; //定义常量
 const left = 0;
@@ -72,7 +72,7 @@ const FuncList = [{
 			default: '通用准备退出',
 		}]
 	}],
-	operatorFunc(thisScript, thisOperator) {
+	operatorFunc(thisScript, _thisOperator) {
 		let thisconf = thisScript.scheme.config['0'];
 		if (thisconf.jspd_enabled_zjsj) { // 执行时间
 			let currentNotifyDate = thisScript.global.currentNotifyDate;
@@ -89,21 +89,32 @@ const FuncList = [{
 			}
 			if (thisScript.runDate.getTime() + thisconf.jspd_times_zjsj * 60000 < now.getTime()) {
 				toastLog('脚本已停止');
-				thisScript.stop();
+				stopOrReRun();
 			}
 		}
 		if (thisconf.jspd_enabled_1) {
 			if (thisScript.runTimes['1'] >= thisconf.jspd_times_1) {
 				toastLog(`准备功能执行${thisScript.runTimes['1']}次后停止脚本`);
-				thisScript.stop();
+				stopOrReRun();
 			}
 		}
 		if (thisconf.jspd_enabled_2) {
 			if (thisScript.runTimes['2'] >= thisconf.jspd_times_2) {
 				toastLog(`退出结算功能执行${thisScript.runTimes['2']}次后停止脚本`);
+				stopOrReRun();
+			}
+		}
+
+		function stopOrReRun() {
+			if (thisconf.scheme_switch_enabled) {
+				setCurrentScheme(thisconf.next_scheme);
+				toastLog(`切换方案为[${thisconf.next_scheme}]`);
+				events.broadcast.emit('SCRIPT_RERUN', '');
+			} else {
 				thisScript.stop();
 			}
 		}
+
 		function cvtTime(s) {
 			if (s > 3600) {
 				return ((s / 3600).toFixed(2)) + '小时';
@@ -510,9 +521,14 @@ const FuncList = [{
 			name: 'afterCountOper',
 			desc: '执行完成的操作',
 			type: 'list',
-			data: ['停止脚本', '关闭界面'],
+			data: ['停止脚本', '关闭界面', '切换方案'],
 			default: '停止脚本',
 			value: null,
+		}, {
+			name: 'next_scheme',
+			desc: '下一个方案',
+			type: 'scheme',
+			default: '通用准备退出',
 		}, {
 			name: 'type',
 			desc: '突破类型',
@@ -555,6 +571,12 @@ const FuncList = [{
 				} else if ('关闭界面' === thisConf.afterCountOper) {
 					let oper = thisOperator[0].oper[1];
 					thisScript.helperBridge.regionClick([oper, oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
+				} else if ('切换方案' === thisConf.afterCountOper) {
+					let oper = thisOperator[0].oper[1];
+					thisScript.helperBridge.regionClick([oper, oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
+					setCurrentScheme(thisConf.next_scheme);
+					toastLog(`切换方案为[${thisConf.next_scheme}]`);
+					events.broadcast.emit('SCRIPT_RERUN', '');
 				}
 				break;
 			}
@@ -675,6 +697,19 @@ const FuncList = [{
 			[left, 1280, 720, 280,631, 334,695, 1500],
 			[center, 1280, 720, 1210,366, 1254,453, 1500]
 		]
+	}, {
+		desc: [1280,720,
+			[[center,276,129,0x493624],
+			[center,867,131,0x493624],
+			[center,1043,147,0xeecccc],
+			[center,904,535,0xf4b25f],
+			[right,1121,35,0xd7b389],
+			[right,1222,32,0xd3af85] // #D9B38A
+		]
+		],
+		oper: [
+			[center, 1280, 720, 1036,133, 1065,158, 500]
+		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
 		let thisconf = thisScript.scheme.config['10']; // 获取配置
@@ -684,7 +719,7 @@ const FuncList = [{
 				operator: [{
 					desc: thisOperator[0].desc,
 					oper: [thisOperator[0].oper[0]]
-				}]
+				}, thisOperator[1]]
 			});
 		} else if ('寮突破' === thisconf.type) {
 			return thisScript.oper({

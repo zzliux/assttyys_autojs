@@ -1,4 +1,6 @@
 import fmmxQuestionList from '@/common/fmmxQuestionList';
+import defaultSchemeList from '@/common/schemeList';
+import store from '@/system/store';
 
 export const mergeSchemeList = (savedSchemeList, innerSchemeList) => {
     let toMerge = [];
@@ -66,4 +68,15 @@ export function similarity(s1, s2) {
         }
     }
     return 1 - (matrix[len1][len2] / Math.max(len1, len2)); //返回右下角的值
+}
+
+export function setCurrentScheme(schemeName) {
+    let savedSchemeList = store.get("schemeList", defaultSchemeList);
+    for (let i = 0; i < savedSchemeList.length; i++) {
+        if (savedSchemeList[i].schemeName === schemeName) {
+            store.put('currentScheme', savedSchemeList[i]);
+            return;
+        }
+    }
+    toastLog(`修改方案失败：请检查是否存在方案[${schemeName}]`);
 }

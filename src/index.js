@@ -7,7 +7,7 @@ import defaultSchemeList from '@/common/schemeList';
 import myFloaty from '@/system/myFloaty';
 import store, { storeCommon } from '@/system/store';
 import helperBridge from "@/system/helperBridge";
-import { mergeSchemeList } from '@/common/tool';
+import { mergeSchemeList, setCurrentScheme } from '@/common/tool';
 import _ from 'lodash';
 import version, {versionList} from '@/common/version';
 // console.show();
@@ -54,13 +54,7 @@ webview.on("saveScheme").subscribe(([scheme, done]) => {
 });
 
 webview.on("setCurrentScheme").subscribe(([schemeName, done]) => {
-    let savedSchemeList = store.get("schemeList", defaultSchemeList);
-    for (let i = 0; i < savedSchemeList.length; i++) {
-        if (savedSchemeList[i].schemeName === schemeName) {
-            store.put('currentScheme', savedSchemeList[i]);
-            break;
-        }
-    }
+    setCurrentScheme(schemeName);
     done();
 });
 

@@ -43,6 +43,9 @@ export const versionList = [{
 }, {
     version: '20210424_01',
     desc: '关于项目中补充qq群信息，欢迎加入qq群: 864842180' 
+}, {
+    version: '20210505_01',
+    desc: '初步支持方案间的切换，见[例]方案中的配置，为确保正常使用, 请在设置中重置方案及功能'
 }];
 
 export default versionList[versionList.length - 1].version;

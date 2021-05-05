@@ -26,7 +26,7 @@ const SchemeList = [{
     id: 5,
     schemeName: '个人突破',
     star: true,
-    list: [0, 1, 2, 3, 7, 8, 9, 10, 11],
+    list: [0, 1, 2, 3, 7, 10, 8, 9, 11],
     config: {
         '8': { count: '2', afterCountOper: '停止脚本', type: '个人突破' },
         '10': { type: '个人突破' }
@@ -91,6 +91,28 @@ const SchemeList = [{
     id: 12,
     schemeName: '抽厕纸',
     list: [3, 22]
+}, {
+    id: 13,
+    schemeName: '例_个人探索30次_转个人突破',
+    star: true,
+    list: [0, 15, 1, 2, 3, 13, 14],
+    config: {
+        '0': {
+            jspd_enabled_2: true,
+            jspd_times_2: 30,
+            scheme_switch_enabled: true,
+            next_scheme: '例_个人突破_结束后转寮突破'
+        }
+    }
+}, {
+    id: 14,
+    schemeName: '例_个人突破_结束后转寮突破',
+    star: true,
+    list: [0, 1, 2, 3, 7, 10, 8, 9, 11, 25],
+    config: {
+        '8': { count: '2', afterCountOper: '切换方案', type: '个人突破', next_scheme: '寮突破' },
+        '10': { type: '个人突破' }
+    }
 }
     // 完整demo
     // , {

@@ -6,6 +6,8 @@ import ocr from '@/system/ocr';
 import { getWidthPixels, getHeightPixels } from "@auto.pro/core";
 import _ from 'lodash';
 
+
+
 var script = {
     runThread: null,
     runCallback: null,
@@ -162,6 +164,7 @@ var script = {
             } catch (e) {
                 self.runThread = null;
                 console.error(e);
+                console.error(e.stack);
                 if (typeof self.stopCallback === 'function') {
                     self.stopCallback();
                 }
@@ -225,5 +228,10 @@ var script = {
         }
     }
 }
+
+events.broadcast.on('SCRIPT_RERUN', () => {
+    script.stop();
+    script.run();
+});
 
 export default script;
