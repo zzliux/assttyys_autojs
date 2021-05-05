@@ -85,7 +85,8 @@ const promptMockData = {
     startActivityForLog: function () {},
     saveToSetDefaultLaunchAppList: function () {},
     openOpenSource() {},
-    mailTo() {}
+    mailTo() {},
+    copyToClip() {},
 };
 
 // 注入修改prompt

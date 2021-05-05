@@ -12,7 +12,7 @@ const FuncList = [{
 	checked: false,
 	operator: [],
 	config: [{
-		desc: '执行时间',
+		desc: '运行时间判断',
 		config: [{
 			name: 'jspd_enabled_zjsj',
 			desc: '是否启用',
@@ -31,7 +31,7 @@ const FuncList = [{
 			default: 60
 		}]
 	}, {
-		desc: '准备',
+		desc: '准备功能次数判断',
 		config: [{
 			name: 'jspd_enabled_1',
 			desc: '是否启用',
@@ -45,7 +45,7 @@ const FuncList = [{
 			default: 20,
 		}]
 	}, {
-		desc: '退出结算',
+		desc: '退出结算次数判断',
 		config: [{
 			name: 'jspd_enabled_2',
 			desc: '是否启用',
@@ -57,6 +57,19 @@ const FuncList = [{
 			desc: '执行次数',
 			type: 'integer',
 			default: 20,
+		}]
+	}, {
+		desc: '结束当前方案后切换方案',
+		config: [{
+			name: 'scheme_switch_enabled',
+			desc: '是否启用',
+			type: 'switch',
+			default: false,
+		}, {
+			name: 'next_scheme',
+			desc: '下一个方案',
+			type: 'scheme',
+			default: '通用准备退出',
 		}]
 	}],
 	operatorFunc(thisScript, thisOperator) {

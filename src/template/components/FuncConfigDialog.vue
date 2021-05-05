@@ -43,6 +43,14 @@
               {{ configItemItem.value }}
             </div>
           </template>
+          <template v-else-if="'scheme' === configItemItem.type" #input>
+            <div
+              class="configItemValue"
+              @click="showItemConfigScheme($event, configItemItem)"
+            >
+              {{ configItemItem.value }}
+            </div>
+          </template>
         </van-field>
       </van-cell-group>
     </van-popup>
@@ -54,6 +62,7 @@
         :columns="configItemItemPickerList"
         @confirm="configItemItemPickerConfirm"
         @cancel="configItemItemShowPicker = false"
+        :default-index="curItemItemIndex"
       />
     </van-popup>
   </div>
@@ -76,6 +85,8 @@ export default {
     return {
       configItemItemShowPicker: false,
       configItemItemPickerList: [],
+      curItemItemIndex: 10,
+      curItemItem: null,
     }
   },
   computed: {
@@ -99,10 +110,18 @@ export default {
       this.configItemItemShowPicker = false;
     },
     showItemConfigList(e, configItemItem) {
-      this.configItemItemShowPicker = true;
       this.configItemItemPickerList = configItemItem.data;
       this.curItemItem = configItemItem;
+      this.curItemItemIndex = this.configItemItemPickerList.indexOf(configItemItem.value);
+      this.configItemItemShowPicker = true;
     },
+    async showItemConfigScheme(e, configItemItem) {
+      let schemeList = await AutoWeb.autoPromise('getSchemeList');
+      this.configItemItemPickerList = schemeList.map(item => item.schemeName);
+      this.curItemItem = configItemItem;
+      this.curItemItemIndex = this.configItemItemPickerList.indexOf(configItemItem.value);
+      this.configItemItemShowPicker = true;
+    }
   },
   mounted() {
   },
@@ -113,6 +132,7 @@ export default {
 <style scoped>
 .configModal {
   width: 100%;
+  max-height: 70%;
 }
 .configModalTitle {
   padding-top: 16px;

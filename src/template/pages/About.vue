@@ -46,7 +46,6 @@
             https://gitee.com/zzliux/assttyys_autojs
           </div>
         </div>
-
         <div class="item" @click="mailTo">
           <div class="item-title">
             邮件：
@@ -154,13 +153,16 @@ export default {
 }
 .item-title {
   display: inline-block;
+  position: absolute;
   height: 44px;
   line-height: 44px;
   width: 66px;
   text-align: right;
 }
 .item-content {
-  margin-top: 12px;
+  margin-top: 14px;
   display: inline-block;
+  margin-left: 66px;
+  word-break: break-all;
 }
 </style>
