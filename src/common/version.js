@@ -46,6 +46,9 @@ export const versionList = [{
 }, {
     version: '20210505_01',
     desc: '初步支持方案间的切换，见[例]方案中的配置，为确保正常使用, 请在设置中重置方案及功能'
+}, {
+    version: '20210515_01',
+    desc: '新增寮突破CD支持切换方案, 寮突破进攻CD可配置检测频率, 寮突破翻页达到一定次数后可停止脚本/切换方案'
 }];
 
 export default versionList[versionList.length - 1].version;

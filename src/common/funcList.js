@@ -536,6 +536,21 @@ const FuncList = [{
 			data: ['个人突破', '寮突破'],
 			default: '个人突破',
 			value: null,
+		}, {
+			name: 'cdWaitTime',
+			desc: '寮突破CD检测频率(s)',
+			type: 'integer',
+			default: '30'
+		}, {
+			name: 'cdSwitchSchemeEnable',
+			desc: '寮突破CD后是否切换方案(启用后CD检测将关闭)',
+			type: 'switch',
+			default: false,
+		}, {
+			name: 'cdSwitchScheme',
+			desc: '寮突破CD切换方案',
+			type: 'scheme',
+			default: '个人突破'
 		}]
 	}],
 	operator: [{
@@ -551,11 +566,19 @@ const FuncList = [{
 		let point = null;
 		if ('寮突破' === thisConf.type) {
 			if (thisScript.findMultiColor('结界_进攻_灰')) {
-				let oper = thisOperator[0].oper[1];
-				thisScript.helperBridge.regionClick([oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
-				toastLog('寮突破CD, 30秒后再次检测');
-				sleep(30000);
-				return true;
+				if (thisConf.cdSwitchSchemeEnable) {
+					let oper = thisOperator[0].oper[1];
+					thisScript.helperBridge.regionClick([oper, oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
+					setCurrentScheme(thisConf.cdSwitchScheme);
+					toastLog(`切换方案为[${thisConf.cdSwitchScheme}]`);
+					events.broadcast.emit('SCRIPT_RERUN', '');
+				} else {
+					let oper = thisOperator[0].oper[1];
+					thisScript.helperBridge.regionClick([oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
+					toastLog(`寮突破CD, ${thisConf.cdWaitTime || 30000}秒后再次检测`);
+					sleep(thisConf.cdWaitTime || 30000);
+					return true;
+				}
 			}
 		}
 		while (point = thisScript.findMultiColor('结界_进攻')) {
@@ -752,6 +775,29 @@ const FuncList = [{
 	id: 12,
 	name: '寮突破_翻页',
 	checked: false,
+	config: [{
+		desc: '',
+		config: [{
+			name: 'count',
+			desc: '连续执行x次后执行完成',
+			type: 'list',
+			data: ['2', '3', '4', '5', '6', '7', '8', '9'],
+			default: '3',
+			value: null,
+		}, {
+			name: 'afterCountOper',
+			desc: '执行完成的操作',
+			type: 'list',
+			data: ['停止脚本', '切换方案'],
+			default: '停止脚本',
+			value: null,
+		}, {
+			name: 'next_scheme',
+			desc: '下一个方案',
+			type: 'scheme',
+			default: '通用准备退出',
+		}]
+	}],
 	operator: [{
 		desc: [1280,720,
 			[[center,171,104,0x4a3624],
@@ -763,15 +809,34 @@ const FuncList = [{
 		],
 		oper: [
 			[center, 1280, 720, 428,592, 1071,643, 0],
-			[center, 1280, 720, 431,149, 1064,239, 0]
+			[center, 1280, 720, 431,149, 1064,239, 0],
+			[center, 1280, 720, 1188,115, 1225,151, 500],
 		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
+		let thisConf = thisScript.scheme.config['12'];
+		let defaultCount = parseInt(thisConf.count);
 		if (thisScript.oper({
 			name: '突破界面_判断',
 			operator: [{ desc: thisOperator[0].desc }]
 		})) {
 			thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [800, 1600], 200);
+			if (!thisScript.global.tp_swipe_times) {
+				thisScript.global.tp_swipe_times = 0;
+			}
+			thisScript.global.tp_swipe_times++;
+			if (thisScript.global.tp_swipe_times >= defaultCount) {
+				thisScript.global.tp_swipe_times = 0;
+				if ('停止脚本' === thisConf.afterCountOper) {
+					thisScript.stop();
+				} else if ('切换方案' === thisConf.afterCountOper) {
+					let oper = thisOperator[0].oper[2];
+					thisScript.helperBridge.regionClick([oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
+					setCurrentScheme(thisConf.next_scheme);
+					toastLog(`切换方案为[${thisConf.next_scheme}]`);
+					events.broadcast.emit('SCRIPT_RERUN', '');
+				}
+			}
 			return true;
 		}
 		return false;
