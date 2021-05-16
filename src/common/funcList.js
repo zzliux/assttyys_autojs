@@ -575,8 +575,8 @@ const FuncList = [{
 				} else {
 					let oper = thisOperator[0].oper[1];
 					thisScript.helperBridge.regionClick([oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
-					toastLog(`寮突破CD, ${thisConf.cdWaitTime || 30000}秒后再次检测`);
-					sleep(thisConf.cdWaitTime || 30000);
+					toastLog(`寮突破CD, ${1000 * (thisConf.cdWaitTime || 30)}秒后再次检测`);
+					sleep(1000 * (thisConf.cdWaitTime || 30));
 					return true;
 				}
 			}

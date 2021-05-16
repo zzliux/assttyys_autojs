@@ -49,6 +49,9 @@ export const versionList = [{
 }, {
     version: '20210515_01',
     desc: '新增寮突破CD支持切换方案, 寮突破进攻CD可配置检测频率, 寮突破翻页达到一定次数后可停止脚本/切换方案'
+}, {
+    version: '20210516_01',
+    desc: '修复[结界_进攻]功能中寮突破CD的时间单位异常问题，请修改过单位为毫秒数值的同学再次把单位修改为秒对应的数值，若无法修改或出现异常停止的情况请重置方案与功能'
 }];
 
 export default versionList[versionList.length - 1].version;
