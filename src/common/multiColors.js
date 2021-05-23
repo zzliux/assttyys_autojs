@@ -291,5 +291,5 @@ export default {
             [center,604,662,0x777777],
             [center,551,507,0xded8c6]]
         ]]
-    }
+    },
 }

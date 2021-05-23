@@ -113,6 +113,11 @@ const SchemeList = [{
         '8': { count: '2', afterCountOper: '切换方案', type: '个人突破', next_scheme: '寮突破' },
         '10': { type: '个人突破' }
     }
+}, {
+    id: 15,
+    schemeName: '妖气碎片',
+    star: true,
+    list: [0, 1, 2, 3, 27]
 }
     // 完整demo
     // , {

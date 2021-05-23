@@ -1563,6 +1563,59 @@ const FuncList = [{
 		}
 		return false;
 	}
+}, {
+	id: 27,
+	name: '组队妖气自动匹配',
+	operator: [{
+		desc: [1280,720,
+		[[center,400,50,0x513b14], //妖气自动匹配中的 图像
+		[center,392,46,0x644217],
+		[center,804,44,0x986f55],
+		[center,660,53,0xac9e90],
+		[center,704,27,0xaa9379],
+		[center,807,27,0x9d7051],
+		[center,556,98,0x2e090d],
+		[center,626,83,0xab9f8b],
+		[center,620,30,0xaa937b],
+		[center,397,22,0x766838]]
+		],
+		oper: [
+			[center, 1280, 720, 350, 640, 402, 664, 1000], //首页组队按钮
+			[center, 1280, 720, 702, 601, 865, 650, 1000] //组队界面 自动匹配
+		],
+	},{
+		desc: [1280,720, //首页比色
+			[[center,229,30,0x614040],
+			[center,404,36,0xfbcb78],
+			[center,437,79,0xee7a59],
+			[center,1151,53,0xcba574],
+			[center,1237,54,0xceac79],
+			[center,1218,603,0x8c5a38],
+			[center,1226,695,0x391816],
+			[center,58,663,0x4b2e31],
+			[center,1238,41,0x6e5c50]]
+		],
+		oper: [
+			[center, 1280, 720, -1, -1, -1, -1, 1000]
+		],
+	}],
+	operatorFunc(thisScript, thisOperator) {
+		if(!thisScript.oper({
+			name: '妖气_排队匹配中',
+			operator: [{
+				desc: thisOperator[0].desc
+			}]
+		}) && thisScript.oper({
+			name: '首页判断',
+			operator: [{
+				desc: thisOperator[1].desc
+			}]
+		})){
+			thisScript.helperBridge.regionClick(thisOperator[0].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+			return true;
+		}
+		return false;
+	}
 }];
 
 export default FuncList;
