@@ -1580,8 +1580,8 @@ const FuncList = [{
 		[center,397,22,0x766838]]
 		],
 		oper: [
-			[center, 1280, 720, 350, 640, 402, 664, 1000], //首页组队按钮
-			[center, 1280, 720, 702, 601, 865, 650, 1000] //组队界面 自动匹配
+			[center, 1280, 720, 350, 640, 402, 664, 5000], //首页组队按钮
+			[center, 1280, 720, 702, 601, 865, 650, 3000] //组队界面 自动匹配
 		],
 	},{
 		desc: [1280,720, //首页比色
@@ -1593,11 +1593,17 @@ const FuncList = [{
 			[center,1218,603,0x8c5a38],
 			[center,1226,695,0x391816],
 			[center,58,663,0x4b2e31],
-			[center,1238,41,0x6e5c50]]
-		],
-		oper: [
-			[center, 1280, 720, -1, -1, -1, -1, 1000]
-		],
+			[center,1238,41,0x6e5c50],
+
+			[center,354,606,0xe4e4e4],//判断组队按钮色值
+			[center,372,583,0x303e87],
+			[center,371,595,0xd45d43],
+			[center,393,637,0x723fa5],
+			[center,343,637,0x39304c],
+			[center,380,647,0xc2b8b5],
+			[center,402,660,0x665759],
+			[center,376,670,0xd5cec4]]
+		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
 		if(!thisScript.oper({
