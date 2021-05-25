@@ -115,7 +115,7 @@ const SchemeList = [{
     }
 }, {
     id: 15,
-    schemeName: '妖气碎片',
+    schemeName: '组队_自动匹配流程',
     star: true,
     list: [0, 1, 2, 3, 27]
 }

@@ -1565,7 +1565,7 @@ const FuncList = [{
 	}
 }, {
 	id: 27,
-	name: '组队妖气自动匹配',
+	name: '组队_自动匹配',
 	operator: [{
 		desc: [1280,720,
 		[[center,400,50,0x513b14], //妖气自动匹配中的 图像
@@ -1613,7 +1613,7 @@ const FuncList = [{
 	operatorFunc(thisScript, thisOperator) {
 		sleep(random(1000,3000))
 		if(!thisScript.oper({
-			name: '判断妖气非排队中',
+			name: '判断自动匹配非排队中',
 			operator: [{
 				desc: thisOperator[0].desc
 			}]
