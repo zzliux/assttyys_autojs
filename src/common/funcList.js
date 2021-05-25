@@ -1578,12 +1578,7 @@ const FuncList = [{
 		[center,626,83,0xab9f8b],
 		[center,620,30,0xaa937b],
 		[center,397,22,0x766838]]
-		],
-		oper: [
-			[center, 1280, 720, 350, 640, 402, 664, 5000], //首页组队按钮
-			[center, 1280, 720, 702, 601, 865, 650, 3000] //组队界面 自动匹配
-		],
-	},{
+	]},{
 		desc: [1280,720, //首页比色
 			[[center,229,30,0x614040],
 			[center,404,36,0xfbcb78],
@@ -1593,31 +1588,44 @@ const FuncList = [{
 			[center,1218,603,0x8c5a38],
 			[center,1226,695,0x391816],
 			[center,58,663,0x4b2e31],
-			[center,1238,41,0x6e5c50],
-
-			[center,354,606,0xe4e4e4],//判断组队按钮色值
-			[center,372,583,0x303e87],
-			[center,371,595,0xd45d43],
-			[center,393,637,0x723fa5],
-			[center,343,637,0x39304c],
-			[center,380,647,0xc2b8b5],
-			[center,402,660,0x665759],
-			[center,376,670,0xd5cec4]]
+			[center,1238,41,0x6e5c50]]
+		],
+		oper: [
+			[center, 1280, 720, 350, 640, 402, 664, 1500], //首页组队按钮
+		]
+	},{
+		desc: [1280,720,
+			// [[left,86,36,0x100a0b],  //不知道为啥 取得点居然匹配不是 换了好几次点集了
+			// [right,1167,44,0x2a2327],
+			[[center,840,143,0xd7c8ba],
+			[center,650,150,0xded1c3],
+			[right,1104,157,0xf46c28],
+			[center,623,620,0xccbbaa],
+			// [left,76,615,0x927969],
+			// [right,1186,679,0x402623],
+			[center,721,625,0xf4b25f],
+			[center,422,631,0xdc935a]]
+		],
+		oper: [
+			[center, 1280, 720, 702, 601, 865, 650, 1000] //组队界面 自动匹配
 		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
+		sleep(random(1000,3000))
 		if(!thisScript.oper({
-			name: '妖气_排队匹配中',
+			name: '判断妖气非排队中',
 			operator: [{
 				desc: thisOperator[0].desc
 			}]
 		}) && thisScript.oper({
-			name: '首页判断',
-			operator: [{
-				desc: thisOperator[1].desc
-			}]
+			name: '首页判断并点击组队',
+			operator: [thisOperator[1]]
 		})){
-			thisScript.helperBridge.regionClick(thisOperator[0].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+			// return thisScript.oper({
+			// 	name: '妖气界面判断自动匹配',
+			// 	operator: [thisOperator[2]]
+			// });
+			thisScript.helperBridge.regionClick(thisOperator[2].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
 			return true;
 		}
 		return false;

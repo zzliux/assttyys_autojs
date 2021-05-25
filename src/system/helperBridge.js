@@ -79,10 +79,13 @@ export const helperBridge = {
     regionClick(transedOper, randomSleep) {
         transedOper.forEach(item => {
             if (item[0] >= 0) {
+                let x = random(item[0], item[2]);
+                let y = random(item[1], item[3]);
+                console.log(`执行点击操作 === x坐标:${x}, y坐标:${y}`)
                 if (isRoot) {
-                    Tap(random(item[0], item[2]), random(item[1], item[3]));
+                    Tap(x, y);
                 } else {
-                    click(random(item[0], item[2]), random(item[1], item[3]));
+                    click(x, y);
                 }
             }
             sleep(item[4] + random(0, randomSleep || 0));

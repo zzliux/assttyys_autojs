@@ -205,13 +205,13 @@ var script = {
                 } else {
                     rs = true;
                 }
+                // console.log(`执行：currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper} 比色结果:${rs}`);
                 if (rs) {
                     if (retest) {
                         sleep(retest);
                         this.keepScreen();
                         return this.oper(currFunc);
                     }
-                    console.log(`执行：${currFunc.name}_${currFunc.id}_${this.lastFunc}_${id}`);
                     if (!!currFunc.id && this.lastFunc !== currFunc.id && !item.notForCnt) {
                         if (!this.runTimes[currFunc.id]) {
                             this.runTimes[currFunc.id] = 0;
@@ -220,6 +220,7 @@ var script = {
                         this.lastFunc = currFunc.id;
                     }
                     if (item.oper) {
+                        console.log(`执行：currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper}`);
                         helperBridge.regionClick(item.oper, this.scheme.commonConfig.afterClickDelayRandom);
                     }
                     return true;
