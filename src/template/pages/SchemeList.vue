@@ -8,7 +8,7 @@
         </template>
       </van-nav-bar>
     </div>
-    <div class="rv_inner" :style="'padding-top: '+ (46 + (statusBarHeight || 0)) + 'px'">
+    <div class="rv_inner" :style="'padding-top: '+ (46 + (statusBarHeight || 0)) + 'px; padding-bottom: 6px;'">
       <van-cell-group class="itemBox" title="方案列表" style="background: transparent">
         <draggable
           :scroll-sensitivity="100"
@@ -35,8 +35,8 @@
                   class="item van-cell van-cell--center"
                   @click="schemeClickEvent($event, item)"
                 >
-                  <div class="van-cell__title">{{ item.schemeName }}</div>
-                  <div class="van-cell__value">
+                  <div class="van-cell__title item-title">{{ item.schemeName }}</div>
+                  <div class="van-cell__value item-value">
                     <span class="handle-area"
                       ><van-icon class="handle" size="18" name="bars"
                     /></span>
@@ -52,7 +52,6 @@
                   </div>
                 </div>
               </template>
-
               <template #right
                 ><van-button
                   type="danger"
@@ -311,10 +310,26 @@ export default {
 .handle-area {
   margin-top: 8px;
   height: 24px;
-  width: 36px;
-  display: inline-block;
+  position: absolute;
+  top: 4px;
+}
+.handle-area {
+  right: 35px;
+}
+.star-area {
+  right: 0px;
 }
 .item {
   height: 44px;
+}
+.item-title {
+  display: inline-block;
+  height: 44px;
+  line-height: 44px;
+  flex: 3;
+}
+.item-value {
+  float: right;
+  height:44px;
 }
 </style>

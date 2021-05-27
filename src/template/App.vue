@@ -139,6 +139,7 @@ body {
 }
 .rv {
   width: 100%;
+  height: 100%;
 }
 .rv_inner {
   padding: 46px 0px 0px 0px;
