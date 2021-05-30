@@ -53,6 +53,13 @@ ASISTTANT YYS NEXT GENERATION
 仅作学习用途，请勿用于其他非法途径！<br/>
 学习交流群: 864842180
 
-# LICENSE
+# 特别鸣谢
+感谢下面两位dalao的顶力支持，在本项目的开发过程中提出的需求均能快速响应与采纳！
+- [yiszza](https://gitee.com/yiszza)
+  - [ScriptLib](https://gitee.com/yiszza/ScriptLib)：基于Auto.js的高性能比色找色库，本项目的所有多点比色和多点找色均基于AnchorGraphicHelper完成
+  - [综合图色助手](https://gitee.com/yiszza/ScriptGraphicHelper)：一款简单好用的图色助手, 快速生成多种脚本开发工具的图色格式代码
+- [molysama](https://github.com/molysama)
+  - [@auto.pro](https://github.com/molysama/auto.pro)的提供者，本项目基于该框架完成
 
+# LICENSE
 MIT

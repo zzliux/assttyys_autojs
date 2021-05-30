@@ -9,7 +9,7 @@
         "vue": "npx webpack-dev-server --config config/webpack.vue.config.js --mode=development"
     },
     "author": "",
-    "license": "ISC",
+    "license": "MIT",
     "devDependencies": {
         "@auto.pro/webpack-plugin": "^8.13.1",
         "@babel/core": "^7.12.10",
