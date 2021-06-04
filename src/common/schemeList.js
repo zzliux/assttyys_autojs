@@ -118,6 +118,11 @@ const SchemeList = [{
     schemeName: '组队_自动匹配流程',
     star: true,
     list: [0, 1, 2, 3, 27]
+}, {
+    id: 99,
+    schemeName: '[活动]天魔归来',
+    star: true,
+    list: [0, 1, 2, 3, 99]
 }
     // 完整demo
     // , {

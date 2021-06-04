@@ -52,9 +52,12 @@ export const versionList = [{
 }, {
     version: '20210516_01',
     desc: '修复[结界_进攻]功能中寮突破CD的时间单位异常问题，请修改过单位为毫秒数值的同学再次把单位修改为秒对应的数值，若无法修改或出现异常停止的情况请重置方案与功能'
-},  {
+}, {
     version: '20210525_01',
     desc: '新增组队自动匹配功能，需要先手动总一遍流程，保证打开主页面组队的时候是需要自动匹配的项目，例如妖气等'
+}, {
+    version: '20210604_01',
+    desc: '新增[活动]天魔归来'
 }];
 
 export default versionList[versionList.length - 1].version;
