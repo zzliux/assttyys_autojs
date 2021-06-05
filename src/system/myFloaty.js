@@ -11,10 +11,10 @@ const myFloaty = {
         var self = this;
         let fy = createFloaty({
             // logo: 'https://pro.autojs.org/images/logo.png',
-            logo: 'file://' + files.cwd() + '/assets/img/ay_circle.png',
+            logo: 'file://' + files.cwd() + '/assets/img/ay.png',
             logoSize: 35,
-            initX: -10,
-            edge: -10,
+            initX: -15,
+            edge: -15,
             duration: 150,
             radius: 60,
             angle: 90,
@@ -68,7 +68,7 @@ const myFloaty = {
 
         this.fy = fy;
         ui.post(function() {
-            fy.FLOATY.img_logo.setColorFilter(colors.argb(255, 0, 0, 0));
+            fy.FLOATY.img_logo.setColorFilter(colors.argb(0, 0, 0, 0));
         });
 
         script.setRunCallback(function () {
@@ -81,7 +81,7 @@ const myFloaty = {
 
         script.setStopCallback(function () {
             ui.post(function() {
-                fy.FLOATY.img_logo.setColorFilter(colors.argb(255, 0, 0, 0));
+                fy.FLOATY.img_logo.setColorFilter(colors.argb(0, 0, 0, 0));
                 fy.status = 'stoped';
                 fy.items[1].toggleIcon(0);
             });
