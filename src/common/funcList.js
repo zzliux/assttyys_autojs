@@ -1630,44 +1630,6 @@ const FuncList = [{
 		}
 		return false;
 	}
-}, {
-	id: 99,
-	name: '[活动]天魔归来_挑战',
-	operator: [{
-		desc: [1280, 720,
-			[[left,36,32,0xf9e9af],
-			[right,1234,40,0xd4ab82],
-			[right,1180,596,0xb29e86],
-			[left,274,38,0x583716],
-			[right,1032,570,0xf3dbae]]
-		],
-		oper: [
-			[right, 1280, 720, 1144,600, 1218,676, 1000]
-		]
-	}, {
-		desc: [1280, 720,
-			[[left,37,37,0xf5e5a8],
-			[right,1231,40,0xd3ad82],
-			[right,1163,576,0xac977f],
-			[right,1173,671,0xc4b39a],
-			[right,1032,644,0xf3dbae]]
-		],
-		oper: [
-			[right, 1280, 720, 1136,580, 1208,652, 1000]
-		]
-	}, {
-		desc: [1280, 720,
-			[[left,38,36,0xada273],
-			[left,100,646,0x816441],
-			[right,1162,583,0x837664],
-			[right,1158,632,0x857867],
-			[right,1237,57,0x907454],
-			[right,1041,660,0xac9b7c]]
-		],
-		oper: [
-			[right, 1280, 720, 1136,580, 1208,652, 1000]
-		]
-	}]
 }];
 
 export default FuncList;

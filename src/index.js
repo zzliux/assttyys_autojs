@@ -16,8 +16,8 @@ import version, {versionList} from '@/common/version';
 webview.on("getSchemeList").subscribe(([param, done]) => {
     let savedSchemeList = store.get("schemeList", defaultSchemeList);
     // 活动方案去除
-    // done(_.filter(savedSchemeList, item => item.id != 99));
-    done(savedSchemeList);
+    done(_.filter(savedSchemeList, item => item.id != 99));
+    // done(savedSchemeList);
 });
 
 // 保存方案列表
