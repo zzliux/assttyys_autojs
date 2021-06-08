@@ -9,6 +9,7 @@ const right = 2;
 const FuncList = [{
 	id: 0,
 	name: '结束判断',
+	desc: '配置停止或切换方案的条件',
 	checked: false,
 	operator: [],
 	config: [{
@@ -355,6 +356,7 @@ const FuncList = [{
 }, {
 	id: 4,
 	name: '接受邀请',
+	desc: '左侧弹出邀请提示时，自动接受邀请',
 	checked: false,
 	operator: [{
 		// 自动接受邀请
@@ -385,6 +387,7 @@ const FuncList = [{
 }, {
 	id: 5,
 	name: '组队挑战',
+	desc: '在组队界面时，点击挑战按钮，可配置三人开始或有人就开',
 	checked: false,
 	config: [{
 		desc: '',
@@ -447,6 +450,7 @@ const FuncList = [{
 }, {
 	id: 6,
 	name: '御魂/御灵挑战',
+	desc: '在御魂或者御灵的挑战界面时，点击挑战按钮',
 	checked: false,
 	operator: [{ // 三类御魂
 		desc: [1280,720,
@@ -475,6 +479,7 @@ const FuncList = [{
 }, {
 	id: 7,
 	name: '结界_三次刷新',
+	desc: '启用后会在打了三个结界后进行刷新，若CD中则等待CD后刷新',
 	checked: false,
 	operator: [{  // CD
 		desc: [1280,720,
@@ -507,6 +512,7 @@ const FuncList = [{
 }, {
 	id: 8,
 	name: '结界_进攻',
+	desc: '出现进攻按钮后点击进攻按钮，若进攻按钮点击不生效可选择退出到上一级（寮突破用）或停止脚本（个人突破用）或切换方案；若在寮突破时进攻为灰色，会自动等待CD或切换方案',
 	checked: false,
 	config: [{
 		desc: '',
@@ -612,6 +618,7 @@ const FuncList = [{
 }, {
 	id: 9,
 	name: '结界_勋章点击',
+	desc: '在突破界面点击勋章，可配置点击勋章的优先级',
 	checked: false,
 	config: [{
 		desc: '',
@@ -694,6 +701,7 @@ const FuncList = [{
 }, {
 	id: 10,
 	name: '地图进入突破界面',
+	desc: '在地图界面时点击突破按钮进入突破界面，可配置进入个人突破或寮突破界面',
 	checked: false,
 	config: [{
 		desc: '',
@@ -755,6 +763,7 @@ const FuncList = [{
 }, {
 	id: 11,
 	name: '结界_刷新按钮',
+	desc: '个人突破时点击刷新按钮，应排在[9勋章点击]后',
 	checked: false,
 	operator: [{
 		desc: [1280,720, // 刷新
@@ -774,6 +783,7 @@ const FuncList = [{
 }, {
 	id: 12,
 	name: '寮突破_翻页',
+	desc: '寮突破时执行翻页操作，应排在[9勋章点击]后',
 	checked: false,
 	config: [{
 		desc: '',
@@ -844,6 +854,7 @@ const FuncList = [{
 }, {
 	id: 13,
 	name: '探索_地图进入最后一章',
+	desc: '在地图界面时，点击最后一章进行挑战',
 	checked: false,
 	operator: [{
 		desc: [1280,720,
@@ -873,6 +884,7 @@ const FuncList = [{
 }, {
 	id: 14,
 	name: '探索_点击挑战图标',
+	desc: '在探索界面时，选择小怪或boss进攻，优先打boss，可配置无差别挑战或只打经验怪',
 	config: [{
 		desc: '',
 		config: [{
@@ -989,6 +1001,7 @@ const FuncList = [{
 }, {
 	id: 15,
 	name: '探索_换狗粮',
+	desc: '准备界面时，队长位置在左(换式神界面时队长位置在右)，若在非队长位置出现满级式神，则上素材的第一个和第二个，因此使用时需要将要练的素材添加喜欢，并取消折叠',
 	config: [{
 		desc: '',
 		config: [{
@@ -1063,6 +1076,7 @@ const FuncList = [{
 }, {
 	id: 16,
 	name: '地鬼_热门挑战',
+	desc: '在地域鬼王界面时，从热门挑战中的前3(可配置)个选择要挑战的怪进行挑战',
 	config: [{
 		desc: '',
 		config: [{
@@ -1155,6 +1169,7 @@ const FuncList = [{
 }, {
 	id: 17,
 	name: '百鬼夜行_邀请好友',
+	desc: '在百鬼夜行挑战界面，随机邀请好友',
 	operator: [{
 		desc: [1280,720,
 			[[center,170,600,0xfff2ce],
@@ -1195,6 +1210,7 @@ const FuncList = [{
 }, {
 	id: 18,
 	name: '百鬼夜行_挑战',
+	desc: '在百鬼夜行挑战界面，点击挑战',
 	operator: [{
 		desc: [1280,720,
 			 [// [center,170,600,0xfff2ce],
@@ -1210,6 +1226,7 @@ const FuncList = [{
 }, {
 	id: 19,
 	name: '百鬼夜行_选择鬼王挑战',
+	desc: '百鬼夜行中三选一鬼王界面时，选择一个鬼王后开始挑战，可配置随机或指定位置',
 	operator: [{
 		desc: [1280,720,
 			[[center,626,13,0x1b1420],
@@ -1256,6 +1273,7 @@ const FuncList = [{
 }, {
 	id: 20,
 	name: '百鬼夜行_随机散豆',
+	desc: '在百鬼夜行的界面，随机自由散豆',
 	operator: [{
 		desc: [1280,720,
 			[[left,45,42,0xf5e5a3],
@@ -1314,7 +1332,8 @@ const FuncList = [{
 	]
 }, {
 	id: 23,
-	name: '逢魔答题(需要安装OCR插件)',
+	name: '逢魔答题',
+	desc: '逢魔密信自动答题，需要安装OCR插件，已知问题：答案为单字或单数字时无法识别',
 	operator: [{
 		desc: [1280,720,
 			[[center,456,96,0xa72c01],
@@ -1410,6 +1429,7 @@ const FuncList = [{
 }, {
 	id: 25,
 	name: '探索_单人时退出',
+	desc: '探索小怪界面时，若只有自己一个人在里面，则退出',
 	operator: [{
 		desc: [1280,720, // 组队匹配上了的话就不做任何操作
 			[[left,38,65,0xf1f5fb],
@@ -1440,6 +1460,7 @@ const FuncList = [{
 }, {
 	id: 26,
 	name: '现世逢魔',
+	desc: '逢魔界面点击右下角的图标后点击右侧相关事件图标',
 	operator: [{
 		desc: [1280,720,
 			[[left,19,700,0x3c3841],
@@ -1566,6 +1587,7 @@ const FuncList = [{
 }, {
 	id: 27,
 	name: '组队_自动匹配',
+	desc: '在庭院中点击下方的组队按钮后点击排队按钮',
 	operator: [{
 		desc: [1280,720,
 		[[center,400,50,0x513b14], //妖气自动匹配中的 图像

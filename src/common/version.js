@@ -61,6 +61,9 @@ export const versionList = [{
 }, {
     version: '20210605_01',
     desc: '解决[活动]天魔归来boss战退出结算后点击到奖励说明后无法继续的问题'
+}, {
+    version: '20210608_01',
+    desc: '给各功能增加详细的描述'
 }];
 
 export default versionList[versionList.length - 1].version;

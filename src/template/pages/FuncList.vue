@@ -37,6 +37,7 @@
                 <span class="handle-area"><van-icon class="handle" size="18" name="bars" /></span>
                 <van-switch class="itemSwitch" @change="toggleSwitchEvent" v-model="item.checked" size="18" />
               </div>
+              <div v-if="item.desc" class="item-desc">{{item.desc}}</div>
             </div>
           </transition-group>
         </draggable>
@@ -139,37 +140,13 @@ export default {
     var schemeConfig = await AutoWeb.autoPromise('getScheme', this.$route.query.schemeName);
     this.scheme = schemeConfig;
 
-    // let fl = _.cloneDeep(dfuncList);
-    // fl.forEach(item => {
-    //   if (!item.config) {
-    //     item.config = [];
-    //   }
-    //   item.config.forEach(iItem => {
-    //     iItem.config.forEach(iIItem => {
-    //       iIItem.value = iIItem.default;
-    //     });
-    //   });
-    //   // 已保存的方案和funcList
-    //   if (schemeConfig.list.indexOf(item.id) !== -1) {
-    //     item.checked = true
-    //     item.config.forEach(iItem => {
-    //       iItem.config.forEach(iIItem => {
-    //         if (!schemeConfig.config) return;
-    //         if (schemeConfig.config[item.id] && schemeConfig.config[item.id][iIItem.name]) {
-    //           iIItem.value = schemeConfig.config[item.id][iIItem.name];
-    //         } else {
-    //           iIItem.value = iIItem.default;
-    //         }
-    //       });
-    //     });
-    //   }
-    // });
+    // 启用的功能
     let fl = [];
     schemeConfig.config = schemeConfig.config || {};
     schemeConfig.list.forEach(id => {
-      for (let schemeOrigin of dfuncList) {
-        if (schemeOrigin.id === id) {
-          let item = _.cloneDeep(schemeOrigin);
+      for (let funcOrigin of dfuncList) {
+        if (funcOrigin.id === id) {
+          let item = _.cloneDeep(funcOrigin);
           if (!item.config) {
             item.config = [];
           }
@@ -184,12 +161,15 @@ export default {
               })
             })
           }
+          item.desc = funcOrigin.desc || null
           item.checked = true;
           fl.push(item);
           break;
         }
       }
     });
+
+    // 未启用的功能
     let toAppend = [];
     dfuncList.forEach(item => {
       item = _.cloneDeep(item);
@@ -215,6 +195,7 @@ export default {
 
     this.funcList = [...fl, ...toAppend];
 
+    // 公共配置
     let cc = _.cloneDeep(dCommonConfig);
     cc.forEach(item => {
       if (!item.config) {
@@ -320,9 +301,6 @@ export default {
 .rv_inner {
   padding: 46px 0px 56px 0px;
 }
-.item {
-  height: 44px;
-}
 .handle {
   margin-right: 18px;
 }
@@ -339,7 +317,6 @@ export default {
   background-color: #f2f3f5;
 }
 .item {
-  height: 44px;
   margin:5px 10px 5px 10px;
   border-radius:10px;
   background-color: #fff;
@@ -356,5 +333,12 @@ export default {
 .item-value {
   margin-top: 5px;
   float: right;
+}
+.item-desc {
+  color: #aaa;
+  margin-top: -5px;
+  margin-bottom: 10px;
+  font-size: 10px;
+  word-break: break-all;
 }
 </style>
