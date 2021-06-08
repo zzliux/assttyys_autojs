@@ -338,7 +338,7 @@ export default {
   color: #aaa;
   margin-top: -5px;
   margin-bottom: 10px;
-  font-size: 10px;
+  font-size: 12px;
   word-break: break-all;
 }
 </style>
