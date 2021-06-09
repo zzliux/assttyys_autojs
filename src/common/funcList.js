@@ -129,6 +129,7 @@ const FuncList = [{
 }, {
 	id: 1,
 	name: '准备',
+	desc: '在准备界面执行准备或退出操作，可配置是否启用绿标',
 	checked: false,
 	config: [{
 		desc: '退出',
@@ -138,6 +139,14 @@ const FuncList = [{
 			type: 'switch',
 			default: false,
 		}],
+	}, {
+		desc: '绿标',
+		config: [{
+			name: 'greenFlag',
+			desc: '是否启用绿标（需要将绿标的式神改名为“A”，若无法标记可尝试调整式神站位）',
+			type: 'switch',
+			default: false,
+		}]
 	}],
 	operator: [{
 		desc: [1280, 720,
@@ -154,6 +163,20 @@ const FuncList = [{
 			[left, 1280, 720, 22,19, 52,47, 500], // 左上角返回
 			[left, 1280, 720, 683,401, 795,442, 500], // 确认
 		]
+	}, {
+		// 开始战斗后的场景
+		desc: [1280, 720,
+			[[left,34,22,0xd7c5a2],
+			[left,62,648,0x796556],
+			[right,1277,508,0x422e1c],
+			[right,1260,567,0x4d4471],
+			[left,4,715,0x334433]]
+		],
+		oper: [
+			[left, 1280, 720, 0,0, 0, 160, -1], // A的下方位置
+			[left, 1280, 720, 0,0, 70, 90, -1], // 下方位置的矩形
+			[left, 1280, 720, 0,0, 1279, 719, -1] // 屏幕大小
+		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
 		let thisconf = thisScript.scheme.config['1'];
@@ -167,14 +190,44 @@ const FuncList = [{
 				}]
 			})
 		} else {
-			return thisScript.oper({
+			if (thisScript.oper({
 				id: 1,
 				name: '准备',
 				operator: [{
 					desc: thisOperator[0].desc,
 					oper: [thisOperator[0].oper[0]]
 				}]
-			});
+			})) {
+				if (thisconf.greenFlag) {
+					// 开启绿标
+					if (thisScript.compareColorLoop(thisOperator[1].desc, 16000)) {
+						let p = thisScript.findMultiColorLoop('绿标_标识_A', 5000);
+						if (p) {
+							const lx = p.x - thisOperator[1].oper[1][2] / 2;
+							const ly = p.y + thisOperator[1].oper[0][3] - thisOperator[1].oper[1][3] / 2;
+							const rx = p.x + thisOperator[1].oper[1][2] / 2;
+							const ry = p.y + thisOperator[1].oper[0][3] + thisOperator[1].oper[1][3] / 2;
+							const toClick = [
+								lx > 0 ? lx : 0,
+								ly > 0 ? ly : 0,
+								rx < thisOperator[1].oper[2][2] ? rx : thisOperator[1].oper[2][2],
+								ry < thisOperator[1].oper[2][3] ? ry : thisOperator[1].oper[2][3],
+								4000
+							];
+							thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
+							return true;
+						} else {
+							toastLog('未识别式神别名“A”');
+							return true;
+						}
+					} else {
+						toastLog('准备15秒后未检测到战斗场景');
+						return true;
+					}
+				} else {
+					return true;
+				}
+			}
 		}
 	}
 	// config: [{

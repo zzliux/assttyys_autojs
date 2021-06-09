@@ -292,4 +292,65 @@ export default {
             [center,551,507,0xded8c6]]
         ]]
     },
+    '绿标_标识_A': {
+        region: [center, 1280, 720, 0,156, 1279,650],
+        similar: 93,
+        desc: [[1280,720,
+            [[center,59,308,0xdcc3b2],
+            [center,59,314,0x8c372f],
+            [center,59,319,0x8b362e],
+            [center,53,308,0x89372d],
+            [center,64,308,0x89372c],
+            [center,63,319,0xd0ae9f],
+            [center,54,319,0xdabeaf]]
+        ], [1280,720,
+            [[center,59,308,0xdcc2b0],
+            [center,63,308,0x8c3423],
+            [center,55,308,0x8c3423],
+            [center,59,314,0x8f3426],
+            [center,59,320,0x8c3424],
+            [center,54,319,0xdabeac],
+            [center,63,319,0xd1ad9c]]
+        ], [1280,720,
+            [[center,855,252,0xdfc7b6],
+            [center,850,251,0x97443b],
+            [center,860,251,0x97423b],
+            [center,855,257,0x97413b],
+            [center,855,264,0x99453d],
+            [center,850,263,0xdabaac],
+            [center,859,262,0xd8b7a9]]
+        ], [1280,720,
+            [[center,1132,363,0xdbc4b0],
+            [center,1127,363,0x863a27],
+            [center,1138,363,0x873f2b],
+            [center,1132,369,0x873827],
+            [center,1132,375,0x853321],
+            [center,1128,374,0xcaa593],
+            [center,1137,374,0xd2b4a2]]
+        ], [1280,720,
+            [[center,1132,364,0xc7aa97],
+            [center,1126,364,0x8a4f3e],
+            [center,1138,364,0x8d5441],
+            [center,1132,369,0x8c4d3e],
+            [center,1132,374,0x894637],
+            [center,1129,371,0xd9c3b2],
+            [center,1136,371,0xd0b5a4]]
+        ], [1280,720,
+            [[center,370,304,0xdbc6b3],
+            [center,365,303,0x8a432f],
+            [center,375,303,0x894330],
+            [center,370,310,0x883b2b],
+            [center,370,316,0x853321],
+            [center,366,314,0xcead9b],
+            [center,374,313,0xcba796]]
+        ], [1280,720,
+            [[center,370,304,0xdbc4b2],
+            [center,365,304,0x843d30],
+            [center,375,304,0x863828],
+            [center,370,310,0x88382b],
+            [center,370,314,0x873629],
+            [center,366,314,0xceae9d],
+            [center,374,313,0xcba898]]
+        ]]
+    }
 }

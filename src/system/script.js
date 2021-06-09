@@ -116,6 +116,31 @@ var script = {
         }
         return null;
     },
+    findMultiColorLoop(key, timeout, inRegion) {
+        let times = Math.round(timeout / this.scheme.commonConfig.loopDelay);
+        while (times--) {
+            this.keepScreen(true);
+            let point = this.findMultiColor(key, inRegion);
+            if (point) {
+                return point;
+            }
+            sleep(this.scheme.commonConfig.loopDelay);
+        }
+        return null;
+    },
+    compareColorLoop (desc, timeout, sign) {
+        /**
+         * 条件循环多点比色
+         *
+         * @param description: 色组描述
+         * @param sim:         相似度
+         * @param offset:      偏移查找
+         * @param timeout:     超时时间
+         * @param timelag:     间隔时间
+         * @param sign:        跳出条件,0为比色成功时返回,1为比色失败时返回
+         */
+        return this.helperBridge.helper.CompareColorExLoop(desc, this.scheme.commonConfig.colorSimilar, 1, timeout, this.scheme.commonConfig.loopDelay, sign || 0);
+    },
     run() {
         var self = this;
         try {

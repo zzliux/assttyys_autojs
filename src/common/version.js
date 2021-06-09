@@ -64,6 +64,9 @@ export const versionList = [{
 }, {
     version: '20210608_01',
     desc: '给各功能增加详细的描述'
+}, {
+    version: '20210609_01',
+    desc: '新增准备后自动绿标，需要将被标记的式神别名为“A”'
 }];
 
 export default versionList[versionList.length - 1].version;
