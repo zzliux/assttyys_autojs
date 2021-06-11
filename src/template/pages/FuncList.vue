@@ -8,7 +8,7 @@
         :style="'padding-top: ' + (statusBarHeight || 0) + 'px'"
       >
          <template #right>
-          <van-icon name="setting-o" size="18"  @click="showConfig($event, commonConfig)" />
+          <van-icon name="setting-o" size="18"  @click="showCommonConfig($event, commonConfig)" />
           <!-- <van-icon name="success" size="18" @click="saveScheme" /> -->
         </template>
       </van-nav-bar>
@@ -30,14 +30,20 @@
               v-for="item in funcList" :key="item.id"
               class="item"
               center
-              @click="showConfig($event, item)"
               >
-              <div class="item-title">{{item.id + ' ' + item.name + (item.config && item.config.length ? ' *': '')}}</div>
-              <div class="item-value">
-                <span class="handle-area"><van-icon class="handle" size="18" name="bars" /></span>
-                <van-switch class="itemSwitch" @change="toggleSwitchEvent" v-model="item.checked" size="18" />
+              <div class="item-header" @click="showConfig($event, item)">
+                <div class="item-title">{{item.id + ' ' + item.name + (item.config && item.config.length ? ' *': '')}}</div>
+                <div class="item-value">
+                  <span class="handle-area"><van-icon class="handle noShowConfigEvent" size="18" name="bars" /></span>
+                  <van-switch class="itemSwitch" @change="toggleSwitchEvent" v-model="item.checked" size="18" />
+                </div>
+                <div v-if="item.desc" class="item-desc">{{item.desc}}</div>
               </div>
-              <div v-if="item.desc" class="item-desc">{{item.desc}}</div>
+              <div v-if="item.id === showConfigId" class="item-config">
+                <func-config-box
+                  :configModalObject.sync="configModalObject"
+                ></func-config-box>
+              </div>
             </div>
           </transition-group>
         </draggable>
@@ -66,8 +72,8 @@
       </van-row>
     </div>
     <func-config-dialog
-      :show.sync="configModalShow"
-      :configModalObject.sync="configModalObject"
+      :show.sync="commonConfigModalShow"
+      :configModalObject.sync="commonConfigModalObject"
     ></func-config-dialog>
     <app-list-lauch-dialog
       :show.sync="appListLauchDialogShown"
@@ -82,6 +88,7 @@ import draggable from 'vuedraggable'
 import dfuncList from "../../common/funcList";
 import dCommonConfig from "../../common/commonConfig";
 import _ from 'lodash';
+import funcConfigBox from '../components/FuncConfigBox.vue';
 import funcConfigDialog from '../components/FuncConfigDialog.vue';
 import appListLauchDialog from '../components/AppListLaunchDialog.vue';
 
@@ -97,6 +104,7 @@ export default {
   data() {
     return {
       dragTransition: false,
+      showConfigId: null,
       funcList: [],
       commonConfig: {
         name: '公共配置',
@@ -104,7 +112,11 @@ export default {
       },
       params: this.$route.query,
       configModalShow: false,
+      commonConfigModalShow: false,
       configModalObject: {
+        config: []
+      },
+      commonConfigModalObject: {
         config: []
       },
       scheme: null,
@@ -118,6 +130,7 @@ export default {
   },
   components: {
     draggable,
+    funcConfigBox,
     funcConfigDialog,
     appListLauchDialog
   },
@@ -230,13 +243,23 @@ export default {
       });
       this.funcList = [...list[1], ...list[0]];
     },
+    showCommonConfig(e, item) {
+      if (item.config && item.config.length > 0) {
+        this.commonConfigModalObject = item;
+        this.commonConfigModalShow = true;
+      }
+    },
     showConfig(e, item) {
       if (e.target.className.match(/switch|handle/)) {
         return;
       }
       if (item.config && item.config.length > 0) {
+        if (this.showConfigId === item.id) {
+          this.showConfigId = null;
+        } else {
+          this.showConfigId = item.id;
+        }
         this.configModalObject = item;
-        this.configModalShow = true;
       } else {
         // Toast('无可配置项');
       }
@@ -313,17 +336,19 @@ export default {
 .itemSwitch {
   margin-right: 5px;
 }
-.item:active {
-  background-color: #f2f3f5;
-}
 .item {
   margin:5px 10px 5px 10px;
   border-radius:10px;
   background-color: #fff;
   overflow: hidden;
-  padding: 0px 16px;
   font-size: 14px;
   box-shadow: 4px 4px 8px #aaa
+}
+.item-header {
+  padding: 0px 16px 0px 16px;
+}
+.item-header:active {
+  background-color: #f2f3f5;
 }
 .item-title {
   display: inline-block;
@@ -337,8 +362,14 @@ export default {
 .item-desc {
   color: #aaa;
   margin-top: -5px;
-  margin-bottom: 10px;
+  padding-bottom: 10px;
   font-size: 12px;
   word-break: break-all;
+}
+.item-config {
+  max-height: 300px;
+  overflow-y: auto;
+  border-top: 1px solid #efefef;
+  padding-bottom: 10px;
 }
 </style>
