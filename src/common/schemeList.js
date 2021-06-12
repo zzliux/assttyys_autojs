@@ -118,6 +118,10 @@ const SchemeList = [{
     schemeName: '组队_自动匹配流程',
     star: true,
     list: [0, 1, 2, 3, 27]
+}, {
+    id: 16,
+    schemeName: '继续育成',
+    list: [3, 28]
 }
     // 完整demo
     // , {

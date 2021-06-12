@@ -67,6 +67,9 @@ export const versionList = [{
 }, {
     version: '20210609_01',
     desc: '新增准备后自动绿标，需要将被标记的式神别名为“A”'
+}, {
+    version: '20210612_01',
+    desc: '新增继续育成，解放双手5红喂1蓝'
 }];
 
 export default versionList[versionList.length - 1].version;
