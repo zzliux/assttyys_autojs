@@ -6,8 +6,8 @@ import { effect$, isRoot } from "@auto.pro/core";
 import defaultSchemeList from '@/common/schemeList';
 import myFloaty from '@/system/myFloaty';
 import store, { storeCommon } from '@/system/store';
-import helperBridge from "@/system/helperBridge";
 import { mergeSchemeList, setCurrentScheme } from '@/common/tool';
+import { requestMyScreenCapture } from '@/common/toolAuto';
 import _ from 'lodash';
 import version, {versionList} from '@/common/version';
 // console.show();
@@ -58,6 +58,10 @@ webview.on("setCurrentScheme").subscribe(([schemeName, done]) => {
     setCurrentScheme(schemeName);
     done();
 });
+
+webview.on("webloaded").subscribe(([_param, done]) => {
+    requestMyScreenCapture(done);
+})
 
 // todo使用core包的获取状态栏高度
 webview.on("getStatusBarHeight").subscribe(([_param, done]) => {
@@ -149,6 +153,11 @@ webview.on("getSettings").subscribe(([_param, done]) => {
         });
     }
     ret = [...ret, {
+        desc: '截图权限',
+        name: 'screenCapturePermission',
+        type: 'autojs_inner_settings_capture_permission',
+        enabled: !!images.getScreenCaptureOptions()
+    }, {
         desc: '悬浮窗权限',
         name: 'floatyPerminssion',
         type: 'autojs_inner_setting_floaty_permission',
@@ -236,6 +245,17 @@ webview.on("saveSetting").subscribe(([item, done]) => {
         } else {
             done(false);
         }
+    } else if ('autojs_inner_settings_capture_permission' === item.type) {
+        if (item.enabled) {
+            requestMyScreenCapture(function (res) {
+                done(res)
+            });
+        } else {
+            threads.start(function () {
+                images.stopScreenCapture();
+                done(true);
+            });
+        }
     } else if ('assttyys_setting' === item.type) {
         let storeSettings = storeCommon.get('settings', {});
         storeSettings[item.name] = item.enabled;
@@ -262,6 +282,21 @@ webview.on("versionInfo").subscribe(([_param, done]) => {
         storeVersion: storeVersion,
         versionList: versionList
     });
+});
+
+webview.on("getAppInfo").subscribe(([_param, done]) => {
+    let ret = {};
+    if (app.autojs.versionCode < 8081200) { // Pro 8.8.12-0
+        ret = {
+            needForceUpdate: true,
+            msg: '主程序版本过低，请更新安装主程序后再使用，欢迎进群864842180了解更多'
+        };
+    } else {
+        ret = {
+            msg: '感谢使用本辅助，进群864842180了解更多信息~'
+        }
+    }
+    done(ret);
 });
 
 webview.on("openOpenSource").subscribe(([_param, done]) => {
@@ -365,7 +400,6 @@ webview.on("exit").subscribe(([_param, done]) => {
 // effect$是作业线程，当core的权限全部到位后，effect$才开始运作
 effect$.subscribe(() => {
     // 监听放在effect里，只有当权限到位后，监听才生效
-    helperBridge.init();
     if ((auto.service || device.sdkInt < 24) && floaty.checkPermission()) {
         myFloaty.init();
     }

@@ -8,7 +8,11 @@
         ></router-view>
       </transition>
     </div>
-    <van-popup closeable v-model="updateInfoShow" :style="{ width: '100%', maxHeight: '70%' }">
+    <van-popup
+      closeable
+      v-model="updateInfoShow"
+      :style="{ width: '100%', maxHeight: '70%' }"
+    >
       <div style="padding: 20px">
         <div class="popup_version_title">已为你完成更新：</div>
         <div v-for="(item, id) of updateInfoList" :key="id">
@@ -23,12 +27,13 @@
 
 <script>
 import Vue from "vue";
-import { Tabbar, TabbarItem, NavBar, Popup } from "vant";
+import { Tabbar, TabbarItem, NavBar, Popup, Dialog } from "vant";
 
 Vue.use(Tabbar);
 Vue.use(TabbarItem);
 Vue.use(NavBar);
 Vue.use(Popup);
+Vue.use(Dialog);
 
 export default {
   data() {
@@ -54,6 +59,8 @@ export default {
   async mounted() {
     this.statusBarHeight = await AutoWeb.autoPromise("getStatusBarHeight");
 
+    await AutoWeb.autoPromise('webloaded');
+
     // 版本查询
     let versionInfo = await AutoWeb.autoPromise("versionInfo");
     let updateContent = [];
@@ -69,6 +76,23 @@ export default {
     }
     this.updateInfoList = updateContent.reverse();
     this.updateInfoShow = !!this.updateInfoList.length;
+
+    // 强制检查的信息
+    let appInfo = await AutoWeb.autoPromise("getAppInfo");
+    if (appInfo.needForceUpdate) {
+      Dialog.alert({
+        title: '提示',
+        message: appInfo.msg,
+      }).then(() => {
+        AutoWeb.autoPromise("exit");
+      });
+    } else if (appInfo.msg) {
+      Dialog.alert({
+        title: '提示',
+        message: appInfo.msg,
+      }).then(() => {
+      });
+    }
   },
 };
 </script>

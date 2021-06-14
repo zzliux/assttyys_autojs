@@ -1,0 +1,24 @@
+{
+    "assets": [],
+    "encryptLevel": 3,
+    "useFeatures": [],
+    "icon": "res/icon.png",
+    "launchConfig": {
+      "displaySplash": true,
+      "hideLogs": true,
+      "splashIcon": "res/splashIcon.png",
+      "splashText": "Powered By AutoJS Pro",
+      "stableMode": true
+    },
+    "main": "main.js",
+    "name": "assttyys_ng",
+    "optimization": {
+      "removeOpenCv": true,
+      "unusedResources": false
+    },
+    "packageName": "com.zzliux.assttyysnghotrun",
+    "scripts": {},
+    "versionCode": 1,
+    "versionName": "0.0.1.dev",
+    "ignore": []
+  }

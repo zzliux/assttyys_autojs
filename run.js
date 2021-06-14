@@ -1,5 +1,5 @@
 // let path = '/sdcard/Android/data/' + context.getPackageName() + '/assttyys_ng';
-let path = context.getExternalFilesDir(null).getAbsolutePath() + 'assttyus_ng';
+let path = context.getExternalFilesDir(null).getAbsolutePath() + '/assttyus_ng';
 toastLog("正在加载程序，请稍后");
 let r = http.get('https://gitee.com/zzliux/assttyys_autojs/raw/ng_dev/assttyys_ng.zip');
 files.ensureDir(path + '/assttyys_ng.zip');

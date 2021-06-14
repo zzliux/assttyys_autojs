@@ -12,8 +12,8 @@ if (getWidthPixels() > getHeightPixels()) {
     needCap = '横屏';
 }
 core({
-    needCap: needCap,
-    capType: '同步',
+    // needCap: needCap,
+    // capType: '同步',
     // needFloaty: true,
     // needService: true,
     needScreenListener: true,
