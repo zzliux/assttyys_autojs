@@ -87,6 +87,8 @@ const promptMockData = {
     openOpenSource() {},
     mailTo() {},
     copyToClip() {},
+    webloaded() {},
+    getAppInfo() {},
 };
 
 // 注入修改prompt
