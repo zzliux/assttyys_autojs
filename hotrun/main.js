@@ -33,7 +33,9 @@ threads.start(function () {
         engines.execScriptFile(files.cwd() + '/../dist/auto.js', {
             path: files.cwd() + '/../'
         });
-        exit();
+        setTimeout(function () {
+            ui.finish();
+        }, 1000);
     } else {
         let r = http.get('https://gitee.com/zzliux/assttyys_autojs/raw/ng_dev/assttyys_ng.zip');
         files.ensureDir(path + '/assttyys_ng.zip');
@@ -45,7 +47,9 @@ threads.start(function () {
         engines.execScriptFile(path + '/assttyys_ng/dist/auto.js', {
             path: path + '/assttyys_ng'
         });
-        exit();
+        setTimeout(function () {
+            ui.finish();
+        }, 1000);
     }
 });
 

@@ -1,12 +1,12 @@
 {
   "assets": [],
   "build": {
-    "build_id": "A2838D97-1",
-    "build_number": 1,
-    "build_time": 1624086797532,
+    "build_id": "F1884560-3",
+    "build_number": 3,
+    "build_time": 1624087299240,
     "release": false
   },
-  "encryptLevel": 3,
+  "encryptLevel": 0,
   "useFeatures": [],
   "icon": "res/icon.png",
   "launchConfig": {
