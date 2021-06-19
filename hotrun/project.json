@@ -1,24 +1,35 @@
 {
-    "assets": [],
-    "encryptLevel": 3,
-    "useFeatures": [],
-    "icon": "res/icon.png",
-    "launchConfig": {
-      "displaySplash": true,
-      "hideLogs": true,
-      "splashIcon": "res/splashIcon.png",
-      "splashText": "Powered By AutoJS Pro",
-      "stableMode": true
-    },
-    "main": "main.js",
-    "name": "assttyys_ng",
-    "optimization": {
-      "removeOpenCv": true,
-      "unusedResources": false
-    },
-    "packageName": "com.zzliux.assttyysnghotrun",
-    "scripts": {},
-    "versionCode": 1,
-    "versionName": "0.0.1.dev",
-    "ignore": []
-  }
+  "assets": [],
+  "build": {
+    "build_id": "A2838D97-1",
+    "build_number": 1,
+    "build_time": 1624086797532,
+    "release": false
+  },
+  "encryptLevel": 3,
+  "useFeatures": [],
+  "icon": "res/icon.png",
+  "launchConfig": {
+    "displaySplash": false,
+    "hideLogs": true,
+    "splashIcon": "res/splashIcon.png",
+    "splashText": "Powered By AutoJS Pro",
+    "stableMode": true
+  },
+  "main": "main.js",
+  "name": "assttyys_ng",
+  "optimization": {
+    "removeAccessibilityService": false,
+    "removeOpenCv": true,
+    "unusedResources": false
+  },
+  "packageName": "com.zzliux.assttyysnghotrun",
+  "permissionConfig": {
+    "requestListOnStartup": [
+      "android.permission.WRITE_EXTERNAL_STORAGE"
+    ]
+  },
+  "scripts": {},
+  "versionCode": 1,
+  "versionName": "0.0.1.dev"
+}

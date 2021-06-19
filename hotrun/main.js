@@ -27,7 +27,7 @@ let path = context.getExternalFilesDir(null).getAbsolutePath() + '/assttyus_ng';
 threads.start(function () {
 
     let packageName = context.packageName;
-    if (false && packageName.match(/^org.autojs.autojs(pro)?$/)) {
+    if (packageName.match(/^org.autojs.autojs(pro)?$/)) {
         sleep(2000);
         // 在aj里面运行，表示为开发环境，运行路径为../dist/auto.js
         engines.execScriptFile(files.cwd() + '/../dist/auto.js', {
