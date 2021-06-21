@@ -5,7 +5,11 @@ const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
-const isRoot = device.sdkInt < 24;
+const needRoot = device.sdkInt < 24;
+let ra = null;
+if (needRoot) {
+    ra = new RootAutomator();
+}
 
 const devWidth = 1280;
 const devHeight = 720;
@@ -82,7 +86,7 @@ export const helperBridge = {
                 let x = random(item[0], item[2]);
                 let y = random(item[1], item[3]);
                 console.log(`执行点击操作 === x坐标:${x}, y坐标:${y}`)
-                if (isRoot) {
+                if (needRoot) {
                     Tap(x, y);
                 } else {
                     click(x, y);
@@ -93,7 +97,7 @@ export const helperBridge = {
     },
     regionSwipe(transedOperS, transedOperE, duration, randomSleep) {
         const time = random(duration[0], duration[1])
-        if (isRoot) {
+        if (needRoot) {
             Swipe(
                 random(transedOperS[0], transedOperS[2]), // x1
                 random(transedOperS[1], transedOperS[3]), // y1
@@ -114,10 +118,28 @@ export const helperBridge = {
         }
     },
     /**
-     * @paths [{ x: 123, y: 234 }, {delay: 200, x: 111, y: 333}, { delay: 200, x: 111, y: 222 }]
+     * @paths [{ x: 123, y: 234 }, { delay: 200, x: 111, y: 333}, { delay: 200, x: 111, y: 222 }]
      */
     swipePath(paths) {
-        // TODO
+        // TODO 待验证
+        if (needRoot) {
+            // 使用rootautomator用画path
+            ra.touchDown(paths[0].x, paths[0].y);
+            for (let i = 0; i < paths.length; i++) {
+                sleep(ra.delay);
+                ra.touchMove(paths[i].x, paths[i].y);
+            }
+            ra.touchUp();
+        } else {
+            // 使用无障碍gesture画path
+            let points = [[paths[0].x, paths[0].y]];
+            let duration = 0;
+            for (let i = 1; i < paths.length; i++) {
+                duration += paths.delay;
+                points.push([paths[i].x, paths[i].y]);
+            }
+            gesture(delay, ...points);            
+        }
     },
     // [1119, 504, 1227, 592, 2000]
     // type0-竖直方向，1-水平方向 TODO
@@ -136,7 +158,7 @@ export const helperBridge = {
         const y1 = random(transedOperS[1], transedOperS[3]);
         const x2 = random(transedOperE[0], transedOperE[2]);
         const y2 = random(transedOperE[1], transedOperE[3]);
-        if (isRoot) {
+        if (needRoot) {
             Swipe(x1, y1, x2, y2, time);
             sleep(random(0, randomSleep));
             return;
