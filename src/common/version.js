@@ -70,6 +70,9 @@ export const versionList = [{
 }, {
     version: '20210612_01',
     desc: '新增继续育成，解放双手5红喂1蓝'
+}, {
+    version: '20210621_01',
+    desc: '永生之海组队支持'
 }];
 
 export default versionList[versionList.length - 1].version;

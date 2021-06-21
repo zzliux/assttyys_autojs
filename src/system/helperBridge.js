@@ -113,6 +113,12 @@ export const helperBridge = {
             sleep(time + random(0, randomSleep))
         }
     },
+    /**
+     * @paths [{ x: 123, y: 234 }, {delay: 200, x: 111, y: 333}, { delay: 200, x: 111, y: 222 }]
+     */
+    swipePath(paths) {
+        // TODO
+    },
     // [1119, 504, 1227, 592, 2000]
     // type0-竖直方向，1-水平方向 TODO
     regionBezierSwipe(transedOperS, transedOperE, duration, randomSleep, type) {
