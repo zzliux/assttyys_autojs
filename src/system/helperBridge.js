@@ -121,12 +121,12 @@ export const helperBridge = {
      * @paths [{ x: 123, y: 234 }, { delay: 200, x: 111, y: 333}, { delay: 200, x: 111, y: 222 }]
      */
     swipePath(paths) {
-        // TODO 待验证
+        // TODO root下需要补点，否则拖不过去
         if (needRoot) {
             // 使用rootautomator用画path
             ra.touchDown(paths[0].x, paths[0].y);
-            for (let i = 0; i < paths.length; i++) {
-                sleep(ra.delay);
+            for (let i = 1; i < paths.length; i++) {
+                sleep(paths[i].delay);
                 ra.touchMove(paths[i].x, paths[i].y);
             }
             ra.touchUp();
@@ -135,10 +135,11 @@ export const helperBridge = {
             let points = [[paths[0].x, paths[0].y]];
             let duration = 0;
             for (let i = 1; i < paths.length; i++) {
-                duration += paths.delay;
+                duration += paths[i].delay;
                 points.push([paths[i].x, paths[i].y]);
             }
-            gesture(delay, ...points);            
+            gesture(duration, ...points);      
+            sleep(duration);      
         }
     },
     // [1119, 504, 1227, 592, 2000]

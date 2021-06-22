@@ -73,6 +73,9 @@ export const versionList = [{
 }, {
     version: '20210621_01',
     desc: '永生之海组队支持'
+}, {
+    version: '20210623_01',
+    desc: '新增换狗粮对上N卡的支持'
 }];
 
 export default versionList[versionList.length - 1].version;

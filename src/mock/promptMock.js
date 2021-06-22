@@ -88,7 +88,7 @@ const promptMockData = {
     mailTo() {},
     copyToClip() {},
     webloaded() {},
-    getAppInfo() {},
+    getAppInfo: {},
 };
 
 // 注入修改prompt

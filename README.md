@@ -50,6 +50,7 @@ ASISTTANT YYS NEXT GENERATION
 - 使用浩然的OCR识别逢魔密信中答案只有一个数字的情况无法识别
 - 修改了本地node_modules/@auto.pro/floaty/src/index.js中主logo透明度，从0.4调整为0.9
 - 修改了本地node_modules/@auto.pro/core/src/screen/index.js中android.content.BroadcastReceiver使用JavaAdapter进行实例化
+- helperBridge.swipePath中使用root进行手势需要补点，否则会出现拖动速度过快导致被游戏忽略，影响范围：安卓7以下使用换狗粮的换N卡
 
 # 其他说明
 仅作学习用途，请勿用于其他非法途径！<br/>
