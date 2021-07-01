@@ -152,12 +152,15 @@ webview.on("getSettings").subscribe(([_param, done]) => {
             enabled: !!auto.service
         });
     }
+    if (app.autojs.versionCode >= 8081200) {
+        ret.push({
+            desc: '截图权限',
+            name: 'screenCapturePermission',
+            type: 'autojs_inner_settings_capture_permission',
+            enabled: !!images.getScreenCaptureOptions()
+        });
+    }
     ret = [...ret, {
-        desc: '截图权限',
-        name: 'screenCapturePermission',
-        type: 'autojs_inner_settings_capture_permission',
-        enabled: !!images.getScreenCaptureOptions()
-    }, {
         desc: '悬浮窗权限',
         name: 'floatyPerminssion',
         type: 'autojs_inner_setting_floaty_permission',
@@ -286,16 +289,16 @@ webview.on("versionInfo").subscribe(([_param, done]) => {
 
 webview.on("getAppInfo").subscribe(([_param, done]) => {
     let ret = {};
-    if (app.autojs.versionCode < 8081200) { // Pro 8.8.12-0
-        ret = {
-            needForceUpdate: true,
-            msg: '主程序版本过低，请更新安装主程序后再使用，欢迎进群864842180了解更多'
-        };
-    } else {
+    // if (app.autojs.versionCode < 8081200) { // Pro 8.8.12-0
+    //     ret = {
+    //         needForceUpdate: true,
+    //         msg: '主程序版本过低，请更新安装主程序后再使用，欢迎进群864842180了解更多'
+    //     };
+    // } else {
         ret = {
             msg: '感谢使用本辅助，进群864842180了解更多信息~'
         }
-    }
+    // }
     done(ret);
 });
 

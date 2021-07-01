@@ -59,11 +59,15 @@ const myFloaty = {
         fy.status = 'stoped';
         fy.start = function () {
             fy.status = 'running';
-            let capOpt = images.getScreenCaptureOptions();
-            if (null == capOpt) {
-                // 通过报错来切换图标状态
-                script.run();
-                toastLog('无截图权限');
+            if (app.autojs.versionCode >= 8081200) {
+                let capOpt = images.getScreenCaptureOptions();
+                if (null == capOpt) {
+                    // 通过报错来切换图标状态
+                    script.run();
+                    toastLog('无截图权限');
+                } else {
+                    script.run();
+                }
             } else {
                 script.run();
             }
