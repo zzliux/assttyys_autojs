@@ -1,9 +1,9 @@
 {
   "assets": [],
   "build": {
-    "build_id": "F1884560-3",
-    "build_number": 3,
-    "build_time": 1624087299240,
+    "build_id": "34DAE658-4",
+    "build_number": 4,
+    "build_time": 1625109704849,
     "release": false
   },
   "encryptLevel": 0,
@@ -19,16 +19,10 @@
   "main": "main.js",
   "name": "assttyys_ng",
   "optimization": {
-    "removeAccessibilityService": false,
     "removeOpenCv": true,
     "unusedResources": false
   },
-  "packageName": "com.zzliux.assttyysnghotrun",
-  "permissionConfig": {
-    "requestListOnStartup": [
-      "android.permission.WRITE_EXTERNAL_STORAGE"
-    ]
-  },
+  "packageName": "com.zzliux.assttyysnghotrun877",
   "scripts": {},
   "versionCode": 1,
   "versionName": "0.0.1.dev"

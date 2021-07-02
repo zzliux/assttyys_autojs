@@ -8,7 +8,11 @@ const right = 2;
 const needRoot = device.sdkInt < 24;
 let ra = null;
 if (needRoot) {
-    ra = new RootAutomator();
+    try {
+        ra = new RootAutomator();
+    } catch (e) {
+        console.error(e);
+    }
 }
 
 const devWidth = 1280;
@@ -124,12 +128,28 @@ export const helperBridge = {
         // TODO root下需要补点，否则拖不过去
         if (needRoot) {
             // 使用rootautomator用画path
-            ra.touchDown(paths[0].x, paths[0].y);
-            for (let i = 1; i < paths.length; i++) {
-                sleep(paths[i].delay);
-                ra.touchMove(paths[i].x, paths[i].y);
+            if (ra) {
+                ra.touchDown(paths[0].x, paths[0].y);
+                for (let i = 1; i < paths.length; i++) {
+                    sleep(paths[i].delay);
+                    ra.touchMove(paths[i].x, paths[i].y);
+                }
+                ra.touchUp();
+            } else {
+                // ra获取报错的话就不管手势了，直接用Swipe代替
+                let time = 0;
+                paths.forEach(item => {
+                    time += item.delay || 0;
+                });
+                Swipe(
+                    paths[0].x, // x1
+                    paths[0].y, // y1
+                    paths[paths.length - 1].x, // x2
+                    paths[paths.length - 1].y, // y2
+                    time // duration
+                );
+                sleep(time + 10);
             }
-            ra.touchUp();
         } else {
             // 使用无障碍gesture画path
             let points = [[paths[0].x, paths[0].y]];
