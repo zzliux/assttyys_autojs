@@ -2,7 +2,7 @@ importClass(android.content.pm.ApplicationInfo);
 
 import { fromEvent } from 'rxjs';
 import { webview } from "@/system";
-import { effect$, isRoot } from "@auto.pro/core";
+import { effect$, isRoot, getWidthPixels, getHeightPixels } from "@auto.pro/core";
 import defaultSchemeList from '@/common/schemeList';
 import myFloaty from '@/system/myFloaty';
 import store, { storeCommon } from '@/system/store';
@@ -298,7 +298,13 @@ webview.on("getAppInfo").subscribe(([_param, done]) => {
         ret = {
             msg: '感谢使用本辅助，进群864842180了解更多信息~'
         }
+        let w = getWidthPixels();
+        let h = getHeightPixels();
+        if (!(w == 1280 && h == 720) && !(w == 720 && h == 1280)) {
+            ret.msg = `当前分辨率为 ${w} * ${h}, 非推荐分辨率 720 * 1280, 不保证正常运行。感谢使用本辅助，进群864842180了解更多信息`;
+        }
     // }
+    
     done(ret);
 });
 
