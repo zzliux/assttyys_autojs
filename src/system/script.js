@@ -142,6 +142,7 @@ var script = {
         return this.helperBridge.helper.CompareColorExLoop(desc, this.scheme.commonConfig.colorSimilar, 1, timeout, this.scheme.commonConfig.loopDelay, sign || 0);
     },
     run() {
+        if (this.runThread) return;
         var self = this;
         try {
             if (device.sdkInt >= 24 && !auto.service) {

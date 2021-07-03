@@ -20,7 +20,8 @@ export default {
                 store.put('currentScheme', staredSchemeList[i]);
                 let storeSettings = storeCommon.get('settings', {});
                 if (storeSettings.floaty_scheme_direct_run) {
-                    myfloaty.fy.start();
+                    // myfloaty.fy.start();
+                    myfloaty.thisRun();
                 } else {
                     toast('设置方案[' + staredSchemeList[i].schemeName + ']');
                 }
