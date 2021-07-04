@@ -1117,7 +1117,7 @@ const FuncList = [{
 		if (thisScript.oper({
 			name: '准备界面_判断',
 			operator: [{ desc: thisOperator[0].desc }]
-		})) {
+		}, 1000)) {
 			if (thisScript.findMultiColor('准备界面_满级标识')) {
 				let thisconf = thisScript.scheme.config['15'];
 				if (!thisconf.dog_food_type || '素材' === thisconf.dog_food_type) {
