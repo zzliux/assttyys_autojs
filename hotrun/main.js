@@ -27,7 +27,7 @@ let path = context.getExternalFilesDir(null).getAbsolutePath() + '/assttyus_ng';
 threads.start(function () {
 
     let packageName = context.packageName;
-    if (packageName.match(/^org.autojs.autojs(pro)?$/)) {
+    if (false && packageName.match(/^org.autojs.autojs(pro)?$/)) {
         sleep(2000);
         // 在aj里面运行，表示为开发环境，运行路径为../dist/auto.js
         engines.execScriptFile(files.cwd() + '/../dist/auto.js', {
@@ -37,7 +37,11 @@ threads.start(function () {
             ui.finish();
         }, 1000);
     } else {
-        let r = http.get('https://gitee.com/zzliux/assttyys_autojs/raw/ng_dev/assttyys_ng.zip');
+        let r = http.get('https://gitee.com/zzliux/assttyys_autojs/raw/ng_dev/assttyys_ng.zip', {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36 Edg/91.0.864.59'
+            }
+        });
         files.ensureDir(path + '/assttyys_ng.zip');
         files.writeBytes(path + '/assttyys_ng.zip', r.body.bytes());
         files.removeDir(path + '/assttyys_ng');
