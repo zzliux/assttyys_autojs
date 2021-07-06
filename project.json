@@ -1,9 +1,9 @@
 {
   "assets": [],
   "build": {
-    "build_id": "46A2467F-3",
-    "build_number": 3,
-    "build_time": 1618135100109,
+    "build_id": "7917803D-4",
+    "build_number": 4,
+    "build_time": 1625579232692,
     "release": false
   },
   "encryptLevel": 3,
@@ -19,33 +19,17 @@
   "main": "dist/auto.js",
   "name": "assttyys_ng",
   "optimization": {
+    "removeAccessibilityService": false,
     "removeOpenCv": true,
     "unusedResources": false
   },
-  "packageName": "com.zzliux.assttyysng",
+  "packageName": "com.zzliux.assttyysngfull8816",
+  "permissionConfig": {
+    "requestListOnStartup": [
+      "android.permission.WRITE_EXTERNAL_STORAGE"
+    ]
+  },
   "scripts": {},
   "versionCode": 1,
-  "versionName": "0.0.1.dev",
-  "ignore": [
-    "build",
-    "node_modules",
-    "config",
-    "src",
-    "test",
-    ".babelrc",
-    "jsconfig.json",
-    "tsconfig.json",
-    "package-lock.json",
-    "package.json",
-    "webpack.config.js",
-    "LICENSE",
-    "README.md",
-    "README_AUTO_TEMPLATE_VUE.md",
-    "docs",
-    "assttyys_ng.zip",
-    "pack.js",
-    ".git",
-    ".gitignore",
-    ".workflow"
-  ]
+  "versionName": "0.0.1.dev"
 }
