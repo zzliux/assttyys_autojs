@@ -25,10 +25,7 @@ const myFloaty = {
             .setColor('#0099FF')
             //点击事件
             .onClick((view, name) => {
-                if (self.runEventFlag) {
-                    self.runEventFlag = false;
-                    return;
-                }
+                self.runEventFlag = false;
                 script.stop();
                 var i = new Intent(activity, activity.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -50,14 +47,16 @@ const myFloaty = {
             //设置属性为选中 第一种
             //.setChecked(true)
             .onClick((view, name, state) => {
-                // toastLog('名称 : ' + name + '\n状态 : ' + state);
-                // ui.btn.setText(state ? '停 止' : '启 动');
-                // ui.btn.attr('backgroundTint', state ? '#ED524E' : '#41A4F5');
+                if (self.runEventFlag) {
+                    self.runEventFlag = false;
+                    return;
+                }
                 if (state) {
                     self.thisRun();
                 } else {
                     self.thisStop();
                 }
+                self.runEventFlag = false;
                 //返回 true:保持菜单开启 false:关闭菜单
                 return false;
             });
@@ -73,6 +72,7 @@ const myFloaty = {
             .onClick((view, name) => {
                 script.stop();
                 schemeDialog.show(myFloaty);
+                self.runEventFlag = false;
                 return false;
             });
         this.fb.setAllButtonPadding(6);

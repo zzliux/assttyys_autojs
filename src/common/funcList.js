@@ -448,11 +448,11 @@ const FuncList = [{
 		],
 	}, {
 		desc: [1280,720,
-			[[center, 1280, 720,643,254,0xffffff]]
+			[[center, 643,254,0xffffff]]
 		]
 	}, {
 		desc: [1280,720,
-			[[center, 1280, 720,1088,253,0xffffff]]
+			[[center, 1088,253,0xffffff]]
 		]
 	}, {
 		oper: [
@@ -493,10 +493,10 @@ const FuncList = [{
 			} else if (thisconf.type === '三人') {
 				if (!thisScript.oper({
 					name: '组队挑战_乘客1无人',
-					operator: [{ desc: thisOperator[1].desc }]
+					operator: [thisOperator[1]]
 				}) && !thisScript.oper({
 					name: '组队挑战_乘客2无人',
-					operator: [{ desc: thisOperator[2].desc }]
+					operator: [thisOperator[2]]
 				})) {
 					thisScript.helperBridge.regionClick(thisOperator[3].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
 					return true;
@@ -1783,7 +1783,6 @@ const FuncList = [{
 		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
-		sleep(random(1000,3000))
 		if(!thisScript.oper({
 			name: '判断自动匹配非排队中',
 			operator: [{
@@ -1791,13 +1790,13 @@ const FuncList = [{
 			}]
 		}) && thisScript.oper({
 			name: '首页判断并点击组队',
-			operator: [thisOperator[1]]
+			operator: [thisOperator[1], thisOperator[2]]
 		})){
 			// return thisScript.oper({
 			// 	name: '妖气界面判断自动匹配',
 			// 	operator: [thisOperator[2]]
 			// });
-			thisScript.helperBridge.regionClick(thisOperator[2].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+			// thisScript.helperBridge.regionClick(thisOperator[2].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
 			return true;
 		}
 		return false;

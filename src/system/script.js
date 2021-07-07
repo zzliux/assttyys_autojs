@@ -56,6 +56,8 @@ var script = {
     initFuncList() {
         this.scheme = store.get('currentScheme', null);
         if (null === this.scheme) return;
+        console.log('当前配置：');
+        console.log(this.scheme);
         this.scheme.funcList = [];
         for (let i = 0; i < this.scheme.list.length; i++) {
             for (let j = 0; j < funcList.length; j++) {
