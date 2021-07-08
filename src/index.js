@@ -414,13 +414,13 @@ effect$.subscribe(() => {
     }
 });
 
-fromEvent(ui.emitter, 'resume').subscribe(() => {
-    context.getResources().getConfiguration().orientation === 1 ? '竖屏' : '横屏';
-    // 进入时如果是横屏，重置为竖屏
-    if (context.getResources().getConfiguration().orientation !== 1) {
-        activity.setRequestedOrientation(android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-    }
-});
+// fromEvent(ui.emitter, 'resume').subscribe(() => {
+//     context.getResources().getConfiguration().orientation === 1 ? '竖屏' : '横屏';
+//     // 进入时如果是横屏，重置为竖屏
+//     if (context.getResources().getConfiguration().orientation !== 1) {
+//         activity.setRequestedOrientation(android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//     }
+// });
 
 // 调试用，完成后取消注释
 fromEvent(ui.emitter, 'back_pressed').subscribe((e) => {

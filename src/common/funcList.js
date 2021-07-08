@@ -566,6 +566,21 @@ const FuncList = [{
 			[center, 1280, 720, 970,573, 1130,621, 1500],
 			[center, 1280, 720, 674,407, 839,457, 2000]
 		]
+	}, {
+		desc: [1280,720, // 有呱太活动的刷新
+			[[center,342,610,0xffaf2d],
+			[center,396,610,0x383c5d],
+			[center,1008,598,0xf4b25f],
+			[center,704,596,0x83b542],
+			[center,1205,112,0x632d34],
+			[center,721,94,0x583716],
+			[center,370,100,0x4e3926],
+			[center,122,450,0xdedacf]]
+		],
+		oper: [
+			[center, 1280, 720, 970,573, 1130,621, 1500],
+			[center, 1280, 720, 674,407, 839,457, 2000]
+		]
 	}]
 }, {
 	id: 8,
@@ -1874,6 +1889,41 @@ const FuncList = [{
 		})) {
 			thisScript.helperBridge.regionClick(thisOperator[1].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
 			return true;
+		}
+		return false;
+	}
+}, {
+	id: 29,
+	name: '庭院进入探索地图',
+	desc: '请使用默认庭院皮肤，启用该功能后在庭院下会自动进入探索地图界面',
+	operator: [{
+		desc: [1280,720, //首页比色
+			[[center,229,30,0x614040],
+			[center,404,36,0xfbcb78],
+			[center,437,79,0xee7a59],
+			[center,1151,53,0xcba574],
+			[center,1237,54,0xceac79],
+			[center,1218,603,0x8c5a38],
+			[center,1226,695,0x391816],
+			[center,58,663,0x4b2e31],
+			[center,1238,41,0x6e5c50]]
+		],
+		oper: [
+			[left, 1280, 720, 0, 0, 32, 63, 1000]
+		]
+	}],
+	operatorFunc(thisScript, thisOperator) {
+		if (thisScript.oper({
+			name: '庭院判断',
+			operator: [thisOperator[0]]
+		})) {
+			let point = thisScript.findMultiColor('庭院_探索灯笼');
+			if (point) {
+				let oper = [[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
+				thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+			} else {
+				return false
+			}
 		}
 		return false;
 	}

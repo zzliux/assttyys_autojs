@@ -80,16 +80,35 @@ export default {
     },
     '结界_4勋章': {
         region: [center, 1280, 720, 124, 125, 1152, 545],
-        desc: [[1280,720,
-            [[center,514,147,0xdacbbc],
-            [center,725,155,0xdacebc],
-            [center,532,226,0x8c8681],
-            [center,572,226,0x88837d],
-            [center,611,226,0x8d8782],
-            [center,650,226,0x86817c],
-            [center,690,226,0xc9b6a4],
-            [center,728,254,0xa38f86]]
-        ]]
+        desc: [
+            [1280, 720, // 呱太5勋章
+                [[center,908,426,0xdfd7cb],
+                [center,1118,428,0xdfd7cb],
+                [center,922,504,0x87827d],
+                [center,962,504,0x89837f],
+                [center,1001,504,0x87827d],
+                [center,1040,504,0x88837e],
+                [center,1080,504,0x88827d]]
+            ],
+            [1280, 720, // 呱太5勋章
+                [[center, 572, 428, 0xdfd8cb],
+                [center, 781, 432, 0xdfd9cb],
+                [center, 590, 504, 0x87827d],
+                [center, 629, 504, 0x87827d],
+                [center, 669, 504, 0x87827d],
+                [center, 708, 504, 0x87827d],
+                [center, 748, 504, 0x8a847f]]
+            ],
+            [1280, 720,
+                [[center, 514, 147, 0xdacbbc],
+                [center, 725, 155, 0xdacebc],
+                [center, 532, 226, 0x8c8681],
+                [center, 572, 226, 0x88837d],
+                [center, 611, 226, 0x8d8782],
+                [center, 650, 226, 0x86817c],
+                [center, 690, 226, 0xc9b6a4],
+                [center, 728, 254, 0xa38f86]]
+            ]]
     },
     '结界_3勋章': {
         region: [center, 1280, 720, 124, 125, 1152, 545],
@@ -352,5 +371,29 @@ export default {
             [center,366,314,0xceae9d],
             [center,374,313,0xcba898]]
         ]]
+    },
+    '庭院_探索灯笼': {
+        region: [center, 1280, 720, 0,83, 1279,412],
+        desc: [
+            [1280,720,
+                [[center,658,109,0xd2a580],
+                [center,670,120,0x020100],
+                [center,681,120,0x020101],
+                [center,681,134,0xfee4a5],
+                [center,676,145,0x100b03],
+                [center,688,144,0xfff6b2],
+                [center,688,156,0xffffc2]]
+            ],
+            [1280,720,
+                [[right,1112,107,0xd0a786],
+                [center,1120,113,0x010100],
+                [center,1133,120,0x010101],
+                [center,1136,132,0xfadd9d],
+                [center,1126,133,0xf9de9f],
+                [center,1130,143,0x0e0903],
+                [center,1126,158,0x1e1405],
+                [center,1126,175,0xffffc7]]
+            ]
+        ]
     }
 }

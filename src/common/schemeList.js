@@ -56,7 +56,7 @@ const SchemeList = [{
     id: 7,
     schemeName: '个人探索',
     star: true,
-    list: [0, 15, 1, 2, 3, 13, 14]
+    list: [0, 15, 1, 2, 3, 13, 14, 29]
 }, {
     id: 8,
     schemeName: '组队探索_队长',
