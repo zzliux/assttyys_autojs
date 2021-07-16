@@ -93,7 +93,7 @@ export const helperBridge = {
                 if (needRoot) {
                     Tap(x, y);
                 } else {
-                    click(x, y);
+                    press(x, y, random(10, 60));
                 }
             }
             sleep(item[4] + random(0, randomSleep || 0));

@@ -545,7 +545,7 @@ const FuncList = [{
 			[center,720,93,0x583716],
 			[center,224,104,0x4a3525],
 			[center,997,127,0x958c83],
-			[center,400,610,0xffac2c],
+			[center,400,610,0xfd9328],
 			[center,995,595, 0xAEA69E],
 			[center,646,97,0xf8f3e0]]
 		],
@@ -558,7 +558,7 @@ const FuncList = [{
 			[center,720,93,0x583716],
 			[center,224,104,0x4a3525],
 			[center,997,127,0x958c83],
-			[center,400,610,0xffac2c],
+			[center,400,610,0xfd9328],
 			[center,995,595,0xf4b25f],
 			[center,646,97,0xf8f3e0]]
 		],

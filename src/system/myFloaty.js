@@ -83,15 +83,19 @@ const myFloaty = {
         script.setRunCallback(function () {
             self.runEventFlag = true;
             runStopItem.setChecked(true);
-            self.fb.setTint('#ff08bc92');
-            // self.fb.getView('logo').setColorFilter(colors.argb(255, 0x08, 0xbc, 0x92));
+            // self.fb.setTint('#ff08bc92');
+            ui.run(function () {
+                self.fb.getView('logo').setColorFilter(colors.argb(255, 0x08, 0xbc, 0x92));
+            });
         });
 
         script.setStopCallback(function () {
             self.runEventFlag = true;
             runStopItem.setChecked(false);
-            self.fb.setTint('#00000000');
-            // self.fb.getView('logo').setColorFilter(colors.argb(0, 0, 0, 0));
+            // self.fb.setTint('#00000000');
+            ui.run(function () {
+                self.fb.getView('logo').setColorFilter(colors.argb(0, 0, 0, 0));
+            });
         });
 
         this.thisRun = function() {
