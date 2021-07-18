@@ -81,24 +81,24 @@ export default {
     '结界_4勋章': {
         region: [center, 1280, 720, 124, 125, 1152, 545],
         desc: [
-            [1280, 720, // 呱太5勋章
-                [[center,908,426,0xdfd7cb],
-                [center,1118,428,0xdfd7cb],
-                [center,922,504,0x87827d],
-                [center,962,504,0x89837f],
-                [center,1001,504,0x87827d],
-                [center,1040,504,0x88837e],
-                [center,1080,504,0x88827d]]
-            ],
-            [1280, 720, // 呱太5勋章
-                [[center, 572, 428, 0xdfd8cb],
-                [center, 781, 432, 0xdfd9cb],
-                [center, 590, 504, 0x87827d],
-                [center, 629, 504, 0x87827d],
-                [center, 669, 504, 0x87827d],
-                [center, 708, 504, 0x87827d],
-                [center, 748, 504, 0x8a847f]]
-            ],
+            // [1280, 720, // 呱太5勋章
+            //     [[center,908,426,0xdfd7cb],
+            //     [center,1118,428,0xdfd7cb],
+            //     [center,922,504,0x87827d],
+            //     [center,962,504,0x89837f],
+            //     [center,1001,504,0x87827d],
+            //     [center,1040,504,0x88837e],
+            //     [center,1080,504,0x88827d]]
+            // ],
+            // [1280, 720, // 呱太5勋章
+            //     [[center, 572, 428, 0xdfd8cb],
+            //     [center, 781, 432, 0xdfd9cb],
+            //     [center, 590, 504, 0x87827d],
+            //     [center, 629, 504, 0x87827d],
+            //     [center, 669, 504, 0x87827d],
+            //     [center, 708, 504, 0x87827d],
+            //     [center, 748, 504, 0x8a847f]]
+            // ],
             [1280, 720,
                 [[center, 514, 147, 0xdacbbc],
                 [center, 725, 155, 0xdacebc],
