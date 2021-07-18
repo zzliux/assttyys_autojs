@@ -110,9 +110,11 @@ var script = {
         let region = inRegion || this.multiColor[key].region;
         let desc = this.multiColor[key].desc;
         let similar = this.multiColor[key].similar || this.scheme.commonConfig.multiColorSimilar
-        for (let item of desc) {
+        for (let i = 0; i < desc.length; i++) {
+            let item = desc[i];
             let point = this.helperBridge.helper.FindMultiColor(region[0], region[1], region[2], region[3], item, similar, 1);
             if (point.x !== -1) {
+                console.log(`[${key}]第${i}个查找成功， 坐标为：(${point.x}, ${point.y})`);
                 return point;
             }
         }

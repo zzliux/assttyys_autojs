@@ -99,16 +99,31 @@ export default {
             //     [center, 708, 504, 0x87827d],
             //     [center, 748, 504, 0x8a847f]]
             // ],
-            [1280, 720,
-                [[center, 514, 147, 0xdacbbc],
-                [center, 725, 155, 0xdacebc],
-                [center, 532, 226, 0x8c8681],
-                [center, 572, 226, 0x88837d],
-                [center, 611, 226, 0x8d8782],
-                [center, 650, 226, 0x86817c],
-                [center, 690, 226, 0xc9b6a4],
-                [center, 728, 254, 0xa38f86]]
-            ]]
+            // [1280, 720,
+            //     [[center, 514, 147, 0xdacbbc],
+            //     [center, 725, 155, 0xdacebc],
+            //     [center, 532, 226, 0x8c8681],
+            //     [center, 572, 226, 0x88837d],
+            //     [center, 611, 226, 0x8d8782],
+            //     [center, 650, 226, 0x86817c],
+            //     [center, 690, 226, 0xc9b6a4],
+            //     [center, 728, 254, 0xa38f86]]
+            // ]
+            [1280,720,
+                [[center,907,294,0xdacebc],
+                [right,1120,295,0xdaccbc],
+                [center,922,369,0x88827e],
+                [center,962,369,0x88837e],
+                [center,1001,369,0x87827d],
+                [center,1040,369,0x87827d],
+                [center,1081,369,0xc9b6a5],
+                [right,1118,396,0xa3938a],
+                [right,1102,284,0xd4c3b2],
+                [right,1104,303,0xdacebc],
+                [right,1088,300,0xdacebc]]
+            ]
+        ]
+            
     },
     '结界_3勋章': {
         region: [center, 1280, 720, 124, 125, 1152, 545],
