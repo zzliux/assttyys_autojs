@@ -439,7 +439,7 @@ const FuncList = [{
 	operator: [{
 		desc: [1280,720,
 			[[left,43,37,0xf5e6a8],
-			[right,1238,27,0xd7c5a2],
+			// [right,1238,27,0xd7c5a2],
 			[right,1177,667,0xd8b871],
 			[right,1187,679,0xcda35d],
 			[right,1188,609,0xf1e096],
