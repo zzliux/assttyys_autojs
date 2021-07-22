@@ -341,6 +341,25 @@ const FuncList = [{
 		oper: [
 			[left, 1280, 720, 69, 171, 170, 452, 2000]
 		]
+	}, {
+		// 御魂溢出点确认
+		desc: [1280,720,
+			[[center,448,221,0x684736],
+			[center,829,222,0x654434],
+			[center,705,248,0xcbb59e],
+			[center,504,408,0xcbb59e],
+			[center,762,415,0xcbb59e],
+			[center,771,352,0xcbb59e],
+			[center,519,340,0xcbb59e],
+			[center,604,411,0xf4b25f],
+			[center,684,438,0xf4b25f],
+			[center,698,446,0x923d2c],
+			[center,596,493,0x6d4c3b]]
+		],
+		oper: [
+			[center, 1280, 720, 585,398, 694,446, 1000]
+		],
+		notForCnt: true,
 	}]
 }, {
 	id: 3,
@@ -1927,6 +1946,91 @@ const FuncList = [{
 		}
 		return false;
 	}
+}, {
+	id: 99,
+	name: '往复之间挑战',
+	desc: 'SP面灵气活动爬塔活动往复之间挑战',
+	operator: [{
+		// 挑战
+		desc: [1280,720,
+			[[left,43,44,0xf4e3a3],
+			[right,1184,599,0xdbcbb2],
+			[right,1222,673,0x2e150e],
+			[right,577,643,0xe9d0a7],
+			[right,681,636,0xf3debb],
+			[right,1034,29,0xfd6228],
+			[left,348,35,0x661629]]
+		],
+		oper: [
+			[right, 1280, 720, 1144,591, 1224,673, 500]
+		],
+		retest: 2000,
+	}, {
+		// 逃脱成功
+		desc: [1280,720,
+			[[center,646,294,0x715c55],
+			[center,647,348,0xfffbf7],
+			[center,646,425,0x2e2c2a],
+			[left,89,540,0xe07d23],
+			[left,98,548,0xc7241c]]
+		],
+		oper: [
+			[center, 1280, 720, 296,186, 1060,476, 1000]
+		]
+	}, {
+		// 逃脱成功奖励
+		desc: [1280,720,
+			[[center,450,197,0xe1d0b0],
+			[center,627,241,0xf9f6d6],
+			[center,735,214,0xead9b5],
+			[center,802,226,0xf3e6c6],
+			[center,258,125,0x961f30],
+			[center,970,156,0x671821]]
+		],
+		oper: [
+			[left, 1280, 720, 114,177, 266,626, 1000]
+		]
+	}, {
+		// 逃脱失败
+		desc: [1280,720,
+			[[left,88,550,0xe07d23],
+			[left,98,548,0xc7241c],
+			[left,90,533,0xe07d23],
+			[center,822,156,0xebe2d3],
+			[center,817,204,0xdfd4c3],
+			[center,678,308,0x6d5855],
+			[center,576,372,0xfffbf7]]
+		],
+		oper: [
+			[center, 1280, 720, 296,186, 1060,476, 1000]
+		]
+	}, {
+		// 逃脱失败奖励
+		desc: [1280,720,
+			[[center,448,254,0xe7e7e7],
+			[center,594,260,0xe5e5e5],
+			[center,702,248,0xe3e3e3],
+			[center,774,261,0xdedede],
+			[left,90,554,0x44260b],
+			[right,1184,604,0x423e36]]
+		],
+		oper: [
+			[left, 1280, 720, 114,177, 266,626, 1000]
+		]
+	}, {
+		// 进入往复之间
+		desc: [1280,720,
+			[[left,95,130,0xe9e0bf],
+			[left,44,47,0xf4e4a4],
+			[left,65,46,0x8e6642],
+			[left,267,43,0x583716],
+			[left,343,39,0x8b304a],
+			[center,670,248,0xbfafa7]]
+		],
+		oper: [
+			[center, 1280, 720, 622,166, 677,350, 1000]
+		]
+	}]
 }];
 
 export default FuncList;

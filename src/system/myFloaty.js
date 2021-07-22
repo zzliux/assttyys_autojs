@@ -82,6 +82,9 @@ const myFloaty = {
 
         script.setRunCallback(function () {
             self.runEventFlag = true;
+            setTimeout(() => {
+                self.runEventFlag = false;
+            }, 500);
             runStopItem.setChecked(true);
             // self.fb.setTint('#ff08bc92');
             ui.run(function () {
@@ -91,6 +94,9 @@ const myFloaty = {
 
         script.setStopCallback(function () {
             self.runEventFlag = true;
+            setTimeout(() => {
+                self.runEventFlag = false;
+            }, 500);
             runStopItem.setChecked(false);
             // self.fb.setTint('#00000000');
             ui.run(function () {

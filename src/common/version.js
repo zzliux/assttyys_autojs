@@ -79,6 +79,9 @@ export const versionList = [{
 }, {
     version: '20210708_01',
     desc: '新增呱太活动适配，新增从庭院进入探索地图(方案个人探索请手动开启功能29或在设置中重置方案与功能后更新方案)'
+}, {
+    version: '20210722_01',
+    desc: '新增适配活动往复之间'
 }];
 
 export default versionList[versionList.length - 1].version;

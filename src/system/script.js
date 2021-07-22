@@ -237,10 +237,11 @@ var script = {
                 }
                 // console.log(`执行：currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper} 比色结果:${rs}`);
                 if (rs) {
-                    if (retest) {
+                    retest = retest || item.retest || undefined;
+                    if (retest && retest !== -1) {
                         sleep(retest);
                         this.keepScreen();
-                        return this.oper(currFunc);
+                        return this.oper(currFunc, -1);
                     }
                     if (!!currFunc.id && this.lastFunc !== currFunc.id && !item.notForCnt) {
                         if (!this.runTimes[currFunc.id]) {
