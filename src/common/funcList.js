@@ -1958,7 +1958,7 @@ const FuncList = [{
 			[right,1222,673,0x2e150e],
 			[right,577,643,0xe9d0a7],
 			[right,681,636,0xf3debb],
-			[right,1034,29,0xfd6228],
+			// [right,1034,29,0xfd6228],
 			[left,348,35,0x661629]]
 		],
 		oper: [
