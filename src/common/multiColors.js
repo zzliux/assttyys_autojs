@@ -328,7 +328,7 @@ export default {
     },
     '绿标_标识_A': {
         region: [center, 1280, 720, 0,156, 1279,650],
-        similar: 93,
+        similar: 90,
         desc: [[1280,720,
             [[center,59,308,0xdcc3b2],
             [center,59,314,0x8c372f],
@@ -385,6 +385,35 @@ export default {
             [center,370,314,0x873629],
             [center,366,314,0xceae9d],
             [center,374,313,0xcba898]]
+        ], [1280,720,
+            [[center,237,352,0x8d4139],
+            [center,244,353,0xddc7b7],
+            [center,244,365,0x8b423b],
+            [center,240,362,0xd0b2a4],
+            [center,248,362,0xd1b3a5],
+            [center,244,358,0x8b403b],
+            [center,249,354,0x8b4139]]
+        ], [1280,720,
+            [[center,239,352,0xb15946],
+            [center,244,353,0xe6ccb9],
+            [center,240,363,0xd5b0a0],
+            [center,248,362,0xd8b6a5],
+            [center,244,363,0x9e473a],
+            [center,249,353,0xae5644]]
+        ], [1280,720,
+            [[center,841,339,0x8f3522],
+            [center,847,339,0xdcc1ad],
+            [center,852,339,0x882c17],
+            [center,847,351,0x892d18],
+            [center,851,348,0xd4b29f],
+            [center,844,348,0xb77e6b]]
+        ], [1280,720,
+            [[center,461,337,0x903220],
+            [center,467,337,0xddc1ae],
+            [center,472,337,0x943522],
+            [center,467,348,0x92301e],
+            [center,463,347,0xd6b19f],
+            [center,472,347,0xd5b09e]]
         ]]
     },
     '庭院_探索灯笼': {
