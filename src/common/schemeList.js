@@ -124,8 +124,8 @@ const SchemeList = [{
     list: [3, 28]
 }, {
     id: 99,
-    schemeName: '活动_往复之间',
-    list: [0, 1, 2, 3, 99],
+    schemeName: '活动_夏日花火会_猜灯迷',
+    list: [0, 3, 101, 102, 24],
 }
     // 完整demo
     // , {

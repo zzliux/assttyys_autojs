@@ -41,6 +41,15 @@
             {{ configItemItem.value }}
           </div>
         </template>
+        <template v-else-if="'text' === configItemItem.type" #input>
+          <div class="van-field__body">
+            <input
+              type="text"
+              v-model="configItemItem.value"
+              class="van-field__control"
+            />
+          </div>
+        </template>
       </van-field>
     </van-cell-group>
 

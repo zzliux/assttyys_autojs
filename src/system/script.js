@@ -193,8 +193,9 @@ var script = {
                 }
             } catch (e) {
                 self.runThread = null;
-                console.error(e);
-                console.error(e.stack);
+                if (e.toString().indexOf('com.stardust.autojs.runtime.exception.ScriptInterruptedException') === -1) {
+                    console.error($debug.getStackTrace(e));
+                }
                 if (typeof self.stopCallback === 'function') {
                     self.stopCallback();
                 }
@@ -206,10 +207,10 @@ var script = {
     },
     stop() {
         if (null !== this.runThread) {
-            this.runThread.interrupt();
             if (typeof this.stopCallback === 'function') {
                 this.stopCallback();
             }
+            this.runThread.interrupt();
         }
         this.runThread = null;
     },

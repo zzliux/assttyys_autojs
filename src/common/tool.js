@@ -20,15 +20,18 @@ export const mergeSchemeList = (savedSchemeList, innerSchemeList) => {
     return [...savedSchemeList, ...toMerge];
 }
 
-export function search(list, prop, str) {
+export function search(list, prop, str, filterSimilar) {
     let maxSimilarity = 0;
     let maxSimilarityIndex = -1;
     for (let i = 0; i < list.length; i++) {
-        let sim = similarity(list[i][prop], str);
+        let sim = similarity(list[i][prop], str, filterSimilar) || 0;
         if (sim > maxSimilarity) {
             maxSimilarity = sim;
             maxSimilarityIndex = i;
         }
+    }
+    if (-1 === maxSimilarityIndex) {
+        return null;
     }
     return {
         data: list[maxSimilarityIndex],
@@ -40,9 +43,12 @@ export function questionSearch(str) {
     return search(fmmxQuestionList, 'question', str);
 }
 
-export function similarity(s1, s2) {
-    const len1 = s1.length
-    const len2 = s2.length
+export function similarity(s1, s2, filterSimilar) {
+    let len1 = s1.length;
+    let len2 = s2.length;
+    let maxLen = Math.max(len1, len2);
+    let thres = parseInt((1 - (filterSimilar || 0)) * maxLen); // 编辑距离超过这个数后直接返回false，加快匹配速度;
+
 
     let matrix = []
 
@@ -61,13 +67,16 @@ export function similarity(s1, s2) {
                 if (s1[i - 1] != s2[j - 1]) { // 相同为0，不同置1
                     cost = 1
                 }
-                const temp = matrix[i - 1][j - 1] + cost
+                let temp = matrix[i - 1][j - 1] + cost
 
-                matrix[i][j] = Math.min(matrix[i - 1][j] + 1, matrix[i][j - 1] + 1, temp)
+                matrix[i][j] = Math.min(matrix[i - 1][j] + 1, matrix[i][j - 1] + 1, temp);
+                if ((i === j || (i === len1 && i < j) || (j === len2 && i > j)) && matrix[i][j] > thres) {
+                    return false;
+                }
             }
         }
     }
-    return 1 - (matrix[len1][len2] / Math.max(len1, len2)); //返回右下角的值
+    return 1 - (matrix[len1][len2] / maxLen); //返回右下角的值
 }
 
 export function setCurrentScheme(schemeName) {

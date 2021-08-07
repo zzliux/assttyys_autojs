@@ -1527,8 +1527,8 @@ const FuncList = [{
 			[center,723,618,0xcfbcad]]
 		],
 		oper: [
-			[center, 1280, 720, 429,163, 433, 72, 0], // 问题区域
-			[center, 1280, 720, 426,252, 446,264, 0], // 答案区域
+			[center, 1280, 720, 429,163, 429 + 433, 163 + 72, 0], // 问题区域
+			[center, 1280, 720, 426,252, 426 + 446, 252 + 264, 0], // 答案区域
 		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
@@ -1538,11 +1538,11 @@ const FuncList = [{
 		})) {
 			let screenImg = images.captureScreen();
 			// 识别问题
-			let toDetectQuestion = images.clip(screenImg, ...thisOperator[0].oper[0].slice(0, 4));
+			let toDetectQuestionBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[0].oper[0].slice(0, 4));
 			console.time('ocr.detect.question');
-			let resultQuestion = thisScript.getOcr().detect(toDetectQuestion.getBitmap(), 1);
+			let resultQuestion = thisScript.getOcr().detect(toDetectQuestionBmp, 1);
 			console.timeEnd('ocr.detect.question');
-			toDetectQuestion.recycle();
+			toDetectQuestionBmp.recycle();
 			let question = '';
 			for (let i = 0, len = resultQuestion.size(); i < len; i++) {
 				question += resultQuestion.get(i).text;
@@ -1552,11 +1552,11 @@ const FuncList = [{
 			let stdQuestion = questionSearch(question);
 			console.log(`搜索题库:${JSON.stringify(stdQuestion)}`);
 
-			let toDetectAns = images.clip(screenImg, ...thisOperator[0].oper[1].slice(0, 4));
+			let toDetectAnsBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[0].oper[1].slice(0, 4));
 			console.time('ocr.detect.ans');
-			let resultAns = thisScript.getOcr().detect(toDetectAns.getBitmap(), 1);
+			let resultAns = thisScript.getOcr().detect(toDetectAnsBmp, 1);
 			console.timeEnd('ocr.detect.ans');
-			toDetectAns.recycle();
+			toDetectAnsBmp.recycle();
 			let ansList = [];
 			for (let i = 0, len = resultAns.size(); i < len; i++) {
 				let row = resultAns.get(i);
@@ -1947,88 +1947,156 @@ const FuncList = [{
 		return false;
 	}
 }, {
-	id: 99,
-	name: '往复之间挑战',
-	desc: 'SP面灵气活动爬塔活动往复之间挑战',
+	id: 101,
+	name: '夏日花火会_猜灯迷_答题',
+	config: [{
+		desc: '',
+		config: [{
+			name: 'path',
+			desc: '题目识别不到时保存截图路径(不填表示不保存)',
+			type: 'text',
+			default: '',
+		}]
+	}],
 	operator: [{
-		// 挑战
 		desc: [1280,720,
-			[[left,43,44,0xf4e3a3],
-			[right,1184,599,0xdbcbb2],
-			[right,1222,673,0x2e150e],
-			[right,577,643,0xe9d0a7],
-			[right,681,636,0xf3debb],
-			// [right,1034,29,0xfd6228],
-			[left,348,35,0x661629]]
+			[[left,48,52,0xf5e7a9],
+			[left,219,54,0x583716],
+			[center,527,103,0xeedcb0],
+			[center,705,112,0x554e5d],
+			[center,755,254,0xc2a488],
+			[center,755,320,0xc4ad8b],
+			[center,755,385,0xc1ae94],
+			[center,755,451,0xc3b094],
+			[center,759,274,0xc4a788],
+			[center,759,340,0xbfb08e],
+			[center,759,405,0xbfac90],
+			[center,759,470,0xc1af94]]
 		],
 		oper: [
-			[right, 1280, 720, 1144,591, 1224,673, 500]
-		],
-		retest: 2000,
-	}, {
-		// 逃脱成功
+			[center, 1280, 720, 449,151, 827,245, 0],
+			[center, 1280, 720, 494,241, 786,505, 0],
+			[center, 1280, 720, 452,72, 830,528, 0],
+		]
+	}],
+	operatorFunc(thisScript, thisOperator) {
+		if (thisScript.oper({
+			name: '猜灯谜_答题界面',
+			operator: [{
+				desc: thisOperator[0].desc,
+			}]
+		})) {
+			if (!thisScript.global.dynamicQA) {
+				console.log('初始化题库');
+				let str = files.read(files.cwd() + '/assets/dynamicQA.txt');
+				let arr = str.split(/\r?\n/);
+				thisScript.global.dynamicQA = [];
+				arr.forEach(item => {
+					let par = item.split(' \\\\\\]]]');
+					thisScript.global.dynamicQA.push({
+						question: par[0].replace(/[，,？?\'\"【】\-「」\|。]/g, ''),
+						ans: par[1]
+					});
+				});
+			}
+			let thisconf = thisScript.scheme.config['101'];
+			let t1 = new Date().getTime();
+			let bmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[0].oper[0].slice(0, 4));
+			// 识别问题
+			console.time('ocr.detect.question');
+			let res = thisScript.getOcr().detect(bmp, 1);
+			console.timeEnd('ocr.detect.question');
+			bmp.recycle();
+			let resText = '';
+			for (let i = 0, len = res.size(); i < len; i++) {
+				resText += res.get(i).text;
+			}
+			resText = resText.replace(/[，,？?\'\"【】\-「」\|。]/g, '');
+			console.log(`识别问题: ${resText}`);
+			// 搜索题库
+			console.time('ocr.question.search');
+			let stdQuestion = search(thisScript.global.dynamicQA, 'question', resText, 0.7);
+			console.timeEnd('ocr.question.search');
+			if (null === stdQuestion) {
+				// todo 更新题库
+				toastLog('未搜索到题库');
+				// throw new Error('未搜索到题库');
+				// 保存图片
+				let path = thisconf.path;
+				if (path) {
+					let qa = thisScript.helperBridge.helper.GetBitmap(...thisOperator[0].oper[2].slice(0, 4));
+					let qaIw = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(qa);
+					images.save(qaIw, path + '/' + new Date().getTime() + '.png');
+					qa.recycle();
+					qaIw.recycle();
+				}
+				sleep(12000);
+				return false;
+			}
+			// stdQuestion.data.question;
+
+			// 识别答案
+			let bmp2 = thisScript.helperBridge.helper.GetBitmap(...thisOperator[0].oper[1].slice(0, 4));
+			// 识别答案
+			console.time('ocr.detect.ans');
+			let res2 = thisScript.getOcr().detect(bmp2, 1);
+			console.timeEnd('ocr.detect.ans');
+			bmp2.recycle();
+
+			let ansList = [];
+			for (let i = 0, len = res2.size(); i < len; i++) {
+				let row = res2.get(i);
+				let frame = row.frame;
+				let rect = [
+					thisOperator[0].oper[1][0] + frame.get(0),
+					thisOperator[0].oper[1][1] + frame.get(1),
+					thisOperator[0].oper[1][0] + frame.get(4),
+					thisOperator[0].oper[1][1] + frame.get(5)
+				];
+				ansList.push({
+					text: row.text,
+					rect: rect
+				});
+			}
+			console.log(`答案区域识别:${JSON.stringify(ansList)}`);
+			let stdAns = search(ansList, 'text', stdQuestion.data.ans);
+			if (stdAns === null) {
+				toastLog('未搜索到答案');
+				// throw new Error('未搜索到答案');
+				return false;
+			}
+			let t2 = new Date().getTime();
+			toastLog(`识别题目: ${stdQuestion.data.question}, 选择答案: ${stdAns.data.text}, 置信度为: ${(stdQuestion.similarity * stdAns.similarity).toFixed(4)}, 总耗时: ${t2 - t1}ms`);
+			thisScript.helperBridge.regionClick([[...stdAns.data.rect, 3000]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+		}
+	}
+}, {
+	id: 102,
+	name: '',
+	name: '夏日花火会_猜灯迷_杂项',
+	operator: [{
+		// 结算
 		desc: [1280,720,
-			[[center,646,294,0x715c55],
-			[center,647,348,0xfffbf7],
-			[center,646,425,0x2e2c2a],
-			[left,89,540,0xe07d23],
-			[left,98,548,0xc7241c]]
+			[[center,458,179,0x6a423b],
+			[center,521,132,0xd7b27d],
+			[center,661,579,0xccba98],
+			[center,754,635,0x985c4b]]
 		],
 		oper: [
-			[center, 1280, 720, 296,186, 1060,476, 1000]
+			[left, 1280, 720, 69, 171, 170, 452, 1000]
 		]
 	}, {
-		// 逃脱成功奖励
+		// 开始
 		desc: [1280,720,
-			[[center,450,197,0xe1d0b0],
-			[center,627,241,0xf9f6d6],
-			[center,735,214,0xead9b5],
-			[center,802,226,0xf3e6c6],
-			[center,258,125,0x961f30],
-			[center,970,156,0x671821]]
+			[[left,48,51,0xf5e7a9],
+			[left,219,58,0x583716],
+			[left,103,288,0xd1b78a],
+			[right,1222,597,0xd7a975],
+			[right,1164,43,0xd7c5a2],
+			[center,1204,644,0xffeecc]]
 		],
 		oper: [
-			[left, 1280, 720, 114,177, 266,626, 1000]
-		]
-	}, {
-		// 逃脱失败
-		desc: [1280,720,
-			[[left,88,550,0xe07d23],
-			[left,98,548,0xc7241c],
-			[left,90,533,0xe07d23],
-			[center,822,156,0xebe2d3],
-			[center,817,204,0xdfd4c3],
-			[center,678,308,0x6d5855],
-			[center,576,372,0xfffbf7]]
-		],
-		oper: [
-			[center, 1280, 720, 296,186, 1060,476, 1000]
-		]
-	}, {
-		// 逃脱失败奖励
-		desc: [1280,720,
-			[[center,448,254,0xe7e7e7],
-			[center,594,260,0xe5e5e5],
-			[center,702,248,0xe3e3e3],
-			[center,774,261,0xdedede],
-			[left,90,554,0x44260b],
-			[right,1184,604,0x423e36]]
-		],
-		oper: [
-			[left, 1280, 720, 114,177, 266,626, 1000]
-		]
-	}, {
-		// 进入往复之间
-		desc: [1280,720,
-			[[left,95,130,0xe9e0bf],
-			[left,44,47,0xf4e4a4],
-			[left,65,46,0x8e6642],
-			[left,267,43,0x583716],
-			[left,343,39,0x8b304a],
-			[center,670,248,0xbfafa7]]
-		],
-		oper: [
-			[center, 1280, 720, 622,166, 677,350, 1000]
+			[right, 1280, 720, 1170,601, 1264,700, 1000]
 		]
 	}]
 }];
