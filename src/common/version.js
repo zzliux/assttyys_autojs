@@ -82,6 +82,9 @@ export const versionList = [{
 }, {
     version: '20210722_01',
     desc: '新增适配活动往复之间'
+}, {
+    version: '20210821_01',
+    desc: '优化探索: 领取宝箱，减少妖气、石距对探索章节的影响'
 }];
 
 export default versionList[versionList.length - 1].version;

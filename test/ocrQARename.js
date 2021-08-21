@@ -9,7 +9,7 @@ for (let i = 0; i < imagesList.length; i++) {
     let img = images.read(path + '/' + imagesList[i]);
     let toDetectQue = images.clip(img, 3, 80, 373 - 3, 173 - 80);
     img.recycle();
-    let resultQue = ocr.detect(toDetectQue.getBitmap(), 0.7);
+    let resultQue = ocr.detect(toDetectQue.getBitmap(), 1);
     toDetectQue.recycle();
     let question = '';
     for (let i = 0, len = resultQue.size(); i < len; i++) {
