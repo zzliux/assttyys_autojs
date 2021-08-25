@@ -85,6 +85,9 @@ export const versionList = [{
 }, {
     version: '20210821_01',
     desc: '优化探索: 领取宝箱，减少妖气、石距对探索章节的影响'
+}, {
+    version: '20210825_01',
+    desc: '新增：自动斗技'
 }];
 
 export default versionList[versionList.length - 1].version;
