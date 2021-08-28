@@ -178,23 +178,21 @@ const FuncList = [{
 			[left, 1280, 720, 0,0, 1279, 719, -1] // 屏幕大小
 		]
 	}, {
-		// 未自动
-		desc: [1280, 720,
-			[[right,1227,702,0x1c1210],
-			[right,1165,704,0x160e0e],
-			[right,1084,707,0x160f0e],
-			[right,1020,698,0x150d0d],
-			[right,971,698,0x150d0d],
-			[right,934,697,0x150d0d],
-			[left,28,654,0x74615d],
+		// 手动状态
+		desc: [1280,720,
+			[[left,28,654,0x74615d],
 			[left,43,662,0xf6f1de],
 			[left,54,666,0x5c523e],
 			[left,47,33,0xd7c5a2],
-			[right,1263,32,0x7a5126]]
+			[right,1263,32,0x7a5126],
+			[left,34,23,0xd7c5a2],
+			[right,1266,606,0x5e5970]]
 		],
 		oper: [
 			[left, 1280, 720, 41,640, 86,674, 1000]
 		]
+	}, {
+		
 	}],
 	operatorFunc(thisScript, thisOperator) {
 		let thisconf = thisScript.scheme.config['1'];
