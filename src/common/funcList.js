@@ -219,7 +219,7 @@ const FuncList = [{
 				id: 1,
 				name: '手动修正自动',
 				operator: [thisOperator[2]]
-			})) {
+			}, 1000)) {
 				if (thisconf.greenFlag) {
 					// 开启绿标
 					if (thisScript.compareColorLoop(thisOperator[1].desc, 16000)) {
@@ -1826,16 +1826,16 @@ const FuncList = [{
 	desc: '在庭院中点击下方的组队按钮后点击排队按钮',
 	operator: [{
 		desc: [1280,720,
-		[[center,400,50,0x513b14], //妖气自动匹配中的 图像
-		[center,392,46,0x644217],
-		[center,804,44,0x986f55],
-		[center,660,53,0xac9e90],
-		[center,704,27,0xaa9379],
-		[center,807,27,0x9d7051],
-		[center,556,98,0x2e090d],
-		[center,626,83,0xab9f8b],
-		[center,620,30,0xaa937b],
-		[center,397,22,0x766838]]
+			[[center,400,50,0x513b14], //妖气自动匹配中的 图像
+			[center,392,46,0x644217],
+			[center,804,44,0x986f55],
+			[center,660,53,0xac9e90],
+			[center,704,27,0xaa9379],
+			[center,807,27,0x9d7051],
+			[center,556,98,0x2e090d],
+			[center,626,83,0xab9f8b],
+			[center,620,30,0xaa937b],
+			[center,397,22,0x766838]]
 	]},{
 		desc: [1280,720, //首页比色
 			[[center,229,30,0x614040],
@@ -1843,10 +1843,11 @@ const FuncList = [{
 			[center,437,79,0xee7a59],
 			[center,1151,53,0xcba574],
 			[center,1237,54,0xceac79],
-			[center,1218,603,0x8c5a38],
-			[center,1226,695,0x391816],
-			[center,58,663,0x4b2e31],
-			[center,1238,41,0x6e5c50]]
+			[right,1235,610,0x5c7575],
+			[center,1020,597,0xc73e4c],
+			[center,635,608,0xf4f4f3],
+			[center,373,623,0xe2dfdc],
+			[center,746,630,0xd9ceca]]
 		],
 		oper: [
 			[center, 1280, 720, 350, 640, 402, 664, 1500], //首页组队按钮
@@ -1968,16 +1969,17 @@ const FuncList = [{
 	name: '庭院进入探索地图',
 	desc: '请使用默认庭院皮肤，启用该功能后在庭院下会自动进入探索地图界面',
 	operator: [{
-		desc: [1280,720, //首页比色
+		desc: [1280,720,
 			[[center,229,30,0x614040],
 			[center,404,36,0xfbcb78],
 			[center,437,79,0xee7a59],
 			[center,1151,53,0xcba574],
 			[center,1237,54,0xceac79],
-			[center,1218,603,0x8c5a38],
-			[center,1226,695,0x391816],
-			[center,58,663,0x4b2e31],
-			[center,1238,41,0x6e5c50]]
+			[right,1235,610,0x5c7575],
+			[center,1020,597,0xc73e4c],
+			[center,635,608,0xf4f4f3],
+			[center,373,623,0xe2dfdc],
+			[center,746,630,0xd9ceca]]
 		],
 		oper: [
 			[left, 1280, 720, 0, 0, 32, 63, 1000]
@@ -1992,6 +1994,7 @@ const FuncList = [{
 			if (point) {
 				let oper = [[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
 				thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+				return true;
 			} else {
 				return false
 			}
