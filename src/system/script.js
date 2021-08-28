@@ -146,6 +146,9 @@ var script = {
         return this.helperBridge.helper.CompareColorExLoop(desc, this.scheme.commonConfig.colorSimilar, 1, timeout, this.scheme.commonConfig.loopDelay, sign || 0);
     },
     run() {
+        return this._run();
+    },
+    _run() {
         if (this.runThread) return;
         var self = this;
         try {
@@ -206,6 +209,9 @@ var script = {
         }
     },
     stop() {
+        events.broadcast.emit('SCRIPT_STOP', '');
+    },
+    _stop() {
         if (null !== this.runThread) {
             if (typeof this.stopCallback === 'function') {
                 this.stopCallback();
@@ -214,6 +220,10 @@ var script = {
         }
         this.runThread = null;
     },
+    rerun() {
+        events.broadcast.emit('SCRIPT_RERUN', '');
+    },
+
     /**
      * 
      * @param {*} currFunc 
@@ -262,9 +272,19 @@ var script = {
     }
 }
 
+events.broadcast.on('SCRIPT_STOP', () => {
+    script._stop();
+});
+
+events.broadcast.on('SCRIPT_RUN', () => {
+    script._run();
+});
+
 events.broadcast.on('SCRIPT_RERUN', () => {
-    script.stop();
-    script.run();
+    script._stop();
+    setTimeout(() => {
+        script._run();
+    }, 510);
 });
 
 export default script;

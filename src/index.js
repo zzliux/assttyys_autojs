@@ -16,8 +16,8 @@ import version, {versionList} from '@/common/version';
 webview.on("getSchemeList").subscribe(([param, done]) => {
     let savedSchemeList = store.get("schemeList", defaultSchemeList);
     // 活动方案去除
-    // done(_.filter(savedSchemeList, item => item.id != 99));
-    done(savedSchemeList);
+    done(_.filter(savedSchemeList, item => item.id != 99));
+    // done(savedSchemeList);
 });
 
 // 保存方案列表
@@ -204,6 +204,7 @@ webview.on("saveSetting").subscribe(([item, done]) => {
             $power_manager.requestIgnoreBatteryOptimizations();
             done(true);
         } else {
+            toastLog('已忽略电池优化请勿取消');
             done(false);
         }
     } else if ('autojs_inner_setting_auto_service' === item.type) { // 无障碍
@@ -246,6 +247,7 @@ webview.on("saveSetting").subscribe(([item, done]) => {
                 }
             }, 1000)
         } else {
+            toastLog('请勿关闭悬浮权限');
             done(false);
         }
     } else if ('autojs_inner_settings_capture_permission' === item.type) {
@@ -254,10 +256,12 @@ webview.on("saveSetting").subscribe(([item, done]) => {
                 done(res)
             });
         } else {
-            threads.start(function () {
-                images.stopScreenCapture();
-                done(true);
-            });
+            toastLog('请勿关闭截图权限');
+            done(false);
+            // threads.start(function () {
+            //     images.stopScreenCapture();
+            //     done(true);
+            // });
         }
     } else if ('assttyys_setting' === item.type) {
         let storeSettings = storeCommon.get('settings', {});
@@ -414,13 +418,13 @@ effect$.subscribe(() => {
     }
 });
 
-// fromEvent(ui.emitter, 'resume').subscribe(() => {
-//     context.getResources().getConfiguration().orientation === 1 ? '竖屏' : '横屏';
-//     // 进入时如果是横屏，重置为竖屏
-//     if (context.getResources().getConfiguration().orientation !== 1) {
-//         activity.setRequestedOrientation(android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-//     }
-// });
+fromEvent(ui.emitter, 'resume').subscribe(() => {
+    // context.getResources().getConfiguration().orientation === 1 ? '竖屏' : '横屏';
+    // 进入时如果是横屏，重置为竖屏
+    if (context.getResources().getConfiguration().orientation !== 1) {
+        activity.setRequestedOrientation(android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
+});
 
 // 调试用，完成后取消注释
 fromEvent(ui.emitter, 'back_pressed').subscribe((e) => {

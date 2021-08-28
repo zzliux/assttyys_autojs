@@ -122,7 +122,6 @@ const myFloaty = {
         this.thisStop = function() {
             script.stop();
         }
-        
     }
 };
 

@@ -126,10 +126,6 @@ const SchemeList = [{
     id: 17,
     schemeName: '斗技',
     list: [0, 2, 3, 30]
-}, {
-    id: 99,
-    schemeName: '活动_夏日花火会_猜灯迷',
-    list: [0, 3, 101, 102, 24],
 }
     // 完整demo
     // , {

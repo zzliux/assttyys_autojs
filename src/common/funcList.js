@@ -110,7 +110,7 @@ const FuncList = [{
 			if (thisconf.scheme_switch_enabled) {
 				setCurrentScheme(thisconf.next_scheme);
 				toastLog(`切换方案为[${thisconf.next_scheme}]`);
-				events.broadcast.emit('SCRIPT_RERUN', '');
+				thisScript.rerun();
 			} else {
 				thisScript.stop();
 			}
@@ -691,7 +691,7 @@ const FuncList = [{
 					thisScript.helperBridge.regionClick([oper, oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
 					setCurrentScheme(thisConf.cdSwitchScheme);
 					toastLog(`切换方案为[${thisConf.cdSwitchScheme}]`);
-					events.broadcast.emit('SCRIPT_RERUN', '');
+					thisScript.rerun();
 				} else {
 					let oper = thisOperator[0].oper[1];
 					thisScript.helperBridge.regionClick([oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
@@ -719,7 +719,7 @@ const FuncList = [{
 					thisScript.helperBridge.regionClick([oper, oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
 					setCurrentScheme(thisConf.next_scheme);
 					toastLog(`切换方案为[${thisConf.next_scheme}]`);
-					events.broadcast.emit('SCRIPT_RERUN', '');
+					thisScript.rerun();
 				}
 				break;
 			}
@@ -958,7 +958,7 @@ const FuncList = [{
 					thisScript.helperBridge.regionClick([oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
 					setCurrentScheme(thisConf.next_scheme);
 					toastLog(`切换方案为[${thisConf.next_scheme}]`);
-					events.broadcast.emit('SCRIPT_RERUN', '');
+					thisScript.rerun();
 				}
 			}
 			return true;
@@ -2085,158 +2085,6 @@ const FuncList = [{
 		],
 		oper: [
 			[left, 1280, 720, 44,139, 77,178, 1000]
-		]
-	}]
-}, {
-	id: 101,
-	name: '夏日花火会_猜灯迷_答题',
-	config: [{
-		desc: '',
-		config: [{
-			name: 'path',
-			desc: '题目识别不到时保存截图路径(不填表示不保存)',
-			type: 'text',
-			default: '',
-		}]
-	}],
-	operator: [{
-		desc: [1280,720,
-			[[left,48,52,0xf5e7a9],
-			[left,219,54,0x583716],
-			[center,527,103,0xeedcb0],
-			[center,705,112,0x554e5d],
-			[center,755,254,0xc2a488],
-			[center,755,320,0xc4ad8b],
-			[center,755,385,0xc1ae94],
-			[center,755,451,0xc3b094],
-			[center,759,274,0xc4a788],
-			[center,759,340,0xbfb08e],
-			[center,759,405,0xbfac90],
-			[center,759,470,0xc1af94]]
-		],
-		oper: [
-			[center, 1280, 720, 449,151, 827,245, 0],
-			[center, 1280, 720, 494,241, 786,505, 0],
-			[center, 1280, 720, 452,72, 830,528, 0],
-		]
-	}],
-	operatorFunc(thisScript, thisOperator) {
-		if (thisScript.oper({
-			name: '猜灯谜_答题界面',
-			operator: [{
-				desc: thisOperator[0].desc,
-			}]
-		})) {
-			if (!thisScript.global.dynamicQA) {
-				console.log('初始化题库');
-				let str = files.read(files.cwd() + '/assets/dynamicQA.txt');
-				let arr = str.split(/\r?\n/);
-				thisScript.global.dynamicQA = [];
-				arr.forEach(item => {
-					let par = item.split(' \\\\\\]]]');
-					thisScript.global.dynamicQA.push({
-						question: par[0].replace(/[，,？?\'\"【】\-「」\|。]/g, ''),
-						ans: par[1]
-					});
-				});
-			}
-			let thisconf = thisScript.scheme.config['101'];
-			let t1 = new Date().getTime();
-			let bmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[0].oper[0].slice(0, 4));
-			// 识别问题
-			console.time('ocr.detect.question');
-			let res = thisScript.getOcr().detect(bmp, 1);
-			console.timeEnd('ocr.detect.question');
-			bmp.recycle();
-			let resText = '';
-			for (let i = 0, len = res.size(); i < len; i++) {
-				resText += res.get(i).text;
-			}
-			resText = resText.replace(/[，,？?\'\"【】\-「」\|。]/g, '');
-			console.log(`识别问题: ${resText}`);
-			// 搜索题库
-			console.time('ocr.question.search');
-			let stdQuestion = search(thisScript.global.dynamicQA, 'question', resText, 0.7);
-			console.timeEnd('ocr.question.search');
-			if (null === stdQuestion) {
-				// todo 更新题库
-				toastLog('未搜索到题库');
-				// throw new Error('未搜索到题库');
-				// 保存图片
-				let path = thisconf.path;
-				if (path) {
-					let qa = thisScript.helperBridge.helper.GetBitmap(...thisOperator[0].oper[2].slice(0, 4));
-					let qaIw = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(qa);
-					images.save(qaIw, path + '/' + new Date().getTime() + '.png');
-					qa.recycle();
-					qaIw.recycle();
-				}
-				sleep(12000);
-				return false;
-			}
-			// stdQuestion.data.question;
-
-			// 识别答案
-			let bmp2 = thisScript.helperBridge.helper.GetBitmap(...thisOperator[0].oper[1].slice(0, 4));
-			// 识别答案
-			console.time('ocr.detect.ans');
-			let res2 = thisScript.getOcr().detect(bmp2, 1);
-			console.timeEnd('ocr.detect.ans');
-			bmp2.recycle();
-
-			let ansList = [];
-			for (let i = 0, len = res2.size(); i < len; i++) {
-				let row = res2.get(i);
-				let frame = row.frame;
-				let rect = [
-					thisOperator[0].oper[1][0] + frame.get(0),
-					thisOperator[0].oper[1][1] + frame.get(1),
-					thisOperator[0].oper[1][0] + frame.get(4),
-					thisOperator[0].oper[1][1] + frame.get(5)
-				];
-				ansList.push({
-					text: row.text,
-					rect: rect
-				});
-			}
-			console.log(`答案区域识别:${JSON.stringify(ansList)}`);
-			let stdAns = search(ansList, 'text', stdQuestion.data.ans);
-			if (stdAns === null) {
-				toastLog('未搜索到答案');
-				// throw new Error('未搜索到答案');
-				return false;
-			}
-			let t2 = new Date().getTime();
-			toastLog(`识别题目: ${stdQuestion.data.question}, 选择答案: ${stdAns.data.text}, 置信度为: ${(stdQuestion.similarity * stdAns.similarity).toFixed(4)}, 总耗时: ${t2 - t1}ms`);
-			thisScript.helperBridge.regionClick([[...stdAns.data.rect, 3000]], thisScript.scheme.commonConfig.afterClickDelayRandom);
-		}
-	}
-}, {
-	id: 102,
-	name: '夏日花火会_猜灯迷_杂项',
-	operator: [{
-		// 结算
-		desc: [1280,720,
-			[[center,458,179,0x6a423b],
-			[center,521,132,0xd7b27d],
-			[center,661,579,0xccba98],
-			[center,754,635,0x985c4b]]
-		],
-		oper: [
-			[left, 1280, 720, 69, 171, 170, 452, 1000]
-		]
-	}, {
-		// 开始
-		desc: [1280,720,
-			[[left,48,51,0xf5e7a9],
-			[left,219,58,0x583716],
-			[left,103,288,0xd1b78a],
-			[right,1222,597,0xd7a975],
-			[right,1164,43,0xd7c5a2],
-			[center,1204,644,0xffeecc]]
-		],
-		oper: [
-			[right, 1280, 720, 1170,601, 1264,700, 1000]
 		]
 	}]
 }];
