@@ -36,7 +36,7 @@
           <div class="item-title">
             {{item.desc}}
           </div>
-          <div class="item-value">
+          <div v-if="(item.stype || 'switch') === 'switch'" class="item-value">
             <van-switch
               v-model="item.enabled"
               :loading="!!item.loading"
@@ -44,6 +44,18 @@
               class="itemSwitch"
               size="18"
             />
+          </div>
+          <div v-else-if="item.stype === 'text'" class="item-value">
+            <div class="van-field__body">
+              <input
+                type="text"
+                v-model="item.value"
+                class="van-field__control"
+                @change="inputChange(item)"
+                @enter="enterEvent(item)"
+                @unfocus="enterEvent(item)"
+              />
+            </div>
           </div>
         </div>
       </van-cell-group>
@@ -114,6 +126,7 @@ export default {
       toSetDefaultLaunchAppList: [],
       setDefaultLaunchAppDialogShown: false,
       setDefaultLaunchAppLoading: false,
+      timeout: null
     };
   },
   components: {
@@ -160,6 +173,22 @@ export default {
       this.toSetDefaultLaunchAppList = await AutoWeb.autoPromise('getToSetDefaultLaunchAppList');
       this.setDefaultLaunchAppDialogShown = true;
       this.setDefaultLaunchAppLoading = false;
+    },
+    async saveSettings(item) {
+      await AutoWeb.autoPromise('saveSetting', item);
+    },
+    debounce (func, wait) {
+      if (this.timeout) clearTimeout(this.timeout)
+      this.timeout = setTimeout(() => {
+        func();
+      }, wait)
+    },
+    inputChange(item) {
+      this.debounce(this.saveSettings.bind(this, item), 1000);
+    },
+    enterEvent(item) {
+      if (this.timeout) clearTimeout(this.timeout);
+      this.saveSettings(item);
     }
   },
 };

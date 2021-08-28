@@ -161,6 +161,7 @@ var script = {
             this.initFuncList();
             this.initMultiColor();
             this.runDate = new Date();
+            this.currentDate = new Date();
             this.runTimes = {};
             this.global = {};
             if (null === this.scheme) {
@@ -189,6 +190,7 @@ var script = {
                     self.keepScreen(false);
                     for (let i = 0; i < self.scheme.funcList.length; i++) {
                         if (self.oper(self.scheme.funcList[i])) {
+                            self.currentDate = new Date();
                             break;
                         }
                     }

@@ -88,6 +88,9 @@ export const versionList = [{
 }, {
     version: '20210825_01',
     desc: '新增：自动斗技'
+}, {
+    version: '20210829_01',
+    desc: '新增：可配置停止脚本时使用推送加(https://pushplus.hxtrip.com)推送当前状态'
 }];
 
 export default versionList[versionList.length - 1].version;

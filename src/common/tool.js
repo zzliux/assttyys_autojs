@@ -89,3 +89,20 @@ export function setCurrentScheme(schemeName) {
     }
     toastLog(`修改方案失败：请检查是否存在方案[${schemeName}]`);
 }
+
+// 文档地址 https://www.pushplus.plus/push1.html -> 这个图片推不了太大的，720p缩放0.1倍后才能推送
+// https://pushplus.hxtrip.com/message -> 0.5倍还可以推，就用它了
+export function pushPlusPush(optionData) {
+    // return http.postJson('https://www.pushplus.plus/send', optionData);
+    return http.postJson('https://pushplus.hxtrip.com/send', optionData);
+}
+
+export function scaleBmp(bmp, scale) {
+    let width = bmp.getWidth();
+    let height = bmp.getHeight();
+    let matrix = new android.graphics.Matrix();
+    matrix.postScale(scale, scale);
+    let newBmp = android.graphics.Bitmap.createBitmap(bmp, 0, 0, width, height, matrix, false);
+    bmp.recycle();
+    return newBmp;
+}

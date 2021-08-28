@@ -189,6 +189,17 @@ webview.on("getSettings").subscribe(([_param, done]) => {
         name: 'floaty_scheme_direct_run',
         type: 'assttyys_setting',
         enabled: storeSettings.floaty_scheme_direct_run || false
+    }, {
+        desc: '脚本停止是否启用推送',
+        name: 'use_push_plus',
+        type: 'assttyys_setting',
+        enabled: storeSettings.use_push_plus || false,
+    }, {
+        desc: '推送加token',
+        name: 'push_plus_token',
+        type: 'assttyys_setting',
+        stype: 'text',
+        value: storeSettings.push_plus_token || ''
     }];
     done(ret);
 });
@@ -265,7 +276,11 @@ webview.on("saveSetting").subscribe(([item, done]) => {
         }
     } else if ('assttyys_setting' === item.type) {
         let storeSettings = storeCommon.get('settings', {});
-        storeSettings[item.name] = item.enabled;
+        if ((item.stype || 'switch') === 'switch') {
+            storeSettings[item.name] = item.enabled;
+        } else if (item.stype === 'text') {
+            storeSettings[item.name] = item.value;
+        }
         storeCommon.put('settings', storeSettings);
         done(true);
     }

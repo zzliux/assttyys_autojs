@@ -1,5 +1,8 @@
 // import helperBridge from '@/system/helperBridge';
 import { search, questionSearch, setCurrentScheme } from '@/common/tool';
+import { storeCommon } from '@/system/store';
+import { pushPlusPush, scaleBmp } from '@/common/tool';
+
 
 const normal = -1; //定义常量
 const left = 0;
@@ -13,6 +16,20 @@ const FuncList = [{
 	checked: false,
 	operator: [],
 	config: [{
+		desc: '长时间未执行功能停止脚本',
+		config: [{
+			name: 'jspd_enabled_longtime_nodo',
+			desc: '是否启用',
+			type: 'switch',
+			default: false,
+			value: null,
+		}, {
+			name: 'jspd_times_longtime_nodo',
+			desc: '多少分钟后停止脚本',
+			type: 'integer',
+			default: 10,
+		}]
+	}, {
 		desc: '运行时间判断',
 		config: [{
 			name: 'jspd_enabled_zjsj',
@@ -75,6 +92,17 @@ const FuncList = [{
 	}],
 	operatorFunc(thisScript, _thisOperator) {
 		let thisconf = thisScript.scheme.config['0'];
+
+		// 长时间未执行任何功能后停止脚本
+		if (thisconf.jspd_enabled_longtime_nodo) {
+			let now = new Date();
+			if (now.getTime() - thisScript.currentDate.getTime() > thisconf.jspd_times_longtime_nodo * 60000) {
+				toastLog(`因长时间(${cvtTime((now.getTime() - thisScript.currentDate.getTime()) / 1000)})未执行任何操作，脚本停止`);
+				stopOrReRun();
+				return true;
+			}
+		}
+
 		if (thisconf.jspd_enabled_zjsj) { // 执行时间
 			let currentNotifyDate = thisScript.global.currentNotifyDate;
 			if (!currentNotifyDate) {
@@ -89,20 +117,37 @@ const FuncList = [{
 				toastLog(`脚本将于${cvtTime(leftSec)}后停止`);
 			}
 			if (thisScript.runDate.getTime() + thisconf.jspd_times_zjsj * 60000 < now.getTime()) {
-				toastLog('脚本已停止');
 				stopOrReRun();
+				return true;
 			}
 		}
+		
 		if (thisconf.jspd_enabled_1) {
 			if (thisScript.runTimes['1'] >= thisconf.jspd_times_1) {
 				toastLog(`准备功能执行${thisScript.runTimes['1']}次后停止脚本`);
 				stopOrReRun();
+				return true;
+			}
+			if (!thisScript.global.currentRunTimes) {
+				thisScript.global.currentRunTimes = {};
+			}
+			if (thisScript.runTimes['1'] !== thisScript.global.currentRunTimes['1']) {
+				thisScript.global.currentRunTimes['1'] = thisScript.runTimes['1'];
+				toastLog(`准备功能已执行${thisScript.runTimes['1']}次, 继续${thisconf.jspd_times_1 - thisScript.runTimes['1']}次后将停止脚本`);
 			}
 		}
 		if (thisconf.jspd_enabled_2) {
 			if (thisScript.runTimes['2'] >= thisconf.jspd_times_2) {
 				toastLog(`退出结算功能执行${thisScript.runTimes['2']}次后停止脚本`);
 				stopOrReRun();
+				return true;
+			}
+			if (!thisScript.global.currentRunTimes) {
+				thisScript.global.currentRunTimes = {};
+			}
+			if (thisScript.runTimes['2'] !== thisScript.global.currentRunTimes['2']) {
+				thisScript.global.currentRunTimes['2'] = thisScript.runTimes['2'];
+				toastLog(`退出结算已执行${thisScript.runTimes['2']}次, 继续${thisconf.jspd_times_1 - thisScript.runTimes['2']}次后将停止脚本`);
 			}
 		}
 
@@ -112,6 +157,33 @@ const FuncList = [{
 				toastLog(`切换方案为[${thisconf.next_scheme}]`);
 				thisScript.rerun();
 			} else {
+				let storeSettings = storeCommon.get('settings', {});
+				if (storeSettings.use_push_plus) {
+					if (!storeSettings.push_plus_token) {
+						console.error('未配置推送加token');
+						return;
+					}
+					let bmp = scaleBmp(thisScript.helperBridge.helper.GetBitmap(), 0.5);
+                    let baos = new java.io.ByteArrayOutputStream();
+                    bmp.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, baos);
+                    baos.flush();
+                    baos.close();
+                    bmp.recycle();
+
+					let b64str = android.util.Base64.encodeToString(baos.toByteArray(), android.util.Base64.NO_WRAP);
+					let upContent = `<div><p>脚本已停止，请查看</p><img style="max-width: 100%" src="data:image/png;base64,${b64str}" /></div>`;
+					console.log('上传大小' + upContent.length);
+
+					toastLog('脚本即将停止，正在上传数据');
+					let res = pushPlusPush({
+						token: storeSettings.push_plus_token,
+						title: '脚本停止提醒',
+						template: 'html',
+						channel: 'wechat',
+						content: upContent
+					});
+					console.log('ssssssss' + res.body.string());
+				}
 				thisScript.stop();
 			}
 		}
