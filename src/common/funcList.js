@@ -147,7 +147,7 @@ const FuncList = [{
 			}
 			if (thisScript.runTimes['2'] !== thisScript.global.currentRunTimes['2']) {
 				thisScript.global.currentRunTimes['2'] = thisScript.runTimes['2'];
-				toastLog(`退出结算已执行${thisScript.runTimes['2']}次, 继续${thisconf.jspd_times_1 - thisScript.runTimes['2']}次后将停止脚本`);
+				toastLog(`退出结算已执行${thisScript.runTimes['2']}次, 继续${thisconf.jspd_times_2 - thisScript.runTimes['2']}次后将停止脚本`);
 			}
 		}
 

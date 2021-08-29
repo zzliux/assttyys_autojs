@@ -439,6 +439,9 @@ fromEvent(ui.emitter, 'resume').subscribe(() => {
     if (context.getResources().getConfiguration().orientation !== 1) {
         activity.setRequestedOrientation(android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
+    // webview.runHtmlJS('window.innerHeight').subscribe((height) => {
+    //     toastLog(`页面高度=${height}`);
+    // })
 });
 
 // 调试用，完成后取消注释
