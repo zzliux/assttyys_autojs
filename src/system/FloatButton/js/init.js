@@ -13,9 +13,14 @@ let mUtil = {};
 (function () {
     const scale = context.getResources().getDisplayMetrics().density;
     let config = context.getResources().getConfiguration();
+
     mUtil.dp2px = dp => Math.floor(dp * scale + 0.5);
     mUtil.px2dp = px => Math.floor(px / scale + 0.5);
     mUtil.isHorizontalScreen = function () {
+        // let dm = context.getResources().getDisplayMetrics();
+        // let wm = context.getSystemService(context.WINDOW_SERVICE);
+        // wm.getDefaultDisplay().getRealMetrics(dm);
+        // return dm.widthPixels > dm.heightPixels;
         let ori = config.orientation;
         if (ori == config.ORIENTATION_LANDSCAPE) {
             //横屏

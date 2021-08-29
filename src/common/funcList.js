@@ -21,7 +21,7 @@ const FuncList = [{
 			name: 'jspd_enabled_longtime_nodo',
 			desc: '是否启用',
 			type: 'switch',
-			default: false,
+			default: true,
 			value: null,
 		}, {
 			name: 'jspd_times_longtime_nodo',
