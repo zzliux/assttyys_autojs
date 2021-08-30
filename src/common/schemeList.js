@@ -126,6 +126,10 @@ const SchemeList = [{
     id: 17,
     schemeName: '斗技',
     list: [0, 1, 2, 3, 30]
+}, {
+    id: 18,
+    schemeName: '结界卡_继续合成',
+    list: [0, 3, 31]
 }
     // 完整demo
     // , {
