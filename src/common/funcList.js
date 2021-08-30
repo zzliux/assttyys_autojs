@@ -2058,7 +2058,7 @@ const FuncList = [{
 	operatorFunc(thisScript, thisOperator) {
 		if (thisScript.oper({
 			name: '庭院判断',
-			operator: [thisOperator[0]]
+			operator: [{ desc: thisOperator[0].desc }]
 		})) {
 			let point = thisScript.findMultiColor('庭院_探索灯笼');
 			if (point) {

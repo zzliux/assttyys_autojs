@@ -125,7 +125,7 @@ const SchemeList = [{
 }, {
     id: 17,
     schemeName: '斗技',
-    list: [0, 2, 3, 30]
+    list: [0, 1, 2, 3, 30]
 }
     // 完整demo
     // , {
