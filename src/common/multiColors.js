@@ -282,12 +282,21 @@ export default {
     '探索_挑战BOSS': {
         region: [center, 1280, 720, 87,178, 1257,547],
         desc: [[1280,720,
-            [[center,595,247,0x2b1a09],
-            [center,628,236,0xf4b2ba],
-            [center,616,298,0xf4b2ba],
-            [center,658,289,0x2d180c],
-            [center,595,277,0x498daf]]
+            [[center,609,248,0x2f0d09],
+            [center,643,236,0xeeb4bc],
+            [center,656,244,0x361d0d],
+            [center,672,278,0x3d2514],
+            [center,654,298,0x703d1b],
+            [center,637,283,0xfffff9],
+            [center,646,307,0x251308]]
         ]]
+        // desc: [[1280,720,
+        //     [[center,595,247,0x2b1a09],
+        //     [center,628,236,0xf4b2ba],
+        //     [center,616,298,0xf4b2ba],
+        //     [center,658,289,0x2d180c],
+        //     [center,595,277,0x498daf]]
+        // ]]
     },
     '准备界面_满级标识': {
         region: [center, 1280, 720, 6,257, 866,640],
