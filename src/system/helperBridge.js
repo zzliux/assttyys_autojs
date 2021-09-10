@@ -112,11 +112,11 @@ export const helperBridge = {
             for (let i = 0; i < item.length; i++) {
                 sum += item[i][5];
             }
-            let rn = random(0, sum);
+            let rn = random(0, sum - 1);
             let curSum = 0;
             for (let i = 0; i < item.length; i++) {
                 // 命中
-                if (rn >= curSum && rn < item[i][5]) {
+                if (rn >= curSum && rn < curSum + item[i][5]) {
                     oper.push(item[i]);
                     break;
                 }
