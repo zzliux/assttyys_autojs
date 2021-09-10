@@ -73,11 +73,11 @@ export const helperBridge = {
             //     oper[i][5]
             // ];
             if (oper[i][3] === -1) {
-                oper[i] = [-1, -1, -1, -1, oper[i][7]]
+                oper[i] = [-1, -1, -1, -1, ...oper[i].slice(7)]
             } else {
                 let sr = this.getHelper(oper[i][1], oper[i][2]).GetPoint(oper[i][3], oper[i][4], oper[i][0]);
                 let er = this.getHelper(oper[i][1], oper[i][2]).GetPoint(oper[i][5], oper[i][6], oper[i][0]);
-                oper[i] = [sr.x, sr.y, er.x, er.y, oper[i][7]]
+                oper[i] = [sr.x, sr.y, er.x, er.y, ...oper[i].slice(7)]
             }
         }
         return oper;
@@ -98,6 +98,32 @@ export const helperBridge = {
             }
             sleep(item[4] + random(0, randomSleep || 0));
         });
+    },
+
+    // [[
+	//     [69, 171, 170, 452, 1000, 2], // 最后一个参数，表示执行这个的概率，[0, 2)命中
+	//     [1104,72, 1200,687, 1000, 5], // [2, 5)命中 
+	// ]]
+    regionStepRandomClick(transedOperStepRandom, randomSleep) {
+        // 生成一套，然后给regionClick操作
+        let oper = [];
+        transedOperStepRandom.forEach(item => {
+            let sum = 0;
+            for (let i = 0; i < item.length; i++) {
+                sum += item[i][5];
+            }
+            let rn = random(0, sum);
+            let curSum = 0;
+            for (let i = 0; i < item.length; i++) {
+                // 命中
+                if (rn >= curSum && rn < item[i][5]) {
+                    oper.push(item[i]);
+                    break;
+                }
+                curSum += item[i][5];
+            }
+        });
+        this.regionClick(oper, randomSleep);
     },
     regionSwipe(transedOperS, transedOperE, duration, randomSleep) {
         const time = random(duration[0], duration[1])

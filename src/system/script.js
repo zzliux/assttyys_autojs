@@ -80,6 +80,11 @@ var script = {
                             if (operator[k].oper) {
                                 operator[k].oper = helperBridge.regionClickTrans(operator[k].oper);
                             }
+                            if (operator[k].operStepRandom) {
+                                for (let m = 0; m < operator[k].operStepRandom.length; m++) {
+                                    operator[k].operStepRandom[m] = helperBridge.regionClickTrans(operator[k].operStepRandom[m]);
+                                }
+                            }
                         }
                     }
                     this.scheme.funcList.push(thisFuncList);
@@ -263,7 +268,10 @@ var script = {
                         this.runTimes[currFunc.id]++;
                         this.lastFunc = currFunc.id;
                     }
-                    if (item.oper) {
+                    if (item.operStepRandom) {
+                        console.log(`执行：currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper}`);
+                        helperBridge.regionStepRandomClick(item.operStepRandom, this.scheme.commonConfig.afterClickDelayRandom);
+                    } else if (item.oper) {
                         console.log(`执行：currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper}`);
                         helperBridge.regionClick(item.oper, this.scheme.commonConfig.afterClickDelayRandom);
                     }
