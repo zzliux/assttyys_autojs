@@ -92,6 +92,7 @@ export const helperBridge = {
                 console.log(`执行点击操作 === x坐标:${x}, y坐标:${y}`)
                 if (needRoot) {
                     Tap(x, y);
+                    sleep(random(10, 60));
                 } else {
                     press(x, y, random(10, 60));
                 }
