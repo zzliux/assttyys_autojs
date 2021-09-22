@@ -97,6 +97,9 @@ export const versionList = [{
 }, {
     version: '20210922_01',
     desc: '新增：5周年活动平安美食祭-集市挑战'
+}, {
+    version: '20210922_02',
+    desc: '新增：道馆'
 }];
 
 export default versionList[versionList.length - 1].version;

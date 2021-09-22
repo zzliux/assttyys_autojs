@@ -131,6 +131,10 @@ const SchemeList = [{
     schemeName: '结界卡_继续合成',
     list: [0, 3, 31]
 }, {
+    id: 19,
+    schemeName: '道馆',
+    list: [0, 1, 2, 3, 32],
+}, {
     id: 99,
     schemeName: '平安美食祭_集市',
     list: [0, 1, 2, 3, 99],
