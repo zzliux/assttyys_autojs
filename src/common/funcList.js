@@ -2231,6 +2231,21 @@ const FuncList = [{
 			[center, 1280, 720, 782,576, 936,616, 800],
 		]
 	}]
+}, {
+	id: 99,
+	name: '平安美食祭_集市挑战',
+	operator: [{
+		desc: [1280, 720,
+			[[left,37,40,0xf7e7ad],
+			[left,346,31,0x2a3159],
+			[left,41,43,0xf2e2a0],
+			[left,196,40,0x583716],
+			[right,1161,615,0x461c0a]]
+		],
+		oper: [
+			[right, 1280, 720, 1158,608, 1212,669, 500]
+		]
+	}]
 }];
 
 export default FuncList;

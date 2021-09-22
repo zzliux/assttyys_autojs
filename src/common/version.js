@@ -94,6 +94,9 @@ export const versionList = [{
 }, {
     version: '20210830_01',
     desc: '新增: 结界卡_继续育成'
+}, {
+    version: '20210922_01',
+    desc: '新增：5周年活动平安美食祭-集市挑战'
 }];
 
 export default versionList[versionList.length - 1].version;

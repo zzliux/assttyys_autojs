@@ -130,6 +130,10 @@ const SchemeList = [{
     id: 18,
     schemeName: '结界卡_继续合成',
     list: [0, 3, 31]
+}, {
+    id: 99,
+    schemeName: '平安美食祭_集市',
+    list: [0, 1, 2, 3, 99],
 }
     // 完整demo
     // , {
