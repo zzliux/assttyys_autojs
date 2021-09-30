@@ -144,12 +144,12 @@ export default {
 .item {
   height: 44px;
   margin:5px 10px 5px 10px;
-  border-radius:10px;
+  border-radius: 5px;
   background-color: #fff;
   overflow: hidden;
   padding: 0px 16px;
   font-size: 14px;
-  box-shadow: 4px 4px 8px #aaa
+  box-shadow: 1px 1px 2px #aaa
 }
 .item-title {
   display: inline-block;
