@@ -70,7 +70,7 @@ export default {
   overflow: hidden;
   padding: 0px 16px 0px 0px;
   font-size: 14px;
-  box-shadow: 4px 4px 8px #aaa;
+  box-shadow: 1px 1px 1px #eaeaea;
   transition: all .1s linear;
 }
 .logo {

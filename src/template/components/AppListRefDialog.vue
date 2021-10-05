@@ -22,14 +22,14 @@
       <div style="display: block; position: absolute; bottom: 0; width: 100%;">
         <van-row>
           <van-col span="12">
-            <div style="margin: 5px 5px 5px 10px; border-radius:5px; overflow: hidden;box-shadow: 1px 1px 2px #aaa">
+            <div style="margin: 5px 5px 5px 10px; border-radius:5px; overflow: hidden;box-shadow: 1px 1px 1px #eaeaea">
               <van-button type="warning" block @click="cancel">
                 取消
               </van-button>
             </div>
           </van-col>
           <van-col span="12">
-            <div style="margin: 5px 10px 5px 5px; border-radius:5px; overflow: hidden;box-shadow: 1px 1px 2px #aaa">
+            <div style="margin: 5px 10px 5px 5px; border-radius:5px; overflow: hidden;box-shadow: 1px 1px 1px #eaeaea">
               <van-button type="info" block @click="save">
                 <i class="iconfont iconfont-baocun"></i> 保存
               </van-button>
@@ -93,7 +93,7 @@ export default {
   overflow: hidden;
   padding: 0px 16px 0px 0px;
   font-size: 14px;
-  box-shadow: 1px 1px 2px #aaa;
+  box-shadow: 1px 1px 1px #eaeaea;
   transition: all .1s linear;
 }
 .logo {
