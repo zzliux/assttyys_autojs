@@ -31,5 +31,27 @@
   },
   "scripts": {},
   "versionCode": 1,
-  "versionName": "0.0.1.dev"
+  "versionName": "0.0.1.dev",
+  "ignore": [
+    "build",
+    "node_modules",
+    "config",
+    "src",
+    "test",
+    ".babelrc",
+    "jsconfig.json",
+    "tsconfig.json",
+    "package-lock.json",
+    "package.json",
+    "webpack.config.js",
+    "LICENSE",
+    "README.md",
+    "README_AUTO_TEMPLATE_VUE.md",
+    "docs",
+    "assttyys_ng.zip",
+    "pack.js",
+    ".git",
+    ".gitignore",
+    ".workflow"
+  ]
 }

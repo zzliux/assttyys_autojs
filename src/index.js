@@ -437,7 +437,7 @@ fromEvent(ui.emitter, 'resume').subscribe(() => {
     // context.getResources().getConfiguration().orientation === 1 ? '竖屏' : '横屏';
     // 进入时如果是横屏，重置为竖屏
     if (context.getResources().getConfiguration().orientation !== 1) {
-        activity.setRequestedOrientation(android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        // activity.setRequestedOrientation(android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
     // webview.runHtmlJS('window.innerHeight').subscribe((height) => {
     //     toastLog(`页面高度=${height}`);

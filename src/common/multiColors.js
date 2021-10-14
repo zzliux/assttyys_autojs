@@ -21,7 +21,9 @@ export default {
             [center,646,513,0xf4b25f],
             [center,679,522,0x272420],
             [center,678,517,0xf4b25f],
-            [center,649,510,0x2b2721]]
+            [center,649,510,0x2b2721],
+            [center,651,528,0x272420],
+            [center,654,528,0x272420]]
         ]]
     },
     '结界_进攻_灰': {
