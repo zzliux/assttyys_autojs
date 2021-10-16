@@ -137,7 +137,8 @@ export default {
             [center,611,361,0x8a857f],
             [center,652,361,0xc9b6a4],
             [center,691,361,0xc9b6a4],
-            [center,728,389,0xa38f86]]
+            [center,728,389,0xa38f86],
+            [center,631,351,0xdbc5b5]]
         ]]
     },
     '结界_2勋章': {
