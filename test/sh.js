@@ -4,18 +4,23 @@
  */
 function myShell (flag) {
     let self = this;
+    this.boundary = '----boundaryb366db0c41ab7f1dc7562c3921719203';
     this.process = java.lang.Runtime.getRuntime().exec(flag);
     this.writer = new java.io.BufferedWriter(new java.io.OutputStreamWriter(this.process.getOutputStream()));
     this.successReader = new java.io.BufferedReader(new java.io.InputStreamReader(this.process.getInputStream()));
     this.errorReader = new java.io.BufferedReader(new java.io.InputStreamReader(this.process.getErrorStream()));
-    this.successMsgDate = new Date();
-    this.successMsg = '';
-    this.execLock = threads.lock();
+    this.successMsg = [];
+    this.callbackList = [];
     threads.start(function () {
         let s = null;
         while (s = self.successReader.readLine()) { // 这个会阻塞
-            successMsgDate = new Date();
-            self.successMsg += s + '\n';
+            if (s === self.boundary) {
+                let cb = self.callbackList.shift();
+                cb && cb(self.successMsg.join('\n'));
+                self.successMsg = [];
+            } else {
+                self.successMsg.push(s);
+            }
         }
     });
 }
@@ -23,36 +28,15 @@ function myShell (flag) {
 /**
  * 
  * @param {*} command 
- * @param {*} overtime 个人测试建议大于200ms
  * @param {*} callback 
  */
-myShell.prototype.exec = function (command, overtime, callback) {
-    if (typeof callback !== 'function') {
-        callback = function () {}
-    }
-    if (typeof overtime === 'function') {
-        callback = overtime;
-        overtime = 200;
-    } else {
-        overtime = overtime || 200;
-    }
+myShell.prototype.exec = function (command, callback) {
+    this.callbackList.push(callback);
     let self = this;
-    // threads.start(function () {
-        self.execLock.lock();
-        self.writer.write(command);
-        self.writer.newLine();
-        self.writer.flush();
-        self.successMsgDate = new Date();
-        let timmer = setInterval(function () {
-            if (new Date().getTime() - self.successMsgDate.getTime() > overtime) {
-                clearInterval(timmer);
-                let result = self.successMsg
-                self.successMsg = '';
-                self.execLock.unlock();
-                callback(result);
-            }
-        }, 50);
-    // });
+
+    self.writer.write(command + '\necho \'' + this.boundary + '\'\n');
+    // self.writer.newLine();
+    self.writer.flush();
 }
 
 myShell.prototype.destroy = function () {
@@ -65,15 +49,26 @@ myShell.prototype.destroy = function () {
     this.process.destroy();
 }
 
-
 if (typeof module == 'undefined') {
     module = {};
-    let sh = new myShell('su');
-    // events.on('exit', function () {
+    let sh = new myShell('sh');
+    events.on('exit', function () {
+        sh.destroy();
+    });
+    sh.exec('echo \'1\\n1\'', function (res) {
+        console.log(res);
+    });
+    sh.exec('echo 22', function (res) {
+        console.log(res);
+    });
+    sh.exec('echo 33', function (res) {
+        console.log(res);
+        exit();
+    });
         
-        sh.exec('input swipe 100 100 200 200 500', function (_res) {
-            sh.destroy();
-        });
+    // sh.exec('input swipe 100 100 500 500 1500', function (_res) {
+    //     sh.destroy();
+    // });
         // sleep(1000);
     // });
 

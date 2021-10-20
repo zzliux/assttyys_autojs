@@ -13,8 +13,8 @@
         "module": "esnext",
         "target": "es5", // 转化成的目标语言
         "baseUrl": "./",
-        "types": [],
-        "typeRoots": ["./node_modules/@types"],
+        // "types": [],
+        "typeRoots": ["./node_modules/@types/", "./node_modules/@autojs/"],
         "lib": ["es2015"],
         "allowJs": true,
         "paths": {
