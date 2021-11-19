@@ -100,6 +100,9 @@ export const versionList = [{
 }, {
     version: '20210922_02',
     desc: '新增：道馆'
+}, {
+    version: '20211119_01',
+    desc: '修复地鬼日常热门挑战错误问题，修复地鬼退出结算时进入分享界面导致卡住的问题，优化地鬼日常根据已挑战内容决定剩下挑战次数。'
 }];
 
 export default versionList[versionList.length - 1].version;
