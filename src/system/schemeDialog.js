@@ -4,8 +4,8 @@ import defaultSchemeList from '@/common/schemeList';
 import _ from 'lodash';
 
 export default {
-    show(myfloaty) {
-        let staredSchemeList = _.filter(store.get('schemeList', defaultSchemeList), item => {
+    show(myfloaty, schemeList) {
+        let staredSchemeList = schemeList || _.filter(store.get('schemeList', defaultSchemeList), item => {
             return item.star //&& item.id != 99;
         });
         if (staredSchemeList.length === 0) {

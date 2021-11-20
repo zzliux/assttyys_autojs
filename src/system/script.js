@@ -1,10 +1,13 @@
 import store from '@/system/store';
 import funcList from '@/common/funcList';
+import defaultSchemeList from '@/common/schemeList';
 import helperBridge from '@/system/helperBridge';
 import multiColor from '@/common/multiColors';
 import ocr from '@/system/ocr';
+import { setCurrentScheme } from '@/common/tool';
 import { getWidthPixels, getHeightPixels } from "@auto.pro/core";
 import _ from 'lodash';
+import schemeDialog from './schemeDialog';
 
 
 
@@ -51,31 +54,18 @@ var script = {
     setStopCallback(callback) {
         this.stopCallback = callback;
     },
-    
-    // 将funcList中operator里面的desc和oper转换为适用当前正在分辨率的坐标
-    initFuncList() {
-        this.scheme = store.get('currentScheme', null);
-        if (null === this.scheme) return;
-        console.log('当前配置：');
-        console.log(this.scheme);
-        this.scheme.funcList = [];
-        for (let i = 0; i < this.scheme.list.length; i++) {
+
+    getFuncList(scheme) {
+        let retFunclist = [];
+        for (let i = 0; i < scheme.list.length; i++) {
             for (let j = 0; j < funcList.length; j++) {
-                if (this.scheme.list[i] == funcList[j].id) {
+                if (scheme.list[i] == funcList[j].id) {
                     let thisFuncList = _.cloneDeep(funcList[j]);
                     let operator = thisFuncList.operator;
                     if (operator && typeof operator !== 'function') {
                         for (let k = 0; k < operator.length; k++) {
                             if (operator[k].desc) {
                                 operator[k].desc = helperBridge.helper.GetCmpColorArray(operator[k].desc[0], operator[k].desc[1], operator[k].desc[2]);
-                                // for (let p = 0; p < operator[k].desc.length; p++) {
-                                //     let kkk = operator[k].desc[p];
-                                //     let tolog = [];
-                                //     for (let q = 0; q < kkk.length; q++) {
-                                //         tolog.push(kkk[q]);
-                                //     }
-                                //     console.log(tolog);
-                                // }
                             }
                             if (operator[k].oper) {
                                 operator[k].oper = helperBridge.regionClickTrans(operator[k].oper);
@@ -87,10 +77,18 @@ var script = {
                             }
                         }
                     }
-                    this.scheme.funcList.push(thisFuncList);
+                    retFunclist.push(thisFuncList);
                 }
             }
         }
+        return retFunclist;
+    },
+    
+    // 将funcList中operator里面的desc和oper转换为适用当前正在分辨率的坐标
+    initFuncList() {
+        this.scheme = store.get('currentScheme', null);
+        if (null === this.scheme) return;
+        this.scheme.funcList = this.getFuncList(this.scheme);
     },
     initMultiColor() {
         let thisMultiColor = {};
@@ -215,6 +213,39 @@ var script = {
             this.runCallback();
         }
     },
+    autoRun(myfloaty) {
+        toastLog('智能识别中...');
+        let self = this;
+        self.keepScreen(false);
+        threads.start(function () {
+            let staredSchemeList = _.filter(store.get('schemeList', defaultSchemeList), item => {
+                return item.star //&& item.id != 99;
+            });
+            let canRunSchemeList = [];
+            for (let j = 0; j < staredSchemeList.length; j++) {
+                let tarFuncList = self.getFuncList(staredSchemeList[j]);
+                let flag = false;
+                for (let i = 0; i < tarFuncList.length; i++) {
+                    if (self.desc(tarFuncList[i], staredSchemeList[j].commonConfig)) {
+                        flag = true;
+                        break;
+                    }
+                }
+                if (flag) {
+                    canRunSchemeList.push(staredSchemeList[j]);
+                }
+            }
+            if (canRunSchemeList.length === 0) {
+                toastLog('无法识别当前界面');
+            } else if (canRunSchemeList.length === 1) {
+                setCurrentScheme(canRunSchemeList[0].schemeName);
+                self.run();
+            } else {
+                schemeDialog.show(myfloaty, canRunSchemeList);
+            }
+        });
+
+    },
     stop() {
         events.broadcast.emit('SCRIPT_STOP', '');
     },
@@ -278,6 +309,21 @@ var script = {
                     return true;
                 }
             }
+        }
+    },
+
+    /**
+     * 
+     * @param {*} currFunc 
+     */
+     desc(currFunc, commonConfig) {
+        let operator = currFunc.operator; // 需要计算的坐标通过operater传进去使用
+        for (let id = 0; id < operator.length; id++) {
+            let item = operator[id];
+            if (item.desc && item.desc.length) {
+                return helperBridge.helper.CompareColorEx(item.desc, commonConfig.colorSimilar, 0);
+            }
+            return false;
         }
     }
 }

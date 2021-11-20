@@ -12,8 +12,8 @@ const myFloaty = {
         if (this.fb) return;
         let self = this;
         this.fb = new FloatButton();
-        this.fb.setMenuOpenAngle(120);
-        this.fb.setMenuRadius(36);
+        this.fb.setMenuOpenAngle(150);
+        this.fb.setMenuRadius(48);
         this.fb.setIcon('file://' + files.cwd() + '/assets/img/ay.png');
         this.fb.setColor('#FFFFFF');
         this.fb.addItem('Home')
@@ -75,6 +75,22 @@ const myFloaty = {
                 self.runEventFlag = false;
                 return false;
             });
+
+        this.fb.addItem('SchemeAutoRun')
+            .setIcon('@drawable/ic_playlist_play_black_48dp')
+            
+            //图标着色
+            .setTint('#FFFFFF')
+            //背景颜色
+            .setColor('#FF9933')
+            //点击事件
+            .onClick((view, name) => {
+                script.stop();
+                self.thisRun('autoRun');
+                self.runEventFlag = false;
+                return false;
+            });
+
         this.fb.setAllButtonPadding(6);
         this.fb.getViewUtil('logo').setPadding(0);
         this.fb.setColor('#00000000');
@@ -104,18 +120,19 @@ const myFloaty = {
             });
         });
 
-        this.thisRun = function() {
+        this.thisRun = function(type) {
+            type = type || 'run';
             if (app.autojs.versionCode >= 8081200) {
                 let capOpt = images.getScreenCaptureOptions();
                 if (null == capOpt) {
                     // 通过报错来切换图标状态
-                    script.run();
+                    script[type](myFloaty);
                     toastLog('无截图权限');
                 } else {
-                    script.run();
+                    script[type](myFloaty);
                 }
             } else {
-                script.run();
+                script[type](myFloaty);
             }
         }
 

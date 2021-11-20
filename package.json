@@ -4,7 +4,7 @@
     "private": true,
     "description": "",
     "scripts": {
-        "start": "npx webpack --config config/index.js --watch --mode=development",
+        "start": "npx webpack --config config/index.js --watch --mode=production",
         "build": "npx webpack --config config/index.js --mode=production && node pack",
         "vue": "npx webpack-dev-server --config config/webpack.vue.config.js --mode=development"
     },
