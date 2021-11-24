@@ -106,6 +106,9 @@ export const versionList = [{
 }, {
     version: '20211121_01',
     desc: '新增根据当前界面智能识别场景并启动脚本'
+}, {
+    version: '20211124_01',
+    desc: '优化自动识别速度，新增真实之羽_清月竹林活动。'
 }];
 
 export default versionList[versionList.length - 1].version;

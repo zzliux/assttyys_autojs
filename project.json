@@ -38,6 +38,7 @@
     "config",
     "src",
     "test",
+    "hotrun",
     ".babelrc",
     "jsconfig.json",
     "tsconfig.json",

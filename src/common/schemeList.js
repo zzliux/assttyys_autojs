@@ -136,7 +136,7 @@ const SchemeList = [{
     list: [0, 1, 2, 3, 32],
 }, {
     id: 99,
-    schemeName: '平安美食祭_集市',
+    schemeName: '真实之羽_清月竹林',
     list: [0, 1, 2, 3, 99],
 }
     // 完整demo

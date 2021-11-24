@@ -16,6 +16,7 @@ var script = {
     runCallback: null,
     stopCallback: null,
     scheme: null,
+    funcMap: null,
     enabledFuncList: null,
     multiColor: null, // 多点找色用的，提前初始化，减轻运行中计算量
     hasRedList: false, // KeepScreen(true)时会初始化redList，如果没有初始化的话这个值为false，方便在有需要的时候初始化redlist且不重复初始化
@@ -57,29 +58,30 @@ var script = {
 
     getFuncList(scheme) {
         let retFunclist = [];
+        if (!this.funcMap) {
+            this.funcMap = {};
+            funcList.forEach(item => this.funcMap[item.id] = item);
+        }
         for (let i = 0; i < scheme.list.length; i++) {
-            for (let j = 0; j < funcList.length; j++) {
-                if (scheme.list[i] == funcList[j].id) {
-                    let thisFuncList = _.cloneDeep(funcList[j]);
-                    let operator = thisFuncList.operator;
-                    if (operator && typeof operator !== 'function') {
-                        for (let k = 0; k < operator.length; k++) {
-                            if (operator[k].desc) {
-                                operator[k].desc = helperBridge.helper.GetCmpColorArray(operator[k].desc[0], operator[k].desc[1], operator[k].desc[2]);
-                            }
-                            if (operator[k].oper) {
-                                operator[k].oper = helperBridge.regionClickTrans(operator[k].oper);
-                            }
-                            if (operator[k].operStepRandom) {
-                                for (let m = 0; m < operator[k].operStepRandom.length; m++) {
-                                    operator[k].operStepRandom[m] = helperBridge.regionClickTrans(operator[k].operStepRandom[m]);
-                                }
-                            }
+            let thisFuncList = this.funcMap[scheme.list[i]];
+            let operator = thisFuncList.operator;
+            if (!thisFuncList.transed && operator) {
+                for (let k = 0; k < operator.length; k++) {
+                    if (operator[k].desc) {
+                        operator[k].desc = helperBridge.helper.GetCmpColorArray(operator[k].desc[0], operator[k].desc[1], operator[k].desc[2]);
+                    }
+                    if (operator[k].oper) {
+                        operator[k].oper = helperBridge.regionClickTrans(operator[k].oper);
+                    }
+                    if (operator[k].operStepRandom) {
+                        for (let m = 0; m < operator[k].operStepRandom.length; m++) {
+                            operator[k].operStepRandom[m] = helperBridge.regionClickTrans(operator[k].operStepRandom[m]);
                         }
                     }
-                    retFunclist.push(thisFuncList);
                 }
+                thisFuncList.transed = true;
             }
+            retFunclist.push(thisFuncList);
         }
         return retFunclist;
     },
@@ -214,7 +216,6 @@ var script = {
         }
     },
     autoRun(myfloaty) {
-        toastLog('智能识别中...');
         let self = this;
         self.keepScreen(false);
         threads.start(function () {
@@ -222,13 +223,22 @@ var script = {
                 return item.star //&& item.id != 99;
             });
             let canRunSchemeList = [];
+            let funcDescCess = {};
             for (let j = 0; j < staredSchemeList.length; j++) {
                 let tarFuncList = self.getFuncList(staredSchemeList[j]);
                 let flag = false;
                 for (let i = 0; i < tarFuncList.length; i++) {
-                    if (self.desc(tarFuncList[i], staredSchemeList[j].commonConfig)) {
-                        flag = true;
-                        break;
+                    if (typeof funcDescCess[tarFuncList[i].id] !== 'undefined') {
+                        flag = funcDescCess[tarFuncList[i].id];
+                        if (flag) {
+                            break;
+                        }
+                    } else {
+                        flag = self.desc(tarFuncList[i], staredSchemeList[j].commonConfig);
+                        funcDescCess[tarFuncList[i].id] = flag;
+                        if (flag) {
+                            break;
+                        }
                     }
                 }
                 if (flag) {
@@ -320,11 +330,12 @@ var script = {
         let operator = currFunc.operator; // 需要计算的坐标通过operater传进去使用
         for (let id = 0; id < operator.length; id++) {
             let item = operator[id];
-            if (item.desc && item.desc.length) {
-                return helperBridge.helper.CompareColorEx(item.desc, commonConfig.colorSimilar, 0);
+            if (item.desc && item.desc.length > 3) {
+                let res = helperBridge.helper.CompareColorEx(item.desc, commonConfig.colorSimilar, 0);
+                if (res) return true;
             }
-            return false;
         }
+        return false;
     }
 }
 

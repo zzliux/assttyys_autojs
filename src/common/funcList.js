@@ -2269,15 +2269,16 @@ const FuncList = [{
 	}]
 }, {
 	id: 99,
-	name: '平安美食祭_集市挑战',
+	name: '真实之羽_清月竹林挑战',
 	desc: '连续执行5次后未开始，脚本将自动停止',
 	operator: [{
 		desc: [1280, 720,
-			[[left,37,40,0xf7e7ad],
-			[left,346,31,0x2a3159],
-			[left,41,43,0xf2e2a0],
-			[left,196,40,0x583716],
-			[right,1161,615,0x461c0a]]
+			[[right,1172,571,0xf0ede6],
+			[right,1170,133,0xfefdfb],
+			[right,1067,51,0xcefafd],
+			[right,1227,40,0xd7c5a1],
+			[left,41,37,0xf6ebad],
+			[left,251,40,0x4e341d]]
 		],
 		oper: [
 			[right, 1280, 720, 1158,608, 1212,669, 1000]
@@ -2287,13 +2288,13 @@ const FuncList = [{
 		let curCnt = 0;
 		let maxCount = 5;
 		while (thisScript.oper({
-			name: '平安美食祭_集市挑战',
+			name: '真实之羽_清月竹林挑战',
 			operator: thisOperator
 		})) {
 			curCnt++;
 			thisScript.keepScreen();
 			if (curCnt >= maxCount) {
-				toastLog(`连续执行${maxCount}次集市挑战后未开始，脚本自动停止`);
+				toastLog(`连续执行${maxCount}次挑战后未开始，脚本自动停止`);
 				thisScript.stop();
 				sleep(1000);
 				return false;
