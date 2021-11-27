@@ -249,7 +249,9 @@ var script = {
                 toastLog('无法识别当前界面');
             } else if (canRunSchemeList.length === 1) {
                 setCurrentScheme(canRunSchemeList[0].schemeName);
-                self.run();
+                setTimeout(() => {
+                    self.run();
+                }, 200);
             } else {
                 schemeDialog.show(myfloaty, canRunSchemeList);
             }
