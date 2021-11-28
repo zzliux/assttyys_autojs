@@ -109,6 +109,9 @@ export const versionList = [{
 }, {
     version: '20211124_01',
     desc: '优化自动识别速度，新增真实之羽_清月竹林活动。'
+}, {
+    version: '20211128_01',
+    desc: '新增准备功能自定义坐标绿标'
 }];
 
 export default versionList[versionList.length - 1].version;

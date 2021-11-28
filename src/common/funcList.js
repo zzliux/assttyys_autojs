@@ -214,10 +214,16 @@ const FuncList = [{
 	}, {
 		desc: '绿标',
 		config: [{
-			name: 'greenFlag',
-			desc: '是否启用绿标（需要将绿标的式神改名为“A”，若无法标记可尝试调整式神站位）',
-			type: 'switch',
-			default: false,
+			name: 'greenType',
+			desc: '绿标类型',
+			type: 'list',
+			data: ['关闭', '标A', '自定义坐标'],
+			default: '关闭',
+		}, {
+			name: 'greenPosition',
+			desc: '绿标坐标，仅绿标类型为自定义坐标时生效，格式x,y，实际点击时xy坐标会在±20内随机点击，如245,500',
+			type: 'text',
+			default: '245,500'
 		}]
 	}],
 	operator: [{
@@ -290,26 +296,49 @@ const FuncList = [{
 				name: '手动修正自动',
 				operator: [thisOperator[2]]
 			}, 1000)) {
-				if (thisconf.greenFlag) {
+				if (thisconf.greenType === '标A' || thisconf.greenType === '自定义坐标') {
 					// 开启绿标
 					if (thisScript.compareColorLoop(thisOperator[1].desc, 16000)) {
-						let p = thisScript.findMultiColorLoop('绿标_标识_A', 5000);
-						if (p) {
-							const lx = p.x - thisOperator[1].oper[1][2] / 2;
-							const ly = p.y + thisOperator[1].oper[0][3] - thisOperator[1].oper[1][3] / 2;
-							const rx = p.x + thisOperator[1].oper[1][2] / 2;
-							const ry = p.y + thisOperator[1].oper[0][3] + thisOperator[1].oper[1][3] / 2;
-							const toClick = [
-								lx > 0 ? lx : 0,
-								ly > 0 ? ly : 0,
-								rx < thisOperator[1].oper[2][2] ? rx : thisOperator[1].oper[2][2],
-								ry < thisOperator[1].oper[2][3] ? ry : thisOperator[1].oper[2][3],
+						if (thisconf.greenType === '标A') {
+							let p = thisScript.findMultiColorLoop('绿标_标识_A', 5000);
+							if (p) {
+								let lx = p.x - thisOperator[1].oper[1][2] / 2;
+								let ly = p.y + thisOperator[1].oper[0][3] - thisOperator[1].oper[1][3] / 2;
+								let rx = p.x + thisOperator[1].oper[1][2] / 2;
+								let ry = p.y + thisOperator[1].oper[0][3] + thisOperator[1].oper[1][3] / 2;
+								let toClick = [
+									lx > 0 ? lx : 0,
+									ly > 0 ? ly : 0,
+									rx < thisOperator[1].oper[2][2] ? rx : thisOperator[1].oper[2][2],
+									ry < thisOperator[1].oper[2][3] ? ry : thisOperator[1].oper[2][3],
+									4000
+								];
+								thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
+								return true;
+							} else {
+								toastLog('未识别式神别名“A”');
+								return true;
+							}
+						} else if (thisconf.greenType === '自定义坐标') {
+							let posPam = (thisconf.greenPosition || '').split(',');
+							if (posPam.length !== 2) {
+								toastLog('自定义坐标格式定义错误，请检查');
+								return true;
+							}
+							let inX = parseInt(posPam[0]);
+							let inY = parseInt(posPam[1]);
+							if (Number.isNaN(inX) || Number.isNaN(inY)) {
+								toastLog('自定义坐标格式定义错误，请检查');
+								return true;
+							}
+							let toClick = [
+								Math.max(inX - 20, 0),
+								Math.max(inY - 20, 0),
+								inX + 20,
+								inY + 20,
 								4000
-							];
+							]
 							thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
-							return true;
-						} else {
-							toastLog('未识别式神别名“A”');
 							return true;
 						}
 					} else {
