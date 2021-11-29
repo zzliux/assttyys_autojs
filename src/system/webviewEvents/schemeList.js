@@ -1,0 +1,103 @@
+import { webview } from "@/system";
+import store, { storeCommon } from '@/system/store';
+import { mergeSchemeList } from '@/common/tool';
+import { requestMyScreenCapture } from '@/common/toolAuto';
+import { isRoot, getWidthPixels, getHeightPixels } from "@auto.pro/core";
+// import _ from 'lodash';
+import version, {versionList} from '@/common/version';
+import defaultSchemeList from '@/common/schemeList';
+
+export default function webviewSchemeList() {
+    // 返回已保存的方案列表，如果未保存过，返回common中的schemeList
+    webview.on("getSchemeList").subscribe(([param, done]) => {
+        let savedSchemeList = store.get("schemeList", defaultSchemeList);
+        // 活动方案去除
+        // done(_.filter(savedSchemeList, item => item.id != 99));
+        done(savedSchemeList);
+    });
+
+    // 保存方案列表
+    webview.on("saveSchemeList").subscribe(([schemeList, done]) => {
+        store.put("schemeList", schemeList);
+        console.log('schemeList已保存');
+        done("success");
+    });
+
+    // 获取方案
+    webview.on("getScheme").subscribe(([schemeName, done]) => {
+        let savedSchemeList = store.get("schemeList", []);
+        let schemeList = mergeSchemeList(savedSchemeList, defaultSchemeList);
+        for (let i = 0; i < schemeList.length; i++) {
+            if (schemeList[i].schemeName === schemeName) {
+                done(schemeList[i]);
+                return;
+            }
+        }
+        done({});
+    });
+
+    // 保存方案
+    webview.on("saveScheme").subscribe(([scheme, done]) => {
+        let savedSchemeList = store.get("schemeList", defaultSchemeList);
+        let schemeList = mergeSchemeList(savedSchemeList, defaultSchemeList);
+        for (let i = 0; i < schemeList.length; i++) {
+            if (schemeList[i].schemeName === scheme.schemeName) {
+                scheme.id = schemeList[i].id;
+                schemeList[i] = scheme;
+                break;
+            }
+        }
+        store.put("schemeList", schemeList);
+        done("success");
+    });
+
+    // 界面加载完成后申请截图权限
+    webview.on("webloaded").subscribe(([_param, done]) => {
+        requestMyScreenCapture(done);
+    });
+
+    // TODO 使用core包的获取状态栏高度
+    webview.on("getStatusBarHeight").subscribe(([_param, done]) => {
+        var resources = context.getResources();
+        var resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
+        var statusBarHeight = resources.getDimensionPixelSize(resourceId);
+        var density = context.getResources().getDisplayMetrics().density;
+        done(parseInt(statusBarHeight / density));
+    });
+
+    // 获取版本信息，前端对版本信息进行拼接，告知更新内容
+    webview.on("versionInfo").subscribe(([_param, done]) => {
+        // storages.remove('assttyys_ng_common');
+        let storeVersion = storeCommon.get("storeVersion", null);
+        storeCommon.put("storeVersion", version);
+        done({
+            storeVersion: storeVersion,
+            versionList: versionList
+        });
+    });
+
+    // 获取应用信息，每次进入app都会以弹窗形式出现
+    webview.on("getAppInfo").subscribe(([_param, done]) => {
+        let ret = {
+            msg: '感谢使用本辅助，进群864842180了解更多信息~'
+        }
+        let w = getWidthPixels();
+        let h = getHeightPixels();
+        if (!(w == 1280 && h == 720) && !(w == 720 && h == 1280)) {
+            ret.msg = `当前分辨率为 ${w} * ${h}, 非推荐分辨率 720 * 1280, 不保证正常运行。感谢使用本辅助，进群864842180了解更多信息`;
+        }
+        done(ret);
+    });
+
+    // 提供toast给前端使用
+    webview.on("toast").subscribe(([string, done]) => {
+        done();
+        toastLog(string);
+    });
+
+    // 退出，前端回到方案界面后返回按两次后退出
+    webview.on("exit").subscribe(([_param, done]) => {
+        done();
+        exit();
+    });
+}

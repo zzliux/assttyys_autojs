@@ -4,7 +4,9 @@ import script from '@/system/script';
 
 
 
-
+/**
+ * 悬浮按钮，对大柒的悬浮按钮进行封装
+ */
 const myFloaty = {
     fb: null,
     runEventFlag: false,

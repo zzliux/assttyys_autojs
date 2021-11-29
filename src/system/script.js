@@ -10,31 +10,47 @@ import _ from 'lodash';
 import schemeDialog from './schemeDialog';
 
 
-
+/**
+ * 脚本对象，一个程序只能有一个
+ */
 var script = {
-    runThread: null,
-    runCallback: null,
-    stopCallback: null,
-    scheme: null,
-    funcMap: null,
-    enabledFuncList: null,
+    runThread: null, // 脚本运行线程
+    runCallback: null, // 运行后回调，一般用于修改悬浮样式
+    stopCallback: null, // 停止后回调，异常停止、手动停止，在停止后都会调用
+    scheme: null, // 运行的方案
+    funcMap: null, // funcList的Map形式，下标为id，值为对应的fun元素
     multiColor: null, // 多点找色用的，提前初始化，减轻运行中计算量
     hasRedList: false, // KeepScreen(true)时会初始化redList，如果没有初始化的话这个值为false，方便在有需要的时候初始化redlist且不重复初始化
-    runDate: null,
+    runDate: null, // 运行启动时间
     ocr: null, // 浩然的OCR
+    // 获取ocr对象，重复调用仅在第一次进行实例化
     getOcr() {
         if (!this.ocr) {
             this.ocr = ocr();
         }
         return this.ocr;
     },
+
+    /**
+     * 运行次数，下标为funcList中的id，值为这个func成功执行的次数；
+     * 成功执行：多点比色成功或operatorFun返回为true
+     */
     runTimes: {},
-    lastFunc: null,
+    lastFunc: null, // 最后执行成功的funcId
     global: null, // 每次启动重置为空对象，用于功能里面存变量
+
+    // 设备信息
     device: {
         width: getWidthPixels(),
         height: getHeightPixels()
     },
+
+    /**
+     * 截图，mode为true时表示对红色通过作为下标进行初始化，但执行需要一定时间，
+     * 对截图进行一次初始化后可大幅提高多点找色效率，通常初始化一次红色通道后进行多次多点找色
+     * 仅使用多点比色时mode给false或不传
+     * @param {Boolean} mode 
+     */
     keepScreen(mode) {
         helperBridge.helper.KeepScreen(mode || false);
         if (mode) {
@@ -43,19 +59,38 @@ var script = {
             this.hasRedList = false;
         }
     },
+
+    /**
+     * 初始化红色通道
+     */
     initRedList() {
         if (!this.hasRedList) {
             helperBridge.helper.GetRedList();
             this.hasRedList = true;
         }
-    },  
+    },
+
+    /**
+     * 设置启动后回调
+     * @param {Function} callback 
+     */
     setRunCallback(callback) {
         this.runCallback = callback;
     },
+
+    /**
+     * 设置停止后回调
+     * @param {Function} callback 
+     */
     setStopCallback(callback) {
         this.stopCallback = callback;
     },
 
+    /**
+     * 根据scheme获取Funclist，Funclist中desc和oper相关坐标根据开发分辨率自动转换成运行分辨率
+     * @param {Scheme} scheme 
+     * @returns 
+     */
     getFuncList(scheme) {
         let retFunclist = [];
         if (!this.funcMap) {
@@ -86,12 +121,18 @@ var script = {
         return retFunclist;
     },
     
-    // 将funcList中operator里面的desc和oper转换为适用当前正在分辨率的坐标
+    /**
+     * 将funcList中operator里面的desc和oper转换为适用当前正在分辨率的坐标
+     */
     initFuncList() {
         this.scheme = store.get('currentScheme', null);
         if (null === this.scheme) return;
         this.scheme.funcList = this.getFuncList(this.scheme);
     },
+
+    /**
+     * 根据 src\common\multiColors.js 初始化多点找色数组，相关坐标根据开发分辨率自动转换成运行分辨率
+     */
     initMultiColor() {
         let thisMultiColor = {};
         for (let key in multiColor) {
@@ -110,6 +151,13 @@ var script = {
         }
         this.multiColor = thisMultiColor;
     },
+
+    /**
+     * 执行多点找色
+     * @param {String} key src\common\multiColors.js的key
+     * @param {Region} inRegion 多点找色区域
+     * @returns 
+     */
     findMultiColor(key, inRegion) {
         this.initRedList();
         let region = inRegion || this.multiColor[key].region;
@@ -125,6 +173,14 @@ var script = {
         }
         return null;
     },
+
+    /**
+     * 执行多点找色，直到成功为止，返回多点找色坐标
+     * @param {String} key src\common\multiColors.js的key
+     * @param {Integer} timeout 超时时间(ms)
+     * @param {inRegion} inRegion 多点找色区域
+     * @returns 
+     */
     findMultiColorLoop(key, timeout, inRegion) {
         let times = Math.round(timeout / this.scheme.commonConfig.loopDelay);
         while (times--) {
@@ -137,6 +193,14 @@ var script = {
         }
         return null;
     },
+
+    /**
+     * 多点比色，直到成功为止
+     * @param {Desc} desc 
+     * @param {Integer} timeout 
+     * @param {Integer} sign 
+     * @returns 
+     */
     compareColorLoop (desc, timeout, sign) {
         /**
          * 条件循环多点比色
@@ -150,9 +214,19 @@ var script = {
          */
         return this.helperBridge.helper.CompareColorExLoop(desc, this.scheme.commonConfig.colorSimilar, 1, timeout, this.scheme.commonConfig.loopDelay, sign || 0);
     },
+
+    /**
+     * 运行脚本
+     * @returns 
+     */
     run() {
         return this._run();
     },
+
+    /**
+     * 运行脚本，内部接口
+     * @returns 
+     */
     _run() {
         if (this.runThread) return;
         var self = this;
@@ -215,6 +289,14 @@ var script = {
             this.runCallback();
         }
     },
+
+    /**
+     * 根据当前界面判断自动运行的脚本
+     * 若只有一个方案存在功能比色成功的话直接运行这个方案
+     * 若有多个方案，可运行的方案通过悬浮列表进行选择
+     * 若没有则提示无法识别当前界面
+     * @param {MyFloaty} myfloaty 
+     */
     autoRun(myfloaty) {
         let self = this;
         self.keepScreen(false);
@@ -258,9 +340,17 @@ var script = {
         });
 
     },
+
+    /**
+     * 停止脚本
+     */
     stop() {
         events.broadcast.emit('SCRIPT_STOP', '');
     },
+
+    /**
+     * 停止脚本，内部接口
+     */
     _stop() {
         if (null !== this.runThread) {
             if (typeof this.stopCallback === 'function') {
@@ -270,12 +360,18 @@ var script = {
         }
         this.runThread = null;
     },
+
+    /**
+     * 重新运行，一般在运行过程中通过setCurrenScheme切换方案后调用，停止再运行
+     */
     rerun() {
         events.broadcast.emit('SCRIPT_RERUN', '');
     },
 
     /**
-     * 
+     * 关键函数，操作函数
+     * 针对func进行多点比色，成功的话按顺序点击oper数组
+     * 若operatorFunc为函数，operator则不执行，调用operatorFunc函数
      * @param {*} currFunc 
      * @param {*} retest 重试时间
      */
@@ -325,7 +421,7 @@ var script = {
     },
 
     /**
-     * 
+     * 根据func中的desc进行多点比色
      * @param {*} currFunc 
      */
      desc(currFunc, commonConfig) {
