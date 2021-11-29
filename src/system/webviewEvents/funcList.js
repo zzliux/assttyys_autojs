@@ -1,4 +1,5 @@
 import { webview } from "@/system";
+import { setCurrentScheme } from '@/common/tool';
 import { storeCommon } from '@/system/store';
 
 
