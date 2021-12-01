@@ -2312,6 +2312,29 @@ const FuncList = [{
 		oper: [
 			[right, 1280, 720, 1158,608, 1212,669, 1000]
 		]
+	}, {
+		desc: [1280, 720,
+			[[left,46,39,0x554f37],
+			[right,1170,344,0xfefdfb],
+			[right,1169,560,0xfef8ec],
+			[right,1227,40,0xd7c5a1],
+			[center,403,456,0x192533],
+			[center,393,319,0xffe3a9]]
+		],
+		oper: [
+			[right, 1280, 720, 1138,573, 1217,653, 1000]
+		]
+	}, {
+		desc: [1280, 720,
+			[[left,43,37,0x554f39],
+			[right,1227,40,0xd7c5a1],
+			[right,1161,557,0xe4e0d7],
+			[right,1190,557,0xe9ce9f],
+			[center,393,313,0xffda9b]]
+		],
+		oper: [
+			[right, 1280, 720, 1138,573, 1217,653, 1000]
+		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
 		let curCnt = 0;
