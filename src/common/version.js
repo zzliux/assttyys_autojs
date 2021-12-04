@@ -112,6 +112,9 @@ export const versionList = [{
 }, {
     version: '20211128_01',
     desc: '新增准备功能自定义坐标绿标'
+}, {
+    version: '20211204_01',
+    desc: '新增月临之时挑战'
 }];
 
 export default versionList[versionList.length - 1].version;

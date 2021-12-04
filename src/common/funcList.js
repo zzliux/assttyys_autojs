@@ -2298,7 +2298,7 @@ const FuncList = [{
 	}]
 }, {
 	id: 99,
-	name: '真实之羽_清月竹林挑战',
+	name: '真实之羽_月临之时挑战',
 	desc: '连续执行5次后未开始，脚本将自动停止',
 	operator: [{
 		desc: [1280, 720,
@@ -2312,12 +2312,23 @@ const FuncList = [{
 		oper: [
 			[right, 1280, 720, 1158,608, 1212,669, 1000]
 		]
+	}, {
+		desc: [1280,720,
+			[[right,1154,582,0xeae9e5],
+			[right,1226,40,0xd7c5a1],
+			[left,44,40,0xf4e5a2],
+			[center,428,209,0xfeda9e],
+			[center,434,486,0x242237]]
+		],
+		oper: [
+			[right, 1280, 720, 1142,579, 1199,662, 1000]
+		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
 		let curCnt = 0;
 		let maxCount = 5;
 		while (thisScript.oper({
-			name: '真实之羽_清月竹林挑战',
+			name: '真实之羽_月临之时挑战',
 			operator: thisOperator
 		})) {
 			curCnt++;
