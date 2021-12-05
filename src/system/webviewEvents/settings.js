@@ -1,4 +1,5 @@
 import { webview } from "@/system";
+import myFloaty from '@/system/myFloaty';
 import { storeCommon } from '@/system/store';
 import { requestMyScreenCapture } from '@/common/toolAuto';
 import { isRoot } from "@auto.pro/core";
