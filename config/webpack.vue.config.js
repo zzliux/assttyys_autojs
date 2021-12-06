@@ -1,5 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
+const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
@@ -82,6 +83,9 @@ module.exports = (env, argv) => {
                 title: 'ASSTTYYS NG',
                 template: './src/template/index.html'
             }),
+            new CleanWebpackPlugin({
+                cleanOnceBeforeBuildPatterns: [__dirname + '/../dist/index.html', __dirname + '/../dist/web.js']
+            }),
             new VueLoaderPlugin(),
             new webpack.ProvidePlugin({
                 AutoWeb: '@auto.pro/web',
@@ -90,6 +94,7 @@ module.exports = (env, argv) => {
                 // 处理aj的api在前端引用时的报错
                 storages: { create: function (){} }
             }),
+            // 打包至一个文件
             new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 })
         ]
     }

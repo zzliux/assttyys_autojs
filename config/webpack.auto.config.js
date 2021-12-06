@@ -68,7 +68,7 @@ module.exports = (env, argv) => {
     if (argv.mode === 'development') {
         config.plugins = [
             new CleanWebpackPlugin({
-                cleanOnceBeforeBuildPatterns: []
+                cleanOnceBeforeBuildPatterns: [__dirname + '/../dist/auto.js']
             }),
             compilePlugin,
             new ProgressPlugin()
@@ -77,7 +77,7 @@ module.exports = (env, argv) => {
     } else {
         config.plugins = [
             new CleanWebpackPlugin({
-                // cleanOnceBeforeBuildPatterns: []
+                cleanOnceBeforeBuildPatterns: [__dirname + '/../dist/auto.js'],
             }),
             // new JavascriptObfuscator({
             //     compact: true,
