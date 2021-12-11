@@ -91,15 +91,17 @@ export const helperBridge = {
                 let x = random(item[0], item[2]);
                 let y = random(item[1], item[3]);
                 console.log(`执行点击操作 === x坐标:${x}, y坐标:${y}`);
-                let toDraw = [{
-                    color: 'orange',
-                    region: [item[0], item[1], item[2], item[3]]
-                }, {
-                    color: 'red',
-                    region: [x - 5, y - 5, x + 5, y + 5]
-                }];
-                drawFloaty.draw(toDraw, 500);
-                sleep(500);
+                if (drawFloaty.instacne) {
+                    let toDraw = [{
+                        color: 'orange',
+                        region: [item[0], item[1], item[2], item[3]]
+                    }, {
+                        color: 'red',
+                        region: [x - 5, y - 5, x + 5, y + 5]
+                    }];
+                    drawFloaty.draw(toDraw, 500);
+                    sleep(500);
+                }
                 if (needRoot) {
                     Tap(x, y);
                     sleep(random(10, 60));
