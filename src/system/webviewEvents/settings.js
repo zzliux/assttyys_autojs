@@ -1,4 +1,5 @@
 import { webview } from "@/system";
+import drawFloaty from '@/system/drawFloaty';
 import myFloaty from '@/system/myFloaty';
 import { storeCommon } from '@/system/store';
 import { requestMyScreenCapture } from '@/common/toolAuto';
@@ -56,6 +57,11 @@ export default function webviewSettigns() {
             name: 'floaty_scheme_direct_run',
             type: 'assttyys_setting',
             enabled: storeSettings.floaty_scheme_direct_run || false
+        }, {
+            desc: '是否启用调试绘制',
+            name: 'floaty_debugger_draw',
+            type: 'assttyys_setting_floaty_debugger_draw',
+            enabled: !!drawFloaty.instacne
         }, {
             desc: '脚本停止是否启用推送',
             name: 'use_push_plus',
@@ -148,6 +154,13 @@ export default function webviewSettigns() {
                 storeSettings[item.name] = item.value;
             }
             storeCommon.put('settings', storeSettings);
+            done(true);
+        } else if ('assttyys_setting_floaty_debugger_draw' === item.type) {
+            if (item.enabled) {
+                drawFloaty.init();
+            } else {
+                drawFloaty.destroy();
+            }
             done(true);
         }
     });

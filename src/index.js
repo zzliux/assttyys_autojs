@@ -1,7 +1,6 @@
 importClass(android.content.pm.ApplicationInfo);
 
 import { fromEvent } from 'rxjs';
-import { webview } from "@/system";
 import { effect$ } from "@auto.pro/core";
 import myFloaty from '@/system/myFloaty';
 import webviewEvents from '@/system/webviewEvents';
@@ -25,10 +24,4 @@ fromEvent(ui.emitter, 'resume').subscribe(() => {
     // webview.runHtmlJS('window.innerHeight').subscribe((height) => {
     //     toastLog(`页面高度=${height}`);
     // })
-});
-
-// 调试用，完成后取消注释
-fromEvent(ui.emitter, 'back_pressed').subscribe((e) => {
-    e.consumed = true;
-    webview.runHtmlFunction("routeBack");
 });

@@ -2345,6 +2345,22 @@ const FuncList = [{
 		}
 		return false;
 	}
+}, {
+	id: 100,
+	name: 'TEST',
+	desc: '测试调试绘制工具',
+	operator: [{
+		desc: [1280,720,
+			[[left,122,131,0x00d0ff],
+			[right,1161,137,0xa9cc43],
+			[center,582,623,0xfffbfe],
+			[center,601,340,0x050926],
+			[left,151,288,0xfac073]]
+		],
+		oper: [
+			[right, 1280, 720, 1126,116, 1162,153, 1000]
+		]
+	}]
 }];
 
 export default FuncList;

@@ -21,6 +21,7 @@ core({
 });
 
 export const webview = run('file://' + files.path('dist/index.html'), {
+    fitsSystemWindows: "true",
     afterLayout() {
         if (device.sdkInt >= 23) { // SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             setSystemUiVisibility('有状态栏的沉浸式界面')

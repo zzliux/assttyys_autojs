@@ -138,6 +138,11 @@ const SchemeList = [{
     id: 99,
     schemeName: '真实之羽_月临之时',
     list: [0, 1, 2, 3, 99],
+}, {
+    id: 100,
+    schemeName: 'TEST',
+    star: true,
+    list: [100]
 }
     // 完整demo
     // , {

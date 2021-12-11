@@ -1,3 +1,4 @@
+import { fromEvent } from 'rxjs';
 import { webview } from "@/system";
 import store, { storeCommon } from '@/system/store';
 import { mergeSchemeList } from '@/common/tool';
@@ -51,9 +52,15 @@ export default function webviewSchemeList() {
         done("success");
     });
 
-    // 界面加载完成后申请截图权限
     webview.on("webloaded").subscribe(([_param, done]) => {
+        // 界面加载完成后申请截图权限
         requestMyScreenCapture(done);
+        
+        // 加载完界面后再注册返回事件
+        fromEvent(ui.emitter, 'back_pressed').subscribe((e) => {
+            e.consumed = true;
+            webview.runHtmlFunction("routeBack");
+        });
     });
 
     // TODO 使用core包的获取状态栏高度
