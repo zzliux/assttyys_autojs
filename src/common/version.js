@@ -115,6 +115,9 @@ export const versionList = [{
 }, {
     version: '20211204_01',
     desc: '新增月临之时挑战'
+}, {
+    version: '20211218_01',
+    desc: '修复自动匹配（妖气封印）的bug'
 }];
 
 export default versionList[versionList.length - 1].version;

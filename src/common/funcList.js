@@ -1999,61 +1999,57 @@ const FuncList = [{
 			[center,704,27,0xaa9379],
 			[center,807,27,0x9d7051],
 			[center,556,98,0x2e090d],
-			[center,626,83,0xab9f8b],
-			[center,620,30,0xaa937b],
 			[center,397,22,0x766838]]
-	]},{
-		desc: [1280,720, //首页比色
-			[[center,229,30,0x614040],
-			[center,404,36,0xfbcb78],
+		],
+		oper: [
+			[center, 1280, 720, -1, -1, -1, -1, 5000] // 匹配中等5秒
+		]
+	},{
+		desc: [1280,720, // 首页比色
+			[[center,404,36,0xfbcb78],
 			[center,437,79,0xee7a59],
 			[center,1151,53,0xcba574],
 			[center,1237,54,0xceac79],
-			[right,1235,610,0x5c7575],
-			[center,1020,597,0xc73e4c],
 			[center,635,608,0xf4f4f3],
 			[center,373,623,0xe2dfdc],
-			[center,746,630,0xd9ceca]]
+			[right,1228,638,0xd5c6c1],
+			[center,734,618,0xf1e8df]]
 		],
 		oper: [
 			[center, 1280, 720, 350, 640, 402, 664, 1500], //首页组队按钮
 		]
 	},{
 		desc: [1280,720,
-			// [[left,86,36,0x100a0b],  //不知道为啥 取得点居然匹配不是 换了好几次点集了
-			// [right,1167,44,0x2a2327],
 			[[center,840,143,0xd7c8ba],
-			[center,650,150,0xded1c3],
-			[right,1104,157,0xf46c28],
 			[center,623,620,0xccbbaa],
-			// [left,76,615,0x927969],
-			// [right,1186,679,0x402623],
 			[center,721,625,0xf4b25f],
-			[center,422,631,0xdc935a]]
+			[center,422,631,0xdc935a],
+			[center,722,156,0xdbcdc4],
+			[center,1134,98,0x482f28]]
 		],
 		oper: [
 			[center, 1280, 720, 702, 601, 865, 650, 1000] //组队界面 自动匹配
 		]
 	}],
-	operatorFunc(thisScript, thisOperator) {
-		if(!thisScript.oper({
-			name: '判断自动匹配非排队中',
-			operator: [{
-				desc: thisOperator[0].desc
-			}]
-		}) && thisScript.oper({
-			name: '首页判断并点击组队',
-			operator: [thisOperator[1], thisOperator[2]]
-		})){
-			// return thisScript.oper({
-			// 	name: '妖气界面判断自动匹配',
-			// 	operator: [thisOperator[2]]
-			// });
-			// thisScript.helperBridge.regionClick(thisOperator[2].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
-			return true;
-		}
-		return false;
-	}
+	// operatorFunc(thisScript, thisOperator) {
+	// 	if(!thisScript.oper({
+	// 		id: 27,
+	// 		name: '判断自动匹配非排队中',
+	// 		operator: [thisOperator[0]]
+	// 	}) && thisScript.oper({
+	// 		id: 27,
+	// 		name: '首页判断并点击组队',
+	// 		operator: [thisOperator[1], thisOperator[2]]
+	// 	})){
+	// 		// return thisScript.oper({
+	// 		// 	name: '妖气界面判断自动匹配',
+	// 		// 	operator: [thisOperator[2]]
+	// 		// });
+	// 		// thisScript.helperBridge.regionClick(thisOperator[2].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+	// 		return true;
+	// 	}
+	// 	return false;
+	// }
 }, {
 	id: 28,
 	name: '继续育成',
@@ -2345,22 +2341,6 @@ const FuncList = [{
 		}
 		return false;
 	}
-}, {
-	id: 100,
-	name: 'TEST',
-	desc: '测试调试绘制工具',
-	operator: [{
-		desc: [1280,720,
-			[[left,122,131,0x00d0ff],
-			[right,1161,137,0xa9cc43],
-			[center,582,623,0xfffbfe],
-			[center,601,340,0x050926],
-			[left,151,288,0xfac073]]
-		],
-		oper: [
-			[right, 1280, 720, 1126,116, 1162,153, 1000]
-		]
-	}]
 }];
 
 export default FuncList;

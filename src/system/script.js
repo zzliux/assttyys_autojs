@@ -394,6 +394,17 @@ var script = {
                 }
                 // console.log(`执行：currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper} 比色结果:${rs}`);
                 if (rs) {
+                    if (drawFloaty.instacne) {
+                        let toDraw = [...item.desc.map(kk => {
+                            return {
+                                color: 'green',
+                                region: [kk[0] - 5, kk[1] - 5, kk[0] + 5, kk[1] + 5]
+                            }
+                        })];
+                        
+                        drawFloaty.draw(toDraw, 500);
+                        sleep(500);
+                    }
                     retest = retest || item.retest || undefined;
                     if (retest && retest !== -1) {
                         sleep(retest);
@@ -406,33 +417,6 @@ var script = {
                         }
                         this.runTimes[currFunc.id]++;
                         this.lastFunc = currFunc.id;
-                    }
-                    if (drawFloaty.instacne) {
-                        let toDraw = [...item.desc.map(kk => {
-                            return {
-                                color: 'green',
-                                region: [kk[0] - 5, kk[1] - 5, kk[0] + 5, kk[1] + 5]
-                            }
-                        })];
-                        // if (item.operStepRandom) {
-                        //     item.operStepRandom.forEach(kk => {
-                        //         toDraw.push({
-                        //             color: 'orange',
-                        //             region: [kk[0], kk[1], kk[2], kk[3]]
-                        //         });
-                        //     });
-                        // } else if (item.oper) {
-                        //     item.oper.forEach(kk => {
-                        //         toDraw.push({
-                        //             color: 'orange',
-                        //             region: [kk[0], kk[1], kk[2], kk[3]]
-                        //         });
-                        //     });
-                        // }
-                        // console.log(`请求绘制：${JSON.stringify(toDraw)}`);
-                        
-                        drawFloaty.draw(toDraw, 500);
-                        sleep(500);
                     }
 
                     if (item.operStepRandom) {

@@ -117,7 +117,7 @@ const SchemeList = [{
     id: 15,
     schemeName: '组队_自动匹配流程',
     star: true,
-    list: [0, 1, 2, 3, 27]
+    list: [0, 1, 2, 3, 5, 27]
 }, {
     id: 16,
     schemeName: '继续育成',
@@ -138,11 +138,6 @@ const SchemeList = [{
     id: 99,
     schemeName: '真实之羽_月临之时',
     list: [0, 1, 2, 3, 99],
-}, {
-    id: 100,
-    schemeName: 'TEST',
-    star: true,
-    list: [100]
 }
     // 完整demo
     // , {

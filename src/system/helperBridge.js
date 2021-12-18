@@ -108,6 +108,8 @@ export const helperBridge = {
                 } else {
                     press(x, y, random(10, 60));
                 }
+            } else {
+                console.log(`传入坐标信息为(${JSON.stringify(item)}), 不执行操作`);
             }
             sleep(item[4] + random(0, randomSleep || 0));
         });
