@@ -118,6 +118,9 @@ export const versionList = [{
 }, {
     version: '20211218_01',
     desc: '修复自动匹配（妖气封印）的bug'
+}, {
+    version: '20211229_01',
+    desc: '新增夜影诡谈挑战，请重置脚本后食用'
 }];
 
 export default versionList[versionList.length - 1].version;

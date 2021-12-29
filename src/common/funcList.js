@@ -1,7 +1,6 @@
 // import helperBridge from '@/system/helperBridge';
-import { search, questionSearch, setCurrentScheme } from '@/common/tool';
+import { search, questionSearch, setCurrentScheme, pushPlusPush, scaleBmp } from '@/common/tool';
 import { storeCommon } from '@/system/store';
-import { pushPlusPush, scaleBmp } from '@/common/tool';
 
 
 const normal = -1; //定义常量
@@ -2294,37 +2293,26 @@ const FuncList = [{
 	}]
 }, {
 	id: 99,
-	name: '真实之羽_月临之时挑战',
+	name: '赤月谜影_夜影诡谈挑战',
 	desc: '连续执行5次后未开始，脚本将自动停止',
 	operator: [{
-		desc: [1280, 720,
-			[[right,1172,571,0xf0ede6],
-			[right,1170,133,0xfefdfb],
-			[right,1067,51,0xcefafd],
-			[right,1227,40,0xd7c5a1],
-			[left,41,37,0xf6ebad],
-			[left,251,40,0x4e341d]]
-		],
-		oper: [
-			[right, 1280, 720, 1158,608, 1212,669, 1000]
-		]
-	}, {
 		desc: [1280,720,
-			[[right,1154,582,0xeae9e5],
-			[right,1226,40,0xd7c5a1],
-			[left,44,40,0xf4e5a2],
-			[center,428,209,0xfeda9e],
-			[center,434,486,0x242237]]
+			[[left,42,43,0xf5e6a6],
+			[left,41,148,0x211a20],
+			[left,65,254,0xc1b8a0],
+			[right,1179,542,0xefe8e6],
+			[right,1082,590,0xc83333],
+			[right,1181,323,0x17141b]]
 		],
 		oper: [
-			[right, 1280, 720, 1142,579, 1199,662, 1000]
+			[right, 1280, 720, 1102,543, 1185,633, 1000]
 		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
 		let curCnt = 0;
 		let maxCount = 5;
 		while (thisScript.oper({
-			name: '真实之羽_月临之时挑战',
+			name: '赤月谜影_夜影诡谈挑战',
 			operator: thisOperator
 		})) {
 			curCnt++;

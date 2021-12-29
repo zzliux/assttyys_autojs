@@ -136,7 +136,7 @@ const SchemeList = [{
     list: [0, 1, 2, 3, 32],
 }, {
     id: 99,
-    schemeName: '真实之羽_月临之时',
+    schemeName: '赤月谜影_夜影诡谈',
     list: [0, 1, 2, 3, 99],
 }
     // 完整demo
