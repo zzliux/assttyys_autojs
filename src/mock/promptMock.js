@@ -78,7 +78,7 @@ const promptMockData = {
     },
     getStatusBarHeight: 20,
     setCurrentScheme: 'sucess',
-    startScript: 'sucess',
+    startScript: [],
     saveSetting: 'sucess',
     toast: function () {},
     initFloaty: function () {},
