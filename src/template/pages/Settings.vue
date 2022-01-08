@@ -21,7 +21,7 @@
 
     <div
       class="rv_inner"
-      :style="'padding-top: ' + (46 + (statusBarHeight || 0)) + 'px'"
+      :style="'padding-top: ' + (46 + (statusBarHeight || 0)) + 'px; margin-bottom: 40px'"
     >
       <van-cell-group
         class="itemBox"
@@ -85,11 +85,26 @@
           </div>
           <van-loading v-if="setDefaultLaunchAppLoading" size="24" style="position: absolute; right: 32px; top: 11px" />
         </div>
-        <div class="item" @click="shapedScreenOptim">
-          <div class="item-title">
-            异形屏兼容强化
+          <div class="item" @click="shapedScreenOptim($event)">
+            <div class="item-title">
+              异形屏兼容强化
+            </div>
+            <div class="func-config-box"
+              v-for="item in shapedScreenList"
+              :key="item.device"
+            >
+              <van-cell 
+                label-width="70%"
+                :title="item.device"
+              >
+                <template #right-icon>
+                  <van-switch 
+                  :loading="!!item.loading"
+                  v-model="item.enabled" size="16" @change="setShapedScreenConfigEnabled($event, item)" />
+                </template>
+              </van-cell>
+              </div>
           </div>
-        </div>
         <div class="item" @click="startActivityForLog">
           <div class="item-title">
             查看日志
@@ -131,7 +146,8 @@ export default {
       toSetDefaultLaunchAppList: [],
       setDefaultLaunchAppDialogShown: false,
       setDefaultLaunchAppLoading: false,
-      timeout: null
+      timeout: null,
+      shapedScreenList: []
     };
   },
   components: {
@@ -179,7 +195,23 @@ export default {
       this.setDefaultLaunchAppDialogShown = true;
       this.setDefaultLaunchAppLoading = false;
     },
-    shapedScreenOptim() {},
+    async shapedScreenOptim(e) {
+      if (e.target && e.target.className === 'item-title' || e.target.className === 'item item-expand' || e.target.className === 'item') {
+        if (e.target && e.target.className === 'item') {// 展开
+          let arr = await AutoWeb.autoPromise('getShapedScreenConfig', null);
+          arr.forEach(i => i.loading = false);
+          this.shapedScreenList = arr;
+          e.target.className = 'item item-expand';
+        } else if (e.target && e.target.className === 'item item-expand') {
+          e.target.className = 'item'
+        }
+      }
+    },
+    async setShapedScreenConfigEnabled(e, item) {
+      item.loading = true;
+      await AutoWeb.autoPromise('setShapedScreenConfigEnabled', item);
+      item.loading = false;
+    },
     async saveSettings(item) {
       await AutoWeb.autoPromise('saveSetting', item);
     },
@@ -201,7 +233,10 @@ export default {
 </script>
 
 <style scoped>
-
+.item.item-expand {
+  transition: all 0.2s linear;
+  height:initial;
+}
 .item:active {
   background-color: #f2f3f5;
 }
@@ -213,7 +248,8 @@ export default {
   overflow: hidden;
   padding: 0px 16px;
   font-size: 14px;
-  box-shadow: 1px 1px 1px #eaeaea
+  box-shadow: 1px 1px 1px #eaeaea;
+  transition: all 0.2s linear;
 }
 .item-title {
   display: inline-block;
@@ -223,5 +259,18 @@ export default {
 .item-value {
   margin-top: 12px;
   float: right;
+}
+.func-config-box:last-child {
+  margin-bottom: 10px;
+}
+.func-config-box .van-cell,
+.func-config-box .van-cell-group__title {
+  font-size: 12px;
+}
+.func-config-box .van-cell {
+  padding: 2px 5px;
+}
+.func-config-box .van-cell-group__title {
+  padding: 10px 16px 2px 16px;
 }
 </style>

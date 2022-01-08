@@ -238,4 +238,44 @@ export default function webviewSettigns() {
         storeCommon.put('settings', storeSettings);
         done(true);
     });
+
+    // 获取异型屏兼容强化配置
+    webview.on('getShapedScreenConfig').subscribe(([_param, done]) => {
+        let shapedScreenDevices = ['xiaomi 11(3200*1440)'];
+        let storedShapedScreenConfig = storeCommon.get('shapedScreenConfig', []);
+        let ret = [];
+        shapedScreenDevices.forEach(deviceName => {
+            let enabled = false;
+            for (let i = 0;i < storedShapedScreenConfig.length;i++) {
+                if (storedShapedScreenConfig[i] === deviceName) {
+                    enabled = true;
+                    break;
+                }
+            }
+            ret.push({
+                device: deviceName,
+                enabled
+            });
+        });
+        console.log(ret);
+        done(ret);
+    });
+
+    // 保存异型屏兼容强化配置
+    webview.on('setShapedScreenConfigEnabled').subscribe(([deviceParam, done]) => {
+        let storedShapedScreenConfig = storeCommon.get('shapedScreenConfig', []);
+        let indx = storedShapedScreenConfig.indexOf(deviceParam.device);
+        if (indx === -1) {
+            if (deviceParam.enabled) {
+                storedShapedScreenConfig.push(deviceParam.device);
+            }
+        } else {
+            if (!deviceParam.enabled) {
+                storedShapedScreenConfig.splice(indx, 1);
+            }
+        }
+        storeCommon.put('shapedScreenConfig', storedShapedScreenConfig);
+        console.log('storedShapedScreenConfig:' + JSON.stringify(storedShapedScreenConfig));
+        done();
+    });
 }

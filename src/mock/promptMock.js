@@ -89,6 +89,14 @@ const promptMockData = {
     copyToClip() {},
     webloaded() {},
     getAppInfo: {},
+    getShapedScreenConfig: [{
+        device: 'xiaomi 11(3200*1440)',
+        enabled: true
+    }, {
+        device: 'meizu 16th plus(2160*1080)',
+        enabled: false
+    }],
+    setShapedScreenConfigEnabled: {}
 };
 
 // 注入修改prompt
