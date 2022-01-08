@@ -239,7 +239,7 @@ export default {
         desc: [[1280,720,
             [[center,904,155,0xdacbbc],
             [center,1116,161,0xdacdbc],
-            [right,1118,262,0xa38f86],
+            [center,1118,262,0xa38f86],
             [center,923,233,0xc9b4a4],
             [center,962,233,0xc9b6a4],
             [center,1002,233,0xc9b6a4],

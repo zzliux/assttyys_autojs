@@ -380,7 +380,7 @@ var script = {
         let operatorFunc = currFunc.operatorFunc;
         if (typeof operatorFunc === 'function') {
             if (operatorFunc.call(null, this, operator)) {
-                console.log('执行：' + currFunc.name);
+                console.log('oper_success: [function] currFunc.name' + currFunc.name);
                 return true;
             }
         } else {
@@ -392,7 +392,6 @@ var script = {
                 } else {
                     rs = true;
                 }
-                // console.log(`执行：currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper} 比色结果:${rs}`);
                 if (rs) {
                     if (drawFloaty.instacne) {
                         let toDraw = [...item.desc.map(kk => {
@@ -420,11 +419,13 @@ var script = {
                     }
 
                     if (item.operStepRandom) {
-                        console.log(`执行：currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper}`);
+                        console.log(`oper_success：[item.operStepRandom] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper}`);
                         helperBridge.regionStepRandomClick(item.operStepRandom, this.scheme.commonConfig.afterClickDelayRandom);
                     } else if (item.oper) {
-                        console.log(`执行：currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper}`);
+                        console.log(`oper_success：[item.oper] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper}`);
                         helperBridge.regionClick(item.oper, this.scheme.commonConfig.afterClickDelayRandom);
+                    } else {
+                        console.log(`oper_success: [] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper}`);
                     }
                     return true;
                 }
