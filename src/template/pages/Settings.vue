@@ -85,6 +85,11 @@
           </div>
           <van-loading v-if="setDefaultLaunchAppLoading" size="24" style="position: absolute; right: 32px; top: 11px" />
         </div>
+        <div class="item" @click="shapedScreenOptim">
+          <div class="item-title">
+            异形屏兼容强化
+          </div>
+        </div>
         <div class="item" @click="startActivityForLog">
           <div class="item-title">
             查看日志
@@ -174,6 +179,7 @@ export default {
       this.setDefaultLaunchAppDialogShown = true;
       this.setDefaultLaunchAppLoading = false;
     },
+    shapedScreenOptim() {},
     async saveSettings(item) {
       await AutoWeb.autoPromise('saveSetting', item);
     },
