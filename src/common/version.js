@@ -121,6 +121,9 @@ export const versionList = [{
 }, {
     version: '20211229_01',
     desc: '新增夜影诡谈挑战，请重置脚本后食用'
+}, {
+    version: '20220112_01',
+    desc: '因2021.1.12日更新导致部分功能失效，本次更新复以下功能: \n准备功能: 无法准备、手动状态时无法切自动;\n地鬼热门挑战功能: 选择热门标签时错误。'
 }];
 
 export default versionList[versionList.length - 1].version;
