@@ -85,7 +85,7 @@
           </div>
           <van-loading v-if="setDefaultLaunchAppLoading" size="24" style="position: absolute; right: 32px; top: 11px" />
         </div>
-          <div class="item" @click="shapedScreenOptim($event)">
+          <div class="item" @click="shapedScreenOptim($event)" v-if="false">
             <div class="item-title">
               异形屏兼容强化
             </div>
