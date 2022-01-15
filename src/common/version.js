@@ -124,6 +124,9 @@ export const versionList = [{
 }, {
     version: '20220112_01',
     desc: '因2021.1.12日更新导致部分功能失效，本次更新复以下功能: \n准备功能: 无法准备、手动状态时无法切自动;\n地鬼热门挑战功能: 选择热门标签时错误。'
+}, {
+    version: '20220115_01',
+    desc: '修复切换方案失效，修复部分场景手动无法切自动，修复逢魔答题报错'
 }];
 
 export default versionList[versionList.length - 1].version;
