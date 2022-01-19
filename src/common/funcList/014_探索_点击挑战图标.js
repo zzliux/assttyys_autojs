@@ -42,13 +42,31 @@ export default {
 			[left, 1280, 720, 0, 0, 16, 16, 0],
 			[right, 1280, 720, 0, 0, 1275, 715, 0]
 		]
+	}, {
+		// 自动轮换
+		desc: [1280,720,
+			[[left,132,666,0x646464],
+			[left,66,658,0xedede5],
+			[left,42,67,0xe8f2fb],
+			[right,1120,36,0xd7b389],
+			[right,1233,34,0xd3af83]]
+		],
+		oper: [
+			[left, 1280, 720, 122,660, 245,682, 500]
+		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
-		let thisconf = thisScript.scheme.config['14'];
 		while (thisScript.oper({
 			name: '探索界面_判断',
 			operator: [{ desc: thisOperator[0].desc }]
 		})) {
+			if (thisScript.oper({
+				name: '探索界面_自动轮换',
+				operator: [thisOperator[1]]
+			})) {
+				return true;
+			}
+			let thisconf = thisScript.scheme.config['14'];
 			if (thisScript.global.tsAttackSwhipeNum === undefined) {
 				thisScript.global.tsAttackSwhipeNum = parseInt(thisconf.swipeTime);
 				// sleep(3000); // 从地图进来，先休息一下再进行判断

@@ -410,7 +410,7 @@ var script = {
                         this.keepScreen();
                         return this.oper(currFunc, -1);
                     }
-                    if (!!currFunc.id && this.lastFunc !== currFunc.id && !item.notForCnt) {
+                    if (!!currFunc.id /*&& this.lastFunc !== (currFunc.id + '_' + id)*/ && !item.notForCnt) {
                         if (!this.runTimes[currFunc.id]) {
                             this.runTimes[currFunc.id] = 0;
                         }

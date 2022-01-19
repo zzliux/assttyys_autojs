@@ -125,7 +125,7 @@ export default {
 			}
 			if (thisScript.runTimes['1'] !== thisScript.global.currentRunTimes['1']) {
 				thisScript.global.currentRunTimes['1'] = thisScript.runTimes['1'];
-				toastLog(`准备功能已执行${thisScript.runTimes['1']}次, 继续${thisconf.jspd_times_1 - thisScript.runTimes['1']}次后将停止脚本`);
+				toastLog(`准备功能已执行${thisScript.runTimes['1']}次, 继续执行${thisconf.jspd_times_1 - thisScript.runTimes['1']}次后将停止脚本`);
 			}
 		}
 		if (thisconf.jspd_enabled_2) {
@@ -139,7 +139,7 @@ export default {
 			}
 			if (thisScript.runTimes['2'] !== thisScript.global.currentRunTimes['2']) {
 				thisScript.global.currentRunTimes['2'] = thisScript.runTimes['2'];
-				toastLog(`退出结算已执行${thisScript.runTimes['2']}次, 继续${thisconf.jspd_times_2 - thisScript.runTimes['2']}次后将停止脚本`);
+				toastLog(`退出结算已执行${thisScript.runTimes['2']}次, 继续执行${thisconf.jspd_times_2 - thisScript.runTimes['2']}次后将停止脚本`);
 			}
 		}
 
