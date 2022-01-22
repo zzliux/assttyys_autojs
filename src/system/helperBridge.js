@@ -10,7 +10,7 @@ const needRoot = device.sdkInt < 24;
 let ra = null;
 if (needRoot) {
     try {
-        ra = new RootAutomator();
+        // ra = new RootAutomator();
     } catch (e) {
         console.error(e);
     }

@@ -4,6 +4,7 @@ import { fromEvent } from 'rxjs';
 import { effect$ } from "@auto.pro/core";
 import myFloaty from '@/system/myFloaty';
 import webviewEvents from '@/system/webviewEvents';
+import InputHideUtil from '@/system/inputhideutil';
 
 webviewEvents();
 
@@ -13,6 +14,7 @@ effect$.subscribe(() => {
     if ((auto.service || device.sdkInt < 24) && floaty.checkPermission()) {
         myFloaty.init();
     }
+    InputHideUtil.assistActivity(activity);
 });
 
 fromEvent(ui.emitter, 'resume').subscribe(() => {
