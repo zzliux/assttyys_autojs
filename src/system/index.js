@@ -20,7 +20,12 @@ core({
     // needForeground: true,
 });
 
-export const webview = run('file://' + files.path('dist/index.html'), {
+let url = 'https://assttyys.zzliux.cn/static/webview/'
+if (context.packageName.match(/^org.autojs.autojs(pro)?$/)) {
+    url = 'file://' + files.path('dist/index.html');
+}
+
+export const webview = run(url, {
     fitsSystemWindows: "true",
     afterLayout() {
         if (device.sdkInt >= 23) { // SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
