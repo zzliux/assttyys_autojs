@@ -135,6 +135,28 @@ const SchemeList = [{
     schemeName: '道馆',
     list: [0, 1, 2, 3, 32],
 }, {
+    id: 5,
+    schemeName: '个人突破_卡级_进攻',
+    star: true,
+    list: [0, 1, 2, 3, 10, 8, 9, 11],
+    config: {
+        '0': { jspd_enabled_1: true, jspd_times_1: 9, scheme_switch_enabled: true, next_scheme: '个人突破_卡级_退出' },
+        '8': { count: '2', afterCountOper: '停止脚本', type: '个人突破' },
+        '10': { type: '个人突破' }
+    }
+}, {
+    id: 5,
+    schemeName: '个人突破_卡级_退出',
+    star: true,
+    list: [0, 1, 2, 3, 8, 9, 10, 11],
+    config: {
+        '0': { jspd_enabled_1: true, jspd_times_1: 4, scheme_switch_enabled: true, next_scheme: '个人突破_卡级_进攻' },
+        '1': { exitBeforeReady: true },
+        '8': { count: '2', afterCountOper: '停止脚本', type: '个人突破' },
+        '9': { priority: '0->1->2->3->4->5' },
+        '10': { type: '个人突破' }
+    }
+}, {
     id: 99,
     schemeName: '赤月谜影_夜影诡谈',
     list: [0, 1, 2, 3, 99],
