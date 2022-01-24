@@ -48,8 +48,17 @@ const drawFloaty = {
         paintOrange.setAlpha(255);//0~255透明度
         paintOrange.setFakeBoldText(true);
         paintOrange.setStrokeWidth(3);
-        paintOrange.setStyle(Paint.Style.STROKE);   
+        paintOrange.setStyle(Paint.Style.STROKE);
         paintOrange.setColor(colors.parseColor("#FF963200"));
+
+        var paintLine = new Paint();
+        paintOrange.setAntiAlias(true);//抗锯齿
+        paintOrange.setAlpha(255);//0~255透明度
+        paintOrange.setFakeBoldText(true);
+        paintOrange.setStrokeWidth(1);
+        paintOrange.setStyle(Paint.Style.STROKE);
+        paintOrange.setColor(colors.parseColor("#FF963200"));
+        
 
         self.instacne.board.on("draw", function(canvas) {
             canvas.drawColor(0, android.graphics.PorterDuff.Mode.CLEAR);
@@ -57,6 +66,7 @@ const drawFloaty = {
             // if (toDraw.length) {
             //     console.log(`准备绘制：${JSON.stringify(toDraw)}`);
             // }
+            let pts = [];
             toDraw.forEach(item => {
                 const { color, region } = item;
                 let paint = null;
@@ -67,8 +77,10 @@ const drawFloaty = {
                 }
                 if (!paint) return;
                 // console.log(`绘制：${JSON.stringify(item)}`);
+                pts = [...pts, device.width / 2, 0, parseInt((region[0] + region[2]) / 2), region[1]];
                 canvas.drawRect(...region, paint);
             });
+            canvas.drawLines(pts, paintLine);
         });
         this.thread = threads.start(function () {
             //设置一个空的定时来保持线程的运行状态

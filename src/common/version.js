@@ -130,6 +130,9 @@ export const versionList = [{
 }, {
     version: '20220119_01',
     desc: '修复：退出结算计次异常的问题；优化：探索时自动勾选自动轮换。'
+}, {
+    version: '20220124_01',
+    desc: '新增：脚本暂停，在功能0结束判断中进行配置；\n优化：退出结算时的坐标点击范围'
 }];
 
 export default versionList[versionList.length - 1].version;
