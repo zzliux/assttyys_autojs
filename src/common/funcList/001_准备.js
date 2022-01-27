@@ -33,9 +33,9 @@ export default {
 	}],
 	operator: [{
 		desc: [1280,720,
-			[[right,1124,698,0xdebd90],
-			[right,1240,702,0xcda980],
-			[right,1191,596,0x8e321c],
+			[[right,1124,698,0xd0af86],
+			[right,1240,702,0xcead83],
+			[right,1191,596,0xa46149],
 			[right,1182,586,0xf7e6c3],
 			[center,360,699,0x241818],
 			[left,32,23,0xdbb48b]]
