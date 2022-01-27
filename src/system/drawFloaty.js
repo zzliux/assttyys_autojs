@@ -52,12 +52,12 @@ const drawFloaty = {
         paintOrange.setColor(colors.parseColor("#FF963200"));
 
         var paintLine = new Paint();
-        paintOrange.setAntiAlias(true);//抗锯齿
-        paintOrange.setAlpha(255);//0~255透明度
-        paintOrange.setFakeBoldText(true);
-        paintOrange.setStrokeWidth(1);
-        paintOrange.setStyle(Paint.Style.STROKE);
-        paintOrange.setColor(colors.parseColor("#FF963200"));
+        paintLine.setAntiAlias(true);//抗锯齿
+        paintLine.setAlpha(255);//0~255透明度
+        paintLine.setFakeBoldText(true);
+        paintLine.setStrokeWidth(2);
+        paintLine.setStyle(Paint.Style.STROKE);
+        paintLine.setColor(colors.parseColor("#FF963200"));
         
 
         self.instacne.board.on("draw", function(canvas) {
