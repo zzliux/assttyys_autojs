@@ -63,12 +63,16 @@ assttyys_autojs
 ├─node_modules                                 npm依赖包路径
 ├─res                                          aj打包时自动产生的资源目录
 ├─src                                          源码目录
-│  │  index.js                                 源码入口文件
-│  ├─common                                    
-│  │  │  commonConfig.js
-│  │  │  fmmxQuestionList.js
+│  │  index.js                                 入口文件
+│  ├─common                                    公共模块
+│  │  │  commonConfig.js                       公共默认配置，每个方案右上角的配置来源
+│  │  │  fmmxQuestionList.js                   逢魔密信题库
+│  │  │  funcList.js                           功能入口，用以动态加载funcList下所有模块
+│  │  │  globalCommconConfig.js                全局参数，用于在设置中体现
+│  │  │  multiColors.js                        **多点找色配置文件**
+│  │  │  schemeList.json                       **预设方案配置文件**
 │  │  │  ...
-│  │  └─funcList                               **功能目录**
+│  │  └─funcList                               **功能配置目录**
 │  │          000_结束判断.js
 │  │          001_准备.js
 │  │          002_退出结算.js
