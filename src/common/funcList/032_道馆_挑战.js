@@ -14,7 +14,8 @@ export default {
 			[left,179,37,0xd7c6a5],
 			[center,547,34,0x9a8958],
 			[right,1138,561,0xdbc5ae],
-			[right,1218,641,0xebc683]]
+			[right,1218,641,0xebc683],
+			[right,1167,608,0x272420]]
 		],
 		oper: [
 			[right, 1280, 720, 1138,561, 1218,641, 1000]
