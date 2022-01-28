@@ -46,6 +46,71 @@ ASISTTANT YYS NEXT GENERATION
    - 循环突破，包括个人突破，寮突破（已完成）
    - 准备功能里在准备后需要进行绿标（已完成）
 
+# 目录说明 （截至2022-01-28）
+```
+assttyys_autojs
+├─assets                                       资源目录，不经过webpack打包，运行时可加载该目录下的文件
+│  ├─img                                       
+│  └─lib
+├─build                                        aj打包时自动产生的构建目录
+├─config                                       webpack打包配置
+├─dist                                         webpack打包目标目录
+├─docs                                         文档
+│  └─img
+├─hotrun                                       热更新壳程序
+│  ├─build
+│  └─res
+├─node_modules                                 npm依赖包路径
+├─res                                          aj打包时自动产生的资源目录
+├─src                                          源码目录
+│  │  index.js                                 源码入口文件
+│  ├─common                                    
+│  │  │  commonConfig.js
+│  │  │  fmmxQuestionList.js
+│  │  │  ...
+│  │  └─funcList                               **功能目录**
+│  │          000_结束判断.js
+│  │          001_准备.js
+│  │          002_退出结算.js
+│  │          003.悬赏协作.js
+│  │          004_接受邀请.js
+│  │          ...
+│  ├─mock                                      前端模拟数据
+│  │      promptMock.js
+│  ├─system                                    aj端目录
+│  │  │  drawFloaty.js                         悬浮绘制模块
+│  │  │  helperBridge.js                       操作模块，集成scriptlib以及点击等操作
+│  │  │  index.js                              aj端入口
+│  │  │  inputhideutil.js                      适配软键盘弹起布局的模块
+│  │  │  myFloaty.js                           悬浮按钮模块
+│  │  │  ocr.js                                ocr模块
+│  │  │  schemeDialog.js                       方案弹窗选择模块
+│  │  │  script.js                             **脚本逻辑模块**
+│  │  │  store.js                              本地存储模块
+│  │  ├─FloatButton                            大柒悬浮按钮
+│  │  └─webviewEvents                          auto端处理前端路由目录
+│  │          funcList.js
+│  │          index.js
+│  │          ...
+│  └─template
+│     │  App.vue
+│     │  index.html
+│     │  index.js
+│     ├─assets                                  前端静态资源
+│     ├─components                              前端组件
+│     │      AppListLaunchDialog.vue
+│     │      AppListRefDialog.vue
+│     │      FuncConfigBox.vue
+│     │      FuncConfigDialog.vue
+│     └─pages                                   前端页面
+│              About.vue
+│              FuncList.vue
+│              SchemeList.vue
+│              Settings.vue
+├─test                                          测试目录，里面有乱七八糟的测试用的文件
+|  ...                                          待补充
+```
+
 # 已知问题
 - 使用浩然的OCR识别逢魔密信中答案只有一个数字或字符的情况无法识别
 - ~~修改了本地node_modules/@auto.pro/floaty/src/index.js中主logo透明度，从0.4调整为0.9~~
