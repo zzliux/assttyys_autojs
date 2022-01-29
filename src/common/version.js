@@ -133,6 +133,9 @@ export const versionList = [{
 }, {
     version: '20220124_01',
     desc: '新增：脚本暂停，在功能0结束判断中进行配置；\n优化：退出结算时的坐标点击范围'
+}, {
+    version: '20220129_01',
+    desc: '新增：行为仿真，默认不启用，有需要的同学请手动启用'
 }];
 
 export default versionList[versionList.length - 1].version;

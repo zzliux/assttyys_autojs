@@ -118,8 +118,10 @@ export default {
 				}]
 			})) {
 				thisScript.helperBridge.regionClick(thisOperator[2].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+				sleep(5000);
 				return true;
 			}
+			sleep(5000);
 			return false;
 		}
 		if (thisScript.oper({
