@@ -20,8 +20,8 @@ export default {
 			name: 'swipeTime',
 			desc: '划屏次数',
 			type: 'list',
-			data: ['2', '3', '4', '5', '6'],
-			default: '3',
+			data: ['2', '3', '4', '5', '6', '7', '8', '9', '10'],
+			default: '4',
 			value: null,
 		}]
 	}],
@@ -72,7 +72,7 @@ export default {
 				// sleep(3000); // 从地图进来，先休息一下再进行判断
 			}
 			let point = null;
-			// TODO 挑战经验怪
+			// TODO 使用多点找色返回所有点的方法
 			if ('打经验' === thisconf.type) {
 				let trycnt = 5;
 				do {
@@ -130,6 +130,7 @@ export default {
 				})) {
 					// toastLog(`剩余滑屏次数：${thisScript.global.tsAttackSwhipeNum}`);
 					thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[1], thisOperator[0].oper[2], [800, 1200], 200);
+					sleep(1000);
 					thisScript.keepScreen(true);
 				} else {
 					return false;

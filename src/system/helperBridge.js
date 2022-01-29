@@ -222,7 +222,7 @@ export const helperBridge = {
         const y2 = random(transedOperE[1], transedOperE[3]);
         if (needRoot) {
             Swipe(x1, y1, x2, y2, time);
-            sleep(time + random(0, randomSleep));
+            sleep(time + 200 + random(0, randomSleep));
             return;
         }
         const xMax = Math.max(x1, x2);

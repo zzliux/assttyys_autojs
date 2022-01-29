@@ -180,7 +180,7 @@ export default {
 			[center,596,493,0x6d4c3b]]
 		],
 		oper: [
-			[center, 1280, 720, 585,398, 694,446, 1000]
+			[center, 1280, 720, 585,398, 694,446, 300]
 		],
 		notForCnt: true,
 	}, {
