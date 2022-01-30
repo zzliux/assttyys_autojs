@@ -20,14 +20,15 @@ export default {
 	operator: [{
 		// 等级提升界面
 		desc: [1280,720,
-			[[right,866,410,0xe2d1c1],
-			[right,698,602,0xefb561],
-			[right,938,606,0xf4b25f],
-			[right,874,140,0xc59d47],
-			[right,1066,132,0xcad2de]]
+			[[center,656,130,0xcad2de],
+			[center,1005,133,0xc8d1db],
+			[center,852,126,0xe2bd5e],
+			[center,702,598,0xf4b25f],
+			[center,983,604,0xf4b25f],
+			[center,813,550,0xdfcebe]]
 		],
 		oper: [
-			[center, 1280, 720, 695,597, 830,634, 500], // 继续育成
+			[center, 1280, 720, 632,598, 770,639, 500], // 继续育成
 		]
 	}, {
 		// 育成选材料界面

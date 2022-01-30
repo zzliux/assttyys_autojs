@@ -136,6 +136,9 @@ export const versionList = [{
 }, {
     version: '20220129_01',
     desc: '新增：行为仿真，默认不启用，有需要的同学请手动启用'
+}, {
+    version: '20220130_01',
+    desc: '修复：继续育成',
 }];
 
 export default versionList[versionList.length - 1].version;
