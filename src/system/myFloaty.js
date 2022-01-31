@@ -18,6 +18,7 @@ const myFloaty = {
         this.fb.setMenuRadius(48);
         this.fb.setIcon('file://' + files.cwd() + '/assets/img/ay.png');
         this.fb.setColor('#FFFFFF');
+        this.fb.setAutoCloseMenuTime(3000);
         this.fb.addItem('Home')
             //设置图标
             .setIcon('@drawable/ic_home_black_48dp')
