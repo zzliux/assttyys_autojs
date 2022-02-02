@@ -69,6 +69,14 @@ export default {
 			default: 20,
 		}]
 	}, {
+		desc: '脚本停止后结束应用，需配置关联应用，本功能需root',
+		config: [{
+			name: 'stop_with_launched_app_exit',
+			desc: '是否启用',
+			type: 'switch',
+			default: false,
+		}]
+	}, {
 		desc: '结束当前方案后切换方案',
 		config: [{
 			name: 'scheme_switch_enabled',
@@ -210,26 +218,42 @@ export default {
 						console.error('未配置推送加token');
 						return;
 					}
-					let bmp = scaleBmp(thisScript.helperBridge.helper.GetBitmap(), 0.5);
-                    let baos = new java.io.ByteArrayOutputStream();
-                    bmp.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, baos);
-                    baos.flush();
-                    baos.close();
-                    bmp.recycle();
-
-					let b64str = android.util.Base64.encodeToString(baos.toByteArray(), android.util.Base64.NO_WRAP);
-					let upContent = `<div><p>脚本已停止，请查看</p><img style="max-width: 100%" src="data:image/png;base64,${b64str}" /></div>`;
-					console.log('上传大小' + upContent.length);
-
-					toastLog('脚本即将停止，正在上传数据');
-					let res = pushPlusPush({
-						token: storeSettings.push_plus_token,
-						title: '脚本停止提醒',
-						template: 'html',
-						channel: 'wechat',
-						content: upContent
-					});
-					console.log('ssssssss' + res.body.string());
+					try {
+						let bmp = scaleBmp(thisScript.helperBridge.helper.GetBitmap(), 0.5);
+						let baos = new java.io.ByteArrayOutputStream();
+						bmp.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, baos);
+						baos.flush();
+						baos.close();
+						bmp.recycle();
+	
+						let b64str = android.util.Base64.encodeToString(baos.toByteArray(), android.util.Base64.NO_WRAP);
+						let upContent = `<div><p>脚本已停止，请查看</p><img style="max-width: 100%" src="data:image/png;base64,${b64str}" /></div>`;
+						console.log('上传大小' + upContent.length);
+	
+						toastLog('脚本即将停止，正在上传数据');
+						let res = pushPlusPush({
+							token: storeSettings.push_plus_token,
+							title: '脚本停止提醒',
+							template: 'html',
+							channel: 'wechat',
+							content: upContent
+						});
+						console.log(`提交推送加响应内容：${res.body.string()}`);
+					} catch (e) {
+						console.error($debug.getStackTrace(e));
+					}
+				}
+				// 停止脚本时关闭应用
+				if (thisconf.stop_with_launched_app_exit) {
+					if (storeSettings.defaultLaunchAppList && storeSettings.defaultLaunchAppList.length) {
+						storeSettings.defaultLaunchAppList.forEach(packageName => {
+							toastLog(`停止应用[${packageName}]`);
+							shell(`am force-stop ${packageName}`, true);
+							sleep(1000);
+						});
+					} else {
+						toastLog('未配置关联应用，不执行停止操作');
+					}
 				}
 				thisScript.stop();
 			}

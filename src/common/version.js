@@ -139,6 +139,9 @@ export const versionList = [{
 }, {
     version: '20220130_01',
     desc: '修复：继续育成',
+}, {
+    version: '20220202_01',
+    desc: '新增：停止脚本自动关闭已关联应用'
 }];
 
 export default versionList[versionList.length - 1].version;
