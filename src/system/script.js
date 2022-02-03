@@ -411,11 +411,15 @@ var script = {
                         return this.oper(currFunc, -1);
                     }
                     if (!!currFunc.id /*&& this.lastFunc !== (currFunc.id + '_' + id)*/ && !item.notForCnt) {
-                        if (!this.runTimes[currFunc.id]) {
-                            this.runTimes[currFunc.id] = 0;
+                        // 增加判断，5秒内执行的功能一样的话不计次
+                        if ((this.lastFunc === currFunc.id && new Date().getTime() - (this.lastFuncDateTime || new Date()).getTime() > 5000) || this.lastFunc !== currFunc.id) {
+                            if (!this.runTimes[currFunc.id]) {
+                                this.runTimes[currFunc.id] = 0;
+                            }
+                            this.runTimes[currFunc.id]++;
+                            this.lastFunc = currFunc.id;
+                            this.lastFuncDateTime = new Date();
                         }
-                        this.runTimes[currFunc.id]++;
-                        this.lastFunc = currFunc.id;
                     }
 
                     if (item.operStepRandom) {
