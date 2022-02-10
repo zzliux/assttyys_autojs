@@ -32,13 +32,15 @@ export const helperBridge = {
     helperPoly: {},
     getHelper(dw, dh) {
         if (!this.helperPoly[dw + '_' + dh]) {
-            this.helperPoly[dw + '_' + dh] = new AnchorGraphicHelper(runtime, dw, dh, 0, 0, screenWidth - 1, screenHeight - 1);
+            this.helperPoly[dw + '_' + dh] = AnchorGraphicHelper.Create(runtime, dw, dh, 0, 0, screenWidth - 1, screenHeight - 1);
         }
         return this.helperPoly[dw + '_' + dh];
     },
     init: function () {
-        this.helper = new AnchorGraphicHelper(runtime, devWidth, devHeight, 0, 0, screenWidth - 1, screenHeight - 1);
-        this.helperPoly['1280_720'] = this.helper;
+        console.log(`ScriptLib Version: ${AnchorGraphicHelper.Version()}`);
+        console.log(`ScriptLib initializing`);
+        this.helper = this.getHelper(devWidth, devHeight);
+        console.log(`ScriptLib initialize success`);
     },
     // [[right, 1280, 720, 1119, 504, 1227, 592, 2000]]
     regionClickTrans(oper) {
