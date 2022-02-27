@@ -142,6 +142,9 @@ export const versionList = [{
 }, {
     version: '20220202_01',
     desc: '新增：停止脚本自动关闭已关联应用'
+}, {
+    version: '20220227_01',
+    desc: '修复：体服退出结算卡在已经打开的达摩的界面'
 }];
 
 export default versionList[versionList.length - 1].version;
