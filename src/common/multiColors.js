@@ -290,6 +290,7 @@ export default {
     },
     '探索_挑战BOSS': {
         region: [center, 1280, 720, 87,178, 1257,547],
+        similar: 95, // 手动修改这个相似度不受外部控制
         desc: [[1280,720,
             [[center,609,248,0x2f0d09],
             [center,643,236,0xeeb4bc],
