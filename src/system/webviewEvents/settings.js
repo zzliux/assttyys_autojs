@@ -4,6 +4,7 @@ import myFloaty from '@/system/myFloaty';
 import { storeCommon } from '@/system/store';
 import { requestMyScreenCapture } from '@/common/toolAuto';
 import { isRoot } from "@auto.pro/core";
+import helperBridge from '@/system/helperBridge';
 
 
 export default function webviewSettigns() {
@@ -11,15 +12,23 @@ export default function webviewSettigns() {
     // 获取配置列表
     webview.on("getSettings").subscribe(([_param, done]) => {
         let storeSettings = storeCommon.get('settings', {});
-        let ret = [];
-        if (device.sdkInt >= 24) { // 无障碍
-            ret.push({
-                desc: '无障碍服务',
-                name: 'autoService',
-                type: 'autojs_inner_setting_auto_service',
-                enabled: !!auto.service
-            });
+        if (!storeSettings.tapType) {
+            if (device.sdkInt >= 24) {
+                storeSettings.tapType = '无障碍';
+            } else {
+                storeSettings.tapType = 'Root';
+            }
+            storeCommon.put('settings', storeSettings);
         }
+        let ret = [];
+        ret.push({
+            desc: '点击/滑动模式',
+            name: 'tapType',
+            type: 'assttyys_setting',
+            stype: 'list',
+            data: ['无障碍', 'Root', 'Shell', 'RootAutomator'],
+            value: storeSettings.tapType
+        });
         if (app.autojs.versionCode >= 8081200) {
             ret.push({
                 desc: '截图权限',
@@ -58,7 +67,7 @@ export default function webviewSettigns() {
             type: 'assttyys_setting',
             enabled: storeSettings.floaty_scheme_direct_run || false
         }, {
-            desc: '是否启用调试绘制',
+            desc: '调试绘制',
             name: 'floaty_debugger_draw',
             type: 'assttyys_setting_floaty_debugger_draw',
             enabled: !!drawFloaty.instacne
@@ -152,9 +161,15 @@ export default function webviewSettigns() {
                 storeSettings[item.name] = item.enabled;
             } else if (item.stype === 'text') {
                 storeSettings[item.name] = item.value;
+            } else if (item.stype === 'list') {
+                storeSettings[item.name] = item.value;
+            }
+            if (item.name === 'tapType') {
+                helperBridge.automator.setTapType(item.value);
             }
             storeCommon.put('settings', storeSettings);
             done(true);
+            toastLog('保存成功');
         } else if ('assttyys_setting_floaty_debugger_draw' === item.type) {
             if (item.enabled) {
                 drawFloaty.init();

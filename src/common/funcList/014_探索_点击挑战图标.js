@@ -129,7 +129,7 @@ export default {
 					operator: [{ desc: thisOperator[0].desc }]
 				})) {
 					// toastLog(`剩余滑屏次数：${thisScript.global.tsAttackSwhipeNum}`);
-					thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[1], thisOperator[0].oper[2], [800, 1200], 200);
+					thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[1], thisOperator[0].oper[2], [200, 400], 200);
 					sleep(1000);
 					thisScript.keepScreen(true);
 				} else {

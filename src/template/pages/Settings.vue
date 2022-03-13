@@ -57,6 +57,15 @@
               />
             </div>
           </div>
+          <div v-else-if="item.stype === 'list'" class="item-value">
+            <div style="right: 0px">
+              <div
+                @click="showItemConfigList($event, item)"
+              >
+              {{item.value}}
+              </div>
+            </div>
+          </div>
         </div>
       </van-cell-group>
       <br />
@@ -121,11 +130,20 @@
       :show.sync="setDefaultLaunchAppDialogShown"
       :appList.sync="toSetDefaultLaunchAppList"
     ></app-list-dialog>
+    <van-popup v-model="popupListShown" position="bottom">
+      <van-picker
+        show-toolbar
+        :columns="popupListData"
+        @confirm="popupListConfirm"
+        @cancel="popupListShown = false"
+        :default-index="popupListValue"
+      />
+    </van-popup>
   </div>
 </template>
 <script>
 import Vue from "vue";
-import { Cell, CellGroup, Icon, Button, Dialog, Field, Notify, Switch, Loading } from "vant";
+import { Cell, CellGroup, Icon, Button, Dialog, Field, Notify, Switch, Loading, Picker } from "vant";
 import appListDialog from '../components/AppListRefDialog.vue';
 import _ from "lodash";
 
@@ -138,6 +156,7 @@ Vue.use(Field);
 Vue.use(Notify);
 Vue.use(Switch);
 Vue.use(Loading);
+Vue.use(Picker);
 
 export default {
   data() {
@@ -147,7 +166,11 @@ export default {
       setDefaultLaunchAppDialogShown: false,
       setDefaultLaunchAppLoading: false,
       timeout: null,
-      shapedScreenList: []
+      shapedScreenList: [],
+      popupCurItem: null,
+      popupListShown: false,
+      popupListData: [],
+      popupListValue: ''
     };
   },
   components: {
@@ -214,6 +237,17 @@ export default {
     },
     async saveSettings(item) {
       await AutoWeb.autoPromise('saveSetting', item);
+    },
+    async showItemConfigList(event, item) {
+      this.popupCurItem = item;
+      this.popupListData = item.data;
+      this.popupListValue = item.value;
+      this.popupListShown = true;
+    },
+    async popupListConfirm(text, _index) {
+      this.popupCurItem.value = text;
+      this.popupListShown = false;
+      await AutoWeb.autoPromise('saveSetting', this.popupCurItem);
     },
     debounce (func, wait) {
       if (this.timeout) clearTimeout(this.timeout)

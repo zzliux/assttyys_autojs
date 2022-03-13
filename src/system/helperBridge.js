@@ -7,14 +7,6 @@ const left = 0;
 const center = 1;
 const right = 2;
 const needRoot = device.sdkInt < 24;
-let ra = null;
-if (needRoot) {
-    try {
-        // ra = new RootAutomator();
-    } catch (e) {
-        console.error(e);
-    }
-}
 
 const devWidth = 1280;
 const devHeight = 720;
@@ -28,6 +20,7 @@ if (screenWidth < screenHeight) {
 }
 
 export const helperBridge = {
+    automator: null,
     helper: null,
     helperPoly: {},
     getHelper(dw, dh) {
@@ -86,8 +79,13 @@ export const helperBridge = {
         return oper;
     },
 
+    setAutomator(automator) {
+        this.automator = automator;
+    },
+
     // [[1119, 504, 1227, 592, 2000]]
     regionClick(transedOper, randomSleep) {
+        let self = this;
         transedOper.forEach(item => {
             if (item[0] >= 0) {
                 let x = random(item[0], item[2]);
@@ -104,12 +102,7 @@ export const helperBridge = {
                     drawFloaty.draw(toDraw, 500);
                     sleep(500);
                 }
-                if (needRoot) {
-                    Tap(x, y);
-                    sleep(random(10, 60));
-                } else {
-                    press(x, y, random(10, 60));
-                }
+                self.automator.press(x, y, random(10, 60));
             } else {
                 console.log(`传入坐标信息为(${JSON.stringify(item)}), 不执行操作`);
             }
@@ -144,66 +137,46 @@ export const helperBridge = {
     },
     regionSwipe(transedOperS, transedOperE, duration, randomSleep) {
         const time = random(duration[0], duration[1])
-        if (needRoot) {
-            Swipe(
-                random(transedOperS[0], transedOperS[2]), // x1
-                random(transedOperS[1], transedOperS[3]), // y1
-                random(transedOperE[0], transedOperE[2]), // x2
-                random(transedOperE[1], transedOperE[3]), // y2
-                time // duration
-            );
-            sleep(time + random(0, randomSleep))
-        } else {
-            swipe(
-                random(transedOperS[0], transedOperS[2]), // x1
-                random(transedOperS[1], transedOperS[3]), // y1
-                random(transedOperE[0], transedOperE[2]), // x2
-                random(transedOperE[1], transedOperE[3]), // y2
-                time // duration
-            );
-            sleep(time + random(0, randomSleep))
-        }
+        this.automator.swipe(
+            random(transedOperS[0], transedOperS[2]), // x1
+            random(transedOperS[1], transedOperS[3]), // y1
+            random(transedOperE[0], transedOperE[2]), // x2
+            random(transedOperE[1], transedOperE[3]), // y2
+            time // duration
+        );
+        sleep(time + random(0, randomSleep))
     },
     /**
      * @paths [{ x: 123, y: 234 }, { delay: 200, x: 111, y: 333}, { delay: 200, x: 111, y: 222 }]
      */
     swipePath(paths) {
         // TODO root下需要补点，否则拖不过去
-        if (needRoot) {
+        // if (needRoot) {
             // 使用rootautomator用画path
-            if (ra) {
-                ra.touchDown(paths[0].x, paths[0].y);
-                for (let i = 1; i < paths.length; i++) {
-                    sleep(paths[i].delay);
-                    ra.touchMove(paths[i].x, paths[i].y);
-                }
-                ra.touchUp();
-            } else {
-                // ra获取报错的话就不管手势了，直接用Swipe代替
-                let time = 0;
-                paths.forEach(item => {
-                    time += item.delay || 0;
-                });
-                Swipe(
-                    paths[0].x, // x1
-                    paths[0].y, // y1
-                    paths[paths.length - 1].x, // x2
-                    paths[paths.length - 1].y, // y2
-                    time // duration
-                );
-                sleep(time + 10);
-            }
-        } else {
-            // 使用无障碍gesture画path
-            let points = [[paths[0].x, paths[0].y]];
-            let duration = 0;
-            for (let i = 1; i < paths.length; i++) {
-                duration += paths[i].delay;
-                points.push([paths[i].x, paths[i].y]);
-            }
-            gesture(duration, ...points);      
-            sleep(duration);      
-        }
+            // ra获取报错的话就不管手势了，直接用Swipe代替
+            let time = 0;
+            paths.forEach(item => {
+                time += item.delay || 0;
+            });
+            this.automator.swipe(
+                paths[0].x, // x1
+                paths[0].y, // y1
+                paths[paths.length - 1].x, // x2
+                paths[paths.length - 1].y, // y2
+                time // duration
+            );
+            sleep(time + 10);
+        // } else {
+        //     // 使用无障碍gesture画path
+        //     let points = [[paths[0].x, paths[0].y]];
+        //     let duration = 0;
+        //     for (let i = 1; i < paths.length; i++) {
+        //         duration += paths[i].delay;
+        //         points.push([paths[i].x, paths[i].y]);
+        //     }
+        //     gesture(duration, ...points);      
+        //     sleep(duration);      
+        // }
     },
     // [1119, 504, 1227, 592, 2000]
     // type0-竖直方向，1-水平方向 TODO
@@ -223,7 +196,7 @@ export const helperBridge = {
         const x2 = random(transedOperE[0], transedOperE[2]);
         const y2 = random(transedOperE[1], transedOperE[3]);
         if (needRoot) {
-            Swipe(x1, y1, x2, y2, time);
+            this.automator.swipe(x1, y1, x2, y2, time);
             sleep(time + 200 + random(0, randomSleep));
             return;
         }
@@ -268,7 +241,7 @@ export const helperBridge = {
         toRetain.forEach(item => {
             points.push(pointsOrigin[item]);
         });
-        gesture(time, ...points);
+        this.automator.gesture(time, ...points);
         sleep(time + random(0, randomSleep));
     }
 };

@@ -24,6 +24,13 @@ const promptMockData = {
             name: 'foreground_service',
             type: 'autojs_inner_setting',
             enabled: false
+        }, {
+            desc: '点击/滑动模式',
+            name: 'tapType',
+            type: 'assttyys_setting',
+            stype: 'list',
+            data: ['无障碍', 'Root', 'Shell', 'RootAutomator'],
+            value: 'Root'
         }]
     },
     getToSetDefaultLaunchAppList() {

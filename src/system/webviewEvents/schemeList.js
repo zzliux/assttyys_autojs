@@ -7,6 +7,8 @@ import { isRoot, getWidthPixels, getHeightPixels } from "@auto.pro/core";
 // import _ from 'lodash';
 import version, {versionList} from '@/common/version';
 import defaultSchemeList from '@/common/schemeList';
+import MyAutomator from '@/system/MyAutomator';
+import helperBridge from '@/system/helperBridge';
 
 export default function webviewSchemeList() {
     // 返回已保存的方案列表，如果未保存过，返回common中的schemeList
@@ -61,6 +63,18 @@ export default function webviewSchemeList() {
             e.consumed = true;
             webview.runHtmlFunction("routeBack");
         });
+
+        // 初始化automator
+        let storeSettings = storeCommon.get('settings', {});
+        if (!storeSettings.tapType) {
+            if (device.sdkInt >= 24) {
+                storeSettings.tapType = '无障碍';
+            } else {
+                storeSettings.tapType = 'Root';
+            }
+            storeCommon.put('settings', storeSettings);
+        }
+        helperBridge.setAutomator(new MyAutomator(storeSettings.tapType));
     });
 
     // TODO 使用core包的获取状态栏高度
