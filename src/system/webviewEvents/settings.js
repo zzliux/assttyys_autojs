@@ -29,6 +29,14 @@ export default function webviewSettigns() {
             data: ['无障碍', 'Root', 'Shell', 'RootAutomator'],
             value: storeSettings.tapType
         });
+        if (device.sdkInt >= 24) { // 无障碍
+            ret.push({
+                desc: '无障碍服务(仅使用无障碍模式时生效)',
+                name: 'autoService',
+                type: 'autojs_inner_setting_auto_service',
+                enabled: !!auto.service
+            });
+        }
         if (app.autojs.versionCode >= 8081200) {
             ret.push({
                 desc: '截图权限',
@@ -110,9 +118,9 @@ export default function webviewSettigns() {
                 }
                 threads.start(function () {
                     auto.waitFor();
-                    if (floaty.checkPermission()) {
-                        myFloaty.init();
-                    }
+                    // if (floaty.checkPermission()) {
+                    //     myFloaty.init();
+                    // }
                     done(true);
                 });
             } else {
@@ -132,9 +140,7 @@ export default function webviewSettigns() {
                     }
                     if (floaty.checkPermission()) {
                         clearInterval(timmer);
-                        if (auto.service || device.sdkInt < 24) {
-                            myFloaty.init();
-                        }
+                        myFloaty.init();
                         done(true);
                     }
                 }, 1000)

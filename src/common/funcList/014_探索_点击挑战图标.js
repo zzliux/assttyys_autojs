@@ -23,6 +23,12 @@ export default {
 			data: ['2', '3', '4', '5', '6', '7', '8', '9', '10'],
 			default: '4',
 			value: null,
+		}, {
+			name: 'swipeSpeed',
+			desc: '划屏速度（滑不动可适当调整划屏速度）',
+			type: 'list',
+			data: ['快', '中', '慢'],
+			default: '慢',
 		}]
 	}],
 	operator: [{
@@ -58,7 +64,8 @@ export default {
 	operatorFunc(thisScript, thisOperator) {
 		while (thisScript.oper({
 			name: '探索界面_判断',
-			operator: [{ desc: thisOperator[0].desc }]
+			operator: [{ desc: thisOperator[0].desc }],
+			retest: 250
 		})) {
 			if (thisScript.oper({
 				name: '探索界面_自动轮换',
@@ -129,7 +136,11 @@ export default {
 					operator: [{ desc: thisOperator[0].desc }]
 				})) {
 					// toastLog(`剩余滑屏次数：${thisScript.global.tsAttackSwhipeNum}`);
-					thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[1], thisOperator[0].oper[2], [200, 400], 200);
+					thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[1], thisOperator[0].oper[2], {
+						'快': [200, 400],
+						'中': [500, 700],
+						'慢': [800, 1200],
+					}[thisconf.swipeSpeed || '慢'], 200);
 					sleep(1000);
 					thisScript.keepScreen(true);
 				} else {

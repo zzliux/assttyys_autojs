@@ -299,6 +299,13 @@ export default {
             [center,654,298,0x703d1b],
             [center,637,283,0xfffff9],
             [center,646,307,0x251308]]
+        ], [1280,720,
+            [[center,648,240,0x332211],
+            [center,674,236,0xf0b0b0],
+            [center,708,282,0x30180c],
+            [center,643,281,0x3d668f],
+            [center,660,239,0x402716],
+            [center,686,272,0xf4ece3]]
         ]]
         // desc: [[1280,720,
         //     [[center,595,247,0x2b1a09],

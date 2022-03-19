@@ -1,10 +1,22 @@
+import Bezier from 'bezier-js';
+
 function MyAutomator(tapType, dirctionReverse) {
+    let self = this;
     this.tapType = { '无障碍': 0, 'RootAutomator': 1, 'Shell': 2, 'Root': 3 }[tapType]; // 0 无障碍， 1 RootAutomator， 2 Shell， 3 普通Root
     console.log(`初始化automator：${tapType}`);
     this.dirctionReverse = dirctionReverse;
     if (this.tapType == 0) {
     } else if (this.tapType == 1) {
-        this.RA = new RootAutomator();
+        let thd = threads.start(function () {
+            self.RA = new RootAutomator();
+        });
+        // 5秒无响应直接杀死
+        setTimeout(() => {
+            if (thd.isAlive()) {
+                thd.interrupt();
+                toastLog('RootAutomator初始化失败，可能是环境不支持');
+            }
+        },5000)
     } else if (this.tapType == 2) {
         this.shell = new Shell(true);
     } else if (this.tapType == 3) {
@@ -15,10 +27,20 @@ function MyAutomator(tapType, dirctionReverse) {
 MyAutomator.prototype = {
     setTapType: function(tapType) {
         this.tapType = { '无障碍': 0, 'RootAutomator': 1, 'Shell': 2, 'Root': 3 }[tapType]; // 0 无障碍， 1 RootAutomator， 2 Shell， 3 普通Root
-        console.log(`修改automator：${tapType}`);
+        console.log(`修改automator：${tapType}：${this.tapType}`);
+        let self = this;
         if (this.tapType == 0) {
         } else if (this.tapType == 1) {
-            if (!this.RA) this.RA = new RootAutomator();
+            let thd = threads.start(function () {
+                if (!self.RA) self.RA = new RootAutomator();
+            });
+            // 5秒无响应直接杀死
+            setTimeout(() => {
+                if (thd.isAlive()) {
+                    thd.interrupt();
+                    toastLog('RootAutomator初始化失败，可能是环境不支持');
+                }
+            },5000)
         } else if (this.tapType == 2) {
             if (!this.shell) this.shell = new Shell(true);
         } else if (this.tapType == 3) {
@@ -71,7 +93,73 @@ MyAutomator.prototype = {
         }
     },
 
-    gesture: gesture
+    gesture: gesture,
+
+    // helperBridge过来的
+    regionBezierSwipe(transedOperS, transedOperE, duration, randomSleep, type) {
+        const time = random(duration[0], duration[1])
+        // swipe(
+        //     random(transedOperS[0], transedOperS[2]), // x1
+        //     random(transedOperS[1], transedOperS[3]), // y1
+        //     random(transedOperE[0], transedOperE[2]), // x2
+        //     random(transedOperE[1], transedOperE[3]), // y2
+        //     time // duration
+        // );
+        // sleep(time + random(0, randomSleep))
+
+        const x1 = random(transedOperS[0], transedOperS[2]);
+        const y1 = random(transedOperS[1], transedOperS[3]);
+        const x2 = random(transedOperE[0], transedOperE[2]);
+        const y2 = random(transedOperE[1], transedOperE[3]);
+        if (this.tapType != 0) {
+            this.swipe(x1, y1, x2, y2, time);
+            sleep(time + 200 + random(0, randomSleep));
+            return;
+        }
+        const xMax = Math.max(x1, x2);
+        const xMin = Math.min(x1, x2);
+        const yMax = Math.max(y1, y2);
+        const yMin = Math.min(y1, y2);
+        let c1, c2;
+        // TODO 开始和结束的附近的点需要更密集
+        if (!type) {
+            if (random(1, 2) == 1) { // 左
+                c1 = [
+                    random(0, xMin),
+                    random((yMin + (yMax - yMin) / 4), (yMin + (yMax - yMin) / 2))
+                ];
+                c2 = [
+                    random(0, xMin),
+                    random((yMin + (yMax - yMin) / 2), 3 * (yMin + (yMax - yMin) / 4))
+                ];
+            } else { // 右
+                c1 = [
+                    random(xMax, screenWidth),
+                    random((yMin + (yMax - yMin) / 4), (yMin + (yMax - yMin) / 2))
+                ];
+                c2 = [
+                    random(xMax, screenWidth),
+                    random((yMin + (yMax - yMin) / 2), 3 * (yMin + (yMax - yMin) / 4))
+                ];
+            }
+        } else {
+            // TODO 上和下的
+        }
+
+        const curve = new Bezier(x1, y1, ...c1, ...c2, x2, y2);
+        const pointsOrigin = curve.getLUT(200).map(p => [Math.floor(p['x']), Math.floor(p['y'])]);
+        let toRetain = [0, 1, 2, 3, 4, 5, 191, 192, 193, 194, 195, 196, 197, 198, 199];
+        for (let i = 190, stepLen = 1; i > 5; i -= stepLen, stepLen++) {
+            toRetain.push(i);
+        }
+        toRetain = toRetain.sort((a, b) => parseInt(a) - parseInt(b));
+        let points = [];
+        toRetain.forEach(item => {
+            points.push(pointsOrigin[item]);
+        });
+        this.gesture(time, ...points);
+        sleep(time + random(0, randomSleep));
+    }
 };
 
 
