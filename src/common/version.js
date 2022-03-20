@@ -148,6 +148,9 @@ export const versionList = [{
 }, {
     version: '20220319_01',
     desc: '修复：探索boss不点的问题\n优化：新增探索划屏速度可修改；\n优化：新增点击模式可配置\n；优化：功能执行计次不够准确的问题'
+}, {
+    version: '20220320_01',
+    desc: '修复：滑动时偶现报错的问题'
 }];
 
 export default versionList[versionList.length - 1].version;

@@ -1,3 +1,4 @@
+import { getWidthPixels } from "@auto.pro/core";
 import Bezier from 'bezier-js';
 
 function MyAutomator(tapType, dirctionReverse) {
@@ -120,6 +121,7 @@ MyAutomator.prototype = {
         const xMin = Math.min(x1, x2);
         const yMax = Math.max(y1, y2);
         const yMin = Math.min(y1, y2);
+        const screenWidth = getWidthPixels();
         let c1, c2;
         // TODO 开始和结束的附近的点需要更密集
         if (!type) {
