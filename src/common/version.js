@@ -151,6 +151,9 @@ export const versionList = [{
 }, {
     version: '20220320_01',
     desc: '修复：滑动时偶现报错的问题'
+}, {
+    version: '20220323_01',
+    desc: '新增：伊吹之擂，资源不够多的小伙伴慎用'
 }];
 
 export default versionList[versionList.length - 1].version;

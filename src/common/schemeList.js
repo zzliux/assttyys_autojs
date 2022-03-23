@@ -158,8 +158,9 @@ const SchemeList = [{
     }
 }, {
     id: 99,
-    schemeName: '赤月谜影_夜影诡谈',
-    list: [0, 1, 2, 3, 99],
+    schemeName: '伊吹之擂',
+    star: true,
+    list: [0, 3, 99, 100],
 }
     // 完整demo
     // , {
