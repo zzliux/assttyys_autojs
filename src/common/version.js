@@ -154,6 +154,9 @@ export const versionList = [{
 }, {
     version: '20220323_01',
     desc: '新增：伊吹之擂，资源不够多的小伙伴慎用'
+}, {
+    version: '20220324_01',
+    desc: '修复：伊吹之擂可能会随机放弃御魂的问题、伊吹之擂可能卡结算的问题'
 }];
 
 export default versionList[versionList.length - 1].version;

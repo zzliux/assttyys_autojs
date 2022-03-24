@@ -160,7 +160,7 @@ const SchemeList = [{
     id: 99,
     schemeName: '伊吹之擂',
     star: true,
-    list: [0, 3, 99, 100],
+    list: [0, 3, 24, 99, 100],
 }
     // 完整demo
     // , {
