@@ -157,6 +157,9 @@ export const versionList = [{
 }, {
     version: '20220324_01',
     desc: '修复：伊吹之擂可能会随机放弃御魂的问题、伊吹之擂可能卡结算的问题'
+}, {
+    version: '20224060_01',
+    desc: '尝试修复：退出结算时点击到奖励物品导致卡住的问题'
 }];
 
 export default versionList[versionList.length - 1].version;

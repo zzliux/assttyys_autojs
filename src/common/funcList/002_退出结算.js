@@ -98,7 +98,7 @@ export default {
 			]
 		],
 		notForCnt: true,
-	}, { // 未打开的达摩
+	}/*, { // 未打开的达摩
 		desc: [1280, 720,
 			[[center, 667, 377, 0xba4618],
 			[center, 678, 316, 0x080808],
@@ -122,7 +122,7 @@ export default {
 			[center, 1280, 720, 153,60, 1202,614, 800],
 		],
 		notForCnt: true,
-	}, { // 单人-失败太鼓
+	}*/, { // 单人-失败太鼓
 		desc: [1280, 720,
 			[[center, 465, 151, 0x514a5c],
 			[center, 447, 189, 0x60566b],
