@@ -166,7 +166,7 @@ export default {
           if (schemeConfig.config[item.id]) {
             item.config.forEach(iItem => {
               iItem.config.forEach(iIItem => {
-                if (schemeConfig.config[item.id][iIItem.name]) {
+                if (schemeConfig.config[item.id][iIItem.name] !== undefined) {
                   iIItem.value = schemeConfig.config[item.id][iIItem.name];
                 } else {
                   iIItem.value = iIItem.default;

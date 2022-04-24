@@ -1,9 +1,40 @@
 import { webview } from "@/system";
 import { setCurrentScheme } from '@/common/tool';
-import { storeCommon } from '@/system/store';
-
+import store, { storeCommon } from '@/system/store';
+import defaultSchemeList from '@/common/schemeList';
+import { mergeSchemeList } from '@/common/tool';
 
 export default function webviewFuncList() {
+
+    // 获取方案
+    webview.on("getScheme").subscribe(([schemeName, done]) => {
+        let savedSchemeList = store.get("schemeList", []);
+        let schemeList = mergeSchemeList(savedSchemeList, defaultSchemeList);
+        for (let i = 0; i < schemeList.length; i++) {
+            if (schemeList[i].schemeName === schemeName) {
+                // console.log(`getScheme: ${JSON.stringify(schemeList[i], null, 4)}`);
+                done(schemeList[i]);
+                return;
+            }
+        }
+        done({});
+    });
+
+    // 保存方案
+    webview.on("saveScheme").subscribe(([scheme, done]) => {
+        let savedSchemeList = store.get("schemeList", defaultSchemeList);
+        console.log(`saveScheme: ${JSON.stringify(scheme, null, 4)}`);
+        let schemeList = mergeSchemeList(savedSchemeList, defaultSchemeList);
+        for (let i = 0; i < schemeList.length; i++) {
+            if (schemeList[i].schemeName === scheme.schemeName) {
+                scheme.id = schemeList[i].id;
+                schemeList[i] = scheme;
+                break;
+            }
+        }
+        store.put("schemeList", schemeList);
+        done("success");
+    });
 
     // 点击保存，设置当前方案
     webview.on("setCurrentScheme").subscribe(([schemeName, done]) => {

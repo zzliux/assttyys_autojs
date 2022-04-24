@@ -1,7 +1,6 @@
 import { fromEvent } from 'rxjs';
 import { webview } from "@/system";
 import store, { storeCommon } from '@/system/store';
-import { mergeSchemeList } from '@/common/tool';
 import { requestMyScreenCapture } from '@/common/toolAuto';
 import { isRoot, getWidthPixels, getHeightPixels } from "@auto.pro/core";
 // import _ from 'lodash';
@@ -23,34 +22,6 @@ export default function webviewSchemeList() {
     webview.on("saveSchemeList").subscribe(([schemeList, done]) => {
         store.put("schemeList", schemeList);
         console.log('schemeList已保存');
-        done("success");
-    });
-
-    // 获取方案
-    webview.on("getScheme").subscribe(([schemeName, done]) => {
-        let savedSchemeList = store.get("schemeList", []);
-        let schemeList = mergeSchemeList(savedSchemeList, defaultSchemeList);
-        for (let i = 0; i < schemeList.length; i++) {
-            if (schemeList[i].schemeName === schemeName) {
-                done(schemeList[i]);
-                return;
-            }
-        }
-        done({});
-    });
-
-    // 保存方案
-    webview.on("saveScheme").subscribe(([scheme, done]) => {
-        let savedSchemeList = store.get("schemeList", defaultSchemeList);
-        let schemeList = mergeSchemeList(savedSchemeList, defaultSchemeList);
-        for (let i = 0; i < schemeList.length; i++) {
-            if (schemeList[i].schemeName === scheme.schemeName) {
-                scheme.id = schemeList[i].id;
-                schemeList[i] = scheme;
-                break;
-            }
-        }
-        store.put("schemeList", schemeList);
         done("success");
     });
 
