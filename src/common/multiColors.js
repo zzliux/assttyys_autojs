@@ -23,7 +23,8 @@ export default {
             [center,678,517,0xf4b25f],
             [center,649,510,0x2b2721],
             [center,651,528,0x272420],
-            [center,654,528,0x272420]]
+            [center,654,528,0x272420],
+            [center,715,536,0xf5b15c]]
         ]]
     },
     '结界_进攻_灰': {
@@ -42,6 +43,13 @@ export default {
             [center,720,546,0x685f5f],
             [center,726,557,0xbfa98f],
             [center,679,529,0x282521]]
+        ],[1280,720,
+            [[center,600,356,0x675e5a],
+            [center,615,392,0xadaa9c],
+            [center,649,380,0x2a2723],
+            [center,679,387,0x272420],
+            [center,719,404,0x645e5b],
+            [center,714,400,0xadae9c]]
         ]]
     },
     '结界_5勋章': {

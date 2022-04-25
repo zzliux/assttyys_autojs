@@ -99,8 +99,8 @@ export const helperBridge = {
                         color: 'red',
                         region: [x - 5, y - 5, x + 5, y + 5]
                     }];
-                    drawFloaty.draw(toDraw, 500);
-                    sleep(500);
+                    drawFloaty.draw(toDraw, 300);
+                    // sleep(500);
                 }
                 self.automator.press(x, y, random(10, 60));
             } else {

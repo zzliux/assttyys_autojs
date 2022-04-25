@@ -397,8 +397,8 @@ var script = {
                             }
                         })];
                         
-                        drawFloaty.draw(toDraw, 500);
-                        sleep(500);
+                        drawFloaty.draw(toDraw, 300);
+                        sleep(150);
                     }
                     retest = retest || item.retest || undefined;
                     if (retest && retest !== -1) {
@@ -407,8 +407,8 @@ var script = {
                         return this.oper(currFunc, -1);
                     }
                     if (!!currFunc.id /*&& this.lastFunc !== (currFunc.id + '_' + id)*/ && !item.notForCnt) {
-                        // 增加判断，5秒内执行的功能一样的话不计次
-                        if ((this.lastFunc === currFunc.id && new Date().getTime() - (this.lastFuncDateTime || new Date()).getTime() > 5000) || this.lastFunc !== currFunc.id) {
+                        // 增加判断，7.5秒内执行的功能一样的话不计次
+                        if ((this.lastFunc === currFunc.id && new Date().getTime() - (this.lastFuncDateTime || new Date()).getTime() > 7500) || this.lastFunc !== currFunc.id) {
                             if (!this.runTimes[currFunc.id]) {
                                 this.runTimes[currFunc.id] = 0;
                             }

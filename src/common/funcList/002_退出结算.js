@@ -77,8 +77,11 @@ export default {
 			[center, 484, 222, 0xd3c4ae],
 			[center, 510, 249, 0xd4c4ab]]
 		],
-		oper: [
-			[center, 1280, 720, 165,60, 1263, 604, 400],
+		operStepRandom: [
+			[
+				[center, 1280, 720, 165,60, 1070, 604, 400, 1],
+				[center, 1280, 720, 165,60, 1263, 530, 400, 1],
+			]
 		],
 		notForCnt: true,
 	}, { // 组队-胜利太鼓
