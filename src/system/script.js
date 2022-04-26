@@ -168,6 +168,19 @@ var script = {
             let point = this.helperBridge.helper.FindMultiColor(region[0], region[1], region[2], region[3], item, similar, 1);
             if (point.x !== -1) {
                 console.log(`[${key}]第${i}个查找成功， 坐标为：(${point.x}, ${point.y})`);
+
+                if (drawFloaty.instacne) {
+                    let toDraw = item.map(kk => {
+                        return {
+                            color: 'green',
+                            region: [point.x + kk[0] - 5, point.y + kk[1] - 5, point.x + kk[0] + 5, point.y + kk[1] + 5]
+                        }
+                    });
+                    toDraw[0].color = 'orange';
+                    toDraw[0].region = [point.x - 5, point.y - 5, point.x + 5, point.y + 5];
+                    drawFloaty.draw(toDraw, 400);
+                    sleep(150);
+                }
                 return point;
             }
         }
