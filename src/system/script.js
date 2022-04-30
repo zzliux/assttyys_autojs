@@ -342,12 +342,11 @@ var script = {
                 setCurrentScheme(canRunSchemeList[0].schemeName);
                 setTimeout(() => {
                     self.run();
-                }, 200);
+                }, 500);
             } else {
                 schemeDialog.show(myfloaty, canRunSchemeList);
             }
         });
-
     },
 
     /**
