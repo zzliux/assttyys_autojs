@@ -6,7 +6,7 @@ const right = 2;
 export default {
 	id: 6,
 	name: '御魂/御灵挑战',
-	desc: '在御魂或者御灵的挑战界面时，点击挑战按钮',
+	desc: '在御魂或者御灵的挑战界面时，点击挑战按钮，连续点击3次后未开始将自动停止脚本',
 	checked: false,
 	operator: [{ // 三类御魂
 		desc: [1280,720,
@@ -31,5 +31,27 @@ export default {
 		oper: [
 			[right, 1280, 720, 1104,595, 1196,681, 2000]
 		]
-	}]
+	}],
+	operatorFunc(thisScript, thisOperator) {
+		let curCnt = 0;
+		let maxCount = 3;
+		while (thisScript.oper({
+			id: 6,
+			name: '御魂/御灵挑战',
+			operator: thisOperator
+		})) {
+			curCnt++;
+			thisScript.keepScreen();
+			if (curCnt >= maxCount) {
+				toastLog(`连续执行${maxCount}次挑战后未开始，脚本自动停止`);
+				thisScript.stop();
+				sleep(2000);
+				return false;
+			}
+		}
+		if (curCnt) {
+			return true;
+		}
+		return false;
+	}
 }
