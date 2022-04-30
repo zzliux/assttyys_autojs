@@ -126,5 +126,6 @@ export default {
 }
 .func-config-box .van-cell-group__title {
   padding: 10px 16px 2px 16px;
+  color: #1989fa;
 }
 </style>
