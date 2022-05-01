@@ -3,12 +3,40 @@ import version, { versionList } from '../common/version';
 
 const promptMockData = {
     getScheme: function (schemeName) {
-        for (let i = 0; i < defaultSchemeList.length; i++) {
-            if (schemeName === defaultSchemeList[i].schemeName) {
-                return defaultSchemeList[i];
-            }
-        }
-        return defaultSchemeList[0];
+        // for (let i = 0; i < defaultSchemeList.length; i++) {
+        //     if (schemeName === defaultSchemeList[i].schemeName) {
+        //         return defaultSchemeList[i];
+        //     }
+        // }
+        // return defaultSchemeList[0];
+        return {
+            "schemeName": "百鬼夜行",
+            "star": true,
+            "inner": true,
+            "list": [
+                3,
+                17,
+                18,
+                19,
+                20,
+                21
+            ],
+            "config": {
+                "3": {
+                    "type": "关闭"
+                },
+                "19": {
+                    "bossPosition": "随机"
+                }
+            },
+            "commonConfig": {
+                "loopDelay": 200,
+                "afterClickDelayRandom": 200,
+                "colorSimilar": 93,
+                "multiColorSimilar": 98
+            },
+            "id": 11
+        };
     },
     getSchemeList: function () {
         return defaultSchemeList;

@@ -163,10 +163,10 @@ export default {
           if (!item.config) {
             item.config = [];
           }
-          if (schemeConfig.config[item.id]) {
+          if (schemeConfig.config[item.id] || item.config.length) {
             item.config.forEach(iItem => {
               iItem.config.forEach(iIItem => {
-                if (schemeConfig.config[item.id][iIItem.name] !== undefined) {
+                if (schemeConfig.config[item.id] && schemeConfig.config[item.id][iIItem.name] !== undefined) {
                   iIItem.value = schemeConfig.config[item.id][iIItem.name];
                 } else {
                   iIItem.value = iIItem.default;

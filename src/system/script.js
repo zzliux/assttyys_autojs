@@ -410,7 +410,7 @@ var script = {
                         })];
                         
                         drawFloaty.draw(toDraw, 300);
-                        sleep(150);
+                        // sleep(150);
                     }
                     retest = retest || item.retest || undefined;
                     if (retest && retest !== -1) {
