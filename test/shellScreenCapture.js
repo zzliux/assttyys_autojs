@@ -2,7 +2,7 @@ console.time('rootScreenCapture');
 let img = rootScreenCapture();
 console.timeEnd('rootScreenCapture');
 console.log(img);
-img.saveTo('./test.png');
+img.saveTo(files.cwd() + '/test.png');
 img.recycle();
 
 /**
@@ -13,7 +13,7 @@ function rootScreenCapture(){
     let tempBuffer = java.lang.reflect.Array.newInstance(java.lang.Byte.TYPE, 1024);
     let byteArrayOutputStream = new java.io.ByteArrayOutputStream();
     try {
-        let exec = java.lang.Runtime.getRuntime().exec('su -c /system/bin/screencap -p');
+        let exec = java.lang.Runtime.getRuntime().exec(['su',  '-c', '/system/bin/screencap -p']);
         exec.getOutputStream().close();
         let inputStream = exec.getInputStream();
         let bufferedInputStream = new java.io.BufferedInputStream(inputStream);
