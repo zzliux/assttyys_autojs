@@ -50,10 +50,19 @@ export default {
 				thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
 				return true;
 			} else {
-				return thisScript.oper({
-					name: '探索_地图进入最后一章_关闭章节窗口',
-					operator: [thisOperator[0]]
-				});
+				if (thisScript.oper({
+					name: '探索_地图进入最后一章',
+					operator: [{
+						desc: thisOperator[0].desc,
+						oper: [thisOperator[0].oper[0]]
+					}]
+				})) {
+					if (thisScript.compareColorLoop(thisOperator[1].desc, 3000)) {
+						thisScript.helperBridge.regionClick([thisOperator[0].oper[1], thisOperator[0].oper[2]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+						return true;
+					}
+				}
+				return false;
 			}
 		} else if (thisScript.oper({
 			name: '探索_地图进入最后一章_关闭章节窗口',

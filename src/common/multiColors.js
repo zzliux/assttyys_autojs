@@ -283,17 +283,18 @@ export default {
     '探索_挑战': {
         region: [center, 1280, 720, 87,178, 1257,547],
         desc: [[1280,720,
-            [[center,1000,447,0x422918],
-            [center,1016,450,0xf8b6be],
-            [center,1011,473,0x424a7b],
-            [center,1032,488,0x31396b],
-            [center,1040,508,0x1a0e05]]
-        ],[1280,720,
             [[center,1000,442,0xffffed],
             [center,1016,450,0xeeacb4],
             [center,1011,473,0x404879],
             [center,1032,488,0x31396b],
             [center,1040,505,0xfffbe2]]
+        ],
+        [1280,720,
+            [[center,1000,447,0x422918],
+            [center,1016,450,0xf8b6be],
+            [center,1011,473,0x424a7b],
+            [center,1032,488,0x31396b],
+            [center,1040,508,0x1a0e05]]
         ]]
     },
     '探索_挑战BOSS': {

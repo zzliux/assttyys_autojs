@@ -97,22 +97,25 @@ export default {
 			}
 			let clickOper = thisOperator[0].oper[2 + thisScript.global.dgCurNum];
 			thisScript.helperBridge.regionClick([thisOperator[0].oper[0], thisOperator[0].oper[1], clickOper], thisScript.scheme.commonConfig.afterClickDelayRandom);
-			sleep(1500);
-			thisScript.keepScreen(true);
-			let point = thisScript.findMultiColor('地鬼_难度把手');
-			if (point) {
-				let beginRegion = [
-					point.x,
-					point.y,
-					point.x + thisOperator[0].oper[5][2],
-					point.y + thisOperator[0].oper[5][3],
-				];
-				thisScript.helperBridge.regionSwipe(beginRegion, thisOperator[0].oper[6], [100, 300], 200);
+			// sleep(1500);
+			if (thisScript.compareColorLoop(thisOperator[1].desc, 3000)) {
+				sleep(1500);
+				thisScript.keepScreen(true);
+				let point = thisScript.findMultiColor('地鬼_难度把手');
+				if (point) {
+					let beginRegion = [
+						point.x,
+						point.y,
+						point.x + thisOperator[0].oper[5][2],
+						point.y + thisOperator[0].oper[5][3],
+					];
+					thisScript.helperBridge.regionSwipe(beginRegion, thisOperator[0].oper[6], [100, 300], 200);
+				}
+				thisScript.helperBridge.regionClick([thisOperator[0].oper[7]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				toastLog(`地鬼_热门挑战_第${thisScript.global.dgCurNum + 1}次`);
+				sleep(1500);
+				return true;
 			}
-			thisScript.helperBridge.regionClick([thisOperator[0].oper[7]], thisScript.scheme.commonConfig.afterClickDelayRandom);
-			toastLog(`地鬼_热门挑战_第${thisScript.global.dgCurNum + 1}次`);
-			sleep(1500);
-			return true;
 		}
 	}
 }
