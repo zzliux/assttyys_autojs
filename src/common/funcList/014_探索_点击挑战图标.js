@@ -64,8 +64,8 @@ export default {
 	operatorFunc(thisScript, thisOperator) {
 		while (thisScript.oper({
 			name: '探索界面_判断',
-			operator: [{ desc: thisOperator[0].desc }],
-			retest: 250
+			operator: [{ desc: thisOperator[0].desc, retest: 500 }],
+			
 		})) {
 			if (thisScript.oper({
 				name: '探索界面_自动轮换',
@@ -127,13 +127,18 @@ export default {
 				return true;
 			} else {
 				if (--thisScript.global.tsAttackSwhipeNum <= 0) {
-					thisScript.helperBridge.regionClick([thisOperator[0].oper[3], thisOperator[0].oper[4]], thisScript.scheme.commonConfig.afterClickDelayRandom);
-					thisScript.global.tsAttackSwhipeNum = undefined;
+					if (thisScript.oper({
+						name: '探索界面_判断',
+						operator: [{ desc: thisOperator[0].desc, retest: 2500 }],
+					})) {
+						thisScript.helperBridge.regionClick([thisOperator[0].oper[3], thisOperator[0].oper[4]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+						thisScript.global.tsAttackSwhipeNum = undefined;
+					}
 					return true;
 				}
 				if (thisScript.oper({
 					name: '探索界面_判断',
-					operator: [{ desc: thisOperator[0].desc }]
+					operator: [{ desc: thisOperator[0].desc }],
 				})) {
 					// toastLog(`剩余滑屏次数：${thisScript.global.tsAttackSwhipeNum}`);
 					thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[1], thisOperator[0].oper[2], {
