@@ -12,7 +12,7 @@ export default function webviewFuncList() {
         let schemeList = mergeSchemeList(savedSchemeList, defaultSchemeList);
         for (let i = 0; i < schemeList.length; i++) {
             if (schemeList[i].schemeName === schemeName) {
-                // console.log(`getScheme: ${JSON.stringify(schemeList[i], null, 4)}`);
+                console.log(`getScheme: ${JSON.stringify(schemeList[i], null, 4)}`);
                 done(schemeList[i]);
                 return;
             }

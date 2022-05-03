@@ -166,6 +166,9 @@ export const versionList = [{
 }, {
     version: '20220503_01',
     desc: '优化：探索挑战时速度过快的情况，稍微降低判断速度；\n尝试修复：退出探索时可能会退出至庭院的问题。'
+}, {
+    version: '20220503_02',
+    desc: '优化：新增寮突破cd的可随机等待时间'
 }];
 
 export default versionList[versionList.length - 1].version;

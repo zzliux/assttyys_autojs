@@ -40,9 +40,9 @@ export default {
 			value: null,
 		}, {
 			name: 'cdWaitTime',
-			desc: '寮突破CD检测频率(s)',
-			type: 'integer',
-			default: '30'
+			desc: '寮突破CD检测频率(s)，逗号分隔，表示随机范围的下限与上限',
+			type: 'text',
+			default: '30,60'
 		}, {
 			name: 'cdSwitchSchemeEnable',
 			desc: '寮突破CD后是否切换方案(启用后CD检测将关闭)',
@@ -77,8 +77,15 @@ export default {
 				} else {
 					let oper = thisOperator[0].oper[1];
 					thisScript.helperBridge.regionClick([oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
-					toastLog(`寮突破CD, ${(thisConf.cdWaitTime || 30)}秒后再次检测`);
-					sleep(1000 * (thisConf.cdWaitTime || 30));
+					let cdWaiteTimePair = thisConf.cdWaitTime.split(',');
+					if (cdWaiteTimePair.length === 1) {
+						toastLog(`寮突破CD, ${(parseInt(cdWaiteTimePair[0]))}秒后再次检测`);
+						sleep(1000 * (parseInt(cdWaiteTimePair[0])));
+					} else {
+						let cdWaitTime = random(parseInt(cdWaiteTimePair[0]), parseInt(cdWaiteTimePair[1]));
+						toastLog(`寮突破CD, ${(cdWaitTime)}秒后再次检测`);
+						sleep(1000 * (cdWaitTime));
+					}
 					return true;
 				}
 			}
