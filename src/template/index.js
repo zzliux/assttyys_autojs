@@ -12,19 +12,6 @@ if (localStorage && localStorage.debug) {
 AutoWeb.setMode(autoWebMode);
 
 AutoWeb.autoPromise = function (eventname, params) {
-	// var _this = this;
-	// return new Promise(function (resolve, reject) {
-	// 	// let EVENT_ID = eventname + (Math.random() + "").split('.')[1];//Date.now().toString();
-	// 	let EVENT_ID = eventname + Date.now().toString();
-	// 	AutoWeb.devicelly(EVENT_ID, function (p) {
-	// 		console.log(eventname);
-	// 		resolve(p);
-	// 	}, _this, false);
-	// 	return window[autoWebMode](eventname, JSON.stringify({
-	// 		params,
-	// 		PROMPT_CALLBACK: EVENT_ID
-	// 	}));
-	// });
 	return new Promise((resolve, reject) => {
 		AutoWeb.auto(eventname, params, result => {
 			resolve(result);
