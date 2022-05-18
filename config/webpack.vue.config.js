@@ -92,7 +92,35 @@ module.exports = (env, argv) => {
             }),
             new webpack.DefinePlugin({
                 // 处理aj的api在前端引用时的报错
-                storages: { create: function (){} }
+                // TODO 前端需完全剥离使用aj的方法，要获取数据通过通信获取
+                storages: { create: function (){} },
+                $shell: { checkAccess: function (){} },
+                $images: {},
+                context: {
+                    getResources: function (){
+                        return {
+                            getIdentifier: function () {},
+                            getDimensionPixelSize: function () {},
+                            getDisplayMetrics: function () {
+                                return {
+                                    widthPixels: 0,
+                                    heightPixels: 0
+                                }
+                            },
+                        }
+                    },
+                    getPackageName: function () {},
+                    getSystemService: function () {
+                        return {
+                            getDefaultDisplay: function () {
+                                return {
+                                    getRealMetrics: function () {},
+                                }
+                            },
+                        }
+                    },
+                },
+                device: { sdkInt: 0 }
             }),
             // 打包至一个文件
             new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 })

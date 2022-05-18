@@ -138,9 +138,9 @@ const SchemeList = [{
     id: 5,
     schemeName: '个人突破_卡级_进攻',
     star: true,
-    list: [0, 1, 2, 3, 10, 8, 9, 11],
+    list: [0, 1, 2, 3, 10, 7, 8, 9, 11],
     config: {
-        '0': { jspd_enabled_1: true, jspd_times_1: 9, scheme_switch_enabled: true, next_scheme: '个人突破_卡级_退出' },
+        '0': { jspd_enabled_1: true, jspd_times_1: 2, scheme_switch_enabled: true, next_scheme: '个人突破_卡级_退出' },
         '8': { count: '2', afterCountOper: '停止脚本', type: '个人突破' },
         '10': { type: '个人突破' }
     }
@@ -150,7 +150,7 @@ const SchemeList = [{
     star: true,
     list: [0, 1, 2, 3, 8, 9, 10, 11],
     config: {
-        '0': { jspd_enabled_1: true, jspd_times_1: 4, scheme_switch_enabled: true, next_scheme: '个人突破_卡级_进攻' },
+        '0': { jspd_enabled_1: true, jspd_times_1: 1, scheme_switch_enabled: true, next_scheme: '个人突破_卡级_进攻' },
         '1': { exitBeforeReady: true },
         '8': { count: '2', afterCountOper: '停止脚本', type: '个人突破' },
         '9': { priority: '0->1->2->3->4->5' },
@@ -159,8 +159,12 @@ const SchemeList = [{
 }, {
     id: 99,
     schemeName: '伊吹之擂',
-    star: true,
     list: [0, 3, 24, 99, 100],
+}, {
+    id: 100,
+    schemeName: '活动_战场巡逻',
+    star: true,
+    list: [0, 1, 2, 3, 101]
 }
     // 完整demo
     // , {

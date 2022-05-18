@@ -1,4 +1,5 @@
 import { setCurrentScheme, pushPlusPush, scaleBmp } from '@/common/tool';
+import { myToast } from '@/common/toolAuto';
 import { storeCommon } from '@/system/store';
 
 export default {
@@ -115,7 +116,7 @@ export default {
 		if (thisconf.jspd_enabled_longtime_nodo) {
 			let now = new Date();
 			if (now.getTime() - thisScript.currentDate.getTime() > thisconf.jspd_times_longtime_nodo * 60000) {
-				toastLog(`因长时间(${cvtTime((now.getTime() - thisScript.currentDate.getTime()) / 1000)})未执行任何操作，脚本停止`);
+				myToast(`因长时间(${cvtTime((now.getTime() - thisScript.currentDate.getTime()) / 1000)})未执行任何操作，脚本停止`);
 				stopOrReRun();
 				return true;
 			}
@@ -124,7 +125,7 @@ export default {
 		if (thisconf.jspd_enabled_zjsj) { // 执行时间
 			let currentNotifyDate = thisScript.global.currentNotifyDate;
 			if (!currentNotifyDate) {
-				toastLog(`脚本将于${cvtTime(thisconf.jspd_times_zjsj * 60)}后停止`);
+				myToast(`脚本将于${cvtTime(thisconf.jspd_times_zjsj * 60)}后停止`);
 				currentNotifyDate = new  Date();
 				thisScript.global.currentNotifyDate = currentNotifyDate;
 			}
@@ -132,7 +133,7 @@ export default {
 			if (now.getTime() - currentNotifyDate.getTime() > thisconf.jspd_txpl_zjsj * 1000) {
 				let leftSec = (thisconf.jspd_times_zjsj * 60000 + thisScript.runDate.getTime() - now.getTime()) / 1000;
 				thisScript.global.currentNotifyDate = new Date();
-				toastLog(`脚本将于${cvtTime(leftSec)}后停止`);
+				myToast(`脚本将于${cvtTime(leftSec)}后停止`);
 			}
 			if (thisScript.runDate.getTime() + thisconf.jspd_times_zjsj * 60000 < now.getTime()) {
 				stopOrReRun();
@@ -142,7 +143,7 @@ export default {
 		
 		if (thisconf.jspd_enabled_1) {
 			if (thisScript.runTimes['1'] >= thisconf.jspd_times_1) {
-				toastLog(`准备功能执行${thisScript.runTimes['1']}次后停止脚本`);
+				myToast(`准备功能执行${thisScript.runTimes['1']}次后停止脚本`);
 				stopOrReRun();
 				return true;
 			}
@@ -151,12 +152,12 @@ export default {
 			}
 			if (thisScript.runTimes['1'] !== thisScript.global.currentRunTimes['1']) {
 				thisScript.global.currentRunTimes['1'] = thisScript.runTimes['1'];
-				toastLog(`准备功能已执行${thisScript.runTimes['1']}次, 继续执行${thisconf.jspd_times_1 - thisScript.runTimes['1']}次后将停止脚本`);
+				myToast(`准备功能已执行${thisScript.runTimes['1']}次, 继续执行${thisconf.jspd_times_1 - thisScript.runTimes['1']}次后将停止脚本`);
 			}
 		}
 		if (thisconf.jspd_enabled_2) {
 			if (thisScript.runTimes['2'] >= thisconf.jspd_times_2) {
-				toastLog(`退出结算功能执行${thisScript.runTimes['2']}次后停止脚本`);
+				myToast(`退出结算功能执行${thisScript.runTimes['2']}次后停止脚本`);
 				stopOrReRun();
 				return true;
 			}
@@ -165,7 +166,7 @@ export default {
 			}
 			if (thisScript.runTimes['2'] !== thisScript.global.currentRunTimes['2']) {
 				thisScript.global.currentRunTimes['2'] = thisScript.runTimes['2'];
-				toastLog(`退出结算已执行${thisScript.runTimes['2']}次, 继续执行${thisconf.jspd_times_2 - thisScript.runTimes['2']}次后将停止脚本`);
+				myToast(`退出结算已执行${thisScript.runTimes['2']}次, 继续执行${thisconf.jspd_times_2 - thisScript.runTimes['2']}次后将停止脚本`);
 			}
 		}
 		if (thisconf.pause_enabled) {
@@ -182,7 +183,7 @@ export default {
 			if (thisScript.global.running) {
 				if (new Date().getTime() >= thisScript.global.runningTime) {
 					thisScript.global.running = false;
-					toastLog('脚本暂停');
+					myToast('脚本暂停');
 					return true;
 				}
 				if (!thisScript.global.notifyTime) {
@@ -190,7 +191,7 @@ export default {
 				}
 				if (new Date().getTime() - thisScript.global.notifyTime > 10000) {
 					thisScript.global.notifyTime = new Date().getTime();
-					toastLog(`将于${cvtTime((thisScript.global.runningTime - new Date().getTime()) / 1000)}后暂停${cvtTime(thisScript.global.define_pause_time / 1000)}`);
+					myToast(`将于${cvtTime((thisScript.global.runningTime - new Date().getTime()) / 1000)}后暂停${cvtTime(thisScript.global.define_pause_time / 1000)}`);
 				}
 			} else {
 				if (new Date().getTime() >= thisScript.global.pauseTime) {
@@ -199,7 +200,7 @@ export default {
 				}
 				if (new Date().getTime() - thisScript.global.notifyTime > 10000) {
 					thisScript.global.notifyTime = new Date().getTime();
-					toastLog(`将于${cvtTime((thisScript.global.pauseTime - new Date().getTime()) / 1000)}后恢复执行`);
+					myToast(`将于${cvtTime((thisScript.global.pauseTime - new Date().getTime()) / 1000)}后恢复执行`);
 				}
 				sleep(Math.max(thisScript.global.define_pause_time / 10, 5000));
 				return true;
@@ -209,7 +210,7 @@ export default {
 		function stopOrReRun() {
 			if (thisconf.scheme_switch_enabled) {
 				setCurrentScheme(thisconf.next_scheme);
-				toastLog(`切换方案为[${thisconf.next_scheme}]`);
+				myToast(`切换方案为[${thisconf.next_scheme}]`);
 				thisScript.rerun();
 			} else {
 				let storeSettings = storeCommon.get('settings', {});
@@ -230,7 +231,7 @@ export default {
 						let upContent = `<div><p>脚本已停止，请查看</p><img style="max-width: 100%" src="data:image/png;base64,${b64str}" /></div>`;
 						console.log('上传大小' + upContent.length);
 	
-						toastLog('脚本即将停止，正在上传数据');
+						myToast('脚本即将停止，正在上传数据');
 						let res = pushPlusPush({
 							token: storeSettings.push_plus_token,
 							title: '脚本停止提醒',
@@ -247,12 +248,12 @@ export default {
 				if (thisconf.stop_with_launched_app_exit) {
 					if (storeSettings.defaultLaunchAppList && storeSettings.defaultLaunchAppList.length) {
 						storeSettings.defaultLaunchAppList.forEach(packageName => {
-							toastLog(`停止应用[${packageName}]`);
+							myToast(`停止应用[${packageName}]`);
 							shell(`am force-stop ${packageName}`, true);
 							sleep(1000);
 						});
 					} else {
-						toastLog('未配置关联应用，不执行停止操作');
+						myToast('未配置关联应用，不执行停止操作');
 					}
 				}
 				thisScript.stop();
