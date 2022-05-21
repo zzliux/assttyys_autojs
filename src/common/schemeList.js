@@ -165,6 +165,11 @@ const SchemeList = [{
     schemeName: '活动_战场巡逻',
     star: true,
     list: [0, 1, 2, 3, 101]
+}, {
+    id: 101,
+    schemeName: '活动_战场探索',
+    star: true,
+    list: [0, 3, 24, 102, 103, 104]
 }
     // 完整demo
     // , {

@@ -172,6 +172,9 @@ export const versionList = [{
 }, {
     version: '20220518_01',
     desc: '新增：活动方案战场巡逻；\n优化：功能0中的toast提示修改为底部对齐'
+}, {
+    version: '20220522_01',
+    desc: '新增：活动方案战场挑战'
 }];
 
 export default versionList[versionList.length - 1].version;
