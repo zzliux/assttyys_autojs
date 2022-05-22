@@ -135,7 +135,7 @@ const SchemeList = [{
     schemeName: '道馆',
     list: [0, 1, 2, 3, 32],
 }, {
-    id: 5,
+    id: 20,
     schemeName: '个人突破_卡级_进攻',
     star: true,
     list: [0, 1, 2, 3, 10, 7, 8, 9, 11],
@@ -145,7 +145,7 @@ const SchemeList = [{
         '10': { type: '个人突破' }
     }
 }, {
-    id: 5,
+    id: 21,
     schemeName: '个人突破_卡级_退出',
     star: true,
     list: [0, 1, 2, 3, 8, 9, 10, 11],
@@ -155,6 +155,14 @@ const SchemeList = [{
         '8': { count: '2', afterCountOper: '停止脚本', type: '个人突破' },
         '9': { priority: '0->1->2->3->4->5' },
         '10': { type: '个人突破' }
+    }
+}, {
+    id: 22,
+    schemeName: '秘闻',
+    list: [0, 1, 2, 3, 34],
+    config: {
+        '0': { jspd_enabled_1: true, jspd_times_1: 15 },
+        '1': { greenType: '自定义坐标', greenPosition: '132,484' } // 左一
     }
 }, {
     id: 99,

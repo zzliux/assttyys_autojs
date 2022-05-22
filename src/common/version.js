@@ -175,6 +175,9 @@ export const versionList = [{
 }, {
     version: '20220522_01',
     desc: '新增：活动方案战场挑战'
+}, {
+    version: '20220522_01',
+    desc: '新增：镰鼬百战自动挑战15次'
 }];
 
 export default versionList[versionList.length - 1].version;
