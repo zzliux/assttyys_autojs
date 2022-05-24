@@ -3,6 +3,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 // const JavascriptObfuscator = require("webpack-obfuscator")
 const AutoProWebpackPlugin = require('@auto.pro/webpack-plugin')
 const ProgressPlugin = require('progress-bar-webpack-plugin')
+const Unpack = require('./devUnpack')
 
 const dictionary = []
 for (let i = 1024; i < 2048; i++) {
@@ -71,7 +72,8 @@ module.exports = (env, argv) => {
                 cleanOnceBeforeBuildPatterns: [__dirname + '/../dist/auto.js']
             }),
             compilePlugin,
-            new ProgressPlugin()
+            new ProgressPlugin(),
+            new Unpack(),
         ]
         // config.devtool = 'source-map'
     } else {
