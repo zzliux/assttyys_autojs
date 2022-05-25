@@ -176,8 +176,11 @@ export const versionList = [{
     version: '20220522_01',
     desc: '新增：活动方案战场挑战'
 }, {
-    version: '20220522_01',
+    version: '20220522_02',
     desc: '新增：镰鼬百战自动挑战15次'
+}, {
+    version: '20220525_01',
+    desc: '新增：活动功能战场巡逻_挑战支持二阶段蛇魔挑战'
 }];
 
 export default versionList[versionList.length - 1].version;

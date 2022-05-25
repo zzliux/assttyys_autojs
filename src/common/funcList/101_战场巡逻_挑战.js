@@ -34,6 +34,18 @@ export default {
 		oper: [
 			[right, 1280, 720, 1122,578, 1217,663, 1000]
 		]
+	}, {
+		// 二阶段蛇魔挑战
+		desc: [1280,720,
+			[[right,1181,591,0xdbd5d3],
+			[center,559,602,0x65523a],
+			[center,734,635,0x615037],
+			[right,1071,477,0xe6dfdf],
+			[right,1103,492,0x292945]]
+		],
+		oper: [
+			[right, 1280, 720, 1146,586, 1229,679, 1000]
+		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
 		let curCnt = 0;
