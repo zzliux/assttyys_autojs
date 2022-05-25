@@ -181,6 +181,9 @@ export const versionList = [{
 }, {
     version: '20220525_01',
     desc: '新增：活动功能战场巡逻_挑战支持二阶段蛇魔挑战'
+}, {
+    version: '20220525_02',
+    desc: '新增：活动方案前线作战'
 }];
 
 export default versionList[versionList.length - 1].version;

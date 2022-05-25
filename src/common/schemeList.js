@@ -171,13 +171,18 @@ const SchemeList = [{
 }, {
     id: 100,
     schemeName: '活动_战场巡逻',
-    star: true,
     list: [0, 1, 2, 3, 101]
 }, {
     id: 101,
     schemeName: '活动_战场探索',
-    star: true,
     list: [0, 3, 24, 102, 103, 104]
+}, {
+    id: 102,
+    schemeName: '活动_前线作战',
+    list: [0, 1, 2, 3, 24, 105],
+    config: {
+        '1': { greenType: '自定义坐标', greenPosition: '628,511' } // 左3随缘
+    }
 }
     // 完整demo
     // , {
