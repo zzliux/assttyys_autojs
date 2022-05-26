@@ -184,6 +184,9 @@ export const versionList = [{
 }, {
     version: '20220525_02',
     desc: '新增：活动方案前线作战'
+}, {
+    version: '20220526_01',
+    desc: '修复：活动功能战场巡逻二阶段蛇魔挑战10次后不打的bug'
 }];
 
 export default versionList[versionList.length - 1].version;
