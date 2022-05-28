@@ -46,6 +46,19 @@ export default {
 		oper: [
 			[right, 1280, 720, 1146,586, 1229,679, 1000]
 		]
+	}, {
+		desc: [1280,720,
+			[[left,91,641,0xd6cdac],
+			[left,42,47,0xf1f1f9],
+			[left,225,645,0xbdb08f],
+			[right,849,667,0x646464],
+			[right,1187,610,0xdad6d3],
+			[right,993,566,0xf5f3ed],
+			[right,1183,303,0xb48b20]]
+		],
+		oper: [
+			[right, 1280, 720, 1106,575, 1202,664, 1000]
+		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
 		let curCnt = 0;

@@ -187,6 +187,9 @@ export const versionList = [{
 }, {
     version: '20220526_01',
     desc: '修复：活动功能战场巡逻二阶段蛇魔挑战10次后不打的bug'
+}, {
+    version: '20220528_01',
+    desc: '修复：前线作战庭院不进入的问题；\n新增：终焉降临挑战，使用战场巡逻即可'
 }];
 
 export default versionList[versionList.length - 1].version;

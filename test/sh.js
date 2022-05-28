@@ -10,26 +10,12 @@ function myShell (flag) {
     // this.successReader = new java.io.BufferedReader(new java.io.InputStreamReader(this.process.getInputStream()));
     // this.errorReader = new java.io.BufferedReader(new java.io.InputStreamReader(this.process.getErrorStream()));
     this.successReader = new java.util.Scanner(this.process.getInputStream(), 'ISO-8859-1').useDelimiter('\n' + this.boundary + '\n');
-    this.errorReader = new java.util.Scanner(this.process.getErrorStream(), 'ISO-8859-1').useDelimiter('\n' + this.boundary + '\n');
+    // this.errorReader = new java.util.Scanner(this.process.getErrorStream(), 'ISO-8859-1').useDelimiter('\n' + this.boundary + '\n');
     // this.successMsg = [];
     this.successMsg = null;
     this.errorMsg = null;
     this.callbackList = [];
     this.errorCallbackList = [];
-    // threads.start(function () {
-    //     let s = null;
-    //     // 修改为 read(char[] cbuf, int off, int len)
-    //     // 在读取内容往全部内容拼出来的bytes里面最后2倍bondary程度中若出现bondary，则分割
-    //     while (s = self.successReader.readLine()) { // 这个会阻塞
-    //         if (s === self.boundary) {
-    //             let cb = self.callbackList.shift();
-    //             cb && cb(self.successMsg.join('\n'));
-    //             self.successMsg = [];
-    //         } else {
-    //             self.successMsg.push(s);
-    //         }
-    //     }
-    // });
     threads.start(function () {
         let s = null;
         while (s = self.successReader.next()) {
@@ -39,15 +25,6 @@ function myShell (flag) {
             cb && cb(self.successMsg);
         }
     });
-    // threads.start(function () {
-    //     let s = null;
-    //     while (s = self.errorReader.next()) {
-    //         console.log('eeeeeeeeeeeee');
-    //         self.errorMsg = new java.lang.String(s).getBytes('ISO-8859-1');
-    //         let ecb = self.errorCallbackList.shift();
-    //         ecb && ecb(self.errorMsg);
-    //     }
-    // });
 }
 
 /**
@@ -55,16 +32,14 @@ function myShell (flag) {
  * @param {*} command 
  * @param {*} callback 
  */
-myShell.prototype.exec = function (command, callback, errorCallback) {
+myShell.prototype.exec = function (command, callback) {
     this.callbackList.push(callback);
-    this.errorCallbackList.push(errorCallback);
-    let self = this;
-
-    self.writer.write(command)
-    // self.writer.newLine();
-    self.writer.write(' && echo \'' + this.boundary + '\'');
-    self.writer.newLine();
-    self.writer.flush();
+    this.writer.write(command)
+    // this.writer.newLine();
+    this.writer.write(' && echo \'' + this.boundary + '\'');
+    this.writer.newLine();
+    this.writer.flush();
+    // return this.successMsg;
 }
 
 myShell.prototype.destroy = function () {
@@ -73,13 +48,14 @@ myShell.prototype.destroy = function () {
     this.writer.flush();
     this.writer.close();
     this.successReader.close();
-    this.errorReader.close();
+    // this.errorReader.close();
     this.process.destroy();
 }
 
 if (typeof module == 'undefined') {
     module = {};
     let sh = new myShell('su');
+    sleep(1000);
     events.on('exit', function () {
         sh.destroy();
     });
@@ -99,9 +75,16 @@ if (typeof module == 'undefined') {
     //     exit();
     // });
     sh.exec('screencap -p', function (res) {
-        files.writeBytes(files.cwd() + '/test3.png', res);
-        exit();
+        files.writeBytes('/sdcard/脚本/test3.png', res);
+        // exit();
     });
+
+    // sh.exec('echo 33', function (res) {
+    //     let s = new java.lang.String(res);
+    //     console.log(s);
+    //     console.log('length = ' + s.length());
+    //     exit();
+    // });
         
     // sh.exec('input swipe 100 100 500 500 1500', function (_res) {
     //     sh.destroy();
