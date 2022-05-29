@@ -193,6 +193,9 @@ export const versionList = [{
 }, {
     version: '20220529_01',
     desc: '新增：活动功能战场巡逻杂项，目前功能为终焉决战分数大于5500w分时自动退出，请手动开启'
+}, {
+    version: '20220529_02',
+    desc: '新增：秘闻_挑战支持妖刀姬竞速'
 }];
 
 export default versionList[versionList.length - 1].version;
