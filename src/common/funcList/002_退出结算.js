@@ -184,6 +184,20 @@ export default {
 		],
 		notForCnt: true,
 	}, {
+		// 秘闻的胜利，太鼓位置很高
+		desc: [1280,720,
+			[[center,816,101,0xd1b887],
+			[center,512,117,0x9e1c10],
+			[center,455,122,0x9f1c10],
+			[center,477,81,0x7c1910],
+			[center,481,102,0xcebeac],
+			[center,541,139,0xd0bfa7]]
+		],
+		oper: [
+			[center, 1280, 720, 96,53, 1177,210, 1000],
+		],
+		retest: 300,
+	}, {
 		// 御魂溢出点确认
 		desc: [1280,720,
 			[[center,448,221,0x684736],
