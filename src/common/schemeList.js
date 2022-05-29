@@ -179,7 +179,7 @@ const SchemeList = [{
 }, {
     id: 102,
     schemeName: '活动_前线作战',
-    list: [0, 1, 2, 3, 24, 105],
+    list: [0, 1, 2, 3, 24, 105, 106],
     config: {
         '1': { greenType: '自定义坐标', greenPosition: '628,511' } // 左3随缘
     }
