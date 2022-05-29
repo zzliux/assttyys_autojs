@@ -192,7 +192,7 @@ export const versionList = [{
     desc: '修复：前线作战庭院不进入的问题；\n新增：终焉降临挑战，使用战场巡逻即可'
 }, {
     version: '20220529_01',
-    desc: '新增：活动方案战场巡逻杂项，目前功能为终焉决战分数大于5500w分时自动退出'
+    desc: '新增：活动功能战场巡逻杂项，目前功能为终焉决战分数大于5500w分时自动退出，请手动开启'
 }];
 
 export default versionList[versionList.length - 1].version;
