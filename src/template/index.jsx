@@ -32,7 +32,7 @@ const App = () => {
         <Router>
             <Routes>
                 {rtsEles}
-                <Route path="*" element={<Navigate to="/Home" replace={true} />} />
+                <Route path="*" element={<Navigate to="/SchemeList" replace={true} />} />
             </Routes>
         </Router>
     );
