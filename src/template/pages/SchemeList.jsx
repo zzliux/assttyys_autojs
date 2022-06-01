@@ -1,16 +1,16 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import Divider from '@mui/material/Divider';
-import Switch from '@mui/material/Switch';
 import AppBar from '../components/AppBar';
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+
 import MenuIcon from '@mui/icons-material/Menu';
-import DragHandleIcon from '@mui/icons-material/DragHandle';
 import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded';
 import StarRoundedIcon from '@mui/icons-material/StarRounded';
+import DragListItem from '../components/DragListItem';
 
 export default () => {
     const navigate = useNavigate();
@@ -35,19 +35,17 @@ export default () => {
 
     const dataListEles = dataList.map((item, index) => {
         return (
-            <div key={index} style={{ color: 'rgba(0, 0, 0, .7)' }}>
-                <ListItemButton>
-                    {/* <ListItemIcon>
-                <WifiIcon />
-            </ListItemIcon> */}
-                    <ListItemText primary={item.schemeName} />
-                    <DragHandleIcon sx={{ mr: '20px' }} />
-                    <div onClick={handleStar(index)} >
-                        {item.star ? <StarRoundedIcon sx={{ mr: '10px', color: '#1976d2' }} /> : <StarBorderRoundedIcon sx={{ mr: '10px' }} />}
-                    </div>
-                </ListItemButton>
-                <Divider variant="fullWidth" component="li" />
-            </div>
+            <DragListItem
+                key={index}
+                text={item.schemeName}
+                rightElement={
+                    <>
+                        <div onClick={handleStar(index)} >
+                            {item.star ? <StarRoundedIcon sx={{ mr: '10px', color: '#1976d2' }} /> : <StarBorderRoundedIcon sx={{ mr: '10px' }} />}
+                        </div>
+                    </>
+                }
+            />
         )
     });
 
@@ -57,13 +55,16 @@ export default () => {
                 leftElement={<MenuIcon />}
                 onIconButtonClick={() => navigate('/Settings')}
             />
-            <List
-                sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-                subheader={<ListSubheader>方案列表</ListSubheader>}
-            >
-                <Divider variant="fullWidth" component="li" />
-                {dataListEles}
-            </List>
+
+            <DndProvider backend={HTML5Backend}>
+                <List
+                    sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+                    subheader={<ListSubheader>方案列表</ListSubheader>}
+                >
+                    <Divider variant="fullWidth" component="li" />
+                    {dataListEles}
+                </List>
+            </DndProvider>
         </>
     );
 }
