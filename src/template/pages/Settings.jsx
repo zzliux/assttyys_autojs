@@ -13,43 +13,17 @@ import NotesIcon from '@mui/icons-material/Notes';
 import Battery1BarIcon from '@mui/icons-material/Battery1Bar';
 
 export default function Settings() {
-    const [list, setList] = React.useState([{
-        desc: '无障碍服务',
-        name: 'autoService',
-        enabled: false,
-        type: 'autojs_inner_setting_auto_service',
-        icon: <SettingsAccessibilityIcon />,
-    }, {
-        desc: '截图权限',
-        name: 'screenCapturePermission',
-        enabled: false,
-        type: 'autojs_inner_settings_capture_permission',
-        icon: <ScreenshotMonitorIcon />,
-    }, {
-        desc: '悬浮窗权限',
-        name: 'floatyPerminssion',
-        enabled: false,
-        type: 'autojs_inner_setting_floaty_permission',
-        icon: <TagFacesIcon />,
-    }, {
-        desc: '音量上键停止脚本及程序',
-        name: 'stop_all_on_volume_up',
-        type: 'autojs_inner_setting',
-        enabled: false,
-        icon: <VolumeUpIcon />,
-    }, {
-        desc: '前台服务',
-        name: 'foreground_service',
-        type: 'autojs_inner_setting',
-        enabled: false,
-        icon: <NotesIcon />,
-    }, {
-        desc: '忽略电池优化',
-        name: 'ignoreBatteryOptimization',
-        type: 'autojs_inner_setting_power_manage',
-        enabled: false,
-        icon: <Battery1BarIcon />,
-    }]);
+    const namedIcon = {
+        autoService: <SettingsAccessibilityIcon />,
+        screenCapturePermission: <ScreenshotMonitorIcon />,
+        floatyPerminssion: <TagFacesIcon />,
+        stop_all_on_volume_up: <VolumeUpIcon />,
+        foreground_service: <NotesIcon />,
+        ignoreBatteryOptimization: <Battery1BarIcon />,
+        __other: <NotesIcon />,
+    };
+
+    const [list, setList] = React.useState([]);
 
     const handleToggle = (index) => async () => {
         const newList = list.splice(0);
@@ -68,10 +42,7 @@ export default function Settings() {
         (async () => {
             const settings = await AutoWeb.autoPromise('getSettings');
             settings.forEach((item) => {
-                const index = list.findIndex((i) => i.name === item.name);
-                if (index > -1) {
-                    item.icon = list[index].icon;
-                }
+                item.icon = namedIcon[item.name] || namedIcon.__other;
             });
             setList(settings);
         })();

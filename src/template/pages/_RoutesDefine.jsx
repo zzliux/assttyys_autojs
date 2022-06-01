@@ -1,13 +1,13 @@
 import React from 'react';
-import Home from './Home';
+import SchemeList from './SchemeList';
 import Search from './Search';
 import People from './People';
 import Settings from './Settings';
 
-export default { Home, Search, People, Settings };
+export default { SchemeList, Search, People, Settings };
 export const routesDefine = [{
-    path: '/Home',
-    element: <Home />
+    path: '/SchemeList',
+    element: <SchemeList />
 }, {
     path: '/Search',
     element: <Search />

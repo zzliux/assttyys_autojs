@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 module.exports = (env, argv) => {
     return {
         entry: {
-            app: './src/template/index.js',
+            app: './src/template/index.jsx',
         },
         output: {
             path: path.resolve(__dirname, '../dist'),
