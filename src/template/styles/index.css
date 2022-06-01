@@ -1,0 +1,23 @@
+
+body {
+    margin: 0;
+}
+
+html, body, #root {
+    height: 100%;
+}
+
+.MuiList-root {
+    max-width: 100% !important;
+}
+
+.title {
+    font-weight: bolder;
+    font-size: 40px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

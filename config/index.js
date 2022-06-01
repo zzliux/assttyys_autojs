@@ -1,7 +1,7 @@
 const autoConfig = require('./webpack.auto.config')
-const vueConfig = require('./webpack.vue.config')
+const reactConfig = require('./webpack.react.config')
 
 module.exports = [
     autoConfig,
-    vueConfig
+    reactConfig
 ]

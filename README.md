@@ -2,7 +2,7 @@
 ASISTTANT YYS NEXT GENERATION
 
 # 前端
-使用 **@auto.pro** 模块，webview加载网页作为UI使用，前端使用Vue + VantUI，个人第一次使用vue，代码和逻辑估处理可能会有很多不恰当的地方
+使用 **@auto.pro** 模块，webview加载网页作为UI使用，前端使用React + Materail UI，个人首个使用react的学习项目
 
 针对每个小功能都将会提供丰富的配置属性，且不会再将功能拆得过细（比如说接受悬赏和拒绝悬赏将合成一个功能，具体接受和拒绝以及执行的条件将会放在配置中）
 
@@ -96,23 +96,10 @@ assttyys_autojs
 │  │          funcList.js
 │  │          index.js
 │  │          ...
-│  └─template
-│     │  App.vue
-│     │  index.html
-│     │  index.js
-│     ├─assets                                  前端静态资源
-│     ├─components                              前端组件
-│     │      AppListLaunchDialog.vue
-│     │      AppListRefDialog.vue
-│     │      FuncConfigBox.vue
-│     │      FuncConfigDialog.vue
-│     └─pages                                   前端页面
-│              About.vue
-│              FuncList.vue
-│              SchemeList.vue
-│              Settings.vue
-├─test                                          测试目录，里面有乱七八糟的测试用的文件
-|  ...                                          待补充
+│  └─template                                  前端目录，正在进行react重构
+│      └─ ...                                  待补充
+├─test                                         测试目录，里面有乱七八糟的测试用的文件
+|  ...                                         待补充
 ```
 
 # 已知问题
