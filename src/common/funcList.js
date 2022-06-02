@@ -1,10 +1,12 @@
 // 自动加载funcList目录下所有配置统一导出
-const fl = require.context('./funcList', false, /\.js$/);
+const fl = require.context('./funcList', false, /./);
 
-let funcList = [];
+const funcList = [];
 
 fl.keys().forEach(key => {
-    funcList.push(fl(key).default);
+    const func = fl(key).default;
+    func.checked = false;
+    funcList.push(func);
 });
 
 export default funcList;

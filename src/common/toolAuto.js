@@ -1,5 +1,6 @@
 import { getWidthPixels, getHeightPixels } from '@auto.pro/core';
 import helperBridge from '@/system/helperBridge';
+import store from '@/system/store';
 
 // importClass(android.graphics.Color);
 // importPackage(android.content);
@@ -45,4 +46,16 @@ function _toast(str) {
 export function myToast (str) {
     ui.run(() => _toast(str));
     console.log(str);
+}
+
+
+export function setCurrentScheme(schemeName) {
+    let savedSchemeList = store.get("schemeList");
+    for (let i = 0; i < savedSchemeList.length; i++) {
+        if (savedSchemeList[i].schemeName === schemeName) {
+            store.put('currentScheme', savedSchemeList[i]);
+            return;
+        }
+    }
+    toastLog(`修改方案失败：请检查是否存在方案[${schemeName}]`);
 }

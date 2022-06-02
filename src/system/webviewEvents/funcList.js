@@ -1,5 +1,5 @@
 import { webview } from "@/system";
-import { setCurrentScheme } from '@/common/tool';
+import { setCurrentScheme } from '@/common/toolAuto';
 import store, { storeCommon } from '@/system/store';
 import defaultSchemeList from '@/common/schemeList';
 import { mergeSchemeList } from '@/common/tool';

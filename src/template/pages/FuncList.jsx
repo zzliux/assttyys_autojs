@@ -6,9 +6,11 @@ import AppContent from '../components/AppContent';
 import DragList from '../components/DragList';
 import DragListItem from '../components/DragListItem';
 import ListSubheader from '@mui/material/ListSubheader';
+import Switch from '@mui/material/Switch';
 
 import SettingsIcon from '@mui/icons-material/Settings';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import defaultFuncList from '../../common/funcList';
 
 export default (props) => {
     const param = useParams();
@@ -22,13 +24,32 @@ export default (props) => {
 
     };
 
+    const handleCheck = (index) => async () => {};
+
 
     React.useEffect(() => {
         (async () => {
             const scheme = await AutoWeb.autoPromise('getScheme', schemeName);
             // TODO
             // setFuncList(newFuncList);
-        })()
+            const newFunclist = [...defaultFuncList];
+            newFunclist.forEach((item, index) => {
+                for (let i = 0; i < scheme.list.length; i++) {
+                    if (item.id === scheme.list[i]) {
+                        newFunclist[index].checked = true;
+                        break;
+                    }
+                }
+            });
+            newFunclist.sort((a, b) => {
+                if (a.checked === b.checked) {
+                    return a.id - b.id;
+                } else {
+                    return a.checked ? -1 : 1;
+                }
+            });
+            setFuncList(newFunclist);
+        })();
     }, [schemeName]);
 
     return (
@@ -50,12 +71,12 @@ export default (props) => {
                     {funcList.map((item, index) => (
                         <DragListItem
                             key={`item-${index}`}
-                            text={item.name}
+                            text={`${item.id} ${item.name}`}
                             index={index}
                             onClick={() => navigate(`/FuncList/${item.schemeName}`)}
                         >
-                            <div onClick={handleStar(index)} >
-                                {item.star ? <StarRoundedIcon sx={{ mr: '10px', color: '#1976d2' }} /> : <StarBorderRoundedIcon sx={{ mr: '10px' }} />}
+                            <div onClick={handleCheck(index)} >
+                                <Switch checked={item.checked ? true : false}/>
                             </div>
                         </DragListItem>
                     ))}

@@ -1,4 +1,4 @@
-import { setCurrentScheme } from '@/common/tool';
+import { setCurrentScheme } from '@/common/toolAuto';
 
 const normal = -1; //定义常量
 const left = 0;

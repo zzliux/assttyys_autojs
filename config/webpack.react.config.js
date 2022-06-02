@@ -70,7 +70,7 @@ module.exports = (env, argv) => {
             // contentBase: './dist', // 指定托管的根目录
             static: false,
             hot: "only",
-        },plugins: [
+        }, plugins: [
             new CleanWebpackPlugin({
                 cleanOnceBeforeBuildPatterns: [__dirname + '/../dist/web.js', __dirname + '/../dist/index.html', __dirname + '/../dist/web.js.map']
             }),
@@ -80,6 +80,38 @@ module.exports = (env, argv) => {
             }),
             new webpack.ProvidePlugin({
                 AutoWeb: '@auto.pro/web',
+            }),
+            new webpack.DefinePlugin({
+                // 处理aj的api在前端引用时的报错
+                // TODO 前端需完全剥离使用aj的方法，要获取数据通过通信获取
+                storages: { create: function (){} },
+                $shell: { checkAccess: function (){} },
+                $images: {},
+                context: {
+                    getResources: function (){
+                        return {
+                            getIdentifier: function () {},
+                            getDimensionPixelSize: function () {},
+                            getDisplayMetrics: function () {
+                                return {
+                                    widthPixels: 0,
+                                    heightPixels: 0
+                                }
+                            },
+                        }
+                    },
+                    getPackageName: function () {},
+                    getSystemService: function () {
+                        return {
+                            getDefaultDisplay: function () {
+                                return {
+                                    getRealMetrics: function () {},
+                                }
+                            },
+                        }
+                    },
+                },
+                device: { sdkInt: 0 }
             }),
             new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 })
         ]

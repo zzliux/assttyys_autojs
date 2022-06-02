@@ -16,14 +16,15 @@ export default () => {
     const navigate = useNavigate();
     const [schemeList, setSchemeList] = React.useState([]);
 
-    const handleStar = (index) => async () => {
+    const handleStar = (index, e) => (async () => {
+        e.stopPropagation();
         const newSchemeList = [...schemeList];
         newSchemeList[index].star = !newSchemeList[index].star;
         const result = await AutoWeb.autoPromise('saveSchemeList', newSchemeList);
         if (result) {
             setSchemeList(newSchemeList);
         }
-    };
+    })();
 
     const reOrderCallback = async (result) => {
         const newSchemeList = reOrder(
@@ -66,9 +67,8 @@ export default () => {
                             key={`item-${index}`}
                             text={item.schemeName}
                             index={index}
-                            onClick={() => navigate(`/FuncList/${item.schemeName}`)}
-                        >
-                            <div onClick={handleStar(index)} >
+                            onClick={() => navigate(`/FuncList/${item.schemeName}`)}>
+                            <div onClick={e => handleStar(index, e)} >
                                 {item.star ? <StarRoundedIcon sx={{ mr: '10px', color: '#1976d2' }} /> : <StarBorderRoundedIcon sx={{ mr: '10px' }} />}
                             </div>
                         </DragListItem>

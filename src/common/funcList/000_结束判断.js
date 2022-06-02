@@ -1,4 +1,5 @@
-import { setCurrentScheme, pushPlusPush, scaleBmp } from '@/common/tool';
+import { pushPlusPush, scaleBmp } from '@/common/tool';
+import { setCurrentScheme } from '@/common/toolAuto';
 import { myToast } from '@/common/toolAuto';
 import { storeCommon } from '@/system/store';
 

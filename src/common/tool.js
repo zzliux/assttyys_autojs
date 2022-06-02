@@ -1,6 +1,4 @@
 import fmmxQuestionList from '@/common/fmmxQuestionList';
-import defaultSchemeList from '@/common/schemeList';
-import store from '@/system/store';
 
 export const mergeSchemeList = (savedSchemeList, innerSchemeList) => {
     let toMerge = [];
@@ -79,16 +77,6 @@ export function similarity(s1, s2, filterSimilar) {
     return 1 - (matrix[len1][len2] / maxLen); //返回右下角的值
 }
 
-export function setCurrentScheme(schemeName) {
-    let savedSchemeList = store.get("schemeList", defaultSchemeList);
-    for (let i = 0; i < savedSchemeList.length; i++) {
-        if (savedSchemeList[i].schemeName === schemeName) {
-            store.put('currentScheme', savedSchemeList[i]);
-            return;
-        }
-    }
-    toastLog(`修改方案失败：请检查是否存在方案[${schemeName}]`);
-}
 
 // 文档地址 https://www.pushplus.plus/push1.html -> 这个图片推不了太大的，720p缩放0.1倍后才能推送
 // https://pushplus.hxtrip.com/message -> 0.5倍还可以推，就用它了
