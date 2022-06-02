@@ -23,19 +23,13 @@ export default () => {
         if (result) {
             setDataList(newDataList);
         }
-    }
-
-    React.useEffect(() => {
-        (async () => {
-            const newDataList = await AutoWeb.autoPromise('getSchemeList');
-            setDataList(newDataList);
-        })();
-    }, []);
+    };
 
 
     const onDragStart = (a) => {
     };
-    const onDragEnd = (result) => async () => {
+
+    const onDragEnd = (result) => (async () => {
         // dropped outside the list
         if (!result.destination) {
             return;
@@ -45,11 +39,11 @@ export default () => {
             result.source.index,
             result.destination.index
         );
-        const result = await AutoWeb.autoPromise('saveSchemeList', newDataList);
-        if (result) {
+        const saveResult = await AutoWeb.autoPromise('saveSchemeList', newDataList);
+        if (saveResult) {
             setDataList(newDataList);
         }
-    };
+    })();
 
     const onDragUpdate = (b) => {
     };
@@ -75,6 +69,13 @@ export default () => {
             ...draggableStyle
         }
     };
+
+    React.useEffect(() => {
+        (async () => {
+            const newDataList = await AutoWeb.autoPromise('getSchemeList');
+            setDataList(newDataList);
+        })();
+    }, []);
 
     return (
         <>
@@ -112,19 +113,14 @@ export default () => {
                                                 <DragListItem
                                                     text={item.schemeName}
                                                     draggableId={`${index}`}
-                                                    rightElement={
-                                                        <>
-                                                            <div {...provided.dragHandleProps}>
-                                                                <DragHandleIcon sx={{ mr: '20px' }} />
-                                                            </div>
-                                                            <div
-                                                                onClick={handleStar(index)}
-                                                            >
-                                                                {item.star ? <StarRoundedIcon sx={{ mr: '10px', color: '#1976d2' }} /> : <StarBorderRoundedIcon sx={{ mr: '10px' }} />}
-                                                            </div>
-                                                        </>
-                                                    }
-                                                />
+                                                >
+                                                    <div {...provided.dragHandleProps}>
+                                                        <DragHandleIcon sx={{ mr: '20px' }} />
+                                                    </div>
+                                                    <div onClick={handleStar(index)} >
+                                                        {item.star ? <StarRoundedIcon sx={{ mr: '10px', color: '#1976d2' }} /> : <StarBorderRoundedIcon sx={{ mr: '10px' }} />}
+                                                    </div>
+                                                </DragListItem>
                                             </div>
                                         )}
                                     </Draggable>

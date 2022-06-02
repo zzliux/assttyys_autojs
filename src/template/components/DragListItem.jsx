@@ -14,7 +14,7 @@ export default (prop) => {
                             <WifiIcon />
                         </ListItemIcon> */}
                 <ListItemText primary={prop.text} />
-                {prop.rightElement}
+                {prop.children}
             </ListItemButton>
             <Divider variant="fullWidth" component="li" />
         </div>
