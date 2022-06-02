@@ -6,13 +6,13 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 
 
-export default (prop) => {
+export default (props) => {
     const [subTitle, setSubTitle] = React.useState('');
     React.useEffect(() => {
-        if (prop.subTitle) {
-            setSubTitle(`| ${prop.subTitle}`);
+        if (props.subTitle) {
+            setSubTitle(` | ${props.subTitle}`);
         }
-    }, [prop.subTitle]);
+    }, [props.subTitle]);
 
     return (
         <AppBar position="static" color="primary" sx={{ position: 'fixed', zIndex: 2 }}>
@@ -23,14 +23,14 @@ export default (prop) => {
                     color="inherit"
                     aria-label="menu"
                     sx={{ mr: 2 }}
-                    onClick={prop.onIconButtonClick}
+                    onClick={props.onIconButtonClick}
                 >
-                    {prop.leftElement}
+                    {props.leftElement}
                 </IconButton>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    ASSTTYYS {subTitle}
+                ASSTTYYS{subTitle}
                 </Typography>
-                {prop.rightElement}
+                {props.rightElement}
             </Toolbar>
         </AppBar>
     )

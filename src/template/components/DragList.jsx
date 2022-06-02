@@ -5,8 +5,8 @@ import Divider from '@mui/material/Divider';
 
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
-export default (prop) => {
-    const { subheader, reSortCallback, children, ...others } = prop;
+export default (props) => {
+    const { subheader, reOrderCallback, children, ...others } = props;
 
     const onDragStart = (a) => {
     };
@@ -18,7 +18,7 @@ export default (prop) => {
         if (!result.destination) {
             return;
         }
-        reSortCallback(result);
+        reOrderCallback(result);
     })();
 
     const onDragUpdate = (b) => {

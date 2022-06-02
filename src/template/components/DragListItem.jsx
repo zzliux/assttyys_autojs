@@ -1,11 +1,13 @@
 import React from 'react';
-import ListItemButton from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import { Draggable } from 'react-beautiful-dnd';
 import DragHandleIcon from '@mui/icons-material/DragHandle';
 
-export default (prop) => {
+export default (props) => {
+    const { children, ...others } = props;
+
     const getItemStyle = (isDragging, draggableStyle) => {
         return {
             // some basic styles to make the items look a bit nicer
@@ -14,7 +16,7 @@ export default (prop) => {
             // margin: `0 0 ${grid}px 0`,
 
             // change background colour if dragging
-            background: isDragging ? "#efefef" : "#fff",
+            background: isDragging ? "rgba(0,0,0,.1)" : "#fff",
 
             // styles we need to apply on draggables
             ...draggableStyle
@@ -22,7 +24,7 @@ export default (prop) => {
     };
 
     return (
-        <Draggable draggableId={`${prop.index}`} index={prop.index}>
+        <Draggable draggableId={`${props.index}`} index={props.index}>
             {(provided, snapshot) => (
                 <div
                     ref={provided.innerRef}
@@ -34,15 +36,15 @@ export default (prop) => {
                         )
                     }}
                 >
-                    <ListItemButton>
+                    <ListItemButton {...others} >
                         {/* <ListItemIcon>
                             <WifiIcon />
                         </ListItemIcon> */}
-                        <ListItemText primary={prop.text} />
+                        <ListItemText primary={props.text} />
                         <div {...provided.dragHandleProps}>
                             <DragHandleIcon sx={{ mr: '20px' }} />
                         </div>
-                        {prop.children}
+                        {children}
                     </ListItemButton>
                     <Divider variant="fullWidth" component="li" sx={{ display: snapshot.isDragging ? 'none' : 'flex' }}/>
                 </div>

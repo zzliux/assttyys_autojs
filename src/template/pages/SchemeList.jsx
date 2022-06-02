@@ -14,29 +14,29 @@ import StarRoundedIcon from '@mui/icons-material/StarRounded';
 
 export default () => {
     const navigate = useNavigate();
-    const [dataList, setDataList] = React.useState([]);
+    const [schemeList, setSchemeList] = React.useState([]);
 
     const handleStar = (index) => async () => {
-        const newDataList = [...dataList];
-        newDataList[index].star = !newDataList[index].star;
-        const result = await AutoWeb.autoPromise('saveSchemeList', newDataList);
+        const newSchemeList = [...schemeList];
+        newSchemeList[index].star = !newSchemeList[index].star;
+        const result = await AutoWeb.autoPromise('saveSchemeList', newSchemeList);
         if (result) {
-            setDataList(newDataList);
+            setSchemeList(newSchemeList);
         }
     };
 
-    const reSortCallback = async (result) => {
-        const newDataList = reSort(
-            dataList,
+    const reOrderCallback = async (result) => {
+        const newSchemeList = reOrder(
+            schemeList,
             result.source.index,
             result.destination.index
         );
-        if (await AutoWeb.autoPromise('saveSchemeList', newDataList)) {
-            setDataList(newDataList);
+        if (await AutoWeb.autoPromise('saveSchemeList', newSchemeList)) {
+            setSchemeList(newSchemeList);
         }
     }
 
-    const reSort = (list, startIndex, endIndex) => {
+    const reOrder = (list, startIndex, endIndex) => {
         const result = [...list];
         const [removed] = result.splice(startIndex, 1);
         result.splice(endIndex, 0, removed);
@@ -46,7 +46,7 @@ export default () => {
     React.useEffect(() => {
         (async () => {
             const newDataList = await AutoWeb.autoPromise('getSchemeList');
-            setDataList(newDataList);
+            setSchemeList(newDataList);
         })();
     }, []);
 
@@ -59,13 +59,14 @@ export default () => {
             <AppContent>
                 <DragList
                     subheader={<ListSubheader>方案列表</ListSubheader>}
-                    reSortCallback={reSortCallback}
+                    reOrderCallback={reOrderCallback}
                 >
-                    {dataList.map((item, index) => (
+                    {schemeList.map((item, index) => (
                         <DragListItem
                             key={`item-${index}`}
                             text={item.schemeName}
                             index={index}
+                            onClick={() => navigate(`/FuncList/${item.schemeName}`)}
                         >
                             <div onClick={handleStar(index)} >
                                 {item.star ? <StarRoundedIcon sx={{ mr: '10px', color: '#1976d2' }} /> : <StarBorderRoundedIcon sx={{ mr: '10px' }} />}
