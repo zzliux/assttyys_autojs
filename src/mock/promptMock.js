@@ -104,6 +104,7 @@ const promptMockData = {
     },
     saveSchemeList: function () {
         return 'success';
+        // return false;
     },
     versionInfo: function (){
         return {

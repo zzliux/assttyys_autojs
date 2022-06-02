@@ -5,19 +5,19 @@ import ListSubheader from '@mui/material/ListSubheader';
 import Divider from '@mui/material/Divider';
 import AppBar from '../components/AppBar';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import DragListItem from '../components/DragListItem';
 
 import MenuIcon from '@mui/icons-material/Menu';
 import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded';
 import StarRoundedIcon from '@mui/icons-material/StarRounded';
-import DragListItem from '../components/DragListItem';
+import DragHandleIcon from '@mui/icons-material/DragHandle';
 
 export default () => {
     const navigate = useNavigate();
     const [dataList, setDataList] = React.useState([]);
 
     const handleStar = (index) => async () => {
-        const newDataList = dataList.splice(0);
-        console.log(dataList);
+        const newDataList = [...dataList];
         newDataList[index].star = !newDataList[index].star;
         const result = await AutoWeb.autoPromise('saveSchemeList', newDataList);
         if (result) {
@@ -33,33 +33,48 @@ export default () => {
     }, []);
 
 
-    const onDragStart = () => { };
-    const onDragEnd = (result) => {
+    const onDragStart = (a) => {
+    };
+    const onDragEnd = (result) => async () => {
         // dropped outside the list
         if (!result.destination) {
             return;
         }
-
-        const newDataList = reorder(
+        const newDataList = reSort(
             dataList,
             result.source.index,
             result.destination.index
         );
-
-        setDataList(newDataList);
+        const result = await AutoWeb.autoPromise('saveSchemeList', newDataList);
+        if (result) {
+            setDataList(newDataList);
+        }
     };
-    const onDragUpdate = () => { };
-    const reorder = (list, startIndex, endIndex) => {
-        const result = list.splice(0);
+
+    const onDragUpdate = (b) => {
+    };
+
+    const reSort = (list, startIndex, endIndex) => {
+        const result = [...list];
         const [removed] = result.splice(startIndex, 1);
         result.splice(endIndex, 0, removed);
-        console.log(`startIndex=${startIndex}, endIndex=${endIndex}`);
-        console.log(result);
         return result;
     };
-    const getItemStyle = isDraggingOver => ({
-        background: isDraggingOver ? "#aaa" : "#fff",
-    });
+
+    const getItemStyle = (isDragging, draggableStyle) => {
+        return {
+            // some basic styles to make the items look a bit nicer
+            userSelect: "none",
+            // padding: grid * 2,
+            // margin: `0 0 ${grid}px 0`,
+
+            // change background colour if dragging
+            background: isDragging ? "#efefef" : "#fff",
+
+            // styles we need to apply on draggables
+            ...draggableStyle
+        }
+    };
 
     return (
         <>
@@ -67,7 +82,11 @@ export default () => {
                 leftElement={<MenuIcon />}
                 onIconButtonClick={() => navigate('/Settings')}
             />
-            <DragDropContext onDragEnd={onDragEnd}>
+            <DragDropContext
+                onDragEnd={onDragEnd}
+                onDragStart={onDragStart}
+                onDragUpdate={onDragUpdate}
+            >
                 <Droppable droppableId="droppable">
                     {(provided, snapshot) => (
                         <div
@@ -85,7 +104,6 @@ export default () => {
                                             <div
                                                 ref={provided.innerRef}
                                                 {...provided.draggableProps}
-                                                {...provided.dragHandleProps}
                                                 style={getItemStyle(
                                                     snapshot.isDragging,
                                                     provided.draggableProps.style
@@ -96,7 +114,12 @@ export default () => {
                                                     draggableId={`${index}`}
                                                     rightElement={
                                                         <>
-                                                            <div onClick={handleStar(index)} >
+                                                            <div {...provided.dragHandleProps}>
+                                                                <DragHandleIcon sx={{ mr: '20px' }} />
+                                                            </div>
+                                                            <div
+                                                                onClick={handleStar(index)}
+                                                            >
                                                                 {item.star ? <StarRoundedIcon sx={{ mr: '10px', color: '#1976d2' }} /> : <StarBorderRoundedIcon sx={{ mr: '10px' }} />}
                                                             </div>
                                                         </>
