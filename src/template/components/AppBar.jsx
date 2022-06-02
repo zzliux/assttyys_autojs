@@ -15,8 +15,8 @@ export default (prop) => {
     }, [prop.subTitle]);
 
     return (
-        <AppBar position="static" color="primary">
-            <Toolbar sx={{ minHeight: '40px !important' }}>
+        <AppBar position="static" color="primary" sx={{ position: 'fixed', zIndex: 2 }}>
+            <Toolbar sx={{ minHeight: '48px !important' }}>
                 <IconButton
                     size="large"
                     edge="start"

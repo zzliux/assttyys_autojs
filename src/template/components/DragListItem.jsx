@@ -5,13 +5,7 @@ import Divider from '@mui/material/Divider';
 import { Draggable } from 'react-beautiful-dnd';
 import DragHandleIcon from '@mui/icons-material/DragHandle';
 
-/**
- * TODO
- */
 export default (prop) => {
-
-    console.log(typeof prop.draggableId);
-
     const getItemStyle = (isDragging, draggableStyle) => {
         return {
             // some basic styles to make the items look a bit nicer
@@ -50,7 +44,7 @@ export default (prop) => {
                         </div>
                         {prop.children}
                     </ListItemButton>
-                    <Divider variant="fullWidth" component="li" />
+                    <Divider variant="fullWidth" component="li" sx={{ display: snapshot.isDragging ? 'none' : 'flex' }}/>
                 </div>
             )}
         </Draggable>
