@@ -21,10 +21,50 @@ export default (props) => {
     const [funcList, setFuncList] = React.useState([]);
 
     const reOrderCallback = async (result) => {
-
+        const newFuncList = reOrder(
+            funcList,
+            result.source.index,
+            result.destination.index
+        );
+        if (await AutoWeb.autoPromise('saveSchemeList', getScheme(newFuncList))) {
+            reSortFuncList(newFuncList);
+            setFuncList(newFuncList);
+        }
     };
 
-    const handleCheck = (index) => async () => {};
+    const reOrder = (list, startIndex, endIndex) => {
+        const result = [...list];
+        const [removed] = result.splice(startIndex, 1);
+        result.splice(endIndex, 0, removed);
+        return result;
+    };
+
+    const handleCheck = (index, e) => (async () => {
+        e.stopPropagation();
+        const newFuncList = [...funcList];
+        newFuncList[index].checked = !newFuncList[index].checked;
+        if (await AutoWeb.autoPromise('saveScheme', getScheme(newFuncList))) {
+            reSortFuncList(newFuncList);
+            setFuncList(newFuncList);
+        }
+    })();
+
+    // TODO
+    const getScheme = (funcList) => {
+        return true;
+    };
+
+    const reSortFuncList = (funcList) => {
+        funcList.sort((a, b) => {
+            if (a.checked === b.checked) {
+                // TODO 返回 0 还是按 id 排序
+                // return a.id - b.id;
+                return 0;
+            } else {
+                return a.checked ? -1 : 1;
+            }
+        });
+    }
 
 
     React.useEffect(() => {
@@ -41,13 +81,7 @@ export default (props) => {
                     }
                 }
             });
-            newFunclist.sort((a, b) => {
-                if (a.checked === b.checked) {
-                    return a.id - b.id;
-                } else {
-                    return a.checked ? -1 : 1;
-                }
-            });
+            reSortFuncList(newFunclist);
             setFuncList(newFunclist);
         })();
     }, [schemeName]);
@@ -73,9 +107,10 @@ export default (props) => {
                             key={`item-${index}`}
                             text={`${item.id} ${item.name}`}
                             index={index}
-                            onClick={() => navigate(`/FuncList/${item.schemeName}`)}
+                            // TODO show pannel
+                            // onClick={() => navigate(`/FuncList/${item.schemeName}`)}
                         >
-                            <div onClick={handleCheck(index)} >
+                            <div onClick={e => handleCheck(index, e)} >
                                 <Switch checked={item.checked ? true : false}/>
                             </div>
                         </DragListItem>
