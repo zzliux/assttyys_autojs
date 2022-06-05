@@ -1,4 +1,3 @@
-import React from 'react';
 import SchemeList from './SchemeList';
 import FuncList from './FuncList';
 
@@ -10,20 +9,20 @@ import Settings from './Settings';
 export default { SchemeList, Search, People, Settings };
 export const routesDefine = [{
     path: '/SchemeList',
-    element: <SchemeList />
+    Element: SchemeList
 } , {
     path: '/FuncList/:schemeName',
-    element: <FuncList />
+    Element: FuncList
 }
 
 
 , {
     path: '/Search',
-    element: <Search />
+    Element: Search
 }, {
     path: '/People',
-    element: <People />
+    Element: People
 }, {
     path: '/Settings',
-    element: <Settings />
+    Element: Settings
 }];

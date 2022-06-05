@@ -107,11 +107,11 @@ export default (props) => {
                             key={`item-${index}`}
                             text={`${item.id} ${item.name}`}
                             index={index}
-                            // TODO show pannel
-                            // onClick={() => navigate(`/FuncList/${item.schemeName}`)}
+                        // TODO show pannel
+                        // onClick={() => navigate(`/FuncList/${item.schemeName}`)}
                         >
                             <div onClick={e => handleCheck(index, e)} >
-                                <Switch checked={item.checked ? true : false}/>
+                                <Switch checked={item.checked ? true : false} />
                             </div>
                         </DragListItem>
                     ))}

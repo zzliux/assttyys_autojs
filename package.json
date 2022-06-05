@@ -53,9 +53,11 @@
         "bulma": "^0.9.4",
         "es6-shim": "^0.35.6",
         "react": "^18.1.0",
+        "react-animated-router": "^1.2.4",
         "react-beautiful-dnd": "^13.1.0",
         "react-dom": "^18.1.0",
         "react-router-dom": "^6.3.0",
+        "react-transition-group": "^4.4.2",
         "rxjs": "^6.6.7",
         "uuid-js": "^0.7.5"
     }
