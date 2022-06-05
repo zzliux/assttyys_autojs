@@ -11,6 +11,7 @@ import Switch from '@mui/material/Switch';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import defaultFuncList from '../../common/funcList';
+import { Flipped } from "react-flip-toolkit";
 
 export default (props) => {
     const param = useParams();
@@ -103,18 +104,19 @@ export default (props) => {
                     reOrderCallback={reOrderCallback}
                 >
                     {funcList.map((item, index) => (
-                        <DragListItem
-                            key={`item-${index}`}
-                            text={`${item.id} ${item.name}${item.config ? '*' : ''}`}
-                            secondaryText={item.desc}
-                            index={index}
+                        <Flipped key={`item-${item.id}`} flipId={`item-${item.id}`}>
+                            <DragListItem
+                                text={`${item.id} ${item.name}${item.config ? '*' : ''}`}
+                                secondaryText={item.desc}
+                                index={index}
                             // TODO show pannel
                             // onClick={() => navigate(`/FuncList/${item.schemeName}`)}
-                        >
-                            <div onClick={e => handleCheck(index, e)} >
-                                <Switch checked={item.checked ? true : false} />
-                            </div>
-                        </DragListItem>
+                            >
+                                <div onClick={e => handleCheck(index, e)} >
+                                    <Switch checked={item.checked ? true : false} />
+                                </div>
+                            </DragListItem>
+                        </Flipped>
                     ))}
                 </DragList>
             </AppContent>

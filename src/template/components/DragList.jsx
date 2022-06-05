@@ -4,9 +4,10 @@ import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import { Flipper } from "react-flip-toolkit";
 
 export default (props) => {
-    const { subheader, reOrderCallback, children, ...others } = props;
+    const { subheader, reOrderCallback, children, flipKey, ...others } = props;
 
     const onDragStart = (a) => {
     };
@@ -23,6 +24,7 @@ export default (props) => {
     const onDragUpdate = (b) => {
     };
 
+    console.log(children);
 
     return (
         <DragDropContext
@@ -42,7 +44,9 @@ export default (props) => {
                             {...others}
                         >
                             <Divider variant="fullWidth" component="li" />
-                            {children}
+                            <Flipper flipKey={children.map(item => item.props.flipId).join(',')}>
+                                {children}
+                            </Flipper>
                             {provided.placeholder}
                         </List>
                     </div>
