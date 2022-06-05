@@ -6,7 +6,7 @@ import { Draggable } from 'react-beautiful-dnd';
 import DragHandleIcon from '@mui/icons-material/DragHandle';
 
 export default (props) => {
-    const { children, ...others } = props;
+    const { children, text, secondaryText, ...others } = props;
 
     const getItemStyle = (isDragging, draggableStyle) => {
         return {
@@ -30,23 +30,31 @@ export default (props) => {
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     style={{
-                        color: 'rgba(0, 0, 0, .7)', ...getItemStyle(
+                        color: 'rgba(0, 0, 0, .7)',
+                        ...getItemStyle(
                             snapshot.isDragging,
                             provided.draggableProps.style
                         )
                     }}
                 >
-                    <ListItemButton {...others} >
+                    <ListItemButton
+                        sx={{ paddingTop: 0, paddingBottom: 0, minHeight: '42px' }}
+                        {...others} >
                         {/* <ListItemIcon>
                             <WifiIcon />
                         </ListItemIcon> */}
-                        <ListItemText primary={props.text} />
+                        <ListItemText
+                            primary={text}
+                            primaryTypographyProps={{ sx: { fontSize: '14px' } }}
+                            secondary={secondaryText}
+                            secondaryTypographyProps={{ sx: { fontSize: '12px' } }}
+                        />
                         <div {...provided.dragHandleProps}>
                             <DragHandleIcon sx={{ mr: '20px' }} />
                         </div>
                         {children}
                     </ListItemButton>
-                    <Divider variant="fullWidth" component="li" sx={{ display: snapshot.isDragging ? 'none' : 'flex' }}/>
+                    <Divider variant="fullWidth" component="li" sx={{ display: snapshot.isDragging ? 'none' : 'flex' }} />
                 </div>
             )}
         </Draggable>

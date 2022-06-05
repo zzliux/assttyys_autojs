@@ -37,7 +37,7 @@ const App = () => {
                 <Routes>
                     {routesDefine.map(({ path, Element }) => {
                         return (
-                            <Route key={path} path={path} element={<Element />} />
+                            <Route key={path} path={path} element={<div><Element /></div>} />
                         )
                     })}
                     <Route path="*" element={<Navigate to="/SchemeList" replace={true} />} />

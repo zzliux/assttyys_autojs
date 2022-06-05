@@ -105,10 +105,11 @@ export default (props) => {
                     {funcList.map((item, index) => (
                         <DragListItem
                             key={`item-${index}`}
-                            text={`${item.id} ${item.name}`}
+                            text={`${item.id} ${item.name}${item.config ? '*' : ''}`}
+                            secondaryText={item.desc}
                             index={index}
-                        // TODO show pannel
-                        // onClick={() => navigate(`/FuncList/${item.schemeName}`)}
+                            // TODO show pannel
+                            // onClick={() => navigate(`/FuncList/${item.schemeName}`)}
                         >
                             <div onClick={e => handleCheck(index, e)} >
                                 <Switch checked={item.checked ? true : false} />

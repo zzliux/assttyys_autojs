@@ -12,7 +12,6 @@ export default (props) => {
     };
 
     const onDragEnd = (result) => (async () => {
-        
 
         // dropped outside the list
         if (!result.destination) {
