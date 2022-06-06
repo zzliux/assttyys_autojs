@@ -2,11 +2,13 @@ import React from 'react';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
+import Collapse from '@mui/material/Collapse';
 import { Draggable } from 'react-beautiful-dnd';
 import DragHandleIcon from '@mui/icons-material/DragHandle';
 
 export default (props) => {
-    const { children, text, secondaryText, key, draggableId, index, ...others } = props;
+    const { children, text, secondaryText, key, draggableId, index, collapse, onClick, ...others } = props;
+    const [collapseOpen, setCollapseOpen] = React.useState(false);
 
     const getItemStyle = (isDragging, draggableStyle) => {
         return {
@@ -22,6 +24,17 @@ export default (props) => {
             ...draggableStyle
         }
     };
+
+    const MyCollapse = () => {
+        if (Collapse) {
+            return (
+                <Collapse in={collapseOpen} timeout="auto" unmountOnExit>
+                    {collapse}
+                </Collapse>
+            )
+        }
+        return null;
+    }
 
     return (
         // draggable需要key，否则拖拽异常
@@ -40,6 +53,10 @@ export default (props) => {
                 >
                     <ListItemButton
                         sx={{ paddingTop: 0, paddingBottom: 0, minHeight: '42px' }}
+                        onClick={() => {
+                            setCollapseOpen(!collapseOpen);
+                            onClick && onClick.apply(this);
+                        }}
                         {...others} >
                         {/* <ListItemIcon>
                             <WifiIcon />
@@ -55,6 +72,7 @@ export default (props) => {
                         </div>
                         {children}
                     </ListItemButton>
+                    {MyCollapse()}
                     <Divider variant="fullWidth" component="li" sx={{ display: snapshot.isDragging ? 'none' : 'flex' }} />
                 </div>
             )}

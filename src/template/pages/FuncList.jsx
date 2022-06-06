@@ -13,6 +13,13 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import defaultFuncList from '../../common/funcList';
 import { Flipped } from "react-flip-toolkit";
 
+
+import List from '@mui/material/List';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Divider from '@mui/material/Divider';
+
 export default (props) => {
     const param = useParams();
     const { schemeName } = param;
@@ -82,6 +89,7 @@ export default (props) => {
                     }
                 }
             });
+            console.log(newFunclist);
             reSortFuncList(newFunclist);
             setFuncList(newFunclist);
         })();
@@ -106,11 +114,53 @@ export default (props) => {
                     {funcList.map((item, index) => (
                         <Flipped key={`item-${item.id}`} flipId={`item-${item.id}`}>
                             <DragListItem
-                                text={`${item.id} ${item.name}${item.config ? '*' : ''}`}
+                                text={`${item.id} ${item.name}${item.config ? ' *' : ''}`}
                                 secondaryText={item.desc}
                                 index={index}
-                            // TODO show pannel
-                            // onClick={() => navigate(`/FuncList/${item.schemeName}`)}
+                                collapse={item.config && (
+                                    <div style={{ maxHeight: '270px', overflow: 'scroll' }}>
+                                        {item.config.map((configGroup, configGroupIndex) => (
+                                            <div key={configGroupIndex} >
+                                                <Divider variant="fullWidth" component="li" sx={{ ml: '32px', mb: '6px' }} />
+                                                <List
+                                                    sx={{ pl: '32px', color: '#1976d2', fontSize: '12px' }}
+                                                    subheader={configGroup.desc}
+                                                    component="div"
+                                                >
+                                                    {configGroup.config.map((configItem, configItemIndex) => (
+                                                        <div key={configItemIndex}>
+                                                            <ListItemButton
+                                                                sx={{ color: 'rgba(0, 0, 0, .6)', fontSize: '12px', pt: '4px', pb: '4px' }}
+                                                            >
+                                                                <ListItemText
+                                                                    primaryTypographyProps={{ sx: { fontSize: '12px' } }}
+                                                                    primary={configItem.desc}
+
+                                                                />
+                                                                <span>
+                                                                    {(() => {
+                                                                        if (configItem.type === 'switch') {
+                                                                            return (
+                                                                                <Switch
+                                                                                    checked={configItem.value}
+                                                                                />
+                                                                            );
+                                                                        } else {
+                                                                            return (
+                                                                                configItem.value || configItem.default
+                                                                            );
+                                                                        }
+                                                                    })()}
+                                                                </span>
+                                                            </ListItemButton>
+                                                            <Divider variant="fullWidth" component="li" sx={{ ml: '16px' }} />
+                                                        </div>
+                                                    ))}
+                                                </List>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
                             >
                                 <div onClick={e => handleCheck(index, e)} >
                                     <Switch checked={item.checked ? true : false} />

@@ -24,8 +24,6 @@ export default (props) => {
     const onDragUpdate = (b) => {
     };
 
-    console.log(children);
-
     return (
         <DragDropContext
             onDragEnd={onDragEnd}

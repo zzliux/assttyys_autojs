@@ -13,14 +13,7 @@ const promptMockData = {
             "schemeName": "百鬼夜行",
             "star": true,
             "inner": true,
-            "list": [
-                3,
-                17,
-                18,
-                19,
-                20,
-                21
-            ],
+            "list": [0, 3, 17, 18, 19, 20, 21],
             "config": {
                 "3": {
                     "type": "关闭"
@@ -106,7 +99,7 @@ const promptMockData = {
         return 'success';
         // return false;
     },
-    versionInfo: function (){
+    versionInfo: function () {
         return {
             storeVersion: versionList[versionList.length - 1].version,
             versionList: versionList
@@ -116,14 +109,14 @@ const promptMockData = {
     setCurrentScheme: 'sucess',
     startScript: [],
     saveSetting: 'sucess',
-    toast: function () {},
-    initFloaty: function () {},
-    startActivityForLog: function () {},
-    saveToSetDefaultLaunchAppList: function () {},
-    openOpenSource() {},
-    mailTo() {},
-    copyToClip() {},
-    webloaded() {},
+    toast: function () { },
+    initFloaty: function () { },
+    startActivityForLog: function () { },
+    saveToSetDefaultLaunchAppList: function () { },
+    openOpenSource() { },
+    mailTo() { },
+    copyToClip() { },
+    webloaded() { },
     getAppInfo: {},
     getShapedScreenConfig: [{
         device: 'xiaomi 11(3200*1440)',
