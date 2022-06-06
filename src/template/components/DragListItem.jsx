@@ -6,7 +6,7 @@ import { Draggable } from 'react-beautiful-dnd';
 import DragHandleIcon from '@mui/icons-material/DragHandle';
 
 export default (props) => {
-    const { children, text, secondaryText, ...others } = props;
+    const { children, text, secondaryText, key, draggableId, index, ...others } = props;
 
     const getItemStyle = (isDragging, draggableStyle) => {
         return {
@@ -24,7 +24,8 @@ export default (props) => {
     };
 
     return (
-        <Draggable draggableId={`${props.index}`} index={props.index}>
+        // draggable需要key，否则拖拽异常
+        <Draggable key={`${key || draggableId || index}`} draggableId={`${key || draggableId || index}`} index={index}>
             {(provided, snapshot) => (
                 <div
                     ref={provided.innerRef}
