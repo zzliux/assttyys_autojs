@@ -146,12 +146,15 @@ window.promptMock = function (apiName, apiValue) {
         } else {
             ret = promptMockData[apiName];
         }
-        console.log(`[promptMockData]apiName:${apiName}`);
-        console.log(`[promptMockData]apiValue:${JSON.stringify(params)}`);
-        console.log(`[promptMockData]returnData:${JSON.stringify(ret)}`);
         if (deviceFn) {
-            window[deviceFn](ret);
-            AutoWeb.removeDevicelly(deviceFn);
+            // 使用setTimoutout模拟异步环境
+            setTimeout(() => {
+                console.log(`[promptMockData]apiName:${apiName}`);
+                console.log(`[promptMockData]apiValue:${JSON.stringify(params)}`);
+                console.log(`[promptMockData]returnData:${JSON.stringify(ret)}`);
+                window[deviceFn](ret);
+                AutoWeb.removeDevicelly(deviceFn);
+            }, Math.random())
         } else {
             return ret;
         }
