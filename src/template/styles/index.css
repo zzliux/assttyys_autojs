@@ -22,3 +22,26 @@ body,
     bottom: 0;
     width: 100%;
 }
+
+/* 覆盖ConfigListItem下面的下划线的select样式 */
+.config-list-item .MuiInput-root.MuiInput-underline.MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-formControl:before {
+    border: none;
+}
+
+.config-list-item-input {
+    display: flex;
+    flex-shrink: 0;
+    width: 80px;
+}
+
+/* 配置组件里面的switch对齐 */
+.config-list-item-input > span.MuiSwitch-root.MuiSwitch-sizeMedium {
+    margin-left: -12px;
+}
+
+
+@media screen and (min-width:600px) {
+    .config-list-item-input {
+        width: 200px;
+    }
+}

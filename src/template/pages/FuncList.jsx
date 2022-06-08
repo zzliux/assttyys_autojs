@@ -28,6 +28,7 @@ export default (props) => {
   const navigate = useNavigate();
 
   const [funcList, setFuncList] = React.useState([]);
+  const [schemeNameList, setSchemeNameList] = React.useState([]);
 
   const reOrderCallback = async (result) => {
     const newFuncList = reOrder(
@@ -78,9 +79,12 @@ export default (props) => {
 
   React.useEffect(() => {
     (async () => {
-      const scheme = await AutoWeb.autoPromise('getScheme', schemeName);
+      const [scheme, schemeList] = await Promise.all([
+        AutoWeb.autoPromise('getScheme', schemeName),
+        AutoWeb.autoPromise('getSchemeList')
+      ]);
+      setSchemeNameList(schemeList.map((item) => item.schemeName));
       // TODO
-      // setFuncList(newFuncList);
       const newFunclist = [...defaultFuncList];
       newFunclist.forEach((item, index) => {
         for (let i = 0; i < scheme.list.length; i++) {
@@ -90,7 +94,6 @@ export default (props) => {
           }
         }
       });
-      console.log(newFunclist);
       reSortFuncList(newFunclist);
       setFuncList(newFunclist);
     })();
@@ -128,9 +131,15 @@ export default (props) => {
                           subheader={configGroup.desc}
                           component="div"
                         >
-                          {configGroup.config.map((configItem, configItemIndex) => (
-                            <ConfigListItem configItem={configItem} key={configItemIndex} />
-                          ))}
+                          {configGroup.config.map((configItem, configItemIndex) => {
+                            if (configItem.type === 'scheme') {
+                              configItem.type = 'list';
+                              configItem.data = schemeNameList;
+                            }
+                            return (
+                              <ConfigListItem configItem={configItem} key={configItemIndex} />
+                            )
+                          })}
                         </List>
                       </div>
                     ))}

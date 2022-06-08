@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Switch from '@mui/material/Switch';
 
@@ -25,7 +25,7 @@ export default (prop) => {
     }
 
     return (
-        <div>
+        <div className="config-list-item">
             <ListItemButton
                 sx={{ color: 'rgba(0, 0, 0, .6)', fontSize: '12px', pt: '4px', pb: '4px' }}
             >
@@ -34,7 +34,7 @@ export default (prop) => {
                     primary={configItem.desc}
 
                 />
-                <span style={{ display: 'flex', flexShrink: 0, width: '80px' }}>
+                <span class="config-list-item-input">
                     {(() => {
                         if (configItem.type === 'switch') {
                             return (
