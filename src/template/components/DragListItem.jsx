@@ -7,8 +7,7 @@ import { Draggable } from 'react-beautiful-dnd';
 import DragHandleIcon from '@mui/icons-material/DragHandle';
 
 export default (props) => {
-    const { children, text, secondaryText, key, draggableId, index, collapse, onClick, ...others } = props;
-    const [collapseOpen, setCollapseOpen] = React.useState(false);
+    const { children, text, secondaryText, key, draggableId, index, collapse, collapsed, autoCollapse, collapsedCallback, onClick, ...others } = props;
 
     const getItemStyle = (isDragging, draggableStyle) => {
         return {
@@ -18,7 +17,7 @@ export default (props) => {
             // margin: `0 0 ${grid}px 0`,
 
             // change background colour if dragging
-            background: isDragging ? "rgba(0,0,0,.1)" : "#fff",
+            background: isDragging ? "#dedede" : "#fff",
 
             // styles we need to apply on draggables
             ...draggableStyle
@@ -28,7 +27,7 @@ export default (props) => {
     const MyCollapse = () => {
         if (Collapse) {
             return (
-                <Collapse in={collapseOpen} timeout="auto" unmountOnExit>
+                <Collapse in={collapsed} timeout="auto" unmountOnExit>
                     {collapse}
                 </Collapse>
             )
@@ -45,6 +44,7 @@ export default (props) => {
                     {...provided.draggableProps}
                     style={{
                         color: 'rgba(0, 0, 0, .7)',
+                        background: '#fff',
                         ...getItemStyle(
                             snapshot.isDragging,
                             provided.draggableProps.style
@@ -54,7 +54,7 @@ export default (props) => {
                     <ListItemButton
                         sx={{ paddingTop: 0, paddingBottom: 0, minHeight: '42px' }}
                         onClick={() => {
-                            setCollapseOpen(!collapseOpen);
+                            collapsedCallback && collapsedCallback(!collapsed);
                             onClick && onClick.apply(this);
                         }}
                         {...others} >
@@ -68,7 +68,7 @@ export default (props) => {
                             secondaryTypographyProps={{ sx: { fontSize: '12px' } }}
                         />
                         <div {...provided.dragHandleProps}>
-                            <DragHandleIcon sx={{ mr: '20px' }} />
+                            <DragHandleIcon sx={{ mr: '20px', pt: '4px' }} />
                         </div>
                         {children}
                     </ListItemButton>

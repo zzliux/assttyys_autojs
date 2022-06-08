@@ -20,10 +20,8 @@ export default () => {
         e.stopPropagation();
         const newSchemeList = [...schemeList];
         newSchemeList[index].star = !newSchemeList[index].star;
-        const result = await AutoWeb.autoPromise('saveSchemeList', newSchemeList);
-        if (result) {
-            setSchemeList(newSchemeList);
-        }
+        setSchemeList(newSchemeList);
+        await AutoWeb.autoPromise('saveSchemeList', newSchemeList);
     })();
 
     const reOrderCallback = async (result) => {
@@ -32,9 +30,8 @@ export default () => {
             result.source.index,
             result.destination.index
         );
-        if (await AutoWeb.autoPromise('saveSchemeList', newSchemeList)) {
-            setSchemeList(newSchemeList);
-        }
+        setSchemeList(newSchemeList);
+        await AutoWeb.autoPromise('saveSchemeList', newSchemeList);
     }
 
     const reOrder = (list, startIndex, endIndex) => {
@@ -59,7 +56,7 @@ export default () => {
             />
             <AppContent>
                 <DragList
-                    subheader={<ListSubheader>方案列表</ListSubheader>}
+                    subheader={<ListSubheader sx={{height: '30px', lineHeight: '30px'}}>方案列表</ListSubheader>}
                     reOrderCallback={reOrderCallback}
                 >
                     {schemeList.map((item, index) => (

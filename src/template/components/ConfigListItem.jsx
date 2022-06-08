@@ -34,7 +34,7 @@ export default (prop) => {
                     primary={configItem.desc}
 
                 />
-                <span class="config-list-item-input">
+                <span className="config-list-item-input">
                     {(() => {
                         if (configItem.type === 'switch') {
                             return (

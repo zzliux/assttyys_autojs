@@ -29,6 +29,7 @@ export default (props) => {
 
   const [funcList, setFuncList] = React.useState([]);
   const [schemeNameList, setSchemeNameList] = React.useState([]);
+  const [collapsedIndex, setCollapsedIndex] = React.useState(-1);
 
   const reOrderCallback = async (result) => {
     const newFuncList = reOrder(
@@ -112,7 +113,7 @@ export default (props) => {
       />
       <AppContent>
         <DragList
-          subheader={<ListSubheader>方案 - {schemeName}</ListSubheader>}
+          subheader={<ListSubheader sx={{height: '30px', lineHeight: '30px'}}>方案 - {schemeName}</ListSubheader>}
           reOrderCallback={reOrderCallback}
         >
           {funcList.map((item, index) => (
@@ -121,6 +122,14 @@ export default (props) => {
                 text={`${item.id} ${item.name}${item.config ? ' *' : ''}`}
                 secondaryText={item.desc}
                 index={index}
+                collapsed={index == collapsedIndex}
+                collapsedCallback={(status) => { 
+                  if (status) {
+                    setCollapsedIndex(index);
+                  } else {
+                    setCollapsedIndex(-1);
+                  }
+                }}
                 collapse={item.config && (
                   <div style={{ maxHeight: '270px', overflow: 'scroll' }}>
                     {item.config.map((configGroup, configGroupIndex) => (
