@@ -19,6 +19,8 @@ import { Flipped } from "react-flip-toolkit";
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 
+import _ from 'lodash';
+
 
 
 export default (props) => {
@@ -30,6 +32,8 @@ export default (props) => {
   const [funcList, setFuncList] = React.useState([]);
   const [schemeNameList, setSchemeNameList] = React.useState([]);
   const [collapsedIndex, setCollapsedIndex] = React.useState(-1);
+  const [globalScheme, setGlobalScheme] = React.useState(null);
+
 
   const reOrderCallback = async (result) => {
     const newFuncList = reOrder(
@@ -56,13 +60,35 @@ export default (props) => {
     newFuncList[index].checked = !newFuncList[index].checked;
     reSortFuncList(newFuncList);
     setFuncList(newFuncList);
-    await AutoWeb.autoPromise('saveScheme', getScheme(newFuncList));
+    saveScheme(newFuncList);
     // TODO 失败的话数据回滚
   })();
 
-  // TODO
   const getScheme = (funcList) => {
-    return true;
+    const scheme = _.cloneDeep(globalScheme);
+    const filteredFuncList = funcList.filter(item => item.checked);
+    // 重新生成list字段
+    scheme.list = filteredFuncList.map(item => item.id);
+    // 重新生成config字段
+    const funcConfig = {};
+    filteredFuncList.forEach(func => {
+      if (func.config) {
+        funcConfig[func.id] = {};
+        func.config.forEach(configGroup => {
+          configGroup?.config?.forEach(config => {
+            funcConfig[func.id][config.name] = config.value || config.default;
+          });
+        });
+      }
+    });
+    scheme.config = funcConfig;
+    return scheme;
+  };
+
+  const saveScheme = async (funcList) => {
+    const scheme = getScheme(funcList);
+    console.log('save', scheme)
+    await AutoWeb.autoPromise('saveScheme', scheme);
   };
 
   const reSortFuncList = (funcList) => {
@@ -84,8 +110,8 @@ export default (props) => {
         AutoWeb.autoPromise('getScheme', schemeName),
         AutoWeb.autoPromise('getSchemeList')
       ]);
+      setGlobalScheme(scheme);
       setSchemeNameList(schemeList.map((item) => item.schemeName));
-      // TODO
       const newFunclist = [...defaultFuncList];
       newFunclist.forEach((item, index) => {
         for (let i = 0; i < scheme.list.length; i++) {
@@ -113,7 +139,7 @@ export default (props) => {
       />
       <AppContent>
         <DragList
-          subheader={<ListSubheader sx={{height: '30px', lineHeight: '30px'}}>方案 - {schemeName}</ListSubheader>}
+          subheader={<ListSubheader sx={{ height: '30px', lineHeight: '30px' }}>方案 - {schemeName}</ListSubheader>}
           reOrderCallback={reOrderCallback}
         >
           {funcList.map((item, index) => (
@@ -123,7 +149,7 @@ export default (props) => {
                 secondaryText={item.desc}
                 index={index}
                 collapsed={index == collapsedIndex}
-                collapsedCallback={(status) => { 
+                collapsedCallback={(status) => {
                   if (status) {
                     setCollapsedIndex(index);
                   } else {
@@ -146,7 +172,16 @@ export default (props) => {
                               configItem.data = schemeNameList;
                             }
                             return (
-                              <ConfigListItem configItem={configItem} key={configItemIndex} />
+                              <ConfigListItem
+                                onChange={(e, value) => {
+                                  const newFuncList = [...funcList];
+                                  newFuncList[index].config[configGroupIndex].config[configItemIndex].value = value;
+                                  setFuncList(newFuncList);
+                                  saveScheme(newFuncList);
+                                }}
+                                configItem={configItem}
+                                key={configItemIndex}
+                              />
                             )
                           })}
                         </List>
