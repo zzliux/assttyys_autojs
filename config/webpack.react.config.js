@@ -75,7 +75,7 @@ module.exports = (env, argv) => {
                 cleanOnceBeforeBuildPatterns: [__dirname + '/../dist/web.js', __dirname + '/../dist/index.html', __dirname + '/../dist/web.js.map']
             }),
             new HtmlWebpackPlugin({
-                title: 'auto-template-react',
+                title: 'ASSTTYYS',
                 template: './src/template/index.html'
             }),
             new webpack.ProvidePlugin({

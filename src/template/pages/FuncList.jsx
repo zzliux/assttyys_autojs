@@ -18,6 +18,8 @@ import { Flipped } from "react-flip-toolkit";
 
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
+import DialogTitle from '@mui/material/DialogTitle';
+import Dialog from '@mui/material/Dialog';
 
 import _ from 'lodash';
 
@@ -33,6 +35,7 @@ export default (props) => {
   const [schemeNameList, setSchemeNameList] = React.useState([]);
   const [collapsedIndex, setCollapsedIndex] = React.useState(-1);
   const [globalScheme, setGlobalScheme] = React.useState(null);
+  const [dialogOpen, setDialogOpen] = React.useState(false);
 
 
   const reOrderCallback = async (result) => {
@@ -103,6 +106,13 @@ export default (props) => {
     });
   }
 
+  // TODO
+  const handleDialogClose = () => (async () => {
+    setDialogOpen(false);
+    const newFuncList = [...funcList];
+    await AutoWeb.autoPromise('saveSchemeList', getScheme(newFuncList));
+  })();
+
 
   React.useEffect(() => {
     (async () => {
@@ -133,8 +143,7 @@ export default (props) => {
         onIconButtonClick={() => navigate(-1)}
         subTitle="功能列表"
         rightElement={<SettingsIcon onClick={() => {
-          // TODO 方案的公共配置
-          debugger;
+          setDialogOpen(true);
         }} />}
       />
       <AppContent>
@@ -201,6 +210,10 @@ export default (props) => {
             </Flipped>
           ))}
         </DragList>
+        <Dialog onClose={handleDialogClose} open={dialogOpen}>
+          {/* TODO 公共配置 */}
+          <DialogTitle>Set backup account</DialogTitle>
+        </Dialog>
       </AppContent>
     </>
   );
