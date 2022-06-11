@@ -37,6 +37,7 @@ export default (props) => {
   const [collapsedIndex, setCollapsedIndex] = React.useState(-1);
   const [globalScheme, setGlobalScheme] = React.useState(null);
   const [dialogOpen, setDialogOpen] = React.useState(false);
+  const [commonConfig, setCommonConfig] = React.useState([]);
 
 
   const reOrderCallback = async (result) => {
@@ -105,14 +106,11 @@ export default (props) => {
         return a.checked ? -1 : 1;
       }
     });
-  }
+  };
 
-  // TODO
-  const handleDialogClose = () => (async () => {
+  const handleDialogClose = () => {
     setDialogOpen(false);
-    const newFuncList = [...funcList];
-    await AutoWeb.autoPromise('saveSchemeList', getScheme(newFuncList));
-  })();
+  };
 
 
   React.useEffect(() => {
@@ -122,7 +120,7 @@ export default (props) => {
         AutoWeb.autoPromise('getSchemeList')
       ]);
       setGlobalScheme(scheme);
-      setSchemeNameList(schemeList.map((item) => item.schemeName));
+      setSchemeNameList(schemeList.map((item) => item.schemeName)); // schemeNameList用于给予配置中type === 'scheme'的配置项
       const newFunclist = [...funclistDist];
       newFunclist.forEach((item, index) => {
         for (let i = 0; i < scheme.list.length; i++) {
@@ -134,6 +132,13 @@ export default (props) => {
       });
       reSortFuncList(newFunclist);
       setFuncList(newFunclist);
+      const newCommonConfig = [...commonConfigDist];
+      newCommonConfig.forEach(commonConfigGroup => {
+        commonConfigGroup.config.forEach(commonConfigItem => {
+          commonConfigItem.value = scheme.commonConfig?.[commonConfigItem.name] || commonConfigItem.default;
+        });
+      });
+      setCommonConfig(newCommonConfig);
     })();
   }, [schemeName]);
 
@@ -214,7 +219,7 @@ export default (props) => {
         <Dialog onClose={handleDialogClose} open={dialogOpen}>
           {/* TODO merge scheme commonConfig */}
           <div style={{ maxHeight: '270px', overflow: 'scroll' }}>
-            {commonConfigDist.map((configGroup, configGroupIndex) => (
+            {commonConfig.map((configGroup, configGroupIndex) => (
               <div key={configGroupIndex} >
                 <List
                   sx={{ pt: '16px', pr: '16px', color: '#1976d2', fontSize: '12px' }}
@@ -228,14 +233,13 @@ export default (props) => {
                     }
                     return (
                       <ConfigListItem
-                        onChange={(e, value) => {
-                          // TODO save scheme
-                          console.log(configItem.name, value)
-                          // const newFuncList = [...funcList];
-                          // newFuncList[index].config[configGroupIndex].config[configItemIndex].value = value;
-                          // setFuncList(newFuncList);
-                          // saveScheme(newFuncList);
-                        }}
+                        onChange={(e, value) => (async () => {
+                          const newFuncList = [...funcList];
+                          const newGlobalScheme = { ...globalScheme };
+                          newGlobalScheme.commonConfig[configItem.name] = value;
+                          setGlobalScheme(newGlobalScheme);
+                          await AutoWeb.autoPromise('saveSchemeList', getScheme(newFuncList));
+                        })()}
                         configItem={configItem}
                         key={configItemIndex}
                       />
