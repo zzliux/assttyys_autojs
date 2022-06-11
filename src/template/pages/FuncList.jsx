@@ -12,7 +12,8 @@ import Switch from '@mui/material/Switch';
 
 import SettingsIcon from '@mui/icons-material/Settings';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import defaultFuncList from '../../common/funcList';
+import funclistDist from '../../common/funcList';
+import commonConfigDist from '../../common/commonConfig';
 import { Flipped } from "react-flip-toolkit";
 
 
@@ -122,7 +123,7 @@ export default (props) => {
       ]);
       setGlobalScheme(scheme);
       setSchemeNameList(schemeList.map((item) => item.schemeName));
-      const newFunclist = [...defaultFuncList];
+      const newFunclist = [...funclistDist];
       newFunclist.forEach((item, index) => {
         for (let i = 0; i < scheme.list.length; i++) {
           if (item.id === scheme.list[i]) {
@@ -211,8 +212,39 @@ export default (props) => {
           ))}
         </DragList>
         <Dialog onClose={handleDialogClose} open={dialogOpen}>
-          {/* TODO 公共配置 */}
-          <DialogTitle>Set backup account</DialogTitle>
+          {/* TODO merge scheme commonConfig */}
+          <div style={{ maxHeight: '270px', overflow: 'scroll' }}>
+            {commonConfigDist.map((configGroup, configGroupIndex) => (
+              <div key={configGroupIndex} >
+                <List
+                  sx={{ pt: '16px', pr: '16px', color: '#1976d2', fontSize: '12px' }}
+                  subheader={<div style={{ paddingLeft: '16px' }}>{configGroup.desc}</div>}
+                  component="div"
+                >
+                  {configGroup.config.map((configItem, configItemIndex) => {
+                    if (configItem.type === 'scheme') {
+                      configItem.type = 'list';
+                      configItem.data = schemeNameList;
+                    }
+                    return (
+                      <ConfigListItem
+                        onChange={(e, value) => {
+                          // TODO save scheme
+                          console.log(configItem.name, value)
+                          // const newFuncList = [...funcList];
+                          // newFuncList[index].config[configGroupIndex].config[configItemIndex].value = value;
+                          // setFuncList(newFuncList);
+                          // saveScheme(newFuncList);
+                        }}
+                        configItem={configItem}
+                        key={configItemIndex}
+                      />
+                    )
+                  })}
+                </List>
+              </div>
+            ))}
+          </div>
         </Dialog>
       </AppContent>
     </>

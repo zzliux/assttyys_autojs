@@ -23,25 +23,38 @@ body,
     width: 100%;
 }
 
-/* 覆盖ConfigListItem下面的下划线的select样式 */
-.config-list-item .MuiInput-root.MuiInput-underline.MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-formControl:before {
-    border: none;
-}
 
 .config-list-item-input {
     display: flex;
-    flex-shrink: 0;
-    width: 80px;
+    justify-content: flex-end;
+    padding-right: 6px;
 }
 
-/* 配置组件里面的switch对齐 */
-.config-list-item-input > span.MuiSwitch-root.MuiSwitch-sizeMedium {
-    margin-left: -12px;
+.config-list-item-input .MuiInput-root.MuiInput-underline.MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-formControl {
+    /* padding-right: 4px; */
+    /* line-height: 20px; */
+}
+/* 覆盖ConfigListItem下面的输入框文字大小 */
+.config-list-item-input .MuiInput-root.MuiInput-underline.MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-formControl > input {
+    font-size: 12px;
+    text-align: right;
+    padding-right: 4px;
+}
+.config-list-item-input .MuiSelect-select.MuiSelect-standard.MuiInput-input.MuiInputBase-input.MuiInputBase-inputSizeSmall {
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+/* 覆盖ConfigListItem下面的下划线的select样式 */
+.config-list-item-input .MuiInput-root.MuiInput-underline.MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-formControl:before {
+    border: none;
+}
+.config-list-item-input .MuiFormControl-root  {
+    /* padding-right: 4px; */
 }
 
 
-@media screen and (min-width:600px) {
+/* @media screen and (min-width:600px) {
     .config-list-item-input {
-        width: 200px;
+        min-width: 160px;
     }
-}
+} */

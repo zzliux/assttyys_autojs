@@ -1,12 +1,10 @@
 import SchemeList from './SchemeList';
 import FuncList from './FuncList';
 
-import Search from './Search';
-import People from './People';
 import Settings from './Settings';
 
 
-export default { SchemeList, Search, People, Settings };
+export default { SchemeList, FuncList, Settings };
 export const routesDefine = [{
     path: '/SchemeList',
     Element: SchemeList
@@ -15,14 +13,7 @@ export const routesDefine = [{
     Element: FuncList
 }
 
-
 , {
-    path: '/Search',
-    Element: Search
-}, {
-    path: '/People',
-    Element: People
-}, {
     path: '/Settings',
     Element: Settings
 }];
