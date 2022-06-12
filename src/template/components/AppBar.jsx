@@ -6,15 +6,9 @@ import IconButton from '@mui/material/IconButton';
 
 
 export default (props) => {
-    const [subTitle, setSubTitle] = React.useState('');
-    React.useEffect(() => {
-        if (props.subTitle) {
-            setSubTitle(` | ${props.subTitle}`);
-        }
-    }, [props.subTitle]);
 
     return (
-        <AppBar position="static" color="primary" sx={{ position: 'fixed', zIndex: 2 }}>
+        <AppBar position="fixed" color="primary">
             <Toolbar sx={{ minHeight: '48px !important' }}>
                 <IconButton
                     size="large"
@@ -27,7 +21,7 @@ export default (props) => {
                     {props.leftElement}
                 </IconButton>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                ASSTTYYS{subTitle}
+                    ASSTTYYS{props.subTitle ? ` | ${props.subTitle}` : ''}
                 </Typography>
                 {props.rightElement}
             </Toolbar>

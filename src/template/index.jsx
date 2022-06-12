@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import { HashRouter as Router, Route, Navigate } from 'react-router-dom';
 import { AnimatedRoutes as Routes } from 'react-animated-router';
@@ -8,11 +8,6 @@ import '../mock/promptMock';
 
 import './styles/index.css';
 import 'react-animated-router/animate.css';
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
-
 // 浏览器使用mock数据，在浏览器先执行localStorage.debug = 1
 let autoWebMode = 'prompt';
 if (localStorage && localStorage.debug) {
@@ -29,6 +24,28 @@ AutoWeb.autoPromise = function (eventname, params) {
     });
 }
 
+
+
+window.onload = () => {
+    AutoWeb.autoPromise('webloaded');
+
+    window.routeBack = function () {
+        console.log(window.history.state);
+        if (window.history.state.idx === 0) {
+            if (window.routeBackFlag) {
+                AutoWeb.auto('exit');
+            } else {
+                window.routeBackFlag = true;
+                AutoWeb.auto('toast', '再按一次退出程序');
+                setTimeout(() => {
+                    window.routeBackFlag = false;
+                }, 1000)
+            }
+        } else {
+            window.history.back();
+        }
+    }
+}
 
 const App = () => {
     return (

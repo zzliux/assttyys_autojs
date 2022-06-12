@@ -48,7 +48,7 @@ export default (props) => {
     );
     reSortFuncList(newFuncList);
     setFuncList(newFuncList);
-    await AutoWeb.autoPromise('saveSchemeList', getScheme(newFuncList));
+    await AutoWeb.autoPromise('saveScheme', getScheme(newFuncList));
     // TODO 失败的话数据回滚
   };
 
@@ -238,7 +238,7 @@ export default (props) => {
                           const newGlobalScheme = { ...globalScheme };
                           newGlobalScheme.commonConfig[configItem.name] = value;
                           setGlobalScheme(newGlobalScheme);
-                          await AutoWeb.autoPromise('saveSchemeList', getScheme(newFuncList));
+                          await AutoWeb.autoPromise('saveScheme', getScheme(newFuncList));
                         })()}
                         configItem={configItem}
                         key={configItemIndex}

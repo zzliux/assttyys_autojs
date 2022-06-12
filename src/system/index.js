@@ -39,7 +39,7 @@ export const webview = run(url, {
     },
     chromeClientOption: {
         onConsoleMessage: function (msg) {
-            console.log(msg.message());
+            console.log('[web]:', msg.message());
         }
     },
     // webviewClientOption: {

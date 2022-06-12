@@ -45,7 +45,6 @@
         "@babel/polyfill": "^7.12.1",
         "@emotion/react": "^11.9.0",
         "@emotion/styled": "^11.8.1",
-        "@fontsource/roboto": "^4.5.7",
         "@mui/icons-material": "^5.8.0",
         "@mui/material": "^5.8.1",
         "basscss": "^8.1.0",

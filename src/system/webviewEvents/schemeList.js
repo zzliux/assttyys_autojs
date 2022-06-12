@@ -2,7 +2,7 @@ import { fromEvent } from 'rxjs';
 import { webview } from "@/system";
 import store, { storeCommon } from '@/system/store';
 import { requestMyScreenCapture } from '@/common/toolAuto';
-import { isRoot, getWidthPixels, getHeightPixels } from "@auto.pro/core";
+import { isRoot, getWidthPixels, getHeightPixels, statusBarHeight } from "@auto.pro/core";
 // import _ from 'lodash';
 import version, {versionList} from '@/common/version';
 import defaultSchemeList from '@/common/schemeList';
@@ -13,6 +13,7 @@ export default function webviewSchemeList() {
     // 返回已保存的方案列表，如果未保存过，返回common中的schemeList
     webview.on("getSchemeList").subscribe(([param, done]) => {
         let savedSchemeList = store.get("schemeList", defaultSchemeList);
+        console.log(savedSchemeList);
         // 活动方案去除
         // done(_.filter(savedSchemeList, item => item.id != 99));
         done(savedSchemeList);
@@ -50,11 +51,12 @@ export default function webviewSchemeList() {
 
     // TODO 使用core包的获取状态栏高度
     webview.on("getStatusBarHeight").subscribe(([_param, done]) => {
-        var resources = context.getResources();
-        var resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
-        var statusBarHeight = resources.getDimensionPixelSize(resourceId);
-        var density = context.getResources().getDisplayMetrics().density;
-        done(parseInt(statusBarHeight / density));
+        // var resources = context.getResources();
+        // var resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
+        // var statusBarHeight = resources.getDimensionPixelSize(resourceId);
+        // var density = context.getResources().getDisplayMetrics().density;
+        // done(parseInt(statusBarHeight / density));
+        done(statusBarHeight);
     });
 
     // 获取版本信息，前端对版本信息进行拼接，告知更新内容
