@@ -19,7 +19,6 @@ import { Flipped } from "react-flip-toolkit";
 
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
-import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 
 import _ from 'lodash';
@@ -53,7 +52,7 @@ export default (props) => {
   };
 
   const reOrder = (list, startIndex, endIndex) => {
-    const result = [...list];
+    const result = _.cloneDeep(list);
     const [removed] = result.splice(startIndex, 1);
     result.splice(endIndex, 0, removed);
     return result;
@@ -61,7 +60,7 @@ export default (props) => {
 
   const handleCheck = (index, e) => (async () => {
     e.stopPropagation();
-    const newFuncList = [...funcList];
+    const newFuncList = _.cloneDeep(funcList);
     newFuncList[index].checked = !newFuncList[index].checked;
     reSortFuncList(newFuncList);
     setFuncList(newFuncList);
@@ -92,7 +91,6 @@ export default (props) => {
 
   const saveScheme = async (funcList) => {
     const scheme = getScheme(funcList);
-    console.log('save', scheme)
     await AutoWeb.autoPromise('saveScheme', scheme);
   };
 
@@ -121,7 +119,7 @@ export default (props) => {
       ]);
       setGlobalScheme(scheme);
       setSchemeNameList(schemeList.map((item) => item.schemeName)); // schemeNameList用于给予配置中type === 'scheme'的配置项
-      const newFunclist = [...funclistDist];
+      const newFunclist = _.cloneDeep(funclistDist);
       newFunclist.forEach((item, index) => {
         for (let i = 0; i < scheme.list.length; i++) {
           if (item.id === scheme.list[i]) {
@@ -189,7 +187,7 @@ export default (props) => {
                             return (
                               <ConfigListItem
                                 onChange={(e, value) => {
-                                  const newFuncList = [...funcList];
+                                  const newFuncList = _.cloneDeep(funcList);
                                   newFuncList[index].config[configGroupIndex].config[configItemIndex].value = value;
                                   setFuncList(newFuncList);
                                   saveScheme(newFuncList);
@@ -234,7 +232,7 @@ export default (props) => {
                     return (
                       <ConfigListItem
                         onChange={(e, value) => (async () => {
-                          const newFuncList = [...funcList];
+                          const newFuncList = _.cloneDeep(funcList);
                           const newGlobalScheme = { ...globalScheme };
                           newGlobalScheme.commonConfig[configItem.name] = value;
                           setGlobalScheme(newGlobalScheme);

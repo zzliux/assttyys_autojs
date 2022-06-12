@@ -13,7 +13,6 @@ export default function webviewSchemeList() {
     // 返回已保存的方案列表，如果未保存过，返回common中的schemeList
     webview.on("getSchemeList").subscribe(([param, done]) => {
         let savedSchemeList = store.get("schemeList", defaultSchemeList);
-        console.log(savedSchemeList);
         // 活动方案去除
         // done(_.filter(savedSchemeList, item => item.id != 99));
         done(savedSchemeList);
@@ -54,9 +53,9 @@ export default function webviewSchemeList() {
         // var resources = context.getResources();
         // var resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
         // var statusBarHeight = resources.getDimensionPixelSize(resourceId);
-        // var density = context.getResources().getDisplayMetrics().density;
-        // done(parseInt(statusBarHeight / density));
-        done(statusBarHeight);
+        var density = context.getResources().getDisplayMetrics().density;
+        done(parseInt(statusBarHeight / density));
+        // done(statusBarHeight);
     });
 
     // 获取版本信息，前端对版本信息进行拼接，告知更新内容

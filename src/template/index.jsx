@@ -8,6 +8,10 @@ import '../mock/promptMock';
 
 import './styles/index.css';
 import 'react-animated-router/animate.css';
+
+import { useStore } from './store/index';
+import { observer } from 'mobx-react-lite';
+
 // 浏览器使用mock数据，在浏览器先执行localStorage.debug = 1
 let autoWebMode = 'prompt';
 if (localStorage && localStorage.debug) {
@@ -26,11 +30,11 @@ AutoWeb.autoPromise = function (eventname, params) {
 
 
 
-window.onload = () => {
+window.onload = () => (async () => {
     AutoWeb.autoPromise('webloaded');
 
+
     window.routeBack = function () {
-        console.log(window.history.state);
         if (window.history.state.idx === 0) {
             if (window.routeBackFlag) {
                 AutoWeb.auto('exit');
@@ -45,9 +49,17 @@ window.onload = () => {
             window.history.back();
         }
     }
-}
+})()
 
-const App = () => {
+const App = observer(() => {
+    const { statusBarHeightStore } = useStore();
+
+    React.useEffect(() => {
+        (async () => {
+            statusBarHeightStore.setStatusBarHeight(await AutoWeb.autoPromise('getStatusBarHeight'));
+        })();
+    }, []);
+
     return (
         <Router>
             <TransitionGroup>
@@ -62,7 +74,7 @@ const App = () => {
             </TransitionGroup>
         </Router>
     );
-}
+})
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);

@@ -4,11 +4,14 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 
+import { useStore } from '../store/index';
+
 
 export default (props) => {
+    const { statusBarHeightStore } = useStore();
 
     return (
-        <AppBar position="fixed" color="primary">
+        <AppBar position="fixed" color="primary" sx={{ pt: statusBarHeightStore.statusBarHeight + 'px' }}>
             <Toolbar sx={{ minHeight: '48px !important' }}>
                 <IconButton
                     size="large"

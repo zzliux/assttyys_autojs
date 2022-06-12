@@ -23,7 +23,7 @@ export default function webviewFuncList() {
     // 保存方案
     webview.on("saveScheme").subscribe(([scheme, done]) => {
         let savedSchemeList = store.get("schemeList", defaultSchemeList);
-        console.log(`saveScheme: ${JSON.stringify(scheme, null, 4)}`);
+        // console.log(`saveScheme: ${JSON.stringify(scheme, null, 4)}`);
         let schemeList = mergeSchemeList(savedSchemeList, defaultSchemeList);
         for (let i = 0; i < schemeList.length; i++) {
             if (schemeList[i].schemeName === scheme.schemeName) {
