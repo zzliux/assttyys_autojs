@@ -13,7 +13,7 @@ const promptMockData = {
             "schemeName": "百鬼夜行",
             "star": true,
             "inner": true,
-            "list": [0, 3, 17, 18, 19, 20, 21],
+            "list": [3, 0, 17, 18, 19, 20, 21],
             "config": {
                 "3": {
                     "type": "关闭"

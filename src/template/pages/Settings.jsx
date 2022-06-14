@@ -32,7 +32,7 @@ export default () => {
     const navigate = useNavigate();
 
     const handleToggle = (index) => async () => {
-        const newList = list.splice(0);
+        const newList = [...list];
         const result = await AutoWeb.autoPromise('saveSetting', {
             name: newList[index].name,
             enabled: !newList[index].enabled,

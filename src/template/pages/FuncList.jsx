@@ -128,6 +128,14 @@ export default (props) => {
           }
         }
       });
+      newFunclist.sort((a, b) => {
+        const aid = scheme.list.indexOf(a.id);
+        const bid = scheme.list.indexOf(b.id);
+        if (aid === bid && aid === -1) {
+          return 0;
+        }
+        return aid - bid;
+      });
       reSortFuncList(newFunclist);
       setFuncList(newFunclist);
       const newCommonConfig = [...commonConfigDist];
