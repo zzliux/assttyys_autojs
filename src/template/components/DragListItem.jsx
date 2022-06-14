@@ -69,7 +69,7 @@ export default (props) => {
                         sx={{
                             paddingTop: 0,
                             paddingBottom: 0,
-                            minHeight: '42px',
+                            minHeight: '34px',
                         }}
                         onClick={() => {
                             collapsedCallback && collapsedCallback(!collapsed);

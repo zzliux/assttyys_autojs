@@ -11,10 +11,14 @@ export default (props) => {
     const { statusBarHeightStore } = useStore();
 
     return (
-        <AppBar position="fixed" color="primary" sx={{ pt: statusBarHeightStore.statusBarHeight + 'px' }}>
-            <Toolbar sx={{ minHeight: '48px !important' }}>
+        <AppBar
+            position="fixed"
+            color="primary"
+            sx={{ pt: statusBarHeightStore.statusBarHeight + 'px' }}
+        >
+            <Toolbar sx={{ minHeight: '34px !important' }}>
                 <IconButton
-                    size="large"
+                    size="small"
                     edge="start"
                     color="inherit"
                     aria-label="menu"
@@ -23,7 +27,7 @@ export default (props) => {
                 >
                     {props.leftElement}
                 </IconButton>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                <Typography component="div" sx={{ flexGrow: 1 }}>
                     ASSTTYYS{props.subTitle ? ` | ${props.subTitle}` : ''}
                 </Typography>
                 {props.rightElement}
