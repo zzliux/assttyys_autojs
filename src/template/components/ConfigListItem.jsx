@@ -43,7 +43,12 @@ export default (prop) => {
   return (
     <div className="config-list-item">
       <ListItem
-        sx={{ color: 'rgba(0, 0, 0, .6)', fontSize: '12px', pt: '4px', pb: '4px' }}
+        sx={{
+          color: 'rgba(0, 0, 0, .6)',
+          fontSize: '12px',
+          pt: '4px',
+          pb: '4px',
+        }}
       >
         <ListItemText
           primaryTypographyProps={{ sx: { fontSize: '12px', pr: '10px' } }}

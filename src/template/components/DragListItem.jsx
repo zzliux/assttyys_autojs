@@ -17,7 +17,7 @@ export default (props) => {
             // margin: `0 0 ${grid}px 0`,
 
             // change background colour if dragging
-            background: isDragging ? "#dedede" : "#fff",
+            background: isDragging ? "#dedede" : "#fbfbfb",
 
             // styles we need to apply on draggables
             ...draggableStyle
@@ -27,7 +27,17 @@ export default (props) => {
     const MyCollapse = () => {
         if (Collapse) {
             return (
-                <Collapse in={collapsed} timeout="auto" unmountOnExit>
+                <Collapse
+                    sx={{
+                        mr: '10px',
+                        maxHeight: '200px',
+                        overflow: 'scroll',
+                        transition: 'height 0.5s ease-in-out',
+                    }}
+                    in={collapsed}
+                    timeout="auto"
+                    unmountOnExit
+                >
                     {collapse}
                 </Collapse>
             )
@@ -43,27 +53,35 @@ export default (props) => {
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     style={{
+                        border: '1px solid #e0e0e0',
+                        margin: '5px 10px 0px 10px',
+                        borderRadius: '4px',
+                        // transition: 'height .2s ease-in-out',
                         color: 'rgba(0, 0, 0, .7)',
-                        background: '#fff',
                         ...getItemStyle(
                             snapshot.isDragging,
                             provided.draggableProps.style
                         )
                     }}
+                    {...others}
                 >
                     <ListItemButton
-                        sx={{ paddingTop: 0, paddingBottom: 0, minHeight: '42px' }}
+                        sx={{
+                            paddingTop: 0,
+                            paddingBottom: 0,
+                            minHeight: '42px',
+                        }}
                         onClick={() => {
                             collapsedCallback && collapsedCallback(!collapsed);
                             onClick && onClick.apply(this);
                         }}
-                        {...others} >
+                    >
                         {/* <ListItemIcon>
-                            <WifiIcon />
-                        </ListItemIcon> */}
+                                <WifiIcon />
+                            </ListItemIcon> */}
                         <ListItemText
                             primary={text}
-                            primaryTypographyProps={{ sx: { fontSize: '14px' } }}
+                            primaryTypographyProps={{ sx: { fontSize: '14px', fontWeight: 'bold' } }}
                             secondary={secondaryText}
                             secondaryTypographyProps={{ sx: { fontSize: '12px' } }}
                         />
@@ -73,7 +91,6 @@ export default (props) => {
                         {children}
                     </ListItemButton>
                     {MyCollapse()}
-                    <Divider variant="fullWidth" component="li" sx={{ display: snapshot.isDragging ? 'none' : 'flex' }} />
                 </div>
             )}
         </Draggable>

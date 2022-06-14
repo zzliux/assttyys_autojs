@@ -11,8 +11,13 @@ import TagFacesIcon from '@mui/icons-material/TagFaces';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import NotesIcon from '@mui/icons-material/Notes';
 import Battery1BarIcon from '@mui/icons-material/Battery1Bar';
+import AppBar from '../components/AppBar';
+import AppContent from '../components/AppContent';
+import { useNavigate } from 'react-router-dom';
 
-export default function Settings() {
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+
+export default () => {
     const namedIcon = {
         autoService: <SettingsAccessibilityIcon />,
         screenCapturePermission: <ScreenshotMonitorIcon />,
@@ -24,6 +29,7 @@ export default function Settings() {
     };
 
     const [list, setList] = React.useState([]);
+    const navigate = useNavigate();
 
     const handleToggle = (index) => async () => {
         const newList = list.splice(0);
@@ -64,11 +70,20 @@ export default function Settings() {
     });
 
     return (
-        <List
-            sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-            subheader={<ListSubheader>Settings</ListSubheader>}
-        >
-            {listEles}
-        </List>
+        <>
+            <AppBar
+                leftElement={<ChevronLeftIcon />}
+                onIconButtonClick={() => navigate(-1)}
+                subTitle="设置"
+            />
+            <AppContent>
+                <List
+                    sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+                    subheader={<ListSubheader>Settings</ListSubheader>}
+                >
+                    {listEles}
+                </List>
+            </AppContent>
+        </>
     );
 }

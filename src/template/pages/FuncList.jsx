@@ -170,7 +170,7 @@ export default (props) => {
                   }
                 }}
                 collapse={item.config && (
-                  <div style={{ maxHeight: '270px', overflow: 'scroll' }}>
+                  <div>
                     {item.config.map((configGroup, configGroupIndex) => (
                       <div key={configGroupIndex} >
                         <Divider variant="fullWidth" component="li" sx={{ ml: '32px', mb: '6px' }} />
