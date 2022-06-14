@@ -10,16 +10,36 @@ const promptMockData = {
         // }
         // return defaultSchemeList[0];
         return {
-            "schemeName": "百鬼夜行",
-            "star": true,
+            "id": 1,
+            "schemeName": "通用准备退出",
             "inner": true,
-            "list": [3, 0, 17, 18, 19, 20, 21],
+            "star": true,
+            "list": [0, 1, 2, 3],
             "config": {
-                "3": {
-                    "type": "关闭"
+                "0": {
+                    "jspd_enabled_longtime_nodo": true,
+                    "jspd_times_longtime_nodo": 10,
+                    "jspd_enabled_zjsj": false,
+                    "jspd_times_zjsj": 30,
+                    "jspd_txpl_zjsj": 60,
+                    "jspd_enabled_1": false,
+                    "jspd_times_1": 20,
+                    "jspd_enabled_2": false,
+                    "jspd_times_2": 20,
+                    "stop_with_launched_app_exit": false,
+                    "scheme_switch_enabled": false,
+                    "next_scheme": "通用准备退出",
+                    "pause_enabled": false,
+                    "define_run_time": "10,30",
+                    "define_pause_time": "2,7"
                 },
-                "19": {
-                    "bossPosition": "随机"
+                "1": {
+                    "exitBeforeReady": false,
+                    "greenType": "自定义坐标",
+                    "greenPosition": "245,500"
+                },
+                "3": {
+                    type: "关闭"
                 }
             },
             "commonConfig": {
@@ -27,32 +47,44 @@ const promptMockData = {
                 "afterClickDelayRandom": 200,
                 "colorSimilar": 93,
                 "multiColorSimilar": 98
-            },
-            "id": 11
+            }
         };
     },
     getSchemeList: function () {
         return defaultSchemeList;
     },
     getSettings: function () {
-        return [{
-            desc: '音量上键停脚本及程序',
-            name: 'stop_all_on_volume_up',
-            type: 'autojs_inner_setting',
-            enabled: true
-        }, {
-            desc: '前台服务',
-            name: 'foreground_service',
-            type: 'autojs_inner_setting',
-            enabled: false
-        }, {
-            desc: '点击/滑动模式',
-            name: 'tapType',
-            type: 'assttyys_setting',
-            stype: 'list',
-            data: ['无障碍', 'Root', 'Shell', 'RootAutomator'],
-            value: 'Root'
-        }]
+        // return [{
+        //     desc: '音量上键停脚本及程序',
+        //     name: 'stop_all_on_volume_up',
+        //     type: 'autojs_inner_setting',
+        //     enabled: true
+        // }, {
+        //     desc: '前台服务',
+        //     name: 'foreground_service',
+        //     type: 'autojs_inner_setting',
+        //     enabled: false
+        // }, {
+        //     desc: '点击/滑动模式',
+        //     name: 'tapType',
+        //     type: 'assttyys_setting',
+        //     stype: 'list',
+        //     data: ['无障碍', 'Root', 'Shell', 'RootAutomator'],
+        //     value: 'Root'
+        // }]
+        return [
+            { desc: "点击/滑动模式", name: "tapType", type: "assttyys_setting", "stype": "list", "data": ["无障碍", "Root", "Shell", "RootAutomator"], "value": "无障碍" },
+            { desc: "无障碍服务(仅使用无障碍模式时生效)", name: "autoService", type: "autojs_inner_setting_auto_service", "enabled": true },
+            { desc: "截图权限", name: "screenCapturePermission", type: "autojs_inner_settings_capture_permission", "enabled": true },
+            { desc: "悬浮窗权限", name: "floatyPerminssion", type: "autojs_inner_setting_floaty_permission", "enabled": true },
+            { desc: "音量上键停脚本及程序", name: "stop_all_on_volume_up", type: "autojs_inner_setting", "enabled": true },
+            { desc: "前台服务", name: "foreground_service", type: "autojs_inner_setting", "enabled": false },
+            { desc: "忽略电池优化", name: "ignoreBatteryOptimization", type: "autojs_inner_setting_power_manage", "enabled": true },
+            { desc: "悬浮选择方案后是否直接启动脚本", name: "floaty_scheme_direct_run", type: "assttyys_setting", "enabled": false },
+            { desc: "调试绘制", name: "floaty_debugger_draw", type: "assttyys_setting_floaty_debugger_draw", "enabled": false },
+            { desc: "脚本停止是否启用推送", name: "use_push_plus", type: "assttyys_setting", "enabled": false },
+            { desc: "推送加token", name: "push_plus_token", type: "assttyys_setting", "stype": "text", "value": "" }
+        ];
     },
     getToSetDefaultLaunchAppList() {
         return [{

@@ -19,9 +19,19 @@ const handleTextChangeDebounce = _.debounce((e, onChange) => {
   onChange && onChange(e, e.target.value)
 }, 700);
 
-
-export default (prop) => {
-  const { configItem, onChange } = prop;
+/**
+ * @param {Object} props
+ * 
+ * param.configItem = {
+ *  name: '',
+ *  desc: '',
+ *  value: '',
+ *  type: '',
+ *  data: [],
+ * }
+ */
+export default (props) => {
+  const { configItem, onChange, sx } = props;
   const [value, setValue] = React.useState(configItem.value || configItem.default);
   const handleSelectChange = (e) => {
     onChange && onChange(e, e.target.value)
@@ -39,7 +49,6 @@ export default (prop) => {
   };
 
 
-
   return (
     <div className="config-list-item">
       <ListItem
@@ -51,9 +60,8 @@ export default (prop) => {
         }}
       >
         <ListItemText
-          primaryTypographyProps={{ sx: { fontSize: '12px', pr: '10px' } }}
+          primaryTypographyProps={{ sx: { fontSize: '12px', pr: '10px', ...sx } }}
           primary={configItem.desc}
-
         />
         <span className="config-list-item-input">
           {(() => {

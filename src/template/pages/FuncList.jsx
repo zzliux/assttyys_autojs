@@ -119,6 +119,8 @@ export default (props) => {
       ]);
       setGlobalScheme(scheme);
       setSchemeNameList(schemeList.map((item) => item.schemeName)); // schemeNameList用于给予配置中type === 'scheme'的配置项
+
+      // 根据scheme.list开启funcList的switch
       const newFunclist = _.cloneDeep(funclistDist);
       newFunclist.forEach((item, index) => {
         for (let i = 0; i < scheme.list.length; i++) {
@@ -128,6 +130,8 @@ export default (props) => {
           }
         }
       });
+
+      // 根据scheme.list的顺序重新排序
       newFunclist.sort((a, b) => {
         const aid = scheme.list.indexOf(a.id);
         const bid = scheme.list.indexOf(b.id);
@@ -136,6 +140,20 @@ export default (props) => {
         }
         return aid - bid;
       });
+
+      // 根据scheme.config重新设置funcList的config
+      newFunclist.forEach(item => {
+        if (item.checked && item.config) {
+          item.config.forEach(configGroup => {
+            configGroup?.config?.forEach(config => {
+              if (scheme.config[item.id] && scheme.config[item.id][config.name]) {
+                config.value = scheme.config[item.id][config.name];
+              }
+            });
+          });
+        }
+      });
+
       reSortFuncList(newFunclist);
       setFuncList(newFunclist);
       const newCommonConfig = [...commonConfigDist];

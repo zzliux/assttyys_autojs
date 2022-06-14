@@ -91,6 +91,7 @@ export default function webviewSettigns() {
             stype: 'text',
             value: storeSettings.push_plus_token || ''
         }];
+        console.log('getSettings', JSON.stringify(ret));
         done(ret);
     });
 
