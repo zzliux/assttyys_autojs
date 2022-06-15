@@ -13,6 +13,7 @@ import Switch from '@mui/material/Switch';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import funclistDist from '../../common/funcList';
+import schemeListDist from '../../common/schemeList';
 import commonConfigDist from '../../common/commonConfig';
 import { Flipped } from "react-flip-toolkit";
 
@@ -22,6 +23,7 @@ import Divider from '@mui/material/Divider';
 import Dialog from '@mui/material/Dialog';
 
 import _ from 'lodash';
+import { Button } from '@mui/material';
 
 
 
@@ -270,6 +272,31 @@ export default (props) => {
                     )
                   })}
                 </List>
+                {(() => {
+                  const handleResetScheme = () => {
+                    console.log(globalScheme);
+                    console.log(schemeListDist);
+                    // 用name匹配
+                    (async () => {
+                      for (const schemeDist of schemeListDist) {
+                        if (schemeDist.name === globalScheme.name) {
+                          await AutoWeb.autoPromise('saveScheme', schemeDist);
+                          navigate(0);
+                          return;
+                        }
+                      }
+                    })()
+                  }
+                  if (globalScheme.inner) {
+                    return (
+                      <div style={{ padding: '10px 16px' }}>
+                        <Button onClick={handleResetScheme} sx={{ width: '100%' }} variant="contained" color="error">
+                          重置当前方案
+                        </Button>
+                      </div>
+                    )
+                  }
+                })()}
               </div>
             ))}
           </div>
