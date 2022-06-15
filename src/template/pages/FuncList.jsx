@@ -159,7 +159,9 @@ export default (props) => {
 
       reSortFuncList(newFunclist);
       setFuncList(newFunclist);
-      const newCommonConfig = [...commonConfigDist];
+
+      // 该方案的公共配置
+      const newCommonConfig = _.cloneDeep(commonConfigDist);
       newCommonConfig.forEach(commonConfigGroup => {
         commonConfigGroup.config.forEach(commonConfigItem => {
           commonConfigItem.value = scheme.commonConfig?.[commonConfigItem.name] || commonConfigItem.default;
@@ -218,8 +220,13 @@ export default (props) => {
                                 onChange={(e, value) => {
                                   const newFuncList = _.cloneDeep(funcList);
                                   newFuncList[index].config[configGroupIndex].config[configItemIndex].value = value;
-                                  setFuncList(newFuncList);
                                   saveScheme(newFuncList);
+                                  setFuncList(newFuncList);
+
+                                  const newGlobalScheme = _.cloneDeep(globalScheme);
+                                  newGlobalScheme.config[item.id][configItem.name] = value;
+                                  console.log(newGlobalScheme);
+                                  setGlobalScheme(newGlobalScheme);
                                 }}
                                 configItem={configItem}
                                 key={configItemIndex}
@@ -265,6 +272,10 @@ export default (props) => {
                           const newGlobalScheme = { ...globalScheme };
                           newGlobalScheme.commonConfig[configItem.name] = value;
                           setGlobalScheme(newGlobalScheme);
+
+                          const newCommonConfig = _.cloneDeep(commonConfig);
+                          newCommonConfig[configGroupIndex].config[configItemIndex].value = value;
+                          setCommonConfig(newCommonConfig);
                           await AutoWeb.autoPromise('saveScheme', getScheme(newFuncList));
                         })()}
                         configItem={configItem}
