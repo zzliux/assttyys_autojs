@@ -278,11 +278,11 @@ export default (props) => {
                     // 用name匹配
                     (async () => {
                       for (const schemeDist of schemeListDist) {
-                        if (schemeDist.name === globalScheme.name) {
+                        if (schemeDist.schemeName === globalScheme.schemeName) {
                           await AutoWeb.autoPromise('saveScheme', schemeDist);
-                          setResetState(Math.random());
                           setDialogOpen(false);
-                          return;
+                          setResetState(Math.random());
+                          break
                         }
                       }
                     })()

@@ -10,36 +10,16 @@ const promptMockData = {
         // }
         // return defaultSchemeList[0];
         return {
-            "id": 1,
-            "schemeName": "通用准备退出",
+            "id": 9,
+            "schemeName": "地鬼日常",
             "inner": true,
             "star": true,
-            "list": [0, 1, 2, 3],
+            "list": [1, 2, 16],
             "config": {
-                "0": {
-                    "jspd_enabled_longtime_nodo": true,
-                    "jspd_times_longtime_nodo": 10,
-                    "jspd_enabled_zjsj": false,
-                    "jspd_times_zjsj": 30,
-                    "jspd_txpl_zjsj": 60,
-                    "jspd_enabled_1": false,
-                    "jspd_times_1": 20,
-                    "jspd_enabled_2": false,
-                    "jspd_times_2": 20,
-                    "stop_with_launched_app_exit": false,
-                    "scheme_switch_enabled": false,
-                    "next_scheme": "通用准备退出",
-                    "pause_enabled": false,
-                    "define_run_time": "10,30",
-                    "define_pause_time": "2,7"
-                },
                 "1": {
                     "exitBeforeReady": false,
-                    "greenType": "自定义坐标",
+                    "greenType": "关闭",
                     "greenPosition": "245,500"
-                },
-                "3": {
-                    type: "关闭"
                 }
             },
             "commonConfig": {
