@@ -39,6 +39,7 @@ export default (props) => {
   const [globalScheme, setGlobalScheme] = React.useState(null);
   const [dialogOpen, setDialogOpen] = React.useState(false);
   const [commonConfig, setCommonConfig] = React.useState([]);
+  const [resetState, setResetState] = React.useState(0);
 
 
   const reOrderCallback = async (result) => {
@@ -166,7 +167,7 @@ export default (props) => {
       });
       setCommonConfig(newCommonConfig);
     })();
-  }, [schemeName]);
+  }, [schemeName, resetState]);
 
   return (
     <>
@@ -274,14 +275,13 @@ export default (props) => {
                 </List>
                 {(() => {
                   const handleResetScheme = () => {
-                    console.log(globalScheme);
-                    console.log(schemeListDist);
                     // 用name匹配
                     (async () => {
                       for (const schemeDist of schemeListDist) {
                         if (schemeDist.name === globalScheme.name) {
                           await AutoWeb.autoPromise('saveScheme', schemeDist);
-                          navigate(0);
+                          setResetState(Math.random());
+                          setDialogOpen(false);
                           return;
                         }
                       }
