@@ -49,6 +49,7 @@ export default (props) => {
       result.destination.index
     );
     reSortFuncList(newFuncList);
+    setCollapsedIndex(-1);
     setFuncList(newFuncList);
     await AutoWeb.autoPromise('saveScheme', getScheme(newFuncList));
     // TODO 失败的话数据回滚
@@ -200,44 +201,48 @@ export default (props) => {
                     setCollapsedIndex(-1);
                   }
                 }}
-                collapse={item.config && (
-                  <div>
-                    {item.config.map((configGroup, configGroupIndex) => (
-                      <div key={configGroupIndex} >
-                        <Divider variant="fullWidth" component="li" sx={{ ml: '32px', mb: '6px' }} />
-                        <List
-                          sx={{ pl: '32px', color: '#1976d2', fontSize: '12px' }}
-                          subheader={configGroup.desc}
-                          component="div"
-                        >
-                          {configGroup.config.map((configItem, configItemIndex) => {
-                            if (configItem.type === 'scheme') {
-                              configItem.type = 'list';
-                              configItem.data = schemeNameList;
-                            }
-                            return (
-                              <ConfigListItem
-                                onChange={(e, value) => {
-                                  const newFuncList = _.cloneDeep(funcList);
-                                  newFuncList[index].config[configGroupIndex].config[configItemIndex].value = value;
-                                  saveScheme(newFuncList);
-                                  setFuncList(newFuncList);
+                collapse={(() => {
+                  if (item.config) {
+                    return (
+                      <div>
+                        {item.config.map((configGroup, configGroupIndex) => (
+                          <div key={configGroupIndex} >
+                            <Divider variant="fullWidth" component="li" sx={{ ml: '32px', mb: '6px' }} />
+                            <List
+                              sx={{ pl: '32px', color: '#1976d2', fontSize: '12px' }}
+                              subheader={configGroup.desc}
+                              component="div"
+                            >
+                              {configGroup.config.map((configItem, configItemIndex) => {
+                                if (configItem.type === 'scheme') {
+                                  configItem.type = 'list';
+                                  configItem.data = schemeNameList;
+                                }
+                                return (
+                                  <ConfigListItem
+                                    onChange={(e, value) => {
+                                      const newFuncList = _.cloneDeep(funcList);
+                                      newFuncList[index].config[configGroupIndex].config[configItemIndex].value = value;
+                                      saveScheme(newFuncList);
+                                      setFuncList(newFuncList);
 
-                                  const newGlobalScheme = _.cloneDeep(globalScheme);
-                                  newGlobalScheme.config[item.id][configItem.name] = value;
-                                  console.log(newGlobalScheme);
-                                  setGlobalScheme(newGlobalScheme);
-                                }}
-                                configItem={configItem}
-                                key={configItemIndex}
-                              />
-                            )
-                          })}
-                        </List>
+                                      const newGlobalScheme = _.cloneDeep(globalScheme);
+                                      newGlobalScheme.config[item.id][configItem.name] = value;
+                                      console.log(newGlobalScheme);
+                                      setGlobalScheme(newGlobalScheme);
+                                    }}
+                                    configItem={configItem}
+                                    key={configItemIndex}
+                                  />
+                                )
+                              })}
+                            </List>
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
-                )}
+                    )
+                  }
+                })()}
               >
                 <div>
                   <Switch
@@ -292,6 +297,7 @@ export default (props) => {
                         if (schemeDist.schemeName === globalScheme.schemeName) {
                           await AutoWeb.autoPromise('saveScheme', schemeDist);
                           setDialogOpen(false);
+                          setCollapsedIndex(-1);
                           setResetState(Math.random());
                           break
                         }

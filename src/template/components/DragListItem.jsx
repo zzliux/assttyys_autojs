@@ -25,7 +25,7 @@ export default (props) => {
     };
 
     const MyCollapse = () => {
-        if (Collapse) {
+        if (collapse) {
             return (
                 <Collapse
                     sx={{
