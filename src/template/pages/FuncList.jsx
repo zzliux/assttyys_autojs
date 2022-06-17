@@ -246,7 +246,8 @@ export default (props) => {
               >
                 <div>
                   <Switch
-                    checked={item.checked ? true : false}
+                    size="small"
+                    checked={!!item.checked}
                     onChange={e => handleCheck(index, e)}
                     onClick={e => e.stopPropagation()}
                   />
@@ -256,7 +257,6 @@ export default (props) => {
           ))}
         </DragList>
         <Dialog onClose={handleDialogClose} open={dialogOpen}>
-          {/* TODO merge scheme commonConfig */}
           <div style={{ maxHeight: '270px', overflow: 'scroll' }}>
             {commonConfig.map((configGroup, configGroupIndex) => (
               <div key={configGroupIndex} >

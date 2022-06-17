@@ -66,7 +66,7 @@ export default () => {
                             index={index}
                             onClick={() => navigate(`/FuncList/${item.schemeName}`)}>
                             <div onClick={e => handleStar(index, e)} >
-                                {item.star ? <StarRoundedIcon sx={{ mr: '10px', color: '#1976d2' }} /> : <StarBorderRoundedIcon sx={{ mr: '10px' }} />}
+                                {item.star ? <StarRoundedIcon sx={{ color: '#1976d2' }} /> : <StarBorderRoundedIcon />}
                             </div>
                         </DragListItem>
                     ))}

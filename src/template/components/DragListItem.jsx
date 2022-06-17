@@ -69,6 +69,7 @@ export default (props) => {
                         sx={{
                             paddingTop: 0,
                             paddingBottom: 0,
+                            paddingRight: '10px',
                             minHeight: '34px',
                         }}
                         onClick={() => {
@@ -86,7 +87,7 @@ export default (props) => {
                             secondaryTypographyProps={{ sx: { fontSize: '12px' } }}
                         />
                         <div {...provided.dragHandleProps}>
-                            <DragHandleIcon sx={{ mr: '20px', pt: '4px' }} />
+                            <DragHandleIcon sx={{ mr: '10px', pt: '4px' }} />
                         </div>
                         {children}
                     </ListItemButton>
