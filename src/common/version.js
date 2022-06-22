@@ -199,6 +199,9 @@ export const versionList = [{
 }, {
     version: '20220622_01',
     desc: '新增：活动方案与功能：不朽之木_三途轮回'
+}, {
+    version: '20220622_02',
+    desc: '修复：行为仿真打开守护频道后卡住的问题'
 }];
 
 export default versionList[versionList.length - 1].version;
