@@ -183,6 +183,10 @@ const SchemeList = [{
     config: {
         '1': { greenType: '自定义坐标', greenPosition: '628,511' } // 左3随缘
     }
+}, {
+    id: 103,
+    schemeName: '活动_不朽之木_三途轮回',
+    list: [0, 1, 2, 3, 24, 107],
 }
     // 完整demo
     // , {

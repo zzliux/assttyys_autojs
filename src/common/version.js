@@ -196,6 +196,9 @@ export const versionList = [{
 }, {
     version: '20220529_02',
     desc: '新增：秘闻_挑战支持妖刀姬竞速'
+}, {
+    version: '20220622_01',
+    desc: '新增：活动方案与功能：不朽之木_三途轮回'
 }];
 
 export default versionList[versionList.length - 1].version;
