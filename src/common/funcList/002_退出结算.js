@@ -217,13 +217,14 @@ export default {
 		],
 		notForCnt: true,
 	}, {
-		// 打开后的达摩，所有点都被结算挡住了，使用经验，金币buff，和第一个奖励的金币作为特征
+		// 打开后的达摩，所有点都被结算挡住了，使用经验，金币buff，和第一个奖励的xx作为特征
 		desc: [1280,720,
 			[[left,172,657,0x97bae0],
 			[left,187,668,0xf7e624],
 			[left,339,668,0xf7e525],
-			[center,282,188,0x544d3e],
-			[center,318,226,0xb49c1b]]
+			[center,268,177,0x52422c],
+			[center,363,177,0x5e492c],
+			[center,270,269,0x604938]]
 		],
 		operStepRandom: [
 			[
