@@ -6,14 +6,14 @@ const right = 2;
 export default {
 	id: 14,
 	name: '探索_点击挑战图标',
-	desc: '在探索界面时，选择小怪或boss进攻，优先打boss，可配置无差别挑战或只打经验怪',
+	desc: '在探索界面时，选择小怪或boss进攻，优先打boss，可配置无差别挑战或只打经验怪或只打掉落怪',
 	config: [{
 		desc: '',
 		config: [{
 			name: 'type',
 			desc: '挑战类型',
 			type: 'list',
-			data: ['无差别', '打经验'],
+			data: ['无差别', '打经验', '打掉落'],
 			default: '打经验',
 			value: null,
 		}, {
@@ -80,7 +80,16 @@ export default {
 			}
 			let point = null;
 			// TODO 使用多点找色返回所有点的方法
-			if ('打经验' === thisconf.type) {
+			if ('无差别' === thisconf.type) {
+				point = thisScript.findMultiColor('探索_挑战BOSS');
+				if (point) {
+					let oper = [[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
+					thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.global.tsAttackSwhipeNum = 1;
+					return true;
+				}
+				point = thisScript.findMultiColor('探索_挑战');
+			} else {
 				let trycnt = 5;
 				do {
 					point = thisScript.findMultiColor('探索_挑战BOSS');
@@ -90,7 +99,12 @@ export default {
 						thisScript.global.tsAttackSwhipeNum = 1;
 						return true;
 					}
-					let flagPoint = thisScript.findMultiColor('探索_经验标识');
+					let flagPoint = null;
+					if ('打经验' === thisconf.type) {
+						flagPoint = thisScript.findMultiColor('探索_经验标识');
+					} else if ('打掉落' === thisconf.type) {
+						flagPoint = thisScript.findMultiColor('探索_掉落标识');
+					}
 					if (null != flagPoint) {
 						let step = thisOperator[0].oper[5][2];
 						// 从内向外多点找色，可点击的挑战图标，可能会处理为不停的进行多点找色，找不到的时候放大区域
@@ -111,15 +125,6 @@ export default {
 						thisScript.keepScreen(true);
 					}
 				} while (!point && --trycnt > 0);
-			} else {
-				point = thisScript.findMultiColor('探索_挑战BOSS');
-				if (point) {
-					let oper = [[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
-					thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
-					thisScript.global.tsAttackSwhipeNum = 1;
-					return true;
-				}
-				point = thisScript.findMultiColor('探索_挑战');
 			}
 			if (point) {
 				let oper = [[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
