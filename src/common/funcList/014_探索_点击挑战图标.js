@@ -32,40 +32,40 @@ export default {
 		}]
 	}],
 	operator: [{
-		desc: [1280,720,
-			[[left,38,65,0xf1f5fb],
-			[left,36,570,0x983254],
-			[left,29,672,0x615a77],
-			[right,1124,36,0xd7b388],
-			[right,1225,49,0xcba375]]
+		desc: [1280, 720,
+			[[left, 38, 65, 0xf1f5fb],
+			[left, 36, 570, 0x983254],
+			[left, 29, 672, 0x615a77],
+			[right, 1124, 36, 0xd7b388],
+			[right, 1225, 49, 0xcba375]]
 		],
 		oper: [
 			[left, 1280, 720, 0, 0, 42, 51, 2000],
-			[right, 1280, 720, 1121,117, 1224,209, 0],
-			[left, 1280, 720, 46,215, 162,525, 0],
-			[left, 1280, 720, 30,47, 71,85, 500],
-			[center, 1280, 720, 702,388, 846,421, 500],
+			[right, 1280, 720, 1121, 117, 1224, 209, 0],
+			[left, 1280, 720, 46, 215, 162, 525, 0],
+			[left, 1280, 720, 30, 47, 71, 85, 500],
+			[center, 1280, 720, 702, 388, 846, 421, 500],
 			[left, 1280, 720, 0, 0, 16, 16, 0],
 			[right, 1280, 720, 0, 0, 1275, 715, 0]
 		]
 	}, {
 		// 自动轮换
-		desc: [1280,720,
-			[[left,132,666,0x646464],
-			[left,66,658,0xedede5],
-			[left,42,67,0xe8f2fb],
-			[right,1120,36,0xd7b389],
-			[right,1233,34,0xd3af83]]
+		desc: [1280, 720,
+			[[left, 132, 666, 0x646464],
+			[left, 66, 658, 0xedede5],
+			[left, 42, 67, 0xe8f2fb],
+			[right, 1120, 36, 0xd7b389],
+			[right, 1233, 34, 0xd3af83]]
 		],
 		oper: [
-			[left, 1280, 720, 122,660, 245,682, 500]
+			[left, 1280, 720, 122, 660, 245, 682, 500]
 		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
 		while (thisScript.oper({
 			name: '探索界面_判断',
 			operator: [{ desc: thisOperator[0].desc, retest: 500 }],
-			
+
 		})) {
 			if (thisScript.oper({
 				name: '探索界面_自动轮换',
@@ -99,25 +99,30 @@ export default {
 						thisScript.global.tsAttackSwhipeNum = 1;
 						return true;
 					}
-					let flagPoint = null;
+					let flagPointAll = [];
 					if ('打经验' === thisconf.type) {
-						flagPoint = thisScript.findMultiColor('探索_经验标识');
+						flagPointAll = thisScript.findMultiColorEx('探索_经验标识');
 					} else if ('打掉落' === thisconf.type) {
-						flagPoint = thisScript.findMultiColor('探索_掉落标识');
+						flagPointAll = thisScript.findMultiColorEx('探索_掉落标识');
 					}
-					if (null != flagPoint) {
-						let step = thisOperator[0].oper[5][2];
-						// 从内向外多点找色，可点击的挑战图标，可能会处理为不停的进行多点找色，找不到的时候放大区域
-						let l = step // 搜索区域宽高,5倍 "探索_经验怪标记" 的宽高，当这个区域找不到时，l以倍数增长，直到找到为止或者达到一定次数, 这样处理的话会找重复的地方
-						for (let tryTimes = 1; tryTimes <= 15; tryTimes++, l += step) { // 尝试 12 次, 大概算了一下，12次内基本可以找到，找不到的话就滑屏
-							let region = [flagPoint.x -  l / 2, flagPoint.y - l - 40, flagPoint.x + l / 2, flagPoint.y - 40];
-							if (region[0] < 0) region[0] = 0;
-							if (region[1] < 0) region[1] = 0;
-							if (region[2] > thisOperator[0].oper[6][2]) region[2] = thisOperator[0].oper[6][2];
-							if (region[3] > thisOperator[0].oper[6][3]) region[3] = thisOperator[0].oper[6][3];
-							point = thisScript.findMultiColor('探索_挑战', region);
-							if (point) {
-								break;
+					if (flagPointAll.length > 0) {
+						let pointAll = thisScript.findMultiColorEx('探索_挑战');
+						if (pointAll.length > 0) {
+							let minDistPow = 0xFFFFFFFF;
+							for (let flagPoint of flagPointAll) {
+								for (let kPoint of pointAll) {
+									if (kPoint.y - thisOperator[0].oper[5][2] > flagPoint.y) continue; // 排除挑战图标高度不在经验/掉落标识之上的
+									let distPow = Math.pow(kPoint.x - flagPoint.x, 2) + Math.pow(kPoint.y - flagPoint.y, 2);
+									if (minDistPow > distPow) {
+										minDistPow = distPow;
+										point = kPoint;
+									}
+								}
+							}
+							console.log(`Math.sqrt(minDistPow): ${Math.sqrt(minDistPow)}`);
+							console.log(`thisOperator[0].oper[5][2] * 15 * 1.414: ${thisOperator[0].oper[5][2] * 15 * 1.414}`);
+							if (!(Math.sqrt(minDistPow) < thisOperator[0].oper[5][2] * 15 * 1.414)) {
+								point = null;
 							}
 						}
 					} else {

@@ -120,7 +120,7 @@ var script = {
         }
         return retFunclist;
     },
-    
+
     /**
      * 将funcList中operator里面的desc和oper转换为适用当前正在分辨率的坐标
      */
@@ -168,7 +168,6 @@ var script = {
             let point = this.helperBridge.helper.FindMultiColor(region[0], region[1], region[2], region[3], item, similar, 1);
             if (point.x !== -1) {
                 console.log(`[${key}]第${i}个查找成功， 坐标为：(${point.x}, ${point.y})`);
-
                 if (drawFloaty.instacne) {
                     let toDraw = item.map(kk => {
                         return {
@@ -186,6 +185,45 @@ var script = {
         }
         return null;
     },
+
+    /**
+    * 执行多点找色(返回所有点坐标)
+    * @param {String} key src\common\multiColors.js的key
+    * @param {Region} inRegion 多点找色区域
+    * @returns 
+    */
+    findMultiColorEx(key, inRegion) {
+        this.initRedList();
+        let region = inRegion || this.multiColor[key].region;
+        let desc = this.multiColor[key].desc;
+        let similar = this.multiColor[key].similar || this.scheme.commonConfig.multiColorSimilar;
+        let ret = [];
+        for (let i = 0; i < desc.length; i++) {
+            let item = desc[i];
+            let pointAll = this.helperBridge.helper.FindMultiColorEx(region[0], region[1], region[2], region[3], item, similar);
+            for (let j = 0; j < pointAll.size(); j++) {
+                let point = pointAll.get(j);
+                ret.push(point);
+                if (drawFloaty.instacne) {
+                    let toDraw = item.map(kk => {
+                        return {
+                            color: 'green',
+                            region: [point.x + kk[0] - 5, point.y + kk[1] - 5, point.x + kk[0] + 5, point.y + kk[1] + 5]
+                        }
+                    });
+                    toDraw[0].color = 'orange';
+                    toDraw[0].region = [point.x - 5, point.y - 5, point.x + 5, point.y + 5];
+                    drawFloaty.draw(toDraw, 400);
+                }
+            }
+            if (pointAll.size() > 0) {
+                console.log(`[${key}]第${i}个EX查找成功：${pointAll}`);
+            }
+        }
+        return ret;
+    },
+
+
 
     /**
      * 执行多点找色，直到成功为止，返回多点找色坐标
@@ -214,7 +252,7 @@ var script = {
      * @param {Integer} sign 
      * @returns 
      */
-    compareColorLoop (desc, timeout, sign) {
+    compareColorLoop(desc, timeout, sign) {
         /**
          * 条件循环多点比色
          *
@@ -408,7 +446,7 @@ var script = {
                                 region: [kk[0] - 5, kk[1] - 5, kk[0] + 5, kk[1] + 5]
                             }
                         })];
-                        
+
                         drawFloaty.draw(toDraw, 300);
                         // sleep(150);
                     }
@@ -449,7 +487,7 @@ var script = {
      * 根据func中的desc进行多点比色
      * @param {*} currFunc 
      */
-     desc(currFunc, commonConfig) {
+    desc(currFunc, commonConfig) {
         let operator = currFunc.operator; // 需要计算的坐标通过operater传进去使用
         for (let id = 0; id < operator.length; id++) {
             let item = operator[id];
