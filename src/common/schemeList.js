@@ -241,6 +241,10 @@ const SchemeList = [{
         schemeName: '金币妖怪',
         list: [0, 1, 2, 3, 39, 35, 36, 37, 38, 40]
     }, {
+        id: 25,
+        schemeName: '宴会',
+        list: [3, 1000, 1001, 1002, 1003]
+    }, {
         id: 99,
         schemeName: '伊吹之擂',
         list: [0, 3, 24, 99, 100],

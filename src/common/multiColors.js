@@ -1023,6 +1023,15 @@ export default {
                     [center, 717, 384, 0x3466cb],
                     [center, 718, 389, 0x7fa8db]
                 ]
+            ],
+            [1280, 720,
+                [
+                    [center, 784, 364, 0x74532d],
+                    [center, 838, 361, 0x8f653c],
+                    [center, 812, 358, 0x296da1],
+                    [center, 812, 353, 0xbedbef],
+                    [center, 813, 375, 0x6487be]
+                ]
             ]
         ]
     },
