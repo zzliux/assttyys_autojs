@@ -30,7 +30,6 @@ export default {
 					desc: thisOperator[0].desc
 				}]
 			})) {
-			// 金币妖怪_判断挑战次数是否用完
 			let point = thisScript.findMultiColor('宴会_爆竹') || null
 			if (point) {
 				thisScript.helperBridge.regionClick([
