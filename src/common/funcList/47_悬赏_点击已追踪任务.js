@@ -1,7 +1,3 @@
-import {
-  setCurrentScheme
-} from '@/common/tool';
-
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -51,7 +47,6 @@ export default {
     ]
   }],
   operatorFunc(thisScript, thisOperator) {
-    console.log('115_悬赏_点击已追踪任务')
     if (thisScript.oper({
         name: '悬赏_探索界面',
         operator: [{

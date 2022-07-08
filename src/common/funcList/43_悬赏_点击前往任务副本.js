@@ -1,7 +1,3 @@
-import {
-	setCurrentScheme
-} from '@/common/tool';
-
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -42,7 +38,6 @@ export default {
 		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
-		console.log('110_悬赏_点击前往任务副本')
 		if (thisScript.oper({
 				name: '悬赏_发现地点弹窗',
 				operator: [{

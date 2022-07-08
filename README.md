@@ -134,5 +134,8 @@ assttyys_autojs
 - [molysama](https://github.com/molysama)
   - [@auto.pro](https://github.com/molysama/auto.pro)的提供者，本项目基于该框架完成
 
+- [aiou](https://gitee.com/LIUAWEIO)
+  - 贡献本项目的悬赏封印、金币妖怪、宴会方案及相关功能
+
 # LICENSE
 MIT

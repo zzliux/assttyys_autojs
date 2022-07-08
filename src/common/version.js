@@ -205,6 +205,9 @@ export const versionList = [{
 }, {
     version: '20220625_01',
     desc: '新增：探索支持打掉落加成'
+}, {
+    version: '20220709_01',
+    desc: '新增：悬赏封印、金币妖怪、宴会。感谢aiou大佬的鼎力支持！'
 }];
 
 export default versionList[versionList.length - 1].version;

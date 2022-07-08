@@ -222,6 +222,7 @@ const SchemeList = [{
         id: 22,
         schemeName: '秘闻',
         list: [0, 1, 2, 3, 34],
+        star: true,
         config: {
             '0': {
                 jspd_enabled_1: true,
@@ -235,14 +236,17 @@ const SchemeList = [{
     }, {
         id: 23,
         schemeName: '悬赏',
+        star: true,
         list: [0, 1, 2, 3, 29, 41, 42, 43, 44, 45, 46, 47, 48, 49],
     }, {
         id: 24,
         schemeName: '金币妖怪',
+        star: true,
         list: [0, 1, 2, 3, 39, 35, 36, 37, 38, 40]
     }, {
         id: 25,
         schemeName: '宴会',
+        star: true,
         list: [3, 1000, 1001, 1002, 1003]
     }, {
         id: 99,
