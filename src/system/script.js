@@ -165,7 +165,7 @@ var script = {
         let similar = this.multiColor[key].similar || this.scheme.commonConfig.multiColorSimilar
         for (let i = 0; i < desc.length; i++) {
             let item = desc[i];
-            let point = this.helperBridge.helper.FindMultiColor(region[0], region[1], region[2], region[3], item, similar, 1);
+            let point = this.helperBridge.helper.FindMultiColor(region[0], region[1], region[2], region[3], item, similar, true);
             if (point.x !== -1) {
                 console.log(`[${key}]第${i}个查找成功， 坐标为：(${point.x}, ${point.y})`);
                 if (drawFloaty.instacne) {
@@ -200,7 +200,7 @@ var script = {
         let ret = [];
         for (let i = 0; i < desc.length; i++) {
             let item = desc[i];
-            let pointAll = this.helperBridge.helper.FindMultiColorEx(region[0], region[1], region[2], region[3], item, similar);
+            let pointAll = this.helperBridge.helper.FindMultiColorEx(region[0], region[1], region[2], region[3], item, similar, true);
             for (let j = 0; j < pointAll.size(); j++) {
                 let point = pointAll.get(j);
                 ret.push(point);
@@ -263,7 +263,7 @@ var script = {
          * @param timelag:     间隔时间
          * @param sign:        跳出条件,0为比色成功时返回,1为比色失败时返回
          */
-        return this.helperBridge.helper.CompareColorExLoop(desc, this.scheme.commonConfig.colorSimilar, 1, timeout, this.scheme.commonConfig.loopDelay, sign || 0);
+        return this.helperBridge.helper.CompareColorExLoop(desc, this.scheme.commonConfig.colorSimilar, true, timeout, this.scheme.commonConfig.loopDelay, sign || 0);
     },
 
     /**
@@ -434,7 +434,7 @@ var script = {
                 let item = operator[id];
                 let rs;
                 if (item.desc && item.desc.length) {
-                    rs = helperBridge.helper.CompareColorEx(item.desc, this.scheme.commonConfig.colorSimilar, 0);
+                    rs = helperBridge.helper.CompareColorEx(item.desc, this.scheme.commonConfig.colorSimilar, false);
                 } else {
                     rs = true;
                 }
@@ -492,7 +492,7 @@ var script = {
         for (let id = 0; id < operator.length; id++) {
             let item = operator[id];
             if (item.desc && item.desc.length > 3) {
-                let res = helperBridge.helper.CompareColorEx(item.desc, commonConfig.colorSimilar, 0);
+                let res = helperBridge.helper.CompareColorEx(item.desc, commonConfig.colorSimilar, false);
                 if (res) return true;
             }
         }
