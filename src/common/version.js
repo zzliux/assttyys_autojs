@@ -208,6 +208,9 @@ export const versionList = [{
 }, {
     version: '20220709_01',
     desc: '新增：悬赏封印、金币妖怪、宴会。感谢aiou大佬的鼎力支持！'
+}, {
+    version: '20220710_01',
+    desc: '优化：使用YunxiOcr(paddle)代替浩然OCR，且扩展由外置apk修改为程序内置，但需进入设置页面打开OCR扩展并下载'
 }];
 
 export default versionList[versionList.length - 1].version;

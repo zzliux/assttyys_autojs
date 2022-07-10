@@ -1,18 +1,126 @@
-//导入插件
-let ocr = null;
+export const ocr = {
 
-//识别图片
-// console.time('ocr.detect');
-// let results = ocr.detect(img.getBitmap(), 1)
-// console.timeEnd('ocr.detect');
-// console.info("过滤前结果数：" + results.size())
-// //识别结果过滤
-// results = ocr.filterScore(results, 0.1, 0.1, 0.1)
-// console.info("过滤后结果数：" + results.size())
+    /**
+     * 获取ocr是否安装
+     */
+    isInstalled: function () {
+        const path = context.getExternalFilesDir(null).getAbsolutePath() + '/assttyus_ng';
+        const toCheckPaths = [
+            path + '/ocr/libs/YunxiOcr.dex',
+            path + '/ocr/libs/libc++_shared.so',
+            path + '/ocr/libs/libedge-infer.so',
+            path + '/ocr/libs/libxcrash.so',
+            path + '/ocr/libs/libxcrash_dumper.so',
+            path + '/ocr/data/config.json',
+            path + '/ocr/data/eng.traineddata',
+            path + '/ocr/data/chi_sim.traineddata',
+        ];
+        let flag = true
+        for (let path of toCheckPaths) {
+            if (!files.exists(path)) {
+                console.error(`该文件不存在${path}`);
+                flag = false;
+            }
+        }
+        return flag;
+    },
 
-export default function () {
-    if (!ocr) {
-        ocr = $plugins.load("com.hraps.ocr");
+    /**
+     * 安装
+     */
+    install: function (option) {
+        dialogs.confirm('提示', '大约消耗12Mb，是否下载OCR扩展？', function (cr) {
+            if (cr) {
+                try {
+                    threads.start(function () {
+                        try {
+                            toastLog('下载中，请稍后...');
+                            const path = context.getExternalFilesDir(null).getAbsolutePath() + '/assttyus_ng/ocr';
+                            const r = http.get('https://assttyys.zzliux.cn/static/ocr_deps.zip');
+                            toastLog('下载完成');
+                            console.log(`解压路径：${path}`);
+                            files.ensureDir(path + '/ocr_deps.zip');
+                            files.writeBytes(path + '/ocr_deps.zip', r.body.bytes());
+                            $zip.unzip(path + '/ocr_deps.zip', path);
+                            files.remove(path + '/ocr_deps.zip');
+                            option.successCallback();
+                        } catch (e) {
+                            toast(e);
+                            console.error($debug.getStackTrace(e));
+                            option.failCallback();
+                        }
+                    });
+                } catch (e) {
+                    toast(e);
+                    console.error($debug.getStackTrace(e));
+                    option.failCallback();
+                }
+            } else {
+                option.failCallback();
+            }
+        });
+    },
+
+    prepare: function () {
+        const path = context.getExternalFilesDir(null).getAbsolutePath() + '/assttyus_ng/ocr';
+        runtime.loadDex(path + '/libs/YunxiOcr.dex');
+        if (!files.exists(runtime.files.join(runtime.libraryDir, 'libc++_shared.so'))) {
+            files.copy(path + '/libs/libc++_shared.so', runtime.files.join(runtime.libraryDir, 'libc++_shared.so'));
+        }
+        if (!files.exists(runtime.files.join(runtime.libraryDir, 'libedge-infer.so'))) {
+            files.copy(path + '/libs/libedge-infer.so', runtime.files.join(runtime.libraryDir, 'libedge-infer.so'));
+        }
+        if (!files.exists(runtime.files.join(runtime.libraryDir, 'libxcrash.so'))) {
+            files.copy(path + '/libs/libxcrash.so', runtime.files.join(runtime.libraryDir, 'libxcrash.so'));
+        }
+        if (!files.exists(runtime.files.join(runtime.libraryDir, 'libxcrash_dumper.so'))) {
+            files.copy(path + '/libs/libxcrash_dumper.so', runtime.files.join(runtime.libraryDir, 'libxcrash_dumper.so'));
+        }
+
+        function detectOcr(path1, path2, path3) {
+            var instance = new com.plugin.PaddleOCR.YunxiPlugin(context);
+            var isLoad = instance.OnLoad()
+            this.init = function (path1, path2, path3) {
+                var result = instance.init(4, files.read(path1), files.path(path2), files.path(path3)); //设置模型文件路径
+                if (result) {
+                    return true;
+                } else {
+                    console.error(instance.getLastError());
+                    return instance.getLastError(); //如果有错误可以用getLastError获取
+                }
+            }
+            var InitResult = this.init(path1, path2, path3);
+            this.loadImage = function (bitmap) {
+                if (InitResult === true) {
+                    var result = instance.ocr(bitmap, 0.7);
+                    return JSON.parse(result);
+                } else {
+                    return '未初始化'
+                }
+            }
+            this.Destroy = function () {
+                instance.destroy();
+            }
+            events.on('exit', function (t) {
+                instance.destroy(); //必须释放,否则下次无法init
+            });
+        }
+        return new detectOcr(path + '/data/config.json', path + '/data/eng.traineddata', path + '/data/chi_sim.traineddata');
+    },
+
+    findText: function (where, myText, action) {
+        let mypoint = android.graphics.Point()
+        where.some(result => {
+            if (result.label.search(myText) != -1) {
+                pointArr = result.points
+                mypoint.x = (pointArr[0].x + pointArr[1].x + pointArr[2].x + pointArr[3].x) / 4
+                mypoint.y = (pointArr[0].y + pointArr[1].y + pointArr[2].y + pointArr[3].y) / 4
+                return false
+            }
+        })
+        if (action == 'click') {
+            return click(mypoint.x, mypoint.y)
+        }
+        return mypoint
     }
-    return ocr;
-};
+}

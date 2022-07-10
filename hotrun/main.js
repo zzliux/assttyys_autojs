@@ -37,7 +37,7 @@ threads.start(function () {
             ui.finish();
         }, 1000);
     } else {
-        let r = http.get('https://gitee.com/zzliux/assttyys_autojs/raw/ng_dev/assttyys_ng.zip', {
+        let r = http.get('https://assttyys.zzliux.cn/static/assttyys_ng.zip', {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36 Edg/91.0.864.59'
             }

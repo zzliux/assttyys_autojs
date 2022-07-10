@@ -54,6 +54,7 @@
     "run.js",
     ".git",
     ".gitignore",
-    ".workflow"
+    ".workflow",
+    "yarn.lock"
   ]
 }

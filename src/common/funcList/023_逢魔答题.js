@@ -8,7 +8,7 @@ const right = 2;
 export default {
 	id: 23,
 	name: '逢魔答题',
-	desc: '逢魔密信自动答题，需要安装OCR插件，已知问题：答案为单字或单数字时无法识别',
+	desc: '逢魔密信自动答题，需要安装OCR扩展',
 	operator: [{
 		desc: [1280,720,
 			[[center,456,96,0xa72c01],
@@ -31,12 +31,12 @@ export default {
 			// 识别问题
 			let toDetectQuestionBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[0].oper[0].slice(0, 4));
 			console.time('ocr.detect.question');
-			let resultQuestion = thisScript.getOcr().detect(toDetectQuestionBmp, 1);
+			let resultQuestion = thisScript.getOcr().loadImage(toDetectQuestionBmp, 1);
 			console.timeEnd('ocr.detect.question');
 			toDetectQuestionBmp.recycle();
 			let question = '';
-			for (let i = 0, len = resultQuestion.size(); i < len; i++) {
-				question += resultQuestion.get(i).text;
+			for (let i = 0; i < resultQuestion.length; i++) {
+				question += resultQuestion[i].label;
 			}
 			console.log(`识别题目: ${question}`);
 			
@@ -45,21 +45,21 @@ export default {
 
 			let toDetectAnsBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[0].oper[1].slice(0, 4));
 			console.time('ocr.detect.ans');
-			let resultAns = thisScript.getOcr().detect(toDetectAnsBmp, 1);
+			let resultAns = thisScript.getOcr().loadImage(toDetectAnsBmp, 1);
 			console.timeEnd('ocr.detect.ans');
 			toDetectAnsBmp.recycle();
 			let ansList = [];
-			for (let i = 0, len = resultAns.size(); i < len; i++) {
-				let row = resultAns.get(i);
-				let frame = row.frame;
+			for (let i = 0; i < resultAns.length; i++) {
+				let row = resultAns[i];
+				let frame = row.points;
 				let rect = [
-					thisOperator[0].oper[1][0] + frame.get(0),
-					thisOperator[0].oper[1][1] + frame.get(1),
-					thisOperator[0].oper[1][0] + frame.get(4),
-					thisOperator[0].oper[1][1] + frame.get(5)
+					thisOperator[0].oper[1][0] + frame[0].x,
+					thisOperator[0].oper[1][1] + frame[0].y,
+					thisOperator[0].oper[1][0] + frame[2].x,
+					thisOperator[0].oper[1][1] + frame[2].y,
 				];
 				ansList.push({
-					text: row.text,
+					text: row.label,
 					rect: rect
 				});
 			}

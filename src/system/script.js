@@ -3,7 +3,7 @@ import funcList from '@/common/funcList';
 import defaultSchemeList from '@/common/schemeList';
 import helperBridge from '@/system/helperBridge';
 import multiColor from '@/common/multiColors';
-import ocr from '@/system/ocr';
+import { ocr } from '@/system/ocr';
 import { setCurrentScheme } from '@/common/tool';
 import { getWidthPixels, getHeightPixels } from "@auto.pro/core";
 import _ from 'lodash';
@@ -22,11 +22,11 @@ var script = {
     multiColor: null, // 多点找色用的，提前初始化，减轻运行中计算量
     hasRedList: false, // KeepScreen(true)时会初始化redList，如果没有初始化的话这个值为false，方便在有需要的时候初始化redlist且不重复初始化
     runDate: null, // 运行启动时间
-    ocr: null, // 浩然的OCR
+    ocr: null, // yunxi的ocr
     // 获取ocr对象，重复调用仅在第一次进行实例化
     getOcr() {
         if (!this.ocr) {
-            this.ocr = ocr();
+            this.ocr = ocr.prepare();
         }
         return this.ocr;
     },

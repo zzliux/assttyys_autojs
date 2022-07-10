@@ -5,6 +5,7 @@ import { storeCommon } from '@/system/store';
 import { requestMyScreenCapture } from '@/common/toolAuto';
 import { isRoot } from "@auto.pro/core";
 import helperBridge from '@/system/helperBridge';
+import { ocr } from '@/system/ocr';
 
 
 export default function webviewSettigns() {
@@ -80,16 +81,10 @@ export default function webviewSettigns() {
             type: 'assttyys_setting_floaty_debugger_draw',
             enabled: !!drawFloaty.instacne
         }, {
-            desc: '脚本停止是否启用推送',
-            name: 'use_push_plus',
-            type: 'assttyys_setting',
-            enabled: storeSettings.use_push_plus || false,
-        }, {
-            desc: '推送加token',
-            name: 'push_plus_token',
-            type: 'assttyys_setting',
-            stype: 'text',
-            value: storeSettings.push_plus_token || ''
+            desc: 'OCR扩展',
+            name: 'ocr_extend',
+            type: 'assttyys_setting_ocr_extend',
+            enabled: ocr.isInstalled()
         }];
         done(ret);
     });
@@ -183,6 +178,23 @@ export default function webviewSettigns() {
                 drawFloaty.destroy();
             }
             done(true);
+        } else if ('assttyys_setting_ocr_extend' === item.type) {
+            if (item.enabled) {
+                ocr.install({
+                    successCallback: function () {
+                        console.log(111);
+                        done(true)
+                    },
+                    failCallback: function () {
+                        done(false)
+                    },
+                });
+            } else {
+                // done(true);
+                // todo 卸载扩展
+                toastLog('已安装扩展请勿取消');
+                done(false);
+            }
         }
     });
 
@@ -204,10 +216,10 @@ export default function webviewSettigns() {
         let appList = [];
         let imgDirPath = files.cwd() + '/assets/img/packagesicons';
         files.ensureDir(imgDirPath + '/');
-        
+
         let storeSettings = storeCommon.get('settings', {});
         let defaultLaunchAppList = storeSettings.defaultLaunchAppList || [];
-        
+
         for (let i = 0; i < packages.size(); i++) {
             let packageInfo = packages.get(i);
             if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) { // 非系统应用
@@ -232,7 +244,7 @@ export default function webviewSettigns() {
                         bmp.recycle();
                         (new java.io.FileOutputStream(impPath)).write(baos.toByteArray());
                     }
-                    
+
                     let appInfo = {
                         appName: packageInfo.applicationInfo.loadLabel(context.getPackageManager()).toString(), // 获取应用名称
                         packageName: packageInfo.packageName, // 获取应用包名，可用于卸载和启动应用
@@ -247,7 +259,7 @@ export default function webviewSettigns() {
                     toastLog(e);
                 }
             } else { // 系统应用
-        
+
             }
         }
         done(appList);
@@ -268,7 +280,7 @@ export default function webviewSettigns() {
         let ret = [];
         shapedScreenDevices.forEach(deviceName => {
             let enabled = false;
-            for (let i = 0;i < storedShapedScreenConfig.length;i++) {
+            for (let i = 0; i < storedShapedScreenConfig.length; i++) {
                 if (storedShapedScreenConfig[i] === deviceName) {
                     enabled = true;
                     break;
