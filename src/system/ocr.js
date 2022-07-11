@@ -28,6 +28,7 @@ export const ocr = {
      * 安装
      */
     install: function (option) {
+        let self = this;
         dialogs.confirm('提示', '大约消耗12Mb，是否下载OCR扩展？', function (cr) {
             if (cr) {
                 try {
