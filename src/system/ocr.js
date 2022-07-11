@@ -1,4 +1,5 @@
 export const ocr = {
+    is64: /64$/.test(context.getApplicationInfo().nativeLibraryDir),
 
     /**
      * 获取ocr是否安装
@@ -9,8 +10,6 @@ export const ocr = {
             path + '/ocr/libs/YunxiOcr.dex',
             path + '/ocr/libs/libc++_shared.so',
             path + '/ocr/libs/libedge-infer.so',
-            path + '/ocr/libs/libxcrash.so',
-            path + '/ocr/libs/libxcrash_dumper.so',
             path + '/ocr/data/config.json',
             path + '/ocr/data/eng.traineddata',
             path + '/ocr/data/chi_sim.traineddata',
@@ -36,12 +35,16 @@ export const ocr = {
                         try {
                             toastLog('下载中，请稍后...');
                             const path = context.getExternalFilesDir(null).getAbsolutePath() + '/assttyus_ng/ocr';
-                            const r = http.get('https://assttyys.zzliux.cn/static/ocr_deps.zip');
-                            toastLog('下载完成');
+                            let url = 'https://assttyys.zzliux.cn/static/ocr_deps_64.zip';
+                            if (!self.is64) {
+                                url = 'https://assttyys.zzliux.cn/static/ocr_deps_32.zip';
+                            }
+                            const r = http.get(url);
                             console.log(`解压路径：${path}`);
                             files.ensureDir(path + '/ocr_deps.zip');
                             files.writeBytes(path + '/ocr_deps.zip', r.body.bytes());
                             $zip.unzip(path + '/ocr_deps.zip', path);
+                            toastLog('下载完成');
                             files.remove(path + '/ocr_deps.zip');
                             option.successCallback();
                         } catch (e) {
@@ -69,12 +72,6 @@ export const ocr = {
         }
         if (!files.exists(runtime.files.join(runtime.libraryDir, 'libedge-infer.so'))) {
             files.copy(path + '/libs/libedge-infer.so', runtime.files.join(runtime.libraryDir, 'libedge-infer.so'));
-        }
-        if (!files.exists(runtime.files.join(runtime.libraryDir, 'libxcrash.so'))) {
-            files.copy(path + '/libs/libxcrash.so', runtime.files.join(runtime.libraryDir, 'libxcrash.so'));
-        }
-        if (!files.exists(runtime.files.join(runtime.libraryDir, 'libxcrash_dumper.so'))) {
-            files.copy(path + '/libs/libxcrash_dumper.so', runtime.files.join(runtime.libraryDir, 'libxcrash_dumper.so'));
         }
 
         function detectOcr(path1, path2, path3) {
