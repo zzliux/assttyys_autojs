@@ -156,31 +156,60 @@ var script = {
      * 执行多点找色
      * @param {String} key src\common\multiColors.js的key
      * @param {Region} inRegion 多点找色区域
+     * @param {Boolean} multiRegion 给true的话表示inRegion为region的数组
      * @returns 
      */
-    findMultiColor(key, inRegion) {
+    findMultiColor(key, inRegion, multiRegion) {
         this.initRedList();
-        let region = inRegion || this.multiColor[key].region;
-        let desc = this.multiColor[key].desc;
-        let similar = this.multiColor[key].similar || this.scheme.commonConfig.multiColorSimilar
-        for (let i = 0; i < desc.length; i++) {
-            let item = desc[i];
-            let point = this.helperBridge.helper.FindMultiColor(region[0], region[1], region[2], region[3], item, similar, true);
-            if (point.x !== -1) {
-                console.log(`[${key}]第${i}个查找成功， 坐标为：(${point.x}, ${point.y})`);
-                if (drawFloaty.instacne) {
-                    let toDraw = item.map(kk => {
-                        return {
-                            color: 'green',
-                            region: [point.x + kk[0] - 5, point.y + kk[1] - 5, point.x + kk[0] + 5, point.y + kk[1] + 5]
-                        }
-                    });
-                    toDraw[0].color = 'orange';
-                    toDraw[0].region = [point.x - 5, point.y - 5, point.x + 5, point.y + 5];
-                    drawFloaty.draw(toDraw, 400);
-                    sleep(150);
+        if (!multiRegion) {
+            let region = inRegion || this.multiColor[key].region;
+            let desc = this.multiColor[key].desc;
+            let similar = this.multiColor[key].similar || this.scheme.commonConfig.multiColorSimilar
+            for (let i = 0; i < desc.length; i++) {
+                let item = desc[i];
+                let point = this.helperBridge.helper.FindMultiColor(region[0], region[1], region[2], region[3], item, similar, true);
+                if (point.x !== -1) {
+                    console.log(`[${key}]第${i}个查找成功， 坐标为：(${point.x}, ${point.y})`);
+                    if (drawFloaty.instacne) {
+                        let toDraw = item.map(kk => {
+                            return {
+                                color: 'green',
+                                region: [point.x + kk[0] - 5, point.y + kk[1] - 5, point.x + kk[0] + 5, point.y + kk[1] + 5]
+                            }
+                        });
+                        toDraw[0].color = 'orange';
+                        toDraw[0].region = [point.x - 5, point.y - 5, point.x + 5, point.y + 5];
+                        drawFloaty.draw(toDraw, 400);
+                        sleep(150);
+                    }
+                    return point;
                 }
-                return point;
+            }
+        } else {
+            for (let inRegion2 of inRegion) {
+                let region = inRegion2;
+                let desc = this.multiColor[key].desc;
+                let similar = this.multiColor[key].similar || this.scheme.commonConfig.multiColorSimilar
+                for (let i = 0; i < desc.length; i++) {
+                    let item = desc[i];
+                    let point = this.helperBridge.helper.FindMultiColor(region[0], region[1], region[2], region[3], item, similar, true);
+                    if (point.x !== -1) {
+                        console.log(`[${key}]第${i}个查找成功， 坐标为：(${point.x}, ${point.y})`);
+                        if (drawFloaty.instacne) {
+                            let toDraw = item.map(kk => {
+                                return {
+                                    color: 'green',
+                                    region: [point.x + kk[0] - 5, point.y + kk[1] - 5, point.x + kk[0] + 5, point.y + kk[1] + 5]
+                                }
+                            });
+                            toDraw[0].color = 'orange';
+                            toDraw[0].region = [point.x - 5, point.y - 5, point.x + 5, point.y + 5];
+                            drawFloaty.draw(toDraw, 400);
+                            sleep(150);
+                        }
+                        return point;
+                    }
+                }
             }
         }
         return null;

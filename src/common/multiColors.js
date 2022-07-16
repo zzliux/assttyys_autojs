@@ -5,31 +5,16 @@ const right = 2;
 
 export default {
     '结界_进攻': {
+        // 重新取色，使用时需要指定查找区域
         region: [center, 1280, 720, 304, 317, 1166, 713],
         desc: [
             [1280, 720,
                 [
-                    [center, 657, 362, 0x993333],
-                    [center, 677, 375, 0xf4b25f],
-                    [center, 773, 407, 0xf5b25e],
-                    [center, 776, 411, 0x933e2d],
-                    [center, 702, 383, 0x282520],
-                    [center, 736, 394, 0x272420],
-                    [center, 704, 385, 0xf4b25f]
-                ]
-            ],
-            [1280, 720,
-                [
-                    [center, 600, 492, 0x993333],
-                    [center, 719, 540, 0x923d2c],
-                    [center, 702, 509, 0xf4b25f],
-                    [center, 646, 513, 0xf4b25f],
-                    [center, 679, 522, 0x272420],
-                    [center, 678, 517, 0xf4b25f],
-                    [center, 649, 510, 0x2b2721],
-                    [center, 651, 528, 0x272420],
-                    [center, 654, 528, 0x272420],
-                    [center, 715, 536, 0xf5b15c]
+                    [center, 325, 362, 0x9a3434],
+                    [center, 444, 363, 0x933e2d],
+                    [center, 329, 367, 0xf5b15c],
+                    [center, 440, 407, 0xf5b25e],
+                    [center, 444, 411, 0x983e2d],
                 ]
             ]
         ]

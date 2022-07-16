@@ -211,6 +211,9 @@ export const versionList = [{
 }, {
     version: '20220710_01',
     desc: '优化：使用YunxiOcr(paddle)代替浩然OCR，且扩展由外置apk修改为程序内置，但需进入设置页面打开OCR扩展并下载'
+}, {
+    version: '20220716_01',
+    desc: '优化：个人突破、寮突破的进攻按钮的查找逻辑'
 }];
 
 export default versionList[versionList.length - 1].version;

@@ -58,16 +58,38 @@ export default {
 	operator: [{
 		oper: [
 			[left, 1280, 720, 0, 0, 119, 49, 2000],
-			[center, 1280, 720, 1188,115, 1225,151, 500],
+			[center, 1280, 720, 1188, 115, 1225, 151, 500],
+			[center, 1280, 720, 313, 349, 1131, 696, -1], // 个人突破找色范围
+			[center, 1280, 720, 578, 119, 751, 699, -1], // 寮突破找色范围1
+			[center, 1280, 720, 921, 119, 1093,698, -1], // 寮突破找色范围2
+		]
+	}, {
+		// 个人突破与寮突破的前提判断
+		desc: [1280, 720,
+			[
+				[center, 199, 102, 0x20170f],
+				[center, 1206, 132, 0x615a53],
+				[center, 729, 50, 0x1f1f22],
+				[center, 1192, 81, 0x1b1a1d],
+				[center, 84, 167, 0x594f42],
+			]
 		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
+		if (!thisScript.oper({
+			name: '突破界面_暗_判断',
+			operator: [{ desc: thisOperator[1].desc }]
+		})) {
+			return false;
+		}
 		let thisConf = thisScript.scheme.config['8'];
 		let count = parseInt(thisConf.count);
 		let defaultCount = count;
 		let point = null;
+		let region = [thisOperator[0].oper[2]];
 		if ('寮突破' === thisConf.type) {
-			if (thisScript.findMultiColor('结界_进攻_灰')) {
+			region = [thisOperator[0].oper[3], thisOperator[0].oper[4]];
+			if (thisScript.findMultiColor('结界_进攻_灰', region, true)) {
 				if (thisConf.cdSwitchSchemeEnable) {
 					let oper = thisOperator[0].oper[1];
 					thisScript.helperBridge.regionClick([oper, oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
@@ -90,7 +112,7 @@ export default {
 				}
 			}
 		}
-		while (point = thisScript.findMultiColor('结界_进攻')) {
+		while (point = thisScript.findMultiColor('结界_进攻', region, true)) {
 			let oper = [[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
 			thisScript.helperBridge.regionClick(oper, 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
 			thisScript.keepScreen(true);
