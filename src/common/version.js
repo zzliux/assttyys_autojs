@@ -214,6 +214,9 @@ export const versionList = [{
 }, {
     version: '20220716_01',
     desc: '优化：个人突破、寮突破的进攻按钮的查找逻辑'
+}, {
+    version: '20220717_01',
+    desc: '尝试修复：突破进攻部分设备不识别的情况'
 }];
 
 export default versionList[versionList.length - 1].version;

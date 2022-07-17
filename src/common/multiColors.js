@@ -16,6 +16,16 @@ export default {
                     [center, 440, 407, 0xf5b25e],
                     [center, 444, 411, 0x983e2d],
                 ]
+            ],
+            [1280, 720,
+                [
+                    [center, 989, 363, 0x943031],
+                    [center, 995, 368, 0xefa858],
+                    [center, 1105, 367, 0xf7ae63],
+                    [center, 1110, 363, 0x943c29],
+                    [center, 1105, 407, 0xf1b05c],
+                    [center, 1109, 411, 0x993f2f],
+                ]
             ]
         ]
     },
