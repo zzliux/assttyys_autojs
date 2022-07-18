@@ -82,7 +82,6 @@ export default {
 				[left, 73, 43, 0x162539],
 				[center, 751, 39, 0x241709],
 				[right, 1182, 648, 0x696969],
-				[right, 1079, 633, 0xe5d4ab],
 			]
 		]
 	}],
