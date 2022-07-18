@@ -89,7 +89,7 @@ export default {
 		if (!thisScript.oper({
 			name: '突破界面_暗_判断',
 			operator: [{ desc: thisOperator[1].desc }]
-		}) || !thisScript.oper({
+		}) && !thisScript.oper({
 			name: '逢魔之时_暗_判断',
 			operator: [{ desc: thisOperator[2].desc }]
 		})) {
