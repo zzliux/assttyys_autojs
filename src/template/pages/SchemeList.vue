@@ -31,12 +31,14 @@
               :stop-propagation="true"
             >
               <template>
+                <div v-if="item.groupId" class="group-color" :style="'background-color: ' + getGroupColor(item.groupId)"></div>
                 <div
                   class="item van-cell van-cell--center"
                   @click="schemeClickEvent($event, item)"
+                  :style="'margin-left: ' + (item.groupId ? '4px' : '0px')"
                 >
                   <div class="van-cell__title item-title">{{ item.schemeName }}</div>
-                  <div class="van-cell__value item-value">
+                  <div class="van-cell__value item-value" :style="'margin-right: ' + (item.groupId ? '4px' : '0px')">
                     <span class="handle-area"
                       ><van-icon class="handle" size="18" name="bars"
                     /></span>
@@ -108,6 +110,7 @@ import { Cell, SwipeCell, CellGroup, Icon, Button, Dialog, Field, Notify } from 
 import draggable from "vuedraggable";
 import { mergeSchemeList } from "../../common/tool";
 import dSchemeList from "../../common/schemeList";
+import groupColor from "../../common/groupColors";
 import _ from "lodash";
 
 Vue.use(Cell);
@@ -300,6 +303,9 @@ export default {
           this.newSchemeName = null;
         }
       }
+    },
+    getGroupColor(groupId) {
+      return groupColor[groupId]
     }
   },
 };
@@ -331,5 +337,11 @@ export default {
 .item-value {
   float: right;
   height:44px;
+}
+.group-color {
+  width: 4px;
+  height: 100%;
+  position: absolute;
+  background-color: #ff00ff
 }
 </style>

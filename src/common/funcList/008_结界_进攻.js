@@ -61,7 +61,7 @@ export default {
 			[center, 1280, 720, 1188, 115, 1225, 151, 500],
 			[center, 1280, 720, 313, 349, 1131, 696, -1], // 个人突破找色范围
 			[center, 1280, 720, 578, 119, 751, 699, -1], // 寮突破找色范围1
-			[center, 1280, 720, 921, 119, 1093,698, -1], // 寮突破找色范围2
+			[center, 1280, 720, 921, 119, 1093, 698, -1], // 寮突破找色范围2
 		]
 	}, {
 		// 个人突破与寮突破的前提判断
@@ -74,11 +74,25 @@ export default {
 				[center, 84, 167, 0x594f42],
 			]
 		]
+	}, {
+		// 逢魔的前提判断
+		desc: [1280, 720,
+			[
+				[left, 44, 50, 0x4c5059],
+				[left, 73, 43, 0x162539],
+				[center, 751, 39, 0x241709],
+				[right, 1182, 648, 0x696969],
+				[right, 1079, 633, 0xe5d4ab],
+			]
+		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
 		if (!thisScript.oper({
 			name: '突破界面_暗_判断',
 			operator: [{ desc: thisOperator[1].desc }]
+		}) || !thisScript.oper({
+			name: '逢魔之时_暗_判断',
+			operator: [{ desc: thisOperator[2].desc }]
 		})) {
 			return false;
 		}
