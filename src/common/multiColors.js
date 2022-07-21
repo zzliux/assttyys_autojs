@@ -1058,4 +1058,30 @@ export default {
             ]
         ]
     },
+    '开号_剧情更多按钮': {
+        region: [center, 1280, 720, 0, 0, 1279, 719],
+        desc: [
+            [1280, 720,
+                [
+                    [right, 1216, 332, 0x0f100c],
+                    [right, 1217, 353, 0xffecec],
+                    [right, 1236, 353, 0xffe9e9],
+                    [right, 1253, 353, 0xffe9e9],
+                    [right, 1235, 375, 0x10100c],
+                    [right, 1236, 390, 0x211d19],
+                    [right, 1265, 351, 0x1f140e],
+                ]
+            ],
+            [1280, 720,
+                [
+                    [center, 640, 169, 0xffffff],
+                    [center, 661, 201, 0x443b44],
+                    [center, 681, 185, 0x423942],
+                    [center, 680, 211, 0xccaa11],
+                    [center, 640, 227, 0xe3c106],
+                    [center, 678, 184, 0x433a43],
+                ]
+            ]
+        ]
+    }
 }
