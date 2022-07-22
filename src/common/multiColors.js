@@ -1061,6 +1061,7 @@ export default {
     '开号_剧情更多按钮': {
         region: [center, 1280, 720, 0, 0, 1279, 719],
         desc: [
+            // 三个点的按钮
             [1280, 720,
                 [
                     [right, 1216, 332, 0x0f100c],
@@ -1072,6 +1073,7 @@ export default {
                     [right, 1265, 351, 0x1f140e],
                 ]
             ],
+            // 眼睛按钮
             [1280, 720,
                 [
                     [center, 640, 169, 0xffffff],
@@ -1080,6 +1082,26 @@ export default {
                     [center, 680, 211, 0xccaa11],
                     [center, 640, 227, 0xe3c106],
                     [center, 678, 184, 0x433a43],
+                ]
+            ],
+            // 探索挑战图标1
+            [1280, 720,
+                [
+                    [center, 1000, 442, 0xffffed],
+                    [center, 1016, 450, 0xeeacb4],
+                    [center, 1011, 473, 0x404879],
+                    [center, 1032, 488, 0x31396b],
+                    [center, 1040, 505, 0xfffbe2]
+                ]
+            ],
+            // 探索挑战图标2
+            [1280, 720,
+                [
+                    [center, 1000, 447, 0x422918],
+                    [center, 1016, 450, 0xf8b6be],
+                    [center, 1011, 473, 0x424a7b],
+                    [center, 1032, 488, 0x31396b],
+                    [center, 1040, 508, 0x1a0e05]
                 ]
             ]
         ]

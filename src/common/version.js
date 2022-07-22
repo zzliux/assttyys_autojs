@@ -217,6 +217,9 @@ export const versionList = [{
 }, {
     version: '20220717_01',
     desc: '尝试修复：突破进攻部分设备不识别的情况'
+}, {
+    version: '20220722_01',
+    desc: '新增：功能百妖之巅挑战'
 }];
 
 export default versionList[versionList.length - 1].version;
