@@ -37,7 +37,7 @@
                   @click="schemeClickEvent($event, item)"
                   :style="'margin-left: ' + (item.groupName ? '6px' : '0px')"
                 >
-                  <div class="van-cell__title item-title">{{ item.schemeName }}</div>
+                  <div class="van-cell__title item-title" :style="'margin-left: ' + (!item.groupName ? '6px' : '0px')">{{ item.schemeName }}</div>
                   <div class="van-cell__value item-value" :style="'margin-right: ' + (item.groupName ? '6px' : '0px')">
                     <span class="handle-area"
                       ><van-icon class="handle" size="18" name="bars"
