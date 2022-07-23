@@ -122,7 +122,7 @@ const SchemeList = [{
         list: [3, 22]
     }, {
         id: 13,
-        groupId: 1,
+        groupName: '切换方案样例',
         schemeName: '例_个人探索30次_转个人突破',
         star: true,
         list: [0, 15, 1, 2, 3, 13, 14],
@@ -136,7 +136,7 @@ const SchemeList = [{
         }
     }, {
         id: 14,
-        groupId: 1,
+        groupName: '切换方案样例',
         schemeName: '例_个人突破_结束后转寮突破',
         star: true,
         list: [0, 1, 2, 3, 7, 10, 8, 9, 11, 25],
@@ -174,7 +174,7 @@ const SchemeList = [{
         list: [0, 1, 2, 3, 32],
     }, {
         id: 20,
-        groupId: 2,
+        groupName: '个人突破卡级',
         schemeName: '个人突破_卡级_进攻',
         star: true,
         list: [0, 1, 2, 3, 10, 7, 8, 9, 11],
@@ -196,7 +196,7 @@ const SchemeList = [{
         }
     }, {
         id: 21,
-        groupId: 2,
+        groupName: '个人突破卡级',
         schemeName: '个人突破_卡级_退出',
         star: true,
         list: [0, 1, 2, 3, 8, 9, 10, 11],
@@ -258,17 +258,17 @@ const SchemeList = [{
         list: [0, 3, 24, 99, 100],
     }, {
         id: 100,
-        groupId: 3,
+        groupName: '活动',
         schemeName: '活动_战场巡逻',
         list: [0, 1, 2, 3, 101]
     }, {
         id: 101,
-        groupId: 3,
+        groupName: '活动',
         schemeName: '活动_战场探索',
         list: [0, 3, 24, 102, 103, 104]
     }, {
         id: 102,
-        groupId: 3,
+        groupName: '活动',
         schemeName: '活动_前线作战',
         list: [0, 1, 2, 3, 24, 105, 106],
         config: {
@@ -279,7 +279,7 @@ const SchemeList = [{
         }
     }, {
         id: 103,
-        groupId: 3,
+        groupName: '活动',
         schemeName: '活动_不朽之木_三途轮回',
         list: [0, 1, 2, 3, 24, 107],
     }

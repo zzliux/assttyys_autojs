@@ -31,14 +31,14 @@
               :stop-propagation="true"
             >
               <template>
-                <div v-if="item.groupId" class="group-color" :style="'background-color: ' + getGroupColor(item.groupId)"></div>
+                <div v-if="item.groupName" class="group-color" :style="'background-color: ' + getGroupColor(item.groupName)"></div>
                 <div
                   class="item van-cell van-cell--center"
                   @click="schemeClickEvent($event, item)"
-                  :style="'margin-left: ' + (item.groupId ? '4px' : '0px')"
+                  :style="'margin-left: ' + (item.groupName ? '6px' : '0px')"
                 >
                   <div class="van-cell__title item-title">{{ item.schemeName }}</div>
-                  <div class="van-cell__value item-value" :style="'margin-right: ' + (item.groupId ? '4px' : '0px')">
+                  <div class="van-cell__value item-value" :style="'margin-right: ' + (item.groupName ? '6px' : '0px')">
                     <span class="handle-area"
                       ><van-icon class="handle" size="18" name="bars"
                     /></span>
@@ -98,15 +98,33 @@
           :label="'add' === schemeNameInputType ? '方案名' : '新的方案名'"
           v-model="newSchemeName"
           placeholder="请输入..."
+        />
+        <van-field
+          label="分组名"
+          v-model="newGroupName"
+          placeholder="请输入..."
         >
+            <template #button>
+              <van-button size="small" type="default" @click="newGroupNameSelect">选择</van-button>
+            </template>
         </van-field>
       </van-dialog>
     </div>
+    <!-- 分组名选择器 -->
+    <van-popup v-model="selectNewGroupNameShow" position="bottom">
+      <van-picker
+        show-toolbar
+        :columns="groupNameList"
+        @confirm="selectNewGroupNameConfirm"
+        @cancel="selectNewGroupNameShow = false"
+        :default-index="groupNameIndex"
+      />
+    </van-popup>
   </div>
 </template>
 <script>
 import Vue from "vue";
-import { Cell, SwipeCell, CellGroup, Icon, Button, Dialog, Field, Notify } from "vant";
+import { Cell, SwipeCell, CellGroup, Icon, Button, Dialog, Field, Notify, Picker } from "vant";
 import draggable from "vuedraggable";
 import { mergeSchemeList } from "../../common/tool";
 import dSchemeList from "../../common/schemeList";
@@ -121,6 +139,7 @@ Vue.use(Button);
 Vue.use(Dialog);
 Vue.use(Field);
 Vue.use(Notify);
+Vue.use(Picker);
 
 export default {
   data() {
@@ -132,7 +151,11 @@ export default {
       schemeNameInputType: null,
       newSchemeName: null,
       newScheme: null,
+      newGroupName: null,
       schemeList: [],
+      selectNewGroupNameShow: false,
+      groupNameList: [],
+      groupNameIndex: 0,
     };
   },
   props: {
@@ -237,10 +260,13 @@ export default {
             this.schemeNameInputType = 'copy';
             this.schemeNameInputShow = true;
             this.newScheme = _.cloneDeep(this.schemeList[this.swipeCellCurrentIndex]);
+            this.newSchemeName = this.newScheme.schemeName;
+            this.newGroupName = this.newScheme.groupName;
           } else if ('modify' === this.swipeCellCurrentAction) {
             this.schemeNameInputType = 'modify';
             this.newSchemeName = this.schemeList[this.swipeCellCurrentIndex].schemeName;
             this.schemeNameInputShow = true;
+            this.newGroupName = this.schemeList[this.swipeCellCurrentIndex].groupName;
           }
           break;
       }
@@ -249,6 +275,7 @@ export default {
       if ('cancel' === action) {
         this.newScheme = null;
         this.newSchemeName = null;
+        this.newGroupName = null;
         this.swipeCellCurrentAction = null;
         done(true);
       } else {
@@ -267,12 +294,14 @@ export default {
             }
           }
           this.newScheme.schemeName = this.newSchemeName;
+          this.newScheme.groupName = this.newGroupName;
           this.addScheme(this.newScheme);
           AutoWeb.auto('toast', "已复制");
           this.swipeCellCurrentAction = null;
           done(true);
           this.newScheme = null;
           this.newSchemeName = null;
+          this.newGroupName = null;
         } else if ('add' == this.schemeNameInputType) {
           for (let i = 0; i < this.schemeList.length; i++) {
             if (this.schemeList[i].schemeName == this.newSchemeName) {
@@ -284,6 +313,7 @@ export default {
           this.addScheme({
             id: null,
             schemeName: this.newSchemeName,
+            groupName: this.newGroupName,
             star: false,
             list: [],
             config: {},
@@ -293,19 +323,47 @@ export default {
           done(true);
           this.newScheme = null;
           this.newSchemeName = null;
+          this.newGroupName = null;
         } else if ('modify' === this.schemeNameInputType) {
           this.schemeList[this.swipeCellCurrentIndex].schemeName = this.newSchemeName;
+          this.schemeList[this.swipeCellCurrentIndex].groupName = this.newGroupName;
           this.saveSchemeList();
           AutoWeb.auto('toast', '修改成功');
           this.swipeCellCurrentAction = null;
           done(true);
           this.newScheme = null;
           this.newSchemeName = null;
+          this.newGroupName = null;
         }
       }
     },
-    getGroupColor(groupId) {
-      return groupColor[groupId]
+    newGroupNameSelect() {
+      let gSet = {};
+      this.schemeList.forEach(s => {
+        if (s.groupName) gSet[s.groupName] = 1;
+      });
+      this.groupNameList = Object.keys(gSet);
+      this.selectNewGroupNameShow = true;
+      if (this.newGroupName) {
+        for (let i = 0; i < this.groupNameList.length; i++) {
+          if (this.groupNameList[i] === this.newGroupName) {
+            this.groupNameIndex = i;
+            break;
+          }
+        }
+      }
+    },
+    selectNewGroupNameConfirm(text, _index) {
+      this.newGroupName = text;
+      this.selectNewGroupNameShow = false;
+    },
+    getGroupColor(groupName) {
+      // 计算hash值
+      let sum = 0;
+      for (let i = 0; i < groupName.length; i++) {
+        sum += groupName.charCodeAt(i);
+      }
+      return groupColor[sum % groupColor.length];
     }
   },
 };
@@ -339,7 +397,7 @@ export default {
   height:44px;
 }
 .group-color {
-  width: 4px;
+  width: 6px;
   height: 100%;
   position: absolute;
   background-color: #ff00ff

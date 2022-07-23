@@ -293,6 +293,7 @@ export default {
           schemeName: this.params.schemeName,
           star: this.scheme.star,
           inner: this.scheme.inner,
+          groupName: this.scheme.groupName,
           list: list,
           config: config,
           commonConfig: commonConfig
