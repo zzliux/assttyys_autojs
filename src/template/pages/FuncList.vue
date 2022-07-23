@@ -147,7 +147,7 @@ export default {
   async mounted() {
     if (this.params) {
       if (this.params.schemeName) {
-        // AutoWeb.auto('toast', `加载方案 [ ${this.params.schemeName} ] `);
+        // AutoWeb.autoPromise('toast', `加载方案 [ ${this.params.schemeName} ] `);
       }
     }
     var schemeConfig = await AutoWeb.autoPromise('getScheme', this.$route.query.schemeName);

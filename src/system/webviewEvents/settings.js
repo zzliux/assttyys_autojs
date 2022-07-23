@@ -2,7 +2,7 @@ import { webview } from "@/system";
 import drawFloaty from '@/system/drawFloaty';
 import myFloaty from '@/system/myFloaty';
 import { storeCommon } from '@/system/store';
-import { requestMyScreenCapture } from '@/common/toolAuto';
+import { getInstalledPackages, requestMyScreenCapture } from '@/common/toolAuto';
 import { isRoot } from "@auto.pro/core";
 import helperBridge from '@/system/helperBridge';
 import { ocr } from '@/system/ocr';
@@ -212,57 +212,59 @@ export default function webviewSettigns() {
 
     // 获取所有应用列表
     webview.on('getToSetDefaultLaunchAppList').subscribe(([_param, done]) => {
-        let packages = context.getPackageManager().getInstalledPackages(0);
-        let appList = [];
-        let imgDirPath = files.cwd() + '/assets/img/packagesicons';
-        files.ensureDir(imgDirPath + '/');
-
         let storeSettings = storeCommon.get('settings', {});
         let defaultLaunchAppList = storeSettings.defaultLaunchAppList || [];
-
-        for (let i = 0; i < packages.size(); i++) {
-            let packageInfo = packages.get(i);
-            if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) { // 非系统应用
-                try {
-                    let appIcon = packageInfo.applicationInfo.loadIcon(context.getPackageManager());
-                    let impPath = imgDirPath + '/' + packageInfo.packageName + '.png';
-                    if (!files.exists(impPath)) {
-                        let bmp = null;
-                        if (appIcon.getBitmap) {
-                            bmp = appIcon.getBitmap();
-                        } else if (appIcon.getBackground && appIcon.getForeground) {
-                            bmp = android.graphics.Bitmap.createBitmap(appIcon.getIntrinsicWidth(), appIcon.getIntrinsicHeight(), android.graphics.Bitmap.Config.ARGB_8888);
-                            let canvas = new android.graphics.Canvas(bmp);
-                            appIcon.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-                            appIcon.draw(canvas);
-                        }
-                        if (!bmp) continue;
-                        let baos = new java.io.ByteArrayOutputStream();
-                        bmp.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, baos);
-                        baos.flush();
-                        baos.close();
-                        bmp.recycle();
-                        (new java.io.FileOutputStream(impPath)).write(baos.toByteArray());
-                    }
-
-                    let appInfo = {
-                        appName: packageInfo.applicationInfo.loadLabel(context.getPackageManager()).toString(), // 获取应用名称
-                        packageName: packageInfo.packageName, // 获取应用包名，可用于卸载和启动应用
-                        versionName: packageInfo.versionName, // 获取应用版本名
-                        versionCode: packageInfo.versionCode, // 获取应用版本号
-                        // appIcon: 'https://local_resources_image_png' + impPath, // 获取应用图标
-                        appIcon: impPath, // 获取应用图标
-                        referred: defaultLaunchAppList.indexOf(packageInfo.packageName) !== -1,
-                    }
-                    appList.push(appInfo);
-                } catch (e) {
-                    toastLog(e);
-                }
-            } else { // 系统应用
-
+        let packageList = getInstalledPackages();
+        // done([]);
+        let appList = packageList.filter(packageInfo => {
+            // 保留非系统应用
+            return (packageInfo.applicationInfo.flags & android.content.pm.ApplicationInfo.FLAG_SYSTEM) === 0;
+        }).map(packageInfo => {
+            return {
+                appName: packageInfo.applicationInfo.label,
+                packageName: packageInfo.packageName, // 获取应用包名，可用于卸载和启动应用
+                versionName: packageInfo.versionName, // 获取应用版本名
+                versionCode: packageInfo.versionCode, // 获取应用版本号
+                referred: defaultLaunchAppList.indexOf(packageInfo.packageName) !== -1,
             }
-        }
+        });
         done(appList);
+    });
+
+    webview.on('getIconByPackageName').subscribe(([packageName, done]) => {
+        let packageList = getInstalledPackages().filter(packageInfo => packageInfo.packageName === packageName);
+        if (packageList.length === 0) {
+            done(null);
+            return;
+        }
+        let packageInfo = packageList[0];
+        let bmp = null;
+        try {
+            let appIcon = packageInfo.applicationInfo.loadIcon(context.getPackageManager());
+            if (appIcon.getBitmap) {
+                bmp = appIcon.getBitmap();
+            } else if (appIcon.getBackground && appIcon.getForeground) {
+                bmp = android.graphics.Bitmap.createBitmap(appIcon.getIntrinsicWidth(), appIcon.getIntrinsicHeight(), android.graphics.Bitmap.Config.ARGB_8888);
+                let canvas = new android.graphics.Canvas(bmp);
+                appIcon.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+                appIcon.draw(canvas);
+            }
+            if (!bmp) {
+                done(null);
+                return;
+            }
+            let baos = new java.io.ByteArrayOutputStream();
+            bmp.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, baos);
+            baos.flush();
+            baos.close();
+            const str = 'data:image/png;base64,' + android.util.Base64.encodeToString(baos.toByteArray(), android.util.Base64.NO_WRAP);
+            done(str);
+            // bmp.recycle();
+        } catch (e) {
+            console.error(e);
+            done(null);
+            bmp && bmp.recycle();
+        }
     });
 
     // 保存默认启动应用，在功能列表界面点击启动后直接启动已配置的应用

@@ -182,7 +182,7 @@ export default {
   },
   methods: {
     saveSchemeList() {
-      AutoWeb.auto('saveSchemeList', this.schemeList);
+      AutoWeb.autoPromise('saveSchemeList', this.schemeList);
     },
     schemeClickEvent(e, item) {
       console.log(this.itemOpenList);
@@ -202,9 +202,9 @@ export default {
       item.star = !item.star;
       this.saveSchemeList();
       if (item.star) {
-        AutoWeb.auto('toast', "收藏成功");
+        AutoWeb.autoPromise('toast', "收藏成功");
       } else {
-        AutoWeb.auto('toast', "已取消收藏");
+        AutoWeb.autoPromise('toast', "已取消收藏");
       }
     },
     addSchemeClickEvent(e) {
@@ -251,7 +251,7 @@ export default {
               option.instance.close();
               this.schemeList.splice(this.swipeCellCurrentIndex, 1);
               this.saveSchemeList();
-              AutoWeb.auto('toast', "已删除");
+              AutoWeb.autoPromise('toast', "已删除");
               this.swipeCellCurrentAction = null;
             }).catch(()=>{
               this.swipeCellCurrentAction = null;
@@ -296,7 +296,7 @@ export default {
           this.newScheme.schemeName = this.newSchemeName;
           this.newScheme.groupName = this.newGroupName;
           this.addScheme(this.newScheme);
-          AutoWeb.auto('toast', "已复制");
+          AutoWeb.autoPromise('toast', "已复制");
           this.swipeCellCurrentAction = null;
           done(true);
           this.newScheme = null;
@@ -328,7 +328,7 @@ export default {
           this.schemeList[this.swipeCellCurrentIndex].schemeName = this.newSchemeName;
           this.schemeList[this.swipeCellCurrentIndex].groupName = this.newGroupName;
           this.saveSchemeList();
-          AutoWeb.auto('toast', '修改成功');
+          AutoWeb.autoPromise('toast', '修改成功');
           this.swipeCellCurrentAction = null;
           done(true);
           this.newScheme = null;

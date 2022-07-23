@@ -105,7 +105,7 @@ const promptMockData = {
     saveSchemeList: function () {
         return 'success';
     },
-    versionInfo: function (){
+    versionInfo: function () {
         return {
             storeVersion: versionList[versionList.length - 1].version,
             versionList: versionList
@@ -115,14 +115,14 @@ const promptMockData = {
     setCurrentScheme: 'sucess',
     startScript: [],
     saveSetting: 'sucess',
-    toast: function () {},
-    initFloaty: function () {},
-    startActivityForLog: function () {},
-    saveToSetDefaultLaunchAppList: function () {},
-    openOpenSource() {},
-    mailTo() {},
-    copyToClip() {},
-    webloaded() {},
+    toast: function () { },
+    initFloaty: function () { },
+    startActivityForLog: function () { },
+    saveToSetDefaultLaunchAppList: function () { },
+    openOpenSource() { },
+    mailTo() { },
+    copyToClip() { },
+    webloaded() { },
     getAppInfo: {},
     getShapedScreenConfig: [{
         device: 'xiaomi 11(3200*1440)',
@@ -131,12 +131,13 @@ const promptMockData = {
         device: 'meizu 16th plus(2160*1080)',
         enabled: false
     }],
-    setShapedScreenConfigEnabled: {}
+    setShapedScreenConfigEnabled: {},
+    getIconByPackageName: null,
 };
 
 // 注入修改prompt
 window.promptMock = function (apiName, apiValue) {
-    if (promptMockData[apiName]) {
+    if (typeof promptMockData[apiName] !== 'undefined') {
         let option = JSON.parse(apiValue);
         let params = null;
         let deviceFn = null;
@@ -152,12 +153,15 @@ window.promptMock = function (apiName, apiValue) {
         } else {
             ret = promptMockData[apiName];
         }
-        console.log(`[promptMockData]apiName:${apiName}`);
-        console.log(`[promptMockData]apiValue:${JSON.stringify(params)}`);
-        console.log(`[promptMockData]returnData:${JSON.stringify(ret)}`);
         if (deviceFn) {
-            window[deviceFn](ret);
-            AutoWeb.removeDevicelly(deviceFn);
+            // 使用setTimoutout模拟异步环境
+            setTimeout(() => {
+                console.log(`[promptMockData]apiName:${apiName}`);
+                console.log(`[promptMockData]apiValue:${JSON.stringify(params)}`);
+                console.log(`[promptMockData]returnData:${JSON.stringify(ret)}`);
+                window[deviceFn](ret);
+                AutoWeb.removeDevicelly(deviceFn);
+            }, (Math.random() * 100000000 % 3000))
         } else {
             return ret;
         }

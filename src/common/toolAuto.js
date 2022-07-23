@@ -46,3 +46,53 @@ export function myToast (str) {
     ui.run(() => _toast(str));
     console.log(str);
 }
+
+function parsePMFlags(options, def) {
+    if(!options) {
+        return def;
+    }
+    function parseFlags(type, options) {
+        let flags = 0;
+        let flagStrings = options[type];
+        if(!flagStrings) {
+            return flags;
+        }
+        if(!Array.isArray(flagStrings)) {
+            throw new TypeError();
+        }
+        flagStrings.forEach(str => {
+            flags |= PM[(type + "_" + str).toUpperCase()];
+        });
+        return flags;
+    }
+    return def | parseFlags("get", options) | parseFlags("match", options);
+}
+
+export const getInstalledApps = function (options) {
+    let flags = parsePMFlags(options, android.content.pm.PackageManager.GET_META_DATA);
+    return toJsArray(context.packageManager.getInstalledApplications(flags)).map(appInfo => {
+        return new com.stardust.autojs.core.pm.AppInfo(context, appInfo)
+    });
+}
+
+export const getInstalledPackages = function (options) {
+    let flags = parsePMFlags(options, android.content.pm.PackageManager.GET_META_DATA);
+    return toJsArray(context.packageManager.getInstalledPackages(flags)).map(pkgInfo => {
+        pkgInfo.applicationInfo = new com.stardust.autojs.core.pm.AppInfo(context, pkgInfo.applicationInfo);
+        return pkgInfo;
+    });
+}
+
+export const getApkInfo = function (file, options) {
+    let flags = parsePMFlags(options, android.content.pm.PackageManager.GET_META_DATA);
+    return context.packageManager.getPackageArchiveInfo(files.path(file), flags);
+}
+
+export const toJsArray = function (iterable) {
+    var iterator = iterable.iterator();
+    var arr = [];
+    while (iterator.hasNext()) {
+        arr.push(iterator.next());
+    }
+    return arr;
+};

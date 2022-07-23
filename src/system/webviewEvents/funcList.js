@@ -1,6 +1,7 @@
 import { webview } from "@/system";
 import { setCurrentScheme } from '@/common/tool';
 import store, { storeCommon } from '@/system/store';
+import { getInstalledPackages } from '@/common/toolAuto';
 import defaultSchemeList from '@/common/schemeList';
 import { mergeSchemeList } from '@/common/tool';
 
@@ -63,52 +64,22 @@ export default function webviewFuncList() {
             done(null);
             launchPackage(defaultLaunchAppList[0]);
         } else {
-            let packages = context.getPackageManager().getInstalledPackages(0);
-            let appList = [];
-            let imgDirPath = files.cwd() + '/assets/img/packagesicons';
-            files.ensureDir(imgDirPath + '/');
-            
             let storeSettings = storeCommon.get('settings', {});
             let defaultLaunchAppList = storeSettings.defaultLaunchAppList || [];
-            
-            for (let i = 0; i < packages.size(); i++) {
-                let packageInfo = packages.get(i);
-                if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0 && defaultLaunchAppList.indexOf(packageInfo.packageName) !== -1) { // 非系统应用且在list中
-                    try {
-                        let appIcon = packageInfo.applicationInfo.loadIcon(context.getPackageManager());
-                        let impPath = imgDirPath + '/' + packageInfo.packageName + '.png';
-                        if (!files.exists(impPath)) {
-                            let bmp = null;
-                            if (appIcon.getBitmap) {
-                                bmp = appIcon.getBitmap();
-                            } else if (appIcon.getBackground && appIcon.getForeground) {
-                                bmp = android.graphics.Bitmap.createBitmap(appIcon.getIntrinsicWidth(), appIcon.getIntrinsicHeight(), android.graphics.Bitmap.Config.ARGB_8888);
-                                let canvas = new android.graphics.Canvas(bmp);
-                                appIcon.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-                                appIcon.draw(canvas);
-                            }
-                            if (!bmp) continue;
-                            let baos = new java.io.ByteArrayOutputStream();
-                            bmp.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, baos);
-                            baos.flush();
-                            baos.close();
-                            bmp.recycle();
-                            (new java.io.FileOutputStream(impPath)).write(baos.toByteArray());
-                        }
-                        
-                        let appInfo = {
-                            appName: packageInfo.applicationInfo.loadLabel(context.getPackageManager()).toString(), // 获取应用名称
-                            packageName: packageInfo.packageName, // 获取应用包名，可用于卸载和启动应用
-                            versionName: packageInfo.versionName, // 获取应用版本名
-                            versionCode: packageInfo.versionCode, // 获取应用版本号
-                            appIcon: impPath, // 获取应用图标
-                        }
-                        appList.push(appInfo);
-                    } catch (e) {
-                        toastLog(e);
-                    }
+            let packageList = getInstalledPackages();
+            // done([]);
+            let appList = packageList.filter(packageInfo => {
+                // 保留非系统应用
+                return (packageInfo.applicationInfo.flags & android.content.pm.ApplicationInfo.FLAG_SYSTEM) === 0 && defaultLaunchAppList.indexOf(packageInfo.packageName) !== -1;
+            }).map(packageInfo => {
+                return {
+                    appName: packageInfo.applicationInfo.label,
+                    packageName: packageInfo.packageName, // 获取应用包名，可用于卸载和启动应用
+                    versionName: packageInfo.versionName, // 获取应用版本名
+                    versionCode: packageInfo.versionCode, // 获取应用版本号
+                    referred: defaultLaunchAppList.indexOf(packageInfo.packageName) !== -1,
                 }
-            }
+            });
             done(appList);
         }
     });

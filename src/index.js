@@ -1,5 +1,3 @@
-importClass(android.content.pm.ApplicationInfo);
-
 import { fromEvent } from 'rxjs';
 import { effect$ } from "@auto.pro/core";
 import myFloaty from '@/system/myFloaty';

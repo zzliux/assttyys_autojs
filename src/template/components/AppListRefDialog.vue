@@ -7,11 +7,15 @@
         <div style="padding-top: 52px; padding-bottom: 52px">
           <div
             :class="'item' + (app.referred ? ' referred': '')"
-            v-for="app in appList"
+            v-for="app in innerAppList"
             :key="app.packageName"
             @click="app.referred = !app.referred"
           >
-            <span class="logo"><img :src="app.appIcon"/></span>
+            <span class="logo">
+              <van-loading v-if="!app.appIcon" />
+              <van-icon v-if="app.appIcon === 'fail'" name="failure" size="32px" />
+              <img v-else-if="app.appIcon" :src="app.appIcon"/>
+            </span>
             <span class="item-content">
               <div class="appName">{{app.appName}}</div>
               <div class="packageName">{{app.packageName}}</div>
@@ -43,11 +47,13 @@
 
 <script>
 import Vue from "vue";
-import { Col, Row, Popup, Switch } from 'vant';
+import { Col, Row, Popup, Switch, Loading, Icon } from 'vant';
 Vue.use(Col);
 Vue.use(Row);
 Vue.use(Popup);
-Vue.use(Switch);
+Vue.use(Switch)
+Vue.use(Loading);
+Vue.use(Icon);
 
 export default {
   props: {
@@ -61,6 +67,14 @@ export default {
       },
       set(s) {
         this.$emit('update:show', s)
+      }
+    },
+    innerAppList: {
+      get() {
+        return this.appList;
+      },
+      set(s) {
+        this.$emit('update:appList', s);
       }
     }
   },
@@ -79,6 +93,18 @@ export default {
     show(val) {
       this.dialogShow = val;
     },
+    async appList(val) {
+      this.innerAppList = val;
+      this.innerAppList.forEach((appInfo) => {
+        appInfo.appIcon = '';
+      });
+      for (let i = 0; i < this.innerAppList.length; i++) {
+        this.innerAppList[i].appIcon = (await AutoWeb.autoPromise('getIconByPackageName', this.innerAppList[i].packageName)) || 'fail';
+      }
+      this.$forceUpdate();
+    }
+  },
+  mounted() {
   },
 }
 </script>

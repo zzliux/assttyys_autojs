@@ -70,10 +70,10 @@ var myApp = new Vue({
 window.routeBack = function () {
 	if (/^index|schemeList$/.test(myApp.$route.name)) {
 		if (window.routeBackFlag) {
-			AutoWeb.auto('exit');
+			AutoWeb.autoPromise('exit');
 		} else {
 			window.routeBackFlag = true;
-			AutoWeb.auto('toast', '再按一次退出程序');
+			AutoWeb.autoPromise('toast', '再按一次退出程序');
 			setTimeout(() => {
 				window.routeBackFlag = false;
 			}, 1000)
