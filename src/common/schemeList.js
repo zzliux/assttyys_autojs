@@ -256,7 +256,7 @@ const SchemeList = [{
         id: 25,
         schemeName: '宴会',
         star: true,
-        list: [3, 1000, 1001, 1002, 1003]
+        list: [3, 1003, 1000, 1001, 1002, 1004]
     }, {
         id: 26,
         schemeName: '关闭BUFF',
