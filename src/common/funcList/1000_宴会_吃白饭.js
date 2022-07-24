@@ -36,9 +36,6 @@ export default {
 				thisScript.helperBridge.regionClick([
 					[point.x, point.y, point.x + 1, point.y + 1, 1500]
 				], thisScript.scheme.commonConfig.afterClickDelayRandom);
-				thisScript.helperBridge.regionClick([
-					[1022, 166, 1179, 509, 1000]
-				], thisScript.scheme.commonConfig.afterClickDelayRandom);
 				return true
 			} else {
 				return false

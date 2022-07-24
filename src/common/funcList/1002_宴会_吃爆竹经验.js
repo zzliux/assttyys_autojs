@@ -33,10 +33,7 @@ export default {
 			let point = thisScript.findMultiColor('宴会_爆竹经验') || null
 			if (point) {
 				thisScript.helperBridge.regionClick([
-					[point.x, point.y, point.x + 1, point.y + 1, 1000]
-				], thisScript.scheme.commonConfig.afterClickDelayRandom);
-				thisScript.helperBridge.regionClick([
-					[406, 551, 976, 608, 1000]
+					[point.x, point.y, point.x + 1, point.y + 1, 1500]
 				], thisScript.scheme.commonConfig.afterClickDelayRandom);
 				return true
 			} else {

@@ -1007,33 +1007,22 @@ export default {
         desc: [
             [1280, 720,
                 [
-                    [center, 454, 355, 0x735230],
-                    [center, 509, 355, 0x956a42],
-                    [center, 476, 346, 0xbbd3ea],
-                    [center, 482, 361, 0x8abbe5],
-                    [center, 482, 353, 0x256ca1],
-                    [center, 480, 382, 0x78a2da],
-                    [center, 480, 374, 0x5487cb]
+                    [center, 481, 348, 0xbedbef],
+                    [center, 481, 353, 0x216598],
+                    [center, 481, 364, 0xa5c8f3],
+                    [center, 480, 372, 0x5880c2],
+                    [center, 480, 378, 0x7a9fd4],
+                    [center, 482, 382, 0x91b0de]
                 ]
             ],
             [1280, 720,
                 [
-                    [center, 719, 356, 0xbedbef],
-                    [center, 721, 371, 0x91b3d7],
-                    [center, 716, 365, 0x5fa0d9],
-                    [center, 709, 379, 0xb2cbec],
-                    [center, 729, 374, 0xb9cad9],
-                    [center, 717, 384, 0x3466cb],
-                    [center, 718, 389, 0x7fa8db]
-                ]
-            ],
-            [1280, 720,
-                [
-                    [center, 784, 364, 0x74532d],
-                    [center, 838, 361, 0x8f653c],
-                    [center, 812, 358, 0x296da1],
-                    [center, 812, 353, 0xbedbef],
-                    [center, 813, 375, 0x6487be]
+                    [center, 485, 353, 0x488ad4],
+                    [center, 478, 353, 0x2c76a8],
+                    [center, 475, 365, 0x98bae3],
+                    [center, 488, 364, 0x9fbee3],
+                    [center, 474, 378, 0xa1b8e3],
+                    [center, 489, 378, 0xa4bfe1]
                 ]
             ]
         ]
