@@ -77,8 +77,8 @@ export default {
       });
       for (let i = 0; i < this.innerAppList.length; i++) {
         this.innerAppList[i].appIcon = (await AutoWeb.autoPromise('getIconByPackageName', this.innerAppList[i].packageName)) || 'fail';
+        this.$forceUpdate();
       }
-      this.$forceUpdate();
     }
   },
   mounted() {

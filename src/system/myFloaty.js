@@ -15,7 +15,8 @@ const myFloaty = {
         let self = this;
         this.fb = new FloatButton();
         this.fb.setMenuOpenAngle(150);
-        this.fb.setMenuRadius(48);
+        this.fb.setAllButtonSize(30);
+        this.fb.setMenuRadius(34);
         this.fb.setIcon('file://' + files.cwd() + '/assets/img/ay.png');
         this.fb.setColor('#FFFFFF');
         this.fb.setAutoCloseMenuTime(3000);
