@@ -81,7 +81,12 @@ const SchemeList = [{
         id: 7,
         schemeName: '个人探索',
         star: true,
-        list: [0, 15, 1, 2, 3, 13, 14, 29]
+        list: [0, 15, 1, 2, 3, 13, 14, 29],
+        config: {
+            '0': {
+                next_scheme: '关闭BUFF'
+            }
+        }
     }, {
         id: 8,
         schemeName: '组队探索_队长',
@@ -252,6 +257,10 @@ const SchemeList = [{
         schemeName: '宴会',
         star: true,
         list: [3, 1000, 1001, 1002, 1003]
+    }, {
+        id: 26,
+        schemeName: '关闭BUFF',
+        list: [1, 2, 3, 29, 40, 501, 502]
     }, {
         id: 99,
         schemeName: '伊吹之擂',

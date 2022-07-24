@@ -910,8 +910,8 @@ export default {
             ]
         ]
     },
-    '金币妖怪_查找开启的buff': {
-        region: [left, 1280, 720, 360, 116, 919, 530],
+    '开启的BUFF': {
+        region: [center, 1280, 720, 744, 116, 919, 530],
         desc: [
             [1280, 720,
                 [
@@ -927,6 +927,14 @@ export default {
                     [center, 777, 432, 0xe08602],
                     [center, 851, 415, 0xebb700],
                     [center, 851, 432, 0xe9b701]
+                ]
+            ],
+            [1280, 720,
+                [
+                    [center, 775, 482, 0xe08300],
+                    [center, 853, 484, 0xF1BC06],
+                    [center, 849, 485, 0xebb600],
+                    [center, 776, 485, 0xe38600],
                 ]
             ]
         ]

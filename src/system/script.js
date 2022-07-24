@@ -179,8 +179,7 @@ var script = {
                         });
                         toDraw[0].color = 'orange';
                         toDraw[0].region = [point.x - 5, point.y - 5, point.x + 5, point.y + 5];
-                        drawFloaty.draw(toDraw, 400);
-                        sleep(150);
+                        drawFloaty.draw(toDraw, 200);
                     }
                     return point;
                 }
@@ -204,8 +203,7 @@ var script = {
                             });
                             toDraw[0].color = 'orange';
                             toDraw[0].region = [point.x - 5, point.y - 5, point.x + 5, point.y + 5];
-                            drawFloaty.draw(toDraw, 400);
-                            sleep(150);
+                            drawFloaty.draw(toDraw, 200);
                         }
                         return point;
                     }
@@ -476,8 +474,7 @@ var script = {
                             }
                         })];
 
-                        drawFloaty.draw(toDraw, 300);
-                        // sleep(150);
+                        drawFloaty.draw(toDraw, 200);
                     }
                     retest = retest || item.retest || undefined;
                     if (retest && retest !== -1) {
