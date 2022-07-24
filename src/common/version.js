@@ -223,6 +223,9 @@ export const versionList = [{
 }, {
     version: '20220724_01',
     desc: '优化：原金币妖怪_关闭buff为关闭BUFF，增加关闭BUFF后切换方案；\n新增：关闭BUFF方案，可从大部分界面退出至探索地图界面并关闭BUFF'
+}, {
+    version: '20220724_02',
+    desc: '修复：宴会问题，由aiou大佬提交'
 }];
 
 export default versionList[versionList.length - 1].version;
