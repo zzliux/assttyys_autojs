@@ -229,6 +229,9 @@ export const versionList = [{
 }, {
     version: '20220729_01',
     desc: '新增：活动方案流火之擂'
+}, {
+    version: '20220730_01',
+    desc: '新增：活动方案红叶行狩'
 }];
 
 export default versionList[versionList.length - 1].version;

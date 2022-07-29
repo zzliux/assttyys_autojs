@@ -297,6 +297,12 @@ const SchemeList = [{
         schemeName: '流火之擂',
         list: [0, 1, 2, 3, 30, 109, 110],
         star: true,
+    }, {
+        id: 105,
+        groupName: '活动',
+        schemeName: '红叶行狩',
+        list: [0, 1, 2, 3, 24, 111],
+        star: true,
     }
     // 完整demo
     // , {
