@@ -226,6 +226,9 @@ export const versionList = [{
 }, {
     version: '20220724_02',
     desc: '修复：宴会问题，由aiou大佬提交'
+}, {
+    version: '20220729_01',
+    desc: '新增：活动方案流火之擂'
 }];
 
 export default versionList[versionList.length - 1].version;

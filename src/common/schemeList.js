@@ -291,6 +291,12 @@ const SchemeList = [{
         groupName: '活动',
         schemeName: '活动_不朽之木_三途轮回',
         list: [0, 1, 2, 3, 24, 107],
+    }, {
+        id: 104,
+        groupName: '活动',
+        schemeName: '流火之擂',
+        list: [0, 1, 2, 3, 30, 109, 110],
+        star: true,
     }
     // 完整demo
     // , {
