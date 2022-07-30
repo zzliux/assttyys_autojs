@@ -161,7 +161,7 @@ window.promptMock = function (apiName, apiValue) {
                 console.log(`[promptMockData]returnData:${JSON.stringify(ret)}`);
                 window[deviceFn](ret);
                 AutoWeb.removeDevicelly(deviceFn);
-            }, (Math.random() * 100000000 % 3000))
+            }, (Math.random() * 100000000 % 1000))
         } else {
             return ret;
         }

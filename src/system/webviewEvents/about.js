@@ -25,6 +25,6 @@ export default function webviewAbout() {
 
     webview.on("copyToClip").subscribe(([str, done]) => {
         setClip(str);
-        toastLog(`已复制 ${str} 至剪贴板`)
+        toastLog('复制成功');
     });
 }

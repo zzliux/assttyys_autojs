@@ -2,9 +2,12 @@
   <div>
     <div class="navbar_box">
       <van-nav-bar title="ASSTTYYS NG" :style="'padding-top: ' + (statusBarHeight || 0) + 'px'">
-         <template #left>
+        <template #left>
           <van-icon name="wap-nav" size="18" @click="$router.push('/settings')" />
           <!-- <van-icon name="success" size="18" @click="saveScheme" /> -->
+        </template>
+        <template #right>
+          <van-icon name="todo-list-o" size="18" @click="exportAndImportModel = true"/>
         </template>
       </van-nav-bar>
     </div>
@@ -120,11 +123,16 @@
         :default-index="groupNameIndex"
       />
     </van-popup>
+    <export-scheme-dialog
+      :show.sync="exportAndImportModel"
+      :schemeList="schemeList"
+    />
   </div>
 </template>
 <script>
 import Vue from "vue";
 import { Cell, SwipeCell, CellGroup, Icon, Button, Dialog, Field, Notify, Picker } from "vant";
+import ExportSchemeDialog from "../components/ExportSchemeDialog.vue";
 import draggable from "vuedraggable";
 import { mergeSchemeList } from "../../common/tool";
 import dSchemeList from "../../common/schemeList";
@@ -141,6 +149,7 @@ Vue.use(Field);
 Vue.use(Notify);
 Vue.use(Picker);
 
+
 export default {
   data() {
     return {
@@ -156,6 +165,7 @@ export default {
       selectNewGroupNameShow: false,
       groupNameList: [],
       groupNameIndex: 0,
+      exportAndImportModel: false,
     };
   },
   props: {
@@ -163,6 +173,7 @@ export default {
   },
   components: {
     draggable,
+    ExportSchemeDialog,
   },
   mounted() {
     var self = this;
