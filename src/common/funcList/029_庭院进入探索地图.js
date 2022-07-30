@@ -17,8 +17,7 @@ export default {
 				[right, 1236, 50, 0xcba274],
 				[right, 1222, 607, 0xefda9f],
 				[right, 1226, 638, 0xdfd0c8],
-				[right, 1128, 616, 0xe8f9ff],
-				[right, 1102, 621, 0x98b9db]
+				[center, 1106, 632, 0xe2dcdc],
 			]
 		],
 		oper: [

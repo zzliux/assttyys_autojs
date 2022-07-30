@@ -94,7 +94,7 @@ export default {
 		],
 		operStepRandom: [
 			[
-				[center, 1280, 720, 428, 499, 499, 53, 1000, 5],
+				[center, 1280, 720, 428, 499, 499, 534, 1000, 5],
 				[center, 1280, 720, 767, 500, 856, 534, 1000, 5],
 			]
 		]
@@ -103,10 +103,10 @@ export default {
 		desc: [1280, 720,
 			[
 				[center, 845, 666, 0xca9c84],
-				[center, 1191, 353, 0x423737],
 				[center, 514, 151, 0x2e2626],
 				[center, 136, 71, 0x372729],
 				[center, 330, 533, 0xf6ddc5],
+				[center, 1235, 73, 0x291c21],
 			]
 		],
 		oper: [

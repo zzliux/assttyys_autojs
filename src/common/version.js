@@ -235,6 +235,9 @@ export const versionList = [{
 }, {
     version: '20220730_02',
     desc: '尝试修复：突破勋章点击点到头像的问题'
+}, {
+    version: '20220731_01',
+    desc: '修复：庭院进入探索地图功能在部分失效的问题；\n修复：红叶行狩中选择祝福时左边的点击区域错误问题；\n修复：红叶行狩第三名卡结束的问题；新增：导出方案。'
 }];
 
 export default versionList[versionList.length - 1].version;
