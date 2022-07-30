@@ -232,6 +232,9 @@ export const versionList = [{
 }, {
     version: '20220730_01',
     desc: '新增：活动方案红叶行狩'
+}, {
+    version: '20220730_02',
+    desc: '尝试修复：突破勋章点击点到头像的问题'
 }];
 
 export default versionList[versionList.length - 1].version;

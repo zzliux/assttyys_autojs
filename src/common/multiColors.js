@@ -239,14 +239,15 @@ export default {
                 [
                     [center, 574, 428, 0xdacbbc],
                     [center, 786, 428, 0xdacabc],
-                    [center, 785, 532, 0xa49088],
                     [center, 590, 504, 0x86807b],
                     [center, 630, 504, 0xc9b6a4],
                     [center, 670, 504, 0xc9b6a4],
                     [center, 709, 504, 0xc9b6a4],
                     [center, 748, 504, 0xc9b6a4],
                     [center, 610, 495, 0xdcc4b5],
-                    [center, 610, 515, 0xdac9bb]
+                    [center, 610, 515, 0xdac9bb],
+                    [center, 785, 530, 0xa3958a],
+                    [center, 775, 534, 0x9f9085]
                 ]
             ]
         ]
