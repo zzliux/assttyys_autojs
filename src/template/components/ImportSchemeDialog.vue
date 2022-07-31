@@ -1,8 +1,8 @@
 <template>
   <div>
     <!-- 功能的参数配置 -->
-    <van-popup class="configModal" v-model="dialogShow" style="width: 100%; height: 100%; background: #f4f5f7; overflow: hidden">
-      <div style="position: absolute; top: 0; padding: 16px 16px 10px 16px; width: 100%; z-index: 2002; background: #f4f5f7;">导出方案</div>
+    <van-popup class="configModal" v-model="importModal" style="width: 100%; height: 100%; background: #f4f5f7; overflow: hidden">
+      <div style="position: absolute; top: 0; padding: 16px 16px 10px 16px; width: 100%; z-index: 2222; background: #f4f5f7;">选择要导入的方案</div>
       <div style="height: 100%; overflow: auto">
         <div style="padding-top: 52px; padding-bottom: 52px">
           <div v-for="(item, index) of schemeList" :key="index">
@@ -26,28 +26,30 @@
         <van-row>
           <van-col span="12">
             <div style="margin: 5px 5px 5px 10px; border-radius:5px; overflow: hidden;box-shadow: 1px 1px 1px #eaeaea">
-              <van-button type="warning" block @click="cancel">关闭</van-button>
+              <van-button type="warning" block @click="cancel">取消</van-button>
             </div>
           </van-col>
           <van-col span="12">
             <div style="margin: 5px 10px 5px 5px; border-radius:5px; overflow: hidden;box-shadow: 1px 1px 1px #eaeaea">
-              <van-button type="info" block @click="editTextModal = true; exportString = JSON.stringify(schemeList.filter(i => i.export), null, 4)">
-                <i class="iconfont iconfont-fabusekuai"></i> 导出
+              <van-button type="info" block @click="doImport">
+                <i class="iconfont iconfont-baocun"></i> 导入
               </van-button>
             </div>
           </van-col>
         </van-row>
       </div>
     </van-popup>
-    <van-popup style="width: 60%; height: 60%; z-index: 2222;" v-model="editTextModal">
+    <van-popup style="width: 60%; height: 60%" v-model="dialogShow">
       <div style="height: 100%; overflow: scroll;">
         <van-field
           v-model="exportString"
           autosize
-          spellcheck="false"
           type="textarea"
+          rows="60"
+          spellcheck="false"
         />
-        <van-button type="warning" size="small" style="position: absolute; right: 0; bottom: 0" @click="copyExportString()">复制</van-button>
+        <van-button type="warning" size="small" style="position: absolute; right: 43px; bottom: 0" @click="pasteExportString()">粘贴</van-button>
+        <van-button type="primary" size="small" style="position: absolute; right: 0; bottom: 0" @click="parseExportString()">解析</van-button>
       </div>
     </van-popup>
   </div>
@@ -68,12 +70,14 @@ Vue.use(Cell);
 export default {
   props: {
     show: Boolean,
-    schemeList: Array,
+    importCallback: Function,
   },
   data() {
     return {
       editTextModal: false,
-      exportString: ''
+      schemeList: [],
+      exportString: '',
+      importModal: false,
     }
   },
   computed: {
@@ -88,7 +92,7 @@ export default {
   },
   methods: {
     cancel() {
-      this.dialogShow = false
+      this.importModal = false
     },
     
     getGroupColor(groupName) {
@@ -99,8 +103,62 @@ export default {
       }
       return groupColor[sum % groupColor.length];
     },
-    async copyExportString() {
-      await AutoWeb.autoPromise('copyToClip', this.exportString);
+    async parseExportString() {
+      try {
+        // TODO 解析内容是否为scheme的数组
+        const toImport = JSON.parse(this.exportString);
+        // 导出数组内重名的重命名
+        for (let i = 0; i < toImport.length; i++) {
+          for (let j = i + 1; j < toImport.length; j++) {
+            if (toImport[i].schemeName === toImport[j].schemeName) {
+              toImport[j].schemeName += this.randomStr();
+            }
+          }
+        }
+        
+        // TODO 获取已储存的schemeList，判断重名方案后自动重命名
+        const savedSchemeList = await AutoWeb.autoPromise("getSchemeList");
+        for (let i = 0; i < savedSchemeList.length; i++) {
+          for (let j = 0; j < toImport.length; j++) {
+            if (savedSchemeList[i].schemeName === toImport[j].schemeName) {
+              toImport[j].schemeName += this.randomStr();
+            }
+          }
+        }
+        this.schemeList = toImport;
+        this.importModal = true;
+      } catch (e) {
+        console.error(e);
+        await AutoWeb.autoPromise('toast', e);
+      }
+    },
+    async pasteExportString() {
+      this.exportString = await AutoWeb.autoPromise('getClip');
+    },
+    async doImport() {
+      const savedSchemeList = await AutoWeb.autoPromise("getSchemeList");
+      let maxId = savedSchemeList.reduce((prev, curr) => {
+        return Math.max(prev, curr);
+      }, 0);
+      const toSave = this.schemeList;
+      toSave.filter(item => item.export).forEach(item => {
+        item.inner = false;
+        item.id = ++maxId;
+      });
+      await AutoWeb.autoPromise('saveSchemeList', [...savedSchemeList, ...toSave]);
+      await AutoWeb.autoPromise('toast', '导入成功');
+
+      this.dialogShow = false;
+      this.importModal = false;
+      this.importCallback()
+    },
+    randomStr() {
+      const str = 'abcdefghijklmnopqrstuvwxyz0123456789';
+      const arr = [];
+      for (let i = 0; i < 6; i++) {
+        arr.push(str[parseInt(Math.random() * 654321) % str.length]);
+      }
+      return arr.join('');
     }
   },
   watch: {

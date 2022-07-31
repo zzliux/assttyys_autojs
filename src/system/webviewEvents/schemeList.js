@@ -81,6 +81,10 @@ export default function webviewSchemeList() {
         done(ret);
     });
 
+    webview.on("getClip").subscribe(([_param, done]) => {
+        done(getClip());
+    });
+
     // 提供toast给前端使用
     webview.on("toast").subscribe(([string, done]) => {
         done();

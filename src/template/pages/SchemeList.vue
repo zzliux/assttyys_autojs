@@ -7,7 +7,8 @@
           <!-- <van-icon name="success" size="18" @click="saveScheme" /> -->
         </template>
         <template #right>
-          <van-icon name="todo-list-o" size="18" @click="exportAndImportModel = true"/>
+          <!-- <van-icon name="todo-list-o" size="18" @click="exportAndImportModel = true"/> -->
+          <span size="18" @click="exportAndImportModel = true">更多</span>
         </template>
       </van-nav-bar>
     </div>
@@ -124,15 +125,33 @@
       />
     </van-popup>
     <export-scheme-dialog
-      :show.sync="exportAndImportModel"
+      :show.sync="exportModel"
       :schemeList="schemeList"
     />
+    <import-scheme-dialog
+      :show.sync="importModel"
+      :importCallback="schemeImportCallback"
+    />
+    <!-- 啊这个不知道用什么实现比较好了 -->
+    <van-popup
+      v-model="exportAndImportModel"
+      :overlay-style="{ backgroundColor: 'rgba(0, 0, 0, 0)' }"
+      style="background-color: rgba(0, 0, 0, 0);"
+      position="top"
+      @click="exportAndImportModel = false"
+    >
+      <div :style="`display: inline-block; border: #ccc 1px solid; float: right; background-color: #fff; font-size: 14px; margin-top: ${statusBarHeight + 46}px;`">
+        <div class="import-export-btn" @click="importModel = true">导入方案</div>
+        <div class="import-export-btn" @click="exportModel = true">导出方案</div>
+      </div>
+    </van-popup>
   </div>
 </template>
 <script>
 import Vue from "vue";
 import { Cell, SwipeCell, CellGroup, Icon, Button, Dialog, Field, Notify, Picker } from "vant";
 import ExportSchemeDialog from "../components/ExportSchemeDialog.vue";
+import ImportSchemeDialog from "../components/ImportSchemeDialog.vue";
 import draggable from "vuedraggable";
 import { mergeSchemeList } from "../../common/tool";
 import dSchemeList from "../../common/schemeList";
@@ -166,6 +185,8 @@ export default {
       groupNameList: [],
       groupNameIndex: 0,
       exportAndImportModel: false,
+      exportModel: false,
+      importModel: false,
     };
   },
   props: {
@@ -174,11 +195,15 @@ export default {
   components: {
     draggable,
     ExportSchemeDialog,
+    ImportSchemeDialog,
   },
   mounted() {
     var self = this;
     AutoWeb.auto("getSchemeList", null, function (savedSchemeList) {
       self.schemeList = mergeSchemeList(savedSchemeList, dSchemeList);
+
+      // 获取后保存一下方案列表，避免出现展示内容与保存内容不一样的情况
+      AutoWeb.autoPromise('saveSchemeList', self.schemeList);
     });
   },
   computed: {
@@ -375,6 +400,9 @@ export default {
         sum += groupName.charCodeAt(i);
       }
       return groupColor[sum % groupColor.length];
+    },
+    async schemeImportCallback() {
+      this.schemeList = await AutoWeb.autoPromise("getSchemeList");
     }
   },
 };
@@ -412,5 +440,14 @@ export default {
   height: 100%;
   position: absolute;
   background-color: #ff00ff
+}
+.import-export-btn {
+  transition: all .1s;
+  user-select: none;
+  padding: 5px;
+  box-shadow: 0px 1px 1px #ccc;
+}
+.import-export-btn:hover {
+  background: #ccc;
 }
 </style>

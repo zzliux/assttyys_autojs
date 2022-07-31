@@ -238,6 +238,9 @@ export const versionList = [{
 }, {
     version: '20220731_01',
     desc: '修复：庭院进入探索地图功能在部分失效的问题；\n修复：红叶行狩中选择祝福时左边的点击区域错误问题；\n修复：红叶行狩第三名卡结束的问题；新增：导出方案。'
+}, {
+    version: '20220731_02',
+    desc: '新增：导入方案，已知剪切板共享长度可能受限，粘贴时需注意是否粘贴完整；\n修复：红叶行狩选择骰子时若“2”已经选过导致的界面不识别的问题'
 }];
 
 export default versionList[versionList.length - 1].version;

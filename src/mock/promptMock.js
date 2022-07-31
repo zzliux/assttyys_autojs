@@ -1,5 +1,6 @@
 import defaultSchemeList from '../common/schemeList';
 import version, { versionList } from '../common/version';
+import _ from 'lodash';
 
 const promptMockData = {
     getScheme: function (schemeName) {
@@ -133,6 +134,10 @@ const promptMockData = {
     }],
     setShapedScreenConfigEnabled: {},
     getIconByPackageName: null,
+    getClip: JSON.stringify(_.cloneDeep(defaultSchemeList).slice(0, 4).map(item => {
+        item.groupName = '导出测试分组'
+        return item;
+    }), null, 4),
 };
 
 // 注入修改prompt
