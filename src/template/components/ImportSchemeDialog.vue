@@ -138,13 +138,15 @@ export default {
     async doImport() {
       const savedSchemeList = await AutoWeb.autoPromise("getSchemeList");
       let maxId = savedSchemeList.reduce((prev, curr) => {
-        return Math.max(prev, curr);
+        return Math.max(prev, curr.id);
       }, 0);
-      const toSave = this.schemeList;
-      toSave.filter(item => item.export).forEach(item => {
+      let toSave = this.schemeList;
+      toSave = toSave.filter(item => item.export);
+      toSave.forEach(item => {
         item.inner = false;
         item.id = ++maxId;
       });
+      debugger;
       await AutoWeb.autoPromise('saveSchemeList', [...savedSchemeList, ...toSave]);
       await AutoWeb.autoPromise('toast', '导入成功');
 
