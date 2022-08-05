@@ -241,6 +241,9 @@ export const versionList = [{
 }, {
     version: '20220731_02',
     desc: '新增：导入方案，已知剪切板共享长度可能受限，粘贴时需注意是否粘贴完整；\n修复：红叶行狩选择骰子时若“2”已经选过导致的界面不识别的问题'
+}, {
+    version: '20220805_01',
+    desc: '新增：准备功能中绿标支持自定义文本，使用OCR进行文字识别后点击式神'
 }];
 
 export default versionList[versionList.length - 1].version;

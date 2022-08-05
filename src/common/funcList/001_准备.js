@@ -1,3 +1,4 @@
+import { ocr } from "@/system/ocr";
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -11,7 +12,7 @@ export default {
 	config: [{
 		desc: '退出',
 		config: [{
-			name: 'exitBeforeReady',
+			name: 'exitBeforeRead、‘；、 y',
 			desc: '准备前是否退出,常用于个人突破的降级',
 			type: 'switch',
 			default: false,
@@ -22,13 +23,18 @@ export default {
 			name: 'greenType',
 			desc: '绿标类型',
 			type: 'list',
-			data: ['关闭', '标A', '自定义坐标'],
+			data: ['关闭', '标A', '自定义坐标', '自定义文本'],
 			default: '关闭',
 		}, {
 			name: 'greenPosition',
 			desc: '绿标坐标，仅绿标类型为自定义坐标时生效，格式x,y，实际点击时xy坐标会在±20内随机点击，如245,500',
 			type: 'text',
 			default: '245,500'
+		}, {
+			name: 'greenText',
+			desc: '绿标文本内容，将式神名称与文本内容保持一致，使用该功能请安装OCR扩展',
+			type: 'text',
+			default: '绿标专用'
 		}]
 	}],
 	operator: [{
@@ -75,7 +81,10 @@ export default {
 			[left, 1280, 720, 37,637, 86,686, 1000]
 		]
 	}, {
-		
+		// 文本识别的区域
+		oper: [
+			[center, 1280, 720, 0, 266, 1279, 590, -1]
+		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
 		let thisconf = thisScript.scheme.config['1'];
@@ -101,7 +110,7 @@ export default {
 				name: '手动修正自动',
 				operator: [thisOperator[2]]
 			}, 1000)) {
-				if (thisconf.greenType === '标A' || thisconf.greenType === '自定义坐标') {
+				if (thisconf.greenType === '标A' || thisconf.greenType === '自定义坐标' || thisconf.greenType === '自定义文本') {
 					// 开启绿标
 					if (thisScript.compareColorLoop(thisOperator[1].desc, 16000)) {
 						if (thisconf.greenType === '标A') {
@@ -143,6 +152,32 @@ export default {
 								inY + 20,
 								4000
 							]
+							thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
+							return true;
+						} else if (thisconf.greenType === '自定义文本') {
+							let result = ocr.findTextByOcr(thisScript.getOcr(), function () {
+								thisScript.keepScreen(); // 更新图片
+								return thisScript.helperBridge.helper.GetBitmap(); // 返回bmp
+							}, new RegExp(thisconf.greenText), 10000, thisOperator[3].oper[0]);
+							if (result.length === 0) {
+								toastLog(`未识别式神别名“${thisconf.greenText}”`);
+								return true;
+							}
+							let p = {
+								x: (result[0].points[0].x + result[0].points[1].x ) / 2,
+								y: (result[0].points[0].y + result[0].points[3].y ) / 2,
+							}
+							let lx = p.x - thisOperator[1].oper[1][2] / 2;
+							let ly = p.y + thisOperator[1].oper[0][3] - thisOperator[1].oper[1][3] / 2;
+							let rx = p.x + thisOperator[1].oper[1][2] / 2;
+							let ry = p.y + thisOperator[1].oper[0][3] + thisOperator[1].oper[1][3] / 2;
+							let toClick = [
+								lx > 0 ? lx : 0,
+								ly > 0 ? ly : 0,
+								rx < thisOperator[1].oper[2][2] ? rx : thisOperator[1].oper[2][2],
+								ry < thisOperator[1].oper[2][3] ? ry : thisOperator[1].oper[2][3],
+								4000
+							];
 							thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
 							return true;
 						}

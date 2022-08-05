@@ -1,3 +1,5 @@
+import drawFloaty from "./drawFloaty";
+
 export const ocr = {
     is64: /64$/.test(context.getApplicationInfo().nativeLibraryDir),
 
@@ -90,7 +92,7 @@ export const ocr = {
             var InitResult = this.init(path1, path2, path3);
             this.loadImage = function (bitmap) {
                 if (InitResult === true) {
-                    var result = instance.ocr(bitmap, 0.7);
+                    var result = instance.ocr(bitmap, 0.5);
                     return JSON.parse(result);
                 } else {
                     return '未初始化'
@@ -106,19 +108,47 @@ export const ocr = {
         return new detectOcr(path + '/data/config.json', path + '/data/eng.traineddata', path + '/data/chi_sim.traineddata');
     },
 
-    findText: function (where, myText, action) {
-        let mypoint = android.graphics.Point()
-        where.some(result => {
-            if (result.label.search(myText) != -1) {
-                pointArr = result.points
-                mypoint.x = (pointArr[0].x + pointArr[1].x + pointArr[2].x + pointArr[3].x) / 4
-                mypoint.y = (pointArr[0].y + pointArr[1].y + pointArr[2].y + pointArr[3].y) / 4
-                return false
+    findTextByOcr(detector, getBmpFunc, reg, timeout, region) {
+        const startTime = new Date().getTime();
+        while (true) {
+            console.time('ocr.detect');
+            let bmp = getBmpFunc();
+            if (region) {
+                let newBmp = android.graphics.Bitmap.createBitmap(bmp, region[0], region[1], region[2] - region[0], region[3] - region[1]);
+                bmp.recycle();
+                bmp = newBmp;
             }
-        })
-        if (action == 'click') {
-            return click(mypoint.x, mypoint.y)
+            let rs = detector.loadImage(bmp);
+            bmp.recycle()
+            console.timeEnd('ocr.detect');
+
+            if (region) {
+                rs.forEach(item => {
+                    item.points.forEach(point => {
+                        point.x += region[0];
+                        point.y += region[1];
+                    })
+                });
+            }
+
+            let res = rs.filter(item => reg.test(item.label));
+    
+            let toDraw = rs.map(item => ({
+                region: [item.points[0].x, item.points[0].y, item.points[2].x, item.points[2].y],
+                color: reg.test(item.label) ? 'green' : 'red',
+                text: item.label + ':' + item.confidence
+            }));
+            
+            if (drawFloaty.instacne) {
+                drawFloaty.draw(toDraw, 400);
+            }
+    
+            if (res.length > 0) {
+                console.log('识别结果', rs);
+                return res;
+            } else if (new Date().getTime() - startTime > timeout) {
+                return [];
+            }
         }
-        return mypoint
     }
 }

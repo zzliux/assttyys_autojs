@@ -177,6 +177,7 @@ export default function webviewSettigns() {
             } else {
                 drawFloaty.destroy();
             }
+            console.log(drawFloaty);
             done(true);
         } else if ('assttyys_setting_ocr_extend' === item.type) {
             if (item.enabled) {

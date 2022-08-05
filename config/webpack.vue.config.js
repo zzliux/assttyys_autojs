@@ -119,6 +119,16 @@ module.exports = (env, argv) => {
                             },
                         }
                     },
+                    getApplicationInfo: function () {
+                        return {
+                            nativeLibraryDir: null
+                        }
+                    },
+                    getExternalFilesDir: function () {
+                        return {
+                            getAbsolutePath: function () {}
+                        }
+                    },
                 },
                 device: { sdkInt: 0 }
             }),
