@@ -5,7 +5,7 @@ const right = 2;
 
 export default {
 	id: 501,
-	name: '探索地图打开buff界面',
+	name: '探索地图打开BUFF界面',
 	operator: [{
 		desc: [1280, 720,
 			[

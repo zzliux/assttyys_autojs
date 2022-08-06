@@ -244,6 +244,9 @@ export const versionList = [{
 }, {
     version: '20220805_01',
     desc: '新增：准备功能中绿标支持自定义文本，使用OCR进行文字识别后点击式神'
+}, {
+    version: '20220806_01',
+    desc: '新增：开启BUFF功能'
 }];
 
 export default versionList[versionList.length - 1].version;

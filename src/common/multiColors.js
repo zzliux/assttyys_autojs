@@ -940,6 +940,78 @@ export default {
             ]
         ]
     },
+    '关闭的BUFF_觉醒': {
+        region: [center, 1280, 720, 744, 116, 919, 530],
+        desc: [
+            [1280, 720,
+                [
+                    [center, 775, 145, 0xb00e2c],
+                    [center, 872, 147, 0x9e9e7c],
+                    [center, 867, 157, 0x9e9d7d],
+                    [center, 879, 156, 0x9e9b7d],
+                    [center, 402, 138, 0xef6b06],
+                    [center, 380, 162, 0xcfc0b6],
+                ]
+            ]
+        ]
+    },
+    '关闭的BUFF_御魂': {
+        region: [center, 1280, 720, 744, 116, 919, 530],
+        desc: [
+            [1280, 720,
+                [
+                    [center, 776, 212, 0xb10c2d],
+                    [center, 874, 213, 0x9e9b7d],
+                    [center, 867, 225, 0x9e9d7d],
+                    [center, 879, 224, 0x9e9b7d],
+                    [center, 396, 235, 0x0cd2e3],
+                    [center, 401, 206, 0x01c8dc],
+                    [center, 407, 202, 0xd3c7be],
+                ]
+            ]
+        ]
+    },
+    '关闭的BUFF_金币': {
+        region: [center, 1280, 720, 744, 116, 919, 530],
+        desc: [
+            [1280, 720,
+                [
+                    [center, 775, 348, 0xb00e2c],
+                    [center, 873, 350, 0x9f9f7d],
+                    [center, 867, 359, 0x9e9e7d],
+                    [center, 879, 359, 0x9e9b7d],
+                    [center, 390, 362, 0xd2c2b7],
+                    [center, 385, 374, 0xd49240],
+                    [center, 412, 368, 0xf7e526],
+                ]
+            ]
+        ]
+    },
+    '关闭的BUFF_经验': {
+        region: [center, 1280, 720, 744, 116, 919, 530],
+        desc: [
+            [1280, 720,
+                [
+                    [center, 776, 415, 0xb10c2d],
+                    [center, 872, 418, 0x9e9e7c],
+                    [center, 868, 427, 0x9f9f7d],
+                    [center, 879, 427, 0x9e9b7d],
+                    [center, 396, 440, 0x9eb7df],
+                    [center, 411, 435, 0xf7e72b],
+                ]
+            ],
+            [1280, 720,
+                [
+                    [center, 775, 483, 0xb00e2c],
+                    [center, 872, 485, 0x9e9e7c],
+                    [center, 867, 495, 0xaba08d],
+                    [center, 879, 494, 0xaca28e],
+                    [center, 412, 484, 0x94b9e3],
+                    [center, 411, 499, 0xc4b482],
+                ]
+            ]
+        ]
+    },
     '宴会_食物': {
         region: [left, 1280, 720, 0, 312, 1280, 522],
         desc: [

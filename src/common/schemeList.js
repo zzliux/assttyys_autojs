@@ -262,6 +262,10 @@ const SchemeList = [{
         schemeName: '关闭BUFF',
         list: [1, 2, 3, 29, 40, 501, 502]
     }, {
+        id: 27,
+        schemeName: '开启BUFF_打探索',
+        list: [501, 50],
+    }, {
         id: 99,
         schemeName: '伊吹之擂',
         list: [0, 3, 24, 99, 100],
