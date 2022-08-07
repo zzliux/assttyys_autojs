@@ -54,15 +54,12 @@ export default {
 				desc: thisOperator[0].desc,
 			}]
 		})) {
-			// 5次检测都没有再执行绿标
-			let cnt = 5;
-			while (--cnt) {
-				if (thisScript.findMultiColor('绿标')) {
-					return false;
-				} else {
-					sleep(200);
-					thisScript.keepScreen(true);
-				}
+			// TODO 配合准备/退出功能，次数变更后不需要判断绿标，直接点
+			// 当局有多次判断时，连续3秒内都未检测到绿标方可进行点击
+			// 没有找到绿标的开始时间
+			thisScript.global.greenNonDTime = new Date().getTime();
+			if (thisScript.findMultiColor('绿标')) {
+				return false;
 			}
 			// 开启绿标
 			let toClick = null;
@@ -111,11 +108,14 @@ export default {
 				];
 			}
 			if (toClick) {
-				// 找色快，ocr识别慢，再找1遍绿标，没有的话才点，加一道保险
-				thisScript.keepScreen(true);
-				if (thisScript.findMultiColor('绿标')) {
-					return false;
-				}
+				// 当局有多次判断时，连续3秒内都未检测到绿标方可进行点击（避免因御魂图标挡着导致识别错误）
+				do {
+					sleep(200);
+					thisScript.keepScreen(true);
+					if (thisScript.findMultiColor('绿标')) {
+						return false;
+					}
+				} while (new Date().getTime() - thisScript.global.greenNonDTime < 3000);
 				thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
 				return true;
 			}
