@@ -7,4 +7,6 @@ fl.keys().forEach(key => {
     funcList.push(fl(key).default);
 });
 
+funcList.sort((a, b) => a.id - b.id);
+
 export default funcList;

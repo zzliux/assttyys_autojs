@@ -37,7 +37,7 @@ const drawFloaty = {
         paintGreen.setAntiAlias(true); //抗锯齿
         paintGreen.setAlpha(255); //0~255透明度
         paintGreen.setFakeBoldText(true);
-        paintGreen.setStrokeWidth(3);
+        paintGreen.setStrokeWidth(2);
         paintGreen.setStyle(Paint.Style.STROKE);
         paintGreen.setColor(colors.parseColor("#FF00FF00"));
         var textPaintGreen = new Paint();
@@ -49,7 +49,7 @@ const drawFloaty = {
         paintRed.setAntiAlias(true); //抗锯齿
         paintRed.setAlpha(255); //0~255透明度
         paintRed.setFakeBoldText(true);
-        paintRed.setStrokeWidth(3);
+        paintRed.setStrokeWidth(2);
         paintRed.setStyle(Paint.Style.STROKE);
         paintRed.setColor(colors.parseColor("#FFFF0000"));
         var textPaintRed = new Paint();
@@ -61,7 +61,7 @@ const drawFloaty = {
         paintOrange.setAntiAlias(true); //抗锯齿
         paintOrange.setAlpha(255); //0~255透明度
         paintOrange.setFakeBoldText(true);
-        paintOrange.setStrokeWidth(3);
+        paintOrange.setStrokeWidth(2);
         paintOrange.setStyle(Paint.Style.STROKE);
         paintOrange.setColor(colors.parseColor("#FF963200"));
         var textPaintOrange = new Paint();
@@ -72,7 +72,7 @@ const drawFloaty = {
         paintLine.setAntiAlias(true);//抗锯齿
         paintLine.setAlpha(255);//0~255透明度
         paintLine.setFakeBoldText(true);
-        paintLine.setStrokeWidth(2);
+        paintLine.setStrokeWidth(1);
         paintLine.setStyle(Paint.Style.STROKE);
         paintLine.setColor(colors.parseColor("#FF963200"));
 

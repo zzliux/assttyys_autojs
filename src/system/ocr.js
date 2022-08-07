@@ -139,12 +139,13 @@ export const ocr = {
                 text: item.label + ':' + item.confidence
             }));
             
+            // 开了绘制有可能绘制内容也被ocr给识别了
             if (drawFloaty.instacne) {
-                drawFloaty.draw(toDraw, 400);
+                drawFloaty.draw(toDraw, 200);
             }
     
             if (res.length > 0) {
-                console.log('识别结果', rs);
+                console.log('识别结果', JSON.stringify(rs));
                 return res;
             } else if (new Date().getTime() - startTime > timeout) {
                 return [];

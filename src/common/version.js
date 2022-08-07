@@ -247,6 +247,9 @@ export const versionList = [{
 }, {
     version: '20220806_01',
     desc: '新增：开启BUFF功能'
+}, {
+    version: '20220807_01',
+    desc: '优化：绿标由原来的准备功能修改为独立功能，并在绿标前判断是否绿标，剔除原来的标A，使用固定坐标或固定文本进行标记'
 }];
 
 export default versionList[versionList.length - 1].version;
