@@ -1,3 +1,4 @@
+import { similarity } from "@/common/tool";
 import drawFloaty from "./drawFloaty";
 
 export const ocr = {
@@ -108,7 +109,7 @@ export const ocr = {
         return new detectOcr(path + '/data/config.json', path + '/data/eng.traineddata', path + '/data/chi_sim.traineddata');
     },
 
-    findTextByOcr(detector, getBmpFunc, reg, timeout, region) {
+    findTextByOcr(detector, getBmpFunc, text, timeout, region, textMatchMode) {
         const startTime = new Date().getTime();
         while (true) {
             console.time('ocr.detect');
@@ -130,14 +131,26 @@ export const ocr = {
                     })
                 });
             }
-
-            let res = rs.filter(item => reg.test(item.label));
+            
+            let res = [];
+            let toDraw = [];
+            if (textMatchMode === '包含') {
+                let reg = new RegExp(text);
+                res = rs.filter(item => reg.test(item.label));
+                toDraw = rs.map(item => ({
+                    region: [item.points[0].x, item.points[0].y, item.points[2].x, item.points[2].y],
+                    color: reg.test(item.label) ? 'green' : 'red',
+                    text: item.label + ':' + item.confidence
+                }));
+            } else /*if (textMatchMode === '模糊') */{
+                res = rs.filter(item => similarity(item.label, text, 0.5) >= 0.5);
+                toDraw = rs.map(item => ({
+                    region: [item.points[0].x, item.points[0].y, item.points[2].x, item.points[2].y],
+                    color: similarity(item.label, text, 0.5) >= 0.5 ? 'green' : 'red',
+                    text: item.label + ':' + item.confidence
+                }));
+            }
     
-            let toDraw = rs.map(item => ({
-                region: [item.points[0].x, item.points[0].y, item.points[2].x, item.points[2].y],
-                color: reg.test(item.label) ? 'green' : 'red',
-                text: item.label + ':' + item.confidence
-            }));
             
             // 开了绘制有可能绘制内容也被ocr给识别了
             if (drawFloaty.instacne) {

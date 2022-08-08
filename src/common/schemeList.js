@@ -177,6 +177,7 @@ const SchemeList = [{
         id: 19,
         schemeName: '道馆',
         list: [0, 1, 2, 3, 32],
+        star: true,
     }, {
         id: 20,
         groupName: '个人突破卡级',
@@ -230,17 +231,18 @@ const SchemeList = [{
     }, {
         id: 22,
         schemeName: '秘闻',
-        list: [0, 1, 2, 3, 34],
+        list: [0, 51, 1, 2, 3, 34],
         star: true,
         config: {
             '0': {
                 jspd_enabled_1: true,
                 jspd_times_1: 15
             },
-            '1': {
-                greenType: '自定义坐标',
-                greenPosition: '132,484'
-            } // 左一
+            '51': {
+                greenType: '自定义文本',
+                greenText: '绿标专用',
+                preSearch: true,
+            }
         }
     }, {
         id: 23,
