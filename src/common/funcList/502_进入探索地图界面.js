@@ -27,8 +27,8 @@ export default {
 				[left, 44, 43, 0xc2cbe3],
 				[right, 1124, 47, 0xd8b188],
 				[right, 1237, 47, 0xd3af84],
-				[right, 1161, 608, 0xded2bb],
-				[right, 1207, 671, 0x372015]
+				[left, 231, 43, 0x583716],
+				[right, 1135, 48, 0xd7b38a],
 			]
 		],
 		oper: [
