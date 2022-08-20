@@ -27,7 +27,7 @@ export default {
 			name: '逢魔答题_界面判断',
 			operator: [{ desc: thisOperator[0].desc }]
 		})) {
-			let screenImg = images.captureScreen();
+			// let screenImg = images.captureScreen();
 			// 识别问题
 			let toDetectQuestionBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[0].oper[0].slice(0, 4));
 			console.time('ocr.detect.question');
@@ -40,7 +40,7 @@ export default {
 			}
 			console.log(`识别题目: ${question}`);
 			
-			let stdQuestion = questionSearch(question);
+			let stdQuestion = questionSearch(question.replace(/[^\u4e00-\u9fa5a-zA-Z0-9]/g, ''));
 			console.log(`搜索题库:${JSON.stringify(stdQuestion)}`);
 
 			let toDetectAnsBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[0].oper[1].slice(0, 4));

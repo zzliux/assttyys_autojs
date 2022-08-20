@@ -256,6 +256,9 @@ export const versionList = [{
 }, {
     version: '20220820_01',
     desc: '新增：爬塔活动梦境徊游'
+}, {
+    version: '20220820_02',
+    desc: '新增：答题活动梦旅竞速'
 }];
 
 export default versionList[versionList.length - 1].version;
