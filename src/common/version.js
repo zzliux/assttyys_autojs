@@ -253,6 +253,9 @@ export const versionList = [{
 }, {
     version: '20220808_01',
     desc: '优化：绿标可在增加准备阶段时开始查找，需手动开启；增加战斗匹配机制进行绿标：战斗场次变更（基于由脚本执行的退出结算）后首次绿标时无需判断场内是否有绿标'
+}, {
+    version: '20220820_01',
+    desc: '新增：爬塔活动梦境徊游'
 }];
 
 export default versionList[versionList.length - 1].version;
