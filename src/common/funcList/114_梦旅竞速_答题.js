@@ -102,6 +102,7 @@ export default {
 				});
 			}
 			console.log(`答案区域识别:${JSON.stringify(ansList)}`);
+			if (ansList.length <= 1) return false;
 			let stdAns = search(ansList, 'text', stdQuestion.data.ans);
 			if (!stdAns) {
 				toastLog(`题目：${question} 未查找到答案`);
