@@ -6,6 +6,7 @@ export default [
 	{ question: 'SP阶式神返魂可以获得多少御札', ans: '750' },
 	{ question: 'SSR式神两面佛的获取方式是', ans: '碎片合成' },
 	{ question: 'SSR式神需要多少个碎片进行召唤', ans: '50个' },
+	{ question: 'SSR阶式神可以通过多少个对应的式神碎片召唤获得', ans: '50个' },
 	{ question: '阿修罗攻击目标并造成击杀时会对目标附加以下哪种印记', ans: '诛灭' },
 	{ question: '阿修罗理性印记的获得上限是', ans: '9' },
 	{ question: '八百比丘尼是萝莉还是御姐', ans: '御姐' },
