@@ -19,72 +19,110 @@ export default {
 	// 	}]
 	// }],
 	operator: [{
-		desc: [1280,720,
-			[[left,60,58,0xc2cbe3],
-			[left,69,670,0xaf544c],
-			[right,1157,49,0xfbf5e5],
-			[right,1137,39,0xce737b],
-			[right,1206,42,0xc55149],
-			[right,1197,532,0xf4f4f4]]
+		desc: [1280, 720,
+			[
+				[left, 60, 58, 0xc2cbe3],
+				[left, 69, 670, 0xaf544c],
+				[right, 1157, 49, 0xfbf5e5],
+				[right, 1137, 39, 0xce737b],
+				[right, 1206, 42, 0xc55149],
+				[right, 1197, 532, 0xf4f4f4]
+			]
 		],
 		oper: [
-			[right, 1280,720, 1116,34, 1148,62, 1000], // 筛选
-			[right, 1280,720, 1187,155, 1239,289, 500], // 热门
-			[right, 1280,720, 1093,235, 1136,282, 500], // 第一个
-			[right, 1280,720, 1096,395, 1139,447, 500], // 第二个
-			[right, 1280,720, 1094,547, 1140,592, 500], // 第三个
-			[left, 1280,720, 0, 0, 13, 19, 0], // 难度把手大小区域
-			[left, 1280,720, 53,265, 108,326, 0], // 难度把手滑动停止区域
-			[left, 1280,720, 1104,495, 1177,563, 0], // 挑战
+			[right, 1280, 720, 1116, 34, 1148, 62, 1000], // 筛选
+			[right, 1280, 720, 1187, 155, 1239, 289, 500], // 热门
+			[right, 1280, 720, 1093, 235, 1136, 282, 500], // 第一个
+			[right, 1280, 720, 1096, 395, 1139, 447, 500], // 第二个
+			[right, 1280, 720, 1094, 547, 1140, 592, 500], // 第三个
+			[left, 1280, 720, 0, 0, 13, 19, 0], // 难度把手大小区域
+			[left, 1280, 720, 53, 265, 108, 326, 0], // 难度把手滑动停止区域
+			[left, 1280, 720, 1104, 495, 1177, 563, 0], // 挑战
 		]
 	}, {
 		// 关闭界面
-		desc: [1280,720,
-			[[center,159,224,0xe2dad3],
-			[center,236,223,0xeccba1],
-			[center,455,223,0xefd0a1],
-			[center,530,218,0xe7e1db],
-			[center,1157,71,0xeecccc]]
+		desc: [1280, 720,
+			[
+				[center, 159, 224, 0xe2dad3],
+				[center, 236, 223, 0xeccba1],
+				[center, 455, 223, 0xefd0a1],
+				[center, 530, 218, 0xe7e1db],
+				[center, 1157, 71, 0xeecccc]
+			]
 		],
 		oper: [
-			[center, 1280, 720, 1145,59, 1165,83, 500]
+			[center, 1280, 720, 1145, 59, 1165, 83, 500]
 		]
 	}, {
-		desc: [1280,720,
-			[[left,202,388,0x161211], // 第一个没打
-			[left,308,386,0x161211], // 第二个没打
-			[left,418,385,0x161211]] // 第三个没打
+		desc: [1280, 720,
+			[
+				[left, 202, 388, 0x161211], // 第一个没打
+				[left, 308, 386, 0x161211], // 第二个没打
+				[left, 418, 385, 0x161211]
+			] // 第三个没打
 		],
 		oper: [
-			[left, 1280, 720, 38,409, 88,430, 800] // 今日挑战
+			[left, 1280, 720, 38, 409, 88, 430, 800] // 今日挑战
+		]
+	}, {
+		// 探索界面
+		desc: [1280, 720,
+			[
+				[left, 44, 59, 0xeff5fb],
+				[right, 1126, 35, 0xd7b389],
+				[right, 1225, 33, 0xd3af84],
+				[right, 1169, 147, 0xd4cebf],
+				[left, 34, 693, 0x643f2e],
+				[left, 155, 695, 0x64402f],
+				[left, 254, 690, 0x653d2c]
+			]
+		],
+		oper: [
+			[left, 1280, 720, 20, 20, 20, 20, 800] // 今日挑战
 		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
 		if (thisScript.oper({
-			name: '地鬼_挑战_关闭',
-			operator: [{
-				desc: thisOperator[1].desc,
-				oper: thisOperator[1].oper,
-			}]
-		})) {
+				name: '探索界面',
+				operator: [{
+					desc: thisOperator[3].desc
+				}]
+			})) {
+			let point = thisScript.findMultiColor('地鬼_探索界面检测地鬼入口') || null
+			if (point !== null) {
+				thisScript.helperBridge.regionClick([
+					[point.x, point.y, point.x + thisOperator[3].oper[0][2], point.y + thisOperator[0].oper[0][3], 1000]
+				], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				return true
+			} else {
+				return false
+			}
+		}
+		if (thisScript.oper({
+				name: '地鬼_挑战_关闭',
+				operator: [{
+					desc: thisOperator[1].desc,
+					oper: thisOperator[1].oper,
+				}]
+			})) {
 			return true;
 		}
 		if (thisScript.oper({
-			name: '地鬼_热门挑战',
-			operator: [{
-				desc: thisOperator[0].desc,
-				oper: thisOperator[2].oper
-			}]
-		}, 2000)) { // 加了个两秒的重检测时间，防止退出来后
+				name: '地鬼_热门挑战',
+				operator: [{
+					desc: thisOperator[0].desc,
+					oper: thisOperator[2].oper
+				}]
+			}, 2000)) { // 加了个两秒的重检测时间，防止退出来后
 			thisScript.keepScreen();
 			thisScript.global.dgCurNum = -1;
 			for (let i = 0; i < thisOperator[2].desc.length; i++) {
 				if (thisScript.oper({
-					name: `地鬼_检测第${i}个未打`,
-					operator: [{
-						desc: [thisOperator[2].desc[i]]
-					}]
-				})) {
+						name: `地鬼_检测第${i}个未打`,
+						operator: [{
+							desc: [thisOperator[2].desc[i]]
+						}]
+					})) {
 					thisScript.global.dgCurNum = i;
 					break;
 				}
