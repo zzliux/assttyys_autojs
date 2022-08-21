@@ -102,8 +102,44 @@ export default {
 				});
 			}
 			console.log(`答案区域识别:${JSON.stringify(ansList)}`);
+
+			// 结果列表小于等于1时则不点击，大概是因为结束展示正确答案时被识别了
 			if (ansList.length <= 1) return false;
-			let stdAns = search(ansList, 'text', stdQuestion.data.ans);
+			let ansArr = stdQuestion.data.ans.split('|');
+			let stdAns = null;
+			for (let ans of ansArr) {
+				let stdAns2 = search(ansList, 'text', ans);
+				if (stdAns && stdAns2 && stdAns2.similarity > stdAns.similarity) {
+					stdAns = stdAns2;
+				}
+				if (!stdAns) stdAns = stdAns2;
+			}
+
+			// 如果stdAns为空，且ansList长度为3，说明正确答案没有识别到，找到没有识别到的选项区域，给它设为stdAns
+			// 灶门炭治郎无法面不改色做的事情是 撒谎，正确答案刚好识别不到
+			if (!stdAns && ansList.length === 3) {
+				for (let j = 2; j <= 5; j++) {
+					let ansY = (thisOperator[0].oper[j][1] + thisOperator[0].oper[j][3]) / 2
+					let flag2 = true;
+					for (let i = 0; i < ansList.length; i++) {
+						if (ansY >= ansList[i].rect[1] && ansY <= ansList[i].rect[3]) {
+							flag2 = false;
+							break;
+						}
+					}
+					if (flag2) {
+						stdAns = {
+							data: {
+								text: '[不知道]',
+								rect: thisOperator[0].oper[j],
+							},
+							similarity: 0
+						}
+						break;
+					}
+				}
+			}
+
 			if (!stdAns) {
 				toastLog(`题目：${question} 未查找到答案`);
 				let path = '/sdcard/assttyys/qaimage/' + question + '.png';
@@ -117,6 +153,7 @@ export default {
 				sleep(4000);
 				return false;
 			}
+
 			// 如果答案已经被选中，那就不点了
 			let flag = true;
 			for (let i = 1; i <= 4; i++) {

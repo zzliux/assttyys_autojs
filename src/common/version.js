@@ -259,6 +259,9 @@ export const versionList = [{
 }, {
     version: '20220820_02',
     desc: '新增：答题活动梦旅竞速'
+}, {
+    version: '20220821_1',
+    desc: '新增：庭院打开悬赏界面方案（id52），用于其他方案转悬赏方案，如金币妖怪，由aiou大佬提交'
 }];
 
 export default versionList[versionList.length - 1].version;

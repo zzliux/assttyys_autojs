@@ -93,7 +93,7 @@ export const ocr = {
             var InitResult = this.init(path1, path2, path3);
             this.loadImage = function (bitmap) {
                 if (InitResult === true) {
-                    var result = instance.ocr(bitmap, 0.5);
+                    var result = instance.ocr(bitmap, 0.1);
                     return JSON.parse(result);
                 } else {
                     return '未初始化'
