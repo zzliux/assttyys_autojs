@@ -3,7 +3,7 @@ export default [
 	{ question: '9级的体力食盒每次可以存储多少溢出体力', ans: '250' },
 	{ question: 'R阶式神返魂可以获得多少御札', ans: '5' },
 	{ question: 'R阶式神可以通过多少个对应的式神碎片召唤获得', ans: '30' },
-	{ question: 'SP阶式神返魂可以获得多少御札', ans: '750' },
+	{ question: 'SP阶式神返魂可以获得多少御札', ans: '750|150' },
 	{ question: 'SR阶式神可以通过多少个对应的式神碎片召唤获得', ans: '40个' },
 	{ question: 'SSR式神两面佛的获取方式是', ans: '碎片合成' },
 	{ question: 'SSR式神需要多少个碎片进行召唤', ans: '50个' },
@@ -860,7 +860,7 @@ export default [
 	{ question: '博士作为官名最早出现在', ans: '秦' },
 	{ question: '古代六艺礼乐射御书数中的御是指', ans: '驾车' },
 	{ question: '头像框珍珑锦篓的获取方式是', ans: '签到1234天' },
-	{ question: '如想去除衣服上的铁锈应使用', ans: '盐酸' },
+	{ question: '如想去除衣服上的铁锈应使用', ans: '草酸' },
 	{ question: '工笔是哪种绘画形式的技法', ans: '国画' },
 	{ question: '待宵姑获鸟可为队友附加羽念印记的层数上限是', ans: '5' },
 	{ question: '御魂共潜的四件套可能触发的效果是', ans: '驱散负面状态' },
@@ -878,11 +878,12 @@ export default [
 	{ question: '钢的主要成份是', ans: '铁碳' },
 	{ question: '集齐全部呱太可获得', ans: '随机SSR式神' },
 	{ question: '麻婆豆腐是哪一菜系的名菜', ans: '川菜' },
-	{ question: '黄河最终注入哪个海', ans: '渤海' },
+	{ question: '黄河最终注入哪个海', ans: '渤海|汤海' },
 	{ question: '不携带任何御魂的镶融能附加哪种控制效果', ans: '眩晕' },
+	{ question: '不携带任何御魂的大岳丸能附加哪种控制效果', ans: '眩晕|晕' },
 	{ question: '打蛇打七寸的七寸是指哪个部位', ans: '心脏' },
 	{ question: '俗称四不像的动物是', ans: '麋鹿|床鹿' },
 	{ question: '缚骨清姬的蛇灵会对带有哪种状态的目标进行攻击', ans: '怨' },
-	
+	{ question: '阴阳师平安物语第二季片尾曲叫做', ans: '真夏绘卷' },
 	
 ];
