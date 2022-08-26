@@ -40,7 +40,7 @@ export function search(list, prop, str, filterSimilar) {
 }
 
 export function questionSearch(str) {
-    return search(fmmxQuestionList, 'question', str);
+    return search(fmmxQuestionList, 'question', str, .5);
 }
 
 export function similarity(s1, s2, filterSimilar) {

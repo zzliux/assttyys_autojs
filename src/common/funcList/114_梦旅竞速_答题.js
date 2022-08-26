@@ -103,6 +103,20 @@ export default {
 			}
 			console.log(`答案区域识别:${JSON.stringify(ansList)}`);
 
+			if (!stdQuestion) {
+				toastLog(`题目：${question} 未查找到标准题库`);
+				let path = '/sdcard/assttyys/qaimage/' + question + '.png';
+				if (files.exists(path)) return false;
+				let bmp = thisScript.helperBridge.helper.GetBitmap();
+				let img = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(bmp);
+				files.ensureDir(path);
+				img.saveTo(path);
+				bmp.recycle();
+				img.recycle();
+				sleep(4000);
+				return false;
+			}
+
 			// 结果列表小于等于1时则不点击，大概是因为结束展示正确答案时被识别了
 			if (ansList.length <= 1) return false;
 			let ansArr = stdQuestion.data.ans.split('|');
