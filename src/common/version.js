@@ -265,6 +265,9 @@ export const versionList = [{
 }, {
     version: '20220826_1',
     desc: '优化：答题活动优化题库'
+}, {
+    version: '20220911_1',
+    desc: '修复：因界面变化导致地鬼热门挑战功能功能失效'
 }];
 
 export default versionList[versionList.length - 1].version;

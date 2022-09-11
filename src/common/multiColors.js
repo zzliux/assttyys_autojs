@@ -419,15 +419,14 @@ export default {
         ]
     },
     '地鬼_难度把手': {
-        region: [center, 1280, 720, 94, 241, 567, 348],
+        region: [center, 1280, 720, 158, 231, 575, 337],
         desc: [
             [1280, 720,
                 [
-                    [center, 403, 287, 0x644127],
-                    [center, 417, 305, 0x583720],
-                    [center, 408, 297, 0x603d24],
-                    [center, 403, 303, 0x583625],
-                    [center, 415, 289, 0x613f27]
+                    [center, 403, 273, 0xffff81],
+                    [center, 413, 276, 0xfffcbf],
+                    [center, 405, 288, 0xfffdb0],
+                    [center, 424, 287, 0xfef77c],
                 ]
             ]
         ]
