@@ -11,7 +11,7 @@ export default {
 	config: [{
 		desc: '退出',
 		config: [{
-			name: 'exitBeforeRead',
+			name: 'exitBeforeReady',
 			desc: '准备前是否退出,常用于个人突破的降级',
 			type: 'switch',
 			default: false,
