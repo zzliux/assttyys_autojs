@@ -321,6 +321,11 @@ const SchemeList = [{
         groupName: '活动',
         schemeName: '活动_梦旅竞速',
         list: [0, 3, 113, 114]
+    }, {
+        id: 108,
+        groupName: '活动',
+        schemeName: '活动_风暴试炼',
+        list: [0, 1, 2, 3, 115, 116]
     }
     // 完整demo
     // , {

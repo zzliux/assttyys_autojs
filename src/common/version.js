@@ -268,6 +268,9 @@ export const versionList = [{
 }, {
     version: '20220911_1',
     desc: '修复：因界面变化导致地鬼热门挑战功能功能失效'
+}, {
+    version: '20220920_01',
+    desc: '新增：活动风暴试炼'
 }];
 
 export default versionList[versionList.length - 1].version;
