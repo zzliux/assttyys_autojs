@@ -70,8 +70,8 @@ export default {
 				[left, 38, 65, 0xf1f5fb],
 				[left, 36, 570, 0x983254],
 				[left, 29, 672, 0x615a77],
-				[right, 1124, 36, 0xd7b388],
-				[right, 1225, 49, 0xcba375]
+				[right, 1227, 30, 0xd3af84],
+				[right, 1129, 46, 0xcea375],
 			]
 		],
 		oper: [

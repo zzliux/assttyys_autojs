@@ -277,6 +277,9 @@ export const versionList = [{
 }, {
     version: '20220921_02',
     desc: '修复：999活动结算时获得奖励确认在只有一排奖励时不点的问题（功能24）'
+}, {
+    version: '20220921_03',
+    desc: '修复：探索选怪挑战界面无法识别的问题'
 }];
 
 export default versionList[versionList.length - 1].version;
