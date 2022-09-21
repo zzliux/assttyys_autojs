@@ -274,6 +274,9 @@ export const versionList = [{
 }, {
     version: '20220921_01',
     desc: '修复：适配999活动和探索地图界面变化'
+}, {
+    version: '20220921_02',
+    desc: '修复：999活动结算时获得奖励确认在只有一排奖励时不点的问题（功能24）'
 }];
 
 export default versionList[versionList.length - 1].version;
