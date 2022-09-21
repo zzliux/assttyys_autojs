@@ -11,7 +11,7 @@ export default {
 		desc:[1280, 720,
 			[
 				[right, 985, 490, 0xebca91],
-				[left, 52, 56, 0xf4e6af],
+				[left, 52,55, 0xf0e3af ],
 				[right, 1106, 608, 0xf5debc],
 				[right, 1222, 471, 0xf4dbba],
 				[left, 160, 554, 0x99999f],

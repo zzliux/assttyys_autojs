@@ -11,11 +11,11 @@ export default {
 		// 挑战
 		desc:[1280, 720,
 			[
-				[left, 52, 57, 0xf3e4ad],
-				[right, 1236, 513, 0xcec5a5],
-				[right, 1177, 636, 0x1b1819],
-				[right, 1208, 637, 0xedd49a],
-				[right, 1030, 573, 0xddd5cd],
+				[left, 46, 55, 0xf0e3af],
+				[left, 76, 57, 0x24293e],
+				[right, 926, 573, 0xd7d7cf],
+				[right, 1174, 636, 0x5f5238],
+				[right, 1033, 573, 0xddd5cd],
 			]
 		],
 		oper: [

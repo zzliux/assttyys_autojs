@@ -9,12 +9,15 @@ export default {
 	desc: '在地图界面时，点击最后一章进行挑战',
 	checked: false,
 	operator: [{
-		desc: [1280,720,
-			[[left,24,689,0x633e2d],
-			[left,42,57,0xeff5fb],
-			[right,1120,37,0xd7b288],
-			[right,1228,47,0xcfa67c],
-			[right,1161,157,0xd8d0bf]]
+		desc: [1280, 720,
+			[
+				[left, 47, 62, 0xedf4fb],
+				[right, 1169, 147, 0xd4cebf],
+				[left, 28, 676, 0x5d3a28],
+				[left, 159, 700, 0x643d2a],
+				[left, 463, 706, 0x6f422c],
+				[right, 1228, 30, 0xd3af84],
+			]
 		],
 		oper: [
 			[right, 1280, 720, 1056,557, 1246,643,1000],

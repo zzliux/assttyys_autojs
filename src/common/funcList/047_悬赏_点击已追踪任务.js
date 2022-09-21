@@ -29,13 +29,12 @@ export default {
   operator: [{
     desc: [1280, 720,
       [
-        [left, 44, 59, 0xeff5fb],
-        [right, 1126, 35, 0xd7b389],
-        [right, 1225, 33, 0xd3af84],
+        [left, 47, 62, 0xedf4fb],
         [right, 1169, 147, 0xd4cebf],
-        [left, 34, 693, 0x643f2e],
-        [left, 155, 695, 0x64402f],
-        [left, 254, 690, 0x653d2c]
+        [left, 28, 676, 0x5d3a28],
+        [left, 159, 700, 0x643d2a],
+        [left, 463, 706, 0x6f422c],
+        [right, 1228, 30, 0xd3af84],
       ]
     ],
     oper: [

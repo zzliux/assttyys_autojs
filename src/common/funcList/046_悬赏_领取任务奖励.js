@@ -10,14 +10,12 @@ export default {
 	operator: [{
 		desc: [1280, 720,
 			[
-				[left, 54, 43, 0xeaf4fc],
-				[left, 51, 36, 0x9eafee],
-				[left, 52, 78, 0xcadbff],
-				[left, 119, 652, 0xa86420],
-				[left, 209, 643, 0xf6f0b7],
-				[center, 326, 640, 0xcfc9b8],
-				[center, 430, 652, 0xb96567],
-				[center, 500, 640, 0x564635]
+				[left, 47, 62, 0xedf4fb],
+				[right, 1169, 147, 0xd4cebf],
+				[left, 28, 676, 0x5d3a28],
+				[left, 159, 700, 0x643d2a],
+				[left, 463, 706, 0x6f422c],
+				[right, 1228, 30, 0xd3af84],
 			]
 		],
 		oper: [

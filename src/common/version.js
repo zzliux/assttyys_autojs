@@ -271,6 +271,9 @@ export const versionList = [{
 }, {
     version: '20220920_01',
     desc: '新增：活动风暴试炼'
+}, {
+    version: '20220921_01',
+    desc: '修复：适配999活动和探索地图界面变化'
 }];
 
 export default versionList[versionList.length - 1].version;
