@@ -19,7 +19,7 @@ export default {
 			]
 		],
 		oper: [
-			[right, 1280, 720, 1142, 590, 1229, 672, 1000]
+			[right, 1280, 720, 1142, 590, 1229, 672, 3000]
 		]
 	}],
 	operatorFunc(thisScript, thisOperator) {

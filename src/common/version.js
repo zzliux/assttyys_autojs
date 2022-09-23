@@ -280,6 +280,9 @@ export const versionList = [{
 }, {
     version: '20220921_03',
     desc: '修复：探索选怪挑战界面无法识别的问题'
+}, {
+    version: '20220923_01',
+    desc: '优化：999活动挑战连续3次未开始停止脚本中提高两次之间的延时至3秒'
 }];
 
 export default versionList[versionList.length - 1].version;
