@@ -283,6 +283,9 @@ export const versionList = [{
 }, {
     version: '20220923_01',
     desc: '优化：999活动挑战连续3次未开始停止脚本中提高两次之间的延时至3秒'
+}, {
+    version: '20221001_01',
+    desc: '修复：适配探索地图界面变化'
 }];
 
 export default versionList[versionList.length - 1].version;
