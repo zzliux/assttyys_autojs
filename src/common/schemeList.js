@@ -271,7 +271,51 @@ const SchemeList = [{
         id: 28,
         schemeName: '悬赏_庭院打开悬赏界面',
         list: [52],
-    }, {
+    }, 
+    {
+        id: 30,
+        schemeName: "式神寄养",
+        star: true,
+        groupName: "TEST",
+        list: [
+            999,
+            998,
+            996,
+            994,
+            995
+        ],
+        config: {
+            "994": {
+                count: "3",
+                afterCountOper: "停止脚本",
+                next_scheme: "通用准备退出"
+            },
+            "995": {
+                maxTimeForwait: "900",
+                afterCountOper: "停止脚本"
+            },
+            "996": {
+                friendName: "老王"
+            }
+        },
+    },
+    {
+        id: 31,
+        schemeName: "定时任务-启动游戏-式神寄养",
+        star: true,
+        groupName: "TEST",
+        list: [
+            993
+        ],
+        config: {
+            "993": {
+                area: "",
+                is_shutdown_the_game_before: true,
+                next_scheme: "式神寄养"
+            }
+        },
+    },
+    {
         id: 99,
         schemeName: '伊吹之擂',
         list: [0, 3, 24, 99, 100],
