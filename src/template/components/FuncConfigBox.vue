@@ -50,29 +50,46 @@
             />
           </div>
         </template>
+        <template v-else-if="'time' === configItemItem.type" #input>
+          <div
+            class="configItemValue"
+            @click="showDateTimePicker($event, configItemItem)"
+          >
+            {{ configItemItem.value }}
+          </div>
+        </template>
       </van-field>
     </van-cell-group>
 
     <!-- 功能的参数里面的list下拉单选 -->
     <van-popup v-model="configItemItemShowPicker" position="bottom">
       <van-picker
+        v-if="configItemItemShowPicker === 'switch'"
         show-toolbar
         :columns="configItemItemPickerList"
         @confirm="configItemItemPickerConfirm"
         @cancel="configItemItemShowPicker = false"
         :default-index="curItemItemIndex"
       />
+      <van-datetime-picker 
+        v-else-if="configItemItemShowPicker === 'datetime'" 
+        type="time"
+        :value="curItemItem.value"
+        show-toolbar
+        @confirm="configItemItemPickerConfirm"
+        @cancel="configItemItemShowPicker = false"/>
     </van-popup>
   </div>
 </template>
 
 <script>
 import Vue from "vue";
-import { Popup, Field, CellGroup, Picker } from 'vant';
+import { Popup, Field, CellGroup, Picker, DatetimePicker } from 'vant';
 Vue.use(Popup);
 Vue.use(Field);
 Vue.use(CellGroup);
 Vue.use(Picker);
+Vue.use(DatetimePicker);
 
 export default {
   props: {
@@ -96,14 +113,18 @@ export default {
       this.configItemItemPickerList = configItemItem.data;
       this.curItemItem = configItemItem;
       this.curItemItemIndex = this.configItemItemPickerList.indexOf(configItemItem.value);
-      this.configItemItemShowPicker = true;
+      this.configItemItemShowPicker = 'switch';
     },
     async showItemConfigScheme(e, configItemItem) {
       let schemeList = await AutoWeb.autoPromise('getSchemeList');
       this.configItemItemPickerList = schemeList.map(item => item.schemeName);
       this.curItemItem = configItemItem;
       this.curItemItemIndex = this.configItemItemPickerList.indexOf(configItemItem.value);
-      this.configItemItemShowPicker = true;
+      this.configItemItemShowPicker = 'switch';
+    },
+    showDateTimePicker(e, configItemItem) {
+      this.curItemItem = configItemItem;
+      this.configItemItemShowPicker = 'datetime';
     }
   },
   mounted() {
