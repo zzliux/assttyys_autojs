@@ -58,6 +58,13 @@ var router = new VueRouter({
 			index: 2
 		},
 		component: () => import('./pages/About.vue')
+	}, {
+		path: '/schedule/list',
+		name: 'ScheduleList',
+		meta: {
+			index: 3
+		},
+		component: () => import('./pages/schedule_module/ScheduleList.vue')
 	}]
 });
 // 事件总线

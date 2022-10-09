@@ -20,6 +20,24 @@ export const mergeSchemeList = (savedSchemeList, innerSchemeList) => {
     return [...savedSchemeList, ...toMerge];
 }
 
+export const mergeScheduleList = (savedScheduleList, innerScheduleList) => {
+    let toMerge = [];
+    for (let innerSchedule of innerScheduleList) {
+        let flag = true;
+        innerSchedule.inner = true;
+        for (let savedSchedule of savedScheduleList) {
+            if (savedSchedule.name === innerSchedule.name) {
+                flag = false;
+                break;
+            }
+        }
+        if (flag) {
+            toMerge.push(innerSchedule);
+        }
+    }
+    return [...savedScheduleList, ...toMerge];
+}
+
 export function search(list, prop, str, filterSimilar) {
     let maxSimilarity = 0;
     let maxSimilarityIndex = -1;
