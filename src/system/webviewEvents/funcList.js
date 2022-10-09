@@ -4,6 +4,7 @@ import store, { storeCommon } from '@/system/store';
 import { getInstalledPackages } from '@/common/toolAuto';
 import defaultSchemeList from '@/common/schemeList';
 import { mergeSchemeList } from '@/common/tool';
+import script from '@/system/script';
 
 export default function webviewFuncList() {
 
@@ -40,6 +41,7 @@ export default function webviewFuncList() {
     // 点击保存，设置当前方案
     webview.on("setCurrentScheme").subscribe(([schemeName, done]) => {
         setCurrentScheme(schemeName);
+        script.rerun();
         done();
     });
 

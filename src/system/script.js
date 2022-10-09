@@ -19,6 +19,7 @@ var script = {
     stopCallback: null, // 停止后回调，异常停止、手动停止，在停止后都会调用
     scheme: null, // 运行的方案
     funcMap: null, // funcList的Map形式，下标为id，值为对应的fun元素
+    scheduleMap: null,  // 定时任务实例存放Map
     multiColor: null, // 多点找色用的，提前初始化，减轻运行中计算量
     hasRedList: false, // KeepScreen(true)时会初始化redList，如果没有初始化的话这个值为false，方便在有需要的时候初始化redlist且不重复初始化
     runDate: null, // 运行启动时间
@@ -128,6 +129,23 @@ var script = {
         this.scheme = store.get('currentScheme', null);
         if (null === this.scheme) return;
         this.scheme.funcList = this.getFuncList(this.scheme);
+    },
+
+    getScheduleJobInstance(key) {
+        if (!this.scheduleMap) {
+            this.scheduleMap = [];
+        }
+        return this.scheduleMap.find(item => item.key === key);
+    },
+
+    setScheduleJobInstance(key, scheduleJobInstance) {
+        if (!this.scheduleMap) {
+            this.scheduleMap = [];
+        }
+        this.scheduleMap.push({
+            key: key, 
+            instance: scheduleJobInstance
+        });
     },
 
     /**

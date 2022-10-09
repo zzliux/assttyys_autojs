@@ -2,10 +2,12 @@
   <div style="width: 100%; height: 100%">
     <div class="rv_box">
       <transition :name="transitionName">
-        <router-view
-          class="rv"
-          :status-bar-height="statusBarHeight"
-        ></router-view>
+        <keep-alive :include="['ScheduleList']">
+          <router-view
+            class="rv"
+            :status-bar-height="statusBarHeight"
+          ></router-view>
+      </keep-alive>
       </transition>
     </div>
     <van-popup
@@ -55,6 +57,9 @@ export default {
         this.transitionName = "slide-right";
       }
     },
+  },
+  computed: {
+
   },
   async mounted() {
     this.statusBarHeight = await AutoWeb.autoPromise("getStatusBarHeight");

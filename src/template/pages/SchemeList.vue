@@ -143,6 +143,7 @@
       <div :style="`display: inline-block; border: #ccc 1px solid; float: right; background-color: #fff; font-size: 14px; margin-top: ${statusBarHeight + 46}px;`">
         <div class="import-export-btn" @click="importModel = true">导入方案</div>
         <div class="import-export-btn" @click="exportModel = true">导出方案</div>
+        <div class="import-export-btn" @click="$router.push('/schedule/list')">定时任务</div>
       </div>
     </van-popup>
   </div>
