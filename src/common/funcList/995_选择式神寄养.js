@@ -206,8 +206,6 @@ export default {
             return resultTime;
         }
 
-
-        return true;
-
+        return false;
     }
 };

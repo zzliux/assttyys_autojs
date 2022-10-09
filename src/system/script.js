@@ -188,7 +188,7 @@ var script = {
                 let point = this.helperBridge.helper.FindMultiColor(region[0], region[1], region[2], region[3], item, similar, true);
                 if (point.x !== -1) {
                     console.log(`[${key}]第${i}个查找成功， 坐标为：(${point.x}, ${point.y})`);
-                    if (drawFloaty.instacne) {
+                    if (drawFloaty.instacne && item) {
                         let toDraw = item.map(kk => {
                             return {
                                 color: 'green',
@@ -212,7 +212,7 @@ var script = {
                     let point = this.helperBridge.helper.FindMultiColor(region[0], region[1], region[2], region[3], item, similar, true);
                     if (point.x !== -1) {
                         console.log(`[${key}]第${i}个查找成功， 坐标为：(${point.x}, ${point.y})`);
-                        if (drawFloaty.instacne) {
+                        if (drawFloaty.instacne && item) {
                             let toDraw = item.map(kk => {
                                 return {
                                     color: 'green',
@@ -484,7 +484,7 @@ var script = {
                     rs = true;
                 }
                 if (rs) {
-                    if (drawFloaty.instacne) {
+                    if (drawFloaty.instacne && item.desc) {
                         let toDraw = [...item.desc.map(kk => {
                             return {
                                 color: 'green',
