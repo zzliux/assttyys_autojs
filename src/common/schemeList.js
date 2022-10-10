@@ -281,6 +281,7 @@ const SchemeList = [{
         config: {
             "994": {
                 count: "3",
+                maxTimeForwait: "10",
                 afterCountOper: "停止脚本",
                 next_scheme: "通用准备退出"
             },

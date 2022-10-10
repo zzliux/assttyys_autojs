@@ -14,13 +14,13 @@ export default {
     config: [{
         desc: '',
         config: [
-            // {
-            //     name: 'maxTimeForwait',
-            //     desc: '等待时间阈值(秒)_用于判断是否等待',
-            //     type: 'text',
-            //     default: '600',
-            //     value: '600',
-            // },
+            {
+                name: 'maxTimeForwait',
+                desc: '在好友结界等待时间阈值(分钟)',
+                type: 'text',
+                default: '10',
+                value: '10',
+            },
             {
                 name: 'afterCountOper',
                 desc: '执行完成的操作',
@@ -78,15 +78,49 @@ export default {
             oper: [
                 [center, 1280, 720, 576, 129, 649, 204, 600],   // 点击寄养
             ]
+        },
+        {
+            desc:   // 检测_是否为好友结界
+                [1280, 720,
+                    [[left, 63, 48, 0x2a3b74],
+                    [left, 32, 48, 0xeff5fb],
+                    [center, 458, 33, 0x513930],
+                    [center, 614, 307, 0x0c0804]]
+                ],
+            oper: [
+                [left, 1280, 720, 17, 17, 69, 70, 1200],   // 点击返回
+            ]
         }
     ],
     operatorFunc(thisScript, thisOperator) {
         let thisConf = thisScript.scheme.config['995'];
-        // const maxTimeForwait = parseInt(thisConf.maxTimeForwait, 10);
+        const maxTimeForwait = parseInt(thisConf.maxTimeForwait, 10);
         const packageName = 'com.netease.onmyoji';
         if (!thisScript.global.jy_list_getTime_fault_count) {
             thisScript.global.jy_list_getTime_fault_count = 0;
         }
+
+        if (thisScript.oper({
+            id: 995,
+            name: '检测_是否为好友结界',
+            operator: [{
+                desc: thisOperator[4].desc
+            }]
+        })) {
+            const now = new Date();
+            console.log(now.getTime() - thisScript.global.jy_friends_enchantment_waitingtime, thisScript.global.jy_friends_enchantment_waitingtime);
+            if (now.getTime() - thisScript.global.jy_friends_enchantment_waitingtime > maxTimeForwait * 60000) {
+                console.log(`已在好友结界等待${maxTimeForwait}分钟，切换到自选结界`);
+                return thisScript.oper({
+                    id: 995,
+                    name: '返回我的结界页面，切换至自选结界逻辑',
+                    operator: [{
+                        oper: thisOperator[4].oper
+                    }]
+                })
+            }
+        }
+
         if (thisScript.oper({
             id: 995,
             name: '检测_是否有可寄养的空位',
@@ -161,7 +195,7 @@ export default {
             //                 continue;
             //             }
 
-            //             if (timeRemaining.countSecond <= maxTimeForwait) {
+            //             if (timeRemaining.countSecond <= maxTimeForwait * 60000) {
             //                 console.log(`所剩时间为${timeRemaining.countSecond}秒`);
             //                 toastLog(`所剩时间为${timeRemaining.countSecond}秒`);
             //                 thisScript.global.jy_list_getTime_fault_count = 0;
@@ -172,7 +206,7 @@ export default {
             //                         oper: [thisOperator[2].oper[1]]
             //                     }]
             //                 });
-            //             } else if (timeRemaining.countSecond > maxTimeForwait) {
+            //             } else if (timeRemaining.countSecond > maxTimeForwait * 60000) {
             //                 console.log(`所剩时间为${timeRemaining.countSecond}秒`);
             //                 continue;
             //             }
@@ -203,6 +237,12 @@ export default {
             // }
 
             thisScript.global.jy_list_getTime_fault_count = 0;
+
+            // 记录返回结界页面的开始时间
+            if (thisScript.global.jy_friends_enchantment_waitingtime === undefined) {
+                thisScript.global.jy_friends_enchantment_waitingtime = new Date().getTime();
+            }
+
             return thisScript.oper({
                 id: 995,
                 name: '返回结界页面并等待寄养的坑位',

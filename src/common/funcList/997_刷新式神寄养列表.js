@@ -77,6 +77,7 @@ export default {
 
       let key = multiColorKey[thisScript.global.jy_enchantment_index - 1];
       console.log(`查找${key}结界`);
+      sleep(500);
       let point = thisScript.findMultiColor(key);
 
       if (point) {
@@ -110,6 +111,8 @@ export default {
         })) {
           if (thisScript.global.jy_enchantment_index === multiColorKey.length) {
             thisScript.global.jy_enchantment_index = 0;
+            console.log('找不到指定结界卡，休眠15分钟后继续');
+            sleep(60000 * 15);
           } else {
             thisScript.global.jy_enchantment_index++;
             thisScript.global.jy_list_swipe_times = 0;
