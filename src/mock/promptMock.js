@@ -1,4 +1,5 @@
 import defaultSchemeList from '../common/schemeList';
+import ScheduleDefaultList from '@/common/scheduleList';
 import version, { versionList } from '../common/version';
 import _ from 'lodash';
 
@@ -138,6 +139,8 @@ const promptMockData = {
         item.groupName = '导出测试分组'
         return item;
     }), null, 4),
+    getScheduleList: ScheduleDefaultList,
+    saveScheduleList: 'success',
 };
 
 // 注入修改prompt

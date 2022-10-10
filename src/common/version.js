@@ -286,6 +286,9 @@ export const versionList = [{
 }, {
     version: '20221001_01',
     desc: '修复：适配探索地图界面变化'
+}, {
+    version: '20221009_01',
+    desc: '新增：定时任务；\n新增：结界寄养\n功能由@horsemi提供，感谢大佬的支持'
 }];
 
 export default versionList[versionList.length - 1].version;

@@ -3,9 +3,9 @@
     <div class="navbar_box">
       <van-nav-bar title="定时任务列表 | ASSTTYYS NG" left-arrow @click-left="$router.back()"
         :style="'padding-top: ' + (statusBarHeight || 0) + 'px'">
-        <template #right>
+        <!-- <template #right>
           <van-icon name="setting-o" size="18" @click="showCommonConfig($event, commonConfig)" />
-        </template>
+        </template> -->
       </van-nav-bar>
     </div>
 
@@ -54,7 +54,7 @@
           </div>
         </div>
         <div style="margin:5px 10px 5px 10px; border-radius:5px; overflow: hidden; box-shadow: 1px 1px 1px #eaeaea">
-          <van-cell class="item" center @click="addScheduleClickEvent($event)">
+          <van-cell class="itemAdd" center @click="addScheduleClickEvent($event)">
             <div style="text-align: center; height: 24px;">
               <van-icon name="plus" style="font-weight: bolder; vertical-align: middle" />
               <span style="position: relative; top: 2px">添加定时任务</span>
@@ -77,7 +77,8 @@
   </div>
 </template>
 <script>
-import { NavBar, CellGroup, Icon, Switch, Popup, Picker, Field, Dialog, Notify, SwipeCell, Button } from "vant";
+import Vue from "vue";
+import { NavBar, Cell, CellGroup, Icon, Switch, Popup, Picker, Field, Dialog, Notify, SwipeCell, Button } from "vant";
 import schedule from 'node-schedule';
 import _ from "lodash";
 
@@ -96,22 +97,20 @@ const scheduleDefaultFormData = {
     cron: '* * * * * *',
   }
 };
-
+Vue.use(NavBar);
+Vue.use(Icon);
+Vue.use(Cell);
+Vue.use(CellGroup);
+Vue.use(Switch);
+Vue.use(Popup);
+Vue.use(Picker);
+Vue.use(Field);
+Vue.use(Dialog);
+Vue.use(Notify);
+Vue.use(SwipeCell);
+Vue.use(Button);
 export default {
   name: 'ScheduleList',
-  components: {
-    NavBar,
-    Icon,
-    CellGroup,
-    Switch,
-    Popup,
-    Picker,
-    Field,
-    Dialog,
-    Notify,
-    SwipeCell,
-    Button
-  },
   data() {
     return {
       itemOpenList: [],

@@ -277,13 +277,7 @@ const SchemeList = [{
         schemeName: "式神寄养",
         star: true,
         groupName: "TEST",
-        list: [
-            999,
-            998,
-            996,
-            994,
-            995
-        ],
+        list: [999, 998, 996, 994, 995],
         config: {
             "994": {
                 count: "3",
@@ -304,9 +298,7 @@ const SchemeList = [{
         schemeName: "定时任务-启动游戏-式神寄养",
         star: true,
         groupName: "TEST",
-        list: [
-            993
-        ],
+        list: [993],
         config: {
             "993": {
                 area: "",

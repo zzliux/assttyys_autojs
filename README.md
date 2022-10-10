@@ -137,5 +137,8 @@ assttyys_autojs
 - [aiou](https://gitee.com/LIUAWEIO)
   - 贡献本项目的悬赏封印、金币妖怪、宴会方案及相关功能
 
+- [horsemi](https://gitee.com/horsemi)
+  - 贡献本项目**定时任务**、结界寄养等功能
+
 # LICENSE
 MIT
