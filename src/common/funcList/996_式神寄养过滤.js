@@ -27,8 +27,8 @@ export default {
             desc: [1280, 720,
                 [[left, 186, 171, 0x30221f],
                 [center, 555, 138, 0xcbb59e],
-                [center, 720, 249, 0x3e2615],
-                [center, 880, 562, 0xf4b25f]]
+                [center, 880, 562, 0xf4b25f],
+                [center, 705, 347, 0xccb59e]]
             ],
             oper: [
                 [center, 1280, 720, 210, 169, 634, 567, 1000], // 好友列表区域

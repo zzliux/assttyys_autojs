@@ -277,7 +277,7 @@ const SchemeList = [{
         schemeName: "式神寄养",
         star: true,
         groupName: "TEST",
-        list: [999, 998, 996, 994, 995],
+        list: [999, 998, 997, 994, 995],
         config: {
             "994": {
                 count: "3",
@@ -285,11 +285,10 @@ const SchemeList = [{
                 next_scheme: "通用准备退出"
             },
             "995": {
-                maxTimeForwait: "900",
                 afterCountOper: "停止脚本"
             },
-            "996": {
-                friendName: "老王"
+            "997": {
+                priority: "太鼓6->太鼓5->太鼓4->太鼓3->斗鱼6->斗鱼5->斗鱼4"
             }
         },
     },
@@ -302,8 +301,29 @@ const SchemeList = [{
         config: {
             "993": {
                 area: "",
+                package_name: "com.netease.onmyoji",
                 is_shutdown_the_game_before: true,
                 next_scheme: "式神寄养"
+            }
+        },
+    },
+    {
+        id: 32,
+        schemeName: "式神指定寄养",
+        star: true,
+        groupName: "TEST",
+        list: [999, 998, 996, 994, 995],
+        config: {
+            "994": {
+                count: "3",
+                afterCountOper: "停止脚本",
+                next_scheme: "通用准备退出"
+            },
+            "995": {
+                afterCountOper: "停止脚本"
+            },
+            "996": {
+                friendName: "老王"
             }
         },
     },

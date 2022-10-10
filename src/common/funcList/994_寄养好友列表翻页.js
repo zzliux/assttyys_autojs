@@ -8,7 +8,7 @@ const right = 2;
 export default {
 	id: 994,
 	name: '寄养好友列表_翻页',
-	desc: '寄养好友列表操作，应排在[996]后',
+	desc: '寄养好友列表操作，应排在[996,997]后',
 	checked: false,
 	config: [{
 		desc: '',
@@ -38,8 +38,8 @@ export default {
 			[1280, 720,
 				[[left, 186, 171, 0x30221f],
 				[center, 555, 138, 0xcbb59e],
-				[center, 720, 249, 0x3e2615],
-				[center, 880, 562, 0xf4b25f]]
+				[center, 880, 562, 0xf4b25f],
+				[center, 705, 347, 0xccb59e]]
 			],
 		oper: [
 			[center, 1280, 720, 221, 558, 611, 590, 0],	// 滑动起点
@@ -52,8 +52,8 @@ export default {
 			[1280, 720,
 				[[left, 186, 171, 0x30221f],
 				[center, 555, 138, 0xcbb59e],
-				[center, 720, 249, 0x3e2615],
 				[center, 880, 562, 0xf4b25f],
+				[center, 705, 347, 0xccb59e],
 				[left, 186, 522, 0xbe9c69],
 				[left, 271, 146, 0xe9c89e]]
 			],
@@ -66,19 +66,20 @@ export default {
 			[1280, 720,
 				[[left, 186, 171, 0x30221f],
 				[center, 555, 138, 0xcbb59e],
-				[center, 720, 249, 0x3e2615],
 				[center, 880, 562, 0xf4b25f],
+				[center, 705, 347, 0xccb59e],
 				[left, 186, 522, 0xbe9c69],
 				[left, 271, 146, 0xa46c4d]]
 			],
-			oper: [
-				[center, 1280, 720, 222, 100, 321, 149, 5000],  // 点击好友页签
-			]
+		oper: [
+			[center, 1280, 720, 222, 100, 321, 149, 5000],  // 点击好友页签
+		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
 		let thisConf = thisScript.scheme.config['994'];
 		let defaultCount = parseInt(thisConf.count, 10) * 2;	// 共有两个页签
 		if (thisScript.oper({
+			id: 994,
 			name: '寄养界面_判断',
 			operator: [{ desc: thisOperator[0].desc }]
 		})) {
@@ -87,6 +88,7 @@ export default {
 				thisScript.global.jy_list_swipe_times = 0;
 			}
 			if (thisScript.oper({
+				id: 994,
 				name: '好友列表底部_判断',
 				operator: [{
 					desc: thisOperator[1].desc
@@ -94,6 +96,7 @@ export default {
 			})) {
 				thisScript.global.jy_list_swipe_times++;
 				return (thisScript.oper({
+					id: 994,
 					name: '点击跨区页签',
 					operator: [{
 						oper: thisOperator[1].oper
@@ -102,6 +105,7 @@ export default {
 			}
 
 			if (thisScript.oper({
+				id: 994,
 				name: '跨区列表底部_判断',
 				operator: [{
 					desc: thisOperator[2].desc
@@ -109,6 +113,7 @@ export default {
 			})) {
 				thisScript.global.jy_list_swipe_times++;
 				return (thisScript.oper({
+					id: 994,
 					name: '点击好友页签',
 					operator: [{
 						oper: thisOperator[2].oper

@@ -18,13 +18,19 @@ export default {
             type: 'text',
             default: '',
             value: ''
-        },{
-			name: 'is_shutdown_the_game_before',
-			desc: '启动前是否先关闭游戏',
-			type: 'switch',
-			default: false,
-			value: false,
-		}, {
+        }, {
+            name: 'package_name',
+            desc: '程序报名，用于不同渠道服，默认官方渠道',
+            type: 'text',
+            default: 'com.netease.onmyoji',
+            value: 'com.netease.onmyoji'
+        }, {
+            name: 'is_shutdown_the_game_before',
+            desc: '启动前是否先关闭游戏',
+            type: 'switch',
+            default: false,
+            value: false,
+        }, {
             name: 'next_scheme',
             desc: '下一个方案',
             type: 'scheme',
@@ -80,7 +86,7 @@ export default {
         ]
     },
     {
-        desc:   // 是否为选择选择区域
+        desc:   // 是否为选择游戏区域
             [1280, 720,
                 [[left, 161, 149, 0xcc9955],
                 [center, 643, 74, 0xdab883],
@@ -88,20 +94,61 @@ export default {
             ],
         oper: [
             [center, 1280, 720, 706, 507, 770, 539, 1200], // 切换按钮 区域
-            [right, 1280, 720, 1025, 576, 1072, 627, 1200], // 展开角色按钮 区域
         ]
     },
     {
+        desc: // 是否为选择游戏区域 已有角色未展开
+            [1280, 720,
+                [[left, 161, 149, 0xcc9955],
+                [center, 643, 74, 0xdab883],
+                [right, 1050, 592, 0xffe5be],
+                [center, 382, 568, 0x433b34]]
+            ],
         oper: [
             [left, 1280, 720, 241, 532, 1023, 566, 600], // 角色所属区域名称 区域, 用于识别区域
             [left, 1280, 720, 0, 468, 98, 558, -1],    // 游戏区域边框方位
             [left, 1280, 720, 0, 0, 1279, 719, -1], // 屏幕大小
+            [right, 1280, 720, 1025, 576, 1072, 627, 1200], // 展开角色按钮 区域
         ]
-    }],
+    },
+    {
+        desc:   // 登陆后是否有下载插画弹窗
+            [1280, 720,
+                [[center, 439, 471, 0xdf6851],
+                [center, 740, 463, 0xf4b25f],
+                [center, 639, 280, 0xdbc5ae],
+                [center, 642, 183, 0x765443]]
+            ],
+        oper: [
+            [center, 1280, 720, 432, 455, 564, 500, 1200], // 取消按钮
+        ]
+    },
+    {
+        desc:   // 页面是否为庭院 只支持默认庭院皮肤与默认装饰
+            [1280, 720,
+                [[right, 1226, 47, 0xcda47a],
+                [right, 1157, 45, 0xb39671],
+                [right, 1093, 53, 0xd0a87a],
+                [center, 389, 65, 0xfbc573],
+                [right, 1207, 637, 0xdfd1cb]]
+            ]
+    },
+    {
+        desc:   // 登陆后是否有皮肤广告弹窗
+            [1280, 720,
+                [[right, 1191, 97, 0xe79292],
+                [right, 1195, 87, 0xe9d2ce],
+                [right, 1195, 87, 0xe9d2ce],
+                [right, 1198, 104, 0xefcacd]]
+            ],
+        oper: [
+            [right, 1280, 720, 1166, 72, 1209, 110, 1200], // 关闭按钮
+        ]
+    },],
     operatorFunc(thisScript, thisOperator) {
         let thisConf = thisScript.scheme.config['993'];
 
-        const packageName = 'com.netease.onmyoji';
+        const packageName = thisConf.package_name;
         const isInstalled = app.getAppName(packageName);
 
         if (isInstalled && !thisScript.global.app_is_open) {
@@ -135,8 +182,8 @@ export default {
                     for (let resultItem of resultArea) {
                         if (resultItem && resultItem.label) {
                             console.log('当前区域为' + resultItem.label);
-                            if (!thisConf.area.includes(resultItem.label)) {
-                                
+                            if (!resultItem.label.includes(thisConf.area)) {
+
                                 return thisScript.oper({
                                     name: '切换区域',
                                     operator: [{
@@ -148,16 +195,12 @@ export default {
                     }
                 }
 
-                thisScript.oper({
+                return thisScript.oper({
                     name: '点击开始游戏',
                     operator: [{
                         oper: thisOperator[0].oper
                     }]
                 });
-
-                setCurrentScheme(thisConf.next_scheme);
-                toastLog(`切换方案为[${thisConf.next_scheme}]`);
-                thisScript.rerun();
             } else {
                 return true;
             }
@@ -169,19 +212,26 @@ export default {
                 desc: thisOperator[4].desc,
             }]
         })) {
+            thisScript.oper({
+                name: '点击展开角色区域',
+                operator: [{
+                    desc: thisOperator[5].desc,
+                    oper: [thisOperator[5].oper[3]]
+                }]
+            });
             let switchGameAreaBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[5].oper[0].slice(0, 4))
             console.time('ocr.game.area');
             let resultGameArea = thisScript.getOcr().loadImage(switchGameAreaBmp, 1);
             console.timeEnd('ocr.game.area');
             switchGameAreaBmp.recycle();
-
+            console.log(resultGameArea);
             if (Array.isArray(resultGameArea) && resultGameArea.length > 0 && resultGameArea[0].label) {
                 for (let resultGameItem of resultGameArea) {
-                    if (thisConf.area.includes(resultGameItem.label)) {
+                    if (resultGameItem.label.includes(thisConf.area)) {
                         let p = {
                             x: ((resultGameItem.points[0].x + resultGameItem.points[1].x) / 2) + thisOperator[5].oper[0][0],    // 补位
                             y: ((resultGameItem.points[0].y + resultGameItem.points[3].y) / 2) + thisOperator[5].oper[0][1],
-                        }                        
+                        }
 
                         let lx = p.x - thisOperator[5].oper[1][2] / 2;
                         let ly = thisOperator[5].oper[1][1];
@@ -202,6 +252,17 @@ export default {
                     }
                 }
             }
+        }
+
+        if (thisScript.oper({
+            name: '是否为庭院',
+            operator: [{
+                desc: thisOperator[7].desc,
+            }]
+        })) {
+            setCurrentScheme(thisConf.next_scheme);
+            toastLog(`切换方案为[${thisConf.next_scheme}]`);
+            thisScript.rerun();
         }
 
         if (thisScript.oper({
@@ -229,6 +290,26 @@ export default {
             operator: [{
                 desc: thisOperator[3].desc,
                 oper: thisOperator[3].oper
+            }]
+        })) {
+            return true;
+        }
+
+        if (thisScript.oper({
+            name: '登陆后是否有下载插画弹窗',
+            operator: [{
+                desc: thisOperator[6].desc,
+                oper: thisOperator[6].oper
+            }]
+        })) {
+            return true;
+        }
+
+        if (thisScript.oper({
+            name: '登陆后是否有皮肤广告弹窗',
+            operator: [{
+                desc: thisOperator[8].desc,
+                oper: thisOperator[8].oper
             }]
         })) {
             return true;
