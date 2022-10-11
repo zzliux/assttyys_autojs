@@ -289,6 +289,9 @@ export const versionList = [{
 }, {
     version: '20221009_01',
     desc: '新增：定时任务；\n新增：结界寄养\n功能由@horsemi提供，感谢大佬的支持'
+}, {
+    version: '20221012_01',
+    desc: '优化：结界寄养等相关功能'
 }];
 
 export default versionList[versionList.length - 1].version;

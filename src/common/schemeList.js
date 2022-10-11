@@ -276,7 +276,7 @@ const SchemeList = [{
         id: 30,
         schemeName: "式神寄养",
         star: true,
-        groupName: "TEST",
+        groupName: "式神寄养",
         list: [999, 998, 997, 994, 995],
         config: {
             "994": {
@@ -297,7 +297,7 @@ const SchemeList = [{
         id: 31,
         schemeName: "定时任务-启动游戏-式神寄养",
         star: true,
-        groupName: "TEST",
+        groupName: "式神寄养",
         list: [993],
         config: {
             "993": {
@@ -312,7 +312,7 @@ const SchemeList = [{
         id: 32,
         schemeName: "式神指定寄养",
         star: true,
-        groupName: "TEST",
+        groupName: "式神寄养",
         list: [999, 998, 996, 994, 995],
         config: {
             "994": {

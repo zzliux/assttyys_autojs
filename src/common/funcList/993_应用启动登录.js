@@ -20,7 +20,7 @@ export default {
             value: ''
         }, {
             name: 'package_name',
-            desc: '程序报名，用于不同渠道服，默认官方渠道',
+            desc: '程序包名，用于不同渠道服，默认官方渠道',
             type: 'text',
             default: 'com.netease.onmyoji',
             value: 'com.netease.onmyoji'
