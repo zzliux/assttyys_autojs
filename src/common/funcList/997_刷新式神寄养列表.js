@@ -14,7 +14,7 @@ export default {
       name: 'priority',
       desc: '结界优先顺序',
       type: 'list',
-      data: ['太鼓6->太鼓5->太鼓4->太鼓3->斗鱼6->斗鱼5->斗鱼4', '太鼓6->斗鱼6->太鼓5->斗鱼5->太鼓4->太鼓3->斗鱼4', '斗鱼6->斗鱼5->斗鱼4->太鼓6->太鼓5->太鼓4->太鼓3'],
+      data: ['太鼓6->太鼓5->太鼓4->太鼓3->斗鱼6->斗鱼5->斗鱼4', '太鼓6->斗鱼6->太鼓5->斗鱼5->太鼓4->太鼓3->斗鱼4', '斗鱼6->斗鱼5->斗鱼4->太鼓6->太鼓5->太鼓4->太鼓3', '太鼓6->太鼓5->太鼓4', '斗鱼6->斗鱼5->斗鱼4'],
       default: '太鼓6->太鼓5->太鼓4->太鼓3->斗鱼6->斗鱼5->斗鱼4',
       value: null,
     }]
@@ -77,7 +77,7 @@ export default {
 
       let key = multiColorKey[thisScript.global.jy_enchantment_index - 1];
       console.log(`查找${key}结界`);
-      sleep(500);
+      sleep(100);
       let point = thisScript.findMultiColor(key);
 
       if (point) {

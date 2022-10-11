@@ -63,7 +63,7 @@ export default {
                 ],
             oper: [
                 [right, 1280, 720, 962, 120, 1231, 146, 600],   // 寄养位置的所剩时间方位，用于检测所剩时间
-                [left, 1280, 720, 23, 10, 71, 56, 1200],   // 返回按钮
+                [left, 1280, 720, 23, 10, 71, 56, 5000],   // 返回按钮
             ]
         },
         {
@@ -90,6 +90,20 @@ export default {
             oper: [
                 [left, 1280, 720, 17, 17, 69, 70, 1200],   // 点击返回
             ]
+        },
+        {
+            desc:   // 检测_好友结界是否没有挂结界卡
+                [1280, 720,
+                    [[left, 63, 48, 0x2a3b74],
+                    [left, 32, 48, 0xeff5fb],
+                    [center, 458, 33, 0x513930],
+                    [center, 614, 307, 0x0c0804],
+                    [center, 914, 314, 0x0c0804],
+                    [center, 917, 248, 0xc09642],
+                    [center, 903, 259, 0xcba552],
+                    [center, 927, 235, 0xd3ad58],
+                    [center, 919, 291, 0x3d2c28]]
+                ]
         }
     ],
     operatorFunc(thisScript, thisOperator) {
@@ -108,7 +122,6 @@ export default {
             }]
         })) {
             const now = new Date();
-            console.log(now.getTime() - thisScript.global.jy_friends_enchantment_waitingtime, thisScript.global.jy_friends_enchantment_waitingtime);
             if (now.getTime() - thisScript.global.jy_friends_enchantment_waitingtime > maxTimeForwait * 60000) {
                 console.log(`已在好友结界等待${maxTimeForwait}分钟，切换到自选结界`);
                 return thisScript.oper({
@@ -117,8 +130,25 @@ export default {
                     operator: [{
                         oper: thisOperator[4].oper
                     }]
-                })
+                });
             }
+        }
+
+        if (thisScript.oper({
+            id: 995,
+            name: '检测_好友结界是否没有挂结界卡',
+            operator: [{
+                desc: thisOperator[5].desc
+            }]
+        })) {
+            console.log(`好友没有挂结界卡，切换到自选结界`);
+            return thisScript.oper({
+                id: 995,
+                name: '返回我的结界页面，切换至自选结界逻辑',
+                operator: [{
+                    oper: thisOperator[4].oper
+                }]
+            });
         }
 
         if (thisScript.oper({
@@ -143,6 +173,13 @@ export default {
             });
 
             if ('停止脚本' === thisConf.afterCountOper) {
+                thisScript.oper({
+                    id: 995,
+                    name: '返回_庭院界面',
+                    operator: [{
+                        oper: [thisOperator[2].oper[1], thisOperator[2].oper[1], thisOperator[2].oper[1], thisOperator[2].oper[1]]
+                    }]
+                });
                 thisScript.stop();
                 return true;
             } else if ('关闭应用' === thisConf.afterCountOper) {
