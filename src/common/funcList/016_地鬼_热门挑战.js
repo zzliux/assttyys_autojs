@@ -48,45 +48,35 @@ export default {
 			[
 				[left, 202, 388, 0x161211], // 第一个没打
 				[left, 308, 386, 0x161211], // 第二个没打
-				[left, 418, 385, 0x161211]
-			] // 第三个没打
+				[left, 418, 385, 0x161211], // 第三个没打
+			] 
 		],
 		oper: [
 			[left, 1280, 720, 38, 409, 88, 430, 800] // 今日挑战
 		]
 	}, {
-		// 探索界面
+		// 探索地图界面
 		desc: [1280, 720,
 			[
-				[left, 44, 59, 0xeff5fb],
-				[right, 1126, 35, 0xd7b389],
-				[right, 1225, 33, 0xd3af84],
-				[right, 1169, 147, 0xd4cebf],
-				[left, 34, 693, 0x643f2e],
-				[left, 155, 695, 0x64402f],
-				[left, 254, 690, 0x653d2c]
+				[left, 45, 60, 0xeff5fb],
+				[right, 1168, 146, 0xd9cec1],
+				[right, 1124, 32, 0xd7b388],
+				[right, 1226, 30, 0xd3af84],
+				[left, 18, 705, 0x754830],
+				[left, 210, 711, 0x985b32],
 			]
 		],
 		oper: [
-			[left, 1280, 720, 20, 20, 20, 20, 800] // 今日挑战
+			[left, 1280, 720, 741, 638, 800, 695, 2000] // 今日挑战
 		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
 		if (thisScript.oper({
 				name: '探索界面',
-				operator: [{
-					desc: thisOperator[3].desc
-				}]
+				operator: [thisOperator[3]]
 			})) {
-			let point = thisScript.findMultiColor('地鬼_探索界面检测地鬼入口') || null
-			if (point !== null) {
-				thisScript.helperBridge.regionClick([
-					[point.x, point.y, point.x + thisOperator[3].oper[0][2], point.y + thisOperator[0].oper[0][3], 1000]
-				], thisScript.scheme.commonConfig.afterClickDelayRandom);
-				return true
-			} else {
-				return false
-			}
+				
+			return true;
 		}
 		if (thisScript.oper({
 				name: '地鬼_挑战_关闭',

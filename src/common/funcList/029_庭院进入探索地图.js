@@ -8,20 +8,34 @@ export default {
 	name: '庭院进入探索地图',
 	desc: '请使用默认庭院皮肤，启用该功能后在庭院下会自动进入探索地图界面',
 	operator: [{
+		// 庭院未打开菜单
 		desc: [1280, 720,
-			[
-				[center, 403, 39, 0xfbc975],
-				[center, 439, 76, 0xf27c5d],
-				[right, 1062, 55, 0xcca173],
-				[right, 1152, 54, 0xcda170],
-				[right, 1236, 50, 0xcba274],
-				[right, 1222, 607, 0xefda9f],
-				[right, 1226, 638, 0xdfd0c8],
-				[center, 1106, 632, 0xe2dcdc],
-			]
+			[[right, 1211, 606, 0x885f46],
+			[right, 1205, 624, 0x987777],
+			[right, 1208, 646, 0xaf4949],
+			[right, 1175, 680, 0xb08e7d]]
 		],
 		oper: [
 			[left, 1280, 720, 0, 0, 32, 63, 1000]
+		]
+	}, { // 庭院已打开菜单
+		desc: [1280, 720,
+			[
+				[center, 560, 608, 0xbc3433],
+				[center, 542, 639, 0x7b1515],
+				[center, 575, 646, 0xc1b8b0],
+				[center, 590, 638, 0xb07970]
+			]
+		]
+	}, {
+		// 庭院已打开菜单，另外一种图标
+		desc: [1280, 720,
+			[
+				[right, 1223, 662, 0xdbcbc7],
+				[right, 1155, 41, 0xd7b188],
+				[center, 451, 631, 0xe8e4e1],
+				[center, 673, 651, 0xdb8b3f],
+			]
 		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
@@ -29,6 +43,10 @@ export default {
 				name: '庭院判断',
 				operator: [{
 					desc: thisOperator[0].desc
+				}, {
+					desc: thisOperator[1].desc
+				}, {
+					desc: thisOperator[2].desc
 				}]
 			})) {
 			let point = thisScript.findMultiColor('庭院_探索灯笼');
