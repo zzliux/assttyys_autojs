@@ -81,12 +81,17 @@ export default {
         } else {
           // 如果没有追踪任务就滑动，可能是真蛇之类的把任务挤下去了
           if (swiper === 3) {
+            swiper = 0;
             if (thisconf && thisconf.scheme_switch_enabled) {
               setCurrentScheme(thisconf.next_scheme);
               toastLog(`切换方案为[${thisconf.next_scheme}]`);
               thisScript.rerun();
+              sleep(3000);
+              return;
             } else {
               thisScript.stop();
+              sleep(3000);
+              return;
             }
           }
           thisScript.helperBridge.regionSwipe(thisOperator[1].oper[0], thisOperator[1].oper[1], [100, 300], 2000);
