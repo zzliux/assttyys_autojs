@@ -69,9 +69,9 @@ export default {
 			[
 				[right, 965, 652, 0x261b21],
 				[left, 164, 72, 0x4b6079],
-				[left, 64, 533, 0x96360c],
 				[right, 1225, 21, 0x4b5c76],
 				[right, 1198, 592, 0xebd992],
+				[center, 817, 559, 0x332b33],
 			]
 		],
 		oper: [
