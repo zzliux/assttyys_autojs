@@ -295,6 +295,9 @@ export const versionList = [{
 }, {
     version: '20221015_01',
     desc: '修复：悬赏重复执行时中途停止的问题；\n修复：部分功能无法识别庭院与探索地图界面；\n修复：伊吹之擂'
+}, {
+    version: '20221022_01',
+    desc: '优化：修复登录页识别失败问题，添加对一打开菜单的庭院识别；\n优化：式神寄养添加自动寄养开关'
 }];
 
 export default versionList[versionList.length - 1].version;
