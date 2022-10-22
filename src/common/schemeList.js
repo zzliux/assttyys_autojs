@@ -321,7 +321,9 @@ const SchemeList = [{
                 next_scheme: "通用准备退出"
             },
             "995": {
-                afterCountOper: "停止脚本"
+                afterCountOper: "停止脚本",
+                isAutoFosterCare: true,
+                maxTimeForwait: "10",
             },
             "996": {
                 friendName: "老王"

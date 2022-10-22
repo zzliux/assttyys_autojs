@@ -28,6 +28,13 @@ export default {
                 data: ['停止脚本', '关闭应用'],
                 default: '停止脚本',
                 value: null,
+            },
+            {
+                name: 'isAutoFosterCare',
+                desc: '好友结界卡为空时是否启用自动寄养',
+                type: 'switch',
+                default: true,
+                value: true,
             }]
     }],
     operator: [
@@ -140,7 +147,7 @@ export default {
             operator: [{
                 desc: thisOperator[5].desc
             }]
-        })) {
+        }) && thisConf.isAutoFosterCare) {
             console.log(`好友没有挂结界卡，切换到自选结界`);
             return thisScript.oper({
                 id: 995,
