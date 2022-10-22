@@ -40,9 +40,9 @@ export default {
     operator: [{
         desc: // 是否为登录页
             [1280, 720,
-                [[right, 1237, 234, 0xe0d8bf],
-                [center, 734, 526, 0x958369],
-                [left, 35, 78, 0x382628]]
+                [[center, 734, 526, 0x958369],
+                [center, 684, 524, 0xa7967d],
+                [center, 627, 600, 0xfcfcfc]]
             ],
         oper: [
             [center, 1280, 720, 562, 574, 722, 617, 1200],	// 点击开始游戏
@@ -124,13 +124,23 @@ export default {
         ]
     },
     {
-        desc:   // 页面是否为庭院 只支持默认庭院皮肤与默认装饰
+        desc:   // 页面是否为庭院(菜单未展开) 只支持默认庭院皮肤与默认装饰
             [1280, 720,
                 [[right, 1226, 47, 0xcda47a],
                 [right, 1157, 45, 0xb39671],
                 [right, 1093, 53, 0xd0a87a],
                 [center, 389, 65, 0xfbc573],
                 [right, 1207, 637, 0xdfd1cb]]
+            ]
+    },
+    {
+        desc:   // 页面是否为庭院(菜单已展开) 只支持默认庭院皮肤与默认装饰
+            [1280, 720,
+                [[right, 1226, 47, 0xcda47a],
+                [right, 1157, 45, 0xb29670],
+                [right, 1093, 53, 0xd1a87a],
+                [center, 389, 65, 0xfbc573],
+                [right, 1228, 646, 0xd6c6c3]]
             ]
     },
     {
@@ -255,9 +265,14 @@ export default {
         }
 
         if (thisScript.oper({
-            name: '是否为庭院',
+            name: '是否为庭院(未展开菜单)',
             operator: [{
                 desc: thisOperator[7].desc,
+            }]
+        }) || thisScript.oper({
+            name: '是否为庭院(已展开菜单)',
+            operator: [{
+                desc: thisOperator[8].desc,
             }]
         })) {
             setCurrentScheme(thisConf.next_scheme);
@@ -308,8 +323,8 @@ export default {
         if (thisScript.oper({
             name: '登陆后是否有皮肤广告弹窗',
             operator: [{
-                desc: thisOperator[8].desc,
-                oper: thisOperator[8].oper
+                desc: thisOperator[9].desc,
+                oper: thisOperator[9].oper
             }]
         })) {
             return true;
