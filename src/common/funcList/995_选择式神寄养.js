@@ -1,4 +1,3 @@
-import { setCurrentScheme } from '@/common/tool';
 import { myToast } from '@/common/toolAuto';
 
 const normal = -1; //定义常量
@@ -39,7 +38,7 @@ export default {
     }],
     operator: [
         {
-            // 检测_是否有可寄养的空位
+            // 检测_第一个坑位是否有可寄养的空位
             desc: [1280, 720,
                 [[right, 1188, 85, 0x7b776e],
                 [right, 1162, 125, 0xac9b7a],
@@ -61,7 +60,7 @@ export default {
                 ]
         },
         {
-            desc:   // 可用寄养位置被占用
+            desc:   // 检测_第一个坑位是否可用且被占用
                 [1280, 720,
                     [[right, 1144, 88, 0xf4e9b6],
                     [right, 1228, 93, 0xf1e4ad],
@@ -70,7 +69,7 @@ export default {
                 ],
             oper: [
                 [right, 1280, 720, 962, 120, 1231, 146, 600],   // 寄养位置的所剩时间方位，用于检测所剩时间
-                [left, 1280, 720, 23, 10, 71, 56, 5000],   // 返回按钮
+                [left, 1280, 720, 23, 10, 71, 56, 1200],   // 返回按钮
             ]
         },
         {
@@ -111,6 +110,15 @@ export default {
                     [center, 927, 235, 0xd3ad58],
                     [center, 919, 291, 0x3d2c28]]
                 ]
+        },
+        {
+            desc:   // 检测_第二个坑位是否可用且被占用
+                [1280, 720,
+                    [[right, 975, 88, 0xf4e9b6],
+                    [right, 1059, 93, 0xf1e4ad],
+                    [right, 1170, 574, 0xedcba9],
+                    [right, 1055, 123, 0xd7b674]]
+                ],
         }
     ],
     operatorFunc(thisScript, thisOperator) {
@@ -182,13 +190,13 @@ export default {
             if ('停止脚本' === thisConf.afterCountOper) {
                 thisScript.oper({
                     id: 995,
-                    name: '返回_庭院界面',
+                    name: '返回_阴阳寮页面',
                     operator: [{
-                        oper: [thisOperator[2].oper[1], thisOperator[2].oper[1], thisOperator[2].oper[1], thisOperator[2].oper[1]]
+                        oper: [thisOperator[2].oper[1], thisOperator[2].oper[1], thisOperator[2].oper[1]]
                     }]
                 });
-                thisScript.stop();
-                return true;
+                thisScript.global.backToYardFlag = true;
+                return false;
             } else if ('关闭应用' === thisConf.afterCountOper) {
                 sleep(1000);
                 myToast(`停止应用[${packageName}]`);
@@ -216,9 +224,15 @@ export default {
 
         if (thisScript.oper({
             id: 995,
-            name: '检测_可用未禁用的寄养位置是否被占用',
+            name: '检测_第一个坑位可用未禁用的寄养位置是否被占用',
             operator: [{
                 desc: thisOperator[2].desc
+            }]
+        }) || thisScript.oper({
+            id: 995,
+            name: '检测_第二个坑位可用未禁用的寄养位置是否被占用',
+            operator: [{
+                desc: thisOperator[6].desc
             }]
         })) {
             // TOFIX

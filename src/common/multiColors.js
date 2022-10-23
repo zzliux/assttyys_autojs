@@ -402,6 +402,21 @@ export default {
             ]
         ]
     },
+    '皮肤广告关闭按钮': {
+        region: [left, 1280, 720, 1, 1, 1279, 719],
+        similar: 95,
+        desc: [
+            [1280, 720,
+                [
+                    [right, 1172, 82, 0xeecccc],
+                    [right, 1163, 72, 0xe9d1ce],
+                    [right, 1184, 72, 0xedcdce],
+                    [right, 1168, 88, 0xe7d4cf],
+                    [right, 1182, 91, 0xeecccc]
+                ]
+            ]
+        ]
+    },
     '探索_经验标识': {
         region: [center, 1280, 720, 42, 345, 1173, 700],
         similar: 95,
