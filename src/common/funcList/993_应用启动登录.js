@@ -40,9 +40,10 @@ export default {
     operator: [{
         desc: // 是否为登录页
             [1280, 720,
-                [[center, 734, 526, 0x958369],
-                [center, 684, 524, 0xa7967d],
-                [center, 627, 600, 0xfcfcfc]]
+                [[center, 734, 526, 0x95816b],
+                [center, 684, 524, 0xa7967c],
+                [center, 627, 600, 0xfcfcfc],
+                [center, 682, 596, 0xfdf7f0]]
             ],
         oper: [
             [center, 1280, 720, 562, 574, 722, 617, 1200],	// 点击开始游戏
@@ -128,7 +129,6 @@ export default {
             [1280, 720,
                 [[right, 1226, 47, 0xcda47a],
                 [right, 1157, 45, 0xb39671],
-                [right, 1093, 53, 0xd0a87a],
                 [center, 389, 65, 0xfbc573],
                 [right, 1207, 637, 0xdfd1cb]]
             ]
@@ -138,7 +138,6 @@ export default {
             [1280, 720,
                 [[right, 1226, 47, 0xcda47a],
                 [right, 1157, 45, 0xb29670],
-                [right, 1093, 53, 0xd1a87a],
                 [center, 389, 65, 0xfbc573],
                 [right, 1228, 646, 0xd6c6c3]]
             ]
@@ -275,9 +274,21 @@ export default {
                 desc: thisOperator[8].desc,
             }]
         })) {
-            setCurrentScheme(thisConf.next_scheme);
-            toastLog(`切换方案为[${thisConf.next_scheme}]`);
-            thisScript.rerun();
+            // 做延时检测 防止登陆后的弹窗
+            if (thisScript.global.checked_yard_count === 5) {
+                thisScript.global.checked_yard_count = undefined;
+                setCurrentScheme(thisConf.next_scheme);
+                toastLog(`切换方案为[${thisConf.next_scheme}]`);
+                thisScript.rerun();
+            } else {
+                sleep(1500);
+                if (!thisScript.global.checked_yard_count) {
+                    thisScript.global.checked_yard_count = 1;
+                } else {
+                    thisScript.global.checked_yard_count += 1;
+                }
+            }
+
         }
 
         if (thisScript.oper({
@@ -328,6 +339,20 @@ export default {
             }]
         })) {
             return true;
+        }
+
+        // 检测是否有皮肤广告
+        let point = thisScript.findMultiColor('皮肤广告关闭按钮');
+        if (point) {
+            console.log('识别广告关闭按钮成功');
+            let oper = [[
+                point.x - 10,
+                point.y - 10,
+                point.x,
+                point.y,
+                1200
+              ]];
+              thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
         }
 
         return true;

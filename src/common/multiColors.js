@@ -402,6 +402,21 @@ export default {
             ]
         ]
     },
+    '皮肤广告关闭按钮': {
+        region: [left, 1280, 720, 1, 1, 1279, 719],
+        similar: 95,
+        desc: [
+            [1280, 720,
+                [
+                    [right, 1172, 82, 0xeecccc],
+                    [right, 1163, 72, 0xe9d1ce],
+                    [right, 1184, 72, 0xedcdce],
+                    [right, 1168, 88, 0xe7d4cf],
+                    [right, 1182, 91, 0xeecccc]
+                ]
+            ]
+        ]
+    },
     '探索_经验标识': {
         region: [center, 1280, 720, 42, 345, 1173, 700],
         similar: 95,
@@ -676,6 +691,36 @@ export default {
                     [center, 467, 348, 0x92301e],
                     [center, 463, 347, 0xd6b19f],
                     [center, 472, 347, 0xd5b09e]
+                ]
+            ]
+        ]
+    },
+    '庭院_町中竖牌': {
+        region: [center, 1280, 720, 0, 83, 1279, 412],
+        desc: [
+            [1280, 720,
+                [
+                    [center, 745, 269, 0x12110f],
+                    [center, 741, 272, 0xb6aca7],
+                    [center, 737, 297, 0x160d07],
+                    [center, 751, 291, 0xaba69a],
+                    [center, 726, 294, 0xaeaa97],
+                    [center, 728, 267, 0x060503]
+                ]
+            ]
+        ]
+    },
+    '町中_逢魔之时灯笼': {
+        region: [center, 1280, 720, 0, 83, 1279, 412],
+        desc: [
+            [1280, 720,
+                [
+                    [center, 645, 180, 0xfff4b0],
+                    [center, 643, 185, 0xfbe5a3],
+                    [center, 649, 184, 0x0c0808],
+                    [center, 653, 148, 0xeeccaa],
+                    [center, 640, 181, 0x0c0808],
+                    [center, 646, 196, 0xd8a78e]
                 ]
             ]
         ]
