@@ -298,6 +298,9 @@ export const versionList = [{
 }, {
     version: '20221022_01',
     desc: '优化：修复登录页识别失败问题，添加对一打开菜单的庭院识别；\n优化：式神寄养添加自动寄养开关'
+}, {
+    version: '20221024_01',
+    desc: '优化：修复式神寄养无法识别第二个可用坑位，添加返回庭院方案；\n优化：优化登录方案，添加关闭广告功能；\n修复：式神寄养无法识别第二个可用坑位；\n新增：返回庭院方案。'
 }];
 
 export default versionList[versionList.length - 1].version;
