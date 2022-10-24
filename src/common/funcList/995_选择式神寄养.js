@@ -1,4 +1,5 @@
 import { myToast } from '@/common/toolAuto';
+import { setCurrentScheme } from '@/common/tool';
 
 const normal = -1; //定义常量
 const left = 0;
@@ -34,6 +35,13 @@ export default {
                 type: 'switch',
                 default: true,
                 value: true,
+            },
+            {
+                name: 'next_scheme',
+                desc: '完成后下一个方案',
+                type: 'scheme',
+                default: '返回庭院',
+                value: '返回庭院',
             }]
     }],
     operator: [
@@ -195,8 +203,9 @@ export default {
                         oper: [thisOperator[2].oper[1], thisOperator[2].oper[1], thisOperator[2].oper[1]]
                     }]
                 });
-                thisScript.global.backToYardFlag = true;
-                return false;
+                setCurrentScheme(thisConf.next_scheme);
+                myToast(`切换方案为[${thisConf.next_scheme}]`);
+                thisScript.rerun();
             } else if ('关闭应用' === thisConf.afterCountOper) {
                 sleep(1000);
                 myToast(`停止应用[${packageName}]`);

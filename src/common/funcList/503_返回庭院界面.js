@@ -21,14 +21,12 @@ export default {
 			[left, 1280, 720, 30, 35, 76, 80, 1000],
 		]
 	}, { // 阴阳寮
-		desc: [
-			1280, 720,
-			[
-				[right, 976, 604, 0x371515],
-				[right, 1002, 636, 0xac3d3d],
-				[right, 989, 647, 0xd8b699],
-				[right, 968, 680, 0xeaddc5]
-			]
+		desc: [1280, 720,
+			[[left, 44, 28, 0xf1e0ad],
+			[left, 74, 32, 0xaa885f],
+			[left, 53, 42, 0xedd28f],
+			[right, 1199, 89, 0x761021],
+			[right, 1189, 628, 0x8c6a44]]
 		],
 		oper: [
 			[left, 1280, 720, 25, 9, 74, 55, 2000]
@@ -57,12 +55,12 @@ export default {
 	}, {
 		// 旧版町中界面
 		desc: [1280, 720,
-			[[right, 1048, 223, 0xb6adb1],
-			[right, 1057, 244, 0x030302],
-			[right, 1060, 258, 0x1b1711],
-			[right, 1054, 350, 0x999593],
-			[right, 1158, 47, 0xd9b897],
-			[right, 1221, 35, 0xd3af84]]
+			[[right, 1067, 221, 0xb5aaad],
+			[right, 1054, 321, 0x989694],
+			[right, 1054, 344, 0x969592],
+			[right, 1052, 352, 0x999595],
+			[right, 1056, 413, 0x938f8f],
+			[right, 1054, 433, 0x8e8b8a]]
 		],
 		oper: [
 			[right, 1280, 720, 1012, 228, 1093, 298, 1000],
@@ -70,13 +68,13 @@ export default {
 	},
 	{
 		// 现世逢魔
-		desc: [1280,720,
-			[[left,19,700,0x3c3841],
-			[left,42,46,0xc3cbdf],
-			[center,754,39,0x583716],
-			[center,1181,650,0xffffff],
-			[left,43,680,0xc7957c],
-			[left,54,676,0x433b42]]
+		desc: [1280, 720,
+			[[left, 19, 700, 0x3c3841],
+			[left, 42, 46, 0xc3cbdf],
+			[center, 754, 39, 0x583716],
+			[center, 1181, 650, 0xffffff],
+			[left, 43, 680, 0xc7957c],
+			[left, 54, 676, 0x433b42]]
 		],
 		oper: [
 			[left, 1280, 720, 27, 25, 72, 73, 1000],
@@ -108,101 +106,132 @@ export default {
 		oper: [
 			[left, 1280, 720, 31, 8, 76, 50, 1000],
 		]
+	},
+	{
+		desc:   // 页面是否为庭院(菜单未展开) 只支持默认庭院皮肤与默认装饰
+			[1280, 720,
+				[[right, 1226, 47, 0xcda47a],
+				[right, 1157, 45, 0xb39671],
+				[center, 389, 65, 0xfbc573],
+				[right, 1207, 637, 0xdfd1cb]]
+			]
+	},
+	{
+		desc:   // 页面是否为庭院(菜单已展开) 只支持默认庭院皮肤与默认装饰
+			[1280, 720,
+				[[right, 1226, 47, 0xcda47a],
+				[right, 1157, 45, 0xb29670],
+				[center, 389, 65, 0xfbc573],
+				[right, 1228, 646, 0xd6c6c3]]
+			]
 	}],
 	operatorFunc(thisScript, thisOperator) {
-        let thisConf = thisScript.scheme.config['503'];
+		let thisConf = thisScript.scheme.config['503'];
 
-		if (!thisScript.global.backToYardFlag) {
-			return false;
+		if (thisScript.oper({
+			name: '探索地图返回庭院',
+			operator: [{
+				desc: thisOperator[0].desc,
+				oper: thisOperator[0].oper
+			}]
+		})) {
+
+			return true;
 		}
 
 		if (thisScript.oper({
-            name: '探索地图返回庭院',
-            operator: [{
-                desc: thisOperator[0].desc,
-                oper: thisOperator[0].oper
-            }]
-        })) {
-			thisScript.stop();
-            return true;
-        }
+			name: '阴阳寮返回庭院',
+			operator: [{
+				desc: thisOperator[1].desc,
+				oper: thisOperator[1].oper
+			}]
+		})) {
+
+			return true;
+		}
 
 		if (thisScript.oper({
-            name: '阴阳寮返回庭院',
-            operator: [{
-                desc: thisOperator[1].desc,
-                oper: thisOperator[1].oper
-            }]
-        })) {
-			thisScript.stop();
-            return true;
-        }
+			name: '斗技返回庭院',
+			operator: [{
+				desc: thisOperator[2].desc,
+				oper: thisOperator[2].oper
+			}]
+		})) {
+
+			return true;
+		}
 
 		if (thisScript.oper({
-            name: '斗技返回庭院',
-            operator: [{
-                desc: thisOperator[2].desc,
-                oper: thisOperator[2].oper
-            }]
-        })) {
-			thisScript.stop();
-            return true;
-        }
+			name: '栏目返回庭院',
+			operator: [{
+				desc: thisOperator[3].desc,
+				oper: thisOperator[3].oper
+			}]
+		})) {
+
+			return true;
+		}
 
 		if (thisScript.oper({
-            name: '栏目返回庭院',
-            operator: [{
-                desc: thisOperator[3].desc,
-                oper: thisOperator[3].oper
-            }]
-        })) {
-			thisScript.stop();
-            return true;
-        }
+			name: '现世逢魔返回庭院',
+			operator: [{
+				desc: thisOperator[5].desc,
+				oper: thisOperator[5].oper
+			}]
+		})) {
+
+			return true;
+		}
 
 		if (thisScript.oper({
-            name: '旧版町中界面',
-            operator: [{
-                desc: thisOperator[4].desc,
-                oper: thisOperator[4].oper
-            }]
-        })) {
-			thisScript.stop();
-            return true;
-        }
+			name: '宠物后院返回庭院',
+			operator: [{
+				desc: thisOperator[6].desc,
+				oper: thisOperator[6].oper
+			}]
+		})) {
+
+			return true;
+		}
 
 		if (thisScript.oper({
-            name: '现世逢魔返回庭院',
-            operator: [{
-                desc: thisOperator[5].desc,
-                oper: thisOperator[5].oper
-            }]
-        })) {
-			thisScript.stop();
-            return true;
-        }
+			name: '召唤屋返回庭院',
+			operator: [{
+				desc: thisOperator[7].desc,
+				oper: thisOperator[7].oper
+			}]
+		})) {
+
+			return true;
+		}
 
 		if (thisScript.oper({
-            name: '宠物后院返回庭院',
-            operator: [{
-                desc: thisOperator[6].desc,
-                oper: thisOperator[6].oper
-            }]
-        })) {
-			thisScript.stop();
-            return true;
-        }
+			name: '是否为庭院(未展开菜单)',
+			operator: [{
+				desc: thisOperator[8].desc,
+				oper: thisOperator[8].oper
+			}]
+		}) || thisScript.oper({
+			name: '是否为庭院(已展开菜单)',
+			operator: [{
+				desc: thisOperator[9].desc,
+				oper: thisOperator[9].oper
+			}]
+		})) {
 
-		if (thisScript.oper({
-            name: '召唤屋返回庭院',
-            operator: [{
-                desc: thisOperator[6].desc,
-                oper: thisOperator[6].oper
-            }]
-        })) {
+			// 町中与庭院几乎一致。。。只能用牌子来做比较
+			if (thisScript.oper({
+				name: '旧版町中界面',
+				operator: [{
+					desc: thisOperator[4].desc,
+					oper: thisOperator[4].oper
+				}]
+			})) {
+				return true;
+			}
 			thisScript.stop();
-            return true;
-        }
+			return true;
+		}
 
 		return true;
 	}

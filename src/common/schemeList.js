@@ -273,11 +273,16 @@ const SchemeList = [{
         list: [52],
     }, 
     {
+        id: 29,
+        schemeName: '返回庭院',
+        list: [503],
+    },
+    {
         id: 30,
         schemeName: "式神寄养",
         star: true,
         groupName: "式神寄养",
-        list: [503, 999, 998, 997, 994, 995],
+        list: [999, 998, 997, 994, 995],
         config: {
             "994": {
                 count: "3",
@@ -286,7 +291,10 @@ const SchemeList = [{
                 next_scheme: "通用准备退出"
             },
             "995": {
-                afterCountOper: "停止脚本"
+                next_scheme: "返回庭院",
+                afterCountOper: "停止脚本",
+                isAutoFosterCare: true,
+                maxTimeForwait: "10",
             },
             "997": {
                 priority: "太鼓6->太鼓5->太鼓4->太鼓3->斗鱼6->斗鱼5->斗鱼4"
@@ -321,6 +329,7 @@ const SchemeList = [{
                 next_scheme: "通用准备退出"
             },
             "995": {
+                next_scheme: "返回庭院",
                 afterCountOper: "停止脚本",
                 isAutoFosterCare: true,
                 maxTimeForwait: "10",
