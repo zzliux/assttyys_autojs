@@ -1,5 +1,6 @@
 import { getWidthPixels, getHeightPixels } from "@auto.pro/core";
 import drawFloaty from "@/system/drawFloaty";
+import { getRegionBiasRnd, strHashToNum } from '@/common/toolAuto';
 import Bezier from 'bezier-js';
 
 const normal = -1; //定义常量
@@ -88,8 +89,9 @@ export const helperBridge = {
         let self = this;
         transedOper.forEach(item => {
             if (item[0] >= 0) {
-                let x = random(item[0], item[2]);
-                let y = random(item[1], item[3]);
+                // let x = random(item[0], item[2]);
+                // let y = random(item[1], item[3]);
+                const [x, y] = getRegionBiasRnd(item, [strHashToNum(device.getAndroidId(), item[0], item[2]), strHashToNum(device.getAndroidId(), item[1], item[3])], 1);
                 console.log(`执行点击操作 === x坐标:${x}, y坐标:${y}`);
                 if (drawFloaty.instacne) {
                     let toDraw = [{

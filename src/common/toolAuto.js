@@ -4,8 +4,8 @@ import helperBridge from '@/system/helperBridge';
 // importClass(android.graphics.Color);
 // importPackage(android.content);
 
-export function requestMyScreenCapture (callback) {
-    requestScreenCaptureAsync(getWidthPixels() < getHeightPixels()).then(function(success) {
+export function requestMyScreenCapture(callback) {
+    requestScreenCaptureAsync(getWidthPixels() < getHeightPixels()).then(function (success) {
         if (success) {
             helperBridge.init();
         }
@@ -42,22 +42,22 @@ function _toast(str) {
     setTimeout(function () { toast.cancel(); }, 1000)
 }
 
-export function myToast (str) {
+export function myToast(str) {
     ui.run(() => _toast(str));
     console.log(str);
 }
 
 function parsePMFlags(options, def) {
-    if(!options) {
+    if (!options) {
         return def;
     }
     function parseFlags(type, options) {
         let flags = 0;
         let flagStrings = options[type];
-        if(!flagStrings) {
+        if (!flagStrings) {
             return flags;
         }
-        if(!Array.isArray(flagStrings)) {
+        if (!Array.isArray(flagStrings)) {
             throw new TypeError();
         }
         flagStrings.forEach(str => {
@@ -96,3 +96,41 @@ export const toJsArray = function (iterable) {
     }
     return arr;
 };
+
+
+/**
+ * 
+ * @param {*} region 区域[x1, y1, x2, y2]
+ * @param {*} pointBias 偏向坐标 [x, y]
+ * @param {*} influence 影响力 [0, 1]之间
+ * @returns 
+ */
+function getRegionBiasRnd(region, pointBias, influence) {
+    let rnd1 = Math.random() * (region[2] - region[0]) + region[0];
+    let rnd2 = Math.random() * (region[3] - region[1]) + region[1];
+    let mix1 = Math.sqrt(Math.random() * influence);
+    let mix2 = Math.sqrt(Math.abs(mix1 * mix1 - Math.pow(Math.random() * influence, 2)));
+    if (region[2] - region[0] < region[3] - region[1]) {
+        return [parseInt(rnd1 * (1 - mix1) + pointBias[0] * mix1), parseInt(rnd2 * (1 - mix2) + pointBias[1] * mix2)];
+    } else {
+        return [parseInt(rnd1 * (1 - mix2) + pointBias[0] * mix2), parseInt(rnd2 * (1 - mix1) + pointBias[1] * mix1)];
+    }
+}
+
+/**
+ * 根据Androidid 和点击区域 hash 出一个偏向点，偏向点不能过于接近start和end
+ * @param {*} str 
+ * @param {*} start 
+ * @param {*} end 
+ * @returns 
+ */
+function strHashToNum(str, start, end) {
+    let sStart = (end - start) / 4 + start;
+    let sEnd = (start - end) / 4 + end;
+    let sum = 0;
+    let factor = 13;
+    for (let i = 0; i < str.length; i++) {
+        sum += str.charCodeAt(i) * factor;
+    }
+    return sum * Math.max((sum % factor), 1) % (sEnd - sStart - 1) + sStart;
+}
