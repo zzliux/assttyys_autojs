@@ -301,6 +301,9 @@ export const versionList = [{
 }, {
     version: '20221024_01',
     desc: '优化：修复式神寄养无法识别第二个可用坑位，添加返回庭院方案；\n优化：优化登录方案，添加关闭广告功能；\n修复：式神寄养无法识别第二个可用坑位；\n新增：返回庭院方案。'
+}, {
+    version: '20221029_01',
+    desc: '优化：区域点击的随机坐标生成更加更人性化，且不同设备的偏向坐标不同'
 }];
 
 export default versionList[versionList.length - 1].version;

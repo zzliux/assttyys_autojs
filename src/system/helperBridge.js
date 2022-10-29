@@ -1,7 +1,6 @@
 import { getWidthPixels, getHeightPixels } from "@auto.pro/core";
 import drawFloaty from "@/system/drawFloaty";
 import { getRegionBiasRnd, strHashToNum } from '@/common/toolAuto';
-import Bezier from 'bezier-js';
 
 const normal = -1; //定义常量
 const left = 0;

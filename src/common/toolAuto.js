@@ -105,7 +105,7 @@ export const toJsArray = function (iterable) {
  * @param {*} influence 影响力 [0, 1]之间
  * @returns 
  */
-function getRegionBiasRnd(region, pointBias, influence) {
+export function getRegionBiasRnd(region, pointBias, influence) {
     let rnd1 = Math.random() * (region[2] - region[0]) + region[0];
     let rnd2 = Math.random() * (region[3] - region[1]) + region[1];
     let mix1 = Math.sqrt(Math.random() * influence);
@@ -124,7 +124,7 @@ function getRegionBiasRnd(region, pointBias, influence) {
  * @param {*} end 
  * @returns 
  */
-function strHashToNum(str, start, end) {
+export function strHashToNum(str, start, end) {
     let sStart = (end - start) / 4 + start;
     let sEnd = (start - end) / 4 + end;
     let sum = 0;
