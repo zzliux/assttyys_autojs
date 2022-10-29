@@ -41,9 +41,13 @@ option = {
         function getRndBias(region, pointBias, influence) {
           let rnd1 = Math.random() * (region[2] - region[0]) + region[0];
           let rnd2 = Math.random() * (region[3] - region[1]) + region[1];
-          let mix1 = Math.random() * influence;
+          let mix1 = Math.sqrt(Math.random() * influence);
           let mix2 = Math.sqrt(Math.abs(mix1 * mix1 - Math.pow(Math.random() * influence, 2)));
-          return [parseInt(rnd1 * (1 - mix1) + pointBias[0] * mix1), parseInt(rnd2 * (1 - mix2) + pointBias[1] * mix2)];
+          if (region[2] - region[0] < region[3] - region[1]) {
+            return [parseInt(rnd1 * (1 - mix1) + pointBias[0] * mix1), parseInt(rnd2 * (1 - mix2) + pointBias[1] * mix2)];
+          } else {
+            return [parseInt(rnd1 * (1 - mix2) + pointBias[0] * mix2), parseInt(rnd2 * (1 - mix1) + pointBias[1] * mix1)];
+          }  
         }
 
         /**
@@ -54,8 +58,8 @@ option = {
          * @returns 
          */
         function myHash (str, start, end) {
-          let sStart = (end - start) / 7 + start;
-          let sEnd = (start - end) / 7 + end;
+          let sStart = (end - start) / 4 + start;
+          let sEnd = (start - end) / 4 + end;
           let sum = 0;
           let factor = 13;
           for (let i = 0; i < str.length; i++) {
