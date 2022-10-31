@@ -1,5 +1,5 @@
-import { setCurrentScheme, pushPlusPush, scaleBmp } from '@/common/tool';
-import { myToast } from '@/common/toolAuto';
+import { setCurrentScheme, scaleBmp } from '@/common/tool';
+import { myToast, ospPush } from '@/common/toolAuto';
 import { storeCommon } from '@/system/store';
 
 export default {
@@ -214,9 +214,9 @@ export default {
 				thisScript.rerun();
 			} else {
 				let storeSettings = storeCommon.get('settings', {});
-				if (storeSettings.use_push_plus) {
-					if (!storeSettings.push_plus_token) {
-						console.error('未配置推送加token');
+				if (storeSettings.use_osp) {
+					if (!storeSettings.osp_user_token) {
+						console.error('未配置ospUserToken');
 						return;
 					}
 					try {
@@ -228,18 +228,19 @@ export default {
 						bmp.recycle();
 	
 						let b64str = android.util.Base64.encodeToString(baos.toByteArray(), android.util.Base64.NO_WRAP);
-						let upContent = `<div><p>脚本已停止，请查看</p><img style="max-width: 100%" src="data:image/png;base64,${b64str}" /></div>`;
-						console.log('上传大小' + upContent.length);
+						let data = [{
+							type: 'text',
+							data: '脚本已停止，请查看'
+						}, {
+							type: 'image',
+							data: b64str
+						}];
+						console.log('图片b64大小' + b64str.length);
 	
 						myToast('脚本即将停止，正在上传数据');
-						let res = pushPlusPush({
-							token: storeSettings.push_plus_token,
-							title: '脚本停止提醒',
-							template: 'html',
-							channel: 'wechat',
-							content: upContent
-						});
-						console.log(`提交推送加响应内容：${res.body.string()}`);
+						// 上传
+						const res = ospPush(storeSettings.osp_user_token, data);
+						myToast(`提交osp响应内容：${res.body.string()}`);
 					} catch (e) {
 						console.error($debug.getStackTrace(e));
 					}

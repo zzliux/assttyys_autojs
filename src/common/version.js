@@ -304,6 +304,9 @@ export const versionList = [{
 }, {
     version: '20221029_01',
     desc: '优化：区域点击的随机坐标生成更加更人性化，且不同设备的偏向坐标不同'
+}, {
+    version: '20221031_01',
+    desc: '新增：qq推送机器人osp上线，使用方法见https://zzliux.cn/assttyys-osp-usage/'
 }];
 
 export default versionList[versionList.length - 1].version;

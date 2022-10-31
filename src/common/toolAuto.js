@@ -134,3 +134,15 @@ export function strHashToNum(str, start, end) {
     }
     return sum * Math.max((sum % factor), 1) % (sEnd - sStart - 1) + sStart;
 }
+
+/**
+ * 使用osp推送qq
+ * @param {*} userToken 
+ * @param {*} data 
+ */
+export function ospPush (userToken, data) {
+    return http.postJson('https://assttyys.zzliux.cn/api/osp/send', {
+        userToken,
+        data
+    });
+}
