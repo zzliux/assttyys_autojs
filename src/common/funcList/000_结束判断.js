@@ -1,6 +1,5 @@
-import { setCurrentScheme, scaleBmp } from '@/common/tool';
-import { myToast, ospPush } from '@/common/toolAuto';
-import { storeCommon } from '@/system/store';
+import { setCurrentScheme } from '@/common/tool';
+import { myToast, doOspPush } from '@/common/toolAuto';
 
 export default {
 	id: 0,
@@ -213,38 +212,7 @@ export default {
 				myToast(`切换方案为[${thisconf.next_scheme}]`);
 				thisScript.rerun();
 			} else {
-				let storeSettings = storeCommon.get('settings', {});
-				if (storeSettings.use_osp) {
-					if (!storeSettings.osp_user_token) {
-						console.error('未配置ospUserToken');
-						return;
-					}
-					try {
-						let bmp = scaleBmp(thisScript.helperBridge.helper.GetBitmap(), 0.5);
-						let baos = new java.io.ByteArrayOutputStream();
-						bmp.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, baos);
-						baos.flush();
-						baos.close();
-						bmp.recycle();
-	
-						let b64str = android.util.Base64.encodeToString(baos.toByteArray(), android.util.Base64.NO_WRAP);
-						let data = [{
-							type: 'text',
-							data: '脚本已停止，请查看'
-						}, {
-							type: 'image',
-							data: b64str
-						}];
-						console.log('图片b64大小' + b64str.length);
-	
-						myToast('脚本即将停止，正在上传数据');
-						// 上传
-						const res = ospPush(storeSettings.osp_user_token, data);
-						myToast(`提交osp响应内容：${res.body.string()}`);
-					} catch (e) {
-						console.error($debug.getStackTrace(e));
-					}
-				}
+				doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { myToast('脚本即将停止，正在上传数据'); } });
 				// 停止脚本时关闭应用
 				if (thisconf.stop_with_launched_app_exit) {
 					if (storeSettings.defaultLaunchAppList && storeSettings.defaultLaunchAppList.length) {

@@ -1,3 +1,4 @@
+import { storeCommon } from '@/system/store';
 import { getWidthPixels, getHeightPixels } from '@auto.pro/core';
 import helperBridge from '@/system/helperBridge';
 
@@ -145,4 +146,58 @@ export function ospPush (userToken, data) {
         userToken,
         data
     });
+}
+
+/**
+ * 发起osp消息推送
+ * @param {*} thisScript 
+ * @param {*} options { text, before, after } 
+ * @returns 
+ */
+export function doOspPush (thisScript, options) {
+    let storeSettings = storeCommon.get('settings', {});
+    if (storeSettings.use_osp) {
+        if (!storeSettings.osp_user_token) {
+            console.error('未配置ospUserToken');
+            return;
+        }
+        try {
+            let bmp = scaleBmp(thisScript.helperBridge.helper.GetBitmap(), 0.5);
+            let baos = new java.io.ByteArrayOutputStream();
+            bmp.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, baos);
+            baos.flush();
+            baos.close();
+            bmp.recycle();
+
+            let b64str = android.util.Base64.encodeToString(baos.toByteArray(), android.util.Base64.NO_WRAP);
+            let data = [{
+                type: 'text',
+                data: options && options.text || ''
+            }, {
+                type: 'image',
+                data: b64str
+            }];
+            console.log('图片b64大小' + b64str.length);
+
+            // myToast('脚本即将停止，正在上传数据');
+            options && options.before && options.before();
+            // 上传
+            const res = ospPush(storeSettings.osp_user_token, data);
+            myToast(`提交osp响应内容：${res.body.string()}`);
+            options && options.after && options.after();
+        } catch (e) {
+            myToast(`提交osp发生了错误：${e}`);
+            console.error($debug.getStackTrace(e));
+        }
+    }
+}
+
+export function scaleBmp(bmp, scale) {
+    let width = bmp.getWidth();
+    let height = bmp.getHeight();
+    let matrix = new android.graphics.Matrix();
+    matrix.postScale(scale, scale);
+    let newBmp = android.graphics.Bitmap.createBitmap(bmp, 0, 0, width, height, matrix, false);
+    bmp.recycle();
+    return newBmp;
 }
