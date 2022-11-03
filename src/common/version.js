@@ -307,6 +307,9 @@ export const versionList = [{
 }, {
     version: '20221031_01',
     desc: '新增：qq推送机器人osp上线，使用方法见https://zzliux.cn/assttyys-osp-usage/'
+}, {
+    version: '20221103_01',
+    desc: '优化：已有功能中只要包含脚本停止的内容均可通过osp进行推送'
 }];
 
 export default versionList[versionList.length - 1].version;

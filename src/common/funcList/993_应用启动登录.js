@@ -1,3 +1,4 @@
+import { myToast, doOspPush } from '@/common/toolAuto';
 import { setCurrentScheme } from '@/common/tool';
 
 const normal = -1; //定义常量
@@ -170,6 +171,7 @@ export default {
             thisScript.global.app_is_open = true;
         } else if (!isInstalled) {
             toastLog(`未找到对应的应用[${packageName}]`);
+            doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { myToast('脚本即将停止，正在上传数据'); } });
             thisScript.stop();
         }
 

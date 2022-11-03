@@ -1,3 +1,4 @@
+import { myToast, doOspPush } from '@/common/toolAuto';
 import { setCurrentScheme } from '@/common/tool';
 
 const normal = -1; //定义常量
@@ -63,6 +64,7 @@ export default {
 			if (thisScript.global.tp_swipe_times >= defaultCount) {
 				thisScript.global.tp_swipe_times = 0;
 				if ('停止脚本' === thisConf.afterCountOper) {
+					doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { myToast('脚本即将停止，正在上传数据'); } });
 					thisScript.stop();
 				} else if ('切换方案' === thisConf.afterCountOper) {
 					let oper = thisOperator[0].oper[2];

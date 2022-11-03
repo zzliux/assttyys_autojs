@@ -1,3 +1,4 @@
+import { myToast, doOspPush } from '@/common/toolAuto';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -110,6 +111,7 @@ export default {
 
 			if (thisScript.global.dgCurNum === -1) {
 				toastLog('已完成');
+				doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { myToast('脚本即将停止，正在上传数据'); } });
 				thisScript.stop();
 				return;
 			}

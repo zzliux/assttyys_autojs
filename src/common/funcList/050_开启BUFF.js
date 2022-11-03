@@ -1,3 +1,4 @@
+import { myToast, doOspPush } from '@/common/toolAuto';
 import { setCurrentScheme } from '@/common/tool';
 
 const normal = -1; //定义常量
@@ -69,6 +70,7 @@ export default {
 					toastLog(`切换方案为[${thisconf.next_scheme}]`);
 					thisScript.rerun();
 				} else {
+					doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { myToast('脚本即将停止，正在上传数据'); } });
 					thisScript.stop();
 				}
 				return true;
