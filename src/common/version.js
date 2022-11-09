@@ -310,6 +310,9 @@ export const versionList = [{
 }, {
     version: '20221103_01',
     desc: '优化：已有功能中只要包含脚本停止的内容均可通过osp进行推送'
+}, {
+    version: '20221109_01',
+    desc: '优化：地鬼打完后退出至探索地图界面；\n优化：进入探索地图界面功能中新增从组队界面退出的操作（针对关闭buff方案在组队打完后不会进行任何操作进行优化）'
 }];
 
 export default versionList[versionList.length - 1].version;

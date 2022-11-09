@@ -162,6 +162,7 @@ export function doOspPush (thisScript, options) {
             return;
         }
         try {
+            thisScript.keepScreen();
             let bmp = scaleBmp(thisScript.helperBridge.helper.GetBitmap(), 0.5);
             let baos = new java.io.ByteArrayOutputStream();
             bmp.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, baos);
