@@ -35,7 +35,7 @@ export default {
 					operator: [thisOperator[0]]
 				})) {
 				thisScript.helperBridge.regionClick([
-					[402, 35, 434, 81, 1000]
+					[359, 45, 396, 74, 1000]
 				], thisScript.scheme.commonConfig.afterClickDelayRandom);
 				return true
 			} else {

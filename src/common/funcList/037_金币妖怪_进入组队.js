@@ -21,12 +21,11 @@ export default {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 156, 418, 355, 466, 1],
-			[center, 1280, 720, 154, 201, 361, 245, 1]
+			[center, 1280, 720, 166, 613, 348, 650, 1],
+			[center, 1280, 720, 170, 138, 351, 187, 1]
 		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
-		console.log('金币妖怪_进入组队')
 		if (thisScript.oper({
 				id: 36,
 				name: '金币妖怪_进入组队',
@@ -34,19 +33,22 @@ export default {
 					desc: thisOperator[0].desc
 				}]
 			})) {
-			let point = thisScript.findMultiColor('金币妖怪_金币妖怪字样') || null;
-			if (!point) {
-				thisScript.helperBridge.regionSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [100, 300], 2000);
-				return true;
-			} else if (point) {
-				let oper = [
-					[point.x, point.y, point.x + 10, point.y + 10, 1000]
-				];
-				thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
-				return true
-			} else {
-				return false
-			}
+			// let point = thisScript.findMultiColor('金币妖怪_金币妖怪字样') || null;
+			// if (!point) {
+			thisScript.helperBridge.regionSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [100, 300], 3000);
+			thisScript.helperBridge.regionClick([
+				[154, 125, 356, 141, 1000]
+			], thisScript.scheme.commonConfig.afterClickDelayRandom);
+			return true;
+			// } else if (point) {
+			// 	let oper = [
+			// 		[point.x, point.y, point.x + 10, point.y + 10, 1000]
+			// 	];
+			// 	thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+			// 	return true
+			// } else {
+			// 	return false
+			// }
 		}
 	}
 }

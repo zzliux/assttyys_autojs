@@ -29,12 +29,12 @@ export default {
 		// 庭院
 		desc: [1280, 720,
 			[
-				[left, 420, 33, 0xf8ce7b],
-				[left, 419, 87, 0xf48255],
-				[left, 400, 59, 0xf7b069],
-				[left, 440, 63, 0xf7aa67],
-				[right, 1155, 36, 0xd7b28a],
-				[right, 1236, 51, 0xcaa073],
+				[left, 264, 41, 0x493738],
+				[right, 1156, 37, 0xd7b28a],
+				[right, 1229, 48, 0xcfa676],
+				[right, 1228, 650, 0xd6c6c3],
+				[right, 1226, 601, 0x5b1919],
+				[center, 337, 72, 0x765828]
 			]
 		],
 		oper: [
@@ -64,6 +64,7 @@ export default {
 				}]
 			})) {
 			const point = thisScript.findMultiColor('悬赏_庭院检测悬赏图标') || null;
+			console.log(point,'point')
 			if (point !== null) {
 				thisScript.helperBridge.regionClick([
 					[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], 1000]
