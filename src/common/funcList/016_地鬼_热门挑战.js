@@ -93,7 +93,7 @@ export default {
 				name: '地鬼_热门挑战',
 				operator: [{
 					desc: thisOperator[0].desc,
-					oper: thisOperator[2].oper
+					oper: [thisOperator[2].oper[0]]
 				}]
 			}, 2000)) { // 加了个两秒的重检测时间，防止退出来后
 			thisScript.keepScreen();
