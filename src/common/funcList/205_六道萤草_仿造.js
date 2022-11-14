@@ -25,8 +25,8 @@ export default {
 		oper: [
 			[left, 1280, 720, 0, 0, 893 - 843, 244 - 197, 500], // 技能大小
 			[right, 1280, 720, 1165, 622, 1230, 699, 500], // 仿造区域
-			[left, 1280, 720, 16, 23, 60, 65, 500], // 左上角返回
-			[center, 1280, 720, 674, 406, 842, 456, 1000], // 确定
+			[left, 1280, 720, 16, 23, 60, 65, 700], // 左上角返回
+			[center, 1280, 720, 674, 406, 842, 456, 1500], // 确定
 		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
@@ -62,6 +62,9 @@ export default {
 				// 3次都没找到的话，重选，不过滤
 				if (!toClick) {
 					for (let i = 0; i < priorty.length; i++) {
+						if (thisScript.global.d6d[priorty[i]][0] >= 5) {
+							continue;
+						}
 						const p = thisScript.findMultiColor(`六道萤草_仿造_${priorty[i]}`);
 						if (p) {
 							toClick = p;
@@ -75,6 +78,9 @@ export default {
 			if (!toClick) {
 				for (let i = 0; i < priorty2.length; i++) {
 					const p = thisScript.findMultiColor(`六道萤草_仿造_${priorty2[i]}`);
+					if (thisScript.global.d6d[priorty2[i]][0] >= 5) {
+						continue;
+					}
 					if (p) {
 						toClick = p;
 						type = priorty2[i];

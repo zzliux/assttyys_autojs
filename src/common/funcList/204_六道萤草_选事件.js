@@ -6,7 +6,7 @@ const right = 2;
 
 export default {
 	id: 204,
-	name: '六道萤草_装buff（TODO）',
+	name: '六道萤草_选事件',
 	// desc: '腐草为萤-5级，妖力化身-2级，六道净化-1级，萤火之光-最好5级',
 	operator: [{
 		// 事件
@@ -16,6 +16,8 @@ export default {
 				[left, 252, 38, 0x583716],
 				[left, 66, 649, 0x3d4f5c],
 				[right, 1219, 616, 0x242526],
+				[right, 1170, 645, 0x373737],
+				[right, 1205, 680, 0xf8f3e0],
 			]
 		],
 		oper: [
@@ -23,13 +25,14 @@ export default {
 		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
-		while (thisScript.oper({
-			name: '六道萤草_装buff',
+		if (thisScript.oper({
+			name: '六道萤草_选事件',
 			operator: [{
-				desc: thisOperator[0].desc
+				desc: thisOperator[0].desc,
+				retest: 500,
 			}]
 		})) {
-			let eventNames = ['鏖战', '混沌'] // 现在就做了鏖战，还不全
+			let eventNames = ['鏖战', '混沌', '神秘', '宁息'];
 			// let eventNames = ['鏖战', '混沌', '神秘', '宁息'];
 			for (let i = 0; i < eventNames.length; i++) {
 				const en = eventNames[i];
@@ -43,7 +46,7 @@ export default {
 						thisOperator[0].oper[0][4]
 					];
 					thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
-					toastLog(`选择事件${en}`);
+					myToast(`选择事件${en}`);
 					break;
 				}
 			}

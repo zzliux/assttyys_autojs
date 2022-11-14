@@ -44,7 +44,7 @@ export default {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 0, 0, 385 - 268 - 40, 592 - 556 - 10, 2000], // 选择按钮的大小
+			[center, 1280, 720, 0, 0, 385 - 268 - 40, 592 - 556 - 10, 2500], // 选择按钮的大小
 			[center, 1280, 720, 1189, 622, 1238, 677, 500], // 右下角刷新按钮
 			[center, 1280, 720, 682, 398, 802, 449, 1500], // 刷新确认
 		]
@@ -74,7 +74,7 @@ export default {
 				腐草为萤: [parseInt(thisconf.腐草为萤) || 0, 5],
 				妖力化身: [parseInt(thisconf.妖力化身) || 0, 2],
 				六道净化: [parseInt(thisconf.六道净化) || 0, 1],
-				萤火之光: [parseInt(thisconf.萤火之光) || 0, 1]
+				萤火之光: [parseInt(thisconf.萤火之光) || 0, 4]
 			}
 		}
 		if (thisScript.oper({
@@ -120,6 +120,9 @@ export default {
 				}
 			} else {
 				for (let i = 0; i < priorty2.length; i++) {
+					if (thisScript.global.d6d[priorty2[i]][0] >= 5) {
+						continue;
+					}
 					const p = thisScript.findMultiColor(`六道萤草_${priorty2[i]}`);
 					if (p) {
 						toClick = p;
@@ -153,6 +156,9 @@ export default {
 					thisOperator[0].oper[0][4],
 				];
 				thisScript.helperBridge.regionClick([toClickRegion], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				if (thisScript.global.d6d[type][0] === 0 && type !== priorty[0]) {
+					thisScript.global.d6LoadBuff = true;
+				}
 				thisScript.global.d6d[type][0]++;
 				thisScript.global.d6RefreshCnt = 0;
 				console.log(`thisScript.global.d6d: ${JSON.stringify(thisScript.global.d6d)}`);
