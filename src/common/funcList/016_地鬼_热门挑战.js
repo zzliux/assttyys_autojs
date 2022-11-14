@@ -1,3 +1,4 @@
+import { myToast, doOspPush } from '@/common/toolAuto';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -46,13 +47,14 @@ export default {
 	}, {
 		desc: [1280, 720,
 			[
-				[left, 202, 388, 0x161211], // 第一个没打
-				[left, 308, 386, 0x161211], // 第二个没打
-				[left, 418, 385, 0x161211], // 第三个没打
-			] 
+				[left, 202, 388, 0x161211], // 第0个没打
+				[left, 308, 386, 0x161211], // 第1个没打
+				[left, 426, 388, 0x161211], // 第2个没打
+			]
 		],
 		oper: [
-			[left, 1280, 720, 38, 409, 88, 430, 800] // 今日挑战
+			[left, 1280, 720, 38, 409, 88, 430, 800], // 今日挑战
+			[left, 1280, 720, 51, 36, 95, 85, 1200], // 左上角的返回
 		]
 	}, {
 		// 探索地图界面
@@ -67,7 +69,7 @@ export default {
 			]
 		],
 		oper: [
-			[left, 1280, 720, 741, 638, 800, 695, 2000] // 今日挑战
+			[left, 1280, 720, 741, 638, 800, 695, 2000] // 探索地图进入地鬼
 		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
@@ -91,7 +93,7 @@ export default {
 				name: '地鬼_热门挑战',
 				operator: [{
 					desc: thisOperator[0].desc,
-					oper: thisOperator[2].oper
+					oper: [thisOperator[2].oper[0]]
 				}]
 			}, 2000)) { // 加了个两秒的重检测时间，防止退出来后
 			thisScript.keepScreen();
@@ -109,7 +111,9 @@ export default {
 			}
 
 			if (thisScript.global.dgCurNum === -1) {
+				thisScript.helperBridge.regionClick([thisOperator[2].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
 				toastLog('已完成');
+				doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { myToast('脚本即将停止，正在上传数据'); } });
 				thisScript.stop();
 				return;
 			}

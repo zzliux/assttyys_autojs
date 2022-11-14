@@ -1,4 +1,4 @@
-import { myToast } from '@/common/toolAuto';
+import { myToast, doOspPush } from '@/common/toolAuto';
 import { setCurrentScheme } from '@/common/tool';
 
 const normal = -1; //定义常量
@@ -210,6 +210,7 @@ export default {
                 sleep(1000);
                 myToast(`停止应用[${packageName}]`);
                 shell(`am force-stop ${packageName}`, true);
+				doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { myToast('脚本即将停止，正在上传数据'); } });
                 thisScript.stop();
                 return true;
             }

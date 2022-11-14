@@ -27,22 +27,34 @@ export default {
 			]
 		},
 	],
+	// operatorFunc(thisScript, thisOperator) {
+	// 	if (thisScript.oper({
+	// 			name: '悬赏_秘闻副本弹窗界面',
+	// 			operator: [{
+	// 				desc: thisOperator[0].desc
+	// 			}]
+	// 		})) {
+	// 		let point = thisScript.findMultiColor('悬赏_副本关闭按钮') || null
+	// 		if (point) {
+	// 			thisScript.helperBridge.regionClick([
+	// 				[point.x, point.y, point.x + 1, point.y + 1, 2000]
+	// 			], thisScript.scheme.commonConfig.afterClickDelayRandom);
+	// 			return true
+	// 		} else {
+	// 			return false
+	// 		}
+	// 	} else {
+	// 		return false
+	// 	}
+	// }
+
 	operatorFunc(thisScript, thisOperator) {
-		if (thisScript.oper({
-				name: '悬赏_秘闻副本弹窗界面',
-				operator: [{
-					desc: thisOperator[0].desc
-				}]
-			})) {
-			let point = thisScript.findMultiColor('悬赏_副本关闭按钮') || null
-			if (point) {
-				thisScript.helperBridge.regionClick([
-					[point.x, point.y, point.x + 1, point.y + 1, 2000]
-				], thisScript.scheme.commonConfig.afterClickDelayRandom);
-				return true
-			} else {
-				return false
-			}
+		// 由于阴阳师/脚本问题，有时候这个弹窗位置会有偏差/无法识别，所以无法使用多点比色进行弹窗确认
+		let point = thisScript.findMultiColor('悬赏_识别秘闻界面') || null
+		if (point) {
+			thisScript.helperBridge.regionClick([
+				[1164, 98, 1196, 132, 1000]
+			], thisScript.scheme.commonConfig.afterClickDelayRandom);
 		} else {
 			return false
 		}

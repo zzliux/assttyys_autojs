@@ -85,6 +85,17 @@ export default function webviewSettigns() {
             name: 'ocr_extend',
             type: 'assttyys_setting_ocr_extend',
             enabled: ocr.isInstalled()
+        }, {
+            desc: '启用osp推送',
+            name: 'use_osp',
+            type: 'assttyys_setting',
+            enabled: storeSettings.use_osp
+        }, {
+            desc: 'ospUserToken',
+            name: 'osp_user_token',
+            type: 'assttyys_setting',
+            stype: 'text',
+            value: storeSettings.osp_user_token || ''
         }];
         done(ret);
     });
@@ -170,6 +181,7 @@ export default function webviewSettigns() {
             }
             storeCommon.put('settings', storeSettings);
             done(true);
+            console.log(storeSettings);
             toastLog('保存成功');
         } else if ('assttyys_setting_floaty_debugger_draw' === item.type) {
             if (item.enabled) {

@@ -1,3 +1,4 @@
+import { myToast, doOspPush } from '@/common/toolAuto';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -31,6 +32,7 @@ export default {
 			thisScript.keepScreen();
 			if (curCnt >= maxCount) {
 				toastLog(`连续执行${maxCount}次挑战后未开始，脚本自动停止`);
+				doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { myToast('脚本即将停止，正在上传数据'); } });
 				thisScript.stop();
 				sleep(2000);
 				return false;

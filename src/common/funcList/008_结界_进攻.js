@@ -1,3 +1,4 @@
+import { myToast, doOspPush } from '@/common/toolAuto';
 import { setCurrentScheme } from '@/common/tool';
 
 const normal = -1; //定义常量
@@ -134,6 +135,7 @@ export default {
 				if ('停止脚本' === thisConf.afterCountOper) {
 					let oper = thisOperator[0].oper[1];
 					thisScript.helperBridge.regionClick([oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
+					doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { myToast('脚本即将停止，正在上传数据'); } });
 					thisScript.stop();
 				} else if ('关闭界面' === thisConf.afterCountOper) {
 					let oper = thisOperator[0].oper[1];
