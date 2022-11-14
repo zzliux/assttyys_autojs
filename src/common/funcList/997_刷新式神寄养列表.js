@@ -77,7 +77,7 @@ export default {
 
       let key = multiColorKey[thisScript.global.jy_enchantment_index - 1];
       console.log(`查找${key}结界`);
-      sleep(100);
+      sleep(800);
       let point = thisScript.findMultiColor(key);
 
       if (point) {

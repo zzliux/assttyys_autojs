@@ -340,6 +340,16 @@ const SchemeList = [{
         },
     },
     {
+        id: 33,
+        schemeName: '狩猎战',
+        list: [ 0, 1, 2, 3, 507 ]
+    },
+    {
+        id: 34,
+        schemeName: '庭院进入寮每日活动',
+        list: [ 505, 506 ]
+    },
+    {
         id: 99,
         schemeName: '伊吹之擂',
         list: [0, 3, 24, 99, 100],
