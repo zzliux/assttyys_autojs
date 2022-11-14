@@ -513,13 +513,16 @@ var script = {
                     }
 
                     if (item.operStepRandom) {
-                        console.log(`oper_success：[item.operStepRandom] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper}`);
+                        if (currFunc.id)
+                            console.log(`oper_success：[item.operStepRandom] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper}`);
                         helperBridge.regionStepRandomClick(item.operStepRandom, this.scheme.commonConfig.afterClickDelayRandom);
                     } else if (item.oper) {
-                        console.log(`oper_success：[item.oper] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper}`);
+                        if (currFunc.id)
+                            console.log(`oper_success：[item.oper] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper}`);
                         helperBridge.regionClick(item.oper, this.scheme.commonConfig.afterClickDelayRandom);
                     } else {
-                        console.log(`oper_success: [] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper}`);
+                        if (currFunc.id)
+                            console.log(`oper_success: [] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper}`);
                     }
                     return true;
                 }
