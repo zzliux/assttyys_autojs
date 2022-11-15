@@ -72,6 +72,21 @@ export default {
 		oper: [
 			[center, 1280, 720, 855, 630, 907, 685, 1000], // boss界面的装备按钮
 		]
+	}, {
+		// 点开了技能的装配界面
+		desc: [1280, 720,
+			[
+				[left, 23, 40, 0xf0f9f9],
+				[left, 251, 40, 0x583716],
+				[center, 749, 655, 0x495c67],
+				[center, 710, 662, 0x576972],
+				[center, 723, 667, 0xbbaa88],
+				[right, 1232, 28, 0x292025],
+				[center, 398, 610, 0xffd595],
+				[center, 518, 610, 0xffd494],
+				[center, 495, 599, 0xfed684],
+			]
+		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
 
@@ -103,19 +118,28 @@ export default {
 		if (thisScript.oper({
 			name: '六道萤草_装buff_装配界面',
 			operator: [{
-				desc: thisOperator[1].desc
+				desc: thisOperator[1].desc,
+				retest: 500,
 			}]
 		})) {
 			// 先卸buff
 			thisScript.helperBridge.regionClick([thisOperator[1].oper[0], thisOperator[1].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
 
 			// 再装buff
-			for (let buffName of ['腐草为萤', '妖力化身', '六道净化', '萤火之光']) {
+			const buffNames = ['腐草为萤', '妖力化身', '六道净化', '萤火之光'];
+			for (let bufInd = 0; bufInd < buffNames.length; bufInd++) {
+				const buffName = buffNames[bufInd];
 				const p = thisScript.findMultiColor(`六道萤草_仿造_${buffName}`); // 用仿造的色组
 				if (p) {
 					thisScript.helperBridge.regionClick([[
 						p.x, p.y, p.x + thisOperator[1].oper[3][2], p.y + thisOperator[1].oper[3][3], thisOperator[1].oper[3][4]
-					], thisOperator[1].oper[2]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+					]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+					// 有可能会没点到，没点到就再点一次
+					if (thisScript.compareColorLoop(thisOperator[4].desc, 500)) {
+						thisScript.helperBridge.regionClick([thisOperator[1].oper[2]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+					} else {
+						bufInd--;
+					}
 				}
 			}
 			sleep(500);

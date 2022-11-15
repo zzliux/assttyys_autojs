@@ -319,6 +319,9 @@ export const versionList = [{
 }, {
     version: '20221115_01',
     desc: '新增：狩猎战、道馆挑战方案（horsemi大佬提交）；\n优化：式神寄养，延长响应时间（horsemi大佬提交）；\n新增：六道萤草'
+}, {
+    version: '20221115_02',
+    desc: '优化：六道萤草装buff时偶尔出现点不上的情况增加重试机制，选buff时刷新体验'
 }];
 
 export default versionList[versionList.length - 1].version;

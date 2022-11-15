@@ -65,6 +65,18 @@ export default {
 			[center, 1280, 720, 433, 555, 555, 593, 500], // 第二个选择按钮
 			[center, 1280, 720, 709, 556, 832, 592, 500], // 第三个选择按钮
 		]
+	}, {
+		// 刷新确认
+		desc: [1280, 720,
+			[
+				[center, 625, 256, 0xcbb59e],
+				[center, 526, 391, 0x6e2d22],
+				[center, 488, 413, 0xdf6851],
+				[center, 784, 418, 0xf4b25f],
+				[left, 28, 42, 0x626565],
+				[right, 1218, 638, 0x534c3e],
+			]
+		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
 		if (!thisScript.global.d6d) {
@@ -143,7 +155,14 @@ export default {
 					thisScript.global.d6RefreshCnt = 0;
 				} else {
 					thisScript.global.d6RefreshCnt++;
-					thisScript.helperBridge.regionClick([thisOperator[0].oper[1], thisOperator[0].oper[2]], thisScript.scheme.commonConfig.afterClickDelayRandom); // 刷新
+					thisScript.helperBridge.regionClick([thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom); // 刷新
+					// 如果点了刷新不出确认，表示没钱了，直接给刷新次数置为3次表示这是最后一次
+					if (thisScript.compareColorLoop(thisOperator[2].desc, 600)) {
+						thisScript.helperBridge.regionClick([thisOperator[0].oper[2]], thisScript.scheme.commonConfig.afterClickDelayRandom); // 刷新
+					} else {
+						thisScript.global.d6RefreshCnt = 3;
+					}
+
 				}
 			} else {
 				// 找到了就点
