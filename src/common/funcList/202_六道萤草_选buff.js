@@ -46,7 +46,7 @@ export default {
 		oper: [
 			[center, 1280, 720, 0, 0, 385 - 268 - 40, 592 - 556 - 10, 2500], // 选择按钮的大小
 			[center, 1280, 720, 1189, 622, 1238, 677, 500], // 右下角刷新按钮
-			[center, 1280, 720, 681, 397, 802, 450, 1500], // 重置确认
+			[center, 1280, 720, 682, 398, 802, 449, 800], // 刷新确认
 		]
 	}, {
 		// 打完一波后的
@@ -98,7 +98,7 @@ export default {
 			}]
 		})) {
 			let priorty = ['腐草为萤', '妖力化身', '六道净化', '萤火之光']; // 未达到目标的优先级
-			let priorty2 = ['萤火之光', '妖力化身', '六道净化']; // 达到目标后的优先级
+			let priorty2 = ['萤火之光', '妖力化身']; // 达到目标后的优先级
 			let toClick = null;
 			let type = null;
 			let overCnt = 0;
@@ -153,6 +153,7 @@ export default {
 					myToast(`没找到，随机点击第${rn + 1}个`);
 					thisScript.helperBridge.regionClick([thisOperator[1].oper[rn]], thisScript.scheme.commonConfig.afterClickDelayRandom); // 刷新
 					thisScript.global.d6RefreshCnt = 0;
+					myToast(`当前buff：${priorty.map(name => name + ':' + thisScript.global.d6d[name][0]).join(', ')}`);
 				} else {
 					thisScript.global.d6RefreshCnt++;
 					thisScript.helperBridge.regionClick([thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom); // 刷新
@@ -165,6 +166,11 @@ export default {
 
 				}
 			} else {
+				if (thisScript.global.d6d[priorty[0]][0] === 0 && type !== priorty[0]) {
+					myToast(`未找到${priorty[0]}`);
+					sleep(500);
+					return false;
+				}
 				// 找到了就点
 				myToast(`选择${type}`);
 				const toClickRegion = [
@@ -179,8 +185,17 @@ export default {
 					thisScript.global.d6LoadBuff = true;
 				}
 				thisScript.global.d6d[type][0]++;
+				// 拿到所有buff后再装buff
+				if (thisScript.global.d6LoadBuff) {
+					let hasCnt = 0;
+					priorty.forEach(name => hasCnt += !!thisScript.global.d6d[name][0]);
+					if (hasCnt < 4) thisScript.global.d6LoadBuff = false;
+				}
+				if (thisScript.global.d6LoadBuff) {
+					myToast('准备装buff');
+				}
 				thisScript.global.d6RefreshCnt = 0;
-				console.log(`thisScript.global.d6d: ${JSON.stringify(thisScript.global.d6d)}`);
+				myToast(`当前buff：${priorty.map(name => name + ':' + thisScript.global.d6d[name][0]).join(', ')}`);
 			}
 			return true;
 		}

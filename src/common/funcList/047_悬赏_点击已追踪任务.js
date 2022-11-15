@@ -83,7 +83,7 @@ export default {
             swiper = 0;
             if (thisconf && thisconf.scheme_switch_enabled) {
               setCurrentScheme(thisconf.next_scheme);
-              toastLog(`切换方案为[${thisconf.next_scheme}]`);
+              myToast(`切换方案为[${thisconf.next_scheme}]`);
               thisScript.rerun();
               sleep(3000);
               return;
@@ -102,7 +102,7 @@ export default {
         // 如果没有悬浮列表说明任务做完了
         if (thisconf && thisconf.scheme_switch_enabled) {
           setCurrentScheme(thisconf.next_scheme);
-          toastLog(`切换方案为[${thisconf.next_scheme}]`);
+          myToast(`切换方案为[${thisconf.next_scheme}]`);
           thisScript.rerun();
         } else {
           doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { myToast('脚本即将停止，正在上传数据'); } });

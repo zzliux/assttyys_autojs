@@ -112,7 +112,6 @@ export default {
 
 			if (thisScript.global.dgCurNum === -1) {
 				thisScript.helperBridge.regionClick([thisOperator[2].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
-				toastLog('已完成');
 				doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { myToast('脚本即将停止，正在上传数据'); } });
 				thisScript.stop();
 				return;
@@ -134,7 +133,7 @@ export default {
 					thisScript.helperBridge.regionSwipe(beginRegion, thisOperator[0].oper[6], [100, 300], 200);
 				}
 				thisScript.helperBridge.regionClick([thisOperator[0].oper[7]], thisScript.scheme.commonConfig.afterClickDelayRandom);
-				toastLog(`地鬼_热门挑战_第${thisScript.global.dgCurNum + 1}次`);
+				myToast(`地鬼_热门挑战_第${thisScript.global.dgCurNum + 1}次`);
 				sleep(1500);
 				return true;
 			}

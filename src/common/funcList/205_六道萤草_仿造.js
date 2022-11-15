@@ -6,7 +6,7 @@ const right = 2;
 
 export default {
 	id: 205,
-	name: '六道萤草_仿造转换',
+	name: '六道萤草_仿造',
 	operator: [{
 		// 仿造
 		desc: [1280, 720,
@@ -20,24 +20,25 @@ export default {
 				// [right, 1184, 629, 0x8d7f60],
 				// [right, 1165, 633, 0x8d7f60],
 				// [right, 1204, 647, 0x222730],
-			]
+			],
 		],
 		oper: [
 			[left, 1280, 720, 0, 0, 893 - 843, 244 - 197, 500], // 技能大小
 			[right, 1280, 720, 1165, 622, 1230, 699, 500], // 仿造区域
 			[left, 1280, 720, 16, 23, 60, 65, 700], // 左上角返回
 			[center, 1280, 720, 674, 406, 842, 456, 1500], // 确定
-		]
+		],
 	}],
 	operatorFunc(thisScript, thisOperator) {
 		if (thisScript.oper({
-			name: '六道萤草_仿造转换',
+			name: '六道萤草_仿造',
 			operator: [{
-				desc: thisOperator[0].desc
+				desc: thisOperator[0].desc,
+				retest: 300,
 			}]
 		})) {
-			let priorty = ['腐草为萤', '妖力化身', '六道净化', '萤火之光']; // 未达到目标的优先级
-			let priorty2 = ['萤火之光', '妖力化身', '六道净化']; // 达到目标后的优先级
+			let priorty = ['腐草为萤', '妖力化身', '萤火之光']; // 未达到目标的优先级，如果没有净化则不会出现在仿造里面，直接删去
+			let priorty2 = ['萤火之光', '妖力化身']; // 达到目标后的优先级
 			let toClick = null;
 			let type = null;
 			let overCnt = 0;

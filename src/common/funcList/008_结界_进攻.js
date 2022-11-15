@@ -108,18 +108,18 @@ export default {
 					let oper = thisOperator[0].oper[1];
 					thisScript.helperBridge.regionClick([oper, oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
 					setCurrentScheme(thisConf.cdSwitchScheme);
-					toastLog(`切换方案为[${thisConf.cdSwitchScheme}]`);
+					myToast(`切换方案为[${thisConf.cdSwitchScheme}]`);
 					thisScript.rerun();
 				} else {
 					let oper = thisOperator[0].oper[1];
 					thisScript.helperBridge.regionClick([oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
 					let cdWaiteTimePair = thisConf.cdWaitTime.split(',');
 					if (cdWaiteTimePair.length === 1) {
-						toastLog(`寮突破CD, ${(parseInt(cdWaiteTimePair[0]))}秒后再次检测`);
+						myToast(`寮突破CD, ${(parseInt(cdWaiteTimePair[0]))}秒后再次检测`);
 						sleep(1000 * (parseInt(cdWaiteTimePair[0])));
 					} else {
 						let cdWaitTime = random(parseInt(cdWaiteTimePair[0]), parseInt(cdWaiteTimePair[1]));
-						toastLog(`寮突破CD, ${(cdWaitTime)}秒后再次检测`);
+						myToast(`寮突破CD, ${(cdWaitTime)}秒后再次检测`);
 						sleep(1000 * (cdWaitTime));
 					}
 					return true;
@@ -144,7 +144,7 @@ export default {
 					let oper = thisOperator[0].oper[1];
 					thisScript.helperBridge.regionClick([oper, oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
 					setCurrentScheme(thisConf.next_scheme);
-					toastLog(`切换方案为[${thisConf.next_scheme}]`);
+					myToast(`切换方案为[${thisConf.next_scheme}]`);
 					thisScript.rerun();
 				}
 				break;

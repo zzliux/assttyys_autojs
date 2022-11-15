@@ -322,6 +322,9 @@ export const versionList = [{
 }, {
     version: '20221115_02',
     desc: '优化：六道萤草装buff时偶尔出现点不上的情况增加重试机制，选buff时刷新体验'
+}, {
+    version: '20221115_03',
+    desc: '优化：六道萤草4buff齐后再装buff等'
 }];
 
 export default versionList[versionList.length - 1].version;

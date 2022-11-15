@@ -1,4 +1,5 @@
 import { search, questionSearch } from '@/common/tool';
+import { myToast } from '../toolAuto';
 
 const normal = -1; //定义常量
 const left = 0;
@@ -65,7 +66,7 @@ export default {
 			}
 			console.log(`答案区域识别:${JSON.stringify(ansList)}`);
 			let stdAns = search(ansList, 'text', stdQuestion.data.ans);
-			toastLog(`选择答案: ${stdAns.data.text}, 置信度为: ${(stdQuestion.similarity * stdAns.similarity).toFixed(4)}`);
+			myToast(`选择答案: ${stdAns.data.text}, 置信度为: ${(stdQuestion.similarity * stdAns.similarity).toFixed(4)}`);
 			thisScript.helperBridge.regionClick([[...stdAns.data.rect, 1500]], thisScript.scheme.commonConfig.afterClickDelayRandom);
 			return true;
 		}

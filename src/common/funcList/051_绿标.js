@@ -1,4 +1,5 @@
 import { ocr } from "@/system/ocr";
+import { myToast } from "../toolAuto";
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -164,13 +165,13 @@ export default {
 			if (thisconf.greenType === '自定义坐标') {
 				let posPam = (thisconf.greenPosition || '').split(',');
 				if (posPam.length !== 2) {
-					toastLog('自定义坐标格式定义错误，请检查');
+					myToast('自定义坐标格式定义错误，请检查');
 					return true;
 				}
 				let inX = parseInt(posPam[0]);
 				let inY = parseInt(posPam[1]);
 				if (Number.isNaN(inX) || Number.isNaN(inY)) {
-					toastLog('自定义坐标格式定义错误，请检查');
+					myToast('自定义坐标格式定义错误，请检查');
 					return true;
 				}
 				toClick = [

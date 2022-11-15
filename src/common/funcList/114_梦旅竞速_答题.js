@@ -1,4 +1,5 @@
 import { search, questionSearch } from '@/common/tool';
+import { myToast } from '../toolAuto';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -104,7 +105,7 @@ export default {
 			console.log(`答案区域识别:${JSON.stringify(ansList)}`);
 
 			if (!stdQuestion) {
-				toastLog(`题目：${question} 未查找到标准题库`);
+				myToast(`题目：${question} 未查找到标准题库`);
 				let path = '/sdcard/assttyys/qaimage/' + question + '.png';
 				if (files.exists(path)) return false;
 				let bmp = thisScript.helperBridge.helper.GetBitmap();
@@ -155,7 +156,7 @@ export default {
 			}
 
 			if (!stdAns) {
-				toastLog(`题目：${question} 未查找到答案`);
+				myToast(`题目：${question} 未查找到答案`);
 				let path = '/sdcard/assttyys/qaimage/' + question + '.png';
 				if (files.exists(path)) return false;
 				let bmp = thisScript.helperBridge.helper.GetBitmap();
@@ -184,7 +185,7 @@ export default {
 				}
 			}
 			if (flag) {
-				toastLog(`选择答案: ${stdAns.data.text}, 置信度为: ${(stdQuestion.similarity * stdAns.similarity).toFixed(4)}`);
+				myToast(`选择答案: ${stdAns.data.text}, 置信度为: ${(stdQuestion.similarity * stdAns.similarity).toFixed(4)}`);
 				thisScript.helperBridge.regionClick([[...stdAns.data.rect, 500]], thisScript.scheme.commonConfig.afterClickDelayRandom);
 				return true;
 			}
