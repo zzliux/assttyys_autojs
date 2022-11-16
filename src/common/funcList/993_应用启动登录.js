@@ -42,7 +42,7 @@ export default {
         desc: // 是否为登录页
             [1280, 720,
                 [[center, 734, 526, 0x95816b],
-                [center, 684, 524, 0xa7967c],
+                // [center, 684, 524, 0xa7967c],    // 识别失败。。。
                 [center, 627, 600, 0xfcfcfc],
                 [center, 682, 596, 0xfdf7f0]]
             ],
