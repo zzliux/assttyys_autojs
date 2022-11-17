@@ -34,6 +34,7 @@ export default {
 		})) {
 			let eventNames = ['鏖战', '混沌', '神秘', '宁息'];
 			// let eventNames = ['鏖战', '混沌', '神秘', '宁息'];
+			// TODO 待优化：buff达到目标个数后优先神秘与宁息，再混沌再鏖战
 			for (let i = 0; i < eventNames.length; i++) {
 				const en = eventNames[i];
 				const p = thisScript.findMultiColor(`六道萤草_${en}`);

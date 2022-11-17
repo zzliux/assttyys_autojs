@@ -89,6 +89,7 @@ export default {
 				萤火之光: [parseInt(thisconf.萤火之光) || 0, 4]
 			}
 		}
+		// TODO 待优化：达到目标个数后直接乱选buff
 		if (thisScript.oper({
 			name: '六道萤草_选buff',
 			operator: [{
