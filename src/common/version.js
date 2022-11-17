@@ -325,6 +325,9 @@ export const versionList = [{
 }, {
     version: '20221115_03',
     desc: '优化：六道萤草4buff齐后再装buff等'
+}, {
+    version: '20221117_01',
+    desc: '优化：六道萤草：新增统计与推送'
 }];
 
 export default versionList[versionList.length - 1].version;
