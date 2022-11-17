@@ -131,7 +131,7 @@ export default {
 					// let oper = thisOperator[0].oper[2];
 					// thisScript.helperBridge.regionClick([oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
 					setCurrentScheme(thisConf.next_scheme);
-					toastLog(`切换方案为[${thisConf.next_scheme}]`);
+					myToast(`切换方案为[${thisConf.next_scheme}]`);
 					thisScript.rerun();
 				}
 			}

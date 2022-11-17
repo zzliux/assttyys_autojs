@@ -271,13 +271,11 @@ const SchemeList = [{
         id: 28,
         schemeName: '悬赏_庭院打开悬赏界面',
         list: [52],
-    }, 
-    {
+    }, {
         id: 29,
         schemeName: '返回庭院',
         list: [503],
-    },
-    {
+    }, {
         id: 30,
         schemeName: "式神寄养",
         star: true,
@@ -300,8 +298,7 @@ const SchemeList = [{
                 priority: "太鼓6->太鼓5->太鼓4->太鼓3->斗鱼6->斗鱼5->斗鱼4"
             }
         },
-    },
-    {
+    }, {
         id: 31,
         schemeName: "定时任务-启动游戏-式神寄养",
         star: true,
@@ -315,8 +312,7 @@ const SchemeList = [{
                 next_scheme: "式神寄养"
             }
         },
-    },
-    {
+    }, {
         id: 32,
         schemeName: "式神指定寄养",
         star: true,
@@ -338,18 +334,19 @@ const SchemeList = [{
                 friendName: "老王"
             }
         },
-    },
-    {
+    }, {
         id: 33,
         schemeName: '狩猎战',
         list: [ 0, 1, 2, 3, 507 ]
-    },
-    {
+    }, {
         id: 34,
         schemeName: '庭院进入寮每日活动',
         list: [ 505, 506 ]
-    },
-    {
+    }, {
+        id: 35,
+        schemeName: "六道萤草",
+        list: [0, 1, 2, 3, 24, 201, 202, 203, 204, 205]
+    }, {
         id: 99,
         schemeName: '伊吹之擂',
         list: [0, 3, 24, 99, 100],

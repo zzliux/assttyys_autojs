@@ -316,6 +316,15 @@ export const versionList = [{
 }, {
     version: '20221110_01',
     desc: '修复：因ui变化导致的金币妖怪与悬赏运行时的部分功能执行异常问题，由aiou大佬提交'
+}, {
+    version: '20221115_01',
+    desc: '新增：狩猎战、道馆挑战方案（horsemi大佬提交）；\n优化：式神寄养，延长响应时间（horsemi大佬提交）；\n新增：六道萤草'
+}, {
+    version: '20221115_02',
+    desc: '优化：六道萤草装buff时偶尔出现点不上的情况增加重试机制，选buff时刷新体验'
+}, {
+    version: '20221115_03',
+    desc: '优化：六道萤草4buff齐后再装buff等'
 }];
 
 export default versionList[versionList.length - 1].version;

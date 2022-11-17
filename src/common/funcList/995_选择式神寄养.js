@@ -265,7 +265,7 @@ export default {
 
             //             if (timeRemaining.countSecond <= maxTimeForwait * 60000) {
             //                 console.log(`所剩时间为${timeRemaining.countSecond}秒`);
-            //                 toastLog(`所剩时间为${timeRemaining.countSecond}秒`);
+            //                 myToast(`所剩时间为${timeRemaining.countSecond}秒`);
             //                 thisScript.global.jy_list_getTime_fault_count = 0;
             //                 return thisScript.oper({
             //                     id: 995,

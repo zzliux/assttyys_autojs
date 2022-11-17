@@ -9,6 +9,7 @@ import { getWidthPixels, getHeightPixels } from "@auto.pro/core";
 import _ from 'lodash';
 import schemeDialog from './schemeDialog';
 import drawFloaty from '@/system/drawFloaty';
+import { myToast } from '@/common/toolAuto';
 
 /**
  * 脚本对象，一个程序只能有一个
@@ -353,7 +354,7 @@ var script = {
         // img.saveTo('/sdcard/testimg.png');
         // img.recycle();
         // test end
-        toastLog(`运行方案[${this.scheme.schemeName}]`);
+        myToast(`运行方案[${this.scheme.schemeName}]`);
         // console.log(`运行方案[${this.scheme.schemeName}]`);
         this.runThread = threads.start(function () {
             try {
@@ -420,7 +421,7 @@ var script = {
                 }
             }
             if (canRunSchemeList.length === 0) {
-                toastLog('无法识别当前界面');
+                myToast('无法识别当前界面');
             } else if (canRunSchemeList.length === 1) {
                 setCurrentScheme(canRunSchemeList[0].schemeName);
                 setTimeout(() => {
@@ -513,13 +514,16 @@ var script = {
                     }
 
                     if (item.operStepRandom) {
-                        console.log(`oper_success：[item.operStepRandom] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper}`);
+                        if (currFunc.id)
+                            console.log(`oper_success：[item.operStepRandom] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper}`);
                         helperBridge.regionStepRandomClick(item.operStepRandom, this.scheme.commonConfig.afterClickDelayRandom);
                     } else if (item.oper) {
-                        console.log(`oper_success：[item.oper] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper}`);
+                        if (currFunc.id)
+                            console.log(`oper_success：[item.oper] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper}`);
                         helperBridge.regionClick(item.oper, this.scheme.commonConfig.afterClickDelayRandom);
                     } else {
-                        console.log(`oper_success: [] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper}`);
+                        if (currFunc.id)
+                            console.log(`oper_success: [] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper}`);
                     }
                     return true;
                 }

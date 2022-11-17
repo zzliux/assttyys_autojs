@@ -67,7 +67,7 @@ export default {
 				thisScript.helperBridge.regionClick([thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
 				if (thisconf && thisconf.scheme_switch_enabled) {
 					setCurrentScheme(thisconf.next_scheme);
-					toastLog(`切换方案为[${thisconf.next_scheme}]`);
+					myToast(`切换方案为[${thisconf.next_scheme}]`);
 					thisScript.rerun();
 				} else {
 					doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { myToast('脚本即将停止，正在上传数据'); } });

@@ -1,4 +1,5 @@
 import { setCurrentScheme } from '@/common/tool';
+import { myToast } from '../toolAuto';
 
 const normal = -1; //定义常量
 const left = 0;
@@ -116,7 +117,7 @@ export default {
 
                 const next_scheme = '道馆';
                 setCurrentScheme(next_scheme);
-                toastLog(`切换方案为[${next_scheme}]`);
+                myToast(`切换方案为[${next_scheme}]`);
                 thisScript.rerun();
             }
         }
@@ -140,7 +141,7 @@ export default {
         })) {
             const next_scheme = '狩猎战';
             setCurrentScheme(next_scheme);
-            toastLog(`切换方案为[${next_scheme}]`);
+            myToast(`切换方案为[${next_scheme}]`);
             thisScript.rerun();
         }
 
@@ -155,7 +156,7 @@ export default {
             sleep(2000);
             const next_scheme = '宴会';
             setCurrentScheme(next_scheme);
-            toastLog(`切换方案为[${next_scheme}]`);
+            myToast(`切换方案为[${next_scheme}]`);
             thisScript.rerun();
         }
     }
