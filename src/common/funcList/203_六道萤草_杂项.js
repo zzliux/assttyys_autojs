@@ -1,3 +1,5 @@
+import { doOspPush, myToast } from "../toolAuto";
+
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -7,6 +9,15 @@ export default {
 	id: 203,
 	name: '六道萤草_杂项',
 	desc: '包含香行御点击开启按钮、鏖战之屿选技能怪挑战、混沌之屿选精英怪挑战、选择buff后的获得确认等',
+	config: [{
+		desc: '配置',
+		config: [{
+			name: 'ospPush',
+			desc: '结束时使用ospPush推送结果',
+			type: 'switch',
+			default: false,
+		}],
+	}],
 	operator: [{
 		// 香行御阵容点击开启按钮
 		desc: [1280, 720,
@@ -27,7 +38,23 @@ export default {
 		oper: [
 			[right, 1280, 720, 1140, 581, 1221, 677, 1000],
 		],
-		retest: 500,
+	}, {
+		// 评分界面
+		desc: [1280, 720,
+			[
+				[right, 950, 656, 0x595c59],
+				[right, 1205, 629, 0x5c7d75],
+				[left, 74, 666, 0x505250],
+				[center, 420, 571, 0x999b96],
+				[left, 45, 36, 0x011821],
+				[center, 787, 191, 0x33656d],
+				[center, 1100, 78, 0x263636],
+			]
+		],
+		oper: [
+			[right, 1280, 720, 872, 146, 1197, 539, 1000],
+		],
+		retest: 800
 	}, {
 		// 香行御点击开启按钮
 		desc: [1280, 720,
@@ -207,22 +234,6 @@ export default {
 			[right, 1280, 720, 872, 146, 1197, 539, 500],
 		]
 	}, {
-		// 评分界面
-		desc: [1280, 720,
-			[
-				[right, 950, 656, 0x595c59],
-				[right, 1205, 629, 0x5c7d75],
-				[left, 74, 666, 0x505250],
-				[center, 420, 571, 0x999b96],
-				[left, 45, 36, 0x011821],
-				[center, 787, 191, 0x33656d],
-				[center, 1100, 78, 0x263636],
-			]
-		],
-		oper: [
-			[right, 1280, 720, 872, 146, 1197, 539, 1000],
-		]
-	}, {
 		// boss挑战
 		desc: [1280, 720,
 			[
@@ -240,7 +251,8 @@ export default {
 	}],
 	operatorFunc(thisScript, thisOperator) {
 		if (thisScript.oper({
-			name: '六道萤草_杂项',
+			id: 203,
+			name: '六道萤草_杂项_开始',
 			operator: [thisOperator[0]]
 		})) {
 			// 开新局，buff数重置
@@ -251,12 +263,46 @@ export default {
 				六道净化: [0, 1],
 				萤火之光: [0, 4]
 			};
+			thisScript.global.d6dCurrentBegin = new Date().getTime();
+			if (!thisScript.global.d6dBegin) {
+				thisScript.global.d6dBegin = new Date().getTime();
+			}
+			if (!thisScript.global.times) {
+				thisScript.global.times = 0;
+			}
+			thisScript.global.times++
+			return true;
+		} else if (thisScript.oper({
+			id: 203,
+			name: '六道萤草_杂项_结束',
+			operator: [{
+				desc: thisOperator[1].desc,
+				retest: 1000
+			}]
+		})) {
+			const thisconf = thisScript.scheme.config['203'];
+			const now = new Date().getTime();
+			const currentCost = parseInt((now - thisScript.global.d6dCurrentBegin) / 1000); // 秒
+			const cost = ((now - thisScript.global.d6dBegin) / 1000 / 60).toFixed(2); // 分
+			const costAvg = parseInt((now - thisScript.global.d6dBegin) / 1000 / (thisScript.global.times || 0)) // 秒
+			// 中途进入的不计次
+			const toLog = ` 通关次数: ${thisScript.global.times || 0}次, 本次通关时间: ${currentCost}秒, 平均通关时间: ${costAvg}秒, 总通关时间: ${cost}分`;
+			myToast(toLog);
+			if (thisconf.ospPush) {
+				doOspPush(thisScript, {
+					text: toLog,
+					before() {
+						myToast('正在上传数据');
+					}
+				});
+			}
+			thisScript.helperBridge.regionClick(thisOperator[1].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
 			return true;
 		}
 		return thisScript.oper({
 			id: '203',
 			name: '六道萤草_杂项',
-			operator: thisOperator.slice(1)
+			operator: thisOperator.slice(2)
 		});
 	}
 }
