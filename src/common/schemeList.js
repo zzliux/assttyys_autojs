@@ -316,7 +316,7 @@ const SchemeList = [{
         id: 32,
         schemeName: "式神指定寄养",
         star: true,
-        groupName: "式神寄养",
+        groupName: "定时任务",
         list: [999, 998, 996, 994, 995],
         config: {
             "994": {
@@ -346,6 +346,20 @@ const SchemeList = [{
         id: 35,
         schemeName: "六道萤草",
         list: [0, 1, 2, 3, 24, 201, 202, 203, 204, 205]
+    }, {
+        id: 36,
+        schemeName: "定时任务-启动游戏-每日寮活动",
+        star: true,
+        groupName: "定时任务",
+        list: [993],
+        config: {
+            "993": {
+                area: "",
+                package_name: "com.netease.onmyoji",
+                is_shutdown_the_game_before: true,
+                next_scheme: "庭院进入寮每日活动"
+            }
+        },
     }, {
         id: 99,
         schemeName: '伊吹之擂',

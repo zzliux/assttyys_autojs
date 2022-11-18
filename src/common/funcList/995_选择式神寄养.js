@@ -1,5 +1,6 @@
 import { myToast, doOspPush } from '@/common/toolAuto';
 import { setCurrentScheme } from '@/common/tool';
+import { storeCommon } from '@/system/store';
 
 const normal = -1; //定义常量
 const left = 0;
@@ -208,11 +209,18 @@ export default {
                 thisScript.rerun();
             } else if ('关闭应用' === thisConf.afterCountOper) {
                 sleep(1000);
-                myToast(`停止应用[${packageName}]`);
-                shell(`am force-stop ${packageName}`, true);
-				doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { myToast('脚本即将停止，正在上传数据'); } });
+                let storeSettings = storeCommon.get('settings', {});
+                if (storeSettings.defaultLaunchAppList && storeSettings.defaultLaunchAppList.length) {
+                    storeSettings.defaultLaunchAppList.forEach(packageName => {
+                        myToast(`停止应用[${packageName}]`);
+                        shell(`am force-stop ${packageName}`, true);
+                        sleep(1000);
+                    });
+                    doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { myToast('脚本即将停止，正在上传数据'); } });
+                } else {
+                    myToast('未配置关联应用，不执行停止操作');
+                }
                 thisScript.stop();
-                return true;
             }
         }
 
