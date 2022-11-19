@@ -3,7 +3,7 @@ node_modules
 config
 src
 test
-hotrun
+# hotrun
 .babelrc
 jsconfig.json
 tsconfig.json
@@ -24,3 +24,4 @@ yarn.lock
 .autojs.sync.ignore
 .autojs.build.ignore
 .autojs.source.ignore
+plugins

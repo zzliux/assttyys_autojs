@@ -6,7 +6,7 @@
     "build_time": 1625579232692,
     "release": false
   },
-  "encryptLevel": 3,
+  "encryptLevel": 1,
   "useFeatures": [],
   "icon": "res/icon.png",
   "launchConfig": {
@@ -23,7 +23,7 @@
     "removeOpenCv": true,
     "unusedResources": false
   },
-  "packageName": "com.zzliux.assttyysngfull8816",
+  "packageName": "com.zzliux.assttyysngfull936",
   "permissionConfig": {
     "requestListOnStartup": [
       "android.permission.WRITE_EXTERNAL_STORAGE"
@@ -31,7 +31,7 @@
   },
   "scripts": {},
   "versionCode": 1,
-  "versionName": "0.0.1.dev",
+  "versionName": "0.0.2.dev",
   "ignore": [
     "build",
     "node_modules",

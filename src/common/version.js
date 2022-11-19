@@ -328,6 +328,9 @@ export const versionList = [{
 }, {
     version: '20221117_01',
     desc: '优化：六道萤草：新增统计与推送'
+}, {
+    version: '20221119_01',
+    desc: '优化：使用官方MlkitOcr代替YunxiOcr，优化兼容性与识别性能（需更新壳程序）；\n优化：式神寄养添加关联应用关闭功能。\n'
 }];
 
 export default versionList[versionList.length - 1].version;

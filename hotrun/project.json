@@ -23,7 +23,7 @@
     "removeOpenCv": true,
     "unusedResources": false
   },
-  "packageName": "com.zzliux.assttyysnghotrun8816",
+  "packageName": "com.zzliux.assttyysnghotrun936",
   "permissionConfig": {
     "requestListOnStartup": [
       "android.permission.WRITE_EXTERNAL_STORAGE"

@@ -2,7 +2,7 @@ import { fromEvent } from 'rxjs';
 import { webview } from "@/system";
 import store, { storeCommon } from '@/system/store';
 import { requestMyScreenCapture } from '@/common/toolAuto';
-import { isRoot, getWidthPixels, getHeightPixels } from "@auto.pro/core";
+import { getWidthPixels, getHeightPixels } from "@auto.pro/core";
 // import _ from 'lodash';
 import version, {versionList} from '@/common/version';
 import defaultSchemeList from '@/common/schemeList';

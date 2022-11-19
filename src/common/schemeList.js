@@ -345,7 +345,13 @@ const SchemeList = [{
     }, {
         id: 35,
         schemeName: "六道萤草",
-        list: [0, 1, 2, 3, 24, 201, 202, 203, 204, 205]
+        list: [0, 1, 2, 3, 24, 201, 202, 203, 204, 205],
+        commonConfig: {
+            loopDelay: 200,
+            afterClickDelayRandom: 200,
+            colorSimilar: 93,
+            multiColorSimilar: 95
+        }
     }, {
         id: 36,
         schemeName: "定时任务-启动游戏-每日寮活动",

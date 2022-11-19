@@ -5,7 +5,7 @@ import { storeCommon } from '@/system/store';
 import { getInstalledPackages, requestMyScreenCapture } from '@/common/toolAuto';
 import { isRoot } from "@auto.pro/core";
 import helperBridge from '@/system/helperBridge';
-import { ocr } from '@/system/ocr';
+import { ocr } from '@/system/mlkitOcr';
 
 
 export default function webviewSettigns() {

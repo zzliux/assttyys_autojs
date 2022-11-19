@@ -1,4 +1,4 @@
-import { ocr } from "@/system/ocr";
+import { ocr } from "@/system/mlkitOcr";
 import { myToast } from "../toolAuto";
 const normal = -1; //定义常量
 const left = 0;
