@@ -21,7 +21,7 @@ export default {
 			]
 		],
 		oper: [
-			[left, 1280, 720, 29, 642, 82, 695, 1000]
+			[left, 1280, 720, 29, 642, 82, 695, 500]
 		]
 	}, {
 		// 技能装配界面
@@ -70,7 +70,7 @@ export default {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 855, 630, 907, 685, 1000], // boss界面的装备按钮
+			[center, 1280, 720, 855, 630, 907, 685, 500], // boss界面的装备按钮
 		]
 	}, {
 		// 点开了技能的装配界面
@@ -148,7 +148,7 @@ export default {
 			}
 			sleep(500);
 			thisScript.helperBridge.regionClick([thisOperator[1].oper[4], thisOperator[1].oper[4]], thisScript.scheme.commonConfig.afterClickDelayRandom);
-			sleep(1000);
+			sleep(500);
 			return true;
 		}
 		return thisScript.oper({

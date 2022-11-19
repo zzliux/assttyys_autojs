@@ -16,6 +16,11 @@ export default {
 			desc: '结束时使用ospPush推送结果',
 			type: 'switch',
 			default: false,
+		}, {
+			name: 'overTimes',
+			desc: '挂机局数，完成后自动停止脚本，0表示一直刷',
+			type: 'integer',
+			default: '0'
 		}],
 	}],
 	operator: [{
@@ -36,7 +41,7 @@ export default {
 			]
 		],
 		oper: [
-			[right, 1280, 720, 1140, 581, 1221, 677, 1000],
+			[right, 1280, 720, 1140, 581, 1221, 677, 500],
 		],
 	}, {
 		// 评分界面
@@ -52,7 +57,7 @@ export default {
 			]
 		],
 		oper: [
-			[right, 1280, 720, 872, 146, 1197, 539, 1000],
+			[right, 1280, 720, 872, 146, 1197, 539, 500],
 		],
 		retest: 800
 	}, {
@@ -67,7 +72,7 @@ export default {
 			]
 		],
 		oper: [
-			[right, 1280, 720, 1134, 590, 1203, 669, 1000],
+			[right, 1280, 720, 1134, 590, 1203, 669, 500],
 		],
 		retest: 500,
 	}, {
@@ -82,7 +87,7 @@ export default {
 			]
 		],
 		oper: [
-			[right, 1280, 720, 1140, 581, 1221, 677, 1000],
+			[right, 1280, 720, 1140, 581, 1221, 677, 500],
 		],
 		retest: 500,
 	}, {
@@ -96,7 +101,7 @@ export default {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 815, 263, 878, 381, 800],
+			[center, 1280, 720, 815, 263, 878, 381, 500],
 		]
 	}, {
 		// 鏖战之屿 挑战
@@ -113,7 +118,7 @@ export default {
 			]
 		],
 		oper: [
-			[right, 1280, 720, 1137, 597, 1213, 676, 1000],
+			[right, 1280, 720, 1137, 597, 1213, 676, 500],
 		]
 	}, {
 		// 混沌之屿 精英怪
@@ -127,7 +132,7 @@ export default {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 708, 246, 766, 365, 800],
+			[center, 1280, 720, 708, 246, 766, 365, 500],
 		]
 	}, {
 		// 选buff后的获得奖励确认，颜色比较近，可能会有误判断的情况
@@ -183,7 +188,7 @@ export default {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 698, 282, 756, 396, 800],
+			[center, 1280, 720, 698, 282, 756, 396, 500],
 		]
 	}, {
 		// 宁息直接退出
@@ -200,7 +205,7 @@ export default {
 		],
 		oper: [
 			[right, 1280, 720, 1187, 600, 1241, 670, 500],
-			[center, 1280, 720, 676, 405, 842, 460, 1000],
+			[center, 1280, 720, 676, 405, 842, 460, 500],
 		]
 	}, {
 		// 转换，直接退
@@ -246,7 +251,7 @@ export default {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1135, 590, 1217, 671, 1000],
+			[center, 1280, 720, 1135, 590, 1217, 671, 500],
 		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
@@ -286,8 +291,11 @@ export default {
 			const cost = ((now - thisScript.global.d6dBegin) / 1000 / 60).toFixed(2); // 分
 			const costAvg = parseInt((now - thisScript.global.d6dBegin) / 1000 / (thisScript.global.times || 0)) // 秒
 			// 中途进入的不计次
-			const toLog = ` 通关次数: ${thisScript.global.times || 0}次, 本次通关时间: ${currentCost}秒, 平均通关时间: ${costAvg}秒, 总通关时间: ${cost}分`;
+			let toLog = `通关次数: ${thisScript.global.times || 0}次, 本次通关时间: ${currentCost}秒, 平均通关时间: ${costAvg}秒, 总通关时间: ${cost}分`;
 			myToast(toLog);
+			if (thisconf.overTimes && thisScript.global.times >= thisconf.overTimes) {
+				toLog = '脚本已停止，请查看。' + toLog;
+			}
 			if (thisconf.ospPush) {
 				doOspPush(thisScript, {
 					text: toLog,
@@ -295,8 +303,12 @@ export default {
 						myToast('正在上传数据');
 					}
 				});
+			} else {
 			}
 			thisScript.helperBridge.regionClick(thisOperator[1].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+			if (thisconf.overTimes && thisScript.global.times >= thisconf.overTimes) {
+				thisScript.stop();
+			}
 			return true;
 		}
 		return thisScript.oper({

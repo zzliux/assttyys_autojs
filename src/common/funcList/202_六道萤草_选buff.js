@@ -44,9 +44,9 @@ export default {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 0, 0, 385 - 268 - 40, 592 - 556 - 10, 2500], // 选择按钮的大小
+			[center, 1280, 720, 0, 0, 385 - 268 - 40, 592 - 556 - 10, 500], // 选择按钮的大小
 			[center, 1280, 720, 1189, 622, 1238, 677, 500], // 右下角刷新按钮
-			[center, 1280, 720, 682, 398, 802, 449, 800], // 刷新确认
+			[center, 1280, 720, 682, 398, 802, 449, 600], // 刷新确认
 		]
 	}, {
 		// 打完一波后的
@@ -76,6 +76,20 @@ export default {
 				[left, 28, 42, 0x626565],
 				[right, 1218, 638, 0x534c3e],
 			]
+		]
+	}, {
+		// 选buff后的获得奖励确认，颜色比较近，可能会有误判断的情况
+		desc: [1280, 720,
+			[
+				[center, 554, 142, 0xfede96],
+				[center, 622, 143, 0xf7e691],
+				[center, 745, 181, 0xffeeaa],
+				[center, 583, 184, 0xf6e6b4],
+				[center, 635, 192, 0xeacd7e],
+			]
+		],
+		oper: [
+			[right, 1280, 720, 913, 129, 1245, 648, 500],
 		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
@@ -152,15 +166,17 @@ export default {
 				if (thisScript.global.d6RefreshCnt >= 3) {
 					let rn = random(0, 2);
 					myToast(`没找到，随机点击第${rn + 1}个`);
-					thisScript.helperBridge.regionClick([thisOperator[1].oper[rn]], thisScript.scheme.commonConfig.afterClickDelayRandom); // 刷新
+					thisScript.helperBridge.regionClick([thisOperator[1].oper[rn]], thisScript.scheme.commonConfig.afterClickDelayRandom);
 					thisScript.global.d6RefreshCnt = 0;
+					// 如果有确认奖励就能很快的跳出
+					thisScript.compareColorLoop(thisOperator[3].desc, 1500);
 					myToast(`当前buff：${priorty.map(name => name + ':' + thisScript.global.d6d[name][0]).join(', ')}`);
 				} else {
 					thisScript.global.d6RefreshCnt++;
 					thisScript.helperBridge.regionClick([thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom); // 刷新
 					// 如果点了刷新不出确认，表示没钱了，直接给刷新次数置为3次表示这是最后一次
 					if (thisScript.compareColorLoop(thisOperator[2].desc, 600)) {
-						thisScript.helperBridge.regionClick([thisOperator[0].oper[2]], thisScript.scheme.commonConfig.afterClickDelayRandom); // 刷新
+						thisScript.helperBridge.regionClick([thisOperator[0].oper[2]], thisScript.scheme.commonConfig.afterClickDelayRandom);
 					} else {
 						thisScript.global.d6RefreshCnt = 3;
 					}
@@ -182,6 +198,8 @@ export default {
 					thisOperator[0].oper[0][4],
 				];
 				thisScript.helperBridge.regionClick([toClickRegion], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				// 如果有确认奖励就能很快的跳出
+				thisScript.compareColorLoop(thisOperator[3].desc, 1500);
 				if (thisScript.global.d6d[type][0] === 0 && type !== priorty[0]) {
 					thisScript.global.d6LoadBuff = true;
 				}
