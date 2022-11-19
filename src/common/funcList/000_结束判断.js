@@ -1,5 +1,6 @@
 import { setCurrentScheme } from '@/common/tool';
 import { myToast, doOspPush } from '@/common/toolAuto';
+import { storeCommon } from '@/system/store';
 
 export default {
 	id: 0,
@@ -215,6 +216,7 @@ export default {
 				doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { myToast('脚本即将停止，正在上传数据'); } });
 				// 停止脚本时关闭应用
 				if (thisconf.stop_with_launched_app_exit) {
+					let storeSettings = storeCommon.get('settings', {});
 					if (storeSettings.defaultLaunchAppList && storeSettings.defaultLaunchAppList.length) {
 						storeSettings.defaultLaunchAppList.forEach(packageName => {
 							myToast(`停止应用[${packageName}]`);

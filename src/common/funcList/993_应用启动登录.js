@@ -42,13 +42,13 @@ export default {
         desc: // 是否为登录页
             [1280, 720,
                 [[center, 734, 526, 0x95816b],
-                [center, 684, 524, 0xa7967c],
+                // [center, 684, 524, 0xa7967c],    // 识别失败。。。
                 [center, 627, 600, 0xfcfcfc],
                 [center, 682, 596, 0xfdf7f0]]
             ],
         oper: [
             [center, 1280, 720, 562, 574, 722, 617, 1200],	// 点击开始游戏
-            [center, 1280, 720, 424, 506, 660, 538, 5000], // 游戏区区域
+            [center, 1280, 720, 424, 456, 660, 578, 5000], // 游戏区区域
         ]
     },
     {
@@ -188,7 +188,7 @@ export default {
             toDetectAreaBmp.recycle();
 
             if (Array.isArray(resultArea) && resultArea.length > 0 && resultArea[0].label) {
-
+                console.log('识别成功，识别结果为:', resultArea);
                 if (thisConf.area) {
                     for (let resultItem of resultArea) {
                         if (resultItem && resultItem.label) {
@@ -209,10 +209,11 @@ export default {
                 return thisScript.oper({
                     name: '点击开始游戏',
                     operator: [{
-                        oper: thisOperator[0].oper
+                        oper: [thisOperator[0].oper[0]]
                     }]
                 });
             } else {
+                console.log('识别游戏区域失败，识别结果为:', resultArea);
                 return true;
             }
         }

@@ -32,11 +32,6 @@ export default function webviewSchedule() {
         console.log('scheduleList已保存');
         done("success");
     });
-
-    webview.on("shutdownTheGame").subscribe(([done]) => {
-        shell(`am force-stop com.netease.onmyoji`, true);
-        done('success');
-    });
 }
 
 
