@@ -37,7 +37,6 @@ export default {
 		desc: [1280,720,
 			[[left,34,23,0xdbb48b],
 			[left,106,24,0xcfa375],
-			// [left,254,34,0xc5a57d],
 			[right,1270,132,0x48371f],
 			[right,1270,700,0x241919],
 			[left,45,656,0xeac4a7],

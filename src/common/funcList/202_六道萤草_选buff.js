@@ -1,4 +1,5 @@
 import { myToast, doOspPush } from '@/common/toolAuto';
+import { ocr } from '@/system/mlkitOcr';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -47,6 +48,7 @@ export default {
 			[center, 1280, 720, 0, 0, 385 - 268 - 40, 592 - 556 - 10, 500], // 选择按钮的大小
 			[center, 1280, 720, 1189, 622, 1238, 677, 500], // 右下角刷新按钮
 			[center, 1280, 720, 682, 398, 802, 449, 600], // 刷新确认
+			[right, 1280, 720, 1156, 10, 1265, 69, -1],
 		]
 	}, {
 		// 打完一波后的
@@ -163,7 +165,25 @@ export default {
 				if (typeof thisScript.global.d6RefreshCnt === 'undefined') {
 					thisScript.global.d6RefreshCnt = 0;
 				}
-				if (thisScript.global.d6RefreshCnt >= 3) {
+				// 判断剩下多少钱，如果剩下的钱不够刷新直接给刷新次数置为上限
+				let coins = 50;
+				if (thisScript.getOcr()) {
+					let result = ocr.findTextByOcr(thisScript.getOcr(), function () {
+						thisScript.keepScreen(); // 更新图片
+						return thisScript.helperBridge.helper.GetBitmap(); // 返回bmp
+					}, '.+', 0, thisOperator[0].oper[3], '包含');
+					console.log(result);
+					if (result.length) {
+						coins = parseInt(result[0].label);
+						if (Number.isNaN(coins)) {
+							coins = 50;
+						}
+					} else {
+						coins = 0;
+					}
+				}
+
+				if (thisScript.global.d6RefreshCnt >= 3 || coins < 50) {
 					let rn = random(0, 2);
 					myToast(`没找到，随机点击第${rn + 1}个`);
 					thisScript.helperBridge.regionClick([thisOperator[1].oper[rn]], thisScript.scheme.commonConfig.afterClickDelayRandom);
@@ -171,7 +191,7 @@ export default {
 					// 如果有确认奖励就能很快的跳出
 					thisScript.compareColorLoop(thisOperator[3].desc, 1500);
 					myToast(`当前buff：${priorty.map(name => name + ':' + thisScript.global.d6d[name][0]).join(', ')}`);
-				} else {
+				} else if (coins >= 50) {
 					thisScript.global.d6RefreshCnt++;
 					thisScript.helperBridge.regionClick([thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom); // 刷新
 					// 如果点了刷新不出确认，表示没钱了，直接给刷新次数置为3次表示这是最后一次
@@ -180,7 +200,6 @@ export default {
 					} else {
 						thisScript.global.d6RefreshCnt = 3;
 					}
-
 				}
 			} else {
 				if (thisScript.global.d6d[priorty[0]][0] === 0 && type !== priorty[0]) {

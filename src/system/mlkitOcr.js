@@ -81,7 +81,6 @@ export const ocr = {
                 const resultOrigin = instacne.detect(ajImg);
                 console.timeEnd('ocr.detect');
                 ajImg.recycle();
-                console.log(resultOrigin);
                 const result = resultOrigin.map(item => {
                     return {
                         confidence: item.confidence,
