@@ -108,7 +108,11 @@ export const ocr = {
                 return result;
             }
         }
-        return new detectOcr();
+        try {
+            return new detectOcr();
+        } catch (e) {
+            return null;
+        }
     },
 
     findTextByOcr(detector, getBmpFunc, text, timeout, region, textMatchMode) {
