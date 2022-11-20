@@ -21,7 +21,7 @@ export default {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 0, 0, 931 - 905, 448 - 366, 800], // 鏖战点击区域的大小
+			[center, 1280, 720, 0, 0, 931 - 905, 448 - 366, 400], // 鏖战点击区域的大小
 		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
@@ -29,7 +29,7 @@ export default {
 			name: '六道萤草_选事件',
 			operator: [{
 				desc: thisOperator[0].desc,
-				retest: 500,
+				// retest: 100,
 			}]
 		})) {
 			let eventNames = ['鏖战', '混沌', '神秘', '宁息'];

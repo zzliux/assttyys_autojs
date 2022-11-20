@@ -3,7 +3,7 @@ node_modules
 config
 src
 test
-# hotrun
+hotrun
 .babelrc
 jsconfig.json
 tsconfig.json

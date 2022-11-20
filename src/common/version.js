@@ -331,6 +331,12 @@ export const versionList = [{
 }, {
     version: '20221119_01',
     desc: '优化：使用官方MlkitOcr代替YunxiOcr，优化兼容性与识别性能（需更新壳程序）；\n优化：式神寄养添加关联应用关闭功能。\n'
+}, {
+    version: '20221119_02',
+    desc: '优化：六道萤草各场景延时，提高整体连贯性'
+}, {
+    version: '20221120_01',
+    desc: '修复：六道萤草挂机局数设置为0时只打一局的bug'
 }];
 
 export default versionList[versionList.length - 1].version;
