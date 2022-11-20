@@ -334,6 +334,9 @@ export const versionList = [{
 }, {
     version: '20221119_02',
     desc: '优化：六道萤草各场景延时，提高整体连贯性'
+}, {
+    version: '20221120_01',
+    desc: '修复：六道萤草挂机局数设置为0时只打一局的bug'
 }];
 
 export default versionList[versionList.length - 1].version;

@@ -286,6 +286,7 @@ export default {
 			}]
 		})) {
 			const thisconf = thisScript.scheme.config['203'];
+			thisconf.overTimes = parseInt(thisconf.overTimes || 0);
 			const now = new Date().getTime();
 			const currentCost = parseInt((now - thisScript.global.d6dCurrentBegin) / 1000); // 秒
 			const cost = ((now - thisScript.global.d6dBegin) / 1000 / 60).toFixed(2); // 分
