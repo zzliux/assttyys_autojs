@@ -154,7 +154,32 @@ export default {
         oper: [
             [right, 1280, 720, 1166, 72, 1209, 110, 1200], // 关闭按钮
         ]
-    },],
+    },
+    {
+        desc:   // 网络连接出错弹窗
+            [1280, 720,
+                [[center, 910, 436, 0x009688],
+                [center, 928, 260, 0xffffff],
+                [center, 330, 254, 0xffffff],
+                [center, 332, 462, 0xffffff]]
+            ],
+        oper: [
+            [center, 1280, 720, 875, 426, 924, 450, 1200], // 确认按钮
+        ]
+    },
+    {
+        desc:  // 同心队弹窗
+            [1280, 720,
+                [[right, 1127, 628, 0xf4b25f],
+                [right, 1197, 116, 0x6d334c],
+                [center, 744, 64, 0x543e2b],
+                [left, 134, 657, 0xcbbdab],
+                [left, 131, 100, 0xc9bcaa]]
+            ],
+        oper: [
+            [right, 1280, 720, 1155, 91, 1204, 138, 1200] // 关闭按钮
+        ]
+    }],
     operatorFunc(thisScript, thisOperator) {
         let thisConf = thisScript.scheme.config['993'];
 
@@ -344,6 +369,26 @@ export default {
             return true;
         }
 
+        if (thisScript.oper({
+            name: '登陆后是否网络出错',
+            operator: [{
+                desc: thisOperator[10].desc,
+                oper: thisOperator[10].oper
+            }]
+        })) {
+            return true;
+        }
+
+        if (thisScript.oper({
+            name: '登陆后是否同心队弹窗',
+            operator: [{
+                desc: thisOperator[11].desc,
+                oper: thisOperator[11].oper
+            }]
+        })) {
+            return true;
+        }
+
         // 检测是否有皮肤广告
         let point = thisScript.findMultiColor('皮肤广告关闭按钮');
         if (point) {
@@ -354,8 +399,8 @@ export default {
                 point.x,
                 point.y,
                 1200
-              ]];
-              thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+            ]];
+            thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
         }
 
         return true;

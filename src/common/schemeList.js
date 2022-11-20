@@ -317,8 +317,11 @@ const SchemeList = [{
         schemeName: "式神指定寄养",
         star: true,
         groupName: "定时任务",
-        list: [999, 998, 996, 994, 995],
+        list: [3, 999, 998, 996, 994, 995],
         config: {
+            "3": {
+                type: "关闭"
+            },
             "994": {
                 count: "3",
                 afterCountOper: "停止脚本",
