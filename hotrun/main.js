@@ -44,7 +44,17 @@ threads.start(function () {
         });
         files.ensureDir(path + '/assttyys_ng.zip');
         files.writeBytes(path + '/assttyys_ng.zip', r.body.bytes());
-        files.removeDir(path + '/assttyys_ng');
+        if (files.exists(path + '/assttyys_ng')) {
+            files.listDir(path + '/assttyys_ng', function (name) {
+                return !/^plugins$/.test(name);
+            }).forEach(fn => {
+                if (files.isDir(path + '/assttyys_ng/' + fn)) {
+                    files.removeDir(path + '/assttyys_ng/' + fn);
+                } else {
+                    files.remove(path + '/assttyys_ng/' + fn);
+                }
+            });
+        }
         $zip.unzip(path + '/assttyys_ng.zip', path);
         files.remove(path + '/assttyys_ng.zip');
 

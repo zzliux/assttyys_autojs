@@ -1,13 +1,20 @@
 {
+  "abis": [
+    "arm64-v8a",
+    "armeabi-v7a"
+  ],
   "assets": [],
   "build": {
-    "build_id": "C6B6A19E-7",
-    "build_number": 7,
-    "build_time": 1625477656365,
+    "build_id": "C000B0B6-8",
+    "build_number": 8,
+    "build_time": 1669005265573,
     "release": false
   },
   "encryptLevel": 0,
-  "useFeatures": [],
+  "features": {
+    "activityIntentTasks": false,
+    "nodejs": "auto"
+  },
   "icon": "res/icon.png",
   "launchConfig": {
     "displaySplash": false,
@@ -19,6 +26,7 @@
   "main": "main.js",
   "name": "assttyys_ng",
   "optimization": {
+    "obfuscateComponents": false,
     "removeAccessibilityService": false,
     "removeOpenCv": true,
     "unusedResources": false
@@ -30,6 +38,7 @@
     ]
   },
   "scripts": {},
+  "useFeatures": [],
   "versionCode": 1,
-  "versionName": "0.0.1.dev"
+  "versionName": "0.0.3.dev"
 }
