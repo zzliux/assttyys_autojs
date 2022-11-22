@@ -121,7 +121,7 @@ export default {
 							continue;
 						}
 						const p = ocr.findTextByOcrResult(priorty2[i], result2, '模糊', .65);
-						if (p) {
+						if (p.length) {
 							toClick = [p[0].points[0].x, p[0].points[0].y, p[0].points[2].x, p[0].points[2].y, 500];
 							console.log(p);
 							type = priorty2[i];
@@ -158,6 +158,11 @@ export default {
 						if (!thisScript.global.d6NxFilter) thisScript.global.d6NxFilter = [];
 						thisScript.global.d6NxFilter.push(type);
 						thisScript.global.d6d[type][0]++;
+
+
+						if (thisScript.global.d6d[type][0] === 0 && type !== priorty[0]) {
+							thisScript.global.d6LoadBuff = true;
+						}
 						// 拿到所有buff后再装buff
 						if (thisScript.global.d6LoadBuff) {
 							let hasCnt = 0;
