@@ -337,6 +337,9 @@ export const versionList = [{
 }, {
     version: '20221120_01',
     desc: '修复：六道萤草挂机局数设置为0时只打一局的bug'
+}, {
+    version: '20221122_01',
+    desc: '优化：六道萤草增加宁息商店购买buff，需开启ocr扩展，启用功能206'
 }];
 
 export default versionList[versionList.length - 1].version;

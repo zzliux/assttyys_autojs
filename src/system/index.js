@@ -22,7 +22,7 @@ core({
 
 // console.log(context.getExternalFilesDir(null).getAbsolutePath());
 // console.log(files.cwd());
-console.log(`autojs version: ${app.versionCode}`);
+console.log(`autojs version: ${app.autojs.versionCode}`);
 
 let url = 'https://assttyys.zzliux.cn/static/webview/'
 // 调试模式，可能存在有人用run.js运行脚本，这时就得用运行路径判断了
