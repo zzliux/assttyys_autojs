@@ -153,7 +153,7 @@ export default {
 					thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
 					// 购买确认，如果超时无确认则表示该商品已经被买过了，增加过滤，已经买过的也增加过滤，过滤在刷新与退出后重置
 					if (thisScript.compareColorLoop(thisOperator[2].desc, 800)) {
-						thisScript.helperBridge.regionClick([thisOperator[0].oper[2]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+						thisScript.helperBridge.regionClick([thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
 						// 已购买的buff增加过滤
 						if (!thisScript.global.d6NxFilter) thisScript.global.d6NxFilter = [];
 						thisScript.global.d6NxFilter.push(type);
