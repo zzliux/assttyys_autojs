@@ -81,9 +81,12 @@ export default {
 				coins = parseInt(result[0].label) || 0;
 			}
 			if (coins >= 300) {
-				// TODO 无法购买的增加过滤
-				let priorty = ['腐草为萤', '妖力化身', '六道净化', '萤火之光'].filter(item => cost[item] <= coins); // 未达到目标的优先级
-				let priorty2 = ['萤火之光', '妖力化身'].filter(item => cost[item] <= coins); // 达到目标后的优先级
+				let priorty = ['腐草为萤', '妖力化身', '六道净化', '萤火之光']  // 未达到目标的优先级
+					.filter(item => cost[item] <= coins) // 钱不够的过滤
+					.filter(item => (thisScript.global.d6NxFilter || []).indexOf(item) === -1); // 无法购买的过滤
+				let priorty2 = ['萤火之光', '妖力化身'] // 达到目标后的优先级
+					.filter(item => cost[item] <= coins) // 钱不够的过滤
+					.filter(item => (thisScript.global.d6NxFilter || []).indexOf(item) === -1); // 无法购买的过滤
 
 				let toClick = null;
 				let type = null;
@@ -133,7 +136,6 @@ export default {
 						thisScript.global.d6NextStation = '刷新';
 					} else if (thisScript.global.d6NextStation === '刷新') {
 						thisScript.helperBridge.regionClick([thisOperator[0].oper[6]], thisScript.scheme.commonConfig.afterClickDelayRandom);
-						// TODO 刷新或退出将过滤重置
 						if (thisScript.compareColorLoop(thisOperator[1].desc, 800)) {
 							// 刷新弹出确认，没有到上限
 							thisScript.helperBridge.regionClick([thisOperator[0].oper[7]], thisScript.scheme.commonConfig.afterClickDelayRandom);
@@ -143,6 +145,8 @@ export default {
 							// 刷新没退出确认，到上限了，直接退出
 							thisScript.helperBridge.regionClick([thisOperator[0].oper[0], thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
 						}
+						// 刷新或退出重置过滤
+						thisScript.global.d6NxFilter = [];
 						thisScript.global.d6NextStation = '翻页';
 					}
 				} else {
@@ -150,7 +154,9 @@ export default {
 					// 购买确认，如果超时无确认则表示该商品已经被买过了，增加过滤，已经买过的也增加过滤，过滤在刷新与退出后重置
 					if (thisScript.compareColorLoop(thisOperator[2].desc, 800)) {
 						thisScript.helperBridge.regionClick([thisOperator[0].oper[2]], thisScript.scheme.commonConfig.afterClickDelayRandom);
-						// TODO 已购买的buff增加过滤
+						// 已购买的buff增加过滤
+						if (!thisScript.global.d6NxFilter) thisScript.global.d6NxFilter = [];
+						thisScript.global.d6NxFilter.push(type);
 						thisScript.global.d6d[type][0]++;
 						// 拿到所有buff后再装buff
 						if (thisScript.global.d6LoadBuff) {
@@ -164,7 +170,9 @@ export default {
 						thisScript.global.d6RefreshCnt = 0;
 						myToast(`当前buff：${priorty.map(name => name + ':' + thisScript.global.d6d[name][0]).join(', ')}`);
 					} else {
-						// TODO 增加过滤
+						// 无法购买的增加过滤
+						if (!thisScript.global.d6NxFilter) thisScript.global.d6NxFilter = [];
+						thisScript.global.d6NxFilter.push(type);
 						myToast(`${type}无法购买，增加过滤`);
 					}
 				}

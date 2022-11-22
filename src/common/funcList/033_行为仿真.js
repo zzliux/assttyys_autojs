@@ -126,7 +126,7 @@ export default {
 			}
 			sleep(2000);
 		} else {
-			// TODO 关闭聊天窗口
+			// 关闭聊天窗口
 			return thisScript.oper({
 				name: '聊天_战斗场景判断',
 				operator: [thisOperator[1], thisOperator[2]]

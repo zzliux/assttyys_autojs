@@ -105,7 +105,7 @@ export default {
     },
     async parseExportString() {
       try {
-        // TODO 解析内容是否为scheme的数组
+        // 解析内容是否为scheme的数组
         const toImport = JSON.parse(this.exportString);
         // 导出数组内重名的重命名
         for (let i = 0; i < toImport.length; i++) {
@@ -116,7 +116,7 @@ export default {
           }
         }
         
-        // TODO 获取已储存的schemeList，判断重名方案后自动重命名
+        // 获取已储存的schemeList，判断重名方案后自动重命名
         const savedSchemeList = await AutoWeb.autoPromise("getSchemeList");
         for (let i = 0; i < savedSchemeList.length; i++) {
           for (let j = 0; j < toImport.length; j++) {
