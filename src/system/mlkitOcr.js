@@ -1,5 +1,4 @@
 import { similarity } from "@/common/tool";
-import { isRoot } from "@auto.pro/core";
 import drawFloaty from "./drawFloaty";
 
 export const ocr = {
@@ -118,7 +117,6 @@ export const ocr = {
     findTextByOcr(detector, getBmpFunc, text, timeout, region, textMatchMode) {
         const startTime = new Date().getTime();
         while (true) {
-            console.time('ocr.detect');
             let bmp = getBmpFunc();
             if (region) {
                 let newBmp = android.graphics.Bitmap.createBitmap(bmp, region[0], region[1], region[2] - region[0], region[3] - region[1]);
@@ -127,7 +125,6 @@ export const ocr = {
             }
             let rs = detector.loadImage(bmp);
             bmp.recycle()
-            console.timeEnd('ocr.detect');
 
             if (region) {
                 rs.forEach(item => {
@@ -138,37 +135,44 @@ export const ocr = {
                 });
             }
             
-            let res = [];
-            let toDraw = [];
-            if (textMatchMode === '包含') {
-                let reg = new RegExp(text);
-                res = rs.filter(item => reg.test(item.label));
-                toDraw = rs.map(item => ({
-                    region: [item.points[0].x, item.points[0].y, item.points[2].x, item.points[2].y],
-                    color: reg.test(item.label) ? 'green' : 'red',
-                    text: item.label + ':' + item.confidence
-                }));
-            } else /*if (textMatchMode === '模糊') */{
-                res = rs.filter(item => similarity(item.label, text, 0.5) >= 0.5);
-                toDraw = rs.map(item => ({
-                    region: [item.points[0].x, item.points[0].y, item.points[2].x, item.points[2].y],
-                    color: similarity(item.label, text, 0.5) >= 0.5 ? 'green' : 'red',
-                    text: item.label + ':' + item.confidence
-                }));
-            }
-    
+            let res = this.findTextByOcrResult(text, rs, textMatchMode);
             
-            // 开了绘制有可能绘制内容也被ocr给识别了
-            if (drawFloaty.instacne) {
-                drawFloaty.draw(toDraw, 200);
-            }
-    
             if (res.length > 0) {
-                console.log('识别结果', JSON.stringify(rs));
+                // console.log('识别结果', JSON.stringify(rs));
                 return res;
             } else if (new Date().getTime() - startTime > timeout) {
                 return [];
             }
         }
+    },
+
+    findTextByOcrResult (text, ocrResult, textMatchMode, similarityRatio) {
+        let res = [];
+        let toDraw = [];
+        if (textMatchMode === '包含') {
+            let reg = new RegExp(text);
+            res = ocrResult.filter(item => reg.test(item.label));
+            toDraw = ocrResult.map(item => ({
+                region: [item.points[0].x, item.points[0].y, item.points[2].x, item.points[2].y],
+                color: reg.test(item.label) ? 'green' : 'red',
+                text: item.label + ':' + item.confidence
+            }));
+        } else /*if (textMatchMode === '模糊') */{
+            res = ocrResult.filter(item => {
+                item.similar = similarity(item.label, text);
+                return item.similar >= (similarityRatio || .5)
+            });
+            res.sort((a, b) => (a.similar || 0) < (b.similar || 0));
+            toDraw = ocrResult.map(item => ({
+                region: [item.points[0].x, item.points[0].y, item.points[2].x, item.points[2].y],
+                color: item.similar >= (similarityRatio || .5) ? 'green' : 'red',
+                text: item.label + ':' + item.confidence
+            }));
+        }
+        // 开了绘制有可能绘制内容也被ocr给识别了
+        if (drawFloaty.instacne) {
+            drawFloaty.draw(toDraw, 200);
+        }
+        return res;
     }
 }

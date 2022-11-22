@@ -157,7 +157,7 @@ export default {
 				flag = false;
 			}
 
-			// TODO 配合准备/退出功能，次数变更后不需要判断绿标，直接点
+			// 配合准备/退出功能，次数变更后不需要判断绿标，直接点
 			// 当局有多次判断时，连续3秒内都未检测到绿标方可进行点击
 			// 没有找到绿标的开始时间
 			thisScript.global.greenNonDTime = new Date().getTime();

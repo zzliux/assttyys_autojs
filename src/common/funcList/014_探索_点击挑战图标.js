@@ -83,7 +83,7 @@ export default {
 				// sleep(3000); // 从地图进来，先休息一下再进行判断
 			}
 			let point = null;
-			// TODO 使用多点找色返回所有点的方法
+			// 使用多点找色返回所有点的方法
 			if ('无差别' === thisconf.type) {
 				point = thisScript.findMultiColor('探索_挑战BOSS');
 				if (point) {
