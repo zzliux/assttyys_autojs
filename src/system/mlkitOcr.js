@@ -21,7 +21,7 @@ export const ocr = {
      */
     install: function (option) {
         let self = this;
-        if (app.autojs.versionCode < '9130600') {
+        if (app.autojs.versionCode < '9121400') {
             toastLog('软件版本过低，当前版本不支持ocr请安装新版');
             option.failCallback();
             return;
