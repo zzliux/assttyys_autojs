@@ -340,6 +340,9 @@ export const versionList = [{
 }, {
     version: '20221122_01',
     desc: '优化：六道萤草增加宁息商店购买buff，需开启ocr扩展，启用功能206'
+}, {
+    version: '20221123_01',
+    desc: '优化：六道萤草宁息够买buff由ocr识别修改为多点找色；\n修复：六道萤草选buff只刷新一次就直接选buff的bug'
 }];
 
 export default versionList[versionList.length - 1].version;

@@ -106,6 +106,8 @@ export default {
 			}
 		}
 		// TODO 待优化：达到目标个数后直接乱选buff
+		// TODO 待优化：只要有一个普通buff如生命加成、攻击加成、命中加成则不刷新
+
 		if (thisScript.oper({
 			name: '六道萤草_选buff',
 			operator: [{
@@ -182,8 +184,13 @@ export default {
 						coins = 0;
 					}
 				}
-
-				if (thisScript.global.d6RefreshCnt >= 3 || coins < 50) {
+				// console.log(`coins: ${coins}`);
+				// console.log(`thisScript.global.d6RefreshCnt: ${thisScript.global.d6RefreshCnt}`);
+				// console.log(`thisScript.global.d6RefreshCnt < 3 && coins >= 50: ${thisScript.global.d6RefreshCnt < 3 && coins >= 50}`);
+				if (thisScript.global.d6RefreshCnt < 3 && coins >= 50) {
+					thisScript.global.d6RefreshCnt++;
+					thisScript.helperBridge.regionClick([thisOperator[0].oper[1], thisOperator[0].oper[2]], thisScript.scheme.commonConfig.afterClickDelayRandom); // 刷新
+				} else {
 					let rn = random(0, 2);
 					myToast(`没找到，随机点击第${rn + 1}个`);
 					thisScript.helperBridge.regionClick([thisOperator[1].oper[rn]], thisScript.scheme.commonConfig.afterClickDelayRandom);
@@ -191,15 +198,6 @@ export default {
 					// 如果有确认奖励就能很快的跳出
 					thisScript.compareColorLoop(thisOperator[3].desc, 1500);
 					myToast(`当前buff：${priorty.map(name => name + ':' + thisScript.global.d6d[name][0]).join(', ')}`);
-				} else if (coins >= 50) {
-					thisScript.global.d6RefreshCnt++;
-					thisScript.helperBridge.regionClick([thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom); // 刷新
-					// 如果点了刷新不出确认，表示没钱了，直接给刷新次数置为3次表示这是最后一次
-					if (thisScript.compareColorLoop(thisOperator[2].desc, 600)) {
-						thisScript.helperBridge.regionClick([thisOperator[0].oper[2]], thisScript.scheme.commonConfig.afterClickDelayRandom);
-					} else {
-						thisScript.global.d6RefreshCnt = 3;
-					}
 				}
 			} else {
 				if (thisScript.global.d6d[priorty[0]][0] === 0 && type !== priorty[0]) {

@@ -26,10 +26,11 @@ export default {
 			[center, 1280, 720, 676, 405, 842, 460, 500], // 确认
 			[right, 1280, 720, 1156, 10, 1265, 69, -1], // 金币区域
 			[right, 1280, 720, 645, 57, 1192, 716, -1], // 商品区域
-			[right, 1280, 720, 671, 317, 1181, 666, 500], // 4-翻页开始区域
-			[right, 1280, 720, 671, 64, 1174, 131, 500], // 5-翻页结束区域
+			[right, 1280, 720, 701, 570, 1144, 644, 500], // 4-翻页开始区域
+			[right, 1280, 720, 713, 110, 1131, 171, 500], // 5-翻页结束区域
 			[right, 1280, 720, 545, 569, 604, 625, 500], // 6-刷新按钮区域
 			[right, 1280, 720, 680, 396, 807, 452, 500], // 7-刷新确认区域
+			[right, 1280, 720, 0, 72, 982 - 889, 72 + 460 - 419, 500], // 8-图标大小区域
 		]
 	}, {
 		// 刷新确认
@@ -71,6 +72,12 @@ export default {
 				retest: 300,
 			}]
 		})) {
+
+			/** 调试用，截完图就删 */
+			// const ajImg = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(thisScript.helperBridge.helper.GetBitmap());
+			// ajImg.saveTo(`/sdcard/Pictures/${new Date().getTime()}.png`);
+			// ajImg.recycle();
+
 			let cost = { '腐草为萤': 300, '妖力化身': 300, '六道净化': 200, '萤火之光': 300 };
 			let coins = 0;
 			let result = ocr.findTextByOcr(thisScript.getOcr(), function () {
@@ -97,19 +104,21 @@ export default {
 					}
 				});
 
-				let result2 = ocr.findTextByOcr(thisScript.getOcr(), function () {
-					thisScript.keepScreen(); // 更新图片
-					return thisScript.helperBridge.helper.GetBitmap(); // 返回bmp
-				}, '.+', 0, thisOperator[0].oper[3], '包含');
+				// let result2 = ocr.findTextByOcr(thisScript.getOcr(), function () {
+				// 	thisScript.keepScreen(); // 更新图片
+				// 	return thisScript.helperBridge.helper.GetBitmap(); // 返回bmp
+				// }, '.+', 0, thisOperator[0].oper[3], '包含');
 
 				if (overCnt < priorty.length) {
 					for (let i = 0; i < priorty.length; i++) {
 						if (thisScript.global.d6d[priorty[i]][0] >= thisScript.global.d6d[priorty[i]][1]) {
 							continue;
 						}
-						const p = ocr.findTextByOcrResult(priorty[i], result2, '模糊', .65);
-						if (p.length) {
-							toClick = [p[0].points[0].x, p[0].points[0].y, p[0].points[2].x, p[0].points[2].y, 500];
+						// const p = ocr.findTextByOcrResult(priorty[i], result2, '模糊', .65);
+						const p = thisScript.findMultiColor(`六道萤草_宁息_${priorty[i]}`); // 用仿造的色组
+						if (p) {
+							// toClick = [p[0].points[0].x, p[0].points[0].y, p[0].points[2].x, p[0].points[2].y, 500];
+							toClick = [p.x + thisOperator[0].oper[8][0], p.y + thisOperator[0].oper[8][1], p.x + thisOperator[0].oper[8][2], p.y + thisOperator[0].oper[8][3], thisOperator[0].oper[8][4]];
 							console.log(p);
 							type = priorty[i];
 							break;
@@ -120,9 +129,11 @@ export default {
 						if (thisScript.global.d6d[priorty2[i]][0] >= 5) {
 							continue;
 						}
-						const p = ocr.findTextByOcrResult(priorty2[i], result2, '模糊', .65);
-						if (p.length) {
-							toClick = [p[0].points[0].x, p[0].points[0].y, p[0].points[2].x, p[0].points[2].y, 500];
+						// const p = ocr.findTextByOcrResult(priorty2[i], result2, '模糊', .65);
+						const p = thisScript.findMultiColor(`六道萤草_宁息_${priorty2[i]}`); // 用仿造的色组
+						if (p) {
+							// toClick = [p[0].points[0].x, p[0].points[0].y, p[0].points[2].x, p[0].points[2].y, 500];
+							toClick = [p.x + thisOperator[0].oper[8][1], p.y + thisOperator[0].oper[8][1], p.x + thisOperator[0].oper[8][2], p.y + thisOperator[0].oper[8][3], thisOperator[0].oper[8][4]];
 							console.log(p);
 							type = priorty2[i];
 							break;
@@ -172,7 +183,6 @@ export default {
 						if (thisScript.global.d6LoadBuff) {
 							myToast('准备装buff');
 						}
-						thisScript.global.d6RefreshCnt = 0;
 						myToast(`当前buff：${priorty.map(name => name + ':' + thisScript.global.d6d[name][0]).join(', ')}`);
 					} else {
 						// 无法购买的增加过滤
