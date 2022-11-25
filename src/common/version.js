@@ -343,6 +343,9 @@ export const versionList = [{
 }, {
     version: '20221123_01',
     desc: '优化：六道萤草宁息够买buff由ocr识别修改为多点找色；\n修复：六道萤草选buff只刷新一次就直接选buff的bug'
+}, {
+    version: '20221125_01',
+    desc: '新增：活动方案化四季_小怪、化四季boss'
 }];
 
 export default versionList[versionList.length - 1].version;
