@@ -29,7 +29,7 @@ export default {
 			[right, 1280, 720, 701, 570, 1144, 644, 500], // 4-翻页开始区域
 			[right, 1280, 720, 713, 110, 1131, 171, 500], // 5-翻页结束区域
 			[right, 1280, 720, 545, 569, 604, 625, 500], // 6-刷新按钮区域
-			[right, 1280, 720, 680, 396, 807, 452, 500], // 7-刷新确认区域
+			[right, 1280, 720, 680, 396, 807, 452, 1000], // 7-刷新确认区域
 			[right, 1280, 720, 0, 72, 982 - 889, 72 + 460 - 419, 500], // 8-图标大小区域
 		]
 	}, {
@@ -168,10 +168,8 @@ export default {
 						// 已购买的buff增加过滤
 						if (!thisScript.global.d6NxFilter) thisScript.global.d6NxFilter = [];
 						thisScript.global.d6NxFilter.push(type);
-						thisScript.global.d6d[type][0]++;
 
-
-						if (thisScript.global.d6d[type][0] === 0 && type !== priorty[0]) {
+						if (thisScript.global.d6d[type][0] === 0) {
 							thisScript.global.d6LoadBuff = true;
 						}
 						// 拿到所有buff后再装buff
@@ -180,6 +178,7 @@ export default {
 							priorty.forEach(name => hasCnt += !!thisScript.global.d6d[name][0]);
 							if (hasCnt < 4) thisScript.global.d6LoadBuff = false;
 						}
+						thisScript.global.d6d[type][0]++;
 						if (thisScript.global.d6LoadBuff) {
 							myToast('准备装buff');
 						}
