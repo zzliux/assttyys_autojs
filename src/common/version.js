@@ -346,6 +346,9 @@ export const versionList = [{
 }, {
     version: '20221125_01',
     desc: '新增：活动方案化四季_小怪、化四季boss'
+}, {
+    version: '20221130_01',
+    desc: '修复：探索因UI界面变化导致功能失效的问题'
 }];
 
 export default versionList[versionList.length - 1].version;
