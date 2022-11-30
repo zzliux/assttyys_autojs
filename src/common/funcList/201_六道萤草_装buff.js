@@ -94,7 +94,8 @@ export default {
 		if (thisScript.global.d6LoadBuff && thisScript.oper({
 			name: '六道萤草_装buff_事件界面',
 			operator: [{
-				desc: thisOperator[0].desc
+				desc: thisOperator[0].desc,
+				retest: 800
 			}]
 		})) {
 			thisScript.helperBridge.regionClick([thisOperator[0].oper[0]], thisScript.scheme.commonConfig.afterClickDelayRandom);
@@ -106,7 +107,8 @@ export default {
 		if (thisScript.global.d6LoadBuff && thisScript.oper({
 			name: '六道萤草_装buff_boss界面',
 			operator: [{
-				desc: thisOperator[3].desc
+				desc: thisOperator[3].desc,
+				retest: 800
 			}]
 		})) {
 			thisScript.helperBridge.regionClick([thisOperator[3].oper[0]], thisScript.scheme.commonConfig.afterClickDelayRandom);

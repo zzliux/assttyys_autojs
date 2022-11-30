@@ -28,7 +28,7 @@ export default {
 			[right, 1280, 720, 645, 57, 1192, 716, -1], // 商品区域
 			[right, 1280, 720, 701, 570, 1144, 644, 500], // 4-翻页开始区域
 			[right, 1280, 720, 713, 110, 1131, 171, 500], // 5-翻页结束区域
-			[right, 1280, 720, 545, 569, 604, 625, 500], // 6-刷新按钮区域
+			[right, 1280, 720, 545, 569, 604, 625, 1000], // 6-刷新按钮区域
 			[right, 1280, 720, 680, 396, 807, 452, 1000], // 7-刷新确认区域
 			[right, 1280, 720, 0, 72, 982 - 889, 72 + 460 - 419, 500], // 8-图标大小区域
 		]
@@ -87,8 +87,10 @@ export default {
 			if (result.length) {
 				coins = parseInt(result[0].label) || 0;
 			}
-			if (coins >= 300) {
-				let priorty = ['腐草为萤', '妖力化身', '六道净化', '萤火之光']  // 未达到目标的优先级
+			if (coins >= 200) {
+				
+				let confPriorty = thisScript.scheme.config['202'].priority || '腐草为萤,妖力化身,六道净化,萤火之光';
+				let priorty = confPriorty.split(',') // 未达到目标的优先级
 					.filter(item => cost[item] <= coins) // 钱不够的过滤
 					.filter(item => (thisScript.global.d6NxFilter || []).indexOf(item) === -1); // 无法购买的过滤
 				let priorty2 = ['萤火之光', '妖力化身'] // 达到目标后的优先级
@@ -145,20 +147,34 @@ export default {
 					if (typeof thisScript.global.d6NextStation === 'undefined' || thisScript.global.d6NextStation === '翻页') {
 						thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[4], thisOperator[0].oper[5], [400, 1000], 200);
 						thisScript.global.d6NextStation = '刷新';
-					} else if (thisScript.global.d6NextStation === '刷新') {
+					} else if (thisScript.global.d6NextStation === '刷新' && coins >= 300) {
 						thisScript.helperBridge.regionClick([thisOperator[0].oper[6]], thisScript.scheme.commonConfig.afterClickDelayRandom);
-						if (thisScript.compareColorLoop(thisOperator[1].desc, 800)) {
-							// 刷新弹出确认，没有到上限
-							thisScript.helperBridge.regionClick([thisOperator[0].oper[7]], thisScript.scheme.commonConfig.afterClickDelayRandom);
-							// 刷新后再翻回来
-							thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[5], thisOperator[0].oper[4], [400, 1000], 200);
-						} else {
-							// 刷新没退出确认，到上限了，直接退出
-							thisScript.helperBridge.regionClick([thisOperator[0].oper[0], thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
-						}
+
+						// 刷新没有确认了，该逻辑作废
+						// if (thisScript.compareColorLoop(thisOperator[1].desc, 800)) {
+						// 	// 刷新弹出确认，没有到上限
+						// 	thisScript.helperBridge.regionClick([thisOperator[0].oper[7]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+						// 	// 刷新后再翻回来
+						// 	thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[5], thisOperator[0].oper[4], [400, 1000], 200);
+						// } else {
+						// 	// 刷新没退出确认，到上限了，直接退出
+						// 	thisScript.helperBridge.regionClick([thisOperator[0].oper[0], thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+						// }
 						// 刷新或退出重置过滤
+						if (typeof thisScript.global.d6NxRefreshCnt === 'undefined') {
+							thisScript.global.d6NxRefreshCnt = 0;
+						}
+						if (thisScript.global.d6NxRefreshCnt >= 3) {
+							thisScript.helperBridge.regionClick([thisOperator[0].oper[0], thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+							thisScript.global.d6NxRefreshCnt = 0;
+						} else {
+							thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[5], thisOperator[0].oper[4], [400, 1000], 200);
+							thisScript.global.d6NxRefreshCnt++;
+						}
 						thisScript.global.d6NxFilter = [];
 						thisScript.global.d6NextStation = '翻页';
+					} else {
+						thisScript.helperBridge.regionClick([thisOperator[0].oper[0], thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
 					}
 				} else {
 					thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);

@@ -349,6 +349,9 @@ export const versionList = [{
 }, {
     version: '20221130_01',
     desc: '修复：探索因UI界面变化导致功能失效的问题'
+}, {
+    version: '20221130_02',
+    desc: '优化：六道萤草选buff支持修改选择buff的优先级（仅能修改内置优先级）；\n优化：适配六道萤草宁息刷新的二次确认；\n优化：六道萤草增加进入装buff界面的延迟'
 }];
 
 export default versionList[versionList.length - 1].version;
