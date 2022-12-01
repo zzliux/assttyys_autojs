@@ -241,14 +241,14 @@ export default {
 				// 拿到所有buff后再装buff
 				if (thisScript.global.d6LoadBuff) {
 					let hasCnt = 0;
-					priorty.forEach(name => hasCnt += !!thisScript.global.d6d[name][0]);
+					['腐草为萤', '妖力化身', '六道净化', '萤火之光'].forEach(name => hasCnt += !!thisScript.global.d6d[name][0]);
 					if (hasCnt < 4) thisScript.global.d6LoadBuff = false;
 				}
 				if (thisScript.global.d6LoadBuff) {
 					myToast('准备装buff');
 				}
 				thisScript.global.d6RefreshCnt = 0;
-				myToast(`当前buff：${priorty.map(name => name + ':' + thisScript.global.d6d[name][0]).join(', ')}`);
+				myToast(`当前buff：${['腐草为萤', '妖力化身', '六道净化', '萤火之光'].map(name => name + ':' + thisScript.global.d6d[name][0]).join(', ')}`);
 			}
 			return true;
 		}

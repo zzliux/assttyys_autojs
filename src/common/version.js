@@ -352,6 +352,9 @@ export const versionList = [{
 }, {
     version: '20221130_02',
     desc: '优化：六道萤草选buff支持修改选择buff的优先级（仅能修改内置优先级）；\n优化：适配六道萤草宁息刷新的二次确认；\n优化：六道萤草增加进入装buff界面的延迟'
+}, {
+    version: '20221202_01',
+    desc: '尝试修复：六道萤草不装buff的bug'
 }];
 
 export default versionList[versionList.length - 1].version;
