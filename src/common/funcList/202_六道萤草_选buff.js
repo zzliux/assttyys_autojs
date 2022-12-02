@@ -32,6 +32,21 @@ export default {
 			type: 'integer',
 			default: 0,
 		}]
+	}, {
+		desc: '配置',
+		config: [{
+			name: 'priority',
+			desc: '各buff的优先级（仅未满buff时生效）',
+			type: 'list',
+			data: [
+				'腐草为萤,妖力化身,六道净化,萤火之光',
+				'腐草为萤,六道净化,妖力化身,萤火之光',
+				'六道净化,妖力化身,腐草为萤,萤火之光',
+				'六道净化,腐草为萤,妖力化身,萤火之光',
+			],
+			default: '腐草为萤,妖力化身,六道净化,萤火之光',
+			value: null,
+		}]
 	}],
 	operator: [{
 		// 首次进入选buff
@@ -95,8 +110,8 @@ export default {
 		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
+		const thisconf = thisScript.scheme.config['202'];
 		if (!thisScript.global.d6d) {
-			const thisconf = thisScript.scheme.config['202'];
 			thisScript.global.d6d = {
 				// 0当前个数，1目标个数
 				腐草为萤: [parseInt(thisconf.腐草为萤) || 0, 5],
@@ -106,6 +121,8 @@ export default {
 			}
 		}
 		// TODO 待优化：达到目标个数后直接乱选buff
+		// TODO 待优化：只要有一个普通buff如生命加成、攻击加成、命中加成则不刷新
+
 		if (thisScript.oper({
 			name: '六道萤草_选buff',
 			operator: [{
@@ -114,7 +131,8 @@ export default {
 				desc: thisOperator[1].desc
 			}]
 		})) {
-			let priorty = ['腐草为萤', '妖力化身', '六道净化', '萤火之光']; // 未达到目标的优先级
+			let confPriorty = thisconf.priority || '腐草为萤,妖力化身,六道净化,萤火之光';
+			let priorty = confPriorty.split(','); // 未达到目标的优先级
 			let priorty2 = ['萤火之光', '妖力化身']; // 达到目标后的优先级
 			let toClick = null;
 			let type = null;
@@ -182,8 +200,13 @@ export default {
 						coins = 0;
 					}
 				}
-
-				if (thisScript.global.d6RefreshCnt >= 3 || coins < 50) {
+				// console.log(`coins: ${coins}`);
+				// console.log(`thisScript.global.d6RefreshCnt: ${thisScript.global.d6RefreshCnt}`);
+				// console.log(`thisScript.global.d6RefreshCnt < 3 && coins >= 50: ${thisScript.global.d6RefreshCnt < 3 && coins >= 50}`);
+				if (thisScript.global.d6RefreshCnt < 3 && coins >= 50) {
+					thisScript.global.d6RefreshCnt++;
+					thisScript.helperBridge.regionClick([thisOperator[0].oper[1], thisOperator[0].oper[2]], thisScript.scheme.commonConfig.afterClickDelayRandom); // 刷新
+				} else {
 					let rn = random(0, 2);
 					myToast(`没找到，随机点击第${rn + 1}个`);
 					thisScript.helperBridge.regionClick([thisOperator[1].oper[rn]], thisScript.scheme.commonConfig.afterClickDelayRandom);
@@ -191,18 +214,10 @@ export default {
 					// 如果有确认奖励就能很快的跳出
 					thisScript.compareColorLoop(thisOperator[3].desc, 1500);
 					myToast(`当前buff：${priorty.map(name => name + ':' + thisScript.global.d6d[name][0]).join(', ')}`);
-				} else if (coins >= 50) {
-					thisScript.global.d6RefreshCnt++;
-					thisScript.helperBridge.regionClick([thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom); // 刷新
-					// 如果点了刷新不出确认，表示没钱了，直接给刷新次数置为3次表示这是最后一次
-					if (thisScript.compareColorLoop(thisOperator[2].desc, 600)) {
-						thisScript.helperBridge.regionClick([thisOperator[0].oper[2]], thisScript.scheme.commonConfig.afterClickDelayRandom);
-					} else {
-						thisScript.global.d6RefreshCnt = 3;
-					}
 				}
 			} else {
-				if (thisScript.global.d6d[priorty[0]][0] === 0 && type !== priorty[0]) {
+				// 腐草为萤
+				if (thisScript.global.d6d['腐草为萤'][0] === 0 && type !== '腐草为萤') {
 					myToast(`未找到${priorty[0]}`);
 					sleep(500);
 					return false;
@@ -219,7 +234,7 @@ export default {
 				thisScript.helperBridge.regionClick([toClickRegion], thisScript.scheme.commonConfig.afterClickDelayRandom);
 				// 如果有确认奖励就能很快的跳出
 				thisScript.compareColorLoop(thisOperator[3].desc, 1500);
-				if (thisScript.global.d6d[type][0] === 0 && type !== priorty[0]) {
+				if (thisScript.global.d6d[type][0] === 0) {
 					thisScript.global.d6LoadBuff = true;
 				}
 				thisScript.global.d6d[type][0]++;

@@ -103,7 +103,6 @@ export default {
 				];
 				thisScript.helperBridge.regionClick([toClickRegion, thisOperator[0].oper[1], thisOperator[0].oper[3]], thisScript.scheme.commonConfig.afterClickDelayRandom);
 				thisScript.global.d6d[type][0]++;
-				thisScript.global.d6RefreshCnt = 0;
 				console.log(`thisScript.global.d6d: ${JSON.stringify(thisScript.global.d6d)}`);
 			}
 			sleep(200);

@@ -94,7 +94,8 @@ export default {
 		if (thisScript.global.d6LoadBuff && thisScript.oper({
 			name: '六道萤草_装buff_事件界面',
 			operator: [{
-				desc: thisOperator[0].desc
+				desc: thisOperator[0].desc,
+				retest: 800
 			}]
 		})) {
 			thisScript.helperBridge.regionClick([thisOperator[0].oper[0]], thisScript.scheme.commonConfig.afterClickDelayRandom);
@@ -106,7 +107,8 @@ export default {
 		if (thisScript.global.d6LoadBuff && thisScript.oper({
 			name: '六道萤草_装buff_boss界面',
 			operator: [{
-				desc: thisOperator[3].desc
+				desc: thisOperator[3].desc,
+				retest: 800
 			}]
 		})) {
 			thisScript.helperBridge.regionClick([thisOperator[3].oper[0]], thisScript.scheme.commonConfig.afterClickDelayRandom);
@@ -114,7 +116,7 @@ export default {
 			return true;
 		}
 
-
+		// TODO buff如果都装上了就直接退出，两个界面都需要检测，如果有buff没装才执行这个
 		if (thisScript.oper({
 			name: '六道萤草_装buff_装配界面',
 			operator: [{
@@ -127,6 +129,7 @@ export default {
 
 			// 再装buff
 			const buffNames = ['腐草为萤', '妖力化身', '六道净化', '萤火之光'];
+			let retestTimes = 0;
 			for (let bufInd = 0; bufInd < buffNames.length; bufInd++) {
 				const buffName = buffNames[bufInd];
 				const p = thisScript.findMultiColor(`六道萤草_仿造_${buffName}`); // 用仿造的色组
@@ -140,7 +143,8 @@ export default {
 					} else {
 						bufInd--;
 					}
-				} else {
+					retestTimes = 0;
+				} else if (retestTimes++ < 3) {
 					// buff齐了的情况下可以作死的找
 					thisScript.keepScreen(true); // 重新截下图，怕没到位就在上buff
 					bufInd--;
