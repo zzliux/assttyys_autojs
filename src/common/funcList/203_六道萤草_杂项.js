@@ -276,6 +276,7 @@ export default {
 				thisScript.global.times = 0;
 			}
 			thisScript.global.times++
+			thisScript.global.d6LoadedBuff = false;
 			return true;
 		} else if (thisScript.oper({
 			id: 203,

@@ -356,8 +356,11 @@ export const versionList = [{
     version: '20221202_01',
     desc: '尝试修复：六道萤草不装buff的bug'
 }, {
-    version: '20221202_01',
+    version: '20221203_01',
     desc: '尝试修复：六道萤草开新局时计数与计次不重置的问题'
+}, {
+    version: '20221204_01',
+    desc: '尝试修复：六道萤草不装buff的bug'
 }];
 
 export default versionList[versionList.length - 1].version;

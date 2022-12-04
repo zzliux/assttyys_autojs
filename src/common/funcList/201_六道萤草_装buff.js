@@ -87,11 +87,35 @@ export default {
 				[center, 495, 599, 0xfed684],
 			]
 		]
+	}, {
+		// 四个buff全装的备战界面
+		desc: [1280, 720,
+			[
+				[right, 1230, 30, 0x3a2b2d],
+				[right, 1168, 614, 0xddcdb4],
+				[right, 1173, 594, 0x2f4753],
+				[left, 26, 41, 0xeef6f6],
+				[left, 252, 40, 0x583716],
+				[right, 1107, 618, 0x354958],
+				[center, 894, 163, 0xe0ee83],
+				[center, 883, 162, 0x5caa2f],
+				[center, 978, 223, 0xffffff],
+				[center, 994, 225, 0xffffa1],
+				[center, 1025, 289, 0xb4c5fa],
+				[center, 1047, 316, 0x08033f],
+				[center, 1047, 378, 0x408400],
+				[center, 1044, 400, 0x294808],
+			]
+		],
+		oper: [
+			[left, 1280, 720, 13, 17, 61, 63, 1000], // 左上角退出
+		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
 
 		// 事件
 		if (thisScript.global.d6LoadBuff && thisScript.oper({
+			id: 201,
 			name: '六道萤草_装buff_事件界面',
 			operator: [{
 				desc: thisOperator[0].desc,
@@ -103,8 +127,9 @@ export default {
 			return true;
 		}
 
-		// boss
-		if (thisScript.global.d6LoadBuff && thisScript.oper({
+		// boss 必点一下装buff
+		if (!thisScript.global.d6LoadedBuff && thisScript.oper({
+			id: 201,
 			name: '六道萤草_装buff_boss界面',
 			operator: [{
 				desc: thisOperator[3].desc,
@@ -112,11 +137,19 @@ export default {
 			}]
 		})) {
 			thisScript.helperBridge.regionClick([thisOperator[3].oper[0]], thisScript.scheme.commonConfig.afterClickDelayRandom);
-			thisScript.global.d6LoadBuff = false;
 			return true;
 		}
 
-		// TODO buff如果都装上了就直接退出，两个界面都需要检测，如果有buff没装才执行这个
+		// buff如果都装上了就直接退出
+		if (thisScript.oper({
+			id: 201,
+			name: '六道萤草_装buff_满buff',
+			operator: [thisOperator[5]]
+		})) {
+			thisScript.global.d6LoadedBuff = true;
+			return true;
+		}
+
 		if (thisScript.oper({
 			name: '六道萤草_装buff_装配界面',
 			operator: [{
@@ -153,6 +186,7 @@ export default {
 			sleep(500);
 			thisScript.helperBridge.regionClick([thisOperator[1].oper[4], thisOperator[1].oper[4]], thisScript.scheme.commonConfig.afterClickDelayRandom);
 			sleep(500);
+			thisScript.global.d6LoadedBuff = true;
 			return true;
 		}
 		return thisScript.oper({

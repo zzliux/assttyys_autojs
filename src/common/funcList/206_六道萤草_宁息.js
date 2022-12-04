@@ -160,13 +160,16 @@ export default {
 						// 	// 刷新没退出确认，到上限了，直接退出
 						// 	thisScript.helperBridge.regionClick([thisOperator[0].oper[0], thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
 						// }
-						// 刷新或退出重置过滤
+						// 刷新或退出重置相关状态
 						if (typeof thisScript.global.d6NxRefreshCnt === 'undefined') {
 							thisScript.global.d6NxRefreshCnt = 0;
 						}
 						if (thisScript.global.d6NxRefreshCnt >= 3) {
 							thisScript.helperBridge.regionClick([thisOperator[0].oper[0], thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+							// 退出后重置相关状态
 							thisScript.global.d6NxRefreshCnt = 0;
+							thisScript.global.d6NxFilter = [];
+							thisScript.global.d6NextStation = '翻页';
 						} else {
 							thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[5], thisOperator[0].oper[4], [400, 1000], 200);
 							thisScript.global.d6NxRefreshCnt++;
@@ -175,6 +178,10 @@ export default {
 						thisScript.global.d6NextStation = '翻页';
 					} else {
 						thisScript.helperBridge.regionClick([thisOperator[0].oper[0], thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+						// 退出后重置相关状态
+						thisScript.global.d6NxRefreshCnt = 0;
+						thisScript.global.d6NxFilter = [];
+						thisScript.global.d6NextStation = '翻页';
 					}
 				} else {
 					thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
@@ -184,30 +191,34 @@ export default {
 						// 已购买的buff增加过滤
 						if (!thisScript.global.d6NxFilter) thisScript.global.d6NxFilter = [];
 						thisScript.global.d6NxFilter.push(type);
-
-						if (thisScript.global.d6d[type][0] === 0) {
-							thisScript.global.d6LoadBuff = true;
-						}
-						// 拿到所有buff后再装buff
-						if (thisScript.global.d6LoadBuff) {
-							let hasCnt = 0;
-							['腐草为萤', '妖力化身', '六道净化', '萤火之光'].forEach(name => hasCnt += !!thisScript.global.d6d[name][0]);
-							if (hasCnt < 4) thisScript.global.d6LoadBuff = false;
-						}
-						thisScript.global.d6d[type][0]++;
-						if (thisScript.global.d6LoadBuff) {
-							myToast('准备装buff');
-						}
-						myToast(`当前buff：${['腐草为萤', '妖力化身', '六道净化', '萤火之光'].map(name => name + ':' + thisScript.global.d6d[name][0]).join(', ')}`);
 					} else {
 						// // 无法购买的增加过滤
 						// if (!thisScript.global.d6NxFilter) thisScript.global.d6NxFilter = [];
 						// thisScript.global.d6NxFilter.push(type);
 						// myToast(`${type}无法购买，增加过滤`);
 					}
+					if (thisScript.global.d6d[type][0] === 0) {
+						thisScript.global.d6LoadBuff = true;
+					}
+					// 拿到所有buff后再装buff
+					if (thisScript.global.d6LoadBuff) {
+						let hasCnt = 0;
+						['腐草为萤', '妖力化身', '六道净化', '萤火之光'].forEach(name => hasCnt += !!thisScript.global.d6d[name][0]);
+						if (hasCnt < 4) thisScript.global.d6LoadBuff = false;
+					}
+					thisScript.global.d6d[type][0]++;
+					if (thisScript.global.d6LoadBuff) {
+						myToast('准备装buff');
+					}
+					myToast(`当前buff：${['腐草为萤', '妖力化身', '六道净化', '萤火之光'].map(name => name + ':' + thisScript.global.d6d[name][0]).join(', ')}`);
 				}
 			} else {
+				myToast('钱不够用，撤退');
 				thisScript.helperBridge.regionClick([thisOperator[0].oper[0], thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				// 退出后重置相关状态
+				thisScript.global.d6NxRefreshCnt = 0;
+				thisScript.global.d6NxFilter = [];
+				thisScript.global.d6NextStation = '翻页';
 			}
 			return true;
 		}
