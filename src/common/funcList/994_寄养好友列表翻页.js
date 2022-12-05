@@ -44,7 +44,7 @@ export default {
 			],
 		oper: [
 			[center, 1280, 720, 221, 558, 611, 590, 0],	// 滑动起点
-			[center, 1280, 720, 225, 430, 608, 461, 0],	// 滑动终点
+			[center, 1280, 720, 225, 450, 608, 455, 0],	// 滑动终点
 			// [center, 1280, 720, 1188,115, 1225,151, 500],
 		]
 	},
@@ -84,7 +84,7 @@ export default {
 			name: '寄养界面_判断',
 			operator: [{ desc: thisOperator[0].desc }]
 		})) {
-			thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [200, 300], 200);
+			thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [200, 250], 200);
 			if (!thisScript.global.jy_list_swipe_times) {
 				thisScript.global.jy_list_swipe_times = 0;
 			}

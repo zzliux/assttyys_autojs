@@ -303,7 +303,7 @@ export default {
             }]
         })) {
             // 做延时检测 防止登陆后的弹窗
-            if (thisScript.global.checked_yard_count === 5) {
+            if (thisScript.global.checked_yard_count === 10) {
                 thisScript.global.checked_yard_count = undefined;
                 setCurrentScheme(thisConf.next_scheme);
                 myToast(`切换方案为[${thisConf.next_scheme}]`);
