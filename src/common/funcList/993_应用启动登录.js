@@ -132,6 +132,9 @@ export default {
                 [right, 1157, 45, 0xb39671],
                 [center, 389, 65, 0xfbc573],
                 [right, 1207, 637, 0xdfd1cb]]
+            ],
+            oper: [
+                [right, 1280, 720, 1168, 592, 1230, 690, 1200]	// 在首页打开菜单
             ]
     },
     {
@@ -295,8 +298,14 @@ export default {
             name: '是否为庭院(未展开菜单)',
             operator: [{
                 desc: thisOperator[7].desc,
+                oper: thisOperator[7].oper
             }]
-        }) || thisScript.oper({
+        })) {
+            console.log('展开庭院菜单');
+            return true;
+        }
+
+        if (thisScript.oper({
             name: '是否为庭院(已展开菜单)',
             operator: [{
                 desc: thisOperator[8].desc,
