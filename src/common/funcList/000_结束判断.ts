@@ -2,7 +2,7 @@ import { setCurrentScheme } from '@/common/tool';
 import { myToast, doOspPush } from '@/common/toolAuto';
 import { Script } from '@/system/script';
 import { storeCommon } from '@/system/store';
-import { InterfaceFunc } from '../InterfaceFunc';
+import { InterfaceFunc } from '../interface/InterfaceFunc';
 
 export class Func000 implements InterfaceFunc {
 	id = 0;
