@@ -59,3 +59,5 @@ export class Func006 implements InterfaceFunc {
 		return false;
 	}
 }
+
+export default new Func006();

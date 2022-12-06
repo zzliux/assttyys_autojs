@@ -4,7 +4,18 @@ const fl = require.context('./funcList', false, /\.[jt]s$/);
 let funcList = [];
 
 fl.keys().forEach(key => {
-    funcList.push(fl(key).default);
+    const keys = Object.keys(fl(key));
+    if (keys.includes('default')) {
+        funcList.push(fl(key).default);
+    } else {
+        // 如果没有导出默认模块，则手工查找类然后实例化
+        for (let i = 0; i < keys.length; i++) {
+            if (keys[i].match(/Func\d+/)) {
+                funcList.push(new fl(key)[keys[i]]);
+                break;
+            }
+        }
+    }
 });
 funcList.sort((a, b) => a.id - b.id);
 
