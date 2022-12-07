@@ -31,6 +31,7 @@ export default function webviewSchemeList() {
         
         // 加载完界面后再注册返回事件
         fromEvent(ui.emitter, 'back_pressed').subscribe((e) => {
+            // @ts-ignore
             e.consumed = true;
             webview.runHtmlFunction("routeBack");
         });
@@ -54,7 +55,7 @@ export default function webviewSchemeList() {
         var resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
         var statusBarHeight = resources.getDimensionPixelSize(resourceId);
         var density = context.getResources().getDisplayMetrics().density;
-        done(parseInt(statusBarHeight / density));
+        done(Math.floor(statusBarHeight / density));
     });
 
     // 获取版本信息，前端对版本信息进行拼接，告知更新内容

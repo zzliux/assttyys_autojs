@@ -43,6 +43,7 @@ export default function webviewSettigns() {
                 desc: '截图权限',
                 name: 'screenCapturePermission',
                 type: 'autojs_inner_settings_capture_permission',
+                // @ts-ignore
                 enabled: !!images.getScreenCaptureOptions()
             });
         }

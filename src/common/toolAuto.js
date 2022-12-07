@@ -5,6 +5,7 @@ import { getWidthPixels, getHeightPixels } from '@auto.pro/core';
 // importPackage(android.content);
 
 export function requestMyScreenCapture(callback, helperBridge) {
+    // @ts-ignore
     requestScreenCaptureAsync(getWidthPixels() < getHeightPixels()).then(function (success) {
         if (success) {
             helperBridge.init();
@@ -61,6 +62,8 @@ function parsePMFlags(options, def) {
             throw new TypeError();
         }
         flagStrings.forEach(str => {
+            // TODO 找到aj源码里面的PM是啥玩意儿
+            // @ts-ignore
             flags |= PM[(type + "_" + str).toUpperCase()];
         });
         return flags;
@@ -111,9 +114,9 @@ export function getRegionBiasRnd(region, pointBias, influence) {
     let mix1 = Math.sqrt(Math.random() * influence);
     let mix2 = Math.sqrt(Math.abs(mix1 * mix1 - Math.pow(Math.random() * influence, 2)));
     if (region[2] - region[0] < region[3] - region[1]) {
-        return [parseInt(rnd1 * (1 - mix1) + pointBias[0] * mix1), parseInt(rnd2 * (1 - mix2) + pointBias[1] * mix2)];
+        return [Math.floor(rnd1 * (1 - mix1) + pointBias[0] * mix1), Math.floor(rnd2 * (1 - mix2) + pointBias[1] * mix2)];
     } else {
-        return [parseInt(rnd1 * (1 - mix2) + pointBias[0] * mix2), parseInt(rnd2 * (1 - mix1) + pointBias[1] * mix1)];
+        return [Math.floor(rnd1 * (1 - mix2) + pointBias[0] * mix2), Math.floor(rnd2 * (1 - mix1) + pointBias[1] * mix1)];
     }
 }
 
@@ -142,6 +145,7 @@ export function strHashToNum(str, start, end) {
  */
 export function ospPush (userToken, data) {
     return http.postJson('https://assttyys.zzliux.cn/api/osp/send', {
+        // @ts-ignore
         userToken,
         data
     });
@@ -183,6 +187,7 @@ export function doOspPush (thisScript, options) {
             options && options.before && options.before();
             // 上传
             const res = ospPush(storeSettings.osp_user_token, data);
+            // @ts-ignore
             myToast(`提交osp响应内容：${res.body.string()}`);
             options && options.after && options.after();
         } catch (e) {
@@ -200,4 +205,24 @@ export function scaleBmp(bmp, scale) {
     let newBmp = android.graphics.Bitmap.createBitmap(bmp, 0, 0, width, height, matrix, false);
     bmp.recycle();
     return newBmp;
+}
+
+
+
+export const mergeSchemeList = (savedSchemeList, innerSchemeList) => {
+    let toMerge = [];
+    for (let innerScheme of innerSchemeList) {
+        let flag = true;
+        innerScheme.inner = true;
+        for (let savedScheme of savedSchemeList) {
+            if (savedScheme.schemeName === innerScheme.schemeName) {
+                flag = false;
+                break;
+            }
+        }
+        if (flag) {
+            toMerge.push(innerScheme);
+        }
+    }
+    return [...savedSchemeList, ...toMerge];
 }

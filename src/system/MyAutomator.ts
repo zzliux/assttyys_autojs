@@ -1,7 +1,7 @@
 import { getWidthPixels } from "@auto.pro/core";
 import Bezier from 'bezier-js';
 
-function MyAutomator(tapType, dirctionReverse) {
+function MyAutomator(tapType, dirctionReverse?) {
     let self = this;
     this.tapType = { '无障碍': 0, 'RootAutomator': 1, 'Shell': 2, 'Root': 3 }[tapType]; // 0 无障碍， 1 RootAutomator， 2 Shell， 3 普通Root
     console.log(`初始化automator：${tapType}`);

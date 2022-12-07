@@ -11,7 +11,8 @@ fl.keys().forEach(key => {
         // 如果没有导出默认模块，则手工查找类然后实例化
         for (let i = 0; i < keys.length; i++) {
             if (keys[i].match(/Func\d+/)) {
-                funcList.push(new fl(key)[keys[i]]);
+                const cn = fl(key)[keys[i]];
+                funcList.push(new cn);
                 break;
             }
         }

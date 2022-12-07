@@ -1,9 +1,8 @@
 import { webview } from "@/system";
 import { setCurrentScheme } from '@/common/tool';
 import store, { storeCommon } from '@/system/store';
-import { getInstalledPackages } from '@/common/toolAuto';
+import { getInstalledPackages, mergeSchemeList } from '@/common/toolAuto';
 import defaultSchemeList from '@/common/schemeList';
-import { mergeSchemeList } from '@/common/tool';
 import script from '@/system/script';
 
 export default function webviewFuncList() {
@@ -40,7 +39,7 @@ export default function webviewFuncList() {
 
     // 点击保存，设置当前方案
     webview.on("setCurrentScheme").subscribe(([schemeName, done]) => {
-        setCurrentScheme(schemeName);
+        setCurrentScheme(schemeName, store);
         script.rerun();
         done();
     });
@@ -58,8 +57,8 @@ export default function webviewFuncList() {
         if (defaultLaunchAppList.length == 0) {
             done(null);
             context.startActivity(app.intent({
-                action: Intent.ACTION_MAIN,
-                category: Intent.CATEGORY_HOME,
+                action: android.content.Intent.ACTION_MAIN,
+                category: android.content.Intent.CATEGORY_HOME,
                 flags: ['ACTIVITY_NEW_TASK']
             }));
         } else if(defaultLaunchAppList.length === 1) {

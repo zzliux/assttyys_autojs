@@ -14,7 +14,7 @@ const drawFloaty = {
     },
 
     // 初始化
-    init(option) {
+    init(option?) {
         if (!!this.instacne) return;
         
         if (option) {

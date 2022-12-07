@@ -24,4 +24,4 @@ const ScheduleDefaultList = [{
   }
 ];
 
-  export default ScheduleDefaultList;
+export default ScheduleDefaultList;

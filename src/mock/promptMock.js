@@ -144,6 +144,7 @@ const promptMockData = {
 };
 
 // 注入修改prompt
+// @ts-ignore
 window.promptMock = function (apiName, apiValue) {
     if (typeof promptMockData[apiName] !== 'undefined') {
         let option = JSON.parse(apiValue);
@@ -168,6 +169,7 @@ window.promptMock = function (apiName, apiValue) {
                 console.log(`[promptMockData]apiValue:${JSON.stringify(params)}`);
                 console.log(`[promptMockData]returnData:${JSON.stringify(ret)}`);
                 window[deviceFn](ret);
+                // @ts-ignore
                 AutoWeb.removeDevicelly(deviceFn);
             }, (Math.random() * 100000000 % 1000))
         } else {
