@@ -1,3 +1,5 @@
+import { Script } from './../../system/script';
+import { InterfaceFunc } from './../interface/InterfaceFunc';
 import { myToast, doOspPush } from '@/common/toolAuto';
 import { setCurrentScheme } from '@/common/tool';
 
@@ -6,12 +8,11 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 8,
-	name: '结界_进攻',
-	desc: '出现进攻按钮后点击进攻按钮，若进攻按钮点击不生效可选择退出到上一级（寮突破用）或停止脚本（个人突破用）或切换方案；若在寮突破时进攻为灰色，会自动等待CD或切换方案',
-	checked: false,
-	config: [{
+export class Func008 implements InterfaceFunc {
+	id = 8;
+	name = '结界_进攻';
+	desc = '出现进攻按钮后点击进攻按钮，若进攻按钮点击不生效可选择退出到上一级（寮突破用）或停止脚本（个人突破用）或切换方案；若在寮突破时进攻为灰色，会自动等待CD或切换方案';
+	config = [{
 		desc: '',
 		config: [{
 			name: 'count',
@@ -55,8 +56,8 @@ export default {
 			type: 'scheme',
 			default: '个人突破'
 		}]
-	}],
-	operator: [{
+	}];
+	operator = [{
 		oper: [
 			[left, 1280, 720, 0, 0, 119, 49, 2000],
 			[center, 1280, 720, 1188, 115, 1225, 151, 500],
@@ -85,15 +86,15 @@ export default {
 				[right, 1182, 648, 0x696969],
 			]
 		]
-	}],
-	operatorFunc(thisScript, thisOperator) {
+	}];
+	operatorFunc = function (thisScript: Script, thisOperator) : boolean {
 		if (!thisScript.oper({
 			name: '突破界面_暗_判断',
 			operator: [{ desc: thisOperator[1].desc }]
-		}) && !thisScript.oper({
+		}, 0) && !thisScript.oper({
 			name: '逢魔之时_暗_判断',
 			operator: [{ desc: thisOperator[2].desc }]
-		})) {
+		}, 0)) {
 			return false;
 		}
 		let thisConf = thisScript.scheme.config['8'];
@@ -154,5 +155,5 @@ export default {
 			return true;
 		}
 		return false;
-	}
+	};
 }

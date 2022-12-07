@@ -192,7 +192,7 @@ export default {
         if (isInstalled && !thisScript.global.app_is_open) {
 
             if (thisConf.is_shutdown_the_game_before) {
-                shell(`am force-stop ${packageName}`, true);
+                $shell(`am force-stop ${packageName}`, true);
                 sleep(5000);
             }
             app.launchPackage(packageName);

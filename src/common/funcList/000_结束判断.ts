@@ -8,7 +8,6 @@ export class Func000 implements InterfaceFunc {
 	id = 0;
 	name = '结束判断';
 	desc = '配置停止或切换方案的条件';
-	operator = [];
 	config = [{
 		desc: '长时间未执行功能停止脚本',
 		config: [{

@@ -1,14 +1,16 @@
+import { Script } from '@/system/script';
+import { InterfaceFunc } from './../interface/InterfaceFunc';
 import { myToast, doOspPush } from '@/common/toolAuto';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 16,
-	name: '地鬼_热门挑战',
-	desc: '在地域鬼王界面时，自动选热门进行挑战',
-	operator: [{
+export class Func016 implements InterfaceFunc {
+	id = 16;
+	name = '地鬼_热门挑战';
+	desc = '在地域鬼王界面时，自动选热门进行挑战';
+	operator = [{
 		desc: [1280, 720,
 			[
 				[left, 60, 58, 0xc2cbe3],
@@ -71,8 +73,8 @@ export default {
 		oper: [
 			[left, 1280, 720, 741, 638, 800, 695, 2000] // 探索地图进入地鬼
 		]
-	}],
-	operatorFunc(thisScript, thisOperator) {
+	}];
+	operatorFunc = function (thisScript: Script, thisOperator): boolean {
 		if (thisScript.oper({
 				name: '探索界面',
 				operator: [thisOperator[3]]

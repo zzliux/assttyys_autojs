@@ -1,13 +1,14 @@
+import { InterfaceFunc } from './../interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 18,
-	name: '百鬼夜行_挑战',
-	desc: '在百鬼夜行挑战界面，点击挑战',
-	operator: [{
+export class Func018 implements InterfaceFunc {
+	id = 18;
+	name = '百鬼夜行_挑战';
+	desc = '在百鬼夜行挑战界面，点击挑战';
+	operator = [{
 		desc: [1280,720,
 			 [// [center,170,600,0xfff2ce],
 			[center,1128,594,0x402f1f],
@@ -18,5 +19,5 @@ export default {
 		oper: [
 			[center, 1280, 720, 1084,576, 1138,628, 1500]
 		]
-	}]
+	}];
 }

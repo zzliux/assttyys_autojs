@@ -9,7 +9,6 @@ export class Func004 implements InterfaceFunc {
 	id = 4;
 	name = '接受邀请';
 	desc = '左侧弹出邀请提示时，自动接受邀请';
-	config = [];
 	operator = [{
 		// 自动接受邀请
 		desc: [1280,720,

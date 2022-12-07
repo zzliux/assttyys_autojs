@@ -1,3 +1,5 @@
+import { Script } from '@/system/script';
+import { InterfaceFunc } from './../interface/InterfaceFunc';
 import { myToast, doOspPush } from '@/common/toolAuto';
 import { setCurrentScheme } from '@/common/tool';
 
@@ -6,12 +8,12 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 12,
-	name: '寮突破_翻页',
-	desc: '寮突破时执行翻页操作，应排在[9勋章点击]后',
-	checked: false,
-	config: [{
+export class Func012 implements InterfaceFunc {
+	id = 12;
+	name = '寮突破_翻页';
+	desc = '寮突破时执行翻页操作，应排在[9勋章点击]后';
+	checked = false;
+	config = [{
 		desc: '',
 		config: [{
 			name: 'count',
@@ -33,8 +35,8 @@ export default {
 			type: 'scheme',
 			default: '通用准备退出',
 		}]
-	}],
-	operator: [{
+	}];
+	operator = [{
 		desc: [1280,720,
 			[[center,171,104,0x4a3624],
 			[center,564,89,0x5e4735],
@@ -48,8 +50,8 @@ export default {
 			[center, 1280, 720, 431,234, 1064,318, 0],
 			[center, 1280, 720, 1188,115, 1225,151, 500],
 		]
-	}],
-	operatorFunc(thisScript, thisOperator) {
+	}];
+	operatorFunc = function (thisScript: Script, thisOperator): boolean {
 		let thisConf = thisScript.scheme.config['12'];
 		let defaultCount = parseInt(thisConf.count);
 		if (thisScript.oper({

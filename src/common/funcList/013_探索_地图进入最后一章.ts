@@ -1,14 +1,16 @@
+import { Script } from '@/system/script';
+import { InterfaceFunc } from './../interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 13,
-	name: '探索_地图进入最后一章',
-	desc: '在地图界面时，点击最后一章进行挑战',
-	checked: false,
-	operator: [{
+export class Func013 implements InterfaceFunc {
+	id = 13;
+	name = '探索_地图进入最后一章';
+	desc = '在地图界面时，点击最后一章进行挑战';
+	checked = false;
+	operator = [{
 		desc: [1280, 720,
 			[
 				[left, 45, 60, 0xeff5fb],
@@ -41,8 +43,8 @@ export default {
 		oper: [
 			[left, 1280, 720, 0, 0, 77, 45, 1000]
 		]
-	}],
-	operatorFunc(thisScript, thisOperator) {
+	}];
+	operatorFunc = function (thisScript: Script, thisOperator): boolean {
 		if (thisScript.oper({
 			name: '探索_地图判断',
 			operator: [{ desc: thisOperator[0].desc, retest: 500 }]
@@ -74,5 +76,5 @@ export default {
 			return true;
 		}
 		return false;
-	}
+	};
 }

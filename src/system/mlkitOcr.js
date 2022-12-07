@@ -162,7 +162,7 @@ export const ocr = {
                 item.similar = similarity(item.label, text);
                 return item.similar >= (similarityRatio || .5)
             });
-            res.sort((a, b) => (a.similar || 0) < (b.similar || 0));
+            res.sort((a, b) => (b.similar || 0) - (a.similar || 0));
             toDraw = ocrResult.map(item => ({
                 region: [item.points[0].x, item.points[0].y, item.points[2].x, item.points[2].y],
                 color: item.similar >= (similarityRatio || .5) ? 'green' : 'red',

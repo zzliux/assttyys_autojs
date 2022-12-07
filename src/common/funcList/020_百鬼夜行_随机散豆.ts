@@ -1,13 +1,15 @@
+import { Script } from '@/system/script';
+import { InterfaceFunc } from './../interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 20,
-	name: '百鬼夜行_随机散豆',
-	desc: '在百鬼夜行的界面，随机自由散豆',
-	config: [{
+export class Func020 implements InterfaceFunc {
+	id = 20;
+	name = '百鬼夜行_随机散豆';
+	desc = '在百鬼夜行的界面，随机自由散豆';
+	config = [{
 		desc: '',
 		config: [{
 			name: 'mode',
@@ -17,8 +19,8 @@ export default {
 			default: '普通模式',
 			value: null,
 		}]
-	}],
-	operator: [{
+	}];
+	operator = [{
 		desc: [1280,720,
 			[[left,45,42,0xf5e5a3],
 			[center,242,657,0xf3b969],
@@ -55,8 +57,8 @@ export default {
 		oper: [
 			[center, 1280, 720, 90,270, 1252,528, 500]
 		]
-	}],
-	operatorFunc(thisScript, thisOperator) {
+	}];
+	operatorFunc = function (thisScript: Script, thisOperator): boolean {
 		let thisconf = thisScript.scheme.config['20'];
 		if (thisconf && thisconf.mode === '快速模式') {
 			if (thisScript.oper({

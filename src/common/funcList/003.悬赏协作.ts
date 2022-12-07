@@ -9,7 +9,6 @@ const right = 2;
 export class Func004 implements InterfaceFunc {
 	id = 3;
 	name = '悬赏协作';
-	desc = '';
 	config = [{
 		desc: '',
 		config: [{

@@ -1,12 +1,13 @@
+import { InterfaceFunc } from './../interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 21,
-	name: '百鬼夜行_退出结算',
-	operator: [{
+export class Func021 implements InterfaceFunc {
+	id = 21;
+	name = '百鬼夜行_退出结算';
+	operator = [{
 		desc: [1280,720,
 			[[center,204,277,0xf0f0df],
 			[center,133,122,0xb5b5d6],
@@ -18,5 +19,5 @@ export default {
 		oper: [
 			[center, 1280, 720, 71,75, 207,642, 2000]
 		]
-	}]
+	}];
 }

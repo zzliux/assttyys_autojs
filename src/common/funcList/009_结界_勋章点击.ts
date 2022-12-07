@@ -1,14 +1,16 @@
+import { Script } from './../../system/script';
+import { InterfaceFunc } from "../interface/InterfaceFunc";
+
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 9,
-	name: '结界_勋章点击',
-	desc: '在突破界面点击勋章，可配置点击勋章的优先级',
-	checked: false,
-	config: [{
+export class Func009 implements InterfaceFunc {
+	id = 9;
+	name = '结界_勋章点击';
+	desc = '在突破界面点击勋章，可配置点击勋章的优先级';
+	config = [{
 		desc: '',
 		config: [{
 			name: 'priority',
@@ -18,8 +20,8 @@ export default {
 			default: '4->5->3->2->1->0',
 			value: null,
 		}]
-	}],
-	operator: [{
+	}];
+	operator = [{
 		desc: [1280,720,
 			[[center,171,104,0x4a3624],
 			[center,564,89,0x5e4735],
@@ -42,12 +44,12 @@ export default {
 		oper: [
 			[center, 1280, 720, 492,289, 783,385, 500]
 		]
-	}],
-	operatorFunc(thisScript, thisOperator) {
+	}];
+	operatorFunc = function (thisScript: Script, thisOperator): boolean {
 		if (thisScript.oper({
 			name: '突破界面_判断',
 			operator: [{ desc: thisOperator[0].desc }]
-		})) {
+		}, 0)) {
 			// 呱
 			if (thisScript.oper({
 				name: '个人突破_呱',
@@ -55,7 +57,7 @@ export default {
 					desc: thisOperator[1].desc,
 					oper: thisOperator[1].oper
 				}]
-			})) {
+			}, 0)) {
 				return true;
 			}
 			let thisconf = thisScript.scheme.config['9']; // 获取配置

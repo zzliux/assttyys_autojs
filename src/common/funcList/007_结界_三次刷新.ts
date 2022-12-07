@@ -53,7 +53,6 @@ export class Func007 implements InterfaceFunc {
 			[center, 1280, 720, 674,407, 839,457, 2000]
 		]
 	}];
-	operatorFunc = undefined;
 }
 
 export default new Func007();

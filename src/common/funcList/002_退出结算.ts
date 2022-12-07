@@ -288,7 +288,6 @@ export class Func003 implements InterfaceFunc {
 			[center, 1280, 720, 535, 674, 743, 709, 1000],
 		]
 	}];
-	operatorFunc = undefined;
 }
 
 export default new Func003();

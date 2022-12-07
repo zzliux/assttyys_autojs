@@ -287,11 +287,11 @@ export default {
 			}]
 		})) {
 			const thisconf = thisScript.scheme.config['203'];
-			thisconf.overTimes = parseInt(thisconf.overTimes || 0);
+			thisconf.overTimes = Math.floor(thisconf.overTimes || 0);
 			const now = new Date().getTime();
-			const currentCost = parseInt((now - thisScript.global.d6dCurrentBegin) / 1000); // 秒
+			const currentCost = Math.floor((now - thisScript.global.d6dCurrentBegin) / 1000); // 秒
 			const cost = ((now - thisScript.global.d6dBegin) / 1000 / 60).toFixed(2); // 分
-			const costAvg = parseInt((now - thisScript.global.d6dBegin) / 1000 / (thisScript.global.times || 0)) // 秒
+			const costAvg = Math.floor((now - thisScript.global.d6dBegin) / 1000 / (thisScript.global.times || 0)) // 秒
 			// 中途进入的不计次
 			let toLog = `通关次数: ${thisScript.global.times || 0}次, 本次通关时间: ${currentCost}秒, 平均通关时间: ${costAvg}秒, 总通关时间: ${cost}分`;
 			myToast(toLog);

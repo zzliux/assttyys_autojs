@@ -10,7 +10,6 @@ export class Func005 implements InterfaceFunc {
 	id = 5;
 	name = '组队挑战';
 	desc = '在组队界面时，点击挑战按钮，可配置三人开始或有人就开';
-	checked = false;
 	config = [{
 		desc: '',
 		config: [{

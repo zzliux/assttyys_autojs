@@ -1,14 +1,16 @@
+import { Script } from '@/system/script';
+import { InterfaceFunc } from './../interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 10,
-	name: '地图进入突破界面',
-	desc: '在地图界面时点击突破按钮进入突破界面，可配置进入个人突破或寮突破界面',
-	checked: false,
-	config: [{
+export class Func010 implements InterfaceFunc {
+	id = 10;
+	name = '地图进入突破界面';
+	desc = '在地图界面时点击突破按钮进入突破界面，可配置进入个人突破或寮突破界面';
+	checked = false;
+	config = [{
 		desc: '',
 		config: [{
 			name: 'type',
@@ -18,8 +20,8 @@ export default {
 			default: '个人突破',
 			value: null,
 		}]
-	}],
-	operator: [{
+	}];
+	operator = [{
 		desc: [1280, 720,
 			[
 				[left, 45, 60, 0xeff5fb],
@@ -47,8 +49,8 @@ export default {
 		oper: [
 			[center, 1280, 720, 1036,133, 1065,158, 500]
 		]
-	}],
-	operatorFunc(thisScript, thisOperator) {
+	}];
+	operatorFunc = function (thisScript: Script, thisOperator): boolean {
 		let thisconf = thisScript.scheme.config['10']; // 获取配置
 		if ('个人突破' === thisconf.type) {
 			return thisScript.oper({

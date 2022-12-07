@@ -1,13 +1,15 @@
+import { Script } from '@/system/script';
+import { InterfaceFunc } from './../interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 17,
-	name: '百鬼夜行_邀请好友',
-	desc: '在百鬼夜行挑战界面，随机邀请好友',
-	operator: [{
+export class Func017 implements InterfaceFunc {
+	id = 17;
+	name = '百鬼夜行_邀请好友';
+	desc = '在百鬼夜行挑战界面，随机邀请好友';
+	operator = [{
 		desc: [1280,720,
 			[[center,170,600,0xfff2ce],
 			[center,1128,594,0x402f1f],
@@ -33,8 +35,8 @@ export default {
 			[center,1280,720, 468,233, 624,550, 500],
 			[center,1280,720, 731,229, 890,563, 500],
 		]
-	}],
-	operatorFunc(thisScript, thisOperator) {
+	}];
+	operatorFunc = function (thisScript: Script, thisOperator): boolean {
 		return thisScript.oper({
 			id: 17,
 			name: '百鬼夜行_邀请好友',

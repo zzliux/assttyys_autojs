@@ -44,8 +44,7 @@ export default {
 					desc: thisOperator[0].desc
 				}]
 			})) {
-			let unknownStory = {},
-				challenge = {}
+			let unknownStory, challenge;
 			unknownStory = thisScript.findMultiColor('悬赏_挑战字样') || null;
 			// 如果有挑战副本
 			if (unknownStory) {

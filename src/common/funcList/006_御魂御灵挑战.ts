@@ -10,7 +10,6 @@ export class Func006 implements InterfaceFunc {
 	id = 6;
 	name = '御魂/御灵挑战';
 	desc = '在御魂或者御灵的挑战界面时，点击挑战按钮，连续点击3次后未开始将自动停止脚本';
-	config = [];
 	operator = [{ // 三类御魂
 		desc: [1280,720,
 			[[left,44,43,0xc2cbe3],

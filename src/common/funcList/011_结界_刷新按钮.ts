@@ -1,14 +1,15 @@
+import { InterfaceFunc } from './../interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 11,
-	name: '结界_刷新按钮',
-	desc: '个人突破时点击刷新按钮，应排在[9勋章点击]后',
-	checked: false,
-	operator: [{
+export class Func010 implements InterfaceFunc {
+	id = 11;
+	name = '结界_刷新按钮';
+	desc = '个人突破时点击刷新按钮，应排在[9勋章点击]后';
+	checked = false;
+	operator = [{
 		desc: [1280,720, // 刷新
 			[[center,549,93,0x5a4130],
 			[center,720,93,0x583716],

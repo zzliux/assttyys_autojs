@@ -1,3 +1,5 @@
+import { Script } from '@/system/script';
+import { InterfaceFunc } from './../interface/InterfaceFunc';
 import { myToast } from "../toolAuto";
 
 const normal = -1; //定义常量
@@ -5,11 +7,11 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 14,
-	name: '探索_点击挑战图标',
-	desc: '在探索界面时，选择小怪或boss进攻，优先打boss，可配置无差别挑战或只打经验怪或只打掉落怪',
-	config: [{
+export class Func014 implements InterfaceFunc {
+	id = 14;
+	name = '探索_点击挑战图标';
+	desc = '在探索界面时，选择小怪或boss进攻，优先打boss，可配置无差别挑战或只打经验怪或只打掉落怪';
+	config = [{
 		desc: '',
 		config: [{
 			name: 'type',
@@ -32,8 +34,8 @@ export default {
 			data: ['快', '中', '慢'],
 			default: '慢',
 		}]
-	}],
-	operator: [{
+	}];
+	operator = [{
 		desc: [1280, 720,
 			[
 				[left, 38, 65, 0xf1f5fb],
@@ -64,8 +66,8 @@ export default {
 		oper: [
 			[left, 1280, 720, 122, 660, 245, 682, 500]
 		]
-	}],
-	operatorFunc(thisScript, thisOperator) {
+	}];
+	operatorFunc = function (thisScript: Script, thisOperator): boolean {
 		while (thisScript.oper({
 			name: '探索界面_判断',
 			operator: [{ desc: thisOperator[0].desc, retest: 500 }],

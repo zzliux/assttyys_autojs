@@ -1,3 +1,4 @@
+import { Script } from '@/system/script';
 import { myToast, doOspPush } from '@/common/toolAuto';
 import { ocr } from '@/system/mlkitOcr';
 const normal = -1; //定义常量
@@ -109,7 +110,7 @@ export default {
 			[right, 1280, 720, 913, 129, 1245, 648, 500],
 		]
 	}],
-	operatorFunc(thisScript, thisOperator) {
+	operatorFunc(thisScript: Script, thisOperator): boolean {
 		const thisconf = thisScript.scheme.config['202'];
 		if (!thisScript.global.d6d) {
 			thisScript.global.d6d = {
@@ -241,7 +242,7 @@ export default {
 				// 拿到所有buff后再装buff
 				if (thisScript.global.d6LoadBuff) {
 					let hasCnt = 0;
-					['腐草为萤', '妖力化身', '六道净化', '萤火之光'].forEach(name => hasCnt += !!thisScript.global.d6d[name][0]);
+					['腐草为萤', '妖力化身', '六道净化', '萤火之光'].forEach(name => hasCnt += +thisScript.global.d6d[name][0]);
 					if (hasCnt < 4) thisScript.global.d6LoadBuff = false;
 				}
 				if (thisScript.global.d6LoadBuff) {

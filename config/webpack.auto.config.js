@@ -24,7 +24,7 @@ const compilePlugin = new AutoProWebpackPlugin({
 
 const config = {
     entry: {
-        app: path.resolve(__dirname, "../src/index.js"),
+        app: path.resolve(__dirname, "../src/index.ts"),
     },
     output: {
         filename: "auto.js",

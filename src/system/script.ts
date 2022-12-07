@@ -79,7 +79,7 @@ export class Script {
      * 仅使用多点比色时mode给false或不传
      * @param {Boolean} mode 
      */
-    keepScreen(mode) {
+    keepScreen(mode?: boolean) {
         helperBridge.helper.KeepScreen(mode || false);
         if (mode) {
             this.hasRedList = true;
@@ -204,7 +204,7 @@ export class Script {
      * @param {Boolean} multiRegion 给true的话表示inRegion为region的数组
      * @returns 
      */
-    findMultiColor(key: string, inRegion: any, multiRegion: boolean) {
+    findMultiColor(key: string, inRegion?: any, multiRegion?: boolean) {
         this.initRedList();
         if (!multiRegion) {
             let region = inRegion || this.multiColor[key].region;
@@ -264,7 +264,7 @@ export class Script {
     * @param {Region} inRegion 多点找色区域
     * @returns 
     */
-    findMultiColorEx(key, inRegion) {
+    findMultiColorEx(key, inRegion?) {
         this.initRedList();
         let region = inRegion || this.multiColor[key].region;
         let desc = this.multiColor[key].desc;
@@ -324,7 +324,7 @@ export class Script {
      * @param {Integer} sign 
      * @returns 
      */
-    compareColorLoop(desc, timeout, sign) {
+    compareColorLoop(desc, timeout: number, sign?: number) {
         /**
          * 条件循环多点比色
          *
@@ -493,7 +493,7 @@ export class Script {
      * @param {*} currFunc 
      * @param {*} retest 重试时间
      */
-    oper(currFunc: any, retest: number | undefined) {
+    oper(currFunc: any, retest?: number) {
         let operator = currFunc.operator; // 需要计算的坐标通过operater传进去使用
         let operatorFunc = currFunc.operatorFunc;
         if (typeof operatorFunc === 'function') {

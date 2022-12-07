@@ -100,4 +100,4 @@ var InputHideUtil = function () {
     return InputHideUtil;
 }();
 
-module.exports = InputHideUtil;
+export default InputHideUtil;
