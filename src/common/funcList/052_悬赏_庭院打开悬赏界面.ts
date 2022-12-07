@@ -1,8 +1,3 @@
-import {
-	setCurrentScheme
-} from '@/common/tool';
-import { myToast } from '../toolAuto';
-
 const left = 0;
 const center = 1;
 const right = 2;
@@ -83,8 +78,8 @@ export default {
 				})) {
 				const thisconf = thisScript.scheme.config['52'];
 				if (thisconf && thisconf.scheme_switch_enabled) {
-					setCurrentScheme(thisconf.next_scheme);
-					myToast(`切换方案为[${thisconf.next_scheme}]`);
+					thisScript.setCurrentScheme(thisconf.next_scheme);
+					thisScript.myToast(`切换方案为[${thisconf.next_scheme}]`);
 					thisScript.rerun();
 				} else {
 					return false

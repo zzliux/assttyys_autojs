@@ -1,4 +1,5 @@
-import store from '@/system/store';
+import { search, questionSearch } from '@/common/tool';
+import store, { storeCommon } from '@/system/store';
 import funcList from '@/common/funcList';
 import defaultSchemeList from '@/common/schemeList';
 import helperBridge from '@/system/helperBridge';
@@ -9,7 +10,7 @@ import { getWidthPixels, getHeightPixels } from "@auto.pro/core";
 import _ from 'lodash';
 import schemeDialog from './schemeDialog';
 import drawFloaty from '@/system/drawFloaty';
-import { myToast } from '@/common/toolAuto';
+import { myToast, doOspPush } from '@/common/toolAuto';
 
 /**
  * 脚本对象，一个程序只能有一个
@@ -39,6 +40,9 @@ export class Script {
  
     // 设备信息
     device: any;
+    storeCommon: any;
+    doOspPush: any;
+    myToast: any;
  
 
     constructor() {
@@ -63,6 +67,9 @@ export class Script {
             height: getHeightPixels()
         };
         this.helperBridge = null;
+        this.storeCommon = storeCommon;
+        this.doOspPush = doOspPush;
+        this.myToast = myToast;
     }
 
     // 获取ocr对象，重复调用仅在第一次进行实例化
@@ -449,7 +456,7 @@ export class Script {
             if (canRunSchemeList.length === 0) {
                 myToast('无法识别当前界面');
             } else if (canRunSchemeList.length === 1) {
-                setCurrentScheme(canRunSchemeList[0].schemeName);
+                this.setCurrentScheme(canRunSchemeList[0].schemeName);
                 setTimeout(() => {
                     self.run();
                 }, 500);
@@ -571,7 +578,18 @@ export class Script {
             }
         }
         return false;
-    }
+    };
+
+    setCurrentScheme(schemeName) {
+        setCurrentScheme(schemeName, store);
+    };
+
+    search(list, prop, str, filterSimilar?) {
+        search(list, prop, str, filterSimilar)
+    };
+    questionSearch(str) {
+        questionSearch(str);
+    };
 }
 
 const script = new Script();

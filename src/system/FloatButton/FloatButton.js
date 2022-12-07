@@ -406,4 +406,5 @@ global.FloatButton = function () {
     return FloatButton;
 }();
 
-module.exports;
+// module.exports = FloatButton;
+export default FloatButton;

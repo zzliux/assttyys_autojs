@@ -1,6 +1,3 @@
-import { setCurrentScheme } from '@/common/tool';
-import { myToast } from '../toolAuto';
-
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -83,8 +80,8 @@ export default {
             }]
         })) {
             const next_scheme = '返回庭院';
-            setCurrentScheme(next_scheme);
-            myToast(`切换方案为[${next_scheme}]`);
+            thisScript.setCurrentScheme(next_scheme);
+            thisScript.myToast(`切换方案为[${next_scheme}]`);
             thisScript.rerun();
         }
         return true;

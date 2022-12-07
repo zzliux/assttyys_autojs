@@ -1,5 +1,3 @@
-import { doOspPush, myToast } from "../toolAuto";
-
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -294,15 +292,15 @@ export default {
 			const costAvg = Math.floor((now - thisScript.global.d6dBegin) / 1000 / (thisScript.global.times || 0)) // 秒
 			// 中途进入的不计次
 			let toLog = `通关次数: ${thisScript.global.times || 0}次, 本次通关时间: ${currentCost}秒, 平均通关时间: ${costAvg}秒, 总通关时间: ${cost}分`;
-			myToast(toLog);
+			thisScript.myToast(toLog);
 			if (thisconf.overTimes && thisScript.global.times >= thisconf.overTimes) {
 				toLog = '脚本已停止，请查看。' + toLog;
 			}
 			if (thisconf.ospPush) {
-				doOspPush(thisScript, {
+				thisScript.doOspPush(thisScript, {
 					text: toLog,
 					before() {
-						myToast('正在上传数据');
+						thisScript.myToast('正在上传数据');
 					}
 				});
 			} else {

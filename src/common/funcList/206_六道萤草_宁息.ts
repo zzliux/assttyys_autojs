@@ -1,5 +1,3 @@
-import { myToast } from '@/common/toolAuto';
-import { ocr } from '@/system/mlkitOcr';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -80,7 +78,7 @@ export default {
 
 			let cost = { '腐草为萤': 300, '妖力化身': 300, '六道净化': 200, '萤火之光': 300 };
 			let coins = 0;
-			let result = ocr.findTextByOcr(thisScript.getOcr(), function () {
+			let result = thisScript.getOcr().findTextByOcr(function () {
 				thisScript.keepScreen(); // 更新图片
 				return thisScript.helperBridge.helper.GetBitmap(); // 返回bmp
 			}, '.+', 0, thisOperator[0].oper[2], '包含');
@@ -195,7 +193,7 @@ export default {
 						// // 无法购买的增加过滤
 						// if (!thisScript.global.d6NxFilter) thisScript.global.d6NxFilter = [];
 						// thisScript.global.d6NxFilter.push(type);
-						// myToast(`${type}无法购买，增加过滤`);
+						// thisScript.myToast(`${type}无法购买，增加过滤`);
 					}
 					if (thisScript.global.d6d[type][0] === 0) {
 						thisScript.global.d6LoadBuff = true;
@@ -208,12 +206,12 @@ export default {
 					}
 					thisScript.global.d6d[type][0]++;
 					if (thisScript.global.d6LoadBuff) {
-						myToast('准备装buff');
+						thisScript.myToast('准备装buff');
 					}
-					myToast(`当前buff：${['腐草为萤', '妖力化身', '六道净化', '萤火之光'].map(name => name + ':' + thisScript.global.d6d[name][0]).join(', ')}`);
+					thisScript.myToast(`当前buff：${['腐草为萤', '妖力化身', '六道净化', '萤火之光'].map(name => name + ':' + thisScript.global.d6d[name][0]).join(', ')}`);
 				}
 			} else {
-				myToast('钱不够用，撤退');
+				thisScript.myToast('钱不够用，撤退');
 				thisScript.helperBridge.regionClick([thisOperator[0].oper[0], thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
 				// 退出后重置相关状态
 				thisScript.global.d6NxRefreshCnt = 0;

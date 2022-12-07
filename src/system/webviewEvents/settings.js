@@ -158,7 +158,7 @@ export default function webviewSettigns() {
             if (item.enabled) {
                 requestMyScreenCapture(function (res) {
                     done(res)
-                });
+                }, helperBridge);
             } else {
                 toastLog('请勿关闭截图权限');
                 done(false);

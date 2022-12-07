@@ -1,5 +1,3 @@
-import { search, questionSearch } from '@/common/tool';
-import { myToast } from '../toolAuto';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -79,7 +77,7 @@ export default {
 			console.log(`识别题目: ${question}`);
 			if (question == '入场中') return false;
 			question = question.replace(/[^\u4e00-\u9fa5a-zA-Z0-9]/g, '');
-			let stdQuestion = questionSearch(question);
+			let stdQuestion = thisScript.questionSearch(question);
 			console.log(`搜索题库:${JSON.stringify(stdQuestion)}`);
 
 			let toDetectAnsBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[0].oper[1].slice(0, 4));
@@ -105,7 +103,7 @@ export default {
 			console.log(`答案区域识别:${JSON.stringify(ansList)}`);
 
 			if (!stdQuestion) {
-				myToast(`题目：${question} 未查找到标准题库`);
+				thisScript.myToast(`题目：${question} 未查找到标准题库`);
 				let path = '/sdcard/assttyys/qaimage/' + question + '.png';
 				if (files.exists(path)) return false;
 				let bmp = thisScript.helperBridge.helper.GetBitmap();
@@ -123,7 +121,7 @@ export default {
 			let ansArr = stdQuestion.data.ans.split('|');
 			let stdAns = null;
 			for (let ans of ansArr) {
-				let stdAns2 = search(ansList, 'text', ans);
+				let stdAns2 = thisScript.search(ansList, 'text', ans);
 				if (stdAns && stdAns2 && stdAns2.similarity > stdAns.similarity) {
 					stdAns = stdAns2;
 				}
@@ -156,7 +154,7 @@ export default {
 			}
 
 			if (!stdAns) {
-				myToast(`题目：${question} 未查找到答案`);
+				thisScript.myToast(`题目：${question} 未查找到答案`);
 				let path = '/sdcard/assttyys/qaimage/' + question + '.png';
 				if (files.exists(path)) return false;
 				let bmp = thisScript.helperBridge.helper.GetBitmap();
@@ -185,7 +183,7 @@ export default {
 				}
 			}
 			if (flag) {
-				myToast(`选择答案: ${stdAns.data.text}, 置信度为: ${(stdQuestion.similarity * stdAns.similarity).toFixed(4)}`);
+				thisScript.myToast(`选择答案: ${stdAns.data.text}, 置信度为: ${(stdQuestion.similarity * stdAns.similarity).toFixed(4)}`);
 				thisScript.helperBridge.regionClick([[...stdAns.data.rect, 500]], thisScript.scheme.commonConfig.afterClickDelayRandom);
 				return true;
 			}

@@ -1,4 +1,5 @@
-require('@/system/FloatButton/FloatButton');
+// require('@/system/FloatButton/FloatButton');
+import FloatButton from '@/system/FloatButton/FloatButton';
 import schemeDialog from '@/system/schemeDialog';
 import script from '@/system/script';
 
@@ -31,9 +32,9 @@ const myFloaty = {
             .onClick((view, name) => {
                 self.runEventFlag = false;
                 script.stop();
-                var i = new Intent(activity, activity.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                var i = new android.content.Intent(activity, activity.class);
+                i.addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK);
+                i.addFlags(android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 context.startActivity(i);
                 return false;
             });
@@ -108,6 +109,7 @@ const myFloaty = {
             runStopItem.setChecked(true);
             // self.fb.setTint('#ff08bc92');
             ui.run(function () {
+                // @ts-ignore
                 self.fb.getView('logo').setColorFilter(colors.argb(255, 0x08, 0xbc, 0x92));
             });
         });
@@ -120,6 +122,7 @@ const myFloaty = {
             runStopItem.setChecked(false);
             // self.fb.setTint('#00000000');
             ui.run(function () {
+                // @ts-ignore
                 self.fb.getView('logo').setColorFilter(colors.argb(0, 0, 0, 0));
             });
         });
@@ -127,6 +130,7 @@ const myFloaty = {
         this.thisRun = function(type) {
             type = type || 'run';
             if (app.autojs.versionCode >= 8081200) {
+                // @ts-ignore
                 let capOpt = images.getScreenCaptureOptions();
                 if (null == capOpt) {
                     // 通过报错来切换图标状态

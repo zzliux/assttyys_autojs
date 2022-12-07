@@ -1,6 +1,4 @@
 import { Script } from '@/system/script';
-import { myToast, doOspPush } from '@/common/toolAuto';
-import { ocr } from '@/system/mlkitOcr';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -187,7 +185,7 @@ export default {
 				// 判断剩下多少钱，如果剩下的钱不够刷新直接给刷新次数置为上限
 				let coins = 50;
 				if (thisScript.getOcr()) {
-					let result = ocr.findTextByOcr(thisScript.getOcr(), function () {
+					let result = thisScript.getOcr().findTextByOcr(function () {
 						thisScript.keepScreen(); // 更新图片
 						return thisScript.helperBridge.helper.GetBitmap(); // 返回bmp
 					}, '.+', 0, thisOperator[0].oper[3], '包含');
@@ -209,22 +207,22 @@ export default {
 					thisScript.helperBridge.regionClick([thisOperator[0].oper[1], thisOperator[0].oper[2]], thisScript.scheme.commonConfig.afterClickDelayRandom); // 刷新
 				} else {
 					let rn = random(0, 2);
-					myToast(`没找到，随机点击第${rn + 1}个`);
+					thisScript.myToast(`没找到，随机点击第${rn + 1}个`);
 					thisScript.helperBridge.regionClick([thisOperator[1].oper[rn]], thisScript.scheme.commonConfig.afterClickDelayRandom);
 					thisScript.global.d6RefreshCnt = 0;
 					// 如果有确认奖励就能很快的跳出
 					thisScript.compareColorLoop(thisOperator[3].desc, 1500);
-					myToast(`当前buff：${priorty.map(name => name + ':' + thisScript.global.d6d[name][0]).join(', ')}`);
+					thisScript.myToast(`当前buff：${priorty.map(name => name + ':' + thisScript.global.d6d[name][0]).join(', ')}`);
 				}
 			} else {
 				// 腐草为萤
 				if (thisScript.global.d6d['腐草为萤'][0] === 0 && type !== '腐草为萤') {
-					myToast(`未找到${priorty[0]}`);
+					thisScript.myToast(`未找到${priorty[0]}`);
 					sleep(500);
 					return false;
 				}
 				// 找到了就点
-				myToast(`选择${type}`);
+				thisScript.myToast(`选择${type}`);
 				const toClickRegion = [
 					toClick.x,
 					toClick.y,
@@ -246,10 +244,10 @@ export default {
 					if (hasCnt < 4) thisScript.global.d6LoadBuff = false;
 				}
 				if (thisScript.global.d6LoadBuff) {
-					myToast('准备装buff');
+					thisScript.myToast('准备装buff');
 				}
 				thisScript.global.d6RefreshCnt = 0;
-				myToast(`当前buff：${['腐草为萤', '妖力化身', '六道净化', '萤火之光'].map(name => name + ':' + thisScript.global.d6d[name][0]).join(', ')}`);
+				thisScript.myToast(`当前buff：${['腐草为萤', '妖力化身', '六道净化', '萤火之光'].map(name => name + ':' + thisScript.global.d6d[name][0]).join(', ')}`);
 			}
 			return true;
 		}

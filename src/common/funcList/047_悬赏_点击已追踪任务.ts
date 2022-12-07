@@ -1,6 +1,3 @@
-import { myToast, doOspPush } from '@/common/toolAuto';
-import { setCurrentScheme } from '@/common/tool';
-
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -82,13 +79,13 @@ export default {
           if (swiper === 3) {
             swiper = 0;
             if (thisconf && thisconf.scheme_switch_enabled) {
-              setCurrentScheme(thisconf.next_scheme);
-              myToast(`切换方案为[${thisconf.next_scheme}]`);
+              thisScript.setCurrentScheme(thisconf.next_scheme);
+              thisScript.myToast(`切换方案为[${thisconf.next_scheme}]`);
               thisScript.rerun();
               sleep(3000);
               return;
             } else {
-              doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { myToast('脚本即将停止，正在上传数据'); } });
+              thisScript.doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
               thisScript.stop();
               sleep(3000);
               return;
@@ -101,11 +98,11 @@ export default {
       } else {
         // 如果没有悬浮列表说明任务做完了
         if (thisconf && thisconf.scheme_switch_enabled) {
-          setCurrentScheme(thisconf.next_scheme);
-          myToast(`切换方案为[${thisconf.next_scheme}]`);
+          thisScript.setCurrentScheme(thisconf.next_scheme);
+          thisScript.myToast(`切换方案为[${thisconf.next_scheme}]`);
           thisScript.rerun();
         } else {
-          doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { myToast('脚本即将停止，正在上传数据'); } });
+          thisScript.doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
           thisScript.stop();
         }
       }

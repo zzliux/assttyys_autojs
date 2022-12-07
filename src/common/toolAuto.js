@@ -1,11 +1,10 @@
 import { storeCommon } from '@/system/store';
 import { getWidthPixels, getHeightPixels } from '@auto.pro/core';
-import helperBridge from '@/system/helperBridge';
 
 // importClass(android.graphics.Color);
 // importPackage(android.content);
 
-export function requestMyScreenCapture(callback) {
+export function requestMyScreenCapture(callback, helperBridge) {
     requestScreenCaptureAsync(getWidthPixels() < getHeightPixels()).then(function (success) {
         if (success) {
             helperBridge.init();

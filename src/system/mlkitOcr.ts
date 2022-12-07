@@ -2,6 +2,9 @@ import { similarity } from "@/common/tool";
 import drawFloaty from "./drawFloaty";
 
 export const ocr = {
+
+    detector: null,
+
     /**
      * 获取ocr是否安装
      */
@@ -40,6 +43,7 @@ export const ocr = {
                             if (files.exists(path + '/autojspro-mlkit-ocr-plugin-1.1.apk')) {
                                 files.remove(path + '/autojspro-mlkit-ocr-plugin-1.1.apk');
                             }
+                            // @ts-ignore
                             files.writeBytes(path + '/org.autojs.autojspro.plugin.mlkit.ocr.apk', r.body.bytes());
                             if (ocr.isInstalled()) {
                                 toastLog('安装完成');
@@ -108,10 +112,15 @@ export const ocr = {
             }
         }
         try {
-            return new detectOcr();
+            this.detector = new detectOcr()
+            return this.detector;
         } catch (e) {
             return null;
         }
+    },
+
+    findText(getBmpFunc, text, timeout, region, textMatchMode) {
+        this.findTextByOcr(this.detector, getBmpFunc, text, timeout, region, textMatchMode);
     },
 
     findTextByOcr(detector, getBmpFunc, text, timeout, region, textMatchMode) {

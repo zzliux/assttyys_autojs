@@ -1,4 +1,3 @@
-import { ocr } from "@/system/mlkitOcr";
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -8,7 +7,6 @@ export default {
     id: 996,
     name: '式神寄养过滤',
     desc: '式神寄养过滤',
-    checked: false,
     config: [
         {
             desc: '寄存好友',
@@ -51,7 +49,7 @@ export default {
                 desc: thisOperator[0].desc,
             }]
         })) {
-            let result = ocr.findTextByOcr(thisScript.getOcr(), function () {
+            let result = thisScript.getOcr().findText(function () {
                 thisScript.keepScreen(); // 更新图片
                 return thisScript.helperBridge.helper.GetBitmap(); // 返回bmp
             }, thisconf.friendName, 5000, thisOperator[0].oper[0], '模糊');

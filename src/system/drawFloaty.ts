@@ -33,47 +33,47 @@ const drawFloaty = {
         });
 
          // 命中框画笔（绿）
-        var paintGreen = new Paint();
+        var paintGreen = new android.graphics.Paint();
         paintGreen.setAntiAlias(true); //抗锯齿
         paintGreen.setAlpha(255); //0~255透明度
         paintGreen.setFakeBoldText(true);
         paintGreen.setStrokeWidth(2);
-        paintGreen.setStyle(Paint.Style.STROKE);
+        paintGreen.setStyle(android.graphics.Paint.Style.STROKE);
         paintGreen.setColor(colors.parseColor("#FF00FF00"));
-        var textPaintGreen = new Paint();
+        var textPaintGreen = new android.graphics.Paint();
         textPaintGreen.setTextSize(15);
         textPaintGreen.setColor(colors.parseColor("#FF00FF00"));
  
         // 未命中框画笔（红）
-        var paintRed = new Paint();
+        var paintRed = new android.graphics.Paint();
         paintRed.setAntiAlias(true); //抗锯齿
         paintRed.setAlpha(255); //0~255透明度
         paintRed.setFakeBoldText(true);
         paintRed.setStrokeWidth(2);
-        paintRed.setStyle(Paint.Style.STROKE);
+        paintRed.setStyle(android.graphics.Paint.Style.STROKE);
         paintRed.setColor(colors.parseColor("#FFFF0000"));
-        var textPaintRed = new Paint();
+        var textPaintRed = new android.graphics.Paint();
         textPaintRed.setTextSize(15);
         textPaintRed.setColor(colors.parseColor("#FFFF0000"));
         
         // 点击区域画笔（橙）
-        var paintOrange = new Paint();
+        var paintOrange = new android.graphics.Paint();
         paintOrange.setAntiAlias(true); //抗锯齿
         paintOrange.setAlpha(255); //0~255透明度
         paintOrange.setFakeBoldText(true);
         paintOrange.setStrokeWidth(2);
-        paintOrange.setStyle(Paint.Style.STROKE);
+        paintOrange.setStyle(android.graphics.Paint.Style.STROKE);
         paintOrange.setColor(colors.parseColor("#FF963200"));
-        var textPaintOrange = new Paint();
+        var textPaintOrange = new android.graphics.Paint();
         textPaintOrange.setTextSize(15);
         textPaintOrange.setColor(colors.parseColor("#FF963200"));
 
-        var paintLine = new Paint();
+        var paintLine = new android.graphics.Paint();
         paintLine.setAntiAlias(true);//抗锯齿
         paintLine.setAlpha(255);//0~255透明度
         paintLine.setFakeBoldText(true);
         paintLine.setStrokeWidth(1);
-        paintLine.setStyle(Paint.Style.STROKE);
+        paintLine.setStyle(android.graphics.Paint.Style.STROKE);
         paintLine.setColor(colors.parseColor("#FF963200"));
 
         self.instacne.board.on("draw", function(canvas) {
@@ -110,7 +110,7 @@ const drawFloaty = {
                 }
                 if (!paint) return;
                 // console.log(`绘制：${JSON.stringify(item)}`);
-                pts = [...pts, device.width / 2, 0, parseInt((region[0] + region[2]) / 2), region[1]];
+                pts = [...pts, device.width / 2, 0, Math.floor((region[0] + region[2]) / 2), region[1]];
                 canvas.drawRect(...region, paint);
                 if (item.text) {
                     canvas.drawText(item.text, region[0], region[3] + 15, textPaint);

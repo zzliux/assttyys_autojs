@@ -9,6 +9,7 @@ function MyAutomator(tapType, dirctionReverse) {
     if (this.tapType == 0) {
     } else if (this.tapType == 1) {
         let thd = threads.start(function () {
+            // @ts-ignore
             self.RA = new RootAutomator();
         });
         // 5秒无响应直接杀死
@@ -19,6 +20,7 @@ function MyAutomator(tapType, dirctionReverse) {
             }
         },5000)
     } else if (this.tapType == 2) {
+        // @ts-ignore
         this.shell = new Shell(true);
     } else if (this.tapType == 3) {
         // none
@@ -33,6 +35,7 @@ MyAutomator.prototype = {
         if (this.tapType == 0) {
         } else if (this.tapType == 1) {
             let thd = threads.start(function () {
+                // @ts-ignore
                 if (!self.RA) self.RA = new RootAutomator();
             });
             // 5秒无响应直接杀死
@@ -43,6 +46,7 @@ MyAutomator.prototype = {
                 }
             },5000)
         } else if (this.tapType == 2) {
+            // @ts-ignore
             if (!this.shell) this.shell = new Shell(true);
         } else if (this.tapType == 3) {
             // none
@@ -154,7 +158,7 @@ MyAutomator.prototype = {
         for (let i = 190, stepLen = 1; i > 5; i -= stepLen, stepLen++) {
             toRetain.push(i);
         }
-        toRetain = toRetain.sort((a, b) => parseInt(a) - parseInt(b));
+        toRetain = toRetain.sort((a, b) => Math.floor(a) - Math.floor(b));
         let points = [];
         toRetain.forEach(item => {
             points.push(pointsOrigin[item]);

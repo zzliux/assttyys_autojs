@@ -1,5 +1,4 @@
-import { myToast, doOspPush } from '@/common/toolAuto';
-import { setCurrentScheme } from '@/common/tool';
+
 
 const normal = -1; //定义常量
 const left = 0;
@@ -125,13 +124,13 @@ export default {
 			if (thisScript.global.jy_list_swipe_times >= defaultCount) {
 				thisScript.global.jy_list_swipe_times = 0;
 				if ('停止脚本' === thisConf.afterCountOper) {
-					doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { myToast('脚本即将停止，正在上传数据'); } });
+					thisScript.doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 					thisScript.stop();
 				} else if ('切换方案' === thisConf.afterCountOper) {
 					// let oper = thisOperator[0].oper[2];
 					// thisScript.helperBridge.regionClick([oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
-					setCurrentScheme(thisConf.next_scheme);
-					myToast(`切换方案为[${thisConf.next_scheme}]`);
+					thisScript.setCurrentScheme(thisConf.next_scheme);
+					thisScript.myToast(`切换方案为[${thisConf.next_scheme}]`);
 					thisScript.rerun();
 				}
 			}

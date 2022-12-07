@@ -1,7 +1,4 @@
-import { setCurrentScheme } from '@/common/tool';
-import { myToast, doOspPush } from '@/common/toolAuto';
 import { Script } from '@/system/script';
-import { storeCommon } from '@/system/store';
 import { InterfaceFunc } from '../interface/InterfaceFunc';
 
 export class Func000 implements InterfaceFunc {
@@ -116,7 +113,7 @@ export class Func000 implements InterfaceFunc {
 		if (thisconf.jspd_enabled_longtime_nodo) {
 			let now = new Date();
 			if (now.getTime() - thisScript.currentDate.getTime() > thisconf.jspd_times_longtime_nodo * 60000) {
-				myToast(`因长时间(${cvtTime((now.getTime() - thisScript.currentDate.getTime()) / 1000)})未执行任何操作，脚本停止`);
+				thisScript.myToast(`因长时间(${cvtTime((now.getTime() - thisScript.currentDate.getTime()) / 1000)})未执行任何操作，脚本停止`);
 				stopOrReRun();
 				return true;
 			}
@@ -125,7 +122,7 @@ export class Func000 implements InterfaceFunc {
 		if (thisconf.jspd_enabled_zjsj) { // 执行时间
 			let currentNotifyDate = thisScript.global.currentNotifyDate;
 			if (!currentNotifyDate) {
-				myToast(`脚本将于${cvtTime(thisconf.jspd_times_zjsj * 60)}后停止`);
+				thisScript.myToast(`脚本将于${cvtTime(thisconf.jspd_times_zjsj * 60)}后停止`);
 				currentNotifyDate = new  Date();
 				thisScript.global.currentNotifyDate = currentNotifyDate;
 			}
@@ -133,7 +130,7 @@ export class Func000 implements InterfaceFunc {
 			if (now.getTime() - currentNotifyDate.getTime() > thisconf.jspd_txpl_zjsj * 1000) {
 				let leftSec = (thisconf.jspd_times_zjsj * 60000 + thisScript.runDate.getTime() - now.getTime()) / 1000;
 				thisScript.global.currentNotifyDate = new Date();
-				myToast(`脚本将于${cvtTime(leftSec)}后停止`);
+				thisScript.myToast(`脚本将于${cvtTime(leftSec)}后停止`);
 			}
 			if (thisScript.runDate.getTime() + thisconf.jspd_times_zjsj * 60000 < now.getTime()) {
 				stopOrReRun();
@@ -143,7 +140,7 @@ export class Func000 implements InterfaceFunc {
 		
 		if (thisconf.jspd_enabled_1) {
 			if (thisScript.runTimes['1'] >= thisconf.jspd_times_1) {
-				myToast(`准备功能执行${thisScript.runTimes['1']}次后停止脚本`);
+				thisScript.myToast(`准备功能执行${thisScript.runTimes['1']}次后停止脚本`);
 				stopOrReRun();
 				return true;
 			}
@@ -152,12 +149,12 @@ export class Func000 implements InterfaceFunc {
 			}
 			if (thisScript.runTimes['1'] !== thisScript.global.currentRunTimes['1']) {
 				thisScript.global.currentRunTimes['1'] = thisScript.runTimes['1'];
-				myToast(`准备功能已执行${thisScript.runTimes['1']}次, 继续执行${thisconf.jspd_times_1 - thisScript.runTimes['1']}次后将停止脚本`);
+				thisScript.myToast(`准备功能已执行${thisScript.runTimes['1']}次, 继续执行${thisconf.jspd_times_1 - thisScript.runTimes['1']}次后将停止脚本`);
 			}
 		}
 		if (thisconf.jspd_enabled_2) {
 			if (thisScript.runTimes['2'] >= thisconf.jspd_times_2) {
-				myToast(`退出结算功能执行${thisScript.runTimes['2']}次后停止脚本`);
+				thisScript.myToast(`退出结算功能执行${thisScript.runTimes['2']}次后停止脚本`);
 				stopOrReRun();
 				return true;
 			}
@@ -166,7 +163,7 @@ export class Func000 implements InterfaceFunc {
 			}
 			if (thisScript.runTimes['2'] !== thisScript.global.currentRunTimes['2']) {
 				thisScript.global.currentRunTimes['2'] = thisScript.runTimes['2'];
-				myToast(`退出结算已执行${thisScript.runTimes['2']}次, 继续执行${thisconf.jspd_times_2 - thisScript.runTimes['2']}次后将停止脚本`);
+				thisScript.myToast(`退出结算已执行${thisScript.runTimes['2']}次, 继续执行${thisconf.jspd_times_2 - thisScript.runTimes['2']}次后将停止脚本`);
 			}
 		}
 		if (thisconf.pause_enabled) {
@@ -183,7 +180,7 @@ export class Func000 implements InterfaceFunc {
 			if (thisScript.global.running) {
 				if (new Date().getTime() >= thisScript.global.runningTime) {
 					thisScript.global.running = false;
-					myToast('脚本暂停');
+					thisScript.myToast('脚本暂停');
 					return true;
 				}
 				if (!thisScript.global.notifyTime) {
@@ -191,7 +188,7 @@ export class Func000 implements InterfaceFunc {
 				}
 				if (new Date().getTime() - thisScript.global.notifyTime > 10000) {
 					thisScript.global.notifyTime = new Date().getTime();
-					myToast(`将于${cvtTime((thisScript.global.runningTime - new Date().getTime()) / 1000)}后暂停${cvtTime(thisScript.global.define_pause_time / 1000)}`);
+					thisScript.myToast(`将于${cvtTime((thisScript.global.runningTime - new Date().getTime()) / 1000)}后暂停${cvtTime(thisScript.global.define_pause_time / 1000)}`);
 				}
 			} else {
 				if (new Date().getTime() >= thisScript.global.pauseTime) {
@@ -200,7 +197,7 @@ export class Func000 implements InterfaceFunc {
 				}
 				if (new Date().getTime() - thisScript.global.notifyTime > 10000) {
 					thisScript.global.notifyTime = new Date().getTime();
-					myToast(`将于${cvtTime((thisScript.global.pauseTime - new Date().getTime()) / 1000)}后恢复执行`);
+					thisScript.myToast(`将于${cvtTime((thisScript.global.pauseTime - new Date().getTime()) / 1000)}后恢复执行`);
 				}
 				sleep(Math.max(thisScript.global.define_pause_time / 10, 5000));
 				return true;
@@ -209,22 +206,22 @@ export class Func000 implements InterfaceFunc {
 
 		function stopOrReRun() {
 			if (thisconf.scheme_switch_enabled) {
-				setCurrentScheme(thisconf.next_scheme);
-				myToast(`切换方案为[${thisconf.next_scheme}]`);
+				thisScript.setCurrentScheme(thisconf.next_scheme);
+				thisScript.myToast(`切换方案为[${thisconf.next_scheme}]`);
 				thisScript.rerun();
 			} else {
-				doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { myToast('脚本即将停止，正在上传数据'); } });
+				thisScript.doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 				// 停止脚本时关闭应用
 				if (thisconf.stop_with_launched_app_exit) {
-					let storeSettings = storeCommon.get('settings', {});
+					let storeSettings = thisScript.storeCommon.get('settings', {});
 					if (storeSettings.defaultLaunchAppList && storeSettings.defaultLaunchAppList.length) {
 						storeSettings.defaultLaunchAppList.forEach(packageName => {
-							myToast(`停止应用[${packageName}]`);
+							thisScript.myToast(`停止应用[${packageName}]`);
 							$shell(`am force-stop ${packageName}`, true);
 							sleep(1000);
 						});
 					} else {
-						myToast('未配置关联应用，不执行停止操作');
+						thisScript.myToast('未配置关联应用，不执行停止操作');
 					}
 				}
 				thisScript.stop();

@@ -82,7 +82,7 @@ import { NavBar, Cell, CellGroup, Icon, Switch, Popup, Picker, Field, Dialog, No
 import schedule from 'node-schedule';
 import _ from "lodash";
 
-import { mergeScheduleList } from "../../../common/tool";
+import { mergeScheduleList } from "../../../common/toolWeb";
 import dScheduleList from '../../../common/scheduleList'
 
 const scheduleDefaultFormData = {

@@ -1,6 +1,3 @@
-import { search, questionSearch } from '@/common/tool';
-import { myToast } from '../toolAuto';
-
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -41,7 +38,7 @@ export default {
 			}
 			console.log(`识别题目: ${question}`);
 			
-			let stdQuestion = questionSearch(question.replace(/[^\u4e00-\u9fa5a-zA-Z0-9]/g, ''));
+			let stdQuestion = thisScript.questionSearch(question.replace(/[^\u4e00-\u9fa5a-zA-Z0-9]/g, ''));
 			console.log(`搜索题库:${JSON.stringify(stdQuestion)}`);
 
 			let toDetectAnsBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[0].oper[1].slice(0, 4));
@@ -66,15 +63,15 @@ export default {
 			}
 			console.log(`答案区域识别:${JSON.stringify(ansList)}`);
 			if (stdQuestion) {
-				let stdAns = search(ansList, 'text', stdQuestion.data.ans);
+				let stdAns = thisScript.search(ansList, 'text', stdQuestion.data.ans);
 				if (stdAns) {
-					myToast(`选择答案: ${stdAns.data.text}, 置信度为: ${(stdQuestion.similarity * stdAns.similarity).toFixed(4)}`);
+					thisScript.myToast(`选择答案: ${stdAns.data.text}, 置信度为: ${(stdQuestion.similarity * stdAns.similarity).toFixed(4)}`);
 					thisScript.helperBridge.regionClick([[...stdAns.data.rect, 1500]], thisScript.scheme.commonConfig.afterClickDelayRandom);
 					return true;
 				}			
 			}
 			
-			myToast(`题库中没找到对应的答案，默认选择第一个答案`);
+			thisScript.myToast(`题库中没找到对应的答案，默认选择第一个答案`);
 			thisScript.helperBridge.regionClick([[...ansList[0].rect, 1500]], thisScript.scheme.commonConfig.afterClickDelayRandom);
 			return true;
 		}

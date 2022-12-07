@@ -1,5 +1,3 @@
-import { myToast } from "../toolAuto";
-
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -92,7 +90,7 @@ export default {
 				const open_pm_chat_and_probability = parseFloat(thisconf.open_pm_chat_and_probability);
 				if (Math.random() < only_open_chat_probability) {
 					// 打开公共聊天框，点击有消息的判断
-					myToast('打开公共聊天框');
+					thisScript.myToast('打开公共聊天框');
 					thisScript.helperBridge.regionClick([thisOperator[0].oper[0]], 1000 + thisScript.scheme.commonConfig.afterClickDelayRandom);
 					sleep(1000);
 					// 点击存在红点的频道
@@ -107,13 +105,13 @@ export default {
 					return true;
 				} else if (Math.random() < open_chat_and_send_emoticon_probability) {
 					// 打开公共聊天框并发送表情
-					myToast('打开公共聊天框并发送表情');
+					thisScript.myToast('打开公共聊天框并发送表情');
 					const oper = [thisOperator[0].oper[0], thisOperator[0].oper[2], thisOperator[0].oper[3], thisOperator[0].oper[4], thisOperator[0].oper[4]];
 					thisScript.helperBridge.regionClick(oper, 1000 + thisScript.scheme.commonConfig.afterClickDelayRandom);
 					return true;
 				} else if (Math.random() < open_pm_chat_and_probability) {
 					// 打开好友聊天框，随便点几下好友列表
-					myToast('打开好友聊天框');
+					thisScript.myToast('打开好友聊天框');
 					const toClick = [thisOperator[0].oper[1]];
 					const times = random(2, 4); // 点击次数
 					for (let j = 0; j < times; j++) {

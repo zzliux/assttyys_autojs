@@ -1,4 +1,3 @@
-import { myToast, doOspPush } from '@/common/toolAuto';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -47,7 +46,7 @@ export default {
 						thisOperator[0].oper[0][4]
 					];
 					thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
-					myToast(`选择事件${en}`);
+					thisScript.myToast(`选择事件${en}`);
 					break;
 				}
 			}

@@ -1,4 +1,3 @@
-import { myToast, doOspPush } from '@/common/toolAuto';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -93,7 +92,7 @@ export default {
 				thisScript.helperBridge.regionClick([thisOperator[0].oper[2], thisOperator[0].oper[3]], thisScript.scheme.commonConfig.afterClickDelayRandom);
 			} else {
 				// 找到了就点
-				myToast(`选择${type}`);
+				thisScript.myToast(`选择${type}`);
 				const toClickRegion = [
 					toClick.x,
 					toClick.y,

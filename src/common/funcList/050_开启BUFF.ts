@@ -1,6 +1,3 @@
-import { myToast, doOspPush } from '@/common/toolAuto';
-import { setCurrentScheme } from '@/common/tool';
-
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -66,11 +63,11 @@ export default {
 			} else {
 				thisScript.helperBridge.regionClick([thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
 				if (thisconf && thisconf.scheme_switch_enabled) {
-					setCurrentScheme(thisconf.next_scheme);
-					myToast(`切换方案为[${thisconf.next_scheme}]`);
+					thisScript.setCurrentScheme(thisconf.next_scheme);
+					thisScript.myToast(`切换方案为[${thisconf.next_scheme}]`);
 					thisScript.rerun();
 				} else {
-					doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { myToast('脚本即将停止，正在上传数据'); } });
+					thisScript.doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 					thisScript.stop();
 				}
 				return true;

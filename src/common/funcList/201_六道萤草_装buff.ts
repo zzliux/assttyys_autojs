@@ -1,4 +1,3 @@
-import { myToast, doOspPush } from '@/common/toolAuto';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;

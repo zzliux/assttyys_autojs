@@ -1,7 +1,5 @@
 import { Script } from './../../system/script';
 import { InterfaceFunc } from './../interface/InterfaceFunc';
-import { myToast, doOspPush } from '@/common/toolAuto';
-import { setCurrentScheme } from '@/common/tool';
 
 const normal = -1; //定义常量
 const left = 0;
@@ -108,19 +106,19 @@ export class Func008 implements InterfaceFunc {
 				if (thisConf.cdSwitchSchemeEnable) {
 					let oper = thisOperator[0].oper[1];
 					thisScript.helperBridge.regionClick([oper, oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
-					setCurrentScheme(thisConf.cdSwitchScheme);
-					myToast(`切换方案为[${thisConf.cdSwitchScheme}]`);
+					thisScript.setCurrentScheme(thisConf.cdSwitchScheme);
+					thisScript.myToast(`切换方案为[${thisConf.cdSwitchScheme}]`);
 					thisScript.rerun();
 				} else {
 					let oper = thisOperator[0].oper[1];
 					thisScript.helperBridge.regionClick([oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
 					let cdWaiteTimePair = thisConf.cdWaitTime.split(',');
 					if (cdWaiteTimePair.length === 1) {
-						myToast(`寮突破CD, ${(parseInt(cdWaiteTimePair[0]))}秒后再次检测`);
+						thisScript.myToast(`寮突破CD, ${(parseInt(cdWaiteTimePair[0]))}秒后再次检测`);
 						sleep(1000 * (parseInt(cdWaiteTimePair[0])));
 					} else {
 						let cdWaitTime = random(parseInt(cdWaiteTimePair[0]), parseInt(cdWaiteTimePair[1]));
-						myToast(`寮突破CD, ${(cdWaitTime)}秒后再次检测`);
+						thisScript.myToast(`寮突破CD, ${(cdWaitTime)}秒后再次检测`);
 						sleep(1000 * (cdWaitTime));
 					}
 					return true;
@@ -136,7 +134,7 @@ export class Func008 implements InterfaceFunc {
 				if ('停止脚本' === thisConf.afterCountOper) {
 					let oper = thisOperator[0].oper[1];
 					thisScript.helperBridge.regionClick([oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
-					doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { myToast('脚本即将停止，正在上传数据'); } });
+					thisScript.doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 					thisScript.stop();
 				} else if ('关闭界面' === thisConf.afterCountOper) {
 					let oper = thisOperator[0].oper[1];
@@ -144,8 +142,8 @@ export class Func008 implements InterfaceFunc {
 				} else if ('切换方案' === thisConf.afterCountOper) {
 					let oper = thisOperator[0].oper[1];
 					thisScript.helperBridge.regionClick([oper, oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
-					setCurrentScheme(thisConf.next_scheme);
-					myToast(`切换方案为[${thisConf.next_scheme}]`);
+					thisScript.setCurrentScheme(thisConf.next_scheme);
+					thisScript.myToast(`切换方案为[${thisConf.next_scheme}]`);
 					thisScript.rerun();
 				}
 				break;

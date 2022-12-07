@@ -1,6 +1,3 @@
-import { myToast, doOspPush } from '@/common/toolAuto';
-import { setCurrentScheme } from '@/common/tool';
-
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -198,8 +195,8 @@ export default {
             app.launchPackage(packageName);
             thisScript.global.app_is_open = true;
         } else if (!isInstalled) {
-            myToast(`未找到对应的应用[${packageName}]`);
-            doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { myToast('脚本即将停止，正在上传数据'); } });
+            thisScript.myToast(`未找到对应的应用[${packageName}]`);
+            thisScript.doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
             thisScript.stop();
         }
 
@@ -314,8 +311,8 @@ export default {
             // 做延时检测 防止登陆后的弹窗
             if (thisScript.global.checked_yard_count === 10) {
                 thisScript.global.checked_yard_count = undefined;
-                setCurrentScheme(thisConf.next_scheme);
-                myToast(`切换方案为[${thisConf.next_scheme}]`);
+                thisScript.setCurrentScheme(thisConf.next_scheme);
+                thisScript.myToast(`切换方案为[${thisConf.next_scheme}]`);
                 thisScript.rerun();
             } else {
                 sleep(1500);

@@ -1,4 +1,3 @@
-import { myToast, doOspPush } from '@/common/toolAuto';
 import { Script } from '@/system/script';
 import { InterfaceFunc } from '../interface/InterfaceFunc';
 const normal = -1; //定义常量
@@ -45,8 +44,8 @@ export class Func006 implements InterfaceFunc {
 			curCnt++;
 			thisScript.keepScreen(false);
 			if (curCnt >= maxCount) {
-				myToast(`连续执行${maxCount}次挑战后未开始，脚本自动停止`);
-				doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { myToast('脚本即将停止，正在上传数据'); } });
+				thisScript.myToast(`连续执行${maxCount}次挑战后未开始，脚本自动停止`);
+				thisScript.doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 				thisScript.stop();
 				sleep(2000);
 				return false;

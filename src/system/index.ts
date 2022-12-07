@@ -1,6 +1,5 @@
 runtime.unloadDex('./assets/lib/scriptlib.dex');
 runtime.loadDex('./assets/lib/scriptlib.dex');
-importClass(com.scriptlib.AnchorGraphicHelper);
 
 import core, { closeForeground, setSystemUiVisibility, getWidthPixels, getHeightPixels } from '@auto.pro/core'
 import { run } from '@auto.pro/webview'
@@ -31,7 +30,7 @@ if (context.packageName.match(/^org.autojs.autojs(pro)?$/) && files.cwd().indexO
 }
 
 export const webview = run(url, {
-    fitsSystemWindows: 'true',
+    // fitsSystemWindows: 'true',
     afterLayout() {
         if (device.sdkInt >= 23) { // SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             setSystemUiVisibility('有状态栏的沉浸式界面')

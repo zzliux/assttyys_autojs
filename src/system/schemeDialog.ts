@@ -7,7 +7,7 @@ import _ from 'lodash';
  * 点击方案列表按钮的dialog，选择弹窗，点击方案后切换至该方案，若配置切换方案后直接运行则是切换方案并运行
  */
 export default {
-    show(myfloaty, schemeList) {
+    show(myfloaty, schemeList?) {
         let staredSchemeList = schemeList || _.filter(store.get('schemeList', defaultSchemeList), item => {
             return item.star //&& item.id != 99;
         });

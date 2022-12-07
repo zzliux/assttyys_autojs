@@ -25,12 +25,12 @@ export const helperBridge = {
     helperPoly: {},
     getHelper(dw, dh) {
         if (!this.helperPoly[dw + '_' + dh]) {
-            this.helperPoly[dw + '_' + dh] = AnchorGraphicHelper.Create(runtime, dw, dh, 0, 0, screenWidth - 1, screenHeight - 1);
+            this.helperPoly[dw + '_' + dh] = com.scriptlib.AnchorGraphicHelper.Create(runtime, dw, dh, 0, 0, screenWidth - 1, screenHeight - 1);
         }
         return this.helperPoly[dw + '_' + dh];
     },
     init: function () {
-        console.log(`ScriptLib Version: ${AnchorGraphicHelper.Version()}`);
+        console.log(`ScriptLib Version: ${com.scriptlib.AnchorGraphicHelper.Version()}`);
         console.log(`ScriptLib initializing`);
         this.helper = this.getHelper(devWidth, devHeight);
         console.log(`ScriptLib initialize success`);

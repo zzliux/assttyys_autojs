@@ -1,5 +1,3 @@
-import { ocr } from "@/system/mlkitOcr";
-import { myToast } from "../toolAuto";
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -100,7 +98,7 @@ export default {
 				}]
 			})) {
 				if (thisconf.greenType === '自定义文本' && !thisScript.global.greenPosition) {
-					let result = ocr.findTextByOcr(thisScript.getOcr(), function () {
+					let result = thisScript.getOcr().findText(function () {
 						thisScript.keepScreen(); // 更新图片
 						return thisScript.helperBridge.helper.GetBitmap(); // 返回bmp
 					}, thisconf.greenText, 3000, thisOperator[0].oper[3], thisconf.greenTextMatchMode);
@@ -169,13 +167,13 @@ export default {
 			if (thisconf.greenType === '自定义坐标') {
 				let posPam = (thisconf.greenPosition || '').split(',');
 				if (posPam.length !== 2) {
-					myToast('自定义坐标格式定义错误，请检查');
+					thisScript.myToast('自定义坐标格式定义错误，请检查');
 					return true;
 				}
 				let inX = parseInt(posPam[0]);
 				let inY = parseInt(posPam[1]);
 				if (Number.isNaN(inX) || Number.isNaN(inY)) {
-					myToast('自定义坐标格式定义错误，请检查');
+					thisScript.myToast('自定义坐标格式定义错误，请检查');
 					return true;
 				}
 				toClick = [
@@ -186,7 +184,7 @@ export default {
 					1000
 				]
 			} else if (thisconf.greenType === '自定义文本') {
-				let result = ocr.findTextByOcr(thisScript.getOcr(), function () {
+				let result = thisScript.getOcr().findTextByOcr(function () {
 					thisScript.keepScreen(); // 更新图片
 					return thisScript.helperBridge.helper.GetBitmap(); // 返回bmp
 				}, thisconf.greenText, 3000, thisOperator[0].oper[3], thisconf.greenTextMatchMode);

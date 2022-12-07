@@ -1,6 +1,5 @@
 import { Script } from '@/system/script';
 import { InterfaceFunc } from './../interface/InterfaceFunc';
-import { myToast } from "../toolAuto";
 
 const normal = -1; //定义常量
 const left = 0;
@@ -156,7 +155,7 @@ export class Func014 implements InterfaceFunc {
 					name: '探索界面_判断',
 					operator: [{ desc: thisOperator[0].desc }],
 				})) {
-					myToast(`剩余滑屏次数：${thisScript.global.tsAttackSwhipeNum}`);
+					thisScript.myToast(`剩余滑屏次数：${thisScript.global.tsAttackSwhipeNum}`);
 					thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[1], thisOperator[0].oper[2], {
 						'快': [200, 400],
 						'中': [500, 700],

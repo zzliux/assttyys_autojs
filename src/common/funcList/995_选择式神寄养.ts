@@ -1,7 +1,3 @@
-import { myToast, doOspPush } from '@/common/toolAuto';
-import { setCurrentScheme } from '@/common/tool';
-import { storeCommon } from '@/system/store';
-
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -11,7 +7,6 @@ export default {
     id: 995,
     name: '寄养式神操作',
     desc: '在好友结界中寄养式神',
-    checked: false,
     config: [{
         desc: '',
         config: [
@@ -204,21 +199,21 @@ export default {
                         oper: [thisOperator[2].oper[1], thisOperator[2].oper[1], thisOperator[2].oper[1]]
                     }]
                 });
-                setCurrentScheme(thisConf.next_scheme);
-                myToast(`切换方案为[${thisConf.next_scheme}]`);
+                thisScript.setCurrentScheme(thisConf.next_scheme);
+                thisScript.myToast(`切换方案为[${thisConf.next_scheme}]`);
                 thisScript.rerun();
             } else if ('关闭应用' === thisConf.afterCountOper) {
                 sleep(1000);
-                let storeSettings = storeCommon.get('settings', {});
+                let storeSettings = thisScript.storeCommon.get('settings', {});
                 if (storeSettings.defaultLaunchAppList && storeSettings.defaultLaunchAppList.length) {
                     storeSettings.defaultLaunchAppList.forEach(packageName => {
-                        myToast(`停止应用[${packageName}]`);
+                        thisScript.myToast(`停止应用[${packageName}]`);
                         $shell(`am force-stop ${packageName}`, true);
                         sleep(1000);
                     });
-                    doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { myToast('脚本即将停止，正在上传数据'); } });
+                    thisScript.doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
                 } else {
-                    myToast('未配置关联应用，不执行停止操作');
+                    thisScript.myToast('未配置关联应用，不执行停止操作');
                 }
                 thisScript.stop();
             }
@@ -273,7 +268,7 @@ export default {
 
             //             if (timeRemaining.countSecond <= maxTimeForwait * 60000) {
             //                 console.log(`所剩时间为${timeRemaining.countSecond}秒`);
-            //                 myToast(`所剩时间为${timeRemaining.countSecond}秒`);
+            //                 thisScript.myToast(`所剩时间为${timeRemaining.countSecond}秒`);
             //                 thisScript.global.jy_list_getTime_fault_count = 0;
             //                 return thisScript.oper({
             //                     id: 995,
@@ -302,7 +297,7 @@ export default {
             //             thisScript.stop();
             //         } else if ('关闭应用' === thisConf.afterCountOper) {
             //             sleep(1000);
-            //             myToast(`停止应用[${packageName}]`);
+            //             thisScript.myToast(`停止应用[${packageName}]`);
             //             shell(`am force-stop ${packageName}`, true);
             //             thisScript.stop();
             //         }

@@ -154,7 +154,7 @@ import { Cell, SwipeCell, CellGroup, Icon, Button, Dialog, Field, Notify, Picker
 import ExportSchemeDialog from "../components/ExportSchemeDialog.vue";
 import ImportSchemeDialog from "../components/ImportSchemeDialog.vue";
 import draggable from "vuedraggable";
-import { mergeSchemeList } from "../../common/tool";
+import { mergeSchemeList } from "../../common/toolWeb";
 import dSchemeList from "../../common/schemeList";
 import groupColor from "../../common/groupColors";
 import _ from "lodash";

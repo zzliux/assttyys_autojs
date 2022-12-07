@@ -3,8 +3,8 @@
 QQ：2682963017
 */
 var InputHideUtil = function () {
-    importClass(Packages.android.graphics.Rect);
-    importClass(Packages.android.view.ViewTreeObserver);
+    // importClass(Packages.android.graphics.Rect);
+    // importClass(Packages.android.view.ViewTreeObserver);
     var mChildOfContent;
     var usableHeightPrevious;
     var frameLayoutParams;
@@ -29,7 +29,7 @@ var InputHideUtil = function () {
             ignoreViewParams = ignoreView.layoutParams;
         }
         //给Activity的xml布局设置View树监听，当布局有变化，如键盘弹出或收起时，都会回调此监听  
-        mChildOfContent.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener({
+        mChildOfContent.getViewTreeObserver().addOnGlobalLayoutListener(new android.view.ViewTreeObserver.OnGlobalLayoutListener({
             //软键盘弹起会使GlobalLayout发生变化
             onGlobalLayout() {
                 if (isfirst) {
@@ -46,7 +46,7 @@ var InputHideUtil = function () {
 
     }
     
-    InputHideUtil.assistActivity = function(activity, scrollView, ignoreView) {
+    InputHideUtil.assistActivity = function(activity, scrollView?, ignoreView?) {
         new InputHideUtil(activity, scrollView, ignoreView);
     }
     // 获取界面可用高度，如果软键盘弹起后，进行控件处理
@@ -93,7 +93,7 @@ var InputHideUtil = function () {
     }
 
     function computeUsableHeight() {
-        var r = Rect()
+        var r = android.graphics.Rect()
         mChildOfContent.getWindowVisibleDisplayFrame(r)
         return r.bottom
     }
