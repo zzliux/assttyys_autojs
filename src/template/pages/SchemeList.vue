@@ -198,14 +198,13 @@ export default {
     ExportSchemeDialog,
     ImportSchemeDialog,
   },
-  mounted() {
+  async mounted() {
     var self = this;
-    AutoWeb.auto("getSchemeList", null, function (savedSchemeList) {
-      self.schemeList = mergeSchemeList(savedSchemeList, dSchemeList);
+    const savedSchemeList = await AutoWeb.autoPromise("getSchemeList", null)
+    self.schemeList = mergeSchemeList(savedSchemeList, dSchemeList);
 
-      // 获取后保存一下方案列表，避免出现展示内容与保存内容不一样的情况
-      AutoWeb.autoPromise('saveSchemeList', self.schemeList);
-    });
+    // 获取后保存一下方案列表，避免出现展示内容与保存内容不一样的情况
+    AutoWeb.autoPromise('saveSchemeList', self.schemeList);
   },
   computed: {
     dragOptions() {

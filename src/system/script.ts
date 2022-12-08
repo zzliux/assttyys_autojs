@@ -1,6 +1,6 @@
 import { search, questionSearch } from '@/common/tool';
 import store, { storeCommon } from '@/system/store';
-import funcList from '@/common/funcList';
+import funcList from '@/common/funcListIndex';
 import defaultSchemeList from '@/common/schemeList';
 import helperBridge from '@/system/helperBridge';
 import multiColor from '@/common/multiColors';
@@ -581,14 +581,14 @@ export class Script {
     };
 
     setCurrentScheme(schemeName) {
-        setCurrentScheme(schemeName, store);
+        return setCurrentScheme(schemeName, store);
     };
 
     search(list, prop, str, filterSimilar?) {
-        search(list, prop, str, filterSimilar)
+        return search(list, prop, str, filterSimilar)
     };
     questionSearch(str) {
-        questionSearch(str);
+        return questionSearch(str);
     };
 }
 

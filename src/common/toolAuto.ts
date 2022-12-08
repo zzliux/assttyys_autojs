@@ -78,7 +78,7 @@ export const getInstalledApps = function (options) {
     });
 }
 
-export const getInstalledPackages = function (options) {
+export const getInstalledPackages = function (options?) {
     let flags = parsePMFlags(options, android.content.pm.PackageManager.GET_META_DATA);
     return toJsArray(context.packageManager.getInstalledPackages(flags)).map(pkgInfo => {
         pkgInfo.applicationInfo = new com.stardust.autojs.core.pm.AppInfo(context, pkgInfo.applicationInfo);

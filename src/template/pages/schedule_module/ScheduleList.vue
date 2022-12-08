@@ -144,15 +144,14 @@ export default {
   props: {
     statusBarHeight: Number
   },
-  mounted() {
+  async mounted() {
     var self = this;
 
-    AutoWeb.auto("getScheduleList", null, function (savedScheduleList) {
-      self.scheduleList = mergeScheduleList(savedScheduleList, dScheduleList);
+    const savedScheduleList = await AutoWeb.autoPromise("getScheduleList", null)
+    self.scheduleList = mergeScheduleList(savedScheduleList, dScheduleList);
 
-      // 获取后保存一下方案列表，避免出现展示内容与保存内容不一样的情况
-      AutoWeb.autoPromise('saveScheduleList', self.scheduleList);
-    });
+    // 获取后保存一下方案列表，避免出现展示内容与保存内容不一样的情况
+    AutoWeb.autoPromise('saveScheduleList', self.scheduleList);
   },
   methods: {
     saveScheduleList() {

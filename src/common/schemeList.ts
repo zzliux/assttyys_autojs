@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import funcList from './funcList';
+import funcList from './funcListIndex';
 import commonConfigArr from './commonConfig';
 
 const SchemeList = [{

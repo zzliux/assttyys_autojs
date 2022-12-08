@@ -85,7 +85,7 @@
 import Vue from "vue";
 import { Col, Row, Switch, Icon, Button, Picker, Loading } from "vant";
 import draggable from 'vuedraggable'
-import dfuncList from "../../common/funcList";
+import dfuncList from "../../common/funcListIndex";
 import dCommonConfig from "../../common/commonConfig";
 import _ from 'lodash';
 import funcConfigBox from '../components/FuncConfigBox.vue';
@@ -239,7 +239,7 @@ export default {
     reSort() {
       let list = [[], []];
       this.funcList.forEach((item) => {
-        list[!!item.checked + 0].push(item);
+        list[+item.checked + 0].push(item);
       });
       this.funcList = [...list[1], ...list[0]];
     },

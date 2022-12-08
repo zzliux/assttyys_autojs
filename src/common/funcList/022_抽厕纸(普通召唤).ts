@@ -1,12 +1,14 @@
+import { InterfaceFunc } from "../interface/InterfaceFunc";
+
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 22,
-	name: '抽厕纸(普通召唤)',
-	operator: [{
+export class Func022 implements InterfaceFunc {
+	id = 22;
+	name = '抽厕纸(普通召唤)';
+	operator = [{
 		desc: [1280,720,
 			[[center,442,650,0xf4b25f],
 			[center,707,647,0xf4b25f],

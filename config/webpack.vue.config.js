@@ -19,10 +19,13 @@ module.exports = (env, argv) => {
         module: {
             rules: [
                 {
-                    test: /\.ts$/,
+                    test: /\.tsx?$/,
                     exclude: /node_modules/,
                     use: {
-                        loader: "ts-loader"
+                        loader: "ts-loader",
+                        // options: {   //新增
+                        //     appendTsSuffixTo: [/\.vue$/]
+                        // }
                     }
                 },
                 {
@@ -63,15 +66,18 @@ module.exports = (env, argv) => {
                 },
                 {
                     test: /\.vue$/,
-                    loader: 'vue-loader'
+                    loader: 'vue-loader',
                     //这一个loader当然是vue项目必须的加载器啦，不加其他规则的话，
                     //简单的这样引入就可以了，vue-loader会把vue单文件直接转成js。
+                    options: {   //新增
+                        esModule: true,
+                    }
                 },
             ]
         },
         resolve: {
             //引入路径是不用写对应的后缀名
-            extensions: ['.js', '.vue', '.json'],
+            extensions: ['.ts', '.js', '.vue', '.json'],
             //缩写扩展
             alias: {
                 //正在使用的是vue的运行时版本，而此版本中的编译器时不可用的，我们需要把它切换成运行时 + 编译的版本
@@ -85,7 +91,7 @@ module.exports = (env, argv) => {
             port: 3001,
             contentBase: './dist', // 指定托管的根目录
             hotOnly: true,
-        },plugins: [
+        }, plugins: [
             new HtmlWebpackPlugin({
                 title: 'ASSTTYYS NG',
                 template: './src/template/index.html'
@@ -100,14 +106,14 @@ module.exports = (env, argv) => {
             new webpack.DefinePlugin({
                 // 处理aj的api在前端引用时的报错
                 // TODO 前端需完全剥离使用aj的方法，要获取数据通过通信获取
-                storages: { create: function (){} },
-                $shell: { checkAccess: function (){} },
+                storages: { create: function () { } },
+                $shell: { checkAccess: function () { } },
                 $images: {},
                 context: {
-                    getResources: function (){
+                    getResources: function () {
                         return {
-                            getIdentifier: function () {},
-                            getDimensionPixelSize: function () {},
+                            getIdentifier: function () { },
+                            getDimensionPixelSize: function () { },
                             getDisplayMetrics: function () {
                                 return {
                                     widthPixels: 0,
@@ -116,12 +122,12 @@ module.exports = (env, argv) => {
                             },
                         }
                     },
-                    getPackageName: function () {},
+                    getPackageName: function () { },
                     getSystemService: function () {
                         return {
                             getDefaultDisplay: function () {
                                 return {
-                                    getRealMetrics: function () {},
+                                    getRealMetrics: function () { },
                                 }
                             },
                         }
@@ -133,7 +139,7 @@ module.exports = (env, argv) => {
                     },
                     getExternalFilesDir: function () {
                         return {
-                            getAbsolutePath: function () {}
+                            getAbsolutePath: function () { }
                         }
                     },
                 },

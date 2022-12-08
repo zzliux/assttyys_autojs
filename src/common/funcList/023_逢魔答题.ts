@@ -1,13 +1,15 @@
+import { Script } from '@/system/script';
+import { InterfaceFunc } from '../interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 23,
-	name: '逢魔答题',
-	desc: '逢魔密信自动答题，需要安装OCR扩展',
-	operator: [{
+export class Func023 implements InterfaceFunc {
+	id = 23;
+	name = '逢魔答题';
+	desc = '逢魔密信自动答题，需要安装OCR扩展';
+	operator = [{
 		desc: [1280,720,
 			[[center,456,96,0xa72c01],
 			[center,692,90,0xddcdc3],
@@ -19,8 +21,8 @@ export default {
 			[center, 1280, 720, 429,163, 429 + 433, 163 + 72, 0], // 问题区域
 			[center, 1280, 720, 426,252, 426 + 446, 252 + 264, 0], // 答案区域
 		]
-	}],
-	operatorFunc(thisScript, thisOperator) {
+	}];
+	operatorFunc = function (thisScript: Script, thisOperator): boolean {
 		if (thisScript.oper({
 			name: '逢魔答题_界面判断',
 			operator: [{ desc: thisOperator[0].desc }]
