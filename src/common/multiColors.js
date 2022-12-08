@@ -406,13 +406,15 @@ export default {
         region: [left, 1280, 720, 1, 1, 1279, 719],
         similar: 95,
         desc: [
-            [1280, 720,
+            [
+                1280, 720,
                 [
-                    [right, 1172, 82, 0xeecccc],
-                    [right, 1163, 72, 0xe9d1ce],
-                    [right, 1184, 72, 0xedcdce],
-                    [right, 1168, 88, 0xe7d4cf],
-                    [right, 1182, 91, 0xeecccc]
+                    [right, 1200, 96, 0x892478],
+                    [right, 1191, 94, 0xeecccc],
+                    [right, 1181, 88, 0xe5d4cc],
+                    [right, 1170, 88, 0x8e334e],
+                    [right, 1187, 88, 0xb63f62],
+                    [right, 1187, 108, 0x892e58],
                 ]
             ]
         ]
