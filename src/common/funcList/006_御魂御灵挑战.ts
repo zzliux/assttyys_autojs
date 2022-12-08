@@ -33,7 +33,7 @@ export class Func006 implements InterfaceFunc {
 			[right, 1280, 720, 1104,595, 1196,681, 2000]
 		]
 	}];
-	operatorFunc = function (thisScript: Script, thisOperator) : boolean {
+	operatorFunc(thisScript: Script, thisOperator) : boolean {
 		let curCnt = 0;
 		let maxCount = 3;
 		while (thisScript.oper({

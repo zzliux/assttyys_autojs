@@ -47,7 +47,7 @@ export class Func001 implements InterfaceFunc {
 			[left, 1280, 720, 37,637, 86,686, 1000]
 		]
 	}];
-	operatorFunc = function (thisScript: Script, thisOperator) : boolean {
+	operatorFunc(thisScript: Script, thisOperator) : boolean {
 		let thisconf = thisScript.scheme.config['1'];
 		if (thisconf.exitBeforeReady) {
 			return thisScript.oper({

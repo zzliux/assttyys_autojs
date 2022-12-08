@@ -49,7 +49,7 @@ export class Func012 implements InterfaceFunc {
 			[center, 1280, 720, 1188,115, 1225,151, 500],
 		]
 	}];
-	operatorFunc = function (thisScript: Script, thisOperator): boolean {
+	operatorFunc(thisScript: Script, thisOperator): boolean {
 		let thisConf = thisScript.scheme.config['12'];
 		let defaultCount = parseInt(thisConf.count);
 		if (thisScript.oper({

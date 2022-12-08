@@ -64,7 +64,7 @@ export class Func005 implements InterfaceFunc {
 		]
 	}];
 	// 0-有人就开，1-第一个+号上的点，2-第二个+号上的点，如果1或者2任意一个匹配上了，说明人没满
-	operatorFunc = function (thisScript: Script, thisOperator): boolean {
+	operatorFunc(thisScript: Script, thisOperator): boolean {
 		if (thisScript.oper({
 			name: '组队挑战_永生之海_判断',
 			operator: [thisOperator[4]]

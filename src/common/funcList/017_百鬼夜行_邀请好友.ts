@@ -36,7 +36,7 @@ export class Func017 implements InterfaceFunc {
 			[center,1280,720, 731,229, 890,563, 500],
 		]
 	}];
-	operatorFunc = function (thisScript: Script, thisOperator): boolean {
+	operatorFunc(thisScript: Script, thisOperator): boolean {
 		return thisScript.oper({
 			id: 17,
 			name: '百鬼夜行_邀请好友',

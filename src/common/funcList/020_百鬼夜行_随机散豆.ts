@@ -58,7 +58,7 @@ export class Func020 implements InterfaceFunc {
 			[center, 1280, 720, 90,270, 1252,528, 500]
 		]
 	}];
-	operatorFunc = function (thisScript: Script, thisOperator): boolean {
+	operatorFunc(thisScript: Script, thisOperator): boolean {
 		let thisconf = thisScript.scheme.config['20'];
 		if (thisconf && thisconf.mode === '快速模式') {
 			if (thisScript.oper({

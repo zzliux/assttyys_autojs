@@ -22,7 +22,7 @@ export class Func023 implements InterfaceFunc {
 			[center, 1280, 720, 426,252, 426 + 446, 252 + 264, 0], // 答案区域
 		]
 	}];
-	operatorFunc = function (thisScript: Script, thisOperator): boolean {
+	operatorFunc(thisScript: Script, thisOperator): boolean {
 		if (thisScript.oper({
 			name: '逢魔答题_界面判断',
 			operator: [{ desc: thisOperator[0].desc }]

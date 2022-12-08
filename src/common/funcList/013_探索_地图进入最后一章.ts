@@ -44,7 +44,7 @@ export class Func013 implements InterfaceFunc {
 			[left, 1280, 720, 0, 0, 77, 45, 1000]
 		]
 	}];
-	operatorFunc = function (thisScript: Script, thisOperator): boolean {
+	operatorFunc(thisScript: Script, thisOperator): boolean {
 		if (thisScript.oper({
 			name: '探索_地图判断',
 			operator: [{ desc: thisOperator[0].desc, retest: 500 }]

@@ -45,7 +45,7 @@ export class Func009 implements InterfaceFunc {
 			[center, 1280, 720, 492,289, 783,385, 500]
 		]
 	}];
-	operatorFunc = function (thisScript: Script, thisOperator): boolean {
+	operatorFunc(thisScript: Script, thisOperator): boolean {
 		if (thisScript.oper({
 			name: '突破界面_判断',
 			operator: [{ desc: thisOperator[0].desc }]

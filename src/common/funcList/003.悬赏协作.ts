@@ -39,7 +39,7 @@ export class Func004 implements InterfaceFunc {
 	 * @param {*} thisScript script.js 这样可以拿到里面的对象用来做点击等操作
 	 * @param {*} thisOperator 转换过适合当前分辨率的operator
 	 */
-	operatorFunc = function (thisScript: Script, thisOperator) {
+	operatorFunc(thisScript: Script, thisOperator) {
 		let thisconf = thisScript.scheme.config['3']; // 获取配置
 		return thisScript.oper({
 			name: '悬赏协作_' + thisconf.type,

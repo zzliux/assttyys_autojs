@@ -50,7 +50,7 @@ export class Func010 implements InterfaceFunc {
 			[center, 1280, 720, 1036,133, 1065,158, 500]
 		]
 	}];
-	operatorFunc = function (thisScript: Script, thisOperator): boolean {
+	operatorFunc(thisScript: Script, thisOperator): boolean {
 		let thisconf = thisScript.scheme.config['10']; // 获取配置
 		if ('个人突破' === thisconf.type) {
 			return thisScript.oper({

@@ -106,7 +106,7 @@ export class Func000 implements InterfaceFunc {
 			default: '2,7',
 		}]
 	}];
-	operatorFunc = function (thisScript: Script, _thisOperator) : boolean {
+	operatorFunc(thisScript: Script, _thisOperator) : boolean {
 		let thisconf = thisScript.scheme.config['0'];
 
 		// 长时间未执行任何功能后停止脚本

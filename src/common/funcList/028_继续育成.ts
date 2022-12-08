@@ -1,13 +1,16 @@
+import { InterfaceFunc } from "@/interface/InterfaceFunc";
+import { Script } from "@/system/script";
+
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 28,
-	name: '继续育成',
-	desc: '式神升级界面点击确定后再点击继续育成',
-	config: [{
+export class Func028 implements InterfaceFunc {
+	id = 28;
+	name = '继续育成';
+	desc = '式神升级界面点击确定后再点击继续育成';
+	config = [{
 		desc: '材料个数，低于这个值时判定结束，比如说5个红蛋喂1个蓝蛋，最后一次上的红蛋个数不足5个时说明红蛋已经不够喂了，脚本会自动停止',
 		config: [{
 			name: 'count',
@@ -16,8 +19,8 @@ export default {
 			data: ['1', '2', '3', '4', '5', '6', '7', '8'],
 			default: '5',
 		}]
-	}],
-	operator: [{
+	}];
+	operator = [{
 		// 等级提升界面
 		desc: [1280,720,
 			[[center,656,130,0xcad2de],
@@ -55,8 +58,8 @@ export default {
 			[center,1049,427,0xd3c2b6],
 			[center,1049,550,0xd3c1b6]]
 		]
-	}],
-	operatorFunc(thisScript, thisOperator) {
+	}];
+	operatorFunc(thisScript: Script, thisOperator): boolean {
 		let thisconf = thisScript.scheme.config['28'];
 		let cntIndex = parseInt(thisconf.count) - 1;
 		if (thisScript.oper({

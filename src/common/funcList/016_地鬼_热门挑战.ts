@@ -73,7 +73,7 @@ export class Func016 implements InterfaceFunc {
 			[left, 1280, 720, 741, 638, 800, 695, 2000] // 探索地图进入地鬼
 		]
 	}];
-	operatorFunc = function (thisScript: Script, thisOperator): boolean {
+	operatorFunc(thisScript: Script, thisOperator): boolean {
 		if (thisScript.oper({
 				name: '探索界面',
 				operator: [thisOperator[3]]

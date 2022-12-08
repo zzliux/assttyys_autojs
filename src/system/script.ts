@@ -569,7 +569,7 @@ export class Script {
      * @param {*} currFunc 
      */
     desc(currFunc, commonConfig) {
-        let operator = currFunc.operator; // 需要计算的坐标通过operater传进去使用
+        let operator = currFunc.operator || []; // 需要计算的坐标通过operater传进去使用
         for (let id = 0; id < operator.length; id++) {
             let item = operator[id];
             if (item.desc && item.desc.length > 3) {

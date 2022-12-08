@@ -66,7 +66,7 @@ export class Func014 implements InterfaceFunc {
 			[left, 1280, 720, 122, 660, 245, 682, 500]
 		]
 	}];
-	operatorFunc = function (thisScript: Script, thisOperator): boolean {
+	operatorFunc(thisScript: Script, thisOperator): boolean {
 		while (thisScript.oper({
 			name: '探索界面_判断',
 			operator: [{ desc: thisOperator[0].desc, retest: 500 }],

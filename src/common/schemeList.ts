@@ -1,8 +1,9 @@
 import _ from 'lodash';
 import funcList from './funcListIndex';
 import commonConfigArr from './commonConfig';
+import { InterfaceScheme } from '@/interface/InterfaceScheme';
 
-const SchemeList = [{
+const SchemeList: Array<InterfaceScheme> = [{
         id: 1,
         schemeName: '通用准备退出',
         star: true,

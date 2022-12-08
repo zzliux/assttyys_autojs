@@ -62,7 +62,7 @@ export class Func015 implements InterfaceFunc {
 			[left, 1280, 720, 149, 51, 185, 84, 0], // 16-1级标识到第二个中心区域的相对位置
 		]
 	}];
-	operatorFunc = function (thisScript: Script, thisOperator): boolean {
+	operatorFunc(thisScript: Script, thisOperator): boolean {
 		if (thisScript.oper({
 			name: '准备界面_判断',
 			operator: [{ desc: thisOperator[0].desc }]

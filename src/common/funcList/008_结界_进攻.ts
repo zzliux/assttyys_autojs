@@ -85,7 +85,7 @@ export class Func008 implements InterfaceFunc {
 			]
 		]
 	}];
-	operatorFunc = function (thisScript: Script, thisOperator) : boolean {
+	operatorFunc(thisScript: Script, thisOperator) : boolean {
 		if (!thisScript.oper({
 			name: '突破界面_暗_判断',
 			operator: [{ desc: thisOperator[1].desc }]

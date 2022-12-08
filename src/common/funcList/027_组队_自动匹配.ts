@@ -1,13 +1,15 @@
+import { InterfaceFunc } from "@/interface/InterfaceFunc";
+
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 27,
-	name: '组队_自动匹配',
-	desc: '在庭院中点击下方的组队按钮后点击排队按钮',
-	operator: [{
+export class Func027 implements InterfaceFunc {
+	id = 27;
+	name = '组队_自动匹配';
+	desc = '在庭院中点击下方的组队按钮后点击排队按钮';
+	operator = [{
 		desc: [1280,720,
 			[
 				//妖气自动匹配中的 图像
@@ -71,7 +73,7 @@ export default {
 		oper: [
 			[center, 1280, 720, 702, 601, 865, 650, 1000] //组队界面 自动匹配
 		]
-	}],
+	}]
 	// operatorFunc(thisScript, thisOperator) {
 	// 	if(!thisScript.oper({
 	// 		id: 27,
