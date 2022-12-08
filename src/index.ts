@@ -1,6 +1,6 @@
 import { fromEvent } from 'rxjs';
 import { effect$ } from "@auto.pro/core";
-import myFloaty from '@/system/myFloaty';
+import myFloaty from '@/system/MyFloaty';
 import webviewEvents from '@/system/webviewEvents';
 import InputHideUtil from '@/system/inputhideutil';
 

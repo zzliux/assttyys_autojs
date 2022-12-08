@@ -1,14 +1,67 @@
 import { similarity } from "@/common/tool";
 import drawFloaty from "./drawFloaty";
 
-export const ocr = {
+class OcrResult {
+    confidence: number;
+    label: string;
+    rotation: number;
+    points: Array<{x: number, y: number}>;
+    similar?: number | false;
+    constructor(confidence: number, label: string, rotation: number, points: Array<{x: number, y: number}>) {
+        this.confidence = confidence;
+        this.label = label;
+        this.rotation = rotation;
+        this.points = points;
+    }
+}
 
-    detector: null,
+class MlkitOcrDetector {
+    instance: any;
+    constructor() {
+        const MLKitOCR = $plugins.load('org.autojs.autojspro.plugin.mlkit.ocr');
+        this.instance = new MLKitOCR();
+    }
+    loadImage(bitmap: any): Array<OcrResult> {
+        const ajImg = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(bitmap);
+        console.time('ocr.detect');
+        const resultOrigin = this.instance.detect(ajImg);
+        console.timeEnd('ocr.detect');
+        ajImg.recycle();
+        const result = resultOrigin.map(item => {
+            return new OcrResult(item.confidence, item.text, item.rotation, [{
+                // 左上
+                x: item.bounds.left,
+                y: item.bounds.top
+            }, {
+                // 右上
+                x: item.bounds.right,
+                y: item.bounds.top
+            }, {
+                // 右下
+                x: item.bounds.right,
+                y: item.bounds.bottom
+            }, {
+                // 左下
+                x: item.bounds.left,
+                y: item.bounds.bottom
+            }]);
+        });
+        return result;
+    }
+}
+
+class MlkitOcr {
+
+    detector: MlkitOcrDetector;
+
+    constructor() {
+        this.detector = null;
+    }
 
     /**
      * 获取ocr是否安装
      */
-    isInstalled: function () {
+    isInstalled(): boolean {
         try { 
             $plugins.load('org.autojs.autojspro.plugin.mlkit.ocr');
         } catch (e) {
@@ -16,12 +69,12 @@ export const ocr = {
             return false;
         }
         return true;
-    },
+    }
 
     /**
      * 安装
      */
-    install: function (option) {
+    install(option: { failCallback: Function, successCallback: Function }): void {
         let self = this;
         if (app.autojs.versionCode < '9121400') {
             toastLog('软件版本过低，当前版本不支持ocr请安装新版');
@@ -72,9 +125,9 @@ export const ocr = {
                 option.failCallback();
             }
         });
-    },
+    }
 
-    prepare: function () {
+    prepare(): MlkitOcrDetector {
         function detectOcr () {
             const MLKitOCR = $plugins.load('org.autojs.autojspro.plugin.mlkit.ocr');
             const instacne = new MLKitOCR();
@@ -117,13 +170,13 @@ export const ocr = {
         } catch (e) {
             return null;
         }
-    },
+    }
 
-    findText(getBmpFunc, text, timeout, region, textMatchMode) {
-        this.findTextByOcr(this.detector, getBmpFunc, text, timeout, region, textMatchMode);
-    },
+    findText(getBmpFunc: Function, text: string, timeout: number, region: Array<number>, textMatchMode: '包含' | '模糊'): Array<OcrResult> {
+        return this.findTextByOcr(this.detector, getBmpFunc, text, timeout, region, textMatchMode);
+    }
 
-    findTextByOcr(detector, getBmpFunc, text, timeout, region, textMatchMode) {
+    findTextByOcr(detector: MlkitOcrDetector, getBmpFunc: Function, text: string, timeout: number, region: Array<number>, textMatchMode: '包含' | '模糊'): Array<OcrResult> {
         const startTime = new Date().getTime();
         while (true) {
             let bmp = getBmpFunc();
@@ -153,9 +206,9 @@ export const ocr = {
                 return [];
             }
         }
-    },
+    }
 
-    findTextByOcrResult (text, ocrResult, textMatchMode, similarityRatio) {
+    findTextByOcrResult (text, ocrResult: Array<OcrResult>, textMatchMode, similarityRatio?): Array<OcrResult> {
         let res = [];
         let toDraw = [];
         if (textMatchMode === '包含') {
@@ -185,3 +238,5 @@ export const ocr = {
         return res;
     }
 }
+
+export const ocr = new MlkitOcr();

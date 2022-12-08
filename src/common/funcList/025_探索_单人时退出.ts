@@ -1,13 +1,14 @@
+import { InterfaceFunc } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 25,
-	name: '探索_单人时退出',
-	desc: '探索小怪界面时，若只有自己一个人在里面，则退出',
-	operator: [{
+export class Func025 implements InterfaceFunc {
+	id = 25;
+	name = '探索_单人时退出';
+	desc = '探索小怪界面时，若只有自己一个人在里面，则退出';
+	operator = [{
 		desc: [1280, 720, // 组队匹配上了的话就不做任何操作
 			[
 				[left, 38, 65, 0xf1f5fb],

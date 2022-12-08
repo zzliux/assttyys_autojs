@@ -1,11 +1,11 @@
 import { webview } from "@/system";
 import drawFloaty from '@/system/drawFloaty';
-import myFloaty from '@/system/myFloaty';
+import myFloaty from '@/system/MyFloaty';
 import { storeCommon } from '@/system/store';
 import { getInstalledPackages, requestMyScreenCapture } from '@/common/toolAuto';
 import { isRoot } from "@auto.pro/core";
 import helperBridge from '@/system/helperBridge';
-import { ocr } from '@/system/mlkitOcr';
+import { ocr } from '@/system/MlkitOcr';
 
 
 export default function webviewSettigns() {

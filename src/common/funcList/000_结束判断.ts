@@ -1,5 +1,5 @@
 import { Script } from '@/system/script';
-import { InterfaceFunc } from '../interface/InterfaceFunc';
+import { InterfaceFunc } from '../../interface/InterfaceFunc';
 
 export class Func000 implements InterfaceFunc {
 	id = 0;

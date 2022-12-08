@@ -3,15 +3,13 @@ import FloatButton from '@/system/FloatButton/FloatButton';
 import schemeDialog from '@/system/schemeDialog';
 import script from '@/system/script';
 
-
-
 /**
  * 悬浮按钮，对大柒的悬浮按钮进行封装
  */
-const myFloaty = {
-    fb: null,
-    runEventFlag: false,
-    init: function () {
+class MyFloaty {
+    fb: any;
+    runEventFlag: boolean = false;
+    init() {
         if (this.fb) return;
         let self = this;
         this.fb = new FloatButton();
@@ -39,7 +37,7 @@ const myFloaty = {
                 return false;
             });
 
-        
+
 
         let runStopItem = this.fb.addItem('RunStop');
         //启用复选框属性
@@ -76,14 +74,14 @@ const myFloaty = {
             //点击事件
             .onClick((view, name) => {
                 script.stop();
-                schemeDialog.show(myFloaty);
+                schemeDialog.show(this);
                 self.runEventFlag = false;
                 return false;
             });
 
         this.fb.addItem('SchemeAutoRun')
             .setIcon('@drawable/ic_playlist_play_black_48dp')
-            
+
             //图标着色
             .setTint('#FFFFFF')
             //背景颜色
@@ -127,28 +125,28 @@ const myFloaty = {
             });
         });
 
-        this.thisRun = function(type) {
-            type = type || 'run';
-            if (app.autojs.versionCode >= 8081200) {
-                // @ts-ignore
-                let capOpt = images.getScreenCaptureOptions();
-                if (null == capOpt) {
-                    // 通过报错来切换图标状态
-                    script[type](myFloaty);
-                    toastLog('无截图权限');
-                } else {
-                    script[type](myFloaty);
-                }
+        
+    }
+    thisRun(type?: string) {
+        type = type || 'run';
+        if (app.autojs.versionCode >= 8081200) {
+            // @ts-ignore
+            let capOpt = images.getScreenCaptureOptions();
+            if (null == capOpt) {
+                // 通过报错来切换图标状态
+                script[type](this);
+                toastLog('无截图权限');
             } else {
-                script[type](myFloaty);
+                script[type](this);
             }
-        }
-
-        this.thisStop = function() {
-            script.stop();
+        } else {
+            script[type](this);
         }
     }
-};
 
+    thisStop() {
+        script.stop();
+    }
+}
 
-export default myFloaty;
+export default new MyFloaty();

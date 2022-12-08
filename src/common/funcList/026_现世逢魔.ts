@@ -1,13 +1,15 @@
+import { Script } from '@/system/script';
+import { InterfaceFunc } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 26,
-	name: '现世逢魔',
-	desc: '逢魔界面点击右下角的图标后点击右侧相关事件图标',
-	operator: [{
+export class Func026 implements InterfaceFunc {
+	id = 26;
+	name = '现世逢魔';
+	desc = '逢魔界面点击右下角的图标后点击右侧相关事件图标';
+	operator = [{
 		desc: [1280, 720,
 			[[left, 19, 700, 0x3c3841],
 			[left, 42, 46, 0xc3cbdf],
@@ -105,8 +107,8 @@ export default {
 		oper: [
 			[left, 1280, 720, 31, 24, 71, 70, 1000]	// 返回
 		]
-	}],
-	operatorFunc(thisScript, thisOperator) {
+	}];
+	operatorFunc(thisScript: Script, thisOperator): boolean {
 		if (thisScript.oper({
 			name: '现世逢魔_界面判断',
 			operator: [{ desc: thisOperator[0].desc }]

@@ -1,34 +1,14 @@
 import { getWidthPixels } from "@auto.pro/core";
 import Bezier from 'bezier-js';
 
-function MyAutomator(tapType, dirctionReverse?) {
-    let self = this;
-    this.tapType = { '无障碍': 0, 'RootAutomator': 1, 'Shell': 2, 'Root': 3 }[tapType]; // 0 无障碍， 1 RootAutomator， 2 Shell， 3 普通Root
-    console.log(`初始化automator：${tapType}`);
-    this.dirctionReverse = dirctionReverse;
-    if (this.tapType == 0) {
-    } else if (this.tapType == 1) {
-        let thd = threads.start(function () {
-            // @ts-ignore
-            self.RA = new RootAutomator();
-        });
-        // 5秒无响应直接杀死
-        setTimeout(() => {
-            if (thd.isAlive()) {
-                thd.interrupt();
-                toastLog('RootAutomator初始化失败，可能是环境不支持');
-            }
-        },5000)
-    } else if (this.tapType == 2) {
-        // @ts-ignore
-        this.shell = new Shell(true);
-    } else if (this.tapType == 3) {
-        // none
-    }
-}
+class MyAutomator {
 
-MyAutomator.prototype = {
-    setTapType: function(tapType) {
+    tapType: number;
+    dirctionReverse: boolean;
+    RA: any;
+    shell: any;
+
+    setTapType(tapType: 0 | 1 | 2 | 3): void {
         this.tapType = { '无障碍': 0, 'RootAutomator': 1, 'Shell': 2, 'Root': 3 }[tapType]; // 0 无障碍， 1 RootAutomator， 2 Shell， 3 普通Root
         console.log(`修改automator：${tapType}：${this.tapType}`);
         let self = this;
@@ -51,8 +31,9 @@ MyAutomator.prototype = {
         } else if (this.tapType == 3) {
             // none
         }
-    },
-    press: function (x, y, delay) {
+    }
+
+    press(x: number, y: number, delay: number): void {
         if (this.dirctionReverse) {
             let dm = context.getResources().getDisplayMetrics();
             let wm = context.getSystemService(context.WINDOW_SERVICE);
@@ -70,9 +51,9 @@ MyAutomator.prototype = {
         } else if (this.tapType == 3) {
             Tap(x, y); // 忽略点击时长, 官方不支持
         }
-    },
+    }
 
-    swipe: function (x0, y0, x1, y1, delay) {
+    swipe(x0: number, y0: number, x1: number, y1: number, delay: number): void {
         if (this.dirctionReverse) {
             let dm = context.getResources().getDisplayMetrics();
             let wm = context.getSystemService(context.WINDOW_SERVICE);
@@ -96,12 +77,12 @@ MyAutomator.prototype = {
         } else if (this.tapType == 3) {
             Swipe(x0, y0, x1, y1, delay);
         }
-    },
+    }
 
-    gesture: gesture,
+    gesture = gesture;
 
     // helperBridge过来的
-    regionBezierSwipe(transedOperS, transedOperE, duration, randomSleep, type) {
+    regionBezierSwipe(transedOperS: Array<number>, transedOperE: Array<number>, duration: Array<number>, randomSleep: number, type: number): void {
         const time = random(duration[0], duration[1])
         // swipe(
         //     random(transedOperS[0], transedOperS[2]), // x1
@@ -166,7 +147,32 @@ MyAutomator.prototype = {
         this.gesture(time, ...points);
         sleep(time + random(0, randomSleep));
     }
-};
 
+    constructor(tapType: number, dirctionReverse?: boolean) {
+        let self = this;
+        this.tapType = { '无障碍': 0, 'RootAutomator': 1, 'Shell': 2, 'Root': 3 }[tapType]; // 0 无障碍， 1 RootAutomator， 2 Shell， 3 普通Root
+        console.log(`初始化automator：${tapType}`);
+        this.dirctionReverse = dirctionReverse;
+        if (this.tapType == 0) {
+        } else if (this.tapType == 1) {
+            let thd = threads.start(function () {
+                // @ts-ignore
+                self.RA = new RootAutomator();
+            });
+            // 5秒无响应直接杀死
+            setTimeout(() => {
+                if (thd.isAlive()) {
+                    thd.interrupt();
+                    toastLog('RootAutomator初始化失败，可能是环境不支持');
+                }
+            },5000)
+        } else if (this.tapType == 2) {
+            // @ts-ignore
+            this.shell = new Shell(true);
+        } else if (this.tapType == 3) {
+            // none
+        }
+    }
+}
 
 export default MyAutomator;

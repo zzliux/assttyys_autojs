@@ -4,7 +4,7 @@ import funcList from '@/common/funcListIndex';
 import defaultSchemeList from '@/common/schemeList';
 import helperBridge from '@/system/helperBridge';
 import multiColor from '@/common/multiColors';
-import { ocr } from '@/system/mlkitOcr';
+import { ocr } from '@/system/MlkitOcr';
 import { setCurrentScheme } from '@/common/tool';
 import { getWidthPixels, getHeightPixels } from "@auto.pro/core";
 import _ from 'lodash';

@@ -1,12 +1,14 @@
+import { InterfaceFunc } from "@/interface/InterfaceFunc";
+
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 24,
-	name: '获得奖励确认',
-	operator: [{
+export class Func024 implements InterfaceFunc {
+	id = 24;
+	name = '获得奖励确认';
+	operator = [{
 		desc: [1280,720, // 奖励只有1排
 			[[center,424,328,0xbfa88f],
 			[center,408,237,0x382a1c],
@@ -45,5 +47,4 @@ export default {
 			[left, 1280, 720, 69, 171, 170, 452, 500]
 		]
 	}]
-	// 预留id 25: 现世逢魔 26:寻找首领 27:挑战首领 28:4次现式逢魔奖励
 }
