@@ -364,6 +364,9 @@ export const versionList = [{
 }, {
     version: '20221204_02',
     desc: '尝试修复：六道萤草开新局时计数与计次不重置的问题'
+}, {
+    version: '20221208_01',
+    desc: '修复：调整式神寄养方案，寮活动方案与登录方案，适配新版本（horsemi）'
 }];
 
 export default versionList[versionList.length - 1].version;
