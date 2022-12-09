@@ -6,7 +6,7 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func004 implements InterfaceFunc {
+export class Func003 implements InterfaceFunc {
 	id = 3;
 	name = '悬赏协作';
 	config = [{
@@ -56,4 +56,4 @@ export class Func004 implements InterfaceFunc {
 }
 
 
-export default new Func004();
+export default new Func003();

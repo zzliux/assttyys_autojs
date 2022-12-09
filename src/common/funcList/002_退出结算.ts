@@ -5,7 +5,7 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func003 implements InterfaceFunc {
+export class Func002 implements InterfaceFunc {
 	id = 2;
 	name = '退出结算';
 	desc = '';
@@ -290,4 +290,4 @@ export class Func003 implements InterfaceFunc {
 	}];
 }
 
-export default new Func003();
+export default new Func002();

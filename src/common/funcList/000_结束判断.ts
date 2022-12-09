@@ -12,7 +12,6 @@ export class Func000 implements InterfaceFunc {
 			desc: '是否启用',
 			type: 'switch',
 			default: true,
-			value: null,
 		}, {
 			name: 'jspd_times_longtime_nodo',
 			desc: '多少分钟后停止脚本',
@@ -26,7 +25,6 @@ export class Func000 implements InterfaceFunc {
 			desc: '是否启用',
 			type: 'switch',
 			default: false,
-			value: null,
 		}, {
 			name: 'jspd_times_zjsj',
 			desc: '执行时间(min)',
@@ -45,7 +43,6 @@ export class Func000 implements InterfaceFunc {
 			desc: '是否启用',
 			type: 'switch',
 			default: false,
-			value: null,
 		}, {
 			name: 'jspd_times_1',
 			desc: '执行次数',
@@ -59,7 +56,6 @@ export class Func000 implements InterfaceFunc {
 			desc: '是否启用',
 			type: 'switch',
 			default: false,
-			value: null,
 		}, {
 			name: 'jspd_times_2',
 			desc: '执行次数',
