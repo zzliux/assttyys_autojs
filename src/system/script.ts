@@ -7,7 +7,6 @@ import multiColor from '@/common/multiColors';
 import { ocr } from '@/system/MlkitOcr';
 import { setCurrentScheme } from '@/common/tool';
 import { getWidthPixels, getHeightPixels } from "@auto.pro/core";
-import _ from 'lodash';
 import schemeDialog from './schemeDialog';
 import drawFloaty from '@/system/drawFloaty';
 import { myToast, doOspPush } from '@/common/toolAuto';
@@ -430,7 +429,7 @@ export class Script {
         let self = this;
         self.keepScreen(false);
         threads.start(function () {
-            let staredSchemeList = _.filter(store.get('schemeList', defaultSchemeList), item => {
+            let staredSchemeList = store.get('schemeList', defaultSchemeList).filter(item => {
                 return item.star //&& item.id != 99;
             });
             let canRunSchemeList = [];

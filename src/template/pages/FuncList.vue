@@ -87,10 +87,10 @@ import { Col, Row, Switch, Icon, Button, Picker, Loading } from "vant";
 import draggable from 'vuedraggable'
 import dfuncList from "../../common/funcListIndex";
 import dCommonConfig from "../../common/commonConfig";
-import _ from 'lodash';
 import funcConfigBox from '../components/FuncConfigBox.vue';
 import funcConfigDialog from '../components/FuncConfigDialog.vue';
 import appListLauchDialog from '../components/AppListLaunchDialog.vue';
+import { merge } from '@/common/tool';
 
 Vue.use(Col);
 Vue.use(Row);
@@ -159,7 +159,7 @@ export default {
     schemeConfig.list.forEach(id => {
       for (let funcOrigin of dfuncList) {
         if (funcOrigin.id === id) {
-          let item = _.cloneDeep(funcOrigin);
+          let item = merge({}, funcOrigin);
           if (!item.config) {
             item.config = [];
           }
@@ -185,7 +185,7 @@ export default {
     // 未启用的功能
     let toAppend = [];
     dfuncList.forEach(item => {
-      item = _.cloneDeep(item);
+      item = merge({}, item);
       let flag = true;
       for (let singleFl of fl) {
         if (item.id === singleFl.id) {
@@ -209,7 +209,7 @@ export default {
     this.funcList = [...fl, ...toAppend];
 
     // 公共配置
-    let cc = _.cloneDeep(dCommonConfig);
+    let cc = merge([], dCommonConfig);
     cc.forEach(item => {
       if (!item.config) {
         item.config = [];
@@ -239,7 +239,7 @@ export default {
     reSort() {
       let list = [[], []];
       this.funcList.forEach((item) => {
-        list[+item.checked + 0].push(item);
+        list[+!!item.checked].push(item);
       });
       this.funcList = [...list[1], ...list[0]];
     },

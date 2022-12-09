@@ -80,10 +80,10 @@
 import Vue from "vue";
 import { NavBar, Cell, CellGroup, Icon, Switch, Popup, Picker, Field, Dialog, Notify, SwipeCell, Button } from "vant";
 import schedule from 'node-schedule';
-import _ from "lodash";
 
 import { mergeScheduleList } from "../../../common/toolWeb";
 import dScheduleList from '../../../common/scheduleList'
+import { merge } from '@/common/tool';
 
 const scheduleDefaultFormData = {
   id: NaN,
@@ -248,7 +248,7 @@ export default {
     },
     addScheduleClickEvent() {
       this.scheduleNameInputType = 'add';
-      this.addScheduleForm = _.clone(scheduleDefaultFormData);
+      this.addScheduleForm = merge({}, scheduleDefaultFormData);
       this.scheduleNameInputShow = true;
     },
     addScheme(scheduleData, callback) {
@@ -258,7 +258,7 @@ export default {
     },
     scheduleNameInputBeforeClose(action, done) {
       if ('cancel' === action) {
-        this.addScheduleForm = _.clone(scheduleDefaultFormData);
+        this.addScheduleForm = merge({}, scheduleDefaultFormData);
         this.swipeCellCurrentAction = null;
         done(true);
       } else {
@@ -277,18 +277,18 @@ export default {
             }
           }
           this.addScheme(
-            _.cloneDeep(this.addScheduleForm)
+            merge({}, this.addScheduleForm)
           );
           this.swipeCellCurrentAction = null;
           done(true);
-          this.addScheduleForm = _.clone(scheduleDefaultFormData);
+          this.addScheduleForm = merge({}, scheduleDefaultFormData);
         } else if ('modify' === this.scheduleNameInputType) {
           this.scheduleList[this.swipeCellCurrentIndex] = this.addScheduleForm;
           this.saveScheduleList();
           AutoWeb.autoPromise('toast', '修改成功');
           this.swipeCellCurrentAction = null;
           done(true);
-          this.addScheduleForm = _.clone(scheduleDefaultFormData);
+          this.addScheduleForm = merge({}, scheduleDefaultFormData);
         }
       }
     },

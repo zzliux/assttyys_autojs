@@ -145,7 +145,6 @@
 import Vue from "vue";
 import { Cell, CellGroup, Icon, Button, Dialog, Field, Notify, Switch, Loading, Picker } from "vant";
 import appListDialog from '../components/AppListRefDialog.vue';
-import _ from "lodash";
 
 Vue.use(Cell);
 Vue.use(CellGroup);

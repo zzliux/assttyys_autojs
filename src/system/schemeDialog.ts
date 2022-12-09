@@ -1,14 +1,12 @@
 import store, { storeCommon } from '@/system/store';
 import defaultSchemeList from '@/common/schemeList';
-// import { mergeSchemeList } from '@/common/tool';
-import _ from 'lodash';
 
 /**
  * 点击方案列表按钮的dialog，选择弹窗，点击方案后切换至该方案，若配置切换方案后直接运行则是切换方案并运行
  */
 export default {
     show(myfloaty, schemeList?) {
-        let staredSchemeList = schemeList || _.filter(store.get('schemeList', defaultSchemeList), item => {
+        let staredSchemeList = schemeList || store.get('schemeList', defaultSchemeList).filter(item => {
             return item.star //&& item.id != 99;
         });
         if (staredSchemeList.length === 0) {
@@ -16,7 +14,7 @@ export default {
             return;
         }
         threads.start(function () {
-            dialogs.select('选择方案', _.map(staredSchemeList, item => {
+            dialogs.select('选择方案', staredSchemeList.map(item => {
                 return item.schemeName
             }), i => {
                 if (i < 0) return; // 取消

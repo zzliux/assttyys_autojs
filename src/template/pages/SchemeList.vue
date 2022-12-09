@@ -157,7 +157,7 @@ import draggable from "vuedraggable";
 import { mergeSchemeList } from "../../common/toolWeb";
 import dSchemeList from "../../common/schemeList";
 import groupColor from "../../common/groupColors";
-import _ from "lodash";
+import { merge } from '@/common/tool';
 
 Vue.use(Cell);
 Vue.use(SwipeCell);
@@ -295,7 +295,7 @@ export default {
           } else if ('copy' === this.swipeCellCurrentAction) {
             this.schemeNameInputType = 'copy';
             this.schemeNameInputShow = true;
-            this.newScheme = _.cloneDeep(this.schemeList[this.swipeCellCurrentIndex]);
+            this.newScheme = merge({}, this.schemeList[this.swipeCellCurrentIndex]);
             this.newSchemeName = this.newScheme.schemeName;
             this.newGroupName = this.newScheme.groupName;
           } else if ('modify' === this.swipeCellCurrentAction) {

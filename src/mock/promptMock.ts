@@ -1,5 +1,4 @@
 import { versionList } from '../common/version';
-import _ from 'lodash';
 
 const promptMockData = {
     getScheme: function (schemeName) {

@@ -80,7 +80,6 @@
 <script>
 import Vue from "vue";
 import { Cell, CellGroup, Icon, Button, Dialog, Field, Notify, Switch, Loading } from "vant";
-import _ from "lodash";
 
 Vue.use(Cell);
 Vue.use(CellGroup);

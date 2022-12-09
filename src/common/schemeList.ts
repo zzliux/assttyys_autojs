@@ -1,7 +1,7 @@
-import _ from 'lodash';
 import funcList from './funcListIndex';
 import commonConfigArr from './commonConfig';
 import { InterfaceScheme } from '@/interface/InterfaceScheme';
+import { merge } from './tool';
 
 const SchemeList: InterfaceScheme[] = [{
         id: 1,
@@ -486,7 +486,7 @@ SchemeList.forEach((item, id) => {
             thisConfig[funcId] = allConfig[funcId];
         }
     });
-    SchemeList[id] = _.merge({}, {
+    SchemeList[id] = merge({}, {
         id: id + 1,
         schemeName: '未命名',
         inner: true,

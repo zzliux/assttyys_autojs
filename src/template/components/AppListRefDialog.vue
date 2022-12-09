@@ -83,7 +83,7 @@ export default {
       this.dialogShow = false
     },
     async save() {
-      let toSave = _.map(_.filter(this._props.appList, item => item.referred), item => item.packageName);
+      let toSave = this._props.appList.filter(item => item.referred).map(item => item.packageName);
       await AutoWeb.autoPromise('saveToSetDefaultLaunchAppList', toSave);
       this.dialogShow = false
       await AutoWeb.autoPromise('toast', '保存成功');
