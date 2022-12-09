@@ -1,14 +1,14 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 505,
-	name: '庭院进入寮会神社',
-	desc: '庭院进入寮会神社_判断',
-	checked: false,
-	operator: [{
+export class Func505 implements InterfaceFunc {
+	id = 505;
+	name = '庭院进入寮会神社';
+	desc = '庭院进入寮会神社_判断';
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		// 在庭院打开菜单
 		desc: [1280, 720,
 			[[right, 1211, 606, 0x885f46],

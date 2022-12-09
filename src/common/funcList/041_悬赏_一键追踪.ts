@@ -1,13 +1,13 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 41,
-	name: '悬赏_一键追踪',
-	checked: false,
-	operator: [{
+export class Func041 implements InterfaceFunc {
+	id = 41;
+	name = '悬赏_一键追踪';
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[center, 596, 77, 0xd7cfbd],

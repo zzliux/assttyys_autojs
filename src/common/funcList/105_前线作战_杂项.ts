@@ -1,12 +1,13 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 105,
-	name: '前线作战_杂项',
-	operator: [{
+export class Func105 implements InterfaceFunc {
+	id = 105;
+	name = '前线作战_杂项';
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		// 前线作战_决战团体战
 		desc: [1280,720,
 			[[right,1202,682,0x36354e],
@@ -102,5 +103,5 @@ export default {
 		oper: [
 			[center, 1280, 720, 220,144, 1273,334, 1000]
 		]
-	}],
+	}]
 }

@@ -1,13 +1,13 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 1004,
-	name: '宴会_奖励弹窗关闭',
-	checked: false,
-	operator: [{
+export class Func1004 implements InterfaceFunc {
+	id = 1004;
+	name = '宴会_奖励弹窗关闭';
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		// 吃宴会只有经验奖励
 		desc: [1280, 720,
 			[
@@ -57,5 +57,5 @@ export default {
 		oper: [
 			[left, 1280, 720, 406, 551, 976, 608, 1000],
 		]
-	}],
+	}]
 }

@@ -1,13 +1,13 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 46,
-	name: '悬赏_领取任务奖励',
-	checked: false,
-	operator: [{
+export class Func046 implements InterfaceFunc {
+	id = 46;
+	name = '悬赏_领取任务奖励';
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[left, 45, 60, 0xeff5fb],
@@ -21,7 +21,7 @@ export default {
 		oper: [
 			[left, 1280, 720, 0, 0, 42, 51, 2000],
 		]
-	}],
+	}];
 	operatorFunc(thisScript, thisOperator) {
 		if (thisScript.oper({
 				name: '悬赏_探索界面',

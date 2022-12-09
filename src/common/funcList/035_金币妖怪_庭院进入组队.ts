@@ -1,13 +1,14 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 35,
-	name: '金币妖怪_庭院进入组队 ',
-	desc: '从庭院进入组队界面（请提前手动打开buff）',
-	operator: [{
+export class Func035 implements InterfaceFunc {
+	id = 35;
+	name = '金币妖怪_庭院进入组队 ';
+	desc = '从庭院进入组队界面（请提前手动打开buff）';
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		// 庭院未打开菜单
 		desc: [1280, 720,
 			[[right, 1211, 606, 0x885f46],
@@ -43,5 +44,5 @@ export default {
 		oper: [
 			[left, 1280, 720, 427, 619, 486, 683, 1000]
 		]
-	}],
+	}]
 }

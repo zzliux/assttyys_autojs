@@ -1,13 +1,13 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 51,
-	name: '绿标',
-	desc: '战斗界面标记我方式神',
-	checked: false,
+export class Func051 implements InterfaceFunc {
+	id = 51;
+	name = '绿标';
+	desc = '战斗界面标记我方式神';
 	config: [{
 		desc: '绿标',
 		config: [{
@@ -38,8 +38,8 @@ export default {
 			type: 'switch',
 			default: false,
 		}]
-	}],
-	operator: [{
+	}];
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		// 开始战斗后的场景
 		desc: [1280, 720,
 			[
@@ -82,7 +82,7 @@ export default {
 				[center, 373, 700, 0x241818],
 			]
 		]
-	}],
+	}];
 	operatorFunc(thisScript, thisOperator) {
 		let thisconf = thisScript.scheme.config['51'];
 

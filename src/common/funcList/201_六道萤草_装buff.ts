@@ -1,13 +1,14 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 201,
-	name: '六道萤草_装buff',
-	// desc: '腐草为萤-5级，妖力化身-2级，六道净化-1级，萤火之光-最好5级',
-	operator: [{
+export class Func201 implements InterfaceFunc {
+	id = 201;
+	name = '六道萤草_装buff';
+	// desc: '腐草为萤-5级，妖力化身-2级，六道净化-1级，萤火之光-最好5级';
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		// 事件
 		desc: [1280, 720,
 			[
@@ -109,7 +110,7 @@ export default {
 		oper: [
 			[left, 1280, 720, 13, 17, 61, 63, 1000], // 左上角退出
 		]
-	}],
+	}];
 	operatorFunc(thisScript, thisOperator) {
 
 		// 事件

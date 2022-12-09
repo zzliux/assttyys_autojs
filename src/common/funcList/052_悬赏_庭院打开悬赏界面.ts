@@ -1,12 +1,12 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 52,
-	name: '悬赏_庭院打开悬赏界面',
-	desc: '用于其他方案转悬赏方案中转，如金币妖怪转悬赏',
-	checked: false,
+export class Func052 implements InterfaceFunc {
+	id = 52;
+	name = '悬赏_庭院打开悬赏界面';
+	desc = '用于其他方案转悬赏方案中转，如金币妖怪转悬赏';
 	config: [{
 		desc: '结束后切换方案',
 		config: [{
@@ -20,8 +20,8 @@ export default {
 			type: 'scheme',
 			default: '悬赏',
 		}]
-	}],
-	operator: [{
+	}];
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		// 庭院
 		desc: [1280, 720,
 			[
@@ -51,7 +51,7 @@ export default {
 		oper: [
 			[left, 1280, 720, 1120, 587, 1180, 645, 1000]
 		]
-	}],
+	}];
 	operatorFunc(thisScript, thisOperator) {
 		if (thisScript.oper({
 				name: '悬赏_庭院界面',

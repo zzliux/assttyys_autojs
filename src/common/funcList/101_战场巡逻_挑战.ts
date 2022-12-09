@@ -1,13 +1,14 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 101,
-	name: '战场巡逻_挑战',
-	desc: '连续执行5次后未开始，脚本将自动停止',
-	operator: [{
+export class Func101 implements InterfaceFunc {
+	id = 101;
+	name = '战场巡逻_挑战';
+	desc = '连续执行5次后未开始，脚本将自动停止';
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		// 开始巡逻
 		desc: [1280,720,
 			[[right,1134,614,0xdbd5d3],
@@ -59,7 +60,7 @@ export default {
 		oper: [
 			[right, 1280, 720, 1106,575, 1202,664, 1000]
 		]
-	}],
+	}];
 	operatorFunc(thisScript, thisOperator) {
 		let curCnt = 0;
 		let maxCount = 5;

@@ -1,13 +1,14 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 202,
-	name: '六道萤草_选buff',
-	desc: '腐草为萤-5级，妖力化身-2级，六道净化-1级，萤火之光-最好5级',
+export class Func202 implements InterfaceFunc {
+	id = 202;
+	name = '六道萤草_选buff';
+	desc = '腐草为萤-5级，妖力化身-2级，六道净化-1级，萤火之光-最好5级';
 	config: [{
 		desc: '设置各buff初始数量，用于中途开始时的调整',
 		config: [{
@@ -46,8 +47,8 @@ export default {
 			default: '腐草为萤,妖力化身,六道净化,萤火之光',
 			value: null,
 		}]
-	}],
-	operator: [{
+	}];
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		// 首次进入选buff
 		desc: [1280, 720,
 			[
@@ -107,7 +108,7 @@ export default {
 		oper: [
 			[right, 1280, 720, 913, 129, 1245, 648, 500],
 		]
-	}],
+	}];
 	operatorFunc(thisScript: Script, thisOperator): boolean {
 		const thisconf = thisScript.scheme.config['202'];
 		if (!thisScript.global.d6d) {

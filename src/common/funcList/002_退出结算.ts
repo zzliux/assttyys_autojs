@@ -1,4 +1,4 @@
-import { InterfaceFunc } from "@/interface/InterfaceFunc";
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from "@/interface/InterfaceFunc";
 
 const normal = -1; //定义常量
 const left = 0;
@@ -10,7 +10,7 @@ export class Func002 implements InterfaceFunc {
 	name = '退出结算';
 	desc = '';
 	config = [];
-	operator = [{
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		// 已打开的达摩，取点比较高
 		desc: [1280, 720,
 			[

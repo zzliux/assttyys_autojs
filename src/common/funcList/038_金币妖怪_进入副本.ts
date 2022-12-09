@@ -1,12 +1,13 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 38,
-	name: '金币妖怪_进入副本 ',
-	operator: [{
+export class Func038 implements InterfaceFunc {
+	id = 38;
+	name = '金币妖怪_进入副本 ';
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[right, 1211, 692, 0xfbab4a],
@@ -26,7 +27,7 @@ export default {
 		oper: [
 			[center, 1280, 720, 1186, 608, 1253, 679, 2000],
 		]
-	}],
+	}];
 	operatorFunc(thisScript, thisOperator) {
 		// 判断是不是组队界面并且判断队伍是否有人
 		if (thisScript.oper({

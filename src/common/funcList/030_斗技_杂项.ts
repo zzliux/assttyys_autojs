@@ -1,13 +1,15 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from "@/interface/InterfaceFunc";
+
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 30,
-	name: '斗技_杂项',
-	desc: '斗技界面点击“战”按钮，自动跳过结算拔得头筹，自动跳过段位提升等',
-	operator: [{
+export class Fun030 implements InterfaceFunc {
+	id = 30;
+	name = '斗技_杂项';
+	desc = '斗技界面点击“战”按钮，自动跳过结算拔得头筹，自动跳过段位提升等';
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		desc: [1280,720,
 			[[left,36,25,0xf7e8a9],
 			[right,1210,82,0x725942],

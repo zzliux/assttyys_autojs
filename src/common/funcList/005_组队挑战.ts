@@ -1,5 +1,5 @@
 import { Script } from "@/system/script";
-import { InterfaceFunc } from "@/interface/InterfaceFunc";
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from "@/interface/InterfaceFunc";
 
 const normal = -1; //定义常量
 const left = 0;
@@ -21,7 +21,7 @@ export class Func005 implements InterfaceFunc {
 			value: null,
 		}]
 	}];
-	operator = [{
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[left, 43, 37, 0xf5e6a8],

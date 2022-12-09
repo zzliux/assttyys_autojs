@@ -1,12 +1,13 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 503,
-	name: '返回庭院界面',
-	desc: '支持从探索地图退出至探索地图庭院界面',
-	operator: [{
+export class Func503 implements InterfaceFunc {
+	id = 503;
+	name = '返回庭院界面';
+	desc = '支持从探索地图退出至探索地图庭院界面';
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		// 探索地图
 		desc: [1280, 720,
 			[[left, 53, 61, 0xe7edfc],
@@ -123,7 +124,7 @@ export default {
 				[center, 389, 65, 0xfbc573],
 				[right, 1228, 646, 0xd6c6c3]]
 			]
-	}],
+	}];
 	operatorFunc(thisScript, thisOperator) {
 		let thisConf = thisScript.scheme.config['503'];
 

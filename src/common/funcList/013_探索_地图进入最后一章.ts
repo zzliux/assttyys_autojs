@@ -1,5 +1,5 @@
 import { Script } from '@/system/script';
-import { InterfaceFunc } from '../../interface/InterfaceFunc';
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -10,7 +10,7 @@ export class Func013 implements InterfaceFunc {
 	name = '探索_地图进入最后一章';
 	desc = '在地图界面时，点击最后一章进行挑战';
 	checked = false;
-	operator = [{
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[left, 45, 60, 0xeff5fb],

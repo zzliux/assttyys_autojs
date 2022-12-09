@@ -1,14 +1,14 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 999,
-	name: '式神育成',
-	desc: '打开阴阳寮式神育成页面',
-	checked: false,
-	operator: [{
+export class Func999 implements InterfaceFunc {
+	id = 999;
+	name = '式神育成';
+	desc = '打开阴阳寮式神育成页面';
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		// 在首页打开菜单
 		desc: [1280, 720,
 			[[right, 1211, 606, 0x885f46],

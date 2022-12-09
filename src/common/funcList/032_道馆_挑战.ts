@@ -1,12 +1,14 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 32,
-	name: '道馆_挑战',
-	operator: [{	// 检测_挑战是否可用
+export class Func032 implements InterfaceFunc {
+	id = 32;
+	name = '道馆_挑战';
+	operator: InterfaceFuncOperatorOrigin[] = [{	// 检测_挑战是否可用
 		desc: [1280, 720,
 			[[left, 64, 482, 0x291522],
 			[left, 33, 38, 0xd7c5a2],
@@ -55,8 +57,8 @@ export default {
 				[center, 636, 448, 0xf8f3e0]
 			]
 		]
-	}],
-	operatorFunc(thisScript, thisOperator) {
+	}];
+	operatorFunc(thisScript: Script, thisOperator): boolean {
 		let thisConf = thisScript.scheme.config['32'];
 
 		if (thisScript.oper({

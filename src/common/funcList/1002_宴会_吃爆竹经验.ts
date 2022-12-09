@@ -1,13 +1,13 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 1002,
-	name: '宴会_吃爆竹经验',
-	checked: false,
-	operator: [{
+export class Func1002 implements InterfaceFunc {
+	id = 1002;
+	name = '宴会_吃爆竹经验';
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[center, 484, 36, 0x493428],
@@ -22,7 +22,7 @@ export default {
 		oper: [
 			[left, 1280, 720, 529, 688, 744, 706, 2000],
 		]
-	}],
+	}];
 	operatorFunc(thisScript, thisOperator) {
 		if (thisScript.oper({
 				name: '宴会_吃饭界面',

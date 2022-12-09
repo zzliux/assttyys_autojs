@@ -1,13 +1,15 @@
+import { Script } from '@/system/script';
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 29,
-	name: '庭院进入探索地图',
-	desc: '请使用默认庭院皮肤，启用该功能后在庭院下会自动进入探索地图界面',
-	operator: [{
+export class Func029 implements InterfaceFunc {
+	id = 29;
+	name = '庭院进入探索地图';
+	desc = '请使用默认庭院皮肤，启用该功能后在庭院下会自动进入探索地图界面';
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		// 庭院未打开菜单
 		desc: [1280, 720,
 			[[right, 1211, 606, 0x885f46],
@@ -37,18 +39,18 @@ export default {
 				[center, 673, 651, 0xdb8b3f],
 			]
 		]
-	}],
-	operatorFunc(thisScript, thisOperator) {
+	}]
+	operatorFunc(thisScript: Script, thisOperator): boolean {
 		if (thisScript.oper({
-				name: '庭院判断',
-				operator: [{
-					desc: thisOperator[0].desc
-				}, {
-					desc: thisOperator[1].desc
-				}, {
-					desc: thisOperator[2].desc
-				}]
-			})) {
+			name: '庭院判断',
+			operator: [{
+				desc: thisOperator[0].desc
+			}, {
+				desc: thisOperator[1].desc
+			}, {
+				desc: thisOperator[2].desc
+			}]
+		})) {
 			let point = thisScript.findMultiColor('庭院_探索灯笼');
 			if (point) {
 				let oper = [

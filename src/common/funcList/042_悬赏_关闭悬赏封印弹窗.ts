@@ -1,14 +1,14 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 42,
-	name: '悬赏_关闭悬赏封印弹窗',
-	desc: '请打开悬赏封印弹窗后开启脚本',
-	checked: false,
-	operator: [{
+export class Func042 implements InterfaceFunc {
+	id = 42;
+	name = '悬赏_关闭悬赏封印弹窗';
+	desc = '请打开悬赏封印弹窗后开启脚本';
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[center, 644, 40, 0x544321],

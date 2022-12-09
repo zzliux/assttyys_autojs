@@ -1,13 +1,14 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 114,
-	name: '梦旅竞速_答题',
-	desc: '使用该功能需安装OCR扩展',
-	operator: [{
+export class Func114 implements InterfaceFunc {
+	id = 114;
+	name = '梦旅竞速_答题';
+	desc = '使用该功能需安装OCR扩展';
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		// 开始
 		desc: [1280, 720,
 			[
@@ -58,7 +59,7 @@ export default {
 				[right, 1222, 534, 0xfff3f7],
 			]
 		]
-	}],
+	}];
 	operatorFunc(thisScript, thisOperator) {
 		if (thisScript.oper({
 			name: '梦旅竞速_答题',

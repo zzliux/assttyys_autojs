@@ -1,13 +1,14 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 37,
-	name: '金币妖怪_进入组队',
-	desc: '从庭院进入金币妖怪组队界面',
-	operator: [{
+export class Func037 implements InterfaceFunc {
+	id = 37;
+	name = '金币妖怪_进入组队';
+	desc = '从庭院进入金币妖怪组队界面';
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[left, 53, 27, 0xefd28f],
@@ -24,7 +25,7 @@ export default {
 			[center, 1280, 720, 166, 613, 348, 650, 1],
 			[center, 1280, 720, 170, 138, 351, 187, 1]
 		]
-	}],
+	}];
 	operatorFunc(thisScript, thisOperator) {
 		if (thisScript.oper({
 				id: 36,

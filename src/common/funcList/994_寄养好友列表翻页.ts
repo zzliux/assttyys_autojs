@@ -1,15 +1,13 @@
-
-
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 994,
-	name: '寄养好友列表_翻页',
-	desc: '寄养好友列表操作，应排在[996,997]后',
-	checked: false,
+export class Func994 implements InterfaceFunc {
+	id = 994;
+	name = '寄养好友列表_翻页';
+	desc = '寄养好友列表操作，应排在[996,997]后';
 	config: [{
 		desc: '',
 		config: [{
@@ -32,8 +30,8 @@ export default {
 			type: 'scheme',
 			default: '通用准备退出',
 		}]
-	}],
-	operator: [{
+	}];
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		desc: 	// 寄养界面_判断
 			[1280, 720,
 				[[left, 186, 171, 0x30221f],
@@ -46,8 +44,7 @@ export default {
 			[center, 1280, 720, 225, 450, 608, 455, 0],	// 滑动终点
 			// [center, 1280, 720, 1188,115, 1225,151, 500],
 		]
-	},
-	{
+	}, {
 		desc:	// 是否为好友列表底部
 			[1280, 720,
 				[[left, 186, 171, 0x30221f],
@@ -60,8 +57,7 @@ export default {
 		oper: [
 			[center, 1280, 720, 344, 101, 440, 152, 5000],  // 点击跨区页签
 		]
-	},
-	{
+	}, {
 		desc:	// 是否为跨区列表底部
 			[1280, 720,
 				[[left, 186, 171, 0x30221f],
@@ -74,7 +70,7 @@ export default {
 		oper: [
 			[center, 1280, 720, 222, 100, 321, 149, 5000],  // 点击好友页签
 		]
-	}],
+	}];
 	operatorFunc(thisScript, thisOperator) {
 		let thisConf = thisScript.scheme.config['994'];
 		let defaultCount = parseInt(thisConf.count, 10) * 2;	// 共有两个页签

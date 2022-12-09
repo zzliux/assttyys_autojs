@@ -1,13 +1,14 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 115,
-	name: '千年之守_神武行_风暴试炼_挑战',
-	desc: '连续执行3次后未开始，脚本将自动停止',
-	operator: [{
+export class Func115 implements InterfaceFunc {
+	id = 115;
+	name = '千年之守_神武行_风暴试炼_挑战';
+	desc = '连续执行3次后未开始，脚本将自动停止';
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		// 挑战
 		desc:[1280, 720,
 			[
@@ -21,7 +22,7 @@ export default {
 		oper: [
 			[right, 1280, 720, 1142, 590, 1229, 672, 3000]
 		]
-	}],
+	}];
 	operatorFunc(thisScript, thisOperator) {
 		let curCnt = 0;
 		let maxCount = 3;

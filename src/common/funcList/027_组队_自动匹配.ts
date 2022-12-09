@@ -1,5 +1,4 @@
-import { InterfaceFunc } from "@/interface/InterfaceFunc";
-
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from "@/interface/InterfaceFunc";
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -9,7 +8,7 @@ export class Func027 implements InterfaceFunc {
 	id = 27;
 	name = '组队_自动匹配';
 	desc = '在庭院中点击下方的组队按钮后点击排队按钮';
-	operator = [{
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		desc: [1280,720,
 			[
 				//妖气自动匹配中的 图像

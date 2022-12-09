@@ -1,13 +1,13 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 44,
-	name: '悬赏_关闭挑战副本弹窗',
-	checked: false,
-	operator: [{
+export class Func044 implements InterfaceFunc {
+	id = 44;
+	name = '悬赏_关闭挑战副本弹窗';
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[right, 1046, 147, 0xedcbcb],
@@ -21,7 +21,7 @@ export default {
 		oper: [
 			[left, 1280, 720, 1027, 128, 1063, 168, 1000],
 		]
-	}],
+	}];
 	operatorFunc(thisScript, thisOperator) {
 		// 由于阴阳师的问题，有时候这个弹窗位置会有偏差，所以无法使用多点比色进行弹窗确认
 		let point = thisScript.findMultiColor('悬赏_挑战弹窗界面') || null

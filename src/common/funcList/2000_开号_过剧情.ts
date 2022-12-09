@@ -1,14 +1,14 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 2000,
-	name: '开号_过剧情',
-	desc: '自动点击快进、跳过等固定场景',
-	checked: false,
-	operator: [{
+export class Func2000 implements InterfaceFunc {
+	id = 2000;
+	name = '开号_过剧情';
+	desc = '自动点击快进、跳过等固定场景';
+	operator: InterfaceFuncOperatorOrigin[] = [{
         // 快进
 		desc: [1280, 720,
             [

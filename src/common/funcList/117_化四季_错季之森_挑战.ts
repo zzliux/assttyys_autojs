@@ -1,12 +1,13 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 117,
-	name: '化四季_错季之森_挑战',
-	operator: [{
+export class Func117 implements InterfaceFunc {
+	id = 117;
+	name = '化四季_错季之森_挑战';
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[right, 1060, 594, 0xd1bac0],
@@ -20,7 +21,7 @@ export default {
 		oper: [
 			[right, 1280, 720, 987, 599, 1089, 692, 4000]
 		]
-	}],
+	}];
 	operatorFunc(thisScript, thisOperator) {
 		let curCnt = 0;
 		let maxCount = 3;

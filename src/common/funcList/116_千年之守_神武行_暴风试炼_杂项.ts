@@ -1,12 +1,13 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 116,
-	name: '千年之守_神武行_风暴试炼_杂项',
-	operator: [{
+export class Func116 implements InterfaceFunc {
+	id = 116;
+	name = '千年之守_神武行_风暴试炼_杂项';
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		// 外面进攻的图标
 		desc:[1280, 720,
 			[

@@ -1,14 +1,13 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
-
-export default {
-	id: 2001,
-	name: '开号_点击剧情更多按钮',
-	desc: '仨点的按钮，在剧情与庭院场景中找到并点击',
-	checked: false,
-	operator: [{
+export class Func2001 implements InterfaceFunc {
+	id = 2001;
+	name = '开号_点击剧情更多按钮';
+	desc = '仨点的按钮，在剧情与庭院场景中找到并点击';
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[left, 38, 31, 0xd7c5a2],
@@ -19,9 +18,9 @@ export default {
 		],
 		oper: [
 			// 框框区域
-			[left, 1280, 720, 0, 0, 41, 42 -1], // [1222,333,1263,375]
+			[left, 1280, 720, 0, 0, 41, 42, -1], // [1222,333,1263,375]
 		]
-	}],
+	}];
 	operatorFunc(thisScript, thisOperator) {
 		if (thisScript.oper({
 			name: '开号_剧情场景判断',
@@ -41,7 +40,9 @@ export default {
 					]
 				];
 				thisScript.helperBridge.regionClick(clickRegion, thisScript.scheme.commonConfig.afterClickDelayRandom);
+				return true;
 			}
 		}
+		return false;
 	}
 }

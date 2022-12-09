@@ -1,5 +1,5 @@
 import { Script } from '@/system/script';
-import { InterfaceFunc } from '../../interface/InterfaceFunc';
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -9,7 +9,7 @@ export class Func006 implements InterfaceFunc {
 	id = 6;
 	name = '御魂/御灵挑战';
 	desc = '在御魂或者御灵的挑战界面时，点击挑战按钮，连续点击3次后未开始将自动停止脚本';
-	operator = [{ // 三类御魂
+	operator: InterfaceFuncOperatorOrigin[] = [{ // 三类御魂
 		desc: [1280,720,
 			[[left,44,43,0xc2cbe3],
 			[right,1124,47,0xd8b188],

@@ -12,12 +12,12 @@ export interface InterfaceFuncConfigOrigin {
 }
 
 export interface InterfaceFuncOperatorOrigin {
-	// desc?: [number, number, 
-	// 	Array<[number, number, number, number]>
-	// ];
-	desc?: (number | number[][])[]
-	oper?: any;
-	operStepRandom?: any;
+	desc?: [devScreenWidth: number, devScreenHeight: number, 
+		colorDescSingle: [direction: number, x: number, y: number, color: number][]
+	];
+	// desc?: (number | number[][])[]
+	oper?: [direction: number, devScreenWidth: number, devScreenHeight: number, x0: number, y0: number, x1: number, y1: number, delay: number][];
+	operStepRandom?: [direction: number, devScreenWidth: number, devScreenHeight: number, x0: number, y0: number, x1: number, y1: number, delay: number, randomWeight: number][][];
 	retest?: number;
 	notForCnt?: boolean;
 }

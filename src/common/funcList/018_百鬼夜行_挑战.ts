@@ -1,4 +1,4 @@
-import { InterfaceFunc } from '../../interface/InterfaceFunc';
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -8,7 +8,7 @@ export class Func018 implements InterfaceFunc {
 	id = 18;
 	name = '百鬼夜行_挑战';
 	desc = '在百鬼夜行挑战界面，点击挑战';
-	operator = [{
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		desc: [1280,720,
 			 [// [center,170,600,0xfff2ce],
 			[center,1128,594,0x402f1f],

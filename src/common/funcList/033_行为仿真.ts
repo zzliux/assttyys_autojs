@@ -1,13 +1,14 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 33,
-	name: '行为仿真',
-	desc: '启用后战斗中一定概率打开聊天框，若将概率都设置0，则不会打开任何聊天框，并且会自动关闭聊天框',
-	config: [{
+export class Func033 implements InterfaceFunc {
+	id = 33;
+	name = '行为仿真';
+	desc = '启用后战斗中一定概率打开聊天框，若将概率都设置0，则不会打开任何聊天框，并且会自动关闭聊天框';
+	config = [{
 		desc: '战斗中行为，所有选项互斥，且从上向下顺序判断',
 		config: [{
 			name: 'only_open_chat_probability',
@@ -25,8 +26,8 @@ export default {
 			type: 'text',
 			default: '0.2'
 		}]
-	}],
-	operator: [{
+	}];
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		// 战斗场景
 		desc: [1280, 720,
 			[
@@ -71,7 +72,7 @@ export default {
 		oper: [
 			[center, 1280, 720, 1160, 96, 1200, 130, 1000],
 		]
-	}],
+	}];
 	operatorFunc(thisScript, thisOperator) {
 		if (thisScript.oper({
 			name: '行为仿真_战斗场景判断',

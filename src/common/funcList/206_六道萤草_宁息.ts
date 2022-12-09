@@ -1,12 +1,13 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 206,
-	name: '六道萤草_宁息',
-	operator: [{
+export class Func206 implements InterfaceFunc {
+	id = 206;
+	name = '六道萤草_宁息';
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		// 宁息
 		desc: [1280, 720,
 			[
@@ -60,7 +61,7 @@ export default {
 		oper: [
 			[center, 1280, 720, 675, 407, 841, 457, 500]
 		]
-	}],
+	}];
 	operatorFunc(thisScript, thisOperator) {
 		if (thisScript.oper({
 			id: 206,

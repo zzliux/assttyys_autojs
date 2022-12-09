@@ -1,13 +1,14 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 502,
-	name: '进入探索地图界面',
-	desc: '支持从突破界面、觉醒界面、御魂界面、御灵界面、探索章节界面、探索界面退出至探索地图界面',
-	operator: [{
+export class Func502 implements InterfaceFunc {
+	id = 502;
+	name = '进入探索地图界面';
+	desc = '支持从突破界面、觉醒界面、御魂界面、御灵界面、探索章节界面、探索界面退出至探索地图界面';
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		// 突破界面
 		desc: [1280, 720,
 			[

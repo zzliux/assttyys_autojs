@@ -1,13 +1,14 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 501,
-	name: '打开BUFF界面',
-	desc: '支持从探索地图、庭院打开buff界面',
-	operator: [{
+export class Func501 implements InterfaceFunc {
+	id = 501;
+	name = '打开BUFF界面';
+	desc = '支持从探索地图、庭院打开buff界面';
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		// 探索地图打开buff界面
 		desc: [1280, 720,
 			[

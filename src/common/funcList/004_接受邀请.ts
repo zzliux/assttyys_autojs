@@ -1,4 +1,4 @@
-import { InterfaceFunc } from "@/interface/InterfaceFunc";
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from "@/interface/InterfaceFunc";
 
 const normal = -1; //定义常量
 const left = 0;
@@ -9,7 +9,7 @@ export class Func004 implements InterfaceFunc {
 	id = 4;
 	name = '接受邀请';
 	desc = '左侧弹出邀请提示时，自动接受邀请';
-	operator = [{
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		// 自动接受邀请
 		desc: [1280,720,
 			[[left,20,254,0x7e6750],

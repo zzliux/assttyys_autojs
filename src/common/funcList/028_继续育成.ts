@@ -1,4 +1,4 @@
-import { InterfaceFunc } from "@/interface/InterfaceFunc";
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from "@/interface/InterfaceFunc";
 import { Script } from "@/system/script";
 
 const normal = -1; //定义常量
@@ -20,7 +20,7 @@ export class Func028 implements InterfaceFunc {
 			default: '5',
 		}]
 	}];
-	operator = [{
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		// 等级提升界面
 		desc: [1280,720,
 			[[center,656,130,0xcad2de],

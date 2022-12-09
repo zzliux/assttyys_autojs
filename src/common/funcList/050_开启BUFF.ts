@@ -1,11 +1,12 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 50,
-	name: '开启BUFF',
+export class Func050 implements InterfaceFunc {
+	id = 50;
+	name = '开启BUFF';
 	config: [{
 		desc: '开启后切换方案',
 		config: [{
@@ -28,8 +29,8 @@ export default {
 			data: ['觉醒', '御魂', '金币', '经验'],
 			default: '经验'
 		}]
-	}],
-	operator: [{
+	}];
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[center, 352, 526, 0x9c977e],
@@ -45,7 +46,7 @@ export default {
 			[center, 1280, 720, 0, 0, 855 - 782, 431 - 415, 2000],
 			[center, 1280, 720, 110, 120, 338, 549, 500],
 		]
-	}],
+	}];
 	operatorFunc(thisScript, thisOperator) {
 		if (thisScript.oper({
 			name: 'BUFF界面',

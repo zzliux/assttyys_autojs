@@ -1,14 +1,14 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 1003,
-	name: '宴会_式神满级更换式神.',
-	desc: '自动更换位置在第二个的式神（当前场上式神后面那个）',
-	checked: false,
-	operator: [{
+export class Func1003 implements InterfaceFunc {
+	id = 1003;
+	name = '宴会_式神满级更换式神.';
+	desc = '自动更换位置在第二个的式神（当前场上式神后面那个）';
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[center, 484, 36, 0x493428],
@@ -23,7 +23,7 @@ export default {
 		oper: [
 			[left, 1280, 720, 529, 688, 744, 706, 2000],
 		]
-	}],
+	}];
 	operatorFunc(thisScript, thisOperator) {
 		if (thisScript.oper({
 				name: '宴会_吃饭界面',

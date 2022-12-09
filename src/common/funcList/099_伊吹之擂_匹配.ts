@@ -1,13 +1,14 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 99,
-	name: '伊吹之擂_匹配',
-	desc: '连续执行5次后未开始，脚本将自动停止',
-	operator: [{
+export class Func099 implements InterfaceFunc {
+	id = 99;
+	name = '伊吹之擂_匹配';
+	desc = '连续执行5次后未开始，脚本将自动停止';
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		// 一键装备
 		desc: [1280,720,
 			[[left,44,44,0xf5e5a3],
@@ -34,7 +35,7 @@ export default {
 		oper: [
 			[right, 1280, 720, 1154,595, 1210,660, 1000]
 		]
-	}],
+	}];
 	operatorFunc(thisScript, thisOperator) {
 		let curCnt = 0;
 		let maxCount = 5;

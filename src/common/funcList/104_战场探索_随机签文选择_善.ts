@@ -1,12 +1,13 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 104,
-	name: '战场探索_随机签文选择_善',
-	operator: [{
+export class Func104 implements InterfaceFunc {
+	id = 104;
+	name = '战场探索_随机签文选择_善';
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		desc: [1280,720,
 			[[center,353,535,0x7b624a],
 			[center,582,537,0x7d644b],
@@ -22,5 +23,5 @@ export default {
 				[center, 1280, 720, 800,518, 923,555, 1000, 1],
 			]
 		]
-	}],
+	}]
 }

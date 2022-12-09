@@ -1,14 +1,14 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 43,
-	name: '悬赏_点击前往任务副本',
-	desc: '只会挑战能挑战副本或秘闻副本完成的任务，如任务推荐副本前两项没有挑战副本或秘闻副本选项则会取消追踪该任务。无法完成未揭晓谜底的猜谜任务',
-	checked: false,
-	operator: [{
+export class Func043 implements InterfaceFunc {
+	id = 43;
+	name = '悬赏_点击前往任务副本';
+	desc = '只会挑战能挑战副本或秘闻副本完成的任务，如任务推荐副本前两项没有挑战副本或秘闻副本选项则会取消追踪该任务。无法完成未揭晓谜底的猜谜任务';
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[right, 1110, 319, 0x3d1919],
@@ -36,7 +36,7 @@ export default {
 		oper: [
 			[left, 1280, 720, 176, 193, 193, 208, 1000],
 		]
-	}],
+	}];
 	operatorFunc(thisScript, thisOperator) {
 		if (thisScript.oper({
 				name: '悬赏_发现地点弹窗',

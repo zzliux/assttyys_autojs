@@ -1,12 +1,13 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 203,
-	name: '六道萤草_杂项',
-	desc: '包含香行御点击开启按钮、鏖战之屿选技能怪挑战、混沌之屿选精英怪挑战、选择buff后的获得确认等',
+export class Func203 implements InterfaceFunc {
+	id = 203;
+	name = '六道萤草_杂项';
+	desc = '包含香行御点击开启按钮、鏖战之屿选技能怪挑战、混沌之屿选精英怪挑战、选择buff后的获得确认等';
 	config: [{
 		desc: '配置',
 		config: [{
@@ -20,8 +21,8 @@ export default {
 			type: 'integer',
 			default: '0'
 		}],
-	}],
-	operator: [{
+	}];
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		// 香行御阵容点击开启按钮
 		desc: [1280, 720,
 			[
@@ -251,7 +252,7 @@ export default {
 		oper: [
 			[center, 1280, 720, 1135, 590, 1217, 671, 500],
 		]
-	}],
+	}];
 	operatorFunc(thisScript, thisOperator) {
 		if (thisScript.oper({
 			id: 203,

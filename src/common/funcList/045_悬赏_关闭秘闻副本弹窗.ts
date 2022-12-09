@@ -1,13 +1,13 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 45,
-	name: '悬赏_关闭秘闻副本弹窗',
-	checked: false,
-	operator: [
+export class Func045 implements InterfaceFunc {
+	id = 45;
+	name = '悬赏_关闭秘闻副本弹窗';
+	operator: InterfaceFuncOperatorOrigin[] = [
 		// 秘闻副本关闭
 		{
 			desc: [1280, 720,
@@ -26,28 +26,7 @@ export default {
 				[left, 1280, 720, 1158, 98, 1193, 135, 1000],
 			]
 		},
-	],
-	// operatorFunc(thisScript, thisOperator) {
-	// 	if (thisScript.oper({
-	// 			name: '悬赏_秘闻副本弹窗界面',
-	// 			operator: [{
-	// 				desc: thisOperator[0].desc
-	// 			}]
-	// 		})) {
-	// 		let point = thisScript.findMultiColor('悬赏_副本关闭按钮') || null
-	// 		if (point) {
-	// 			thisScript.helperBridge.regionClick([
-	// 				[point.x, point.y, point.x + 1, point.y + 1, 2000]
-	// 			], thisScript.scheme.commonConfig.afterClickDelayRandom);
-	// 			return true
-	// 		} else {
-	// 			return false
-	// 		}
-	// 	} else {
-	// 		return false
-	// 	}
-	// }
-
+	];
 	operatorFunc(thisScript, thisOperator) {
 		// 由于阴阳师/脚本问题，有时候这个弹窗位置会有偏差/无法识别，所以无法使用多点比色进行弹窗确认
 		let point = thisScript.findMultiColor('悬赏_识别秘闻界面') || null

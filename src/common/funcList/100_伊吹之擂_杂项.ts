@@ -1,13 +1,14 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 100,
-	name: '伊吹之擂_杂项',
-	desc: '开启、',
-	operator: [{
+export class Func100 implements InterfaceFunc {
+	id = 100;
+	name = '伊吹之擂_杂项';
+	desc = '开启、';
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		// 开启
 		desc: [1280, 720,
 			[
@@ -77,5 +78,5 @@ export default {
 		oper: [
 			[right, 1280, 720, 522, 510, 1066, 689, 1000]
 		]
-	}],
+	}]
 }

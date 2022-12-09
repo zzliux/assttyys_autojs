@@ -1,13 +1,14 @@
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export default {
-	id: 109,
-	name: '流火之擂_挑战',
-	desc: '连续执行3次后未开始，脚本将自动停止',
-	operator: [{
+export class Func109 implements InterfaceFunc {
+	id = 109;
+	name = '流火之擂_挑战';
+	desc = '连续执行3次后未开始，脚本将自动停止';
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		// 挑战
 		desc:[1280, 720,
 			[
@@ -21,7 +22,7 @@ export default {
 		oper: [
 			[right, 1280, 720, 1149, 546, 1224, 613, 1000]
 		]
-	}],
+	}];
 	operatorFunc(thisScript, thisOperator) {
 		let curCnt = 0;
 		let maxCount = 3;

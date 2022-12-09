@@ -1,5 +1,5 @@
 import { Script } from '@/system/script';
-import { InterfaceFunc } from '../../interface/InterfaceFunc';
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -9,7 +9,7 @@ export class Func023 implements InterfaceFunc {
 	id = 23;
 	name = '逢魔答题';
 	desc = '逢魔密信自动答题，需要安装OCR扩展';
-	operator = [{
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		desc: [1280,720,
 			[[center,456,96,0xa72c01],
 			[center,692,90,0xddcdc3],

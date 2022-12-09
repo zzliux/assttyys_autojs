@@ -1,5 +1,5 @@
 import { Script } from '@/system/script';
-import { InterfaceFunc } from '@/interface/InterfaceFunc';
+import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -9,7 +9,7 @@ export class Func026 implements InterfaceFunc {
 	id = 26;
 	name = '现世逢魔';
 	desc = '逢魔界面点击右下角的图标后点击右侧相关事件图标';
-	operator = [{
+	operator: InterfaceFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[[left, 19, 700, 0x3c3841],
 			[left, 42, 46, 0xc3cbdf],
