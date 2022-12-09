@@ -1,12 +1,12 @@
 import { Script } from '@/system/script';
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func014 implements InterfaceFunc {
+export class Func014 implements InterfaceFuncOrigin {
 	id = 14;
 	name = '探索_点击挑战图标';
 	desc = '在探索界面时，选择小怪或boss进攻，优先打boss，可配置无差别挑战或只打经验怪或只打掉落怪';

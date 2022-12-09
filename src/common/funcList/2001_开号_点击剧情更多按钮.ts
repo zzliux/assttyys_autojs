@@ -1,9 +1,9 @@
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
-export class Func2001 implements InterfaceFunc {
+export class Func2001 implements InterfaceFuncOrigin {
 	id = 2001;
 	name = '开号_点击剧情更多按钮';
 	desc = '仨点的按钮，在剧情与庭院场景中找到并点击';

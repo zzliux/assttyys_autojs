@@ -1,10 +1,10 @@
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func106 implements InterfaceFunc {
+export class Func106 implements InterfaceFuncOrigin {
 	id = 106;
 	name = '战场巡逻_杂项';
 	desc = '达到6000w分退出';

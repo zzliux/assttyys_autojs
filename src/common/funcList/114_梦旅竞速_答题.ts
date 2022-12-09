@@ -1,10 +1,10 @@
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func114 implements InterfaceFunc {
+export class Func114 implements InterfaceFuncOrigin {
 	id = 114;
 	name = '梦旅竞速_答题';
 	desc = '使用该功能需安装OCR扩展';

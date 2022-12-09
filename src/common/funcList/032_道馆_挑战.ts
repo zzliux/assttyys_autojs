@@ -1,11 +1,11 @@
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func032 implements InterfaceFunc {
+export class Func032 implements InterfaceFuncOrigin {
 	id = 32;
 	name = '道馆_挑战';
 	operator: InterfaceFuncOperatorOrigin[] = [{	// 检测_挑战是否可用

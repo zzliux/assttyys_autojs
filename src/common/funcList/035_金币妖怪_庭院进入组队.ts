@@ -1,10 +1,10 @@
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func035 implements InterfaceFunc {
+export class Func035 implements InterfaceFuncOrigin {
 	id = 35;
 	name = '金币妖怪_庭院进入组队 ';
 	desc = '从庭院进入组队界面（请提前手动打开buff）';

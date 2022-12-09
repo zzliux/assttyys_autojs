@@ -1,10 +1,10 @@
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func203 implements InterfaceFunc {
+export class Func203 implements InterfaceFuncOrigin {
 	id = 203;
 	name = '六道萤草_杂项';
 	desc = '包含香行御点击开启按钮、鏖战之屿选技能怪挑战、混沌之屿选精英怪挑战、选择buff后的获得确认等';

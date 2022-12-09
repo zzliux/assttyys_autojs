@@ -1,11 +1,11 @@
 import { Script } from '@/system/script';
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func026 implements InterfaceFunc {
+export class Func026 implements InterfaceFuncOrigin {
 	id = 26;
 	name = '现世逢魔';
 	desc = '逢魔界面点击右下角的图标后点击右侧相关事件图标';

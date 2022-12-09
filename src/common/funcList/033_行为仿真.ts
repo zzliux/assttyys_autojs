@@ -1,10 +1,10 @@
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func033 implements InterfaceFunc {
+export class Func033 implements InterfaceFuncOrigin {
 	id = 33;
 	name = '行为仿真';
 	desc = '启用后战斗中一定概率打开聊天框，若将概率都设置0，则不会打开任何聊天框，并且会自动关闭聊天框';

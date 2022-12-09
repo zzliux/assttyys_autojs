@@ -1,10 +1,10 @@
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func107 implements InterfaceFunc {
+export class Func107 implements InterfaceFuncOrigin {
 	id = 107;
 	name = '不朽之木_三途轮回_挑战';
 	desc = '连续执行5次后未开始，脚本将自动停止';

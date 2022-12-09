@@ -1,11 +1,11 @@
 import { Script } from '@/system/script';
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func010 implements InterfaceFunc {
+export class Func010 implements InterfaceFuncOrigin {
 	id = 10;
 	name = '地图进入突破界面';
 	desc = '在地图界面时点击突破按钮进入突破界面，可配置进入个人突破或寮突破界面';

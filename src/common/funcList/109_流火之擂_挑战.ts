@@ -1,10 +1,10 @@
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func109 implements InterfaceFunc {
+export class Func109 implements InterfaceFuncOrigin {
 	id = 109;
 	name = '流火之擂_挑战';
 	desc = '连续执行3次后未开始，脚本将自动停止';

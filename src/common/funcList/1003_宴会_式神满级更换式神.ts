@@ -1,10 +1,10 @@
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func1003 implements InterfaceFunc {
+export class Func1003 implements InterfaceFuncOrigin {
 	id = 1003;
 	name = '宴会_式神满级更换式神.';
 	desc = '自动更换位置在第二个的式神（当前场上式神后面那个）';

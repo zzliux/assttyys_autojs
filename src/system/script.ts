@@ -11,6 +11,7 @@ import _ from 'lodash';
 import schemeDialog from './schemeDialog';
 import drawFloaty from '@/system/drawFloaty';
 import { myToast, doOspPush } from '@/common/toolAuto';
+import { InterfaceFunc } from '@/interface/InterfaceFunc';
 
 /**
  * 脚本对象，一个程序只能有一个
@@ -500,7 +501,7 @@ export class Script {
      * @param {*} currFunc 
      * @param {*} retest 重试时间
      */
-    oper(currFunc: any, retest?: number) {
+    oper(currFunc: InterfaceFunc, retest?: number) {
         let operator = currFunc.operator; // 需要计算的坐标通过operater传进去使用
         let operatorFunc = currFunc.operatorFunc;
         if (typeof operatorFunc === 'function') {

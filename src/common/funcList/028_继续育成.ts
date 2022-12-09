@@ -1,4 +1,4 @@
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from "@/interface/InterfaceFunc";
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from "@/interface/InterfaceFunc";
 import { Script } from "@/system/script";
 
 const normal = -1; //定义常量
@@ -6,7 +6,7 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func028 implements InterfaceFunc {
+export class Func028 implements InterfaceFuncOrigin {
 	id = 28;
 	name = '继续育成';
 	desc = '式神升级界面点击确定后再点击继续育成';

@@ -1,9 +1,9 @@
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func503 implements InterfaceFunc {
+export class Func503 implements InterfaceFuncOrigin {
 	id = 503;
 	name = '返回庭院界面';
 	desc = '支持从探索地图退出至探索地图庭院界面';

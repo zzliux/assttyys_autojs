@@ -1,11 +1,11 @@
 import { Script } from '@/system/script';
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func017 implements InterfaceFunc {
+export class Func017 implements InterfaceFuncOrigin {
 	id = 17;
 	name = '百鬼夜行_邀请好友';
 	desc = '在百鬼夜行挑战界面，随机邀请好友';

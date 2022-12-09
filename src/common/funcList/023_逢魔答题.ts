@@ -1,11 +1,11 @@
 import { Script } from '@/system/script';
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func023 implements InterfaceFunc {
+export class Func023 implements InterfaceFuncOrigin {
 	id = 23;
 	name = '逢魔答题';
 	desc = '逢魔密信自动答题，需要安装OCR扩展';

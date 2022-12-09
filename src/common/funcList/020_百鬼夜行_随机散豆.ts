@@ -1,11 +1,11 @@
 import { Script } from '@/system/script';
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func020 implements InterfaceFunc {
+export class Func020 implements InterfaceFuncOrigin {
 	id = 20;
 	name = '百鬼夜行_随机散豆';
 	desc = '在百鬼夜行的界面，随机自由散豆';

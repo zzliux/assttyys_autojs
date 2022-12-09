@@ -1,9 +1,9 @@
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func052 implements InterfaceFunc {
+export class Func052 implements InterfaceFuncOrigin {
 	id = 52;
 	name = '悬赏_庭院打开悬赏界面';
 	desc = '用于其他方案转悬赏方案中转，如金币妖怪转悬赏';

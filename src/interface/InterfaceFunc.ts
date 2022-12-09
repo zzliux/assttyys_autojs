@@ -12,22 +12,39 @@ export interface InterfaceFuncConfigOrigin {
 }
 
 export interface InterfaceFuncOperatorOrigin {
-	desc?: [devScreenWidth: number, devScreenHeight: number, 
-		colorDescSingle: [direction: number, x: number, y: number, color: number][]
+	desc?: [number, number, 
+		[number, number, number, number][]
 	];
 	// desc?: (number | number[][])[]
-	oper?: [direction: number, devScreenWidth: number, devScreenHeight: number, x0: number, y0: number, x1: number, y1: number, delay: number][];
-	operStepRandom?: [direction: number, devScreenWidth: number, devScreenHeight: number, x0: number, y0: number, x1: number, y1: number, delay: number, randomWeight: number][][];
+	oper?: [number, number, number, number, number, number, number, number][];
+	operStepRandom?: [number, number, number, number, number, number, number, number, number][][];
+	retest?: number;
+	notForCnt?: boolean;
+}
+
+export interface InterfaceFuncOperator {
+	desc?: [number, number, number, number][];
+	oper?: [number, number, number, number, number][];
+	operStepRandom?: [number, number, number, number, number, number, number, number, number][][];
 	retest?: number;
 	notForCnt?: boolean;
 }
 
 
-export interface InterfaceFunc {
+export interface InterfaceFuncOrigin {
 	id: number;
 	name: string;
 	desc?: string;
-	config?: Array<InterfaceFuncConfigOrigin>;
-	operator?: Array<InterfaceFuncOperatorOrigin>;
-	operatorFunc?(thisScript: Script, thisOperator: any): boolean;
+	config?: InterfaceFuncConfigOrigin[];
+	operator?: InterfaceFuncOperatorOrigin[];
+	operatorFunc?(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean;
+}
+
+export interface InterfaceFunc {
+	id?: number;
+	name?: string;
+	desc?: string;
+	config?: InterfaceFuncConfigOrigin[];
+	operator?: InterfaceFuncOperator[];
+	operatorFunc?(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean;
 }

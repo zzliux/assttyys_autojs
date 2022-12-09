@@ -1,11 +1,11 @@
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from "@/interface/InterfaceFunc";
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from "@/interface/InterfaceFunc";
 
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func007 implements InterfaceFunc {
+export class Func007 implements InterfaceFuncOrigin {
 	id = 7;
 	name = '结界_三次刷新';
 	desc = '启用后会在打了三个结界后进行刷新，若CD中则等待CD后刷新';

@@ -1,10 +1,10 @@
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func994 implements InterfaceFunc {
+export class Func994 implements InterfaceFuncOrigin {
 	id = 994;
 	name = '寄养好友列表_翻页';
 	desc = '寄养好友列表操作，应排在[996,997]后';

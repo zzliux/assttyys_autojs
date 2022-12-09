@@ -1,10 +1,10 @@
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func1000 implements InterfaceFunc {
+export class Func1000 implements InterfaceFuncOrigin {
 	id = 1000;
 	name = '宴会_吃白饭';
 	desc = '关闭弹幕使用';

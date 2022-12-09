@@ -1,10 +1,10 @@
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func996 implements InterfaceFunc {
+export class Func996 implements InterfaceFuncOrigin {
 	id = 996;
 	name = '式神寄养过滤';
 	desc = '式神寄养过滤';

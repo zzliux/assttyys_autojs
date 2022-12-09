@@ -1,12 +1,12 @@
 import { Script } from "@/system/script";
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from "@/interface/InterfaceFunc";
+import { InterfaceFuncOrigin, InterfaceFuncOperator, InterfaceFuncOperatorOrigin } from "@/interface/InterfaceFunc";
 
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func003 implements InterfaceFunc {
+export class Func003 implements InterfaceFuncOrigin {
 	id = 3;
 	name = '悬赏协作';
 	config = [{
@@ -39,7 +39,7 @@ export class Func003 implements InterfaceFunc {
 	 * @param {*} thisScript script.js 这样可以拿到里面的对象用来做点击等操作
 	 * @param {*} thisOperator 转换过适合当前分辨率的operator
 	 */
-	operatorFunc(thisScript: Script, thisOperator) {
+	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let thisconf = thisScript.scheme.config['3']; // 获取配置
 		return thisScript.oper({
 			name: '悬赏协作_' + thisconf.type,

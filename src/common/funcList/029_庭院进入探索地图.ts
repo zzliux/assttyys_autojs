@@ -1,11 +1,11 @@
 import { Script } from '@/system/script';
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func029 implements InterfaceFunc {
+export class Func029 implements InterfaceFuncOrigin {
 	id = 29;
 	name = '庭院进入探索地图';
 	desc = '请使用默认庭院皮肤，启用该功能后在庭院下会自动进入探索地图界面';

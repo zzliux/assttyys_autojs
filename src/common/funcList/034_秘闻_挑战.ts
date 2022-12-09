@@ -1,10 +1,10 @@
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func034 implements InterfaceFunc {
+export class Func034 implements InterfaceFuncOrigin {
 	id = 34;
 	name = '秘闻_挑战';
 	desc = '目前仅支持镰鼬百战、妖刀姬竞速、小鹿男竞速、青行灯竞速，后续百战、竞速将陆续支持';

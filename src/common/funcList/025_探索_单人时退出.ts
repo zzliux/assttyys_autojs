@@ -1,10 +1,10 @@
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func025 implements InterfaceFunc {
+export class Func025 implements InterfaceFuncOrigin {
 	id = 25;
 	name = '探索_单人时退出';
 	desc = '探索小怪界面时，若只有自己一个人在里面，则退出';

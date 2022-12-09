@@ -1,10 +1,10 @@
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func043 implements InterfaceFunc {
+export class Func043 implements InterfaceFuncOrigin {
 	id = 43;
 	name = '悬赏_点击前往任务副本';
 	desc = '只会挑战能挑战副本或秘闻副本完成的任务，如任务推荐副本前两项没有挑战副本或秘闻副本选项则会取消追踪该任务。无法完成未揭晓谜底的猜谜任务';

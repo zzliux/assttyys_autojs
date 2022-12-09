@@ -1,10 +1,10 @@
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func201 implements InterfaceFunc {
+export class Func201 implements InterfaceFuncOrigin {
 	id = 201;
 	name = '六道萤草_装buff';
 	// desc: '腐草为萤-5级，妖力化身-2级，六道净化-1级，萤火之光-最好5级';

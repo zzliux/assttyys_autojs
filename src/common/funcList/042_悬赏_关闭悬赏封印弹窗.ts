@@ -1,10 +1,10 @@
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func042 implements InterfaceFunc {
+export class Func042 implements InterfaceFuncOrigin {
 	id = 42;
 	name = '悬赏_关闭悬赏封印弹窗';
 	desc = '请打开悬赏封印弹窗后开启脚本';

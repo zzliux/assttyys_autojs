@@ -1,12 +1,12 @@
 import { Script } from '@/system/script';
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func012 implements InterfaceFunc {
+export class Func012 implements InterfaceFuncOrigin {
 	id = 12;
 	name = '寮突破_翻页';
 	desc = '寮突破时执行翻页操作，应排在[9勋章点击]后';

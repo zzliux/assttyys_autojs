@@ -1,10 +1,10 @@
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func505 implements InterfaceFunc {
+export class Func505 implements InterfaceFuncOrigin {
 	id = 505;
 	name = '庭院进入寮会神社';
 	desc = '庭院进入寮会神社_判断';

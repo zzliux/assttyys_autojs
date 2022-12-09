@@ -1,10 +1,10 @@
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func507 implements InterfaceFunc {
+export class Func507 implements InterfaceFuncOrigin {
 	id = 507;
 	name = '狩猎战_挑战';
 	operator: InterfaceFuncOperatorOrigin[] = [{	// 检测_是否为挑战奉献榜场景_待开始

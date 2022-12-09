@@ -1,11 +1,11 @@
 import { Script } from '@/system/script';
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func019 implements InterfaceFunc {
+export class Func019 implements InterfaceFuncOrigin {
 	id = 19;
 	name = '百鬼夜行_选择鬼王挑战';
 	desc = '百鬼夜行中三选一鬼王界面时，选择一个鬼王后开始挑战，可配置随机或指定位置';
@@ -44,7 +44,7 @@ export class Func019 implements InterfaceFunc {
 			oper = [thisOperator[0].oper[parseInt(thisconf.bossPosition) - 1], thisOperator[0].oper[3]];
 		}
 		return thisScript.oper({
-			id: '18',
+			id: 18,
 			name: '百鬼夜行_选择鬼王挑战',
 			operator: [{
 				desc: thisOperator[0].desc,

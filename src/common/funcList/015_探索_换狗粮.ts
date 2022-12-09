@@ -1,11 +1,11 @@
 import { Script } from '@/system/script';
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func015 implements InterfaceFunc {
+export class Func015 implements InterfaceFuncOrigin {
 	id = 15;
 	name = '探索_换狗粮';
 	desc = '准备界面时，队长位置在左(换式神界面时队长位置在右)，若在非队长位置出现满级式神，则上素材的第一个和第二个，因此使用时需要将要练的素材添加喜欢，并取消折叠；N卡则是找到1级的N卡后上N卡';

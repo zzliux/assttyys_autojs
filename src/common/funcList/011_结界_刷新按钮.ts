@@ -1,10 +1,10 @@
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func010 implements InterfaceFunc {
+export class Func010 implements InterfaceFuncOrigin {
 	id = 11;
 	name = '结界_刷新按钮';
 	desc = '个人突破时点击刷新按钮，应排在[9勋章点击]后';

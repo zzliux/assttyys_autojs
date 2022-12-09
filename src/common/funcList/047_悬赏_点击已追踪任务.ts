@@ -1,11 +1,11 @@
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 let swiper = 0
 
-export class Func047 implements InterfaceFunc {
+export class Func047 implements InterfaceFuncOrigin {
 	id = 47;
 	name: '悬赏_点击已追踪任务';
 	config: [{

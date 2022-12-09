@@ -1,10 +1,10 @@
-import { InterfaceFunc, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func036 implements InterfaceFunc {
+export class Func036 implements InterfaceFuncOrigin {
 	id = 36;
 	name = '金币妖怪_创建队伍 ';
 	operator: InterfaceFuncOperatorOrigin[] = [{
