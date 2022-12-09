@@ -1,5 +1,5 @@
 import { Script } from '@/system/script';
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -35,7 +35,7 @@ export class Func019 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 1132,562, 1210,640, 6000], // 开始
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator): boolean {
+	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let thisconf = thisScript.scheme.config['19'];
 		let oper = null;
 		if ('随机' === thisconf.bossPosition) {

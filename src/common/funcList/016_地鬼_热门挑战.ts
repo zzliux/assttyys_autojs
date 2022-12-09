@@ -1,5 +1,5 @@
 import { Script } from '@/system/script';
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -73,7 +73,7 @@ export class Func016 implements InterfaceFuncOrigin {
 			[left, 1280, 720, 741, 638, 800, 695, 2000] // 探索地图进入地鬼
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator): boolean {
+	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		if (thisScript.oper({
 				name: '探索界面',
 				operator: [thisOperator[3]]

@@ -1,5 +1,5 @@
 import { Script } from '@/system/script';
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -58,7 +58,7 @@ export class Func020 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 90,270, 1252,528, 500]
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator): boolean {
+	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let thisconf = thisScript.scheme.config['20'];
 		if (thisconf && thisconf.mode === '快速模式') {
 			if (thisScript.oper({

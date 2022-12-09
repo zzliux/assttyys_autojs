@@ -1,5 +1,5 @@
 import { Script } from '@/system/script';
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
 
 const normal = -1; //定义常量
 const left = 0;
@@ -66,7 +66,7 @@ export class Func014 implements InterfaceFuncOrigin {
 			[left, 1280, 720, 122, 660, 245, 682, 500]
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator): boolean {
+	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		while (thisScript.oper({
 			name: '探索界面_判断',
 			operator: [{ desc: thisOperator[0].desc, retest: 500 }],

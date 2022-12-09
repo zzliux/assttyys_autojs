@@ -1,4 +1,5 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { Script } from '@/system/script';
 const left = 0;
 const center = 1;
 const right = 2;
@@ -125,7 +126,7 @@ export class Func503 implements InterfaceFuncOrigin {
 				[right, 1228, 646, 0xd6c6c3]]
 			]
 	}];
-	operatorFunc(thisScript, thisOperator) {
+	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['503'];
 
 		if (thisScript.oper({

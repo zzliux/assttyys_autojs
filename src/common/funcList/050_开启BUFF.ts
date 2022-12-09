@@ -1,4 +1,5 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -47,7 +48,7 @@ export class Func050 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 110, 120, 338, 549, 500],
 		]
 	}];
-	operatorFunc(thisScript, thisOperator) {
+	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: 'BUFF界面',
 			operator: [{

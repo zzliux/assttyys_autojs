@@ -1,4 +1,5 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -84,7 +85,7 @@ export class Func506 implements InterfaceFuncOrigin {
 			[right, 1280, 720, 1068, 602, 1268, 680, 1200]  // 点击鬼王集结点，固定地图右下角
 		]
 	}];
-	operatorFunc(thisScript, thisOperator) {
+	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['506'];
 
 		if (thisScript.oper({

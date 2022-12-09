@@ -1,5 +1,5 @@
 import { Script } from '@/system/script';
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -40,7 +40,7 @@ export class Func029 implements InterfaceFuncOrigin {
 			]
 		]
 	}]
-	operatorFunc(thisScript: Script, thisOperator): boolean {
+	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: '庭院判断',
 			operator: [{

@@ -1,4 +1,5 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -253,7 +254,7 @@ export class Func203 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 1135, 590, 1217, 671, 500],
 		]
 	}];
-	operatorFunc(thisScript, thisOperator) {
+	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		if (thisScript.oper({
 			id: 203,
 			name: '六道萤草_杂项_开始',
@@ -313,7 +314,7 @@ export class Func203 implements InterfaceFuncOrigin {
 			return true;
 		}
 		return thisScript.oper({
-			id: '203',
+			id: 203,
 			name: '六道萤草_杂项',
 			operator: thisOperator.slice(2)
 		});

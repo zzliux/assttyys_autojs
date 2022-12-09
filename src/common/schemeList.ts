@@ -3,7 +3,7 @@ import funcList from './funcListIndex';
 import commonConfigArr from './commonConfig';
 import { InterfaceScheme } from '@/interface/InterfaceScheme';
 
-const SchemeList: Array<InterfaceScheme> = [{
+const SchemeList: InterfaceScheme[] = [{
         id: 1,
         schemeName: '通用准备退出',
         star: true,

@@ -73,7 +73,7 @@ export class Func027 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 702, 601, 865, 650, 1000] //组队界面 自动匹配
 		]
 	}]
-	// operatorFunc(thisScript, thisOperator) {
+	// operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 	// 	if(!thisScript.oper({
 	// 		id: 27,
 	// 		name: '判断自动匹配非排队中',

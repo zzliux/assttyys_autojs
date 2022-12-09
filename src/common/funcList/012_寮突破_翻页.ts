@@ -1,5 +1,5 @@
 import { Script } from '@/system/script';
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
 
 const normal = -1; //定义常量
 const left = 0;
@@ -49,9 +49,9 @@ export class Func012 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 1188,115, 1225,151, 500],
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator): boolean {
+	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['12'];
-		let defaultCount = parseInt(thisConf.count);
+		let defaultCount = +thisConf.count;
 		if (thisScript.oper({
 			name: '突破界面_判断',
 			operator: [{ desc: thisOperator[0].desc }]
@@ -68,7 +68,7 @@ export class Func012 implements InterfaceFuncOrigin {
 					thisScript.stop();
 				} else if ('切换方案' === thisConf.afterCountOper) {
 					let oper = thisOperator[0].oper[2];
-					thisScript.helperBridge.regionClick([oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.helperBridge.regionClick([oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
 					thisScript.setCurrentScheme(thisConf.next_scheme);
 					thisScript.myToast(`切换方案为[${thisConf.next_scheme}]`);
 					thisScript.rerun();

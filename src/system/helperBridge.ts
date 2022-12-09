@@ -23,7 +23,7 @@ export const helperBridge = {
     automator: null,
     helper: null,
     helperPoly: {},
-    getHelper(dw, dh) {
+    getHelper(dw: number, dh: number) {
         if (!this.helperPoly[dw + '_' + dh]) {
             this.helperPoly[dw + '_' + dh] = com.scriptlib.AnchorGraphicHelper.Create(runtime, dw, dh, 0, 0, screenWidth - 1, screenHeight - 1);
         }
@@ -84,7 +84,7 @@ export const helperBridge = {
     },
 
     // [[1119, 504, 1227, 592, 2000]]
-    regionClick(transedOper, randomSleep) {
+    regionClick(transedOper: [number, number, number, number, number][], randomSleep: number) {
         let self = this;
         transedOper.forEach(item => {
             if (item[0] >= 0) {

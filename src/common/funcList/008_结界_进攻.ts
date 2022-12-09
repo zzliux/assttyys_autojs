@@ -1,5 +1,5 @@
-import { Script } from './../../system/script';
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { Script } from '@/system/script';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
 
 const normal = -1; //定义常量
 const left = 0;
@@ -85,7 +85,7 @@ export class Func008 implements InterfaceFuncOrigin {
 			]
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator) : boolean {
+	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]) : boolean {
 		if (!thisScript.oper({
 			name: '突破界面_暗_判断',
 			operator: [{ desc: thisOperator[1].desc }]
@@ -96,7 +96,7 @@ export class Func008 implements InterfaceFuncOrigin {
 			return false;
 		}
 		let thisConf = thisScript.scheme.config['8'];
-		let count = parseInt(thisConf.count);
+		let count = +thisConf.count;
 		let defaultCount = count;
 		let point = null;
 		let region = [thisOperator[0].oper[2]];
@@ -105,14 +105,14 @@ export class Func008 implements InterfaceFuncOrigin {
 			if (thisScript.findMultiColor('结界_进攻_灰', region, true)) {
 				if (thisConf.cdSwitchSchemeEnable) {
 					let oper = thisOperator[0].oper[1];
-					thisScript.helperBridge.regionClick([oper, oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.helperBridge.regionClick([oper, oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
 					thisScript.setCurrentScheme(thisConf.cdSwitchScheme);
 					thisScript.myToast(`切换方案为[${thisConf.cdSwitchScheme}]`);
 					thisScript.rerun();
 				} else {
 					let oper = thisOperator[0].oper[1];
-					thisScript.helperBridge.regionClick([oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
-					let cdWaiteTimePair = thisConf.cdWaitTime.split(',');
+					thisScript.helperBridge.regionClick([oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
+					let cdWaiteTimePair = String(thisConf.cdWaitTime).split(',');
 					if (cdWaiteTimePair.length === 1) {
 						thisScript.myToast(`寮突破CD, ${(parseInt(cdWaiteTimePair[0]))}秒后再次检测`);
 						sleep(1000 * (parseInt(cdWaiteTimePair[0])));
@@ -126,22 +126,22 @@ export class Func008 implements InterfaceFuncOrigin {
 			}
 		}
 		while (point = thisScript.findMultiColor('结界_进攻', region, true)) {
-			let oper = [[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
-			thisScript.helperBridge.regionClick(oper, 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
+			let oper = [[point.x, point.y, point.x + +thisOperator[0].oper[0][2], point.y + +thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
+			thisScript.helperBridge.regionClick(oper, 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
 			thisScript.keepScreen(true);
 			console.log('结界_进攻:', count);
 			if (--count === 0) {
 				if ('停止脚本' === thisConf.afterCountOper) {
 					let oper = thisOperator[0].oper[1];
-					thisScript.helperBridge.regionClick([oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.helperBridge.regionClick([oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
 					thisScript.doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 					thisScript.stop();
 				} else if ('关闭界面' === thisConf.afterCountOper) {
 					let oper = thisOperator[0].oper[1];
-					thisScript.helperBridge.regionClick([oper, oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.helperBridge.regionClick([oper, oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
 				} else if ('切换方案' === thisConf.afterCountOper) {
 					let oper = thisOperator[0].oper[1];
-					thisScript.helperBridge.regionClick([oper, oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.helperBridge.regionClick([oper, oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
 					thisScript.setCurrentScheme(thisConf.next_scheme);
 					thisScript.myToast(`切换方案为[${thisConf.next_scheme}]`);
 					thisScript.rerun();

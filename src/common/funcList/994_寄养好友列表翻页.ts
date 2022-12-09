@@ -1,4 +1,5 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -71,9 +72,9 @@ export class Func994 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 222, 100, 321, 149, 5000],  // 点击好友页签
 		]
 	}];
-	operatorFunc(thisScript, thisOperator) {
+	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['994'];
-		let defaultCount = parseInt(thisConf.count, 10) * 2;	// 共有两个页签
+		let defaultCount = +thisConf.count * 2;	// 共有两个页签
 		if (thisScript.oper({
 			id: 994,
 			name: '寄养界面_判断',

@@ -12,6 +12,8 @@ import schemeDialog from './schemeDialog';
 import drawFloaty from '@/system/drawFloaty';
 import { myToast, doOspPush } from '@/common/toolAuto';
 import { InterfaceFunc } from '@/interface/InterfaceFunc';
+import { InterfaceScheme } from '@/interface/InterfaceScheme';
+import { InterfaceMultiColor } from '@/interface/InterfaceMulticolor';
 
 /**
  * 脚本对象，一个程序只能有一个
@@ -20,17 +22,17 @@ export class Script {
     runThread: any; // 脚本运行线程
     runCallback: Function; // 运行后回调，一般用于修改悬浮样式
     stopCallback: Function; // 停止后回调，异常停止、手动停止，在停止后都会调用
-    scheme: any; // 运行的方案
-    funcMap: any; // funcList的Map形式，下标为id，值为对应的fun元素
+    scheme: InterfaceScheme; // 运行的方案
+    funcMap: { [key: number]: InterfaceFunc }; // funcList的Map形式，下标为id，值为对应的fun元素
     scheduleMap: any;  // 定时任务实例存放Map
-    multiColor: any; // 多点找色用的，提前初始化，减轻运行中计算量
+    multiColor: InterfaceMultiColor; // 多点找色用的，提前初始化，减轻运行中计算量
     hasRedList: boolean; // KeepScreen(true)时会初始化redList，如果没有初始化的话这个值为false，方便在有需要的时候初始化redlist且不重复初始化
     runDate: Date; // 运行启动时间
     currentDate: Date; // 最近一次功能执行时间
     lastFuncDateTime: Date; // 上次功能执行时间
     ocr: any; // yunxi的ocr
     helperBridge: any;
-    
+
     /**
      * 运行次数，下标为funcList中的id，值为这个func成功执行的次数；
      * 成功执行：多点比色成功或operatorFun返回为true
@@ -38,13 +40,13 @@ export class Script {
     runTimes: object;
     lastFunc: any; // 最后执行成功的funcId
     global: any; // 每次启动重置为空对象，用于功能里面存变量
- 
+
     // 设备信息
     device: any;
     storeCommon: any;
     doOspPush: any;
     myToast: any;
- 
+
 
     constructor() {
         this.runThread = null;
@@ -127,7 +129,7 @@ export class Script {
      * @param {Scheme} scheme 
      * @returns 
      */
-    getFuncList(scheme) {
+    getFuncList(scheme: InterfaceScheme): InterfaceFunc[] {
         let retFunclist = [];
         if (!this.funcMap) {
             this.funcMap = {};
@@ -178,7 +180,7 @@ export class Script {
             this.scheduleMap = [];
         }
         this.scheduleMap.push({
-            key: key, 
+            key: key,
             instance: scheduleJobInstance
         });
     };
@@ -313,14 +315,14 @@ export class Script {
      * @returns 
      */
     findMultiColorLoop(key, timeout, inRegion) {
-        let times = Math.round(timeout / this.scheme.commonConfig.loopDelay);
+        let times = Math.round(timeout / +this.scheme.commonConfig.loopDelay);
         while (times--) {
             this.keepScreen(true);
             let point = this.findMultiColor(key, inRegion, false);
             if (point) {
                 return point;
             }
-            sleep(this.scheme.commonConfig.loopDelay);
+            sleep(+this.scheme.commonConfig.loopDelay);
         }
         return null;
     };
@@ -400,7 +402,7 @@ export class Script {
                             break;
                         }
                     }
-                    sleep(self.scheme.commonConfig.loopDelay);
+                    sleep(+self.scheme.commonConfig.loopDelay);
                 }
             } catch (e) {
                 self.runThread = null;
@@ -457,7 +459,7 @@ export class Script {
             if (canRunSchemeList.length === 0) {
                 myToast('无法识别当前界面');
             } else if (canRunSchemeList.length === 1) {
-                this.setCurrentScheme(canRunSchemeList[0].schemeName);
+                self.setCurrentScheme(canRunSchemeList[0].schemeName);
                 setTimeout(() => {
                     self.run();
                 }, 500);
@@ -554,7 +556,7 @@ export class Script {
                     } else if (item.oper) {
                         if (currFunc.id)
                             console.log(`oper_success：[item.oper] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper}`);
-                        helperBridge.regionClick(item.oper, this.scheme.commonConfig.afterClickDelayRandom);
+                        helperBridge.regionClick(item.oper, +this.scheme.commonConfig.afterClickDelayRandom);
                     } else {
                         if (currFunc.id)
                             console.log(`oper_success: [] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper}`);

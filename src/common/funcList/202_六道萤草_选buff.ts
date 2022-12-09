@@ -1,4 +1,4 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
@@ -109,7 +109,7 @@ export class Func202 implements InterfaceFuncOrigin {
 			[right, 1280, 720, 913, 129, 1245, 648, 500],
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator): boolean {
+	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['202'];
 		if (!thisScript.global.d6d) {
 			thisScript.global.d6d = {

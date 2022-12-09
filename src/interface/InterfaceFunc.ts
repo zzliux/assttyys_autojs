@@ -15,7 +15,6 @@ export interface InterfaceFuncOperatorOrigin {
 	desc?: [number, number, 
 		[number, number, number, number][]
 	];
-	// desc?: (number | number[][])[]
 	oper?: [number, number, number, number, number, number, number, number][];
 	operStepRandom?: [number, number, number, number, number, number, number, number, number][][];
 	retest?: number;
@@ -47,4 +46,5 @@ export interface InterfaceFunc {
 	config?: InterfaceFuncConfigOrigin[];
 	operator?: InterfaceFuncOperator[];
 	operatorFunc?(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean;
+	transed?: boolean;
 }

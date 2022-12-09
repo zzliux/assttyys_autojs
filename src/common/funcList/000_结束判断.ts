@@ -89,7 +89,7 @@ export class Func000 implements InterfaceFuncOrigin {
 			name: 'pause_enabled',
 			desc: '是否启用',
 			type: 'switch',
-			default: false,	
+			default: false,
 		}, {
 			name: 'define_run_time',
 			type: 'text',
@@ -102,13 +102,13 @@ export class Func000 implements InterfaceFuncOrigin {
 			default: '2,7',
 		}]
 	}];
-	operatorFunc(thisScript: Script, _thisOperator) : boolean {
+	operatorFunc(thisScript: Script, _thisOperator): boolean {
 		let thisconf = thisScript.scheme.config['0'];
 
 		// 长时间未执行任何功能后停止脚本
 		if (thisconf.jspd_enabled_longtime_nodo) {
 			let now = new Date();
-			if (now.getTime() - thisScript.currentDate.getTime() > thisconf.jspd_times_longtime_nodo * 60000) {
+			if (now.getTime() - thisScript.currentDate.getTime() > +thisconf.jspd_times_longtime_nodo * 60000) {
 				thisScript.myToast(`因长时间(${cvtTime((now.getTime() - thisScript.currentDate.getTime()) / 1000)})未执行任何操作，脚本停止`);
 				stopOrReRun();
 				return true;
@@ -118,22 +118,22 @@ export class Func000 implements InterfaceFuncOrigin {
 		if (thisconf.jspd_enabled_zjsj) { // 执行时间
 			let currentNotifyDate = thisScript.global.currentNotifyDate;
 			if (!currentNotifyDate) {
-				thisScript.myToast(`脚本将于${cvtTime(thisconf.jspd_times_zjsj * 60)}后停止`);
-				currentNotifyDate = new  Date();
+				thisScript.myToast(`脚本将于${cvtTime(+thisconf.jspd_times_zjsj * 60)}后停止`);
+				currentNotifyDate = new Date();
 				thisScript.global.currentNotifyDate = currentNotifyDate;
 			}
 			let now = new Date();
-			if (now.getTime() - currentNotifyDate.getTime() > thisconf.jspd_txpl_zjsj * 1000) {
-				let leftSec = (thisconf.jspd_times_zjsj * 60000 + thisScript.runDate.getTime() - now.getTime()) / 1000;
+			if (now.getTime() - currentNotifyDate.getTime() > +thisconf.jspd_txpl_zjsj * 1000) {
+				let leftSec = (+thisconf.jspd_times_zjsj * 60000 + thisScript.runDate.getTime() - now.getTime()) / 1000;
 				thisScript.global.currentNotifyDate = new Date();
 				thisScript.myToast(`脚本将于${cvtTime(leftSec)}后停止`);
 			}
-			if (thisScript.runDate.getTime() + thisconf.jspd_times_zjsj * 60000 < now.getTime()) {
+			if (thisScript.runDate.getTime() + +thisconf.jspd_times_zjsj * 60000 < now.getTime()) {
 				stopOrReRun();
 				return true;
 			}
 		}
-		
+
 		if (thisconf.jspd_enabled_1) {
 			if (thisScript.runTimes['1'] >= thisconf.jspd_times_1) {
 				thisScript.myToast(`准备功能执行${thisScript.runTimes['1']}次后停止脚本`);
@@ -145,7 +145,7 @@ export class Func000 implements InterfaceFuncOrigin {
 			}
 			if (thisScript.runTimes['1'] !== thisScript.global.currentRunTimes['1']) {
 				thisScript.global.currentRunTimes['1'] = thisScript.runTimes['1'];
-				thisScript.myToast(`准备功能已执行${thisScript.runTimes['1']}次, 继续执行${thisconf.jspd_times_1 - thisScript.runTimes['1']}次后将停止脚本`);
+				thisScript.myToast(`准备功能已执行${thisScript.runTimes['1']}次, 继续执行${+thisconf.jspd_times_1 - thisScript.runTimes['1']}次后将停止脚本`);
 			}
 		}
 		if (thisconf.jspd_enabled_2) {
@@ -159,17 +159,17 @@ export class Func000 implements InterfaceFuncOrigin {
 			}
 			if (thisScript.runTimes['2'] !== thisScript.global.currentRunTimes['2']) {
 				thisScript.global.currentRunTimes['2'] = thisScript.runTimes['2'];
-				thisScript.myToast(`退出结算已执行${thisScript.runTimes['2']}次, 继续执行${thisconf.jspd_times_2 - thisScript.runTimes['2']}次后将停止脚本`);
+				thisScript.myToast(`退出结算已执行${thisScript.runTimes['2']}次, 继续执行${+thisconf.jspd_times_2 - thisScript.runTimes['2']}次后将停止脚本`);
 			}
 		}
 		if (thisconf.pause_enabled) {
 			// define_run_time,define_pause_time
 			if (thisScript.global.running === undefined) {
 				thisScript.global.running = true;
-				const pairRunning = thisconf.define_run_time.split(',');
-				const pairPause = thisconf.define_pause_time.split(',');
-				thisScript.global.define_run_time = Math.floor(random(pairRunning[0] * 1000 * 60, pairRunning[1] * 1000 * 60));
-				thisScript.global.define_pause_time = Math.floor(random(pairPause[0] * 1000 * 60, pairPause[1] * 1000 * 60));
+				const pairRunning = String(thisconf.define_run_time).split(',');
+				const pairPause = String(thisconf.define_pause_time).split(',');
+				thisScript.global.define_run_time = Math.floor(random(+pairRunning[0] * 1000 * 60, +pairRunning[1] * 1000 * 60));
+				thisScript.global.define_pause_time = Math.floor(random(+pairPause[0] * 1000 * 60, +pairPause[1] * 1000 * 60));
 				thisScript.global.runningTime = new Date().getTime() + thisScript.global.define_run_time;
 				thisScript.global.pauseTime = thisScript.global.runningTime + thisScript.global.define_pause_time;
 			}

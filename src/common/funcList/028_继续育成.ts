@@ -1,4 +1,4 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from "@/interface/InterfaceFunc";
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from "@/interface/InterfaceFunc";
 import { Script } from "@/system/script";
 
 const normal = -1; //定义常量
@@ -59,7 +59,7 @@ export class Func028 implements InterfaceFuncOrigin {
 			[center,1049,550,0xd3c1b6]]
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator): boolean {
+	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let thisconf = thisScript.scheme.config['28'];
 		let cntIndex = parseInt(thisconf.count) - 1;
 		if (thisScript.oper({

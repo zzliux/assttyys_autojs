@@ -1,4 +1,5 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -73,7 +74,7 @@ export class Func033 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 1160, 96, 1200, 130, 1000],
 		]
 	}];
-	operatorFunc(thisScript, thisOperator) {
+	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: '行为仿真_战斗场景判断',
 			operator: [{
@@ -86,20 +87,20 @@ export class Func033 implements InterfaceFuncOrigin {
 			)) {
 				thisScript.global.currentChatEnd = thisScript.runTimes['2'] || -1;
 				const thisconf = thisScript.scheme.config['33'];
-				const only_open_chat_probability = parseFloat(thisconf.only_open_chat_probability);
-				const open_chat_and_send_emoticon_probability = parseFloat(thisconf.open_chat_and_send_emoticon_probability);
-				const open_pm_chat_and_probability = parseFloat(thisconf.open_pm_chat_and_probability);
+				const only_open_chat_probability = +thisconf.only_open_chat_probability;
+				const open_chat_and_send_emoticon_probability = +thisconf.open_chat_and_send_emoticon_probability;
+				const open_pm_chat_and_probability = +thisconf.open_pm_chat_and_probability;
 				if (Math.random() < only_open_chat_probability) {
 					// 打开公共聊天框，点击有消息的判断
 					thisScript.myToast('打开公共聊天框');
-					thisScript.helperBridge.regionClick([thisOperator[0].oper[0]], 1000 + thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.helperBridge.regionClick([thisOperator[0].oper[0]], 1000 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
 					sleep(1000);
 					// 点击存在红点的频道
 					let point = null;
 					thisScript.keepScreen(true);
 					while (point = thisScript.findMultiColor('公频聊天_未读红点')) {
 						const oper = [[point.x, point.y, point.x + thisOperator[0].oper[6][2], point.y + thisOperator[0].oper[6][3], thisOperator[0].oper[6][4]]];
-						thisScript.helperBridge.regionClick(oper, 1000 + thisScript.scheme.commonConfig.afterClickDelayRandom);
+						thisScript.helperBridge.regionClick(oper, 1000 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
 						thisScript.keepScreen(true);
 						sleep(1000);
 					}
@@ -108,7 +109,7 @@ export class Func033 implements InterfaceFuncOrigin {
 					// 打开公共聊天框并发送表情
 					thisScript.myToast('打开公共聊天框并发送表情');
 					const oper = [thisOperator[0].oper[0], thisOperator[0].oper[2], thisOperator[0].oper[3], thisOperator[0].oper[4], thisOperator[0].oper[4]];
-					thisScript.helperBridge.regionClick(oper, 1000 + thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.helperBridge.regionClick(oper, 1000 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
 					return true;
 				} else if (Math.random() < open_pm_chat_and_probability) {
 					// 打开好友聊天框，随便点几下好友列表
@@ -118,7 +119,7 @@ export class Func033 implements InterfaceFuncOrigin {
 					for (let j = 0; j < times; j++) {
 						toClick.push(thisOperator[0].oper[5]);
 					}
-					thisScript.helperBridge.regionClick(toClick, 3000 + thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.helperBridge.regionClick(toClick, 3000 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
 					return true;
 				}
 				return false;

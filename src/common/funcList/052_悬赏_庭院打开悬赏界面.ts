@@ -1,4 +1,5 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { Script } from '@/system/script';
 const left = 0;
 const center = 1;
 const right = 2;
@@ -52,7 +53,7 @@ export class Func052 implements InterfaceFuncOrigin {
 			[left, 1280, 720, 1120, 587, 1180, 645, 1000]
 		]
 	}];
-	operatorFunc(thisScript, thisOperator) {
+	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		if (thisScript.oper({
 				name: '悬赏_庭院界面',
 				operator: [{
