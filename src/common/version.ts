@@ -367,6 +367,9 @@ export const versionList = [{
 }, {
     version: '20221208_01',
     desc: '修复：调整式神寄养方案，寮活动方案与登录方案，适配新版本（horsemi）'
+}, {
+    version: '20221210_01',
+    desc: '代码重构：请及时反馈使用问题！！'
 }];
 
 export default versionList[versionList.length - 1].version;
