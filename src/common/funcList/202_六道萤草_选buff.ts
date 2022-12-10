@@ -9,7 +9,7 @@ export class Func202 implements InterfaceFuncOrigin {
 	id = 202;
 	name = '六道萤草_选buff';
 	desc = '腐草为萤-5级，妖力化身-2级，六道净化-1级，萤火之光-最好5级';
-	config: [{
+	config = [{
 		desc: '设置各buff初始数量，用于中途开始时的调整',
 		config: [{
 			name: '腐草为萤',
@@ -114,10 +114,10 @@ export class Func202 implements InterfaceFuncOrigin {
 		if (!thisScript.global.d6d) {
 			thisScript.global.d6d = {
 				// 0当前个数，1目标个数
-				腐草为萤: [parseInt(thisconf.腐草为萤) || 0, 5],
-				妖力化身: [parseInt(thisconf.妖力化身) || 0, 2],
-				六道净化: [parseInt(thisconf.六道净化) || 0, 1],
-				萤火之光: [parseInt(thisconf.萤火之光) || 0, 4]
+				腐草为萤: [parseInt(String(thisconf.腐草为萤)) || 0, 5],
+				妖力化身: [parseInt(String(thisconf.妖力化身)) || 0, 2],
+				六道净化: [parseInt(String(thisconf.六道净化)) || 0, 1],
+				萤火之光: [parseInt(String(thisconf.萤火之光)) || 0, 4]
 			}
 		}
 		// TODO 待优化：达到目标个数后直接乱选buff
@@ -132,7 +132,7 @@ export class Func202 implements InterfaceFuncOrigin {
 			}]
 		})) {
 			let confPriorty = thisconf.priority || '腐草为萤,妖力化身,六道净化,萤火之光';
-			let priorty = confPriorty.split(','); // 未达到目标的优先级
+			let priorty = String(confPriorty).split(','); // 未达到目标的优先级
 			let priorty2 = ['萤火之光', '妖力化身']; // 达到目标后的优先级
 			let toClick = null;
 			let type = null;
@@ -186,7 +186,7 @@ export class Func202 implements InterfaceFuncOrigin {
 				// 判断剩下多少钱，如果剩下的钱不够刷新直接给刷新次数置为上限
 				let coins = 50;
 				if (thisScript.getOcr()) {
-					let result = thisScript.getOcr().findTextByOcr(function () {
+					let result = thisScript.findText(function () {
 						thisScript.keepScreen(); // 更新图片
 						return thisScript.helperBridge.helper.GetBitmap(); // 返回bmp
 					}, '.+', 0, thisOperator[0].oper[3], '包含');

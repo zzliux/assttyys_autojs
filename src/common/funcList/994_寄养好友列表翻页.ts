@@ -9,7 +9,7 @@ export class Func994 implements InterfaceFuncOrigin {
 	id = 994;
 	name = '寄养好友列表_翻页';
 	desc = '寄养好友列表操作，应排在[996,997]后';
-	config: [{
+	config = [{
 		desc: '',
 		config: [{
 			name: 'count',

@@ -370,6 +370,9 @@ export const versionList = [{
 }, {
     version: '20221210_01',
     desc: '代码重构：请及时反馈使用问题！！'
+}, {
+    version: '20221210_02',
+    desc: '修复：ocr无法使用的问题；\n;修复：部分功能无法配置；\n优化：保存方案后自动设置为待运行方案'
 }];
 
 export default versionList[versionList.length - 1].version;

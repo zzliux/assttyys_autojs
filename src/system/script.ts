@@ -1,10 +1,10 @@
-import { search, questionSearch } from '@/common/tool';
+import { search, questionSearch, similarity } from '@/common/tool';
 import store, { storeCommon } from '@/system/store';
 import funcList from '@/common/funcListIndex';
 import defaultSchemeList from '@/common/schemeList';
 import helperBridge from '@/system/helperBridge';
 import multiColor from '@/common/multiColors';
-import { ocr } from '@/system/MlkitOcr';
+import { MlkitOcrDetector, ocr, OcrResult } from '@/system/MlkitOcr';
 import { setCurrentScheme } from '@/common/tool';
 import { getWidthPixels, getHeightPixels } from "@auto.pro/core";
 import schemeDialog from './schemeDialog';
@@ -29,7 +29,7 @@ export class Script {
     runDate: Date; // 运行启动时间
     currentDate: Date; // 最近一次功能执行时间
     lastFuncDateTime: Date; // 上次功能执行时间
-    ocr: any; // yunxi的ocr
+    ocrDetector: MlkitOcrDetector; // yunxi的ocr
     helperBridge: any;
 
     /**
@@ -59,7 +59,7 @@ export class Script {
         this.runDate = null;
         this.currentDate = null;
         this.lastFuncDateTime = null;
-        this.ocr = null;
+        this.ocrDetector = null;
 
         this.runTimes = {};
         this.lastFunc = null; // 最后执行成功的funcId
@@ -74,13 +74,28 @@ export class Script {
         this.myToast = myToast;
     }
 
-    // 获取ocr对象，重复调用仅在第一次进行实例化
-    getOcr() {
-        if (!this.ocr) {
-            this.ocr = ocr.prepare();
+    initOcrIfNeeded() {
+        if (!this.ocrDetector) {
+            this.ocrDetector = ocr.prepare();
         }
-        return this.ocr;
-    };
+    }
+
+    // 获取ocr对象，重复调用仅在第一次进行实例化
+    getOcr(): MlkitOcrDetector {
+        this.initOcrIfNeeded();
+        return this.ocrDetector;
+    }
+
+    // TODO 封装getBmpFunc参数
+    findText(getBmpFunc: Function, text: string, timeout: number, region: Array<number>, textMatchMode: string): Array<OcrResult> {
+        this.initOcrIfNeeded();
+        return ocr.findText(getBmpFunc, text, timeout, region, textMatchMode);
+    }
+
+    findTextByOcrResult (text: string, ocrResult: Array<OcrResult>, textMatchMode: string, similarityRatio?: number): Array<OcrResult> {
+        this.initOcrIfNeeded();
+        return ocr.findTextByOcrResult(text, ocrResult, textMatchMode, similarityRatio);
+    }
 
     /**
      * 截图，mode为true时表示对红色通过作为下标进行初始化，但执行需要一定时间，

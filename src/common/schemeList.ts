@@ -491,7 +491,7 @@ SchemeList.forEach((item, id) => {
         schemeName: '未命名',
         inner: true,
         star: false,
-        list: [0, ],
+        list: [],
         config: thisConfig,
         commonConfig: commonConfig
     }, item)

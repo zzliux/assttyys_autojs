@@ -9,8 +9,7 @@ export class Func997 implements InterfaceFuncOrigin {
 	id = 997;
 	name = '刷新式神寄养列表';
 	desc = '刷新式神寄养列表_让其重新排序';
-	checked = false;
-	config: [{
+	config = [{
 		desc: '',
 		config: [{
 			name: 'priority',
@@ -54,7 +53,7 @@ export class Func997 implements InterfaceFuncOrigin {
 	];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let thisconf = thisScript.scheme.config['997']; // 获取配置
-		let priority = thisconf.priority.split('->');
+		let priority = String(thisconf.priority).split('->');
 
 		const multiColorKey = priority.map(item => `结界卡_${item}星`);
 

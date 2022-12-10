@@ -1,7 +1,7 @@
 import { similarity } from "@/common/tool";
 import drawFloaty from "./drawFloaty";
 
-class OcrResult {
+export class OcrResult {
     confidence: number;
     label: string;
     rotation: number;
@@ -15,7 +15,7 @@ class OcrResult {
     }
 }
 
-class MlkitOcrDetector {
+export class MlkitOcrDetector {
     instance: any;
     constructor() {
         const MLKitOCR = $plugins.load('org.autojs.autojspro.plugin.mlkit.ocr');
@@ -128,55 +128,20 @@ class MlkitOcr {
     }
 
     prepare(): MlkitOcrDetector {
-        function detectOcr () {
-            const MLKitOCR = $plugins.load('org.autojs.autojspro.plugin.mlkit.ocr');
-            const instacne = new MLKitOCR();
-            this.loadImage = function (bitmap) {
-                const ajImg = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(bitmap);
-                console.time('ocr.detect');
-                const resultOrigin = instacne.detect(ajImg);
-                console.timeEnd('ocr.detect');
-                ajImg.recycle();
-                const result = resultOrigin.map(item => {
-                    return {
-                        confidence: item.confidence,
-                        label: item.text,
-                        rotation: item.rotation,
-                        points: [{
-                            // 左上
-                            x: item.bounds.left,
-                            y: item.bounds.top
-                        }, {
-                            // 右上
-                            x: item.bounds.right,
-                            y: item.bounds.top
-                        }, {
-                            // 右下
-                            x: item.bounds.right,
-                            y: item.bounds.bottom
-                        }, {
-                            // 左下
-                            x: item.bounds.left,
-                            y: item.bounds.bottom
-                        }]
-                    }
-                });
-                return result;
-            }
-        }
         try {
-            this.detector = new detectOcr()
+            this.detector = new MlkitOcrDetector()
             return this.detector;
         } catch (e) {
+            console.error($debug.getStackTrace(e));
             return null;
         }
     }
 
-    findText(getBmpFunc: Function, text: string, timeout: number, region: Array<number>, textMatchMode: '包含' | '模糊'): Array<OcrResult> {
+    findText(getBmpFunc: Function, text: string, timeout: number, region: Array<number>, textMatchMode: string): Array<OcrResult> {
         return this.findTextByOcr(this.detector, getBmpFunc, text, timeout, region, textMatchMode);
     }
 
-    findTextByOcr(detector: MlkitOcrDetector, getBmpFunc: Function, text: string, timeout: number, region: Array<number>, textMatchMode: '包含' | '模糊'): Array<OcrResult> {
+    findTextByOcr(detector: MlkitOcrDetector, getBmpFunc: Function, text: string, timeout: number, region: Array<number>, textMatchMode: string): Array<OcrResult> {
         const startTime = new Date().getTime();
         while (true) {
             let bmp = getBmpFunc();
@@ -208,7 +173,7 @@ class MlkitOcr {
         }
     }
 
-    findTextByOcrResult (text, ocrResult: Array<OcrResult>, textMatchMode, similarityRatio?): Array<OcrResult> {
+    findTextByOcrResult (text: string, ocrResult: Array<OcrResult>, textMatchMode: string, similarityRatio?: number): Array<OcrResult> {
         let res = [];
         let toDraw = [];
         if (textMatchMode === '包含') {

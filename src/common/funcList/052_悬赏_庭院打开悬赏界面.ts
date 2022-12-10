@@ -8,7 +8,7 @@ export class Func052 implements InterfaceFuncOrigin {
 	id = 52;
 	name = '悬赏_庭院打开悬赏界面';
 	desc = '用于其他方案转悬赏方案中转，如金币妖怪转悬赏';
-	config: [{
+	config = [{
 		desc: '结束后切换方案',
 		config: [{
 			name: 'scheme_switch_enabled',

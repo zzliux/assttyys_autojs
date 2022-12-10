@@ -9,7 +9,6 @@ export class Func010 implements InterfaceFuncOrigin {
 	id = 10;
 	name = '地图进入突破界面';
 	desc = '在地图界面时点击突破按钮进入突破界面，可配置进入个人突破或寮突破界面';
-	checked = false;
 	config = [{
 		desc: '',
 		config: [{

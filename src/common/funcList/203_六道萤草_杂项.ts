@@ -9,7 +9,7 @@ export class Func203 implements InterfaceFuncOrigin {
 	id = 203;
 	name = '六道萤草_杂项';
 	desc = '包含香行御点击开启按钮、鏖战之屿选技能怪挑战、混沌之屿选精英怪挑战、选择buff后的获得确认等';
-	config: [{
+	config = [{
 		desc: '配置',
 		config: [{
 			name: 'ospPush',
@@ -287,7 +287,7 @@ export class Func203 implements InterfaceFuncOrigin {
 			}]
 		})) {
 			const thisconf = thisScript.scheme.config['203'];
-			thisconf.overTimes = Math.floor(thisconf.overTimes || 0);
+			thisconf.overTimes = Math.floor(Number(thisconf.overTimes) || 0);
 			const now = new Date().getTime();
 			const currentCost = Math.floor((now - thisScript.global.d6dCurrentBegin) / 1000); // 秒
 			const cost = ((now - thisScript.global.d6dBegin) / 1000 / 60).toFixed(2); // 分

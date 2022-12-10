@@ -69,7 +69,7 @@ export class Func114 implements InterfaceFuncOrigin {
 			// 识别问题
 			let toDetectQuestionBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[0].oper[0].slice(0, 4));
 			console.time('ocr.detect.question');
-			let resultQuestion = thisScript.getOcr().loadImage(toDetectQuestionBmp, 1);
+			let resultQuestion = thisScript.getOcr().loadImage(toDetectQuestionBmp);
 			console.timeEnd('ocr.detect.question');
 			toDetectQuestionBmp.recycle();
 			let question = '';
@@ -84,7 +84,7 @@ export class Func114 implements InterfaceFuncOrigin {
 
 			let toDetectAnsBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[0].oper[1].slice(0, 4));
 			console.time('ocr.detect.ans');
-			let resultAns = thisScript.getOcr().loadImage(toDetectAnsBmp, 1);
+			let resultAns = thisScript.getOcr().loadImage(toDetectAnsBmp);
 			console.timeEnd('ocr.detect.ans');
 			toDetectAnsBmp.recycle();
 			let ansList = [];

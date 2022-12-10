@@ -9,7 +9,7 @@ export class Func051 implements InterfaceFuncOrigin {
 	id = 51;
 	name = '绿标';
 	desc = '战斗界面标记我方式神';
-	config: [{
+	config = [{
 		desc: '绿标',
 		config: [{
 			name: 'greenType',
@@ -99,10 +99,10 @@ export class Func051 implements InterfaceFuncOrigin {
 				}]
 			})) {
 				if (thisconf.greenType === '自定义文本' && !thisScript.global.greenPosition) {
-					let result = thisScript.getOcr().findText(function () {
+					let result = thisScript.findText(function () {
 						thisScript.keepScreen(); // 更新图片
 						return thisScript.helperBridge.helper.GetBitmap(); // 返回bmp
-					}, thisconf.greenText, 3000, thisOperator[0].oper[3], thisconf.greenTextMatchMode);
+					}, String(thisconf.greenText), 3000, thisOperator[0].oper[3], String(thisconf.greenTextMatchMode));
 					if (result.length === 0) {
 						console.log(`未识别式神别名“${thisconf.greenText}”`);
 						return true;
@@ -166,7 +166,7 @@ export class Func051 implements InterfaceFuncOrigin {
 			// 开启绿标
 			let toClick = null;
 			if (thisconf.greenType === '自定义坐标') {
-				let posPam = (thisconf.greenPosition || '').split(',');
+				let posPam = String(thisconf.greenPosition).split(',');
 				if (posPam.length !== 2) {
 					thisScript.myToast('自定义坐标格式定义错误，请检查');
 					return true;
@@ -185,10 +185,10 @@ export class Func051 implements InterfaceFuncOrigin {
 					1000
 				]
 			} else if (thisconf.greenType === '自定义文本') {
-				let result = thisScript.getOcr().findTextByOcr(function () {
+				let result = thisScript.findText(function () {
 					thisScript.keepScreen(); // 更新图片
 					return thisScript.helperBridge.helper.GetBitmap(); // 返回bmp
-				}, thisconf.greenText, 3000, thisOperator[0].oper[3], thisconf.greenTextMatchMode);
+				}, String(thisconf.greenText), 3000, thisOperator[0].oper[3], String(thisconf.greenTextMatchMode));
 				if (result.length === 0) {
 					console.log(`未识别式神别名“${thisconf.greenText}”`);
 					return true;

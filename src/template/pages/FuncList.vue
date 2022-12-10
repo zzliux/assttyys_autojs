@@ -300,6 +300,7 @@ export default {
         }
 
         await AutoWeb.autoPromise('saveScheme', toSave);
+        await AutoWeb.autoPromise('setCurrentScheme', this.params.schemeName);
         await AutoWeb.autoPromise('toast', `保存成功`);
       } else {
         await AutoWeb.autoPromise('toast', `参数错误：params.schemeName为空`);

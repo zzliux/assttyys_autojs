@@ -9,7 +9,6 @@ export class Func013 implements InterfaceFuncOrigin {
 	id = 13;
 	name = '探索_地图进入最后一章';
 	desc = '在地图界面时，点击最后一章进行挑战';
-	checked = false;
 	operator: InterfaceFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[

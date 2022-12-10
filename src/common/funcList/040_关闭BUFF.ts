@@ -8,7 +8,7 @@ const right = 2;
 export class Func040 implements InterfaceFuncOrigin {
 	id = 40;
 	name = '关闭BUFF';
-	config: [{
+	config = [{
 		desc: '结束后切换方案',
 		config: [{
 			name: 'scheme_switch_enabled',

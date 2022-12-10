@@ -201,7 +201,7 @@ export class Func993 implements InterfaceFuncOrigin {
 		})) {
 			let toDetectAreaBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[0].oper[1].slice(0, 4))
 			console.time('ocr.detect.area');
-			let resultArea = thisScript.getOcr().loadImage(toDetectAreaBmp, 1);
+			let resultArea = thisScript.getOcr().loadImage(toDetectAreaBmp);
 			console.timeEnd('ocr.detect.area');
 			toDetectAreaBmp.recycle();
 
@@ -211,7 +211,7 @@ export class Func993 implements InterfaceFuncOrigin {
 					for (let resultItem of resultArea) {
 						if (resultItem && resultItem.label) {
 							console.log('当前区域为' + resultItem.label);
-							if (!resultItem.label.includes(thisConf.area)) {
+							if (!resultItem.label.includes(String(thisConf.area))) {
 
 								return thisScript.oper({
 									name: '切换区域',
@@ -251,13 +251,13 @@ export class Func993 implements InterfaceFuncOrigin {
 			});
 			let switchGameAreaBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[5].oper[0].slice(0, 4))
 			console.time('ocr.game.area');
-			let resultGameArea = thisScript.getOcr().loadImage(switchGameAreaBmp, 1);
+			let resultGameArea = thisScript.getOcr().loadImage(switchGameAreaBmp);
 			console.timeEnd('ocr.game.area');
 			switchGameAreaBmp.recycle();
 			console.log(resultGameArea);
 			if (Array.isArray(resultGameArea) && resultGameArea.length > 0 && resultGameArea[0].label) {
 				for (let resultGameItem of resultGameArea) {
-					if (resultGameItem.label.includes(thisConf.area)) {
+					if (resultGameItem.label.includes(String(thisConf.area))) {
 						let p = {
 							x: ((resultGameItem.points[0].x + resultGameItem.points[1].x) / 2) + thisOperator[5].oper[0][0],    // 补位
 							y: ((resultGameItem.points[0].y + resultGameItem.points[3].y) / 2) + thisOperator[5].oper[0][1],

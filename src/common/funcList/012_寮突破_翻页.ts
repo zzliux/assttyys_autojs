@@ -10,7 +10,6 @@ export class Func012 implements InterfaceFuncOrigin {
 	id = 12;
 	name = '寮突破_翻页';
 	desc = '寮突破时执行翻页操作，应排在[9勋章点击]后';
-	checked = false;
 	config = [{
 		desc: '',
 		config: [{

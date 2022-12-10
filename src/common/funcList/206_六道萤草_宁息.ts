@@ -80,7 +80,7 @@ export class Func206 implements InterfaceFuncOrigin {
 
 			let cost = { '腐草为萤': 300, '妖力化身': 300, '六道净化': 200, '萤火之光': 300 };
 			let coins = 0;
-			let result = thisScript.getOcr().findTextByOcr(function () {
+			let result = thisScript.findText(function () {
 				thisScript.keepScreen(); // 更新图片
 				return thisScript.helperBridge.helper.GetBitmap(); // 返回bmp
 			}, '.+', 0, thisOperator[0].oper[2], '包含');
@@ -90,7 +90,7 @@ export class Func206 implements InterfaceFuncOrigin {
 			if (coins >= 200) {
 				
 				let confPriorty = thisScript.scheme.config['202'].priority || '腐草为萤,妖力化身,六道净化,萤火之光';
-				let priorty = confPriorty.split(',') // 未达到目标的优先级
+				let priorty = String(confPriorty).split(',') // 未达到目标的优先级
 					.filter(item => cost[item] <= coins) // 钱不够的过滤
 					.filter(item => (thisScript.global.d6NxFilter || []).indexOf(item) === -1); // 无法购买的过滤
 				let priorty2 = ['萤火之光', '妖力化身'] // 达到目标后的优先级
