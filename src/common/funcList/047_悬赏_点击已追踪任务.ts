@@ -8,7 +8,7 @@ let swiper = 0
 
 export class Func047 implements InterfaceFuncOrigin {
 	id = 47;
-	name: '悬赏_点击已追踪任务';
+	name = '悬赏_点击已追踪任务';
 	config = [{
 		desc: '结束后切换方案',
 		config: [{

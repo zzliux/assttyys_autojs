@@ -61,7 +61,7 @@ export class Func009 implements InterfaceFuncOrigin {
 				return true;
 			}
 			let thisconf = thisScript.scheme.config['9']; // 获取配置
-			let priority = thisconf.priority.split('->');
+			let priority = String(thisconf.priority).split('->');
 			let multiColorKey = [];
 			for (let item of priority) {
 				multiColorKey.push(`结界_${item}勋章`);

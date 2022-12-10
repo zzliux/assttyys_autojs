@@ -1,11 +1,10 @@
 import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from "@/interface/InterfaceFunc";
-
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Fun030 implements InterfaceFuncOrigin {
+export class Func030 implements InterfaceFuncOrigin {
 	id = 30;
 	name = '斗技_杂项';
 	desc = '斗技界面点击“战”按钮，自动跳过结算拔得头筹，自动跳过段位提升等';

@@ -80,7 +80,7 @@ export class Func014 implements InterfaceFuncOrigin {
 			}
 			let thisconf = thisScript.scheme.config['14'];
 			if (thisScript.global.tsAttackSwhipeNum === undefined) {
-				thisScript.global.tsAttackSwhipeNum = parseInt(thisconf.swipeTime);
+				thisScript.global.tsAttackSwhipeNum = parseInt(String(thisconf.swipeTime));
 				// sleep(3000); // 从地图进来，先休息一下再进行判断
 			}
 			let point = null;
@@ -160,7 +160,7 @@ export class Func014 implements InterfaceFuncOrigin {
 						'快': [200, 400],
 						'中': [500, 700],
 						'慢': [800, 1200],
-					}[thisconf.swipeSpeed || '慢'], 200);
+					}[String(thisconf.swipeSpeed) || '慢'], 200);
 					sleep(1000);
 					thisScript.keepScreen(true);
 				} else {

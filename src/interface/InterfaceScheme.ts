@@ -4,6 +4,7 @@ export interface InterfaceScheme {
 	id: number;
 	schemeName: string;
 	groupName?: string;
+	inner?: boolean;
 	star?: boolean;
 
 	/**
