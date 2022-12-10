@@ -376,6 +376,9 @@ export const versionList = [{
 }, {
     version: '20221210_03',
     desc: '新增：退出结算可配置再次进攻；\n新增：9退4的突破卡级方案'
+}, {
+    version: '20221210_04',
+    desc: '新增：夜行荒河活动耗时挂机'
 }];
 
 export default versionList[versionList.length - 1].version;

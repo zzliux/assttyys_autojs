@@ -414,6 +414,10 @@ const SchemeList: InterfaceScheme[] = [{
             "10": { type: "个人突破" }
         }
     }, {
+        id: 39,
+        schemeName: '夜行荒河',
+        list: [2, 3, 220]
+    }, {
         id: 99,
         schemeName: '伊吹之擂',
         list: [0, 3, 24, 99, 100],
