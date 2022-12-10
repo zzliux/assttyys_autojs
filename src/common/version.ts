@@ -372,7 +372,10 @@ export const versionList = [{
     desc: '代码重构：请及时反馈使用问题！！'
 }, {
     version: '20221210_02',
-    desc: '修复：ocr无法使用的问题；\n;修复：部分功能无法配置；\n优化：保存方案后自动设置为待运行方案'
+    desc: '修复：ocr无法使用的问题；\n修复：部分功能无法配置；\n优化：保存方案后自动设置为待运行方案'
+}, {
+    version: '20221210_03',
+    desc: '新增：退出结算可配置再次进攻；\n新增：9退4的突破卡级方案'
 }];
 
 export default versionList[versionList.length - 1].version;

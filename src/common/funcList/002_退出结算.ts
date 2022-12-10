@@ -1,4 +1,5 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from "@/interface/InterfaceFunc";
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from "@/interface/InterfaceFunc";
+import { Script } from "@/system/script";
 
 const normal = -1; //定义常量
 const left = 0;
@@ -9,7 +10,15 @@ export class Func002 implements InterfaceFuncOrigin {
 	id = 2;
 	name = '退出结算';
 	desc = '';
-	config = [];
+	config = [{
+		desc: '配置',
+		config: [{
+			name: 'rechallenge',
+			desc: '失败点击重新挑战',
+			type: 'switch',
+			default: false,
+		}]
+	}];
 	operator: InterfaceFuncOperatorOrigin[] = [{
 		// 已打开的达摩，取点比较高
 		desc: [1280, 720,
@@ -145,7 +154,7 @@ export class Func002 implements InterfaceFuncOrigin {
 				],
 				notForCnt: true,
 			}*/
-	, {
+		, {
 		// 单人-失败太鼓
 		desc: [1280, 720,
 			[
@@ -287,7 +296,37 @@ export class Func002 implements InterfaceFuncOrigin {
 		oper: [
 			[center, 1280, 720, 535, 674, 743, 709, 1000],
 		]
+	}, {
+		// 单人-失败太鼓
+		desc: [1280, 720,
+			[
+				[center, 465, 151, 0x514a5c],
+				[center, 447, 189, 0x60566b],
+				[center, 496, 192, 0x5b5165],
+				[center, 466, 175, 0xb7a78e],
+				[center, 502, 154, 0xae9982],
+				[center, 418, 210, 0xb6a388]
+			]
+		],
+		oper: [
+			[center, 1280, 720, 813, 465, 909, 570, 500],
+		],
+		retest: 800,
 	}];
+	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+		if (thisScript.scheme.config['2'].rechallenge && thisScript.oper({
+			id: 2,
+			name: '退出结算_重新挑战',
+			operator: thisOperator.slice(-1)
+		})) {
+			return true;
+		}
+		return thisScript.oper({
+			id: 2,
+			name: '退出结算',
+			operator: thisOperator.slice(0, -1)
+		});
+	}
 }
 
 export default new Func002();

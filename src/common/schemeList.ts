@@ -371,6 +371,49 @@ const SchemeList: InterfaceScheme[] = [{
             }
         },
     }, {
+        id: 37,
+        schemeName: "个突_9退4_退出",
+        groupName: "个突9退4",
+        list: [0, 1, 2, 3, 8, 9, 10],
+        config: {
+            "0": {
+                jspd_enabled_2: true,
+                jspd_times_2: "4",
+                scheme_switch_enabled: true,
+                next_scheme: "个突_9退4_进攻",
+            },
+            "1": { exitBeforeReady: true },
+            "2": { rechallenge: true }, 
+            "8": {
+                count: '2',
+                afterCountOper: '停止脚本',
+                type: '个人突破'
+            },
+            "9": { priority: "0->1->2->3->4->5" },
+            "10": { type: "个人突破" }
+        }
+    }, {
+        id: 38,
+        schemeName: "个突_9退4_进攻",
+        groupName: "个突9退4",
+        list: [0, 1, 2, 3, 8, 9, 10],
+        config: {
+            "0": {
+                jspd_enabled_2: true,
+                jspd_times_2: "9",
+                scheme_switch_enabled: true,
+                next_scheme: "个突_9退4_退出"
+            },
+            "3": { type: "关闭" },
+            "8": {
+                count: '2',
+                afterCountOper: '停止脚本',
+                type: '个人突破'
+            },
+            "9": { priority: "4->5->3->2->1->0" },
+            "10": { type: "个人突破" }
+        }
+    }, {
         id: 99,
         schemeName: '伊吹之擂',
         list: [0, 3, 24, 99, 100],
