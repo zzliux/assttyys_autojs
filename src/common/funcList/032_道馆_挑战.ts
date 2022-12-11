@@ -97,6 +97,7 @@ export class Func032 implements InterfaceFuncOrigin {
 				desc: thisOperator[2].desc
 			}]
 		})) {
+			thisScript.global.back_courtyard_to_next_scheme = '庭院进入寮每日活动';
 			const next_scheme = '返回庭院';
 			thisScript.setCurrentScheme(next_scheme);
 			thisScript.myToast(`切换方案为[${next_scheme}]`);

@@ -13,6 +13,7 @@ import { myToast, doOspPush } from '@/common/toolAuto';
 import { InterfaceFunc } from '@/interface/InterfaceFunc';
 import { InterfaceScheme } from '@/interface/InterfaceScheme';
 import { InterfaceMultiColor } from '@/interface/InterfaceMulticolor';
+import { globalRoot, globalRootType } from '@/system/GlobalStore/index';
 
 /**
  * 脚本对象，一个程序只能有一个
@@ -36,9 +37,9 @@ export class Script {
      * 运行次数，下标为funcList中的id，值为这个func成功执行的次数；
      * 成功执行：多点比色成功或operatorFun返回为true
      */
-    runTimes: object;
+    runTimes: Record<string, number>;
     lastFunc: any; // 最后执行成功的funcId
-    global: any; // 每次启动重置为空对象，用于功能里面存变量
+    global: globalRootType;// 每次启动重置为空对象，用于功能里面存变量
 
     // 设备信息
     device: any;
@@ -63,7 +64,7 @@ export class Script {
 
         this.runTimes = {};
         this.lastFunc = null; // 最后执行成功的funcId
-        this.global = null; // 每次启动重置为空对象，用于功能里面存变量
+        this.global = globalRoot; // 每次启动重置为空对象，用于功能里面存变量
         this.device = {
             width: getWidthPixels(),
             height: getHeightPixels()
@@ -385,7 +386,7 @@ export class Script {
             this.runDate = new Date();
             this.currentDate = new Date();
             this.runTimes = {};
-            this.global = {};
+            this.global = globalRoot;
             if (null === this.scheme) {
                 if (typeof self.stopCallback === 'function') {
                     self.stopCallback();

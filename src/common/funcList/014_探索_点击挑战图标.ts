@@ -80,7 +80,7 @@ export class Func014 implements InterfaceFuncOrigin {
 			}
 			let thisconf = thisScript.scheme.config['14'];
 			if (thisScript.global.tsAttackSwhipeNum === undefined) {
-				thisScript.global.tsAttackSwhipeNum = parseInt(String(thisconf.swipeTime));
+				thisScript.global.tsAttackSwhipeNum = parseInt(String(thisconf.swipeTime), 10);
 				// sleep(3000); // 从地图进来，先休息一下再进行判断
 			}
 			let point = null;

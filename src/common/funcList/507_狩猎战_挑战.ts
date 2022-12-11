@@ -20,15 +20,17 @@ export class Func507 implements InterfaceFuncOrigin {
 			[right, 1280, 720, 1073, 568, 1171, 646, 1000]  // 进入鬼王挑战页
 		]
 	}, {	// 检测_挑战是否可用
-		desc: [1280, 720,
-			[[left, 64, 482, 0x291522],
-			[left, 33, 38, 0xd7c5a2],
-			[left, 109, 24, 0xd7c5a2],
-			[left, 179, 37, 0xd7c6a5],
-			[center, 547, 34, 0x9a8958],
-			[right, 1138, 561, 0xdbc5ae],
-			[right, 1218, 641, 0xebc683],
-			[right, 1167, 608, 0x272420]]
+		desc: [
+			1280, 720,
+			[
+				[left, 64, 482, 0x291522],
+				[left, 33, 38, 0xd7c5a2],
+				[left, 109, 24, 0xd7c5a2],
+				[left, 179, 37, 0xd7c6a5],
+				[center, 634, 624, 0x4c2a26],
+				[center, 708, 35, 0x2a2237],
+				[right, 1144, 692, 0xf2d59f],
+			]
 		],
 		oper: [
 			[right, 1280, 720, 1138, 561, 1218, 641, 1000]
@@ -47,6 +49,38 @@ export class Func507 implements InterfaceFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1166, 52, 1200, 86, 2200],
 			[left, 1280, 720, 58, 43, 96, 82, 2200]
+		]
+	}, {	// 检测_狩猎战是否有酒瓶
+		desc: [
+			1280, 720,
+			[
+				[left, 64, 482, 0x291522],
+				[left, 33, 38, 0xd7c5a2],
+				[left, 109, 24, 0xd7c5a2],
+				[left, 179, 37, 0xd7c6a5],
+				[center, 634, 624, 0x4c2a26],
+				[center, 708, 35, 0x2a2237],
+				[center, 658, 405, 0xcdb49b],
+				[center, 663, 421, 0x77472b],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 627, 373, 677, 415, 1200],
+		]
+	},
+	{	// 检测_狩猎战关闭酒瓶奖励
+		desc: [
+			1280, 720,
+			[
+				[right, 1131, 593, 0x393939],
+				[center, 853, 241, 0x382a1c],
+				[center, 801, 362, 0xcbb59e],
+				[center, 368, 388, 0x906b41],
+				[center, 576, 42, 0x0c0a12],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 448, 488, 894, 574, 1200],
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
@@ -73,12 +107,33 @@ export class Func507 implements InterfaceFuncOrigin {
 		}
 
 		if (thisScript.oper({
+            name: '检测_是否有酒瓶',
+            operator: [{
+                desc: thisOperator[3].desc,
+                oper: thisOperator[3].oper
+            }]
+        })) {
+            return true;
+        }
+
+        if (thisScript.oper({
+            name: '检测_是否领取酒瓶奖励页',
+            operator: [{
+                desc: thisOperator[4].desc,
+                oper: thisOperator[4].oper
+            }]
+        })) {
+            return true;
+        }
+
+		if (thisScript.oper({
 			name: '检测_挑战奉献榜场景_已结束',
 			operator: [{
 				desc: thisOperator[2].desc,
 				oper: thisOperator[2].oper
 			}]
 		})) {
+			thisScript.global.back_courtyard_to_next_scheme = '庭院进入寮每日活动';
 			const next_scheme = '返回庭院';
 			thisScript.setCurrentScheme(next_scheme);
 			thisScript.myToast(`切换方案为[${next_scheme}]`);

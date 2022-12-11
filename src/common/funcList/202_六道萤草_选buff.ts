@@ -114,10 +114,10 @@ export class Func202 implements InterfaceFuncOrigin {
 		if (!thisScript.global.d6d) {
 			thisScript.global.d6d = {
 				// 0当前个数，1目标个数
-				腐草为萤: [parseInt(String(thisconf.腐草为萤)) || 0, 5],
-				妖力化身: [parseInt(String(thisconf.妖力化身)) || 0, 2],
-				六道净化: [parseInt(String(thisconf.六道净化)) || 0, 1],
-				萤火之光: [parseInt(String(thisconf.萤火之光)) || 0, 4]
+				腐草为萤: [parseInt(String(thisconf.腐草为萤), 10) || 0, 5],
+				妖力化身: [parseInt(String(thisconf.妖力化身), 10) || 0, 2],
+				六道净化: [parseInt(String(thisconf.六道净化), 10) || 0, 1],
+				萤火之光: [parseInt(String(thisconf.萤火之光), 10) || 0, 4]
 			}
 		}
 		// TODO 待优化：达到目标个数后直接乱选buff

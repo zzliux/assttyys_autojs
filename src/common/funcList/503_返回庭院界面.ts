@@ -125,6 +125,31 @@ export class Func503 implements InterfaceFuncOrigin {
 				[center, 389, 65, 0xfbc573],
 				[right, 1228, 646, 0xd6c6c3]]
 			]
+	},
+	{ 	// 判断_阴阳寮主页
+		desc: [
+			1280, 720,
+			[
+				[right, 1096, 630, 0xb1251f],
+				[right, 1105, 662, 0xdbe3f1],
+				[left, 45, 39, 0xf4e4a3],
+				[center, 886, 644, 0xe0cbaa],
+			]
+		],
+		oper: [
+			[left, 1280, 720, 23, 10, 71, 56, 2000],   // 返回按钮
+		]
+	}, { 	// 判断_是否为己方结界
+		desc: [1280, 720,
+			[[center, 611, 300, 0x0c0804],
+			[center, 913, 305, 0x0c0804],
+			[left, 318, 305, 0x0c0804],
+			[center, 605, 295, 0xae2e13],
+			[left, 202, 462, 0x10100c]]
+		],
+		oper: [
+			[left, 1280, 720, 23, 10, 71, 56, 2000],   // 返回按钮
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['503'];
@@ -207,6 +232,27 @@ export class Func503 implements InterfaceFuncOrigin {
 		}
 
 		if (thisScript.oper({
+			name: '判断_阴阳寮主页',
+			operator: [{
+				desc: thisOperator[10].desc,
+				oper: thisOperator[10].oper
+			}]
+		})) {
+
+			return true;
+		}
+
+		if (thisScript.oper({
+			name: '判断_是否为己方结界',
+			operator: [{
+				desc: thisOperator[11].desc,
+				oper: thisOperator[11].oper
+			}]
+		})) {
+			return true;
+		}
+
+		if (thisScript.oper({
 			name: '是否为庭院(未展开菜单)',
 			operator: [{
 				desc: thisOperator[8].desc,
@@ -230,8 +276,16 @@ export class Func503 implements InterfaceFuncOrigin {
 			})) {
 				return true;
 			}
-			thisScript.doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-			thisScript.stop();
+
+			if (!thisScript.global.back_courtyard_to_next_scheme) {
+				thisScript.doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+				thisScript.stop();
+			} else {
+				const next_scheme = thisScript.global.back_courtyard_to_next_scheme;
+				thisScript.global.back_courtyard_to_next_scheme = undefined;
+				thisScript.setCurrentScheme(next_scheme);
+                thisScript.myToast(`切换方案为[${next_scheme}]`);
+			}
 			return true;
 		}
 

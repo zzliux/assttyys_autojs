@@ -98,7 +98,7 @@ export class Func206 implements InterfaceFuncOrigin {
 					.filter(item => (thisScript.global.d6NxFilter || []).indexOf(item) === -1); // 无法购买的过滤
 
 				let toClick = null;
-				let type = null;
+				let type: string = null;
 				let overCnt = 0;
 				priorty.forEach(item => {
 					if (thisScript.global.d6d[item][0] >= thisScript.global.d6d[item][1]) {
