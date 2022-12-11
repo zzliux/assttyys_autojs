@@ -118,12 +118,7 @@ export class Func503 implements InterfaceFuncOrigin {
 				[center, 389, 65, 0xfbc573],
 				[right, 1228, 646, 0xd6c6c3]]
 			]
-<<<<<<< HEAD
-	},
-	{ 	// 判断_阴阳寮主页
-=======
 	}, { 	// 判断_阴阳寮主页
->>>>>>> 67cd9bff4332c5b78ad7590fd0702330ebd6d2d1
 		desc: [
 			1280, 720,
 			[
