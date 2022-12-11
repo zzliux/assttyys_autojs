@@ -69,7 +69,7 @@ export class Script {
             width: getWidthPixels(),
             height: getHeightPixels()
         };
-        this.helperBridge = null;
+        this.helperBridge = helperBridge;
         this.storeCommon = storeCommon;
         this.doOspPush = doOspPush;
         this.myToast = myToast;
@@ -127,7 +127,7 @@ export class Script {
      * 设置启动后回调
      * @param {Function} callback 
      */
-    setRunCallback(callback) {
+    setRunCallback(callback: Function) {
         this.runCallback = callback;
     };
 
@@ -135,7 +135,7 @@ export class Script {
      * 设置停止后回调
      * @param {Function} callback 
      */
-    setStopCallback(callback) {
+    setStopCallback(callback: Function) {
         this.stopCallback = callback;
     };
 
@@ -379,8 +379,6 @@ export class Script {
         if (this.runThread) return;
         var self = this;
         try {
-            // helperBridge放进来，funcList里面operator执行时可以从this中取到helperBridge，解决直接导入helperBridge在端报错的问题
-            this.helperBridge = helperBridge;
             this.initFuncList();
             this.initMultiColor();
             this.runDate = new Date();
@@ -586,7 +584,7 @@ export class Script {
      * 根据func中的desc进行多点比色
      * @param {*} currFunc 
      */
-    desc(currFunc, commonConfig) {
+    desc(currFunc: InterfaceFunc, commonConfig) {
         let operator = currFunc.operator || []; // 需要计算的坐标通过operater传进去使用
         for (let id = 0; id < operator.length; id++) {
             let item = operator[id];

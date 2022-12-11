@@ -13,7 +13,7 @@ class MyFloaty {
         if (this.fb) return;
         let self = this;
         this.fb = new FloatButton();
-        this.fb.setMenuOpenAngle(150);
+        this.fb.setMenuOpenAngle(180);
         this.fb.setAllButtonSize(30);
         this.fb.setMenuRadius(34);
         this.fb.setIcon('file://' + files.cwd() + '/assets/img/ay.png');
@@ -81,7 +81,6 @@ class MyFloaty {
 
         this.fb.addItem('SchemeAutoRun')
             .setIcon('@drawable/ic_playlist_play_black_48dp')
-
             //图标着色
             .setTint('#FFFFFF')
             //背景颜色
@@ -93,6 +92,26 @@ class MyFloaty {
                 self.runEventFlag = false;
                 return false;
             });
+
+        this.fb.addItem('CapScreen')
+            .setIcon('@drawable/ic_landscape_black_48dp')
+            //图标着色
+            .setTint('#FFFFFF')
+            .setColor('#FF3300')
+            .onClick((view, name) => {
+                threads.start(function () {
+                    sleep(600);
+                    let bmp = script.helperBridge.helper.GetBitmap();
+                    let img = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(bmp);
+                    let path = `/sdcard/assttyys/screenshot/${new Date().getTime()}.png`;
+                    files.ensureDir(path);
+                    img.saveTo(path);
+                    img.recycle();
+                    media.scanFile(path);
+                    script.myToast(`截图已保存至${path}`);
+                });
+            });
+
 
         this.fb.setAllButtonPadding(6);
         this.fb.getViewUtil('logo').setPadding(0);
@@ -124,9 +143,8 @@ class MyFloaty {
                 self.fb.getView('logo').setColorFilter(colors.argb(0, 0, 0, 0));
             });
         });
-
-        
     }
+
     thisRun(type?: string) {
         type = type || 'run';
         if (app.autojs.versionCode >= 8081200) {

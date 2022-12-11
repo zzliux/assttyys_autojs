@@ -382,6 +382,9 @@ export const versionList = [{
 }, {
     version: '20221211_01',
     desc: '修复：定时任务不运行方案的bug'
+}, {
+    version: '20221211_02',
+    desc: '新增：悬浮截图按钮'
 }];
 
 export default versionList[versionList.length - 1].version;
