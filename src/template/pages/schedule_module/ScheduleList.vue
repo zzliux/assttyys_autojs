@@ -161,13 +161,15 @@ export default {
       if (item.checked) {
         this.saveScheduleList();
         if (item.job) {
-          item.job.reschedule(item.config.cron, function () {
-            AutoWeb.autoPromise('setCurrentScheme', item.config.scheme);
+          item.job.reschedule(item.config.cron, async function () {
+            await AutoWeb.autoPromise('setCurrentScheme', item.config.scheme);
+            await AutoWeb.autoPromise('startCurrentScheme');
             item.lastRunTime = new Date().toLocaleString();
           });
         } else {
-          item.job = schedule.scheduleJob(item.config.cron, function () {
-            AutoWeb.autoPromise('setCurrentScheme', item.config.scheme);
+          item.job = schedule.scheduleJob(item.config.cron, async function () {
+            await  AutoWeb.autoPromise('setCurrentScheme', item.config.scheme);
+            await AutoWeb.autoPromise('startCurrentScheme');
             item.lastRunTime = new Date().toLocaleString();
           });
         }

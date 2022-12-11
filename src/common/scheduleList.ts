@@ -23,7 +23,7 @@ const ScheduleDefaultList = [{
     }
   },
   {
-    id: 2,
+    id: 3,
     name: '逢魔',
     desc: '自动参加逢魔活动，目前不支持首领',
     checked: false,
