@@ -1,5 +1,6 @@
 import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
 import { Script } from '@/system/script';
+
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -20,8 +21,12 @@ export class Func507 implements InterfaceFuncOrigin {
 			[right, 1280, 720, 1073, 568, 1171, 646, 1000]  // 进入鬼王挑战页
 		]
 	}, {	// 检测_挑战是否可用
+<<<<<<< HEAD
 		desc: [
 			1280, 720,
+=======
+		desc: [1280, 720,
+>>>>>>> 67cd9bff4332c5b78ad7590fd0702330ebd6d2d1
 			[
 				[left, 64, 482, 0x291522],
 				[left, 33, 38, 0xd7c5a2],
@@ -50,7 +55,12 @@ export class Func507 implements InterfaceFuncOrigin {
 			[right, 1280, 720, 1166, 52, 1200, 86, 2200],
 			[left, 1280, 720, 58, 43, 96, 82, 2200]
 		]
+<<<<<<< HEAD
 	}, {	// 检测_狩猎战是否有酒瓶
+=======
+	},
+	{	// 检测_狩猎战是否有酒瓶
+>>>>>>> 67cd9bff4332c5b78ad7590fd0702330ebd6d2d1
 		desc: [
 			1280, 720,
 			[
@@ -107,6 +117,7 @@ export class Func507 implements InterfaceFuncOrigin {
 		}
 
 		if (thisScript.oper({
+<<<<<<< HEAD
             name: '检测_是否有酒瓶',
             operator: [{
                 desc: thisOperator[3].desc,
@@ -125,6 +136,26 @@ export class Func507 implements InterfaceFuncOrigin {
         })) {
             return true;
         }
+=======
+			name: '检测_是否有酒瓶',
+			operator: [{
+				desc: thisOperator[3].desc,
+				oper: thisOperator[3].oper
+			}]
+		})) {
+			return true;
+		}
+
+		if (thisScript.oper({
+			name: '检测_是否领取酒瓶奖励页',
+			operator: [{
+				desc: thisOperator[4].desc,
+				oper: thisOperator[4].oper
+			}]
+		})) {
+			return true;
+		}
+>>>>>>> 67cd9bff4332c5b78ad7590fd0702330ebd6d2d1
 
 		if (thisScript.oper({
 			name: '检测_挑战奉献榜场景_已结束',

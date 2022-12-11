@@ -49,6 +49,12 @@ export default function webviewFuncList() {
         launchPackage(packageName);
     });
 
+
+    webview.on('startCurrentScheme').subscribe(([_param, done]) => {
+        done(true);
+        script.rerun();
+    });
+
     // 点击启动按钮，返回启动信息
     webview.on("startScript").subscribe(([_param, done]) => {
         let storeSettings = storeCommon.get('settings', {});

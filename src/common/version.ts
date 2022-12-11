@@ -379,6 +379,9 @@ export const versionList = [{
 }, {
     version: '20221210_04',
     desc: '新增：夜行荒河活动耗时挂机'
+}, {
+    version: '20221211_01',
+    desc: '修复：定时任务不运行方案的bug'
 }];
 
 export default versionList[versionList.length - 1].version;
