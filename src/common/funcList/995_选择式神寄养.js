@@ -78,7 +78,7 @@ export default {
                 ],
             oper: [
                 [right, 1280, 720, 962, 120, 1231, 146, 600],   // 寄养位置的所剩时间方位，用于检测所剩时间
-                [left, 1280, 720, 23, 10, 71, 56, 1200],   // 返回按钮
+                [left, 1280, 720, 23, 10, 71, 56, 2000],   // 返回按钮
             ]
         },
         {
@@ -201,7 +201,7 @@ export default {
                     id: 995,
                     name: '返回_阴阳寮页面',
                     operator: [{
-                        oper: [thisOperator[2].oper[1], thisOperator[2].oper[1], thisOperator[2].oper[1]]
+                        oper: [thisOperator[2].oper[1], thisOperator[2].oper[1]]
                     }]
                 });
                 setCurrentScheme(thisConf.next_scheme);

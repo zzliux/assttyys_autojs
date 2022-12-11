@@ -370,6 +370,20 @@ const SchemeList = [{
             }
         },
     }, {
+        id: 37,
+        schemeName: "定时任务-启动游戏-每日逢魔",
+        star: true,
+        groupName: "定时任务",
+        list: [993],
+        config: {
+            "993": {
+                area: "",
+                package_name: "com.netease.onmyoji",
+                is_shutdown_the_game_before: true,
+                next_scheme: "逢魔日常"
+            }
+        },
+    }, {
         id: 99,
         schemeName: '伊吹之擂',
         list: [0, 3, 24, 99, 100],

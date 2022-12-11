@@ -1,4 +1,5 @@
 import { myToast, doOspPush } from '@/common/toolAuto';
+import { setCurrentScheme } from '@/common/tool';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -8,8 +9,8 @@ export default {
 	id: 503,
 	name: '返回庭院界面',
 	desc: '支持从探索地图退出至探索地图庭院界面',
-	operator: [{
-		// 探索地图
+	operator: [
+	{		// 探索地图
 		desc: [1280, 720,
 			[[left, 53, 61, 0xe7edfc],
 			[left, 78, 60, 0x273771],
@@ -21,7 +22,7 @@ export default {
 		oper: [
 			[left, 1280, 720, 30, 35, 76, 80, 1000],
 		]
-	}, { // 阴阳寮
+	}, { 	// 阴阳寮神设首页
 		desc: [1280, 720,
 			[[left, 44, 28, 0xf1e0ad],
 			[left, 74, 32, 0xaa885f],
@@ -32,7 +33,7 @@ export default {
 		oper: [
 			[left, 1280, 720, 25, 9, 74, 55, 2000]
 		]
-	}, { // 斗技
+	}, { 	// 斗技
 		desc: [1280, 720,
 			[[left, 126, 26, 0xf8f3e0],
 			[left, 164, 26, 0xe3decf],
@@ -53,8 +54,7 @@ export default {
 		oper: [
 			[right, 1280, 720, 1124, 75, 1163, 103, 1000]
 		]
-	}, {
-		// 旧版町中界面
+	}, {	// 旧版町中界面
 		desc: [1280, 720,
 			[[right, 1067, 221, 0xb5aaad],
 			[right, 1054, 321, 0x989694],
@@ -66,9 +66,7 @@ export default {
 		oper: [
 			[right, 1280, 720, 1012, 228, 1093, 298, 1000],
 		]
-	},
-	{
-		// 现世逢魔
+	}, {	// 现世逢魔
 		desc: [1280, 720,
 			[[left, 19, 700, 0x3c3841],
 			[left, 42, 46, 0xc3cbdf],
@@ -80,9 +78,7 @@ export default {
 		oper: [
 			[left, 1280, 720, 27, 25, 72, 73, 1000],
 		]
-	},
-	{
-		// 宠物后院(管他有没有人用)
+	}, {	// 宠物后院(管他有没有人用)
 		desc: [1280, 720,
 			[[left, 34, 630, 0x4c3b3b],
 			[left, 59, 672, 0x442b23],
@@ -93,9 +89,7 @@ export default {
 		oper: [
 			[left, 1280, 720, 37, 24, 70, 61, 1000],
 		]
-	},
-	{
-		// 召唤屋(管他有没有人用)
+	}, {	// 召唤屋(管他有没有人用)
 		desc: [1280, 720,
 			[[left, 148, 38, 0xb28956],
 			[left, 171, 28, 0xb28956],
@@ -107,24 +101,46 @@ export default {
 		oper: [
 			[left, 1280, 720, 31, 8, 76, 50, 1000],
 		]
-	},
-	{
-		desc:   // 页面是否为庭院(菜单未展开) 只支持默认庭院皮肤与默认装饰
+	}, {	// 页面是否为庭院(菜单未展开) 只支持默认庭院皮肤与默认装饰
+		desc:
 			[1280, 720,
 				[[right, 1226, 47, 0xcda47a],
 				[right, 1157, 45, 0xb39671],
 				[center, 389, 65, 0xfbc573],
 				[right, 1207, 637, 0xdfd1cb]]
 			]
-	},
-	{
-		desc:   // 页面是否为庭院(菜单已展开) 只支持默认庭院皮肤与默认装饰
+	}, {	// 页面是否为庭院(菜单已展开) 只支持默认庭院皮肤与默认装饰
+		desc:   
 			[1280, 720,
 				[[right, 1226, 47, 0xcda47a],
 				[right, 1157, 45, 0xb29670],
 				[center, 389, 65, 0xfbc573],
 				[right, 1228, 646, 0xd6c6c3]]
 			]
+	}, { 	// 判断_阴阳寮主页
+		desc: [
+			1280, 720,
+			[
+				[right, 1096, 630, 0xb1251f],
+				[right, 1105, 662, 0xdbe3f1],
+				[left, 45, 39, 0xf4e4a3],
+				[center, 886, 644, 0xe0cbaa],
+			]
+		],
+		oper: [
+			[left, 1280, 720, 23, 10, 71, 56, 2000],   // 返回按钮
+		]
+	}, { 	// 判断_是否为己方结界
+		desc: [1280, 720,
+			[[center, 611, 300, 0x0c0804],
+			[center, 913, 305, 0x0c0804],
+			[left, 318, 305, 0x0c0804],
+			[center, 605, 295, 0xae2e13],
+			[left, 202, 462, 0x10100c]]
+		],
+		oper: [
+			[left, 1280, 720, 23, 10, 71, 56, 2000],   // 返回按钮
+		]
 	}],
 	operatorFunc(thisScript, thisOperator) {
 		let thisConf = thisScript.scheme.config['503'];
@@ -207,6 +223,27 @@ export default {
 		}
 
 		if (thisScript.oper({
+			name: '判断_阴阳寮主页',
+			operator: [{
+				desc: thisOperator[10].desc,
+				oper: thisOperator[10].oper
+			}]
+		})) {
+
+			return true;
+		}
+
+		if (thisScript.oper({
+			name: '判断_是否为己方结界',
+			operator: [{
+				desc: thisOperator[11].desc,
+				oper: thisOperator[11].oper
+			}]
+		})) {
+			return true;
+		}
+
+		if (thisScript.oper({
 			name: '是否为庭院(未展开菜单)',
 			operator: [{
 				desc: thisOperator[8].desc,
@@ -230,8 +267,16 @@ export default {
 			})) {
 				return true;
 			}
-			doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { myToast('脚本即将停止，正在上传数据'); } });
-			thisScript.stop();
+
+			if (!thisScript.global.back_courtyard_to_next_scheme) {
+				doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { myToast('脚本即将停止，正在上传数据'); } });
+				thisScript.stop();
+			} else {
+				const next_scheme = thisScript.global.back_courtyard_to_next_scheme;
+				thisScript.global.back_courtyard_to_next_scheme = undefined;
+				setCurrentScheme(next_scheme);
+                myToast(`切换方案为[${next_scheme}]`);
+			}
 			return true;
 		}
 
