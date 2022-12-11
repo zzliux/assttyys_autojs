@@ -1,5 +1,6 @@
 import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
 import { Script } from '@/system/script';
+
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -75,7 +76,7 @@ export class Func995 implements InterfaceFuncOrigin {
 				],
 			oper: [
 				[right, 1280, 720, 962, 120, 1231, 146, 600],   // 寄养位置的所剩时间方位，用于检测所剩时间
-				[left, 1280, 720, 23, 10, 71, 56, 1200],   // 返回按钮
+				[left, 1280, 720, 23, 10, 71, 56, 2000],   // 返回按钮
 			]
 		},
 		{
@@ -129,7 +130,7 @@ export class Func995 implements InterfaceFuncOrigin {
 	];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['995'];
-		const maxTimeForwait = parseInt(thisConf.maxTimeForwait, 10);
+		const maxTimeForwait = parseInt(String(thisConf.maxTimeForwait), 10);
 		const packageName = 'com.netease.onmyoji';
 		if (!thisScript.global.jy_list_getTime_fault_count) {
 			thisScript.global.jy_list_getTime_fault_count = 0;
@@ -198,7 +199,7 @@ export class Func995 implements InterfaceFuncOrigin {
 					id: 995,
 					name: '返回_阴阳寮页面',
 					operator: [{
-						oper: [thisOperator[2].oper[1], thisOperator[2].oper[1], thisOperator[2].oper[1]]
+						oper: [thisOperator[2].oper[1], thisOperator[2].oper[1]]
 					}]
 				});
 				thisScript.setCurrentScheme(thisConf.next_scheme);
@@ -270,7 +271,7 @@ export class Func995 implements InterfaceFuncOrigin {
 
 			//             if (timeRemaining.countSecond <= maxTimeForwait * 60000) {
 			//                 console.log(`所剩时间为${timeRemaining.countSecond}秒`);
-			//                 thisScript.myToast(`所剩时间为${timeRemaining.countSecond}秒`);
+			//                 myToast(`所剩时间为${timeRemaining.countSecond}秒`);
 			//                 thisScript.global.jy_list_getTime_fault_count = 0;
 			//                 return thisScript.oper({
 			//                     id: 995,
@@ -299,7 +300,7 @@ export class Func995 implements InterfaceFuncOrigin {
 			//             thisScript.stop();
 			//         } else if ('关闭应用' === thisConf.afterCountOper) {
 			//             sleep(1000);
-			//             thisScript.myToast(`停止应用[${packageName}]`);
+			//             myToast(`停止应用[${packageName}]`);
 			//             shell(`am force-stop ${packageName}`, true);
 			//             thisScript.stop();
 			//         }

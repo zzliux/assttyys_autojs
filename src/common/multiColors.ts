@@ -757,22 +757,6 @@ const multiColor: InterfaceMultiColorOrigin = {
             ]
         ]
     },
-    '道馆_集结道馆': {
-        region: [center, 1280, 720, 0, 83, 1279, 412],
-        desc: [
-            [1280, 720,
-                [
-                    [center, 588, 370, 0x7e0616],
-                    [center, 661, 381, 0x890618],
-                    [center, 545, 378, 0x590c18],
-                    [center, 492, 353, 0xffffc5],
-                    [center, 525, 383, 0xfde16a],
-                    [center, 550, 320, 0xf9ce89],
-                    [center, 564, 307, 0x993131]
-                ]
-            ]
-        ]
-    },
     '探索_宝箱': {
         region: [left, 1280, 720, 0, 121, 148, 577],
         desc: [
