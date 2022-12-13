@@ -1,4 +1,4 @@
-import { search, questionSearch, similarity } from '@/common/tool';
+import { search, questionSearch, merge } from '@/common/tool';
 import store, { storeCommon } from '@/system/store';
 import funcList from '@/common/funcListIndex';
 import defaultSchemeList from '@/common/schemeList';
@@ -79,7 +79,7 @@ export class Script {
 
         this.runTimes = {};
         this.lastFunc = null; // 最后执行成功的funcId
-        this.global = Object.assign({}, globalRoot); // 每次启动重置为空对象，用于功能里面存变量
+        this.global = merge({}, globalRoot); // 每次启动重置为空对象，用于功能里面存变量
         this.device = {
             width: getWidthPixels(),
             height: getHeightPixels()

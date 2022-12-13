@@ -385,6 +385,9 @@ export const versionList = [{
 }, {
     version: '20221211_02',
     desc: '新增：悬浮截图按钮'
+}, {
+    version: '20221213_01',
+    desc: '修复：修复全局变量没清空问题；\n优化：狩猎战方案；\n优化：支持多个调度任务同时启用'
 }];
 
 export default versionList[versionList.length - 1].version;
