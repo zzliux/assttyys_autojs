@@ -1,3 +1,5 @@
+import type { Script } from '@/system/script';
+
 import { storeCommon } from '@/system/store';
 import { getWidthPixels, getHeightPixels } from '@auto.pro/core';
 
@@ -20,9 +22,9 @@ export function requestMyScreenCapture(callback, helperBridge) {
  *    x, y:  两个坐标轴方向的相对距离
  *    timout: 多久后消失
  * }
- * @param {*} str 
+ * @param {string} str 
  */
-function _toast(str) {
+function _toast(str: string) {
     let toast = android.widget.Toast.makeText(context.getApplicationContext(), str.toString(), android.widget.Toast.LENGTH_LONG);
     // let layout = toast.getView();
     //设置景
@@ -43,7 +45,11 @@ function _toast(str) {
     setTimeout(function () { toast.cancel(); }, 1000)
 }
 
-export function myToast(str) {
+/**
+ * @description 消息提示
+ * @param {string}str 
+ */
+export function myToast(str: string): void {
     ui.run(() => _toast(str));
     console.log(str);
 }
@@ -153,11 +159,14 @@ export function ospPush (userToken, data) {
 
 /**
  * 发起osp消息推送
- * @param {*} thisScript 
- * @param {*} options { text, before, after } 
- * @returns 
+ * @param {Script} thisScript 
+ * @param options
  */
-export function doOspPush (thisScript, options) {
+export function doOspPush (thisScript: Script, options: {
+    text: string,
+    before?: () => void,
+    after?: () => void
+}): void {
     let storeSettings = storeCommon.get('settings', {});
     if (storeSettings.use_osp) {
         if (!storeSettings.osp_user_token) {

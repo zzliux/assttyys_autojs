@@ -1,5 +1,4 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
-import { Script } from '@/system/script';
+import type { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -31,44 +30,20 @@ export class Func998 implements InterfaceFuncOrigin {
 		],
 		oper: [
 			[right, 1280, 720, 1147, 49, 1222, 132, 1200],   // 点击正在寄养的式神
-			[center, 1280, 720, 650, 488, 822, 545, 600],    // 点击 前往查看 钮
+			[center, 1280, 720, 650, 488, 822, 545, 1200],    // 点击 前往查看 钮
+		]
+	},
+	{
+		// 已存在式神寄养 另一种适配
+		desc: [1280, 720,
+			[[right, 1147, 90, 0xf9efba],
+			[right, 1222, 110, 0xf6e7a8],
+			[right, 1082, 85, 0xaa3620],
+			[right, 1080, 127, 0x666059]]
+		],
+		oper: [
+			[right, 1280, 720, 1147, 49, 1222, 132, 1200],   // 点击正在寄养的式神
+			[center, 1280, 720, 650, 488, 822, 545, 1200],    // 点击 前往查看 钮
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
-		let thisconf = thisScript.scheme.config['998'];
-
-		if (thisScript.oper({
-			id: 998,
-			name: '点击式神寄养',
-			operator: [{
-				desc: thisOperator[0].desc,
-			}]
-		})) {
-			return thisScript.oper({
-				id: 998,
-				name: '点击式神寄养',
-				operator: [{
-					oper: [thisOperator[0].oper[0]]
-				}]
-			});
-		} else if (thisScript.oper({
-			id: 998,
-			name: '点击式神寄养',
-			operator: [{
-				desc: thisOperator[1].desc,
-			}]
-		})) {
-			console.log('已有式神寄养中');
-
-			thisScript.oper({
-				id: 998,
-				name: '前往当前寄养式神结界',
-				operator: [{
-					oper: thisOperator[1].oper
-				}]
-			});
-
-			return true;
-		}
-	}
 }

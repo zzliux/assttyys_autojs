@@ -52,8 +52,7 @@ export class Func507 implements InterfaceFuncOrigin {
 		]
 	},
 	{	// 检测_狩猎战是否有酒瓶
-		desc: [
-			1280, 720,
+		desc: [1280, 720,
 			[
 				[left, 64, 482, 0x291522],
 				[left, 33, 38, 0xd7c5a2],
@@ -61,12 +60,8 @@ export class Func507 implements InterfaceFuncOrigin {
 				[left, 179, 37, 0xd7c6a5],
 				[center, 634, 624, 0x4c2a26],
 				[center, 708, 35, 0x2a2237],
-				[center, 658, 405, 0xcdb49b],
-				[center, 663, 421, 0x77472b],
+				[right, 1144, 692, 0xd8d8d8],
 			]
-		],
-		oper: [
-			[center, 1280, 720, 627, 373, 677, 415, 1200],
 		]
 	},
 	{	// 检测_狩猎战关闭酒瓶奖励
@@ -110,10 +105,22 @@ export class Func507 implements InterfaceFuncOrigin {
 		if (thisScript.oper({
 			name: '检测_是否有酒瓶',
 			operator: [{
-				desc: thisOperator[3].desc,
-				oper: thisOperator[3].oper
+				desc: thisOperator[3].desc
 			}]
 		})) {
+			let point = thisScript.findMultiColor('狩猎_酒瓶');
+
+			if (point) {
+				console.log(`查找酒瓶结界成功`);
+				let oper = [[
+					point.x - 5,
+					point.y - 5,
+					point.x + 5,
+					point.y + 5,
+					1200
+				]];
+				thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+			}
 			return true;
 		}
 

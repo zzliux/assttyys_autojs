@@ -44,8 +44,23 @@ export class Script {
     // 设备信息
     device: any;
     storeCommon: any;
-    doOspPush: any;
-    myToast: any;
+
+    /**
+     * 发起osp消息推送
+     * @param {Script} thisScript 
+     * @param options
+     */
+    doOspPush: (thisScript: Script, options: {
+        text: string,
+        before?: () => void,
+        after?: () => void
+    }) => void;
+
+    /**
+     * @description 消息提示
+     * @param {string}str 
+     */
+    myToast: (str: string) => void;
 
 
     constructor() {
@@ -64,7 +79,7 @@ export class Script {
 
         this.runTimes = {};
         this.lastFunc = null; // 最后执行成功的funcId
-        this.global = globalRoot; // 每次启动重置为空对象，用于功能里面存变量
+        this.global = Object.assign({}, globalRoot); // 每次启动重置为空对象，用于功能里面存变量
         this.device = {
             width: getWidthPixels(),
             height: getHeightPixels()
@@ -93,7 +108,7 @@ export class Script {
         return ocr.findText(getBmpFunc, text, timeout, region, textMatchMode);
     }
 
-    findTextByOcrResult (text: string, ocrResult: Array<OcrResult>, textMatchMode: string, similarityRatio?: number): Array<OcrResult> {
+    findTextByOcrResult(text: string, ocrResult: Array<OcrResult>, textMatchMode: string, similarityRatio?: number): Array<OcrResult> {
         this.initOcrIfNeeded();
         return ocr.findTextByOcrResult(text, ocrResult, textMatchMode, similarityRatio);
     }
@@ -384,7 +399,7 @@ export class Script {
             this.runDate = new Date();
             this.currentDate = new Date();
             this.runTimes = {};
-            this.global = globalRoot;
+            this.global = Object.assign({}, globalRoot);
             if (null === this.scheme) {
                 if (typeof self.stopCallback === 'function') {
                     self.stopCallback();

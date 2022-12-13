@@ -1,8 +1,20 @@
 import { getWidthPixels } from "@auto.pro/core";
 import Bezier from 'bezier-js';
 
-class MyAutomator {
+export interface IMyAutomator {
+    tapType: number;
+    dirctionReverse: boolean;
+    RA: any;
+    shell: any;
 
+    setTapType(tapType: 0 | 1 | 2 | 3): void;
+    press(x: number, y: number, delay: number): void;
+    swipe(x0: number, y0: number, x1: number, y1: number, delay: number): void;
+    regionBezierSwipe(transedOperS: Array<number>, transedOperE: Array<number>, duration: Array<number>, randomSleep: number, type: number): void;
+
+}
+
+class MyAutomator implements IMyAutomator {
     tapType: number;
     dirctionReverse: boolean;
     RA: any;

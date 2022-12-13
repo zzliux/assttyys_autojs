@@ -1867,6 +1867,21 @@ const multiColor: InterfaceMultiColorOrigin = {
             ]
         ]
     },
+    '狩猎_酒瓶': {
+        region: [right, 1280, 720, 525, 334, 798, 515],
+        desc: [
+            [
+                1280, 720,
+                [
+                    [center, 657, 433, 0xdac9b8],
+                    [center, 637, 419, 0x98edfe],
+                    [center, 673, 429, 0xa3f2ff],
+                    [center, 663, 453, 0x77472b],
+                    [center, 660, 406, 0xfefdfd],
+                ]
+            ]
+        ]
+    }
 }
 
 export default multiColor;

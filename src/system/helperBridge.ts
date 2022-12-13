@@ -1,6 +1,7 @@
 import { getWidthPixels, getHeightPixels } from "@auto.pro/core";
 import drawFloaty from "@/system/drawFloaty";
 import { getRegionBiasRnd, strHashToNum } from '@/common/toolAuto';
+import { IMyAutomator } from '@/system/MyAutomator';
 
 const normal = -1; //定义常量
 const left = 0;
@@ -19,22 +20,38 @@ if (screenWidth < screenHeight) {
     screenHeight = t;
 }
 
-export const helperBridge = {
-    automator: null,
-    helper: null,
-    helperPoly: {},
+interface IhelperBridge {
+    automator: IMyAutomator | null,
+    helper: any | null,
+    helperPoly: object,
+    getHelper(dw: number, dh: number),
+    init: () => void,
+    regionClickTrans: (oper)=> any,
+    setAutomator: (automator: IMyAutomator) => void,
+    regionClick: (transedOper: [number, number, number, number, number][], randomSleep: number) => void,
+    regionStepRandomClick: (transedOperStepRandom, randomSleep) => void,
+    regionSwipe: (transedOperS, transedOperE, duration, randomSleep) => void,
+    swipePath: (paths) => void,
+    regionBezierSwipe: (transedOperS, transedOperE, duration, randomSleep, type) => void,
+}
+
+export class helperBridge implements IhelperBridge {
+    automator = null;
+    helper = null;
+    helperPoly = {};
     getHelper(dw: number, dh: number) {
         if (!this.helperPoly[dw + '_' + dh]) {
             this.helperPoly[dw + '_' + dh] = com.scriptlib.AnchorGraphicHelper.Create(runtime, dw, dh, 0, 0, screenWidth - 1, screenHeight - 1);
         }
         return this.helperPoly[dw + '_' + dh];
-    },
-    init: function () {
+    }
+    init() {
+        console.log('init', com.scriptlib.AnchorGraphicHelper);
         console.log(`ScriptLib Version: ${com.scriptlib.AnchorGraphicHelper.Version()}`);
         console.log(`ScriptLib initializing`);
         this.helper = this.getHelper(devWidth, devHeight);
         console.log(`ScriptLib initialize success`);
-    },
+    }
     // [[right, 1280, 720, 1119, 504, 1227, 592, 2000]]
     regionClickTrans(oper) {
         for (let i = 0; i < oper.length; i++) {
@@ -77,11 +94,11 @@ export const helperBridge = {
             }
         }
         return oper;
-    },
+    }
 
-    setAutomator(automator) {
+    setAutomator(automator: IMyAutomator) {
         this.automator = automator;
-    },
+    }
 
     // [[1119, 504, 1227, 592, 2000]]
     regionClick(transedOper: [number, number, number, number, number][], randomSleep: number) {
@@ -109,7 +126,7 @@ export const helperBridge = {
             }
             sleep(item[4] + random(0, randomSleep || 0));
         });
-    },
+    }
 
     // [[
 	//     [69, 171, 170, 452, 1000, 2], // 最后一个参数，表示执行这个的概率，[0, 2)命中
@@ -135,7 +152,7 @@ export const helperBridge = {
             }
         });
         this.regionClick(oper, randomSleep);
-    },
+    }
     regionSwipe(transedOperS, transedOperE, duration, randomSleep) {
         const time = random(duration[0], duration[1])
         this.automator.swipe(
@@ -146,7 +163,7 @@ export const helperBridge = {
             time // duration
         );
         sleep(time + random(0, randomSleep))
-    },
+    }
     /**
      * @paths [{ x: 123, y: 234 }, { delay: 200, x: 111, y: 333}, { delay: 200, x: 111, y: 222 }]
      */
@@ -178,7 +195,7 @@ export const helperBridge = {
         //     gesture(duration, ...points);      
         //     sleep(duration);      
         // }
-    },
+    }
     // [1119, 504, 1227, 592, 2000]
     // type0-竖直方向，1-水平方向 TODO
     regionBezierSwipe(transedOperS, transedOperE, duration, randomSleep, type) {
@@ -186,4 +203,6 @@ export const helperBridge = {
     }
 };
 
-export default helperBridge;
+const helperBridgeService = new helperBridge();
+
+export default helperBridgeService;

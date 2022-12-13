@@ -9,20 +9,20 @@
       </van-nav-bar>
     </div>
 
-    <div class="rv_inner" :style="'padding-top: '+ (46 + (statusBarHeight || 0)) + 'px'">
+    <div class="rv_inner" :style="'padding-top: ' + (46 + (statusBarHeight || 0)) + 'px'">
       <van-cell-group class="itemBox" :title="'定时任务'" style="background: transparent">
         <div v-for="(item, index) in scheduleList" :key="item.id" class="item" center>
           <van-swipe-cell center @open="itemOpen" @close="itemClose" :before-close="itemBeforeClose"
             :stop-propagation="true" :disabled="item.checked">
             <template>
               <div class="item-header" @click="showConfig($event, item)">
-                <div class="item-title">{{item.id + ' ' + item.name}}</div>
+                <div class="item-title">{{ item.id + ' ' + item.name }}</div>
                 <div class="item-value">
                   <span class="handle-area"></span>
                   <van-switch class="itemSwitch" v-model="item.checked" size="18"
                     @change="onScheduleChange($event, item)" />
                 </div>
-                <div v-if="item.desc" class="item-desc">{{item.desc}}</div>
+                <div v-if="item.desc" class="item-desc">{{ item.desc }}</div>
                 <div class="item-desc">最近执行时间: {{ item.lastRunTime }}</div>
               </div>
             </template>
@@ -37,7 +37,7 @@
             <van-field label="运行方案" label-width="70%" :disabled="item.checked"
               :rules="[{ required: true, message: '必填' }]">
               <template #input>
-                <div style="width: 100%;" :style="item.checked ? 'color: rgb(200, 195, 188)': ''"
+                <div style="width: 100%;" :style="item.checked ? 'color: rgb(200, 195, 188)' : ''"
                   @click="showItemConfigScheme($event, item)">
                   {{ item.config.scheme }}
                 </div>
@@ -68,8 +68,7 @@
         @cancel="configItemItemShowPicker = false" :default-index="curItemItemIndex"></van-picker>
     </van-popup>
     <van-dialog v-model="scheduleNameInputShow" :before-close="scheduleNameInputBeforeClose"
-      :title="'add' === scheduleNameInputType ? '新增定时任务' : '修改定时任务'"
-      show-cancel-button>
+      :title="'add' === scheduleNameInputType ? '新增定时任务' : '修改定时任务'" show-cancel-button>
       <van-field :label="'add' === scheduleNameInputType ? '定时任务名' : '新的定时任务名'" v-model="addScheduleForm.name"
         placeholder="请输入..." />
       <van-field label="描述" v-model="addScheduleForm.desc" placeholder="请输入..." />
@@ -138,7 +137,8 @@ export default {
       commonConfigModalObject: {
         config: []
       },
-      scheduleList: []
+      scheduleList: [],
+      jobList: [],
     };
   },
   props: {
@@ -158,25 +158,56 @@ export default {
       AutoWeb.autoPromise('saveScheduleList', this.scheduleList);
     },
     async onScheduleChange(e, item) {
-      if (item.checked) {
+      if (Array.isArray(this.jobList)) {
         this.saveScheduleList();
-        if (item.job) {
-          item.job.reschedule(item.config.cron, async function () {
+        // this.jobList ? this.jobList.cancel() : null;
+
+        const index = this.jobList.findIndex(job => job.id === item.id);
+        
+        if (index != -1) {
+          if (item.checked) {
+            this.jobList[index].job.reschedule(item.config.cron, async function () {
             await AutoWeb.autoPromise('setCurrentScheme', item.config.scheme);
             await AutoWeb.autoPromise('startCurrentScheme');
             item.lastRunTime = new Date().toLocaleString();
           });
+          } else {
+            this.jobList[index].job.cancel();
+          }
+          
         } else {
-          item.job = schedule.scheduleJob(item.config.cron, async function () {
-            await  AutoWeb.autoPromise('setCurrentScheme', item.config.scheme);
-            await AutoWeb.autoPromise('startCurrentScheme');
-            item.lastRunTime = new Date().toLocaleString();
-          });
+          const jobTemp = schedule.scheduleJob(item.config.cron, async function () {
+              await AutoWeb.autoPromise('setCurrentScheme', item.config.scheme);
+              await AutoWeb.autoPromise('startCurrentScheme');
+              item.lastRunTime = new Date().toLocaleString();
+            });
+          this.jobList.push({
+            id: item.id,
+            job: jobTemp
+          })
         }
-
-      } else {
-        item.job.cancel();
       }
+      // if (item.checked) {
+      //   this.saveScheduleList();
+      //   if (item.job) {
+      //     console.log('reschedule');
+      //     item.job.reschedule(item.config.cron, async function () {
+      //       await AutoWeb.autoPromise('setCurrentScheme', item.config.scheme);
+      //       await AutoWeb.autoPromise('startCurrentScheme');
+      //       item.lastRunTime = new Date().toLocaleString();
+      //     });
+      //   } else {
+      //     console.log('scheduleJob', item.config.cron);
+      //     item.job = schedule.scheduleJob(item.config.cron, async function () {
+      //       await  AutoWeb.autoPromise('setCurrentScheme', item.config.scheme);
+      //       await AutoWeb.autoPromise('startCurrentScheme');
+      //       item.lastRunTime = new Date().toLocaleString();
+      //     });
+      //   }
+
+      // } else {
+      //   item.job.cancel();
+      // }
     },
     showCommonConfig(e, item) {
       if (item.config && item.config.length > 0) {

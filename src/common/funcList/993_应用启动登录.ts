@@ -179,12 +179,14 @@ export class Func993 implements InterfaceFuncOrigin {
 		const packageName = thisConf.package_name;
 		const isInstalled = app.getAppName(packageName);
 
+		console.log(isInstalled, thisScript.global.app_is_open);
 		if (isInstalled && !thisScript.global.app_is_open) {
 
 			if (thisConf.is_shutdown_the_game_before) {
 				$shell(`am force-stop ${packageName}`, true);
 				sleep(5000);
 			}
+			console.log(`正在启动应用${packageName}`);
 			app.launchPackage(packageName);
 			thisScript.global.app_is_open = true;
 		} else if (!isInstalled) {
