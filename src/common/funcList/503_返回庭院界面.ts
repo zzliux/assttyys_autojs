@@ -16,7 +16,7 @@ export class Func503 implements InterfaceFuncOrigin {
 			name: 'scheme_switch_enabled',
 			desc: '是否启用',
 			type: 'switch',
-			default: true,
+			default: false,
 		}, {
 			name: 'next_scheme',
 			desc: '下一个方案',
