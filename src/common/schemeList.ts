@@ -276,6 +276,12 @@ const SchemeList: InterfaceScheme[] = [{
         id: 29,
         schemeName: '返回庭院',
         list: [503],
+        config: {
+            "503": {
+                scheme_switch_enabled: false,
+                next_scheme: '通用准备退出'
+            }
+        }
     }, {
         id: 30,
         schemeName: "式神寄养",

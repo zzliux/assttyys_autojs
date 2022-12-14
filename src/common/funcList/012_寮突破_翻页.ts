@@ -68,7 +68,7 @@ export class Func012 implements InterfaceFuncOrigin {
 				} else if ('切换方案' === thisConf.afterCountOper) {
 					let oper = thisOperator[0].oper[2];
 					thisScript.helperBridge.regionClick([oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
-					thisScript.setCurrentScheme(thisConf.next_scheme);
+					thisScript.setCurrentScheme(thisConf.next_scheme as string);
 					thisScript.myToast(`切换方案为[${thisConf.next_scheme}]`);
 					thisScript.rerun();
 				}

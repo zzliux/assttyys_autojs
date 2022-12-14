@@ -177,7 +177,7 @@ export class Func506 implements InterfaceFuncOrigin {
 			}]
 		})) {
 			const next_scheme = '道馆';
-			thisScript.setCurrentScheme(next_scheme);
+			thisScript.setCurrentScheme(next_scheme as string);
 			thisScript.myToast(`切换方案为[${next_scheme}]`);
 			thisScript.rerun();
 		}
@@ -211,7 +211,7 @@ export class Func506 implements InterfaceFuncOrigin {
 
             sleep(2000);
             const next_scheme = '狩猎战';
-            thisScript.setCurrentScheme(next_scheme);
+            thisScript.setCurrentScheme(next_scheme as string);
             thisScript.myToast(`切换方案为[${next_scheme}]`);
             thisScript.rerun();
         }

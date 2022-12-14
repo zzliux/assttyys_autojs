@@ -41,6 +41,11 @@ export class Script {
     lastFunc: any; // 最后执行成功的funcId
     global: globalRootType;// 每次启动重置为空对象，用于功能里面存变量
 
+    /**
+     * @description 方案运行中参数
+     */
+    runtimeParams: Record<string, unknown> | null;
+
     // 设备信息
     device: any;
     storeCommon: any;
@@ -76,6 +81,7 @@ export class Script {
         this.currentDate = null;
         this.lastFuncDateTime = null;
         this.ocrDetector = null;
+        this.runtimeParams = null;
 
         this.runTimes = {};
         this.lastFunc = null; // 最后执行成功的funcId
@@ -399,7 +405,7 @@ export class Script {
             this.runDate = new Date();
             this.currentDate = new Date();
             this.runTimes = {};
-            this.global = Object.assign({}, globalRoot);
+            this.global = merge({}, globalRoot);
             if (null === this.scheme) {
                 if (typeof self.stopCallback === 'function') {
                     self.stopCallback();
@@ -611,7 +617,12 @@ export class Script {
         return false;
     };
 
-    setCurrentScheme(schemeName) {
+    setCurrentScheme(schemeName: string, params?: Record<string, unknown>) {
+        if(params) {
+            this.runtimeParams = params;
+        } else {
+            params = null;
+        }
         return setCurrentScheme(schemeName, store);
     };
 

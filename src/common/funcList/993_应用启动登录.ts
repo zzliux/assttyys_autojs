@@ -306,7 +306,7 @@ export class Func993 implements InterfaceFuncOrigin {
 			// 做延时检测 防止登陆后的弹窗
 			if (thisScript.global.checked_yard_count === 10) {
 				thisScript.global.checked_yard_count = undefined;
-				thisScript.setCurrentScheme(thisConf.next_scheme);
+				thisScript.setCurrentScheme(thisConf.next_scheme as string);
 				thisScript.myToast(`切换方案为[${thisConf.next_scheme}]`);
 				thisScript.rerun();
 			} else {

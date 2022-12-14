@@ -19,7 +19,7 @@ const ScheduleDefaultList = [{
     job: undefined,
     config: {
       scheme: '定时任务-启动游戏-每日寮活动',
-      cron: '0 0 19 * * *',
+      cron: '0 0 19 * * 1-4',
     }
   },
   {

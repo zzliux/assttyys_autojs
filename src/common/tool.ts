@@ -61,7 +61,7 @@ export function similarity(s1, s2, filterSimilar?) {
 	return 1 - (matrix[len1][len2] / maxLen); //返回右下角的值
 }
 
-export function setCurrentScheme(schemeName, store) {
+export function setCurrentScheme(schemeName: string, store) {
 	let savedSchemeList = store.get("schemeList", defaultSchemeList);
 	for (let i = 0; i < savedSchemeList.length; i++) {
 		if (savedSchemeList[i].schemeName === schemeName) {

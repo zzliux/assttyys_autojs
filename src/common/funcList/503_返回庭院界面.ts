@@ -10,6 +10,20 @@ export class Func503 implements InterfaceFuncOrigin {
 	id = 503;
 	name = '返回庭院界面';
 	desc = '支持从探索地图退出至探索地图庭院界面';
+	config = [{
+		desc: '结束后切换方案',
+		config: [{
+			name: 'scheme_switch_enabled',
+			desc: '是否启用',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'next_scheme',
+			desc: '下一个方案',
+			type: 'scheme',
+			default: '通用准备退出',
+		}]
+	}];
 	operator: InterfaceFuncOperatorOrigin[] = [{
 		// 探索地图
 		desc: [1280, 720,
@@ -268,14 +282,18 @@ export class Func503 implements InterfaceFuncOrigin {
 			})) {
 				return true;
 			}
-			if (!thisScript.global.back_courtyard_to_next_scheme) {
-				thisScript.doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+			let next_scheme = thisScript.runtimeParams && thisScript.runtimeParams.next_scheme_name;
+			if (thisConf.scheme_switch_enabled) {
+				next_scheme = thisConf.next_scheme;
+			}
+
+			if (!next_scheme) {
+				thisScript.doOspPush(thisScript, { text: '没有方案需要执行，脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 				thisScript.stop();
 			} else {
-				const next_scheme = thisScript.global.back_courtyard_to_next_scheme;
-				thisScript.global.back_courtyard_to_next_scheme = undefined;
-				thisScript.setCurrentScheme(next_scheme);
+				thisScript.setCurrentScheme(next_scheme as string);
                 thisScript.myToast(`切换方案为[${next_scheme}]`);
+				thisScript.rerun();
 			}
 			return true;
 		}

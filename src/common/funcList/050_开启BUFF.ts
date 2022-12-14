@@ -65,7 +65,7 @@ export class Func050 implements InterfaceFuncOrigin {
 			} else {
 				thisScript.helperBridge.regionClick([thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
 				if (thisconf && thisconf.scheme_switch_enabled) {
-					thisScript.setCurrentScheme(thisconf.next_scheme);
+					thisScript.setCurrentScheme(thisconf.next_scheme as string);
 					thisScript.myToast(`切换方案为[${thisconf.next_scheme}]`);
 					thisScript.rerun();
 				} else {

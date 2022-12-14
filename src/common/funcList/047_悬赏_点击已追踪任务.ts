@@ -80,7 +80,7 @@ export class Func047 implements InterfaceFuncOrigin {
 					if (swiper === 3) {
 						swiper = 0;
 						if (thisconf && thisconf.scheme_switch_enabled) {
-							thisScript.setCurrentScheme(thisconf.next_scheme);
+							thisScript.setCurrentScheme(thisconf.next_scheme as string);
 							thisScript.myToast(`切换方案为[${thisconf.next_scheme}]`);
 							thisScript.rerun();
 							sleep(3000);
@@ -99,7 +99,7 @@ export class Func047 implements InterfaceFuncOrigin {
 			} else {
 				// 如果没有悬浮列表说明任务做完了
 				if (thisconf && thisconf.scheme_switch_enabled) {
-					thisScript.setCurrentScheme(thisconf.next_scheme);
+					thisScript.setCurrentScheme(thisconf.next_scheme as string);
 					thisScript.myToast(`切换方案为[${thisconf.next_scheme}]`);
 					thisScript.rerun();
 				} else {

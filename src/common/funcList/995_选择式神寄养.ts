@@ -202,7 +202,7 @@ export class Func995 implements InterfaceFuncOrigin {
 						oper: [thisOperator[2].oper[1], thisOperator[2].oper[1]]
 					}]
 				});
-				thisScript.setCurrentScheme(thisConf.next_scheme);
+				thisScript.setCurrentScheme(thisConf.next_scheme as string);
 				thisScript.myToast(`切换方案为[${thisConf.next_scheme}]`);
 				thisScript.rerun();
 			} else if ('关闭应用' === thisConf.afterCountOper) {

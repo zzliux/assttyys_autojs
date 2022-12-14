@@ -79,7 +79,7 @@ export class Func052 implements InterfaceFuncOrigin {
 				})) {
 				const thisconf = thisScript.scheme.config['52'];
 				if (thisconf && thisconf.scheme_switch_enabled) {
-					thisScript.setCurrentScheme(thisconf.next_scheme);
+					thisScript.setCurrentScheme(thisconf.next_scheme as string);
 					thisScript.myToast(`切换方案为[${thisconf.next_scheme}]`);
 					thisScript.rerun();
 				} else {

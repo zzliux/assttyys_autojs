@@ -202,7 +202,7 @@ export class Func000 implements InterfaceFuncOrigin {
 
 		function stopOrReRun() {
 			if (thisconf.scheme_switch_enabled) {
-				thisScript.setCurrentScheme(thisconf.next_scheme);
+				thisScript.setCurrentScheme(thisconf.next_scheme as string);
 				thisScript.myToast(`切换方案为[${thisconf.next_scheme}]`);
 				thisScript.rerun();
 			} else {
