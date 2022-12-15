@@ -271,6 +271,21 @@ export class Func203 implements InterfaceFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1235, 569, 1262, 596, 500],
 		]
+	}, {
+		// 获得经验
+		desc: [1280, 720,
+			[
+				[center, 608, 135, 0xffeeb4],
+				[center, 639, 642, 0xc6d7d7],
+				[center, 728, 151, 0xfdecca],
+				[right, 1251, 82, 0x0d1010],
+				[right, 1157, 646, 0x161615],
+				[left, 63, 64, 0x00080b],
+			]
+		],
+		oper: [
+			[right, 1280, 720, 928, 169, 1167, 586, 500],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		if (thisScript.oper({
