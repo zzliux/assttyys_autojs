@@ -1657,6 +1657,18 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [center, 716, 460, 0x86856d],
                     [center, 777, 469, 0x78a183],
                 ]
+            ],
+            // 两个时的右
+            [1280, 720,
+                [
+                    [center, 899, 472, 0xa19884],
+                    [center, 899, 514, 0x85a68f],
+                    [center, 925, 554, 0x747c79],
+                    [center, 939, 563, 0x6e7777],
+                    [center, 969, 584, 0x76957a],
+                    [center, 1025, 510, 0x8fb194],
+                    [center, 849, 602, 0x858884],
+                ]
             ]
         ]
     },

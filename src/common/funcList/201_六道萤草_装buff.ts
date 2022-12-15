@@ -16,9 +16,8 @@ export class Func201 implements InterfaceFuncOrigin {
 				[left, 20, 43, 0xf0f6f7],
 				[left, 252, 38, 0x583716],
 				[left, 66, 649, 0x3d4f5c],
-				[right, 1219, 616, 0x242526],
-				[right, 1170, 645, 0x373737],
-				[right, 1205, 680, 0xf8f3e0],
+				[right, 1255, 584, 0x403a34],
+				[left, 46, 656, 0xcdbb90],
 			]
 		],
 		oper: [
@@ -32,7 +31,7 @@ export class Func201 implements InterfaceFuncOrigin {
 				[left, 251, 40, 0x583716],
 				[center, 749, 655, 0x495c67],
 				[center, 710, 662, 0x576972],
-				[center, 723, 667, 0xbbaa88],
+				[center, 744, 644, 0x3b4d59],
 				[right, 1232, 28, 0x292025],
 			]
 		],
@@ -48,8 +47,8 @@ export class Func201 implements InterfaceFuncOrigin {
 		desc: [1280, 720,
 			[
 				[right, 1230, 30, 0x3a2b2d],
-				[right, 1168, 614, 0xddcdb4],
-				[right, 1173, 594, 0x2f4753],
+				[right, 1168, 621, 0xdbcbb2],
+				[right, 1173, 594, 0x2c4250],
 				[left, 26, 41, 0xeef6f6],
 				[left, 252, 40, 0x583716],
 				[right, 1107, 618, 0x354958],
@@ -93,8 +92,8 @@ export class Func201 implements InterfaceFuncOrigin {
 		desc: [1280, 720,
 			[
 				[right, 1230, 30, 0x3a2b2d],
-				[right, 1168, 614, 0xddcdb4],
-				[right, 1173, 594, 0x2f4753],
+				[right, 1168, 621, 0xdbcbb2],
+				[right, 1173, 594, 0x2c4250],
 				[left, 26, 41, 0xeef6f6],
 				[left, 252, 40, 0x583716],
 				[right, 1107, 618, 0x354958],
@@ -191,6 +190,7 @@ export class Func201 implements InterfaceFuncOrigin {
 			return true;
 		}
 		return thisScript.oper({
+			id: 201,
 			name: '六道萤草_装buff_备战界面',
 			operator: [thisOperator[2]]
 		});

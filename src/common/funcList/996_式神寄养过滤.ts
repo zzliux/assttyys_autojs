@@ -49,10 +49,7 @@ export class Func996 implements InterfaceFuncOrigin {
 				desc: thisOperator[0].desc,
 			}]
 		})) {
-			let result = thisScript.findText(function () {
-				thisScript.keepScreen(); // 更新图片
-				return thisScript.helperBridge.helper.GetBitmap(); // 返回bmp
-			}, String(thisconf.friendName), 5000, thisOperator[0].oper[0], '模糊');
+			let result = thisScript.findText(String(thisconf.friendName), 5000, thisOperator[0].oper[0], '模糊');
 
 			if (result.length === 0) {
 				console.log(`未识别${thisconf.friendName}`);

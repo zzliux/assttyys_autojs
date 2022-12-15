@@ -191,23 +191,23 @@ export class Func203 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 698, 282, 756, 396, 500],
 		]
 	}, {
-	// 	// 宁息直接退出
-	// 	desc: [1280, 720,
-	// 		[
-	// 			[right, 1214, 180, 0x274658],
-	// 			[right, 1218, 251, 0x334f5b],
-	// 			[right, 1221, 631, 0xdacaa9],
-	// 			[left, 26, 42, 0xeaf2f2],
-	// 			[left, 252, 39, 0x583716],
-	// 			[left, 72, 634, 0x384e5c],
-	// 			[right, 1196, 632, 0xd1c1a0],
-	// 		]
-	// 	],
-	// 	oper: [
-	// 		[right, 1280, 720, 1187, 600, 1241, 670, 500],
-	// 		[center, 1280, 720, 676, 405, 842, 460, 500],
-	// 	]
-	// }, {
+		// 	// 宁息直接退出
+		// 	desc: [1280, 720,
+		// 		[
+		// 			[right, 1214, 180, 0x274658],
+		// 			[right, 1218, 251, 0x334f5b],
+		// 			[right, 1221, 631, 0xdacaa9],
+		// 			[left, 26, 42, 0xeaf2f2],
+		// 			[left, 252, 39, 0x583716],
+		// 			[left, 72, 634, 0x384e5c],
+		// 			[right, 1196, 632, 0xd1c1a0],
+		// 		]
+		// 	],
+		// 	oper: [
+		// 		[right, 1280, 720, 1187, 600, 1241, 670, 500],
+		// 		[center, 1280, 720, 676, 405, 842, 460, 500],
+		// 	]
+		// }, {
 		// 转换，直接退
 		desc: [1280, 720,
 			[
@@ -253,6 +253,24 @@ export class Func203 implements InterfaceFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1135, 590, 1217, 671, 500],
 		]
+	}, {
+		// 香行域右下角寻香切换为唤息
+		desc: [1280, 720,
+			[
+				[left, 20, 43, 0xf0f6f7],
+				[left, 252, 38, 0x583716],
+				[left, 66, 649, 0x3d4f5c],
+				[right, 1219, 616, 0x242526],
+				[right, 1170, 645, 0x373737],
+				[right, 1255, 584, 0x403a34],
+				[right, 1177, 656, 0x353531],
+				[right, 1193, 659, 0x44423b],
+				[right, 1211, 614, 0x202428],
+			]
+		],
+		oper: [
+			[right, 1280, 720, 1235, 569, 1262, 596, 500],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		if (thisScript.oper({
@@ -266,7 +284,7 @@ export class Func203 implements InterfaceFuncOrigin {
 				腐草为萤: [0, 5],
 				妖力化身: [0, 2],
 				六道净化: [0, 1],
-				萤火之光: [0, 4]
+				萤火之光: [0, 5]
 			};
 			thisScript.global.d6dCurrentBegin = new Date().getTime();
 			if (!thisScript.global.d6dBegin) {

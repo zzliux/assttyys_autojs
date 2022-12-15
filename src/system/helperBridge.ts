@@ -20,7 +20,7 @@ if (screenWidth < screenHeight) {
     screenHeight = t;
 }
 
-interface IhelperBridge {
+export interface IhelperBridge {
     automator: IMyAutomator | null,
     helper: any | null,
     helperPoly: object,

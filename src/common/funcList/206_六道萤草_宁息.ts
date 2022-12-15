@@ -80,10 +80,7 @@ export class Func206 implements InterfaceFuncOrigin {
 
 			let cost = { '腐草为萤': 300, '妖力化身': 300, '六道净化': 200, '萤火之光': 300 };
 			let coins = 0;
-			let result = thisScript.findText(function () {
-				thisScript.keepScreen(); // 更新图片
-				return thisScript.helperBridge.helper.GetBitmap(); // 返回bmp
-			}, '.+', 0, thisOperator[0].oper[2], '包含');
+			let result = thisScript.findText('.+', 0, thisOperator[0].oper[2], '包含');
 			if (result.length) {
 				coins = parseInt(result[0].label) || 0;
 			}
@@ -203,7 +200,7 @@ export class Func206 implements InterfaceFuncOrigin {
 					// 拿到所有buff后再装buff
 					if (thisScript.global.d6LoadBuff) {
 						let hasCnt = 0;
-						['腐草为萤', '妖力化身', '六道净化', '萤火之光'].forEach(name => hasCnt += +thisScript.global.d6d[name][0]);
+						['腐草为萤', '妖力化身', '六道净化', '萤火之光'].forEach(name => hasCnt += Math.min(thisScript.global.d6d[name][0], 1));
 						if (hasCnt < 4) thisScript.global.d6LoadBuff = false;
 					}
 					thisScript.global.d6d[type][0]++;

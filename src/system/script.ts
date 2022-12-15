@@ -2,7 +2,7 @@ import { search, questionSearch, merge } from '@/common/tool';
 import store, { storeCommon } from '@/system/store';
 import funcList from '@/common/funcListIndex';
 import defaultSchemeList from '@/common/schemeList';
-import helperBridge from '@/system/helperBridge';
+import helperBridge, { IhelperBridge } from '@/system/helperBridge';
 import multiColor from '@/common/multiColors';
 import { MlkitOcrDetector, ocr, OcrResult } from '@/system/MlkitOcr';
 import { setCurrentScheme } from '@/common/tool';
@@ -31,7 +31,7 @@ export class Script {
     currentDate: Date; // 最近一次功能执行时间
     lastFuncDateTime: Date; // 上次功能执行时间
     ocrDetector: MlkitOcrDetector; // yunxi的ocr
-    helperBridge: any;
+    helperBridge: any; //IhelperBridge;
 
     /**
      * 运行次数，下标为funcList中的id，值为这个func成功执行的次数；
@@ -108,10 +108,12 @@ export class Script {
         return this.ocrDetector;
     }
 
-    // TODO 封装getBmpFunc参数
-    findText(getBmpFunc: Function, text: string, timeout: number, region: Array<number>, textMatchMode: string): Array<OcrResult> {
+    findText(text: string, timeout: number, region: Array<number>, textMatchMode: string): Array<OcrResult> {
         this.initOcrIfNeeded();
-        return ocr.findText(getBmpFunc, text, timeout, region, textMatchMode);
+        return ocr.findText(function () {
+            script.keepScreen(); // 更新图片
+            return script.helperBridge.helper.GetBitmap(); // 返回bmp
+        }, text, timeout, region, textMatchMode);
     }
 
     findTextByOcrResult(text: string, ocrResult: Array<OcrResult>, textMatchMode: string, similarityRatio?: number): Array<OcrResult> {

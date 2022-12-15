@@ -16,9 +16,8 @@ export class Func204 implements InterfaceFuncOrigin {
 				[left, 20, 43, 0xf0f6f7],
 				[left, 252, 38, 0x583716],
 				[left, 66, 649, 0x3d4f5c],
-				[right, 1219, 616, 0x242526],
-				[right, 1170, 645, 0x373737],
-				[right, 1205, 680, 0xf8f3e0],
+				[right, 1255, 584, 0x403a34],
+				[left, 46, 656, 0xcdbb90],
 			]
 		],
 		oper: [
@@ -33,26 +32,31 @@ export class Func204 implements InterfaceFuncOrigin {
 				// retest: 100,
 			}]
 		})) {
-			let eventNames = ['鏖战', '混沌', '神秘', '宁息'];
+			let eventNames = thisScript.global.d6NextEvent || ['鏖战', '混沌', '神秘', '宁息'];
 			// let eventNames = ['鏖战', '混沌', '神秘', '宁息'];
 			// TODO 待优化：buff达到目标个数后优先神秘与宁息，再混沌再鏖战
+			let p = null;
+			let en = null;
 			for (let i = 0; i < eventNames.length; i++) {
-				const en = eventNames[i];
-				const p = thisScript.findMultiColor(`六道萤草_${en}`);
+				en = eventNames[i];
+				p = thisScript.findMultiColor(`六道萤草_${en}`);
 				if (p) {
-					const toClick = [
-						p.x,
-						p.y,
-						p.x + thisOperator[0].oper[0][2],
-						p.y + thisOperator[0].oper[0][3],
-						thisOperator[0].oper[0][4]
-					];
-					thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
-					thisScript.myToast(`选择事件${en}`);
 					break;
 				}
 			}
-			sleep(200);
+			if (p) {
+				const toClick = [
+					p.x,
+					p.y,
+					p.x + thisOperator[0].oper[0][2],
+					p.y + thisOperator[0].oper[0][3],
+					thisOperator[0].oper[0][4]
+				];
+				thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.myToast(`选择事件${en}`);
+				sleep(200);
+				thisScript.global.d6NextEvent = undefined;
+			}
 			return true;
 		}
 		return false;

@@ -108,16 +108,23 @@ export class Func202 implements InterfaceFuncOrigin {
 		oper: [
 			[right, 1280, 720, 913, 129, 1245, 648, 500],
 		]
+	}, {
+		// buff名字区域
+		oper: [
+			[center, 1280, 720, 113, 257, 321, 346, -1], // 第一个
+			[center, 1280, 720, 386, 262, 593, 344, -1], // 第二个
+			[center, 1280, 720, 659, 257, 868, 342, -1], // 第三个
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['202'];
 		if (!thisScript.global.d6d) {
 			thisScript.global.d6d = {
 				// 0当前个数，1目标个数
-				腐草为萤: [parseInt(String(thisconf.腐草为萤), 10) || 0, 5],
-				妖力化身: [parseInt(String(thisconf.妖力化身), 10) || 0, 2],
-				六道净化: [parseInt(String(thisconf.六道净化), 10) || 0, 1],
-				萤火之光: [parseInt(String(thisconf.萤火之光), 10) || 0, 4]
+				腐草为萤: [parseInt(thisconf.腐草为萤 as string, 10) || 0, 5],
+				妖力化身: [parseInt(thisconf.妖力化身 as string, 10) || 0, 2],
+				六道净化: [parseInt(thisconf.六道净化 as string, 10) || 0, 1],
+				萤火之光: [parseInt(thisconf.萤火之光 as string, 10) || 0, 5]
 			}
 		}
 		// TODO 待优化：达到目标个数后直接乱选buff
@@ -186,10 +193,7 @@ export class Func202 implements InterfaceFuncOrigin {
 				// 判断剩下多少钱，如果剩下的钱不够刷新直接给刷新次数置为上限
 				let coins = 50;
 				if (thisScript.getOcr()) {
-					let result = thisScript.findText(function () {
-						thisScript.keepScreen(); // 更新图片
-						return thisScript.helperBridge.helper.GetBitmap(); // 返回bmp
-					}, '.+', 0, thisOperator[0].oper[3], '包含');
+					let result = thisScript.findText('.+', 0, thisOperator[0].oper[3], '包含');
 					console.log(result);
 					if (result.length) {
 						coins = parseInt(result[0].label);
@@ -200,13 +204,23 @@ export class Func202 implements InterfaceFuncOrigin {
 						coins = 0;
 					}
 				}
-				// console.log(`coins: ${coins}`);
-				// console.log(`thisScript.global.d6RefreshCnt: ${thisScript.global.d6RefreshCnt}`);
-				// console.log(`thisScript.global.d6RefreshCnt < 3 && coins >= 50: ${thisScript.global.d6RefreshCnt < 3 && coins >= 50}`);
+				
+				// 如果三个里面有两个为xx加成，则不刷新，省钱
+				let jcCnt = 0;
+				thisOperator[4].oper.forEach(item => {
+					const r = thisScript.findText('.+加成', 0, item, '包含');
+					if (r.length) jcCnt++;
+				});
+				if (jcCnt >= 2) {
+					thisScript.global.d6RefreshCnt = 3;
+				}
+
 				if (thisScript.global.d6RefreshCnt < 3 && coins >= 50) {
+					// 刷新次数小于3次，金币大于50则刷新
 					thisScript.global.d6RefreshCnt++;
 					thisScript.helperBridge.regionClick([thisOperator[0].oper[1], thisOperator[0].oper[2]], thisScript.scheme.commonConfig.afterClickDelayRandom); // 刷新
 				} else {
+					// 随机点
 					let rn = random(0, 2);
 					thisScript.myToast(`没找到，随机点击第${rn + 1}个`);
 					thisScript.helperBridge.regionClick([thisOperator[1].oper[rn]], thisScript.scheme.commonConfig.afterClickDelayRandom);
@@ -241,7 +255,7 @@ export class Func202 implements InterfaceFuncOrigin {
 				// 拿到所有buff后再装buff
 				if (thisScript.global.d6LoadBuff) {
 					let hasCnt = 0;
-					['腐草为萤', '妖力化身', '六道净化', '萤火之光'].forEach(name => hasCnt += +thisScript.global.d6d[name][0]);
+					['腐草为萤', '妖力化身', '六道净化', '萤火之光'].forEach(name => hasCnt += Math.min(thisScript.global.d6d[name][0], 1));
 					if (hasCnt < 4) thisScript.global.d6LoadBuff = false;
 				}
 				if (thisScript.global.d6LoadBuff) {
