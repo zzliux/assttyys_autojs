@@ -4,7 +4,7 @@ import store, { storeCommon } from '@/system/store';
 import { requestMyScreenCapture } from '@/common/toolAuto';
 import { getWidthPixels, getHeightPixels } from "@auto.pro/core";
 // import _ from 'lodash';
-import version, {versionList} from '@/common/version';
+import version, { versionList } from '@/common/version';
 import defaultSchemeList from '@/common/schemeList';
 import MyAutomator from '@/system/MyAutomator';
 import helperBridge from '@/system/helperBridge';
@@ -28,7 +28,7 @@ export default function webviewSchemeList() {
     webview.on("webloaded").subscribe(([_param, done]) => {
         // 界面加载完成后申请截图权限
         requestMyScreenCapture(done, helperBridge);
-        
+
         // 加载完界面后再注册返回事件
         fromEvent(ui.emitter, 'back_pressed').subscribe((e) => {
             // @ts-ignore
@@ -71,13 +71,11 @@ export default function webviewSchemeList() {
 
     // 获取应用信息，每次进入app都会以弹窗形式出现
     webview.on("getAppInfo").subscribe(([_param, done]) => {
-        let ret = {
-            msg: '感谢使用本辅助，进群864842180了解更多信息~'
-        }
+        let ret = { msg: '' };
         let w = getWidthPixels();
         let h = getHeightPixels();
         if (!(w == 1280 && h == 720) && !(w == 720 && h == 1280)) {
-            ret.msg = `当前分辨率为 ${w} * ${h}, 非推荐分辨率 720 * 1280, 不保证正常运行。感谢使用本辅助，进群864842180了解更多信息`;
+            ret.msg = `当前分辨率为 ${w} * ${h}, 非推荐分辨率 720 * 1280, 不保证正常运行。`;
         }
         done(ret);
     });

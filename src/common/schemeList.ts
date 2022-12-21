@@ -496,14 +496,18 @@ const SchemeList: InterfaceScheme[] = [{
         id: 109,
         groupName: '活动',
         schemeName: '化四季_小怪',
-        star: true,
         list: [0, 1, 2, 3, 24, 117]
     }, {
         id: 110,
         groupName: '活动',
         schemeName: '化四季_boss',
-        star: true,
         list: [0, 1, 2, 3, 24, 118]
+    }, {
+        id: 111,
+        groupName: '活动',
+        schemeName: '镜守云归_雪寺匿踪',
+        star: true,
+        list: [0, 1, 2, 3, 24, 119]
     }
     // 完整demo
     // , {

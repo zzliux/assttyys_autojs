@@ -391,6 +391,9 @@ export const versionList = [{
 }, {
     version: '20221215_01',
     desc: '新增：六道萤草_唤息，老用户需手动开启，将207排序在204前；\n优化：六道萤草_选buff时若xx加成大于等于两个时不刷新（省金币）'
+}, {
+    version: '20221221_01',
+    desc: '新增：活动方案`镜守云归_雪寺匿踪`；\n尝试修复：探索不打boss'
 }];
 
 export default versionList[versionList.length - 1].version;
