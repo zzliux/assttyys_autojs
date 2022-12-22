@@ -22,6 +22,19 @@ export class Func119 implements InterfaceFuncOrigin {
 			[right, 1280, 720, 1140, 563, 1222, 656, 1000]
 		],
 		retest: 1000,
+	}, {
+		desc: [1280, 720,
+			[
+				[center, 278, 180, 0x705a3c],
+				[center, 319, 203, 0x191416],
+				[center, 407, 181, 0x655137],
+				[center, 427, 253, 0x332323],
+				[center, 332, 208, 0x4d494c],
+			]
+		],
+		oper: [
+			[right, 1280, 720, 1076, 173, 1188, 561, 1000]
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let curCnt = 0;
@@ -44,11 +57,10 @@ export class Func119 implements InterfaceFuncOrigin {
 		if (curCnt) {
 			return true;
 		}
-		return false;
-		// return thisScript.oper({
-		// 	id: 119,
-		// 	name: '镜守云归_雪寺匿踪_挑战_挑战',
-		// 	operator: [thisOperator[1]]
-		// });
+		return thisScript.oper({
+			id: 119,
+			name: '镜守云归_雪寺匿踪_挑战_挑战',
+			operator: [thisOperator[1]]
+		});
 	}
 }

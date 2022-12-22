@@ -9,31 +9,52 @@ export class Func006 implements InterfaceFuncOrigin {
 	id = 6;
 	name = '御魂/御灵挑战';
 	desc = '在御魂或者御灵的挑战界面时，点击挑战按钮，连续点击3次后未开始将自动停止脚本';
-	operator: InterfaceFuncOperatorOrigin[] = [{ // 三类御魂
-		desc: [1280,720,
-			[[left,44,43,0xc2cbe3],
-			[right,1124,47,0xd8b188],
-			[right,1237,47,0xd3af84],
-			[right,1161,608,0xded2bb],
-			[right,1207,671,0x372015]]
+	operator: InterfaceFuncOperatorOrigin[] = [{
+		// 三类御魂
+		desc: [1280, 720,
+			[
+				[left, 44, 43, 0xc2cbe3],
+				[right, 1124, 47, 0xd8b188],
+				[right, 1237, 47, 0xd3af84],
+				[right, 1161, 608, 0xded2bb],
+				[right, 1207, 671, 0x372015]
+			]
 		],
 		oper: [
-			[right, 1280, 720, 1116,602, 1197,683, 2000]
+			[right, 1280, 720, 1116, 602, 1197, 683, 2000]
 		]
-	}, { // 御灵
-		desc: [1280,720,
-			[[left,37,37,0xc3cce1],
-			[right,1121,47,0xd7b389],
-			[right,1230,46,0xd3ae83],
-			[right,1106,628,0xe5d9c3],
-			[right,1188,679,0x371f16],
-			[right,1091,663,0x472c1f]]
+	}, {
+		// 御灵
+		desc: [1280, 720,
+			[
+				[left, 37, 37, 0xc3cce1],
+				[right, 1121, 47, 0xd7b389],
+				[right, 1230, 46, 0xd3ae83],
+				[right, 1106, 628, 0xe5d9c3],
+				[right, 1188, 679, 0x371f16],
+				[right, 1091, 663, 0x472c1f]
+			]
 		],
 		oper: [
-			[right, 1280, 720, 1104,595, 1196,681, 2000]
+			[right, 1280, 720, 1104, 595, 1196, 681, 2000]
+		]
+	}, {
+		// 觉醒
+		desc: [1280, 720,
+			[
+				[left, 45, 45, 0xc2cbe3],
+				[left, 250, 44, 0x583716],
+				[right, 1230, 41, 0xd3ae84],
+				[right, 1163, 602, 0xddd2b9],
+				[left, 333, 62, 0xfbdfc5],
+				[right, 1200, 675, 0x382015],
+			]
+		],
+		oper: [
+			[right, 1280, 720, 1108, 593, 1204, 688, 2000]
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]) : boolean {
+	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let curCnt = 0;
 		let maxCount = 3;
 		while (thisScript.oper({

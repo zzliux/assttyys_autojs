@@ -155,12 +155,15 @@ export default {
   },
   methods: {
     saveScheduleList() {
-      AutoWeb.autoPromise('saveScheduleList', this.scheduleList);
+      return AutoWeb.autoPromise('saveScheduleList', this.scheduleList);
     },
     async onScheduleChange(e, item) {
       if (Array.isArray(this.jobList)) {
-        this.saveScheduleList();
+        await this.saveScheduleList();
         // this.jobList ? this.jobList.cancel() : null;
+
+        await AutoWeb.autoPromise('scheduleChange', item);
+
 
         const index = this.jobList.findIndex(job => job.id === item.id);
         

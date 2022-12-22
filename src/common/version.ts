@@ -394,6 +394,9 @@ export const versionList = [{
 }, {
     version: '20221221_01',
     desc: '新增：活动方案`镜守云归_雪寺匿踪`；\n尝试修复：探索不打boss'
+}, {
+    version: '20221222_01',
+    desc: '修复：御魂御灵挑战无法挑战觉醒的问题；\n修复：镜活动卡结算的问题'
 }];
 
 export default versionList[versionList.length - 1].version;

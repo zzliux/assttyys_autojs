@@ -2,6 +2,19 @@ import { webview } from "@/system";
 import script from '@/system/script';
 import store from '@/system/store';
 import ScheduleDefaultList from '@/common/scheduleList';
+// import { setCurrentScheme } from "@/common/tool";
+// // import schedule from 'node-schedule';
+
+// const emt = events.emitter()
+// events.EventEmitter = function () {}
+// Object.keys(emt).forEach(function (key) {
+//     events.EventEmitter.prototype[key] = emt[key];
+// });
+
+// let schedule = null;
+// import('node-schedule').then(function (inSchedule) {
+//     schedule = inSchedule;
+// });
 
 export default function webviewSchedule() {
 
@@ -22,7 +35,6 @@ export default function webviewSchedule() {
     // 保存方案列表
     webview.on("saveScheduleList").subscribe(([scheduleList, done]) => {
         store.put("scheduleList", scheduleList);
-        
         if (Array.isArray(scheduleList)) {
             scheduleList.forEach(item => {
                 item.job && script.setScheduleJobInstance(item.id, item.job);
@@ -32,6 +44,37 @@ export default function webviewSchedule() {
         console.log('scheduleList已保存');
         done("success");
     });
+
+    // const jobList = [];
+    // webview.on('scheduleChange').subscribe(([item, done]) => {
+    //     const index = jobList.findIndex(job => job.id === item.id);
+
+    //     if (index != -1) {
+    //         if (item.checked) {
+    //             jobList[index].job.reschedule(item.config.cron, async function () {
+    //                 setCurrentScheme(item.config.scheme, store);
+    //                 script.rerun();
+    //                 item.lastRunTime = new Date().toLocaleString();
+    //             });
+    //         } else {
+    //             jobList[index].job.cancel();
+    //         }
+
+    //     } else {
+    //         const jobTemp = schedule.scheduleJob(item.config.cron, async function () {
+    //             setCurrentScheme(item.config.scheme, store);
+    //             script.rerun();
+    //             item.lastRunTime = new Date().toLocaleString();
+    //         });
+    //         jobList.push({
+    //             id: item.id,
+    //             job: jobTemp
+    //         })
+    //     }
+
+    //     console.log(jobList);
+    //     done(true);
+    // });
 }
 
 
