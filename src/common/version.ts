@@ -397,6 +397,9 @@ export const versionList = [{
 }, {
     version: '20221222_01',
     desc: '修复：御魂御灵挑战无法挑战觉醒的问题；\n修复：镜活动卡结算的问题'
+}, {
+    version: '20221223_01',
+    desc: '修复：六道萤草唤息会点两次的问题'
 }];
 
 export default versionList[versionList.length - 1].version;

@@ -162,7 +162,7 @@ export default {
         await this.saveScheduleList();
         // this.jobList ? this.jobList.cancel() : null;
 
-        await AutoWeb.autoPromise('scheduleChange', item);
+        // await AutoWeb.autoPromise('scheduleChange', item);
 
 
         const index = this.jobList.findIndex(job => job.id === item.id);
