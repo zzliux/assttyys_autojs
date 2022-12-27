@@ -400,6 +400,9 @@ export const versionList = [{
 }, {
     version: '20221223_01',
     desc: '修复：六道萤草唤息会点两次的问题'
+}, {
+    version: '20221227_01',
+    desc: '新增：六道萤草极评分时自动使用万相赐福'
 }];
 
 export default versionList[versionList.length - 1].version;

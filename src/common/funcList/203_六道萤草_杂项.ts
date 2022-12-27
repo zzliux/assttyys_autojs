@@ -286,6 +286,40 @@ export class Func203 implements InterfaceFuncOrigin {
 		oper: [
 			[right, 1280, 720, 928, 169, 1167, 586, 500],
 		]
+	}, {
+		// 极评分自动用万相赐福
+		desc: [1280, 720,
+			[
+				[center, 520, 426, 0xdf6851],
+				[center, 769, 437, 0xf4b25f],
+				[left, 150, 144, 0x564623],
+				[left, 208, 140, 0x5b4b28],
+				[left, 264, 229, 0x504d31],
+				[left, 108, 216, 0x535031],
+				[left, 47, 61, 0x010c0f],
+				[left, 293, 125, 0x091d1d],
+				[center, 777, 327, 0x5d7987],
+				[center, 484, 336, 0x5a7784],
+			]
+		],
+		oper: [
+			[right, 1280, 720, 672, 422, 796, 467, 500]
+		]
+	}, {
+		// 其它评分时不使用万相赐福
+		desc: [1280, 720,
+			[
+				[center, 506, 440, 0xdf6851],
+				[center, 757, 431, 0xf4b25f],
+				[center, 656, 325, 0x8e65a7],
+				[left, 50, 76, 0x000d10],
+				[right, 1178, 109, 0x141817],
+				[center, 822, 251, 0x3b5d6e],
+			]
+		],
+		oper: [
+			[right, 1280, 720, 491, 419, 614, 469, 500]
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		if (thisScript.oper({
