@@ -403,6 +403,9 @@ export const versionList = [{
 }, {
     version: '20221227_01',
     desc: '新增：六道萤草极评分时自动使用万相赐福'
+}, {
+    version: '20221228_01',
+    desc: '新增：破魔伏诛挑战'
 }];
 
 export default versionList[versionList.length - 1].version;

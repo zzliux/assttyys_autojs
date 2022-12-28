@@ -7,7 +7,7 @@ const right = 2;
 
 export class Func119 implements InterfaceFuncOrigin {
 	id = 119;
-	name = '镜守云归_雪寺匿踪_挑战';
+	name = '镜守云归_雪寺匿踪_破魔伏诛_挑战';
 	operator: InterfaceFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
@@ -35,14 +35,29 @@ export class Func119 implements InterfaceFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1076, 173, 1188, 561, 1000]
 		]
+	}, {
+		desc: [1280, 720,
+			[
+				[right, 1198, 548, 0xeee6d3],
+				[left, 41, 45, 0xf3dfa3],
+				[left, 332, 37, 0x4b4741],
+				[left, 194, 464, 0xcab390],
+				[left, 63, 378, 0xdacaa1],
+				[right, 1050, 563, 0xe0d2a7],
+				[center, 969, 64, 0x121620],
+			]
+		],
+		oper: [
+			[right, 1280, 720, 1145, 534, 1229, 631, 1000]
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let curCnt = 0;
 		let maxCount = 3;
 		while (thisScript.oper({
 			id: 119,
-			name: '镜守云归_雪寺匿踪_挑战',
-			operator: [thisOperator[0]],
+			name: '镜守云归_雪寺匿踪_破魔伏诛_挑战',
+			operator: [thisOperator[0], thisOperator[2]],
 		})) {
 			curCnt++;
 			thisScript.keepScreen();
@@ -59,7 +74,7 @@ export class Func119 implements InterfaceFuncOrigin {
 		}
 		return thisScript.oper({
 			id: 119,
-			name: '镜守云归_雪寺匿踪_挑战_挑战',
+			name: '镜守云归_雪寺匿踪_破魔伏诛_挑战_挑战',
 			operator: [thisOperator[1]]
 		});
 	}
