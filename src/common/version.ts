@@ -406,6 +406,9 @@ export const versionList = [{
 }, {
     version: '20221228_01',
     desc: '新增：破魔伏诛挑战'
+}, {
+    version: '20221229_01',
+    desc: '修复：功能502进入探索地图界面中御魂与觉醒界面无法退出来的bug'
 }];
 
 export default versionList[versionList.length - 1].version;

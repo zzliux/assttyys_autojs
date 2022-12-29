@@ -28,8 +28,8 @@ export class Func502 implements InterfaceFuncOrigin {
 				[left, 44, 43, 0xc2cbe3],
 				[right, 1124, 47, 0xd8b188],
 				[right, 1237, 47, 0xd3af84],
-				[left, 231, 43, 0x583716],
-				[right, 1135, 48, 0xd7b38a],
+				[right, 1161, 608, 0xded2bb],
+				[right, 1207, 671, 0x372015]
 			]
 		],
 		oper: [
@@ -44,6 +44,21 @@ export class Func502 implements InterfaceFuncOrigin {
 				[right, 1106, 628, 0xe5d9c3],
 				[right, 1188, 679, 0x371f16],
 				[right, 1091, 663, 0x472c1f]
+			]
+		],
+		oper: [
+			[left, 1280, 720, 38, 23, 79, 66, 2000]
+		]
+	}, {
+		// 觉醒
+		desc: [1280, 720,
+			[
+				[left, 45, 45, 0xc2cbe3],
+				[left, 250, 44, 0x583716],
+				[right, 1230, 41, 0xd3ae84],
+				[right, 1163, 602, 0xddd2b9],
+				[left, 333, 62, 0xfbdfc5],
+				[right, 1200, 675, 0x382015],
 			]
 		],
 		oper: [
