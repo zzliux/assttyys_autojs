@@ -30,6 +30,21 @@ export class Func998 implements InterfaceFuncOrigin {
 		],
 		oper: [
 			[right, 1280, 720, 1147, 49, 1222, 132, 1200],   // 点击正在寄养的式神
+		]
+	},
+	{
+		desc: [	// 前往式神寄养位置
+			1280, 720,
+			[
+				[center, 809, 516, 0xf4b25f],
+				[center, 613, 509, 0xf4b25f],
+				[center, 784, 365, 0xcbb59e],
+				[center, 718, 175, 0x9e866e],
+				[right, 1174, 568, 0x5f5748],
+				[left, 149, 690, 0x20150f],
+			]
+		],
+		oper: [
 			[center, 1280, 720, 650, 488, 822, 545, 1200],    // 点击 前往查看 钮
 		]
 	},
@@ -42,7 +57,7 @@ export class Func998 implements InterfaceFuncOrigin {
 			[right, 1080, 127, 0x666059]]
 		],
 		oper: [
-			[right, 1280, 720, 1147, 49, 1222, 132, 1200],   // 点击正在寄养的式神
+			[right, 1280, 720, 1147, 49, 1222, 132, 2200],   // 点击正在寄养的式神
 			[center, 1280, 720, 650, 488, 822, 545, 1200],    // 点击 前往查看 钮
 		]
 	}];

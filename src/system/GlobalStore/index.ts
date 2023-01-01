@@ -32,6 +32,7 @@ export type globalRootType = {
     jy_friends_enchantment_waitingtime: number,
     jy_enchantment_index: number,
     back_courtyard_to_next_scheme: string,
+    fm_kiss_boss_flag: boolean, //  逢魔 是否已击杀首领
 }
 
 export const globalRoot: globalRootType = {
@@ -68,4 +69,5 @@ export const globalRoot: globalRootType = {
     jy_friends_enchantment_waitingtime: undefined,
     jy_enchantment_index: 0,
     back_courtyard_to_next_scheme: '',
+    fm_kiss_boss_flag: false,
 }

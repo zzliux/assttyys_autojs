@@ -54,7 +54,6 @@ export class Func995 implements InterfaceFuncOrigin {
 			],
 			oper: [
 				[center, 1280, 720, 565, 500, 670, 675, 1200],  // 点击排位第一的式神（前三为达摩）
-				[center, 1280, 720, 672, 514, 798, 572, 1200]   // 点击确认
 			],
 		},
 		{
@@ -126,6 +125,23 @@ export class Func995 implements InterfaceFuncOrigin {
 					[right, 1170, 574, 0xedcba9],
 					[right, 1055, 123, 0xd7b674]]
 				],
+		},
+		{
+			desc: [		// 确认寄养所选式神弹窗
+				1280, 720,
+				[
+					[center, 527, 279, 0xcbb59e],
+					[center, 489, 159, 0x9e866e],
+					[right, 1174, 564, 0x5f5847],
+					[center, 689, 544, 0xf4b25f],
+					[center, 583, 546, 0xdf6851],
+					[left, 64, 637, 0x18173d],
+					[left, 35, 46, 0x616467],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 672, 514, 798, 572, 1200]   // 点击确认
+			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
@@ -175,22 +191,16 @@ export class Func995 implements InterfaceFuncOrigin {
 
 		if (thisScript.oper({
 			id: 995,
-			name: '检测_是否有可寄养的空位',
+			name: '确认寄养所选式神弹窗',
 			operator: [{
-				desc: thisOperator[0].desc
-			}]
-		}) || thisScript.oper({
-			id: 995,
-			name: '检测_二号坑位是否有可寄养的空位',
-			operator: [{
-				desc: thisOperator[1].desc
+				desc: thisOperator[7].desc
 			}]
 		})) {
 			thisScript.oper({
 				id: 995,
-				name: '执行_寄养式神',
+				name: '点击确认按钮',
 				operator: [{
-					oper: thisOperator[0].oper
+					oper: thisOperator[7].oper
 				}]
 			});
 
@@ -220,6 +230,28 @@ export class Func995 implements InterfaceFuncOrigin {
 				}
 				thisScript.stop();
 			}
+		}
+
+		if (thisScript.oper({
+			id: 995,
+			name: '检测_是否有可寄养的空位',
+			operator: [{
+				desc: thisOperator[0].desc
+			}]
+		}) || thisScript.oper({
+			id: 995,
+			name: '检测_二号坑位是否有可寄养的空位',
+			operator: [{
+				desc: thisOperator[1].desc
+			}]
+		})) {
+			return thisScript.oper({
+				id: 995,
+				name: '执行_寄养式神',
+				operator: [{
+					oper: thisOperator[0].oper
+				}]
+			});
 		}
 
 		if (thisScript.oper({

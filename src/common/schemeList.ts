@@ -112,12 +112,12 @@ const SchemeList: InterfaceScheme[] = [{
         id: 9,
         schemeName: '地鬼日常',
         star: true,
-        list: [1, 2, 16]
+        list: [1, 2, 16, 29]
     }, {
         id: 10,
         schemeName: '逢魔日常',
         star: true,
-        list: [1, 2, 3, 23, 24, 26, 8]
+        list: [1, 2, 3, 23, 24, 26, 508, 8, 504]
     }, {
         id: 11,
         schemeName: '百鬼夜行',

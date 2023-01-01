@@ -93,20 +93,6 @@ export class Func026 implements InterfaceFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1075, 550, 1150, 631, 1000]
 		]
-	}, {
-		desc:	//	最后一次奖励已领取
-			[1280, 720,
-				[
-					[right, 1230, 210, 0x767676],
-					[right, 1244, 227, 0x989898],
-					[right, 1256, 248, 0x434343],
-					[right, 1230, 248, 0x774a4a],
-					[right, 1242, 248, 0x494949]
-				]
-			],
-		oper: [
-			[left, 1280, 720, 31, 24, 71, 70, 1000]	// 返回
-		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		if (thisScript.oper({
@@ -127,18 +113,7 @@ export class Func026 implements InterfaceFuncOrigin {
 					return true;
 				}
 			}
-			if (thisScript.oper({
-				name: '检测_现世逢魔奖励是否已领取,领取后返回庭院',
-				operator: [{
-					desc: thisOperator[7].desc,
-					oper: thisOperator[7].oper
-				}]
-			})) {
-				const next_scheme = '返回庭院';
-				thisScript.setCurrentScheme(next_scheme);
-				thisScript.myToast(`切换方案为[${next_scheme}]`);
-				thisScript.rerun();
-			}
+			
 			if (!thisScript.oper({
 				name: '现世逢魔_最后一次奖励',
 				operator: [{
