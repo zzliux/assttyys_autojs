@@ -49,7 +49,8 @@ export class Func508 implements InterfaceFuncOrigin {
 			]
 		],
 		oper: [
-			[right, 1280, 720, 1058, 558, 1162, 640, 1200]
+			[right, 1280, 720, 1058, 558, 1162, 640, 1200],	//	点击集结挑战
+			[right, 1280, 720, 1120, 59, 1164, 92, 1200],	//	点击关闭按钮
 		]
 	},
 	{	// 检测_是否为提示框
@@ -85,7 +86,8 @@ export class Func508 implements InterfaceFuncOrigin {
 		]
 	},
 	{
-		desc: [	//	检测_结算页
+		desc: 	//	检测_战斗页结算页
+		[	
 			1280, 720,
 			[
 				[center, 530, 115, 0xd3c4ae],
@@ -100,23 +102,51 @@ export class Func508 implements InterfaceFuncOrigin {
 		]
 	},
 	{
-		desc: [	//	检测_结束挑战采集页(捡垃圾)
+		desc:	//	检测_集结页结算页
+		[
 			1280, 720,
 			[
-				[left, 38, 22, 0xd7c5a2],
-				[left, 109, 22, 0xd6c5a1],
-				[left, 179, 23, 0xd7c6a5],
-				[left, 42, 494, 0xe6cead],
-				[left, 27, 541, 0xf8f3e0],
-				[left, 44, 504, 0x9b1d10],
-				[center, 841, 633, 0x863f45],
-				[right, 1043, 622, 0xcf4955],
-				[right, 1180, 623, 0xddd0d0],
+				[center, 530, 115, 0xd3c4ae],
+				[left, 157, 210, 0xf8f3e0],
+				[center, 888, 79, 0xdcc499],
+				[center, 789, 456, 0xf8f3e0],
+				[center, 639, 113, 0xf34c38],
+			]
+		]
+	},
+	{
+		desc:	// 结束_集结页结算捡垃圾
+		[
+			1280, 720,
+			[
+				[left, 106, 25, 0xd7c5a2],
+				[left, 33, 21, 0xd7c5a2],
+				[left, 186, 38, 0xd7c5a2],
+				[left, 63, 493, 0xeecfad],
+				[left, 44, 503, 0x981c10],
+				[left, 27, 544, 0xf6f1de],
+				[right, 1042, 621, 0xcf4955],
+				[center, 845, 634, 0x944945],
+				[right, 1179, 621, 0xe0d0cf],
 			]
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['508'];
+
+		let point = thisScript.findMultiColor('逢魔_捡垃圾');
+
+		if (point) {
+			console.log(`逢魔_捡垃圾`);
+			let oper = [[
+				point.x - 2,
+				point.y - 2,
+				point.x + 2,
+				point.y + 2,
+				1200
+			]];
+			thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+		}
 		
 		if (thisScript.oper({
 			name: '检测_是否找到逢魔首领',
@@ -132,9 +162,28 @@ export class Func508 implements InterfaceFuncOrigin {
 			name: '检测_首领BOSS挑战页',
 			operator: [{
 				desc: thisOperator[2].desc,
-				oper: thisOperator[2].oper
+				oper: [thisOperator[2].oper[0]]
 			}]
 		})) {
+			// 做延时检测 防止登陆后的弹窗
+			if (thisScript.global.checked_yard_count === 5) {
+				thisScript.global.checked_yard_count = undefined;
+				console.log('无法点击首领BOSS集结挑战，退出集结挑战页');
+				thisScript.oper({
+					name: '检测_关闭首领BOSS',
+					operator: [{
+						oper: [thisOperator[2].oper[1]]
+					}]
+				})
+			} else {
+				sleep(1500);
+				if (!thisScript.global.checked_yard_count) {
+					thisScript.global.checked_yard_count = 1;
+				} else {
+					thisScript.global.checked_yard_count += 1;
+				}
+			}
+
 			return true;
 		}
 
@@ -163,6 +212,22 @@ export class Func508 implements InterfaceFuncOrigin {
 			operator: [{
 				desc: thisOperator[5].desc,
 				oper: thisOperator[5].oper
+			}]
+		}) || thisScript.oper({
+			name: '检测_结算页',
+			operator: [{
+				desc: thisOperator[6].desc,
+				oper: thisOperator[5].oper
+			}]
+		})) {
+			thisScript.global.fm_kiss_boss_flag = true;
+			return true;
+		}
+
+		if (thisScript.oper({
+			name: '检测_结算页',
+			operator: [{
+				desc: thisOperator[7].desc
 			}]
 		})) {
 			thisScript.global.fm_kiss_boss_flag = true;

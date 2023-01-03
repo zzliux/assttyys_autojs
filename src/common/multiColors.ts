@@ -1905,6 +1905,47 @@ const multiColor: InterfaceMultiColorOrigin = {
                 ]
             ]
         ]
+    },
+    '逢魔_捡垃圾': {
+        region: [left, 1280, 720, 159, 207, 1267, 584],
+        desc: [
+            [
+                1280, 720,
+                [
+                    [center, 627, 376, 0xb24620],
+                    [center, 633, 362, 0xab4220],
+                    [center, 618, 370, 0xfff5d3],
+                    [center, 637, 382, 0xfff4d2],
+                ]
+            ],
+            [
+                1280, 720,
+                [
+                    [center, 488, 338, 0xb34620],
+                    [center, 493, 324, 0xa94120],
+                    [center, 501, 332, 0xfff4d4],
+                    [center, 500, 344, 0xfff4d2],
+                ]
+            ],
+            [
+                1280, 720,
+                [
+                    [right, 1010, 347, 0xb14520],
+                    [right, 1013, 333, 0xa94120],
+                    [right, 1021, 341, 0xfff4d4],
+                    [right, 1019, 352, 0xfff5d3],
+                ]
+            ],
+            [
+                1280, 720,
+                [
+                    [center, 871, 325, 0xb1461f],
+                    [center, 877, 313, 0xb0481d],
+                    [center, 883, 319, 0xfff4d4],
+                    [center, 882, 332, 0xfff4d2],
+                ]
+            ]
+        ]
     }
 }
 
