@@ -1,8 +1,30 @@
 export class JobOptions {
+    
+    id?: number;
     /**
      * job名
      */
     name: string;
+
+    /**
+     * job描述
+     */
+    desc: string;
+
+    /**
+     * 是否启用
+     */
+    checked?: boolean;
+
+    /**
+     * 上次运行开始时间
+     */
+    lastRunTime?: Date;
+
+    /**
+     * 上次运行结束时间
+     */
+    lastStopTime?: Date;
 
     /**
      * 下次执行时间
@@ -22,7 +44,12 @@ export class JobOptions {
     /**
      * 状态
      */
-    status: 'wating' | 'running' | 'done';
+    status?: 'wating' | 'running' | 'done';
+
+    /**
+     * 其它配置
+     */
+    config?: Record<string, string>;
 
     /**
      * 开始运行时执行的回调
@@ -45,19 +72,21 @@ export class Job extends JobOptions {
             this.nextDate = new Date(Date.now() + this.interval);
         }
         this.status = 'running';
+        this.lastRunTime = new Date();
         this.runningCallback.apply(this);
     }
     
     doDone() {
+        this.lastStopTime = new Date();
         if (this.repeatMode === 0) {
             this.status = 'done';
             return;
         } else if (this.repeatMode === 1) {
-            this.status = 'done';
+            this.status = 'wating';
             return;
         } else if (this.repeatMode === 2) {
             this.nextDate = new Date(Date.now() + this.interval);
-            this.status = 'done';
+            this.status = 'wating';
             return;
         }
     }
@@ -70,7 +99,7 @@ class Schedule {
     jobList: Job[];
 
     constructor() {
-        this.timer = setTimeout(this.timerCallback, this.timeout);
+        this.timer = setTimeout(this.timerCallback.bind(this), this.timeout);
         this.jobList = [];
     }
 
@@ -78,12 +107,16 @@ class Schedule {
         this.jobList.push(job);
     }
 
+    getJobList(): Job[] {
+        return this.jobList;
+    }
+
     timerCallback() {
         let index = -1;
         let job = null;
         for (let i = 0; i < this.jobList.length; i++) {
             const thisJob = this.jobList[i];
-            if (thisJob.nextDate.getTime() <= Date.now()) {
+            if (thisJob.nextDate.getTime() <= Date.now() && thisJob.status === 'wating') {
                 job = thisJob;
                 index = i;
                 break;
@@ -96,7 +129,7 @@ class Schedule {
             // 运行的时候可能会阻塞
             job.doRun();
         }
-        setTimeout(this.timerCallback, this.timeout);
+        setTimeout(this.timerCallback.bind(this), this.timeout);
     }
 }
 

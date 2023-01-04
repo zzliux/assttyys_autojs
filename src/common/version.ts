@@ -409,6 +409,9 @@ export const versionList = [{
 }, {
     version: '20221229_01',
     desc: '修复：功能502进入探索地图界面中御魂与觉醒界面无法退出来的bug'
+}, {
+    version: '20230104_01',
+    desc: '优化：逢魔新增首领挑战功能（老用户需手动启用）；\n修复：结界寄养部分bug'
 }];
 
 export default versionList[versionList.length - 1].version;

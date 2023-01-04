@@ -1,3 +1,7 @@
+/**
+ * TODO 使用system/Schedule的Job作为ScheduleDefaultList的元素
+ */
+
 const ScheduleDefaultList = [{
     id: 1,
     name: '式神寄养',

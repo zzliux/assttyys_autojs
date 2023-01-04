@@ -2,6 +2,7 @@ import { webview } from "@/system";
 import script from '@/system/script';
 import store from '@/system/store';
 import ScheduleDefaultList from '@/common/scheduleList';
+// import schedule, { Job } from '@/system/Schedule'
 // import { setCurrentScheme } from "@/common/tool";
 // // import schedule from 'node-schedule';
 
@@ -44,6 +45,23 @@ export default function webviewSchedule() {
         console.log('scheduleList已保存');
         done("success");
     });
+
+    
+    // schedule.add(new Job({
+    //     name: 'test',
+    //     nextDate: new Date(Date.now() + 10000),
+    //     repeatMode: 1,
+    //     interval: 10000,
+    //     runningCallback: function() {
+    //         console.log(`调度任务，当前时间：${new Date().toUTCString()}`);
+    //         console.log(`调度任务，this：${this}`);
+    //     }
+    // }));
+
+    // const jobList = [];
+    // webview.on('scheduleChange').subscribe(([item, done]) => {
+    //     done();
+    // });
 
     // const jobList = [];
     // webview.on('scheduleChange').subscribe(([item, done]) => {
