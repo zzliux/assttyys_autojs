@@ -23,7 +23,8 @@
                     @change="onScheduleChange($event, item)" />
                 </div>
                 <div v-if="item.desc" class="item-desc">{{ item.desc }}</div>
-                <div class="item-desc">最近执行时间: {{ item.lastRunTime }}</div>
+                <div class="item-desc">上次执行开始时间: {{ item.lastRunTime }}</div>
+                <div class="item-desc">上次执行结束时间: {{ item.lastStopTime }}</div>
               </div>
             </template>
             <template #right>
@@ -43,11 +44,31 @@
                 </div>
               </template>
             </van-field>
-            <van-field label="执行时间(秒分时日月周-cron格式, 详见http://cron.ciding.cc/)" label-width="70%" :disabled="item.checked"
+            <van-field label="重复模式" label-width="70%" :disabled="item.checked"
+              :rules="[{ required: true, message: '必填' }]">
+              <template #input>
+                <div style="width: 100%;" :style="item.checked ? 'color: rgb(200, 195, 188)' : ''"
+                  @click="showRepeatModeDialog($event, item)">
+                  {{ repeatModeEnum[item.repeatMode] }}
+                </div>
+              </template>
+            </van-field>
+            <van-field label="重复间隔(分钟)" label-width="70%" :disabled="item.checked"
               :rules="[{ required: true, message: '必填' }]">
               <template #input>
                 <div class="van-field__body">
-                  <input type="text" :disabled="item.checked" v-model="item.config.cron" class="van-field__control" />
+                  <input type="text" :disabled="item.checked" v-model="item.interval" class="van-field__control" />
+                </div>
+              </template>
+            </van-field>
+            <van-field label="下次执行时间" label-width="70%" :disabled="item.checked"
+              :rules="[{ required: true, message: '必填' }]">
+              <template #input>
+                <div class="van-field__body">
+                  <div style="width: 100%;" :style="item.checked ? 'color: rgb(200, 195, 188)' : ''"
+                    @click="showNextDateDialog($event, item)">
+                    {{ item.nextDate ? item.nextDate.toLocaleString() : '请选择' }}
+                  </div>
                 </div>
               </template>
             </van-field>
@@ -73,12 +94,27 @@
         placeholder="请输入..." />
       <van-field label="描述" v-model="addScheduleForm.desc" placeholder="请输入..." />
     </van-dialog>
+    <van-popup v-model="repeatModeDialogShow" position="bottom">
+      <van-picker show-toolbar :columns="repeatModeEnum" @confirm="repeatModeDialogConfirm"
+        @cancel="repeatModeDialogShow = false" :default-index="curDialogRepeatMode"></van-picker>
+    </van-popup>
+    <van-popup v-model="nextDateDialogshow" position="bottom">
+      <van-datetime-picker
+        v-model="curNextDate"
+        type="datetime"
+        title="选择下次执行时间"
+        :min-date="minDate"
+        :max-date="maxDate"
+        @cancel="nextDateDialogshow = false"
+        @confirm="nextDateDialogConfirm"
+      />
+    </van-popup>
   </div>
 </template>
 <script>
 import Vue from "vue";
-import { NavBar, Cell, CellGroup, Icon, Switch, Popup, Picker, Field, Dialog, Notify, SwipeCell, Button } from "vant";
-import schedule from 'node-schedule';
+import { NavBar, Cell, CellGroup, Icon, Switch, Popup, Picker, Field, Dialog, Notify, SwipeCell, Button, DatetimePicker } from "vant";
+// import schedule from 'node-schedule';
 
 import { mergeScheduleList } from "../../../common/toolWeb";
 import dScheduleList from '../../../common/scheduleList'
@@ -89,11 +125,13 @@ const scheduleDefaultFormData = {
   name: '',
   desc: '',
   checked: false,
-  lastRunTime: '',
-  job: undefined,
+  lastRunTime: null,
+  nextDate: null,
+  repeatMode: 1,
+  interval: null,
   config: {
     scheme: '默认方案_记得改哦_(:з」∠)_',
-    cron: '* * * * * *',
+    // cron: '* * * * * *',
   }
 };
 Vue.use(NavBar);
@@ -108,6 +146,8 @@ Vue.use(Dialog);
 Vue.use(Notify);
 Vue.use(SwipeCell);
 Vue.use(Button);
+Vue.use(DatetimePicker);
+
 export default {
   name: 'ScheduleList',
   data() {
@@ -134,11 +174,21 @@ export default {
       scheduleNameInputType: null,
       addScheduleForm: {},
 
+      repeatModeEnum: ['不重复', '从运行开始计时', '从运行结束计时'],
+      repeatModeDialogShow: false,
+      curDialogRepeatMode: 0,
+      minDate: new Date(),
+      maxDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+
+      nextDateDialogshow: false,
+      curNextDate: null,
+
       commonConfigModalObject: {
         config: []
       },
       scheduleList: [],
       jobList: [],
+      
     };
   },
   props: {
@@ -162,33 +212,33 @@ export default {
         await this.saveScheduleList();
         // this.jobList ? this.jobList.cancel() : null;
 
-        // await AutoWeb.autoPromise('scheduleChange', item);
+        await AutoWeb.autoPromise('scheduleChange', item);
 
 
-        const index = this.jobList.findIndex(job => job.id === item.id);
+        // const index = this.jobList.findIndex(job => job.id === item.id);
         
-        if (index != -1) {
-          if (item.checked) {
-            this.jobList[index].job.reschedule(item.config.cron, async function () {
-            await AutoWeb.autoPromise('setCurrentScheme', item.config.scheme);
-            await AutoWeb.autoPromise('startCurrentScheme');
-            item.lastRunTime = new Date().toLocaleString();
-          });
-          } else {
-            this.jobList[index].job.cancel();
-          }
+        // if (index != -1) {
+        //   if (item.checked) {
+        //     this.jobList[index].job.reschedule(item.config.cron, async function () {
+        //     await AutoWeb.autoPromise('setCurrentScheme', item.config.scheme);
+        //     await AutoWeb.autoPromise('startCurrentScheme');
+        //     item.lastRunTime = new Date().toLocaleString();
+        //   });
+        //   } else {
+        //     this.jobList[index].job.cancel();
+        //   }
           
-        } else {
-          const jobTemp = schedule.scheduleJob(item.config.cron, async function () {
-              await AutoWeb.autoPromise('setCurrentScheme', item.config.scheme);
-              await AutoWeb.autoPromise('startCurrentScheme');
-              item.lastRunTime = new Date().toLocaleString();
-            });
-          this.jobList.push({
-            id: item.id,
-            job: jobTemp
-          })
-        }
+        // } else {
+        //   const jobTemp = schedule.scheduleJob(item.config.cron, async function () {
+        //       await AutoWeb.autoPromise('setCurrentScheme', item.config.scheme);
+        //       await AutoWeb.autoPromise('startCurrentScheme');
+        //       item.lastRunTime = new Date().toLocaleString();
+        //     });
+        //   this.jobList.push({
+        //     id: item.id,
+        //     job: jobTemp
+        //   })
+        // }
       }
       // if (item.checked) {
       //   this.saveScheduleList();
@@ -245,6 +295,29 @@ export default {
         this.curItemItemIndex = this.configItemItemPickerList.indexOf(configItemItem.config.scheme);
         this.configItemItemShowPicker = true;
       }
+    },
+    showRepeatModeDialog(e, configItemItem) {
+      if (!configItemItem.checked) {
+        this.curItemItem = configItemItem;
+        this.curDialogRepeatMode = configItemItem.repeatMode;
+        this.repeatModeDialogShow = true;
+      }
+    },
+    repeatModeDialogConfirm(_text, index) {
+      this.curItemItem.repeatMode = index;
+      this.repeatModeDialogShow = false;
+    },
+    showNextDateDialog(e, configItemItem) {
+      if (!configItemItem.checked) {
+        this.curItemItem = configItemItem;
+        this.curNextDate = configItemItem.nextDate || new Date();
+        this.nextDateDialogshow = true;
+      }
+    },
+    nextDateDialogConfirm() {
+      console.log(arguments);
+      this.curItemItem.nextDate = this.curNextDate;
+      this.nextDateDialogshow = false;
     },
     itemOpen() {
       this.itemOpenList.push(0);

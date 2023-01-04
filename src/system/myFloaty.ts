@@ -6,7 +6,7 @@ import script from '@/system/script';
 /**
  * 悬浮按钮，对大柒的悬浮按钮进行封装
  */
-class MyFloaty {
+export class MyFloaty {
     fb: any;
     runEventFlag: boolean = false;
     init() {
@@ -101,6 +101,7 @@ class MyFloaty {
             .onClick((view, name) => {
                 threads.start(function () {
                     sleep(600);
+                    script.keepScreen(); // 更新图片
                     let bmp = script.helperBridge.helper.GetBitmap();
                     let img = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(bmp);
                     let path = `/sdcard/assttyys/screenshot/${new Date().getTime()}.png`;

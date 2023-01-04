@@ -14,6 +14,8 @@ import { InterfaceFunc } from '@/interface/InterfaceFunc';
 import { InterfaceScheme } from '@/interface/InterfaceScheme';
 import { InterfaceMultiColor } from '@/interface/InterfaceMulticolor';
 import { globalRoot, globalRootType } from '@/system/GlobalStore/index';
+import { Job } from '@/system/Schedule';
+import { MyFloaty } from '@/system/MyFloaty';
 
 /**
  * 脚本对象，一个程序只能有一个
@@ -32,6 +34,7 @@ export class Script {
     lastFuncDateTime: Date; // 上次功能执行时间
     ocrDetector: MlkitOcrDetector; // yunxi的ocr
     helperBridge: any; //IhelperBridge;
+    job: Job;
 
     /**
      * 运行次数，下标为funcList中的id，值为这个func成功执行的次数；
@@ -159,7 +162,12 @@ export class Script {
      * @param {Function} callback 
      */
     setStopCallback(callback: Function) {
-        this.stopCallback = callback;
+        this.stopCallback = () => {
+            if (this.job) {
+                this.job.doDone();
+            }
+            callback();
+        };
     };
 
     /**
@@ -206,22 +214,22 @@ export class Script {
         this.scheme.funcList = this.getFuncList(this.scheme);
     };
 
-    getScheduleJobInstance(key) {
-        if (!this.scheduleMap) {
-            this.scheduleMap = [];
-        }
-        return this.scheduleMap.find(item => item.key === key);
-    };
+    // getScheduleJobInstance(key) {
+    //     if (!this.scheduleMap) {
+    //         this.scheduleMap = [];
+    //     }
+    //     return this.scheduleMap.find(item => item.key === key);
+    // };
 
-    setScheduleJobInstance(key, scheduleJobInstance) {
-        if (!this.scheduleMap) {
-            this.scheduleMap = [];
-        }
-        this.scheduleMap.push({
-            key: key,
-            instance: scheduleJobInstance
-        });
-    };
+    // setScheduleJobInstance(key, scheduleJobInstance) {
+    //     if (!this.scheduleMap) {
+    //         this.scheduleMap = [];
+    //     }
+    //     this.scheduleMap.push({
+    //         key: key,
+    //         instance: scheduleJobInstance
+    //     });
+    // };
 
     /**
      * 根据 src\common\multiColors.js 初始化多点找色数组，相关坐标根据开发分辨率自动转换成运行分辨率
@@ -394,12 +402,17 @@ export class Script {
         return this._run();
     };
 
+    runWithJob(job: Job): void {
+        return this._run(job);
+    }
+
     /**
      * 运行脚本，内部接口
      * @returns 
      */
-    _run() {
+    _run(job?: Job): void {
         if (this.runThread) return;
+        this.job = job;
         var self = this;
         try {
             this.initFuncList();
@@ -462,7 +475,7 @@ export class Script {
      * 若没有则提示无法识别当前界面
      * @param {MyFloaty} myfloaty 
      */
-    autoRun(myfloaty) {
+    autoRun(myfloaty: MyFloaty) {
         let self = this;
         self.keepScreen(false);
         threads.start(function () {
@@ -531,6 +544,13 @@ export class Script {
     rerun() {
         events.broadcast.emit('SCRIPT_RERUN', '');
     };
+
+    rerunWitchJob(job: Job): void {
+        this._stop();
+        setTimeout(() => {
+            this._run(job);
+        }, 510);
+    }
 
     /**
      * 关键函数，操作函数

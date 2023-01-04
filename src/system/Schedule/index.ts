@@ -37,7 +37,7 @@ export class JobOptions {
     repeatMode: 0 | 1 | 2;
 
     /**
-     * 间隔时间（ms）
+     * 间隔时间（min）
      */
     interval: number;
 
@@ -54,7 +54,7 @@ export class JobOptions {
     /**
      * 开始运行时执行的回调
      */
-    runningCallback: Function;
+    runningCallback?: Function;
 }
 
 export class Job extends JobOptions {
@@ -69,11 +69,11 @@ export class Job extends JobOptions {
 
     doRun() {
         if (this.repeatMode === 1) {
-            this.nextDate = new Date(Date.now() + this.interval);
+            this.nextDate = new Date(Date.now() + this.interval * 60 * 1000);
         }
         this.status = 'running';
         this.lastRunTime = new Date();
-        this.runningCallback.apply(this);
+        this.runningCallback && this.runningCallback.apply(this);
     }
     
     doDone() {
@@ -103,8 +103,25 @@ class Schedule {
         this.jobList = [];
     }
 
-    add(job: Job): void {
+    add(job: Job): boolean {
+        for (let i = 0; i < this.jobList.length; i++) {
+            if (this.jobList[i].name === job.name) {
+                this.jobList.splice(i, 1);
+                break;
+            }
+        }
         this.jobList.push(job);
+        return true;
+    }
+
+    remove(jobName: string): boolean {
+        for (let i = 0; i < this.jobList.length; i++) {
+            if (this.jobList[i].name === jobName) {
+                this.jobList.splice(i, 1);
+                return true;
+            }
+        }
+        return false;
     }
 
     getJobList(): Job[] {
