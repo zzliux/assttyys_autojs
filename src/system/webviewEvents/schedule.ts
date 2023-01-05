@@ -71,7 +71,6 @@ export default function webviewSchedule() {
                 nextDate: new Date(job.nextDate),
                 runningCallback() {
                     updateJobStore(this);
-                    toastLog(`调度开始执行: ${this}`);
                     setCurrentScheme(job.config.scheme, store);
                     script.rerunWithJob(this);
                 }

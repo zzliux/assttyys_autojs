@@ -335,7 +335,6 @@ export default {
       }
     },
     nextDateDialogConfirm() {
-      console.log(arguments);
       this.curItemItem.nextDate = this.curNextDate;
       this.nextDateDialogshow = false;
     },
