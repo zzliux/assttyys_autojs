@@ -3,7 +3,7 @@ import script from '@/system/script';
 import store from '@/system/store';
 import ScheduleDefaultList from '@/common/scheduleList';
 import schedule, { Job } from '@/system/Schedule'
-// import { setCurrentScheme } from "@/common/tool";
+import { setCurrentScheme } from "@/common/tool";
 // // import schedule from 'node-schedule';
 
 // const emt = events.emitter()
@@ -18,6 +18,12 @@ import schedule, { Job } from '@/system/Schedule'
 // });
 
 export default function webviewSchedule() {
+
+    // 启动时把所有调度停用，确保schedule和store里面的scheduleList同步
+    const savedScheduleList = store.get("scheduleList", ScheduleDefaultList);
+    savedScheduleList.forEach(item => item.checked = false);
+    store.put('scheduleList', savedScheduleList);
+
 
     // 返回已保存的方案列表，如果未保存过，返回common中的scheduleList
     webview.on("getScheduleList").subscribe(([param, done]) => {
@@ -46,7 +52,7 @@ export default function webviewSchedule() {
         done("success");
     });
 
-    
+
     // schedule.add(new Job({
     //     name: 'test',
     //     nextDate: new Date(Date.now() + 10000),
@@ -60,12 +66,39 @@ export default function webviewSchedule() {
 
     webview.on('scheduleChange').subscribe(([job, done]) => {
         if (job.checked) {
-            schedule.add(job);
+            const jobObj = new Job({
+                ...job,
+                nextDate: new Date(job.nextDate),
+                runningCallback() {
+                    updateJobStore(this);
+                    toastLog(`调度开始执行: ${this}`);
+                    setCurrentScheme(job.config.scheme, store);
+                    script.rerunWithJob(this);
+                }
+            });
+            jobObj.setDoneCallback(function () {
+                updateJobStore(this);
+            });
+            schedule.add(jobObj);
         } else {
             schedule.remove(job.name);
         }
-        console.log('scheduleList', schedule.getJobList);
         done();
+
+        function updateJobStore(job) {
+            const sl = store.get("scheduleList", ScheduleDefaultList);
+            for (let storedJob of sl) {
+                if (storedJob.name === job.name) {
+                    storedJob.nextDate = job.nextDate;
+                    storedJob.lastRunTime = job.lastRunTime;
+                    storedJob.lastStopTime = job.lastStopTime;
+
+                    store.put('scheduleList', sl);
+                    return true;
+                }
+            }
+            return false;
+        }
     });
 
     // const jobList = [];

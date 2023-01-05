@@ -22,6 +22,7 @@ export const mergeScheduleList = (savedScheduleList, innerScheduleList) => {
     for (let innerSchedule of innerScheduleList) {
         let flag = true;
         innerSchedule.inner = true;
+        innerSchedule.nextDate = innerSchedule.nextDate ? new Date(innerSchedule.nextDate) : null;
         for (let savedSchedule of savedScheduleList) {
             if (savedSchedule.name === innerSchedule.name) {
                 flag = false;
@@ -32,5 +33,10 @@ export const mergeScheduleList = (savedScheduleList, innerScheduleList) => {
             toMerge.push(innerSchedule);
         }
     }
+    savedScheduleList.forEach(item => {
+        if (item.nextDate) {
+            item.nextDate = new Date(item.nextDate);
+        }
+    })
     return [...savedScheduleList, ...toMerge];
 }

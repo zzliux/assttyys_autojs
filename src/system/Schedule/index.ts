@@ -59,6 +59,8 @@ export class JobOptions {
 
 export class Job extends JobOptions {
 
+    private doneCallback: Function;
+
     constructor(options: JobOptions) {
         super();
         Object.keys(options).forEach(key => {
@@ -80,15 +82,22 @@ export class Job extends JobOptions {
         this.lastStopTime = new Date();
         if (this.repeatMode === 0) {
             this.status = 'done';
+            this.doneCallback && this.doneCallback.apply(this);
             return;
         } else if (this.repeatMode === 1) {
             this.status = 'wating';
+            this.doneCallback && this.doneCallback.apply(this);
             return;
         } else if (this.repeatMode === 2) {
-            this.nextDate = new Date(Date.now() + this.interval);
+            this.nextDate = new Date(Date.now() + this.interval * 60 * 1000);
+            this.doneCallback && this.doneCallback.apply(this);
             this.status = 'wating';
             return;
         }
+    }
+    
+    setDoneCallback(doneCallback: Function) {
+        this.doneCallback = doneCallback;
     }
 }
 
@@ -97,6 +106,7 @@ class Schedule {
     timer: NodeJS.Timeout;
     timeout: number = 2000;
     jobList: Job[];
+    jobStopCallback: Function;
 
     constructor() {
         this.timer = setTimeout(this.timerCallback.bind(this), this.timeout);
@@ -143,7 +153,6 @@ class Schedule {
             if (job.repeatMode === 0) {
                 this.jobList.splice(index, 1);
             }
-            // 运行的时候可能会阻塞
             job.doRun();
         }
         setTimeout(this.timerCallback.bind(this), this.timeout);

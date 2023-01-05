@@ -545,7 +545,7 @@ export class Script {
         events.broadcast.emit('SCRIPT_RERUN', '');
     };
 
-    rerunWitchJob(job: Job): void {
+    rerunWithJob(job: Job): void {
         this._stop();
         setTimeout(() => {
             this._run(job);

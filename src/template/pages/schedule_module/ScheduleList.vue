@@ -3,9 +3,9 @@
     <div class="navbar_box">
       <van-nav-bar title="定时任务列表 | ASSTTYYS NG" left-arrow @click-left="$router.back()"
         :style="'padding-top: ' + (statusBarHeight || 0) + 'px'">
-        <!-- <template #right>
-          <van-icon name="setting-o" size="18" @click="showCommonConfig($event, commonConfig)" />
-        </template> -->
+        <template #right>
+          <van-icon name="replay" size="18" @click="refresh($event)" />
+        </template>
       </van-nav-bar>
     </div>
 
@@ -23,8 +23,8 @@
                     @change="onScheduleChange($event, item)" />
                 </div>
                 <div v-if="item.desc" class="item-desc">{{ item.desc }}</div>
-                <div class="item-desc">上次执行开始时间: {{ item.lastRunTime }}</div>
-                <div class="item-desc">上次执行结束时间: {{ item.lastStopTime }}</div>
+                <div class="item-desc">上次执行开始时间: {{ item.lastRunTime && new Date(item.lastRunTime).toLocaleString() }}</div>
+                <div class="item-desc">上次执行结束时间: {{ item.lastStopTime && new Date(item.lastStopTime).toLocaleString() }}</div>
               </div>
             </template>
             <template #right>
@@ -49,7 +49,7 @@
               <template #input>
                 <div style="width: 100%;" :style="item.checked ? 'color: rgb(200, 195, 188)' : ''"
                   @click="showRepeatModeDialog($event, item)">
-                  {{ repeatModeEnum[item.repeatMode] }}
+                  {{ repeatModeEnum[item.repeatMode || 0] }}
                 </div>
               </template>
             </van-field>
@@ -57,7 +57,7 @@
               :rules="[{ required: true, message: '必填' }]">
               <template #input>
                 <div class="van-field__body">
-                  <input type="text" :disabled="item.checked" v-model="item.interval" class="van-field__control" />
+                  <input type="number" :disabled="item.checked" v-model="item.interval" class="van-field__control" />
                 </div>
               </template>
             </van-field>
@@ -204,14 +204,34 @@ export default {
     AutoWeb.autoPromise('saveScheduleList', self.scheduleList);
   },
   methods: {
+    async refresh() {
+      const savedScheduleList = await AutoWeb.autoPromise("getScheduleList", null)
+      this.scheduleList = mergeScheduleList(savedScheduleList, dScheduleList);
+    },
     saveScheduleList() {
       return AutoWeb.autoPromise('saveScheduleList', this.scheduleList);
     },
     async onScheduleChange(e, item) {
       if (Array.isArray(this.jobList)) {
-        await this.saveScheduleList();
         // this.jobList ? this.jobList.cancel() : null;
-
+        if (item.checked) {
+          if (!item.config.scheme) {
+            await AutoWeb.autoPromise('toast', '请设置执行方案');
+            item.checked = false;
+            return;
+          }
+          if (!item.interval) {
+            await AutoWeb.autoPromise('toast', '请设置重复间隔');
+            item.checked = false;
+            return;
+          }
+          if (!item.nextDate) {
+            await AutoWeb.autoPromise('toast', '请设置下次执行时间');
+            item.checked = false;
+            return;
+          }
+        }
+        await this.saveScheduleList();
         await AutoWeb.autoPromise('scheduleChange', item);
 
 
