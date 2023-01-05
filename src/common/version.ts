@@ -412,6 +412,9 @@ export const versionList = [{
 }, {
     version: '20230104_01',
     desc: '优化：逢魔新增首领挑战功能（老用户需手动启用）；\n修复：结界寄养部分bug'
+}, {
+    version: '20220105_01',
+    desc: '优化：重构调度任务'
 }];
 
 export default versionList[versionList.length - 1].version;

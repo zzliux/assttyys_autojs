@@ -75,6 +75,7 @@ export class Job extends JobOptions {
         }
         this.status = 'running';
         this.lastRunTime = new Date();
+        this.lastStopTime = null;
         this.runningCallback && this.runningCallback.apply(this);
     }
     
