@@ -99,7 +99,21 @@ export class Func051 implements InterfaceFuncOrigin {
 				}]
 			})) {
 				if (thisconf.greenType === '自定义文本' && !thisScript.global.greenPosition) {
-					let result = thisScript.findText(String(thisconf.greenText), 3000, thisOperator[0].oper[3], String(thisconf.greenTextMatchMode));
+					let result = thisScript.findTextWithCompareColor(
+						thisconf.greenText as string,
+						3000,
+						thisOperator[0].oper[3],
+						thisconf.greenTextMatchMod as string,
+						{
+							id: 51,
+							name: '准备界面检测',
+							operator: [{
+								desc: thisOperator[1].desc,
+							}, {
+								desc: thisOperator[2].desc,
+							}]
+						}
+					);
 					if (result.length === 0) {
 						console.log(`未识别式神别名“${thisconf.greenText}”`);
 						return true;
@@ -182,7 +196,19 @@ export class Func051 implements InterfaceFuncOrigin {
 					1000
 				]
 			} else if (thisconf.greenType === '自定义文本') {
-				let result = thisScript.findText(String(thisconf.greenText), 3000, thisOperator[0].oper[3], String(thisconf.greenTextMatchMode));
+				let result = thisScript.findTextWithCompareColor(
+					thisconf.greenText as string,
+					3000,
+					thisOperator[0].oper[3],
+					thisconf.greenTextMatchMode as string,
+					{
+						id: 51,
+						name: '战斗界面检测',
+						operator: [{
+							desc: thisOperator[0].desc,
+						}]
+					}
+				);
 				if (result.length === 0) {
 					console.log(`未识别式神别名“${thisconf.greenText}”`);
 					return true;
