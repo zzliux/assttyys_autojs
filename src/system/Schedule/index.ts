@@ -1,3 +1,5 @@
+import type { RepeatModeType, StatusType } from './type';
+
 export class JobOptions {
     
     id?: number;
@@ -34,7 +36,7 @@ export class JobOptions {
     /**
      * 重复模式： 0不重复运行，1从开始运行时间计算重复间隔，2从运行结束计算重复间隔
      */
-    repeatMode: 0 | 1 | 2;
+    repeatMode: RepeatModeType;
 
     /**
      * 间隔时间（min）
@@ -44,7 +46,7 @@ export class JobOptions {
     /**
      * 状态
      */
-    status?: 'wating' | 'running' | 'done';
+    status?: StatusType;
 
     /**
      * 其它配置
@@ -61,12 +63,21 @@ export class Job extends JobOptions {
 
     private doneCallback: Function;
 
+    status: StatusType = 'wating';
+
     constructor(options: JobOptions) {
         super();
-        Object.keys(options).forEach(key => {
-            this[key] = options[key];
-        });
-        this.status = 'wating';
+        this.id = options.id;
+        this.name = options.name;
+        this.desc = options.desc;
+        this.checked = options.checked;
+        this.lastRunTime = options.lastRunTime;
+        this.lastStopTime = options.lastStopTime;
+        this.nextDate = options.nextDate;
+        this.repeatMode = options.repeatMode;
+        this.interval = options.interval;
+        this.config = options.config;
+        this.runningCallback = options.runningCallback;
     }
 
     doRun() {
