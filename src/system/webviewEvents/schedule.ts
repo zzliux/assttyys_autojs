@@ -2,7 +2,7 @@ import { webview } from "@/system";
 import script from '@/system/script';
 import store from '@/system/store';
 import ScheduleDefaultList from '@/common/scheduleList';
-import schedule, { Job } from '@/system/Schedule'
+import schedule, { Job, JobOptions } from '@/system/Schedule'
 import { setCurrentScheme } from "@/common/tool";
 // // import schedule from 'node-schedule';
 
@@ -21,8 +21,11 @@ export default function webviewSchedule() {
 
     // 启动时把所有调度停用，确保schedule和store里面的scheduleList同步
     const savedScheduleList = store.get("scheduleList", ScheduleDefaultList);
-    savedScheduleList.forEach(item => item.checked = false);
-    store.put('scheduleList', savedScheduleList);
+    savedScheduleList.forEach(item => {
+        jobToSchedule(item);
+    });
+    // savedScheduleList.forEach(item => item.checked = false);
+    // store.put('scheduleList', savedScheduleList);
 
 
     // 返回已保存的方案列表，如果未保存过，返回common中的scheduleList
@@ -65,6 +68,11 @@ export default function webviewSchedule() {
     // }));
 
     webview.on('scheduleChange').subscribe(([job, done]) => {
+        jobToSchedule(job);
+        done();
+    });
+
+    function jobToSchedule(job: JobOptions) {
         if (job.checked) {
             const jobObj = new Job({
                 ...job,
@@ -82,9 +90,8 @@ export default function webviewSchedule() {
         } else {
             schedule.remove(job.name);
         }
-        done();
 
-        function updateJobStore(job) {
+        function updateJobStore(job: JobOptions) {
             const sl = store.get("scheduleList", ScheduleDefaultList);
             for (let storedJob of sl) {
                 if (storedJob.name === job.name) {
@@ -98,7 +105,7 @@ export default function webviewSchedule() {
             }
             return false;
         }
-    });
+    }
 
     // const jobList = [];
     // webview.on('scheduleChange').subscribe(([item, done]) => {

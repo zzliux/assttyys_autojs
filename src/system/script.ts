@@ -119,6 +119,34 @@ export class Script {
         }, text, timeout, region, textMatchMode);
     }
 
+    /**
+     * 先比色，再findText
+     */
+    findTextWithCompareColor(text: string, timeout: number, region: Array<number>, textMatchMode: string, currFunc: InterfaceFunc): Array<OcrResult> {
+        this.initOcrIfNeeded();
+        const self = this;
+        const startTime = new Date().getTime();
+        while (true) {
+            // 先判断场景，场景不对就直接返回空
+            if (!this.oper(currFunc)) return [];
+
+            // 超时时间设置为0，表示找一次就行，由外部手工控制循环
+            const result = ocr.findText(function () {
+                self.keepScreen(); // 更新图片
+                return self.helperBridge.helper.GetBitmap(); // 返回bmp
+            }, text, 0, region, textMatchMode);
+
+            if (result.length !== 0) {
+                return result;
+            }
+            // 超时退出
+            if (new Date().getTime() - startTime > timeout) {
+                return [];
+            }
+            // ocr本身就耗时，不需要再sleep
+        }
+    }
+
     findTextByOcrResult(text: string, ocrResult: Array<OcrResult>, textMatchMode: string, similarityRatio?: number): Array<OcrResult> {
         this.initOcrIfNeeded();
         return ocr.findTextByOcrResult(text, ocrResult, textMatchMode, similarityRatio);

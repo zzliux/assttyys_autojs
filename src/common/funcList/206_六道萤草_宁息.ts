@@ -69,7 +69,7 @@ export class Func206 implements InterfaceFuncOrigin {
 			name: '六道萤草_宁息',
 			operator: [{
 				desc: thisOperator[0].desc,
-				retest: 300,
+				retest: 1000,
 			}]
 		})) {
 

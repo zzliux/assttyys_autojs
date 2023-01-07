@@ -44,9 +44,15 @@ export class Func207 implements InterfaceFuncOrigin {
 		})) {
 			const r = thisScript.findText('^1回合.+', 0, thisOperator[1].oper[0], '包含');
 			if (r.length) {
-				thisScript.helperBridge.regionClick(thisOperator[0].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
-				thisScript.global.d6NextEvent = ['宁息'];
-				return true;
+				// 如果本身就有宁息，那就不召唤了
+				const p = thisScript.findMultiColor('六道萤草_宁息');
+				if (p) {
+					thisScript.global.d6NextEvent = ['宁息'];
+				} else {
+					thisScript.helperBridge.regionClick(thisOperator[0].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.global.d6NextEvent = ['宁息'];
+					return true;
+				}
 			}
 		}
 		return false;
