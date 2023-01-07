@@ -111,9 +111,10 @@ export class Func202 implements InterfaceFuncOrigin {
 	}, {
 		// buff名字区域
 		oper: [
-			[center, 1280, 720, 113, 257, 321, 346, -1], // 第一个
-			[center, 1280, 720, 386, 262, 593, 344, -1], // 第二个
-			[center, 1280, 720, 659, 257, 868, 342, -1], // 第三个
+			// [center, 1280, 720, 113, 257, 321, 346, -1], // 第一个
+			// [center, 1280, 720, 386, 262, 593, 344, -1], // 第二个
+			// [center, 1280, 720, 659, 257, 868, 342, -1], // 第三个
+			[center, 1280, 720, 113, 257, 868, 342, -1], // 一起的框框
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
@@ -137,7 +138,7 @@ export class Func202 implements InterfaceFuncOrigin {
 			}, {
 				desc: thisOperator[1].desc
 			}]
-		})) {
+		}, 500)) {
 			let confPriorty = thisconf.priority || '腐草为萤,妖力化身,六道净化,萤火之光';
 			let priorty = String(confPriorty).split(','); // 未达到目标的优先级
 			let priorty2 = ['萤火之光', '妖力化身']; // 达到目标后的优先级
@@ -206,12 +207,12 @@ export class Func202 implements InterfaceFuncOrigin {
 				}
 				
 				// 如果三个里面有两个为xx加成，则不刷新，省钱
-				let jcCnt = 0;
-				thisOperator[4].oper.forEach(item => {
-					const r = thisScript.findText('.+加成', 0, item, '包含');
-					if (r.length) jcCnt++;
-				});
-				if (jcCnt >= 2) {
+				// thisOperator[4].oper.forEach(item => {
+				// 	const r = thisScript.findText('.+加成', 0, item, '包含');
+				// 	if (r.length) jcCnt++;
+				// });
+				const r = thisScript.findText('.+加成', 0, thisOperator[4].oper[0], '包含');
+				if (r.length >= 2) {
 					thisScript.global.d6RefreshCnt = 3;
 				}
 

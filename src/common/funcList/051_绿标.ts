@@ -198,7 +198,7 @@ export class Func051 implements InterfaceFuncOrigin {
 			} else if (thisconf.greenType === '自定义文本') {
 				let result = thisScript.findTextWithCompareColor(
 					thisconf.greenText as string,
-					3000,
+					5000,
 					thisOperator[0].oper[3],
 					thisconf.greenTextMatchMode as string,
 					{
@@ -211,7 +211,7 @@ export class Func051 implements InterfaceFuncOrigin {
 				);
 				if (result.length === 0) {
 					console.log(`未识别式神别名“${thisconf.greenText}”`);
-					return true;
+					return false;
 				}
 				let p = {
 					x: (result[0].points[0].x + result[0].points[1].x) / 2,
