@@ -191,9 +191,6 @@ export class Script {
      */
     setStopCallback(callback: Function) {
         this.stopCallback = () => {
-            if (this.job) {
-                this.job.doDone();
-            }
             callback();
         };
     };
@@ -453,12 +450,18 @@ export class Script {
                 if (typeof self.stopCallback === 'function') {
                     self.stopCallback();
                 }
+                if (this.job) {
+                    this.job.doDone();
+                }
                 return;
             }
         } catch (e) {
             console.error(e);
             if (typeof self.stopCallback === 'function') {
                 self.stopCallback();
+            }
+            if (this.job) {
+                this.job.doDone();
             }
             return;
         }
@@ -488,6 +491,9 @@ export class Script {
                 }
                 if (typeof self.stopCallback === 'function') {
                     self.stopCallback();
+                }
+                if (this.job) {
+                    this.job.doDone();
                 }
             }
         });
@@ -556,10 +562,13 @@ export class Script {
     /**
      * 停止脚本，内部接口
      */
-    _stop() {
+    _stop(flag?: boolean) {
         if (null !== this.runThread) {
             if (typeof this.stopCallback === 'function') {
                 this.stopCallback();
+            }
+            if (!flag && this.job) {
+                this.job.doDone();
             }
             this.runThread.interrupt();
         }
@@ -695,9 +704,9 @@ events.broadcast.on('SCRIPT_RUN', () => {
 });
 
 events.broadcast.on('SCRIPT_RERUN', () => {
-    script._stop();
+    script._stop(true);
     setTimeout(() => {
-        script._run();
+        script._run(script.job);
     }, 510);
 });
 
