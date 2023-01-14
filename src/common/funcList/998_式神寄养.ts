@@ -10,11 +10,15 @@ export class Func998 implements InterfaceFuncOrigin {
 	desc = '阴阳寮式神寄养页面';
 	operator: InterfaceFuncOperatorOrigin[] = [{
 		// 点击式神寄养
-		desc: [1280, 720,
-			[[right, 1186, 74, 0xd4ccbb],
-			[right, 1186, 95, 0x282420],
-			[right, 1186, 136, 0xc19b6d],
-			[right, 1200, 106, 0xbab19c]]
+		desc: [
+			1280, 720,
+			[
+				[right, 1186, 74, 0xd4ccbb],
+				[right, 1186, 95, 0x282420],
+				[right, 1186, 136, 0xc19b6d],
+				[right, 1200, 106, 0xbab19c],
+				[center, 756, 186, 0xac9b79],
+			]
 		],
 		oper: [
 			[right, 1280, 720, 1142, 50, 1226, 129, 1200]

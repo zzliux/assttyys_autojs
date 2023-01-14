@@ -156,6 +156,16 @@ export class Func503 implements InterfaceFuncOrigin {
 		oper: [
 			[left, 1280, 720, 23, 10, 71, 56, 2000],   // 返回按钮
 		]
+	}, {
+		desc: [	//	判断_是否为庭院中的'町中'立牌
+			1280, 720,
+			[
+				[center, 738, 324, 0x979693],
+				[center, 738, 349, 0x999595],
+				[center, 740, 247, 0xb7b0af],
+				[center, 754, 302, 0xaba896],
+			]
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['503'];
@@ -282,18 +292,26 @@ export class Func503 implements InterfaceFuncOrigin {
 			})) {
 				return true;
 			}
-			let next_scheme = thisScript.runtimeParams && thisScript.runtimeParams.next_scheme_name;
-			if (thisConf.scheme_switch_enabled) {
-				next_scheme = thisConf.next_scheme;
-			}
 
-			if (!next_scheme) {
-				thisScript.doOspPush(thisScript, { text: '没有方案需要执行，脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-				thisScript.stop();
-			} else {
-				thisScript.setCurrentScheme(next_scheme as string);
-                thisScript.myToast(`切换方案为[${next_scheme}]`);
-				thisScript.rerun();
+			if (thisScript.oper({
+				name: '庭院界面',
+				operator: [{
+					desc: thisOperator[12].desc
+				}]
+			})) {
+				let next_scheme = thisScript.runtimeParams && thisScript.runtimeParams.next_scheme_name;
+				if (thisConf.scheme_switch_enabled) {
+					next_scheme = thisConf.next_scheme;
+				}
+
+				if (!next_scheme) {
+					thisScript.doOspPush(thisScript, { text: '没有方案需要执行，脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+					thisScript.stop();
+				} else {
+					thisScript.setCurrentScheme(next_scheme as string);
+					thisScript.myToast(`切换方案为[${next_scheme}]`);
+					thisScript.rerun();
+				}
 			}
 			return true;
 		}

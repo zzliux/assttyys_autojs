@@ -30,7 +30,6 @@ export class Func508 implements InterfaceFuncOrigin {
 				[center, 685, 398, 0x8c0717],
 				[center, 620, 396, 0x540c18],
 				[center, 690, 397, 0x930818],
-				[center, 667, 401, 0xead8c9],
 			]
 		],
 		oper: [

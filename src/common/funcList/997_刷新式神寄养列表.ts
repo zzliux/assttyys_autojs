@@ -30,8 +30,8 @@ export class Func997 implements InterfaceFuncOrigin {
 				[center, 705, 347, 0xccb59e]]
 			],
 			oper: [
-				[center, 1280, 720, 344, 101, 440, 152, 5000],    // 点击跨区页签
-				[center, 1280, 720, 222, 95, 320, 152, 5000]     // 点击好友页签
+				[left, 1280, 720, 182, 182, 197, 195, 1200],		// 滑动起点
+				[left, 1280, 720, 175, 547, 195, 555, 1200],		// 滑动终点
 			],
 		},
 		{
@@ -49,6 +49,33 @@ export class Func997 implements InterfaceFuncOrigin {
 					[left, 186, 522, 0xbe9c69],
 					[left, 271, 146, 0xa46c4d]]
 				],
+			oper: [
+				[center, 1280, 720, 222, 95, 320, 152, 1200],     // 点击好友页签
+			]
+		},
+		{
+			desc:	// 是否为列表顶部
+				[1280, 720,
+					[[left, 186, 171, 0x30221f],
+					[center, 555, 138, 0xcbb59e],
+					[center, 880, 562, 0xf4b25f],
+					[center, 705, 347, 0xccb59e],
+					[left, 186, 189, 0xbe9c69]]
+				],
+		},
+		{
+			desc:	// 是否为好友列表底部
+				[1280, 720,
+					[[left, 186, 171, 0x30221f],
+					[center, 555, 138, 0xcbb59e],
+					[center, 880, 562, 0xf4b25f],
+					[center, 705, 347, 0xccb59e],
+					[left, 186, 522, 0xbe9c69],
+					[left, 271, 146, 0xe9c89e]]
+				],
+			oper: [
+				[center, 1280, 720, 344, 101, 440, 152, 1200],    // 点击跨区页签
+			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
@@ -65,20 +92,52 @@ export class Func997 implements InterfaceFuncOrigin {
 			}]
 		})) {
 
+			if (thisScript.global.jy_enchantment_index > multiColorKey.length) {
+				thisScript.global.jy_enchantment_index = 0;
+				console.log('找不到指定结界卡，休眠15分钟后继续');
+				sleep(60000 * 15);
+			}
+
 			if (!thisScript.global.jy_enchantment_index) {
-				thisScript.global.jy_enchantment_index = 1;
+				console.log('刷新式神寄养列表');
+
+				if (thisScript.oper({
+					id: 997,
+					name: '当前为列表顶部,拖拽至列表最底部',
+					operator: [{
+						desc: thisOperator[3].desc,
+					}]
+				})) {
+					thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [1200, 1500], 200);
+				}
+
 				thisScript.oper({
 					id: 997,
-					name: '刷新式神寄养列表_让其重新排序',
+					name: '当前为好友列表底部,切换至跨区列表',
 					operator: [{
-						oper: thisOperator[0].oper,
+						desc: thisOperator[4].desc,
+						oper: thisOperator[4].oper
 					}]
 				});
+
+				if (thisScript.oper({
+					id: 997,
+					name: '当前为跨区列表底部,切换至好友列表,结束刷新操作',
+					operator: [{
+						desc: thisOperator[2].desc,
+						oper: thisOperator[2].oper
+					}]
+				})) {
+					thisScript.global.jy_enchantment_index = 1;
+					sleep(5000);
+				}
+
+				return true;
 			}
 
 			let key = multiColorKey[thisScript.global.jy_enchantment_index - 1];
 			console.log(`查找${key}结界`);
-			sleep(800);
+			sleep(1200);
 			let point = thisScript.findMultiColor(key);
 
 			if (point) {

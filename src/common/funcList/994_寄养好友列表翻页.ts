@@ -71,6 +71,24 @@ export class Func994 implements InterfaceFuncOrigin {
 		oper: [
 			[center, 1280, 720, 222, 100, 321, 149, 5000],  // 点击好友页签
 		]
+	}, {
+		desc:	// 是否为好友列表
+			[1280, 720,
+				[[left, 186, 171, 0x30221f],
+				[center, 555, 138, 0xcbb59e],
+				[center, 880, 562, 0xf4b25f],
+				[center, 705, 347, 0xccb59e],
+				[left, 271, 146, 0xe9c89e]]
+			],
+	},	{
+		desc:	// 是否为跨区列表
+			[1280, 720,
+				[[left, 186, 171, 0x30221f],
+				[center, 555, 138, 0xcbb59e],
+				[center, 880, 562, 0xf4b25f],
+				[center, 705, 347, 0xccb59e],
+				[left, 271, 146, 0xa46c4d]]
+			],
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['994'];
@@ -84,6 +102,40 @@ export class Func994 implements InterfaceFuncOrigin {
 			if (!thisScript.global.jy_list_swipe_times) {
 				thisScript.global.jy_list_swipe_times = 0;
 			}
+
+			const findOccupyColor = '式神寄养_全列表被占用';
+			const findEmptyColor = '式神寄养_全列表空结界卡';
+
+			let occupyPoint = thisScript.findMultiColor(findOccupyColor);
+			let emptyPoint = thisScript.findMultiColor(findEmptyColor);
+
+			if (occupyPoint || emptyPoint) {
+				console.log(`全列表被占用: ${occupyPoint}`, `全列表空结界卡: ${emptyPoint}`);
+				console.log('切换页签');
+				thisScript.global.jy_list_swipe_times++;
+				thisScript.oper({
+					id: 994,
+					name: '检测_好友列表',
+					operator: [{
+						desc: thisOperator[3].desc,
+						oper: thisOperator[1].oper
+					}]
+				})
+
+				if (thisScript.oper({
+					id: 994,
+					name: '检测_跨区好友列表',
+					operator: [{
+						desc: thisOperator[4].desc,
+						oper: thisOperator[2].oper
+					}]
+				})) {
+					thisScript.global.jy_enchantment_index++;
+				}
+
+				return true;
+			}
+
 			if (thisScript.oper({
 				id: 994,
 				name: '好友列表底部_判断',

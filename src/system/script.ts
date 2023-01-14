@@ -680,7 +680,7 @@ export class Script {
         if(params) {
             this.runtimeParams = params;
         } else {
-            params = null;
+            this.runtimeParams = null;
         }
         return setCurrentScheme(schemeName, store);
     };

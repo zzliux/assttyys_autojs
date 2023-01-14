@@ -294,6 +294,44 @@ const multiColor: InterfaceMultiColorOrigin = {
             ]
         ]
     },
+    '式神寄养_全列表空结界卡': {
+        region: [center, 1280, 720, 215, 167, 660, 598],
+        desc: [
+            [
+                1280, 720,
+                [
+                    [center, 649, 235, 0x82675d],
+                    [center, 580, 192, 0xd7c9ba],
+                    [center, 572, 215, 0xd7c9ba],
+                    [center, 577, 252, 0xd7c9ba],
+                    [center, 577, 300, 0xd7c9ba],
+                    [center, 567, 340, 0xd7c9ba],
+                    [center, 575, 362, 0xd7c9ba],
+                    [center, 575, 402, 0xd7c9ba],
+                    [center, 575, 445, 0xd7c9ba],
+                    [center, 572, 470, 0xd7c9ba],
+                    [center, 580, 510, 0xd7c9ba],
+                    [center, 572, 532, 0xd7c9ba],
+                    [center, 577, 562, 0xd7c9ba],
+                    [center, 635, 242, 0xcbb59e],
+                ]
+            ]
+        ]
+    },
+    '式神寄养_全列表被占用': {
+        region: [center, 1280, 720, 215, 167, 646, 598],
+        desc: [
+            [
+                1280, 720,
+                [
+                    [center, 563, 282, 0xae9b82],
+                    [center, 560, 380, 0xae9b82],
+                    [center, 556, 485, 0xae9b82],
+                    [center, 570, 602, 0xae9b82],
+                ]
+            ]
+        ]
+    },
     '结界卡_斗鱼6星': {
         region: [center, 1280, 720, 215, 167, 646, 598],
         desc: [
@@ -352,6 +390,26 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [center, 560, 233, 0xe9549e],
                     [center, 344, 254, 0xd7c9b9],
                     [center, 339, 187, 0xd7c9ba]
+                ]
+            ],
+            [
+                1280, 720,
+                [
+                    [center, 595, 233, 0xf46d28],
+                    [center, 586, 233, 0xed7610],
+                    [center, 576, 221, 0xa77d75],
+                    [center, 573, 239, 0xe5cc69],
+                    [center, 579, 199, 0xd3a28b],
+                ]
+            ],
+            [
+                1280, 720,
+                [
+                    [center, 595, 378, 0xf46d28],
+                    [center, 587, 378, 0xf46e28],
+                    [center, 588, 367, 0xdf9b86],
+                    [center, 580, 345, 0xd1a28d],
+                    [center, 574, 385, 0xe5cc68],
                 ]
             ]
         ]
@@ -1946,7 +2004,7 @@ const multiColor: InterfaceMultiColorOrigin = {
                 ]
             ]
         ]
-    }
+    },
 }
 
 export default multiColor;
