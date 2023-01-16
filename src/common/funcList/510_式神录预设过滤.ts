@@ -290,6 +290,6 @@ export class Func999 implements InterfaceFuncOrigin {
                 }
             }
         }
-        return true;
+        return false;
     }
 }
