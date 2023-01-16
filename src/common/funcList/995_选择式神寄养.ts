@@ -88,7 +88,7 @@ export class Func995 implements InterfaceFuncOrigin {
 					[center, 612, 148, 0xe6c8a3]]
 				],
 			oper: [
-				[center, 1280, 720, 576, 129, 649, 204, 600],   // 点击寄养
+				[center, 1280, 720, 576, 129, 649, 204, 1200],   // 点击寄养
 			]
 		},
 		{

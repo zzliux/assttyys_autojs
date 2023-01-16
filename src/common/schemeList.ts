@@ -67,7 +67,7 @@ const SchemeList: InterfaceScheme[] = [{
         id: 6,
         schemeName: '寮突破',
         star: true,
-        list: [0, 1, 2, 3, 8, 9, 10, 12],
+        list: [0, 1, 2, 3, 8, 9, 10, 12, 29],
         config: {
             '8': {
                 count: '2',

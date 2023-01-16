@@ -31,7 +31,7 @@ export class Func016 implements InterfaceFuncOrigin {
 			[left, 1280, 720, 1104, 505, 1207, 583, 0], // 挑战
 		]
 	}, {
-		// 关闭界面
+		// 地鬼挑战页面
 		desc: [1280, 720,
 			[
 				[left, 137, 216, 0xddd6ce],
@@ -43,7 +43,7 @@ export class Func016 implements InterfaceFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1195, 30, 1226, 59, 500]
+			[center, 1280, 720, 1195, 30, 1226, 59, 500]	//	关闭_地鬼挑战弹窗
 		]
 	}, {
 		desc: [1280, 720,
@@ -72,54 +72,82 @@ export class Func016 implements InterfaceFuncOrigin {
 		oper: [
 			[left, 1280, 720, 741, 638, 800, 695, 2000] // 探索地图进入地鬼
 		]
+	},
+	{
+		desc: [		//	地鬼_挑战页面_极
+			1280, 720,
+			[
+				[center, 447, 138, 0x9a4e50],
+				[center, 475, 94, 0xdad1ca],
+				[right, 1208, 400, 0xbe643b],
+				[right, 1155, 581, 0xf1d8af],
+				[right, 1140, 621, 0x581819],
+				[left, 191, 612, 0xdcd6cf],
+				[center, 532, 82, 0x576891],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 522, 52, 557, 81, 1200]		//	极转为普通
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		if (thisScript.oper({
-				name: '探索界面',
-				operator: [thisOperator[3]]
-			})) {
-				
+			name: '探索界面',
+			operator: [thisOperator[3]]
+		})) {
+
 			return true;
 		}
+
 		if (thisScript.oper({
-				name: '地鬼_挑战_关闭',
-				operator: [{
-					desc: thisOperator[1].desc,
-					oper: thisOperator[1].oper,
-				}]
-			})) {
+			name: '地鬼_挑战_关闭',
+			operator: [{
+				desc: thisOperator[1].desc,
+				oper: thisOperator[1].oper,
+			}]
+		})) {
 			return true;
 		}
+
 		if (thisScript.oper({
-				name: '地鬼_热门挑战',
-				operator: [{
-					desc: thisOperator[0].desc,
-					oper: [thisOperator[2].oper[0]]
-				}]
-			}, 2000)) { // 加了个两秒的重检测时间，防止退出来后
+			name: '地鬼_热门挑战',
+			operator: [{
+				desc: thisOperator[0].desc,
+				oper: [thisOperator[2].oper[0]]
+			}]
+		}, 2000)) { // 加了个两秒的重检测时间，防止退出来后
 			thisScript.keepScreen();
 			thisScript.global.dgCurNum = -1;
 			for (let i = 0; i < thisOperator[2].desc.length; i++) {
 				if (thisScript.oper({
-						name: `地鬼_检测第${i}个未打`,
-						operator: [{
-							desc: [thisOperator[2].desc[i]]
-						}]
-					})) {
+					name: `地鬼_检测第${i}个未打`,
+					operator: [{
+						desc: [thisOperator[2].desc[i]]
+					}]
+				})) {
 					thisScript.global.dgCurNum = i;
 					break;
 				}
 			}
 
 			if (thisScript.global.dgCurNum === -1) {
+
 				thisScript.helperBridge.regionClick([thisOperator[2].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
-				thisScript.doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-				thisScript.stop();
+				const next_scheme = '返回庭院';
+				thisScript.setCurrentScheme(next_scheme);
+				thisScript.myToast(`切换方案为[${next_scheme}]`);
+				thisScript.rerun();
 				return;
 			}
 			let clickOper = thisOperator[0].oper[2 + thisScript.global.dgCurNum];
 			thisScript.helperBridge.regionClick([thisOperator[0].oper[0], thisOperator[0].oper[1], clickOper], thisScript.scheme.commonConfig.afterClickDelayRandom);
 			// sleep(1500);
+
+			if (thisScript.compareColorLoop(thisOperator[4].desc, 3000)) {
+				thisScript.helperBridge.regionClick(thisOperator[4].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+			}
+
+
 			if (thisScript.compareColorLoop(thisOperator[1].desc, 3000)) {
 				sleep(1500);
 				thisScript.keepScreen(true);
