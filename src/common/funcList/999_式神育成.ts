@@ -61,7 +61,7 @@ export class Func999 implements InterfaceFuncOrigin {
 			[[center, 611, 300, 0x0c0804],
 			[center, 913, 305, 0x0c0804],
 			[left, 318, 305, 0x0c0804],
-			[center, 605, 295, 0xae2e13],
+			[center, 613, 294, 0xe1cf6b],
 			[left, 202, 462, 0x10100c]]
 		],
 		oper: [

@@ -110,6 +110,23 @@ export class Func999 implements InterfaceFuncOrigin {
                 [center, 1280, 720, 417, 413, 439, 436, 1200],    //  30天不提示,
                 [center, 1280, 720, 910, 136, 944, 165, 1200],    //  关闭
             ]
+        },
+        {   //  检测_提示下载式神模型
+            desc:
+                [
+                    1280, 720,
+                    [
+                        [center, 363, 193, 0xcbb59e],
+                        [center, 907, 208, 0xcbb59e],
+                        [center, 521, 314, 0xe6d5ac],
+                        [center, 574, 483, 0xf4b25f],
+                        [center, 702, 499, 0xf4b25f],
+                        [center, 916, 520, 0xcbb59e],
+                    ]
+                ],
+            oper: [
+                [center, 1280, 720, 916, 144, 943, 167, 1200]   //  关闭
+            ]
         }];
     operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
         let thisConf = thisScript.scheme.config['510'];
@@ -121,7 +138,7 @@ export class Func999 implements InterfaceFuncOrigin {
 
         thisScript.oper({
             name: '式神拓展包弹窗',
-            operator: [thisOperator[4]]
+            operator: [thisOperator[4],thisOperator[5]]
         });
 
         if (thisScript.oper({
@@ -162,7 +179,7 @@ export class Func999 implements InterfaceFuncOrigin {
                         }
                     }
 
-                    if ( _first_group_name === thisScript.global.change_shikigami_last_group_name) {
+                    if (_first_group_name === thisScript.global.change_shikigami_last_group_name) {
                         thisScript.global.change_shikigami_list_swipe_times++;
                         console.log('已经到顶了');
                         sleep(600);
@@ -175,7 +192,7 @@ export class Func999 implements InterfaceFuncOrigin {
                     } else if (_first_group_name.trim()) {
                         thisScript.global.change_shikigami_last_group_name = _first_group_name;
                     }
-                    
+
                     return true;
                 } else if (thisScript.global.change_shikigami_state === 'search_group') {
                     const grounpName = thisConf.groupName as string;
