@@ -2027,6 +2027,23 @@ const multiColor: InterfaceMultiColorOrigin = {
             ]
         ]
     },
+    '式神录_当前选中队伍预设': {
+        region: [center, 1280, 720, 522, 146, 1024, 622],
+        desc: [
+            [
+                1280, 720,
+                [
+                    [right, 990, 163, 0xf7d9a0],
+                    [center, 589, 155, 0xe3dbd3],
+                    [center, 688, 155, 0xe3dbd3],
+                    [center, 834, 155, 0xe3dbd3],
+                    [center, 854, 155, 0xe3bb70],
+                    [center, 908, 155, 0xe3ba70],
+                    [center, 960, 155, 0xe3ba70],
+                ]
+            ]
+        ]
+    }
 }
 
 export default multiColor;
