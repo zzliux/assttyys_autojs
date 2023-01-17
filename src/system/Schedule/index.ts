@@ -155,7 +155,8 @@ class Schedule {
         let job = null;
         for (let i = 0; i < this.jobList.length; i++) {
             const thisJob = this.jobList[i];
-            if (thisJob.nextDate.getTime() <= Date.now() && thisJob.status === 'wating') {
+            //  当前时间与执行时间间隔小于30分钟并且状态为等待
+            if ((thisJob.nextDate.getTime() <= Date.now() && Date.now() - thisJob.nextDate.getTime() < 1800000) && thisJob.status === 'wating') {
                 job = thisJob;
                 index = i;
                 break;

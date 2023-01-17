@@ -527,6 +527,12 @@ const SchemeList: InterfaceScheme[] = [{
     schemeName: '镜守云归_雪寺匿踪',
     star: true,
     list: [0, 1, 2, 3, 24, 119]
+}, {
+    id: 112,
+    groupName: '活动',
+    schemeName: '月烬宵宴_伴星歌',
+    star: true,
+    list: [0, 1, 2, 3, 24, 120]
 }
     // 完整demo
     // , {
