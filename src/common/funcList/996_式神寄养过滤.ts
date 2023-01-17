@@ -87,5 +87,7 @@ export class Func996 implements InterfaceFuncOrigin {
 				}]
 			});
 		}
+
+		return false;
 	}
 }

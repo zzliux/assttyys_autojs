@@ -102,6 +102,6 @@ export class Func509 implements InterfaceFuncOrigin {
 				thisScript.global.change_shikigami_flag = true;
 			}
 		}
-		return true;
+		return false;
 	}
 }

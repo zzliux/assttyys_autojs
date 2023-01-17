@@ -36,7 +36,7 @@ export type globalRootType = {
     change_shikigami_flag: boolean, //  更换式神
     change_shikigami_state: 'flushed' | 'search_group'  | 'search_default' | 'change_team_default_1' | 'change_team_default_2' | 'finish', //  跟换式神预设状态值
     change_shikigami_list_swipe_times: number,
-    change_shikigami_last_group_name: string;   //  式神录预设分组最后一项的名称
+    change_shikigami_last_group_name: string,   //  式神录预设分组最后一项的名称
 }
 
 export const globalRoot: globalRootType = {
@@ -77,5 +77,5 @@ export const globalRoot: globalRootType = {
     change_shikigami_flag: false,
     change_shikigami_state: 'flushed',
     change_shikigami_list_swipe_times: 0,
-    change_shikigami_last_group_name: undefined
+    change_shikigami_last_group_name: undefined,
 }

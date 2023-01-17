@@ -308,13 +308,14 @@ export class Func503 implements InterfaceFuncOrigin {
 					thisScript.doOspPush(thisScript, { text: '没有方案需要执行，脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 					thisScript.stop();
 				} else {
-					thisScript.setCurrentScheme(next_scheme as string);
+					thisScript.setCurrentScheme(next_scheme as string, {
+						...thisScript.runtimeParams,
+					});
 					thisScript.myToast(`切换方案为[${next_scheme}]`);
 					thisScript.rerun();
 				}
 			}
-			return true;
 		}
-		return true;
+		return false;
 	}
 }

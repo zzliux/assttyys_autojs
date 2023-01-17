@@ -138,7 +138,12 @@ export class Func999 implements InterfaceFuncOrigin {
 
         thisScript.oper({
             name: '式神拓展包弹窗',
-            operator: [thisOperator[4],thisOperator[5]]
+            operator: [thisOperator[4]]
+        });
+
+        thisScript.oper({
+            name: '式神拓展包弹窗',
+            operator: [thisOperator[5]]
         });
 
         if (thisScript.oper({

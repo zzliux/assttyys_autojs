@@ -91,16 +91,19 @@ export class Func506 implements InterfaceFuncOrigin {
 	},
 	{
 		desc:   // 检测_是否为道馆页
-			[1280, 720,
-				[[left, 64, 482, 0x291522],
-				[left, 33, 38, 0xd7c5a2],
-				[left, 109, 24, 0xd7c5a2],
-				[left, 179, 37, 0xd7c6a5],
-				[center, 547, 34, 0x9a8958],
-				[right, 1138, 561, 0xdbc5ae],
-				[right, 1218, 641, 0xebc683],
-				[right, 1167, 608, 0x272420]]
-			],
+		[
+			1280, 720,
+			[
+				[right, 1021, 633, 0xceddf4],
+				[center, 879, 611, 0xc7414e],
+				[center, 913, 644, 0x493a38],
+				[center, 609, 651, 0x583a28],
+				[left, 62, 532, 0x882349],
+				[left, 48, 26, 0xd7c5a2],
+				[left, 109, 23, 0xd7c5a2],
+				[left, 175, 22, 0xd4c4a3],
+			]
+		],
 	},
 	{
 		desc:   // 检测_是否为挑战奉献榜场景_待开始
@@ -111,9 +114,71 @@ export class Func506 implements InterfaceFuncOrigin {
 				[right, 1086, 615, 0x272420],
 				[right, 1068, 593, 0xdec7aa]]
 			]
+	},
+	{
+		desc:	//	检测_是否为道馆突破选择道馆页面
+			[
+				1280, 720,
+				[
+					[left, 141, 77, 0xcb945a],
+					[left, 33, 52, 0xeff5fb],
+					[left, 245, 50, 0x583716],
+					[left, 203, 650, 0x5b3e2b],
+					[left, 89, 618, 0xc1b9a9],
+					[right, 1113, 650, 0xdfdbcf],
+					[right, 1103, 62, 0xddd3c0],
+					[right, 1251, 125, 0xc4b4a0],
+				]
+			],
+		oper: [
+			[left, 1280, 720, 27, 28, 56, 65, 1200]	//	跑路
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['506'];
+
+		let _liao_activity_state = thisScript.runtimeParams ? thisScript.runtimeParams.liao_activity_state : undefined;
+		if (_liao_activity_state) {
+			let _finishFlag = true;
+			
+			//	若有一项未完成, 继续循环，否则返回庭院
+			Object.keys(_liao_activity_state).forEach(key => {
+				if (!_liao_activity_state[key]) {
+					_finishFlag = false;
+				}
+			})
+			console.log('寮活动当前状况为: ', _liao_activity_state, '返回庭院flag状态为: ', _finishFlag);
+			if (_finishFlag) {
+				const next_scheme = '返回庭院';
+				thisScript.setCurrentScheme(next_scheme);
+				thisScript.myToast(`切换方案为[${next_scheme}]`);
+				thisScript.rerun();
+			}
+		} else {
+			let nowDateDay = new Date().getDay();
+			switch (nowDateDay) {
+				case 1:
+				case 2:
+				case 3:
+				case 4: {
+					_liao_activity_state = {
+						dojo: false,
+						hunt: false,
+					}
+					break;
+				};
+				case 5:
+				case 6:
+				case 0: {	//	TODO: 无奈之举，有没有大佬把这三个给做了
+					_liao_activity_state = {
+						banquet: true,
+						narrow: true,
+						gateOfHades: true,
+					}
+					break;
+				}
+			}
+		}
 
 		if (thisScript.oper({
 			name: '检测_道馆是否已开启',
@@ -123,6 +188,18 @@ export class Func506 implements InterfaceFuncOrigin {
 			}]
 		})) {
 			return true;
+		}
+
+		if (thisScript.oper({
+			name: '检测_是否为道馆突破选择道馆页面',
+			operator: [{
+				desc: thisOperator[8].desc
+			}]
+		})) {
+			const next_scheme = '返回庭院';
+			thisScript.setCurrentScheme(next_scheme as string);
+			thisScript.myToast(`切换方案为[${next_scheme}]`);
+			thisScript.rerun();
 		}
 
 		if (thisScript.oper({
@@ -177,7 +254,9 @@ export class Func506 implements InterfaceFuncOrigin {
 			}]
 		})) {
 			const next_scheme = '道馆';
-			thisScript.setCurrentScheme(next_scheme as string);
+			thisScript.setCurrentScheme(next_scheme as string, {
+				liao_activity_state: _liao_activity_state
+			});
 			thisScript.myToast(`切换方案为[${next_scheme}]`);
 			thisScript.rerun();
 		}
@@ -203,18 +282,20 @@ export class Func506 implements InterfaceFuncOrigin {
 		}
 
 		if (thisScript.oper({
-            name: '检测_是否为挑战奉献榜场景_待开始',
-            operator: [{
-                desc: thisOperator[7].desc,
-            }]
-        })) {
+			name: '检测_是否为挑战奉献榜场景_待开始',
+			operator: [{
+				desc: thisOperator[7].desc,
+			}]
+		})) {
 
-            sleep(2000);
-            const next_scheme = '狩猎战';
-            thisScript.setCurrentScheme(next_scheme as string);
-            thisScript.myToast(`切换方案为[${next_scheme}]`);
-            thisScript.rerun();
-        }
+			sleep(2000);
+			const next_scheme = '狩猎战';
+			thisScript.setCurrentScheme(next_scheme as string, {
+				liao_activity_state: _liao_activity_state
+			});
+			thisScript.myToast(`切换方案为[${next_scheme}]`);
+			thisScript.rerun();
+		}
 
 		// if (thisScript.oper({
 		// 	name: '检查_宴会是否已开启',
@@ -230,5 +311,6 @@ export class Func506 implements InterfaceFuncOrigin {
 		// 	thisScript.myToast(`切换方案为[${next_scheme}]`);
 		// 	thisScript.rerun();
 		// }
+		return false;
 	}
 }

@@ -255,6 +255,6 @@ export class Func508 implements InterfaceFuncOrigin {
 		}
 
 
-		return true;
+		return false;
 	}
 }

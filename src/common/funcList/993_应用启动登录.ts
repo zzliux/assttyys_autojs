@@ -404,6 +404,6 @@ export class Func993 implements InterfaceFuncOrigin {
 			thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
 		}
 
-		return true;
+		return false;
 	}
 }
