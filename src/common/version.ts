@@ -424,6 +424,9 @@ export const versionList = [{
 }, {
     version: '20230116_01',
     desc: '新增：切换式神预设方案；\n优化：地鬼挑战自动转为普通模式；\n优化：结界寄养适配问题。',
+}, {
+    version: '20230117_01',
+    desc: '新增：月烬宵宴_伴星歌方案；\n优化：寮活动中添加对当天活动的判断行为；\n优化：调度任务超过30分钟后不执行'
 }];
 
 export default versionList[versionList.length - 1].version;
