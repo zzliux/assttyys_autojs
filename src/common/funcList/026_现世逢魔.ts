@@ -57,18 +57,6 @@ export class Func026 implements InterfaceFuncOrigin {
 			[left, 1280, 720, 69, 171, 170, 452, 500]
 		]
 	}, {
-		// 逢魔boss挑战
-		desc: [1280, 720,
-			[[center, 134, 54, 0xc3a765],
-			[center, 1090, 54, 0xdbd3bf],
-			[center, 1139, 74, 0xeecccc],
-			[center, 1104, 556, 0xded0be],
-			[center, 988, 648, 0x201d1a]]
-		],
-		oper: [
-			[center, 1280, 720, 1072, 546, 1164, 628, 1000]
-		]
-	}, {
 		// 神秘任务_不做
 		desc: [1280, 720,
 			[[left, 37, 50, 0x3c3e44],
@@ -82,13 +70,19 @@ export class Func026 implements InterfaceFuncOrigin {
 		]
 	}, {
 		// 鬼王_挑战
-		desc: [1280, 720,
-			[[center, 114, 54, 0xc3a765],
-			[center, 1139, 73, 0xeecccc],
-			[center, 1117, 565, 0xead9ba],
-			[center, 631, 652, 0x1f1c19],
-			[center, 122, 161, 0xd4cac3],
-			[center, 1121, 611, 0xf3d5a6]]
+		desc: [
+			1280, 720,
+			[
+				[center, 114, 54, 0xc3a765],
+				[center, 1139, 73, 0xeecccc],
+				[center, 1117, 565, 0xead9ba],
+				[center, 631, 652, 0x1f1c19],
+				[center, 122, 161, 0xd4cac3],
+				[center, 1121, 611, 0xf3d5a6],
+				[right, 981, 628, 0xefcd9a],
+				[center, 869, 630, 0xedcf99],
+				[center, 780, 624, 0xc39656],
+			]
 		],
 		oper: [
 			[center, 1280, 720, 1075, 550, 1150, 631, 1000]
@@ -128,8 +122,8 @@ export class Func026 implements InterfaceFuncOrigin {
 			return false;
 		}
 		if (thisScript.oper({
-			name: '宝箱_不领|逢魔boss挑战|神秘任务_不做|鬼王_挑战',
-			operator: [thisOperator[3], thisOperator[4], thisOperator[5], thisOperator[6]]
+			name: '宝箱_不领|神秘任务_不做|鬼王_挑战',
+			operator: [thisOperator[3], thisOperator[4], thisOperator[5]]
 		})) {
 			return true;
 		}

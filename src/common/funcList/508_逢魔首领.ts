@@ -160,13 +160,19 @@ export class Func508 implements InterfaceFuncOrigin {
 		if (thisScript.oper({
 			name: '检测_首领BOSS挑战页',
 			operator: [{
-				desc: thisOperator[2].desc,
-				oper: [thisOperator[2].oper[0]]
+				desc: thisOperator[2].desc
 			}]
 		})) {
+			thisScript.oper({
+				name: '点击首领BOSS挑战按钮',
+				operator: [{
+					oper: [thisOperator[2].oper[0]]
+				}]
+			});
+			console.log('检测首领boss是否能挑战,重试次数为:', thisScript.global.checked_yard_count)
 			// 做延时检测 防止登陆后的弹窗
-			if (thisScript.global.checked_yard_count === 5) {
-				thisScript.global.checked_yard_count = undefined;
+			if (thisScript.global.checked_yard_count >= 3) {
+				thisScript.global.checked_yard_count = 0;
 				console.log('无法点击首领BOSS集结挑战，退出集结挑战页');
 				thisScript.oper({
 					name: '检测_关闭首领BOSS',
