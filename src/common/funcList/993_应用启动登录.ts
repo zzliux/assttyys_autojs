@@ -53,12 +53,15 @@ export class Func993 implements InterfaceFuncOrigin {
 		]
 	}, {
 		desc: 	// 是否为公告页
-			[1280, 720,
-				[[center, 648, 37, 0x676060],
+		[
+			1280, 720,
+			[
+				[center, 648, 37, 0x676060],
 				[right, 1214, 142, 0x59242c],
-				[left, 204, 53, 0x555351],
-				[right, 1155, 498, 0xe7d9cb]]
-			],
+				[center, 519, 50, 0x555351],
+				[right, 1188, 577, 0x652117],
+			]
+		],
 		oper: [
 			[right, 1280, 720, 1190, 135, 1242, 186, 1200],  // 点击关闭公告
 		]
