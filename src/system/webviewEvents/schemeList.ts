@@ -11,11 +11,20 @@ import helperBridge from '@/system/helperBridge';
 
 export default function webviewSchemeList() {
     // 返回已保存的方案列表，如果未保存过，返回common中的schemeList
-    webview.on("getSchemeList").subscribe(([param, done]) => {
+    webview.on("getSchemeList").subscribe(([_param, done]) => {
         let savedSchemeList = store.get("schemeList", defaultSchemeList);
         // 活动方案去除
         // done(_.filter(savedSchemeList, item => item.id != 99));
         done(savedSchemeList);
+    });
+
+    webview.on('getGroupNames').subscribe(([_param, done]) => {
+        const savedSchemeList = store.get("schemeList", defaultSchemeList);
+        const groupNamesMap = {};
+        savedSchemeList.forEach(s => {
+            if (s.groupName) groupNamesMap[s.groupName] = 1;
+        });
+        done(Object.keys(groupNamesMap));
     });
 
     // 保存方案列表

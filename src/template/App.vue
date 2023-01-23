@@ -2,12 +2,10 @@
   <div style="width: 100%; height: 100%">
     <div class="rv_box">
       <transition :name="transitionName">
-        <keep-alive :include="['ScheduleList']">
-          <router-view
-            class="rv"
-            :status-bar-height="statusBarHeight"
-          ></router-view>
-      </keep-alive>
+        <router-view
+          class="rv"
+          :status-bar-height="statusBarHeight"
+        ></router-view>
       </transition>
     </div>
     <van-popup
@@ -58,13 +56,11 @@ export default {
       }
     },
   },
-  computed: {
-
-  },
+  computed: {},
   async mounted() {
     this.statusBarHeight = await AutoWeb.autoPromise("getStatusBarHeight");
 
-    await AutoWeb.autoPromise('webloaded');
+    await AutoWeb.autoPromise("webloaded");
 
     // 版本查询
     let versionInfo = await AutoWeb.autoPromise("versionInfo");
@@ -86,17 +82,16 @@ export default {
     let appInfo = await AutoWeb.autoPromise("getAppInfo");
     if (appInfo.needForceUpdate) {
       Dialog.alert({
-        title: '提示',
+        title: "提示",
         message: appInfo.msg,
       }).then(() => {
         AutoWeb.autoPromise("exit");
       });
     } else if (appInfo.msg) {
       Dialog.alert({
-        title: '提示',
+        title: "提示",
         message: appInfo.msg,
-      }).then(() => {
-      });
+      }).then(() => {});
     }
   },
 };
