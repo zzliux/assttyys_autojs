@@ -533,6 +533,12 @@ const SchemeList: InterfaceScheme[] = [{
     schemeName: '月烬宵宴_伴星歌',
     star: true,
     list: [0, 1, 2, 3, 24, 120]
+}, {
+    id: 113,
+    groupName: '活动',
+    schemeName: '月烬宵宴_伪月落',
+    star: true,
+    list: [0, 1, 2, 3, 24, 121]
 }
     // 完整demo
     // , {
