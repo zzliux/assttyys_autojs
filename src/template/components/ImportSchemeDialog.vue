@@ -129,7 +129,7 @@ export default {
         this.importModal = true;
       } catch (e) {
         console.error(e);
-        await AutoWeb.autoPromise('toast', e);
+        await AutoWeb.autoPromise('toast', '无法解析，请检查导入数据是否完整或其它问题');
       }
     },
     async pasteExportString() {

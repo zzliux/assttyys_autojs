@@ -181,6 +181,7 @@ Vue.use(DropdownItem);
 
 
 export default {
+  name: 'schemeList',
   data() {
     return {
       itemOpenList: [],
@@ -234,7 +235,7 @@ export default {
       AutoWeb.autoPromise('saveSchemeList', this.schemeList);
     },
     schemeClickEvent(e, item) {
-      console.log(this.itemOpenList);
+      // console.log(this.itemOpenList);
       if (this.itemOpenList.length > 0) return;
       if (e.target.className.match(/handle|star/)) {
         return;
@@ -429,7 +430,7 @@ export default {
 
       // 1. 根据groupName过滤
       const filterd = [];
-      console.log(this.filterGroupName);
+      // console.log(this.filterGroupName);
       for (let i = 0 ; i < left.length; i++) {
         if (left[i].groupName === this.filterGroupName) {
           filterd.push(left[i]);

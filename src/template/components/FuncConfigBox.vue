@@ -79,12 +79,23 @@
         @confirm="configItemItemPickerConfirm"
         @cancel="configItemItemShowPicker = false"/>
     </van-popup>
+
+    
+    <van-popup v-model="schemePicker" position="bottom">
+      <van-picker
+        show-toolbar
+        :columns="schemeList"
+        @confirm="schemeListConfirm"
+        @cancel="schemePicker = false"
+      />
+    </van-popup>
   </div>
 </template>
 
 <script>
 import Vue from "vue";
 import { Popup, Field, CellGroup, Picker, DatetimePicker } from 'vant';
+import { merge } from '@/common/tool';
 Vue.use(Popup);
 Vue.use(Field);
 Vue.use(CellGroup);
@@ -102,12 +113,19 @@ export default {
       configItemItemPickerList: [],
       curItemItemIndex: 10,
       curItemItem: null,
+
+      schemePicker: false,
+      schemeList: [],
     }
   },
   methods: {
     configItemItemPickerConfirm(text, _index) {
       this.curItemItem.value = text;
       this.configItemItemShowPicker = false;
+    },
+    schemeListConfirm([_, text], _index) {
+      this.curItemItem.value = text;
+      this.schemePicker = false;
     },
     showItemConfigList(e, configItemItem) {
       this.configItemItemPickerList = configItemItem.data;
@@ -117,11 +135,36 @@ export default {
     },
     async showItemConfigScheme(e, configItemItem) {
       let schemeList = await AutoWeb.autoPromise('getSchemeList');
-      this.configItemItemPickerList = schemeList.map(item => item.schemeName);
+      let groupScheme = ['全部', ...await AutoWeb.autoPromise('getGroupNames')].map(item => ({ text: item, children: this.getSchemeNamesByGroupName(item, schemeList) }));
+
+      console.log(groupScheme);
+      // this.configItemItemPickerList = schemeList.map(item => item.schemeName);
+      this.schemeList = groupScheme;
       this.curItemItem = configItemItem;
-      this.curItemItemIndex = this.configItemItemPickerList.indexOf(configItemItem.value);
-      this.configItemItemShowPicker = 'switch';
+      this.schemePicker = true;
+      // this.curItemItemIndex = this.configItemItemPickerList.indexOf(configItemItem.value);
+      // this.configItemItemShowPicker = 'switch';
     },
+
+    getSchemeNamesByGroupName(groupName, schemeNames) {
+      const left = merge([], schemeNames);
+      if (groupName === '全部') {
+        return left.map(item => ({ text: item.schemeName }));
+      }
+
+      // 1. 根据groupName过滤
+      const filterd = [];
+      // console.log(groupName);
+      for (let i = 0 ; i < left.length; i++) {
+        if (left[i].groupName === groupName) {
+          filterd.push(left[i]);
+          left.splice(i, 1);
+          i--;
+        }
+      }
+      return filterd.map(item => ({ text: item.schemeName }));
+    },
+
     showDateTimePicker(e, configItemItem) {
       this.curItemItem = configItemItem;
       this.configItemItemShowPicker = 'datetime';

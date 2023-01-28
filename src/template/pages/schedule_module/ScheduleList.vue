@@ -109,6 +109,14 @@
         @confirm="nextDateDialogConfirm"
       />
     </van-popup>
+    <van-popup v-model="schemePicker" position="bottom">
+      <van-picker
+        show-toolbar
+        :columns="schemeList"
+        @confirm="schemeListConfirm"
+        @cancel="schemePicker = false"
+      />
+    </van-popup>
   </div>
 </template>
 <script>
@@ -169,6 +177,9 @@ export default {
       configItemItemPickerList: [],
       curItemItemIndex: 10,
       curItemItem: null,
+
+      schemePicker: false,
+      schemeList: [],
 
       scheduleNameInputShow: false,
       scheduleNameInputType: null,
@@ -307,6 +318,10 @@ export default {
       this.curItemItem.config.scheme = text;
       this.configItemItemShowPicker = false;
     },
+    schemeListConfirm([_, text], _index) {
+      this.curItemItem.config.scheme = text;
+      this.schemePicker = false;
+    },
     async showItemConfigScheme(e, configItemItem) {
       if (!configItemItem.checked) {
         let schemeList = await AutoWeb.autoPromise('getSchemeList');
@@ -419,6 +434,38 @@ export default {
           this.addScheduleForm = merge({}, scheduleDefaultFormData);
         }
       }
+    },
+
+    async showItemConfigScheme(e, configItemItem) {
+      let schemeList = await AutoWeb.autoPromise('getSchemeList');
+      let groupScheme = ['全部', ...await AutoWeb.autoPromise('getGroupNames')].map(item => ({ text: item, children: this.getSchemeNamesByGroupName(item, schemeList) }));
+
+      console.log(groupScheme);
+      // this.configItemItemPickerList = schemeList.map(item => item.schemeName);
+      this.schemeList = groupScheme;
+      this.curItemItem = configItemItem;
+      this.schemePicker = true;
+      // this.curItemItemIndex = this.configItemItemPickerList.indexOf(configItemItem.value);
+      // this.configItemItemShowPicker = 'switch';
+    },
+
+    getSchemeNamesByGroupName(groupName, schemeNames) {
+      const left = merge([], schemeNames);
+      if (groupName === '全部') {
+        return left.map(item => ({ text: item.schemeName }));
+      }
+
+      // 1. 根据groupName过滤
+      const filterd = [];
+      // console.log(groupName);
+      for (let i = 0 ; i < left.length; i++) {
+        if (left[i].groupName === groupName) {
+          filterd.push(left[i]);
+          left.splice(i, 1);
+          i--;
+        }
+      }
+      return filterd.map(item => ({ text: item.schemeName }));
     },
   }
 }

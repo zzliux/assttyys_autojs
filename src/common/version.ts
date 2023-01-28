@@ -429,7 +429,10 @@ export const versionList = [{
     desc: '新增：月烬宵宴_伴星歌方案；\n优化：寮活动中添加对当天活动的判断行为；\n优化：调度任务超过30分钟后不执行'
 }, {
     version: '20230128_01',
-    desc: '新增：月烬宵宴_伪月落方案；\n优化：方案页增加分组过滤'
+    desc: '新增：月烬宵宴_伪月落方案；\n优化：方案页增加分组筛选'
+}, {
+    version: '20230128_02',
+    desc: '优化：功能页、定时任务页中的方案选择器增加分组筛选'
 }];
 
 export default versionList[versionList.length - 1].version;
