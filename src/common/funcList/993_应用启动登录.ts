@@ -38,15 +38,17 @@ export class Func993 implements InterfaceFuncOrigin {
 	}];
 	operator: InterfaceFuncOperatorOrigin[] = [{
 		desc: // 是否为登录页
+		[
+			1280, 720,
 			[
-				1280, 720,
-				[
-					[center, 627, 600, 0xfcfcfc],
-					[center, 682, 596, 0xfdf7f0],
-					[center, 487, 595, 0xe7d6b4],
-					[center, 780, 600, 0xcdca9a],
-				]
-			],
+				[center, 704, 602, 0xffffff],
+				[center, 713, 611, 0xffffff],
+				[center, 623, 597, 0xfffefe],
+				[center, 630, 601, 0xfdfdfd],
+				[center, 590, 611, 0xffffff],
+				[center, 588, 592, 0xfefdfd],
+			]
+		],
 		oper: [
 			[center, 1280, 720, 562, 574, 722, 617, 1200],	// 点击开始游戏
 			[center, 1280, 720, 424, 456, 660, 578, 5000], // 游戏区区域

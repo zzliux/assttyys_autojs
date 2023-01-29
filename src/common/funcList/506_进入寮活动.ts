@@ -91,19 +91,19 @@ export class Func506 implements InterfaceFuncOrigin {
 	},
 	{
 		desc:   // 检测_是否为道馆页
-		[
-			1280, 720,
 			[
-				[right, 1021, 633, 0xceddf4],
-				[center, 879, 611, 0xc7414e],
-				[center, 913, 644, 0x493a38],
-				[center, 609, 651, 0x583a28],
-				[left, 62, 532, 0x882349],
-				[left, 48, 26, 0xd7c5a2],
-				[left, 109, 23, 0xd7c5a2],
-				[left, 175, 22, 0xd4c4a3],
-			]
-		],
+				1280, 720,
+				[
+					[right, 1021, 633, 0xceddf4],
+					[center, 879, 611, 0xc7414e],
+					[center, 913, 644, 0x493a38],
+					[center, 609, 651, 0x583a28],
+					[left, 62, 532, 0x882349],
+					[left, 48, 26, 0xd7c5a2],
+					[left, 109, 23, 0xd7c5a2],
+					[left, 175, 22, 0xd4c4a3],
+				]
+			],
 	},
 	{
 		desc:   // 检测_是否为挑战奉献榜场景_待开始
@@ -133,14 +133,75 @@ export class Func506 implements InterfaceFuncOrigin {
 		oper: [
 			[left, 1280, 720, 27, 28, 56, 65, 1200]	//	跑路
 		]
+	}, {
+		desc:	//	检测_是否为首领退治集结页
+			[
+				1280, 720,
+				[
+					[left, 182, 37, 0xd5c4a3],
+					[left, 108, 26, 0xd7c5a2],
+					[left, 47, 28, 0xd7c5a2],
+					[left, 232, 139, 0x583716],
+					[left, 76, 550, 0x322219],
+					[right, 1039, 648, 0xd3c3bd],
+					[center, 872, 606, 0x493a38],
+					[center, 727, 611, 0xdfc7ac],
+				]
+			]
+	},
+	{
+		desc:	//  检测_阴门
+			[
+				1280, 720,
+				[
+					[right, 1106, 632, 0x180a28],
+					[right, 1126, 625, 0x180a28],
+					[right, 1161, 618, 0x84a5bd],
+					[right, 1262, 650, 0x698bad],
+					[left, 72, 62, 0xb9c2da],
+					[center, 713, 25, 0xe3d698],
+				]
+			]
+	},
+	{	//	检测_狭间暗域
+		desc:
+			[
+				1280, 720,
+				[
+					[center, 848, 535, 0x422d1e],
+					[center, 826, 496, 0xcbb497],
+					[center, 687, 505, 0xcab596],
+					[center, 778, 560, 0x442f47],
+					[center, 684, 615, 0xb9a489],
+					[center, 866, 573, 0x734e25],
+				]
+			],
+		oper: [
+			[center, 1280, 720, 702, 495, 848, 617, 1200]	//	点击狭间暗域
+		]
+	},
+	{	//	检测_狭间页面
+		desc:
+		[
+			1280, 720,
+			[
+				[left, 269, 206, 0xe4d0ad],
+				[left, 297, 181, 0xe4d8b3],
+				[left, 182, 227, 0xccaadd],
+				[left, 251, 364, 0xc9bb97],
+				[center, 431, 155, 0xe1d6b3],
+				[center, 716, 176, 0xe8e0bf],
+				[right, 1090, 155, 0xe7dcaf],
+			]
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['506'];
 
-		let _liao_activity_state = thisScript.runtimeParams ? thisScript.runtimeParams.liao_activity_state : undefined;
+		let _liao_activity_state: any = thisScript.runtimeParams ? thisScript.runtimeParams.liao_activity_state : undefined;
 		if (_liao_activity_state) {
 			let _finishFlag = true;
-			
+
 			//	若有一项未完成, 继续循环，否则返回庭院
 			Object.keys(_liao_activity_state).forEach(key => {
 				if (!_liao_activity_state[key]) {
@@ -167,13 +228,20 @@ export class Func506 implements InterfaceFuncOrigin {
 					}
 					break;
 				};
+				case 6: {
+					_liao_activity_state = {
+						huntBoss: false,
+						narrow: false,
+						gateOfHades: false,
+					}
+					break;
+				}
 				case 5:
-				case 6:
 				case 0: {	//	TODO: 无奈之举，有没有大佬把这三个给做了
 					_liao_activity_state = {
 						banquet: true,
-						narrow: true,
-						gateOfHades: true,
+						narrow: false,
+						gateOfHades: false,
 					}
 					break;
 				}
@@ -262,12 +330,79 @@ export class Func506 implements InterfaceFuncOrigin {
 		}
 
 		if (thisScript.oper({
+			name: '检测_首领退治是否已开启',
+			operator: [thisOperator[1]]
+		})) {
+			return true;
+		}
+
+		if (thisScript.oper({
+			name: '检测_是否为首领退治页面',
+			operator: [thisOperator[9]]
+		})) {
+			sleep(2000);
+			const next_scheme = '首领退治';
+			thisScript.setCurrentScheme(next_scheme as string, {
+				liao_activity_state: _liao_activity_state
+			});
+			thisScript.myToast(`切换方案为[${next_scheme}]`);
+			thisScript.rerun();
+		}
+
+		
+
+		if (thisScript.oper({
+			name: '检测_狭间暗域是否已开启',
+			operator: [thisOperator[11]]
+		})) {
+			return true;
+		}
+
+		if (thisScript.oper({
+			name: '检测_是否为狭间暗域选择页',
+			operator: [thisOperator[12]]
+		})) {
+			sleep(2000);
+			const next_scheme = '狭间暗域';
+			thisScript.setCurrentScheme(next_scheme as string, {
+				liao_activity_state: _liao_activity_state
+			});
+			thisScript.myToast(`切换方案为[${next_scheme}]`);
+			thisScript.rerun();
+		}
+
+		thisScript.global.liao_activity_page_flag = !thisScript.global.liao_activity_page_flag;
+
+		if (thisScript.oper({
 			name: '检测_狩猎战是否已开启',
 			operator: [{
-				desc: thisOperator[4].desc,
-				oper: thisOperator[4].oper
+				desc: thisOperator[4].desc
 			}]
 		})) {
+			let nowDateDay = new Date().getDay();
+
+			switch(nowDateDay) {
+				case 5:
+				case 0: {
+					if (!_liao_activity_state.narrow) {
+						return false;
+					}
+					break;
+				};
+				case 6: {
+					if (!(_liao_activity_state.narrow && _liao_activity_state.huntBoss)) {
+						return false;
+					}
+					break;
+				}
+			}
+			
+			thisScript.oper({
+				name: '检测_狩猎战是否已开启',
+				operator: [{
+					oper: thisOperator[4].oper
+				}]
+			})
 			return true;
 		}
 
@@ -297,6 +432,18 @@ export class Func506 implements InterfaceFuncOrigin {
 			thisScript.rerun();
 		}
 
+		if (thisScript.oper({
+			name: '检测_是否为阴门页面',
+			operator: [thisOperator[10]]
+		})) {
+			sleep(2000);
+			const next_scheme = '阴门挑战';
+			thisScript.setCurrentScheme(next_scheme as string, {
+				liao_activity_state: _liao_activity_state
+			});
+			thisScript.myToast(`切换方案为[${next_scheme}]`);
+			thisScript.rerun();
+		}
 		// if (thisScript.oper({
 		// 	name: '检查_宴会是否已开启',
 		// 	operator: [{

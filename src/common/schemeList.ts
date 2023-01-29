@@ -351,7 +351,7 @@ const SchemeList: InterfaceScheme[] = [{
 }, {
     id: 34,
     schemeName: '庭院进入寮每日活动',
-    list: [505, 506]
+    list: [505, 506, 516]
 }, {
     id: 35,
     schemeName: "六道萤草",
@@ -456,7 +456,29 @@ const SchemeList: InterfaceScheme[] = [{
             afterCountOper: "退出式神录"
         }
     }
-}, {
+},
+{
+    id: 42,
+    schemeName: "阴门挑战",
+    list: [
+        0, 1, 2, 3, 5, 513
+    ]
+},
+{
+    id: 43,
+    schemeName: "首领退治",
+    list: [
+        0, 1, 2, 3, 512
+    ]
+},
+{
+    id: 44,
+    schemeName: "狭间暗域",
+    list: [
+        0, 1, 3, 514, 515
+    ]
+},
+{
     id: 99,
     schemeName: '伊吹之擂',
     list: [0, 3, 24, 99, 100],

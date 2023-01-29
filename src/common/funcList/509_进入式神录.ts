@@ -84,16 +84,53 @@ export class Func509 implements InterfaceFuncOrigin {
 			oper: [
 				[center, 1280, 720, 922, 628, 993, 681, 1200]	//	点击_式神
 			]
-
-		}];
+		},
+	{
+		desc:	//	检测_阴门
+		[
+			1280, 720,
+			[
+				[left, 125, 56, 0x493624],
+				[right, 1124, 56, 0x493624],
+				[right, 1208, 76, 0x632942],
+				[right, 1194, 397, 0x180a28],
+				[right, 1137, 634, 0xc1b7ac],
+				[center, 330, 615, 0xf4b25f],
+				[center, 454, 630, 0xf4b25f],
+				[left, 130, 646, 0x9a8f83],
+			]
+		],
+		oper: [
+			[left, 1280, 720, 145,601, 190,646, 1200]	//	点击式神按钮
+		]
+	},
+	{
+        desc: //    检测_狭间
+            [
+                1280, 720,
+                [
+                    [right, 1165, 597, 0xd5bfc2],
+                    [right, 1155, 659, 0xd9c3c5],
+                    [right, 1168, 491, 0xddd3c4],
+                    [center, 476, 412, 0x53170f],
+                    [right, 1016, 111, 0xe8d4cf],
+                    [center, 547, 582, 0x840517],
+                ]
+            ],
+        oper: [
+            [right, 1280, 720, 1135,456, 1182,498, 1200]    //  点击式神按钮
+        ]
+    },];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		if (thisScript.global.change_shikigami_flag) {
 			return false;
 		} else {
-			thisScript.oper({
+			if (thisScript.oper({
 				name: '庭院进入式神录',
-				operator: [thisOperator[0], thisOperator[1],thisOperator[3], thisOperator[4]]
-			})
+				operator: [thisOperator[0], thisOperator[1],thisOperator[3], thisOperator[4], thisOperator[5], thisOperator[6]]
+			})) {
+				return true;
+			}
 
 			if (thisScript.oper({
 				name: '是否为式神录',

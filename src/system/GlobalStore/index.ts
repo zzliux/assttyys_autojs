@@ -37,6 +37,9 @@ export type globalRootType = {
     change_shikigami_state: 'flushed' | 'search_group'  | 'search_default' | 'change_team_default_1' | 'change_team_default_2' | 'finish', //  跟换式神预设状态值
     change_shikigami_list_swipe_times: number,
     change_shikigami_last_group_name: string,   //  式神录预设分组最后一项的名称
+    narrow_state: Record<string, boolean>,   //  狭间暗域状态
+    narrow_close_flag: boolean, //  狭间开启关闭状态
+    liao_activity_page_flag: boolean,   //  寮活动翻页标记
 }
 
 export const globalRoot: globalRootType = {
@@ -78,4 +81,7 @@ export const globalRoot: globalRootType = {
     change_shikigami_state: 'flushed',
     change_shikigami_list_swipe_times: 0,
     change_shikigami_last_group_name: undefined,
+    narrow_state: undefined,
+    narrow_close_flag: undefined,
+    liao_activity_page_flag: false,
 }

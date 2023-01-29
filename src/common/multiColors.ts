@@ -2043,6 +2043,87 @@ const multiColor: InterfaceMultiColorOrigin = {
                 ]
             ]
         ]
+    },
+    '红包_夜樱御祝': {
+        region: [left, 1280, 720, 105, 86, 610, 620],
+        desc: [
+            [
+                1280, 720,
+                [
+                    [center, 341, 482, 0xf3dfcb],
+                    [center, 598, 435, 0xf2e1cd],
+                    [center, 597, 532, 0xeeddcc],
+                    [center, 388, 483, 0xf3dfcb],
+                    [left, 302, 454, 0xf7a1a6],
+                    [left, 261, 427, 0xf79fab],
+                    [left, 275, 484, 0xf1e9d8],
+                    [left, 215, 476, 0xefa338],
+                ]
+            ],
+
+        ]
+    },
+    '红包_鸢尾御祝': {
+        region: [left, 1280, 720, 105, 86, 610, 620],
+        desc: [
+            [
+                1280, 720,
+                [
+                    [center, 341, 482, 0xf3dfcb],
+                    [center, 597, 351, 0xf1dfcb],
+                    [center, 597, 450, 0xeeddcc],
+                    [left, 302, 362, 0xcbb3d4],
+                    [left, 276, 402, 0xebe0d1],
+                    [left, 259, 350, 0xf7f2e7],
+                    [left, 253, 398, 0xeeeeee],
+                    [left, 224, 432, 0xf3dfcb],
+                ]
+            ]
+        ]
+    },
+    '红包_皇菊御祝': {
+        region: [left, 1280, 720, 105, 86, 610, 620],
+        desc: [
+            [
+                1280, 720,
+                [
+                    [center, 341, 482, 0xf3dfcb],
+                    [center, 598, 336, 0xf4e2d0],
+                    [center, 598, 433, 0xeeddcd],
+                    [center, 583, 421, 0xf3dfcb],
+                    [left, 273, 410, 0xefe3d7],
+                    [left, 218, 383, 0xea9a29],
+                    [left, 222, 416, 0xf3dfcb],
+                    [left, 254, 351, 0xbb3344],
+                    [left, 273, 404, 0xefe3d7],
+                    [left, 293, 391, 0xaa2233],
+                ]
+            ]
+        ]
+    },
+    "狭间暗域_怪物分布奖励": {
+        region: [left, 1280, 720, 96, 90, 223, 643],
+        desc: [
+            [
+                1280, 720,
+                [
+                    [left, 163, 326, 0xff412f],
+                    [left, 152, 328, 0xff3c31],
+                    [left, 143, 445, 0xffffff],
+                    [left, 182, 444, 0xffffff],
+                    [left, 162, 440, 0xffffff],
+                ]
+            ],
+            [
+                1280, 720,
+                [
+                    [left, 172, 594, 0xff4031],
+                    [left, 158, 595, 0xff3c31],
+                    [left, 174, 594, 0xff3d2f],
+                    [left, 166, 573, 0xffffff],
+                ]
+            ]
+        ]
     }
 }
 
