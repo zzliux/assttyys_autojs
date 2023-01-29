@@ -13,6 +13,14 @@
       </van-nav-bar>
     </div>
     <div class="rv_inner" :style="'padding-top: '+ (46 + (statusBarHeight || 0)) + 'px; padding-bottom: 6px;'">
+      <van-dropdown-menu>
+        <van-dropdown-item
+          v-model="filterGroupName"
+          :options="filterGroupNames"
+          @open="filterGroupNameOpen"
+          @change="filterGroupNameChange"
+        />
+      </van-dropdown-menu>
       <van-cell-group class="itemBox" title="方案列表" style="background: transparent">
         <draggable
           :scroll-sensitivity="100"
@@ -150,7 +158,7 @@
 </template>
 <script>
 import Vue from "vue";
-import { Cell, SwipeCell, CellGroup, Icon, Button, Dialog, Field, Notify, Picker } from "vant";
+import { Cell, SwipeCell, CellGroup, Icon, Button, Dialog, Field, Notify, Picker, DropdownMenu, DropdownItem } from "vant";
 import ExportSchemeDialog from "../components/ExportSchemeDialog.vue";
 import ImportSchemeDialog from "../components/ImportSchemeDialog.vue";
 import draggable from "vuedraggable";
@@ -168,9 +176,12 @@ Vue.use(Dialog);
 Vue.use(Field);
 Vue.use(Notify);
 Vue.use(Picker);
+Vue.use(DropdownMenu);
+Vue.use(DropdownItem);
 
 
 export default {
+  name: 'schemeList',
   data() {
     return {
       itemOpenList: [],
@@ -188,6 +199,9 @@ export default {
       exportAndImportModel: false,
       exportModel: false,
       importModel: false,
+
+      filterGroupNames: [{ text: '全部', value: '全部' }],
+      filterGroupName: '全部'
     };
   },
   props: {
@@ -221,7 +235,7 @@ export default {
       AutoWeb.autoPromise('saveSchemeList', this.schemeList);
     },
     schemeClickEvent(e, item) {
-      console.log(this.itemOpenList);
+      // console.log(this.itemOpenList);
       if (this.itemOpenList.length > 0) return;
       if (e.target.className.match(/handle|star/)) {
         return;
@@ -403,7 +417,48 @@ export default {
     },
     async schemeImportCallback() {
       this.schemeList = await AutoWeb.autoPromise("getSchemeList");
-    }
+    },
+    async filterGroupNameOpen() {
+      this.filterGroupNames = ['全部', ...await AutoWeb.autoPromise('getGroupNames')].map(item => ({ text: item, value: item }));
+    },
+    async filterGroupNameChange() {
+      const left = await AutoWeb.autoPromise("getSchemeList");
+      if (this.filterGroupName === '全部') {
+        this.schemeList = left;
+        return;
+      }
+
+      // 1. 根据groupName过滤
+      const filterd = [];
+      // console.log(this.filterGroupName);
+      for (let i = 0 ; i < left.length; i++) {
+        if (left[i].groupName === this.filterGroupName) {
+          filterd.push(left[i]);
+          left.splice(i, 1);
+          i--;
+        }
+      }
+
+      // 2. 查询当前方案内功能的配置中type为scheme（好麻烦，先用配置key中包含scheme的就遍历），的配置的value
+      for (let i = 0; i < filterd.length; i++) {
+        const conf = filterd[i].config;
+        for (let key in conf) {
+          for (let keyName in conf[key]) {
+            if (/scheme/i.test(keyName)) {
+              const v = conf[key][keyName];
+              for (let j = 0; j < left.length; j++) {
+                if (left[j].schemeName === v) {
+                  filterd.push(left[j]);
+                  left.splice(j, 1);
+                  break;
+                }
+              }
+            }
+          }
+        }
+      }
+      this.schemeList = filterd;
+    },
   },
 };
 </script>

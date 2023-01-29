@@ -1,3 +1,4 @@
+import { merge } from '@/common/tool';
 import { versionList } from '../common/version';
 
 const promptMockData = {
@@ -174,6 +175,14 @@ const promptMockData = {
     ],
     saveScheduleList: 'success',
     scheduleChange: null,
+    getGroupNames: function() {
+        const savedSchemeList = this['getSchemeList'];
+        const groupNamesMap = {};
+        savedSchemeList.forEach(s => {
+            if (s.groupName) groupNamesMap[s.groupName] = 1;
+        });
+        return Object.keys(groupNamesMap);
+    }
 };
 
 // 注入修改prompt
@@ -201,10 +210,13 @@ window.promptMock = function (apiName, apiValue) {
                 console.log(`[promptMockData]apiName:${apiName}`);
                 console.log(`[promptMockData]apiValue:${JSON.stringify(params)}`);
                 console.log(`[promptMockData]returnData:${JSON.stringify(ret)}`);
+                if (typeof ret === 'object') {
+                    ret = deepClone(ret);
+                }
                 window[deviceFn](ret);
                 // @ts-ignore
                 AutoWeb.removeDevicelly(deviceFn);
-            }, (Math.random() * 100000000 % 1000))
+            }, (Math.random() * 100000000 % 500))
         } else {
             return ret;
         }
@@ -214,3 +226,19 @@ window.promptMock = function (apiName, apiValue) {
 }
 
 export default promptMockData;
+
+
+function deepClone(obj) {
+	if (!obj && typeof obj !== "object") {
+		throw new Error("error arguments deepClone");
+	}
+	const targetObj = obj.constructor === Array ? [] : {};
+	Object.keys(obj).forEach(keys => {
+		if (obj[keys] && typeof obj[keys] === "object") {
+			targetObj[keys] = deepClone(obj[keys]);
+		} else {
+			targetObj[keys] = obj[keys];
+		}
+	});
+	return targetObj;
+}
