@@ -177,6 +177,23 @@ export class Func993 implements InterfaceFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1155, 91, 1204, 138, 1200] // 关闭按钮
 		]
+	},
+	{	//	检测_无响应窗口
+		desc:
+		[
+			1280, 720,
+			[
+				[center, 328, 271, 0xffffff],
+				[center, 875, 273, 0xffffff],
+				[center, 333, 486, 0xffffff],
+				[center, 951, 481, 0xffffff],
+				[center, 532, 381, 0xffffff],
+				[center, 484, 458, 0xffffff],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 425,436, 484,464, 1200]	//	点击等待
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['993'];
@@ -326,71 +343,8 @@ export class Func993 implements InterfaceFuncOrigin {
 		}
 
 		if (thisScript.oper({
-			name: '是否为公告页',
-			operator: [{
-				desc: thisOperator[1].desc,
-				oper: thisOperator[1].oper
-			}]
-		})) {
-			return true;
-		}
-
-		if (thisScript.oper({
-			name: '是否为切换账号页',
-			operator: [{
-				desc: thisOperator[2].desc,
-				oper: thisOperator[2].oper
-			}]
-		})) {
-			return true;
-		}
-
-		if (thisScript.oper({
-			name: '是否为被强登',
-			operator: [{
-				desc: thisOperator[3].desc,
-				oper: thisOperator[3].oper
-			}]
-		})) {
-			return true;
-		}
-
-		if (thisScript.oper({
-			name: '登陆后是否有下载插画弹窗',
-			operator: [{
-				desc: thisOperator[6].desc,
-				oper: thisOperator[6].oper
-			}]
-		})) {
-			return true;
-		}
-
-		if (thisScript.oper({
-			name: '登陆后是否有皮肤广告弹窗',
-			operator: [{
-				desc: thisOperator[9].desc,
-				oper: thisOperator[9].oper
-			}]
-		})) {
-			return true;
-		}
-
-		if (thisScript.oper({
-			name: '登陆后是否网络出错',
-			operator: [{
-				desc: thisOperator[10].desc,
-				oper: thisOperator[10].oper
-			}]
-		})) {
-			return true;
-		}
-
-		if (thisScript.oper({
-			name: '登陆后是否同心队弹窗',
-			operator: [{
-				desc: thisOperator[11].desc,
-				oper: thisOperator[11].oper
-			}]
+			name: '登陆后是否有弹窗',
+			operator: [thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[6], thisOperator[9], thisOperator[10], thisOperator[11], thisOperator[12]]
 		})) {
 			return true;
 		}
