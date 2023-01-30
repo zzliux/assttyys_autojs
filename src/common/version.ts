@@ -433,6 +433,9 @@ export const versionList = [{
 }, {
     version: '20230128_02',
     desc: '优化：功能页、定时任务页中的方案选择器增加分组筛选'
+}, {
+    version: '20230130_01',
+    desc: '新增：寮活动退治、阴界之门、狭间暗域；\n新增：抢寮预祝；\n修复：逢魔boss结算时点击头像问题；\n优化：结界寄养翻页后点错结界卡的问题；\n优化：登录时无响应点击等待'
 }];
 
 export default versionList[versionList.length - 1].version;
