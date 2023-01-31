@@ -138,6 +138,7 @@ export class Func997 implements InterfaceFuncOrigin {
 			let key = multiColorKey[thisScript.global.jy_enchantment_index - 1];
 			console.log(`查找${key}结界`);
 			sleep(2000);
+			thisScript.keepScreen(true);
 			let point = thisScript.findMultiColor(key);
 
 			if (point) {
