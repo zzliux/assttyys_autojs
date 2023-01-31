@@ -179,7 +179,15 @@ export class Func508 implements InterfaceFuncOrigin {
 					operator: [{
 						oper: [thisOperator[2].oper[1]]
 					}]
-				})
+				});
+
+				sleep(1200);
+				thisScript.oper({
+					name: '检测_点击寻找首领按钮',
+					operator: [{
+						oper: thisOperator[0].oper,
+					}]
+				});
 			} else {
 				sleep(1500);
 				if (!thisScript.global.checked_yard_count) {
