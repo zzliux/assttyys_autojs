@@ -24,8 +24,8 @@ export class Func503 implements InterfaceFuncOrigin {
 			default: '通用准备退出',
 		}]
 	}];
-	operator: InterfaceFuncOperatorOrigin[] = [{
-		// 探索地图
+	operator: InterfaceFuncOperatorOrigin[] = [
+	{	// 探索地图
 		desc: [1280, 720,
 			[[left, 53, 61, 0xe7edfc],
 			[left, 78, 60, 0x273771],
@@ -156,8 +156,8 @@ export class Func503 implements InterfaceFuncOrigin {
 		oper: [
 			[left, 1280, 720, 23, 10, 71, 56, 2000],   // 返回按钮
 		]
-	}, {
-		desc: [	//	判断_是否为庭院中的'町中'立牌
+	}, {	//	判断_是否为庭院中的'町中'立牌
+		desc: [
 			1280, 720,
 			[
 				[center, 738, 324, 0x979693],
@@ -166,6 +166,16 @@ export class Func503 implements InterfaceFuncOrigin {
 				[center, 754, 302, 0xaba896],
 			]
 		]
+	}, {	//	页面是否为庭院(菜单已展开)另一种图标 御祝图标 只支持默认庭院皮肤与默认装饰
+		desc: 	
+		[1280, 720,
+			[
+				[right, 1223, 662, 0xdbcbc7],
+				[right, 1155, 41, 0xd7b188],
+				[center, 451, 631, 0xe8e4e1],
+				[center, 673, 651, 0xdb8b3f],
+			]
+		],
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['503'];
@@ -269,16 +279,13 @@ export class Func503 implements InterfaceFuncOrigin {
 		}
 
 		if (thisScript.oper({
-			name: '是否为庭院(未展开菜单)',
+			name: '是否为庭院',
 			operator: [{
-				desc: thisOperator[8].desc,
-				oper: thisOperator[8].oper
-			}]
-		}) || thisScript.oper({
-			name: '是否为庭院(已展开菜单)',
-			operator: [{
-				desc: thisOperator[9].desc,
-				oper: thisOperator[9].oper
+				desc: thisOperator[8].desc
+			}, {
+				desc: thisOperator[9].desc
+			}, {
+				desc: thisOperator[13].desc
 			}]
 		})) {
 

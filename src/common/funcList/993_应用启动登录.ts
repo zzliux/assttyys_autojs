@@ -194,6 +194,17 @@ export class Func993 implements InterfaceFuncOrigin {
 		oper: [
 			[center, 1280, 720, 425,436, 484,464, 1200]	//	点击等待
 		]
+	},
+	{
+		desc: 	//	// 页面是否为庭院(菜单已展开)另一种图标 御祝图标 只支持默认庭院皮肤与默认装饰
+		[1280, 720,
+			[
+				[right, 1223, 662, 0xdbcbc7],
+				[right, 1155, 41, 0xd7b188],
+				[center, 451, 631, 0xe8e4e1],
+				[center, 673, 651, 0xdb8b3f],
+			]
+		],
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['993'];
@@ -320,9 +331,11 @@ export class Func993 implements InterfaceFuncOrigin {
 		}
 
 		if (thisScript.oper({
-			name: '是否为庭院(已展开菜单)',
+			name: '是否为庭院',
 			operator: [{
 				desc: thisOperator[8].desc,
+			}, {
+				desc: thisOperator[13].desc
 			}]
 		})) {
 			// 做延时检测 防止登陆后的弹窗
