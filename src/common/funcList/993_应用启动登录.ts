@@ -212,7 +212,6 @@ export class Func993 implements InterfaceFuncOrigin {
 		const packageName = thisConf.package_name;
 		const isInstalled = app.getAppName(packageName);
 
-		console.log(isInstalled, thisScript.global.app_is_open);
 		if (isInstalled && !thisScript.global.app_is_open) {
 
 			if (thisConf.is_shutdown_the_game_before) {
@@ -267,7 +266,7 @@ export class Func993 implements InterfaceFuncOrigin {
 				});
 			} else {
 				console.log('识别游戏区域失败，识别结果为:', resultArea);
-				return true;
+				return false;
 			}
 		}
 

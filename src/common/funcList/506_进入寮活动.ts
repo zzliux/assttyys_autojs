@@ -380,6 +380,7 @@ export class Func506 implements InterfaceFuncOrigin {
 			}]
 		})) {
 			let nowDateDay = new Date().getDay();
+			console.log('今天是周', nowDateDay);
 
 			switch(nowDateDay) {
 				case 5:
