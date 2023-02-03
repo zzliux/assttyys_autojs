@@ -118,7 +118,7 @@ export const merge = (object, ...sources) => {
 	return inMerge(object, ...sources2);
 }
 
-function deepClone(obj) {
+export function deepClone<T>(obj: T): T {
 	if (!obj && typeof obj !== "object") {
 		throw new Error("error arguments deepClone");
 	}
@@ -130,5 +130,5 @@ function deepClone(obj) {
 			targetObj[keys] = obj[keys];
 		}
 	});
-	return targetObj;
+	return targetObj as T;
 }

@@ -72,6 +72,9 @@
                 </div>
               </template>
             </van-field>
+            <van-field type="number" label="优先级" label-width="70%" :disabled="item.checked"
+              :rules="[{ required: true, message: '必填' }]" v-model="item.level" >
+            </van-field>
           </div>
         </div>
         <div style="margin:5px 10px 5px 10px; border-radius:5px; overflow: hidden; box-shadow: 1px 1px 1px #eaeaea">
@@ -137,6 +140,7 @@ const scheduleDefaultFormData = {
   nextDate: null,
   repeatMode: 1,
   interval: null,
+  level: '1',
   config: {
     scheme: '默认方案_记得改哦_(:з」∠)_',
     // cron: '* * * * * *',
@@ -238,6 +242,11 @@ export default {
           }
           if (!item.nextDate) {
             await AutoWeb.autoPromise('toast', '请设置下次执行时间');
+            item.checked = false;
+            return;
+          }
+          if (!item.level) {
+            await AutoWeb.autoPromise('toast', '请设置优先级');
             item.checked = false;
             return;
           }

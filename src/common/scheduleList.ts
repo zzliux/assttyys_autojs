@@ -14,6 +14,7 @@ const ScheduleDefaultList: JobOptions[] = [
     nextDate: null,
     repeatMode: 2,
     interval: 6 * 60 - 1,
+    level: '10',
     config: {
       scheme: '定时任务-启动游戏-式神寄养',
       // cron: '0 0 0,6,12,18 * * *',
@@ -28,6 +29,7 @@ const ScheduleDefaultList: JobOptions[] = [
     nextDate: null,
     repeatMode: 1,
     interval: 24 * 60,
+    level: '5',
     config: {
       scheme: '定时任务-启动游戏-每日寮活动',
       // cron: '0 0 19 * * 1-4',
@@ -42,6 +44,7 @@ const ScheduleDefaultList: JobOptions[] = [
     nextDate: null,
     repeatMode: 1,
     interval: 24 * 60,
+    level: '5',
     config: {
       scheme: '定时任务-启动游戏-每日逢魔',
       // cron: '0 0 17 * * *',
