@@ -180,7 +180,7 @@ class Schedule {
             this.currentRunningJob = null;
         }
 
-        console.log('当前执行任务为:', this.currentRunningJob.name);
+        console.log('当前执行任务为:', this.currentRunningJob && this.currentRunningJob.name);
         console.log('调度中心状态为:', this.scheduleStatue);
         console.log('当前调度队列为:', this.jobQueue.length);
 
