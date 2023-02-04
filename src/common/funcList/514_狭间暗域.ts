@@ -138,7 +138,7 @@ export class Func514 implements InterfaceFuncOrigin {
                 '1_3': false,
                 '1_4': false,
                 '1_5': false,
-                
+
             };
             return thisScript.oper({
                 name: '点击_神龙暗域',
@@ -152,15 +152,10 @@ export class Func514 implements InterfaceFuncOrigin {
             name: '检测_暗域第三人称主页',
             operator: [{ desc: thisOperator[1].desc }]
         })) {
-            if (thisScript.global.narrow_close_flag || thisScript.global.narrow_close_flag === undefined) {
-                //  重置点击挑战计数字段
-                thisScript.global.checked_yard_count = 0;
-
-                return thisScript.oper({
-                    name: '点击战报',
-                    operator: [{ oper: thisOperator[1].oper }]
-                });
-            }
+            return thisScript.oper({
+                name: '点击战报',
+                operator: [{ oper: thisOperator[1].oper }]
+            });
         }
 
         if (thisScript.oper({
@@ -197,10 +192,10 @@ export class Func514 implements InterfaceFuncOrigin {
                         oper: thisOperator[3].oper
                     }]
                 });
-    
+
                 if (thisScript.runtimeParams && thisScript.runtimeParams.liao_activity_state) {
                     thisScript.runtimeParams.liao_activity_state['narrow'] = true;
-    
+
                     const next_scheme = '返回庭院';
                     thisScript.setCurrentScheme(next_scheme as string, {
                         next_scheme_name: '庭院进入寮每日活动',
@@ -223,10 +218,8 @@ export class Func514 implements InterfaceFuncOrigin {
             });
 
             if (currentState) {
-                thisScript.global.narrow_close_flag = false;
 
                 console.log('当前狭间状态:', thisScript.global.narrow_state);
-                console.log('关闭窗口状态:', thisScript.global.narrow_close_flag);
 
                 const map = currentState.split('_');
                 const area = map[0];
@@ -240,6 +233,33 @@ export class Func514 implements InterfaceFuncOrigin {
                 });
 
                 sleep(2000);
+
+                // 点击多次未能挑战，该boss已被挑战
+                if (thisScript.global.checked_yard_count >= 5) {
+                    thisScript.global.checked_yard_count = 0;
+                    let currentState = '';
+
+                    Object.keys(thisScript.global.narrow_state).findIndex(key => {
+                        if (!thisScript.global.narrow_state[key]) {
+                            console.log('当前挑战阶段为:', key);
+                            currentState = key;
+                            return true;
+                        }
+                        return false;
+                    });
+
+                    if (currentState) {
+                        thisScript.global.narrow_state[currentState] = true;
+                        return false;
+                    }
+                } else {
+                    sleep(1500);
+                    if (!thisScript.global.checked_yard_count) {
+                        thisScript.global.checked_yard_count = 1;
+                    } else {
+                        thisScript.global.checked_yard_count += 1;
+                    }
+                }
 
                 return thisScript.oper({
                     name: '点击怪物',

@@ -100,46 +100,13 @@ export class Func515 implements InterfaceFuncOrigin {
                 desc: thisOperator[1].desc
             }]
         })) {
-
-            if (thisScript.global.narrow_close_flag) {
-                return thisScript.oper({
-                    name: '关闭怪物挑战页弹窗',
-                    operator: [{ oper: thisOperator[1].oper }]
-                });
-            } else {
-                if (thisScript.oper({
-                    name: '检测_怪物挑战页弹窗_挑战',
-                    operator: [{ oper: thisOperator[0].oper }]
-                })) {
-                    // 点击多次未能挑战，该boss已被挑战
-                    if (thisScript.global.checked_yard_count >= 3) {
-                        thisScript.global.checked_yard_count = 0;
-                        let currentState = '';
-
-                        Object.keys(thisScript.global.narrow_state).findIndex(key => {
-                            if (!thisScript.global.narrow_state[key]) {
-                                console.log('当前挑战阶段为:', key);
-                                currentState = key;
-                                return true;
-                            }
-                            return false;
-                        });
-
-                        if (currentState && !thisScript.global.narrow_close_flag) {
-                            thisScript.global.narrow_state[currentState] = true;
-                        }
-                    } else {
-                        sleep(500);
-                        if (!thisScript.global.checked_yard_count) {
-                            thisScript.global.checked_yard_count = 1;
-                        } else {
-                            thisScript.global.checked_yard_count += 1;
-                        }
-                    }
-
-                    return true;
-                }
-            }
+            //  重置点击挑战计数字段
+            thisScript.global.checked_yard_count = 0;
+            
+            return thisScript.oper({
+                name: '检测_怪物挑战页弹窗_挑战',
+                operator: [{ oper: thisOperator[0].oper }]
+            });
         }
 
         if (thisScript.oper({
@@ -157,11 +124,10 @@ export class Func515 implements InterfaceFuncOrigin {
                 return false;
             });
 
-            if (currentState && !thisScript.global.narrow_close_flag) {
+            if (currentState) {
                 thisScript.global.narrow_state[currentState] = true;
             }
 
-            thisScript.global.narrow_close_flag = true;
             return true;
         }
 
