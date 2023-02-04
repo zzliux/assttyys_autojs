@@ -11,16 +11,16 @@ export class Func042 implements InterfaceFuncOrigin {
 	operator: InterfaceFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
-				[center, 644, 40, 0x544321],
-				[center, 638, 52, 0x75542a],
-				[left, 95, 124, 0x7b7372],
-				[left, 105, 90, 0x634724],
-				[right, 1161, 85, 0x553c1f],
-				[right, 1097, 582, 0xffeeaa],
-				[right, 1110, 580, 0xf9eba8],
-				[right, 1107, 611, 0xf4e39a],
-				[right, 1128, 606, 0xe5cf89],
-				[right, 1122, 584, 0xf4e3a4]
+				[center, 505, 45, 0x46454c],
+				[center, 880, 62, 0x3f3e44],
+				[center, 560, 84, 0x5b4332],
+				[right, 1022, 88, 0x4c3827],
+				[right, 1098, 581, 0xfff3b0],
+				[right, 1110, 581, 0xfee7b8],
+				[right, 1097, 605, 0xfedb92],
+				[right, 1124, 604, 0xf0dd8f],
+				[right, 1108, 595, 0xf2e4a1],
+				[right, 1149, 600, 0x58290a]
 			]
 		],
 		oper: [

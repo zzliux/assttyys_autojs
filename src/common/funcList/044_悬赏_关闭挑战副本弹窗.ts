@@ -26,6 +26,7 @@ export class Func044 implements InterfaceFuncOrigin {
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		// 由于阴阳师的问题，有时候这个弹窗位置会有偏差，所以无法使用多点比色进行弹窗确认
 		let point = thisScript.findMultiColor('悬赏_挑战弹窗界面') || null
+		console.log(point, '悬赏_挑战弹窗界面')
 		if (point) {
 			thisScript.helperBridge.regionClick([
 				[1045, 131, 1064, 146, 1000]

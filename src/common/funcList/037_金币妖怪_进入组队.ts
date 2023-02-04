@@ -1,9 +1,9 @@
 import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
+let swiper = 0, scroll = true
 
 export class Func037 implements InterfaceFuncOrigin {
 	id = 37;
@@ -12,45 +12,48 @@ export class Func037 implements InterfaceFuncOrigin {
 	operator: InterfaceFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
-				[left, 53, 27, 0xefd28f],
-				[left, 40, 35, 0xf5edb3],
-				[center, 425, 602, 0x9a3434],
-				[center, 501, 616, 0x2e2922],
-				[center, 530, 636, 0x473a2a],
-				[right, 1224, 116, 0x714840],
-				[right, 1227, 195, 0x794e45],
-				[right, 1228, 219, 0x361615]
+				[left, 52, 28, 0xf0d08d],
+				[left, 106, 32, 0xf5f0de],
+				[left, 126, 51, 0xefead7],
+				[left, 169, 40, 0x09090a],
+				[left, 56, 60, 0xc4a97c],
+				[right, 1221, 87, 0x754824],
+				[right, 1224, 621, 0x381f1c],
+				[right, 1219, 324, 0x3c2923],
+				[left, 138, 31, 0xc5bfae]
 			]
 		],
 		oper: [
-			[center, 1280, 720, 166, 613, 348, 650, 1],
-			[center, 1280, 720, 170, 138, 351, 187, 1]
+			[center, 1280, 720, 171, 350, 326, 383, 1],
+			[center, 1280, 720, 165, 258, 338, 304, 1]
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		if (thisScript.oper({
-				id: 36,
-				name: '金币妖怪_进入组队',
-				operator: [{
-					desc: thisOperator[0].desc
-				}]
-			})) {
-			// let point = thisScript.findMultiColor('金币妖怪_金币妖怪字样') || null;
-			// if (!point) {
-			thisScript.helperBridge.regionSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [100, 300], 3000);
-			thisScript.helperBridge.regionClick([
-				[154, 125, 356, 141, 1000]
-			], thisScript.scheme.commonConfig.afterClickDelayRandom);
-			return true;
-			// } else if (point) {
-			// 	let oper = [
-			// 		[point.x, point.y, point.x + 10, point.y + 10, 1000]
-			// 	];
-			// 	thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
-			// 	return true
-			// } else {
-			// 	return false
-			// }
+			id: 36,
+			name: '金币妖怪_进入组队',
+			operator: [{
+				desc: thisOperator[0].desc
+			}]
+		})) {
+			let point = thisScript.findMultiColor('金币妖怪_金币妖怪字样') || null;
+			if (!point) {
+				thisScript.helperBridge.regionSwipe(thisOperator[0].oper[scroll ? 0 : 1], thisOperator[0].oper[scroll ? 1 : 0], [100, 300], 3000);
+				swiper++
+				if (swiper >= 6) {
+					swiper = 0
+					scroll = !scroll
+				}
+				return true;
+			} else if (point) {
+				let oper = [
+					[point.x, point.y, point.x + 10, point.y + 10, 1000]
+				];
+				thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+				return true
+			} else {
+				return false
+			}
 		}
 	}
 }
