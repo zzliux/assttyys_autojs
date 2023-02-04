@@ -180,9 +180,6 @@ class Schedule {
             this.currentRunningJob = null;
         }
 
-        console.log('当前执行任务为:', this.currentRunningJob && this.currentRunningJob.name);
-        console.log('调度中心状态为:', this.scheduleStatue);
-        console.log('当前调度队列为:', this.jobQueue.length);
 
         for (let i = 0; i < this.jobList.length; i++) {
             const thisJob = this.jobList[i];
@@ -227,7 +224,10 @@ class Schedule {
                     this.jobQueue.push(deepClone(this.currentRunningJob));
                     this.currentRunningJob = job;
                     console.log('当前任务不为空,执行任务:', job);
-                    job.doRun();                    
+                    job.doRun();
+                    console.log('当前执行任务为:', this.currentRunningJob && this.currentRunningJob.name);
+                    console.log('调度中心状态为:', this.scheduleStatue);
+                    console.log('当前调度队列为:', this.jobQueue.length);           
                 } else {
                     job.status = 'paused';
                     this.jobQueue.push(deepClone(job));
@@ -236,6 +236,9 @@ class Schedule {
                 this.currentRunningJob = job;
                 console.log('当前任务为空,执行任务:', job);
                 job.doRun();
+                console.log('当前执行任务为:', this.currentRunningJob && this.currentRunningJob.name);
+                console.log('调度中心状态为:', this.scheduleStatue);
+                console.log('当前调度队列为:', this.jobQueue.length);     
             }
         }
         setTimeout(this.timerCallback.bind(this), this.timeout);
