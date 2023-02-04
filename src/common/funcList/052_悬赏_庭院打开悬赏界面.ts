@@ -23,30 +23,48 @@ export class Func052 implements InterfaceFuncOrigin {
 		}]
 	}];
 	operator: InterfaceFuncOperatorOrigin[] = [{
-		// 庭院
+		// 庭院未打开菜单
 		desc: [1280, 720,
-			[
-				[left, 264, 41, 0x493738],
-				[right, 1156, 37, 0xd7b28a],
-				[right, 1229, 48, 0xcfa676],
-				[right, 1228, 650, 0xd6c6c3],
-				[right, 1226, 601, 0x5b1919],
-				[center, 337, 72, 0x765828]
-			]
+			[[right, 1211, 606, 0x885f46],
+			[right, 1205, 624, 0x987777],
+			[right, 1208, 646, 0xaf4949],
+			[right, 1175, 680, 0xb08e7d]]
 		],
 		oper: [
-			[center, 1280, 720, 20, 20, 20, 20, 800]
+			[left, 1280, 720, 0, 0, 32, 63, 1000]
+		]
+	}, { // 庭院已打开菜单
+		desc: [1280, 720,
+			[
+				[center, 560, 608, 0xbc3433],
+				[center, 542, 639, 0x7b1515],
+				[center, 575, 646, 0xc1b8b0],
+				[center, 590, 638, 0xb07970]
+			]
+		]
+	}, {
+		// 庭院已打开菜单，另外一种图标
+		desc: [1280, 720,
+			[
+				[right, 1223, 662, 0xdbcbc7],
+				[right, 1155, 41, 0xd7b188],
+				[center, 451, 631, 0xe8e4e1],
+				[center, 673, 651, 0xdb8b3f],
+			]
 		]
 	}, {
 		// 悬赏界面
 		desc: [1280, 720,
 			[
-				[left, 116, 67, 0x3d3c42],
-				[left, 114, 88, 0x634624],
-				[center, 365, 85, 0x4f3928],
-				[center, 640, 50, 0x7a5930],
-				[right, 1022, 87, 0x4b3826],
-				[right, 1156, 81, 0x583f27]
+				[left, 99, 69, 0x3a383e],
+				[center, 641, 50, 0x7c5a2e],
+				[center, 599, 82, 0x685646],
+				[center, 731, 81, 0x5c3919],
+				[right, 1180, 120, 0x67323c],
+				[right, 1166, 87, 0x654824],
+				[right, 961, 84, 0x725233],
+				[center, 878, 81, 0x4c3727],
+				[center, 521, 96, 0x664b31]
 			]
 		],
 		oper: [
@@ -55,13 +73,16 @@ export class Func052 implements InterfaceFuncOrigin {
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		if (thisScript.oper({
-				name: '悬赏_庭院界面',
-				operator: [{
-					desc: thisOperator[0].desc
-				}]
-			})) {
+			name: '悬赏_庭院界面',
+			operator: [{
+				desc: thisOperator[0].desc
+			}, {
+				desc: thisOperator[1].desc
+			}, {
+				desc: thisOperator[2].desc
+			}]
+		})) {
 			const point = thisScript.findMultiColor('悬赏_庭院检测悬赏图标') || null;
-			console.log(point,'point')
 			if (point !== null) {
 				thisScript.helperBridge.regionClick([
 					[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], 1000]
@@ -72,11 +93,11 @@ export class Func052 implements InterfaceFuncOrigin {
 			}
 		} else {
 			if (thisScript.oper({
-					name: '悬赏_悬赏界面',
-					operator: [{
-						desc: thisOperator[1].desc
-					}]
-				})) {
+				name: '悬赏_悬赏界面',
+				operator: [{
+					desc: thisOperator[3].desc
+				}]
+			})) {
 				const thisconf = thisScript.scheme.config['52'];
 				if (thisconf && thisconf.scheme_switch_enabled) {
 					thisScript.setCurrentScheme(thisconf.next_scheme as string);

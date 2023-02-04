@@ -11,12 +11,13 @@ export class Func046 implements InterfaceFuncOrigin {
 	operator: InterfaceFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
-				[left, 45, 60, 0xeff5fb],
-				[right, 1168, 146, 0xd9cec1],
-				[right, 1124, 32, 0xd7b388],
-				[right, 1226, 30, 0xd3af84],
-				[left, 18, 705, 0x754830],
-				[left, 210, 711, 0x985b32],
+				[left, 35, 45, 0x2e1972],
+				[left, 67, 652, 0xde67e2],
+				[right, 1170, 145, 0xd5cec1],
+				[right, 1164, 29, 0xd8b38a],
+				[left, 190, 671, 0xd22c2b],
+				[center, 382, 641, 0xeedbc8],
+				[left, 145, 709, 0x70432d]
 			]
 		],
 		oper: [
@@ -25,11 +26,11 @@ export class Func046 implements InterfaceFuncOrigin {
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		if (thisScript.oper({
-				name: '悬赏_探索界面',
-				operator: [{
-					desc: thisOperator[0].desc
-				}]
-			})) {
+			name: '悬赏_探索界面',
+			operator: [{
+				desc: thisOperator[0].desc
+			}]
+		})) {
 			let point = thisScript.findMultiColor('悬赏_宝箱') || null;
 			if (point != null) {
 				let oper = [

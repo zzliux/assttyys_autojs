@@ -12,13 +12,13 @@ export class Func043 implements InterfaceFuncOrigin {
 	operator: InterfaceFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
-				[right, 1110, 319, 0x3d1919],
-				[right, 1112, 399, 0x581b1b],
-				[right, 1109, 503, 0x672323],
-				[right, 1110, 164, 0x796055],
-				[left, 264, 555, 0x967565],
-				[left, 287, 165, 0x927162],
-				[center, 603, 165, 0x8f7161]
+				[left, 198, 164, 0x947363],
+				[center, 466, 167, 0x8b6d60],
+				[center, 719, 165, 0x8a6b5e],
+				[center, 532, 195, 0x7d3030],
+				[center, 589, 196, 0x8b3232],
+				[center, 659, 203, 0xb65d5a],
+				[left, 274, 556, 0x917265]
 			]
 		],
 		oper: [
@@ -40,16 +40,15 @@ export class Func043 implements InterfaceFuncOrigin {
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		if (thisScript.oper({
-				name: '悬赏_发现地点弹窗',
-				operator: [{
-					desc: thisOperator[0].desc
-				}]
-			})) {
+			name: '悬赏_发现地点弹窗',
+			operator: [{
+				desc: thisOperator[0].desc
+			}]
+		})) {
 			let unknownStory, challenge;
 			unknownStory = thisScript.findMultiColor('悬赏_挑战字样') || null;
 			// 如果有挑战副本
 			if (unknownStory) {
-				console.log('进入挑战副本')
 				let oper = [
 					[unknownStory.x + 440, unknownStory.y, unknownStory.x + thisOperator[0].oper[0][2] + 440, unknownStory.y + thisOperator[0].oper[0][3], 4000]
 				];
@@ -73,9 +72,9 @@ export class Func043 implements InterfaceFuncOrigin {
 				} else {
 					// 如果秘闻和挑战都没有就取消任务追踪
 					if (thisScript.oper({
-							name: '悬赏_取消任务追踪',
-							operator: [thisOperator[1]]
-						}) != null) {
+						name: '悬赏_取消任务追踪',
+						operator: [thisOperator[1]]
+					}) != null) {
 						// 关闭任务弹窗
 						thisScript.helperBridge.regionClick([
 							[430, 633, 780, 698, 1000]

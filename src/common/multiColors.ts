@@ -890,15 +890,27 @@ const multiColor: InterfaceMultiColorOrigin = {
         ]
     },
     '悬赏_挑战字样': {
-        region: [left, 1280, 720, 512, 45, 1256, 428],
+        region: [left, 1280, 720, 513, 205, 642, 558],
         desc: [
             [1280, 720,
                 [
-                    [center, 544, 316, 0x883322],
-                    [center, 595, 317, 0x923220],
-                    [center, 597, 331, 0x963321],
-                    [center, 541, 331, 0x883322],
-                    [center, 571, 322, 0x8a3420]
+                    [center, 540, 243, 0x893723],
+                    [center, 572, 245, 0x8b3421],
+                    [center, 595, 247, 0x933320],
+                    [center, 552, 265, 0xf3e8d6],
+                    [center, 569, 265, 0xc8a394],
+                    [center, 593, 266, 0xe3c9b2],
+                    [center, 570, 253, 0x8a3421]
+                ]
+            ], [1280, 720,
+                [
+                    [center, 537, 240, 0xbb9182],
+                    [center, 569, 241, 0xc19386],
+                    [center, 600, 241, 0xd5c3b7],
+                    [center, 542, 259, 0x893522],
+                    [center, 562, 257, 0xe5c9b9],
+                    [center, 575, 257, 0xc89f91],
+                    [center, 598, 266, 0x913420]
                 ]
             ]
         ]
@@ -908,37 +920,39 @@ const multiColor: InterfaceMultiColorOrigin = {
         desc: [
             [1280, 720,
                 [
-                    [center, 541, 319, 0x3070aa],
-                    [center, 601, 319, 0x3070aa],
-                    [center, 541, 333, 0x3070aa],
-                    [center, 597, 333, 0x3070aa],
-                    [center, 555, 317, 0xcae1da],
-                    [center, 591, 334, 0xdeefde]
+                    [center, 534, 238, 0x457ab0],
+                    [center, 568, 238, 0x3674ab],
+                    [center, 597, 238, 0x3872ab],
+                    [center, 537, 251, 0x8ba5bb],
+                    [center, 564, 254, 0xbcd1d2],
+                    [center, 582, 254, 0x9fbfcc],
+                    [center, 591, 254, 0xe7eedd],
+                    [center, 552, 264, 0x9dbbc9],
+                    [center, 590, 264, 0xf4f7e0]
                 ]
             ],
             [1280, 720,
                 [
-                    [center, 541, 247, 0x3072ab],
-                    [center, 598, 247, 0x2f72a5],
-                    [center, 599, 264, 0x3070aa],
-                    [center, 541, 267, 0x3070aa],
-                    [center, 555, 249, 0xdff0df],
-                    [center, 553, 266, 0xd6e7de],
-                    [center, 548, 263, 0xd9ebdc],
-                    [center, 565, 249, 0xa4b6b7],
-                    [center, 577, 250, 0x3477aa],
-                    [center, 579, 249, 0xbfd8e0],
-                    [center, 591, 265, 0xdeefde]
+                    [center, 537, 311, 0xb2bac1],
+                    [center, 570, 311, 0x90a6b9],
+                    [center, 600, 312, 0xa7b2bf],
+                    [center, 548, 325, 0xd4e1db],
+                    [center, 590, 324, 0xaec8ce],
+                    [center, 573, 325, 0x3171ab],
+                    [center, 562, 337, 0x3171ab],
+                    [center, 581, 335, 0x3071aa]
                 ]
             ],
             [1280, 720,
                 [
-                    [center, 541, 384, 0x3272a9],
-                    [center, 601, 385, 0x2d71a4],
-                    [center, 600, 405, 0x3070aa],
-                    [center, 542, 405, 0x3070aa],
-                    [center, 564, 393, 0xe8f4f4],
-                    [center, 579, 387, 0x70a0c2]
+                    [center, 542, 314, 0x3171ab],
+                    [center, 600, 316, 0x3071aa],
+                    [center, 541, 333, 0x3171ab],
+                    [center, 564, 325, 0xadc8cf],
+                    [center, 582, 324, 0xc0d6d4],
+                    [center, 590, 332, 0xbacfd1],
+                    [center, 561, 330, 0xecf1e0],
+                    [center, 602, 336, 0x3571ab]
                 ]
             ]
         ]
@@ -948,32 +962,39 @@ const multiColor: InterfaceMultiColorOrigin = {
         desc: [
             [1280, 720,
                 [
-                    [left, 70, 337, 0x51252b],
-                    [left, 50, 345, 0xb52c19],
-                    [left, 85, 344, 0x7f401c],
-                    [left, 60, 354, 0xe2aa30],
-                    [left, 51, 360, 0xd18d22],
-                    [left, 74, 366, 0xe19d26]
+                    [left, 52, 343, 0xbd3925],
+                    [left, 68, 342, 0xd4531d],
+                    [left, 85, 342, 0x662608],
+                    [left, 62, 355, 0xe6b02a],
+                    [left, 50, 362, 0xdb9722],
+                    [left, 74, 363, 0xc78523],
+                    [left, 64, 369, 0x862b14],
+                    [left, 85, 367, 0x400606]
                 ]
             ],
             [1280, 720,
                 [
-                    [left, 58, 192, 0xbd461f],
-                    [left, 70, 194, 0x4a2839],
-                    [left, 85, 194, 0xb25922],
-                    [left, 59, 206, 0xe0a927],
-                    [left, 49, 216, 0xcc8827],
-                    [left, 86, 215, 0x682412],
-                    [left, 78, 227, 0x460202]
+                    [left, 55, 339, 0xbd431b],
+                    [left, 70, 338, 0x652e26],
+                    [left, 84, 339, 0xc15a22],
+                    [left, 50, 352, 0xa52a1d],
+                    [left, 61, 351, 0xecbb2e],
+                    [left, 80, 354, 0x500806],
+                    [left, 52, 362, 0xd58f1f],
+                    [left, 65, 362, 0x891111],
+                    [left, 82, 362, 0x70270e]
                 ]
             ],
             [1280, 720,
                 [
-                    [left, 71, 433, 0x3e1c29],
-                    [left, 63, 449, 0xc08d16],
-                    [left, 51, 456, 0xd08c1e],
-                    [left, 73, 461, 0xd7931c],
-                    [left, 83, 458, 0x551105]
+                    [left, 50, 342, 0xcf4f35],
+                    [left, 61, 341, 0xb64b1d],
+                    [left, 73, 341, 0xca4516],
+                    [left, 84, 344, 0x773c11],
+                    [left, 55, 354, 0x9b1617],
+                    [left, 64, 354, 0xc78529],
+                    [left, 83, 353, 0x530707],
+                    [left, 79, 365, 0x4b0909]
                 ]
             ]
         ]
@@ -983,35 +1004,37 @@ const multiColor: InterfaceMultiColorOrigin = {
         desc: [
             [1280, 720,
                 [
-                    [left, 130, 418, 0x28303c],
-                    [left, 36, 383, 0x989488],
-                    [left, 60, 402, 0xa9a598],
-                    [left, 83, 400, 0x79756b],
-                    [left, 102, 402, 0xbab6a7]
+                    [left, 30, 239, 0xd2cdbd],
+                    [left, 24, 247, 0x2f2b26],
+                    [left, 109, 243, 0xc5c1b1],
+                    [left, 102, 259, 0x282521],
+                    [left, 84, 256, 0xeee9d6],
+                    [left, 130, 268, 0x2b313d],
+                    [left, 130, 277, 0x2a303a]
                 ]
             ],
             [1280, 720,
                 [
-                    [left, 36, 238, 0x9d998d],
-                    [left, 26, 256, 0x8b877c],
-                    [left, 61, 259, 0x33302b],
-                    [left, 49, 259, 0x292622],
-                    [left, 83, 256, 0xeae5d3],
-                    [left, 84, 238, 0xafaa9d],
-                    [left, 103, 259, 0x312e2a],
-                    [left, 128, 272, 0x27303c]
+                    [left, 30, 384, 0xc7c3b3],
+                    [left, 56, 383, 0xd2cebd],
+                    [left, 61, 402, 0xe0dcca],
+                    [left, 84, 402, 0xd8d3c2],
+                    [left, 102, 402, 0xbab6a7],
+                    [left, 130, 414, 0x272e3d],
+                    [left, 130, 422, 0x29303d]
                 ]
             ],
             [1280, 720,
                 [
-                    [left, 85, 406, 0xb2904c],
-                    [left, 70, 405, 0x7a5529],
-                    [left, 56, 405, 0x6d4e21],
-                    [left, 28, 431, 0x472e2e],
-                    [left, 106, 429, 0x493131],
-                    [left, 106, 467, 0x312020],
-                    [left, 26, 462, 0x352424],
-                    [left, 128, 513, 0x27303c]
+                    [left, 31, 245, 0xbfbaab],
+                    [left, 57, 245, 0x656259],
+                    [left, 75, 245, 0xa8a496],
+                    [left, 108, 246, 0xd7d2c2],
+                    [left, 51, 257, 0xa6a295],
+                    [left, 84, 255, 0xe6e1d0],
+                    [left, 103, 253, 0xbcb8a9],
+                    [left, 130, 270, 0x28303d],
+                    [left, 130, 276, 0x28303d]
                 ]
             ]
         ]
@@ -1057,18 +1080,19 @@ const multiColor: InterfaceMultiColorOrigin = {
         desc: [
             [1280, 720,
                 [
-                    [left, 135, 133, 0x7c5b22],
-                    [left, 80, 132, 0x43322a],
-                    [left, 8, 132, 0x48372f],
-                    [left, 42, 132, 0x44332b]
+                    [left, 135, 133, 0x7c581e],
+                    [left, 80, 132, 0x45302b],
+                    [left, 8, 132, 0x4a352f],
+                    [left, 42, 132, 0x45312b]
                 ]
             ],
             [1280, 720,
                 [
-                    [left, 138, 133, 0x88671e],
-                    [left, 110, 133, 0x45342c],
-                    [left, 59, 131, 0x47362e],
-                    [left, 13, 132, 0x493430]
+                    [left, 6, 130, 0x48342e],
+                    [left, 41, 132, 0x45312b],
+                    [left, 138, 130, 0x896520],
+                    [left, 132, 132, 0x8a6424],
+                    [left, 105, 130, 0x48342e]
                 ]
             ]
 
@@ -1108,65 +1132,89 @@ const multiColor: InterfaceMultiColorOrigin = {
         desc: [
             [1280, 720,
                 [
-                    [left, 222, 268, 0x352554],
-                    [left, 236, 268, 0x555567],
-                    [left, 247, 273, 0x793a34],
-                    [left, 224, 284, 0xe2caae],
-                    [left, 242, 281, 0xfdddbc],
-                    [left, 224, 289, 0xc8a976],
-                    [left, 241, 287, 0xf7d6a3],
-                    [left, 232, 303, 0xbca37a]
+                    [left, 263, 263, 0xd5bd92],
+                    [left, 261, 280, 0xffe9bd],
+                    [left, 277, 271, 0x444441],
+                    [left, 255, 283, 0xba4545],
+                    [left, 281, 287, 0xbb4840],
+                    [left, 256, 301, 0x534c53],
+                    [left, 276, 302, 0x6a5f54],
+                    [left, 271, 292, 0x43302f]
                 ]
             ],
             [1280, 720,
                 [
-                    [left, 226, 268, 0x706362],
-                    [left, 237, 268, 0x55556a],
-                    [left, 248, 278, 0xb03939],
-                    [left, 221, 284, 0xb7685c],
-                    [left, 237, 285, 0x572413],
-                    [left, 221, 300, 0x6c5b5a],
-                    [left, 244, 300, 0x922c2c]
+                    [left, 262, 262, 0xd6be93],
+                    [left, 284, 268, 0xd94e40],
+                    [left, 263, 277, 0xffe9c8],
+                    [left, 283, 280, 0x893926],
+                    [left, 256, 286, 0x8f604e],
+                    [left, 261, 296, 0xc1a56b],
+                    [left, 272, 302, 0x52494e]
                 ]
             ],
             [1280, 720,
                 [
-                    [center, 451, 329, 0xd0ae7e],
-                    [center, 473, 334, 0xc73f3f],
-                    [center, 446, 346, 0x80453e],
-                    [center, 463, 345, 0xf0e1bc],
-                    [center, 459, 354, 0xe6c29d],
-                    [center, 445, 364, 0x776649],
-                    [center, 464, 369, 0x883d3d]
+                    [left, 261, 264, 0xd5b58b],
+                    [left, 269, 264, 0xab9786],
+                    [left, 284, 269, 0xda4e40],
+                    [left, 255, 283, 0xba4545],
+                    [left, 265, 282, 0xd4b89d],
+                    [left, 281, 284, 0x8f2c26],
+                    [left, 268, 293, 0x453d49],
+                    [left, 265, 302, 0x6e6264],
+                    [left, 276, 305, 0xa5302e]
                 ]
             ]
         ]
     },
     '金币妖怪_金币妖怪字样': {
-        region: [left, 1280, 720, 130, 106, 369, 687],
+        region: [left, 1280, 720, 128, 103, 371, 682],
         desc: [
             [1280, 720,
                 [
-                    [left, 151, 161, 0x79502f],
-                    [center, 359, 210, 0x79502f],
-                    [left, 206, 177, 0x282521],
-                    [left, 194, 190, 0x2b2824],
-                    [left, 238, 201, 0x2a2723],
-                    [left, 282, 199, 0x2a2622],
-                    [left, 259, 199, 0x3b3731],
-                    [left, 293, 201, 0x312d28],
-                    [left, 313, 189, 0x37332e]
+                    [left, 196, 562, 0xe8d6c1],
+                    [left, 206, 563, 0x292622],
+                    [left, 194, 576, 0x2b2723],
+                    [left, 218, 573, 0x272420],
+                    [left, 198, 587, 0x3a3530],
+                    [left, 215, 585, 0x423d37],
+                    [left, 242, 562, 0x2c2924],
+                    [left, 232, 566, 0x38332e],
+                    [left, 231, 581, 0x312e29],
+                    [left, 238, 588, 0x423d36],
+                    [left, 246, 581, 0x3a3630]
                 ]
-            ],
-            [1280, 720,
+            ], [1280, 720,
                 [
-                    [left, 148, 159, 0x755331],
-                    [center, 362, 213, 0x735230],
-                    [left, 206, 177, 0x282521],
-                    [left, 206, 200, 0x332f2a],
-                    [left, 242, 176, 0x2d2925],
-                    [left, 239, 203, 0x59534b],
-                    [left, 230, 185, 0x7b7267]
+                    [left, 186, 556, 0xe8d6c1],
+                    [left, 205, 563, 0x3d3832],
+                    [left, 194, 576, 0x2b2723],
+                    [left, 207, 569, 0xe8d6c1],
+                    [left, 217, 573, 0x282521],
+                    [left, 206, 576, 0x2b2824],
+                    [left, 198, 586, 0x857b6f],
+                    [left, 215, 585, 0x423d37],
+                    [left, 239, 564, 0x292622],
+                    [left, 231, 580, 0x282521],
+                    [left, 236, 577, 0xd3c2af],
+                    [left, 244, 576, 0xd2c2af],
+                    [left, 238, 587, 0x2a2723]
+                ]
+            ], [1280, 720,
+                [
+                    [left, 194, 564, 0xe8d6c1],
+                    [left, 203, 566, 0x48433c],
+                    [left, 194, 575, 0x524c44],
+                    [left, 214, 570, 0x675f56],
+                    [left, 204, 579, 0xa29586],
+                    [left, 201, 586, 0x6b6359],
+                    [left, 216, 586, 0x504a42],
+                    [left, 230, 573, 0x38342e],
+                    [left, 246, 571, 0x282521],
+                    [left, 238, 589, 0x8b8073],
+                    [left, 245, 580, 0x2e2b26],
+                    [left, 240, 562, 0x908578]
                 ]
             ]
         ]
