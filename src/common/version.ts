@@ -439,6 +439,9 @@ export const versionList = [{
 }, {
     version: '20230204_01',
     desc: '优化：调度任务添加优先级逻辑；\n修复：狭间暗域关闭弹窗的问题'
+}, {
+    version: '20220205_01',
+    desc: '优化：悬赏与金币妖怪部分界面重新取色，优化识别'
 }];
 
 export default versionList[versionList.length - 1].version;
