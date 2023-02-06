@@ -1,3 +1,3 @@
 export type RepeatModeType = 0 | 1 | 2;
 
-export type StatusType = 'wating' | 'paused' | 'running' | 'done';
+export type StatusType = 'wating' | 'running' | 'done';

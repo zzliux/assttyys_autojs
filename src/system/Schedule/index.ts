@@ -63,6 +63,11 @@ export class JobOptions {
      * 执行任务优先级
      */
     level?: string;
+
+    /**
+     * 任务是否已暂停
+     */
+    isPaused?: boolean;
 }
 
 export class Job extends JobOptions {
@@ -71,6 +76,7 @@ export class Job extends JobOptions {
 
     status: StatusType = 'wating';
     level: string = '1';
+    isPaused: boolean = false;
 
     constructor(options: JobOptions) {
         super();
@@ -88,10 +94,11 @@ export class Job extends JobOptions {
         this.level = options.level;
     }
 
-    doRun = () =>  {
-        if (this.repeatMode === 1) {
+    doRun = () => {
+        if (this.repeatMode === 1 && !this.isPaused) {
             this.nextDate = new Date(Date.now() + this.interval * 60 * 1000);
         }
+        this.isPaused = false;
         this.status = 'running';
         this.lastRunTime = new Date();
         this.lastStopTime = null;
@@ -132,7 +139,7 @@ class Schedule {
     /**
      * @description 当前运行中的job
      */
-    currentRunningJob: Job;
+    currentRunningJobId: number = null;
 
     /**
      * @description 任务队列
@@ -169,15 +176,29 @@ class Schedule {
         return this.jobList;
     }
 
+    getJobById(id: number): Job | null {
+        const resultJobIndex = this.jobList.findIndex(item => item.id === id);
+        if (resultJobIndex === -1) {
+            return null;
+        } else {
+            return this.jobList[resultJobIndex];
+        }
+    }
+
     timerCallback() {
         let index = -1;
         let job: Job = null;
 
-        this.scheduleStatue = this.jobList.findIndex(item => item.status === 'running') === -1 ? 'idle' : 'running';
+        this.scheduleStatue = this.jobList.findIndex(item => item.status === 'running') === -1
+            ? 'idle' : 'running';
+        const currentRunningJob = this.getJobById(this.currentRunningJobId);
+        // console.log('--调度任务--当前任务:', this.currentRunningJobId);
 
-        if (this.currentRunningJob && this.currentRunningJob.status !== 'running') {
-            console.log('当前任务已完成:', this.currentRunningJob);
-            this.currentRunningJob = null;
+        if (currentRunningJob === null) {
+            this.currentRunningJobId = null;
+        } else if (currentRunningJob.status !== 'running') {
+            console.log('--调度任务--当前任务已完成:', currentRunningJob.id);
+            this.currentRunningJobId = null;
         }
 
 
@@ -196,20 +217,22 @@ class Schedule {
             // 获取待执行队列优先级最高的等级
             const maxLevel = Math.max(...this.jobQueue.map(item => Number.parseInt(item.level, 10)));
             const jobIndex = this.jobQueue.findIndex(item => Number.parseInt(item.level, 10) === maxLevel);
-            const _job = this.jobQueue[jobIndex];
+            const _job = this.getJobById(this.jobQueue[jobIndex].id);
 
-            if (job) {
-                //  当前执行job优先级低于队列的任务，把当前job添加至待执行队列
-                if (Number.parseInt(job.level, 10) < Number.parseInt(_job.level, 10)) {
-                    job.status = 'paused';
-                    this.jobQueue.push(deepClone(job));
+            if (_job !== null) {
+                if (job) {
+                    //  当前执行job优先级低于队列的任务，把当前job添加至待执行队列
+                    if (_job && Number.parseInt(job.level, 10) < Number.parseInt(_job.level, 10)) {
+                        job.isPaused = true;
+                        this.jobQueue.push(job);
 
+                        job = _job;
+                        this.jobQueue.splice(jobIndex, 1);
+                    }
+                } else {
                     job = _job;
                     this.jobQueue.splice(jobIndex, 1);
                 }
-            } else {
-                job = _job;
-                this.jobQueue.splice(jobIndex, 1);
             }
         }
 
@@ -218,27 +241,29 @@ class Schedule {
                 this.jobList.splice(index, 1);
             }
 
-            if (this.currentRunningJob) {
-                if (Number.parseInt(this.currentRunningJob.level, 10) < Number.parseInt(job.level, 10)) {
-                    this.currentRunningJob.status = 'paused';
-                    this.jobQueue.push(deepClone(this.currentRunningJob));
-                    this.currentRunningJob = job;
-                    console.log('当前任务不为空,执行任务:', job);
+            if (this.currentRunningJobId !== null && currentRunningJob !== null) {
+                if (Number.parseInt(currentRunningJob.level, 10) < Number.parseInt(job.level, 10)) {
+                    this.jobQueue.push(deepClone(currentRunningJob));
+                    this.currentRunningJobId = job.id;
+                    currentRunningJob.isPaused = true;
+                    console.log('--调度任务--当前任务不为空,执行任务:', job.id);
                     job.doRun();
-                    console.log('当前执行任务为:', this.currentRunningJob && this.currentRunningJob.name);
-                    console.log('调度中心状态为:', this.scheduleStatue);
-                    console.log('当前调度队列为:', this.jobQueue.length);           
+                    console.log('--调度任务--当前执行任务为:', currentRunningJob && currentRunningJob.name);
+                    console.log('--调度任务--调度中心状态为:', this.scheduleStatue);
+                    console.log('--调度任务--当前调度队列为:', this.jobQueue.map(item => item.id));
                 } else {
-                    job.status = 'paused';
-                    this.jobQueue.push(deepClone(job));
+                    if (!job.isPaused) {
+                        console.log('--调度任务--当前执行任务优先级高于调度任务');
+                        job.isPaused = true;
+                        this.jobQueue.push(deepClone(job));
+                    }
                 }
             } else {
-                this.currentRunningJob = job;
-                console.log('当前任务为空,执行任务:', job);
+                this.currentRunningJobId = job.id;
                 job.doRun();
-                console.log('当前执行任务为:', this.currentRunningJob && this.currentRunningJob.name);
-                console.log('调度中心状态为:', this.scheduleStatue);
-                console.log('当前调度队列为:', this.jobQueue.length);     
+                console.log('--调度任务--当前任务为空,执行任务:', job.id, 'Id为:', this.currentRunningJobId);
+                console.log('--调度任务--调度中心状态为:', this.scheduleStatue);
+                console.log('--调度任务--当前调度队列为:', this.jobQueue.map(item => item.id));
             }
         }
         setTimeout(this.timerCallback.bind(this), this.timeout);

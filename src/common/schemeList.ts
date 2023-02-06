@@ -287,8 +287,11 @@ const SchemeList: InterfaceScheme[] = [{
     schemeName: "式神寄养",
     star: true,
     groupName: "式神寄养",
-    list: [999, 998, 997, 994, 995],
+    list: [3, 999, 998, 997, 994, 995],
     config: {
+        "3": {
+            type: "关闭"
+        },
         "994": {
             count: "3",
             maxTimeForwait: "10",
