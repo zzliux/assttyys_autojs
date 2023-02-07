@@ -248,14 +248,19 @@ export default {
       });
     },
     schemeLongClickEvent(e, i) {},
-    schemeStarEvent(e, item) {
-      item.star = !item.star;
-      this.saveSchemeList();
-      if (item.star) {
-        AutoWeb.autoPromise('toast', "收藏成功");
-      } else {
-        AutoWeb.autoPromise('toast', "已取消收藏");
-      }
+    async schemeStarEvent(e, item) {
+      const newScheme = await AutoWeb.autoPromise('starScheme', {
+        star: !item.star,
+        schemeName: item.schemeName,
+      });
+      item.star = newScheme.star;
+      // item.star = !item.star;
+      // this.saveSchemeList();
+      // if (item.star) {
+      //   AutoWeb.autoPromise('toast', "收藏成功");
+      // } else {
+      //   AutoWeb.autoPromise('toast', "已取消收藏");
+      // }
     },
     addSchemeClickEvent(e) {
       this.schemeNameInputType = 'add';
