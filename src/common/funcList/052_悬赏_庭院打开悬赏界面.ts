@@ -70,6 +70,21 @@ export class Func052 implements InterfaceFuncOrigin {
 		oper: [
 			[left, 1280, 720, 1120, 587, 1180, 645, 1000]
 		]
+	}, {
+		// 悬赏界面 旧
+		desc: [1280, 720,
+			[
+				[left, 116, 67, 0x3d3c42],
+				[left, 114, 88, 0x634624],
+				[center, 365, 85, 0x4f3928],
+				[center, 640, 50, 0x7a5930],
+				[right, 1022, 87, 0x4b3826],
+				[right, 1156, 81, 0x583f27]
+			]
+		],
+		oper: [
+			[left, 1280, 720, 1120, 587, 1180, 645, 1000]
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		if (thisScript.oper({
@@ -96,6 +111,8 @@ export class Func052 implements InterfaceFuncOrigin {
 				name: '悬赏_悬赏界面',
 				operator: [{
 					desc: thisOperator[3].desc
+				}, {
+					desc: thisOperator[4].desc
 				}]
 			})) {
 				const thisconf = thisScript.scheme.config['52'];
