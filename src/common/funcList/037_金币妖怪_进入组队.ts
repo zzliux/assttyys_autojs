@@ -27,6 +27,21 @@ export class Func037 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 171, 350, 326, 383, 1],
 			[center, 1280, 720, 165, 258, 338, 304, 1]
 		]
+	}, {
+		// 旧
+		desc: [1280, 720,
+			[
+				[left, 52, 28, 0xf0d08d],
+				[left, 106, 32, 0xf5f0de],
+				[left, 126, 51, 0xefead7],
+				[left, 169, 40, 0x09090a],
+				[left, 56, 60, 0xc4a97c],
+				[right, 1221, 87, 0x754824],
+				[right, 1224, 621, 0x381f1c],
+				[right, 1219, 324, 0x3c2923],
+				[left, 138, 31, 0xc5bfae]
+			]
+		],
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		if (thisScript.oper({
@@ -34,6 +49,8 @@ export class Func037 implements InterfaceFuncOrigin {
 			name: '金币妖怪_进入组队',
 			operator: [{
 				desc: thisOperator[0].desc
+			}, {
+				desc: thisOperator[1].desc
 			}]
 		})) {
 			let point = thisScript.findMultiColor('金币妖怪_金币妖怪字样') || null;

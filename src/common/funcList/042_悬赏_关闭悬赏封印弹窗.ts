@@ -26,5 +26,25 @@ export class Func042 implements InterfaceFuncOrigin {
 		oper: [
 			[left, 1280, 720, 1164, 116, 1189, 143, 500],
 		]
+	},
+	// 旧
+	{
+		desc: [1280, 720,
+			[
+				[center, 644, 40, 0x544321],
+				[center, 638, 52, 0x75542a],
+				[left, 95, 124, 0x7b7372],
+				[left, 105, 90, 0x634724],
+				[right, 1161, 85, 0x553c1f],
+				[right, 1097, 582, 0xffeeaa],
+				[right, 1110, 580, 0xf9eba8],
+				[right, 1107, 611, 0xf4e39a],
+				[right, 1128, 606, 0xe5cf89],
+				[right, 1122, 584, 0xf4e3a4]
+			]
+		],
+		oper: [
+			[left, 1280, 720, 1164, 116, 1189, 143, 500],
+		]
 	}]
 }

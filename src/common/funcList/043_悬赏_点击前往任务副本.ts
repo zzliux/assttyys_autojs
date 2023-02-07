@@ -37,12 +37,31 @@ export class Func043 implements InterfaceFuncOrigin {
 		oper: [
 			[left, 1280, 720, 176, 193, 193, 208, 1000],
 		]
+	},
+	// 旧
+	{
+		desc: [1280, 720,
+			[
+				[right, 1110, 319, 0x3d1919],
+				[right, 1112, 399, 0x581b1b],
+				[right, 1109, 503, 0x672323],
+				[right, 1110, 164, 0x796055],
+				[left, 264, 555, 0x967565],
+				[left, 287, 165, 0x927162],
+				[center, 603, 165, 0x8f7161]
+			]
+		],
+		oper: [
+			[left, 1280, 720, 176, 193, 193, 208, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: '悬赏_发现地点弹窗',
 			operator: [{
 				desc: thisOperator[0].desc
+			}, {
+				desc: thisOperator[2].desc
 			}]
 		})) {
 			let unknownStory, challenge;
