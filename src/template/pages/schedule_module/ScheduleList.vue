@@ -57,7 +57,7 @@
               :rules="[{ required: true, message: '必填' }]">
               <template #input>
                 <div class="van-field__body">
-                  <input type="number" :disabled="item.checked" v-model="item.interval" class="van-field__control" />
+                  <input :disabled="item.checked" v-model="item.interval" class="van-field__control" />
                 </div>
               </template>
             </van-field>
@@ -189,7 +189,7 @@ export default {
       scheduleNameInputType: null,
       addScheduleForm: {},
 
-      repeatModeEnum: ['不重复', '从运行开始计时', '从运行结束计时'],
+      repeatModeEnum: ['不重复', '从运行开始计时', '从运行结束计时', 'CRON表达式'],
       repeatModeDialogShow: false,
       curDialogRepeatMode: 0,
       minDate: new Date(),
