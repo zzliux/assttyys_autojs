@@ -36,39 +36,40 @@ export class Func993 implements InterfaceFuncOrigin {
 			default: '式神寄养',
 		}]
 	}];
-	operator: InterfaceFuncOperatorOrigin[] = [{
-		desc: // 是否为登录页
-		[
-			1280, 720,
+	operator: InterfaceFuncOperatorOrigin[] = [
+	{	// 是否为登录页
+		desc:
 			[
-				[center, 704, 602, 0xffffff],
-				[center, 713, 611, 0xffffff],
-				[center, 623, 597, 0xfffefe],
-				[center, 630, 601, 0xfdfdfd],
-				[center, 590, 611, 0xffffff],
-				[center, 588, 592, 0xfefdfd],
-			]
-		],
+				1280, 720,
+				[
+					[center, 704, 602, 0xffffff],
+					[center, 713, 611, 0xffffff],
+					[center, 623, 597, 0xfffefe],
+					[center, 630, 601, 0xfdfdfd],
+					[center, 590, 611, 0xffffff],
+					[center, 588, 592, 0xfefdfd],
+				]
+			],
 		oper: [
 			[center, 1280, 720, 562, 574, 722, 617, 1200],	// 点击开始游戏
 			[center, 1280, 720, 424, 456, 660, 578, 5000], // 游戏区区域
 		]
-	}, {
-		desc: 	// 是否为公告页
-		[
-			1280, 720,
+	}, {	// 是否为公告页(23年公告)
+		desc:
 			[
-				[center, 648, 37, 0x676060],
-				[right, 1214, 142, 0x59242c],
-				[center, 519, 50, 0x555351],
-				[right, 1188, 577, 0x652117],
-			]
-		],
+				1280, 720,
+				[
+					[center, 648, 37, 0x676060],
+					[right, 1214, 142, 0x59242c],
+					[center, 519, 50, 0x555351],
+					[right, 1188, 577, 0x652117],
+				]
+			],
 		oper: [
-			[right, 1280, 720, 1190, 135, 1242, 186, 1200],  // 点击关闭公告
+			[right, 1280, 720, 1202,155, 1232,187, 1200],  // 点击关闭公告
 		]
-	}, {
-		desc:   // 是否为切换账号页
+	}, {	// 是否为切换账号页
+		desc:
 			[1280, 720,
 				[[left, 210, 580, 0x284d16],
 				[center, 376, 190, 0xcec6bc],
@@ -78,8 +79,8 @@ export class Func993 implements InterfaceFuncOrigin {
 		oper: [
 			[center, 1280, 720, 386, 418, 893, 474, 1200], // 点击确认
 		]
-	}, {
-		desc:   // 是否为被强登
+	}, {    // 是否为被强登
+		desc:
 			[1280, 720,
 				[[center, 780, 260, 0x573828],
 				[center, 677, 398, 0xf4b25f],
@@ -89,8 +90,8 @@ export class Func993 implements InterfaceFuncOrigin {
 		oper: [
 			[center, 1280, 720, 578, 373, 704, 432, 1200], // 点击确认
 		]
-	}, {
-		desc:   // 是否为选择游戏区域
+	}, {    // 是否为选择游戏区域
+		desc:
 			[1280, 720,
 				[[left, 161, 149, 0xcc9955],
 				[center, 643, 74, 0xdab883],
@@ -99,8 +100,8 @@ export class Func993 implements InterfaceFuncOrigin {
 		oper: [
 			[center, 1280, 720, 706, 507, 770, 539, 1200], // 切换按钮 区域
 		]
-	}, {
-		desc: // 是否为选择游戏区域 已有角色未展开
+	}, {	// 是否为选择游戏区域 已有角色未展开
+		desc:
 			[1280, 720,
 				[[left, 161, 149, 0xcc9955],
 				[center, 643, 74, 0xdab883],
@@ -113,8 +114,8 @@ export class Func993 implements InterfaceFuncOrigin {
 			[left, 1280, 720, 0, 0, 1279, 719, -1], // 屏幕大小
 			[right, 1280, 720, 1025, 576, 1072, 627, 1200], // 展开角色按钮 区域
 		]
-	}, {
-		desc:   // 登陆后是否有下载插画弹窗
+	}, {	// 登陆后是否有下载插画弹窗
+		desc:
 			[1280, 720,
 				[[center, 439, 471, 0xdf6851],
 				[center, 740, 463, 0xf4b25f],
@@ -124,8 +125,8 @@ export class Func993 implements InterfaceFuncOrigin {
 		oper: [
 			[center, 1280, 720, 432, 455, 564, 500, 1200], // 取消按钮
 		]
-	}, {
-		desc:   // 页面是否为庭院(菜单未展开) 只支持默认庭院皮肤与默认装饰
+	}, {	// 页面是否为庭院(菜单未展开) 只支持默认庭院皮肤与默认装饰
+		desc:   
 			[1280, 720,
 				[[right, 1226, 47, 0xcda47a],
 				[right, 1157, 45, 0xb39671],
@@ -135,16 +136,16 @@ export class Func993 implements InterfaceFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1168, 592, 1230, 690, 1200]	// 在首页打开菜单
 		]
-	}, {
-		desc:   // 页面是否为庭院(菜单已展开) 只支持默认庭院皮肤与默认装饰
+	}, {	// 页面是否为庭院(菜单已展开) 只支持默认庭院皮肤与默认装饰
+		desc:   
 			[1280, 720,
 				[[right, 1226, 47, 0xcda47a],
 				[right, 1157, 45, 0xb29670],
 				[center, 389, 65, 0xfbc573],
 				[right, 1228, 646, 0xd6c6c3]]
 			]
-	}, {
-		desc:   // 登陆后是否有皮肤广告弹窗
+	}, {	// 登陆后是否有皮肤广告弹窗
+		desc:   
 			[1280, 720,
 				[[right, 1191, 97, 0xe79292],
 				[right, 1195, 87, 0xe9d2ce],
@@ -154,8 +155,8 @@ export class Func993 implements InterfaceFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1166, 72, 1209, 110, 1200], // 关闭按钮
 		]
-	}, {
-		desc:   // 网络连接出错弹窗
+	}, {	// 网络连接出错弹窗
+		desc:   
 			[1280, 720,
 				[[center, 910, 436, 0x009688],
 				[center, 928, 260, 0xffffff],
@@ -165,8 +166,8 @@ export class Func993 implements InterfaceFuncOrigin {
 		oper: [
 			[center, 1280, 720, 875, 426, 924, 450, 1200], // 确认按钮
 		]
-	}, {
-		desc:  // 同心队弹窗
+	}, {	// 同心队弹窗
+		desc:  
 			[1280, 720,
 				[[right, 1127, 628, 0xf4b25f],
 				[right, 1197, 116, 0x6d334c],
@@ -177,34 +178,59 @@ export class Func993 implements InterfaceFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1155, 91, 1204, 138, 1200] // 关闭按钮
 		]
-	},
-	{	//	检测_无响应窗口
+	}, {	// 检测_无响应窗口
 		desc:
-		[
-			1280, 720,
 			[
-				[center, 328, 271, 0xffffff],
-				[center, 875, 273, 0xffffff],
-				[center, 333, 486, 0xffffff],
-				[center, 951, 481, 0xffffff],
-				[center, 532, 381, 0xffffff],
-				[center, 484, 458, 0xffffff],
-			]
-		],
+				1280, 720,
+				[
+					[center, 328, 271, 0xffffff],
+					[center, 875, 273, 0xffffff],
+					[center, 333, 486, 0xffffff],
+					[center, 951, 481, 0xffffff],
+					[center, 532, 381, 0xffffff],
+					[center, 484, 458, 0xffffff],
+				]
+			],
 		oper: [
-			[center, 1280, 720, 425,436, 484,464, 1200]	//	点击等待
+			[center, 1280, 720, 425, 436, 484, 464, 1200]	//	点击等待
 		]
-	},
-	{
-		desc: 	//	// 页面是否为庭院(菜单已展开)另一种图标 御祝图标 只支持默认庭院皮肤与默认装饰
-		[1280, 720,
+	}, {	// 页面是否为庭院(菜单已展开)另一种图标 御祝图标 只支持默认庭院皮肤与默认装饰
+		desc: 	
+			[1280, 720,
+				[
+					[right, 1223, 662, 0xdbcbc7],
+					[right, 1155, 41, 0xd7b188],
+					[center, 451, 631, 0xe8e4e1],
+					[center, 673, 651, 0xdb8b3f],
+				]
+			],
+	}, {	// 继续战斗弹窗
+		desc:
 			[
-				[right, 1223, 662, 0xdbcbc7],
-				[right, 1155, 41, 0xd7b188],
-				[center, 451, 631, 0xe8e4e1],
-				[center, 673, 651, 0xdb8b3f],
-			]
-		],
+				1280, 720,
+				[
+					[center, 835, 252, 0xcbb59e],
+					[center, 452, 245, 0xcbb59e],
+					[center, 817, 460, 0xcbb59e],
+					[center, 447, 465, 0xcbb59e],
+					[center, 582, 412, 0xdf6851],
+					[center, 782, 410, 0xf4b25f],
+				]
+			],
+		oper: [
+			[center, 1280, 720, 492, 405, 590, 440, 1200]	//	点击取消
+		]
+	}, {	// 是否为公告页(22年公告)
+		desc:
+			[1280, 720,
+				[[center, 648, 37, 0x676060],
+				[right, 1214, 142, 0x59242c],
+				[left, 204, 53, 0x555351],
+				[right, 1155, 498, 0xe7d9cb]]
+			],
+		oper: [
+			[right, 1280, 720, 1190, 135, 1242, 186, 1200],  // 点击关闭公告
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['993'];
@@ -356,7 +382,7 @@ export class Func993 implements InterfaceFuncOrigin {
 
 		if (thisScript.oper({
 			name: '登陆后是否有弹窗',
-			operator: [thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[6], thisOperator[9], thisOperator[10], thisOperator[11], thisOperator[12]]
+			operator: [thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[6], thisOperator[9], thisOperator[10], thisOperator[11], thisOperator[12], thisOperator[14], thisOperator[15]]
 		})) {
 			return true;
 		}

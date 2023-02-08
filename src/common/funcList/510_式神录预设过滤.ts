@@ -41,8 +41,7 @@ export class Func999 implements InterfaceFuncOrigin {
                     [left, 29, 673, 0x413028],
                 ]
             ]
-        }, {
-            // 式神录未展开 预设 侧栏
+        }, {   // 式神录未展开 预设 侧栏
             desc: [
                 1280, 720,
                 [
@@ -55,9 +54,8 @@ export class Func999 implements InterfaceFuncOrigin {
             oper: [
                 [right, 1280, 720, 340, 77, 413, 106, 1200]	// 点击预设
             ]
-        },
-        {
-            desc:   //  式神录已展开 预设 侧栏
+        }, {   // 式神录已展开 预设 侧栏
+            desc:
                 [
                     1280, 720,
                     [
@@ -77,9 +75,8 @@ export class Func999 implements InterfaceFuncOrigin {
                 [left, 1280, 720, 24, 10, 65, 43, 1200],      //  退出
                 [right, 1280, 720, 1088, 88, 1244, 148, -1],    //  预设分组第一项区域
             ]
-        },
-        {
-            desc:   //  更改预设队伍确认框
+        }, {   // 更改预设队伍确认框
+            desc:
                 [
                     1280, 720,
                     [
@@ -93,8 +90,7 @@ export class Func999 implements InterfaceFuncOrigin {
             oper: [
                 [center, 1280, 720, 711, 411, 812, 450, 1200]   //  点击确认
             ]
-        },
-        {   //  式神拓展包弹窗
+        }, {   // 式神拓展包弹窗
             desc:
                 [
                     1280, 720,
@@ -110,8 +106,7 @@ export class Func999 implements InterfaceFuncOrigin {
                 [center, 1280, 720, 417, 413, 439, 436, 1200],    //  30天不提示,
                 [center, 1280, 720, 910, 136, 944, 165, 1200],    //  关闭
             ]
-        },
-        {   //  检测_提示下载式神模型
+        }, {   // 检测_提示下载式神模型
             desc:
                 [
                     1280, 720,
@@ -127,24 +122,31 @@ export class Func999 implements InterfaceFuncOrigin {
             oper: [
                 [center, 1280, 720, 916, 144, 943, 167, 1200]   //  关闭
             ]
+        }, {   // 队伍预定锁定弹窗
+            desc: [
+                1280, 720,
+                [
+                    [center, 422, 252, 0xcbb59e],
+                    [center, 862, 255, 0xcbb59e],
+                    [center, 860, 465, 0xcbb59e],
+                    [center, 427, 470, 0xcbb59e],
+                    [center, 565, 422, 0xf4b25f],
+                    [center, 565, 362, 0x715e4f],
+                    [center, 705, 445, 0xf4b25f],
+                ]
+            ],
+            oper: [
+                [center, 1280, 720, 550, 342, 572, 367, 1200],  //  今天不再提示
+                [center, 1280, 720, 592, 412, 682, 447, 1200]   //  点击确定
+            ]
         }];
     operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
         let thisConf = thisScript.scheme.config['510'];
 
         thisScript.oper({
-            name: '更改预设队伍确认框',
-            operator: [thisOperator[3]]
+            name: '检测_弹窗',
+            operator: [thisOperator[3], thisOperator[4], thisOperator[5], thisOperator[6]]
         })
-
-        thisScript.oper({
-            name: '式神拓展包弹窗',
-            operator: [thisOperator[4]]
-        });
-
-        thisScript.oper({
-            name: '式神拓展包弹窗',
-            operator: [thisOperator[5]]
-        });
 
         if (thisScript.oper({
             name: '页面为式神录',
