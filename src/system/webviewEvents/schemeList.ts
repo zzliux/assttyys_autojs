@@ -34,6 +34,22 @@ export default function webviewSchemeList() {
         done("success");
     });
 
+    /**
+     * 收藏/取消收藏方案
+     */
+    webview.on('starScheme').subscribe(([opt, done]) => {
+        let savedSchemeList = store.get("schemeList", defaultSchemeList);
+        for (let scheme of savedSchemeList) {
+            if (scheme.schemeName === opt.schemeName) {
+                scheme.star = opt.star;
+                done(scheme);
+                store.put("schemeList", savedSchemeList);
+                toastLog(`${!opt.star ? '取消' : ''}收藏成功`);
+                return;
+            }
+        }
+    });
+
     webview.on("webloaded").subscribe(([_param, done]) => {
         // 界面加载完成后申请截图权限
         requestMyScreenCapture(done, helperBridge);

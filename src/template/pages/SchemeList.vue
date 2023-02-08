@@ -72,22 +72,22 @@
                   square
                   text="删除"
                   v-if="!item.inner"
-                  @click="swipeCellCurrentAction = 'delete'; swipeCellCurrentIndex = index"
+                  @click="swipeCellCurrentAction = filterGroupName === '全部' ? 'delete' : null ; swipeCellCurrentIndex = index"
                 /><van-button
                   type="info"
                   square
                   text="复制"
-                  @click="swipeCellCurrentAction = 'copy'; swipeCellCurrentIndex = index"
+                  @click="swipeCellCurrentAction = filterGroupName === '全部' ? 'copy' : null; swipeCellCurrentIndex = index"
               /><van-button
                   type="warning"
                   square
                   text="修改"
-                  @click="swipeCellCurrentAction = 'modify'; swipeCellCurrentIndex = index"
+                  @click="swipeCellCurrentAction = filterGroupName === '全部' ? 'modify' : null; swipeCellCurrentIndex = index"
               /></template>
             </van-swipe-cell>
           </div>
         </draggable>
-        <div style="margin:5px 10px 5px 10px; border-radius:5px; overflow: hidden; box-shadow: 1px 1px 1px #eaeaea">
+        <div v-if="filterGroupName === '全部'" style="margin:5px 10px 5px 10px; border-radius:5px; overflow: hidden; box-shadow: 1px 1px 1px #eaeaea">
           <van-cell class="item" center @click="addSchemeClickEvent($event)">
             <div style="text-align: center; height: 24px;">
               <van-icon
@@ -248,14 +248,19 @@ export default {
       });
     },
     schemeLongClickEvent(e, i) {},
-    schemeStarEvent(e, item) {
-      item.star = !item.star;
-      this.saveSchemeList();
-      if (item.star) {
-        AutoWeb.autoPromise('toast', "收藏成功");
-      } else {
-        AutoWeb.autoPromise('toast', "已取消收藏");
-      }
+    async schemeStarEvent(e, item) {
+      const newScheme = await AutoWeb.autoPromise('starScheme', {
+        star: !item.star,
+        schemeName: item.schemeName,
+      });
+      item.star = newScheme.star;
+      // item.star = !item.star;
+      // this.saveSchemeList();
+      // if (item.star) {
+      //   AutoWeb.autoPromise('toast', "收藏成功");
+      // } else {
+      //   AutoWeb.autoPromise('toast', "已取消收藏");
+      // }
     },
     addSchemeClickEvent(e) {
       this.schemeNameInputType = 'add';

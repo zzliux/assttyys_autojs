@@ -894,6 +894,15 @@ const multiColor: InterfaceMultiColorOrigin = {
         desc: [
             [1280, 720,
                 [
+                    [center, 544, 316, 0x883322],
+                    [center, 595, 317, 0x923220],
+                    [center, 597, 331, 0x963321],
+                    [center, 541, 331, 0x883322],
+                    [center, 571, 322, 0x8a3420]
+                ]
+            ],
+            [1280, 720,
+                [
                     [center, 540, 243, 0x893723],
                     [center, 572, 245, 0x8b3421],
                     [center, 595, 247, 0x933320],
@@ -902,7 +911,9 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [center, 593, 266, 0xe3c9b2],
                     [center, 570, 253, 0x8a3421]
                 ]
-            ], [1280, 720,
+            ],
+            // 旧
+            [1280, 720,
                 [
                     [center, 537, 240, 0xbb9182],
                     [center, 569, 241, 0xc19386],
@@ -954,6 +965,42 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [center, 561, 330, 0xecf1e0],
                     [center, 602, 336, 0x3571ab]
                 ]
+            ],
+            // 旧
+            [1280, 720,
+                [
+                    [center, 541, 319, 0x3070aa],
+                    [center, 601, 319, 0x3070aa],
+                    [center, 541, 333, 0x3070aa],
+                    [center, 597, 333, 0x3070aa],
+                    [center, 555, 317, 0xcae1da],
+                    [center, 591, 334, 0xdeefde]
+                ]
+            ],
+            [1280, 720,
+                [
+                    [center, 541, 247, 0x3072ab],
+                    [center, 598, 247, 0x2f72a5],
+                    [center, 599, 264, 0x3070aa],
+                    [center, 541, 267, 0x3070aa],
+                    [center, 555, 249, 0xdff0df],
+                    [center, 553, 266, 0xd6e7de],
+                    [center, 548, 263, 0xd9ebdc],
+                    [center, 565, 249, 0xa4b6b7],
+                    [center, 577, 250, 0x3477aa],
+                    [center, 579, 249, 0xbfd8e0],
+                    [center, 591, 265, 0xdeefde]
+                ]
+            ],
+            [1280, 720,
+                [
+                    [center, 541, 384, 0x3272a9],
+                    [center, 601, 385, 0x2d71a4],
+                    [center, 600, 405, 0x3070aa],
+                    [center, 542, 405, 0x3070aa],
+                    [center, 564, 393, 0xe8f4f4],
+                    [center, 579, 387, 0x70a0c2]
+                ]
             ]
         ]
     },
@@ -996,6 +1043,37 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [left, 83, 353, 0x530707],
                     [left, 79, 365, 0x4b0909]
                 ]
+            ],
+            // 旧
+            [1280, 720,
+                [
+                    [left, 70, 337, 0x51252b],
+                    [left, 50, 345, 0xb52c19],
+                    [left, 85, 344, 0x7f401c],
+                    [left, 60, 354, 0xe2aa30],
+                    [left, 51, 360, 0xd18d22],
+                    [left, 74, 366, 0xe19d26]
+                ]
+            ],
+            [1280, 720,
+                [
+                    [left, 58, 192, 0xbd461f],
+                    [left, 70, 194, 0x4a2839],
+                    [left, 85, 194, 0xb25922],
+                    [left, 59, 206, 0xe0a927],
+                    [left, 49, 216, 0xcc8827],
+                    [left, 86, 215, 0x682412],
+                    [left, 78, 227, 0x460202]
+                ]
+            ],
+            [1280, 720,
+                [
+                    [left, 71, 433, 0x3e1c29],
+                    [left, 63, 449, 0xc08d16],
+                    [left, 51, 456, 0xd08c1e],
+                    [left, 73, 461, 0xd7931c],
+                    [left, 83, 458, 0x551105]
+                ]
             ]
         ]
     },
@@ -1036,6 +1114,40 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [left, 130, 270, 0x28303d],
                     [left, 130, 276, 0x28303d]
                 ]
+            ],
+            // 旧
+            [1280, 720,
+                [
+                    [left, 130, 418, 0x28303c],
+                    [left, 36, 383, 0x989488],
+                    [left, 60, 402, 0xa9a598],
+                    [left, 83, 400, 0x79756b],
+                    [left, 102, 402, 0xbab6a7]
+                ]
+            ],
+            [1280, 720,
+                [
+                    [left, 36, 238, 0x9d998d],
+                    [left, 26, 256, 0x8b877c],
+                    [left, 61, 259, 0x33302b],
+                    [left, 49, 259, 0x292622],
+                    [left, 83, 256, 0xeae5d3],
+                    [left, 84, 238, 0xafaa9d],
+                    [left, 103, 259, 0x312e2a],
+                    [left, 128, 272, 0x27303c]
+                ]
+            ],
+            [1280, 720,
+                [
+                    [left, 85, 406, 0xb2904c],
+                    [left, 70, 405, 0x7a5529],
+                    [left, 56, 405, 0x6d4e21],
+                    [left, 28, 431, 0x472e2e],
+                    [left, 106, 429, 0x493131],
+                    [left, 106, 467, 0x312020],
+                    [left, 26, 462, 0x352424],
+                    [left, 128, 513, 0x27303c]
+                ]
             ]
         ]
     },
@@ -1073,6 +1185,20 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [right, 1192, 328, 0xfef2c2]
                 ]
             ],
+            // 旧
+            [1280, 720,
+                [
+                    [right, 1178, 102, 0x67333c],
+                    [right, 1176, 212, 0x754420],
+                    [right, 1169, 270, 0xe0be58],
+                    [right, 1180, 427, 0xe7d6b2],
+                    [right, 1103, 556, 0xb1937b],
+                    [right, 1105, 611, 0xe1d8c0],
+                    [right, 1088, 620, 0xf48a37],
+                    [right, 1153, 79, 0x533b23],
+                    [right, 1192, 328, 0xfef2c2]
+                ]
+            ],
         ]
     },
     "探索界面_检测左边是否有追踪任务的悬浮列表": {
@@ -1093,6 +1219,23 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [left, 138, 130, 0x896520],
                     [left, 132, 132, 0x8a6424],
                     [left, 105, 130, 0x48342e]
+                ]
+            ],
+            // 旧
+            [1280, 720,
+                [
+                    [left, 135, 133, 0x7c5b22],
+                    [left, 80, 132, 0x43322a],
+                    [left, 8, 132, 0x48372f],
+                    [left, 42, 132, 0x44332b]
+                ]
+            ],
+            [1280, 720,
+                [
+                    [left, 138, 133, 0x88671e],
+                    [left, 110, 133, 0x45342c],
+                    [left, 59, 131, 0x47362e],
+                    [left, 13, 132, 0x493430]
                 ]
             ]
 
@@ -1165,6 +1308,53 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [left, 265, 302, 0x6e6264],
                     [left, 276, 305, 0xa5302e]
                 ]
+            ],
+            [1280, 720,
+                [
+                    [left, 247, 345, 0xf0e4b3],
+                    [left, 246, 351, 0xead3a0],
+                    [left, 258, 355, 0xefda9c],
+                    [left, 259, 363, 0xe2d093],
+                    [left, 278, 339, 0xffeec9],
+                    [left, 273, 342, 0xfcefba],
+                    [left, 265, 348, 0xe8d4ab],
+                    [left, 263, 354, 0xf4deb2]
+                ]
+            ],
+            // 旧
+            [1280, 720,
+                [
+                    [left, 222, 268, 0x352554],
+                    [left, 236, 268, 0x555567],
+                    [left, 247, 273, 0x793a34],
+                    [left, 224, 284, 0xe2caae],
+                    [left, 242, 281, 0xfdddbc],
+                    [left, 224, 289, 0xc8a976],
+                    [left, 241, 287, 0xf7d6a3],
+                    [left, 232, 303, 0xbca37a]
+                ]
+            ],
+            [1280, 720,
+                [
+                    [left, 226, 268, 0x706362],
+                    [left, 237, 268, 0x55556a],
+                    [left, 248, 278, 0xb03939],
+                    [left, 221, 284, 0xb7685c],
+                    [left, 237, 285, 0x572413],
+                    [left, 221, 300, 0x6c5b5a],
+                    [left, 244, 300, 0x922c2c]
+                ]
+            ],
+            [1280, 720,
+                [
+                    [center, 451, 329, 0xd0ae7e],
+                    [center, 473, 334, 0xc73f3f],
+                    [center, 446, 346, 0x80453e],
+                    [center, 463, 345, 0xf0e1bc],
+                    [center, 459, 354, 0xe6c29d],
+                    [center, 445, 364, 0x776649],
+                    [center, 464, 369, 0x883d3d]
+                ]
             ]
         ]
     },
@@ -1215,6 +1405,31 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [left, 238, 589, 0x8b8073],
                     [left, 245, 580, 0x2e2b26],
                     [left, 240, 562, 0x908578]
+                ]
+            ],
+            // 旧
+            [1280, 720,
+                [
+                    [left, 151, 161, 0x79502f],
+                    [center, 359, 210, 0x79502f],
+                    [left, 206, 177, 0x282521],
+                    [left, 194, 190, 0x2b2824],
+                    [left, 238, 201, 0x2a2723],
+                    [left, 282, 199, 0x2a2622],
+                    [left, 259, 199, 0x3b3731],
+                    [left, 293, 201, 0x312d28],
+                    [left, 313, 189, 0x37332e]
+                ]
+            ],
+            [1280, 720,
+                [
+                    [left, 148, 159, 0x755331],
+                    [center, 362, 213, 0x735230],
+                    [left, 206, 177, 0x282521],
+                    [left, 206, 200, 0x332f2a],
+                    [left, 242, 176, 0x2d2925],
+                    [left, 239, 203, 0x59534b],
+                    [left, 230, 185, 0x7b7267]
                 ]
             ]
         ]

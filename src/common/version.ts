@@ -442,6 +442,12 @@ export const versionList = [{
 }, {
     version: '20220205_01',
     desc: '优化：悬赏与金币妖怪部分界面重新取色，优化识别'
+}, {
+    version: '20230207_01',
+    desc: '优化：悬赏与金币妖怪部分界面重新取色，优化识别',
+}, {
+    version: '20230207_02',
+    desc: '修复：收藏/取消方案时会导致该方案重置的问题'
 }];
 
 export default versionList[versionList.length - 1].version;

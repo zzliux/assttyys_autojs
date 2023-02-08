@@ -115,6 +115,9 @@ const promptMockData = {
     copyToClip() { },
     webloaded() { },
     getAppInfo: {},
+    starScheme: function (opt) {
+        return { star: opt.star }
+    },
     getShapedScreenConfig: [{
         device: 'xiaomi 11(3200*1440)',
         enabled: true
