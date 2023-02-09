@@ -80,7 +80,7 @@ export class Func201 implements InterfaceFuncOrigin {
 				[left, 251, 40, 0x583716],
 				[center, 749, 655, 0x495c67],
 				[center, 710, 662, 0x576972],
-				[center, 723, 667, 0xbbaa88],
+				[center, 744, 644, 0x3b4d59],
 				[right, 1232, 28, 0x292025],
 				[center, 398, 610, 0xffd595],
 				[center, 518, 610, 0xffd494],
