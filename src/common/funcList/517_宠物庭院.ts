@@ -92,18 +92,19 @@ export class Func517 implements InterfaceFuncOrigin {
             ]
         }, {    //  检测_宠物奖励
             desc:
+            [
+                1280, 720,
                 [
-                    1280, 720,
-                    [
-                        [center, 892, 268, 0x040306],
-                        [center, 922, 450, 0x030206],
-                        [center, 554, 454, 0x030205],
-                        [center, 722, 352, 0xeeddbb],
-                        [center, 748, 364, 0x030305],
-                        [center, 692, 326, 0x0f0b09],
-                        [center, 604, 260, 0x030205],
-                    ]
-                ],
+                    [center, 892, 268, 0x040306],
+                    [center, 922, 450, 0x030206],
+                    [center, 554, 454, 0x030205],
+                    [center, 748, 364, 0x030305],
+                    [center, 692, 326, 0x0f0b09],
+                    [center, 604, 260, 0x030205],
+                    [left, 65, 39, 0x575143],
+                    [right, 1176, 685, 0x2a1a12],
+                ]
+            ],
             oper: [
                 [center, 1280, 720, 350, 528, 932, 636, 600]    //  点击空白处
             ]
