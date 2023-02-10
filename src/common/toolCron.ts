@@ -24,8 +24,8 @@ export function checkedDateByCron(cronData: string, nowDate = new Date()) {
     const _dateCron = _cronArray[3];
     _result.push(compareDate(_dateCron, nowDate.getDate()));
 
-    const _monthCron = Number.parseInt(_cronArray[4]) - 1;
-    _result.push(compareDate(_monthCron.toString(), nowDate.getMonth()));
+    const _monthCron = _cronArray[4];
+    _result.push(compareDate(_cronArray[4], nowDate.getMonth()));
 
     const _dayCron = _cronArray[5];
     _result.push(compareDate(_dayCron, nowDate.getDay()));
@@ -70,8 +70,8 @@ export function getNextByCron(cronData: string, nowDate = new Date(), _runCount 
     nowDate.setDate(_resultdate.time);
     nowDate.setMonth(_resultdate.carry + nowDate.getMonth());
 
-    const _monthCron = Number.parseInt(_cronArray[4], 10) - 1;
-    const _resultmonth = isGreaterCron(_monthCron.toString(), nowDate.getMonth());
+    const _monthCron = _cronArray[4];
+    const _resultmonth = isGreaterCron(_monthCron, nowDate.getMonth());
     nowDate.setMonth(_resultmonth.carry * 12 + _resultmonth.time);
 
     const _yearCron = _cronArray[6];
