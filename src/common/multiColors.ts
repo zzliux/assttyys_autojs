@@ -2387,6 +2387,61 @@ const multiColor: InterfaceMultiColorOrigin = {
                 ]
             ]
         ]
+    },
+    "阴阳寮_奖励体力": {
+        region: [left, 1280, 720, 219, 301, 592, 407],
+        desc: [
+            [
+                1280, 720,
+                [
+                    [center, 568, 336, 0x0c0e0c],
+                    [center, 583, 341, 0x191f15],
+                    [center, 573, 313, 0xe77b2a],
+                ]
+            ]
+        ]
+    },
+    "阴阳寮_奖励金币": {
+        region: [left, 1280, 720, 219, 301, 592, 407],
+        desc: [
+            [
+                1280, 720,
+                [
+                    [center, 563, 321, 0xbf3a36],
+                    [center, 585, 320, 0xb72a32],
+                    [center, 586, 334, 0xce433f],
+                    [center, 565, 339, 0xe96561],
+                    [center, 573, 335, 0xd6a750],
+                ]
+            ],
+            [
+                1280, 720,
+                [
+                    [center, 331, 346, 0xf87b72],
+                    [center, 341, 331, 0xca3837],
+                    [center, 338, 319, 0xb72a32],
+                    [left, 319, 320, 0xbd3c37],
+                    [left, 315, 334, 0xde5954],
+                    [center, 326, 339, 0xf5c268],
+                    [center, 329, 333, 0xdaaf58],
+                ]
+            ]
+        ]
+    },
+    "御魂挑战_喂猫喂狗": {
+        region: [left, 1280, 720, 152, 96, 290, 384],
+        desc: [
+            [
+                1280, 720,
+                [
+                    [left, 212, 178, 0xffffff],
+                    [left, 216, 202, 0xffd64e],
+                    [left, 228, 200, 0xfdcd49],
+                    [left, 242, 180, 0xffffff],
+                    [left, 230, 212, 0xffffff],
+                ]
+            ]
+        ]
     }
 }
 

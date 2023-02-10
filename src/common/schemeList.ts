@@ -482,6 +482,28 @@ const SchemeList: InterfaceScheme[] = [{
     ]
 },
 {
+    id: 45,
+    schemeName: "喂猫喂狗",
+    list: [
+        3, 517
+    ]
+},
+{
+    id: 46,
+    schemeName: "定时任务-启动游戏-喂猫喂狗",
+    star: false,
+    groupName: "定时任务",
+    list: [993],
+    config: {
+        "993": {
+            area: "",
+            package_name: "com.netease.onmyoji",
+            is_shutdown_the_game_before: true,
+            next_scheme: "喂猫喂狗"
+        }
+    },
+},
+{
     id: 99,
     schemeName: '伊吹之擂',
     list: [0, 3, 24, 99, 100],

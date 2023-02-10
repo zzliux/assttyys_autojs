@@ -36,7 +36,7 @@ const ScheduleDefaultList: JobOptions[] = [
   {
     id: 3,
     name: '逢魔',
-    desc: '自动参加逢魔活动，目前不支持首领',
+    desc: '自动参加逢魔活动',
     checked: false,
     lastRunTime: null,
     nextDate: null,
@@ -45,6 +45,20 @@ const ScheduleDefaultList: JobOptions[] = [
     level: '10',
     config: {
       scheme: '定时任务-启动游戏-每日逢魔',
+    }
+  },
+  {
+    id: 4,
+    name: '喂猫喂狗',
+    desc: '自动喂猫喂狗',
+    checked: false,
+    lastRunTime: null,
+    nextDate: null,
+    repeatMode: 3,
+    interval: '* 10 5,16,23 * * *',
+    level: '5',
+    config: {
+      scheme: '定时任务-启动游戏-喂猫喂狗',
     }
   }
 ];

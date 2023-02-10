@@ -195,7 +195,7 @@ class Schedule {
         const currentRunningJob = this.getJobById(this.currentRunningJobId);
         // console.log('--调度任务--当前任务:', this.currentRunningJobId);
 
-        console.log('result:', getNextByCron('0 14,16 2,14 29 2 0,2,4'));
+        // console.log('result:', getNextByCron('0 14,16 2,14 29 2 0,2,4'));
 
         if (currentRunningJob === null) {
             this.currentRunningJobId = null;

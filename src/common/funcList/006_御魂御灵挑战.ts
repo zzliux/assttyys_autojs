@@ -53,10 +53,80 @@ export class Func006 implements InterfaceFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1108, 593, 1204, 688, 2000]
 		]
+	}, { // 检测_喂猫喂狗弹窗
+		desc: [
+			1280, 720,
+			[
+				[center, 942, 156, 0xdfd1c3],
+				[right, 968, 530, 0x443323],
+				[center, 916, 484, 0xebdfcf],
+				[center, 344, 162, 0xe2d6c6],
+				[center, 340, 554, 0xdfcdbe],
+				[center, 386, 548, 0xebdfcf],
+				[center, 864, 574, 0x252321],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 920, 514, 974, 574, 1200] // 点击喂食
+		]
+	}, {	//	喂猫喂狗_获得奖励
+		desc:
+			[
+				1280, 720,
+				[
+					[center, 526, 194, 0xfbf1ca],
+					[center, 620, 196, 0xfbf4d0],
+					[center, 872, 300, 0xb29b82],
+					[center, 418, 288, 0xb69f86],
+					[center, 464, 406, 0xc9b298],
+				]
+			],
+		oper: [
+			[center, 1280, 720, 346, 492, 920, 594, 1200]	// 点击空白处
+		]
+	}, {	// 喂猫喂狗_发现宝藏
+		desc:
+			[
+				1280, 720,
+				[
+					[center, 428, 246, 0xc3ad92],
+					[center, 886, 242, 0xa88f77],
+					[center, 868, 450, 0xb49b81],
+					[center, 914, 406, 0x8f693f],
+					[center, 680, 190, 0xe9d8a0],
+				]
+			],
+		oper: [
+			[center, 1280, 720, 426, 562, 910, 630, 1200]	// 点击空白处
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let curCnt = 0;
 		let maxCount = 3;
+
+		let point = thisScript.findMultiColor('御魂挑战_喂猫喂狗');
+
+		if (point) {
+			console.log(`查找御魂挑战_喂猫喂狗成功`);
+			let oper = [[
+				point.x - 5,
+				point.y - 5,
+				point.x + 5,
+				point.y + 5,
+				1200
+			]];
+			thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+			return true;
+		}
+
+		if (thisScript.oper({
+			id: 6,
+			name: '检测喂猫喂狗',
+			operator: [thisOperator[3], thisOperator[4], thisOperator[5]]
+		})) {
+			return true;
+		}
+
 		while (thisScript.oper({
 			id: 6,
 			name: '御魂/御灵挑战',
