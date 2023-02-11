@@ -451,6 +451,9 @@ export const versionList = [{
 }, {
     version: '20230210_01',
     desc: '新增：喂猫喂狗方案；\n新增：调度任务支持cron表达式配置；\n优化：式神寄养时自动领取奖励；\n'
+}, {
+    version: '20230211_01',
+    desc: '修复：调度任务使用cron时的问题；\n优化：宴会改版适配（摆烂）;\n优化：喂猫喂狗适配'
 }];
 
 export default versionList[versionList.length - 1].version;
