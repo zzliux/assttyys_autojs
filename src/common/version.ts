@@ -448,6 +448,9 @@ export const versionList = [{
 }, {
     version: '20230207_02',
     desc: '修复：收藏/取消方案时会导致该方案重置的问题'
+}, {
+    version: '20230210_01',
+    desc: '新增：喂猫喂狗方案；\n新增：调度任务支持cron表达式配置；\n优化：式神寄养时自动领取奖励；\n'
 }];
 
 export default versionList[versionList.length - 1].version;
