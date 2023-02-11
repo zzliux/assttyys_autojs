@@ -36,7 +36,7 @@ export function checkedDateByCron(cronData: string, nowDate = new Date()) {
     return _result.findIndex(item => !item) === -1;
 }
 
-export function getNextByCron(cronData: string, nowDate = new Date(), _runCount = 1) {
+export function getNextByCron(cronData: string, nowDate = new Date(), _runCount = 1): Date {
     if (_runCount < 30) {
         _runCount++;
     } else {

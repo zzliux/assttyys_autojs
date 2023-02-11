@@ -121,6 +121,11 @@ export class Job extends JobOptions {
             this.doneCallback && this.doneCallback.apply(this);
             this.status = 'wating';
             return;
+        } else if (this.repeatMode === 3) {
+            this.nextDate = getNextByCron(this.interval);
+            this.doneCallback && this.doneCallback.apply(this);
+            this.status = 'wating';
+            return;
         }
     }
 

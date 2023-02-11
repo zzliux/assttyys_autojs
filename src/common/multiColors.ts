@@ -2442,6 +2442,23 @@ const multiColor: InterfaceMultiColorOrigin = {
                 ]
             ]
         ]
+    },
+    "宴会_举高高": {
+        region: [left, 1280, 720, 127, 155, 1171, 569],
+        desc: [
+            [
+                1280, 720,
+                [
+                    [center, 653, 212, 0xfffeed],
+                    [center, 665, 200, 0x484f60],
+                    [center, 672, 186, 0x485061],
+                    [center, 636, 205, 0x474f5e],
+                    [center, 619, 214, 0x363647],
+                    [center, 614, 197, 0x37384b],
+                    [center, 632, 247, 0x688baf],
+                ]
+            ]
+        ]
     }
 }
 

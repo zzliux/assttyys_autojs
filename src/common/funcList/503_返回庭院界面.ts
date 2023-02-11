@@ -202,7 +202,7 @@ export class Func503 implements InterfaceFuncOrigin {
 						[right, 1222, 483, 0xdfd1b6],
 						[left, 157, 49, 0xd4ae83],
 						[left, 224, 63, 0xcca174],
-						[center, 883, 27, 0xf99049],
+						[center, 738, 31, 0x593615],
 					]
 				],
 			oper:

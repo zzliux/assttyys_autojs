@@ -236,7 +236,7 @@ export class Func517 implements InterfaceFuncOrigin {
         })) {
 
             // 做延时检测 防止登陆后的弹窗
-            if (thisScript.global.checked_yard_count >= 10) {
+            if (thisScript.global.checked_yard_count >= 6) {
                 thisScript.global.checked_yard_count = 0;
                 return true;
             } else {
