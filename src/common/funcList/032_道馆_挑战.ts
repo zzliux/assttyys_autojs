@@ -10,14 +10,16 @@ export class Func032 implements InterfaceFuncOrigin {
 	name = '道馆_挑战';
 	operator: InterfaceFuncOperatorOrigin[] = [{	// 检测_挑战是否可用
 		desc: [1280, 720,
-			[[left, 64, 482, 0x291522],
-			[left, 33, 38, 0xd7c5a2],
-			[left, 109, 24, 0xd7c5a2],
-			[left, 179, 37, 0xd7c6a5],
-			[center, 547, 34, 0x9a8958],
-			[right, 1138, 561, 0xdbc5ae],
-			[right, 1218, 641, 0xebc683],
-			[right, 1167, 608, 0x272420]]
+			[
+				[left, 64, 482, 0x291522],
+				[left, 33, 38, 0xd7c5a2],
+				[left, 109, 24, 0xd7c5a2],
+				[left, 179, 37, 0xd7c6a5],
+				[center, 547, 34, 0x9a8958],
+				[right, 1138, 561, 0xdbc5ae],
+				[right, 1218, 641, 0xebc683],
+				[right, 1167, 608, 0x272420]
+			]
 		],
 		oper: [
 			[right, 1280, 720, 1138, 561, 1218, 641, 1000]
@@ -65,7 +67,8 @@ export class Func032 implements InterfaceFuncOrigin {
 			name: '检测_挑战是否可用',
 			operator: [{
 				desc: thisOperator[0].desc,
-				oper: thisOperator[0].oper
+				oper: thisOperator[0].oper,
+				retest: 1000,
 			}]
 		})) {
 			return true;

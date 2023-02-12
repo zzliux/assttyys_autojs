@@ -72,12 +72,13 @@ export class Func014 implements InterfaceFuncOrigin {
 			operator: [{ desc: thisOperator[0].desc, retest: 500 }],
 
 		})) {
-			if (thisScript.oper({
-				name: '探索界面_自动轮换',
-				operator: [thisOperator[1]]
-			})) {
-				return true;
-			}
+			// 早期轮换会自动关闭，需手动打开关闭的轮换，现阴阳师已优化，轮换会保持上一次的状态
+			// if (thisScript.oper({
+			// 	name: '探索界面_自动轮换',
+			// 	operator: [thisOperator[1]]
+			// })) {
+			// 	return true;
+			// }
 			let thisconf = thisScript.scheme.config['14'];
 			if (thisScript.global.tsAttackSwhipeNum === undefined) {
 				thisScript.global.tsAttackSwhipeNum = parseInt(String(thisconf.swipeTime), 10);

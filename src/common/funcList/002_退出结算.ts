@@ -216,12 +216,15 @@ export class Func002 implements InterfaceFuncOrigin {
 				[left, 74, 90, 0x927150]
 			]
 		],
-		operStepRandom: [
-			[
-				[left, 1280, 720, 69, 171, 170, 452, 400, 2],
-				[right, 1280, 720, 1104, 72, 1200, 528, 400, 5],
-			]
+		oper: [
+			[right, 1280, 720, 1201, 102, 1278, 621, 400],
 		],
+		// operStepRandom: [
+		// 	[
+		// 		[left, 1280, 720, 69, 171, 170, 452, 400, 2],
+		// 		[right, 1280, 720, 1104, 72, 1200, 528, 400, 5],
+		// 	]
+		// ],
 		notForCnt: true,
 	}, {
 		// 秘闻的胜利，太鼓位置很高

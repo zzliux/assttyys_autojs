@@ -117,8 +117,8 @@ function splicComma(data: string) {
     return _result
 }
 
-function compareDate(cron: string, nowDate: number) {
-    const _array = splicComma(cron);
+function compareDate(part: string, nowDate: number) {
+    const _array = splicComma(part);
     for (let i = 0; i < _array.length; i++) {
         if (checkedTime(_array[i], nowDate)) {
             return true;
@@ -148,8 +148,8 @@ function getDateSection(sectionDate: string) {
     };
 }
 
-function isGreaterCron(cron: string, nowDate: number): { time: number, carry: number } {
-    const _array = splicComma(cron);
+function isGreaterCron(part: string, nowDate: number): { time: number, carry: number } {
+    const _array = splicComma(part);
     const _resultArray = new Array<{ time: number, carry: number }>();
     for (let i = 0; i < _array.length; i++) {
         _resultArray.push(checkedByGetNextTime(_array[i], nowDate));

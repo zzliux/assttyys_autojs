@@ -53,8 +53,8 @@ export class Func051 implements InterfaceFuncOrigin {
 			]
 		],
 		oper: [
-			[left, 1280, 720, 0, 0, 0, 60, -1], // A的下方位置
-			[left, 1280, 720, 0, 0, 30, 50, -1], // 下方位置的矩形
+			[left, 1280, 720, 0, 0, 0, 70, -1], // A的下方位置
+			[left, 1280, 720, 0, 0, 26, 40, -1], // 下方位置的矩形
 			[left, 1280, 720, 0, 0, 1279, 719, -1], // 屏幕大小
 			[center, 1280, 720, 0, 220, 1279, 590, -1], // 文本识别的区域
 		]
@@ -222,10 +222,10 @@ export class Func051 implements InterfaceFuncOrigin {
 				let rx = p.x + thisOperator[0].oper[1][2] / 2;
 				let ry = p.y + thisOperator[0].oper[0][3] + thisOperator[0].oper[1][3] / 2;
 				toClick = [
-					lx > 0 ? lx : 0,
-					ly > 0 ? ly : 0,
-					rx < thisOperator[0].oper[2][2] ? rx : thisOperator[0].oper[2][2],
-					ry < thisOperator[0].oper[2][3] ? ry : thisOperator[0].oper[2][3],
+					Math.max(lx, 0),
+					Math.max(ly, 0),
+					Math.min(rx, thisOperator[0].oper[2][2]),
+					Math.min(ry, thisOperator[0].oper[2][3]),
 					1000
 				];
 			}

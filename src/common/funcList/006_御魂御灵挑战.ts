@@ -99,24 +99,43 @@ export class Func006 implements InterfaceFuncOrigin {
 		oper: [
 			[center, 1280, 720, 426, 562, 910, 630, 1200]	// 点击空白处
 		]
+	}, {
+		// 战斗界面
+		desc: [1280, 720,
+			[
+				[left, 34, 23, 0xdbb48b],
+				[left, 106, 24, 0xcfa375],
+				[right, 1270, 132, 0x48371f],
+				[right, 1270, 700, 0x241919],
+				[right, 1268, 80, 0x946430],
+				[right, 1266, 545, 0x573f26],
+			]
+		],
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let curCnt = 0;
 		let maxCount = 3;
 
-		let point = thisScript.findMultiColor('御魂挑战_喂猫喂狗');
-
-		if (point) {
-			console.log(`查找御魂挑战_喂猫喂狗成功`);
-			let oper = [[
-				point.x - 5,
-				point.y - 5,
-				point.x + 5,
-				point.y + 5,
-				1200
-			]];
-			thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
-			return true;
+		if (thisScript.oper({
+			name: '战斗界面检测',
+			operator: [{
+				desc: thisOperator[6].desc,
+			}]
+		})) {
+			let point = thisScript.findMultiColor('御魂挑战_喂猫喂狗');
+	
+			if (point) {
+				console.log(`查找御魂挑战_喂猫喂狗成功`);
+				let oper = [[
+					point.x - 5,
+					point.y - 5,
+					point.x + 5,
+					point.y + 5,
+					1200
+				]];
+				thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+				return true;
+			}
 		}
 
 		if (thisScript.oper({

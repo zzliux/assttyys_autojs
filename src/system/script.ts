@@ -143,7 +143,8 @@ export class Script {
             if (new Date().getTime() - startTime > timeout) {
                 return [];
             }
-            // ocr本身就耗时，不需要再sleep
+            // 使用循环延时作为sleep，防止一直在执行ocr导致cpu占用过高
+            sleep(this.scheme.commonConfig.loopDelay as number);
         }
     }
 

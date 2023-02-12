@@ -544,6 +544,22 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [left, 68, 424, 0xecda22],
                     [left, 32, 411, 0xb01a14]
                 ]
+            ],
+            [
+                1280, 720,
+                [
+                    [center, 601, 381, 0xd5502d],
+                    [center, 597, 406, 0xcf3f28],
+                    [center, 599, 392, 0x040403],
+                ]
+            ],
+            [
+                1280, 720,
+                [
+                    [center, 1060, 538, 0xd25c2a],
+                    [center, 1053, 559, 0x030302],
+                    [center, 1053, 584, 0xd43125],
+                ]
             ]
         ]
     },
