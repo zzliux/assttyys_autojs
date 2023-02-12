@@ -25,22 +25,8 @@ export class Func1000 implements InterfaceFuncOrigin {
 				]
 			],
 			oper: [
-				[left, 1280, 720, 19, 156, 98, 242, 1200],
+				[left, 1280, 720, 19, 156, 98, 242, 1200],	//	点击左侧式神
 			]
-		}, {
-			desc:
-				[
-					1280, 720,
-					[
-						[center, 330, 257, 0xf2d7ab],
-						[center, 568, 257, 0xf2d7ab],
-						[center, 806, 257, 0xf2d7a9],
-						[center, 753, 129, 0x301c13],
-						[left, 216, 711, 0x3e2d1c],
-						[right, 1228, 687, 0x381c10],
-						[right, 1170, 559, 0xe8d6ae],
-					]
-				]
 		}, {	//	检测_寮会结束
 			desc:
 				[
@@ -55,6 +41,42 @@ export class Func1000 implements InterfaceFuncOrigin {
 						[right, 1057, 69, 0xf7dca9],
 					]
 				]
+		}, {	//	检测_吃饭式神未开轮换
+			desc:
+				[
+					1280, 720,
+					[
+						[center, 330, 257, 0xf2d7ab],
+						[center, 568, 257, 0xf2d7ab],
+						[center, 806, 257, 0xf2d7a9],
+						[center, 753, 129, 0x301c13],
+						[left, 216, 711, 0x3e2d1c],
+						[right, 1228, 687, 0x381c10],
+						[right, 1170, 559, 0xe8d6ae],
+						[right, 1030, 299, 0x999999],
+					]
+				],
+			oper: [
+				[right, 1280, 720, 1008, 292, 1040, 315, 1200]	//	点击_轮换按钮
+			]
+		}, {	//	检测_吃饭式神已开轮换
+			desc:
+				[
+					1280, 720,
+					[
+						[center, 330, 257, 0xf2d7ab],
+						[center, 568, 257, 0xf2d7ab],
+						[center, 806, 257, 0xf2d7a9],
+						[center, 753, 129, 0x301c13],
+						[left, 216, 711, 0x3e2d1c],
+						[right, 1228, 687, 0x381c10],
+						[right, 1170, 559, 0xe8d6ae],
+						[right, 1023, 296, 0xffffff],
+					]
+				],
+			oper: [
+				[left, 1280, 720, 30, 17, 75, 62, 1200]	//	返回
+			]
 		}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		if (thisScript.oper({
@@ -69,22 +91,63 @@ export class Func1000 implements InterfaceFuncOrigin {
 			if (point1) {
 				console.log(`查找举高高成功`);
 				let oper = [[
-					point1.x - 5,
-					point1.y - 5,
-					point1.x + 5,
-					point1.y + 5,
+					point1.x - 1,
+					point1.y - 1,
+					point1.x + 1,
+					point1.y + 1,
 					120
 				]];
 				thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
 				return true;
 			}
+
+			if (!thisScript.global.banquet_change_flag) {
+				return thisScript.oper({
+					name: '宴会_式神轮换',
+					operator: [{
+						oper: thisOperator[0].oper
+					}]
+				})
+			}
 			return false;
+		}
+
+		if (thisScript.oper({
+			name: '检测_吃饭式神已开轮换',
+			operator: [thisOperator[3]]
+		})) {
+			thisScript.global.banquet_change_flag = true;
+			return true;
+		}
+
+		if (thisScript.oper({
+			name: '检测_吃饭式神未开轮换',
+			operator: [thisOperator[2]]
+		})) {
+			if (thisScript.global.checked_yard_count >= 3) {
+				thisScript.global.checked_yard_count = 0;
+				thisScript.global.banquet_change_flag = true;
+				return thisScript.oper({
+					name: '轮换式神为空',
+					operator: [{
+						oper: thisOperator[3].oper
+					}]
+				});
+			} else {
+				sleep(1500);
+				if (!thisScript.global.checked_yard_count || Number.isNaN(thisScript.global.checked_yard_count)) {
+					thisScript.global.checked_yard_count = 1;
+				} else {
+					thisScript.global.checked_yard_count += 1;
+				}
+			}
+			return true;
 		}
 
 		if (thisScript.oper({
 			name: '宴会_结束',
 			operator: [{
-				desc: thisOperator[2].desc
+				desc: thisOperator[1].desc
 			}]
 		})) {
 			if (thisScript.runtimeParams && thisScript.runtimeParams.liao_activity_state) {

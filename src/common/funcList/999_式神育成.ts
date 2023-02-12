@@ -118,10 +118,10 @@ export class Func999 implements InterfaceFuncOrigin {
 			if (point) {
 				console.log(`查找阴阳寮_奖励体力成功`);
 				let oper = [[
-					point.x - 5,
-					point.y - 5,
-					point.x + 5,
-					point.y + 5,
+					point.x - 1,
+					point.y - 1,
+					point.x + 1,
+					point.y + 1,
 					1200
 				]];
 				thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
@@ -133,10 +133,10 @@ export class Func999 implements InterfaceFuncOrigin {
 			if (point1) {
 				console.log(`查找阴阳寮_奖励金币成功`);
 				let oper = [[
-					point1.x - 5,
-					point1.y - 5,
-					point1.x + 5,
-					point1.y + 5,
+					point1.x - 1,
+					point1.y - 1,
+					point1.x + 1,
+					point1.y + 1,
 					1200
 				]];
 				thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);

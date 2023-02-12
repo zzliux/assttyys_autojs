@@ -198,9 +198,17 @@ class Schedule {
         this.scheduleStatue = this.jobList.findIndex(item => item.status === 'running') === -1
             ? 'idle' : 'running';
         const currentRunningJob = this.getJobById(this.currentRunningJobId);
-        // console.log('--调度任务--当前任务:', this.currentRunningJobId);
+        // if (currentRunningJob) {
+        //     console.log('--调度任务--当前任务:', currentRunningJob.name, currentRunningJob.status, ',当前调度状态为:', this.scheduleStatue);
+        // } else {
+        //     console.log('--调度任务--当前任务为空');
+        // }
 
-        // console.log('result:', getNextByCron('0 14,16 2,14 29 2 0,2,4'));
+        // if (this.scheduleStatue === 'running') {
+        //     console.log('--调度任务--当前运行任务:', this.jobList.filter(item => item.status === 'running').map(item => item.id));
+        // }
+
+        // console.log('result:', getNextByCron('* 14,16 2,14 29 1 0,2,4'));
 
         if (currentRunningJob === null) {
             this.currentRunningJobId = null;
@@ -208,7 +216,6 @@ class Schedule {
             console.log('--调度任务--当前任务已完成:', currentRunningJob.id);
             this.currentRunningJobId = null;
         }
-
 
         for (let i = 0; i < this.jobList.length; i++) {
             const thisJob = this.jobList[i];

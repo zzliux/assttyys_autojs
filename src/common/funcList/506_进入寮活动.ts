@@ -246,10 +246,18 @@ export class Func506 implements InterfaceFuncOrigin {
 			name: '检测_道馆是否已开启',
 			operator: [{
 				desc: thisOperator[0].desc,
-				oper: thisOperator[0].oper
 			}]
 		})) {
-			return true;
+			if (_liao_activity_state.dojo) {
+				return true;
+			} else {
+				return thisScript.oper({
+					name: '检测_道馆是否已开启',
+					operator: [{
+						oper: thisOperator[0].oper
+					}]
+				});
+			}
 		}
 
 		if (thisScript.oper({
@@ -325,9 +333,20 @@ export class Func506 implements InterfaceFuncOrigin {
 
 		if (thisScript.oper({
 			name: '检测_首领退治是否已开启',
-			operator: [thisOperator[1]]
+			operator: [{
+				desc: thisOperator[1].desc
+			}]
 		})) {
-			return true;
+			if (_liao_activity_state.huntBoss) {
+				return true;
+			} else {
+				return thisScript.oper({
+					name: '检测_首领退治是否已开启',
+					operator: [{
+						oper: thisOperator[1].oper
+					}]
+				});
+			}
 		}
 
 		if (thisScript.oper({
@@ -345,8 +364,20 @@ export class Func506 implements InterfaceFuncOrigin {
 
 		if (thisScript.oper({
 			name: '检测_狭间暗域是否已开启',
-			operator: [thisOperator[11]]
+			operator: [{
+				desc: thisOperator[11].desc
+			}]
 		})) {
+			if (_liao_activity_state.narrow) {
+				return true;
+			} else {
+				return thisScript.oper({
+					name: '检测_狭间暗域是否已开启',
+					operator: [{
+						oper: thisOperator[11].oper
+					}]
+				});
+			}
 			return true;
 		}
 
@@ -366,18 +397,27 @@ export class Func506 implements InterfaceFuncOrigin {
 		if (thisScript.oper({
 			name: '检查_宴会是否已开启',
 			operator: [{
-				desc: thisOperator[2].desc,
-				oper: thisOperator[2].oper
+				desc: thisOperator[2].desc
 			}]
 		})) {
+			if (_liao_activity_state.banquet) {
+				return true;
+			} else {
+				thisScript.oper({
+					name: '检查_宴会是否已开启',
+					operator: [{
+						oper: thisOperator[2].oper
+					}]
+				});
 
-			sleep(2000);
+				sleep(2000);
 			const next_scheme = '宴会';
 			thisScript.setCurrentScheme(next_scheme as string, {
 				liao_activity_state: _liao_activity_state
 			});
 			thisScript.myToast(`切换方案为[${next_scheme}]`);
 			thisScript.rerun();
+			}
 		}
 
 		thisScript.global.liao_activity_page_flag = !thisScript.global.liao_activity_page_flag;
@@ -394,7 +434,7 @@ export class Func506 implements InterfaceFuncOrigin {
 			switch (nowDateDay) {
 				case 5:
 				case 0: {
-					if (!_liao_activity_state.narrow) {
+					if (!(_liao_activity_state.narrow && _liao_activity_state.banquet)) {
 						return false;
 					}
 					break;
@@ -407,13 +447,16 @@ export class Func506 implements InterfaceFuncOrigin {
 				}
 			}
 
-			thisScript.oper({
-				name: '检测_狩猎战是否已开启',
-				operator: [{
-					oper: thisOperator[4].oper
-				}]
-			})
-			return true;
+			if (_liao_activity_state.hunt) {
+				return true;
+			} else {
+				return thisScript.oper({
+					name: '检测_狩猎战是否已开启',
+					operator: [{
+						oper: thisOperator[4].oper
+					}]
+				});
+			}
 		}
 
 		if (thisScript.oper({

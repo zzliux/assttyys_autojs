@@ -127,17 +127,17 @@ export class Func514 implements InterfaceFuncOrigin {
 
             thisScript.global.narrow_state = {
                 '1_0': false,
-                '0_0': false,
-                '1_1': false,
-                '1_2': false,
+                '2_0': false,
+                '2_1': false,
+                '2_2': false,
                 '0_1': false,
                 '0_2': false,
                 '0_3': false,
                 '0_4': false,
                 '0_5': false,
-                '1_3': false,
-                '1_4': false,
-                '1_5': false,
+                '3_3': false,
+                '3_4': false,
+                '3_5': false,
 
             };
             return thisScript.oper({
