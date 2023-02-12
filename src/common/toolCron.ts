@@ -36,7 +36,11 @@ export function checkedDateByCron(cronData: string, nowDate = new Date()) {
     return _result.findIndex(item => !item) === -1;
 }
 
+// 缺陷版根据当前时间获取cron表达式的下一次符合规则的时间
 export function getNextByCron(cronData: string, nowDate = new Date(), _runCount = 1): Date {
+    const _originalDate = new Date(nowDate.toString());
+    // console.log('--date--次数:', _runCount, '时间为:', nowDate);
+    // 循环29次后退出，避免死循环
     if (_runCount < 30) {
         _runCount++;
     } else {
@@ -44,7 +48,7 @@ export function getNextByCron(cronData: string, nowDate = new Date(), _runCount 
     }
     const _cronArray = cronData.split(' ');
 
-    //  补位
+    //  补位 秒 分 时 日 月 周 年
     if (_cronArray.length < 7) {
         const complement = 7 - _cronArray.length;
 
@@ -53,6 +57,7 @@ export function getNextByCron(cronData: string, nowDate = new Date(), _runCount 
         }
     }
 
+    // 根据cron计算时间
     const _secondCron = _cronArray[0];
     const _resultSecond = isGreaterCron(_secondCron, nowDate.getSeconds());
     nowDate.setSeconds(_resultSecond.carry * 60 + _resultSecond.time);
@@ -60,6 +65,11 @@ export function getNextByCron(cronData: string, nowDate = new Date(), _runCount 
     const _minuteCron = _cronArray[1];
     const _resultMinute = isGreaterCron(_minuteCron, nowDate.getMinutes());
     nowDate.setMinutes(_resultMinute.carry * 60 + _resultMinute.time);
+
+    if (_resultMinute.carry > 0) {
+        const _t = isGreaterCron(_secondCron, 0);
+        nowDate.setSeconds(_t.time);
+    }
 
     const _hourCron = _cronArray[2];
     const _resultHour = isGreaterCron(_hourCron, nowDate.getHours());
@@ -76,35 +86,64 @@ export function getNextByCron(cronData: string, nowDate = new Date(), _runCount 
 
     const _yearCron = _cronArray[6];
     const _resultYear = isGreaterCron(_yearCron, nowDate.getFullYear());
+
+    // 若年需要进位，cron格式有问题
     if (_resultYear.carry === 1) {
         return null;
     }
     nowDate.setFullYear(_resultYear.time);
 
+    // 判断当前位是否有更改，若有变更，其后置位取最小值
+    switch (true) {
+        case _originalDate.getFullYear() !== nowDate.getFullYear(): {
+            const _t = isGreaterCron(_monthCron, 0);
+            nowDate.setMonth(_t.time);
+        }
+        case _originalDate.getMonth() !== nowDate.getMonth(): {
+            const _t = isGreaterCron(_dateCron, 0);
+            nowDate.setDate(_t.time);
+        }
+        case _originalDate.getDate() !== nowDate.getDate(): {
+            const _t = isGreaterCron(_hourCron, 0);
+            nowDate.setHours(_t.time);
+        }
+        case _originalDate.getHours() !== nowDate.getHours(): {
+            const _t = isGreaterCron(_minuteCron, 0);
+            nowDate.setMinutes(_t.time);
+        }
+        case _originalDate.getMinutes() !== nowDate.getMinutes(): {
+            const _t = isGreaterCron(_secondCron, 0);
+            nowDate.setSeconds(_t.time);
+        }
+    }
+
+    // 判断当前日期是否符合cron
     if (checkedDateByCron(cronData, nowDate)) {
         return nowDate;
     } else {
-        const _notAllStatue = cronData.split(' ').findIndex(item => item !== '*' && item !== '?');
-        switch (_notAllStatue) {
+        // 若不符合cron，递归，找到当前时间最高位的 * 跟 ? ，并在其上一位增加1
+        const _notAllStatueWithStar = cronData.split(' ').lastIndexOf('*');
+        const _notAllStatueWithQuestion = cronData.split(' ').lastIndexOf('?');
+
+        switch (Math.max(_notAllStatueWithStar, _notAllStatueWithQuestion)) {
             case 0: {
-                nowDate.setSeconds(nowDate.getSeconds() + 1);
-                break;
-            }
-            case 1: {
                 nowDate.setMinutes(nowDate.getMinutes() + 1);
                 break;
             }
-            case 2: {
+            case 1: {
                 nowDate.setHours(nowDate.getHours() + 1);
                 break;
             }
-            case 3: {
+            case 2: {
                 nowDate.setDate(nowDate.getDate() + 1);
                 break;
             }
-            case 4: {
+            case 3: {
                 nowDate.setMonth(nowDate.getMonth() + 1);
                 break;
+            }
+            default: {
+                nowDate.setSeconds(nowDate.getSeconds() + 1);
             }
         }
 
@@ -112,13 +151,15 @@ export function getNextByCron(cronData: string, nowDate = new Date(), _runCount 
     }
 }
 
+// 解析逗号表达式
 function splicComma(data: string) {
     const _result = data.split(',');
     return _result
 }
 
-function compareDate(part: string, nowDate: number) {
-    const _array = splicComma(part);
+// 解析cron
+function compareDate(cron: string, nowDate: number) {
+    const _array = splicComma(cron);
     for (let i = 0; i < _array.length; i++) {
         if (checkedTime(_array[i], nowDate)) {
             return true;
@@ -127,6 +168,12 @@ function compareDate(part: string, nowDate: number) {
     return false;
 }
 
+/**
+ * @description 检测时间是否符合cron(颗粒维度)
+ * @param second 
+ * @param nowSecond 
+ * @returns 
+ */
 function checkedTime(second: string, nowSecond: number): boolean {
     if (second === '*' || second === '?') {
         return true;
@@ -140,6 +187,7 @@ function checkedTime(second: string, nowSecond: number): boolean {
     return Number.parseInt(second, 10) === nowSecond;
 }
 
+// 解析跨度表达式
 function getDateSection(sectionDate: string) {
     const _arrayDate = sectionDate.split('-');
     return {
@@ -148,11 +196,18 @@ function getDateSection(sectionDate: string) {
     };
 }
 
-function isGreaterCron(part: string, nowDate: number): { time: number, carry: number } {
-    const _array = splicComma(part);
+
+/**
+ * @description 解析cron并根据cron获取下次最佳执行时间
+ * @param cron 
+ * @param nowDate 
+ * @returns 
+ */
+function isGreaterCron(cron: string, nowDate: number): { time: number, carry: number } {
+    const _array = splicComma(cron);
     const _resultArray = new Array<{ time: number, carry: number }>();
     for (let i = 0; i < _array.length; i++) {
-        _resultArray.push(checkedByGetNextTime(_array[i], nowDate));
+        _resultArray.push(getNextTimeByDate(_array[i], nowDate));
     }
 
     const zeroCarryArray = _resultArray.filter(item => item.carry === 0);
@@ -170,7 +225,14 @@ function isGreaterCron(part: string, nowDate: number): { time: number, carry: nu
 
 }
 
-function checkedByGetNextTime(second: string, nowSecond: number): { time: number, carry: number } {
+/**
+ * @description 获取下次运行时间(颗粒维度)
+ * @param second cron时间
+ * @param nowSecond 当前时间
+ * @return time 返回时间
+ * @return carry 是否需要进位
+ */
+function getNextTimeByDate(second: string, nowSecond: number): { time: number, carry: number } {
     const _second = Number.parseInt(second, 10);
     if (second === '*' || second === '?') {
         return {

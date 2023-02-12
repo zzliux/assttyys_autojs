@@ -33,6 +33,7 @@
   "versionCode": 1,
   "versionName": "0.0.2.dev",
   "ignore": [
+    ".gitignore",
     "build",
     "node_modules",
     "config",
@@ -40,6 +41,7 @@
     "test",
     "hotrun",
     ".babelrc",
+    ".babel.config.js",
     "jsconfig.json",
     "tsconfig.json",
     "package-lock.json",
