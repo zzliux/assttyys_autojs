@@ -49,7 +49,7 @@ export class Func003 implements InterfaceFuncOrigin {
 					'关闭': 0,
 					'接受': 1,
 					'拒绝': 2
-				}[thisconf.type]]]
+				}[thisconf.type as string]]]
 			}]
 		}, 0);
 	};

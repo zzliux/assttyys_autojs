@@ -2445,7 +2445,7 @@ const multiColor: InterfaceMultiColorOrigin = {
         ]
     },
     "御魂挑战_喂猫喂狗": {
-        region: [left, 1280, 720, 152, 96, 290, 384],
+        region: [left, 1280, 720, 153, 96, 377, 511],
         desc: [
             [
                 1280, 720,

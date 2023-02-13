@@ -149,7 +149,7 @@ export class Func006 implements InterfaceFuncOrigin {
 		while (thisScript.oper({
 			id: 6,
 			name: '御魂/御灵挑战',
-			operator: thisOperator
+			operator: [thisOperator[0], thisOperator[1], thisOperator[2]]
 		}, 0)) {
 			curCnt++;
 			thisScript.keepScreen(false);

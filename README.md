@@ -13,10 +13,11 @@ ASISTTANT YYS NEXT GENERATION
 - 方法1：直接运行根目录下的run.js, 会下载最新版已打包好的脚本至aj的外部目录下并运行项目
 - 方法2：解压根目录下的assttyys_ng.zip后运行项目，方法1中下载的也是该压缩包
 - 方法3（开发调试）：
-   1. 环境需求： node 14+, auto.js pro8.1+
+   1. 环境需求： PC node 14+, 模拟器端assttyys debug player
    2. 执行npm install下载依赖
-   3. 执行npm run build打包脚本，打包生成dist目录和已有的assets目录以及项目文件project.json作为一个auto.js项目
-   4. 保存项目至设备并运行项目
+   3. 运行npm run start开启webpack热编译
+   4. 新开terminal，运行node devServer/app.js
+   5. 模拟器端使用assttyys debug player加载第4步的服务
 - 方法4：手机使用51虚拟机或vmos等虚拟机，电脑使用mumu、蓝叠或雷电等模拟器，设置分辨率为720*1280，使用最新已打包好的apk文件（本项目置顶issue中提供下载地址），该apk由子项目hotrun进行打包，脚本内容为热更新加载，每次打开都是最新的脚本，无需重新下载新安装包
 
 

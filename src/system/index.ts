@@ -28,6 +28,10 @@ let url = 'https://assttyys.zzliux.cn/static/webview/'
 if (context.packageName.match(/^org.autojs.autojs(pro)?$/) && files.cwd().indexOf(context.getExternalFilesDir(null).getAbsolutePath()) === -1) {
     url = 'file://' + files.path('dist/index.html');
 }
+// aj彻底废了。。
+if (context.packageName.match(/debugplayer/)) {
+    url = 'file://' + files.path('dist/index.html');
+}
 
 export const webview = run(url, {
     // fitsSystemWindows: 'true',

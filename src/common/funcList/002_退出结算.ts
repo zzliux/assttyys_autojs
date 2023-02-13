@@ -20,6 +20,27 @@ export class Func002 implements InterfaceFuncOrigin {
 		}]
 	}];
 	operator: InterfaceFuncOperatorOrigin[] = [{
+		// 调整优先级，提高识别贪吃鬼的级别
+		// 左上角的贪吃鬼图标
+		desc: [1280, 720,
+			[
+				[left, 50, 66, 0x693430],
+				[left, 62, 65, 0xf5f5f5],
+				[left, 112, 58, 0x312012],
+				[left, 74, 90, 0x927150]
+			]
+		],
+		oper: [
+			[right, 1280, 720, 1201, 102, 1278, 621, 400],
+		],
+		// operStepRandom: [
+		// 	[
+		// 		[left, 1280, 720, 69, 171, 170, 452, 400, 2],
+		// 		[right, 1280, 720, 1104, 72, 1200, 528, 400, 5],
+		// 	]
+		// ],
+		notForCnt: true,
+	}, {
 		// 已打开的达摩，取点比较高
 		desc: [1280, 720,
 			[
@@ -205,26 +226,6 @@ export class Func002 implements InterfaceFuncOrigin {
 				[left, 1280, 720, 76, 672, 1216, 712, 400, 5],
 			]
 		],
-		notForCnt: true,
-	}, {
-		// 左上角的贪吃鬼图标
-		desc: [1280, 720,
-			[
-				[left, 50, 66, 0x693430],
-				[left, 62, 65, 0xf5f5f5],
-				[left, 112, 58, 0x312012],
-				[left, 74, 90, 0x927150]
-			]
-		],
-		oper: [
-			[right, 1280, 720, 1201, 102, 1278, 621, 400],
-		],
-		// operStepRandom: [
-		// 	[
-		// 		[left, 1280, 720, 69, 171, 170, 452, 400, 2],
-		// 		[right, 1280, 720, 1104, 72, 1200, 528, 400, 5],
-		// 	]
-		// ],
 		notForCnt: true,
 	}, {
 		// 秘闻的胜利，太鼓位置很高

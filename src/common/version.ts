@@ -467,6 +467,12 @@ export const versionList = [{
 }, {
     version: '20230213_01',
     desc: `修复: 阴阳寮获取体力金币bug；`
+}, {
+    version: '20230213_02',
+    desc: `修复：御魂挑战在战斗界面时触发3次停止脚本；
+优化：退出结算时将贪吃鬼图标的优先级提到最高；
+优化：御魂挑战喂猫增加适配。
+`
 }];
 
 export default versionList[versionList.length - 1].version;
