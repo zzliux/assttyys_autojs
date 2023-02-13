@@ -464,6 +464,9 @@ export const versionList = [{
 优化：宴会增加轮换配置逻辑；
 优化：狭间暗域打首领与小怪的优先级
 `
+}, {
+    version: '20230213_01',
+    desc: `修复: 阴阳寮获取体力金币bug；`
 }];
 
 export default versionList[versionList.length - 1].version;
