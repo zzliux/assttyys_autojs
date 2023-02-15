@@ -478,6 +478,9 @@ export const versionList = [{
     desc: `新增：贪食鬼吃御魂方案；
 新增：奉纳御魂。
 `
+}, {
+    version: '20230215_02',
+    desc: '修复：游戏更新导致准备功能无法从手动切换为自动'
 }];
 
 export default versionList[versionList.length - 1].version;

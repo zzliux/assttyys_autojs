@@ -35,13 +35,16 @@ export class Func001 implements InterfaceFuncOrigin {
 		]
 	}, {
 		// 手动状态
-		desc: [1280,720,
-			[[left,34,23,0xdbb48b],
-			[left,106,24,0xcfa375],
-			[right,1270,132,0x48371f],
-			[right,1270,700,0x241919],
-			[left,45,656,0xeac4a7],
-			[left,78,670,0xf0caac]]
+		desc: [
+			1280, 720,
+			[
+				[left, 34, 23, 0xdbb48b],
+				[left, 106, 24, 0xcfa375],
+				[right, 1270, 132, 0x48371f],
+				[right, 1270, 700, 0x241919],
+				[left, 46, 671, 0xefc9ab],
+				[left, 81, 670, 0xf0caac],
+			]
 		],
 		oper: [
 			[left, 1280, 720, 37,637, 86,686, 1000]
