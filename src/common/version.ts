@@ -473,6 +473,11 @@ export const versionList = [{
 优化：退出结算时将贪吃鬼图标的优先级提到最高；
 优化：御魂挑战喂猫增加适配。
 `
+}, {
+    version: '20230215_01',
+    desc: `新增：贪食鬼吃御魂方案；
+新增：奉纳御魂。
+`
 }];
 
 export default versionList[versionList.length - 1].version;
