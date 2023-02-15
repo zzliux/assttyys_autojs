@@ -419,7 +419,10 @@ const SchemeList: InterfaceScheme[] = [{
             afterCountOper: '停止脚本',
             type: '个人突破'
         },
-        "9": { priority: "4->5->3->2->1->0" },
+        "9": { 
+            priority: "4->5->3->2->1->0",
+            scheme_switch_enabled:"true"
+        },
         "10": { type: "个人突破" }
     }
 }, {

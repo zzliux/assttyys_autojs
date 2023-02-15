@@ -21,7 +21,7 @@ export class Func301 implements InterfaceFuncOrigin {
       name: 'next_scheme',
       desc: '下一个方案',
       type: 'scheme',
-      default: '奉纳御魂_开始奉纳',
+      default: '奉纳御魂',
     }]
   }];
   operator: InterfaceFuncOperatorOrigin[] = [{
