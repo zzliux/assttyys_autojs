@@ -21,7 +21,7 @@ export class Func009 implements InterfaceFuncOrigin {
 			value: null,
 		}, {
 			name: 'scheme_switch_enabled',
-			desc: '识别第一排第一行则切换方案',
+			desc: '识别到攻打第一排第一列结界则切换方案',
 			type: 'switch',
 			default: false,
 		}, {
@@ -91,11 +91,11 @@ export class Func009 implements InterfaceFuncOrigin {
 						// point.y,
 						thisOperator[0].oper[0][4]]];
 					thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
-					//第一排第一个突破坐标
+					//第一排第一列结界坐标
 					let fristFirstOper = [147, 146, 465, 265];
 					let thisconf = thisScript.scheme.config['9'];
 					if (Number(oper[0][0]) > fristFirstOper[0] && Number(oper[0][1]) > fristFirstOper[1] && Number(oper[0][2]) < fristFirstOper[2] && Number(oper[0][3]) < fristFirstOper[3]) {
-						console.log("检测点击范围在第一排第一行突破内");
+						console.log("检测点击范围在第一排第一列结界内");
 						if (thisconf && thisconf.scheme_switch_enabled) {
 							thisScript.setCurrentScheme(thisconf.next_scheme as string);
 							thisScript.myToast(`切换方案为[${thisconf.next_scheme}]`);
