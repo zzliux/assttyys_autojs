@@ -507,13 +507,13 @@ const SchemeList: InterfaceScheme[] = [{
     id: 47,
     groupName: '御魂奉纳',
     schemeName: '奉纳御魂_贪食鬼吃经验',
-    list: [0,301],
+    list: [0, 301],
 },
 {
     id: 48,
     groupName: '御魂奉纳',
     schemeName: '奉纳御魂_开始奉纳',
-    list: [0,2,302],
+    list: [0, 2, 302],
 },
 {
     id: 99,

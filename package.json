@@ -4,9 +4,9 @@
     "private": true,
     "description": "",
     "scripts": {
-        "start": "set NODE_OPTIONS=--openssl-legacy-provider & npx webpack --config config/index.js --watch --mode=development",
-        "build": "set NODE_OPTIONS=--openssl-legacy-provider & npx webpack --config config/index.js --mode=production && node pack",
-        "vue": "set NODE_OPTIONS=--openssl-legacy-provider & npx webpack-dev-server --config config/webpack.vue.config.js --mode=development"
+        "start": "npx webpack --config config/index.js --watch --mode=development",
+        "build": "npx webpack --config config/index.js --mode=production && node pack",
+        "vue": "npx webpack-dev-server --config config/webpack.vue.config.js --mode=development"
     },
     "author": "",
     "license": "MIT",

@@ -6,7 +6,7 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func018 implements InterfaceFuncOrigin {
+export class Func301 implements InterfaceFuncOrigin {
   id = 301;
   name = '贪食鬼吃御魂';
   desc = '在御魂界面里打开,吃掉弃置御魂';
@@ -21,7 +21,7 @@ export class Func018 implements InterfaceFuncOrigin {
       name: 'next_scheme',
       desc: '下一个方案',
       type: 'scheme',
-      default: '奉纳御魂',
+      default: '奉纳御魂_开始奉纳',
     }]
   }];
   operator: InterfaceFuncOperatorOrigin[] = [{

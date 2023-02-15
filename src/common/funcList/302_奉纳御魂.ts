@@ -1,13 +1,12 @@
 import { Script } from '@/system/script';
 import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
-import { count } from '__console__';
 
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func018 implements InterfaceFuncOrigin {
+export class Func302 implements InterfaceFuncOrigin {
   id = 302;
   name = '奉纳御魂';
   desc = '奉纳弃置御魂(排序需改为“等级/星级”)';
@@ -69,13 +68,13 @@ export class Func018 implements InterfaceFuncOrigin {
       [center, 1280, 720, 580, 604, 702, 668, 1000]
     ]
   }
-  , {
+    , {
     //背景墙
-    desc: [1280,720,[
-      [center,895,275,0xe0984a],
-      [center,875,656,0x524b45],
-      [center,852,467,0x000000],
-      [center,877,466,0x000000]]
+    desc: [1280, 720, [
+      [center, 895, 275, 0xe0984a],
+      [center, 875, 656, 0x524b45],
+      [center, 852, 467, 0x000000],
+      [center, 877, 466, 0x000000]]
     ]
   }
   ];
@@ -94,8 +93,8 @@ export class Func018 implements InterfaceFuncOrigin {
         desc: thisOperator[1].desc,
       }]
     })) {
-      let x=[138+random(10,-10),292+random(10,-10),1000+random(200,-200)];
-      press(x[0],x[1],x[2]);
+      let x = [138 + random(10, -10), 292 + random(10, -10), 1000 + random(200, -200)];
+      press(x[0], x[1], x[2]);
     }
     if (thisScript.oper({
       name: '开始奉纳',
@@ -105,7 +104,7 @@ export class Func018 implements InterfaceFuncOrigin {
       }]
     })) {
       sleep(300)
-     }
+    }
     if (thisScript.oper({
       name: '神赐第一排',
       operator: [{
@@ -126,15 +125,15 @@ export class Func018 implements InterfaceFuncOrigin {
         desc: thisOperator[1].desc,
       }]
     }) && thisScript.oper({
-      name:'背景墙，灰奉纳',
-      operator:[{
+      name: '背景墙，灰奉纳',
+      operator: [{
         desc: thisOperator[5].desc,
       }]
-    })) { 
+    })) {
       thisScript.doOspPush(thisScript, { text: '奉纳完成，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-			thisScript.stop();
+      thisScript.stop();
       sleep(3000);
     }
     return true;
-}
+  }
 }
