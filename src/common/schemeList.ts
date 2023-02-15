@@ -25,8 +25,9 @@ const SchemeList: InterfaceScheme[] = [{
     list: [0, 1, 2, 3, 6]
 }, {
     id: 5,
-    schemeName: '个人突破',
-    star: true,
+    groupName: '突破',
+    schemeName: '个人突破_打三刷新',
+    star: false,
     list: [0, 1, 2, 3, 7, 10, 8, 9, 11],
     config: {
         '8': {
@@ -41,7 +42,8 @@ const SchemeList: InterfaceScheme[] = [{
 }, {
     id: 5,
     schemeName: '个人突破_降级',
-    star: true,
+    groupName: "突破",
+    star: false,
     list: [0, 1, 2, 3, 8, 9, 10, 11],
     config: {
         '0': {
@@ -64,8 +66,54 @@ const SchemeList: InterfaceScheme[] = [{
         }
     }
 }, {
+    id: 5,
+    groupName: "突破",
+    schemeName: "个突_打九",
+    star: true,
+    list: [0, 1, 2, 3, 8, 9, 10],
+    config: {
+        "0": {
+            jspd_enabled_longtime_nodo: false,
+        },
+        "3": { type: "关闭" },
+        "8": {
+            count: '2',
+            afterCountOper: '停止脚本',
+            type: '个人突破'
+        },
+        "9": {
+            priority: "4->5->3->2->1->0",
+            scheme_switch_enabled: true,
+        },
+        "10": { type: "个人突破" }
+    }
+}, {
+    id: 5,
+    schemeName: "个突_退四",
+    groupName: "突破",
+    star: false,
+    list: [0, 1, 2, 3, 8, 9, 10],
+    config: {
+        "0": {
+            jspd_enabled_2: true,
+            jspd_times_2: "4",
+            scheme_switch_enabled: true,
+            next_scheme: "个突_打九",
+        },
+        "1": { exitBeforeReady: true },
+        "2": { rechallenge: true },
+        "8": {
+            count: '2',
+            afterCountOper: '停止脚本',
+            type: '个人突破'
+        },
+        "9": { priority: "0->1->2->3->4->5" },
+        "10": { type: "个人突破" }
+    }
+}, {
     id: 6,
     schemeName: '寮突破',
+    groupName: "突破",
     star: true,
     list: [0, 1, 2, 3, 8, 9, 10, 12, 29],
     config: {
@@ -179,57 +227,8 @@ const SchemeList: InterfaceScheme[] = [{
     schemeName: '道馆',
     list: [0, 1, 2, 3, 32],
     star: true,
-}, {
-    id: 20,
-    groupName: '个人突破卡级',
-    schemeName: '个人突破_卡级_进攻',
-    star: true,
-    list: [0, 1, 2, 3, 10, 7, 8, 9, 11],
-    config: {
-        '0': {
-            jspd_enabled_1: true,
-            jspd_times_1: 2,
-            scheme_switch_enabled: true,
-            next_scheme: '个人突破_卡级_退出'
-        },
-        '8': {
-            count: '2',
-            afterCountOper: '停止脚本',
-            type: '个人突破'
-        },
-        '10': {
-            type: '个人突破'
-        }
-    }
-}, {
-    id: 21,
-    groupName: '个人突破卡级',
-    schemeName: '个人突破_卡级_退出',
-    star: true,
-    list: [0, 1, 2, 3, 8, 9, 10, 11],
-    config: {
-        '0': {
-            jspd_enabled_1: true,
-            jspd_times_1: 1,
-            scheme_switch_enabled: true,
-            next_scheme: '个人突破_卡级_进攻'
-        },
-        '1': {
-            exitBeforeReady: true
-        },
-        '8': {
-            count: '2',
-            afterCountOper: '停止脚本',
-            type: '个人突破'
-        },
-        '9': {
-            priority: '0->1->2->3->4->5'
-        },
-        '10': {
-            type: '个人突破'
-        }
-    }
-}, {
+},
+{
     id: 22,
     schemeName: '秘闻',
     list: [0, 51, 1, 2, 3, 34],
@@ -379,52 +378,6 @@ const SchemeList: InterfaceScheme[] = [{
             next_scheme: "庭院进入寮每日活动"
         }
     },
-}, {
-    id: 37,
-    schemeName: "个突_9退4_退出",
-    groupName: "个突9退4",
-    list: [0, 1, 2, 3, 8, 9, 10],
-    config: {
-        "0": {
-            jspd_enabled_2: true,
-            jspd_times_2: "4",
-            scheme_switch_enabled: true,
-            next_scheme: "个突_9退4_进攻",
-        },
-        "1": { exitBeforeReady: true },
-        "2": { rechallenge: true },
-        "8": {
-            count: '2',
-            afterCountOper: '停止脚本',
-            type: '个人突破'
-        },
-        "9": { priority: "0->1->2->3->4->5" },
-        "10": { type: "个人突破" }
-    }
-}, {
-    id: 38,
-    schemeName: "个突_9退4_进攻",
-    groupName: "个突9退4",
-    list: [0, 1, 2, 3, 8, 9, 10],
-    config: {
-        "0": {
-            jspd_enabled_2: true,
-            jspd_times_2: "9",
-            scheme_switch_enabled: true,
-            next_scheme: "个突_9退4_退出"
-        },
-        "3": { type: "关闭" },
-        "8": {
-            count: '2',
-            afterCountOper: '停止脚本',
-            type: '个人突破'
-        },
-        "9": { 
-            priority: "4->5->3->2->1->0",
-            scheme_switch_enabled:"true"
-        },
-        "10": { type: "个人突破" }
-    }
 }, {
     id: 39,
     schemeName: '夜行荒河',

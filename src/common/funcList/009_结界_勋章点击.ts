@@ -28,7 +28,7 @@ export class Func009 implements InterfaceFuncOrigin {
 			name: 'next_scheme',
 			desc: '下一个方案',
 			type: 'scheme',
-			default: '个突_9退4_退出',
+			default: '个突_退四',
 		}
 		]
 	}];
@@ -104,7 +104,6 @@ export class Func009 implements InterfaceFuncOrigin {
 							return;
 						}
 					}
-					thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
 					console.log(key);
 					return true;
 				}
