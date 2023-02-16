@@ -19,23 +19,23 @@ export class MyFloaty {
         this.fb.setIcon('file://' + files.cwd() + '/assets/img/ay.png');
         this.fb.setColor('#FFFFFF');
         this.fb.setAutoCloseMenuTime(3000);
-        this.fb.addItem('Home')
-            //设置图标
-            .setIcon('@drawable/ic_home_black_48dp')
-            //图标着色
-            .setTint('#FFFFFF')
-            //背景颜色
-            .setColor('#0099FF')
-            //点击事件
-            .onClick((view, name) => {
-                self.runEventFlag = false;
-                script.stop();
-                var i = new android.content.Intent(activity, activity.class);
-                i.addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK);
-                i.addFlags(android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                context.startActivity(i);
-                return false;
-            });
+        // this.fb.addItem('Home')
+        //     //设置图标
+        //     .setIcon('@drawable/ic_home_black_48dp')
+        //     //图标着色
+        //     .setTint('#FFFFFF')
+        //     //背景颜色
+        //     .setColor('#0099FF')
+        //     //点击事件
+        //     .onClick((view, name) => {
+        //         self.runEventFlag = false;
+        //         script.stop();
+        //         var i = new android.content.Intent(activity, activity.class);
+        //         i.addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK);
+        //         i.addFlags(android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        //         context.startActivity(i);
+        //         return false;
+        //     });
 
 
 
