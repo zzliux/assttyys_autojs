@@ -25,7 +25,7 @@ export class Func301 implements InterfaceFuncOrigin {
     }]
   }];
   operator: InterfaceFuncOperatorOrigin[] = [{
-    //右下角贪食鬼
+    //0,右下角贪食鬼
     desc: [1280, 720,
       [[right, 1167, 624, 0x69bbbb],
       [right, 1191, 617, 0xd7c9ba],
@@ -36,8 +36,7 @@ export class Func301 implements InterfaceFuncOrigin {
     oper: [
       [center, 1280, 720, 1164, 621, 1207, 660, 1000]
     ]
-  }, {
-    //进食习惯
+  }, {  //1,进食习惯
     desc: [1280, 720, [
       [center, 363, 294, 0x332725],
       [center, 949, 230, 0xebdac9],
@@ -48,8 +47,7 @@ export class Func301 implements InterfaceFuncOrigin {
     oper: [
       [center, 1280, 720, 820, 532, 978, 588, 3000]
     ]
-  }, {
-    //贪食鬼
+  }, {  //2,贪食鬼
     desc: [1280, 720, [
       [right, 1012, 491, 0xece3d3],
       [right, 1016, 537, 0xe3d5c3],
@@ -59,8 +57,7 @@ export class Func301 implements InterfaceFuncOrigin {
     oper: [
       [center, 1280, 720, 940, 608, 990, 645, 1000]
     ]
-  }, {
-    //不再提示
+  }, {  //3.不再提示
     desc: [1280, 720, [
       [center, 519, 422, 0xdf6851],
       [center, 759, 421, 0xf4b25f],
@@ -71,8 +68,7 @@ export class Func301 implements InterfaceFuncOrigin {
     oper: [
       [center, 1280, 720, 677, 408, 834, 453, 1000]
     ]
-  }, {
-    //进食完毕或无进食御魂
+  }, {  //4,进食完毕或无进食御魂
     desc: [1280, 720, [
       [right, 1018, 497, 0x4b322e],
       [right, 1012, 539, 0x241a1c],

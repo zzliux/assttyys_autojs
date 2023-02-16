@@ -489,6 +489,11 @@ export const versionList = [{
 }, {
     version: '20230216_02',
     desc: `优化：悬浮窗的主页键删除`
+},{
+    version: '20230217_01',
+    desc: `增加：“503_返回庭院界面”可式神录界面返回
+增加：“奉纳结束后会返回式神录”
+`
 }];
 
 export default versionList[versionList.length - 1].version;

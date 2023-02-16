@@ -9,9 +9,23 @@ const right = 2;
 export class Func302 implements InterfaceFuncOrigin {
   id = 302;
   name = '奉纳御魂';
-  desc = '奉纳弃置御魂(排序需改为“等级/星级”)';
+  desc = '奉纳弃置御魂(排序需改为“等级/星级”)，结束后返回式神录';
+  config = [{
+    desc: '结束后切换方案',
+    config: [{
+      name: 'scheme_switch_enabled',
+      desc: '是否启用',
+      type: 'switch',
+      default: false,
+    }, {
+      name: 'next_scheme',
+      desc: '下一个方案',
+      type: 'scheme',
+      default: '通用准备退出',
+    }]
+  }];
   operator: InterfaceFuncOperatorOrigin[] = [{
-    //奉纳
+    //0,奉纳
     desc: [1280, 720, [
       [right, 1171, 215, 0xd4c4b3],
       [right, 1212, 216, 0xd0bfaf],
@@ -21,8 +35,7 @@ export class Func302 implements InterfaceFuncOrigin {
     oper: [
       [center, 1280, 720, 1164, 212, 1211, 273, 1000]
     ]
-  }, {
-    //第一排一行御魂+0
+  }, {  //1,第一排一行御魂+0
     desc: [1280, 720, [
       [left, 49, 134, 0x4a5de9],
       [left, 108, 252, 0xe7e2d0],
@@ -33,8 +46,7 @@ export class Func302 implements InterfaceFuncOrigin {
     oper: [
       [center, 1280, 720, 820, 644, 922, 688, 1000]
     ]
-  }, {
-    //开始奉纳
+  }, {  //2,开始奉纳
     desc: [1280, 720, [
       [left, 49, 134, 0x4a5de9],
       [left, 108, 252, 0xa5dde5],
@@ -45,8 +57,7 @@ export class Func302 implements InterfaceFuncOrigin {
     oper: [
       [center, 1280, 720, 820, 644, 922, 688, 1700]
     ]
-  }, {
-    //神赐一排
+  }, {  //3,神赐一排
     desc: [1280, 720, [
       [center, 345, 285, 0x817876],
       [center, 340, 327, 0xb5a5a5],
@@ -56,8 +67,7 @@ export class Func302 implements InterfaceFuncOrigin {
     oper: [
       [center, 1280, 720, 580, 604, 702, 668, 1000]
     ]
-  }, {
-    //神赐二排
+  }, {  //4,神赐二排
     desc: [1280, 720, [
       [center, 602, 209, 0xc39a47],
       [center, 678, 203, 0xc09a45],
@@ -67,14 +77,19 @@ export class Func302 implements InterfaceFuncOrigin {
     oper: [
       [center, 1280, 720, 580, 604, 702, 668, 1000]
     ]
-  }
-    , {
-    //背景墙
+  }, {  //5,背景墙
     desc: [1280, 720, [
       [center, 895, 275, 0xe0984a],
       [center, 875, 656, 0x524b45],
       [center, 852, 467, 0x000000],
       [center, 877, 466, 0x000000]]
+    ],
+    oper: [
+      [center, 1280, 720, 26, 18, 66, 58, 1000]
+    ]
+  }, { //6,长按坐标和随机数
+    oper: [
+      [center, 1280, 720, 138, 292, 10, 1000, 200]
     ]
   }
   ];
@@ -93,8 +108,12 @@ export class Func302 implements InterfaceFuncOrigin {
         desc: thisOperator[1].desc,
       }]
     })) {
-      let x = [138 + random(10, -10), 292 + random(10, -10), 1000 + random(200, -200)];
-      press(x[0], x[1], x[2]);
+      let oper = [
+        thisOperator[6].oper[0][0] + random(thisOperator[6].oper[0][2], -thisOperator[6].oper[0][2]),
+        thisOperator[6].oper[0][1] + random(thisOperator[6].oper[0][2], -thisOperator[6].oper[0][2]),
+        thisOperator[6].oper[0][3] + random(thisOperator[6].oper[0][4], -thisOperator[6].oper[0][4])
+      ];
+      press(oper[0], oper[1], oper[2]);
     }
     if (thisScript.oper({
       name: '开始奉纳',
@@ -128,11 +147,17 @@ export class Func302 implements InterfaceFuncOrigin {
       name: '背景墙，灰奉纳',
       operator: [{
         desc: thisOperator[5].desc,
+        oper: thisOperator[5].oper
       }]
     })) {
-      thisScript.doOspPush(thisScript, { text: '奉纳完成，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-      thisScript.stop();
-      sleep(3000);
+      let thisconf = thisScript.scheme.config['302'];
+      if (thisconf && thisconf.scheme_switch_enabled) {
+        thisScript.setCurrentScheme(thisconf.next_scheme as string);
+        thisScript.myToast(`切换方案为[${thisconf.next_scheme}]`);
+        thisScript.rerun();
+        sleep(3000);
+        return;
+      }
     }
     return true;
   }
