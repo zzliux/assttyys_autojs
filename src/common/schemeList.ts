@@ -463,13 +463,19 @@ const SchemeList: InterfaceScheme[] = [{
     id: 47,
     groupName: '御魂奉纳',
     schemeName: '奉纳御魂_贪食鬼吃经验',
-    list: [0, 301],
+    list: [0, 301, 303],
 },
 {
     id: 48,
     groupName: '御魂奉纳',
     schemeName: '奉纳御魂_开始奉纳',
     list: [0, 2, 302],
+    config: {
+        '0': {
+            jspd_enabled_longtime_nodo: true,
+            jspd_times_longtime_nodo: 1,
+        }
+    }
 },
 {
     id: 99,
