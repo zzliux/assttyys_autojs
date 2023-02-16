@@ -28,7 +28,7 @@ export class Func009 implements InterfaceFuncOrigin {
 			name: 'next_scheme',
 			desc: '下一个方案',
 			type: 'scheme',
-			default: '个突_退四',
+			default: '个突_9退4_退出',
 		}
 		]
 	}];

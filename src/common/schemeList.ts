@@ -25,9 +25,7 @@ const SchemeList: InterfaceScheme[] = [{
     list: [0, 1, 2, 3, 6]
 }, {
     id: 5,
-    groupName: '突破',
-    schemeName: '个人突破_打三刷新',
-    star: false,
+    schemeName: '个人突破',
     list: [0, 1, 2, 3, 7, 10, 8, 9, 11],
     config: {
         '8': {
@@ -42,8 +40,7 @@ const SchemeList: InterfaceScheme[] = [{
 }, {
     id: 5,
     schemeName: '个人突破_降级',
-    groupName: "突破",
-    star: false,
+    star: true,
     list: [0, 1, 2, 3, 8, 9, 10, 11],
     config: {
         '0': {
@@ -67,13 +64,14 @@ const SchemeList: InterfaceScheme[] = [{
     }
 }, {
     id: 5,
-    groupName: "突破",
-    schemeName: "个突_打九",
+    schemeName: "个突_9退4_进攻",
+    groupName: "个突9退4",
     star: true,
     list: [0, 1, 2, 3, 8, 9, 10],
     config: {
         "0": {
-            jspd_enabled_longtime_nodo: false,
+            scheme_switch_enabled: true,
+            next_scheme: "个突_9退4_退出"
         },
         "3": { type: "关闭" },
         "8": {
@@ -83,22 +81,24 @@ const SchemeList: InterfaceScheme[] = [{
         },
         "9": {
             priority: "4->5->3->2->1->0",
-            scheme_switch_enabled: true,
+            scheme_switch_enabled: true
         },
         "10": { type: "个人突破" }
+    },
+    commonConfig: { // 通用参数
+        "multiColorSimilar": 97
     }
 }, {
     id: 5,
-    schemeName: "个突_退四",
-    groupName: "突破",
-    star: false,
+    schemeName: "个突_9退4_退出",
+    groupName: "个突9退4",
     list: [0, 1, 2, 3, 8, 9, 10],
     config: {
         "0": {
             jspd_enabled_2: true,
             jspd_times_2: "4",
             scheme_switch_enabled: true,
-            next_scheme: "个突_打九",
+            next_scheme: "个突_9退4_进攻",
         },
         "1": { exitBeforeReady: true },
         "2": { rechallenge: true },
@@ -109,11 +109,13 @@ const SchemeList: InterfaceScheme[] = [{
         },
         "9": { priority: "0->1->2->3->4->5" },
         "10": { type: "个人突破" }
+    },
+    commonConfig: { // 通用参数
+        "multiColorSimilar": 97
     }
 }, {
     id: 6,
     schemeName: '寮突破',
-    groupName: "突破",
     star: true,
     list: [0, 1, 2, 3, 8, 9, 10, 12, 29],
     config: {
@@ -227,8 +229,7 @@ const SchemeList: InterfaceScheme[] = [{
     schemeName: '道馆',
     list: [0, 1, 2, 3, 32],
     star: true,
-},
-{
+}, {
     id: 22,
     schemeName: '秘闻',
     list: [0, 51, 1, 2, 3, 34],
@@ -464,102 +465,145 @@ const SchemeList: InterfaceScheme[] = [{
     groupName: '御魂奉纳',
     schemeName: '奉纳御魂_贪食鬼吃经验',
     list: [0, 301, 303],
+    star:true
 },
 {
     id: 48,
     groupName: '御魂奉纳',
     schemeName: '奉纳御魂_开始奉纳',
     list: [0, 2, 302],
-    config: {
-        '0': {
-            jspd_enabled_longtime_nodo: true,
-            jspd_times_longtime_nodo: 1,
-        }
-    }
 },
 {
     id: 99,
     schemeName: '伊吹之擂',
     list: [0, 3, 24, 99, 100],
 }, {
-    id: 100,
-    groupName: '活动',
-    schemeName: '活动_战场巡逻',
-    list: [0, 1, 2, 3, 101]
-}, {
-    id: 101,
-    groupName: '活动',
-    schemeName: '活动_战场探索',
-    list: [0, 3, 24, 102, 103, 104]
-}, {
-    id: 102,
-    groupName: '活动',
-    schemeName: '活动_前线作战',
-    list: [0, 1, 2, 3, 24, 105, 106],
+    id: 0,
+    groupName: "老版突破内容",
+    schemeName: '个人突破_卡级_进攻',
+    list: [0, 1, 2, 3, 10, 7, 8, 9, 11],
     config: {
-        '1': {
-            greenType: '自定义坐标',
-            greenPosition: '628,511'
-        } // 左3随缘
+        '0': {
+            jspd_enabled_1: true,
+            jspd_times_1: 2,
+            scheme_switch_enabled: true,
+            next_scheme: '个人突破_卡级_退出'
+        },
+        '8': {
+            count: '2',
+            afterCountOper: '停止脚本',
+            type: '个人突破'
+        },
+        '10': {
+            type: '个人突破'
+        }
     }
 }, {
-    id: 103,
-    groupName: '活动',
-    schemeName: '活动_不朽之木_三途轮回',
-    list: [0, 1, 2, 3, 24, 107],
-}, {
-    id: 104,
-    groupName: '活动',
-    schemeName: '流火之擂',
-    list: [0, 1, 2, 3, 30, 109, 110],
-}, {
-    id: 105,
-    groupName: '活动',
-    schemeName: '红叶行狩',
-    list: [0, 1, 2, 3, 24, 111],
-}, {
-    id: 106,
-    groupName: '活动',
-    schemeName: '活动_梦境徊游',
-    list: [0, 1, 2, 3, 112]
-}, {
-    id: 107,
-    groupName: '活动',
-    schemeName: '活动_梦旅竞速',
-    list: [0, 3, 113, 114]
-}, {
-    id: 108,
-    groupName: '活动',
-    schemeName: '活动_风暴试炼',
-    list: [0, 1, 2, 3, 24, 115, 116]
-}, {
-    id: 109,
-    groupName: '活动',
-    schemeName: '化四季_小怪',
-    list: [0, 1, 2, 3, 24, 117]
-}, {
-    id: 110,
-    groupName: '活动',
-    schemeName: '化四季_boss',
-    list: [0, 1, 2, 3, 24, 118]
-}, {
-    id: 111,
-    groupName: '活动',
-    schemeName: '镜守云归_雪寺匿踪',
-    star: true,
-    list: [0, 1, 2, 3, 24, 119]
-}, {
-    id: 112,
-    groupName: '活动',
-    schemeName: '月烬宵宴_伴星歌',
-    star: true,
-    list: [0, 1, 2, 3, 24, 120]
-}, {
-    id: 113,
-    groupName: '活动',
-    schemeName: '月烬宵宴_伪月落',
-    star: true,
-    list: [0, 1, 2, 3, 24, 121]
+    id: 0,
+    groupName: "老版突破内容",
+    schemeName: '个人突破_卡级_退出',
+    list: [0, 1, 2, 3, 8, 9, 10, 11],
+    config: {
+        '0': {
+            jspd_enabled_1: true,
+            jspd_times_1: 1,
+            scheme_switch_enabled: true,
+            next_scheme: '个人突破_卡级_进攻'
+        },
+        '1': {
+            exitBeforeReady: true
+        },
+        '8': {
+            count: '2',
+            afterCountOper: '停止脚本',
+            type: '个人突破'
+        },
+        '9': {
+            priority: '0->1->2->3->4->5'
+        },
+        '10': {
+            type: '个人突破'
+        }
+    }
+    // }, {
+    //     id: 100,
+    //     groupName: '活动',
+    //     schemeName: '活动_战场巡逻',
+    //     list: [0, 1, 2, 3, 101]
+    // }, {
+    //     id: 101,
+    //     groupName: '活动',
+    //     schemeName: '活动_战场探索',
+    //     list: [0, 3, 24, 102, 103, 104]
+    // }, {
+    //     id: 102,
+    //     groupName: '活动',
+    //     schemeName: '活动_前线作战',
+    //     list: [0, 1, 2, 3, 24, 105, 106],
+    //     config: {
+    //         '1': {
+    //             greenType: '自定义坐标',
+    //             greenPosition: '628,511'
+    //         } // 左3随缘
+    //     }
+    // }, {
+    //     id: 103,
+    //     groupName: '活动',
+    //     schemeName: '活动_不朽之木_三途轮回',
+    //     list: [0, 1, 2, 3, 24, 107],
+    // }, {
+    //     id: 104,
+    //     groupName: '活动',
+    //     schemeName: '流火之擂',
+    //     list: [0, 1, 2, 3, 30, 109, 110],
+    // }, {
+    //     id: 105,
+    //     groupName: '活动',
+    //     schemeName: '红叶行狩',
+    //     list: [0, 1, 2, 3, 24, 111],
+    // }, {
+    //     id: 106,
+    //     groupName: '活动',
+    //     schemeName: '活动_梦境徊游',
+    //     list: [0, 1, 2, 3, 112]
+    // }, {
+    //     id: 107,
+    //     groupName: '活动',
+    //     schemeName: '活动_梦旅竞速',
+    //     list: [0, 3, 113, 114]
+    // }, {
+    //     id: 108,
+    //     groupName: '活动',
+    //     schemeName: '活动_风暴试炼',
+    //     list: [0, 1, 2, 3, 24, 115, 116]
+    // }, {
+    //     id: 109,
+    //     groupName: '活动',
+    //     schemeName: '化四季_小怪',
+    //     list: [0, 1, 2, 3, 24, 117]
+    // }, {
+    //     id: 110,
+    //     groupName: '活动',
+    //     schemeName: '化四季_boss',
+    //     list: [0, 1, 2, 3, 24, 118]
+    // }, {
+    //     id: 111,
+    //     groupName: '活动',
+    //     schemeName: '镜守云归_雪寺匿踪',
+    //     star: true,
+    //     list: [0, 1, 2, 3, 24, 119]
+    // }, {
+    //     id: 112,
+    //     groupName: '活动',
+    //     schemeName: '月烬宵宴_伴星歌',
+    //     star: true,
+    //     list: [0, 1, 2, 3, 24, 120]
+    // }, {
+    //     id: 113,
+    //     groupName: '活动',
+    //     schemeName: '月烬宵宴_伪月落',
+    //     star: true,
+    //     list: [0, 1, 2, 3, 24, 121]
 }
     // 完整demo
     // , {

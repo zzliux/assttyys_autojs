@@ -481,6 +481,11 @@ export const versionList = [{
 }, {
     version: '20230215_02',
     desc: '修复：游戏更新导致准备功能无法从手动切换为自动'
+}, {
+    version: '20230216_01',
+    desc: `增加：从式神录进入御魂界面；
+优化：“突破_9退4_进攻”可识别到攻打第一排第一列结界则切换方案；
+优化：隐藏了历史活动`
 }];
 
 export default versionList[versionList.length - 1].version;
