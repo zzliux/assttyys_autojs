@@ -21,7 +21,7 @@ export class Func301 implements InterfaceFuncOrigin {
       name: 'next_scheme',
       desc: '下一个方案',
       type: 'scheme',
-      default: '奉纳御魂',
+      default: '奉纳御魂_开始奉纳',
     }]
   }];
   operator: InterfaceFuncOperatorOrigin[] = [{
@@ -46,7 +46,7 @@ export class Func301 implements InterfaceFuncOrigin {
     ]
     ],
     oper: [
-      [center, 1280, 720, 820, 532, 978, 588, 1000]
+      [center, 1280, 720, 820, 532, 978, 588, 3000]
     ]
   }, {
     //贪食鬼
@@ -85,7 +85,6 @@ export class Func301 implements InterfaceFuncOrigin {
     ]
   }];
   operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
-    let complete = false;
     if (thisScript.oper({
       name: '右下角贪食鬼',
       operator: [{
@@ -99,9 +98,7 @@ export class Func301 implements InterfaceFuncOrigin {
         desc: thisOperator[1].desc,
         oper: thisOperator[1].oper,
       }]
-    })) {
-      sleep(2000)
-    }
+    })) { }
     if (thisScript.oper({
       name: '贪食鬼',
       operator: [{
