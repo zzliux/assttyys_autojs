@@ -101,13 +101,15 @@ export class helperBridge implements IhelperBridge {
     }
 
     // [[1119, 504, 1227, 592, 2000]]
-    regionClick(transedOper: [number, number, number, number, number][], randomSleep: number) {
+    // [[x1, y1, x2, y2, afterSleep, pressTimeout?]]
+    regionClick(transedOper: [number, number, number, number, number, number?][], randomSleep: number) {
         let self = this;
         transedOper.forEach(item => {
             if (item[0] >= 0) {
                 // let x = random(item[0], item[2]);
                 // let y = random(item[1], item[3]);
                 const [x, y] = getRegionBiasRnd(item, [strHashToNum(device.getAndroidId(), item[0], item[2]), strHashToNum(device.getAndroidId(), item[1], item[3])], 1);
+                const pressTimeout = item[5] ? random(item[5], item[5] + 50) : random(10, 60);
                 console.log(`执行点击操作 === x坐标:${x}, y坐标:${y}`);
                 if (drawFloaty.instacne) {
                     let toDraw = [{
@@ -120,7 +122,7 @@ export class helperBridge implements IhelperBridge {
                     drawFloaty.draw(toDraw, 300);
                     // sleep(500);
                 }
-                self.automator.press(x, y, random(10, 60));
+                self.automator.press(x, y, pressTimeout);
             } else {
                 console.log(`传入坐标信息为(${JSON.stringify(item)}), 不执行操作`);
             }
