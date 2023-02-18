@@ -374,7 +374,25 @@ export class Script {
                 console.log(`[${key}]第${i}个EX查找成功：${pointAll}`);
             }
         }
-        return ret;
+
+        // 过滤位置接近的结果
+        let ret2 = [];
+        for (let i = 0; i < ret.length; i++) {
+            let flag = true;
+            let p1 = ret[i];
+            for (let j = i + 1; j < ret.length; j++) {
+                let p2 = ret[j];
+                // 两个点的距离小于30px表示相同点，过滤
+                if (Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2)) < 30) {
+                    flag = false;
+                    break;
+                }
+            }
+            if (flag) {
+                ret2.push(p1);
+            }
+        }
+        return ret2;
     };
 
 
