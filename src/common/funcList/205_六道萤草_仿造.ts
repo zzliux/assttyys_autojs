@@ -105,6 +105,7 @@ export class Func205 implements InterfaceFuncOrigin {
 				thisScript.helperBridge.regionClick([toClickRegion, thisOperator[0].oper[1], thisOperator[0].oper[3]], thisScript.scheme.commonConfig.afterClickDelayRandom);
 				thisScript.global.d6d[type][0]++;
 				console.log(`thisScript.global.d6d: ${JSON.stringify(thisScript.global.d6d)}`);
+				thisScript.myToast(`当前buff：${['腐草为萤', '妖力化身', '六道净化', '萤火之光'].map(name => name + ':' + thisScript.global.d6d[name][0]).join(', ')}`);
 			}
 			sleep(200);
 			return true;

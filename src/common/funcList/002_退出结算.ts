@@ -39,7 +39,6 @@ export class Func002 implements InterfaceFuncOrigin {
 		// 		[right, 1280, 720, 1104, 72, 1200, 528, 400, 5],
 		// 	]
 		// ],
-		notForCnt: true,
 	}, {
 		// 已打开的达摩，取点比较高
 		desc: [1280, 720,
