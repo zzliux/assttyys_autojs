@@ -40,6 +40,7 @@ export type globalRootType = {
     narrow_state: Record<string, boolean>,   //  狭间暗域状态
     liao_activity_page_flag: boolean,   //  寮活动翻页标记
     banquet_change_flag: boolean,   //  宴会轮换开关标识
+    gateOfHades_state: boolean,     //  阴门状态
 }
 
 export const globalRoot: globalRootType = {
@@ -84,4 +85,5 @@ export const globalRoot: globalRootType = {
     narrow_state: undefined,
     liao_activity_page_flag: false,
     banquet_change_flag: false,
+    gateOfHades_state: false,
 }

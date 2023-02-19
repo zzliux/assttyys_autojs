@@ -144,14 +144,21 @@ export class Func507 implements InterfaceFuncOrigin {
 
 			if (thisScript.runtimeParams.liao_activity_state) {
 				thisScript.runtimeParams.liao_activity_state['hunt'] = true;
+
+				const next_scheme = '返回庭院';
+				thisScript.setCurrentScheme(next_scheme as string, {
+					next_scheme_name: '庭院进入寮每日活动',
+					liao_activity_state: thisScript.runtimeParams.liao_activity_state
+				});
+				thisScript.myToast(`切换方案为[${next_scheme}]`);
+				thisScript.rerun();
+			} else {
+				const next_scheme = '返回庭院';
+				thisScript.setCurrentScheme(next_scheme);
+				thisScript.myToast(`切换方案为[${next_scheme}]`);
+				thisScript.rerun();
 			}
-			const next_scheme = '返回庭院';
-			thisScript.setCurrentScheme(next_scheme as string, {
-				next_scheme_name: '庭院进入寮每日活动',
-				liao_activity_state: thisScript.runtimeParams.liao_activity_state
-			});
-			thisScript.myToast(`切换方案为[${next_scheme}]`);
-			thisScript.rerun();
+
 		}
 		return false;
 	}

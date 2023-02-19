@@ -353,8 +353,14 @@ const SchemeList: InterfaceScheme[] = [{
     list: [0, 1, 2, 3, 507]
 }, {
     id: 34,
-    schemeName: '庭院进入寮每日活动',
-    list: [505, 506, 516]
+    schemeName: '庭院进入寮每日活动(自动)',
+    list: [3, 505, 506, 516],
+    config: {
+        "506": {
+            auto_switch_enabled: true,
+            gateOfHades_switch: false
+        }
+    }
 }, {
     id: 35,
     schemeName: "六道萤草",
@@ -472,6 +478,88 @@ const SchemeList: InterfaceScheme[] = [{
     groupName: '御魂奉纳',
     schemeName: '奉纳御魂_开始奉纳',
     list: [0, 2, 302],
+},
+{
+    id: 51,
+    schemeName: "定时任务-启动游戏-寮突",
+    star: true,
+    groupName: "定时任务",
+    list: [993],
+    config: {
+        "993": {
+            area: "",
+            package_name: "com.netease.onmyoji",
+            is_shutdown_the_game_before: true,
+            next_scheme: "寮突破"
+        }
+    },
+},
+{
+    id: 52,
+    schemeName: "定时任务-启动游戏-地鬼",
+    star: true,
+    groupName: "定时任务",
+    list: [993],
+    config: {
+        "993": {
+            area: "",
+            package_name: "com.netease.onmyoji",
+            is_shutdown_the_game_before: true,
+            next_scheme: "地鬼日常"
+        }
+    },
+},
+{
+    id: 53,
+    schemeName: '庭院进入寮每日活动(包含阴门)',
+    list: [3, 505, 506, 516],
+    config: {
+        "506": {
+            auto_switch_enabled: false,
+            gateOfHades_switch: true
+        }
+    }
+},
+{
+    id: 54,
+    schemeName: '庭院进入寮每日活动(不包含阴门)',
+    list: [3, 505, 506, 516],
+    config: {
+        "506": {
+            auto_switch_enabled: false,
+            gateOfHades_switch: false
+        }
+    }
+},
+{
+    id: 55,
+    schemeName: "定时任务-启动游戏-庭院进入寮每日活动(包含阴门)",
+    star: true,
+    groupName: "定时任务",
+    list: [993],
+    config: {
+        "993": {
+            area: "",
+            package_name: "com.netease.onmyoji",
+            is_shutdown_the_game_before: true,
+            next_scheme: "庭院进入寮每日活动(包含阴门)"
+        }
+    },
+},
+{
+    id: 56,
+    schemeName: "定时任务-启动游戏-庭院进入寮每日活动(不包含阴门)",
+    star: true,
+    groupName: "定时任务",
+    list: [993],
+    config: {
+        "993": {
+            area: "",
+            package_name: "com.netease.onmyoji",
+            is_shutdown_the_game_before: true,
+            next_scheme: "庭院进入寮每日活动(不包含阴门)"
+        }
+    },
 },
 {
     id: 99,
