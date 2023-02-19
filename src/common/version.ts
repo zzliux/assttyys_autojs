@@ -488,7 +488,10 @@ export const versionList = [{
 优化：隐藏了历史活动`
 }, {
     version: '20230219_01',
-    desc: '优化：六道莹草buff统计使用获得奖励界面统计（手选buff与开箱子buff均能统计进来了）'
+    desc: '优化：六道莹草buff统计使用获得奖励界面统计（手选buff与开箱子buff均能统计进来了），需启用208'
+}, {
+    version: '20230219_02',
+    desc: '修复：退出结算使用左上角贪吃鬼图标判时的计次错误的问题'
 }];
 
 export default versionList[versionList.length - 1].version;

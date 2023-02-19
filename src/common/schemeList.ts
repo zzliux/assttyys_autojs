@@ -358,7 +358,7 @@ const SchemeList: InterfaceScheme[] = [{
 }, {
     id: 35,
     schemeName: "六道萤草",
-    list: [0, 1, 2, 3, 24, 201, 202, 203, 207, 204, 205, 206],
+    list: [0, 1, 2, 3, 24, 201, 202, 203, 207, 204, 205, 206, 208],
     commonConfig: {
         loopDelay: 200,
         afterClickDelayRandom: 200,
