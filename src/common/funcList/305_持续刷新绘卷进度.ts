@@ -9,7 +9,7 @@ const right = 2;
 export class Func305 implements InterfaceFuncOrigin {
   id = 305;
   name = '持续刷新绘卷进度';
-  desc: '自动刷新绘卷进度'
+  desc = '自动刷新绘卷进度'
   config = [{
     desc: '详细设置',
     config: [{
@@ -40,15 +40,15 @@ export class Func305 implements InterfaceFuncOrigin {
       [center, 1280, 720, 126, 378, 450, 606, 500],//卷4
       [center, 1280, 720, 476, 378, 801, 605, 500],//卷5
       [center, 1280, 720, 826, 379, 1146, 605, 500],//卷6
-      [center, 1280, 720, 1188,290, 1224,402, 500],//排行榜
+      [center, 1280, 720, 1188, 290, 1224, 402, 500],//排行榜
     ]
   }, {//1,绘卷进度界面
-    desc: [1280,720,
-      [[left,43,50,0x393735],
-      [center,637,64,0x946d52],
-      [center,604,652,0x946d52],
-      [right,1161,67,0xefcbce]]
-      ],
+    desc: [1280, 720,
+      [[left, 43, 50, 0x393735],
+      [center, 637, 64, 0x946d52],
+      [center, 604, 652, 0x946d52],
+      [right, 1161, 67, 0xefcbce]]
+    ],
     oper: [
       [center, 1280, 720, 1151, 54, 1175, 79, 500],//红色关闭
     ]
@@ -62,7 +62,7 @@ export class Func305 implements InterfaceFuncOrigin {
       name: '绘卷界面',
       operator: [{
         desc: thisOperator[0].desc,
-        oper: [thisOperator[0].oper[emaki],thisOperator[0].oper[6]]
+        oper: [thisOperator[0].oper[emaki], thisOperator[0].oper[6]]
       }]
     })) {
       let cdWaiteTimePair = String(thisconf.cdWaitTime).split(',');
