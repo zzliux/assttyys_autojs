@@ -157,6 +157,9 @@ export class Func302 implements InterfaceFuncOrigin {
         thisScript.rerun();
         sleep(3000);
         return;
+      }else{
+        thisScript.doOspPush(thisScript, { text: '奉纳结束或未正确使用，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+				thisScript.stop();
       }
     }
     return true;

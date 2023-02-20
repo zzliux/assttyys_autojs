@@ -17,6 +17,16 @@ export class Func002 implements InterfaceFuncOrigin {
 			desc: '失败点击重新挑战',
 			type: 'switch',
 			default: false,
+		}, {
+			name: 'no_sushi_switch_enabled',
+			desc: '当体力不足时切换方案',
+			type: 'switch',
+			default: false,
+		}, {
+			name: 'next_scheme',
+			desc: '下一个方案',
+			type: 'scheme',
+			default: '关闭BUFF',
 		}]
 	}];
 	operator: InterfaceFuncOperatorOrigin[] = [{
@@ -299,6 +309,16 @@ export class Func002 implements InterfaceFuncOrigin {
 		oper: [
 			[center, 1280, 720, 535, 674, 743, 709, 1000],
 		]
+	}, {//体力不足
+		desc: [1280, 720,
+			[[center, 586, 471, 0xf7b263],
+			[center, 590, 362, 0xfa8f38],
+			[center, 670, 366, 0x272420],
+			[center, 645, 214, 0xf8f3e0]]
+		],
+		oper: [
+			[center, 1280, 720, 916, 179, 951, 211, 1000]
+		]
 	}, {
 		// 单人-失败太鼓
 		desc: [1280, 720,
@@ -317,12 +337,29 @@ export class Func002 implements InterfaceFuncOrigin {
 		retest: 800,
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
-		if (thisScript.scheme.config['2'].rechallenge && thisScript.oper({
+		let thisconf = thisScript.scheme.config['2'];
+		if (thisconf && thisconf.rechallenge && thisScript.oper({
 			id: 2,
 			name: '退出结算_重新挑战',
 			operator: thisOperator.slice(-1)
 		})) {
 			return true;
+		}
+		if (thisScript.oper({
+			id: 2,
+			name: '体力不足',
+			operator: thisOperator.slice(-2)
+		})) {
+			if (thisconf && thisconf.no_sushi_switch_enabled) {
+				thisScript.setCurrentScheme(thisconf.next_scheme as string);
+				thisScript.myToast(`切换方案为[${thisconf.next_scheme}]`);
+				thisScript.rerun();
+				sleep(3000);
+				return;
+			} else if (thisconf && !thisconf.no_sushi_switch_enabled) {
+				thisScript.doOspPush(thisScript, { text: '体力不够已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+				thisScript.stop();
+			}
 		}
 		return thisScript.oper({
 			id: 2,

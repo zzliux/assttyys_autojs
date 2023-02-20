@@ -465,13 +465,26 @@ const SchemeList: InterfaceScheme[] = [{
     groupName: '御魂奉纳',
     schemeName: '奉纳御魂_贪食鬼吃经验',
     list: [0, 301, 303],
-    star:true
+    star: true
 },
 {
     id: 48,
     groupName: '御魂奉纳',
     schemeName: '奉纳御魂_开始奉纳',
     list: [0, 2, 302],
+},
+{
+    id: 49,
+    groupName: '绘卷进度检测',
+    schemeName: '绘卷进度_检测并提醒',
+    list: [0, 304],
+    star:true
+},
+{
+    id: 50,
+    groupName: '绘卷进度检测',
+    schemeName: '绘卷进度_持续查询进度',
+    list: [0, 305],
 },
 {
     id: 99,
