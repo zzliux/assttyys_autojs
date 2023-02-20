@@ -9,7 +9,7 @@ const right = 2;
 export class Func304 implements InterfaceFuncOrigin {
   id = 304;
   name = '检测绘卷进度';
-  desc: '达到进度即osp推送，搭配Takser食用更佳（ASSTTYYS用户操作手册有说明），使用该功能需安装OCR扩展'
+  desc = '达到进度即osp推送，搭配Takser食用更佳（ASSTTYYS用户操作手册304功能有说明），使用该功能需安装OCR扩展'
   config = [{
     desc: '详细设置',
     config: [{
