@@ -119,11 +119,12 @@ export class Func304 implements InterfaceFuncOrigin {
           let cdWaitTime = random(parseInt(cdWaiteTimePair[0]), parseInt(cdWaiteTimePair[1]));
           thisScript.myToast(`绘卷刷新CD, ${(cdWaitTime)}秒后再次检测`);
           sleep(1000 * (cdWaitTime));
+          return;
         }
         thisScript.helperBridge.regionClick(thisOperator[1].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
       }
     }
-    return true;
+    return false;
   }
 }
 

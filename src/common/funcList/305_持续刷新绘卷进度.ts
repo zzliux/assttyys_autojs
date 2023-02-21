@@ -77,7 +77,7 @@ export class Func305 implements InterfaceFuncOrigin {
         oper: thisOperator[1].oper,
       }]
     })) { }
-    return true;
+    return false;
   }
 }
 

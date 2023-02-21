@@ -162,6 +162,6 @@ export class Func302 implements InterfaceFuncOrigin {
 				thisScript.stop();
       }
     }
-    return true;
+    return false;
   }
 }
