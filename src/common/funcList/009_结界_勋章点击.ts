@@ -32,7 +32,7 @@ export class Func009 implements InterfaceFuncOrigin {
 		}
 		]
 	}];
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: InterfaceFuncOperatorOrigin[] = [{//0,
 		desc: [1280, 720,
 			[[center, 171, 104, 0x4a3624],
 			[center, 564, 89, 0x5e4735],
@@ -44,7 +44,7 @@ export class Func009 implements InterfaceFuncOrigin {
 		oper: [
 			[left, 1280, 720, 30, 10, 160, 80, 500]
 		]
-	}, {
+	}, {//1,
 		desc: [1280, 720,
 			[[center, 570, 290, 0xded8ca],
 			[center, 786, 293, 0xdfd7cb],
@@ -54,6 +54,18 @@ export class Func009 implements InterfaceFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 492, 289, 783, 385, 500]
+		]
+	}, {//2,第一排第一列结界坐标
+		desc: [1280, 720,
+			[[center, 171, 104, 0x4a3624],
+			[center, 564, 89, 0x5e4735],
+			[center, 718, 92, 0x583716],
+			[center, 728, 86, 0xdebc56],
+			[center, 1210, 130, 0xebdac9],
+			[center, 1076, 104, 0x4d3826]]
+		],
+		oper: [
+			[left, 1280, 720, 147, 146, 465, 265, 500]
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
@@ -90,11 +102,10 @@ export class Func009 implements InterfaceFuncOrigin {
 						// point.x,
 						// point.y,
 						thisOperator[0].oper[0][4]]];
+					console.log(thisOperator[2].oper[0]);
 					thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
-					//第一排第一列结界坐标
-					let fristFirstOper = [147, 146, 465, 265];
 					let thisconf = thisScript.scheme.config['9'];
-					if (Number(oper[0][0]) > fristFirstOper[0] && Number(oper[0][1]) > fristFirstOper[1] && Number(oper[0][2]) < fristFirstOper[2] && Number(oper[0][3]) < fristFirstOper[3]) {
+					if (Number(oper[0][0]) > Number(oper[2][0]) && Number(oper[0][1]) > Number(oper[2][1]) && Number(oper[0][2]) < Number(oper[2][2]) && Number(oper[0][3]) < Number(oper[2][3])) {
 						console.log("检测点击范围在第一排第一列结界内");
 						if (thisconf && thisconf.scheme_switch_enabled) {
 							thisScript.setCurrentScheme(thisconf.next_scheme as string);

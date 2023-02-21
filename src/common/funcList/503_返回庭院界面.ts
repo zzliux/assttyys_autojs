@@ -209,13 +209,23 @@ export class Func503 implements InterfaceFuncOrigin {
 				[
 					[left, 1280, 720, 31, 37, 69, 80, 1200]	//	点击返回
 				]
+		}, {	//式神录
+			desc: [1280, 720,
+				[[left, 114, 15, 0xaf8c56],
+				[left, 155, 29, 0xaf8c56],
+				[left, 183, 22, 0xae8b55],
+				[right, 1268, 16, 0x312421]]
+			],
+			oper: [
+				[center, 1280, 720, 21, 9, 59, 43, 1000],
+			]
 		}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['503'];
 
 		if (thisScript.oper({
 			name: '返回庭院',
-			operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[5], thisOperator[6], thisOperator[7], thisOperator[10], thisOperator[11], thisOperator[14], thisOperator[15]]
+			operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[5], thisOperator[6], thisOperator[7], thisOperator[10], thisOperator[11], thisOperator[14], thisOperator[15], thisOperator[16]]
 		})) {
 			return true;
 		}
