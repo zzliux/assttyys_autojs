@@ -72,6 +72,11 @@ export class Func512 implements InterfaceFuncOrigin {
 				});
 				thisScript.myToast(`切换方案为[${next_scheme}]`);
 				thisScript.rerun();
+			} else {
+				const next_scheme = '返回庭院';
+				thisScript.setCurrentScheme(next_scheme);
+				thisScript.myToast(`切换方案为[${next_scheme}]`);
+				thisScript.rerun();
 			}
 
 		}

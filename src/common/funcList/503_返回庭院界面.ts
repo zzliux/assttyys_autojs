@@ -69,7 +69,7 @@ export class Func503 implements InterfaceFuncOrigin {
 			oper: [
 				[right, 1280, 720, 1124, 75, 1163, 103, 1000]
 			]
-		}, {	// 旧版町中界面
+		}, {	// 5 旧版町中界面
 			desc: [1280, 720,
 				[[right, 1067, 221, 0xb5aaad],
 				[right, 1054, 321, 0x989694],
@@ -124,7 +124,7 @@ export class Func503 implements InterfaceFuncOrigin {
 					[center, 389, 65, 0xfbc573],
 					[right, 1207, 637, 0xdfd1cb]]
 				]
-		}, {	// 页面是否为庭院(菜单已展开) 只支持默认庭院皮肤与默认装饰
+		}, {	// 10 页面是否为庭院(菜单已展开) 只支持默认庭院皮肤与默认装饰
 			desc:
 				[1280, 720,
 					[[right, 1226, 47, 0xcda47a],
@@ -176,7 +176,7 @@ export class Func503 implements InterfaceFuncOrigin {
 						[center, 673, 651, 0xdb8b3f],
 					]
 				],
-		}, {	// 判断_阴阳寮成就页
+		}, {	// 15 判断_阴阳寮成就页
 			desc:
 				[
 					1280, 720,

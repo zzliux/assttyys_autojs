@@ -236,6 +236,9 @@ export class Func202 implements InterfaceFuncOrigin {
 					thisScript.myToast(`未找到${priorty[0]}`);
 					sleep(500);
 					return false;
+				} else if (thisScript.global.d6d['腐草为萤'][0] === 0 && type === '腐草为萤') {
+					// 如果是开局的腐草不会弹获得奖励，需要手工统计
+					thisScript.global.d6d['腐草为萤'][0] = 1;
 				}
 				// 找到了就点
 				thisScript.myToast(`选择${type}`);
@@ -249,21 +252,21 @@ export class Func202 implements InterfaceFuncOrigin {
 				thisScript.helperBridge.regionClick([toClickRegion], thisScript.scheme.commonConfig.afterClickDelayRandom);
 				// 如果有确认奖励就能很快的跳出
 				thisScript.compareColorLoop(thisOperator[3].desc, 1500);
-				if (thisScript.global.d6d[type][0] === 0) {
-					thisScript.global.d6LoadBuff = true;
-				}
-				thisScript.global.d6d[type][0]++;
+				// if (thisScript.global.d6d[type][0] === 0) {
+				// 	thisScript.global.d6LoadBuff = true;
+				// }
+				// thisScript.global.d6d[type][0]++;
 				// 拿到所有buff后再装buff
-				if (thisScript.global.d6LoadBuff) {
-					let hasCnt = 0;
-					['腐草为萤', '妖力化身', '六道净化', '萤火之光'].forEach(name => hasCnt += Math.min(thisScript.global.d6d[name][0], 1));
-					if (hasCnt < 4) thisScript.global.d6LoadBuff = false;
-				}
-				if (thisScript.global.d6LoadBuff) {
-					thisScript.myToast('准备装buff');
-				}
+				// if (thisScript.global.d6LoadBuff) {
+				// 	let hasCnt = 0;
+				// 	['腐草为萤', '妖力化身', '六道净化', '萤火之光'].forEach(name => hasCnt += Math.min(thisScript.global.d6d[name][0], 1));
+				// 	if (hasCnt < 4) thisScript.global.d6LoadBuff = false;
+				// }
+				// if (thisScript.global.d6LoadBuff) {
+				// 	thisScript.myToast('准备装buff');
+				// }
+				// thisScript.myToast(`当前buff：${['腐草为萤', '妖力化身', '六道净化', '萤火之光'].map(name => name + ':' + thisScript.global.d6d[name][0]).join(', ')}`);
 				thisScript.global.d6RefreshCnt = 0;
-				thisScript.myToast(`当前buff：${['腐草为萤', '妖力化身', '六道净化', '萤火之光'].map(name => name + ':' + thisScript.global.d6d[name][0]).join(', ')}`);
 			}
 			return true;
 		}

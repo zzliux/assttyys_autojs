@@ -115,6 +115,27 @@ export class Func513 implements InterfaceFuncOrigin {
                         }]
                     });
                 }
+            } else {
+                if (thisScript.global.gateOfHades_state) {
+                    thisScript.oper({
+                        name: '检测_退出阴门',
+                        operator: [{
+                            oper: [thisOperator[0].oper[1]]
+                        }]
+                    });
+                    sleep(1200);
+                    const next_scheme = '返回庭院';
+                    thisScript.setCurrentScheme(next_scheme);
+                    thisScript.myToast(`切换方案为[${next_scheme}]`);
+                    thisScript.rerun();
+                } else {
+                    return thisScript.oper({
+                        name: '检测_进入阴门挑战',
+                        operator: [{
+                            oper: [thisOperator[0].oper[0]]
+                        }]
+                    });
+                }
             }
 
             return false;
@@ -141,6 +162,7 @@ export class Func513 implements InterfaceFuncOrigin {
             if (thisScript.runtimeParams && thisScript.runtimeParams.liao_activity_state) {
                 thisScript.runtimeParams.liao_activity_state['gateOfHades'] = true;
             }
+            thisScript.global.gateOfHades_state = true;
         }
         return false;
     }

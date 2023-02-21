@@ -91,10 +91,10 @@ export class Func1000 implements InterfaceFuncOrigin {
 			if (point1) {
 				console.log(`查找举高高成功`);
 				let oper = [[
-					point1.x - 1,
-					point1.y - 1,
-					point1.x + 1,
-					point1.y + 1,
+					point1.x,
+					point1.y,
+					point1.x,
+					point1.y,
 					120
 				]];
 				thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
@@ -158,6 +158,11 @@ export class Func1000 implements InterfaceFuncOrigin {
 					next_scheme_name: '庭院进入寮每日活动',
 					liao_activity_state: thisScript.runtimeParams.liao_activity_state
 				});
+				thisScript.myToast(`切换方案为[${next_scheme}]`);
+				thisScript.rerun();
+			} else {
+				const next_scheme = '返回庭院';
+				thisScript.setCurrentScheme(next_scheme);
 				thisScript.myToast(`切换方案为[${next_scheme}]`);
 				thisScript.rerun();
 			}

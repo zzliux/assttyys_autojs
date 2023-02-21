@@ -135,20 +135,6 @@ export class Func203 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 708, 246, 766, 365, 500],
 		]
 	}, {
-		// 选buff后的获得奖励确认，颜色比较近，可能会有误判断的情况
-		desc: [1280, 720,
-			[
-				[center, 554, 142, 0xfede96],
-				[center, 622, 143, 0xf7e691],
-				[center, 745, 181, 0xffeeaa],
-				[center, 583, 184, 0xf6e6b4],
-				[center, 635, 192, 0xeacd7e],
-			]
-		],
-		oper: [
-			[right, 1280, 720, 913, 129, 1245, 648, 500],
-		]
-	}, {
 		// 转换成功确认
 		desc: [1280, 720,
 			[
@@ -360,7 +346,8 @@ export class Func203 implements InterfaceFuncOrigin {
 			const cost = ((now - thisScript.global.d6dBegin) / 1000 / 60).toFixed(2); // 分
 			const costAvg = Math.floor((now - thisScript.global.d6dBegin) / 1000 / (thisScript.global.times || 0)) // 秒
 			// 中途进入的不计次
-			let toLog = `通关次数: ${thisScript.global.times || 0}次, 本次通关时间: ${currentCost}秒, 平均通关时间: ${costAvg}秒, 总通关时间: ${cost}分`;
+			const bufLog = `本局buff：${['腐草为萤', '妖力化身', '六道净化', '萤火之光'].map(name => name + ':' + thisScript.global.d6d[name][0]).join(', ')}`;
+			let toLog = `${bufLog}。通关次数: ${thisScript.global.times || 0}次, 本次通关时间: ${currentCost}秒, 平均通关时间: ${costAvg}秒, 总通关时间: ${cost}分`;
 			thisScript.myToast(toLog);
 			if (thisconf.overTimes && thisScript.global.times >= thisconf.overTimes) {
 				toLog = '脚本已停止，请查看。' + toLog;
