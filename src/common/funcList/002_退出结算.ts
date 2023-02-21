@@ -347,7 +347,7 @@ export class Func002 implements InterfaceFuncOrigin {
 		if (thisScript.oper({
 			id: 2,
 			name: '体力不足',
-			operator: thisOperator.slice(-2)
+			operator: thisOperator.slice(-2, -1)
 		})) {
 			if (thisconf && thisconf.no_sushi_switch_enabled) {
 				thisScript.setCurrentScheme(thisconf.next_scheme as string);
@@ -363,7 +363,7 @@ export class Func002 implements InterfaceFuncOrigin {
 		return thisScript.oper({
 			id: 2,
 			name: '退出结算',
-			operator: thisOperator.slice(0, -1)
+			operator: thisOperator.slice(0, -2)
 		});
 	}
 }

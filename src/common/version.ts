@@ -504,6 +504,9 @@ export const versionList = [{
 优化：“503_返回庭院界面”可从式神录界面返回
 优化：悬浮按钮的主页键删除。
 `
+}, {
+    version: '20230221_02',
+    desc: '修复：“9 结界_勋章点击”运行报错的问题。'
 }];
 
 export default versionList[versionList.length - 1].version;
