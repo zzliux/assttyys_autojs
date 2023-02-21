@@ -105,7 +105,7 @@ export class Func009 implements InterfaceFuncOrigin {
 					console.log(thisOperator[2].oper[0]);
 					thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
 					let thisconf = thisScript.scheme.config['9'];
-					if (Number(oper[0][0]) > Number(oper[2][0]) && Number(oper[0][1]) > Number(oper[2][1]) && Number(oper[0][2]) < Number(oper[2][2]) && Number(oper[0][3]) < Number(oper[2][3])) {
+					if (Number(oper[0][0]) > Number(thisOperator[2].oper[0][0]) && Number(oper[0][1]) > Number(thisOperator[2].oper[0][1]) && Number(oper[0][2]) < (thisOperator[2].oper[0][2]) && Number(oper[0][3]) < (thisOperator[2].oper[0][3])) {
 						console.log("检测点击范围在第一排第一列结界内");
 						if (thisconf && thisconf.scheme_switch_enabled) {
 							thisScript.setCurrentScheme(thisconf.next_scheme as string);
