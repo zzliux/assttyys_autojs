@@ -232,7 +232,7 @@ export class Func002 implements InterfaceFuncOrigin {
 		operStepRandom: [
 			[
 				[right, 1280, 720, 1217, 106, 1272, 700, 400, 5],
-				[left, 1280, 720, 76, 672, 1216, 712, 400, 5],
+				[left, 1280, 720, 600, 672, 1216, 712, 400, 5],
 			]
 		],
 		notForCnt: true,
