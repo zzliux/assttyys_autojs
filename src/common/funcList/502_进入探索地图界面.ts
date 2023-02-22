@@ -151,5 +151,21 @@ export class Func502 implements InterfaceFuncOrigin {
 		oper: [
 			[left, 1280, 720, 28, 20, 71, 62, 1000],
 		]
+	}, {
+		// 邀请好友取消
+		desc: [1280, 720,
+			[
+				[center, 485, 315, 0x413a33],
+				[center, 594, 314, 0x292621],
+				[center, 706, 314, 0x2c2823],
+				[center, 785, 316, 0x2c2823],
+				[center, 758, 435, 0xf7b263],
+				[center, 521, 433, 0xde6952]
+			]
+		],
+		oper: [
+			[center, 1280, 720, 550, 347, 730, 376, 300],
+			[center, 1280, 720, 452, 414, 587, 451, 1000],
+		]
 	}]
 }

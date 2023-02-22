@@ -263,7 +263,7 @@ const SchemeList: InterfaceScheme[] = [{
 }, {
     id: 26,
     schemeName: '关闭BUFF',
-    list: [1, 2, 3, 29, 40, 501, 502]
+    list: [502, 1, 2, 3, 29, 40, 501]
 }, {
     id: 27,
     schemeName: '开启BUFF_打探索',
@@ -490,7 +490,7 @@ const SchemeList: InterfaceScheme[] = [{
     groupName: '绘卷进度检测',
     schemeName: '绘卷进度_持续查询进度',
     list: [0, 305],
-},{
+}, {
     id: 51,
     schemeName: "定时任务-启动游戏-寮突",
     star: true,
