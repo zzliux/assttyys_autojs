@@ -9,21 +9,6 @@ export class Func220 implements InterfaceFuncOrigin {
 	id = 220;
 	name = '夜行荒河_杂项';
 	operator: InterfaceFuncOperatorOrigin[] = [{
-		// 匹配
-		desc: [1280, 720,
-			[
-				[right, 1201, 48, 0x725742],
-				[right, 1203, 134, 0x745944],
-				[left, 47, 46, 0xf5e4a2],
-				[right, 1165, 561, 0xd7c6a4],
-				[left, 356, 32, 0x282f57],
-				[right, 1208, 230, 0x735843],
-			]
-		],
-		oper: [
-			[right, 1280, 720, 1119, 560, 1214, 646, 1500],
-		]
-	}, {
 		// 结算
 		desc: [1280, 720,
 			[
@@ -71,22 +56,38 @@ export class Func220 implements InterfaceFuncOrigin {
 		oper: [
 			[center, 1280, 720, 132, 567, 1138, 682, 1000],
 		]
+	}, {
+		// 败2
+		desc: [
+			1280, 720,
+			[
+				[center, 762, 277, 0xe1e3d7],
+				[center, 780, 241, 0x5a6080],
+				[center, 618, 187, 0x221e1d],
+				[center, 502, 251, 0x5c6281],
+				[center, 515, 296, 0xc1c2b0],
+				[center, 918, 251, 0x2c3453],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 132, 567, 1138, 682, 1000],
+		]
 	}
-	// , {
-	// 	// 胜
-	// 	desc: [1280, 720,
-	// 		[
-	// 			[center, 484, 285, 0xd1a25d],
-	// 			[center, 616, 228, 0xa82926],
-	// 			[center, 678, 181, 0xc93e3c],
-	// 			[center, 761, 261, 0xa02b28],
-	// 			[center, 803, 249, 0xbb9a61],
-	// 			[center, 491, 238, 0xfdf5e5],
-	// 		]
-	// 	],
-	// 	oper: [
-	// 		[center, 1280, 720, 132, 567, 1138, 682, 1000],
-	// 	]
-	// }
+		// , {
+		// 	// 胜
+		// 	desc: [1280, 720,
+		// 		[
+		// 			[center, 484, 285, 0xd1a25d],
+		// 			[center, 616, 228, 0xa82926],
+		// 			[center, 678, 181, 0xc93e3c],
+		// 			[center, 761, 261, 0xa02b28],
+		// 			[center, 803, 249, 0xbb9a61],
+		// 			[center, 491, 238, 0xfdf5e5],
+		// 		]
+		// 	],
+		// 	oper: [
+		// 		[center, 1280, 720, 132, 567, 1138, 682, 1000],
+		// 	]
+		// }
 	];
 }

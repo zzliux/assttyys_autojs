@@ -2475,6 +2475,34 @@ const multiColor: InterfaceMultiColorOrigin = {
                 ]
             ]
         ]
+    },
+    "鬼城岐事_判定": {
+        // 优先上次选择
+        region: [right, 1280, 720, 787, 185, 1250, 620],
+        desc: [
+            // 上次选择
+            [
+                1280, 720,
+                [
+                    [center, 871, 267, 0x7d3533],
+                    [center, 1142, 332, 0x5a71aa],
+                    [center, 1216, 333, 0x38496b],
+                    [center, 912, 267, 0x913e3a],
+                    [center, 877, 328, 0xbc5349],
+                ]
+            ],
+            // 没有上次选择
+            [
+                1280, 720,
+                [
+                    [center, 868, 369, 0x7c3433],
+                    [center, 940, 367, 0xde9895],
+                    [center, 950, 373, 0xdf9996],
+                    [center, 877, 430, 0xbc5449],
+                    [center, 903, 430, 0xdb8683],
+                ]
+            ]
+        ]
     }
 }
 

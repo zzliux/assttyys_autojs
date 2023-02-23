@@ -388,7 +388,7 @@ const SchemeList: InterfaceScheme[] = [{
 }, {
     id: 39,
     schemeName: '夜行荒河',
-    list: [2, 3, 220]
+    list: [2, 3, 220, 221]
 }, {
     id: 40,
     schemeName: "定时任务-启动游戏-每日逢魔",
@@ -624,6 +624,12 @@ const SchemeList: InterfaceScheme[] = [{
             type: '个人突破'
         }
     }
+}, {
+    id: 100,
+    groupName: '活动',
+    schemeName: '活动_鬼城岐事',
+    list: [0, 1, 2, 3, 51, 123, 122]
+}
     // }, {
     //     id: 100,
     //     groupName: '活动',
@@ -703,7 +709,7 @@ const SchemeList: InterfaceScheme[] = [{
     //     schemeName: '月烬宵宴_伪月落',
     //     star: true,
     //     list: [0, 1, 2, 3, 24, 121]
-}
+    // }
     // 完整demo
     // , {
     //     id: 2,

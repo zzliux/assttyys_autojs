@@ -511,6 +511,13 @@ export const versionList = [{
     version: '20230223_01',
     desc: `尝试修复：退出结算时点击到加成的问题；
 优化：“502_进入探索地图界面”中组队邀请确认可点击取消`
+}, {
+    version: '20230223_02',
+    desc: '修复：修改方案名、排序等操作会重置已修改过的方案的问题'
+}, {
+    version: '20230223_03',
+    desc: `新增：活动方案鬼城岐事及相关功能；
+优化：夜行荒河适配本次活动`
 }];
 
 export default versionList[versionList.length - 1].version;
