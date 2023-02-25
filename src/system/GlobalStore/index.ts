@@ -34,13 +34,16 @@ export type globalRootType = {
     back_courtyard_to_next_scheme: string,
     fm_kiss_boss_flag: boolean, //  逢魔 是否已击杀首领
     change_shikigami_flag: boolean, //  更换式神
-    change_shikigami_state: 'flushed' | 'search_group'  | 'search_default' | 'change_team_default_1' | 'change_team_default_2' | 'finish', //  跟换式神预设状态值
+    change_shikigami_state: 'flushed' | 'search_group' | 'search_default' | 'change_team_default_1' | 'change_team_default_2' | 'finish', //  跟换式神预设状态值
     change_shikigami_list_swipe_times: number,
     change_shikigami_last_group_name: string,   //  式神录预设分组最后一项的名称
     narrow_state: Record<string, boolean>,   //  狭间暗域状态
     liao_activity_page_flag: boolean,   //  寮活动翻页标记
     banquet_change_flag: boolean,   //  宴会轮换开关标识
     gateOfHades_state: boolean,     //  阴门状态
+    team_up_lagTime: null | Date,    //组队延时
+    team_up_Frist: boolean,  //首次组队
+
 }
 
 export const globalRoot: globalRootType = {
@@ -86,4 +89,6 @@ export const globalRoot: globalRootType = {
     liao_activity_page_flag: false,
     banquet_change_flag: false,
     gateOfHades_state: false,
+    team_up_lagTime: null,
+    team_up_Frist: true,
 }

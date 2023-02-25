@@ -17,7 +17,7 @@ export class Func035 implements InterfaceFuncOrigin {
 			[right, 1175, 680, 0xb08e7d]]
 		],
 		oper: [
-			[left, 1280, 720, 0, 0, 32, 63, 1000]
+			[right, 1280, 720, 1168, 592, 1230, 690, 1200]
 		]
 	}, { // 庭院已打开菜单
 		desc: [1280, 720,

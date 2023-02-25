@@ -7,7 +7,7 @@ const right = 2;
 export class Func501 implements InterfaceFuncOrigin {
 	id = 501;
 	name = '打开BUFF界面';
-	desc = '支持从探索地图、庭院打开buff界面';
+	desc = '支持从探索地图、庭院、组队打开buff界面';
 	operator: InterfaceFuncOperatorOrigin[] = [{
 		// 探索地图打开buff界面
 		desc: [1280, 720,
@@ -133,6 +133,17 @@ export class Func501 implements InterfaceFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 359, 45, 396, 74, 1500]
+		]
+	}, {
+		// 组队界面
+		desc: [1280, 720,
+			[[center, 642, 3, 0x101011],
+			[left, 42, 38, 0xf7e8aa],
+			[center, 641, 52, 0x080c0a],
+			[center, 648, 571, 0x422c29]]
+		],
+		oper: [
+			[center, 1280, 720, 799, 38, 828, 76, 1500]
 		]
 	}]
 }
