@@ -751,7 +751,11 @@ for (let i = 0; i < funcList.length; i++) {
     }
 }
 
+// 内置方案列表
+const innerSchemeListName = {};
+
 SchemeList.forEach((item, id) => {
+    innerSchemeListName[item.schemeName] = true;
     let thisConfig = {};
     item.list.forEach(funcId => {
         if (allConfig[funcId]) {
@@ -768,4 +772,6 @@ SchemeList.forEach((item, id) => {
         commonConfig: commonConfig
     }, item)
 });
+
+export const schemeNameMap = innerSchemeListName;
 export default SchemeList;

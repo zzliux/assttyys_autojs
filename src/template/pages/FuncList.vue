@@ -50,26 +50,32 @@
       </van-cell-group>
     </div>
 
-    <div style="display: block; position: fixed; bottom: 0; width: 100%;">
-      <van-row>
-        <van-col span="12">
-          <div style="margin: 5px 5px 5px 10px; border-radius:5px; overflow: hidden;box-shadow: 1px 1px 1px #eaeaea">
-            <van-button type="info" block @click="saveScheme">
-              <i class="iconfont iconfont-baocun"></i> 保存
-              <!-- <van-icon name="setting-o"/> 保存 -->
-            </van-button>
-          </div>
-        </van-col>
-        <van-col span="12">
-          <div style="margin: 5px 10px 5px 5px; border-radius:5px; overflow: hidden;box-shadow: 1px 1px 1px #eaeaea">
-            <van-button color="#FF9900" block @click="startBtnClickEvent">
-              <i class="iconfont iconfont-fabusekuai"></i> 启动
-              <!-- <van-icon name="play-circle" /> 启动 -->
-              <van-loading v-if="startBtnClickEventLoading" style="display:inline-block" size="18" color="#fff" />
-            </van-button>
-          </div>
-        </van-col>
-      </van-row>
+    <div style="display: block; position: fixed; bottom: 0; right: 0">
+      <van-col v-if="this.scheme && this.scheme.inner">
+        <div style="margin: 5px 5px 5px 10px; border-radius:5px; overflow: hidden;box-shadow: 1px 1px 1px #eaeaea">
+          <van-button color="#FF3300" block @click="resetBtnEvent">
+            <van-icon name="warn-o" size="12" /> 重置
+            <!-- <van-icon name="play-circle" /> 启动 -->
+          </van-button>
+        </div>
+      </van-col>
+      <van-col>
+        <div style="margin: 5px 5px 5px 5px; border-radius:5px; overflow: hidden;box-shadow: 1px 1px 1px #eaeaea">
+          <van-button type="info" block @click="saveScheme">
+            <i class="iconfont iconfont-baocun"></i> 保存
+            <!-- <van-icon name="setting-o"/> 保存 -->
+          </van-button>
+        </div>
+      </van-col>
+      <van-col>
+        <div style="margin: 5px 10px 5px 5px; border-radius:5px; overflow: hidden;box-shadow: 1px 1px 1px #eaeaea">
+          <van-button color="#FF9900" block @click="startBtnClickEvent">
+            <i class="iconfont iconfont-fabusekuai"></i> 启动
+            <!-- <van-icon name="play-circle" /> 启动 -->
+            <van-loading v-if="startBtnClickEventLoading" style="display:inline-block" size="18" color="#fff" />
+          </van-button>
+        </div>
+      </van-col>
     </div>
     <func-config-dialog
       :show.sync="commonConfigModalShow"
@@ -107,8 +113,8 @@ export default {
       showConfigId: null,
       funcList: [],
       commonConfig: {
-        name: '公共配置',
-        config: []
+        name: "公共配置",
+        config: [],
       },
       params: this.$route.query,
       configModalShow: false,
@@ -144,89 +150,94 @@ export default {
       };
     }
   },
-  async mounted() {
+  mounted() {
     if (this.params) {
       if (this.params.schemeName) {
         // AutoWeb.autoPromise('toast', `加载方案 [ ${this.params.schemeName} ] `);
       }
     }
-    var schemeConfig = await AutoWeb.autoPromise('getScheme', this.$route.query.schemeName);
-    this.scheme = schemeConfig;
-
-    // 启用的功能
-    let fl = [];
-    schemeConfig.config = schemeConfig.config || {};
-    schemeConfig.list.forEach(id => {
-      for (let funcOrigin of dfuncList) {
-        if (funcOrigin.id === id) {
-          let item = merge({}, funcOrigin);
-          if (!item.config) {
-            item.config = [];
-          }
-          if (schemeConfig.config[item.id] || item.config.length) {
-            item.config.forEach(iItem => {
-              iItem.config.forEach(iIItem => {
-                if (schemeConfig.config[item.id] && schemeConfig.config[item.id][iIItem.name] !== undefined) {
-                  iIItem.value = schemeConfig.config[item.id][iIItem.name];
-                } else {
-                  iIItem.value = iIItem.default;
-                }
-              })
-            })
-          }
-          item.desc = funcOrigin.desc || null
-          item.checked = true;
-          fl.push(item);
-          break;
-        }
-      }
-    });
-
-    // 未启用的功能
-    let toAppend = [];
-    dfuncList.forEach(item => {
-      item = merge({}, item);
-      let flag = true;
-      for (let singleFl of fl) {
-        if (item.id === singleFl.id) {
-          flag = false;
-          break;
-        }
-      }
-      if (flag) {
-        if (!item.config) {
-          item.config = [];
-        }
-        item.config.forEach(iItem => {
-          iItem.config.forEach(iIItem => {
-            iIItem.value = iIItem.default;
-          });
-        });
-        toAppend.push(item);
-      }
-    });
-
-    this.funcList = [...fl, ...toAppend];
-
-    // 公共配置
-    let cc = merge([], dCommonConfig);
-    cc.forEach(item => {
-      if (!item.config) {
-        item.config = [];
-      }
-      item.config.forEach(iItem => {
-        iItem.value = iItem.default;
-        for (let key in schemeConfig.commonConfig) {
-          if (key === iItem.name) {
-            iItem.value = schemeConfig.commonConfig[key];
+    this.loadScheme('getScheme', this.$route.query.schemeName);
+  },
+  methods: {
+    async loadScheme(func, schemeName) {
+      const schemeConfig = await AutoWeb.autoPromise(func, schemeName);
+      this.scheme = schemeConfig;
+      // 启用的功能
+      let fl = [];
+      schemeConfig.config = schemeConfig.config || {};
+      schemeConfig.list.forEach((id) => {
+        for (let funcOrigin of dfuncList) {
+          if (funcOrigin.id === id) {
+            let item = merge({}, funcOrigin);
+            if (!item.config) {
+              item.config = [];
+            }
+            if (schemeConfig.config[item.id] || item.config.length) {
+              item.config.forEach((iItem) => {
+                iItem.config.forEach((iIItem) => {
+                  if (
+                    schemeConfig.config[item.id] &&
+                    schemeConfig.config[item.id][iIItem.name] !== undefined
+                  ) {
+                    iIItem.value = schemeConfig.config[item.id][iIItem.name];
+                  } else {
+                    iIItem.value = iIItem.default;
+                  }
+                });
+              });
+            }
+            item.desc = funcOrigin.desc || null;
+            item.checked = true;
+            fl.push(item);
+            break;
           }
         }
       });
-    });
-    this.commonConfig.config = cc;
-    this.reSort();
-  },
-  methods: {
+
+      // 未启用的功能
+      let toAppend = [];
+      dfuncList.forEach((item) => {
+        item = merge({}, item);
+        let flag = true;
+        for (let singleFl of fl) {
+          if (item.id === singleFl.id) {
+            flag = false;
+            break;
+          }
+        }
+        if (flag) {
+          if (!item.config) {
+            item.config = [];
+          }
+          item.config.forEach((iItem) => {
+            iItem.config.forEach((iIItem) => {
+              iIItem.value = iIItem.default;
+            });
+          });
+          toAppend.push(item);
+        }
+      });
+
+      this.funcList = [...fl, ...toAppend];
+
+      // 公共配置
+      let cc = merge([], dCommonConfig);
+      cc.forEach((item) => {
+        if (!item.config) {
+          item.config = [];
+        }
+        item.config.forEach((iItem) => {
+          iItem.value = iItem.default;
+          for (let key in schemeConfig.commonConfig) {
+            if (key === iItem.name) {
+              iItem.value = schemeConfig.commonConfig[key];
+            }
+          }
+        });
+      });
+      this.commonConfig.config = cc;
+      this.reSort();
+    },
     toggleSwitchEvent(value) {
       setTimeout(() => {
         this.reSort();
@@ -263,6 +274,9 @@ export default {
       } else {
         // Toast('无可配置项');
       }
+    },
+    async resetBtnEvent() {
+      this.loadScheme('getDefaultScheme', this.$route.query.schemeName);
     },
     async saveScheme() {
       if (this.params && this.params.schemeName) {
