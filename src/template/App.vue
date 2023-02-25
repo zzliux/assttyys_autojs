@@ -2,12 +2,10 @@
   <div style="width: 100%; height: 100%">
     <div class="rv_box">
       <transition :name="transitionName">
-        <keep-alive :include="['index', 'schemeList']">
-          <router-view
-            class="rv"
-            :status-bar-height="statusBarHeight"
-          ></router-view>
-        </keep-alive>
+        <router-view
+          class="rv"
+          :status-bar-height="statusBarHeight"
+        ></router-view>
       </transition>
     </div>
     <van-popup

@@ -518,6 +518,9 @@ export const versionList = [{
     version: '20230223_03',
     desc: `新增：活动方案鬼城岐事及相关功能；
 优化：夜行荒河适配本次活动`
+}, {
+    version: '20230225_01',
+    desc: '优化：重置方案支持重置单个方案（仅内置方案）'
 }];
 
 export default versionList[versionList.length - 1].version;

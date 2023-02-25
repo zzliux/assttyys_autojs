@@ -5,7 +5,7 @@ import { requestMyScreenCapture } from '@/common/toolAuto';
 import { getWidthPixels, getHeightPixels } from "@auto.pro/core";
 // import _ from 'lodash';
 import version, { versionList } from '@/common/version';
-import defaultSchemeList from '@/common/schemeList';
+import defaultSchemeList, { schemeNameMap } from '@/common/schemeList';
 import MyAutomator from '@/system/MyAutomator';
 import helperBridge from '@/system/helperBridge';
 
@@ -13,8 +13,9 @@ export default function webviewSchemeList() {
     // 返回已保存的方案列表，如果未保存过，返回common中的schemeList
     webview.on("getSchemeList").subscribe(([_param, done]) => {
         let savedSchemeList = store.get("schemeList", defaultSchemeList);
-        // 活动方案去除
-        // done(_.filter(savedSchemeList, item => item.id != 99));
+        savedSchemeList.forEach(item => {
+            item.inner = schemeNameMap[item.schemeName] || false;
+        });
         done(savedSchemeList);
     });
 

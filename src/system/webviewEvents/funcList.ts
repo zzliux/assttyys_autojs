@@ -1,8 +1,8 @@
 import { webview } from "@/system";
-import { setCurrentScheme } from '@/common/tool';
+import { merge, setCurrentScheme } from '@/common/tool';
 import store, { storeCommon } from '@/system/store';
 import { getInstalledPackages, mergeSchemeList } from '@/common/toolAuto';
-import defaultSchemeList from '@/common/schemeList';
+import defaultSchemeList, { schemeNameMap } from '@/common/schemeList';
 import script from '@/system/script';
 
 export default function webviewFuncList() {
@@ -14,12 +14,28 @@ export default function webviewFuncList() {
         for (let i = 0; i < schemeList.length; i++) {
             if (schemeList[i].schemeName === schemeName) {
                 console.log(`getScheme: ${JSON.stringify(schemeList[i], null, 4)}`);
+                schemeList[i].inner = schemeNameMap[schemeList[i].schemeName] || false;
                 done(schemeList[i]);
                 return;
             }
         }
         done({});
     });
+
+    // 获取默认方案
+    webview.on("getDefaultScheme").subscribe(([schemeName, done]) => {
+        let schemeList = merge([], defaultSchemeList);
+        for (let i = 0; i < schemeList.length; i++) {
+            if (schemeList[i].schemeName === schemeName) {
+                console.log(`getDefaultScheme: ${JSON.stringify(schemeList[i], null, 4)}`);
+                schemeList[i].inner = true;
+                done(schemeList[i]);
+                return;
+            }
+        }
+        done({});
+    });
+
 
     // 保存方案
     webview.on("saveScheme").subscribe(([scheme, done]) => {
@@ -67,7 +83,7 @@ export default function webviewFuncList() {
                 category: android.content.Intent.CATEGORY_HOME,
                 flags: ['ACTIVITY_NEW_TASK']
             }));
-        } else if(defaultLaunchAppList.length === 1) {
+        } else if (defaultLaunchAppList.length === 1) {
             done(null);
             script.rerun();
             launchPackage(defaultLaunchAppList[0]);
