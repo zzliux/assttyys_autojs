@@ -521,6 +521,12 @@ export const versionList = [{
 }, {
     version: '20230225_01',
     desc: '优化：重置方案支持重置单个方案（仅内置方案）'
+}, {
+    version: '20230226_01',
+    desc: `新增：306邀请好友功能；
+优化：27组队匹配修改为组队创建队伍或匹配
+优化：501打开buff界面支持从组队界面内打开
+优化：4接受邀请支持切换方案`
 }];
 
 export default versionList[versionList.length - 1].version;
