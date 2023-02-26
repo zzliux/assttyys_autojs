@@ -69,7 +69,7 @@ export class Func304 implements InterfaceFuncOrigin {
     ],
     oper: [
       [center, 1280, 720, 1151, 54, 1175, 79, 0],//红色关闭
-      [center, 1280, 720, 397, 592, 482, 624, 1000]//百分比坐标
+      [center, 1280, 720, 397, 592, 490, 624, 1000]//百分比坐标
 
     ]
   }]
