@@ -53,7 +53,7 @@ export class Func004 implements InterfaceFuncOrigin {
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['4'];
 		if (thisConf && thisConf.exit && thisScript.oper({
-			id: 2,
+			id: 4,
 			name: '接受邀请',
 			operator: [{ desc: thisOperator[0].desc },{desc: thisOperator[1].desc}]
 		})) {
@@ -62,7 +62,7 @@ export class Func004 implements InterfaceFuncOrigin {
 			thisScript.rerun();
 		} else {
 			return thisScript.oper({
-				id: 2,
+				id: 4,
 				name: '接受邀请',
 				operator: thisOperator.slice(0, 2)
 			});

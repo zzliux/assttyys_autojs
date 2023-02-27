@@ -527,6 +527,10 @@ export const versionList = [{
 优化：27组队匹配修改为组队创建队伍或匹配
 优化：501打开buff界面支持从组队界面内打开
 优化：4接受邀请支持切换方案`
+}, {
+    version: '20230227_01',
+    desc: `优化/修复：304绘卷检测问题
+修复：接受邀请导致退出结算计数异常的问题`
 }];
 
 export default versionList[versionList.length - 1].version;
