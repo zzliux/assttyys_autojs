@@ -68,7 +68,7 @@ export class Func304 implements InterfaceFuncOrigin {
       [right, 1161, 67, 0xefcbce]]
     ],
     oper: [
-      [center, 1280, 720, 1151, 54, 1175, 79, 0],//红色关闭
+      [center, 1280, 720, 1151, 54, 1175, 79, 1000],//红色关闭
       [center, 1280, 720, 397, 592, 490, 624, 1000]//百分比坐标
 
     ]
@@ -119,10 +119,14 @@ export class Func304 implements InterfaceFuncOrigin {
           let cdWaitTime = random(parseInt(cdWaiteTimePair[0]), parseInt(cdWaiteTimePair[1]));
           thisScript.myToast(`绘卷刷新CD, ${(cdWaitTime)}秒后再次检测`);
           sleep(1000 * (cdWaitTime));
-          return;
         }
-        thisScript.helperBridge.regionClick(thisOperator[1].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
       }
+      if (thisScript.oper({
+        name: '绘卷进度界面关闭',
+        operator: [{
+          oper: [thisOperator[1].oper[0]]
+        }]
+      })) { return; }
     }
     return false;
   }
