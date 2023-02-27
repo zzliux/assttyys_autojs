@@ -92,7 +92,7 @@ export class Func502 implements InterfaceFuncOrigin {
 		],
 		oper: [
 			[left, 1280, 720, 32, 45, 70, 86, 1000],
-			[center, 1280, 720, 700, 386, 850, 418, 1000]
+			[center, 1280, 720, 700, 386, 850, 418, 3000]
 		]
 	}, {
 		// 组队界面

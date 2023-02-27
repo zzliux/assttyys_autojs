@@ -573,63 +573,82 @@ const SchemeList: InterfaceScheme[] = [{
     },
 },
 {
+    id: 57,
+    groupName: '组队循环示例',
+    schemeName: '组队队长创建和邀请',
+    list: [0, 27, 306],
+    commonConfig: {
+        colorSimilar: 91,
+    }
+}, {
+    id: 58,
+    groupName: '组队循环示例',
+    schemeName: '组队队员接受邀请',
+    list: [4],
+    config: {
+        '4': {
+            exit: true,
+        }
+    }
+}, {
     id: 99,
     schemeName: '伊吹之擂',
     list: [0, 3, 24, 99, 100],
-}, {
-    id: 0,
-    groupName: "老版突破内容",
-    schemeName: '个人突破_卡级_进攻',
-    list: [0, 1, 2, 3, 10, 7, 8, 9, 11],
-    config: {
-        '0': {
-            jspd_enabled_1: true,
-            jspd_times_1: 2,
-            scheme_switch_enabled: true,
-            next_scheme: '个人突破_卡级_退出'
-        },
-        '8': {
-            count: '2',
-            afterCountOper: '停止脚本',
-            type: '个人突破'
-        },
-        '10': {
-            type: '个人突破'
-        }
-    }
-}, {
-    id: 0,
-    groupName: "老版突破内容",
-    schemeName: '个人突破_卡级_退出',
-    list: [0, 1, 2, 3, 8, 9, 10, 11],
-    config: {
-        '0': {
-            jspd_enabled_1: true,
-            jspd_times_1: 1,
-            scheme_switch_enabled: true,
-            next_scheme: '个人突破_卡级_进攻'
-        },
-        '1': {
-            exitBeforeReady: true
-        },
-        '8': {
-            count: '2',
-            afterCountOper: '停止脚本',
-            type: '个人突破'
-        },
-        '9': {
-            priority: '0->1->2->3->4->5'
-        },
-        '10': {
-            type: '个人突破'
-        }
-    }
 }, {
     id: 100,
     groupName: '活动',
     schemeName: '活动_鬼城岐事',
     list: [0, 1, 2, 3, 51, 123, 122]
 }
+    // , {
+    //     id: 0,
+    //     groupName: "老版突破内容",
+    //     schemeName: '个人突破_卡级_进攻',
+    //     list: [0, 1, 2, 3, 10, 7, 8, 9, 11],
+    //     config: {
+    //         '0': {
+    //             jspd_enabled_1: true,
+    //             jspd_times_1: 2,
+    //             scheme_switch_enabled: true,
+    //             next_scheme: '个人突破_卡级_退出'
+    //         },
+    //         '8': {
+    //             count: '2',
+    //             afterCountOper: '停止脚本',
+    //             type: '个人突破'
+    //         },
+    //         '10': {
+    //             type: '个人突破'
+    //         }
+    //     }
+    // }, {
+    //     id: 0,
+    //     groupName: "老版突破内容",
+    //     schemeName: '个人突破_卡级_退出',
+    //     list: [0, 1, 2, 3, 8, 9, 10, 11],
+    //     config: {
+    //     '0': {
+    //         jspd_enabled_1: true,
+    //         jspd_times_1: 1,
+    //         scheme_switch_enabled: true,
+    //         next_scheme: '个人突破_卡级_进攻'
+    //     },
+    //     '1': {
+    //         exitBeforeReady: true
+    //     },
+    //     '8': {
+    //         count: '2',
+    //         afterCountOper: '停止脚本',
+    //         type: '个人突破'
+    //     },
+    //     '9': {
+    //         priority: '0->1->2->3->4->5'
+    //     },
+    //     '10': {
+    //         type: '个人突破'
+    //     }
+    // }
+    // }
     // }, {
     //     id: 100,
     //     groupName: '活动',

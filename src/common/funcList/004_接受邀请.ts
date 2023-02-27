@@ -21,7 +21,7 @@ export class Func004 implements InterfaceFuncOrigin {
 			name: 'next_scheme',
 			desc: '下一个方案',
 			type: 'scheme',
-			default: '开启BUFF_打探索',
+			default: '通用准备退出',
 		},]
 	}]
 	operator: InterfaceFuncOperatorOrigin[] = [{

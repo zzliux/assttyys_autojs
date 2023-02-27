@@ -27,7 +27,7 @@ export class Func050 implements InterfaceFuncOrigin {
 			name: 'buff_type',
 			desc: '开启BUFF类型',
 			type: 'list',
-			data: ['觉醒', '御魂', '金币', '经验'],
+			data: ['觉醒', '御魂', '金币', '经验', '被邀请横幅遮挡住的御魂'],
 			default: '经验'
 		}]
 	}];

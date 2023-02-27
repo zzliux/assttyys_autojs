@@ -1603,6 +1603,22 @@ const multiColor: InterfaceMultiColorOrigin = {
             ]
         ]
     },
+    '关闭的BUFF_被邀请横幅遮挡住的御魂': {
+        region: [center, 1280, 720, 744, 116, 919, 530],
+        desc: [
+            [1280, 720,
+                [
+                    [center, 776, 212, 0xb10c2d],
+                    [center, 874, 213, 0x9e9b7d],
+                    [center, 867, 225, 0x9e9d7d],
+                    [center, 879, 224, 0x9e9b7d],
+                    [center, 381, 205, 0x1d5179],
+                    [center, 386, 202, 0x376c8b],
+                    [center, 401, 205, 0x00a7c1]
+                ]
+            ]
+        ]
+    },
     '宴会_食物': {
         region: [left, 1280, 720, 0, 312, 1280, 522],
         desc: [

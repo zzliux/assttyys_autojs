@@ -33,7 +33,7 @@ export class Func306 implements InterfaceFuncOrigin {
       name: 'next_scheme',
       desc: '下一个方案',
       type: 'scheme',
-      default: '组队司机',
+      default: '通用准备退出',
     }],
   }];
   operator: InterfaceFuncOperatorOrigin[] = [{
