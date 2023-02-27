@@ -126,7 +126,7 @@ export class Func304 implements InterfaceFuncOrigin {
         operator: [{
           oper: [thisOperator[1].oper[0]]
         }]
-      })) { return; }
+      })) { return true; }
     }
     return false;
   }
