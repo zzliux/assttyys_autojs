@@ -1,6 +1,7 @@
 // 乞丐版验证CRON表达式方法，不支持L与/操作符
 export function checkedDateByCron(cronData: string, nowDate = new Date()) {
-    const _cronArray = cronData.split(' ');
+    cronData = cronData.trim();
+    const _cronArray = cronData.split(/\s+/);
     const _result = new Array<boolean>();
 
     //  补位
@@ -46,7 +47,9 @@ export function getNextByCron(cronData: string, nowDate = new Date(), _runCount 
     } else {
         return null;
     }
-    const _cronArray = cronData.split(' ');
+
+    cronData = cronData.trim();
+    const _cronArray = cronData.split(/\s+/);
 
     //  补位 秒 分 时 日 月 周 年
     if (_cronArray.length < 7) {

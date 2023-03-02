@@ -75,7 +75,7 @@ export class Job extends JobOptions {
 
     private doneCallback: Function;
 
-    status: StatusType = 'wating';
+    status: StatusType = 'waiting';
     level: string = '1';
     isPaused: boolean = false;
 
@@ -113,18 +113,18 @@ export class Job extends JobOptions {
             this.doneCallback && this.doneCallback.apply(this);
             return;
         } else if (this.repeatMode === 1) {
-            this.status = 'wating';
+            this.status = 'waiting';
             this.doneCallback && this.doneCallback.apply(this);
             return;
         } else if (this.repeatMode === 2) {
             this.nextDate = new Date(Date.now() + Number.parseInt(this.interval, 10) * 60 * 1000);
             this.doneCallback && this.doneCallback.apply(this);
-            this.status = 'wating';
+            this.status = 'waiting';
             return;
         } else if (this.repeatMode === 3) {
             this.nextDate = getNextByCron(this.interval);
             this.doneCallback && this.doneCallback.apply(this);
-            this.status = 'wating';
+            this.status = 'waiting';
             return;
         }
     }
@@ -219,14 +219,15 @@ class Schedule {
 
         for (let i = 0; i < this.jobList.length; i++) {
             const thisJob = this.jobList[i];
-            if (thisJob.status === 'wating') {
-                if (thisJob.repeatMode === 3) {
-                    if (checkedDateByCron(thisJob.interval)) {
-                        job = thisJob;
-                        index = i;
-                        break;
-                    }
-                } else if ((thisJob.nextDate.getTime() <= Date.now() && Date.now() - thisJob.nextDate.getTime() < 1800000)) {
+            if (thisJob.status === 'waiting') {
+                // if (thisJob.repeatMode === 3) {
+                //     if (checkedDateByCron(thisJob.interval)) {
+                //         job = thisJob;
+                //         index = i;
+                //         break;
+                //     }
+                // } else 
+                if ((thisJob.nextDate.getTime() <= Date.now() && Date.now() - thisJob.nextDate.getTime() < 1800000)) {
                     job = thisJob;
                     index = i;
                     break;
