@@ -95,14 +95,14 @@ export class Func009 implements InterfaceFuncOrigin {
 			for (let key of multiColorKey) {
 				let point = thisScript.findMultiColor(key);
 				let add = thisOperator[0].oper[3];
-				if (point.x > thisOperator[0].oper[2][0] ||
-					point.x < thisOperator[0].oper[2][0] + thisOperator[0].oper[2][2] &&
-					point.x > thisOperator[0].oper[2][1] ||
-					point.x < thisOperator[0].oper[2][1] + thisOperator[0].oper[2][2] &&
-					point.x > thisOperator[0].oper[2][2] ||
-					point.x < thisOperator[0].oper[2][2] + thisOperator[0].oper[2][2] &&
-					point.x > thisOperator[0].oper[2][3] ||
-					point.x < thisOperator[0].oper[2][3] + thisOperator[0].oper[2][2]) {
+				if ((point.x > thisOperator[0].oper[2][0] &&
+					point.x < thisOperator[0].oper[2][0] + thisOperator[0].oper[2][2] )||
+					(point.x > thisOperator[0].oper[2][1] &&
+					point.x < thisOperator[0].oper[2][1] + thisOperator[0].oper[2][2] )||
+					(point.x > thisOperator[0].oper[2][2] &&
+					point.x < thisOperator[0].oper[2][2] + thisOperator[0].oper[2][2] )||
+					(point.x > thisOperator[0].oper[2][3] &&
+					point.x < thisOperator[0].oper[2][3] + thisOperator[0].oper[2][2])) {
 					add = thisOperator[0].oper[2];
 				}
 				if (point) {
