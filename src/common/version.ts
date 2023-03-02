@@ -531,6 +531,9 @@ export const versionList = [{
     version: '20230227_01',
     desc: `优化/修复：304绘卷检测问题
 修复：接受邀请导致退出结算计数异常的问题`
+}, {
+    version: '20230301_01',
+    desc: '新增：活动方案决裂庭院'
 }];
 
 export default versionList[versionList.length - 1].version;
