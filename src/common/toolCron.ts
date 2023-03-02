@@ -1,6 +1,7 @@
 // 乞丐版验证CRON表达式方法，不支持L与/操作符
 export function checkedDateByCron(cronData: string, nowDate = new Date()) {
-    const _cronArray = cronData.split(' ');
+    cronData = cronData.trim();
+    const _cronArray = cronData.split(/\s+/);
     const _result = new Array<boolean>();
 
     //  补位
@@ -46,7 +47,9 @@ export function getNextByCron(cronData: string, nowDate = new Date(), _runCount 
     } else {
         return null;
     }
-    const _cronArray = cronData.split(' ');
+
+    cronData = cronData.trim();
+    const _cronArray = cronData.split(/\s+/);
 
     //  补位 秒 分 时 日 月 周 年
     if (_cronArray.length < 7) {
@@ -83,6 +86,8 @@ export function getNextByCron(cronData: string, nowDate = new Date(), _runCount 
     const _monthCron = _cronArray[4];
     const _resultmonth = isGreaterCron(_monthCron, nowDate.getMonth());
     nowDate.setMonth(_resultmonth.carry * 12 + _resultmonth.time);
+
+    const _dayCron = _cronArray[5];
 
     const _yearCron = _cronArray[6];
     const _resultYear = isGreaterCron(_yearCron, nowDate.getFullYear());
@@ -121,6 +126,12 @@ export function getNextByCron(cronData: string, nowDate = new Date(), _runCount 
     if (checkedDateByCron(cronData, nowDate)) {
         return nowDate;
     } else {
+        // 若周不符合cron，递归，并增加一天
+        if (!compareDate(_dayCron, nowDate.getDay())) {
+            nowDate.setDate(nowDate.getDate() + 1);
+
+            return getNextByCron(cronData, nowDate, _runCount);
+        }
         // 若不符合cron，递归，找到当前时间最高位的 * 跟 ? ，并在其上一位增加1
         const _notAllStatueWithStar = cronData.split(' ').lastIndexOf('*');
         const _notAllStatueWithQuestion = cronData.split(' ').lastIndexOf('?');

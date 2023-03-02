@@ -599,6 +599,11 @@ const SchemeList: InterfaceScheme[] = [{
     groupName: '活动',
     schemeName: '活动_鬼城岐事',
     list: [0, 1, 2, 3, 51, 123, 122]
+}, {
+    id: 101,
+    groupName: '活动',
+    schemeName: '活动_决裂庭院',
+    list: [0, 1, 2, 3, 124]
 }
     // , {
     //     id: 0,

@@ -57,7 +57,7 @@
               :rules="[{ required: true, message: '必填' }]">
               <template #input>
                 <div class="van-field__body">
-                  <input :disabled="item.checked" v-model="item.interval" class="van-field__control" />
+                  <input :disabled="item.checked" v-model="item.interval" @input="intervalInputEvent($event, item)" class="van-field__control" />
                 </div>
               </template>
             </van-field>
@@ -67,7 +67,7 @@
                 <div class="van-field__body">
                   <div style="width: 100%;" :style="item.checked ? 'color: rgb(200, 195, 188)' : ''"
                     @click="showNextDateDialog($event, item)">
-                    {{ item.nextDate ? item.nextDate.toLocaleString() : '请选择' }}
+                    {{ item.nextDate ? item.nextDate.toLocaleString() : ( item.repeatMode == 3 ? '无法解析CRON表达式' : '请选择') }}
                   </div>
                 </div>
               </template>
@@ -130,6 +130,7 @@ import { NavBar, Cell, CellGroup, Icon, Switch, Popup, Picker, Field, Dialog, No
 import { mergeScheduleList } from "../../../common/toolWeb";
 import dScheduleList from '../../../common/scheduleList'
 import { merge } from '@/common/tool';
+import { getNextByCron } from '@/common/toolCron';
 
 const scheduleDefaultFormData = {
   id: NaN,
@@ -476,6 +477,13 @@ export default {
       }
       return filterd.map(item => ({ text: item.schemeName }));
     },
+
+    intervalInputEvent ($event, item) {
+      if (item.repeatMode == 3) {
+        item.nextDate = getNextByCron(item.interval);
+        console.log(item.interval, item.nextDate);
+      }
+    }
   }
 }
 </script>
