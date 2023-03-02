@@ -14,7 +14,7 @@ export class Func004 implements InterfaceFuncOrigin {
 		desc: '',
 		config: [{
 			name: 'exit',
-			desc: '对邀请提示不做动作并切换方案（常用于组队队员开始前打开buff）',
+			desc: '对邀请提示不做动作并切换方案（常用于组队队员开始前打开buff或组队队员停止当前方案）',
 			type: 'switch',
 			default: false,
 		}, {

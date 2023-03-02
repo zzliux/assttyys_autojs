@@ -42,7 +42,10 @@ export class Func009 implements InterfaceFuncOrigin {
 			[center, 1076, 104, 0x4d3826]]
 		],
 		oper: [
-			[left, 1280, 720, 30, 10, 160, 80, 500]
+			[left, 1280, 720, 30, 10, 160, 80, 500],
+			[left, 1280, 720, 110, 10, 200, 80, 500],
+			[left, 1280, 720, 160, 492, 824, 80, 0],//头像框 横轴坐标内
+			[left, 1280, 720, 0, 0, 0, 0, 0],
 		]
 	}, {
 		desc: [1280, 720,
@@ -91,12 +94,23 @@ export class Func009 implements InterfaceFuncOrigin {
 			}
 			for (let key of multiColorKey) {
 				let point = thisScript.findMultiColor(key);
+				let add = thisOperator[0].oper[3];
+				if (point.x > thisOperator[0].oper[2][0] ||
+					point.x < thisOperator[0].oper[2][0] + thisOperator[0].oper[2][2] &&
+					point.x > thisOperator[0].oper[2][1] ||
+					point.x < thisOperator[0].oper[2][1] + thisOperator[0].oper[2][2] &&
+					point.x > thisOperator[0].oper[2][2] ||
+					point.x < thisOperator[0].oper[2][2] + thisOperator[0].oper[2][2] &&
+					point.x > thisOperator[0].oper[2][3] ||
+					point.x < thisOperator[0].oper[2][3] + thisOperator[0].oper[2][2]) {
+					add = thisOperator[0].oper[2];
+				}
 				if (point) {
 					let oper = [[
-						point.x + thisOperator[0].oper[0][0],
-						point.y + thisOperator[0].oper[0][1],
-						point.x + thisOperator[0].oper[0][2],
-						point.y + thisOperator[0].oper[0][3],
+						point.x + thisOperator[0].oper[0][0] + add[0],
+						point.y + thisOperator[0].oper[0][1] + add[1],
+						point.x + thisOperator[0].oper[0][2] + add[2],
+						point.y + thisOperator[0].oper[0][3] + add[3],
 						// point.x,
 						// point.y,
 						// point.x,
