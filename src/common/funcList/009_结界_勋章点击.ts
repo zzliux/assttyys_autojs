@@ -44,7 +44,7 @@ export class Func009 implements InterfaceFuncOrigin {
 		oper: [
 			[left, 1280, 720, 30, 10, 160, 80, 500],
 			[left, 1280, 720, 110, 10, 200, 80, 500],
-			[left, 1280, 720, 160, 492, 824, 80, 0],//头像框 横轴坐标内
+			[left, 1280, 720, 160, 492, 824, 54, 0],//头像框 横轴坐标内
 			[left, 1280, 720, 0, 0, 0, 0, 0],
 		]
 	}, {
@@ -98,14 +98,13 @@ export class Func009 implements InterfaceFuncOrigin {
 				let point = thisScript.findMultiColor(key);
 				let add = thisOperator[0].oper[3];
 				if (point && thistype === '个人突破' && ((point.x > thisOperator[0].oper[2][0] &&
-					point.x < thisOperator[0].oper[2][0] + thisOperator[0].oper[2][2]) ||
+					point.x < thisOperator[0].oper[2][0] + thisOperator[0].oper[2][3]) ||
 					(point.x > thisOperator[0].oper[2][1] &&
-						point.x < thisOperator[0].oper[2][1] + thisOperator[0].oper[2][2]) ||
+						point.x < thisOperator[0].oper[2][1] + thisOperator[0].oper[2][3]) ||
 					(point.x > thisOperator[0].oper[2][2] &&
-						point.x < thisOperator[0].oper[2][2] + thisOperator[0].oper[2][2]) ||
-					(point.x > thisOperator[0].oper[2][3] &&
-						point.x < thisOperator[0].oper[2][3] + thisOperator[0].oper[2][2]))) {
-					add = thisOperator[0].oper[2];
+						point.x < thisOperator[0].oper[2][2] + thisOperator[0].oper[2][3]))) {
+					console.log("识别到点击范围在头像框附近，对点击范围更正");
+					add = thisOperator[0].oper[1];
 				}
 				if (point) {
 					let oper = [[

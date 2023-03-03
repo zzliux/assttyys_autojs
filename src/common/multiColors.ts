@@ -837,6 +837,19 @@ const multiColor: InterfaceMultiColorOrigin = {
             ]
         ]
     },
+    '町中_斗技灯笼': {
+        region: [center, 1280, 720, 0, 83, 1279, 412],
+        desc: [
+            [1280, 720,
+                [[center, 760, 151, 0xbb8862],
+                [center, 778, 133, 0x5a4233],
+                [center, 780, 163, 0x281c0d],
+                [center, 780, 186, 0x271c0d],
+                [center, 773, 191, 0x20160b],
+                [center, 779, 176, 0xffffd8]]
+            ]
+        ]
+    },
     '庭院_探索灯笼': {
         region: [center, 1280, 720, 0, 83, 1279, 412],
         desc: [
@@ -1559,7 +1572,19 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [center, 401, 206, 0x01c8dc],
                     [center, 407, 202, 0xd3c7be],
                 ]
+            ],
+            [1280, 720,//被邀请横幅遮挡住的御魂
+                [
+                    [center, 776, 212, 0xb10c2d],
+                    [center, 874, 213, 0x9e9b7d],
+                    [center, 867, 225, 0x9e9d7d],
+                    [center, 879, 224, 0x9e9b7d],
+                    [center, 381, 205, 0x1d5179],
+                    [center, 386, 202, 0x376c8b],
+                    [center, 401, 205, 0x00a7c1]
+                ]
             ]
+
         ]
     },
     '关闭的BUFF_金币': {
@@ -1599,22 +1624,6 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [center, 879, 494, 0xaca28e],
                     [center, 412, 484, 0x94b9e3],
                     [center, 411, 499, 0xc4b482],
-                ]
-            ]
-        ]
-    },
-    '关闭的BUFF_被邀请横幅遮挡住的御魂': {
-        region: [center, 1280, 720, 744, 116, 919, 530],
-        desc: [
-            [1280, 720,
-                [
-                    [center, 776, 212, 0xb10c2d],
-                    [center, 874, 213, 0x9e9b7d],
-                    [center, 867, 225, 0x9e9d7d],
-                    [center, 879, 224, 0x9e9b7d],
-                    [center, 381, 205, 0x1d5179],
-                    [center, 386, 202, 0x376c8b],
-                    [center, 401, 205, 0x00a7c1]
                 ]
             ]
         ]

@@ -27,7 +27,7 @@ export class Func050 implements InterfaceFuncOrigin {
 			name: 'buff_type',
 			desc: '开启BUFF类型',
 			type: 'list',
-			data: ['觉醒', '御魂', '金币', '经验', '被邀请横幅遮挡住的御魂'],
+			data: ['觉醒', '御魂', '金币', '经验'],
 			default: '经验'
 		}]
 	}];
@@ -45,7 +45,8 @@ export class Func050 implements InterfaceFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 0, 0, 855 - 782, 431 - 415, 2000],
-			[center, 1280, 720, 110, 120, 338, 549, 500],
+			[center, 1280, 720, 937, 272, 1160, 531, 500],
+			[center, 1280, 720, 355, 112, 924, 542, -1],//buff界面范围
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
