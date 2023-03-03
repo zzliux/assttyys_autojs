@@ -86,6 +86,8 @@ export class Func009 implements InterfaceFuncOrigin {
 			}, 0)) {
 				return true;
 			}
+			let thisconfFor008 = thisScript.scheme.config['8']; // 获取8功能配置
+			let thistype = thisconfFor008.type;
 			let thisconf = thisScript.scheme.config['9']; // 获取配置
 			let priority = String(thisconf.priority).split('->');
 			let multiColorKey = [];
@@ -95,14 +97,14 @@ export class Func009 implements InterfaceFuncOrigin {
 			for (let key of multiColorKey) {
 				let point = thisScript.findMultiColor(key);
 				let add = thisOperator[0].oper[3];
-				if ((point.x > thisOperator[0].oper[2][0] &&
-					point.x < thisOperator[0].oper[2][0] + thisOperator[0].oper[2][2] )||
+				if (thistype === '个人突破' && ((point.x > thisOperator[0].oper[2][0] &&
+					point.x < thisOperator[0].oper[2][0] + thisOperator[0].oper[2][2]) ||
 					(point.x > thisOperator[0].oper[2][1] &&
-					point.x < thisOperator[0].oper[2][1] + thisOperator[0].oper[2][2] )||
+						point.x < thisOperator[0].oper[2][1] + thisOperator[0].oper[2][2]) ||
 					(point.x > thisOperator[0].oper[2][2] &&
-					point.x < thisOperator[0].oper[2][2] + thisOperator[0].oper[2][2] )||
+						point.x < thisOperator[0].oper[2][2] + thisOperator[0].oper[2][2]) ||
 					(point.x > thisOperator[0].oper[2][3] &&
-					point.x < thisOperator[0].oper[2][3] + thisOperator[0].oper[2][2])) {
+						point.x < thisOperator[0].oper[2][3] + thisOperator[0].oper[2][2]))) {
 					add = thisOperator[0].oper[2];
 				}
 				if (point) {
