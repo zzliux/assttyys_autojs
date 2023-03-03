@@ -46,7 +46,6 @@ export class Func050 implements InterfaceFuncOrigin {
 		oper: [
 			[center, 1280, 720, 0, 0, 855 - 782, 431 - 415, 2000],
 			[center, 1280, 720, 937, 272, 1160, 531, 500],
-			[center, 1280, 720, 355, 112, 924, 542, -1],//buff界面范围
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
