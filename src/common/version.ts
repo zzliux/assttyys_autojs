@@ -534,6 +534,12 @@ export const versionList = [{
 }, {
     version: '20230301_01',
     desc: '新增：活动方案决裂庭院'
+}, {
+    version: '20230303_01',
+    desc: `优化：CRON定时任务逻辑修改：表达式用于解析下次运行时间，调度时根据下次运行时间进行判定，请使用CRON表达式定时任务的同学手动编辑一下重复间隔用于重新解析下次运行时间；
+尝试修复：个人突破点头像的问题；
+新增：内置组队循环示例方案
+`
 }];
 
 export default versionList[versionList.length - 1].version;
