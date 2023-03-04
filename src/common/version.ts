@@ -540,6 +540,11 @@ export const versionList = [{
 尝试修复：个人突破点头像的问题；
 新增：内置组队循环示例方案
 `
+}, {
+    version: '20230304_01',
+    desc: `修复：个人突破报错的问题
+新增：庭院进入斗技、探索地图进入每周挑战秘闻功能
+优化：开启buff简化配置`
 }];
 
 export default versionList[versionList.length - 1].version;
