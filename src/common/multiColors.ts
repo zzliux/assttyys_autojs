@@ -956,7 +956,7 @@ const multiColor: InterfaceMultiColorOrigin = {
         ]
     },
     '悬赏_秘闻字样': {
-        region: [left, 1280, 720, 512, 45, 1256, 428],
+        region: [left, 1280, 720, 512, 160, 1256, 500],
         desc: [
             [1280, 720,
                 [
@@ -1300,7 +1300,7 @@ const multiColor: InterfaceMultiColorOrigin = {
         ]
     },
     "悬赏_庭院检测悬赏图标": {
-        region: [left, 1280, 720, 3, 199, 1272, 477],
+        region: [left, 1280, 720, 0, 88, 1280, 520],
         desc: [
             [1280, 720,
                 [

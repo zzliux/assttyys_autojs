@@ -11,7 +11,7 @@ export class Func048 implements InterfaceFuncOrigin {
 		// 秘闻对话点击
 		desc: [1280, 720,
 			[
-				[center, 422, 715, 0x000000],
+				[center, 500, 715, 0x000000],
 				[center, 612, 715, 0x000000],
 				[center, 773, 715, 0x000000],
 				[center, 830, 716, 0x000000]
