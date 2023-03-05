@@ -9,7 +9,7 @@ const right = 2;
 export class Func302 implements InterfaceFuncOrigin {
   id = 302;
   name = '奉纳御魂';
-  desc = '奉纳弃置御魂(排序需改为“等级/星级”)，结束后返回式神录';
+  desc = '奉纳弃置御魂，结束后返回式神录';
   config = [{
     desc: '结束后切换方案',
     config: [{
@@ -91,10 +91,50 @@ export class Func302 implements InterfaceFuncOrigin {
     oper: [
       [center, 1280, 720, 138, 292, 10, 1000, 200]
     ]
+  }, {//7,神赐三排
+    desc: [1280, 720,
+      [[center, 368, 314, 0x906b41],
+      [center, 920, 313, 0x8c6940],
+      [center, 616, 188, 0xddcc77],
+      [center, 666, 187, 0xdcb85b]]
+    ],
+    oper: [
+      [center, 1280, 720, 580, 604, 702, 668, 1000]
+    ]
+  }, {//8,更改排序方式
+    desc: [1280, 720,
+      [[center, 393, 130, 0xcdc7b6],
+      [center, 428, 142, 0xe9e4d1],
+      [center, 443, 136, 0xb4ad9e],
+      [center, 461, 138, 0xf4efdc],
+      [center, 485, 139, 0xe7e1cf]]
+    ],
+    oper: [
+      [center, 1280, 720, 366, 118, 526, 152, 500],
+      [center, 1280, 720, 380, 284, 541, 330, 500],
+    ]
   }
   ];
 
   operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+    if (!thisScript.oper({
+      name: '排序方式',
+      operator: [{
+        desc: thisOperator[8].desc,
+      }]
+    }) && thisScript.oper({
+      name: '背景墙，灰奉纳',
+      operator: [{
+        desc: thisOperator[5].desc
+      }]
+    })) {
+      thisScript.oper({
+        name: '切换排序',
+        operator: [{
+          oper: thisOperator[8].oper
+        }]
+      })
+    }
     if (thisScript.oper({
       name: '奉纳',
       operator: [{
@@ -138,6 +178,13 @@ export class Func302 implements InterfaceFuncOrigin {
         oper: thisOperator[4].oper,
       }]
     })) { }
+    if (thisScript.oper({
+      name: '神赐第三排',
+      operator: [{
+        desc: thisOperator[7].desc,
+        oper: thisOperator[7].oper,
+      }]
+    })) { }
     if (!thisScript.oper({
       name: '第一排第一个御魂+0',
       operator: [{
@@ -157,9 +204,9 @@ export class Func302 implements InterfaceFuncOrigin {
         thisScript.rerun();
         sleep(3000);
         return;
-      }else{
+      } else {
         thisScript.doOspPush(thisScript, { text: '奉纳结束或未正确使用，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-				thisScript.stop();
+        thisScript.stop();
       }
     }
     return false;

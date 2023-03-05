@@ -68,6 +68,14 @@ export class Func003 implements InterfaceFuncOrigin {
 			}, 0)) {
 				thisScript.doOspPush(thisScript, { text: '接受到勾协。', before() { thisScript.myToast('正在上传数据'); } });
 				return true;
+			} else if (thisScript.oper({
+				name: '悬赏协作_' + thisconf.type + '_非勾协关闭',
+				operator: [{
+					desc: thisOperator[0].desc,
+					oper: [thisOperator[0].oper[0]]
+				}]
+			}, 0)) {
+				return true;
 			}
 		} else {
 			return thisScript.oper({
