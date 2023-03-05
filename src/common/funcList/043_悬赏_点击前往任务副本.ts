@@ -64,7 +64,7 @@ export class Func043 implements InterfaceFuncOrigin {
 				desc: thisOperator[2].desc
 			}]
 		})) {
-			let unknownStory, challenge;
+			let unknownStory, challengeArr;
 			unknownStory = thisScript.findMultiColor('悬赏_挑战字样') || null;
 			// 如果有挑战副本
 			if (unknownStory) {
@@ -78,8 +78,11 @@ export class Func043 implements InterfaceFuncOrigin {
 				return true
 				// 如果没有挑战副本就寻找秘闻副本
 			} else if (!unknownStory) {
-				challenge = thisScript.findMultiColor('悬赏_秘闻字样') || null;
-				if (challenge) {
+				challengeArr = thisScript.findMultiColorEx('悬赏_秘闻字样') || null;
+				if (challengeArr) {
+					const challenge = challengeArr.reduce((min, obj) => {
+						return obj.y < min.y ? obj : min;
+					});
 					let oper = [
 						[challenge.x + 440, challenge.y, challenge.x + thisOperator[0].oper[0][2] + 440, challenge.y + thisOperator[0].oper[0][3], 4000]
 					];
