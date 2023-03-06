@@ -43,7 +43,7 @@ export type globalRootType = {
     gateOfHades_state: boolean,     //  阴门状态
     team_up_lagTime: null | Date,    //组队延时
     team_up_Frist: boolean,  //首次组队
-
+    xsOpened: boolean, // 是否打开过悬赏
 }
 
 export const globalRoot: globalRootType = {
@@ -91,4 +91,5 @@ export const globalRoot: globalRootType = {
     gateOfHades_state: false,
     team_up_lagTime: null,
     team_up_Frist: true,
+    xsOpened: false,
 }
