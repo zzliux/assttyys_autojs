@@ -1304,14 +1304,14 @@ const multiColor: InterfaceMultiColorOrigin = {
         desc: [
             [1280, 720,
                 [
-                    [left, 263, 263, 0xd5bd92],
-                    [left, 261, 280, 0xffe9bd],
-                    [left, 277, 271, 0x444441],
-                    [left, 255, 283, 0xba4545],
-                    [left, 281, 287, 0xbb4840],
-                    [left, 256, 301, 0x534c53],
-                    [left, 276, 302, 0x6a5f54],
-                    [left, 271, 292, 0x43302f]
+                    [left, 261, 107, 0x56566f],
+                    [left, 252, 116, 0xfff7c4],
+                    [left, 274, 111, 0xbb4433],
+                    [left, 263, 124, 0x622f1e],
+                    [left, 252, 137, 0x333344],
+                    [left, 269, 136, 0x942f2e],
+                    [left, 272, 125, 0xad4a42],
+                    [left, 260, 113, 0x914b49]
                 ]
             ],
             [1280, 720,

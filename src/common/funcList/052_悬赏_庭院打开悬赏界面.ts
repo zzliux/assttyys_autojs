@@ -100,7 +100,7 @@ export class Func052 implements InterfaceFuncOrigin {
 			const point = thisScript.findMultiColor('悬赏_庭院检测悬赏图标') || null;
 			if (point !== null) {
 				thisScript.helperBridge.regionClick([
-					[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], 1000]
+					[point.x, point.y, point.x + 20, point.y + 20, 1000]
 				], thisScript.scheme.commonConfig.afterClickDelayRandom);
 				return true
 			} else {

@@ -118,5 +118,28 @@ export class Func048 implements InterfaceFuncOrigin {
 		oper: [
 			[center, 1280, 720, 443, 494, 788, 632, 1000]
 		]
+	}, {
+		// 关闭秘闻刷新记录提示
+		desc: [1280, 720,
+			[
+				[center, 526, 311, 0xeeeecc],
+				[center, 513, 355, 0xab8a5a],
+				[center, 563, 364, 0xb1985c],
+				[center, 565, 311, 0xf9ecc7],
+				[center, 730, 308, 0xf3f3c9],
+				[center, 750, 309, 0xf9f1c8],
+				[center, 722, 360, 0xaf9966],
+				[center, 763, 360, 0xb79d62],
+				[center, 740, 366, 0xae9659],
+				[center, 838, 324, 0xeedd99],
+				[center, 825, 344, 0xead793],
+				[center, 868, 312, 0xcb9958],
+				[center, 914, 357, 0xb27f4c],
+				[center, 867, 379, 0x392920]
+			]
+		],
+		oper: [
+			[center, 1280, 720, 326, 509, 1169, 692, 1000]
+		]
 	}]
 }
