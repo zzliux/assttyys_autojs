@@ -27,11 +27,19 @@ export class Func003 implements InterfaceFuncOrigin {
 		}]
 	}];
 	operator: InterfaceFuncOperatorOrigin[] = [{
-		desc: [1280, 720,
-			[[center, 519, 139, 0xb29375],
-			[center, 727, 171, 0xb29375],
-			[center, 855, 518, 0xdc6958],
-			[center, 849, 422, 0x53ae5b]]
+		desc: [
+			1280, 720,
+			[
+				[center, 519, 139, 0xb29375],
+				[center, 727, 171, 0xb29375],
+				[center, 855, 518, 0xdc6958],
+				[center, 849, 422, 0x53ae5b],
+				[center, 783, 124, 0xe8d4cf],
+				[center, 734, 141, 0xb29176],
+				[center, 509, 136, 0xb39276],
+				[center, 844, 396, 0x2e1e22],
+				[center, 854, 543, 0x2f2025],
+			]
 		],
 		oper: [
 			[center, 1280, 720, 768, 109, 796, 138, 1000], // 关闭

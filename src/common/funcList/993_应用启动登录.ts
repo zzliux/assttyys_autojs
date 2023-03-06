@@ -18,12 +18,6 @@ export class Func993 implements InterfaceFuncOrigin {
 			default: '',
 			value: ''
 		}, {
-			name: 'package_name',
-			desc: '程序包名，用于不同渠道服，默认官方渠道',
-			type: 'text',
-			default: 'com.netease.onmyoji',
-			value: 'com.netease.onmyoji'
-		}, {
 			name: 'is_shutdown_the_game_before',
 			desc: '启动前是否先关闭游戏',
 			type: 'switch',
@@ -235,11 +229,14 @@ export class Func993 implements InterfaceFuncOrigin {
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['993'];
 
-		const packageName = thisConf.package_name;
+		let packageName;
+		let storeSettings = thisScript.storeCommon.get('settings', {});
+		if (storeSettings.defaultLaunchAppList && storeSettings.defaultLaunchAppList.length) {
+			packageName = storeSettings.defaultLaunchAppList[0];
+		}
 		const isInstalled = app.getAppName(packageName);
 
 		if (isInstalled && !thisScript.global.app_is_open) {
-
 			if (thisConf.is_shutdown_the_game_before) {
 				$shell(`am force-stop ${packageName}`, true);
 				sleep(5000);
