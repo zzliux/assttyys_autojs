@@ -89,7 +89,7 @@ export class Func302 implements InterfaceFuncOrigin {
     ]
   }, { //6,长按坐标和随机数
     oper: [
-      [center, 1280, 720, 138, 292, 10, 1000, 200]
+      [center, 1280, 720, 94, 244, 184, 347, 200]
     ]
   }, {//7,神赐三排
     desc: [1280, 720,
@@ -148,12 +148,7 @@ export class Func302 implements InterfaceFuncOrigin {
         desc: thisOperator[1].desc,
       }]
     })) {
-      let oper = [
-        thisOperator[6].oper[0][0] + random(thisOperator[6].oper[0][2], -thisOperator[6].oper[0][2]),
-        thisOperator[6].oper[0][1] + random(thisOperator[6].oper[0][2], -thisOperator[6].oper[0][2]),
-        thisOperator[6].oper[0][3] + random(thisOperator[6].oper[0][4], -thisOperator[6].oper[0][4])
-      ];
-      press(oper[0], oper[1], oper[2]);
+      thisScript.helperBridge.regionClick([[...thisOperator[6].oper[0], 1000]], thisScript.scheme.commonConfig.afterClickDelayRandom)
     }
     if (thisScript.oper({
       name: '开始奉纳',
