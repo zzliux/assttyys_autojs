@@ -101,7 +101,7 @@ export class Func203 implements InterfaceFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 815, 263, 878, 381, 500],
+			[center, 1280, 720, 815, 263, 878, 381, 200],
 		]
 	}, {
 		// 鏖战之屿 挑战
@@ -118,7 +118,7 @@ export class Func203 implements InterfaceFuncOrigin {
 			]
 		],
 		oper: [
-			[right, 1280, 720, 1137, 597, 1213, 676, 500],
+			[right, 1280, 720, 1137, 597, 1213, 676, 200],
 		]
 	}, {
 		// 混沌之屿 精英怪
@@ -132,7 +132,7 @@ export class Func203 implements InterfaceFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 708, 246, 766, 365, 500],
+			[center, 1280, 720, 708, 246, 766, 365, 200],
 		]
 	}, {
 		// 转换成功确认
@@ -174,7 +174,7 @@ export class Func203 implements InterfaceFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 698, 282, 756, 396, 500],
+			[center, 1280, 720, 698, 282, 756, 396, 200],
 		]
 	}, {
 		// 	// 宁息直接退出
@@ -237,7 +237,7 @@ export class Func203 implements InterfaceFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1135, 590, 1217, 671, 500],
+			[center, 1280, 720, 1135, 590, 1217, 671, 200],
 		]
 	}, {
 		// 香行域右下角寻香切换为唤息
