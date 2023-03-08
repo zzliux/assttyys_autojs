@@ -1314,7 +1314,7 @@ const multiColor: InterfaceMultiColorOrigin = {
     "悬赏_庭院检测悬赏图标": {
         region: [left, 1280, 720, 0, 88, 1280, 520],
         desc: [
-            [1280, 720,
+            [1280, 720, // 封
                 [
                     [left, 263, 263, 0xd5bd92],
                     [left, 261, 280, 0xffe9bd],
@@ -1326,7 +1326,7 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [left, 271, 292, 0x43302f]
                 ]
             ],
-            [1280, 720,
+            [1280, 720, // 封
                 [
                     [left, 262, 262, 0xd6be93],
                     [left, 284, 268, 0xd94e40],
@@ -1337,7 +1337,7 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [left, 272, 302, 0x52494e]
                 ]
             ],
-            [1280, 720,
+            [1280, 720, // 封
                 [
                     [left, 261, 264, 0xd5b58b],
                     [left, 269, 264, 0xab9786],
@@ -1350,7 +1350,7 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [left, 276, 305, 0xa5302e]
                 ]
             ],
-            [1280, 720,
+            [1280, 720, // 封
                 [
                     [left, 247, 345, 0xf0e4b3],
                     [left, 246, 351, 0xead3a0],
@@ -1363,7 +1363,7 @@ const multiColor: InterfaceMultiColorOrigin = {
                 ]
             ],
             // 旧
-            [1280, 720,
+            [1280, 720, // 封
                 [
                     [left, 222, 268, 0x352554],
                     [left, 236, 268, 0x555567],
@@ -1375,7 +1375,7 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [left, 232, 303, 0xbca37a]
                 ]
             ],
-            [1280, 720,
+            [1280, 720, // 封
                 [
                     [left, 226, 268, 0x706362],
                     [left, 237, 268, 0x55556a],
@@ -1386,7 +1386,7 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [left, 244, 300, 0x922c2c]
                 ]
             ],
-            [1280, 720,
+            [1280, 720, // 封
                 [
                     [center, 451, 329, 0xd0ae7e],
                     [center, 473, 334, 0xc73f3f],
@@ -1396,7 +1396,19 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [center, 445, 364, 0x776649],
                     [center, 464, 369, 0x883d3d]
                 ]
-            ]
+            ],
+            [1280, 720, // √
+                [
+                    [left, 261, 107, 0x56566f],
+                    [left, 252, 116, 0xfff7c4],
+                    [left, 274, 111, 0xbb4433],
+                    [left, 263, 124, 0x622f1e],
+                    [left, 252, 137, 0x333344],
+                    [left, 269, 136, 0x942f2e],
+                    [left, 272, 125, 0xad4a42],
+                    [left, 260, 113, 0x914b49]
+                ]
+            ],
         ]
     },
     '金币妖怪_金币妖怪字样': {
@@ -2460,10 +2472,10 @@ const multiColor: InterfaceMultiColorOrigin = {
             [
                 1280, 720,
                 [
+                    [center, 565, 339, 0xe96561],
                     [center, 563, 321, 0xbf3a36],
                     [center, 585, 320, 0xb72a32],
                     [center, 586, 334, 0xce433f],
-                    [center, 565, 339, 0xe96561],
                     [center, 573, 335, 0xd6a750],
                 ]
             ],

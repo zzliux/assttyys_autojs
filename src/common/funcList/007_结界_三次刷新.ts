@@ -31,14 +31,15 @@ export class Func007 implements InterfaceFuncOrigin {
 			[center, 997, 127, 0x958c83],
 			[center, 341, 609, 0xFEAA2D],
 			[center, 396, 610, 0x373C5A],
+			[center, 995, 595, 0xAEA69E],
 			[center, 646, 97, 0xf8f3e0]]
 		],
 		oper: [
 			[center, 1280, 720, -1, -1, -1, -1, 30000]
 		]
 	},
-	{
-		desc: [1280, 720, // 刷新
+	{// 刷新
+		desc: [1280, 720, 
 			[[center, 549, 93, 0x5a4130],
 			[center, 720, 93, 0x583716],
 			[center, 224, 104, 0x4a3525],
@@ -51,8 +52,8 @@ export class Func007 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 970, 573, 1130, 621, 1500],
 			[center, 1280, 720, 674, 407, 839, 457, 2000]
 		]
-	}, {
-		desc: [1280, 720, // 有呱太活动的刷新
+	}, {// 有呱太活动的刷新
+		desc: [1280, 720, 
 			[[center, 342, 610, 0xffaf2d],
 			[center, 396, 610, 0x383c5d],
 			[center, 1008, 598, 0xf4b25f],

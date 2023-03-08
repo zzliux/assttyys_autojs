@@ -100,7 +100,7 @@ export class Func032 implements InterfaceFuncOrigin {
 				desc: thisOperator[2].desc
 			}]
 		})) {
-			if (thisScript.runtimeParams.liao_activity_state) {
+			if (thisScript.runtimeParams && thisScript.runtimeParams.liao_activity_state) {
 				thisScript.runtimeParams.liao_activity_state['dojo'] = true;
 				const next_scheme = '返回庭院';
 				thisScript.setCurrentScheme(next_scheme as string, {

@@ -142,7 +142,7 @@ export class Func507 implements InterfaceFuncOrigin {
 			}]
 		})) {
 
-			if (thisScript.runtimeParams.liao_activity_state) {
+			if (thisScript.runtimeParams && thisScript.runtimeParams.liao_activity_state) {
 				thisScript.runtimeParams.liao_activity_state['hunt'] = true;
 
 				const next_scheme = '返回庭院';

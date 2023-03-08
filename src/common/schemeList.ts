@@ -249,7 +249,12 @@ const SchemeList: InterfaceScheme[] = [{
     id: 23,
     schemeName: '悬赏',
     star: true,
-    list: [0, 1, 2, 3, 29, 41, 42, 43, 44, 45, 46, 47, 48, 49],
+    list: [0, 1, 2, 3, 52, 29, 41, 42, 43, 44, 45, 46, 47, 48, 49],
+    config: {
+        '52': {
+            scheme_switch_enabled: false
+        }
+    }
 }, {
     id: 24,
     schemeName: '金币妖怪',
@@ -268,11 +273,13 @@ const SchemeList: InterfaceScheme[] = [{
     id: 27,
     schemeName: '开启BUFF_打探索',
     list: [501, 50],
-}, {
-    id: 28,
-    schemeName: '悬赏_庭院打开悬赏界面',
-    list: [52],
-}, {
+},
+//  {
+//     id: 28,
+//     schemeName: '悬赏_庭院打开悬赏界面',
+//     list: [52],
+// }, 
+{
     id: 29,
     schemeName: '返回庭院',
     list: [503],

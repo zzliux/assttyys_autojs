@@ -137,7 +137,7 @@ export class Job extends JobOptions {
 class Schedule {
 
     timer: NodeJS.Timeout;
-    timeout: number = 2000;
+    timeout: number = 10000;
     jobList: Job[];
     jobStopCallback: Function;
     scheduleStatue: 'running' | 'idle' = 'idle';

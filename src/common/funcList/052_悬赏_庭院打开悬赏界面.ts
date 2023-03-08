@@ -7,7 +7,7 @@ const right = 2;
 export class Func052 implements InterfaceFuncOrigin {
 	id = 52;
 	name = '悬赏_庭院打开悬赏界面';
-	desc = '用于其他方案转悬赏方案中转，如金币妖怪转悬赏';
+	desc = '用于其他方案转悬赏方案中转，如金币妖怪转悬赏；或放在功能29前用于一次性执行，执行成功后不再执行，放在29前请关闭切换方案';
 	config = [{
 		desc: '结束后切换方案',
 		config: [{
@@ -87,6 +87,9 @@ export class Func052 implements InterfaceFuncOrigin {
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+		if (thisScript.global.xsOpened) {
+			return false;
+		}
 		if (thisScript.oper({
 			name: '悬赏_庭院界面',
 			operator: [{
@@ -100,7 +103,7 @@ export class Func052 implements InterfaceFuncOrigin {
 			const point = thisScript.findMultiColor('悬赏_庭院检测悬赏图标') || null;
 			if (point !== null) {
 				thisScript.helperBridge.regionClick([
-					[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], 1000]
+					[point.x, point.y, point.x + 20, point.y + 20, 1000]
 				], thisScript.scheme.commonConfig.afterClickDelayRandom);
 				return true
 			} else {
@@ -116,10 +119,12 @@ export class Func052 implements InterfaceFuncOrigin {
 				}]
 			})) {
 				const thisconf = thisScript.scheme.config['52'];
+				thisScript.global.xsOpened = true;
 				if (thisconf && thisconf.scheme_switch_enabled) {
 					thisScript.setCurrentScheme(thisconf.next_scheme as string);
 					thisScript.myToast(`切换方案为[${thisconf.next_scheme}]`);
 					thisScript.rerun();
+					sleep(3000);
 				} else {
 					return false
 				}

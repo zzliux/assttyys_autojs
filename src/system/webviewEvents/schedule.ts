@@ -4,6 +4,7 @@ import store from '@/system/store';
 import ScheduleDefaultList from '@/common/scheduleList';
 import schedule, { Job, JobOptions } from '@/system/Schedule'
 import { setCurrentScheme } from "@/common/tool";
+import { getNextByCron } from "@/common/toolCron";
 // // import schedule from 'node-schedule';
 
 // const emt = events.emitter()
@@ -19,13 +20,17 @@ import { setCurrentScheme } from "@/common/tool";
 
 export default function webviewSchedule() {
 
-    // 启动时把所有调度停用，确保schedule和store里面的scheduleList同步
+    // cron的定时任务更新下次运行时间
     const savedScheduleList = store.get("scheduleList", ScheduleDefaultList);
     savedScheduleList.forEach(item => {
+        if (item.repeatMode === 3) {
+            item.nextDate = getNextByCron(item.interval);
+        }
         jobToSchedule(item);
     });
+
     // savedScheduleList.forEach(item => item.checked = false);
-    // store.put('scheduleList', savedScheduleList);
+    store.put('scheduleList', savedScheduleList);
 
 
     // 返回已保存的方案列表，如果未保存过，返回common中的scheduleList
