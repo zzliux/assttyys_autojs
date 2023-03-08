@@ -193,22 +193,6 @@ export class Func503 implements InterfaceFuncOrigin {
 			oper: [
 				[center, 1280, 720, 357, 535, 1045, 662, 1200]	//	点击空白处
 			]
-		}, {	// 检测_暗域
-			desc:
-				[
-					1280, 720,
-					[
-						[right, 1240, 301, 0xcebd9b],
-						[right, 1222, 483, 0xdfd1b6],
-						[left, 157, 49, 0xd4ae83],
-						[left, 224, 63, 0xcca174],
-						[center, 738, 31, 0x593615],
-					]
-				],
-			oper:
-				[
-					[left, 1280, 720, 31, 37, 69, 80, 1200]	//	点击返回
-				]
 		}, {	//式神录
 			desc: [1280, 720,
 				[[left, 114, 15, 0xaf8c56],
@@ -225,7 +209,7 @@ export class Func503 implements InterfaceFuncOrigin {
 
 		if (thisScript.oper({
 			name: '返回庭院',
-			operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[5], thisOperator[6], thisOperator[7], thisOperator[10], thisOperator[11], thisOperator[14], thisOperator[15], thisOperator[16]]
+			operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[5], thisOperator[6], thisOperator[7], thisOperator[10], thisOperator[11], thisOperator[14], thisOperator[15]]
 		})) {
 			return true;
 		}

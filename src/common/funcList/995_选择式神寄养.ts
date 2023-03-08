@@ -142,6 +142,31 @@ export class Func995 implements InterfaceFuncOrigin {
 			oper: [
 				[center, 1280, 720, 672, 514, 798, 572, 1200]   // 点击确认
 			]
+		},
+		{	//	检测_是否为好友结界双坑位
+			desc: [
+				1280, 720,
+				[
+					[center, 906, 83, 0xaa3620],
+					[center, 907, 116, 0xa5361d],
+					[center, 912, 19, 0xaa3620],
+					[left, 32, 44, 0xf0f5fb],
+					[left, 238, 44, 0x583716],
+					[right, 1170, 567, 0xe8d7ae],
+				]
+			]
+		},
+		{	//	检测_是否为好友结界单坑位
+			desc: [
+				1280, 720,
+				[
+					[left, 32, 44, 0xf0f5fb],
+					[left, 238, 44, 0x583716],
+					[right, 1170, 567, 0xe8d7ae],
+					[right, 1078, 48, 0xa9381f],
+					[right, 1086, 84, 0xa8371e],
+				]
+			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
@@ -223,7 +248,7 @@ export class Func995 implements InterfaceFuncOrigin {
 						$shell(`am force-stop ${packageName}`, true);
 						sleep(1000);
 					});
-					thisScript.doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+					thisScript.doOspPush(thisScript, { text: '寄养成功，脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 				} else {
 					thisScript.myToast('未配置关联应用，不执行停止操作');
 				}
@@ -271,15 +296,19 @@ export class Func995 implements InterfaceFuncOrigin {
 
 		if (thisScript.oper({
 			id: 995,
-			name: '检测_第一个坑位可用未禁用的寄养位置是否被占用',
+			name: '检测_第一第二个坑位可用未禁用的寄养位置是否被占用',
 			operator: [{
 				desc: thisOperator[2].desc
-			}]
-		}) || thisScript.oper({
-			id: 995,
-			name: '检测_第二个坑位可用未禁用的寄养位置是否被占用',
-			operator: [{
+			}, {
 				desc: thisOperator[6].desc
+			}]
+		}) && thisScript.oper({
+			id: 995,
+			name: '检测_是否为好友结界',
+			operator: [{
+				desc: thisOperator[8].desc
+			}, {
+				desc: thisOperator[9].desc
 			}]
 		})) {
 			// TOFIX
@@ -352,7 +381,7 @@ export class Func995 implements InterfaceFuncOrigin {
 				id: 995,
 				name: '返回结界页面并等待寄养的坑位',
 				operator: [{
-					oper: [thisOperator[2].oper[1]]
+					oper: [thisOperator[2].oper[1], thisOperator[2].oper[1]]
 				}]
 			});
 		}

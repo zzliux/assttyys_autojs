@@ -57,6 +57,23 @@ export class Func003 implements InterfaceFuncOrigin {
 			[center, 668, 510, 0x7746a8],
 			[center, 694, 490, 0xef492e]]
 		]
+	}, {	// 判断_阴阳寮成就页	这些乱七八糟的弹窗统一找个地方放吧，烦死了，暂时先放着:)
+		desc:
+			[
+				1280, 720,
+				[
+					[right, 1055, 230, 0x997242],
+					[right, 1072, 462, 0xecd7b9],
+					[center, 347, 490, 0xb8a281],
+					[center, 357, 240, 0xf5ebd5],
+					[center, 830, 150, 0xefe4d0],
+					[center, 697, 172, 0x805054],
+					[center, 827, 230, 0xb58a55],
+				]
+			],
+		oper: [
+			[center, 1280, 720, 357, 535, 1045, 662, 1200]	//	点击空白处
+		]
 	}];
 
 	/**
@@ -66,6 +83,14 @@ export class Func003 implements InterfaceFuncOrigin {
 	 */
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let thisconf = thisScript.scheme.config['3']; // 获取配置
+
+		if (thisScript.oper({
+			name: '清除垃圾弹窗',
+			operator: [thisOperator[2]]
+		})) {
+			return true;
+		}
+
 		if (thisconf.switch && thisconf.type === '接受') {
 			if (thisScript.oper({
 				name: '悬赏协作_' + thisconf.type + '_勾协',

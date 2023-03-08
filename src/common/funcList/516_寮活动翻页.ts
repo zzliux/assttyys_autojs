@@ -65,7 +65,7 @@ export class Func516 implements InterfaceFuncOrigin {
             } else {
                 thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [1200, 1500], 1000);
             }
-            sleep(2000);
+            sleep(8000);
         }
         return false;
     }
