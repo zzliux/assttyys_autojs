@@ -553,6 +553,12 @@ export const versionList = [{
     version: '20230305_01',
     desc: `新增：3悬赏支持仅接勾协
 优化：302奉纳支持三排的神眷`
+}, {
+    version: '20230306_01',
+    desc: `尝试修复：个人突破点头像的问题；
+尝试修复：不接勾协的问题；
+优化：功能993取消包名配置，修改为读取设置中的关联应用
+`
 }];
 
 export default versionList[versionList.length - 1].version;

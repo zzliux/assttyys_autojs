@@ -317,7 +317,6 @@ const SchemeList: InterfaceScheme[] = [{
     config: {
         "993": {
             area: "",
-            package_name: "com.netease.onmyoji",
             is_shutdown_the_game_before: true,
             next_scheme: "式神寄养"
         }
@@ -380,7 +379,6 @@ const SchemeList: InterfaceScheme[] = [{
     config: {
         "993": {
             area: "",
-            package_name: "com.netease.onmyoji",
             is_shutdown_the_game_before: true,
             next_scheme: "庭院进入寮每日活动"
         }
@@ -398,7 +396,6 @@ const SchemeList: InterfaceScheme[] = [{
     config: {
         "993": {
             area: "",
-            package_name: "com.netease.onmyoji",
             is_shutdown_the_game_before: true,
             next_scheme: "逢魔日常"
         }
@@ -460,7 +457,6 @@ const SchemeList: InterfaceScheme[] = [{
     config: {
         "993": {
             area: "",
-            package_name: "com.netease.onmyoji",
             is_shutdown_the_game_before: true,
             next_scheme: "喂猫喂狗"
         }
@@ -499,7 +495,6 @@ const SchemeList: InterfaceScheme[] = [{
     config: {
         "993": {
             area: "",
-            package_name: "com.netease.onmyoji",
             is_shutdown_the_game_before: true,
             next_scheme: "寮突破"
         }
@@ -514,7 +509,6 @@ const SchemeList: InterfaceScheme[] = [{
     config: {
         "993": {
             area: "",
-            package_name: "com.netease.onmyoji",
             is_shutdown_the_game_before: true,
             next_scheme: "地鬼日常"
         }
@@ -551,7 +545,6 @@ const SchemeList: InterfaceScheme[] = [{
     config: {
         "993": {
             area: "",
-            package_name: "com.netease.onmyoji",
             is_shutdown_the_game_before: true,
             next_scheme: "庭院进入寮每日活动(包含阴门)"
         }
@@ -566,7 +559,6 @@ const SchemeList: InterfaceScheme[] = [{
     config: {
         "993": {
             area: "",
-            package_name: "com.netease.onmyoji",
             is_shutdown_the_game_before: true,
             next_scheme: "庭院进入寮每日活动(不包含阴门)"
         }

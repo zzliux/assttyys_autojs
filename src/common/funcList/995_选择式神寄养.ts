@@ -147,7 +147,6 @@ export class Func995 implements InterfaceFuncOrigin {
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['995'];
 		const maxTimeForwait = parseInt(thisConf.maxTimeForwait as string, 10);
-		const packageName = 'com.netease.onmyoji';
 		if (!thisScript.global.jy_list_getTime_fault_count) {
 			thisScript.global.jy_list_getTime_fault_count = 0;
 		}
