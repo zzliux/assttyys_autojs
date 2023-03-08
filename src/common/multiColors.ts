@@ -294,6 +294,18 @@ const multiColor: InterfaceMultiColorOrigin = {
             ]
         ]
     },
+    '结界_呱太勋章': {
+        region: [center, 1280, 720, 124, 125, 1152, 545],
+        desc: [
+            [1280, 720,
+                [[center, 904, 418, 0x49793a],
+                [center, 904, 417, 0x739530],
+                [right, 1117, 530, 0x3c5833],
+                [center, 862, 450, 0x946b2c],
+                [right, 1002, 504, 0x8f8a85]
+                ]
+            ]]
+    },
     '式神寄养_全列表空结界卡': {
         region: [center, 1280, 720, 215, 167, 660, 598],
         desc: [

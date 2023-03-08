@@ -16,8 +16,8 @@ export class Func009 implements InterfaceFuncOrigin {
 			name: 'priority',
 			desc: '挑战顺序',
 			type: 'list',
-			data: ['4->5->3->2->1->0', '5->4->3->2->1->0', '0->1->2->3->4->5'],
-			default: '4->5->3->2->1->0',
+			data: ['呱太->4->5->3->2->1->0', '呱太->5->4->3->2->1->0', '呱太->0->1->2->3->4->5'],
+			default: '呱太->4->5->3->2->1->0',
 			value: null,
 		}, {
 			name: 'scheme_switch_enabled',
@@ -47,18 +47,7 @@ export class Func009 implements InterfaceFuncOrigin {
 			[left, 1280, 720, 160, 492, 824, 54, 0],//头像框 横轴坐标内
 			[left, 1280, 720, 0, 0, 0, 0, 0],
 		]
-	}, {
-		desc: [1280, 720,
-			[[center, 570, 290, 0xded8ca],
-			[center, 786, 293, 0xdfd7cb],
-			[center, 786, 396, 0x3d5534],
-			[center, 652, 349, 0xdfd9cb],
-			[center, 772, 327, 0xc1bfb3]]
-		],
-		oper: [
-			[center, 1280, 720, 492, 289, 783, 385, 500]
-		]
-	}, {//2,第一排第一列结界坐标
+	}, {//1,第一排第一列结界坐标
 		desc: [1280, 720,
 			[[center, 171, 104, 0x4a3624],
 			[center, 564, 89, 0x5e4735],
@@ -76,16 +65,6 @@ export class Func009 implements InterfaceFuncOrigin {
 			name: '突破界面_判断',
 			operator: [{ desc: thisOperator[0].desc }]
 		}, 0)) {
-			// 呱
-			if (thisScript.oper({
-				name: '个人突破_呱',
-				operator: [{
-					desc: thisOperator[1].desc,
-					oper: thisOperator[1].oper
-				}]
-			}, 0)) {
-				return true;
-			}
 			let thisconfFor008 = thisScript.scheme.config['8']; // 获取8功能配置
 			let thistype = thisconfFor008.type;
 			let thisconf = thisScript.scheme.config['9']; // 获取配置
@@ -119,7 +98,7 @@ export class Func009 implements InterfaceFuncOrigin {
 						thisOperator[0].oper[0][4]]];
 					thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
 					//第一排第一列结界坐标
-					let fristFirstOper = thisOperator[2].oper[0] //[147, 146, 465, 265];
+					let fristFirstOper = thisOperator[1].oper[0] //[147, 146, 465, 265];
 					let thisconf = thisScript.scheme.config['9'];
 					if (Number(oper[0][0]) > fristFirstOper[0] && Number(oper[0][1]) > fristFirstOper[1] && Number(oper[0][2]) < fristFirstOper[2] && Number(oper[0][3]) < fristFirstOper[3]) {
 						console.log("检测点击范围在第一排第一列结界内");

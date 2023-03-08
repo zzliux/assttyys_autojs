@@ -49,6 +49,17 @@ export class Func003 implements InterfaceFuncOrigin {
 			[center, 668, 510, 0x7746a8],
 			[center, 694, 490, 0xef492e]]
 		]
+	}, {//2,呱太弹窗
+		desc: [1280, 720,
+			[[center, 568, 225, 0xb7b052],
+			[center, 733, 228, 0x4d4da2],
+			[center, 756, 236, 0xc0c45e],
+			[center, 879, 323, 0x690707],
+			[center, 690, 422, 0xd3ae72]]
+		],
+		oper: [
+			[center, 1280, 720, 517, 521, 841, 689, 1000]
+		]
 	}];
 
 	/**
@@ -57,6 +68,15 @@ export class Func003 implements InterfaceFuncOrigin {
 	 * @param {*} thisOperator 转换过适合当前分辨率的operator
 	 */
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+		if (thisScript.oper({
+			name: '呱太弹窗',
+			operator: [{
+				desc: thisOperator[2].desc,
+				oper: [thisOperator[2].oper[0]]
+			}]
+		})) {
+			return true;
+		}
 		let thisconf = thisScript.scheme.config['3']; // 获取配置
 		if (thisconf.switch && thisconf.type === '接受') {
 			if (thisScript.oper({
