@@ -590,6 +590,19 @@ const SchemeList: InterfaceScheme[] = [{
         }
     }
 }, {
+    id: 59,
+    schemeName: '强化御魂',
+    list: [0, 303, 309],
+    config: {
+        '0': {
+            jspd_times_longtime_nodo: '1'
+        }
+    },
+    commonConfig: {
+        multiColorSimilar: 93,
+    },
+    star: true
+}, {
     id: 99,
     schemeName: '伊吹之擂',
     list: [0, 3, 24, 99, 100],
