@@ -570,6 +570,9 @@ export const versionList = [{
 优化：式神寄养流程；
 修复：寮活动空对象访问。
 `
+}, {
+    version: '20230308_02',
+    desc: `优化：六道萤草装buff时重置按钮增加延迟`
 }];
 
 export default versionList[versionList.length - 1].version;
