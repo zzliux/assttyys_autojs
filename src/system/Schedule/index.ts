@@ -153,7 +153,7 @@ class Schedule {
     jobQueue: Job[] = [];
 
     constructor() {
-        this.timer = setTimeout(this.timerCallback.bind(this), this.timeout);
+        this.timer = setInterval(this.timerCallback.bind(this), this.timeout);
         this.jobList = [];
     }
 
@@ -289,7 +289,7 @@ class Schedule {
                 console.log('--调度任务--当前调度队列为:', this.jobQueue.map(item => item.id));
             }
         }
-        setTimeout(this.timerCallback.bind(this), this.timeout);
+        // setTimeout(this.timerCallback.bind(this), this.timeout);
     }
 }
 
