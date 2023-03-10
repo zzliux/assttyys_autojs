@@ -576,6 +576,10 @@ export const versionList = [{
 }, {
     version: '20220310_01',
     desc: '新增：强化御魂方案'
+}, {
+    version: '20220310_02',
+    desc: `优化：呱太突破增加色组提高兼容性；
+优化：强化御魂可选x号位`
 }];
 
 export default versionList[versionList.length - 1].version;
