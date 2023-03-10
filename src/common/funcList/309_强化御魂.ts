@@ -14,9 +14,14 @@ export class Func309 implements InterfaceFuncOrigin {
     desc: '',
     config: [{
       name: 'switch',
-      desc: '使用青吉鬼',
+      desc: '使用四星青吉鬼',
       type: 'switch',
       default: true,
+    }, {
+      name: 'number',
+      desc: '强化第N号位（输入数字1,2,3,4,5,6）',
+      type: 'text',
+      default: '1'
     }]
   }]
   operator: InterfaceFuncOperatorOrigin[] = [{//0,整理界面
@@ -121,6 +126,15 @@ export class Func309 implements InterfaceFuncOrigin {
       [center, 766, 643, 0xe7c67b],
       [right, 974, 642, 0xf4b25f]]
     ]
+  }, {//11,N号位
+    oper: [
+      [center, 1280, 720, 732, 268, 765, 307, 1000],
+      [center, 1280, 720, 796, 270, 826, 300, 1000],
+      [center, 1280, 720, 861, 272, 892, 307, 1000],
+      [center, 1280, 720, 924, 269, 959, 302, 1000],
+      [center, 1280, 720, 986, 271, 1018, 302, 1000],
+      [center, 1280, 720, 1054, 270, 1086, 300, 1000],
+    ]
   }
   ]
   operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
@@ -147,10 +161,24 @@ export class Func309 implements InterfaceFuncOrigin {
     if (thisScript.oper({
       id: 309,
       name: '强化御魂',
-      operator: thisOperator.slice(2, 6)
+      operator: thisOperator.slice(3, 6)
     })) { return true; }
 
     let thisconf = thisScript.scheme.config['309'];
+    if (thisScript.oper({
+      id: 309,
+      name: '进入整理',
+      operator: [thisOperator[2]]
+    })) { 
+      thisScript.oper({
+        id: 309,
+        name: '选择N号位',
+        operator: [{
+          oper:[thisOperator[11].oper[Number(thisconf.number)-1]]
+        }]
+      })
+      return true; 
+    }
     if (thisconf.switch && thisScript.oper({
       id: 309,
       name: '青吉鬼',
