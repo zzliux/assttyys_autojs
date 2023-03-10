@@ -573,6 +573,9 @@ export const versionList = [{
 }, {
     version: '20230308_02',
     desc: `优化：六道萤草装buff时重置按钮增加延迟`
+}, {
+    version: '20220310_01',
+    desc: '新增：强化御魂方案'
 }];
 
 export default versionList[versionList.length - 1].version;
