@@ -44,6 +44,7 @@ export type globalRootType = {
     team_up_lagTime: null | Date,    //组队延时
     team_up_Frist: boolean,  //首次组队
     xsOpened: boolean, // 是否打开过悬赏
+    intensify_lagTime: null | Date, //强化延时
 }
 
 export const globalRoot: globalRootType = {
@@ -92,4 +93,5 @@ export const globalRoot: globalRootType = {
     team_up_lagTime: null,
     team_up_Frist: true,
     xsOpened: false,
+    intensify_lagTime: null,
 }

@@ -298,13 +298,24 @@ const multiColor: InterfaceMultiColorOrigin = {
         region: [center, 1280, 720, 124, 125, 1152, 545],
         desc: [
             [1280, 720,
-                [[center, 904, 418, 0x49793a],
-                [center, 904, 417, 0x739530],
-                [right, 1117, 530, 0x3c5833],
-                [center, 862, 450, 0x946b2c],
-                [right, 1002, 504, 0x8f8a85]
+                [
+                    [center, 904, 418, 0x49793a],
+                    [center, 904, 417, 0x739530],
+                    [right, 1117, 530, 0x3c5833],
+                    [center, 862, 450, 0x946b2c],
+                    [right, 1002, 504, 0x8f8a85]
                 ]
-            ]]
+            ],
+            [1280, 720,
+                [
+                    [center, 907, 418, 0x477a36],
+                    [center, 907, 417, 0x608e3f],
+                    [right, 1117, 530, 0x3c5631],
+                    [center, 862, 450, 0x966330],
+                    [right, 1002, 504, 0x918c87]
+                ]
+            ]
+        ]
     },
     '式神寄养_全列表空结界卡': {
         region: [center, 1280, 720, 215, 167, 660, 598],
@@ -2561,6 +2572,35 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [center, 877, 430, 0xbc5449],
                     [center, 903, 430, 0xdb8683],
                 ]
+            ]
+        ]
+    },
+    "御魂强化_零级": {
+        region: [right, 1280, 720, 72, 146, 562, 639],
+        desc: [
+            [
+                1280, 720,
+                [
+                    [left, 223, 411, 0xa99f85],
+                    [left, 223, 505, 0xe8720f],
+                    [left, 237, 505, 0xe87210],
+                    [left, 251, 505, 0xe97310],
+                    [left, 265, 505, 0xe97311],
+                    [left, 278, 505, 0xe46415],
+                    [left, 292, 505, 0xe56713],
+                    [left, 290, 418, 0x604c31]
+                ]
+            ]
+        ]
+    },
+    "御魂强化_强化": {
+        region: [right, 1280, 720, 594, 411, 752, 712],
+        desc: [
+            [1280, 720,
+                [[center, 621, 649, 0xf5b964],
+                [center, 722, 653, 0xf4b25f],
+                [center, 722, 687, 0xf4b260],
+                [center, 628, 684, 0xf4b25f]]
             ]
         ]
     }

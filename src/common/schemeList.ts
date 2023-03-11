@@ -592,6 +592,19 @@ const SchemeList: InterfaceScheme[] = [{
     }
 }, {
     id: 59,
+    schemeName: '强化御魂',
+    list: [0, 303, 309],
+    config: {
+        '0': {
+            jspd_times_longtime_nodo: '1'
+        }
+    },
+    commonConfig: {
+        multiColorSimilar: 93,
+    },
+    star: true
+}, {
+    id: 60,
     schemeName: "定时任务-启动游戏-悬赏",
     star: false,
     groupName: "定时任务",
