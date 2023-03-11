@@ -565,7 +565,7 @@ export const versionList = [{
 优化：48悬赏杂项支持刷新记录提示的关闭`
 }, {
     version: '20230308_01',
-    desc: `优化：个人突破支持呱太；
+    desc: `妇女节快乐！！😘😘😘 优化：个人突破支持呱太；
 优化：调度任务修改为10秒获取一次调度状态；CRON定时任务在启动程序时自动更新下次运行时间；
 优化：式神寄养流程；
 修复：寮活动空对象访问。
@@ -573,6 +573,9 @@ export const versionList = [{
 }, {
     version: '20230308_02',
     desc: `优化：六道萤草装buff时重置按钮增加延迟`
+} ,{
+    version: '20230312_01',
+    desc: '优化：庭院进入探索适配；优化寄养翻页；添加悬赏定时任务。'
 }];
 
 export default versionList[versionList.length - 1].version;

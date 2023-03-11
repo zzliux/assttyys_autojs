@@ -22,6 +22,13 @@ export class Func503 implements InterfaceFuncOrigin {
 			desc: '下一个方案',
 			type: 'scheme',
 			default: '通用准备退出',
+		}, {
+			name: 'afterCountOper',
+			desc: '执行完成的操作',
+			type: 'list',
+			data: ['停止脚本', '关闭应用'],
+			default: '停止脚本',
+			value: null,
 		}]
 	}];
 	operator: InterfaceFuncOperatorOrigin[] = [
@@ -248,8 +255,24 @@ export class Func503 implements InterfaceFuncOrigin {
 				}
 
 				if (!next_scheme) {
-					thisScript.doOspPush(thisScript, { text: '没有方案需要执行，脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-					thisScript.stop();
+					if ('停止脚本' === thisConf.afterCountOper) {
+						thisScript.doOspPush(thisScript, { text: '没有方案需要执行，脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+						thisScript.stop();
+					} else if ('关闭应用' === thisConf.afterCountOper) {
+						sleep(1000);
+						let storeSettings = thisScript.storeCommon.get('settings', {});
+						if (storeSettings.defaultLaunchAppList && storeSettings.defaultLaunchAppList.length) {
+							storeSettings.defaultLaunchAppList.forEach(packageName => {
+								thisScript.myToast(`停止应用[${packageName}]`);
+								$shell(`am force-stop ${packageName}`, true);
+								sleep(1000);
+							});
+							thisScript.doOspPush(thisScript, { text: '返回庭院成功，脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+						} else {
+							thisScript.myToast('未配置关联应用，不执行停止操作');
+						}
+						thisScript.stop();
+					}
 				} else {
 					thisScript.setCurrentScheme(next_scheme as string, {
 						...thisScript.runtimeParams,

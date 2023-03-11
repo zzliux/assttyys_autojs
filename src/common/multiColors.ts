@@ -887,6 +887,17 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [center, 1126, 158, 0x1e1405],
                     [center, 1126, 175, 0xffffc7]
                 ]
+            ],
+            [   //  低画质适配
+                1280, 720,
+                [
+                    [center, 658, 109, 0xd2a580],
+                    [center, 670, 120, 0x020100],
+                    [center, 681, 120, 0x020101],
+                    [center, 680, 123, 0x020201],
+                    [center, 712, 128, 0xcda281],
+                    [center, 679, 198, 0xffffde],
+                ]
             ]
         ]
     },

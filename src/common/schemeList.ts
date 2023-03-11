@@ -219,7 +219,7 @@ const SchemeList: InterfaceScheme[] = [{
 }, {
     id: 17,
     schemeName: '斗技',
-    list: [0, 1, 2, 3, 30]
+    list: [0, 1, 2, 3, 30, 307]
 }, {
     id: 18,
     schemeName: '结界卡_继续合成',
@@ -286,7 +286,8 @@ const SchemeList: InterfaceScheme[] = [{
     config: {
         "503": {
             scheme_switch_enabled: false,
-            next_scheme: '通用准备退出'
+            next_scheme: '通用准备退出',
+            afterCountOper: '停止脚本'
         }
     }
 }, {
@@ -300,7 +301,7 @@ const SchemeList: InterfaceScheme[] = [{
             type: "关闭"
         },
         "994": {
-            count: "3",
+            count: "6",
             maxTimeForwait: "10",
             afterCountOper: "停止脚本",
             next_scheme: "通用准备退出"
@@ -589,6 +590,19 @@ const SchemeList: InterfaceScheme[] = [{
             exit: true,
         }
     }
+}, {
+    id: 59,
+    schemeName: "定时任务-启动游戏-悬赏",
+    star: false,
+    groupName: "定时任务",
+    list: [993],
+    config: {
+        "993": {
+            area: "",
+            is_shutdown_the_game_before: true,
+            next_scheme: "悬赏"
+        }
+    },
 }, {
     id: 99,
     schemeName: '伊吹之擂',

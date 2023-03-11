@@ -173,6 +173,20 @@ const ScheduleDefaultList: JobOptions[] = [
       scheme: '庭院进入寮每日活动(不包含阴门)',
     }
   },
+  {
+    id: 13,
+    name: '悬赏',
+    desc: '自动悬赏',
+    checked: false,
+    lastRunTime: null,
+    nextDate: null,
+    repeatMode: 3,
+    interval: '* 0 7,1 * * *',
+    level: '1',
+    config: {
+      scheme: '定时任务-启动游戏-悬赏',
+    }
+  },
 ];
 
 export default ScheduleDefaultList;
