@@ -527,6 +527,18 @@ export class Func506 implements InterfaceFuncOrigin {
 			thisScript.rerun();
 		}
 
-		return false;
+		//	做延时识别
+		if (thisScript.global.checked_yard_count > 5) {
+			thisScript.global.checked_yard_count = 0;
+			return false;
+		} else {
+			sleep(500);
+			if (!thisScript.global.checked_yard_count) {
+				thisScript.global.checked_yard_count = 1;
+			} else {
+				thisScript.global.checked_yard_count += 1;
+			}
+			return true;
+		}
 	}
 }

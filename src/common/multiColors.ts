@@ -842,6 +842,17 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [center, 726, 294, 0xaeaa97],
                     [center, 728, 267, 0x060503]
                 ]
+            ],
+            [   //  画质为极速适配
+                1280, 720,
+                [
+                    [center, 748, 296, 0xa6a396],
+                    [center, 738, 325, 0x999592],
+                    [center, 733, 246, 0xb7aeaf],
+                    [center, 738, 312, 0x766e66],
+                    [center, 709, 307, 0xa59e9d],
+                    [center, 697, 257, 0xaaa290],
+                ]
             ]
         ]
     },
@@ -857,6 +868,17 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [center, 640, 181, 0x0c0808],
                     [center, 646, 196, 0xd8a78e]
                 ]
+            ],
+            [   //  画质为极速适配
+                1280, 720,
+                [
+                    [center, 634, 169, 0xf9e8a5],
+                    [center, 644, 209, 0xa88787],
+                    [center, 619, 173, 0xa81d1b],
+                    [center, 640, 194, 0x0c0808],
+                    [center, 650, 202, 0xc6a390],
+                    [center, 638, 206, 0xb19088],
+                ]
             ]
         ]
     },
@@ -870,6 +892,19 @@ const multiColor: InterfaceMultiColorOrigin = {
                 [center, 780, 186, 0x271c0d],
                 [center, 773, 191, 0x20160b],
                 [center, 779, 176, 0xffffd8]]
+            ],
+            [   //  画质为极速适配
+                1280, 720,
+                [
+                    [center, 769, 171, 0xf6e5a8],
+                    [center, 778, 202, 0xc5a392],
+                    [center, 755, 174, 0xa81f1d],
+                    [center, 783, 141, 0xcda483],
+                    [center, 781, 183, 0x0c0808],
+                    [center, 781, 191, 0x0c0808],
+                    [center, 774, 161, 0x0c0808],
+                    [center, 771, 153, 0xf2d19e],
+                ]
             ]
         ]
     },
