@@ -255,8 +255,8 @@ export class Func503 implements InterfaceFuncOrigin {
 				}
 
 				if (!next_scheme) {
-					if ('停止脚本' === thisConf.afterCountOper) {
-						thisScript.doOspPush(thisScript, { text: '没有方案需要执行，脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+					if ('停止脚本' === thisConf.afterCountOper || !thisConf.afterCountOper) {
+						thisScript.doOspPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 						thisScript.stop();
 					} else if ('关闭应用' === thisConf.afterCountOper) {
 						sleep(1000);
@@ -267,7 +267,7 @@ export class Func503 implements InterfaceFuncOrigin {
 								$shell(`am force-stop ${packageName}`, true);
 								sleep(1000);
 							});
-							thisScript.doOspPush(thisScript, { text: '返回庭院成功，脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+							thisScript.doOspPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，应用[${packageName}]已杀，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 						} else {
 							thisScript.myToast('未配置关联应用，不执行停止操作');
 						}

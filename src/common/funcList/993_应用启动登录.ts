@@ -246,7 +246,7 @@ export class Func993 implements InterfaceFuncOrigin {
 			thisScript.global.app_is_open = true;
 		} else if (!isInstalled) {
 			thisScript.myToast(`未找到对应的应用[${packageName}]`);
-			thisScript.doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+			thisScript.doOspPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 			thisScript.stop();
 		}
 

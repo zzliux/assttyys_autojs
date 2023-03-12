@@ -582,7 +582,10 @@ export const versionList = [{
 优化：强化御魂可选x号位`
 } ,{
     version: '20230312_01',
-    desc: '优化：庭院进入探索适配；优化寄养翻页；添加悬赏定时任务。'
+    desc: `优化：庭院进入探索低画质适配；
+优化：寄养翻页；
+优化：添加悬赏定时任务；
+优化：脚本停止时的提示内容包含已执行的方案。`
 }];
 
 export default versionList[versionList.length - 1].version;

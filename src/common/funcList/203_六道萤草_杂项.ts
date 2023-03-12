@@ -350,7 +350,7 @@ export class Func203 implements InterfaceFuncOrigin {
 			let toLog = `${bufLog}。通关次数: ${thisScript.global.times || 0}次, 本次通关时间: ${currentCost}秒, 平均通关时间: ${costAvg}秒, 总通关时间: ${cost}分`;
 			thisScript.myToast(toLog);
 			if (thisconf.overTimes && thisScript.global.times >= thisconf.overTimes) {
-				toLog = '脚本已停止，请查看。' + toLog;
+				toLog = `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。` + toLog;
 			}
 			if (thisconf.ospPush) {
 				thisScript.doOspPush(thisScript, {

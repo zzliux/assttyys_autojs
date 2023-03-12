@@ -67,7 +67,7 @@ export class Func012 implements InterfaceFuncOrigin {
 			if (thisScript.global.tp_swipe_times >= defaultCount) {
 				thisScript.global.tp_swipe_times = 0;
 				if ('停止脚本' === thisConf.afterCountOper) {
-					thisScript.doOspPush(thisScript, { text: '脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+					thisScript.doOspPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 					thisScript.stop();
 				} else if ('切换方案' === thisConf.afterCountOper) {
 					let oper = thisOperator[0].oper[2];

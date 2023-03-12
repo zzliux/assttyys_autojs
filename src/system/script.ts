@@ -25,6 +25,7 @@ export class Script {
     runCallback: Function; // 运行后回调，一般用于修改悬浮样式
     stopCallback: Function; // 停止后回调，异常停止、手动停止，在停止后都会调用
     scheme: InterfaceScheme; // 运行的方案
+    schemeHistory: InterfaceScheme[]; // 历史运行方案，run时push进去，stop清空，stop(true)不清
     funcMap: { [key: number]: InterfaceFunc }; // funcList的Map形式，下标为id，值为对应的fun元素
     scheduleMap: any;  // 定时任务实例存放Map
     multiColor: InterfaceMultiColor; // 多点找色用的，提前初始化，减轻运行中计算量
@@ -76,6 +77,7 @@ export class Script {
         this.runCallback = null;
         this.stopCallback = null;
         this.scheme = null;
+        this.schemeHistory = [];
         this.funcMap = null;
         this.scheduleMap = null;
         this.multiColor = null;
@@ -490,6 +492,7 @@ export class Script {
         // img.recycle();
         // test end
         myToast(`运行方案[${this.scheme.schemeName}]`);
+        this.schemeHistory.push(this.scheme);
         // console.log(`运行方案[${this.scheme.schemeName}]`);
         this.runThread = threads.start(function () {
             try {
@@ -585,6 +588,9 @@ export class Script {
         if (null !== this.runThread) {
             if (typeof this.stopCallback === 'function') {
                 this.stopCallback();
+            }
+            if (!flag) {
+                this.schemeHistory = [];
             }
             if (!flag && this.job) {
                 this.job.doDone();
