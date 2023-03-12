@@ -586,6 +586,9 @@ export const versionList = [{
 优化：寄养翻页；
 优化：添加悬赏定时任务；
 优化：脚本停止时的提示内容包含已执行的方案。`
+}, {
+    version: '20230312_02',
+    desc: '优化：悬赏兼容左上角有“拓”或“宠”的情况'
 }];
 
 export default versionList[versionList.length - 1].version;
