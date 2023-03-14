@@ -132,7 +132,7 @@ export class Func030 implements InterfaceFuncOrigin {
    }]
    operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
       let thisconf = thisScript.scheme.config['30'];
-      if (thisScript.oper({
+      if (thisconf && thisconf.level && thisScript.oper({
          id: 30,
          name: '斗技_杂项',
          operator: [{
