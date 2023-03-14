@@ -79,7 +79,7 @@ export class Func043 implements InterfaceFuncOrigin {
 				// 如果没有挑战副本就寻找秘闻副本
 			} else if (!unknownStory) {
 				challengeArr = thisScript.findMultiColorEx('悬赏_秘闻字样') || null;
-				if (challengeArr) {
+				if (challengeArr.length) {
 					const challenge = challengeArr.reduce((min, obj) => {
 						return obj.y < min.y ? obj : min;
 					});

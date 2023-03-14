@@ -1303,23 +1303,23 @@ const multiColor: InterfaceMultiColorOrigin = {
         region: [left, 1280, 720, 0, 95, 154, 284],
         desc: [
             // 适配“拓”
-            [1280,720,
+            [1280, 720,
                 [
-                    [left,7,132,0x4a3931],
-                    [left,49,132,0x43322a],
-                    [left,89,132,0x43322a],
-                    [left,111,132,0x6475db],
-                    [left,123,132,0xcdcdd1]
+                    [left, 7, 132, 0x4a3931],
+                    [left, 49, 132, 0x43322a],
+                    [left, 89, 132, 0x43322a],
+                    [left, 111, 132, 0x6475db],
+                    [left, 123, 132, 0xcdcdd1]
                 ]
             ],
             // 适配“宠”
-            [1280,720,
+            [1280, 720,
                 [
-                    [left,4,132,0x47362e],
-                    [left,37,132,0x44332b],
-                    [left,80,132,0x43322a],
-                    [left,112,132,0xbc8080],
-                    [left,124,132,0xeacebd]
+                    [left, 4, 132, 0x47362e],
+                    [left, 37, 132, 0x44332b],
+                    [left, 80, 132, 0x43322a],
+                    [left, 112, 132, 0xbc8080],
+                    [left, 124, 132, 0xeacebd]
                 ]
             ],
             [1280, 720,
@@ -1484,6 +1484,17 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [left, 269, 136, 0x942f2e],
                     [left, 272, 125, 0xad4a42],
                     [left, 260, 113, 0x914b49]
+                ]
+            ],
+            [1280, 720, // √
+                [
+                    [left, 259, 274, 0xfde5b3],
+                    [left, 264, 280, 0xe1c88e],
+                    [left, 268, 284, 0xddc588],
+                    [left, 270, 287, 0xecdb9e],
+                    [left, 274, 279, 0xead9a6],
+                    [left, 279, 275, 0xeddda9],
+                    [left, 282, 271, 0xf7e6c4]
                 ]
             ],
         ]
