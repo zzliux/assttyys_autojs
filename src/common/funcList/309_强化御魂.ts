@@ -17,11 +17,6 @@ export class Func309 implements InterfaceFuncOrigin {
       desc: '使用四星青吉鬼',
       type: 'switch',
       default: true,
-    }, {
-      name: 'number',
-      desc: '强化第N号位（输入数字1,2,3,4,5,6）',
-      type: 'text',
-      default: '1'
     }]
   }]
   operator: InterfaceFuncOperatorOrigin[] = [{//0,整理界面
@@ -126,14 +121,10 @@ export class Func309 implements InterfaceFuncOrigin {
       [center, 766, 643, 0xe7c67b],
       [right, 974, 642, 0xf4b25f]]
     ]
-  }, {//11,N号位
+  }, {//11,上滑
     oper: [
-      [center, 1280, 720, 732, 268, 765, 307, 1000],
-      [center, 1280, 720, 796, 270, 826, 300, 1000],
-      [center, 1280, 720, 861, 272, 892, 307, 1000],
-      [center, 1280, 720, 924, 269, 959, 302, 1000],
-      [center, 1280, 720, 986, 271, 1018, 302, 1000],
-      [center, 1280, 720, 1054, 270, 1086, 300, 1000],
+      [center, 1280, 720, 94, 577, 188, 618, 0],
+      [center, 1280, 720, 92, 255, 198, 310, 0],
     ]
   }
   ]
@@ -161,24 +152,10 @@ export class Func309 implements InterfaceFuncOrigin {
     if (thisScript.oper({
       id: 309,
       name: '强化御魂',
-      operator: thisOperator.slice(3, 6)
+      operator: thisOperator.slice(2, 6)
     })) { return true; }
 
     let thisconf = thisScript.scheme.config['309'];
-    if (thisScript.oper({
-      id: 309,
-      name: '进入整理',
-      operator: [thisOperator[2]]
-    })) { 
-      thisScript.oper({
-        id: 309,
-        name: '选择N号位',
-        operator: [{
-          oper:[thisOperator[11].oper[Number(thisconf.number)-1]]
-        }]
-      })
-      return true; 
-    }
     if (thisconf.switch && thisScript.oper({
       id: 309,
       name: '青吉鬼',
@@ -187,12 +164,14 @@ export class Func309 implements InterfaceFuncOrigin {
       }]
     })) {
       thisScript.helperBridge.regionClick([[...thisOperator[6].oper[0], 1000]], thisScript.scheme.commonConfig.afterClickDelayRandom)
+      thisScript.global.intensify_lagTime = new Date();
       return true;
     } else if (thisconf.switch == false && thisScript.oper({
       id: 309,
       name: '贪食鬼',
       operator: [thisOperator[7]]
     })) {
+      thisScript.global.intensify_lagTime = new Date();
       return true;
     }
     let intensify_lagTime = thisScript.global.intensify_lagTime;
@@ -211,6 +190,7 @@ export class Func309 implements InterfaceFuncOrigin {
         let oper_intensify = [[point_intensify.x, point_intensify.y, point_intensify.x + thisOperator[8].oper[0][2], point_intensify.y + thisOperator[8].oper[0][3], thisOperator[8].oper[0][4]]];
         thisScript.helperBridge.regionClick(oper_intensify, thisScript.scheme.commonConfig.afterClickDelayRandom);
         thisScript.global.intensify_lagTime = new Date();
+        thisScript.global.intensify_NumOT = 0
         return true;
       }
       let point_level = thisScript.findMultiColor('御魂强化_零级');
@@ -221,12 +201,12 @@ export class Func309 implements InterfaceFuncOrigin {
         return true;
       }
       intensify_lagTime = new Date();
-      if (intensify_lagTime.getTime() - thisScript.global.intensify_lagTime.getTime() > 7000) {
-        thisScript.oper({
-          id: 309,
-          name: '退出(刷新)',
-          operator: [thisOperator[9]]
-        })
+      if (intensify_lagTime.getTime() - thisScript.global.intensify_lagTime.getTime() > 2000) {
+        if (++thisScript.global.intensify_NumOT > 2) {
+          thisScript.doOspPush(thisScript, { text: '多次未找到0级御魂，已停止。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+          thisScript.stop();  
+        }
+        thisScript.helperBridge.regionBezierSwipe(thisOperator[11].oper[0], thisOperator[11].oper[1], [1000, 1100], 200);
         thisScript.global.intensify_lagTime = new Date();
         return true;
       }

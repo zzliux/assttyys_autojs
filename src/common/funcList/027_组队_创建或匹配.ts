@@ -90,6 +90,7 @@ export class Func027 implements InterfaceFuncOrigin {
 			[center, 877, 590, 0xf7b263]]
 		],
 		oper: [
+			[center, 1280, 720, 754, 499, 778, 521, 1000],//不公开
 			[center, 1280, 720, 818, 567, 932, 612, 1000]//创建
 		]
 	}]

@@ -139,7 +139,7 @@ export class Func306 implements InterfaceFuncOrigin {
             console.log(`昵称历遍:${result[i].label}`)
           }
           let findInvName = thisScript.findTextByOcrResult(thisConf.inviteName as string, result, '包含')
-          if (findInvName) {
+          if (findInvName.length) {
             toClickRegion = [
               findInvName[0].points[0].x,
               findInvName[0].points[0].y,
@@ -149,7 +149,7 @@ export class Func306 implements InterfaceFuncOrigin {
             ]
           }
           if (toClickRegion === null) {
-            console.log(`未识别到昵称${thisConf.inviteName}`);
+            console.log(`未识别到昵称:${thisConf.inviteName}`);
             return false;
           }
           toClickRegion && thisScript.helperBridge.regionClick([toClickRegion], thisScript.scheme.commonConfig.afterClickDelayRandom);
