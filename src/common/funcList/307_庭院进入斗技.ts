@@ -41,6 +41,22 @@ export class Func307 implements InterfaceFuncOrigin {
 					[center, 673, 651, 0xdb8b3f],
 				]
 			],
+		},
+		{	// 检测_町中
+			desc:
+				[
+					1280, 720,
+					[
+						[right, 1053, 441, 0x8c8888],
+						[right, 1096, 229, 0xa8a196],
+						[right, 1040, 239, 0xb6b0bb],
+						[right, 1220, 48, 0xcba375],
+						[right, 1155, 38, 0xd7b28a],
+					]
+				],
+			oper: [
+				[center, 1280, 720, 757,149, 799,198, 1200]	//	点击斗技灯笼
+			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
@@ -66,15 +82,22 @@ export class Func307 implements InterfaceFuncOrigin {
 			}
 		}
 
-		let point = thisScript.findMultiColor('町中_斗技灯笼');
-		if (point) {
-			let oper = [
-				[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]
-			];
-			thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
-			sleep(2000);
+		// let point = thisScript.findMultiColor('町中_斗技灯笼');
+		// if (point) {
+		// 	let oper = [
+		// 		[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]
+		// 	];
+		// 	thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+		// 	sleep(2000);
 
-			return false;
+		// 	return false;
+		// }
+
+		if (thisScript.oper({
+			name: '町中_斗技灯笼',
+			operator: [thisOperator[3]]
+		})) {
+			return true;
 		}
 
 		return false;

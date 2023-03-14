@@ -265,9 +265,9 @@ export class Func503 implements InterfaceFuncOrigin {
 							storeSettings.defaultLaunchAppList.forEach(packageName => {
 								thisScript.myToast(`停止应用[${packageName}]`);
 								$shell(`am force-stop ${packageName}`, true);
+								thisScript.doOspPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，应用[${packageName}]已杀，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 								sleep(1000);
 							});
-							thisScript.doOspPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，应用[${packageName}]已杀，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 						} else {
 							thisScript.myToast('未配置关联应用，不执行停止操作');
 						}

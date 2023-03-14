@@ -589,6 +589,9 @@ export const versionList = [{
 }, {
     version: '20230312_02',
     desc: '优化：悬赏兼容左上角有“拓”或“宠”的情况'
+}, {
+    version: '20230315_01',
+    desc: '优化：进入逢魔，斗技方式，找色调整为多点比色，添加首领进入式神录适配'
 }];
 
 export default versionList[versionList.length - 1].version;
