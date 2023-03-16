@@ -120,7 +120,26 @@ export class Func509 implements InterfaceFuncOrigin {
         oper: [
             [right, 1280, 720, 1135,456, 1182,498, 1200]    //  点击式神按钮
         ]
-    },];
+    },
+	{	//	检测_首领
+		desc:
+		[
+			1280, 720,
+			[
+				[left, 182, 37, 0xd5c4a3],
+				[left, 108, 26, 0xd7c5a2],
+				[left, 47, 28, 0xd7c5a2],
+				[left, 232, 139, 0x583716],
+				[left, 76, 550, 0x322219],
+				[right, 1039, 648, 0xd3c3bd],
+				[center, 872, 606, 0x493a38],
+				[center, 727, 611, 0xdfc7ac],
+			]
+		],
+		oper: [
+			[right, 1280, 720, 1008,600, 1081,671, 1200]	//	点击式神按钮
+		]
+	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		if (thisScript.global.change_shikigami_flag) {
 			return false;

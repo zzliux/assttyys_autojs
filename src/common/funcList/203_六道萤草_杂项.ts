@@ -306,6 +306,44 @@ export class Func203 implements InterfaceFuncOrigin {
 		oper: [
 			[right, 1280, 720, 491, 419, 614, 469, 500]
 		]
+	}, {
+		// 战斗失败选择放弃前行
+		desc: [1280,720,
+			[
+				[center,400,225,0x2f1e0e],
+				[center,635,224,0x6f4e3d],
+				[center,880,225,0x2f1e0e],
+				[center,400,494,0x675637],
+				[center,627,492,0x4d3424],
+				[center,878,496,0x513221],
+				[center,445,406,0x8d233d],
+				[center,840,410,0x994433],
+				[center,585,309,0xcbb59e]
+			]
+		],
+		oper: [
+			[right, 1280, 720, 686,411, 836,451, 500]
+		]
+	},{
+		// 战斗失败确定放弃
+		desc: [1280,720,
+				[
+					[center,430,221,0x4f3a2c],
+					[center,643,221,0x71503f],
+					[center,853,224,0x3e2e1f],
+					[center,428,492,0x625134],
+					[center,627,493,0x6d4c3b],
+					[center,852,494,0x5b3d2c],
+					[center,632,392,0xcbb59e],
+					[center,476,398,0x8b2547],
+					[center,595,445,0x8b2547],
+					[center,683,397,0x9b3535],
+					[center,800,445,0x933e2d]
+				]
+			],
+		oper: [
+			[right, 1280, 720, 691,401, 794,444, 500]
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		if (thisScript.oper({

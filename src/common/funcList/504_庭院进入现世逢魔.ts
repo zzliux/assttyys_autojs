@@ -12,35 +12,51 @@ export class Func504 implements InterfaceFuncOrigin {
 	operator: InterfaceFuncOperatorOrigin[] = [
 		{
 			desc:   // 页面是否为庭院(菜单未展开) 只支持默认庭院皮肤与默认装饰
-			[1280, 720,
-				[[right, 1226, 47, 0xcda47a],
+				[1280, 720,
+					[[right, 1226, 47, 0xcda47a],
 					[right, 1157, 45, 0xb39671],
 					[center, 389, 65, 0xfbc573],
 					[right, 1207, 637, 0xdfd1cb]]
-			],
+				],
 			oper: [
 				[left, 1280, 720, 0, 0, 20, 20, 1000]
 			]
 		},
 		{
 			desc:   // 页面是否为庭院(菜单已展开) 只支持默认庭院皮肤与默认装饰
-			[1280, 720,
-				[[right, 1226, 47, 0xcda47a],
+				[1280, 720,
+					[[right, 1226, 47, 0xcda47a],
 					[right, 1157, 45, 0xb29670],
 					[center, 389, 65, 0xfbc573],
 					[right, 1228, 646, 0xd6c6c3]]
-			]
+				]
 		},
 		{
-			desc: 	//	// 页面是否为庭院(菜单已展开)另一种图标 御祝图标 只支持默认庭院皮肤与默认装饰
-			[1280, 720,
+			desc: 	// 页面是否为庭院(菜单已展开)另一种图标 御祝图标 只支持默认庭院皮肤与默认装饰
+				[1280, 720,
+					[
+						[right, 1223, 662, 0xdbcbc7],
+						[right, 1155, 41, 0xd7b188],
+						[center, 451, 631, 0xe8e4e1],
+						[center, 673, 651, 0xdb8b3f],
+					]
+				],
+		},
+		{	// 检测_町中
+			desc:
 				[
-					[right, 1223, 662, 0xdbcbc7],
-					[right, 1155, 41, 0xd7b188],
-					[center, 451, 631, 0xe8e4e1],
-					[center, 673, 651, 0xdb8b3f],
-				]
-			],
+					1280, 720,
+					[
+						[right, 1053, 441, 0x8c8888],
+						[right, 1096, 229, 0xa8a196],
+						[right, 1040, 239, 0xb6b0bb],
+						[right, 1220, 48, 0xcba375],
+						[right, 1155, 38, 0xd7b28a],
+					]
+				],
+			oper: [
+				[center, 1280, 720, 622, 145, 661, 198, 1200]	//	点击逢魔灯笼
+			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
@@ -67,15 +83,22 @@ export class Func504 implements InterfaceFuncOrigin {
 			}
 		}
 
-		let point = thisScript.findMultiColor('町中_逢魔之时灯笼');
-		if (point) {
-			let oper = [
-				[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]
-			];
-			thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
-			sleep(2000);
+		// let point = thisScript.findMultiColor('町中_逢魔之时灯笼');
+		// if (point) {
+		// 	let oper = [
+		// 		[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]
+		// 	];
+		// 	thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+		// 	sleep(2000);
 
-			return false;
+		// 	return false;
+		// }
+
+		if (thisScript.oper({
+			name: '町中_逢魔之时灯笼',
+			operator: [thisOperator[3]]
+		})) {
+			return true;
 		}
 
 		return false;

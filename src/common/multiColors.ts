@@ -856,58 +856,58 @@ const multiColor: InterfaceMultiColorOrigin = {
             ]
         ]
     },
-    '町中_逢魔之时灯笼': {
-        region: [center, 1280, 720, 0, 83, 1279, 412],
-        desc: [
-            [1280, 720,
-                [
-                    [center, 645, 180, 0xfff4b0],
-                    [center, 643, 185, 0xfbe5a3],
-                    [center, 649, 184, 0x0c0808],
-                    [center, 653, 148, 0xeeccaa],
-                    [center, 640, 181, 0x0c0808],
-                    [center, 646, 196, 0xd8a78e]
-                ]
-            ],
-            [   //  画质为极速适配
-                1280, 720,
-                [
-                    [center, 634, 169, 0xf9e8a5],
-                    [center, 644, 209, 0xa88787],
-                    [center, 619, 173, 0xa81d1b],
-                    [center, 640, 194, 0x0c0808],
-                    [center, 650, 202, 0xc6a390],
-                    [center, 638, 206, 0xb19088],
-                ]
-            ]
-        ]
-    },
-    '町中_斗技灯笼': {
-        region: [center, 1280, 720, 0, 83, 1279, 412],
-        desc: [
-            [1280, 720,
-                [[center, 760, 151, 0xbb8862],
-                [center, 778, 133, 0x5a4233],
-                [center, 780, 163, 0x281c0d],
-                [center, 780, 186, 0x271c0d],
-                [center, 773, 191, 0x20160b],
-                [center, 779, 176, 0xffffd8]]
-            ],
-            [   //  画质为极速适配
-                1280, 720,
-                [
-                    [center, 769, 171, 0xf6e5a8],
-                    [center, 778, 202, 0xc5a392],
-                    [center, 755, 174, 0xa81f1d],
-                    [center, 783, 141, 0xcda483],
-                    [center, 781, 183, 0x0c0808],
-                    [center, 781, 191, 0x0c0808],
-                    [center, 774, 161, 0x0c0808],
-                    [center, 771, 153, 0xf2d19e],
-                ]
-            ]
-        ]
-    },
+    // '町中_逢魔之时灯笼': {
+    //     region: [center, 1280, 720, 0, 83, 1279, 412],
+    //     desc: [
+    //         [1280, 720,
+    //             [
+    //                 [center, 645, 180, 0xfff4b0],
+    //                 [center, 643, 185, 0xfbe5a3],
+    //                 [center, 649, 184, 0x0c0808],
+    //                 [center, 653, 148, 0xeeccaa],
+    //                 [center, 640, 181, 0x0c0808],
+    //                 [center, 646, 196, 0xd8a78e]
+    //             ]
+    //         ],
+    //         [   //  画质为极速适配
+    //             1280, 720,
+    //             [
+    //                 [center, 634, 169, 0xf9e8a5],
+    //                 [center, 644, 209, 0xa88787],
+    //                 [center, 619, 173, 0xa81d1b],
+    //                 [center, 640, 194, 0x0c0808],
+    //                 [center, 650, 202, 0xc6a390],
+    //                 [center, 638, 206, 0xb19088],
+    //             ]
+    //         ]
+    //     ]
+    // },
+    // '町中_斗技灯笼': {
+    //     region: [center, 1280, 720, 0, 83, 1279, 412],
+    //     desc: [
+    //         [1280, 720,
+    //             [[center, 760, 151, 0xbb8862],
+    //             [center, 778, 133, 0x5a4233],
+    //             [center, 780, 163, 0x281c0d],
+    //             [center, 780, 186, 0x271c0d],
+    //             [center, 773, 191, 0x20160b],
+    //             [center, 779, 176, 0xffffd8]]
+    //         ],
+    //         [   //  画质为极速适配
+    //             1280, 720,
+    //             [
+    //                 [center, 769, 171, 0xf6e5a8],
+    //                 [center, 778, 202, 0xc5a392],
+    //                 [center, 755, 174, 0xa81f1d],
+    //                 [center, 783, 141, 0xcda483],
+    //                 [center, 781, 183, 0x0c0808],
+    //                 [center, 781, 191, 0x0c0808],
+    //                 [center, 774, 161, 0x0c0808],
+    //                 [center, 771, 153, 0xf2d19e],
+    //             ]
+    //         ]
+    //     ]
+    // },
     '庭院_探索灯笼': {
         region: [center, 1280, 720, 0, 83, 1279, 412],
         desc: [
@@ -1303,23 +1303,23 @@ const multiColor: InterfaceMultiColorOrigin = {
         region: [left, 1280, 720, 0, 95, 154, 284],
         desc: [
             // 适配“拓”
-            [1280,720,
+            [1280, 720,
                 [
-                    [left,7,132,0x4a3931],
-                    [left,49,132,0x43322a],
-                    [left,89,132,0x43322a],
-                    [left,111,132,0x6475db],
-                    [left,123,132,0xcdcdd1]
+                    [left, 7, 132, 0x4a3931],
+                    [left, 49, 132, 0x43322a],
+                    [left, 89, 132, 0x43322a],
+                    [left, 111, 132, 0x6475db],
+                    [left, 123, 132, 0xcdcdd1]
                 ]
             ],
             // 适配“宠”
-            [1280,720,
+            [1280, 720,
                 [
-                    [left,4,132,0x47362e],
-                    [left,37,132,0x44332b],
-                    [left,80,132,0x43322a],
-                    [left,112,132,0xbc8080],
-                    [left,124,132,0xeacebd]
+                    [left, 4, 132, 0x47362e],
+                    [left, 37, 132, 0x44332b],
+                    [left, 80, 132, 0x43322a],
+                    [left, 112, 132, 0xbc8080],
+                    [left, 124, 132, 0xeacebd]
                 ]
             ],
             [1280, 720,
@@ -1484,6 +1484,17 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [left, 269, 136, 0x942f2e],
                     [left, 272, 125, 0xad4a42],
                     [left, 260, 113, 0x914b49]
+                ]
+            ],
+            [1280, 720, // √
+                [
+                    [left, 259, 274, 0xfde5b3],
+                    [left, 264, 280, 0xe1c88e],
+                    [left, 268, 284, 0xddc588],
+                    [left, 270, 287, 0xecdb9e],
+                    [left, 274, 279, 0xead9a6],
+                    [left, 279, 275, 0xeddda9],
+                    [left, 282, 271, 0xf7e6c4]
                 ]
             ],
         ]
