@@ -35,7 +35,7 @@ export class Func051 implements InterfaceFuncOrigin {
 			default: '模糊'
 		}, {
 			name: 'preSearch',
-			desc: '准备时查找坐标，开局后立即进行绿标，仅自定义文本时生效，并将该功能排序排在准备前',
+			desc: '准备时查找坐标，开局后立即进行绿标，需取消锁定阵容，并将该功能排序排在准备前',
 			type: 'switch',
 			default: false,
 		}]
@@ -57,6 +57,7 @@ export class Func051 implements InterfaceFuncOrigin {
 			[left, 1280, 720, 0, 0, 26, 40, -1], // 下方位置的矩形
 			[left, 1280, 720, 0, 0, 1279, 719, -1], // 屏幕大小
 			[center, 1280, 720, 0, 220, 1279, 590, -1], // 文本识别的区域
+			[right, 1280, 720, 1137,542, 1228,632, 700], // 准备
 		]
 	}, {
 		// 准备界面 - 未准备
@@ -134,6 +135,29 @@ export class Func051 implements InterfaceFuncOrigin {
 						1000
 					];
 					thisScript.global.greenPosition = toClick;
+					return true;
+				} else if (thisconf.greenType === '自定义坐标' && !thisScript.global.greenPosition) {
+					let toClick = null;
+					let posPam = String(thisconf.greenPosition).split(',');
+					if (posPam.length !== 2) {
+						thisScript.myToast('自定义坐标格式定义错误，请检查');
+						return true;
+					}
+					let inX = parseInt(posPam[0]);
+					let inY = parseInt(posPam[1]);
+					if (Number.isNaN(inX) || Number.isNaN(inY)) {
+						thisScript.myToast('自定义坐标格式定义错误，请检查');
+						return true;
+					}
+					toClick = [
+						Math.max(inX - 20, 0),
+						Math.max(inY - 20, 0),
+						inX + 20,
+						inY + 20,
+						1000
+					]
+					thisScript.helperBridge.regionClick([thisOperator[0].oper[4]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
 					return true;
 				}
 			}
