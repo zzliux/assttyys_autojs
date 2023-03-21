@@ -31,7 +31,7 @@ export class Func993 implements InterfaceFuncOrigin {
 		}]
 	}];
 	operator: InterfaceFuncOperatorOrigin[] = [
-	{	// 是否为登录页
+	{	// 0 是否为登录页
 		desc:
 			[
 				1280, 720,
@@ -48,7 +48,7 @@ export class Func993 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 562, 574, 722, 617, 1200],	// 点击开始游戏
 			[center, 1280, 720, 424, 456, 660, 578, 5000], // 游戏区区域
 		]
-	}, {	// 是否为公告页(23年公告)
+	}, {	// 1 是否为公告页(23年公告)
 		desc:
 			[
 				1280, 720,
@@ -62,7 +62,7 @@ export class Func993 implements InterfaceFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1202,155, 1232,187, 1200],  // 点击关闭公告
 		]
-	}, {	// 是否为切换账号页
+	}, {	// 2 是否为切换账号页
 		desc:
 			[1280, 720,
 				[[left, 210, 580, 0x284d16],
@@ -73,7 +73,7 @@ export class Func993 implements InterfaceFuncOrigin {
 		oper: [
 			[center, 1280, 720, 386, 418, 893, 474, 1200], // 点击确认
 		]
-	}, {    // 是否为被强登
+	}, {    // 3 是否为被强登
 		desc:
 			[1280, 720,
 				[[center, 780, 260, 0x573828],
@@ -84,7 +84,7 @@ export class Func993 implements InterfaceFuncOrigin {
 		oper: [
 			[center, 1280, 720, 578, 373, 704, 432, 1200], // 点击确认
 		]
-	}, {    // 是否为选择游戏区域
+	}, {    // 4 是否为选择游戏区域
 		desc:
 			[1280, 720,
 				[[left, 161, 149, 0xcc9955],
@@ -94,7 +94,7 @@ export class Func993 implements InterfaceFuncOrigin {
 		oper: [
 			[center, 1280, 720, 706, 507, 770, 539, 1200], // 切换按钮 区域
 		]
-	}, {	// 是否为选择游戏区域 已有角色未展开
+	}, {	// 5 是否为选择游戏区域 已有角色未展开
 		desc:
 			[1280, 720,
 				[[left, 161, 149, 0xcc9955],
@@ -108,7 +108,7 @@ export class Func993 implements InterfaceFuncOrigin {
 			[left, 1280, 720, 0, 0, 1279, 719, -1], // 屏幕大小
 			[right, 1280, 720, 1025, 576, 1072, 627, 1200], // 展开角色按钮 区域
 		]
-	}, {	// 登陆后是否有下载插画弹窗
+	}, {	// 6 登陆后是否有下载插画弹窗
 		desc:
 			[1280, 720,
 				[[center, 439, 471, 0xdf6851],
@@ -119,7 +119,7 @@ export class Func993 implements InterfaceFuncOrigin {
 		oper: [
 			[center, 1280, 720, 432, 455, 564, 500, 1200], // 取消按钮
 		]
-	}, {	// 页面是否为庭院(菜单未展开) 只支持默认庭院皮肤与默认装饰
+	}, {	// 7 页面是否为庭院(菜单未展开) 只支持默认庭院皮肤与默认装饰
 		desc:   
 			[1280, 720,
 				[[right, 1226, 47, 0xcda47a],
@@ -128,7 +128,7 @@ export class Func993 implements InterfaceFuncOrigin {
 				[right, 1207, 637, 0xdfd1cb]]
 			],
 		oper: [
-			[right, 1280, 720, 1168, 592, 1230, 690, 1200]	// 在首页打开菜单
+			[right, 1280, 720, 1168, 592, 1230, 690, 5000]	// 在首页打开菜单
 		]
 	}, {	// 页面是否为庭院(菜单已展开) 只支持默认庭院皮肤与默认装饰
 		desc:   
@@ -228,6 +228,47 @@ export class Func993 implements InterfaceFuncOrigin {
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['993'];
+		if (typeof thisScript.global.app_is_open_flag === 'undefined') {
+			thisScript.global.app_is_open_flag = 0;
+		}
+
+		if (thisScript.oper({
+			name: '是否为庭院(未展开菜单)',
+			operator: [{
+				desc: thisOperator[7].desc,
+				oper: thisOperator[7].oper
+			}]
+		})) {
+			console.log('展开庭院菜单');
+			return true;
+		}
+
+		if (thisScript.oper({
+			name: '是否为庭院',
+			operator: [{
+				desc: thisOperator[8].desc,
+			}, {
+				desc: thisOperator[13].desc
+			}]
+		})) {
+			// 做延时检测 防止登陆后的弹窗
+			if ((thisScript.global.app_is_open_flag >= 3 && thisScript.global.checked_yard_count >= 10) || thisScript.global.app_is_open_flag < 3) {
+				thisScript.global.checked_yard_count = 0;
+				thisScript.setCurrentScheme(thisConf.next_scheme as string);
+				thisScript.myToast(`切换方案为[${thisConf.next_scheme}]`);
+				thisScript.rerun();
+				sleep(3000);
+				return true;
+			} else {
+				sleep(1500);
+				if (!thisScript.global.checked_yard_count) {
+					thisScript.global.checked_yard_count = 1;
+				} else {
+					thisScript.global.checked_yard_count += 1;
+				}
+				return false;
+			}
+		}
 
 		let packageName;
 		let storeSettings = thisScript.storeCommon.get('settings', {});
@@ -236,18 +277,22 @@ export class Func993 implements InterfaceFuncOrigin {
 		}
 		const isInstalled = app.getAppName(packageName);
 
-		if (isInstalled && !thisScript.global.app_is_open) {
+		if (isInstalled && thisScript.global.app_is_open_flag >= 3 && thisScript.global.app_is_open_flag !== 99) {
 			if (thisConf.is_shutdown_the_game_before) {
+				console.log(`杀应用${packageName}`);
 				$shell(`am force-stop ${packageName}`, true);
 				sleep(5000);
 			}
 			console.log(`正在启动应用${packageName}`);
 			app.launchPackage(packageName);
-			thisScript.global.app_is_open = true;
+			thisScript.global.app_is_open_flag = 99;
 		} else if (!isInstalled) {
 			thisScript.myToast(`未找到对应的应用[${packageName}]`);
 			thisScript.doOspPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 			thisScript.stop();
+		} else if (thisScript.global.app_is_open_flag < 3) {
+			sleep(1000);
+			thisScript.global.app_is_open_flag++;
 		}
 
 		if (thisScript.oper({
@@ -339,42 +384,6 @@ export class Func993 implements InterfaceFuncOrigin {
 					}
 				}
 			}
-		}
-
-		if (thisScript.oper({
-			name: '是否为庭院(未展开菜单)',
-			operator: [{
-				desc: thisOperator[7].desc,
-				oper: thisOperator[7].oper
-			}]
-		})) {
-			console.log('展开庭院菜单');
-			return true;
-		}
-
-		if (thisScript.oper({
-			name: '是否为庭院',
-			operator: [{
-				desc: thisOperator[8].desc,
-			}, {
-				desc: thisOperator[13].desc
-			}]
-		})) {
-			// 做延时检测 防止登陆后的弹窗
-			if (thisScript.global.checked_yard_count >= 10) {
-				thisScript.global.checked_yard_count = 0;
-				thisScript.setCurrentScheme(thisConf.next_scheme as string);
-				thisScript.myToast(`切换方案为[${thisConf.next_scheme}]`);
-				thisScript.rerun();
-			} else {
-				sleep(1500);
-				if (!thisScript.global.checked_yard_count) {
-					thisScript.global.checked_yard_count = 1;
-				} else {
-					thisScript.global.checked_yard_count += 1;
-				}
-			}
-
 		}
 
 		if (thisScript.oper({
