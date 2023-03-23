@@ -113,38 +113,45 @@ export class Func508 implements InterfaceFuncOrigin {
 			]
 		]
 	},
-	{
-		desc:	// 结束_集结页结算捡垃圾
+	{	//	检测_逢魔BOSS集结场景
+		desc:
 		[
 			1280, 720,
 			[
-				[left, 106, 25, 0xd7c5a2],
-				[left, 33, 21, 0xd7c5a2],
-				[left, 186, 38, 0xd7c5a2],
-				[left, 63, 493, 0xeecfad],
-				[left, 44, 503, 0x981c10],
-				[left, 27, 544, 0xf6f1de],
-				[right, 1042, 621, 0xcf4955],
-				[center, 845, 634, 0x944945],
-				[right, 1179, 621, 0xe0d0cf],
+				[center, 846, 632, 0x8f4544],
+				[right, 1022, 609, 0xc73e4d],
+				[right, 1159, 616, 0xefefef],
+				[left, 108, 26, 0xd7c5a2],
+				[left, 180, 22, 0xd4c4a3],
 			]
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['508'];
 
-		let point = thisScript.findMultiColor('逢魔_捡垃圾');
+		if (thisScript.oper({
+			name: '检测_结算页',
+			operator: [{
+				desc: thisOperator[7].desc
+			}]
+		})) {
+			let point = thisScript.findMultiColor('逢魔_捡垃圾');
 
-		if (point) {
-			console.log(`逢魔_捡垃圾`);
-			let oper = [[
-				point.x - 2,
-				point.y - 2,
-				point.x + 2,
-				point.y + 2,
-				1200
-			]];
-			thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+			if (point) {
+				console.log(`逢魔_捡垃圾`);
+				let oper = [[
+					point.x - 2,
+					point.y - 2,
+					point.x + 2,
+					point.y + 2,
+					1200
+				]];
+				thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+			}
+
+			if (!thisScript.global.fm_kiss_boss_flag) {
+				thisScript.global.fm_kiss_boss_flag = true;
+			}
 		}
 		
 		if (thisScript.oper({
@@ -231,16 +238,6 @@ export class Func508 implements InterfaceFuncOrigin {
 			operator: [{
 				desc: thisOperator[6].desc,
 				oper: thisOperator[5].oper
-			}]
-		})) {
-			thisScript.global.fm_kiss_boss_flag = true;
-			return true;
-		}
-
-		if (thisScript.oper({
-			name: '检测_结算页',
-			operator: [{
-				desc: thisOperator[7].desc
 			}]
 		})) {
 			thisScript.global.fm_kiss_boss_flag = true;

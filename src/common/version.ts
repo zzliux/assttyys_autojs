@@ -603,6 +603,11 @@ export const versionList = [{
 }, {
     version: '20230315_01',
     desc: '优化：进入逢魔，斗技方式，找色调整为多点比色，添加首领进入式神录适配'
+}, {
+    version: '20230321_01',
+    desc: `优化：51绿标勾选准备时查找坐标时，固定坐标也同时生效；
+优化：993启动游戏前判断是否庭院，如果是庭院则不启动游戏并直接进行后续逻辑
+`
 }];
 
 export default versionList[versionList.length - 1].version;

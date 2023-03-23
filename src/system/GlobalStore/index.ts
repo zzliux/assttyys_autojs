@@ -1,6 +1,6 @@
 export type globalRootType = {
     currentNotifyDate: null | Date,
-    app_is_open: boolean,
+    app_is_open_flag: number,
     checked_yard_count: number,
     currentRunTimes: Record<string, number>,
     running: boolean,
@@ -51,7 +51,7 @@ export type globalRootType = {
 
 export const globalRoot: globalRootType = {
     currentNotifyDate: null,
-    app_is_open: false,
+    app_is_open_flag: 0,
     checked_yard_count: 0,
     currentRunTimes: {},
     running: undefined,
