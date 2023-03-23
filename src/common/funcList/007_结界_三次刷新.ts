@@ -21,7 +21,7 @@ export class Func007 implements InterfaceFuncOrigin {
 			[center, 646, 97, 0xf8f3e0]]
 		],
 		oper: [
-			[center, 1280, 720, -1, -1, -1, -1, 30000]
+			[center, 1280, 720, -1, -1, -1, -1, 5000]
 		]
 	}, {  // 呱太CD
 		desc: [1280, 720,
