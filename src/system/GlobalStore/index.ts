@@ -46,6 +46,7 @@ export type globalRootType = {
     xsOpened: boolean, // 是否打开过悬赏
     intensify_lagTime: null | Date, //强化延时
     intensify_NumOT: number, //强化计数
+    redFlag: boolean;   //  红标标识
 }
 
 export const globalRoot: globalRootType = {
@@ -96,4 +97,5 @@ export const globalRoot: globalRootType = {
     xsOpened: false,
     intensify_lagTime: null,
     intensify_NumOT:0,
+    redFlag: false,
 }

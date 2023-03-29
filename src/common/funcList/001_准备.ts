@@ -74,6 +74,12 @@ export class Func001 implements InterfaceFuncOrigin {
 				name: '手动修正自动',
 				operator: [thisOperator[1]]
 			}, 1000)) {
+
+				// 每点一次准备 重置一次红标状态
+				if (thisScript.global.redFlag) {
+					thisScript.global.redFlag = false;
+				}
+
 				return true;
 			}
 		}

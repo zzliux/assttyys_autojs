@@ -55,7 +55,7 @@ const ScheduleDefaultList: JobOptions[] = [
     lastRunTime: null,
     nextDate: null,
     repeatMode: 3,
-    interval: '* 10 5,16,23 * * *',
+    interval: '0-30 10 5,16,23 * * *',
     level: '5',
     config: {
       scheme: '定时任务-启动游戏-喂猫喂狗',
