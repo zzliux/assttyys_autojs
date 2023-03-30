@@ -119,6 +119,10 @@ body {
   width: 100%;
   height: 100%;
 }
+body > #app {
+  width: 100%;
+  height: 100%;
+}
 .slide-left-enter-active,
 .slide-left-leave-active,
 .slide-right-enter-active,

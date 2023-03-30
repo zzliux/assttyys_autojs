@@ -31,7 +31,7 @@
           item-key="schemeName"
           @end="saveSchemeList"
         >
-          <template #item="item">
+          <template #item="{ element }">
             <div
               style="margin:5px 10px 5px 10px; border-radius:5px; overflow: hidden; box-shadow: 1px 1px 1px #eaeaea"
             >
@@ -42,15 +42,15 @@
                 :before-close="itemBeforeClose"
                 :stop-propagation="true"
               >
-                <template>
-                  <div v-if="item.groupName" class="group-color" :style="'background-color: ' + getGroupColor(item.groupName)"></div>
+                <span>
+                  <div v-if="element.groupName" class="group-color" :style="'background-color: ' + getGroupColor(element.groupName)"></div>
                   <div
                     class="item van-cell van-cell--center"
-                    @click="schemeClickEvent($event, item)"
-                    :style="'margin-left: ' + (item.groupName ? '6px' : '0px')"
+                    @click="schemeClickEvent($event, element)"
+                    :style="'margin-left: ' + (element.groupName ? '6px' : '0px')"
                   >
-                    <div class="van-cell__title item-title" :style="'margin-left: ' + (!item.groupName ? '6px' : '0px')">{{ item.schemeName }}</div>
-                    <div class="van-cell__value item-value" :style="'margin-right: ' + (item.groupName ? '6px' : '0px')">
+                    <div class="van-cell__title item-title" :style="'margin-left: ' + (!element.groupName ? '6px' : '0px')">{{ element.schemeName }}</div>
+                    <div class="van-cell__value item-value" :style="'margin-right: ' + (element.groupName ? '6px' : '0px')">
                       <span v-if="filterGroupName === '全部'" class="handle-area"
                         ><van-icon class="handle" size="18" name="bars"
                       /></span>
@@ -58,23 +58,23 @@
                         <van-icon
                           class="star"
                           size="18"
-                          :name="item.star ? 'star' : 'star-o'"
-                          :color="item.star ? '#1989fa' : null"
-                          @click="schemeStarEvent($event, item)"
+                          :name="element.star ? 'star' : 'star-o'"
+                          :color="element.star ? '#1989fa' : null"
+                          @click="schemeStarEvent($event, element)"
                         />
                       </span>
                     </div>
                   </div>
-                </template>
+                </span>
                 <template #right
                   ><van-button
                     type="danger"
                     square
                     text="删除"
-                    v-if="!item.inner"
+                    v-if="!element.inner"
                     @click="swipeCellCurrentAction = filterGroupName === '全部' ? 'delete' : null ; swipeCellCurrentIndex = index"
                   /><van-button
-                    type="info"
+                    type="primary"
                     square
                     text="复制"
                     @click="swipeCellCurrentAction = filterGroupName === '全部' ? 'copy' : null; swipeCellCurrentIndex = index"
@@ -194,7 +194,6 @@ export default {
     var self = this;
     const savedSchemeList = await AutoWeb.autoPromise("getSchemeList", null)
     self.schemeList = mergeSchemeList(savedSchemeList, dSchemeList);
-
     // 获取后保存一下方案列表，避免出现展示内容与保存内容不一样的情况
     AutoWeb.autoPromise('saveSchemeList', self.schemeList);
   },

@@ -1,7 +1,7 @@
 import Vue, { createApp } from 'vue';
 import { createRouter, createWebHashHistory } from "vue-router";
-// import 'vant/lib/index.css';
-// import './assets/icon/iconfont.css';
+import 'vant/lib/index.css';
+import './assets/icon/iconfont.css';
 import App from './App.vue';
 import { NavBar, Cell, SwipeCell, CellGroup, Icon, Button, Dialog, Field, Notify, Picker, DropdownMenu, DropdownItem, Popup } from 'vant';
 
