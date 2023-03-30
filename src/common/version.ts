@@ -608,6 +608,9 @@ export const versionList = [{
     desc: `优化：51绿标勾选准备时查找坐标时，固定坐标也同时生效；
 优化：993启动游戏前判断是否庭院，如果是庭院则不启动游戏并直接进行后续逻辑
 `
+},{
+    version: '20230329_01',
+    desc: `优化：添加红标功能，优化公告适配，添加活动 万言归灵方案，优化调度中心，减短补锅时长`
 }];
 
 export default versionList[versionList.length - 1].version;

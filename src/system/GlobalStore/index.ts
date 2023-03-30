@@ -47,6 +47,7 @@ export type globalRootType = {
     intensify_lagTime: null | Date, //强化延时
     intensify_NumOT: number, //强化计数
     create_NumOT: number, //创建队伍计数
+    redFlag: boolean;   //  红标标识
 }
 
 export const globalRoot: globalRootType = {
@@ -98,4 +99,5 @@ export const globalRoot: globalRootType = {
     intensify_lagTime: null,
     intensify_NumOT: 0,
     create_NumOT: 0,
+    redFlag: false,
 }
