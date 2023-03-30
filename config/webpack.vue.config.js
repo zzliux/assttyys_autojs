@@ -110,6 +110,8 @@ module.exports = (env, argv) => {
                 AutoWeb: '@auto.pro/web',
             }),
             new webpack.DefinePlugin({
+                __VUE_OPTIONS_API__: true,
+                __VUE_PROD_DEVTOOLS__: false,
                 // 处理aj的api在前端引用时的报错
                 // TODO 前端需完全剥离使用aj的方法，要获取数据通过通信获取
                 storages: { create: function () { } },

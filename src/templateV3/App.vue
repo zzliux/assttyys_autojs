@@ -1,12 +1,12 @@
 <template>
   <div style="width: 100%; height: 100%">
     <div class="rv_box">
-      <transition :name="transitionName">
-        <router-view
-          class="rv"
-          :status-bar-height="statusBarHeight"
-        ></router-view>
-      </transition>
+      
+      <router-view v-slot="{ Component }">
+        <transition :name="transitionName">
+          <component :is="Component"/>
+        </transition>
+      </router-view>
     </div>
     <van-popup
       closeable

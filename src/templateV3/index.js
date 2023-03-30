@@ -1,9 +1,9 @@
 import Vue, { createApp } from 'vue';
-import { createRouter, createWebHashHistory  } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 // import 'vant/lib/index.css';
 // import './assets/icon/iconfont.css';
 import App from './App.vue';
-import { NavBar, Cell, SwipeCell, CellGroup, Icon, Button, Dialog, Field, Notify, Picker, DropdownMenu, DropdownItem } from 'vant';
+import { NavBar, Cell, SwipeCell, CellGroup, Icon, Button, Dialog, Field, Notify, Picker, DropdownMenu, DropdownItem, Popup } from 'vant';
 
 
 import '../mock/promptMock';
@@ -34,42 +34,42 @@ var router = createRouter({
 		},
 		component: () => import('./pages/SchemeList.vue')
 	}
-	// }, {
-	// 	path: "/schemeList",
-	// 	name: 'schemeList',
-	// 	meta: {
-	// 		index: 0
-	// 	},
-	// 	component: () => import('./pages/SchemeList.vue')
-	// }, {
-	// 	path: "/funcList",
-	// 	name: 'funcList',
-	// 	meta: {
-	// 		index: 1
-	// 	},
-	// 	component: () => import('./pages/FuncList.vue')
-	// }, {
-	// 	path: '/settings',
-	// 	name: 'settings',
-	// 	meta: {
-	// 		index: 1
-	// 	},
-	// 	component: () => import('./pages/Settings.vue')
-	// }, {
-	// 	path: '/about',
-	// 	name: 'about',
-	// 	meta: {
-	// 		index: 2
-	// 	},
-	// 	component: () => import('./pages/About.vue')
-	// }, {
-	// 	path: '/schedule/list',
-	// 	name: 'ScheduleList',
-	// 	meta: {
-	// 		index: 3
-	// 	},
-	// 	component: () => import('./pages/schedule_module/ScheduleList.vue')
-	// }
+		// }, {
+		// 	path: "/schemeList",
+		// 	name: 'schemeList',
+		// 	meta: {
+		// 		index: 0
+		// 	},
+		// 	component: () => import('./pages/SchemeList.vue')
+		// }, {
+		// 	path: "/funcList",
+		// 	name: 'funcList',
+		// 	meta: {
+		// 		index: 1
+		// 	},
+		// 	component: () => import('./pages/FuncList.vue')
+		// }, {
+		// 	path: '/settings',
+		// 	name: 'settings',
+		// 	meta: {
+		// 		index: 1
+		// 	},
+		// 	component: () => import('./pages/Settings.vue')
+		// }, {
+		// 	path: '/about',
+		// 	name: 'about',
+		// 	meta: {
+		// 		index: 2
+		// 	},
+		// 	component: () => import('./pages/About.vue')
+		// }, {
+		// 	path: '/schedule/list',
+		// 	name: 'ScheduleList',
+		// 	meta: {
+		// 		index: 3
+		// 	},
+		// 	component: () => import('./pages/schedule_module/ScheduleList.vue')
+		// }
 	]
 });
 
@@ -88,6 +88,7 @@ myApp.use(Notify);
 myApp.use(Picker);
 myApp.use(DropdownMenu);
 myApp.use(DropdownItem);
+myApp.use(Popup);
 
 myApp.mount('#app');
 
