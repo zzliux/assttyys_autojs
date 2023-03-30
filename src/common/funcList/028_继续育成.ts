@@ -61,7 +61,7 @@ export class Func028 implements InterfaceFuncOrigin {
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let thisconf = thisScript.scheme.config['28'];
-		let cntIndex = parseInt(thisconf.count) - 1;
+		let cntIndex = (thisconf.count as number) - 1;
 		if (thisScript.oper({
 			name: '继续育成',
 			operator: [thisOperator[0]]

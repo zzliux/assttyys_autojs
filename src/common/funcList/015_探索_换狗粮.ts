@@ -109,7 +109,7 @@ export class Func015 implements InterfaceFuncOrigin {
 					sleep(1500);
 					thisScript.helperBridge.regionClick([thisOperator[0].oper[2], thisOperator[0].oper[4]], thisScript.scheme.commonConfig.afterClickDelayRandom);
 					sleep(1500);
-					let handlePos = parseInt(thisconf.handle_position);
+					let handlePos = (thisconf.handle_position as number);
 					// 先用把手拖一段距离
 					if (handlePos) {
 						thisScript.helperBridge.regionSwipe(thisOperator[0].oper[13], [

@@ -41,7 +41,7 @@ export class Func019 implements InterfaceFuncOrigin {
 		if ('随机' === thisconf.bossPosition) {
 			oper = [thisOperator[0].oper[random(0, 2)], thisOperator[0].oper[3]];
 		} else {
-			oper = [thisOperator[0].oper[parseInt(thisconf.bossPosition) - 1], thisOperator[0].oper[3]];
+			oper = [thisOperator[0].oper[(thisconf.bossPosition as number) - 1], thisOperator[0].oper[3]];
 		}
 		return thisScript.oper({
 			id: 18,

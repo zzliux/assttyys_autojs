@@ -135,7 +135,7 @@ export class Func000 implements InterfaceFuncOrigin {
 		}
 
 		if (thisconf.jspd_enabled_1) {
-			if (thisScript.runTimes['1'] >= thisconf.jspd_times_1) {
+			if (thisScript.runTimes['1'] >= (thisconf.jspd_times_1 as number)) {
 				thisScript.myToast(`准备功能执行${thisScript.runTimes['1']}次后停止脚本`);
 				stopOrReRun();
 				return true;
@@ -149,7 +149,7 @@ export class Func000 implements InterfaceFuncOrigin {
 			}
 		}
 		if (thisconf.jspd_enabled_2) {
-			if (thisScript.runTimes['2'] >= thisconf.jspd_times_2) {
+			if (thisScript.runTimes['2'] >= (thisconf.jspd_times_2 as number)) {
 				thisScript.myToast(`退出结算功能执行${thisScript.runTimes['2']}次后停止脚本`);
 				stopOrReRun();
 				return true;

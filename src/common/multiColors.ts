@@ -1,4 +1,4 @@
-import { InterfaceMultiColorOrigin } from "@/interface/InterfaceMulticolor";
+import { InterfaceMultiColorOrigin } from "@/interface/InterfaceMultiColor";
 
 const normal = -1; //定义常量
 const left = 0;

@@ -12,7 +12,7 @@ import drawFloaty from '@/system/drawFloaty';
 import { myToast, doOspPush } from '@/common/toolAuto';
 import { InterfaceFunc } from '@/interface/InterfaceFunc';
 import { InterfaceScheme } from '@/interface/InterfaceScheme';
-import { InterfaceMultiColor } from '@/interface/InterfaceMulticolor';
+import { InterfaceMultiColor } from '@/interface/InterfaceMultiColor';
 import { globalRoot, globalRootType } from '@/system/GlobalStore/index';
 import { Job } from '@/system/Schedule';
 import { MyFloaty } from '@/system/MyFloaty';

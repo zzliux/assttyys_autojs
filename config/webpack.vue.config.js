@@ -2,12 +2,12 @@ const path = require('path')
 const webpack = require('webpack')
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports = (env, argv) => {
     return {
         entry: {
-            app: './src/template/index.js',
+            app: './src/templateV3/index.js',
         },
         output: {
             path: path.resolve(__dirname, '../dist'),
@@ -20,7 +20,7 @@ module.exports = (env, argv) => {
             rules: [
                 {
                     test: /\.tsx?$/,
-                    exclude: /node_modules/,
+                    // exclude: /node_modules/,
                     use: {
                         loader: "ts-loader",
                         // options: {   //新增
@@ -73,15 +73,20 @@ module.exports = (env, argv) => {
                         esModule: true,
                     }
                 },
+                {
+                    test: /\.mjs$/,
+                    include: /node_modules/,
+                    type: "javascript/auto"
+                }
             ]
         },
         resolve: {
             //引入路径是不用写对应的后缀名
-            extensions: ['.ts', '.js', '.vue', '.json'],
+            extensions: ['.mjs', '.ts', '.js', '.vue', '.json'],
             //缩写扩展
             alias: {
                 //正在使用的是vue的运行时版本，而此版本中的编译器时不可用的，我们需要把它切换成运行时 + 编译的版本
-                'vue$': 'vue/dist/vue.esm.js',// 'vue/dist/vue.common.js' for webpack 1
+                // 'vue$': 'vue/dist/vue.esm.js',// 'vue/dist/vue.common.js' for webpack 1
                 //用@直接指引到src目录下，如：'./src/main'可以写成、'@/main'
                 '@': path.resolve(__dirname, '../src'),
             }
@@ -89,12 +94,13 @@ module.exports = (env, argv) => {
         devtool: false, //argv.mode === 'development' ? 'source-map' : false,
         devServer: {  //配置webpack-dev-server
             port: 3001,
-            contentBase: './dist', // 指定托管的根目录
+            static: false,
             hotOnly: true,
-        }, plugins: [
+        },
+        plugins: [
             new HtmlWebpackPlugin({
                 title: 'ASSTTYYS NG',
-                template: './src/template/index.html'
+                template: './src/templateV3/index.html'
             }),
             new CleanWebpackPlugin({
                 cleanOnceBeforeBuildPatterns: [__dirname + '/../dist/index.html', __dirname + '/../dist/web.js']

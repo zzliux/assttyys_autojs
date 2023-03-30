@@ -103,7 +103,7 @@ export class Func304 implements InterfaceFuncOrigin {
         let realTimeText = realTimeBmp[0].label;
         let realTimeNum = Number(realTimeText.replace("%", "0"));
         console.log(`ocr识别为：[${realTimeNum}]`);
-        if (!isNaN(realTimeNum) && realTimeNum > thisconf.progress) {
+        if (!isNaN(realTimeNum) && (realTimeNum as number) > (thisconf.progress as number)) {
           thisScript.doOspPush(thisScript, { text: '绘卷进度已达到目标进度。', before() { thisScript.myToast('绘卷进度已达到目标进度，正在上传数据'); } });
           if (thisconf && thisconf.scheme_switch_enabled) {
             thisScript.setCurrentScheme(thisconf.next_scheme as string);
@@ -114,7 +114,7 @@ export class Func304 implements InterfaceFuncOrigin {
           } else {
             thisScript.stop();
           }
-        } else if (!isNaN(realTimeNum) && realTimeNum < thisconf.progress) {
+        } else if (!isNaN(realTimeNum) && (realTimeNum as number) < (thisconf.progress as number)) {
           let cdWaiteTimePair = String(thisconf.cdWaitTime).split(',');
           let cdWaitTime = random(parseInt(cdWaiteTimePair[0]), parseInt(cdWaiteTimePair[1]));
           thisScript.myToast(`绘卷刷新CD, ${(cdWaitTime)}秒后再次检测`);
