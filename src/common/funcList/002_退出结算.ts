@@ -117,7 +117,8 @@ export class Func002 implements InterfaceFuncOrigin {
 		oper: [
 			[center, 1280, 720, 550, 347, 730, 376, 300],
 			[center, 1280, 720, 680, 411, 838, 452, 1000],
-		]
+		],
+		notForCnt: true, // 点击确认不统计退出结算的次数
 	}, {
 		// 单人-胜利太鼓
 		desc: [1280, 720,
