@@ -3,7 +3,11 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import 'vant/lib/index.css';
 import './assets/icon/iconfont.css';
 import App from './App.vue';
-import { NavBar, Cell, SwipeCell, CellGroup, Icon, Button, Dialog, Field, Notify, Picker, DropdownMenu, DropdownItem, Popup } from 'vant';
+import {
+	NavBar, Cell, SwipeCell, CellGroup, Icon, Button
+	, Dialog, Field, Notify, Picker, DropdownMenu, DropdownItem, Popup
+	, Col, Row, Switch, Loading, DatePicker, TimePicker, PickerGroup
+} from 'vant';
 
 
 import '../mock/promptMock';
@@ -33,22 +37,22 @@ var router = createRouter({
 			index: 0
 		},
 		component: () => import('./pages/SchemeList.vue')
-	}
-		// }, {
-		// 	path: "/schemeList",
-		// 	name: 'schemeList',
-		// 	meta: {
-		// 		index: 0
-		// 	},
-		// 	component: () => import('./pages/SchemeList.vue')
-		// }, {
-		// 	path: "/funcList",
-		// 	name: 'funcList',
-		// 	meta: {
-		// 		index: 1
-		// 	},
-		// 	component: () => import('./pages/FuncList.vue')
-		// }, {
+	}, {
+		path: "/schemeList",
+		name: 'schemeList',
+		meta: {
+			index: 0
+		},
+		component: () => import('./pages/SchemeList.vue')
+	}, {
+		path: "/funcList",
+		name: 'funcList',
+		meta: {
+			index: 1
+		},
+		component: () => import('./pages/FuncList.vue')
+	},
+		//  {
 		// 	path: '/settings',
 		// 	name: 'settings',
 		// 	meta: {
@@ -89,6 +93,13 @@ myApp.use(Picker);
 myApp.use(DropdownMenu);
 myApp.use(DropdownItem);
 myApp.use(Popup);
+myApp.use(Col);
+myApp.use(Row);
+myApp.use(Switch);
+myApp.use(Loading);
+myApp.use(DatePicker);
+myApp.use(TimePicker);
+myApp.use(PickerGroup);
 
 myApp.mount('#app');
 

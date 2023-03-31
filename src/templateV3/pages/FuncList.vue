@@ -18,40 +18,42 @@
       <van-cell-group class="itemBox" :title="'方案 - ' + this.params.schemeName" style="background: transparent">
         <draggable
           v-model="funcList"
+          item-key="id"
           handle=".handle-area"
           :scroll-sensitivity="100"
           :force-fallback="true"
           v-bind="dragOptions"
           @start="dragTransition = true"
           @end="dragEnd"
+          tag="transition-group"
+          :component-data="{ name: !dragTransition ? 'flip-list' : null }"
         >
-          <transition-group type="transition" :name="!dragTransition ? 'flip-list' : null">
+          <template #item = "{ element }">
             <div
-              v-for="item in funcList" :key="item.id"
               class="item"
               center
               >
-              <div class="item-header" @click="showConfig($event, item)">
-                <div class="item-title">{{item.id + ' ' + item.name + (item.config && item.config.length ? ' *': '')}}</div>
+              <div class="item-header" @click="showConfig($event, element)">
+                <div class="item-title">{{element.id + ' ' + element.name + (element.config && element.config.length ? ' *': '')}}</div>
                 <div class="item-value">
                   <span class="handle-area"><van-icon class="handle noShowConfigEvent" size="18" name="bars" /></span>
-                  <van-switch class="itemSwitch" @change="toggleSwitchEvent" v-model="item.checked" size="18" />
+                  <van-switch class="itemSwitch" @change="toggleSwitchEvent" v-model="element.checked" size="18" />
                 </div>
-                <div v-if="item.desc" class="item-desc">{{item.desc}}</div>
+                <div v-if="element.desc" class="item-desc">{{element.desc}}</div>
               </div>
-              <div v-if="item.id === showConfigId" class="item-config">
-                <func-config-box
+              <div v-if="element.id === showConfigId" class="item-config">
+                <!-- <func-config-box
                   :configModalObject.sync="configModalObject"
-                ></func-config-box>
+                ></func-config-box> -->
               </div>
             </div>
-          </transition-group>
+          </template>
         </draggable>
       </van-cell-group>
     </div>
 
     <div style="display: block; position: fixed; bottom: 0; right: 0">
-      <van-col v-if="this.scheme && this.scheme.inner">
+      <van-col style="display: inline-block;" v-if="this.scheme && this.scheme.inner">
         <div style="margin: 5px 5px 5px 10px; border-radius:5px; overflow: hidden;box-shadow: 1px 1px 1px #eaeaea">
           <van-button color="#FF3300" block @click="resetBtnEvent">
             <van-icon name="warn-o" size="12" /> 重置
@@ -59,15 +61,15 @@
           </van-button>
         </div>
       </van-col>
-      <van-col>
+      <van-col style="display: inline-block;" >
         <div style="margin: 5px 5px 5px 5px; border-radius:5px; overflow: hidden;box-shadow: 1px 1px 1px #eaeaea">
-          <van-button type="info" block @click="saveScheme">
+          <van-button type="primary" block @click="saveScheme">
             <i class="iconfont iconfont-baocun"></i> 保存
             <!-- <van-icon name="setting-o"/> 保存 -->
           </van-button>
         </div>
       </van-col>
-      <van-col>
+      <van-col style="display: inline-block;" >
         <div style="margin: 5px 10px 5px 5px; border-radius:5px; overflow: hidden;box-shadow: 1px 1px 1px #eaeaea">
           <van-button color="#FF9900" block @click="startBtnClickEvent">
             <i class="iconfont iconfont-fabusekuai"></i> 启动
@@ -77,18 +79,17 @@
         </div>
       </van-col>
     </div>
-    <func-config-dialog
+    <!-- <func-config-dialog
       :show.sync="commonConfigModalShow"
       :configModalObject.sync="commonConfigModalObject"
     ></func-config-dialog>
     <app-list-lauch-dialog
       :show.sync="appListLauchDialogShown"
       :appList.sync="appListLauchList"
-    ></app-list-lauch-dialog>
+    ></app-list-lauch-dialog> -->
   </div>
 </template>
 <script>
-import { Col, Row, Switch, Icon, Button, Picker, Loading } from "vant";
 import draggable from 'vuedraggable'
 import dfuncList from "../../common/funcListIndex";
 import dCommonConfig from "../../common/commonConfig";
@@ -131,13 +132,6 @@ export default {
     funcConfigBox,
     funcConfigDialog,
     appListLauchDialog,
-    [Col.name]: Col,
-    [Row.name]: Row,
-    [Switch.name]: Switch,
-    [Icon.name]: Icon,
-    [Button.name]: Button,
-    [Picker.name]: Picker,
-    [Loading.name]: Loading,
   },
   computed: {
     dragOptions() {

@@ -1,5 +1,5 @@
 import fmmxQuestionList from '@/common/fmmxQuestionList';
-import defaultSchemeList from '@/common/schemeList';
+// import defaultSchemeList from '@/common/schemeList';
 
 
 export function search(list, prop, str, filterSimilar?) {
@@ -62,7 +62,7 @@ export function similarity(s1, s2, filterSimilar?) {
 }
 
 export function setCurrentScheme(schemeName: string, store) {
-	let savedSchemeList = store.get("schemeList", defaultSchemeList);
+	let savedSchemeList = store.get("schemeList", []);
 	for (let i = 0; i < savedSchemeList.length; i++) {
 		if (savedSchemeList[i].schemeName === schemeName) {
 			store.put('currentScheme', savedSchemeList[i]);

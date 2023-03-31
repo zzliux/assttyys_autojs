@@ -71,13 +71,28 @@
         @cancel="configItemItemShowPicker = false"
         :default-index="curItemItemIndex"
       />
-      <van-datetime-picker 
+      <!-- <van-datetime-picker 
         v-else-if="configItemItemShowPicker === 'datetime'" 
         type="time"
         :value="curItemItem.value"
         show-toolbar
         @confirm="configItemItemPickerConfirm"
-        @cancel="configItemItemShowPicker = false"/>
+        @cancel="configItemItemShowPicker = false"/> -->
+      <van-picker-group
+        v-else-if="configItemItemShowPicker === 'datetime'"
+        title="选择日期时间"
+        :tabs="['选择日期', '选择时间']"
+        @confirm="configItemItemPickerConfirm"
+        @cancel="configItemItemShowPicker = false"
+      >
+      <van-date-picker
+        :min-date="minDate"
+        :max-date="maxDate"
+      />
+      <van-time-picker
+        
+      />
+      </van-picker-group>
     </van-popup>
 
     
@@ -93,14 +108,7 @@
 </template>
 
 <script>
-import Vue from "vue";
-import { Popup, Field, CellGroup, Picker, DatetimePicker } from 'vant';
 import { merge } from '@/common/tool';
-Vue.use(Popup);
-Vue.use(Field);
-Vue.use(CellGroup);
-Vue.use(Picker);
-Vue.use(DatetimePicker);
 
 export default {
   props: {

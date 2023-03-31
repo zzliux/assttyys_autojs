@@ -92,16 +92,10 @@
 </template>
 
 <script>
-import { Popup, Field, CellGroup, Picker, DatetimePicker } from 'vant';
 import { merge } from '@/common/tool';
 
 export default {
   components: {
-    [Popup.name]: Popup,
-    [Field.name]: Field,
-    [CellGroup.name]: CellGroup,
-    [Picker.name]: Picker,
-    [DatetimePicker.name]: DatetimePicker,
   },
   props: {
     show: Boolean,

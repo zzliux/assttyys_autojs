@@ -1,7 +1,7 @@
 import funcList from './funcListIndex';
 import commonConfigArr from './commonConfig';
 import { InterfaceScheme } from '@/interface/InterfaceScheme';
-import { merge } from './tool';
+import { merge } from '@/common/tool';
 
 const SchemeList: InterfaceScheme[] = [{
     id: 1,

@@ -133,6 +133,14 @@
         :default-index="groupNameIndex"
       />
     </van-popup>
+    <!-- <export-scheme-dialog
+      :show.sync="exportModel"
+      :schemeList="schemeList"
+    />
+    <import-scheme-dialog
+      :show.sync="importModel"
+      :importCallback="schemeImportCallback"
+    /> -->
     <!-- 啊这个不知道用什么实现比较好了 -->
     <van-popup
       v-model="exportAndImportModel"
