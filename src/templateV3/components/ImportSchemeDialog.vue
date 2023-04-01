@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- 功能的参数配置 -->
-    <van-popup class="configModal" v-model="importModal" style="width: 100%; height: 100%; background: #f4f5f7; overflow: hidden">
+    <van-popup class="configModal" v-model:show="importModal" style="width: 100%; height: 100%; background: #f4f5f7; overflow: hidden">
       <div style="position: absolute; top: 0; padding: 16px 16px 10px 16px; width: 100%; z-index: 2222; background: #f4f5f7;">选择要导入的方案</div>
       <div style="height: 100%; overflow: auto">
         <div style="padding-top: 52px; padding-bottom: 52px">
@@ -31,7 +31,7 @@
           </van-col>
           <van-col span="12">
             <div style="margin: 5px 10px 5px 5px; border-radius:5px; overflow: hidden;box-shadow: 1px 1px 1px #eaeaea">
-              <van-button type="info" block @click="doImport">
+              <van-button type="primary" block @click="doImport">
                 <i class="iconfont iconfont-baocun"></i> 导入
               </van-button>
             </div>
@@ -39,7 +39,7 @@
         </van-row>
       </div>
     </van-popup>
-    <van-popup style="width: 60%; height: 60%" v-model="dialogShow">
+    <van-popup style="width: 60%; height: 60%" v-model:show="dialogShow">
       <div style="height: 100%; overflow: scroll;">
         <van-field
           v-model="exportString"

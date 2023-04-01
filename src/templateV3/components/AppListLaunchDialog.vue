@@ -3,7 +3,7 @@
     <!-- 功能的参数配置 -->
     <van-popup
       class="configModal"
-      v-model="dialogShow"
+      v-model:show="dialogShow"
       style="width: 100%; max-height: 70%"
     >
       <div style="padding: 16px 16px 10px 16px">选择需要启动的应用</div>

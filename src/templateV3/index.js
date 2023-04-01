@@ -51,15 +51,15 @@ var router = createRouter({
 			index: 1
 		},
 		component: () => import('./pages/FuncList.vue')
+	}, {
+		path: '/settings',
+		name: 'settings',
+		meta: {
+			index: 1
+		},
+		component: () => import('./pages/Settings.vue')
 	},
-		//  {
-		// 	path: '/settings',
-		// 	name: 'settings',
-		// 	meta: {
-		// 		index: 1
-		// 	},
-		// 	component: () => import('./pages/Settings.vue')
-		// }, {
+		//{
 		// 	path: '/about',
 		// 	name: 'about',
 		// 	meta: {

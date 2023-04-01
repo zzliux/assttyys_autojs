@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- 功能的参数配置 -->
-    <van-popup class="configModal" v-model="dialogShow" closeable>
+    <van-popup class="configModal" v-model:show="dialogShow" closeable>
       <div class="configModalTitle">配置: {{ configModalObject.name }}</div>
       <van-cell-group
         v-for="configItem in configModalObject.config"
@@ -65,7 +65,7 @@
     </van-popup>
 
     <!-- 功能的参数里面的list下拉单选 -->
-    <van-popup v-model="configItemItemShowPicker" position="bottom">
+    <van-popup v-model:show="configItemItemShowPicker" position="bottom">
       <van-picker
         show-toolbar
         :columns="configItemItemPickerList"
@@ -120,7 +120,7 @@ export default {
       this.configItemItemShowPicker = false;
     },
     showItemConfigList(e, configItemItem) {
-      this.configItemItemPickerList = configItemItem.data;
+      this.configItemItemPickerList = configItemItem.data.map(item => ({text: item, value: item}));
       this.curItemItem = configItemItem;
       this.curItemItemIndex = this.configItemItemPickerList.indexOf(configItemItem.value);
       this.configItemItemShowPicker = true;

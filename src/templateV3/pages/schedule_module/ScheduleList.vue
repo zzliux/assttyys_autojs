@@ -87,21 +87,21 @@
         </div>
       </van-cell-group>
     </div>
-    <van-popup v-model="configItemItemShowPicker" position="bottom">
+    <van-popup v-model:show="configItemItemShowPicker" position="bottom">
       <van-picker show-toolbar :columns="configItemItemPickerList" @confirm="configItemItemPickerConfirm"
         @cancel="configItemItemShowPicker = false" :default-index="curItemItemIndex"></van-picker>
     </van-popup>
-    <van-dialog v-model="scheduleNameInputShow" :before-close="scheduleNameInputBeforeClose"
+    <van-dialog v-model:show="scheduleNameInputShow" :before-close="scheduleNameInputBeforeClose"
       :title="'add' === scheduleNameInputType ? '新增定时任务' : '修改定时任务'" show-cancel-button>
       <van-field :label="'add' === scheduleNameInputType ? '定时任务名' : '新的定时任务名'" v-model="addScheduleForm.name"
         placeholder="请输入..." />
       <van-field label="描述" v-model="addScheduleForm.desc" placeholder="请输入..." />
     </van-dialog>
-    <van-popup v-model="repeatModeDialogShow" position="bottom">
+    <van-popup v-model:show="repeatModeDialogShow" position="bottom">
       <van-picker show-toolbar :columns="repeatModeEnum" @confirm="repeatModeDialogConfirm"
         @cancel="repeatModeDialogShow = false" :default-index="curDialogRepeatMode"></van-picker>
     </van-popup>
-    <van-popup v-model="nextDateDialogshow" position="bottom">
+    <van-popup v-model:show="nextDateDialogshow" position="bottom">
       <van-datetime-picker
         v-model="curNextDate"
         type="datetime"
@@ -112,7 +112,7 @@
         @confirm="nextDateDialogConfirm"
       />
     </van-popup>
-    <van-popup v-model="schemePicker" position="bottom">
+    <van-popup v-model:show="schemePicker" position="bottom">
       <van-picker
         show-toolbar
         :columns="schemeList"
@@ -189,7 +189,7 @@ export default {
       scheduleNameInputType: null,
       addScheduleForm: {},
 
-      repeatModeEnum: ['不重复', '从运行开始计时', '从运行结束计时', 'CRON表达式'],
+      repeatModeEnum: ['不重复', '从运行开始计时', '从运行结束计时', 'CRON表达式'].map(item => ({text: item, value: item})),
       repeatModeDialogShow: false,
       curDialogRepeatMode: 0,
       minDate: new Date(),
@@ -334,7 +334,7 @@ export default {
     async showItemConfigScheme(e, configItemItem) {
       if (!configItemItem.checked) {
         let schemeList = await AutoWeb.autoPromise('getSchemeList');
-        this.configItemItemPickerList = schemeList.map(item => item.schemeName);
+        this.configItemItemPickerList = schemeList.map(item => ({ text: item.schemeName, value: item.schemeName }));
         this.curItemItem = configItemItem;
         this.curItemItemIndex = this.configItemItemPickerList.indexOf(configItemItem.config.scheme);
         this.configItemItemShowPicker = true;

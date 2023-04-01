@@ -26,9 +26,9 @@
           :scroll-sensitivity="100"
           :force-fallback="true"
           v-model="schemeList"
+          item-key="schemeName"
           handle=".handle-area"
           v-bind="dragOptions"
-          item-key="schemeName"
           @end="saveSchemeList"
         >
           <template #item="{ element }">
@@ -102,7 +102,7 @@
       </van-cell-group>
 
       <van-dialog 
-        v-model="schemeNameInputShow"
+        v-model:show="schemeNameInputShow"
         :before-close="schemeNameInputBeforeClose"
         :title="'copy' === schemeNameInputType ? '复制方案' : ('add' === schemeNameInputType ? '新增方案' : '修改方案')"
         show-cancel-button
@@ -124,7 +124,7 @@
       </van-dialog>
     </div>
     <!-- 分组名选择器 -->
-    <van-popup v-model="selectNewGroupNameShow" position="bottom">
+    <van-popup v-model:show="selectNewGroupNameShow" position="bottom">
       <van-picker
         show-toolbar
         :columns="groupNameList"
@@ -133,17 +133,17 @@
         :default-index="groupNameIndex"
       />
     </van-popup>
-    <!-- <export-scheme-dialog
+    <export-scheme-dialog
       :show.sync="exportModel"
       :schemeList="schemeList"
     />
     <import-scheme-dialog
       :show.sync="importModel"
       :importCallback="schemeImportCallback"
-    /> -->
+    />
     <!-- 啊这个不知道用什么实现比较好了 -->
     <van-popup
-      v-model="exportAndImportModel"
+      v-model:show="exportAndImportModel"
       :overlay-style="{ backgroundColor: 'rgba(0, 0, 0, 0)' }"
       style="background-color: rgba(0, 0, 0, 0);"
       position="top"
@@ -382,7 +382,7 @@ export default {
       this.schemeList.forEach(s => {
         if (s.groupName) gSet[s.groupName] = 1;
       });
-      this.groupNameList = Object.keys(gSet);
+      this.groupNameList = Object.keys(gSet).map(item => ({text: item, value: item}));
       this.selectNewGroupNameShow = true;
       if (this.newGroupName) {
         for (let i = 0; i < this.groupNameList.length; i++) {

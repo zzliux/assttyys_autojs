@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- 功能的参数配置 -->
-    <van-popup class="configModal" v-model="dialogShow" style="width: 100%; height: 70%; overflow: hidden">
+    <van-popup class="configModal" v-model:show="dialogShow" style="width: 100%; height: 70%; overflow: hidden">
       <div style="position: absolute; top: 0; padding: 16px 16px 10px 16px; width: 100%; z-index: 2002; background: #fff;">请选择需要关联启动的应用</div>
       <div style="height: 100%; overflow: auto">
         <div style="padding-top: 52px; padding-bottom: 52px">
@@ -34,7 +34,7 @@
           </van-col>
           <van-col span="12">
             <div style="margin: 5px 10px 5px 5px; border-radius:5px; overflow: hidden;box-shadow: 1px 1px 1px #eaeaea">
-              <van-button type="info" block @click="save">
+              <van-button type="primary" block @click="save">
                 <i class="iconfont iconfont-baocun"></i> 保存
               </van-button>
             </div>
@@ -46,16 +46,8 @@
 </template>
 
 <script>
-import { Col, Row, Popup, Switch, Loading, Icon } from 'vant';
-
 export default {
   components: {
-    [Col.name]: Col,
-    [Row.name]: Row,
-    [Popup.name]: Popup,
-    [Switch.name]: Switch,
-    [Loading.name]: Loading,
-    [Icon.name]: Icon,
   },
   props: {
     show: Boolean,
@@ -84,7 +76,7 @@ export default {
       this.dialogShow = false
     },
     async save() {
-      let toSave = this._props.appList.filter(item => item.referred).map(item => item.packageName);
+      let toSave = this.appList.filter(item => item.referred).map(item => item.packageName);
       await AutoWeb.autoPromise('saveToSetDefaultLaunchAppList', toSave);
       this.dialogShow = false
       await AutoWeb.autoPromise('toast', '保存成功');

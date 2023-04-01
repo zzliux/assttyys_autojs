@@ -10,7 +10,7 @@
     </div>
     <van-popup
       closeable
-      v-model="updateInfoShow"
+      v-model:show="updateInfoShow"
       :style="{ width: '100%', maxHeight: '70%' }"
     >
       <div style="padding: 20px">

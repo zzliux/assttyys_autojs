@@ -25,8 +25,6 @@
           v-bind="dragOptions"
           @start="dragTransition = true"
           @end="dragEnd"
-          tag="transition-group"
-          :component-data="{ name: !dragTransition ? 'flip-list' : null }"
         >
           <template #item = "{ element }">
             <div
@@ -42,9 +40,9 @@
                 <div v-if="element.desc" class="item-desc">{{element.desc}}</div>
               </div>
               <div v-if="element.id === showConfigId" class="item-config">
-                <!-- <func-config-box
+                <func-config-box
                   :configModalObject.sync="configModalObject"
-                ></func-config-box> -->
+                ></func-config-box>
               </div>
             </div>
           </template>
@@ -79,14 +77,14 @@
         </div>
       </van-col>
     </div>
-    <!-- <func-config-dialog
+    <func-config-dialog
       :show.sync="commonConfigModalShow"
       :configModalObject.sync="commonConfigModalObject"
     ></func-config-dialog>
     <app-list-lauch-dialog
       :show.sync="appListLauchDialogShown"
       :appList.sync="appListLauchList"
-    ></app-list-lauch-dialog> -->
+    ></app-list-lauch-dialog>
   </div>
 </template>
 <script>
@@ -100,6 +98,7 @@ import { merge } from '@/common/tool';
 
 
 export default {
+  name: 'funcList',
   data() {
     return {
       dragTransition: false,
@@ -143,18 +142,17 @@ export default {
       };
     }
   },
-  mounted() {
+  async mounted() {
     if (this.params) {
       if (this.params.schemeName) {
         // AutoWeb.autoPromise('toast', `加载方案 [ ${this.params.schemeName} ] `);
       }
     }
-    this.loadScheme('getScheme', this.$route.query.schemeName);
+    await this.loadScheme('getScheme', this.$route.query.schemeName);
   },
   methods: {
     async loadScheme(func, schemeName) {
       const schemeConfig = await AutoWeb.autoPromise(func, schemeName);
-      this.scheme = schemeConfig;
       // 启用的功能
       let fl = [];
       schemeConfig.config = schemeConfig.config || {};
@@ -211,8 +209,6 @@ export default {
         }
       });
 
-      this.funcList = [...fl, ...toAppend];
-
       // 公共配置
       let cc = merge([], dCommonConfig);
       cc.forEach((item) => {
@@ -228,6 +224,9 @@ export default {
           }
         });
       });
+      
+      this.scheme = schemeConfig;
+      this.funcList = [...fl, ...toAppend];
       this.commonConfig.config = cc;
       this.reSort();
     },

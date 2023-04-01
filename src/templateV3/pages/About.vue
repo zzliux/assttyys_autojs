@@ -65,7 +65,7 @@
         </div>
       </van-cell-group>
     </div>
-    <van-popup closeable v-model="versionInfoShow" :style="{ width: '100%', maxHeight: '70%' }">
+    <van-popup closeable v-model:show="versionInfoShow" :style="{ width: '100%', maxHeight: '70%' }">
       <div style="padding: 20px">
         <div class="popup_version_title">版本更新历史：</div>
         <div v-for="(item, id) of versionInfoList" :key="id">

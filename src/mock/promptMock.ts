@@ -242,7 +242,7 @@ window.promptMock = function (apiName, apiValue) {
                 console.log(`[promptMockData]apiName:${apiName}`);
                 console.log(`[promptMockData]apiValue:${JSON.stringify(params)}`);
                 console.log(`[promptMockData]returnData:${JSON.stringify(ret)}`);
-                if (typeof ret === 'object') {
+                if (ret !== null && typeof ret === 'object') {
                     ret = deepClone(ret);
                 }
                 window[deviceFn](ret);

@@ -130,7 +130,7 @@
       :show.sync="setDefaultLaunchAppDialogShown"
       :appList.sync="toSetDefaultLaunchAppList"
     ></app-list-dialog>
-    <van-popup v-model="popupListShown" position="bottom">
+    <van-popup v-model:show="popupListShown" position="bottom">
       <van-picker
         show-toolbar
         :columns="popupListData"
@@ -142,7 +142,6 @@
   </div>
 </template>
 <script>
-import { Cell, CellGroup, Icon, Button, Dialog, Field, Notify, Switch, Loading, Picker } from "vant";
 import appListDialog from '../components/AppListRefDialog.vue';
 
 export default {
@@ -162,16 +161,6 @@ export default {
   },
   components: {
     appListDialog,
-    [Cell.name]: Cell,
-    [CellGroup.name]: CellGroup,
-    [Icon.name]: Icon,
-    [Button.name]: Button,
-    [Dialog.name]: Dialog,
-    [Field.name]: Field,
-    [Notify.name]: Notify,
-    [Switch.name]: Switch,
-    [Loading.name]: Loading,
-    [Picker.name]: Picker,
   },
   props: {
     statusBarHeight: Number,
@@ -237,7 +226,7 @@ export default {
     },
     async showItemConfigList(event, item) {
       this.popupCurItem = item;
-      this.popupListData = item.data;
+      this.popupListData = item.data.map(item => ({text: item, value: item}));
       this.popupListValue = item.value;
       this.popupListShown = true;
     },

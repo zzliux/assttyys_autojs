@@ -62,7 +62,7 @@
     </van-cell-group>
 
     <!-- 功能的参数里面的list下拉单选 -->
-    <van-popup v-model="configItemItemShowPicker" position="bottom">
+    <van-popup v-model:show="configItemItemShowPicker" position="bottom">
       <van-picker
         v-if="configItemItemShowPicker === 'switch'"
         show-toolbar
@@ -80,7 +80,7 @@
         @cancel="configItemItemShowPicker = false"/>
     </van-popup>
     
-    <van-popup v-model="schemePicker" position="bottom">
+    <van-popup v-model:show="schemePicker" position="bottom">
       <van-picker
         show-toolbar
         :columns="schemeList"
@@ -122,7 +122,7 @@ export default {
       this.schemePicker = false;
     },
     showItemConfigList(e, configItemItem) {
-      this.configItemItemPickerList = configItemItem.data;
+      this.configItemItemPickerList = configItemItem.data.map(item => ({text: item, value: item}));
       this.curItemItem = configItemItem;
       this.curItemItemIndex = this.configItemItemPickerList.indexOf(configItemItem.value);
       this.configItemItemShowPicker = 'switch';
