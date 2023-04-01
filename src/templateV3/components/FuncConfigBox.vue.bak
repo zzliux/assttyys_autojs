@@ -64,12 +64,20 @@
     <!-- 功能的参数里面的list下拉单选 -->
     <van-popup v-model:show="configItemItemShowPicker" position="bottom">
       <van-picker
+        v-if="configItemItemShowPicker === 'switch'"
         show-toolbar
         :columns="configItemItemPickerList"
         @confirm="configItemItemPickerConfirm"
         @cancel="configItemItemShowPicker = false"
         :default-index="curItemItemIndex"
       />
+      <van-datetime-picker 
+        v-else-if="configItemItemShowPicker === 'datetime'" 
+        type="time"
+        :value="curItemItem.value"
+        show-toolbar
+        @confirm="configItemItemPickerConfirm"
+        @cancel="configItemItemShowPicker = false"/>
     </van-popup>
     
     <van-popup v-model:show="schemePicker" position="bottom">
@@ -82,69 +90,83 @@
     </van-popup>
   </div>
 </template>
-<script setup>
+
+<script>
 import { merge } from '@/common/tool';
-import { reactive, ref } from "vue";
-const props = defineProps({
-  show: Boolean,
-  configModalObject: Object,
-});
 
-const configItemItemShowPicker = ref(false);
-const configItemItemPickerList = ref([]);
-const curItemItemIndex = ref(10);
-const curItemItem = ref(null);
+export default {
+  components: {
+  },
+  props: {
+    show: Boolean,
+    configModalObject: Object,
+  },
+  data() {
+    return {
+      configItemItemShowPicker: false,
+      configItemItemPickerList: [],
+      curItemItemIndex: 10,
+      curItemItem: null,
 
-const schemePicker = ref(false);
-const schemeList = ref([]);
-
-function showItemConfigList(e, configItemItem) {
-  configItemItemPickerList.value = configItemItem.data.map(item => ({text: item, value: item}));
-  curItemItem.value = configItemItem;
-  curItemItemIndex.value = configItemItemPickerList.value.indexOf(configItemItem.value);
-  configItemItemShowPicker.value = true;
-}
-
-function configItemItemPickerConfirm({ selectedOptions }, _index) {
-  curItemItem.value.value = selectedOptions[0].text;
-  configItemItemShowPicker.value = false;
-}
-
-async function showItemConfigScheme(e, configItemItem) {
-  let schemeListA = await AutoWeb.autoPromise('getSchemeList');
-  let groupScheme = ['全部', ...await AutoWeb.autoPromise('getGroupNames')].map(item => ({ text: item, value: item, children: getSchemeNamesByGroupName(item, schemeListA) }));
-
-  console.log(groupScheme);
-
-  schemeList.value = groupScheme;
-  curItemItem.value = configItemItem;
-  schemePicker.value = true;
-}
-
-function getSchemeNamesByGroupName(groupName, schemeNames) {
-  const left = merge([], schemeNames);
-  if (groupName === '全部') {
-    return left.map(item => ({ text: item.schemeName, value: item.schemeName }));
-  }
-
-  // 1. 根据groupName过滤
-  const filterd = [];
-  // console.log(groupName);
-  for (let i = 0 ; i < left.length; i++) {
-    if (left[i].groupName === groupName) {
-      filterd.push(left[i]);
-      left.splice(i, 1);
-      i--;
+      schemePicker: false,
+      schemeList: [],
     }
-  }
-  return filterd.map(item => ({ text: item.schemeName, value: item.schemeName }));
-}
+  },
+  methods: {
+    configItemItemPickerConfirm(text, _index) {
+      this.curItemItem.value = text;
+      this.configItemItemShowPicker = false;
+    },
+    schemeListConfirm([_, text], _index) {
+      this.curItemItem.value = text;
+      this.schemePicker = false;
+    },
+    showItemConfigList(e, configItemItem) {
+      this.configItemItemPickerList = configItemItem.data.map(item => ({text: item, value: item}));
+      this.curItemItem = configItemItem;
+      this.curItemItemIndex = this.configItemItemPickerList.indexOf(configItemItem.value);
+      this.configItemItemShowPicker = 'switch';
+    },
+    async showItemConfigScheme(e, configItemItem) {
+      let schemeList = await AutoWeb.autoPromise('getSchemeList');
+      let groupScheme = ['全部', ...await AutoWeb.autoPromise('getGroupNames')].map(item => ({ text: item, children: this.getSchemeNamesByGroupName(item, schemeList) }));
 
-function schemeListConfirm([_, text], _index) {
-  curItemItem.value.value = text;
-  schemePicker.value = false;
-}
+      console.log(groupScheme);
+      // this.configItemItemPickerList = schemeList.map(item => item.schemeName);
+      this.schemeList = groupScheme;
+      this.curItemItem = configItemItem;
+      this.schemePicker = true;
+      // this.curItemItemIndex = this.configItemItemPickerList.indexOf(configItemItem.value);
+      // this.configItemItemShowPicker = 'switch';
+    },
 
+    getSchemeNamesByGroupName(groupName, schemeNames) {
+      const left = merge([], schemeNames);
+      if (groupName === '全部') {
+        return left.map(item => ({ text: item.schemeName }));
+      }
+
+      // 1. 根据groupName过滤
+      const filterd = [];
+      // console.log(groupName);
+      for (let i = 0 ; i < left.length; i++) {
+        if (left[i].groupName === groupName) {
+          filterd.push(left[i]);
+          left.splice(i, 1);
+          i--;
+        }
+      }
+      return filterd.map(item => ({ text: item.schemeName }));
+    },
+
+    showDateTimePicker(e, configItemItem) {
+      this.curItemItem = configItemItem;
+      this.configItemItemShowPicker = 'datetime';
+    }
+  },
+  mounted() {
+  },
+};
 </script>
 
 
