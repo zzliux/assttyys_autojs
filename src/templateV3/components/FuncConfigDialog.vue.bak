@@ -77,47 +77,65 @@
   </div>
 </template>
 
-<script setup>
-import { ref, computed } from 'vue';
+<script>
+import { Popup, Field, CellGroup, Picker } from 'vant';
 
-const emit = defineEmits(['update:show']);
-
-const props = defineProps({
+export default {
+  components: {
+    [Popup.name]: Popup,
+    [Field.name]: Field,
+    [CellGroup.name]: CellGroup,
+    [Picker.name]: Picker,
+  },
+  props: {
     show: Boolean,
     configModalObject: Object,
-})
-const configItemItemShowPicker = ref(false);
-const configItemItemPickerList = ref([]);
-const curItemItemIndex = ref(10);
-const curItemItem = ref(null);
-
-const dialogShow = computed({
-  get() {
-    return props.show;
   },
-  set(val) {
-    emit('update:show', val);
-  }
-});
-
-
-function configItemItemPickerConfirm(text, _index) {
-  curItemItem.value.value = text;
-  configItemItemShowPicker.value = false;
-}
-function showItemConfigList(e, configItemItem) {
-  configItemItemPickerList.value = configItemItem.data.map(item => ({text: item, value: item}));
-  curItemItem.value = configItemItem;
-  curItemItemIndex.value = configItemItemPickerList.value.indexOf(configItemItem.value);
-  configItemItemShowPicker.value = true;
-}
-async function showItemConfigScheme(e, configItemItem) {
-  let schemeList = await AutoWeb.autoPromise('getSchemeList');
-  configItemItemPickerList.value = schemeList.map(item => item.schemeName);
-  curItemItem.value = configItemItem;
-  curItemItemIndex.value = configItemItemPickerList.value.indexOf(configItemItem.value);
-  configItemItemShowPicker.value = true;
-}
+  data() {
+    return {
+      configItemItemShowPicker: false,
+      configItemItemPickerList: [],
+      curItemItemIndex: 10,
+      curItemItem: null,
+    }
+  },
+  computed: {
+    dialogShow: {
+      get() {
+        return this.show;
+      },
+      set(s) {
+        this.$emit('update:show', s)
+      }
+    }
+  },
+  watch: {
+    show(val) {
+      this.dialogShow = val;
+    },
+  },
+  methods: {
+    configItemItemPickerConfirm(text, _index) {
+      this.curItemItem.value = text;
+      this.configItemItemShowPicker = false;
+    },
+    showItemConfigList(e, configItemItem) {
+      this.configItemItemPickerList = configItemItem.data.map(item => ({text: item, value: item}));
+      this.curItemItem = configItemItem;
+      this.curItemItemIndex = this.configItemItemPickerList.indexOf(configItemItem.value);
+      this.configItemItemShowPicker = true;
+    },
+    async showItemConfigScheme(e, configItemItem) {
+      let schemeList = await AutoWeb.autoPromise('getSchemeList');
+      this.configItemItemPickerList = schemeList.map(item => item.schemeName);
+      this.curItemItem = configItemItem;
+      this.curItemItemIndex = this.configItemItemPickerList.indexOf(configItemItem.value);
+      this.configItemItemShowPicker = true;
+    }
+  },
+  mounted() {
+  },
+};
 </script>
 
 

@@ -133,7 +133,22 @@ const promptMockData = {
     },
     getStatusBarHeight: 20,
     setCurrentScheme: 'sucess',
-    startScript: [],
+    startScript: [{
+        appName: 'assttyys',
+        packageName: 'com.xixdaoq.rsicybi',
+        versionName: '0.0.4_build_20201001',
+        versionCode: 1,
+        appIcon: '',
+        referred: false
+    }, {
+        appName: '阴阳师',
+        packageName: 'com.netease.onmyoji.mz',
+        versionName: '1.6.6',
+        versionCode: 103,
+        appIcon: '',
+        referred: true
+    }],
+    launchPackage: true,
     saveSetting: 'sucess',
     toast: function () { },
     initFloaty: function () { },

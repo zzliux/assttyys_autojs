@@ -10,14 +10,14 @@
       <div>
         <div
           :class="'item' + (app.referred ? ' referred' : '')"
-          v-for="app in innerAppList"
+          v-for="app in appList"
           :key="app.packageName"
           @click="launchPackage(app.packageName)"
         >
           <span class="logo">
-            <van-loading v-if="!app.appIcon" />
-            <van-icon v-if="app.appIcon === 'fail'" name="failure" size="32px" />
-            <img v-else-if="app.appIcon" :src="app.appIcon"/>  
+            <van-loading v-if="!packageNameToIcon[app.packageName]" />
+            <van-icon v-if="packageNameToIcon[app.packageName] === 'fail'" name="failure" size="32px" />
+            <img v-else-if="packageNameToIcon[app.packageName]" :src="packageNameToIcon[app.packageName]"/>  
           </span>
           <span class="item-content">
             <div class="appName">{{ app.appName }}</div>
@@ -29,62 +29,44 @@
   </div>
 </template>
 
-<script>
-import { Col, Row, Popup, Switch } from "vant";
+<script setup>
+import { reactive, computed, watch } from 'vue';
 
-export default {
-  components: {
-    [Col.name]: Col,
-    [Row.name]: Row,
-    [Popup.name]: Popup,
-    [Switch.name]: Switch,
+const props = defineProps({
+  show: Boolean,
+  appList: Array,
+});
+const packageNameToIcon = reactive({});
+
+const emit = defineEmits(['update:show']);
+const dialogShow = computed({
+  get() {
+    return props.show;
   },
-  props: {
-    show: Boolean,
-    appList: Array,
-  },
-  computed: {
-    dialogShow: {
-      get() {
-        return this.show;
-      },
-      set(s) {
-        this.$emit("update:show", s);
-      },
-    },
-    innerAppList: {
-      get() {
-        return this.appList;
-      },
-      set(s) {
-        this.$emit('update:appList', s);
-      }
-    }
-  },
-  methods: {
-    launchPackage(packageName) {
-      this.dialogShow = false;
-      AutoWeb.autoPromise("launchPackage", packageName);
-    },
-  },
-  watch: {
-    show(val) {
-      this.dialogShow = val;
-    },
-    async appList(val) {
-      this.innerAppList = val;
-      this.innerAppList.forEach((appInfo) => {
-        appInfo.appIcon = '';
-      });
-      for (let i = 0; i < this.innerAppList.length; i++) {
-        this.innerAppList[i].appIcon = (await AutoWeb.autoPromise('getIconByPackageName', this.innerAppList[i].packageName)) || 'fail';
-        this.$forceUpdate();
-      }
-    }
-  },
-  mounted() {
-  },
-};
+  set(val) {
+    emit('update:show', val);
+  }
+});
+
+function launchPackage(packageName) {
+  dialogShow.val = false;
+  AutoWeb.autoPromise("launchPackage", packageName);
+}
+
+async function getAppIcon(packageName) {
+  if (packageNameToIcon[packageName]) {
+    return packageNameToIcon[packageName]
+  }
+  packageNameToIcon[packageName] = (await AutoWeb.autoPromise('getIconByPackageName', packageName)) || 'fail';
+  return packageNameToIcon[packageName];
+}
+watch(() => props.appList, async (newVal, oldVal) => {
+  for (let app of newVal) {
+    await getAppIcon(app.packageName);
+  }
+});
+
+
 </script>
 <style scoped>
 .item:active {

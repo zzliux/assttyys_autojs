@@ -41,7 +41,7 @@
               </div>
               <div v-if="element.id === showConfigId" class="item-config">
                 <func-config-box
-                  :configModalObject.sync="configModalObject"
+                  v-model:configModalObject="configModalObject"
                 ></func-config-box>
               </div>
             </div>
@@ -78,12 +78,12 @@
       </van-col>
     </div>
     <func-config-dialog
-      :show.sync="commonConfigModalShow"
-      :configModalObject.sync="commonConfigModalObject"
+      v-model:show="commonConfigModalShow"
+      v-model:configModalObject="commonConfigModalObject"
     ></func-config-dialog>
     <app-list-lauch-dialog
-      :show.sync="appListLauchDialogShown"
-      :appList.sync="appListLauchList"
+      v-model:show="appListLauchDialogShown"
+      v-model:appList="appListLauchList"
     ></app-list-lauch-dialog>
   </div>
 </template>

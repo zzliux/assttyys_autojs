@@ -53,7 +53,7 @@
     "dependencies": {
         "@auto.pro/core": "^9.2.0",
         "@auto.pro/floaty": "^9.2.1",
-        "@auto.pro/web": "^1.0.7",
+        "@auto.pro/web": "^1.0.15",
         "@auto.pro/webview": "^9.2.0",
         "@autojs/types-pro8": "^8.8.0",
         "@babel/polyfill": "^7.12.1",
