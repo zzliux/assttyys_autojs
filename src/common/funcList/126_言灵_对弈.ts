@@ -1,6 +1,6 @@
 import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
 import { Script } from '@/system/script';
-import { setGlobalLogConfig } from '__console__';
+
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
