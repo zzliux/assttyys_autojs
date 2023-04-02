@@ -99,7 +99,7 @@ export class Func027 implements InterfaceFuncOrigin {
 		if (thisScript.oper({
 			id: 27,
 			name: '组队_匹配',
-			operator: thisOperator.slice(0,-1)
+			operator: thisOperator.slice(0, -1)
 		})) {
 			return true;
 		};
@@ -108,18 +108,18 @@ export class Func027 implements InterfaceFuncOrigin {
 			name: '组队_创建',
 			operator: [thisOperator[6]]
 		})) {
-			if (++thisScript.global.create_NumOT > 3){
+			if (++thisScript.global.create_NumOT > 3) {
 				thisScript.doOspPush(thisScript, { text: '体力不够创房，已停止。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-        thisScript.stop();  
+				thisScript.stop();
 			}
 			return true;
 		};
 		if (!thisScript.oper({
 			id: 27,
 			name: '组队_非创建界面',
-			operator: [thisOperator[6]]
+			operator: [{ desc: thisOperator[6].desc }]
 		})) {
-			thisScript.global.create_NumOT=0;
+			thisScript.global.create_NumOT = 0;
 		};
 		return false;
 	}

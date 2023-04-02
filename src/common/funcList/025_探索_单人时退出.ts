@@ -40,8 +40,12 @@ export class Func025 implements InterfaceFuncOrigin {
 		]
 	}, {//确认退出探索
 		desc: [1280, 720,
-			[[center, 450, 398, 0xf3b25e],
-			[center, 734, 404, 0xf3b25e]]
+			[[center, 340, 261, 0x987238],
+			[center, 938, 261, 0x906736],
+			[center, 560, 327, 0x2f2b26],
+			[center, 722, 326, 0x322e28],
+			[center, 539, 401, 0xf3b25e],
+			[center, 729, 404, 0xf3b25e]]
 		],
 		oper: [
 			[center, 1280, 720, 700, 386, 848, 420, 1000]
