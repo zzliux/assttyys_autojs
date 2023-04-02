@@ -619,7 +619,7 @@ const SchemeList: InterfaceScheme[] = [{
 }, {
     id: 61,
     schemeName: '暴食鬼吃经验',
-    list: [0,310],
+    list: [0, 310],
     config: {
         '0': {
             jspd_times_longtime_nodo: '1'
@@ -627,20 +627,31 @@ const SchemeList: InterfaceScheme[] = [{
     },
     star: true
 }, {
+    id: 62,
+    schemeName: '每周百鬼奕',
+    star: true,
+    list: [0, 1, 2, 3, 312],
+    config: {
+        '312': {
+            switch_threeten: true
+        }
+    }
+}, {
     id: 99,
     schemeName: '伊吹之擂',
     list: [0, 3, 24, 99, 100],
-}, {
-    id: 100,
-    groupName: '活动',
-    schemeName: '活动_鬼城岐事',
-    list: [0, 1, 2, 3, 51, 123, 122]
-}, {
-    id: 101,
-    groupName: '活动',
-    schemeName: '活动_决裂庭院',
-    list: [0, 1, 2, 3, 124]
-},
+}
+    // , {
+    //     id: 100,
+    //     groupName: '活动',
+    //     schemeName: '活动_鬼城岐事',
+    //     list: [0, 1, 2, 3, 51, 123, 122]
+    // }, {
+    //     id: 101,
+    //     groupName: '活动',
+    //     schemeName: '活动_决裂庭院',
+    //     list: [0, 1, 2, 3, 124]
+    // },
     // , {
     //     id: 100,
     //     groupName: '活动',
@@ -721,13 +732,19 @@ const SchemeList: InterfaceScheme[] = [{
     //     star: true,
     //     list: [0, 1, 2, 3, 24, 121]
     // }
-    {
-        id: 114,
-        groupName: '活动',
-        schemeName: '万言归灵_残塔谜走',
-        star: true,
-        list: [0, 1, 2, 3, 24, 125]
-    },
+    , {
+    id: 114,
+    groupName: '活动',
+    schemeName: '万言归灵_残塔谜走',
+    star: true,
+    list: [0, 1, 2, 3, 24, 125]
+}, {
+    id: 115,
+    groupName: '活动',
+    schemeName: '万言归灵_单机对弈',
+    star: true,
+    list: [0, 1, 2, 3, 126]
+}
     // 完整demo
     // , {
     //     id: 2,
