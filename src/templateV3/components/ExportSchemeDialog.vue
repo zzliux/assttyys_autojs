@@ -53,64 +53,43 @@
   </div>
 </template>
 
-<script>
-import { Col, Row, Cell, Popup, Switch, Loading, Icon } from 'vant';
-import groupColor from "../../common/groupColors";
+<script setup>
+import { ref, computed } from 'vue';
+import groupColor from '@/common/groupColors';
 
-export default {
-  components: {
-    [Col.name]: Col,
-    [Row.name]: Row,
-    [Popup.name]: Popup,
-    [Switch.name]: Switch,
-    [Loading.name]: Loading,
-    [Icon.name]: Icon,
-    [Cell.name]: Cell,
+
+const props = defineProps({
+  show: Boolean,
+  schemeList: Array,
+});
+const editTextModal = ref(false);
+const exportString = ref('');
+
+const emit = defineEmits(['update:show']);
+const dialogShow = computed({
+  get() {
+    return props.show;
   },
-  props: {
-    show: Boolean,
-    schemeList: Array,
-  },
-  data() {
-    return {
-      editTextModal: false,
-      exportString: ''
-    }
-  },
-  computed: {
-    dialogShow: {
-      get() {
-        return this.show;
-      },
-      set(s) {
-        this.$emit('update:show', s)
-      }
-    }
-  },
-  methods: {
-    cancel() {
-      this.dialogShow = false
-    },
+  set(val) {
+    emit('update:show', val)
+  }
+});
+
+function cancel() {
+  dialogShow.value = false
+}
     
-    getGroupColor(groupName) {
-      // 计算hash值
-      let sum = 0;
-      for (let i = 0; i < groupName.length; i++) {
-        sum += groupName.charCodeAt(i);
-      }
-      return groupColor[sum % groupColor.length];
-    },
-    async copyExportString() {
-      await AutoWeb.autoPromise('copyToClip', this.exportString);
-    }
-  },
-  watch: {
-    show(val) {
-      this.dialogShow = val;
-    }
-  },
-  mounted() {
-  },
+function getGroupColor(groupName) {
+  // 计算hash值
+  let sum = 0;
+  for (let i = 0; i < groupName.length; i++) {
+    sum += groupName.charCodeAt(i);
+  }
+  return groupColor[sum % groupColor.length];
+}
+
+async function copyExportString() {
+  await AutoWeb.autoPromise('copyToClip', exportString.value);
 }
 </script>
 

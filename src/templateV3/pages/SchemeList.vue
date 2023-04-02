@@ -134,11 +134,11 @@
       />
     </van-popup>
     <export-scheme-dialog
-      :show.sync="exportModel"
+      v-model:show="exportModel"
       :schemeList="schemeList"
     />
     <import-scheme-dialog
-      :show.sync="importModel"
+      v-model:show="importModel"
       :importCallback="schemeImportCallback"
     />
     <!-- 啊这个不知道用什么实现比较好了 -->

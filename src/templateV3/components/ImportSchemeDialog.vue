@@ -55,122 +55,102 @@
   </div>
 </template>
 
-<script>
-import { Col, Row, Cell, Popup, Switch, Loading, Icon } from 'vant';
-import groupColor from "../../common/groupColors";
+<script setup>
+import groupColor from '@/common/groupColors';
+import { ref, computed } from 'vue';
 
-export default {
-  components: {
-    [Col.name]: Col,
-    [Row.name]: Row,
-    [Popup.name]: Popup,
-    [Switch.name]: Switch,
-    [Loading.name]: Loading,
-    [Icon.name]: Icon,
-    [Cell.name]: Cell,
+const props = defineProps({
+  show: Boolean,
+  importCallback: Function,
+})
+const emit = defineEmits(['update:show']);
+
+const schemeList = ref([]);
+const exportString = ref('');
+const importModal = ref(false);
+
+const dialogShow = computed({
+  get() {
+    return props.show;
   },
-  props: {
-    show: Boolean,
-    importCallback: Function,
-  },
-  data() {
-    return {
-      editTextModal: false,
-      schemeList: [],
-      exportString: '',
-      importModal: false,
-    }
-  },
-  computed: {
-    dialogShow: {
-      get() {
-        return this.show;
-      },
-      set(s) {
-        this.$emit('update:show', s)
-      }
-    }
-  },
-  methods: {
-    cancel() {
-      this.importModal = false
-    },
+  set(val) {
+    emit('update:show', val)
+  }
+});
+
+function cancel() {
+  importModal.value = false
+}
     
-    getGroupColor(groupName) {
-      // 计算hash值
-      let sum = 0;
-      for (let i = 0; i < groupName.length; i++) {
-        sum += groupName.charCodeAt(i);
-      }
-      return groupColor[sum % groupColor.length];
-    },
-    async parseExportString() {
-      try {
-        // 解析内容是否为scheme的数组
-        const toImport = JSON.parse(this.exportString);
-        // 导出数组内重名的重命名
-        for (let i = 0; i < toImport.length; i++) {
-          for (let j = i + 1; j < toImport.length; j++) {
-            if (toImport[i].schemeName === toImport[j].schemeName) {
-              toImport[j].schemeName += this.randomStr();
-            }
-          }
-        }
-        
-        // 获取已储存的schemeList，判断重名方案后自动重命名
-        const savedSchemeList = await AutoWeb.autoPromise("getSchemeList");
-        for (let i = 0; i < savedSchemeList.length; i++) {
-          for (let j = 0; j < toImport.length; j++) {
-            if (savedSchemeList[i].schemeName === toImport[j].schemeName) {
-              toImport[j].schemeName += this.randomStr();
-            }
-          }
-        }
-        this.schemeList = toImport;
-        this.importModal = true;
-      } catch (e) {
-        console.error(e);
-        await AutoWeb.autoPromise('toast', '无法解析，请检查导入数据是否完整或其它问题');
-      }
-    },
-    async pasteExportString() {
-      this.exportString = await AutoWeb.autoPromise('getClip');
-    },
-    async doImport() {
-      const savedSchemeList = await AutoWeb.autoPromise("getSchemeList");
-      let maxId = savedSchemeList.reduce((prev, curr) => {
-        return Math.max(prev, curr.id);
-      }, 0);
-      let toSave = this.schemeList;
-      toSave = toSave.filter(item => item.export);
-      toSave.forEach(item => {
-        item.inner = false;
-        item.id = ++maxId;
-      });
-      debugger;
-      await AutoWeb.autoPromise('saveSchemeList', [...savedSchemeList, ...toSave]);
-      await AutoWeb.autoPromise('toast', '导入成功');
+function getGroupColor(groupName) {
+  // 计算hash值
+  let sum = 0;
+  for (let i = 0; i < groupName.length; i++) {
+    sum += groupName.charCodeAt(i);
+  }
+  return groupColor[sum % groupColor.length];
+}
 
-      this.dialogShow = false;
-      this.importModal = false;
-      this.importCallback()
-    },
-    randomStr() {
-      const str = 'abcdefghijklmnopqrstuvwxyz0123456789';
-      const arr = [];
-      for (let i = 0; i < 6; i++) {
-        arr.push(str[parseInt(Math.random() * 654321) % str.length]);
+async function parseExportString() {
+  try {
+    // 解析内容是否为scheme的数组
+    const toImport = JSON.parse(exportString.value);
+    // 导出数组内重名的重命名
+    for (let i = 0; i < toImport.length; i++) {
+      for (let j = i + 1; j < toImport.length; j++) {
+        if (toImport[i].schemeName === toImport[j].schemeName) {
+          toImport[j].schemeName += randomStr();
+        }
       }
-      return arr.join('');
     }
-  },
-  watch: {
-    show(val) {
-      this.dialogShow = val;
+    
+    // 获取已储存的schemeList，判断重名方案后自动重命名
+    const savedSchemeList = await AutoWeb.autoPromise("getSchemeList");
+    for (let i = 0; i < savedSchemeList.length; i++) {
+      for (let j = 0; j < toImport.length; j++) {
+        if (savedSchemeList[i].schemeName === toImport[j].schemeName) {
+          toImport[j].schemeName +=randomStr();
+        }
+      }
     }
-  },
-  mounted() {
-  },
+    schemeList.value = toImport;
+    importModal.value = true;
+  } catch (e) {
+    console.error(e);
+    await AutoWeb.autoPromise('toast', '无法解析，请检查导入数据是否完整或其它问题');
+  }
+}
+
+async function pasteExportString() {
+  exportString.value = await AutoWeb.autoPromise('getClip');
+}
+
+async function doImport() {
+  const savedSchemeList = await AutoWeb.autoPromise("getSchemeList");
+  let maxId = savedSchemeList.reduce((prev, curr) => {
+    return Math.max(prev, curr.id);
+  }, 0);
+  let toSave = schemeList.value;
+  toSave = toSave.filter(item => item.export);
+  toSave.forEach(item => {
+    item.inner = false;
+    item.id = ++maxId;
+  });
+  await AutoWeb.autoPromise('saveSchemeList', [...savedSchemeList, ...toSave]);
+  await AutoWeb.autoPromise('toast', '导入成功');
+
+  dialogShow.value = false;
+  importModal.value = false;
+  props.importCallback();
+}
+
+function randomStr() {
+  const str = 'abcdefghijklmnopqrstuvwxyz0123456789';
+  const arr = [];
+  for (let i = 0; i < 6; i++) {
+    arr.push(str[parseInt(Math.random() * 654321) % str.length]);
+  }
+  return arr.join('');
 }
 </script>
 
