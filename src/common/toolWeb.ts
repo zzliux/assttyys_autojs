@@ -1,5 +1,6 @@
 
 export const mergeSchemeList = (savedSchemeList, innerSchemeList) => {
+    // TODO toMerge更新id
     let toMerge = [];
     for (let innerScheme of innerSchemeList) {
         let flag = true;
@@ -18,6 +19,7 @@ export const mergeSchemeList = (savedSchemeList, innerSchemeList) => {
 }
 
 export const mergeScheduleList = (savedScheduleList, innerScheduleList) => {
+    // TODO toMerge更新id
     let toMerge = [];
     for (let innerSchedule of innerScheduleList) {
         let flag = true;
