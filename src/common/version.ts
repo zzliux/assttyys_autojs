@@ -616,6 +616,15 @@ export const versionList = [{
     desc: `优化：27创建组队在体力不够时自动停止（点击3次未开始）
 优化：7结界3次刷新cd判定时间从30秒修改为5秒
 `
+}, {
+    version: '20230401_02',
+    desc: `优化：突破点头像 
+优化：组队方案可以被悬浮窗按钮识别
+优化：单人探索BUG
+优化：组队邀请BUG
+增加：每周百鬼奕
+增加：言灵对弈活动
+`
 }];
 
 export default versionList[versionList.length - 1].version;
