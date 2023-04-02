@@ -43,7 +43,7 @@
             开源：
           </div>
           <div class="item-content">
-            https://gitee.com/zzliux/assttyys_autojs
+            https://github.com/zzliux/assttyys_autojs
           </div>
         </div>
         <div class="item" @click="mailTo">
@@ -78,20 +78,8 @@
   </div>
 </template>
 <script>
-import { Cell, CellGroup, Icon, Button, Dialog, Field, Notify, Switch, Loading } from "vant";
-
 export default {
-  components: {
-    [Cell.name]: Cell,
-    [CellGroup.name]: CellGroup,
-    [Icon.name]: Icon,
-    [Button.name]: Button,
-    [Dialog.name]: Dialog,
-    [Field.name]: Field,
-    [Notify.name]: Notify,
-    [Switch.name]: Switch,
-    [Loading.name]: Loading,
-  },
+
   data() {
     return {
       version: '',

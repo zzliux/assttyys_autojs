@@ -14,7 +14,7 @@
         <div v-for="(item, index) in scheduleList" :key="item.id" class="item" center>
           <van-swipe-cell center @open="itemOpen" @close="itemClose" :before-close="itemBeforeClose"
             :stop-propagation="true" :disabled="item.checked">
-            <template>
+            <span>
               <div class="item-header" @click="showConfig($event, item)">
                 <div class="item-title">{{ item.id + ' ' + item.name }}</div>
                 <div class="item-value">
@@ -26,7 +26,7 @@
                 <div class="item-desc">上次执行开始时间: {{ item.lastRunTime && new Date(item.lastRunTime).toLocaleString() }}</div>
                 <div class="item-desc">上次执行结束时间: {{ item.lastStopTime && new Date(item.lastStopTime).toLocaleString() }}</div>
               </div>
-            </template>
+            </span>
             <template #right>
               <van-button type="danger" square text="删除" v-if="!item.inner"
                 @click="swipeCellCurrentAction = 'delete'; swipeCellCurrentIndex = index" />
@@ -49,7 +49,7 @@
               <template #input>
                 <div style="width: 100%;" :style="item.checked ? 'color: rgb(200, 195, 188)' : ''"
                   @click="showRepeatModeDialog($event, item)">
-                  {{ repeatModeEnum[item.repeatMode || 0] }}
+                  {{ repeatModeEnum[item.repeatMode || 0].value }}
                 </div>
               </template>
             </van-field>
@@ -102,9 +102,8 @@
         @cancel="repeatModeDialogShow = false" :default-index="curDialogRepeatMode"></van-picker>
     </van-popup>
     <van-popup v-model:show="nextDateDialogshow" position="bottom">
-      <van-datetime-picker
+      <date-time-picker
         v-model="curNextDate"
-        type="datetime"
         title="选择下次执行时间"
         :min-date="minDate"
         :max-date="maxDate"
@@ -123,11 +122,11 @@
   </div>
 </template>
 <script>
-import { NavBar, Cell, CellGroup, Icon, Switch, Popup, Picker, Field, Dialog, Notify, SwipeCell, Button, DatetimePicker } from "vant";
 import { mergeScheduleList } from "../../../common/toolWeb";
 import dScheduleList from '../../../common/scheduleList'
 import { merge } from '@/common/tool';
 import { getNextByCron } from '@/common/toolCron';
+import DateTimePicker from '../../components/DateTimePicker.vue';
 
 const scheduleDefaultFormData = {
   id: NaN,
@@ -147,21 +146,7 @@ const scheduleDefaultFormData = {
 
 export default {
   name: 'ScheduleList',
-  components: {
-    [NavBar.name]: NavBar,
-    [Icon.name]: Icon,
-    [Cell.name]: Cell,
-    [CellGroup.name]: CellGroup,
-    [Switch.name]: Switch,
-    [Popup.name]: Popup,
-    [Picker.name]: Picker,
-    [Field.name]: Field,
-    [Dialog.name]: Dialog,
-    [Notify.name]: Notify,
-    [SwipeCell.name]: SwipeCell,
-    [Button.name]: Button,
-    [DatetimePicker.name]: DatetimePicker,
-  },
+  components: { DateTimePicker },
   data() {
     return {
       itemOpenList: [],

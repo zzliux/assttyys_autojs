@@ -50,14 +50,14 @@
             />
           </div>
         </template>
-        <template v-else-if="'time' === configItemItem.type" #input>
+        <!-- <template v-else-if="'time' === configItemItem.type" #input>
           <div
             class="configItemValue"
             @click="showDateTimePicker($event, configItemItem)"
           >
             {{ configItemItem.value }}
           </div>
-        </template>
+        </template> -->
       </van-field>
     </van-cell-group>
 

@@ -27,6 +27,20 @@ AutoWeb.autoPromise = function (eventname, params) {
 	});
 }
 
+Date.prototype.format = function (fmt) {
+	var o = {
+		"M+": this.getMonth() + 1, //月份
+		"d+": this.getDate(), //日
+		"h+": this.getHours(), //小时
+		"i+": this.getMinutes(), //分
+		"s+": this.getSeconds(), //秒
+	};
+	if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substring(4 - RegExp.$1.length));
+	for (var k in o)
+		if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substring(("" + o[k]).length)));
+	return fmt;
+}
+
 
 var router = createRouter({
 	history: createWebHashHistory(),
@@ -58,23 +72,21 @@ var router = createRouter({
 			index: 1
 		},
 		component: () => import('./pages/Settings.vue')
-	},
-		//{
-		// 	path: '/about',
-		// 	name: 'about',
-		// 	meta: {
-		// 		index: 2
-		// 	},
-		// 	component: () => import('./pages/About.vue')
-		// }, {
-		// 	path: '/schedule/list',
-		// 	name: 'ScheduleList',
-		// 	meta: {
-		// 		index: 3
-		// 	},
-		// 	component: () => import('./pages/schedule_module/ScheduleList.vue')
-		// }
-	]
+	}, {
+		path: '/about',
+		name: 'about',
+		meta: {
+			index: 2
+		},
+		component: () => import('./pages/About.vue')
+	}, {
+		path: '/schedule/list',
+		name: 'ScheduleList',
+		meta: {
+			index: 3
+		},
+		component: () => import('./pages/schedule_module/ScheduleList.vue')
+	}]
 });
 
 const myApp = createApp(App);

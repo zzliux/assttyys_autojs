@@ -127,8 +127,8 @@
       </van-cell-group>
     </div>
     <app-list-dialog
-      :show.sync="setDefaultLaunchAppDialogShown"
-      :appList.sync="toSetDefaultLaunchAppList"
+      v-model:show="setDefaultLaunchAppDialogShown"
+      v-model:appList="toSetDefaultLaunchAppList"
     ></app-list-dialog>
     <van-popup v-model:show="popupListShown" position="bottom">
       <van-picker
@@ -142,6 +142,7 @@
   </div>
 </template>
 <script>
+import { showConfirmDialog } from 'vant';
 import appListDialog from '../components/AppListRefDialog.vue';
 
 export default {
@@ -186,7 +187,7 @@ export default {
       AutoWeb.autoPromise('startActivityForLog');
     },
     resetScheme() {
-      Dialog.confirm({
+      showConfirmDialog({
         title: '提示',
         message: '是否完全清空方案及相关配置？',
       }).then(async () => {
@@ -195,6 +196,7 @@ export default {
         await AutoWeb.autoPromise('exit');
       }).catch(() => {
         // on cancel
+        // or on error
       });
     },
     async setDefaultLaunchApp() {
