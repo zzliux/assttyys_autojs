@@ -120,7 +120,6 @@ export class Func027 implements InterfaceFuncOrigin {
 			operator: [thisOperator[6]]
 		})) {
 			thisScript.global.create_NumOT=0;
-			return true;
 		};
 		return false;
 	}

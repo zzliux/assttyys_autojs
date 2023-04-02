@@ -48,6 +48,9 @@ export type globalRootType = {
     intensify_NumOT: number, //强化计数
     create_NumOT: number, //创建队伍计数
     redFlag: boolean;   //  红标标识
+    yl_next: number,//言灵对弈下一个
+    bgy_three: boolean; //百鬼奕三胜
+    bgy_ten: boolean; //百鬼奕十次
 }
 
 export const globalRoot: globalRootType = {
@@ -100,4 +103,7 @@ export const globalRoot: globalRootType = {
     intensify_NumOT: 0,
     create_NumOT: 0,
     redFlag: false,
+    yl_next: 0,
+    bgy_three: false,
+    bgy_ten: false,
 }
