@@ -103,21 +103,14 @@ export class Func002 implements InterfaceFuncOrigin {
 			]
 		],
 		retest: 300
-	}
-		/*, {
-			// 邀请好友确认
-			desc: [1280, 720,
-				[
-					[center, 460, 258, 0xcbb59e],
-					[center, 799, 268, 0xcbb59e],
-					[center, 467, 429, 0xdf6851],
-					[center, 700, 431, 0xf4b25f],
-					[center, 641, 429, 0xcbb59e]
-				]
-			],
-			oper: [
-				[center, 1280, 720, 550, 347, 730, 376, 300],
-				[center, 1280, 720, 680, 411, 838, 452, 1000],
+	}, {// 邀请好友确认
+		desc: [1280, 720,
+			[
+				[center, 460, 258, 0xcbb59e],
+				[center, 799, 268, 0xcbb59e],
+				[center, 467, 429, 0xdf6851],
+				[center, 700, 431, 0xf4b25f],
+				[center, 641, 429, 0xcbb59e]
 			]
 		],
 		oper: [
