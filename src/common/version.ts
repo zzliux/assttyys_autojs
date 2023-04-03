@@ -626,9 +626,9 @@ export const versionList = [{
 增加：言灵对弈活动
 `
 }, {
-    version: '20230401_02',
+    version: '20230403_01',
     desc: `修复：突破0勋章持续点击 
-优化：探索退出延时增加
+优化：探索退出延时增加`
 }];
 
 export default versionList[versionList.length - 1].version;
