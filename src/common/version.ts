@@ -629,6 +629,11 @@ export const versionList = [{
     version: '20230401_02',
     desc: `修复：突破0勋章持续点击 
 优化：探索退出延时增加
+`   
+}, {
+    version: '20230401_03',
+    desc: `修复：突破勋章点击(如任无法识别可更改找色为96)
+`   
 }];
 
 export default versionList[versionList.length - 1].version;
