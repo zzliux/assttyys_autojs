@@ -1,4 +1,5 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from "@/interface/InterfaceFunc";
+import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -94,23 +95,32 @@ export class Func027 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 818, 567, 932, 612, 1000]//创建
 		]
 	}]
-	// operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
-	// 	if(!thisScript.oper({
-	// 		id: 27,
-	// 		name: '判断自动匹配非排队中',
-	// 		operator: [thisOperator[0]]
-	// 	}) && thisScript.oper({
-	// 		id: 27,
-	// 		name: '首页判断并点击组队',
-	// 		operator: [thisOperator[1], thisOperator[2]]
-	// 	})){
-	// 		// return thisScript.oper({
-	// 		// 	name: '妖气界面判断自动匹配',
-	// 		// 	operator: [thisOperator[2]]
-	// 		// });
-	// 		// thisScript.helperBridge.regionClick(thisOperator[2].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
-	// 		return true;
-	// 	}
-	// 	return false;
-	// }
+	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+		if (thisScript.oper({
+			id: 27,
+			name: '组队_匹配',
+			operator: thisOperator.slice(0, -1)
+		})) {
+			return true;
+		};
+		if (thisScript.oper({
+			id: 27,
+			name: '组队_创建',
+			operator: [thisOperator[6]]
+		})) {
+			if (++thisScript.global.create_NumOT > 3) {
+				thisScript.doOspPush(thisScript, { text: '体力不够创房，已停止。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+				thisScript.stop();
+			}
+			return true;
+		};
+		if (!thisScript.oper({
+			id: 27,
+			name: '组队_非创建界面',
+			operator: [{ desc: thisOperator[6].desc }]
+		})) {
+			thisScript.global.create_NumOT = 0;
+		};
+		return false;
+	}
 }

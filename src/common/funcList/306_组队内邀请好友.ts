@@ -36,8 +36,8 @@ export class Func306 implements InterfaceFuncOrigin {
       default: '通用准备退出',
     }],
   }];
-  operator: InterfaceFuncOperatorOrigin[] = [{
-    desc: [1280, 720,//0,三号位
+  operator: InterfaceFuncOperatorOrigin[] = [{//0,三号位
+    desc: [1280, 720,
       [[center, 642, 3, 0x101011],
       [left, 42, 38, 0xf7e8aa],
       [center, 641, 52, 0x080c0a],
@@ -47,8 +47,8 @@ export class Func306 implements InterfaceFuncOrigin {
     oper: [
       [center, 1280, 720, 1025, 194, 1145, 306, 1000]
     ]
-  }, {
-    desc: [1280, 720,//1,邀请界面
+  }, {//1,邀请界面
+    desc: [1280, 720,
       [[center, 390, 570, 0xd6bead],
       [center, 502, 574, 0xde6952],
       [center, 638, 583, 0xd6bead],
@@ -61,15 +61,15 @@ export class Func306 implements InterfaceFuncOrigin {
       [center, 1280, 720, 718, 553, 827, 597, 1500],//邀请
       [center, 1280, 720, 360, 86, 454, 137, 1500],//最左刷新
     ]
-  }, {
-    desc: [1280, 720,//2,组队界面
+  }, {//2,组队界面
+    desc: [1280, 720,
       [[center, 642, 3, 0x101011],
       [left, 42, 38, 0xf7e8aa],
       [center, 641, 52, 0x080c0a],
       [center, 648, 571, 0x422c29]]
     ]
-  }, {
-    desc: [1280, 720,//3,组队挑战按钮
+  }, {//3,组队挑战按钮
+    desc: [1280, 720,
       [[left, 43, 37, 0xf5e6a8],
       [right, 1177, 667, 0xd8b871],
       [right, 1187, 679, 0xcda35d],
@@ -165,7 +165,7 @@ export class Func306 implements InterfaceFuncOrigin {
         }
       }
     };
-    
+
     if (thisScript.oper({
       name: '组队挑战_判断',
       operator: [{ desc: thisOperator[3].desc }]
@@ -174,10 +174,10 @@ export class Func306 implements InterfaceFuncOrigin {
         thisScript.setCurrentScheme(thisConf.next_scheme as string);
         thisScript.myToast(`切换方案为[${thisConf.next_scheme}]`);
         thisScript.rerun();
-      }else if(thisConf && thisConf.secondPlayer && !thisScript.oper({
+      } else if (thisConf && thisConf.secondPlayer && !thisScript.oper({
         name: '三号位',
-        operator: [thisOperator[0]]
-      })){
+        operator: [{ desc: thisOperator[0].desc }]
+      })) {
         thisScript.setCurrentScheme(thisConf.next_scheme as string);
         thisScript.myToast(`切换方案为[${thisConf.next_scheme}]`);
         thisScript.rerun();

@@ -48,6 +48,11 @@ export class Func023 implements InterfaceFuncOrigin {
 			let resultAns = thisScript.getOcr().loadImage(toDetectAnsBmp);
 			console.timeEnd('ocr.detect.ans');
 			toDetectAnsBmp.recycle();
+
+			if (resultAns.length < 1) {
+				return true;
+			}
+
 			let ansList = [];
 			for (let i = 0; i < resultAns.length; i++) {
 				let row = resultAns[i];

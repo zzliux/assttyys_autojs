@@ -256,41 +256,33 @@ const multiColor: InterfaceMultiColorOrigin = {
     },
     '结界_0勋章': {
         region: [center, 1280, 720, 124, 125, 1152, 545],
-        // desc: [[1280,720,
-        //     [[center,567,286,0xd6c5b3],
-        //     [center,784,297,0xdacdbc],
-        //     [center,589,369,0xc9b4a4],
-        //     [center,630,368,0xc9b6a4],
-        //     [center,670,368,0xc9b6a4],
-        //     [center,710,369,0xc9b6a4],
-        //     [center,748,369,0xc9b6a4],
-        //     [center,784,397,0xa49088]]
-        // ]]
-        // desc: [[1280,720,
-        //     [[center,562,158,0xdaccbc],
-        //     [center,789,157,0xd8c9ba],
-        //     [center,795,205,0xab9988],
-        //     [center,591,232,0xc9b5a4],
-        //     [center,629,233,0xc9b6a4],
-        //     [center,668,234,0xc9b6a4],
-        //     [center,709,232,0xc9b6a4],
-        //     [center,748,232,0xc9b6a4],
-        //     [center,785,262,0xa39087]]
-        // ]]
+        // desc: [
+        //     [1280, 720,
+        //         [
+        //             [center, 904, 155, 0xdacbbc],
+        //             [center, 1116, 161, 0xdacdbc],
+        //             [center, 1118, 262, 0xa38f86],
+        //             [center, 923, 233, 0xc9b4a4],
+        //             [center, 962, 233, 0xc9b6a4],
+        //             [center, 1002, 233, 0xc9b6a4],
+        //             [center, 1041, 233, 0xc9b6a4],
+        //             [center, 1080, 233, 0xc9b6a4],
+        //             [center, 942, 223, 0xd9c3b5],
+        //             [center, 942, 245, 0xdbcbbd]
+        //         ]
+        //     ]
+        // ]
         desc: [
             [1280, 720,
-                [
-                    [center, 904, 155, 0xdacbbc],
-                    [center, 1116, 161, 0xdacdbc],
-                    [center, 1118, 262, 0xa38f86],
-                    [center, 923, 233, 0xc9b4a4],
-                    [center, 962, 233, 0xc9b6a4],
-                    [center, 1002, 233, 0xc9b6a4],
-                    [center, 1041, 233, 0xc9b6a4],
-                    [center, 1080, 233, 0xc9b6a4],
-                    [center, 942, 223, 0xd9c3b5],
-                    [center, 942, 245, 0xdbcbbd]
-                ]
+                [[center, 907, 296, 0xddcebb],
+                [right, 1105, 294, 0xdacdbd],
+                [center, 842, 310, 0x5a3810],
+                [center, 842, 334, 0x553213],
+                [center, 922, 350, 0xa89687],
+                [right, 961, 350, 0xa89787],
+                [right, 1000, 350, 0xa99888],
+                [right, 1039, 350, 0xaa9988],
+                [right, 1079, 350, 0xa99888]]
             ]
         ]
     },
@@ -514,12 +506,10 @@ const multiColor: InterfaceMultiColorOrigin = {
             [
                 1280, 720,
                 [
-                    [right, 1200, 96, 0x892478],
-                    [right, 1191, 94, 0xeecccc],
-                    [right, 1181, 88, 0xe5d4cc],
-                    [right, 1170, 88, 0x8e334e],
-                    [right, 1187, 88, 0xb63f62],
-                    [right, 1187, 108, 0x892e58],
+                    [right, 1181, 75, 0xe8d4cf],
+                    [right, 1172, 81, 0xe9d4d0],
+                    [right, 1167, 88, 0xebd0ce],
+                    [right, 1182, 91, 0xe8d1d1],
                 ]
             ]
         ]
@@ -2667,6 +2657,19 @@ const multiColor: InterfaceMultiColorOrigin = {
                 [center, 722, 653, 0xf4b25f],
                 [center, 722, 687, 0xf4b260],
                 [center, 628, 684, 0xf4b25f]]
+            ]
+        ]
+    },
+    "言灵活动_对弈": {
+        region: [right, 1280, 720, 12, 358, 824, 574],
+        desc: [
+            [1280, 720,
+                [[left, 246, 523, 0xf9b274],
+                [left, 259, 525, 0xf9b274],
+                [left, 257, 529, 0x272420],
+                [left, 258, 538, 0xf8b173],
+                [left, 251, 536, 0x312b1b],
+                [left, 270, 542, 0xcd9462]]
             ]
         ]
     }

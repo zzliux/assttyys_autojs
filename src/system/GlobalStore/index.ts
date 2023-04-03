@@ -46,6 +46,11 @@ export type globalRootType = {
     xsOpened: boolean, // 是否打开过悬赏
     intensify_lagTime: null | Date, //强化延时
     intensify_NumOT: number, //强化计数
+    create_NumOT: number, //创建队伍计数
+    redFlag: boolean;   //  红标标识
+    yl_next: number,//言灵对弈下一个
+    bgy_three: boolean; //百鬼奕三胜
+    bgy_ten: boolean; //百鬼奕十次
 }
 
 export const globalRoot: globalRootType = {
@@ -95,5 +100,10 @@ export const globalRoot: globalRootType = {
     team_up_Frist: true,
     xsOpened: false,
     intensify_lagTime: null,
-    intensify_NumOT:0,
+    intensify_NumOT: 0,
+    create_NumOT: 0,
+    redFlag: false,
+    yl_next: 0,
+    bgy_three: false,
+    bgy_ten: false,
 }

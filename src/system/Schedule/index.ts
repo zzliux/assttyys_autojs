@@ -227,7 +227,7 @@ class Schedule {
                 //         break;
                 //     }
                 // } else 
-                if ((thisJob.nextDate.getTime() <= Date.now() && Date.now() - thisJob.nextDate.getTime() < 1800000)) {
+                if ((thisJob.nextDate.getTime() <= Date.now() && Date.now() - thisJob.nextDate.getTime() < 180000)) {
                     job = thisJob;
                     index = i;
                     break;

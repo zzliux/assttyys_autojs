@@ -156,6 +156,7 @@ export class Func051 implements InterfaceFuncOrigin {
 						inY + 20,
 						1000
 					]
+					sleep(500);
 					thisScript.helperBridge.regionClick([thisOperator[0].oper[4]], thisScript.scheme.commonConfig.afterClickDelayRandom);
 					thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
 					return true;
