@@ -111,7 +111,7 @@ export function getNextByCron(cronData: string, nowDate = new Date(), _runCount 
             nowDate.setMonth(_t.time);
         }
         case _originalDate.getMonth() !== nowDate.getMonth(): {
-            const _t = isGreaterCron(_dateCron, 0);
+            const _t = isGreaterCron(_dateCron, 1);
             _t.time !== 0 && nowDate.setDate(_t.time);
         }
         case _originalDate.getDate() !== nowDate.getDate(): {
