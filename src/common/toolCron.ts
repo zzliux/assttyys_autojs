@@ -64,6 +64,7 @@ export function getNextByCron(cronData: string, nowDate = new Date(), _runCount 
     const _secondCron = _cronArray[0];
     const _resultSecond = isGreaterCron(_secondCron, nowDate.getSeconds());
     nowDate.setSeconds(_resultSecond.carry * 60 + _resultSecond.time);
+    // console.log('s', nowDate.toString());
 
     const _minuteCron = _cronArray[1];
     const _resultMinute = isGreaterCron(_minuteCron, nowDate.getMinutes());
@@ -73,19 +74,23 @@ export function getNextByCron(cronData: string, nowDate = new Date(), _runCount 
         const _t = isGreaterCron(_secondCron, 0);
         nowDate.setSeconds(_t.time);
     }
+    // console.log('m', nowDate.toString());
 
     const _hourCron = _cronArray[2];
     const _resultHour = isGreaterCron(_hourCron, nowDate.getHours());
     nowDate.setHours(_resultHour.carry * 24 + _resultHour.time);
+    // console.log('h', nowDate.toString());
 
     const _dateCron = _cronArray[3];
     const _resultdate = isGreaterCron(_dateCron, nowDate.getDate());
     nowDate.setDate(_resultdate.time);
     nowDate.setMonth(_resultdate.carry + nowDate.getMonth());
+    // console.log('d', nowDate.toString());
 
     const _monthCron = _cronArray[4];
     const _resultmonth = isGreaterCron(_monthCron, nowDate.getMonth());
     nowDate.setMonth(_resultmonth.carry * 12 + _resultmonth.time);
+    // console.log('mo', nowDate.toString());
 
     const _dayCron = _cronArray[5];
 
@@ -97,6 +102,7 @@ export function getNextByCron(cronData: string, nowDate = new Date(), _runCount 
         return null;
     }
     nowDate.setFullYear(_resultYear.time);
+    // console.log('y', nowDate.toString());
 
     // 判断当前位是否有更改，若有变更，其后置位取最小值
     switch (true) {
@@ -106,7 +112,7 @@ export function getNextByCron(cronData: string, nowDate = new Date(), _runCount 
         }
         case _originalDate.getMonth() !== nowDate.getMonth(): {
             const _t = isGreaterCron(_dateCron, 0);
-            nowDate.setDate(_t.time);
+            _t.time !== 0 && nowDate.setDate(_t.time);
         }
         case _originalDate.getDate() !== nowDate.getDate(): {
             const _t = isGreaterCron(_hourCron, 0);

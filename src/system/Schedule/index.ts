@@ -210,6 +210,7 @@ class Schedule {
 
         // console.log('result:', getNextByCron('* 14,16 2,14 29 1 0,2,4'));
 
+        // console.log('result:', getNextByCron('* 0 8 * * *', new Date(2023,2,31,9,24,0)));
         if (currentRunningJob === null) {
             this.currentRunningJobId = null;
         } else if (currentRunningJob.status !== 'running') {
