@@ -639,6 +639,9 @@ export const versionList = [{
 }, {
     version: '20230405_01',
     desc: '新增：众言归一活动'
+}, {
+    version: '20230405_02',
+    desc: '优化：多点找色相关色组修改对齐方向'
 }];
 
 export default versionList[versionList.length - 1].version;
