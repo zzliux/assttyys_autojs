@@ -642,6 +642,9 @@ export const versionList = [{
 }, {
     version: '20230405_02',
     desc: '优化：多点找色相关色组修改对齐方向'
+}, {
+    version: '20230405_03',
+    desc: '优化：逢魔挑战中若查找10次首领仍未进入挑战择将直接标记为已挑战boss'
 }];
 
 export default versionList[versionList.length - 1].version;
