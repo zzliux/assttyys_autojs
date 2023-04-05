@@ -744,6 +744,12 @@ const SchemeList: InterfaceScheme[] = [{
     schemeName: '万言归灵_单机对弈',
     star: true,
     list: [0, 1, 2, 3, 126]
+}, {
+    id: 116,
+    groupName: '活动',
+    schemeName: '万言归灵_众言归一',
+    star: true,
+    list: [0, 1, 2, 3, 127]
 }
     // 完整demo
     // , {

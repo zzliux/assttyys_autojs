@@ -632,8 +632,13 @@ export const versionList = [{
 `
 }, {
     version: '20230401_03',
-    desc: `修复：突破勋章点击(如任无法识别可更改找色为96)
-`
+    desc: `修复：突破勋章点击(如任无法识别可更改找色为96)`
+}, {
+    version: '20230404_01',
+    desc: '修复：cron调度任务跨月时间更新错误/未更新的问题'
+}, {
+    version: '20230405_01',
+    desc: '新增：众言归一活动'
 }];
 
 export default versionList[versionList.length - 1].version;
