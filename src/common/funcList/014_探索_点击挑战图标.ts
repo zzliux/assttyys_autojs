@@ -65,12 +65,24 @@ export class Func014 implements InterfaceFuncOrigin {
 		oper: [
 			[left, 1280, 720, 122, 660, 245, 682, 500]
 		]
+	}, {//首领出现
+		desc: [1280, 720,
+			[
+				[center, 512, 344, 0xffffde],
+				[center, 558, 338, 0xfffff9],
+				[center, 619, 340, 0xfffff0],
+				[center, 675, 344, 0xfffff4],
+				[center, 750, 348, 0xffffe0]
+			]
+		],
+		oper: [
+			[center, 1280, 720, 613, 248, 668, 297, 1000]
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		while (thisScript.oper({
 			name: '探索界面_判断',
 			operator: [{ desc: thisOperator[0].desc, retest: 500 }],
-
 		})) {
 			// 早期轮换会自动关闭，需手动打开关闭的轮换，现阴阳师已优化，轮换会保持上一次的状态
 			// if (thisScript.oper({
@@ -83,6 +95,14 @@ export class Func014 implements InterfaceFuncOrigin {
 			if (thisScript.global.tsAttackSwhipeNum === undefined) {
 				thisScript.global.tsAttackSwhipeNum = parseInt(String(thisconf.swipeTime), 10);
 				// sleep(3000); // 从地图进来，先休息一下再进行判断
+			}
+			if (thisScript.oper({
+				name: '首领出现',
+				operator: [{ desc: thisOperator[2].desc, retest: 1000 }],
+			})) {
+				thisScript.helperBridge.regionClick([thisOperator[2].oper], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.global.tsAttackSwhipeNum = 1;
+				return true;
 			}
 			let point = null;
 			// 使用多点找色返回所有点的方法
@@ -162,7 +182,7 @@ export class Func014 implements InterfaceFuncOrigin {
 						'中': [500, 700],
 						'慢': [800, 1200],
 					}[String(thisconf.swipeSpeed) || '慢'], 200);
-					sleep(1000);
+					sleep(500);
 					thisScript.keepScreen(true);
 				} else {
 					return false;
