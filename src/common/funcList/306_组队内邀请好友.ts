@@ -1,6 +1,5 @@
 import { Script } from '@/system/script';
 import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
-import { ContactList } from 'vant';
 
 const normal = -1; //定义常量
 const left = 0;

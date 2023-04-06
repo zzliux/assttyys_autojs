@@ -62,7 +62,7 @@ export class Func005 implements InterfaceFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1168, 598, 1250, 678, 2000]
 		]
-	}, {// 开始战斗后的场景
+	}, { // 开始战斗后的场景，提供给方案的自动判断
 		desc: [1280, 720,
 			[[left, 32, 89, 0x5d361c],
 			[left, 32, 190, 0x5a321a],

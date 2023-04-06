@@ -13,15 +13,21 @@ export class Func508 implements InterfaceFuncOrigin {
 		desc: [	//	检测_现世逢魔奖励是否已领取
 			1280, 720,
 			[
+				// 逢魔场景
+				[left, 19, 700, 0x3c3841],
+				[left, 42, 46, 0xc3cbdf],
+				[center, 754, 39, 0x583716],
+				[center, 1181, 650, 0xffffff],
+				[left, 43, 680, 0xc7957c],
+				[left, 54, 676, 0x433b42],
+				// 4次完成后的灰达摩
 				[right, 1230, 210, 0x767676],
-				[right, 1244, 227, 0x989898],
 				[right, 1256, 248, 0x434343],
-				[right, 1230, 248, 0x774a4a],
 				[right, 1242, 248, 0x494949]
 			]
 		],
 		oper: [
-			[right, 1280, 720, 1002, 645, 1045, 693, 1000]  // 进入首领按钮
+			[right, 1280, 720, 1002, 645, 1045, 693, 100]  // 进入首领按钮
 		]
 	}, {	// 检测_是否找到逢魔首领
 		desc: [
@@ -188,13 +194,24 @@ export class Func508 implements InterfaceFuncOrigin {
 					}]
 				});
 
-				sleep(1200);
-				thisScript.oper({
+				sleep(500);
+				if (thisScript.oper({
 					name: '检测_点击寻找首领按钮',
 					operator: [{
 						oper: thisOperator[0].oper,
 					}]
-				});
+				})) {
+					if (!thisScript.global.fm_boss_btn_click_cnt) {
+						thisScript.global.fm_boss_btn_click_cnt = 0;
+					}
+					if (++thisScript.global.fm_boss_btn_click_cnt >= 10) {
+						thisScript.global.fm_kiss_boss_flag = true;
+						thisScript.myToast(`第${thisScript.global.fm_boss_btn_click_cnt}次点击查找逢魔首领按钮未成功进入首领挑战，标记挑战成功`);
+					} else {
+						thisScript.myToast(`第${thisScript.global.fm_boss_btn_click_cnt}次点击查找逢魔首领按钮`);
+					}
+					return true;
+				}
 			} else {
 				sleep(1500);
 				if (!thisScript.global.checked_yard_count) {
@@ -256,12 +273,23 @@ export class Func508 implements InterfaceFuncOrigin {
 				thisScript.myToast(`切换方案为[${next_scheme}]`);
 				thisScript.rerun();
 			} else {
-				return thisScript.oper({
+				if(thisScript.oper({
 					name: '检测_点击寻找首领按钮',
 					operator: [{
 						oper: thisOperator[0].oper,
 					}]
-				})
+				})) {
+					if (!thisScript.global.fm_boss_btn_click_cnt) {
+						thisScript.global.fm_boss_btn_click_cnt = 0;
+					}
+					if (++thisScript.global.fm_boss_btn_click_cnt >= 4) {
+						thisScript.global.fm_kiss_boss_flag = true;
+						thisScript.myToast(`第${thisScript.global.fm_boss_btn_click_cnt}次点击查找逢魔首领按钮未成功进入首领挑战，标记挑战成功`);
+					} else {
+						thisScript.myToast(`第${thisScript.global.fm_boss_btn_click_cnt}次点击查找逢魔首领按钮`);
+					}
+					return true;
+				}
 			}
 		}
 

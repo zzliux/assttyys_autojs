@@ -626,14 +626,25 @@ export const versionList = [{
 增加：言灵对弈活动
 `
 }, {
-    version: '20230401_02',
+    version: '20230403_01',
     desc: `修复：突破0勋章持续点击 
 优化：探索退出延时增加
-`   
+`
 }, {
     version: '20230401_03',
-    desc: `修复：突破勋章点击(如任无法识别可更改找色为96)
-`   
+    desc: `修复：突破勋章点击(如任无法识别可更改找色为96)`
+}, {
+    version: '20230404_01',
+    desc: '修复：cron调度任务跨月时间更新错误/未更新的问题'
+}, {
+    version: '20230405_01',
+    desc: '新增：众言归一活动'
+}, {
+    version: '20230405_02',
+    desc: '优化：多点找色相关色组修改对齐方向'
+}, {
+    version: '20230405_03',
+    desc: '优化：逢魔挑战中若查找10次首领仍未进入挑战择将直接标记为已挑战boss'
 }];
 
 export default versionList[versionList.length - 1].version;

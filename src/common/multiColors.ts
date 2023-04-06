@@ -90,12 +90,12 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [center, 914, 431, 0xdacdbd],
                     [center, 842, 447, 0x613f21],
                     [center, 842, 468, 0x613f21],
-                    [right, 1120, 426, 0xd8caba],
+                    [center, 1120, 426, 0xd8caba],
                     [center, 925, 486, 0xa64e42],
-                    [right, 965, 486, 0xa64e42],
-                    [right, 1005, 486, 0xa64e42],
-                    [right, 1045, 486, 0xa64e42],
-                    [right, 1085, 486, 0xa64e42],
+                    [center, 965, 486, 0xa64e42],
+                    [center, 1005, 486, 0xa64e42],
+                    [center, 1045, 486, 0xa64e42],
+                    [center, 1085, 486, 0xa64e42],
                     [center, 911, 519, 0xc65644],
                     [center, 911, 537, 0x83756f]
                 ]
@@ -127,12 +127,12 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [center, 914, 431, 0xdacdbd],
                     [center, 842, 447, 0x613f21],
                     [center, 842, 468, 0x613f21],
-                    [right, 1120, 426, 0xd8caba],
+                    [center, 1120, 426, 0xd8caba],
                     [center, 925, 486, 0xa64e42],
-                    [right, 965, 486, 0xa64e42],
-                    [right, 1005, 486, 0xa64e42],
-                    [right, 1045, 486, 0xa64e42],
-                    [right, 1085, 486, 0xae9b8b],
+                    [center, 965, 486, 0xa64e42],
+                    [center, 1005, 486, 0xa64e42],
+                    [center, 1045, 486, 0xa64e42],
+                    [center, 1085, 486, 0xae9b8b],
                     [center, 911, 519, 0xc65644],
                     [center, 911, 537, 0x83756f]
                 ]
@@ -162,12 +162,12 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [center, 914, 431, 0xdacdbd],
                     [center, 842, 447, 0x613f21],
                     [center, 842, 468, 0x613f21],
-                    [right, 1120, 426, 0xd8caba],
+                    [center, 1120, 426, 0xd8caba],
                     [center, 925, 486, 0xa64e42],
-                    [right, 965, 486, 0xa64e42],
-                    [right, 1005, 486, 0xa64e42],
-                    [right, 1045, 486, 0xae9b8b],
-                    [right, 1085, 486, 0xae9b8b],
+                    [center, 965, 486, 0xa64e42],
+                    [center, 1005, 486, 0xa64e42],
+                    [center, 1045, 486, 0xae9b8b],
+                    [center, 1085, 486, 0xae9b8b],
                     [center, 911, 519, 0xc65644],
                     [center, 911, 537, 0x83756f]
                 ]
@@ -198,12 +198,12 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [center, 914, 431, 0xdacdbd],
                     [center, 842, 447, 0x613f21],
                     [center, 842, 468, 0x613f21],
-                    [right, 1120, 426, 0xd8caba],
+                    [center, 1120, 426, 0xd8caba],
                     [center, 925, 486, 0xa64e42],
-                    [right, 965, 486, 0xa64e42],
-                    [right, 1005, 486, 0xae9b8b],
-                    [right, 1045, 486, 0xae9b8b],
-                    [right, 1085, 486, 0xae9b8b],
+                    [center, 965, 486, 0xa64e42],
+                    [center, 1005, 486, 0xae9b8b],
+                    [center, 1045, 486, 0xae9b8b],
+                    [center, 1085, 486, 0xae9b8b],
                     [center, 911, 519, 0xc65644],
                     [center, 911, 537, 0x83756f]
                 ]
@@ -235,12 +235,12 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [center, 914, 431, 0xdacdbd],
                     [center, 842, 447, 0x613f21],
                     [center, 842, 468, 0x613f21],
-                    [right, 1120, 426, 0xd8caba],
+                    [center, 1120, 426, 0xd8caba],
                     [center, 925, 486, 0xa64e42],
-                    [right, 965, 486, 0xae9b8b],
-                    [right, 1005, 486, 0xae9b8b],
-                    [right, 1045, 486, 0xae9b8b],
-                    [right, 1085, 486, 0xae9b8b],
+                    [center, 965, 486, 0xae9b8b],
+                    [center, 1005, 486, 0xae9b8b],
+                    [center, 1045, 486, 0xae9b8b],
+                    [center, 1085, 486, 0xae9b8b],
                     [center, 911, 519, 0xc65644],
                     [center, 911, 537, 0x83756f]
                 ]
@@ -271,12 +271,12 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [center, 914, 431, 0xdacdbd],
                     [center, 842, 447, 0x613f21],
                     [center, 842, 468, 0x613f21],
-                    [right, 1120, 426, 0xd8caba],
+                    [center, 1120, 426, 0xd8caba],
                     [center, 925, 486, 0xae9b8b],
-                    [right, 965, 486, 0xae9b8b],
-                    [right, 1005, 486, 0xae9b8b],
-                    [right, 1045, 486, 0xae9b8b],
-                    [right, 1085, 486, 0xae9b8b],
+                    [center, 965, 486, 0xae9b8b],
+                    [center, 1005, 486, 0xae9b8b],
+                    [center, 1045, 486, 0xae9b8b],
+                    [center, 1085, 486, 0xae9b8b],
                     [center, 911, 537, 0x83756f]
                 ]
             ]
@@ -289,18 +289,18 @@ const multiColor: InterfaceMultiColorOrigin = {
                 [
                     [center, 904, 418, 0x49793a],
                     [center, 904, 417, 0x739530],
-                    [right, 1117, 530, 0x3c5833],
+                    [center, 1117, 530, 0x3c5833],
                     [center, 862, 450, 0x946b2c],
-                    [right, 1002, 504, 0x8f8a85]
+                    [center, 1002, 504, 0x8f8a85]
                 ]
             ],
             [1280, 720,
                 [
                     [center, 907, 418, 0x477a36],
                     [center, 907, 417, 0x608e3f],
-                    [right, 1117, 530, 0x3c5631],
+                    [center, 1117, 530, 0x3c5631],
                     [center, 862, 450, 0x966330],
-                    [right, 1002, 504, 0x918c87]
+                    [center, 1002, 504, 0x918c87]
                 ]
             ]
         ]
@@ -1242,8 +1242,8 @@ const multiColor: InterfaceMultiColorOrigin = {
                 [
                     [right, 989, 517, 0xf4b25f],
                     [right, 991, 542, 0xf4b25f],
-                    [center, 909, 518, 0xf4b25f],
-                    [center, 910, 540, 0xf4b25f],
+                    [right, 909, 518, 0xf4b25f],
+                    [right, 910, 540, 0xf4b25f],
                     [right, 1009, 506, 0x993333],
                     [right, 1013, 548, 0x933e2d],
                     [right, 1003, 555, 0x903b2a],
@@ -1538,7 +1538,7 @@ const multiColor: InterfaceMultiColorOrigin = {
             [1280, 720,
                 [
                     [left, 151, 161, 0x79502f],
-                    [center, 359, 210, 0x79502f],
+                    [left, 359, 210, 0x79502f],
                     [left, 206, 177, 0x282521],
                     [left, 194, 190, 0x2b2824],
                     [left, 238, 201, 0x2a2723],
@@ -1551,7 +1551,7 @@ const multiColor: InterfaceMultiColorOrigin = {
             [1280, 720,
                 [
                     [left, 148, 159, 0x755331],
-                    [center, 362, 213, 0x735230],
+                    [left, 362, 213, 0x735230],
                     [left, 206, 177, 0x282521],
                     [left, 206, 200, 0x332f2a],
                     [left, 242, 176, 0x2d2925],
@@ -1585,8 +1585,8 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [left, 258, 362, 0x844e32],
                     [left, 230, 365, 0x683321],
                     [left, 252, 371, 0x743d26],
-                    [center, 359, 362, 0x96521f],
-                    [center, 361, 413, 0x965423],
+                    [left, 359, 362, 0x96521f],
+                    [left, 361, 413, 0x965423],
                     [left, 152, 413, 0xa05f27]
                 ]
             ],
@@ -1597,9 +1597,9 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [left, 249, 361, 0x6d3924],
                     [left, 249, 368, 0x6e3723],
                     [left, 149, 366, 0x241408],
-                    [center, 358, 366, 0x96521f],
+                    [left, 358, 366, 0x96521f],
                     [left, 149, 411, 0x995522],
-                    [center, 358, 413, 0x96521f]
+                    [left, 358, 413, 0x96521f]
                 ]
             ]
         ]
@@ -2435,7 +2435,7 @@ const multiColor: InterfaceMultiColorOrigin = {
             [
                 1280, 720,
                 [
-                    [right, 990, 163, 0xf7d9a0],
+                    [center, 990, 163, 0xf7d9a0],
                     [center, 589, 155, 0xe3dbd3],
                     [center, 688, 155, 0xe3dbd3],
                     [center, 834, 155, 0xe3dbd3],
@@ -2456,10 +2456,10 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [center, 598, 435, 0xf2e1cd],
                     [center, 597, 532, 0xeeddcc],
                     [center, 388, 483, 0xf3dfcb],
-                    [left, 302, 454, 0xf7a1a6],
-                    [left, 261, 427, 0xf79fab],
-                    [left, 275, 484, 0xf1e9d8],
-                    [left, 215, 476, 0xefa338],
+                    [center, 302, 454, 0xf7a1a6],
+                    [center, 261, 427, 0xf79fab],
+                    [center, 275, 484, 0xf1e9d8],
+                    [center, 215, 476, 0xefa338],
                 ]
             ],
 
@@ -2474,11 +2474,11 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [center, 341, 482, 0xf3dfcb],
                     [center, 597, 351, 0xf1dfcb],
                     [center, 597, 450, 0xeeddcc],
-                    [left, 302, 362, 0xcbb3d4],
-                    [left, 276, 402, 0xebe0d1],
-                    [left, 259, 350, 0xf7f2e7],
-                    [left, 253, 398, 0xeeeeee],
-                    [left, 224, 432, 0xf3dfcb],
+                    [center, 302, 362, 0xcbb3d4],
+                    [center, 276, 402, 0xebe0d1],
+                    [center, 259, 350, 0xf7f2e7],
+                    [center, 253, 398, 0xeeeeee],
+                    [center, 224, 432, 0xf3dfcb],
                 ]
             ]
         ]
@@ -2489,10 +2489,10 @@ const multiColor: InterfaceMultiColorOrigin = {
             [
                 1280, 720,
                 [
-                    [center, 341, 482, 0xf3dfcb],
-                    [center, 598, 336, 0xf4e2d0],
-                    [center, 598, 433, 0xeeddcd],
-                    [center, 583, 421, 0xf3dfcb],
+                    [left, 341, 482, 0xf3dfcb],
+                    [left, 598, 336, 0xf4e2d0],
+                    [left, 598, 433, 0xeeddcd],
+                    [left, 583, 421, 0xf3dfcb],
                     [left, 273, 410, 0xefe3d7],
                     [left, 218, 383, 0xea9a29],
                     [left, 222, 416, 0xf3dfcb],
@@ -2559,8 +2559,8 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [center, 331, 346, 0xf87b72],
                     [center, 341, 331, 0xca3837],
                     [center, 338, 319, 0xb72a32],
-                    [left, 319, 320, 0xbd3c37],
-                    [left, 315, 334, 0xde5954],
+                    [center, 319, 320, 0xbd3c37],
+                    [center, 315, 334, 0xde5954],
                     [center, 326, 339, 0xf5c268],
                     [center, 329, 333, 0xdaaf58],
                 ]
