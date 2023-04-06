@@ -68,188 +68,181 @@ const multiColor: InterfaceMultiColorOrigin = {
     },
     '结界_5勋章': {
         region: [center, 1280, 720, 124, 125, 1152, 545],
-        // desc: [[1280,720,
-        //     [[center,512,282,0xd8cabb],
-        //     [center,728,289,0xdacdbc],
-        //     [center,532,362,0x86807b],
-        //     [center,572,362,0x86807b],
-        //     [center,611,362,0x86807b],
-        //     [center,651,362,0x87817c],
-        //     [center,690,362,0x86807b],
-        //     [center,728,391,0xa28f85]]
-        // ]]
-        // desc: [[1280,720,
-        //     [[center,573,157,0xdacbbc],
-        //     [center,795,211,0xab9988],
-        //     [center,787,157,0xdacbbc],
-        //     [center,785,262,0xa39087],
-        //     [center,590,234,0x88827d],
-        //     [center,629,234,0x8a857f],
-        //     [center,669,234,0x87827c],
-        //     [center,708,234,0x8a847f],
-        //     [center,748,234,0x88827d]]
-        // ]]
+        // desc: [
+        //     [1280, 720,
+        //         [
+        //             [center, 576, 291, 0xdacbbc],
+        //             [center, 787, 295, 0xdacbbc],
+        //             [center, 785, 397, 0xa39087],
+        //             [center, 590, 369, 0x88817d],
+        //             [center, 629, 369, 0x88827d],
+        //             [center, 669, 369, 0x88827d],
+        //             [center, 708, 369, 0x88827d],
+        //             [center, 748, 369, 0x89837e],
+        //             [center, 608, 381, 0xdcc7b9],
+        //             [center, 610, 360, 0xddc5b6]
+        //         ]
+        //     ]
+        // ]
         desc: [
             [1280, 720,
                 [
-                    [center, 576, 291, 0xdacbbc],
-                    [center, 787, 295, 0xdacbbc],
-                    [center, 785, 397, 0xa39087],
-                    [center, 590, 369, 0x88817d],
-                    [center, 629, 369, 0x88827d],
-                    [center, 669, 369, 0x88827d],
-                    [center, 708, 369, 0x88827d],
-                    [center, 748, 369, 0x89837e],
-                    [center, 608, 381, 0xdcc7b9],
-                    [center, 610, 360, 0xddc5b6]
+                    [center, 914, 431, 0xdacdbd],
+                    [center, 842, 447, 0x613f21],
+                    [center, 842, 468, 0x613f21],
+                    [center, 1120, 426, 0xd8caba],
+                    [center, 925, 486, 0xa64e42],
+                    [center, 965, 486, 0xa64e42],
+                    [center, 1005, 486, 0xa64e42],
+                    [center, 1045, 486, 0xa64e42],
+                    [center, 1085, 486, 0xa64e42],
+                    [center, 911, 519, 0xc65644],
+                    [center, 911, 537, 0x83756f]
                 ]
             ]
         ]
     },
     '结界_4勋章': {
         region: [center, 1280, 720, 124, 125, 1152, 545],
+        // desc: [
+        //     [1280, 720,
+        //         [
+        //             [center, 907, 294, 0xdacebc],
+        //             [right, 1120, 295, 0xdaccbc],
+        //             [center, 922, 369, 0x88827e],
+        //             [center, 962, 369, 0x88837e],
+        //             [center, 1001, 369, 0x87827d],
+        //             [center, 1040, 369, 0x87827d],
+        //             [center, 1081, 369, 0xc9b6a5],
+        //             [right, 1118, 396, 0xa3938a],
+        //             [right, 1102, 284, 0xd4c3b2],
+        //             [right, 1104, 303, 0xdacebc],
+        //             [right, 1088, 300, 0xdacebc]
+        //         ]
+        //     ]
+        // ]
         desc: [
-            // [1280, 720, // 呱太5勋章
-            //     [[center,908,426,0xdfd7cb],
-            //     [center,1118,428,0xdfd7cb],
-            //     [center,922,504,0x87827d],
-            //     [center,962,504,0x89837f],
-            //     [center,1001,504,0x87827d],
-            //     [center,1040,504,0x88837e],
-            //     [center,1080,504,0x88827d]]
-            // ],
-            // [1280, 720, // 呱太5勋章
-            //     [[center, 572, 428, 0xdfd8cb],
-            //     [center, 781, 432, 0xdfd9cb],
-            //     [center, 590, 504, 0x87827d],
-            //     [center, 629, 504, 0x87827d],
-            //     [center, 669, 504, 0x87827d],
-            //     [center, 708, 504, 0x87827d],
-            //     [center, 748, 504, 0x8a847f]]
-            // ],
-            // [1280, 720,
-            //     [[center, 514, 147, 0xdacbbc],
-            //     [center, 725, 155, 0xdacebc],
-            //     [center, 532, 226, 0x8c8681],
-            //     [center, 572, 226, 0x88837d],
-            //     [center, 611, 226, 0x8d8782],
-            //     [center, 650, 226, 0x86817c],
-            //     [center, 690, 226, 0xc9b6a4],
-            //     [center, 728, 254, 0xa38f86]]
-            // ]
             [1280, 720,
                 [
-                    [center, 907, 294, 0xdacebc],
-                    [right, 1120, 295, 0xdaccbc],
-                    [center, 922, 369, 0x88827e],
-                    [center, 962, 369, 0x88837e],
-                    [center, 1001, 369, 0x87827d],
-                    [center, 1040, 369, 0x87827d],
-                    [center, 1081, 369, 0xc9b6a5],
-                    [right, 1118, 396, 0xa3938a],
-                    [right, 1102, 284, 0xd4c3b2],
-                    [right, 1104, 303, 0xdacebc],
-                    [right, 1088, 300, 0xdacebc]
+                    [center, 914, 431, 0xdacdbd],
+                    [center, 842, 447, 0x613f21],
+                    [center, 842, 468, 0x613f21],
+                    [center, 1120, 426, 0xd8caba],
+                    [center, 925, 486, 0xa64e42],
+                    [center, 965, 486, 0xa64e42],
+                    [center, 1005, 486, 0xa64e42],
+                    [center, 1045, 486, 0xa64e42],
+                    [center, 1085, 486, 0xae9b8b],
+                    [center, 911, 519, 0xc65644],
+                    [center, 911, 537, 0x83756f]
                 ]
             ]
         ]
-
     },
     '结界_3勋章': {
         region: [center, 1280, 720, 124, 125, 1152, 545],
+        // desc: [
+        //     [1280, 720,
+        //         [
+        //             [center, 511, 281, 0xd9cabb],
+        //             [center, 726, 289, 0xdacdbc],
+        //             [center, 532, 361, 0x8a847f],
+        //             [center, 572, 361, 0x88827d],
+        //             [center, 611, 361, 0x8a857f],
+        //             [center, 652, 361, 0xc9b6a4],
+        //             [center, 691, 361, 0xc9b6a4],
+        //             [center, 728, 389, 0xa38f86],
+        //             [center, 631, 351, 0xdbc5b5]
+        //         ]
+        //     ]
+        // ]
         desc: [
             [1280, 720,
                 [
-                    [center, 511, 281, 0xd9cabb],
-                    [center, 726, 289, 0xdacdbc],
-                    [center, 532, 361, 0x8a847f],
-                    [center, 572, 361, 0x88827d],
-                    [center, 611, 361, 0x8a857f],
-                    [center, 652, 361, 0xc9b6a4],
-                    [center, 691, 361, 0xc9b6a4],
-                    [center, 728, 389, 0xa38f86],
-                    [center, 631, 351, 0xdbc5b5]
+                    [center, 914, 431, 0xdacdbd],
+                    [center, 842, 447, 0x613f21],
+                    [center, 842, 468, 0x613f21],
+                    [center, 1120, 426, 0xd8caba],
+                    [center, 925, 486, 0xa64e42],
+                    [center, 965, 486, 0xa64e42],
+                    [center, 1005, 486, 0xa64e42],
+                    [center, 1045, 486, 0xae9b8b],
+                    [center, 1085, 486, 0xae9b8b],
+                    [center, 911, 519, 0xc65644],
+                    [center, 911, 537, 0x83756f]
                 ]
             ]
         ]
     },
     '结界_2勋章': {
         region: [center, 1280, 720, 124, 125, 1152, 545],
-        // desc: [[1280,720,
-        //     [[center,901,153,0xd8caba],
-        //     [center,1119,158,0xdacbbc],
-        //     [center,922,234,0x8a847f],
-        //     [center,962,234,0x88827d],
-        //     [center,1002,234,0xc9b6a4],
-        //     [center,1040,234,0xc9b6a4],
-        //     [center,1081,234,0xc9b6a4],
-        //     [center,1117,262,0xa49087]]
-        // ]]
-        // desc: [[1280,720,
-        //     [[center,242,427,0xdacbbc],
-        //     [center,456,428,0xd9c9bb],
-        //     [center,463,448,0xac9a89],
-        //     [center,453,532,0xa39087],
-        //     [center,257,504,0x87817c],
-        //     [center,297,504,0x86817b],
-        //     [center,337,504,0xc9b6a4],
-        //     [center,376,504,0xc9b6a4],
-        //     [center,417,504,0xc9b6a4]]
-        // ]]
+        // desc: [
+        //     [1280, 720,
+        //         [
+        //             [center, 577, 426, 0xdacbbc],
+        //             [center, 784, 428, 0xdacbbc],
+        //             [center, 785, 532, 0xa49088],
+        //             [center, 590, 504, 0x86807b],
+        //             [center, 629, 504, 0x86817b],
+        //             [center, 668, 504, 0xc9b6a4],
+        //             [center, 708, 504, 0xc9b6a4],
+        //             [center, 748, 504, 0xc9b6a4],
+        //             [center, 610, 494, 0xdbc4b4],
+        //             [center, 608, 518, 0xddcbbd]
+        //         ]
+        //     ]
+        // ]
         desc: [
             [1280, 720,
                 [
-                    [center, 577, 426, 0xdacbbc],
-                    [center, 784, 428, 0xdacbbc],
-                    [center, 785, 532, 0xa49088],
-                    [center, 590, 504, 0x86807b],
-                    [center, 629, 504, 0x86817b],
-                    [center, 668, 504, 0xc9b6a4],
-                    [center, 708, 504, 0xc9b6a4],
-                    [center, 748, 504, 0xc9b6a4],
-                    [center, 610, 494, 0xdbc4b4],
-                    [center, 608, 518, 0xddcbbd]
+                    [center, 914, 431, 0xdacdbd],
+                    [center, 842, 447, 0x613f21],
+                    [center, 842, 468, 0x613f21],
+                    [center, 1120, 426, 0xd8caba],
+                    [center, 925, 486, 0xa64e42],
+                    [center, 965, 486, 0xa64e42],
+                    [center, 1005, 486, 0xae9b8b],
+                    [center, 1045, 486, 0xae9b8b],
+                    [center, 1085, 486, 0xae9b8b],
+                    [center, 911, 519, 0xc65644],
+                    [center, 911, 537, 0x83756f]
                 ]
             ]
         ]
     },
     '结界_1勋章': {
         region: [center, 1280, 720, 124, 125, 1152, 545],
-        // desc: [[1280,720,
-        //     [[center,510,142,0xd7c9b9],
-        //     [center,732,149,0xd8c9ba],
-        //     [center,532,224,0x8b8580],
-        //     [center,573,224,0xc9b6a4],
-        //     [center,611,224,0xc9b6a4],
-        //     [center,651,223,0xc9b6a4],
-        //     [center,691,223,0xc9b6a4],
-        //     [center,727,252,0xa49088]]
-        // ]]
-        // desc: [[1280,720,
-        //     [[center,576,426,0xdacbbc],
-        //     [center,789,426,0xd8c8ba],
-        //     [center,785,532,0xa49088],
-        //     [center,795,456,0xab9988],
-        //     [center,590,504,0x86807b],
-        //     [center,631,504,0xc9b6a4],
-        //     [center,670,504,0xc9b6a4],
-        //     [center,710,504,0xc9b6a4],
-        //     [center,749,504,0xc9b6a4]]
-        // ]]
+        // desc: [
+        //     [1280, 720,
+        //         [
+        //             [center, 574, 428, 0xdacbbc],
+        //             [center, 786, 428, 0xdacabc],
+        //             [center, 590, 504, 0x86807b],
+        //             [center, 630, 504, 0xc9b6a4],
+        //             [center, 670, 504, 0xc9b6a4],
+        //             [center, 709, 504, 0xc9b6a4],
+        //             [center, 748, 504, 0xc9b6a4],
+        //             [center, 610, 495, 0xdcc4b5],
+        //             [center, 610, 515, 0xdac9bb],
+        //             [center, 785, 530, 0xa3958a],
+        //             [center, 775, 534, 0x9f9085]
+        //         ]
+        //     ]
+        // ]
         desc: [
             [1280, 720,
                 [
-                    [center, 574, 428, 0xdacbbc],
-                    [center, 786, 428, 0xdacabc],
-                    [center, 590, 504, 0x86807b],
-                    [center, 630, 504, 0xc9b6a4],
-                    [center, 670, 504, 0xc9b6a4],
-                    [center, 709, 504, 0xc9b6a4],
-                    [center, 748, 504, 0xc9b6a4],
-                    [center, 610, 495, 0xdcc4b5],
-                    [center, 610, 515, 0xdac9bb],
-                    [center, 785, 530, 0xa3958a],
-                    [center, 775, 534, 0x9f9085]
+                    [center, 914, 431, 0xdacdbd],
+                    [center, 842, 447, 0x613f21],
+                    [center, 842, 468, 0x613f21],
+                    [center, 1120, 426, 0xd8caba],
+                    [center, 925, 486, 0xa64e42],
+                    [center, 965, 486, 0xae9b8b],
+                    [center, 1005, 486, 0xae9b8b],
+                    [center, 1045, 486, 0xae9b8b],
+                    [center, 1085, 486, 0xae9b8b],
+                    [center, 911, 519, 0xc65644],
+                    [center, 911, 537, 0x83756f]
                 ]
             ]
         ]
@@ -274,15 +267,18 @@ const multiColor: InterfaceMultiColorOrigin = {
         // ]
         desc: [
             [1280, 720,
-                [[center, 907, 296, 0xddcebb],
-                [right, 1105, 294, 0xdacdbd],
-                [center, 842, 310, 0x5a3810],
-                [center, 842, 334, 0x553213],
-                [center, 922, 350, 0xa89687],
-                [right, 961, 350, 0xa89787],
-                [right, 1000, 350, 0xa99888],
-                [right, 1039, 350, 0xaa9988],
-                [right, 1079, 350, 0xa99888]]
+                [
+                    [center, 914, 431, 0xdacdbd],
+                    [center, 842, 447, 0x613f21],
+                    [center, 842, 468, 0x613f21],
+                    [center, 1120, 426, 0xd8caba],
+                    [center, 925, 486, 0xae9b8b],
+                    [center, 965, 486, 0xae9b8b],
+                    [center, 1005, 486, 0xae9b8b],
+                    [center, 1045, 486, 0xae9b8b],
+                    [center, 1085, 486, 0xae9b8b],
+                    [center, 911, 537, 0x83756f]
+                ]
             ]
         ]
     },
@@ -293,18 +289,18 @@ const multiColor: InterfaceMultiColorOrigin = {
                 [
                     [center, 904, 418, 0x49793a],
                     [center, 904, 417, 0x739530],
-                    [right, 1117, 530, 0x3c5833],
+                    [center, 1117, 530, 0x3c5833],
                     [center, 862, 450, 0x946b2c],
-                    [right, 1002, 504, 0x8f8a85]
+                    [center, 1002, 504, 0x8f8a85]
                 ]
             ],
             [1280, 720,
                 [
                     [center, 907, 418, 0x477a36],
                     [center, 907, 417, 0x608e3f],
-                    [right, 1117, 530, 0x3c5631],
+                    [center, 1117, 530, 0x3c5631],
                     [center, 862, 450, 0x966330],
-                    [right, 1002, 504, 0x918c87]
+                    [center, 1002, 504, 0x918c87]
                 ]
             ]
         ]
@@ -1246,8 +1242,8 @@ const multiColor: InterfaceMultiColorOrigin = {
                 [
                     [right, 989, 517, 0xf4b25f],
                     [right, 991, 542, 0xf4b25f],
-                    [center, 909, 518, 0xf4b25f],
-                    [center, 910, 540, 0xf4b25f],
+                    [right, 909, 518, 0xf4b25f],
+                    [right, 910, 540, 0xf4b25f],
                     [right, 1009, 506, 0x993333],
                     [right, 1013, 548, 0x933e2d],
                     [right, 1003, 555, 0x903b2a],
@@ -1542,7 +1538,7 @@ const multiColor: InterfaceMultiColorOrigin = {
             [1280, 720,
                 [
                     [left, 151, 161, 0x79502f],
-                    [center, 359, 210, 0x79502f],
+                    [left, 359, 210, 0x79502f],
                     [left, 206, 177, 0x282521],
                     [left, 194, 190, 0x2b2824],
                     [left, 238, 201, 0x2a2723],
@@ -1555,7 +1551,7 @@ const multiColor: InterfaceMultiColorOrigin = {
             [1280, 720,
                 [
                     [left, 148, 159, 0x755331],
-                    [center, 362, 213, 0x735230],
+                    [left, 362, 213, 0x735230],
                     [left, 206, 177, 0x282521],
                     [left, 206, 200, 0x332f2a],
                     [left, 242, 176, 0x2d2925],
@@ -1589,8 +1585,8 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [left, 258, 362, 0x844e32],
                     [left, 230, 365, 0x683321],
                     [left, 252, 371, 0x743d26],
-                    [center, 359, 362, 0x96521f],
-                    [center, 361, 413, 0x965423],
+                    [left, 359, 362, 0x96521f],
+                    [left, 361, 413, 0x965423],
                     [left, 152, 413, 0xa05f27]
                 ]
             ],
@@ -1601,9 +1597,9 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [left, 249, 361, 0x6d3924],
                     [left, 249, 368, 0x6e3723],
                     [left, 149, 366, 0x241408],
-                    [center, 358, 366, 0x96521f],
+                    [left, 358, 366, 0x96521f],
                     [left, 149, 411, 0x995522],
-                    [center, 358, 413, 0x96521f]
+                    [left, 358, 413, 0x96521f]
                 ]
             ]
         ]
@@ -2439,7 +2435,7 @@ const multiColor: InterfaceMultiColorOrigin = {
             [
                 1280, 720,
                 [
-                    [right, 990, 163, 0xf7d9a0],
+                    [center, 990, 163, 0xf7d9a0],
                     [center, 589, 155, 0xe3dbd3],
                     [center, 688, 155, 0xe3dbd3],
                     [center, 834, 155, 0xe3dbd3],
@@ -2460,10 +2456,10 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [center, 598, 435, 0xf2e1cd],
                     [center, 597, 532, 0xeeddcc],
                     [center, 388, 483, 0xf3dfcb],
-                    [left, 302, 454, 0xf7a1a6],
-                    [left, 261, 427, 0xf79fab],
-                    [left, 275, 484, 0xf1e9d8],
-                    [left, 215, 476, 0xefa338],
+                    [center, 302, 454, 0xf7a1a6],
+                    [center, 261, 427, 0xf79fab],
+                    [center, 275, 484, 0xf1e9d8],
+                    [center, 215, 476, 0xefa338],
                 ]
             ],
 
@@ -2478,11 +2474,11 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [center, 341, 482, 0xf3dfcb],
                     [center, 597, 351, 0xf1dfcb],
                     [center, 597, 450, 0xeeddcc],
-                    [left, 302, 362, 0xcbb3d4],
-                    [left, 276, 402, 0xebe0d1],
-                    [left, 259, 350, 0xf7f2e7],
-                    [left, 253, 398, 0xeeeeee],
-                    [left, 224, 432, 0xf3dfcb],
+                    [center, 302, 362, 0xcbb3d4],
+                    [center, 276, 402, 0xebe0d1],
+                    [center, 259, 350, 0xf7f2e7],
+                    [center, 253, 398, 0xeeeeee],
+                    [center, 224, 432, 0xf3dfcb],
                 ]
             ]
         ]
@@ -2493,10 +2489,10 @@ const multiColor: InterfaceMultiColorOrigin = {
             [
                 1280, 720,
                 [
-                    [center, 341, 482, 0xf3dfcb],
-                    [center, 598, 336, 0xf4e2d0],
-                    [center, 598, 433, 0xeeddcd],
-                    [center, 583, 421, 0xf3dfcb],
+                    [left, 341, 482, 0xf3dfcb],
+                    [left, 598, 336, 0xf4e2d0],
+                    [left, 598, 433, 0xeeddcd],
+                    [left, 583, 421, 0xf3dfcb],
                     [left, 273, 410, 0xefe3d7],
                     [left, 218, 383, 0xea9a29],
                     [left, 222, 416, 0xf3dfcb],
@@ -2563,8 +2559,8 @@ const multiColor: InterfaceMultiColorOrigin = {
                     [center, 331, 346, 0xf87b72],
                     [center, 341, 331, 0xca3837],
                     [center, 338, 319, 0xb72a32],
-                    [left, 319, 320, 0xbd3c37],
-                    [left, 315, 334, 0xde5954],
+                    [center, 319, 320, 0xbd3c37],
+                    [center, 315, 334, 0xde5954],
                     [center, 326, 339, 0xf5c268],
                     [center, 329, 333, 0xdaaf58],
                 ]

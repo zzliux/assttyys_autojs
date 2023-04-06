@@ -33,6 +33,7 @@ export type globalRootType = {
     jy_enchantment_index: number,
     back_courtyard_to_next_scheme: string,
     fm_kiss_boss_flag: boolean, //  逢魔 是否已击杀首领
+    fm_boss_btn_click_cnt: number, // 点击逢魔首领按钮次数
     change_shikigami_flag: boolean, //  更换式神
     change_shikigami_state: 'flushed' | 'search_group' | 'search_default' | 'change_team_default_1' | 'change_team_default_2' | 'finish', //  跟换式神预设状态值
     change_shikigami_list_swipe_times: number,
@@ -88,6 +89,7 @@ export const globalRoot: globalRootType = {
     jy_enchantment_index: 0,
     back_courtyard_to_next_scheme: '',
     fm_kiss_boss_flag: false,
+    fm_boss_btn_click_cnt: 0,
     change_shikigami_flag: false,
     change_shikigami_state: 'flushed',
     change_shikigami_list_swipe_times: 0,

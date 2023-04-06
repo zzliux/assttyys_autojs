@@ -11,12 +11,14 @@ export class Func026 implements InterfaceFuncOrigin {
 	desc = '逢魔界面点击右下角的图标后点击右侧相关事件图标';
 	operator: InterfaceFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
-			[[left, 19, 700, 0x3c3841],
-			[left, 42, 46, 0xc3cbdf],
-			[center, 754, 39, 0x583716],
-			[center, 1181, 650, 0xffffff],
-			[left, 43, 680, 0xc7957c],
-			[left, 54, 676, 0x433b42]]
+			[
+				[left, 19, 700, 0x3c3841],
+				[left, 42, 46, 0xc3cbdf],
+				[center, 754, 39, 0x583716],
+				[center, 1181, 650, 0xffffff],
+				[left, 43, 680, 0xc7957c],
+				[left, 54, 676, 0x433b42]
+			]
 		],
 		oper: [
 			[right, 1280, 720, 1157, 616, 1202, 666, 5000], // 发现
