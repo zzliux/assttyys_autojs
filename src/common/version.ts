@@ -648,6 +648,9 @@ export const versionList = [{
 },{
     version: '20230406_01',
     desc: '优化：探索可及时识别boss'
+}, {
+    version: '20230406_02',
+    desc: '优化：兼容部分无法识别已展开菜单的庭院'
 }];
 
 export default versionList[versionList.length - 1].version;

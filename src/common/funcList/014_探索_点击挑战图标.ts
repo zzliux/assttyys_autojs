@@ -98,9 +98,10 @@ export class Func014 implements InterfaceFuncOrigin {
 			}
 			if (thisScript.oper({
 				name: '首领出现',
-				operator: [{ desc: thisOperator[2].desc, retest: 1000 }],
+				operator: [{ desc: thisOperator[2].desc }],
 			})) {
-				thisScript.helperBridge.regionClick([thisOperator[2].oper], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				sleep(1000);
+				thisScript.helperBridge.regionClick(thisOperator[2].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
 				thisScript.global.tsAttackSwhipeNum = 1;
 				return true;
 			}

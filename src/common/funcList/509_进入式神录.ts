@@ -33,6 +33,20 @@ export class Func509 implements InterfaceFuncOrigin {
 			oper: [
 				[right, 1280, 720, 1106, 623, 1153, 653, 1200]	// 点击式神录
 			]
+		}, {
+			// 庭院已打开菜单，另另外一种图标
+			desc: [
+				1280, 720,
+				[
+					[right, 1223, 658, 0xdac9c4],
+					[right, 1155, 41, 0xd6b187],
+					[center, 451, 631, 0xe6e3e1],
+					[center, 683, 657, 0xda6b29],
+				]
+			],
+			oper: [
+				[right, 1280, 720, 1106, 623, 1153, 653, 1200]	// 点击式神录
+			]
 		},
 		{   // 检测是否为式神录
 			desc: [

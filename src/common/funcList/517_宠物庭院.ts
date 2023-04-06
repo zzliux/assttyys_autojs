@@ -185,6 +185,19 @@ export class Func517 implements InterfaceFuncOrigin {
             oper: [
                 [right, 1280, 720, 975, 57, 1004, 84, 1200]
             ]
+        }, {	// 页面是否为庭院且能识别宠物屋(菜单未展开) 只支持默认庭院皮肤与默认装饰
+            desc:
+                [1280, 720,
+                    [
+                        [right, 1223, 658, 0xdac9c4],
+                        [right, 1155, 41, 0xd6b187],
+                        [center, 451, 631, 0xe6e3e1],
+                        [center, 683, 657, 0xda6b29],
+                        [right, 1034, 448, 0xeeeabd],
+                        [right, 1084, 450, 0x211440],
+                        [right, 1020, 448, 0x302552],
+                    ]
+                ]
         }];
     operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 
@@ -197,6 +210,8 @@ export class Func517 implements InterfaceFuncOrigin {
                 desc: thisOperator[1].desc
             }, {
                 desc: thisOperator[2].desc
+            }, {
+                desc: thisOperator[11].desc
             }]
         })) {
             return thisScript.oper({

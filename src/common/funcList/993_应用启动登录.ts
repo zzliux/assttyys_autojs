@@ -226,6 +226,17 @@ export class Func993 implements InterfaceFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1190, 135, 1242, 186, 1200],  // 点击关闭公告
 		]
+	}, {
+		// 庭院已打开菜单，另另外一种图标
+		desc: [
+			1280, 720,
+			[
+				[right, 1223, 658, 0xdac9c4],
+				[right, 1155, 41, 0xd6b187],
+				[center, 451, 631, 0xe6e3e1],
+				[center, 683, 657, 0xda6b29],
+			]
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['993'];
@@ -250,6 +261,8 @@ export class Func993 implements InterfaceFuncOrigin {
 				desc: thisOperator[8].desc,
 			}, {
 				desc: thisOperator[13].desc
+			}, {
+				desc: thisOperator[16].desc
 			}]
 		})) {
 			// 做延时检测 防止登陆后的弹窗

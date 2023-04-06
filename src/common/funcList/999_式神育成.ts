@@ -98,11 +98,25 @@ export class Func999 implements InterfaceFuncOrigin {
 			oper: [
 				[center, 1280, 720, 586, 442, 692, 470, 600] // 点击确认
 			]
+		}, {
+			// 庭院已打开菜单，另另外一种图标
+			desc: [
+				1280, 720,
+				[
+					[right, 1223, 658, 0xdac9c4],
+					[right, 1155, 41, 0xd6b187],
+					[center, 451, 631, 0xe6e3e1],
+					[center, 683, 657, 0xda6b29],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 544, 612, 594, 661, 1200]	// 点击阴阳寮
+			]
 		}];
 	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: '进入式神寄养结界',
-			operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[4], thisOperator[5], thisOperator[6]]
+			operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[4], thisOperator[5], thisOperator[6], thisOperator[7]]
 		})) {
 			return true;
 		}
