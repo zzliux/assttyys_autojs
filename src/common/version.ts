@@ -651,6 +651,9 @@ export const versionList = [{
 }, {
     version: '20230406_02',
     desc: '优化：兼容部分无法识别已展开菜单的庭院'
+}, {
+    version: '20230407_01',
+    desc: '修复：503返回庭院界面功能报错'
 }];
 
 export default versionList[versionList.length - 1].version;
