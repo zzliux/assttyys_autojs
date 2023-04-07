@@ -26,16 +26,9 @@
 </template>
 
 <script>
-import { Tabbar, TabbarItem, NavBar, Popup, Dialog } from "vant";
+import { showDialog } from 'vant';
 
 export default {
-  components: {
-    [Tabbar.name]: Tabbar,
-    [TabbarItem.name]: TabbarItem,
-    [NavBar.name]: NavBar,
-    [Popup.name]: Popup,
-    [Dialog.name]: Dialog,
-  },
   data() {
     return {
       updateInfoList: [],
@@ -81,14 +74,14 @@ export default {
     // 强制检查的信息
     let appInfo = await AutoWeb.autoPromise("getAppInfo");
     if (appInfo.needForceUpdate) {
-      Dialog.alert({
+      showDialog({
         title: "提示",
         message: appInfo.msg,
       }).then(() => {
         AutoWeb.autoPromise("exit");
       });
     } else if (appInfo.msg) {
-      Dialog.alert({
+      showDialog({
         title: "提示",
         message: appInfo.msg,
       }).then(() => {});

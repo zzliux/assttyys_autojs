@@ -158,7 +158,7 @@ const promptMockData = {
     mailTo() { },
     copyToClip() { },
     webloaded() { },
-    getAppInfo: {},
+    getAppInfo: { msg: '提示内容' },
     starScheme: function (opt) {
         return { star: opt.star }
     },

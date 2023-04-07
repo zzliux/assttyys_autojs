@@ -127,6 +127,7 @@ import dScheduleList from '../../../common/scheduleList'
 import { merge } from '@/common/tool';
 import { getNextByCron } from '@/common/toolCron';
 import DateTimePicker from '../../components/DateTimePicker.vue';
+import { showNotify, showConfirmDialog } from 'vant';
 
 const scheduleDefaultFormData = {
   id: NaN,
@@ -359,15 +360,15 @@ export default {
         case 'cell':
         case 'outside':
           if (!this.swipeCellCurrentAction) {
-            option.instance.close();
+            return true;
           }
           break;
         case 'right':
           if ('delete' === this.swipeCellCurrentAction) {
-            Dialog.confirm({
+            showConfirmDialog({
               message: '确定删除吗？',
             }).then(() => {
-              option.instance.close();
+              // option.instance.close();
               this.scheduleList.splice(this.swipeCellCurrentIndex, 1);
               this.saveScheduleList();
               AutoWeb.autoPromise('toast', "已删除");
@@ -397,34 +398,32 @@ export default {
       if ('cancel' === action) {
         this.addScheduleForm = merge({}, scheduleDefaultFormData);
         this.swipeCellCurrentAction = null;
-        done(true);
+        return true;
       } else {
         if (!this.addScheduleForm.name) {
-          Notify({ type: 'warning', message: '请输入定时任务名。' });
-          done(false);
-          return;
+          showNotify({ type: 'warning', message: '请输入定时任务名。' });
+          return false;
         }
 
         if ('add' == this.scheduleNameInputType) {
           for (let i = 0; i < this.scheduleList.length; i++) {
             if (this.scheduleList[i].name == this.addScheduleForm.name) {
-              Notify({ type: 'warning', message: '存在重复的定时任务名，请重新输入。' });
-              done(false);
-              return;
+              showNotify({ type: 'warning', message: '存在重复的定时任务名，请重新输入。' });
+              return false;
             }
           }
           this.addScheme(
             merge({}, this.addScheduleForm)
           );
           this.swipeCellCurrentAction = null;
-          done(true);
+          return true;
           this.addScheduleForm = merge({}, scheduleDefaultFormData);
         } else if ('modify' === this.scheduleNameInputType) {
           this.scheduleList[this.swipeCellCurrentIndex] = this.addScheduleForm;
           this.saveScheduleList();
           AutoWeb.autoPromise('toast', '修改成功');
           this.swipeCellCurrentAction = null;
-          done(true);
+          return true;
           this.addScheduleForm = merge({}, scheduleDefaultFormData);
         }
       }

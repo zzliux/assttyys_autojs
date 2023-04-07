@@ -31,7 +31,7 @@
           v-bind="dragOptions"
           @end="saveSchemeList"
         >
-          <template #item="{ element }">
+          <template #item="{ element, index }">
             <div
               style="margin:5px 10px 5px 10px; border-radius:5px; overflow: hidden; box-shadow: 1px 1px 1px #eaeaea"
             >
@@ -41,6 +41,7 @@
                 @close="itemClose"
                 :before-close="itemBeforeClose"
                 :stop-propagation="true"
+                :disabled="filterGroupName !== '全部'"
               >
                 <span>
                   <div v-if="element.groupName" class="group-color" :style="'background-color: ' + getGroupColor(element.groupName)"></div>
@@ -165,6 +166,7 @@ import { mergeSchemeList } from "../../common/toolWeb";
 import dSchemeList from "../../common/schemeList";
 import groupColor from "../../common/groupColors";
 import { merge } from '@/common/tool';
+import { showNotify, showConfirmDialog } from 'vant';
 
 export default {
   name: 'schemeList',
@@ -280,15 +282,15 @@ export default {
         case 'cell':
         case 'outside':
           if (!this.swipeCellCurrentAction) {
-            option.instance.close();
+            return true;
           }
           break;
         case 'right':
           if ('delete' === this.swipeCellCurrentAction) {
-            Dialog.confirm({
+            showConfirmDialog({
               message: '确定删除吗？',
             }).then(() => {
-              option.instance.close();
+              // option.instance.close();
               this.schemeList.splice(this.swipeCellCurrentIndex, 1);
               this.saveSchemeList();
               AutoWeb.autoPromise('toast', "已删除");
@@ -317,20 +319,18 @@ export default {
         this.newSchemeName = null;
         this.newGroupName = null;
         this.swipeCellCurrentAction = null;
-        done(true);
+        return true;
       } else {
         if (!this.newSchemeName) {
-          Notify({ type: 'warning', message: '请输入方案名。' });
-          done(false);
-          return;
+          showNotify({ type: 'warning', message: '请输入方案名。' });
+          return false;
         }
         
         if ('copy' === this.schemeNameInputType) {
           for (let i = 0; i < this.schemeList.length; i++) {
             if (this.schemeList[i].schemeName == this.newSchemeName) {
-              Notify({ type: 'warning', message: '存在重复的方案名，请重新输入。' });
-              done(false);
-              return;
+              showNotify({ type: 'warning', message: '存在重复的方案名，请重新输入。' });
+              return false;
             }
           }
           this.newScheme.schemeName = this.newSchemeName;
@@ -338,16 +338,15 @@ export default {
           this.addScheme(this.newScheme);
           AutoWeb.autoPromise('toast', "已复制");
           this.swipeCellCurrentAction = null;
-          done(true);
           this.newScheme = null;
           this.newSchemeName = null;
           this.newGroupName = null;
+          return true;
         } else if ('add' == this.schemeNameInputType) {
           for (let i = 0; i < this.schemeList.length; i++) {
             if (this.schemeList[i].schemeName == this.newSchemeName) {
-              Notify({ type: 'warning', message: '存在重复的方案名，请重新输入。' });
-              done(false);
-              return;
+              showNotify({ type: 'warning', message: '存在重复的方案名，请重新输入。' });
+              return false;
             }
           }
           this.addScheme({
@@ -360,20 +359,20 @@ export default {
             commonConfig: {}
           });
           this.swipeCellCurrentAction = null;
-          done(true);
           this.newScheme = null;
           this.newSchemeName = null;
           this.newGroupName = null;
+          return true;
         } else if ('modify' === this.schemeNameInputType) {
           this.schemeList[this.swipeCellCurrentIndex].schemeName = this.newSchemeName;
           this.schemeList[this.swipeCellCurrentIndex].groupName = this.newGroupName;
           this.saveSchemeList();
           AutoWeb.autoPromise('toast', '修改成功');
           this.swipeCellCurrentAction = null;
-          done(true);
           this.newScheme = null;
           this.newSchemeName = null;
           this.newGroupName = null;
+          return true;
         }
       }
     },
@@ -393,8 +392,8 @@ export default {
         }
       }
     },
-    selectNewGroupNameConfirm(text, _index) {
-      this.newGroupName = text;
+    selectNewGroupNameConfirm({ selectedOptions }, _index) {
+      this.newGroupName = selectedOptions[0].text;
       this.selectNewGroupNameShow = false;
     },
     getGroupColor(groupName) {
