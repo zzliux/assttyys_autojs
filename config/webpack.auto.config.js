@@ -29,7 +29,10 @@ const config = {
     output: {
         filename: "auto.js",
         path: path.resolve(__dirname, "../dist"),
-        libraryTarget: "var"
+        library: {
+            name: 'MyLibrary',
+            type: 'var',
+        },
         // libraryTarget: "commonjs2"
     },
     target: "node",
