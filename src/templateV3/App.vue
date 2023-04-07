@@ -4,7 +4,7 @@
       
       <router-view v-slot="{ Component }">
         <transition :name="transitionName">
-          <component :is="Component"/>
+          <component :is="Component" :statusBarHeight="statusBarHeight"/>
         </transition>
       </router-view>
     </div>

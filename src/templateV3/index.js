@@ -116,7 +116,7 @@ myApp.use(PickerGroup);
 myApp.mount('#app');
 
 window.routeBack = function () {
-	if (/^index|schemeList$/.test(myApp.$route.name)) {
+	if (/^index|schemeList$/.test(router.currentRoute.value.name)) {
 		if (window.routeBackFlag) {
 			AutoWeb.autoPromise('exit');
 		} else {
@@ -127,6 +127,6 @@ window.routeBack = function () {
 			}, 1000)
 		}
 	} else {
-		myApp.$router.back();
+		router.back();
 	}
 }
