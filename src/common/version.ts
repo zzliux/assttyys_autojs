@@ -654,6 +654,9 @@ export const versionList = [{
 }, {
     version: '20230407_01',
     desc: '修复：503返回庭院界面功能报错'
+}, {
+    version: '20230407_02',
+    desc: '修复：509进入式神录无反应'
 }];
 
 export default versionList[versionList.length - 1].version;
