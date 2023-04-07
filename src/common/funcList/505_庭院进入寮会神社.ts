@@ -42,6 +42,20 @@ export class Func505 implements InterfaceFuncOrigin {
 		oper: [
 			[center, 1280, 720, 544, 612, 594, 661, 1200]	// 点击阴阳寮
 		]
+	}, {
+		// 庭院已打开菜单，另另外一种图标
+		desc: [
+			1280, 720,
+			[
+				[right, 1223, 658, 0xdac9c4],
+				[right, 1155, 41, 0xd6b187],
+				[center, 451, 631, 0xe6e3e1],
+				[center, 683, 657, 0xda6b29],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 544, 612, 594, 661, 1200]	// 点击阴阳寮
+		]
 	}, { // 判断是否为寮首页
 		desc:  [
 			1280, 720,

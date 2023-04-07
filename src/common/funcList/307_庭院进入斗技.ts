@@ -41,6 +41,20 @@ export class Func307 implements InterfaceFuncOrigin {
 					[center, 673, 651, 0xdb8b3f],
 				]
 			],
+		}, {
+			// 庭院已打开菜单，另另外一种图标
+			desc: [
+				1280, 720,
+				[
+					[right, 1223, 658, 0xdac9c4],
+					[right, 1155, 41, 0xd6b187],
+					[center, 451, 631, 0xe6e3e1],
+					[center, 683, 657, 0xda6b29],
+				]
+			],
+			oper: [
+				[left, 1280, 720, 427, 619, 486, 683, 1000]
+			]
 		},
 		{	// 检测_町中
 			desc:
@@ -69,6 +83,8 @@ export class Func307 implements InterfaceFuncOrigin {
 				desc: thisOperator[1].desc
 			}, {
 				desc: thisOperator[2].desc
+			}, {
+				desc: thisOperator[3].desc
 			}]
 		})) {
 			let point = thisScript.findMultiColor('庭院_町中竖牌');
@@ -95,7 +111,7 @@ export class Func307 implements InterfaceFuncOrigin {
 
 		if (thisScript.oper({
 			name: '町中_斗技灯笼',
-			operator: [thisOperator[3]]
+			operator: [thisOperator[4]]
 		})) {
 			return true;
 		}

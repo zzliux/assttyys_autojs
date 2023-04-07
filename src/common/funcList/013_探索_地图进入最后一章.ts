@@ -48,6 +48,7 @@ export class Func013 implements InterfaceFuncOrigin {
 			name: '探索_地图判断',
 			operator: [{ desc: thisOperator[0].desc, retest: 500 }]
 		})) {
+			thisScript.global.tsAttackSwhipeNum = undefined;
 			let point = thisScript.findMultiColor('探索_宝箱');
 			if (point) {
 				let oper = [[point.x, point.y, point.x + thisOperator[2].oper[0][2], point.y + thisOperator[2].oper[0][3], thisOperator[2].oper[0][4]]];
@@ -72,6 +73,7 @@ export class Func013 implements InterfaceFuncOrigin {
 			name: '探索_地图进入最后一章_关闭章节窗口',
 			operator: [thisOperator[1]]
 		})) {
+			thisScript.global.tsAttackSwhipeNum = undefined;
 			return true;
 		}
 		return false;

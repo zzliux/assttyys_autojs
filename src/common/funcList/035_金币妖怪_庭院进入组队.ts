@@ -44,5 +44,19 @@ export class Func035 implements InterfaceFuncOrigin {
 		oper: [
 			[left, 1280, 720, 427, 619, 486, 683, 1000]
 		]
+	}, {
+		// 庭院已打开菜单，另另外一种图标
+		desc: [
+			1280, 720,
+			[
+				[right, 1223, 658, 0xdac9c4],
+				[right, 1155, 41, 0xd6b187],
+				[center, 451, 631, 0xe6e3e1],
+				[center, 683, 657, 0xda6b29],
+			]
+		],
+		oper: [
+			[left, 1280, 720, 427, 619, 486, 683, 1000]
+		]
 	}]
 }

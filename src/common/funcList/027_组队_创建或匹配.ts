@@ -84,6 +84,17 @@ export class Func027 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 993, 605, 1151, 649, 1000]// 创建队伍
 		]
 	}, {
+		// 庭院已打开菜单，另另外一种图标
+		desc: [
+			1280, 720,
+			[
+				[right, 1223, 658, 0xdac9c4],
+				[right, 1155, 41, 0xd6b187],
+				[center, 451, 631, 0xe6e3e1],
+				[center, 683, 657, 0xda6b29],
+			]
+		]
+	}, {
 		desc: [1280, 720,//创建队伍
 			[[left, 228, 62, 0xed8ba1],
 			[center, 398, 66, 0x624430],
@@ -106,7 +117,7 @@ export class Func027 implements InterfaceFuncOrigin {
 		if (thisScript.oper({
 			id: 27,
 			name: '组队_创建',
-			operator: [thisOperator[6]]
+			operator: [thisOperator[7]]
 		})) {
 			if (++thisScript.global.create_NumOT > 3) {
 				thisScript.doOspPush(thisScript, { text: '体力不够创房，已停止。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
@@ -117,7 +128,7 @@ export class Func027 implements InterfaceFuncOrigin {
 		if (!thisScript.oper({
 			id: 27,
 			name: '组队_非创建界面',
-			operator: [{ desc: thisOperator[6].desc }]
+			operator: [{ desc: thisOperator[7].desc }]
 		})) {
 			thisScript.global.create_NumOT = 0;
 		};
