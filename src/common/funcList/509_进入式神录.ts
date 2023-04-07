@@ -160,14 +160,14 @@ export class Func509 implements InterfaceFuncOrigin {
 		} else {
 			if (thisScript.oper({
 				name: '庭院进入式神录',
-				operator: [thisOperator[0], thisOperator[1],thisOperator[3], thisOperator[4], thisOperator[5], thisOperator[6]]
+				operator: [thisOperator[0], thisOperator[1],thisOperator[2], thisOperator[4], thisOperator[5], thisOperator[6], thisOperator[7]]
 			})) {
 				return true;
 			}
 
 			if (thisScript.oper({
 				name: '是否为式神录',
-				operator: [thisOperator[2]]
+				operator: [thisOperator[3]]
 			})) {
 				thisScript.global.change_shikigami_flag = true;
 			}
