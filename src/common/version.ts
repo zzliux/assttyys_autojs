@@ -657,6 +657,9 @@ export const versionList = [{
 }, {
     version: '20230407_02',
     desc: '修复：509进入式神录无反应'
+}, {
+    version: '20230409_01',
+    desc: '修复：508逢魔首领查找到boss后不打boss的bug'
 }];
 
 export default versionList[versionList.length - 1].version;
