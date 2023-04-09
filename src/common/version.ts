@@ -660,6 +660,9 @@ export const versionList = [{
 }, {
     version: '20230409_01',
     desc: '修复：508逢魔首领查找到boss后不打boss的bug'
+}, {
+    version: '20230409_02',
+    desc: '修复：自动任务id可能重复的问题（历史的id若有重复需删除后新增，或手工修复数据）'
 }];
 
 export default versionList[versionList.length - 1].version;

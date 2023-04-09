@@ -1,6 +1,9 @@
+import { InterfaceScheme } from "@/interface/InterfaceScheme";
+import { deepClone } from "./tool";
 
-export const mergeSchemeList = (savedSchemeList, innerSchemeList) => {
-    // TODO toMerge更新id
+export const mergeSchemeList = (savedSchemeList: InterfaceScheme[], innerSchemeList: InterfaceScheme[]) => {
+    innerSchemeList = deepClone(innerSchemeList);
+    let maxId = savedSchemeList.reduce((num, t) => (Math.max(num, t.id)), -1);
     let toMerge = [];
     for (let innerScheme of innerSchemeList) {
         let flag = true;
@@ -12,6 +15,7 @@ export const mergeSchemeList = (savedSchemeList, innerSchemeList) => {
             }
         }
         if (flag) {
+            innerScheme.id = ++maxId;
             toMerge.push(innerScheme);
         }
     }
@@ -19,7 +23,8 @@ export const mergeSchemeList = (savedSchemeList, innerSchemeList) => {
 }
 
 export const mergeScheduleList = (savedScheduleList, innerScheduleList) => {
-    // TODO toMerge更新id
+    innerScheduleList = deepClone(innerScheduleList);
+    let maxId = savedScheduleList.reduce((num, t) => (Math.max(num, t.id)), -1);
     let toMerge = [];
     for (let innerSchedule of innerScheduleList) {
         let flag = true;
@@ -32,6 +37,7 @@ export const mergeScheduleList = (savedScheduleList, innerScheduleList) => {
             }
         }
         if (flag) {
+            innerSchedule.id = ++maxId;
             toMerge.push(innerSchedule);
         }
     }
