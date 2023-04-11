@@ -1,3 +1,5 @@
+import { IScheme } from '@/interface/IScheme';
+import { IhelperBridge } from '@/system/helperBridge';
 import type { Script } from '@/system/script';
 
 import { storeCommon } from '@/system/store';
@@ -6,9 +8,9 @@ import { getWidthPixels, getHeightPixels } from '@auto.pro/core';
 // importClass(android.graphics.Color);
 // importPackage(android.content);
 
-export function requestMyScreenCapture(callback, helperBridge) {
+export function requestMyScreenCapture(callback: Function, helperBridge: IhelperBridge) {
     // @ts-ignore
-    requestScreenCaptureAsync(getWidthPixels() < getHeightPixels()).then(function (success) {
+    requestScreenCaptureAsync(getWidthPixels() < getHeightPixels()).then(function (success: boolean) {
         if (success) {
             helperBridge.init();
         }
@@ -149,7 +151,7 @@ export function strHashToNum(str, start, end) {
  * @param {*} userToken 
  * @param {*} data 
  */
-export function ospPush (userToken, data) {
+export function ospPush (userToken: string, data: { type: string, data: string}[] | string) {
     return http.postJson('https://assttyys.zzliux.cn/api/osp/send', {
         // @ts-ignore
         userToken,
@@ -206,7 +208,7 @@ export function doOspPush (thisScript: Script, options: {
     }
 }
 
-export function scaleBmp(bmp, scale) {
+export function scaleBmp(bmp, scale: number) {
     let width = bmp.getWidth();
     let height = bmp.getHeight();
     let matrix = new android.graphics.Matrix();
@@ -218,7 +220,7 @@ export function scaleBmp(bmp, scale) {
 
 
 
-export const mergeSchemeList = (savedSchemeList, innerSchemeList) => {
+export const mergeSchemeList = (savedSchemeList: IScheme[], innerSchemeList: IScheme[]) => {
     let toMerge = [];
     for (let innerScheme of innerSchemeList) {
         let flag = true;

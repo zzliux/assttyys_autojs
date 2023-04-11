@@ -1,4 +1,4 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 
 const normal = -1; //定义常量
@@ -6,10 +6,10 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func508 implements InterfaceFuncOrigin {
+export class Func508 implements IFuncOrigin {
 	id = 508;
 	name = '逢魔首领';
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [	//	检测_现世逢魔奖励是否已领取
 			1280, 720,
 			[
@@ -132,7 +132,7 @@ export class Func508 implements InterfaceFuncOrigin {
 			]
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['508'];
 
 		if (thisScript.oper({

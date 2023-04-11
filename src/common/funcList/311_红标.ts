@@ -1,15 +1,15 @@
 import {
-  InterfaceFuncOrigin,
-  InterfaceFuncOperatorOrigin,
-  InterfaceFuncOperator,
-} from '@/interface/InterfaceFunc';
+  IFuncOrigin,
+  IFuncOperatorOrigin,
+  IFuncOperator,
+} from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func311 implements InterfaceFuncOrigin {
+export class Func311 implements IFuncOrigin {
   id = 311;
   name = '红标';
   desc = '战斗界面标记敌方式神';
@@ -34,7 +34,7 @@ export class Func311 implements InterfaceFuncOrigin {
       ],
     },
   ];
-  operator: InterfaceFuncOperatorOrigin[] = [
+  operator: IFuncOperatorOrigin[] = [
     {
       // 开始战斗后的场景
       desc: [
@@ -53,7 +53,7 @@ export class Func311 implements InterfaceFuncOrigin {
   ];
   operatorFunc(
     thisScript: Script,
-    thisOperator: InterfaceFuncOperator[]
+    thisOperator: IFuncOperator[]
   ): boolean {
     let thisconf = thisScript.scheme.config['311'];
 

@@ -1,15 +1,15 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func208 implements InterfaceFuncOrigin {
+export class Func208 implements IFuncOrigin {
 	id = 208;
 	name = '六道萤草_获得奖励统计';
 	desc = '在获得奖励界面统计buff数量';
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		// 选buff后的获得奖励确认，颜色比较近，可能会有误判断的情况
 		desc: [1280, 720,
 			[
@@ -25,7 +25,7 @@ export class Func208 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 278, 251, 981, 504, - 1], // 找色区域
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (!thisScript.global.d6NextEvent && thisScript.oper({
 			id: 208,
 			name: '六道萤草_获得奖励界面判断',

@@ -1,4 +1,4 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 
 const normal = -1; //定义常量
@@ -6,7 +6,7 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func503 implements InterfaceFuncOrigin {
+export class Func503 implements IFuncOrigin {
 	id = 503;
 	name = '返回庭院界面';
 	desc = '支持从探索地图退出至探索地图庭院界面';
@@ -31,7 +31,7 @@ export class Func503 implements InterfaceFuncOrigin {
 			value: null,
 		}]
 	}];
-	operator: InterfaceFuncOperatorOrigin[] = [
+	operator: IFuncOperatorOrigin[] = [
 		{	// 探索地图
 			desc: [1280, 720,
 				[[left, 53, 61, 0xe7edfc],
@@ -222,7 +222,7 @@ export class Func503 implements InterfaceFuncOrigin {
 				]
 			]
 		}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['503'];
 
 		if (thisScript.oper({

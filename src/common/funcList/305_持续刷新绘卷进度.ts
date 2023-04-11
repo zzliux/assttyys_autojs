@@ -1,12 +1,12 @@
 import { Script } from '@/system/script';
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func305 implements InterfaceFuncOrigin {
+export class Func305 implements IFuncOrigin {
   id = 305;
   name = '持续刷新绘卷进度';
   desc = '自动刷新绘卷进度'
@@ -26,7 +26,7 @@ export class Func305 implements InterfaceFuncOrigin {
     ]
   }
   ];
-  operator: InterfaceFuncOperatorOrigin[] = [{
+  operator: IFuncOperatorOrigin[] = [{
     desc: [1280, 720, [//0,绘卷界面和卷X坐标
       [left, 26, 539, 0xd6ae21],
       [left, 32, 689, 0x42174a],
@@ -54,7 +54,7 @@ export class Func305 implements InterfaceFuncOrigin {
     ]
   }]
 
-  operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+  operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
     let thisconf = thisScript.scheme.config['305'];
     const emaki = Number(thisconf.choiceEmaki) - 1;
     // console.log(thisOperator[0].oper[1])

@@ -1,15 +1,15 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const left = 0;
 const center = 1;
 const right = 2;
 let swiper = 0, scroll = true
 
-export class Func037 implements InterfaceFuncOrigin {
+export class Func037 implements IFuncOrigin {
 	id = 37;
 	name = '金币妖怪_进入组队';
 	desc = '从庭院进入金币妖怪组队界面';
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[left, 52, 28, 0xf0d08d],
@@ -43,7 +43,7 @@ export class Func037 implements InterfaceFuncOrigin {
 			]
 		],
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			id: 36,
 			name: '金币妖怪_进入组队',

@@ -1,7 +1,7 @@
-import { InterfaceScheme } from "@/interface/InterfaceScheme";
+import { IScheme } from "@/interface/IScheme";
 import { deepClone } from "./tool";
 
-export const mergeSchemeList = (savedSchemeList: InterfaceScheme[], innerSchemeList: InterfaceScheme[]) => {
+export const mergeSchemeList = (savedSchemeList: IScheme[], innerSchemeList: IScheme[]) => {
     innerSchemeList = deepClone(innerSchemeList);
     let maxId = savedSchemeList.reduce((num, t) => (Math.max(num, t.id)), -1);
     let toMerge = [];

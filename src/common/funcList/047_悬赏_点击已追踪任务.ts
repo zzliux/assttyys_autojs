@@ -1,4 +1,4 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
@@ -6,7 +6,7 @@ const center = 1;
 const right = 2;
 let swiper = 0
 
-export class Func047 implements InterfaceFuncOrigin {
+export class Func047 implements IFuncOrigin {
 	id = 47;
 	name = '悬赏_点击已追踪任务';
 	config = [{
@@ -23,7 +23,7 @@ export class Func047 implements InterfaceFuncOrigin {
 			default: '地鬼日常',
 		}]
 	}];
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[left, 35, 45, 0x2e1972],
@@ -74,7 +74,7 @@ export class Func047 implements InterfaceFuncOrigin {
 			[left, 1280, 720, 0, 0, -42, -51, 2000],
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: '悬赏_探索界面',
 			operator: [{

@@ -1,12 +1,12 @@
 import { Script } from "@/system/script";
-import { InterfaceFuncOrigin, InterfaceFuncOperator, InterfaceFuncOperatorOrigin } from "@/interface/InterfaceFunc";
+import { IFuncOrigin, IFuncOperator, IFuncOperatorOrigin } from "@/interface/IFunc";
 
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func003 implements InterfaceFuncOrigin {
+export class Func003 implements IFuncOrigin {
 	id = 3;
 	name = '悬赏协作';
 	config = [{
@@ -26,7 +26,7 @@ export class Func003 implements InterfaceFuncOrigin {
 			value: null,
 		}]
 	}];
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [
 			1280, 720,
 			[
@@ -93,7 +93,7 @@ export class Func003 implements InterfaceFuncOrigin {
 	 * @param {*} thisScript script.js 这样可以拿到里面的对象用来做点击等操作
 	 * @param {*} thisOperator 转换过适合当前分辨率的operator
 	 */
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisconf = thisScript.scheme.config['3']; // 获取配置
 		if (thisScript.oper({
 			name: '清除垃圾弹窗',

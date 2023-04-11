@@ -1,11 +1,11 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func993 implements InterfaceFuncOrigin {
+export class Func993 implements IFuncOrigin {
 	id = 993;
 	name = '启动游戏';
 	desc = '启动游戏';
@@ -30,7 +30,7 @@ export class Func993 implements InterfaceFuncOrigin {
 			default: '式神寄养',
 		}]
 	}];
-	operator: InterfaceFuncOperatorOrigin[] = [
+	operator: IFuncOperatorOrigin[] = [
 	{	// 0 是否为登录页
 		desc:
 			[
@@ -238,7 +238,7 @@ export class Func993 implements InterfaceFuncOrigin {
 			]
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['993'];
 		if (typeof thisScript.global.app_is_open_flag === 'undefined') {
 			thisScript.global.app_is_open_flag = 0;

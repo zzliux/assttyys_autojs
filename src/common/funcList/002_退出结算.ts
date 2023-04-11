@@ -1,4 +1,4 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from "@/interface/InterfaceFunc";
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from "@/interface/IFunc";
 import { Script } from "@/system/script";
 
 const normal = -1; //定义常量
@@ -6,7 +6,7 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func002 implements InterfaceFuncOrigin {
+export class Func002 implements IFuncOrigin {
 	id = 2;
 	name = '退出结算';
 	desc = '';
@@ -29,7 +29,7 @@ export class Func002 implements InterfaceFuncOrigin {
 			default: '关闭BUFF',
 		}]
 	}];
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		// 调整优先级，提高识别贪吃鬼的级别
 		// 左上角的贪吃鬼图标
 		desc: [1280, 720,
@@ -336,7 +336,7 @@ export class Func002 implements InterfaceFuncOrigin {
 		],
 		retest: 800,
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisconf = thisScript.scheme.config['2'];
 		if (thisconf && thisconf.rechallenge && thisScript.oper({
 			id: 2,

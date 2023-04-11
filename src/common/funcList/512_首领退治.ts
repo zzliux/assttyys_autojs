@@ -1,4 +1,4 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 
 const normal = -1; //定义常量
@@ -6,10 +6,10 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func512 implements InterfaceFuncOrigin {
+export class Func512 implements IFuncOrigin {
 	id = 512;
 	name = '首领退治_挑战';
-	operator: InterfaceFuncOperatorOrigin[] = [{	// 检测_是否为首领退治集结页
+	operator: IFuncOperatorOrigin[] = [{	// 检测_是否为首领退治集结页
 		desc: [
 			1280, 720,
 			[
@@ -47,7 +47,7 @@ export class Func512 implements InterfaceFuncOrigin {
 				[right, 1280, 720, 1224, 112, 1274, 691, 1200]	//	点击空白处关闭
 			]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['512'];
 
 		if (thisScript.oper({

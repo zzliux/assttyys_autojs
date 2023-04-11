@@ -1,15 +1,15 @@
 import { Script } from '@/system/script';
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func016 implements InterfaceFuncOrigin {
+export class Func016 implements IFuncOrigin {
 	id = 16;
 	name = '地鬼_热门挑战';
 	desc = '在地域鬼王界面时，自动选热门进行挑战';
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[left, 60, 58, 0xc2cbe3],
@@ -90,7 +90,7 @@ export class Func016 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 522, 52, 557, 81, 1200]		//	极转为普通
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: '探索界面',
 			operator: [thisOperator[3]]

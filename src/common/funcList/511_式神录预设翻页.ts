@@ -1,11 +1,11 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func511 implements InterfaceFuncOrigin {
+export class Func511 implements IFuncOrigin {
     id = 511;
     name = '式神录预设_翻页';
     desc = '式神录预设列表操作，应排在[510]后';
@@ -27,7 +27,7 @@ export class Func511 implements InterfaceFuncOrigin {
             value: null,
         }]
     }];
-    operator: InterfaceFuncOperatorOrigin[] = [
+    operator: IFuncOperatorOrigin[] = [
         {
             desc:   //  式神录已展开 预设 侧栏
                 [
@@ -78,7 +78,7 @@ export class Func511 implements InterfaceFuncOrigin {
                 [right, 1280, 720, 1087,563, 1245,626, -1],     //  预设分组最后一项区域
             ]
         }];
-    operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+    operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
         let thisConf = thisScript.scheme.config['511'];
         let defaultCount = +thisConf.count;
         if (thisScript.oper({

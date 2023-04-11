@@ -1,15 +1,15 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func504 implements InterfaceFuncOrigin {
+export class Func504 implements IFuncOrigin {
 	id = 504;
 	name = '庭院进入现世逢魔界面';
 	desc = '从庭院进入现世逢魔界面';
-	operator: InterfaceFuncOperatorOrigin[] = [
+	operator: IFuncOperatorOrigin[] = [
 		{
 			desc:   // 页面是否为庭院(菜单未展开) 只支持默认庭院皮肤与默认装饰
 				[1280, 720,
@@ -70,7 +70,7 @@ export class Func504 implements InterfaceFuncOrigin {
 			]
 		}
 	];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['504'];
 
 		if (thisScript.oper({

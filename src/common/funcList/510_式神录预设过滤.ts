@@ -1,11 +1,11 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func999 implements InterfaceFuncOrigin {
+export class Func999 implements IFuncOrigin {
     id = 510;
     name = '更改式神录御魂';
     desc = '进入式神录更改式神御魂';
@@ -25,7 +25,7 @@ export class Func999 implements InterfaceFuncOrigin {
             value: '队伍1',
         }]
     }];
-    operator: InterfaceFuncOperatorOrigin[] = [
+    operator: IFuncOperatorOrigin[] = [
         {   // 检测是否为式神录
             desc: [
                 1280, 720,
@@ -140,7 +140,7 @@ export class Func999 implements InterfaceFuncOrigin {
                 [center, 1280, 720, 592, 412, 682, 447, 1200]   //  点击确定
             ]
         }];
-    operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+    operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
         let thisConf = thisScript.scheme.config['510'];
 
         thisScript.oper({

@@ -1,11 +1,11 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from "@/interface/InterfaceFunc";
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from "@/interface/IFunc";
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func030 implements InterfaceFuncOrigin {
+export class Func030 implements IFuncOrigin {
    id = 30;
    name = '斗技_杂项';
    desc = '斗技界面点击“战”按钮，自动跳过段位提升等';
@@ -19,7 +19,7 @@ export class Func030 implements InterfaceFuncOrigin {
          default: '名士',
       }]
    }]
-   operator: InterfaceFuncOperatorOrigin[] = [{
+   operator: IFuncOperatorOrigin[] = [{
       desc: [1280, 720,
          [[left, 36, 25, 0xf7e8a9],
          [right, 1210, 82, 0x725942],
@@ -130,7 +130,7 @@ export class Func030 implements InterfaceFuncOrigin {
          [center,623,440,0xf9eec9]]
          ]
    }]
-   operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
       let thisconf = thisScript.scheme.config['30'];
       if (thisconf && thisconf.level && thisScript.oper({
          id: 30,

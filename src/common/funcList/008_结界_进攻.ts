@@ -1,12 +1,12 @@
 import { Script } from '@/system/script';
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func008 implements InterfaceFuncOrigin {
+export class Func008 implements IFuncOrigin {
 	id = 8;
 	name = '结界_进攻';
 	desc = '出现进攻按钮后点击进攻按钮，若进攻按钮点击不生效可选择退出到上一级（寮突破用）或停止脚本（个人突破用）或切换方案；若在寮突破时进攻为灰色，会自动等待CD或切换方案';
@@ -55,7 +55,7 @@ export class Func008 implements InterfaceFuncOrigin {
 			default: '个人突破'
 		}]
 	}];
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		oper: [
 			[left, 1280, 720, 0, 0, 119, 49, 2000],
 			[center, 1280, 720, 1188, 115, 1225, 151, 500],
@@ -85,7 +85,7 @@ export class Func008 implements InterfaceFuncOrigin {
 			]
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]) : boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]) : boolean {
 		if (!thisScript.oper({
 			name: '突破界面_暗_判断',
 			operator: [{ desc: thisOperator[1].desc }]

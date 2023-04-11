@@ -1,12 +1,12 @@
 import { Script } from '@/system/script';
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func014 implements InterfaceFuncOrigin {
+export class Func014 implements IFuncOrigin {
 	id = 14;
 	name = '探索_点击挑战图标';
 	desc = '在探索界面时，选择小怪或boss进攻，优先打boss，可配置无差别挑战或只打经验怪或只打掉落怪';
@@ -34,7 +34,7 @@ export class Func014 implements InterfaceFuncOrigin {
 			default: '慢',
 		}]
 	}];
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[left, 38, 65, 0xf1f5fb],
@@ -79,7 +79,7 @@ export class Func014 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 613, 248, 668, 297, 1000]
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		while (thisScript.oper({
 			name: '探索界面_判断',
 			operator: [{ desc: thisOperator[0].desc, retest: 500 }],

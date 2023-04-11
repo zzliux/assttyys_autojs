@@ -1,15 +1,15 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func027 implements InterfaceFuncOrigin {
+export class Func027 implements IFuncOrigin {
 	id = 27;
 	name = '组队_创建或匹配';
 	desc = '在庭院中点击下方的组队按钮后点击创建或排队按钮';
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				//妖气自动匹配中的 图像
@@ -106,7 +106,7 @@ export class Func027 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 818, 567, 932, 612, 1000]//创建
 		]
 	}]
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			id: 27,
 			name: '组队_匹配',

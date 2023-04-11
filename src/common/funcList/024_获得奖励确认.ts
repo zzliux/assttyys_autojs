@@ -1,14 +1,14 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from "@/interface/InterfaceFunc";
+import { IFuncOrigin, IFuncOperatorOrigin } from "@/interface/IFunc";
 
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func024 implements InterfaceFuncOrigin {
+export class Func024 implements IFuncOrigin {
 	id = 24;
 	name = '获得奖励确认';
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [1280,720, // 奖励只有1排
 			[[center,424,328,0xbfa88f],
 			[center,408,237,0x382a1c],

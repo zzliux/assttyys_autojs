@@ -1,15 +1,15 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func509 implements InterfaceFuncOrigin {
+export class Func509 implements IFuncOrigin {
 	id = 509;
 	name = '进入式神录';
 	desc = '从不同页面进入式神录';
-	operator: InterfaceFuncOperatorOrigin[] = [
+	operator: IFuncOperatorOrigin[] = [
 		{   // 庭院_式神录
 			desc: [1280, 720,
 				[[center, 560, 608, 0xbc3433],
@@ -154,7 +154,7 @@ export class Func509 implements InterfaceFuncOrigin {
 			[right, 1280, 720, 1008,600, 1081,671, 1200]	//	点击式神按钮
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.global.change_shikigami_flag) {
 			return false;
 		} else {

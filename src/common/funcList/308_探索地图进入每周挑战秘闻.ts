@@ -1,14 +1,14 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin} from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin} from '@/interface/IFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func308 implements InterfaceFuncOrigin {
+export class Func308 implements IFuncOrigin {
   id = 308;
   name = '探索地图进入每周挑战秘闻';
   desc = '从探索地图进入每周挑战秘闻';
-  operator: InterfaceFuncOperatorOrigin[] = [{
+  operator: IFuncOperatorOrigin[] = [{
     desc: [1280, 720,//探索内点击秘闻
       [
         [left, 45, 60, 0xeff5fb],

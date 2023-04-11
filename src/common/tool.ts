@@ -1,8 +1,6 @@
 import fmmxQuestionList from '@/common/fmmxQuestionList';
-import defaultSchemeList from '@/common/schemeList';
 
-
-export function search(list, prop, str, filterSimilar?) {
+export function search(list: Record<string, any>[], prop: string, str: string, filterSimilar?: number) {
 	let maxSimilarity = 0;
 	let maxSimilarityIndex = -1;
 	for (let i = 0; i < list.length; i++) {
@@ -21,11 +19,11 @@ export function search(list, prop, str, filterSimilar?) {
 	}
 }
 
-export function questionSearch(str) {
+export function questionSearch(str: string) {
 	return search(fmmxQuestionList, 'question', str, .5);
 }
 
-export function similarity(s1, s2, filterSimilar?) {
+export function similarity(s1: string, s2: string, filterSimilar?: number) {
 	let len1 = s1.length;
 	let len2 = s2.length;
 	let maxLen = Math.max(len1, len2);
@@ -62,7 +60,7 @@ export function similarity(s1, s2, filterSimilar?) {
 }
 
 export function setCurrentScheme(schemeName: string, store) {
-	let savedSchemeList = store.get("schemeList", defaultSchemeList);
+	let savedSchemeList = store.get("schemeList", []);
 	for (let i = 0; i < savedSchemeList.length; i++) {
 		if (savedSchemeList[i].schemeName === schemeName) {
 			store.put('currentScheme', savedSchemeList[i]);

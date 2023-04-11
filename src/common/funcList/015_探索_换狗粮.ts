@@ -1,11 +1,11 @@
 import { Script } from '@/system/script';
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func015 implements InterfaceFuncOrigin {
+export class Func015 implements IFuncOrigin {
 	id = 15;
 	name = '探索_换狗粮';
 	desc = '准备界面时，队长位置在左(换式神界面时队长位置在右)，若在非队长位置出现满级式神，则上素材的第一个和第二个，因此使用时需要将要练的素材添加喜欢，并取消折叠；N卡则是找到1级的N卡后上N卡';
@@ -31,7 +31,7 @@ export class Func015 implements InterfaceFuncOrigin {
 			default: '20%'
 		}]
 	}];
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[[left, 34, 41, 0xd7c5a2],
 			[left, 109, 37, 0xd7c5a2],
@@ -62,7 +62,7 @@ export class Func015 implements InterfaceFuncOrigin {
 			[left, 1280, 720, 149, 51, 185, 84, 0], // 16-1级标识到第二个中心区域的相对位置
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: '准备界面_判断',
 			operator: [{ desc: thisOperator[0].desc }]

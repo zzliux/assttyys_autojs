@@ -1,13 +1,13 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin } from '@/interface/IFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func031 implements InterfaceFuncOrigin {
+export class Func031 implements IFuncOrigin {
 	id = 31;
 	name = '结界卡_继续合成';
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [1280,720,
 			[[center,864,160,0x351d0d],
 			[center,712,446,0x341c0c],

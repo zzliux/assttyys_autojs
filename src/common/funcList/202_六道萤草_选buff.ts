@@ -1,11 +1,11 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func202 implements InterfaceFuncOrigin {
+export class Func202 implements IFuncOrigin {
 	id = 202;
 	name = '六道萤草_选buff';
 	desc = '腐草为萤-5级，妖力化身-2级，六道净化-1级，萤火之光-最好5级';
@@ -48,7 +48,7 @@ export class Func202 implements InterfaceFuncOrigin {
 			value: null,
 		}]
 	}];
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		// 首次进入选buff
 		desc: [1280, 720,
 			[
@@ -117,7 +117,7 @@ export class Func202 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 113, 257, 868, 342, -1], // 一起的框框
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['202'];
 		if (!thisScript.global.d6d) {
 			thisScript.global.d6d = {

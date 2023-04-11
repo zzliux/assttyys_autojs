@@ -1,6 +1,6 @@
 import { Script } from "@/system/script";
 
-export interface InterfaceFuncConfigOrigin {
+export interface IFuncConfigOrigin {
 	desc: string;
 	config: Array<{
 		name: string,
@@ -11,7 +11,7 @@ export interface InterfaceFuncConfigOrigin {
 	}>
 }
 
-export interface InterfaceFuncOperatorOrigin {
+export interface IFuncOperatorOrigin {
 	desc?: [number, number, 
 		[number, number, number, number][]
 	];
@@ -21,7 +21,7 @@ export interface InterfaceFuncOperatorOrigin {
 	notForCnt?: boolean;
 }
 
-export interface InterfaceFuncOperator {
+export interface IFuncOperator {
 	desc?: [number, number, number, number][];
 	oper?: [number, number, number, number, number][];
 	operStepRandom?: [number, number, number, number, number, number, number, number, number][][];
@@ -30,21 +30,21 @@ export interface InterfaceFuncOperator {
 }
 
 
-export interface InterfaceFuncOrigin {
+export interface IFuncOrigin {
 	id: number;
 	name: string;
 	desc?: string;
-	config?: InterfaceFuncConfigOrigin[];
-	operator?: InterfaceFuncOperatorOrigin[];
-	operatorFunc?(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean;
+	config?: IFuncConfigOrigin[];
+	operator?: IFuncOperatorOrigin[];
+	operatorFunc?(thisScript: Script, thisOperator: IFuncOperator[]): boolean;
 }
 
-export interface InterfaceFunc {
+export interface IFunc {
 	id?: number;
 	name?: string;
 	desc?: string;
-	config?: InterfaceFuncConfigOrigin[];
-	operator?: InterfaceFuncOperator[];
-	operatorFunc?(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean;
+	config?: IFuncConfigOrigin[];
+	operator?: IFuncOperator[];
+	operatorFunc?(thisScript: Script, thisOperator: IFuncOperator[]): boolean;
 	transed?: boolean;
 }

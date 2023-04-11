@@ -1,14 +1,14 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func220 implements InterfaceFuncOrigin {
+export class Func220 implements IFuncOrigin {
 	id = 221;
 	name = '夜行荒河_挑战';
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		// 匹配
 		desc: [1280, 720,
 			[
@@ -39,7 +39,7 @@ export class Func220 implements InterfaceFuncOrigin {
 			[right, 1280, 720, 1148, 564, 1234, 659, 1500],
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let curCnt = 0;
 		let maxCount = 3;
 		while (thisScript.oper({

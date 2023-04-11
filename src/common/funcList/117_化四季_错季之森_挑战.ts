@@ -1,14 +1,14 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func117 implements InterfaceFuncOrigin {
+export class Func117 implements IFuncOrigin {
 	id = 117;
 	name = '化四季_错季之森_挑战';
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[right, 1060, 594, 0xd1bac0],
@@ -23,7 +23,7 @@ export class Func117 implements InterfaceFuncOrigin {
 			[right, 1280, 720, 987, 599, 1089, 692, 4000]
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let curCnt = 0;
 		let maxCount = 3;
 		while (thisScript.oper({

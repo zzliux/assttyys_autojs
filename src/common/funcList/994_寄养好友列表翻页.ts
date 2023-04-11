@@ -1,11 +1,11 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func994 implements InterfaceFuncOrigin {
+export class Func994 implements IFuncOrigin {
 	id = 994;
 	name = '寄养好友列表_翻页';
 	desc = '寄养好友列表操作，应排在[996,997]后';
@@ -32,7 +32,7 @@ export class Func994 implements InterfaceFuncOrigin {
 			default: '通用准备退出',
 		}]
 	}];
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: 	// 寄养界面_判断
 			[1280, 720,
 				[[left, 186, 171, 0x30221f],
@@ -90,7 +90,7 @@ export class Func994 implements InterfaceFuncOrigin {
 				[left, 271, 146, 0xa46c4d]]
 			],
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['994'];
 		let defaultCount = +thisConf.count * 2;	// 共有两个页签
 		if (thisScript.oper({
