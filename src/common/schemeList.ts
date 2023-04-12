@@ -1,9 +1,9 @@
 import funcList from './funcListIndex';
 import commonConfigArr from './commonConfig';
-import { InterfaceScheme } from '@/interface/InterfaceScheme';
-import { merge } from '@/common/tool';
+import { IScheme } from '@/interface/IScheme';
+import { merge } from './tool';
 
-const SchemeList: InterfaceScheme[] = [{
+const SchemeList: IScheme[] = [{
     id: 1,
     schemeName: '通用准备退出',
     star: true,

@@ -1,15 +1,15 @@
 import { Script } from '@/system/script';
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func517 implements InterfaceFuncOrigin {
+export class Func517 implements IFuncOrigin {
     id = 517;
     name = '宠物庭院';
     desc = '宠物庭院喂猫喂狗';
-    operator: InterfaceFuncOperatorOrigin[] = [
+    operator: IFuncOperatorOrigin[] = [
         {	// 页面是否为庭院且能识别宠物屋(菜单已展开)另一种图标 御祝图标 只支持默认庭院皮肤与默认装饰
             desc:
                 [1280, 720,
@@ -199,7 +199,7 @@ export class Func517 implements InterfaceFuncOrigin {
                     ]
                 ]
         }];
-    operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+    operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 
         if (thisScript.oper({
             id: 517,

@@ -1,11 +1,11 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func506 implements InterfaceFuncOrigin {
+export class Func506 implements IFuncOrigin {
 	id = 506;
 	name = '进入寮活动';
 	desc = '进入已开启寮活动，如道馆、宴会、狩猎战、首领退治';
@@ -25,7 +25,7 @@ export class Func506 implements InterfaceFuncOrigin {
 			value: false,
 		}]
 	}];
-	operator: InterfaceFuncOperatorOrigin[] = [
+	operator: IFuncOperatorOrigin[] = [
 		{// 检查_道馆是否已开启
 
 			desc: [1280, 720,
@@ -205,7 +205,7 @@ export class Func506 implements InterfaceFuncOrigin {
 					]
 				]
 		}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['506'];
 
 		let _liao_activity_state: any = thisScript.runtimeParams ? thisScript.runtimeParams.liao_activity_state : undefined;

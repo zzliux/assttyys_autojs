@@ -404,8 +404,9 @@ export default {
       this.addScheduleForm = merge({}, scheduleDefaultFormData);
       this.scheduleNameInputShow = true;
     },
-    addScheme(scheduleData, callback) {
-      scheduleData.id = this.scheduleList.length > 0 ? this.scheduleList[this.scheduleList.length - 1].id + 1 : 1;
+    addSchedule(scheduleData, callback) {
+      // scheduleData.id = this.scheduleList.length > 0 ? this.scheduleList[this.scheduleList.length - 1].id + 1 : 1;
+      scheduleData.id = this.scheduleList.reduce((num, t) => (Math.max(num, t.id)), -1) + 1;
       this.scheduleList.push(scheduleData);
       this.saveScheduleList();
     },
@@ -429,7 +430,7 @@ export default {
               return;
             }
           }
-          this.addScheme(
+          this.addSchedule(
             merge({}, this.addScheduleForm)
           );
           this.swipeCellCurrentAction = null;

@@ -1,14 +1,14 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
-export class Func126 implements InterfaceFuncOrigin {
+export class Func126 implements IFuncOrigin {
   id = 126;
   name = '言灵活动_对弈';
-  operator: InterfaceFuncOperatorOrigin[] = [{
+  operator: IFuncOperatorOrigin[] = [{
     desc: [1280, 720,
       [[right, 1151, 590, 0xd7533d],
       [right, 1155, 628, 0x232626],
@@ -62,7 +62,7 @@ export class Func126 implements InterfaceFuncOrigin {
       [center, 426, 626, 0xff6148]]
     ]
   }]
-  operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+  operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
     if (thisScript.oper({
       id: 126,
       name: '对弈_挑战',

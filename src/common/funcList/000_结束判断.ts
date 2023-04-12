@@ -1,7 +1,7 @@
 import { Script } from '@/system/script';
-import { InterfaceFuncOrigin } from '@/interface/InterfaceFunc';
+import { IFuncOrigin } from '@/interface/IFunc';
 
-export class Func000 implements InterfaceFuncOrigin {
+export class Func000 implements IFuncOrigin {
 	id = 0;
 	name = '结束判断';
 	desc = '配置停止或切换方案的条件';

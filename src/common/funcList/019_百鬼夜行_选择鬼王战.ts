@@ -1,11 +1,11 @@
 import { Script } from '@/system/script';
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func019 implements InterfaceFuncOrigin {
+export class Func019 implements IFuncOrigin {
 	id = 19;
 	name = '百鬼夜行_选择鬼王挑战';
 	desc = '百鬼夜行中三选一鬼王界面时，选择一个鬼王后开始挑战，可配置随机或指定位置';
@@ -20,7 +20,7 @@ export class Func019 implements InterfaceFuncOrigin {
 			value: null,
 		}]
 	}];
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [1280,720,
 			[[center,626,64,0x1F1627],
 			[center,45,45,0xf5e5a3],
@@ -35,7 +35,7 @@ export class Func019 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 1132,562, 1210,640, 6000], // 开始
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisconf = thisScript.scheme.config['19'];
 		let oper = null;
 		if ('随机' === thisconf.bossPosition) {

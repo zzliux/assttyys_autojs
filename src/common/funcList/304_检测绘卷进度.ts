@@ -1,12 +1,12 @@
 import { Script } from '@/system/script';
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func304 implements InterfaceFuncOrigin {
+export class Func304 implements IFuncOrigin {
   id = 304;
   name = '检测绘卷进度';
   desc = '达到进度即osp推送，搭配Takser食用更佳（ASSTTYYS用户操作手册304功能有说明），使用该功能需安装OCR扩展'
@@ -44,7 +44,7 @@ export class Func304 implements InterfaceFuncOrigin {
     }]
   }
   ];
-  operator: InterfaceFuncOperatorOrigin[] = [{
+  operator: IFuncOperatorOrigin[] = [{
     desc: [1280, 720, [//0,绘卷界面和卷X坐标
       [left, 26, 539, 0xd6ae21],
       [left, 32, 689, 0x42174a],
@@ -74,7 +74,7 @@ export class Func304 implements InterfaceFuncOrigin {
     ]
   }]
 
-  operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+  operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
     let thisconf = thisScript.scheme.config['304'];
     const emaki = Number(thisconf.choiceEmaki) - 1;
     if (thisScript.oper({

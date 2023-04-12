@@ -1,14 +1,14 @@
-import type { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import type { IFuncOrigin, IFuncOperatorOrigin } from '@/interface/IFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func998 implements InterfaceFuncOrigin {
+export class Func998 implements IFuncOrigin {
 	id = 998;
 	name = '式神寄养';
 	desc = '阴阳寮式神寄养页面';
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		// 点击式神寄养
 		desc: [
 			1280, 720,

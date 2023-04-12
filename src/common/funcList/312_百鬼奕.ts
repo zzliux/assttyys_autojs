@@ -1,11 +1,11 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func312 implements InterfaceFuncOrigin {
+export class Func312 implements IFuncOrigin {
   id = 312;
   name = '百鬼奕';
   config = [{
@@ -17,7 +17,7 @@ export class Func312 implements InterfaceFuncOrigin {
       default: true,
     }]
   }]
-  operator: InterfaceFuncOperatorOrigin[] = [{//  战
+  operator: IFuncOperatorOrigin[] = [{//  战
     desc: [1280, 720,
       [[left, 41, 36, 0xf9edb1],
       [left, 145, 36, 0xf6f1de],
@@ -84,7 +84,7 @@ export class Func312 implements InterfaceFuncOrigin {
       [center, 462, 638, 0xdb991c]]
     ]
   }];
-  operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+  operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
     let thisconf = thisScript.scheme.config['312'];
     if (thisconf.switch_threeten &&
       thisScript.oper({

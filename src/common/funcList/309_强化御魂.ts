@@ -1,4 +1,4 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 
 const normal = -1; //定义常量
@@ -6,7 +6,7 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func309 implements InterfaceFuncOrigin {
+export class Func309 implements IFuncOrigin {
   id = 309;
   name = '强化御魂';
   desc = '在御魂-整理界面强化筛选或方案里的御魂+15';
@@ -19,7 +19,7 @@ export class Func309 implements InterfaceFuncOrigin {
       default: true,
     }]
   }]
-  operator: InterfaceFuncOperatorOrigin[] = [{//0,整理界面
+  operator: IFuncOperatorOrigin[] = [{//0,整理界面
     desc: [1280, 720,
       [[center, 560, 651, 0xfae3a7],
       [center, 575, 649, 0xefdfad],
@@ -128,7 +128,7 @@ export class Func309 implements InterfaceFuncOrigin {
     ]
   }
   ]
-  operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+  operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
     if (thisScript.oper({
       id: 309,
       name: '强化界面',

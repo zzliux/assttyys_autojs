@@ -1,15 +1,15 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from "@/interface/InterfaceFunc";
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from "@/interface/IFunc";
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func310 implements InterfaceFuncOrigin {
+export class Func310 implements IFuncOrigin {
   id = 310;
   name = '暴食鬼吃经验';
   desc = '暴食鬼吃一二三星经验书';
-  operator: InterfaceFuncOperatorOrigin[] = [{//暴食鬼界面
+  operator: IFuncOperatorOrigin[] = [{//暴食鬼界面
     desc: [1280, 720,
       [[center, 958, 521, 0x261615],
       [center, 958, 530, 0x241614],
@@ -70,7 +70,7 @@ export class Func310 implements InterfaceFuncOrigin {
       [center, 921, 674, 0x7b4a29]]
     ]
   }]
-  operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+  operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
     if (thisScript.oper({
       id: 310,
       name: '暴食鬼',

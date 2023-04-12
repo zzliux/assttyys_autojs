@@ -1,12 +1,12 @@
 import { Script } from '@/system/script';
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func012 implements InterfaceFuncOrigin {
+export class Func012 implements IFuncOrigin {
 	id = 12;
 	name = '寮突破_翻页';
 	desc = '寮突破时执行翻页操作，应排在[9勋章点击]后';
@@ -33,7 +33,7 @@ export class Func012 implements InterfaceFuncOrigin {
 			default: '通用准备退出',
 		}]
 	}];
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [
 			1280, 720,
 			[
@@ -52,7 +52,7 @@ export class Func012 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 1188,115, 1225,151, 500],
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['12'];
 		let defaultCount = +thisConf.count;
 		if (thisScript.oper({

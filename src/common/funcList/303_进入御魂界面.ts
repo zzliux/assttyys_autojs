@@ -1,16 +1,16 @@
 import { Script } from '@/system/script';
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func303 implements InterfaceFuncOrigin {
+export class Func303 implements IFuncOrigin {
  id = 303;
  name = '进入御魂界面';
  desc = '从式神录进入御魂内的界面';
- operator: InterfaceFuncOperatorOrigin[] = [{
+ operator: IFuncOperatorOrigin[] = [{
   //右侧详细
   desc: [1280, 720, [
    [left, 114, 15, 0xaf8c56],

@@ -1,4 +1,4 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 
 const normal = -1; //定义常量
@@ -6,10 +6,10 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func507 implements InterfaceFuncOrigin {
+export class Func507 implements IFuncOrigin {
 	id = 507;
 	name = '狩猎战_挑战';
-	operator: InterfaceFuncOperatorOrigin[] = [{	// 检测_是否为挑战奉献榜场景_待开始
+	operator: IFuncOperatorOrigin[] = [{	// 检测_是否为挑战奉献榜场景_待开始
 		desc: [1280, 720,
 			[[right, 1104, 568, 0xd7bfa5],
 			[right, 1175, 600, 0xdfc29d],
@@ -79,7 +79,7 @@ export class Func507 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 448, 488, 894, 574, 1200],
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['507'];
 
 		if (thisScript.oper({

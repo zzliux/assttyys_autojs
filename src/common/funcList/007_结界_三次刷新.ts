@@ -1,16 +1,16 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from "@/interface/InterfaceFunc";
+import { IFuncOrigin, IFuncOperatorOrigin } from "@/interface/IFunc";
 
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func007 implements InterfaceFuncOrigin {
+export class Func007 implements IFuncOrigin {
 	id = 7;
 	name = '结界_三次刷新';
 	desc = '启用后会在打了三个结界后进行刷新，若CD中则等待CD后刷新';
 	config = [];
-	operator: InterfaceFuncOperatorOrigin[] = [{  // CD
+	operator: IFuncOperatorOrigin[] = [{  // CD
 		desc: [1280, 720,
 			[[center, 549, 93, 0x5a4130],
 			[center, 720, 93, 0x583716],

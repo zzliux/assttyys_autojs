@@ -1,11 +1,11 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func051 implements InterfaceFuncOrigin {
+export class Func051 implements IFuncOrigin {
 	id = 51;
 	name = '绿标';
 	desc = '战斗界面标记我方式神';
@@ -40,7 +40,7 @@ export class Func051 implements InterfaceFuncOrigin {
 			default: false,
 		}]
 	}];
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		// 开始战斗后的场景
 		desc: [1280, 720,
 			[
@@ -85,7 +85,7 @@ export class Func051 implements InterfaceFuncOrigin {
 			]
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisconf = thisScript.scheme.config['51'];
 
 		// 准备界面就开始查找，找到后记录坐标，在战斗开始后第一时间对找到的坐标进行标记

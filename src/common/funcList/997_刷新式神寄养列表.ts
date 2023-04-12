@@ -1,11 +1,11 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func997 implements InterfaceFuncOrigin {
+export class Func997 implements IFuncOrigin {
 	id = 997;
 	name = '刷新式神寄养列表';
 	desc = '刷新式神寄养列表_让其重新排序';
@@ -20,7 +20,7 @@ export class Func997 implements InterfaceFuncOrigin {
 			value: null,
 		}]
 	}];
-	operator: InterfaceFuncOperatorOrigin[] = [
+	operator: IFuncOperatorOrigin[] = [
 		{
 			// 检测是否微式神寄养列表
 			desc: [1280, 720,
@@ -78,7 +78,7 @@ export class Func997 implements InterfaceFuncOrigin {
 			]
 		}
 	];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisconf = thisScript.scheme.config['997']; // 获取配置
 		let priority = String(thisconf.priority).split('->');
 

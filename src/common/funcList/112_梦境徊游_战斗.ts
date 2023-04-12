@@ -1,15 +1,15 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func112 implements InterfaceFuncOrigin {
+export class Func112 implements IFuncOrigin {
 	id = 112;
 	name = '梦境徊游_战斗';
 	desc = '连续执行5次后未开始，脚本将自动停止';
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		// 挑战
 		desc: [1280, 720,
 			[
@@ -24,7 +24,7 @@ export class Func112 implements InterfaceFuncOrigin {
 			[right, 1280, 720, 1138, 579, 1221, 668, 1000]
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let curCnt = 0;
 		let maxCount = 5;
 		while (thisScript.oper({

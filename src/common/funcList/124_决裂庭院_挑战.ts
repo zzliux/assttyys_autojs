@@ -1,14 +1,14 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func124 implements InterfaceFuncOrigin {
+export class Func124 implements IFuncOrigin {
 	id = 124;
 	name = '决裂庭院_挑战';
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [
 			1280, 720,
 			[
@@ -23,7 +23,7 @@ export class Func124 implements InterfaceFuncOrigin {
 			[right, 1280, 720, 1127, 554, 1244, 663, 4000]
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let curCnt = 0;
 		let maxCount = 3;
 		while (thisScript.oper({

@@ -1,14 +1,14 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func122 implements InterfaceFuncOrigin {
+export class Func122 implements IFuncOrigin {
     id = 122;
     name = '鬼城岐事_杂项';
-    operator: InterfaceFuncOperatorOrigin[] = [{
+    operator: IFuncOperatorOrigin[] = [{
         desc:   //  探索
             [
                 1280, 720,

@@ -1,13 +1,13 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin } from '@/interface/IFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func108 implements InterfaceFuncOrigin {
+export class Func108 implements IFuncOrigin {
 	id = 108;
 	name = '百妖之巅_挑战';
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[center, 976, 555, 0xe3d9c3],

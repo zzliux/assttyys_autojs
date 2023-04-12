@@ -1,12 +1,12 @@
 import { Script } from '@/system/script';
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from "@/interface/InterfaceFunc";
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from "@/interface/IFunc";
 
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func004 implements InterfaceFuncOrigin {
+export class Func004 implements IFuncOrigin {
 	id = 4;
 	name = '接受邀请';
 	desc = '左侧弹出邀请提示时，自动接受邀请';
@@ -24,7 +24,7 @@ export class Func004 implements InterfaceFuncOrigin {
 			default: '通用准备退出',
 		},]
 	}]
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		// 自动接受邀请
 		desc: [1280, 720,
 			[[left, 20, 254, 0x7e6750],
@@ -57,7 +57,7 @@ export class Func004 implements InterfaceFuncOrigin {
 			[left, 51, 502, 0xe4cca3]]
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['4'];
 		if (thisConf && thisConf.exit && thisScript.oper({
 			id: 4,

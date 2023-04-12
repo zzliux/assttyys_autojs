@@ -1,15 +1,15 @@
 import { Script } from '@/system/script';
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func023 implements InterfaceFuncOrigin {
+export class Func023 implements IFuncOrigin {
 	id = 23;
 	name = '逢魔答题';
 	desc = '逢魔密信自动答题，需要安装OCR扩展';
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [1280,720,
 			[[center,456,96,0xa72c01],
 			[center,692,90,0xddcdc3],
@@ -22,7 +22,7 @@ export class Func023 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 426,252, 426 + 446, 252 + 264, 0], // 答案区域
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: '逢魔答题_界面判断',
 			operator: [{ desc: thisOperator[0].desc }]

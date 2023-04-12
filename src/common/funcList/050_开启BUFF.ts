@@ -1,11 +1,11 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func050 implements InterfaceFuncOrigin {
+export class Func050 implements IFuncOrigin {
 	id = 50;
 	name = '开启BUFF';
 	config = [{
@@ -31,7 +31,7 @@ export class Func050 implements InterfaceFuncOrigin {
 			default: '经验'
 		}]
 	}];
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[center, 352, 526, 0x9c977e],
@@ -48,7 +48,7 @@ export class Func050 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 937, 272, 1160, 531, 500],
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: 'BUFF界面',
 			operator: [{

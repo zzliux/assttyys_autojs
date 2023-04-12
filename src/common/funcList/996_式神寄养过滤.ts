@@ -1,11 +1,11 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func996 implements InterfaceFuncOrigin {
+export class Func996 implements IFuncOrigin {
 	id = 996;
 	name = '式神寄养过滤';
 	desc = '式神寄养过滤';
@@ -21,7 +21,7 @@ export class Func996 implements InterfaceFuncOrigin {
 			}],
 		}
 	];
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		// 检测是否为式神寄养列表
 		desc: [1280, 720,
 			[[left, 186, 171, 0x30221f],
@@ -39,7 +39,7 @@ export class Func996 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 795, 538, 967, 591, 3000],  // 进入结界按钮
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisconf = thisScript.scheme.config['996'];
 
 		if (thisScript.oper({

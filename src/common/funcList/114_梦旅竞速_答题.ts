@@ -1,15 +1,15 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func114 implements InterfaceFuncOrigin {
+export class Func114 implements IFuncOrigin {
 	id = 114;
 	name = '梦旅竞速_答题';
 	desc = '使用该功能需安装OCR扩展';
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		// 开始
 		desc: [1280, 720,
 			[
@@ -61,7 +61,7 @@ export class Func114 implements InterfaceFuncOrigin {
 			]
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: '梦旅竞速_答题',
 			operator: [{ desc: thisOperator[0].desc }]

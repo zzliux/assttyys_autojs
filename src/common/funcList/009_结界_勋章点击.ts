@@ -1,12 +1,12 @@
 import { Script } from '@/system/script';
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from "@/interface/InterfaceFunc";
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from "@/interface/IFunc";
 
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func009 implements InterfaceFuncOrigin {
+export class Func009 implements IFuncOrigin {
 	id = 9;
 	name = '结界_勋章点击';
 	desc = '在突破界面点击勋章，可配置点击勋章的优先级';
@@ -32,7 +32,7 @@ export class Func009 implements InterfaceFuncOrigin {
 		}
 		]
 	}];
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[[center, 171, 104, 0x4a3624],
 			[center, 564, 89, 0x5e4735],
@@ -60,7 +60,7 @@ export class Func009 implements InterfaceFuncOrigin {
 			[left, 1280, 720, 147, 146, 465, 265, 500]
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: '突破界面_判断',
 			operator: [{ desc: thisOperator[0].desc }]

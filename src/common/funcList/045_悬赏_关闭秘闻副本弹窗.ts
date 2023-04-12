@@ -1,14 +1,14 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func045 implements InterfaceFuncOrigin {
+export class Func045 implements IFuncOrigin {
 	id = 45;
 	name = '悬赏_关闭秘闻副本弹窗';
-	operator: InterfaceFuncOperatorOrigin[] = [
+	operator: IFuncOperatorOrigin[] = [
 		// 秘闻副本关闭
 		{
 			desc: [1280, 720,
@@ -28,7 +28,7 @@ export class Func045 implements InterfaceFuncOrigin {
 			]
 		},
 	];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		// 由于阴阳师/脚本问题，有时候这个弹窗位置会有偏差/无法识别，所以无法使用多点比色进行弹窗确认
 		let point = thisScript.findMultiColor('悬赏_识别秘闻界面') || null
 		console.log(point, '悬赏_识别秘闻界面')

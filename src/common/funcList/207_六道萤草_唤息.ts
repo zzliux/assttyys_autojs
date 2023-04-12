@@ -1,15 +1,15 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func207 implements InterfaceFuncOrigin {
+export class Func207 implements IFuncOrigin {
 	id = 207;
 	name = '六道萤草_唤息';
 	desc = '召唤宁息商店，应放在“204 六道萤草_选事件”前';
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		// 香行域 唤息
 		desc: [1280, 720,
 			[
@@ -34,7 +34,7 @@ export class Func207 implements InterfaceFuncOrigin {
 			[right, 1280, 720, 1044, 218, 1279, 279, -1]
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (!thisScript.global.d6NextEvent && thisScript.oper({
 			id: 207,
 			name: '六道萤草_唤息_香行域界面判断',

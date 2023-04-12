@@ -1,11 +1,11 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperator, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperator, IFuncOperatorOrigin } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func042 implements InterfaceFuncOrigin {
+export class Func042 implements IFuncOrigin {
 	id = 42;
 	name = '悬赏_关闭悬赏封印弹窗';
 	desc = '请打开悬赏封印弹窗后开启脚本';
@@ -23,7 +23,7 @@ export class Func042 implements InterfaceFuncOrigin {
 			default: '地鬼日常',
 		}]
 	}];
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[center, 505, 45, 0x46454c],
@@ -81,7 +81,7 @@ export class Func042 implements InterfaceFuncOrigin {
 			[left, 1280, 720, 1164, 116, 1189, 143, 500],
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: '悬赏_关闭悬赏封印弹窗',
 			operator: [{

@@ -1,13 +1,13 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin } from '@/interface/IFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func105 implements InterfaceFuncOrigin {
+export class Func105 implements IFuncOrigin {
 	id = 105;
 	name = '前线作战_杂项';
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		// 前线作战_决战团体战
 		desc: [1280,720,
 			[[right,1202,682,0x36354e],

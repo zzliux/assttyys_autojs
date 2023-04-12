@@ -1,14 +1,14 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func039 implements InterfaceFuncOrigin {
+export class Func039 implements IFuncOrigin {
 	id = 39;
 	name = '金币妖怪_打开buff界面';
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[left, 54, 23, 0xf6d490],
@@ -24,7 +24,7 @@ export class Func039 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 27, 16, 68, 58, 2000],
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 				name: '金币妖怪_组队列表',
 				operator: [{

@@ -1,4 +1,4 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 
 const normal = -1; //定义常量
@@ -6,10 +6,10 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func508 implements InterfaceFuncOrigin {
+export class Func508 implements IFuncOrigin {
 	id = 508;
 	name = '逢魔首领';
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [	//	检测_现世逢魔奖励是否已领取
 			1280, 720,
 			[
@@ -27,7 +27,7 @@ export class Func508 implements InterfaceFuncOrigin {
 			]
 		],
 		oper: [
-			[right, 1280, 720, 1002, 645, 1045, 693, 100]  // 进入首领按钮
+			[right, 1280, 720, 1002, 645, 1045, 693, 1000]  // 进入首领按钮
 		]
 	}, {	// 检测_是否找到逢魔首领
 		desc: [
@@ -132,7 +132,7 @@ export class Func508 implements InterfaceFuncOrigin {
 			]
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['508'];
 
 		if (thisScript.oper({
@@ -206,9 +206,9 @@ export class Func508 implements InterfaceFuncOrigin {
 					}
 					if (++thisScript.global.fm_boss_btn_click_cnt >= 10) {
 						thisScript.global.fm_kiss_boss_flag = true;
-						thisScript.myToast(`第${thisScript.global.fm_boss_btn_click_cnt}次点击查找逢魔首领按钮未成功进入首领挑战，标记挑战成功`);
+						thisScript.myToast(`第${thisScript.global.fm_boss_btn_click_cnt}次点击查找逢魔首领按钮未成功进入首领挑战，标记挑战成功a`);
 					} else {
-						thisScript.myToast(`第${thisScript.global.fm_boss_btn_click_cnt}次点击查找逢魔首领按钮`);
+						thisScript.myToast(`第${thisScript.global.fm_boss_btn_click_cnt}次点击查找逢魔首领按钮a`);
 					}
 					return true;
 				}
@@ -284,9 +284,9 @@ export class Func508 implements InterfaceFuncOrigin {
 					}
 					if (++thisScript.global.fm_boss_btn_click_cnt >= 4) {
 						thisScript.global.fm_kiss_boss_flag = true;
-						thisScript.myToast(`第${thisScript.global.fm_boss_btn_click_cnt}次点击查找逢魔首领按钮未成功进入首领挑战，标记挑战成功`);
+						thisScript.myToast(`第${thisScript.global.fm_boss_btn_click_cnt}次点击查找逢魔首领按钮未成功进入首领挑战，标记挑战成功e`);
 					} else {
-						thisScript.myToast(`第${thisScript.global.fm_boss_btn_click_cnt}次点击查找逢魔首领按钮`);
+						thisScript.myToast(`第${thisScript.global.fm_boss_btn_click_cnt}次点击查找逢魔首领按钮e`);
 					}
 					return true;
 				}

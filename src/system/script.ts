@@ -10,9 +10,9 @@ import { getWidthPixels, getHeightPixels } from "@auto.pro/core";
 import schemeDialog from './schemeDialog';
 import drawFloaty from '@/system/drawFloaty';
 import { myToast, doOspPush } from '@/common/toolAuto';
-import { InterfaceFunc } from '@/interface/InterfaceFunc';
-import { InterfaceScheme } from '@/interface/InterfaceScheme';
-import { InterfaceMultiColor } from '@/interface/InterfaceMultiColor';
+import { IFunc } from '@/interface/IFunc';
+import { IScheme } from '@/interface/IScheme';
+import { IMultiColor } from '@/interface/IMultiColor';
 import { globalRoot, globalRootType } from '@/system/GlobalStore/index';
 import { Job } from '@/system/Schedule';
 import { MyFloaty } from '@/system/MyFloaty';
@@ -24,11 +24,11 @@ export class Script {
     runThread: any; // 脚本运行线程
     runCallback: Function; // 运行后回调，一般用于修改悬浮样式
     stopCallback: Function; // 停止后回调，异常停止、手动停止，在停止后都会调用
-    scheme: InterfaceScheme; // 运行的方案
-    schemeHistory: InterfaceScheme[]; // 历史运行方案，run时push进去，stop清空，stop(true)不清
-    funcMap: { [key: number]: InterfaceFunc }; // funcList的Map形式，下标为id，值为对应的fun元素
+    scheme: IScheme; // 运行的方案
+    schemeHistory: IScheme[]; // 历史运行方案，run时push进去，stop清空，stop(true)不清
+    funcMap: { [key: number]: IFunc }; // funcList的Map形式，下标为id，值为对应的fun元素
     scheduleMap: any;  // 定时任务实例存放Map
-    multiColor: InterfaceMultiColor; // 多点找色用的，提前初始化，减轻运行中计算量
+    multiColor: IMultiColor; // 多点找色用的，提前初始化，减轻运行中计算量
     hasRedList: boolean; // KeepScreen(true)时会初始化redList，如果没有初始化的话这个值为false，方便在有需要的时候初始化redlist且不重复初始化
     runDate: Date; // 运行启动时间
     currentDate: Date; // 最近一次功能执行时间
@@ -124,7 +124,7 @@ export class Script {
     /**
      * 先比色，再findText
      */
-    findTextWithCompareColor(text: string, timeout: number, region: Array<number>, textMatchMode: string, currFunc: InterfaceFunc): Array<OcrResult> {
+    findTextWithCompareColor(text: string, timeout: number, region: Array<number>, textMatchMode: string, currFunc: IFunc): Array<OcrResult> {
         this.initOcrIfNeeded();
         const self = this;
         const startTime = new Date().getTime();
@@ -203,7 +203,7 @@ export class Script {
      * @param {Scheme} scheme 
      * @returns 
      */
-    getFuncList(scheme: InterfaceScheme): InterfaceFunc[] {
+    getFuncList(scheme: IScheme): IFunc[] {
         let retFunclist = [];
         if (!this.funcMap) {
             this.funcMap = {};
@@ -621,7 +621,7 @@ export class Script {
      * @param {*} currFunc 
      * @param {*} retest 重试时间
      */
-    oper(currFunc: InterfaceFunc, retest?: number) {
+    oper(currFunc: IFunc, retest?: number) {
         let operator = currFunc.operator; // 需要计算的坐标通过operater传进去使用
         let operatorFunc = currFunc.operatorFunc;
         if (typeof operatorFunc === 'function') {
@@ -689,7 +689,7 @@ export class Script {
      * 根据func中的desc进行多点比色
      * @param {*} currFunc 
      */
-    desc(currFunc: InterfaceFunc, commonConfig) {
+    desc(currFunc: IFunc, commonConfig) {
         let operator = currFunc.operator || []; // 需要计算的坐标通过operater传进去使用
         for (let id = 0; id < operator.length; id++) {
             let item = operator[id];

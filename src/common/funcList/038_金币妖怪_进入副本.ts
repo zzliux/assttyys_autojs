@@ -1,14 +1,14 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func038 implements InterfaceFuncOrigin {
+export class Func038 implements IFuncOrigin {
 	id = 38;
 	name = '金币妖怪_进入副本 ';
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[right, 1211, 692, 0xfbab4a],
@@ -29,7 +29,7 @@ export class Func038 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 1186, 608, 1253, 679, 2000],
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		// 判断是不是组队界面并且判断队伍是否有人
 		if (thisScript.oper({
 				name: '金币妖怪_组队界面',
