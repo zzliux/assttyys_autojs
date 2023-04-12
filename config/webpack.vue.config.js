@@ -92,7 +92,7 @@ module.exports = (env, argv) => {
                 '@': path.resolve(__dirname, '../src'),
             }
         },
-        devtool: argv.mode === 'development' ? 'source-map' : false,
+        devtool: false, // argv.mode === 'development' ? 'source-map' : false,
         devServer: {  //配置webpack-dev-server
             port: 3001,
             static: false,

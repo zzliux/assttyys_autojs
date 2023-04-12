@@ -30,11 +30,11 @@ const router = new Router();
     });
 
     app.use(router.routes());
-    app.listen(2514, () => {
+    app.listen(2516, () => {
         const ipList = getLocalIP();
         console.log('访问地址：');
         ipList.forEach(ip => {
-            console.log(`http://${ip}:2514`);
+            console.log(`http://${ip}:2516`);
         });
         console.log('\n');
     });
