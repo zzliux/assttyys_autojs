@@ -1,9 +1,8 @@
 <template>
   <div style="width: 100%; height: 100%">
     <div class="rv_box">
-      
       <router-view v-slot="{ Component }">
-        <transition :name="transitionName">
+        <transition :name="transitionName" appear>
           <component :is="Component" :statusBarHeight="statusBarHeight"/>
         </transition>
       </router-view>
@@ -125,7 +124,7 @@ body > #app {
   position: absolute;
   overflow: hidden;
 }
-.slide-left-enter {
+.slide-left-enter-from {
   transform: translate3d(100%, 0, 0);
 }
 .slide-left-enter-to {
@@ -137,7 +136,7 @@ body > #app {
 .slide-left-leave-to {
   transform: translate3d(-100%, 0, 0);
 }
-.slide-right-enter {
+.slide-right-enter-from {
   transform: translate3d(-100%, 0, 0);
 }
 .slide-right-enter-to {
