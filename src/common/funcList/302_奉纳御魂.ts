@@ -1,12 +1,12 @@
 import { Script } from '@/system/script';
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func302 implements InterfaceFuncOrigin {
+export class Func302 implements IFuncOrigin {
   id = 302;
   name = '奉纳御魂';
   desc = '奉纳弃置御魂，结束后返回式神录';
@@ -24,7 +24,7 @@ export class Func302 implements InterfaceFuncOrigin {
       default: '通用准备退出',
     }]
   }];
-  operator: InterfaceFuncOperatorOrigin[] = [{
+  operator: IFuncOperatorOrigin[] = [{
     //0,奉纳
     desc: [1280, 720, [
       [right, 1171, 215, 0xd4c4b3],
@@ -116,7 +116,7 @@ export class Func302 implements InterfaceFuncOrigin {
   }
   ];
 
-  operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+  operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
     if (!thisScript.oper({
       name: '排序方式',
       operator: [{

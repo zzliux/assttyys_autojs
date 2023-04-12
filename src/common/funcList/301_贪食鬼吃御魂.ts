@@ -1,12 +1,12 @@
 import { Script } from '@/system/script';
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func301 implements InterfaceFuncOrigin {
+export class Func301 implements IFuncOrigin {
   id = 301;
   name = '贪食鬼吃御魂';
   desc = '在御魂界面里打开,吃掉弃置御魂';
@@ -24,7 +24,7 @@ export class Func301 implements InterfaceFuncOrigin {
       default: '奉纳御魂_开始奉纳',
     }]
   }];
-  operator: InterfaceFuncOperatorOrigin[] = [{
+  operator: IFuncOperatorOrigin[] = [{
     //0,右下角贪食鬼
     desc: [1280, 720,
       [[right, 1167, 624, 0x69bbbb],
@@ -80,7 +80,7 @@ export class Func301 implements InterfaceFuncOrigin {
       [center, 1280, 720, 939, 217, 960, 243, 1000]
     ]
   }];
-  operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+  operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
     if (thisScript.oper({
       name: '右下角贪食鬼',
       operator: [{

@@ -1,15 +1,15 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func1003 implements InterfaceFuncOrigin {
+export class Func1003 implements IFuncOrigin {
 	id = 1003;
 	name = '宴会_式神满级更换式神.';
 	desc = '自动更换位置在第二个的式神（当前场上式神后面那个）';
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[center, 484, 36, 0x493428],
@@ -25,7 +25,7 @@ export class Func1003 implements InterfaceFuncOrigin {
 			[left, 1280, 720, 529, 688, 744, 706, 2000],
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 				name: '宴会_吃饭界面',
 				operator: [{

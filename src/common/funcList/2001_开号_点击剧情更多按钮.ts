@@ -1,14 +1,14 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
-export class Func2001 implements InterfaceFuncOrigin {
+export class Func2001 implements IFuncOrigin {
 	id = 2001;
 	name = '开号_点击剧情更多按钮';
 	desc = '仨点的按钮，在剧情与庭院场景中找到并点击';
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[left, 38, 31, 0xd7c5a2],
@@ -22,7 +22,7 @@ export class Func2001 implements InterfaceFuncOrigin {
 			[left, 1280, 720, 0, 0, 41, 42, -1], // [1222,333,1263,375]
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: '开号_剧情场景判断',
 			operator: [{

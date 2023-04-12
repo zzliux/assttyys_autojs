@@ -1,15 +1,15 @@
 import { Script } from '@/system/script';
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func026 implements InterfaceFuncOrigin {
+export class Func026 implements IFuncOrigin {
 	id = 26;
 	name = '现世逢魔';
 	desc = '逢魔界面点击右下角的图标后点击右侧相关事件图标';
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[left, 19, 700, 0x3c3841],
@@ -90,7 +90,7 @@ export class Func026 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 1075, 550, 1150, 631, 1000]
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: '现世逢魔_界面判断',
 			operator: [{ desc: thisOperator[0].desc }]

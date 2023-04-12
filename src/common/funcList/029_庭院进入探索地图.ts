@@ -1,15 +1,15 @@
 import { Script } from '@/system/script';
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func029 implements InterfaceFuncOrigin {
+export class Func029 implements IFuncOrigin {
 	id = 29;
 	name = '庭院进入探索地图';
 	desc = '请使用默认庭院皮肤，启用该功能后在庭院下会自动进入探索地图界面';
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		// 庭院未打开菜单
 		desc: [1280, 720,
 			[[right, 1211, 606, 0x885f46],
@@ -51,7 +51,7 @@ export class Func029 implements InterfaceFuncOrigin {
 			]
 		]
 	}]
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: '庭院判断',
 			operator: [{

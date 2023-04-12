@@ -1,12 +1,12 @@
 import { Script } from '@/system/script';
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func306 implements InterfaceFuncOrigin {
+export class Func306 implements IFuncOrigin {
   id = 306;
   name = '组队内邀请好友';
   desc = '组队界面邀请好友'
@@ -36,7 +36,7 @@ export class Func306 implements InterfaceFuncOrigin {
       default: '通用准备退出',
     }],
   }];
-  operator: InterfaceFuncOperatorOrigin[] = [{//0,三号位
+  operator: IFuncOperatorOrigin[] = [{//0,三号位
     desc: [1280, 720,
       [[center, 642, 3, 0x101011],
       [left, 42, 38, 0xf7e8aa],
@@ -78,7 +78,7 @@ export class Func306 implements InterfaceFuncOrigin {
       [left, 19, 47, 0x281717]]
     ],
   }]
-  operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+  operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 
     let team_up_Frist = thisScript.global.team_up_Frist;
     let team_up_lagTime = thisScript.global.team_up_lagTime;

@@ -1,4 +1,4 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 
 const normal = -1; //定义常量
@@ -6,7 +6,7 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func995 implements InterfaceFuncOrigin {
+export class Func995 implements IFuncOrigin {
 	id = 995;
 	name = '寄养式神操作';
 	desc = '在好友结界中寄养式神';
@@ -43,7 +43,7 @@ export class Func995 implements InterfaceFuncOrigin {
 				value: '返回庭院',
 			}]
 	}];
-	operator: InterfaceFuncOperatorOrigin[] = [
+	operator: IFuncOperatorOrigin[] = [
 		{
 			// 检测_第一个坑位是否有可寄养的空位
 			desc: [1280, 720,
@@ -169,7 +169,7 @@ export class Func995 implements InterfaceFuncOrigin {
 			]
 		}
 	];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['995'];
 		const maxTimeForwait = parseInt(thisConf.maxTimeForwait as string, 10);
 		if (!thisScript.global.jy_list_getTime_fault_count) {

@@ -1,14 +1,14 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin } from '@/interface/IFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func501 implements InterfaceFuncOrigin {
+export class Func501 implements IFuncOrigin {
 	id = 501;
 	name = '打开BUFF界面';
 	desc = '支持从探索地图、庭院、组队打开buff界面';
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		// 探索地图打开buff界面
 		desc: [1280, 720,
 			[

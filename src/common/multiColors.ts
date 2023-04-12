@@ -1,11 +1,11 @@
-import { InterfaceMultiColorOrigin } from "@/interface/InterfaceMulticolor";
+import { IMultiColorOrigin } from "@/interface/IMultiColor";
 
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-const multiColor: InterfaceMultiColorOrigin = {
+const multiColor: IMultiColorOrigin = {
     '结界_进攻': {
         // 重新取色，使用时需要指定查找区域
         region: [center, 1280, 720, 304, 317, 1166, 713],

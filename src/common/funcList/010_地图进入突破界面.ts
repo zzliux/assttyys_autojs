@@ -1,11 +1,11 @@
 import { Script } from '@/system/script';
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func010 implements InterfaceFuncOrigin {
+export class Func010 implements IFuncOrigin {
 	id = 10;
 	name = '地图进入突破界面';
 	desc = '在地图界面时点击突破按钮进入突破界面，可配置进入个人突破或寮突破界面';
@@ -20,7 +20,7 @@ export class Func010 implements InterfaceFuncOrigin {
 			value: null,
 		}]
 	}];
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[left, 45, 60, 0xeff5fb],
@@ -49,7 +49,7 @@ export class Func010 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 1036,133, 1065,158, 500]
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisconf = thisScript.scheme.config['10']; // 获取配置
 		if ('个人突破' === thisconf.type) {
 			return thisScript.oper({

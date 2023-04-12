@@ -1,4 +1,4 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 
 const normal = -1; //定义常量
@@ -6,10 +6,10 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func514 implements InterfaceFuncOrigin {
+export class Func514 implements IFuncOrigin {
     id = 514;
     name = '狭间暗域';
-    operator: InterfaceFuncOperatorOrigin[] = [{
+    operator: IFuncOperatorOrigin[] = [{
         desc: //    检测_选择暗域页面未封印
             [
                 1280, 720,
@@ -115,7 +115,7 @@ export class Func514 implements InterfaceFuncOrigin {
             [center, 1280, 720, 498, 527, 885, 632, 1200]     //  点击_掩盖层
         ]
     }];
-    operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+    operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
         let thisConf = thisScript.scheme.config['514'];
 
         if (thisScript.oper({

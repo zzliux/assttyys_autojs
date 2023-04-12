@@ -1,14 +1,14 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func1002 implements InterfaceFuncOrigin {
+export class Func1002 implements IFuncOrigin {
 	id = 1002;
 	name = '宴会_吃爆竹经验';
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[center, 484, 36, 0x493428],
@@ -24,7 +24,7 @@ export class Func1002 implements InterfaceFuncOrigin {
 			[left, 1280, 720, 529, 688, 744, 706, 2000],
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 				name: '宴会_吃饭界面',
 				operator: [{

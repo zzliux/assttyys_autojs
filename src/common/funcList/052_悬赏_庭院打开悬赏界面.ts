@@ -1,10 +1,10 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func052 implements InterfaceFuncOrigin {
+export class Func052 implements IFuncOrigin {
 	id = 52;
 	name = '悬赏_庭院打开悬赏界面';
 	desc = '用于其他方案转悬赏方案中转，如金币妖怪转悬赏；或放在功能29前用于一次性执行，执行成功后不再执行，放在29前请关闭切换方案';
@@ -22,7 +22,7 @@ export class Func052 implements InterfaceFuncOrigin {
 			default: '悬赏',
 		}]
 	}];
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		// 庭院未打开菜单
 		desc: [1280, 720,
 			[[right, 1211, 606, 0x885f46],
@@ -97,7 +97,7 @@ export class Func052 implements InterfaceFuncOrigin {
 			[left, 1280, 720, 1120, 587, 1180, 645, 1000]
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.global.xsOpened) {
 			return false;
 		}

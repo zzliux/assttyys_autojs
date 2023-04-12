@@ -1,15 +1,15 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func201 implements InterfaceFuncOrigin {
+export class Func201 implements IFuncOrigin {
 	id = 201;
 	name = '六道萤草_装buff';
 	// desc: '腐草为萤-5级，妖力化身-2级，六道净化-1级，萤火之光-最好5级';
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		// 事件
 		desc: [1280, 720,
 			[
@@ -111,7 +111,7 @@ export class Func201 implements InterfaceFuncOrigin {
 			[left, 1280, 720, 13, 17, 61, 63, 1000], // 左上角退出
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 
 		// 事件
 		if (thisScript.global.d6LoadBuff && thisScript.oper({

@@ -1,13 +1,13 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin } from '@/interface/IFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func021 implements InterfaceFuncOrigin {
+export class Func021 implements IFuncOrigin {
 	id = 21;
 	name = '百鬼夜行_退出结算';
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [1280,720,
 			[[center,204,277,0xf0f0df],
 			[center,133,122,0xb5b5d6],

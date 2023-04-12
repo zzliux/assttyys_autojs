@@ -1,11 +1,11 @@
 import { Script } from "@/system/script";
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from "@/interface/InterfaceFunc";
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from "@/interface/IFunc";
 
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
-export class Func001 implements InterfaceFuncOrigin {
+export class Func001 implements IFuncOrigin {
 	id = 1;
 	name = '准备';
 	desc = '在准备界面执行准备或退出操作';
@@ -18,7 +18,7 @@ export class Func001 implements InterfaceFuncOrigin {
 			default: false,
 		}],
 	}];
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [1280,720,
 			[[right,1124,698,0xd0af86],
 			[right,1240,702,0xcead83],
@@ -50,7 +50,7 @@ export class Func001 implements InterfaceFuncOrigin {
 			[left, 1280, 720, 37,637, 86,686, 1000]
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]) : boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]) : boolean {
 		let thisconf = thisScript.scheme.config['1'];
 		if (thisconf.exitBeforeReady) {
 			return thisScript.oper({

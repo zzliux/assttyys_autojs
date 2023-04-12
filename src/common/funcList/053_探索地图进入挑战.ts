@@ -1,10 +1,10 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func053 implements InterfaceFuncOrigin {
+export class Func053 implements IFuncOrigin {
 	id = 53;
 	name = '探索地图进入挑战';
 	desc = '从探索地图进入御魂、御灵等个人挑战界面，注意，仅进入挑战界面，挑战层数请自行';
@@ -18,7 +18,7 @@ export class Func053 implements InterfaceFuncOrigin {
 			default: '御魂-八岐大蛇',
 		}]
 	}];
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		// 0 探索地图界面
 		desc: [1280, 720,
 			[
@@ -143,12 +143,12 @@ export class Func053 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 993, 149, 1169, 616, 500],
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		
 
 		const thisconf = thisScript.scheme.config['53'];
 		// '御魂-八岐大蛇', '御魂-业原火', '御魂-日轮之陨', '御魂-永生之海'
-		let operator: InterfaceFuncOperator[];
+		let operator: IFuncOperator[];
 		if ('御魂-八岐大蛇' === thisconf.challenge_type) {
 			operator = [{
 				desc: thisOperator[0].desc,

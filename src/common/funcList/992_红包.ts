@@ -1,15 +1,15 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func992 implements InterfaceFuncOrigin {
+export class Func992 implements IFuncOrigin {
     id = 992;
     name = '御祝都是我的';
     desc = '御祝，懂的都懂';
-    operator: InterfaceFuncOperatorOrigin[] = [
+    operator: IFuncOperatorOrigin[] = [
         {
             // 点击鸢尾
             desc: [
@@ -77,7 +77,7 @@ export class Func992 implements InterfaceFuncOrigin {
                 [center, 1280, 720, 894, 52, 926, 83, 1200]   //  点击关闭
             ]
         }];
-    operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+    operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 
         if (thisScript.oper({
             id: 992,

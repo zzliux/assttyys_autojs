@@ -1,15 +1,15 @@
 import { Script } from '@/system/script';
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func013 implements InterfaceFuncOrigin {
+export class Func013 implements IFuncOrigin {
 	id = 13;
 	name = '探索_地图进入最后一章';
 	desc = '在地图界面时，点击最后一章进行挑战';
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[left, 45, 60, 0xeff5fb],
@@ -43,7 +43,7 @@ export class Func013 implements InterfaceFuncOrigin {
 			[left, 1280, 720, 0, 0, 77, 45, 1000]
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: '探索_地图判断',
 			operator: [{ desc: thisOperator[0].desc, retest: 500 }]

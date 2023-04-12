@@ -1,14 +1,14 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func123 implements InterfaceFuncOrigin {
+export class Func123 implements IFuncOrigin {
     id = 123;
     name = '鬼城岐事_判定';
-    operator: InterfaceFuncOperatorOrigin[] = [{
+    operator: IFuncOperatorOrigin[] = [{
         desc: // 判定界面
             [
                 1280, 720,
@@ -39,7 +39,7 @@ export class Func123 implements InterfaceFuncOrigin {
             [right, 1280, 720, 593, 233, 674, 352, 1000]  // 判定点击区域大小
         ]
     }];
-    operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+    operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
         if (thisScript.oper({
             id: 123,
             name: '鬼城岐事_判定界面',

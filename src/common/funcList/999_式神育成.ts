@@ -1,15 +1,15 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func999 implements InterfaceFuncOrigin {
+export class Func999 implements IFuncOrigin {
 	id = 999;
 	name = '式神育成';
 	desc = '打开阴阳寮式神育成页面';
-	operator: InterfaceFuncOperatorOrigin[] = [
+	operator: IFuncOperatorOrigin[] = [
 		{ // 在首页打开菜单
 			desc: [1280, 720,
 				[[right, 1211, 606, 0x885f46],
@@ -113,7 +113,7 @@ export class Func999 implements InterfaceFuncOrigin {
 				[center, 1280, 720, 544, 612, 594, 661, 1200]	// 点击阴阳寮
 			]
 		}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: '进入式神寄养结界',
 			operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[4], thisOperator[5], thisOperator[6], thisOperator[7]]

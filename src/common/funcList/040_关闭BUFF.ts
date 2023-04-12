@@ -1,11 +1,11 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func040 implements InterfaceFuncOrigin {
+export class Func040 implements IFuncOrigin {
 	id = 40;
 	name = '关闭BUFF';
 	config = [{
@@ -22,7 +22,7 @@ export class Func040 implements InterfaceFuncOrigin {
 			default: '寮突破',
 		}]
 	}];
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[center, 352, 526, 0x9c977e],
@@ -39,7 +39,7 @@ export class Func040 implements InterfaceFuncOrigin {
 			[center, 1280, 720, 110, 120, 338, 549, 500],
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: 'BUFF界面',
 			operator: [{

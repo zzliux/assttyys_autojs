@@ -1,12 +1,12 @@
 import { Script } from "@/system/script";
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from "@/interface/InterfaceFunc";
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from "@/interface/IFunc";
 
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func005 implements InterfaceFuncOrigin {
+export class Func005 implements IFuncOrigin {
 	id = 5;
 	name = '组队挑战';
 	desc = '在组队界面时，点击挑战按钮，可配置三人开始或有人就开';
@@ -21,7 +21,7 @@ export class Func005 implements InterfaceFuncOrigin {
 			value: null,
 		}]
 	}];
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
 				[left, 43, 37, 0xf5e6a8],
@@ -71,7 +71,7 @@ export class Func005 implements InterfaceFuncOrigin {
 		]
 	}];
 	// 0-有人就开，1-第一个+号上的点，2-第二个+号上的点，如果1或者2任意一个匹配上了，说明人没满
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: '组队挑战_永生之海_判断',
 			operator: [thisOperator[4]]

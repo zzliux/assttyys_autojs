@@ -1,15 +1,15 @@
 import { Script } from '@/system/script';
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func017 implements InterfaceFuncOrigin {
+export class Func017 implements IFuncOrigin {
 	id = 17;
 	name = '百鬼夜行_邀请好友';
 	desc = '在百鬼夜行挑战界面，随机邀请好友';
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		desc: [1280,720,
 			[[center,170,600,0xfff2ce],
 			[center,1128,594,0x402f1f],
@@ -36,7 +36,7 @@ export class Func017 implements InterfaceFuncOrigin {
 			[center,1280,720, 731,229, 890,563, 500],
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		return thisScript.oper({
 			id: 17,
 			name: '百鬼夜行_邀请好友',

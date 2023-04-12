@@ -1,4 +1,4 @@
-export interface InterfaceMultiColor {
+export interface IMultiColor {
 	[key: string]: {
 		region: [number, number, number, number, number, number, number];
 		similar?: number;
@@ -8,7 +8,7 @@ export interface InterfaceMultiColor {
 	}
 }
 
-export interface InterfaceMultiColorOrigin {
+export interface IMultiColorOrigin {
 	[key: string]: {
 		region: [number, number, number, number, number, number, number];
 		similar?: number;

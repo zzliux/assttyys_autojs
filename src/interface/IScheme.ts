@@ -1,6 +1,6 @@
-import { InterfaceFunc } from "./InterfaceFunc";
+import { IFunc } from "./IFunc";
 
-export interface InterfaceScheme {
+export interface IScheme {
 	id: number;
 	schemeName: string;
 	groupName?: string;
@@ -19,5 +19,5 @@ export interface InterfaceScheme {
 	commonConfig?: {
 		[key: string]: string | boolean | number
 	};
-	funcList?: InterfaceFunc[];
+	funcList?: IFunc[];
 }

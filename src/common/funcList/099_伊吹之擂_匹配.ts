@@ -1,15 +1,15 @@
-import { InterfaceFuncOrigin, InterfaceFuncOperatorOrigin, InterfaceFuncOperator } from '@/interface/InterfaceFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func099 implements InterfaceFuncOrigin {
+export class Func099 implements IFuncOrigin {
 	id = 99;
 	name = '伊吹之擂_匹配';
 	desc = '连续执行5次后未开始，脚本将自动停止';
-	operator: InterfaceFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{
 		// 一键装备
 		desc: [1280,720,
 			[[left,44,44,0xf5e5a3],
@@ -37,7 +37,7 @@ export class Func099 implements InterfaceFuncOrigin {
 			[right, 1280, 720, 1154,595, 1210,660, 1000]
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: InterfaceFuncOperator[]): boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let curCnt = 0;
 		let maxCount = 5;
 		while (thisScript.oper({
