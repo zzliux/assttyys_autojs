@@ -19,13 +19,15 @@ const router = new Router();
     }
     fileList.forEach(path => {
         router.all(path, async (ctx) => {
-            console.log(`load: ${path}`);
+            const now = new Date();
+            console.log(`[${now.toLocaleDateString()} ${now.toLocaleTimeString()}] load: ${path}`);
             ctx.body = await fsPromise.readFile(__dirname + '/..' + path);
         });
     });
 
     router.all('/', async (ctx) => {
-        console.log(`load: /`);
+        const now = new Date();
+        console.log(`[${now.toLocaleDateString()} ${now.toLocaleTimeString()}] load: /`);
         ctx.body = JSON.stringify(fileList);
     });
 
