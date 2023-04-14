@@ -141,117 +141,108 @@
     </van-popup>
   </div>
 </template>
-<script>
+<script setup>
+import { ref } from 'vue';
 import { showConfirmDialog } from 'vant';
 import appListDialog from '../components/AppListRefDialog.vue';
 
-export default {
-  data() {
-    return {
-      settings: [],
-      toSetDefaultLaunchAppList: [],
-      setDefaultLaunchAppDialogShown: false,
-      setDefaultLaunchAppLoading: false,
-      timeout: null,
-      shapedScreenList: [],
-      popupCurItem: null,
-      popupListShown: false,
-      popupListData: [],
-      popupListValue: ''
-    };
-  },
-  components: {
-    appListDialog,
-  },
-  props: {
-    statusBarHeight: Number,
-  },
-  async mounted() {
-    let settings = (await AutoWeb.autoPromise('getSettings'));
-    settings.forEach(item => {
-      item.loading = false;
-    });
-    this.settings = settings;
-  },
-  computed: {},
-  methods: {
-    async toggleSwitchEvent(e, item) {
-      item.loading = true;
-      let result = await AutoWeb.autoPromise('saveSetting', item);
-      item.loading = false;
-      if (!result) {
-        item.enabled = !item.enabled;
-      }
-    },
-    startActivityForLog() {
-      AutoWeb.autoPromise('startActivityForLog');
-    },
-    resetScheme() {
-      showConfirmDialog({
-        title: '提示',
-        message: '是否完全清空方案及相关配置？',
-      }).then(async () => {
-        await AutoWeb.autoPromise('clearStorage');
-        await AutoWeb.autoPromise('toast', '请手动重启脚本。');
-        await AutoWeb.autoPromise('exit');
-      }).catch(() => {
-        // on cancel
-        // or on error
-      });
-    },
-    async setDefaultLaunchApp() {
-      if (this.setDefaultLaunchAppLoading) return;
-      this.setDefaultLaunchAppLoading = true;
-      this.toSetDefaultLaunchAppList = await AutoWeb.autoPromise('getToSetDefaultLaunchAppList');
-      this.setDefaultLaunchAppDialogShown = true;
-      this.setDefaultLaunchAppLoading = false;
-    },
-    async shapedScreenOptim(e) {
-      if (e.target && e.target.className === 'item-title' || e.target.className === 'item item-expand' || e.target.className === 'item') {
-        if (e.target && e.target.className === 'item') {// 展开
-          let arr = await AutoWeb.autoPromise('getShapedScreenConfig', null);
-          arr.forEach(i => i.loading = false);
-          this.shapedScreenList = arr;
-          e.target.className = 'item item-expand';
-        } else if (e.target && e.target.className === 'item item-expand') {
-          e.target.className = 'item'
-        }
-      }
-    },
-    async setShapedScreenConfigEnabled(e, item) {
-      item.loading = true;
-      await AutoWeb.autoPromise('setShapedScreenConfigEnabled', item);
-      item.loading = false;
-    },
-    async saveSettings(item) {
-      await AutoWeb.autoPromise('saveSetting', item);
-    },
-    async showItemConfigList(event, item) {
-      this.popupCurItem = item;
-      this.popupListData = item.data.map(item => ({text: item, value: item}));
-      this.popupListValue = item.value;
-      this.popupListShown = true;
-    },
-    async popupListConfirm(text, _index) {
-      this.popupCurItem.value = text;
-      this.popupListShown = false;
-      await AutoWeb.autoPromise('saveSetting', this.popupCurItem);
-    },
-    debounce (func, wait) {
-      if (this.timeout) clearTimeout(this.timeout)
-      this.timeout = setTimeout(() => {
-        func();
-      }, wait)
-    },
-    inputChange(item) {
-      this.debounce(this.saveSettings.bind(this, item), 1000);
-    },
-    enterEvent(item) {
-      if (this.timeout) clearTimeout(this.timeout);
-      this.saveSettings(item);
+const props = defineProps({
+  statusBarHeight: Number,
+});
+
+const settings = ref([]);
+const toSetDefaultLaunchAppList = ref([]);
+const setDefaultLaunchAppDialogShown = ref(false);
+const setDefaultLaunchAppLoading = ref(false);
+const timeout = ref(null);
+const shapedScreenList = ref([]);
+const popupCurItem = ref(null);
+const popupListShown = ref(false);
+const popupListData = ref([]);
+const popupListValue = ref('');
+
+(async function (){
+  let settings = (await AutoWeb.autoPromise('getSettings'));
+  settings.forEach(item => {
+    item.loading = false;
+  });
+  settings.value = settings;
+})();
+async function toggleSwitchEvent(e, item) {
+  item.loading = true;
+  let result = await AutoWeb.autoPromise('saveSetting', item);
+  item.loading = false;
+  if (!result) {
+    item.enabled = !item.enabled;
+  }
+}
+function startActivityForLog() {
+  AutoWeb.autoPromise('startActivityForLog');
+}
+function resetScheme() {
+  showConfirmDialog({
+    title: '提示',
+    message: '是否完全清空方案及相关配置？',
+  }).then(async () => {
+    await AutoWeb.autoPromise('clearStorage');
+    await AutoWeb.autoPromise('toast', '请手动重启脚本。');
+    await AutoWeb.autoPromise('exit');
+  }).catch(() => {
+    // on cancel
+    // or on error
+  });
+}
+async function setDefaultLaunchApp() {
+  if (setDefaultLaunchAppLoading.value) return;
+  setDefaultLaunchAppLoading.value = true;
+  toSetDefaultLaunchAppList.value = await AutoWeb.autoPromise('getToSetDefaultLaunchAppList');
+  setDefaultLaunchAppDialogShown.value = true;
+  setDefaultLaunchAppLoading.value = false;
+}
+async function shapedScreenOptim(e) {
+  if (e.target && e.target.className === 'item-title' || e.target.className === 'item item-expand' || e.target.className === 'item') {
+    if (e.target && e.target.className === 'item') {// 展开
+      let arr = await AutoWeb.autoPromise('getShapedScreenConfig', null);
+      arr.forEach(i => i.loading = false);
+      shapedScreenList.value = arr;
+      e.target.className = 'item item-expand';
+    } else if (e.target && e.target.className === 'item item-expand') {
+      e.target.className = 'item'
     }
-  },
-};
+  }
+}
+async function setShapedScreenConfigEnabled(e, item) {
+  item.loading = true;
+  await AutoWeb.autoPromise('setShapedScreenConfigEnabled', item);
+  item.loading = false;
+}
+async function saveSettings(item) {
+  await AutoWeb.autoPromise('saveSetting', item);
+}
+async function showItemConfigList(event, item) {
+  popupCurItem.value = item;
+  popupListData.value = item.data.map(item => ({text: item, value: item}));
+  popupListValue.value = item.value;
+  popupListShown.value = true;
+}
+async function popupListConfirm(text, _index) {
+  popupCurItem.value.value = text;
+  popupListShown.value = false;
+  await AutoWeb.autoPromise('saveSetting', popupCurItem.value);
+}
+function debounce (func, wait) {
+  if (timeout.value) clearTimeout(timeout.value)
+  timeout.value = setTimeout(() => {
+    func();
+  }, wait)
+}
+function inputChange(item) {
+  debounce(saveSettings, 1000);
+}
+function enterEvent(item) {
+  if (timeout.value) clearTimeout(timeout.value);
+  saveSettings(item);
+}
 </script>
 
 <style scoped>

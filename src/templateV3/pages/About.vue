@@ -77,38 +77,32 @@
     </van-popup>
   </div>
 </template>
-<script>
-export default {
+<script setup>
+import { ref } from 'vue';
 
-  data() {
-    return {
-      version: '',
-      versionInfoShow: false,
-      versionInfoList: []
-    };
-  },
-  props: {
-    statusBarHeight: Number,
-  },
-  async mounted() {
-    // 版本查询
-    let versionInfo = await AutoWeb.autoPromise("versionInfo");
-    this.version = versionInfo.storeVersion;
-    this.versionInfoList = versionInfo.versionList;
-  },
-  computed: {},
-  methods: {
-    openOpenSource() {
-      AutoWeb.autoPromise('openOpenSource', null);
-    },
-    mailTo() {
-      AutoWeb.autoPromise('mailTo', null);
-    },
-    clipGroup() {
-      AutoWeb.autoPromise('copyToClip', 864842180);
-    }
-  },
-};
+const version = ref('');
+const versionInfoShow = ref(false);
+const versionInfoList = ref([]);
+const props = defineProps({
+  statusBarHeight: Number
+});
+(async function () {
+  // 版本查询
+  let versionInfo = await AutoWeb.autoPromise("versionInfo");
+  version.value = versionInfo.storeVersion;
+  versionInfoList.value = versionInfo.versionList;
+})();
+
+function openOpenSource() {
+  AutoWeb.autoPromise('openOpenSource', null);
+}
+function mailTo() {
+  AutoWeb.autoPromise('mailTo', null);
+}
+function clipGroup() {
+  AutoWeb.autoPromise('copyToClip', 864842180);
+}
+
 </script>
 
 <style scoped>
