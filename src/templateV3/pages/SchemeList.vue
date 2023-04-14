@@ -30,12 +30,13 @@
           handle=".handle-area"
           v-bind="dragOptions"
           @end="saveSchemeList"
+          style="padding: 0px 5px"
+          class="item-list-container"
         >
           <template #item="{ element, index }">
-            <div
-              style="margin:5px 10px 5px 10px; border-radius:5px; overflow: hidden; box-shadow: 1px 1px 1px #eaeaea"
-            >
+            <div class="item-container">
               <van-swipe-cell
+                class="item-line"
                 center
                 @open="itemOpen"
                 @close="itemClose"
@@ -453,6 +454,27 @@ export default {
 </script>
 
 <style scoped>
+@media (orientation: landscape) {
+  .item-container {
+    flex-basis: 50%;
+  }
+}
+@media (orientation: portrait) {
+  .item-container {
+    flex-basis: 100%;
+  }
+}
+
+.item-list-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.item-line {
+  margin:5px 5px 0px 5px;
+  border-radius:5px;
+  overflow: hidden;
+  box-shadow: 1px 1px 1px #eaeaea;
+}
 .star-area,
 .handle-area {
   margin-top: 8px;
