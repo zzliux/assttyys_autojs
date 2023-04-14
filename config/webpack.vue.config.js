@@ -93,10 +93,9 @@ module.exports = (env, argv) => {
             }
         },
         devtool: false, // argv.mode === 'development' ? 'source-map' : false,
-        devServer: {  //配置webpack-dev-server
+        devServer: {
             port: 3001,
-            static: false,
-            hotOnly: true,
+            host: '0.0.0.0',
         },
         plugins: [
             new HtmlWebpackPlugin({
