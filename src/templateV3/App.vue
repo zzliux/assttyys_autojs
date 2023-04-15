@@ -103,17 +103,17 @@ export default {
 <style>
 html {
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
 }
 body {
   background-color: #f4f5f7;
-  overflow: hidden;
+  /* overflow: hidden; */
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
 }
 body > #app {
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
 }
 .slide-left-enter-active,
 .slide-left-leave-active,
@@ -165,10 +165,10 @@ body > #app {
   padding: 46px 0px 0px 0px;
 }
 .rv_box {
-  width: 100%;
+  /* width: 100%;
   height: 100%;
   overflow-y: auto;
-  position: relative;
+  position: relative; */
 }
 .navbar_box {
   z-index: 1;

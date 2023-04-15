@@ -44,6 +44,18 @@ Date.prototype.format = function (fmt) {
 
 var router = createRouter({
 	history: createWebHashHistory(),
+	scrollBehavior: (to, from, savedPosition) => {
+		window.savedPosition = savedPosition || { left: 0, top: 0 };
+		return new Promise((resolve, reject) => {
+			setTimeout(() => {
+				if (savedPosition) {
+					resolve({ ...savedPosition, behavior: 'smooth' });
+				} else {
+					resolve({ left: 0, top: 0,  behavior: 'smooth'  });
+				}
+			}, 600);
+		});
+	},
 	routes: [{
 		path: "/",
 		name: 'index',

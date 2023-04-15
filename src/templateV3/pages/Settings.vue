@@ -162,11 +162,11 @@ const popupListData = ref([]);
 const popupListValue = ref('');
 
 (async function (){
-  let settings = (await AutoWeb.autoPromise('getSettings'));
-  settings.forEach(item => {
+  let rsettings = (await AutoWeb.autoPromise('getSettings'));
+  rsettings.forEach(item => {
     item.loading = false;
   });
-  settings.value = settings;
+  settings.value = rsettings;
 })();
 async function toggleSwitchEvent(e, item) {
   item.loading = true;
