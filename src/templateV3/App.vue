@@ -24,69 +24,67 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { showDialog } from 'vant';
+import { ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
 
-export default {
-  data() {
-    return {
-      updateInfoList: [],
-      updateInfoShow: false,
-      transitionName: "slide-right",
-      statusBarHeight: 20,
-    };
-  },
-  watch: {
-    //使用watch 监听$router的变化
-    $route(to, from) {
-      //如果to索引大于from索引,判断为前进状态,反之则为后退状态
-      if (to.meta.index > from.meta.index) {
-        //设置动画名称
-        this.transitionName = "slide-left";
-      } else {
-        this.transitionName = "slide-right";
-      }
-    },
-  },
-  computed: {},
-  async mounted() {
-    this.statusBarHeight = await AutoWeb.autoPromise("getStatusBarHeight");
+const updateInfoList = ref([]);
+const updateInfoShow = ref(false);
+const transitionName = ref("slide-right");
+const statusBarHeight = ref(20);
+const $route = useRoute();
+console.log($route);
 
-    await AutoWeb.autoPromise("webloaded");
 
-    // 版本查询
-    let versionInfo = await AutoWeb.autoPromise("versionInfo");
-    let updateContent = [];
-    let versionIndex = -1;
-    for (let j = 0; j < versionInfo.versionList.length; j++) {
-      if (versionInfo.versionList[j].version === versionInfo.storeVersion) {
-        versionIndex = j;
-        break;
-      }
+watch(() => $route.meta, (toMeta, fromMeta) => {
+  //如果to索引大于from索引,判断为前进状态,反之则为后退状态
+  if (toMeta.index > fromMeta.index) {
+    //设置动画名称
+    transitionName.value = "slide-left";
+  } else {
+    transitionName.value = "slide-right";
+  }
+});
+
+(async function () {
+  statusBarHeight.value = await AutoWeb.autoPromise("getStatusBarHeight");
+
+  await AutoWeb.autoPromise("webloaded");
+
+  // 版本查询
+  let versionInfo = await AutoWeb.autoPromise("versionInfo");
+  let updateContent = [];
+  let versionIndex = -1;
+  for (let j = 0; j < versionInfo.versionList.length; j++) {
+    if (versionInfo.versionList[j].version === versionInfo.storeVersion) {
+      versionIndex = j;
+      break;
     }
-    while (++versionIndex < versionInfo.versionList.length) {
-      updateContent.push(versionInfo.versionList[versionIndex]);
-    }
-    this.updateInfoList = updateContent.reverse();
-    this.updateInfoShow = !!this.updateInfoList.length;
+  }
+  while (++versionIndex < versionInfo.versionList.length) {
+    updateContent.push(versionInfo.versionList[versionIndex]);
+  }
+  updateInfoList.value = updateContent.reverse();
+  updateInfoShow.value = !!updateInfoList.value.length;
 
-    // 强制检查的信息
-    let appInfo = await AutoWeb.autoPromise("getAppInfo");
-    if (appInfo.needForceUpdate) {
-      showDialog({
-        title: "提示",
-        message: appInfo.msg,
-      }).then(() => {
-        AutoWeb.autoPromise("exit");
-      });
-    } else if (appInfo.msg) {
-      showDialog({
-        title: "提示",
-        message: appInfo.msg,
-      }).then(() => {});
-    }
-  },
-};
+  // 强制检查的信息
+  let appInfo = await AutoWeb.autoPromise("getAppInfo");
+  if (appInfo.needForceUpdate) {
+    showDialog({
+      title: "提示",
+      message: appInfo.msg,
+    }).then(() => {
+      AutoWeb.autoPromise("exit");
+    });
+  } else if (appInfo.msg) {
+    showDialog({
+      title: "提示",
+      message: appInfo.msg,
+    }).then(() => {});
+  }
+})();
+
 </script>
 <style scoped>
 .popup_version_title {
@@ -163,12 +161,6 @@ body > #app {
 }
 .rv_inner {
   padding: 46px 0px 0px 0px;
-}
-.rv_box {
-  /* width: 100%;
-  height: 100%;
-  overflow-y: auto;
-  position: relative; */
 }
 .navbar_box {
   z-index: 1;
