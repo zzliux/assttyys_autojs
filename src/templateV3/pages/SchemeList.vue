@@ -159,7 +159,9 @@
     </van-popup>
   </div>
 </template>
-<script>
+<script setup>
+import { ref, computed } from 'vue';
+import { useRouter } from 'vue-router';
 import ExportSchemeDialog from "../components/ExportSchemeDialog.vue";
 import ImportSchemeDialog from "../components/ImportSchemeDialog.vue";
 import draggable from "vuedraggable";
@@ -169,288 +171,284 @@ import groupColor from "../../common/groupColors";
 import { merge } from '@/common/tool';
 import { showNotify, showConfirmDialog } from 'vant';
 
-export default {
-  name: 'schemeList',
-  data() {
-    return {
-      itemOpenList: [],
-      swipeCellCurrentAction: null,
-      swipeCellCurrentIndex: null,
-      schemeNameInputShow: false,
-      schemeNameInputType: null,
-      newSchemeName: null,
-      newScheme: null,
-      newGroupName: null,
-      schemeList: [],
-      selectNewGroupNameShow: false,
-      groupNameList: [],
-      groupNameIndex: 0,
-      exportAndImportModel: false,
-      exportModel: false,
-      importModel: false,
+const $router = useRouter();
 
-      filterGroupNames: [{ text: '全部', value: '全部' }],
-      filterGroupName: '全部'
+const itemOpenList = ref([]);
+const swipeCellCurrentAction = ref(null);
+const swipeCellCurrentIndex = ref(null);
+const schemeNameInputShow = ref(false);
+const schemeNameInputType = ref(null);
+const newSchemeName = ref(null);
+const newScheme = ref(null);
+const newGroupName = ref(null);
+const schemeList = ref([]);
+const selectNewGroupNameShow = ref(false);
+const groupNameList = ref([]);
+const groupNameIndex = ref(0);
+const exportAndImportModel = ref(false);
+const exportModel = ref(false);
+const importModel = ref(false);
+
+const filterGroupNames = ref([{ text: '全部', value: '全部' }]);
+const filterGroupName = ref('全部');
+
+const props = defineProps({
+  statusBarHeight: Number
+});
+
+(async function () {
+  const savedSchemeList = await AutoWeb.autoPromise("getSchemeList", null)
+  schemeList.value = mergeSchemeList(savedSchemeList, dSchemeList);
+  // 获取后保存一下方案列表，避免出现展示内容与保存内容不一样的情况
+  AutoWeb.autoPromise('saveSchemeList', schemeList.value);
+})();
+
+const dragOptions = computed({
+  get() {
+    return {
+      animation: 200,
+      group: "description",
+      disabled: false,
+      ghostClass: "ghost",
     };
   },
-  props: {
-    statusBarHeight: Number
-  },
-  components: {
-    draggable,
-    ExportSchemeDialog,
-    ImportSchemeDialog,
-  },
-  async mounted() {
-    var self = this;
-    const savedSchemeList = await AutoWeb.autoPromise("getSchemeList", null)
-    self.schemeList = mergeSchemeList(savedSchemeList, dSchemeList);
-    // 获取后保存一下方案列表，避免出现展示内容与保存内容不一样的情况
-    AutoWeb.autoPromise('saveSchemeList', self.schemeList);
-  },
-  computed: {
-    dragOptions() {
-      return {
-        animation: 200,
-        group: "description",
-        disabled: false,
-        ghostClass: "ghost",
-      };
+  set(val) {}
+});
+
+function saveSchemeList() {
+  AutoWeb.autoPromise('saveSchemeList', schemeList.value);
+}
+
+function schemeClickEvent(e, item) {
+  if (itemOpenList.value.length > 0) return;
+  if (e.target.className.match(/handle|star/)) {
+    return;
+  }
+  $router.push({
+    path: "/funcList",
+    query: {
+      schemeName: item.schemeName,
     },
-  },
-  methods: {
-    saveSchemeList() {
-      AutoWeb.autoPromise('saveSchemeList', this.schemeList);
-    },
-    schemeClickEvent(e, item) {
-      // console.log(this.itemOpenList);
-      if (this.itemOpenList.length > 0) return;
-      if (e.target.className.match(/handle|star/)) {
-        return;
-      }
-      this.$router.push({
-        path: "/funcList",
-        query: {
-          schemeName: item.schemeName,
-        },
-      });
-    },
-    schemeLongClickEvent(e, i) {},
-    async schemeStarEvent(e, item) {
-      const newScheme = await AutoWeb.autoPromise('starScheme', {
-        star: !item.star,
-        schemeName: item.schemeName,
-      });
-      item.star = newScheme.star;
-      // item.star = !item.star;
-      // this.saveSchemeList();
-      // if (item.star) {
-      //   AutoWeb.autoPromise('toast', "收藏成功");
-      // } else {
-      //   AutoWeb.autoPromise('toast', "已取消收藏");
-      // }
-    },
-    addSchemeClickEvent(e) {
-      this.schemeNameInputType = 'add';
-      this.newSchemeName = null;
-      this.newScheme = null;
-      this.schemeNameInputShow = true;
-    },
-    addScheme(scheme, callback) {
-      var maxId = 0;
-      this.schemeList.forEach(item => {
-        if (maxId < item.id) {
-          maxId = item.id;
-        }
-      });
-      scheme.id = maxId + 1;
-      scheme.star = false;
-      scheme.inner = false; // 新增的都是用户方案
-      this.schemeList.push(scheme);
-      this.saveSchemeList();
-    },
-    itemOpen() {
-      // setTimeout(() => { this.itemOpenList.push(0) }, 200)
-      this.itemOpenList.push(0);
-    },
-    itemClose() {
-      setTimeout(() => { this.itemOpenList.pop() }, 200)
-      // this.itemOpenList.pop();
-    },
-    itemBeforeClose(option) {
-      switch (option.position) {
-        case 'left':
-        case 'cell':
-        case 'outside':
-          if (!this.swipeCellCurrentAction) {
-            return true;
-          }
-          break;
-        case 'right':
-          if ('delete' === this.swipeCellCurrentAction) {
-            showConfirmDialog({
-              message: '确定删除吗？',
-            }).then(() => {
-              // option.instance.close();
-              this.schemeList.splice(this.swipeCellCurrentIndex, 1);
-              this.saveSchemeList();
-              AutoWeb.autoPromise('toast', "已删除");
-              this.swipeCellCurrentAction = null;
-            }).catch(()=>{
-              this.swipeCellCurrentAction = null;
-            });
-          } else if ('copy' === this.swipeCellCurrentAction) {
-            this.schemeNameInputType = 'copy';
-            this.schemeNameInputShow = true;
-            this.newScheme = merge({}, this.schemeList[this.swipeCellCurrentIndex]);
-            this.newSchemeName = this.newScheme.schemeName;
-            this.newGroupName = this.newScheme.groupName;
-          } else if ('modify' === this.swipeCellCurrentAction) {
-            this.schemeNameInputType = 'modify';
-            this.newSchemeName = this.schemeList[this.swipeCellCurrentIndex].schemeName;
-            this.schemeNameInputShow = true;
-            this.newGroupName = this.schemeList[this.swipeCellCurrentIndex].groupName;
-          }
-          break;
-      }
-    },
-    schemeNameInputBeforeClose(action, done) {
-      if ('cancel' === action) {
-        this.newScheme = null;
-        this.newSchemeName = null;
-        this.newGroupName = null;
-        this.swipeCellCurrentAction = null;
+  });
+}
+
+function schemeLongClickEvent(e, i) {}
+
+async function schemeStarEvent(e, item) {
+  const newScheme = await AutoWeb.autoPromise('starScheme', {
+    star: !item.star,
+    schemeName: item.schemeName,
+  });
+  item.star = newScheme.star;
+}
+
+function addSchemeClickEvent(e) {
+  schemeNameInputType.value = 'add';
+  newSchemeName.value = null;
+  newScheme.value = null;
+  schemeNameInputShow.value = true;
+}
+
+function addScheme(scheme, callback) {
+  var maxId = 0;
+  schemeList.value.forEach(item => {
+    if (maxId < item.id) {
+      maxId = item.id;
+    }
+  });
+  scheme.id = maxId + 1;
+  scheme.star = false;
+  scheme.inner = false; // 新增的都是用户方案
+  schemeList.value.push(scheme);
+  saveSchemeList();
+}
+
+function itemOpen() {
+  itemOpenList.value.push(0);
+}
+
+function itemClose() {
+  setTimeout(() => { itemOpenList.value.pop() }, 200)
+}
+
+function itemBeforeClose(option) {
+  switch (option.position) {
+    case 'left':
+    case 'cell':
+    case 'outside':
+      if (!swipeCellCurrentAction.value) {
         return true;
-      } else {
-        if (!this.newSchemeName) {
-          showNotify({ type: 'warning', message: '请输入方案名。' });
+      }
+      break;
+    case 'right':
+      if ('delete' === swipeCellCurrentAction.value) {
+        showConfirmDialog({
+          message: '确定删除吗？',
+        }).then(() => {
+          // option.instance.close();
+          schemeList.value.splice(swipeCellCurrentIndex.value, 1);
+          saveSchemeList();
+          AutoWeb.autoPromise('toast', "已删除");
+          swipeCellCurrentAction.value = null;
+        }).catch(()=>{
+          swipeCellCurrentAction.value = null;
+        });
+      } else if ('copy' === swipeCellCurrentAction.value) {
+        schemeNameInputType.value = 'copy';
+        schemeNameInputShow.value = true;
+        newScheme.value = merge({}, schemeList.value[swipeCellCurrentIndex.value]);
+        newSchemeName.value = newScheme.value.schemeName;
+        newGroupName.value = newScheme.value.groupName;
+      } else if ('modify' === swipeCellCurrentAction.value) {
+        schemeNameInputType.value = 'modify';
+        newSchemeName.value = schemeList.value[swipeCellCurrentIndex.value].schemeName;
+        schemeNameInputShow.value = true;
+        newGroupName.value = schemeList.value[swipeCellCurrentIndex.value].groupName;
+      }
+      break;
+  }
+}
+
+function schemeNameInputBeforeClose(action, done) {
+  if ('cancel' === action) {
+    newScheme.value = null;
+    newSchemeName.value = null;
+    newGroupName.value = null;
+    swipeCellCurrentAction.value = null;
+    return true;
+  } else {
+    if (!newSchemeName.value) {
+      showNotify({ type: 'warning', message: '请输入方案名。' });
+      return false;
+    }
+    
+    if ('copy' === schemeNameInputType.value) {
+      for (let i = 0; i < schemeList.value.length; i++) {
+        if (schemeList.value[i].schemeName == newSchemeName.value) {
+          showNotify({ type: 'warning', message: '存在重复的方案名，请重新输入。' });
           return false;
         }
-        
-        if ('copy' === this.schemeNameInputType) {
-          for (let i = 0; i < this.schemeList.length; i++) {
-            if (this.schemeList[i].schemeName == this.newSchemeName) {
-              showNotify({ type: 'warning', message: '存在重复的方案名，请重新输入。' });
-              return false;
-            }
-          }
-          this.newScheme.schemeName = this.newSchemeName;
-          this.newScheme.groupName = this.newGroupName;
-          this.addScheme(this.newScheme);
-          AutoWeb.autoPromise('toast', "已复制");
-          this.swipeCellCurrentAction = null;
-          this.newScheme = null;
-          this.newSchemeName = null;
-          this.newGroupName = null;
-          return true;
-        } else if ('add' == this.schemeNameInputType) {
-          for (let i = 0; i < this.schemeList.length; i++) {
-            if (this.schemeList[i].schemeName == this.newSchemeName) {
-              showNotify({ type: 'warning', message: '存在重复的方案名，请重新输入。' });
-              return false;
-            }
-          }
-          this.addScheme({
-            id: null,
-            schemeName: this.newSchemeName,
-            groupName: this.newGroupName,
-            star: false,
-            list: [],
-            config: {},
-            commonConfig: {}
-          });
-          this.swipeCellCurrentAction = null;
-          this.newScheme = null;
-          this.newSchemeName = null;
-          this.newGroupName = null;
-          return true;
-        } else if ('modify' === this.schemeNameInputType) {
-          this.schemeList[this.swipeCellCurrentIndex].schemeName = this.newSchemeName;
-          this.schemeList[this.swipeCellCurrentIndex].groupName = this.newGroupName;
-          this.saveSchemeList();
-          AutoWeb.autoPromise('toast', '修改成功');
-          this.swipeCellCurrentAction = null;
-          this.newScheme = null;
-          this.newSchemeName = null;
-          this.newGroupName = null;
-          return true;
+      }
+      newScheme.value.schemeName = newSchemeName.value;
+      newScheme.value.groupName = newGroupName.value;
+      addScheme(newScheme.value);
+      AutoWeb.autoPromise('toast', "已复制");
+      swipeCellCurrentAction.value = null;
+      newScheme.value = null;
+      newSchemeName.value = null;
+      newGroupName.value = null;
+      return true;
+    } else if ('add' == schemeNameInputType.value) {
+      for (let i = 0; i < schemeList.value.length; i++) {
+        if (schemeList.value[i].schemeName == newSchemeName.value) {
+          showNotify({ type: 'warning', message: '存在重复的方案名，请重新输入。' });
+          return false;
         }
       }
-    },
-    newGroupNameSelect() {
-      let gSet = {};
-      this.schemeList.forEach(s => {
-        if (s.groupName) gSet[s.groupName] = 1;
+      addScheme({
+        id: null,
+        schemeName: newSchemeName.value,
+        groupName: newGroupName.value,
+        star: false,
+        list: [],
+        config: {},
+        commonConfig: {}
       });
-      this.groupNameList = Object.keys(gSet).map(item => ({text: item, value: item}));
-      this.selectNewGroupNameShow = true;
-      if (this.newGroupName) {
-        for (let i = 0; i < this.groupNameList.length; i++) {
-          if (this.groupNameList[i] === this.newGroupName) {
-            this.groupNameIndex = i;
-            break;
-          }
-        }
-      }
-    },
-    selectNewGroupNameConfirm({ selectedOptions }, _index) {
-      this.newGroupName = selectedOptions[0].text;
-      this.selectNewGroupNameShow = false;
-    },
-    getGroupColor(groupName) {
-      // 计算hash值
-      let sum = 0;
-      for (let i = 0; i < groupName.length; i++) {
-        sum += groupName.charCodeAt(i);
-      }
-      return groupColor[sum % groupColor.length];
-    },
-    async schemeImportCallback() {
-      this.schemeList = await AutoWeb.autoPromise("getSchemeList");
-    },
-    async filterGroupNameOpen() {
-      this.filterGroupNames = ['全部', ...await AutoWeb.autoPromise('getGroupNames')].map(item => ({ text: item, value: item }));
-    },
-    async filterGroupNameChange() {
-      const left = await AutoWeb.autoPromise("getSchemeList");
-      if (this.filterGroupName === '全部') {
-        this.schemeList = left;
-        return;
-      }
+      swipeCellCurrentAction.value = null;
+      newScheme.value = null;
+      newSchemeName.value = null;
+      newGroupName.value = null;
+      return true;
+    } else if ('modify' === schemeNameInputType.value) {
+      schemeList.value[swipeCellCurrentIndex.value].schemeName = newSchemeName.value;
+      schemeList.value[swipeCellCurrentIndex.value].groupName = newGroupName.value;
+      saveSchemeList();
+      AutoWeb.autoPromise('toast', '修改成功');
+      swipeCellCurrentAction.value = null;
+      newScheme.value = null;
+      newSchemeName.value = null;
+      newGroupName.value = null;
+      return true;
+    }
+  }
+}
 
-      // 1. 根据groupName过滤
-      const filterd = [];
-      // console.log(this.filterGroupName);
-      for (let i = 0 ; i < left.length; i++) {
-        if (left[i].groupName === this.filterGroupName) {
-          filterd.push(left[i]);
-          left.splice(i, 1);
-          i--;
-        }
+function newGroupNameSelect() {
+  let gSet = {};
+  schemeList.value.forEach(s => {
+    if (s.groupName) gSet[s.groupName] = 1;
+  });
+  groupNameList.value = Object.keys(gSet).map(item => ({text: item, value: item}));
+  selectNewGroupNameShow.value = true;
+  if (newGroupName.value) {
+    for (let i = 0; i < groupNameList.value.length; i++) {
+      if (groupNameList.value[i] === newGroupName.value) {
+        groupNameIndex.value = i;
+        break;
       }
+    }
+  }
+}
 
-      // 2. 查询当前方案内功能的配置中type为scheme（好麻烦，先用配置key中包含scheme的就遍历），的配置的value
-      for (let i = 0; i < filterd.length; i++) {
-        const conf = filterd[i].config;
-        for (let key in conf) {
-          for (let keyName in conf[key]) {
-            if (/scheme/i.test(keyName)) {
-              const v = conf[key][keyName];
-              for (let j = 0; j < left.length; j++) {
-                if (left[j].schemeName === v) {
-                  filterd.push(left[j]);
-                  left.splice(j, 1);
-                  break;
-                }
-              }
+function selectNewGroupNameConfirm({ selectedOptions }, _index) {
+  newGroupName.value = selectedOptions[0].text;
+  selectNewGroupNameShow.value = false;
+}
+
+function getGroupColor(groupName) {
+  // 计算hash值
+  let sum = 0;
+  for (let i = 0; i < groupName.length; i++) {
+    sum += groupName.charCodeAt(i);
+  }
+  return groupColor[sum % groupColor.length];
+}
+
+async function schemeImportCallback() {
+  schemeList.value = await AutoWeb.autoPromise("getSchemeList");
+}
+
+async function filterGroupNameOpen() {
+  filterGroupNames.value = ['全部', ...await AutoWeb.autoPromise('getGroupNames')].map(item => ({ text: item, value: item }));
+}
+
+async function filterGroupNameChange() {
+  const left = await AutoWeb.autoPromise("getSchemeList");
+  if (filterGroupName.value === '全部') {
+    schemeList.value = left;
+    return;
+  }
+
+  // 1. 根据groupName过滤
+  const filterd = [];
+  for (let i = 0 ; i < left.length; i++) {
+    if (left[i].groupName === filterGroupName.value) {
+      filterd.push(left[i]);
+      left.splice(i, 1);
+      i--;
+    }
+  }
+
+  // 2. 查询当前方案内功能的配置中type为scheme（好麻烦，先用配置key中包含scheme的就遍历），的配置的value
+  for (let i = 0; i < filterd.length; i++) {
+    const conf = filterd[i].config;
+    for (let key in conf) {
+      for (let keyName in conf[key]) {
+        if (/scheme/i.test(keyName)) {
+          const v = conf[key][keyName];
+          for (let j = 0; j < left.length; j++) {
+            if (left[j].schemeName === v) {
+              filterd.push(left[j]);
+              left.splice(j, 1);
+              break;
             }
           }
         }
       }
-      this.schemeList = filterd;
-    },
-  },
-};
+    }
+  }
+  schemeList.value = filterd;
+}
 </script>
 
 <style scoped>

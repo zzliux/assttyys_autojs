@@ -49,7 +49,7 @@ const dialogShow = computed({
 });
 
 function launchPackage(packageName) {
-  dialogShow.val = false;
+  dialogShow.value = false;
   AutoWeb.autoPromise("launchPackage", packageName);
 }
 

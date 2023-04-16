@@ -34,8 +34,6 @@ const updateInfoShow = ref(false);
 const transitionName = ref("slide-right");
 const statusBarHeight = ref(20);
 const $route = useRoute();
-console.log($route);
-
 
 watch(() => $route.meta, (toMeta, fromMeta) => {
   //如果to索引大于from索引,判断为前进状态,反之则为后退状态
