@@ -664,8 +664,9 @@ export const versionList = [{
     version: '20230409_02',
     desc: '修复：自动任务id可能重复的问题（历史的id若有重复需删除后新增，或手工修复数据）'
 }, {
-    version: '20230415_01',
-    desc: `优化：ui界面使用vue3重构，方案列表页在横屏下显示2列，自动记录滚动条位置。`
+    version: '20230416_01_dev',
+    desc: `优化：ui界面使用vue3重构，方案列表页在横屏下显示2列，自动记录滚动条位置。
+修复：体服六道莹草在选阵容的莹草界面不点击确定的问题`
 }];
 
 export default versionList[versionList.length - 1].version;

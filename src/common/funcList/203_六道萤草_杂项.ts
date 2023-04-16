@@ -28,7 +28,6 @@ export class Func203 implements IFuncOrigin {
 		desc: [1280, 720,
 			[
 				[left, 22, 40, 0xf1f9f9],
-				[left, 109, 54, 0x537c85],
 				[right, 1205, 602, 0x384949],
 				[right, 1155, 608, 0xffefb2],
 				[right, 1173, 605, 0xfff1b5],
@@ -77,13 +76,15 @@ export class Func203 implements IFuncOrigin {
 		retest: 1000,
 	}, {
 		// 香行御萤草点击开启按钮
-		desc: [1280, 720,
+		desc: [
+			1280, 720,
 			[
 				[left, 22, 40, 0xf1f9f9],
-				[left, 109, 54, 0x537c85],
 				[right, 1205, 602, 0x384949],
 				[right, 1177, 617, 0xffecaf],
-				[left, 125, 67, 0x548696],
+				[right, 1202, 660, 0xffe9ad],
+				[left, 36, 52, 0xe5edf1],
+				[left, 22, 63, 0x667e86],
 			]
 		],
 		oper: [
