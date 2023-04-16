@@ -43,14 +43,6 @@
               {{ configItemItem.value }}
             </div>
           </template>
-          <template v-else-if="'scheme' === configItemItem.type" #input>
-            <div
-              class="configItemValue"
-              @click="showItemConfigScheme($event, configItemItem)"
-            >
-              {{ configItemItem.value }}
-            </div>
-          </template>
           <template v-else-if="'text' === configItemItem.type" #input>
             <div class="van-field__body">
               <input
@@ -101,8 +93,8 @@ const dialogShow = computed({
 });
 
 
-function configItemItemPickerConfirm(text, _index) {
-  curItemItem.value.value = text;
+function configItemItemPickerConfirm({ selectedOptions }) {
+  curItemItem.value.value = selectedOptions[0].value;
   configItemItemShowPicker.value = false;
 }
 function showItemConfigList(e, configItemItem) {

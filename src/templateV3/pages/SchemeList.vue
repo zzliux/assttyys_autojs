@@ -390,7 +390,7 @@ function newGroupNameSelect() {
   }
 }
 
-function selectNewGroupNameConfirm({ selectedOptions }, _index) {
+function selectNewGroupNameConfirm({ selectedOptions }) {
   newGroupName.value = selectedOptions[0].text;
   selectNewGroupNameShow.value = false;
 }

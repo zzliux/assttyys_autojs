@@ -105,7 +105,7 @@ function showItemConfigList(e, configItemItem) {
   configItemItemShowPicker.value = true;
 }
 
-function configItemItemPickerConfirm({ selectedOptions }, _index) {
+function configItemItemPickerConfirm({ selectedOptions }) {
   curItemItem.value.value = selectedOptions[0].text;
   configItemItemShowPicker.value = false;
 }
@@ -113,8 +113,6 @@ function configItemItemPickerConfirm({ selectedOptions }, _index) {
 async function showItemConfigScheme(e, configItemItem) {
   let schemeListA = await AutoWeb.autoPromise('getSchemeList');
   let groupScheme = ['全部', ...await AutoWeb.autoPromise('getGroupNames')].map(item => ({ text: item, value: item, children: getSchemeNamesByGroupName(item, schemeListA) }));
-
-  console.log(groupScheme);
 
   schemeList.value = groupScheme;
   curItemItem.value = configItemItem;
@@ -140,8 +138,8 @@ function getSchemeNamesByGroupName(groupName, schemeNames) {
   return filterd.map(item => ({ text: item.schemeName, value: item.schemeName }));
 }
 
-function schemeListConfirm([_, text], _index) {
-  curItemItem.value.value = text;
+function schemeListConfirm({ selectedOptions }) {
+  curItemItem.value.value = selectedOptions[1].value;
   schemePicker.value = false;
 }
 

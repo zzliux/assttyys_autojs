@@ -87,10 +87,6 @@
         </div>
       </van-cell-group>
     </div>
-    <van-popup v-model:show="configItemItemShowPicker" position="bottom">
-      <van-picker show-toolbar :columns="configItemItemPickerList" @confirm="configItemItemPickerConfirm"
-        @cancel="configItemItemShowPicker = false" :default-index="curItemItemIndex"></van-picker>
-    </van-popup>
     <van-dialog v-model:show="scheduleNameInputShow" :before-close="scheduleNameInputBeforeClose"
       :title="'add' === scheduleNameInputType ? '新增定时任务' : '修改定时任务'" show-cancel-button>
       <van-field :label="'add' === scheduleNameInputType ? '定时任务名' : '新的定时任务名'" v-model="addScheduleForm.name"
@@ -313,18 +309,9 @@ export default {
       this.curItemItem.config.scheme = text;
       this.configItemItemShowPicker = false;
     },
-    schemeListConfirm([_, text], _index) {
-      this.curItemItem.config.scheme = text;
+    schemeListConfirm({ selectedOptions }) {
+      this.curItemItem.config.scheme = selectedOptions[1].value;
       this.schemePicker = false;
-    },
-    async showItemConfigScheme(e, configItemItem) {
-      if (!configItemItem.checked) {
-        let schemeList = await AutoWeb.autoPromise('getSchemeList');
-        this.configItemItemPickerList = schemeList.map(item => ({ text: item.schemeName, value: item.schemeName }));
-        this.curItemItem = configItemItem;
-        this.curItemItemIndex = this.configItemItemPickerList.indexOf(configItemItem.config.scheme);
-        this.configItemItemShowPicker = true;
-      }
     },
     showRepeatModeDialog(e, configItemItem) {
       if (!configItemItem.checked) {
@@ -333,8 +320,8 @@ export default {
         this.repeatModeDialogShow = true;
       }
     },
-    repeatModeDialogConfirm(_text, index) {
-      this.curItemItem.repeatMode = index;
+    repeatModeDialogConfirm({ selectedIndexes }) {
+      this.curItemItem.repeatMode = selectedIndexes[0];
       this.repeatModeDialogShow = false;
     },
     showNextDateDialog(e, configItemItem) {
@@ -431,7 +418,7 @@ export default {
 
     async showItemConfigScheme(e, configItemItem) {
       let schemeList = await AutoWeb.autoPromise('getSchemeList');
-      let groupScheme = ['全部', ...await AutoWeb.autoPromise('getGroupNames')].map(item => ({ text: item, children: this.getSchemeNamesByGroupName(item, schemeList) }));
+      let groupScheme = ['全部', ...await AutoWeb.autoPromise('getGroupNames')].map(item => ({ text: item, value: item, children: this.getSchemeNamesByGroupName(item, schemeList) }));
 
       console.log(groupScheme);
       // this.configItemItemPickerList = schemeList.map(item => item.schemeName);
@@ -445,7 +432,7 @@ export default {
     getSchemeNamesByGroupName(groupName, schemeNames) {
       const left = merge([], schemeNames);
       if (groupName === '全部') {
-        return left.map(item => ({ text: item.schemeName }));
+        return left.map(item => ({ text: item.schemeName, value: item.schemeName }));
       }
 
       // 1. 根据groupName过滤
@@ -458,7 +445,7 @@ export default {
           i--;
         }
       }
-      return filterd.map(item => ({ text: item.schemeName }));
+      return filterd.map(item => ({ text: item.schemeName, value: item.schemeName }));
     },
 
     intervalInputEvent ($event, item) {

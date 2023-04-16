@@ -225,8 +225,8 @@ async function showItemConfigList(event, item) {
   popupListValue.value = item.value;
   popupListShown.value = true;
 }
-async function popupListConfirm(text, _index) {
-  popupCurItem.value.value = text;
+async function popupListConfirm({ selectedOptions }) {
+  popupCurItem.value.value = selectedOptions[0].text;
   popupListShown.value = false;
   await AutoWeb.autoPromise('saveSetting', popupCurItem.value);
 }
