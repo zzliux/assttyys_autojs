@@ -79,6 +79,12 @@ const promptMockData = {
             stype: 'list',
             data: ['无障碍', 'Root', 'Shell', 'RootAutomator'],
             value: 'Root'
+        }, {
+            desc: 'ospUserToken',
+            name: 'osp_user_token',
+            type: 'assttyys_setting',
+            stype: 'text',
+            value: '123'
         }]
     },
     getToSetDefaultLaunchAppList() {

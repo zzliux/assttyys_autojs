@@ -230,14 +230,15 @@ async function popupListConfirm({ selectedOptions }) {
   popupListShown.value = false;
   await AutoWeb.autoPromise('saveSetting', popupCurItem.value);
 }
-function debounce (func, wait) {
+function debounce (func, wait, args) {
   if (timeout.value) clearTimeout(timeout.value)
   timeout.value = setTimeout(() => {
-    func();
+    func.apply(null, args);
   }, wait)
 }
 function inputChange(item) {
-  debounce(saveSettings, 1000);
+  // debounce(saveSettings, 300, [item]);
+  saveSettings(item);
 }
 function enterEvent(item) {
   if (timeout.value) clearTimeout(timeout.value);
