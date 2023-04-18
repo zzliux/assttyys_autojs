@@ -22,7 +22,10 @@
           handle=".handle-area"
           :scroll-sensitivity="100"
           :force-fallback="true"
-          v-bind="dragOptions"
+          :animation="200"
+          group="description"
+          :disabled="false"
+          ghostClass="ghost"
           @start="dragTransition = true"
           @end="dragEnd"
         >
