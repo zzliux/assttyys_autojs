@@ -164,7 +164,7 @@ import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import ExportSchemeDialog from "../components/ExportSchemeDialog.vue";
 import ImportSchemeDialog from "../components/ImportSchemeDialog.vue";
-import draggable from "vuedraggable";
+import draggable from "@marshallswain/vuedraggable";
 import { mergeSchemeList } from "../../common/toolWeb";
 import dSchemeList from "../../common/schemeList";
 import groupColor from "../../common/groupColors";

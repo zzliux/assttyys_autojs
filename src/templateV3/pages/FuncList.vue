@@ -28,6 +28,8 @@
           ghostClass="ghost"
           @start="dragTransition = true"
           @end="dragEnd"
+          tag="transition-group"
+          :component-data="{ name: !dragTransition ? 'flip-list' : null, type: 'transition' }"
         >
           <template #item = "{ element }">
             <div
@@ -93,7 +95,7 @@
 <script setup>
 import { ref, reactive, computed } from 'vue';
 import { useRoute } from 'vue-router';
-import draggable from 'vuedraggable'
+import draggable from '@marshallswain/vuedraggable'
 import dfuncList from "../../common/funcListIndex";
 import dCommonConfig from "../../common/commonConfig";
 import funcConfigBox from '../components/FuncConfigBox.vue';
