@@ -11,72 +11,74 @@
 
     <div class="rv_inner" :style="'padding-top: ' + (46 + (statusBarHeight || 0)) + 'px'">
       <van-cell-group class="itemBox" :title="'定时任务'" style="background: transparent">
-        <div v-for="(item, index) in scheduleList" :key="item.id" class="item" center>
-          <van-swipe-cell center @open="itemOpen" @close="itemClose" :before-close="itemBeforeClose"
-            :stop-propagation="true" :disabled="item.checked">
-            <span>
-              <div class="item-header" @click="showConfig($event, item)">
-                <div class="item-title">{{ item.id + ' ' + item.name }}</div>
-                <div class="item-value">
-                  <span class="handle-area"></span>
-                  <van-switch class="itemSwitch" v-model="item.checked" size="18"
-                    @change="onScheduleChange($event, item)" />
-                </div>
-                <div v-if="item.desc" class="item-desc">{{ item.desc }}</div>
-                <div class="item-desc">上次执行开始时间: {{ item.lastRunTime && new Date(item.lastRunTime).toLocaleString() }}</div>
-                <div class="item-desc">上次执行结束时间: {{ item.lastStopTime && new Date(item.lastStopTime).toLocaleString() }}</div>
-              </div>
-            </span>
-            <template #right>
-              <van-button type="danger" square text="删除" v-if="!item.inner"
-                @click="swipeCellCurrentAction = 'delete'; swipeCellCurrentIndex = index" />
-              <van-button type="warning" square text="修改"
-                @click="swipeCellCurrentAction = 'modify'; swipeCellCurrentIndex = index" />
-            </template>
-          </van-swipe-cell>
-          <div v-if="item.id === showConfigId" class="item-config">
-            <van-field label="运行方案" label-width="70%" :disabled="item.checked"
-              :rules="[{ required: true, message: '必填' }]">
-              <template #input>
-                <div style="width: 100%;" :style="item.checked ? 'color: rgb(200, 195, 188)' : ''"
-                  @click="showItemConfigScheme($event, item)">
-                  {{ item.config.scheme }}
-                </div>
-              </template>
-            </van-field>
-            <van-field label="重复模式" label-width="70%" :disabled="item.checked"
-              :rules="[{ required: true, message: '必填' }]">
-              <template #input>
-                <div style="width: 100%;" :style="item.checked ? 'color: rgb(200, 195, 188)' : ''"
-                  @click="showRepeatModeDialog($event, item)">
-                  {{ repeatModeEnum[item.repeatMode || 0].value }}
-                </div>
-              </template>
-            </van-field>
-            <van-field label="重复间隔(分钟)" label-width="70%" :disabled="item.checked"
-              :rules="[{ required: true, message: '必填' }]">
-              <template #input>
-                <div class="van-field__body">
-                  <input :disabled="item.checked" v-model="item.interval" @input="intervalInputEvent($event, item)" class="van-field__control" />
-                </div>
-              </template>
-            </van-field>
-            <van-field label="下次执行时间" label-width="70%" :disabled="item.checked"
-              :rules="[{ required: true, message: '必填' }]">
-              <template #input>
-                <div class="van-field__body">
-                  <div style="width: 100%;" :style="item.checked ? 'color: rgb(200, 195, 188)' : ''"
-                    @click="showNextDateDialog($event, item)">
-                    {{ item.nextDate ? item.nextDate.toLocaleString() : ( item.repeatMode == 3 ? '无法解析CRON表达式' : '请选择') }}
+        <TransitionGroup tag="span" type="transition" name="flip-list">
+          <div v-for="(item, index) in scheduleList" :key="item.id" class="item" center>
+            <van-swipe-cell center @open="itemOpen" @close="itemClose" :before-close="itemBeforeClose"
+              :stop-propagation="true" :disabled="item.checked">
+              <span>
+                <div class="item-header" @click="showConfig($event, item)">
+                  <div class="item-title">{{ item.id + ' ' + item.name }}</div>
+                  <div class="item-value">
+                    <span class="handle-area"></span>
+                    <van-switch class="itemSwitch" v-model="item.checked" size="18"
+                      @change="onScheduleChange($event, item)" />
                   </div>
+                  <div v-if="item.desc" class="item-desc">{{ item.desc }}</div>
+                  <div class="item-desc">上次执行开始时间: {{ item.lastRunTime && new Date(item.lastRunTime).toLocaleString() }}</div>
+                  <div class="item-desc">上次执行结束时间: {{ item.lastStopTime && new Date(item.lastStopTime).toLocaleString() }}</div>
                 </div>
+              </span>
+              <template #right>
+                <van-button type="danger" square text="删除" v-if="!item.inner"
+                  @click="swipeCellCurrentAction = 'delete'; swipeCellCurrentIndex = index" />
+                <van-button type="warning" square text="修改"
+                  @click="swipeCellCurrentAction = 'modify'; swipeCellCurrentIndex = index" />
               </template>
-            </van-field>
-            <van-field type="number" label="优先级" label-width="70%" :disabled="item.checked"
-              :rules="[{ required: true, message: '必填' }]" v-model="item.level" >
-            </van-field>
+            </van-swipe-cell>
+            <div v-if="item.id === showConfigId" class="item-config">
+              <van-field label="运行方案" label-width="70%" :disabled="item.checked"
+                :rules="[{ required: true, message: '必填' }]">
+                <template #input>
+                  <div style="width: 100%;" :style="item.checked ? 'color: rgb(200, 195, 188)' : ''"
+                    @click="showItemConfigScheme($event, item)">
+                    {{ item.config.scheme }}
+                  </div>
+                </template>
+              </van-field>
+              <van-field label="重复模式" label-width="70%" :disabled="item.checked"
+                :rules="[{ required: true, message: '必填' }]">
+                <template #input>
+                  <div style="width: 100%;" :style="item.checked ? 'color: rgb(200, 195, 188)' : ''"
+                    @click="showRepeatModeDialog($event, item)">
+                    {{ repeatModeEnum[item.repeatMode || 0].value }}
+                  </div>
+                </template>
+              </van-field>
+              <van-field label="重复间隔(分钟)" label-width="70%" :disabled="item.checked"
+                :rules="[{ required: true, message: '必填' }]">
+                <template #input>
+                  <div class="van-field__body">
+                    <input :disabled="item.checked" v-model="item.interval" @input="intervalInputEvent($event, item)" class="van-field__control" />
+                  </div>
+                </template>
+              </van-field>
+              <van-field label="下次执行时间" label-width="70%" :disabled="item.checked"
+                :rules="[{ required: true, message: '必填' }]">
+                <template #input>
+                  <div class="van-field__body">
+                    <div style="width: 100%;" :style="item.checked ? 'color: rgb(200, 195, 188)' : ''"
+                      @click="showNextDateDialog($event, item)">
+                      {{ item.nextDate ? item.nextDate.toLocaleString() : ( item.repeatMode == 3 ? '无法解析CRON表达式' : '请选择') }}
+                    </div>
+                  </div>
+                </template>
+              </van-field>
+              <van-field type="number" label="优先级" label-width="70%" :disabled="item.checked"
+                :rules="[{ required: true, message: '必填' }]" v-model="item.level" >
+              </van-field>
+            </div>
           </div>
-        </div>
+        </TransitionGroup>
         <div style="margin:5px 10px 5px 10px; border-radius:5px; overflow: hidden; box-shadow: 1px 1px 1px #eaeaea">
           <van-cell class="itemAdd" center @click="addScheduleClickEvent($event)">
             <div style="text-align: center; height: 24px;">
