@@ -287,6 +287,7 @@ function itemBeforeClose(option) {
         }).then(() => {
           // option.instance.close();
           schemeList.value.splice(swipeCellCurrentIndex.value, 1);
+          itemClose();
           saveSchemeList();
           AutoWeb.autoPromise('toast', "已删除");
           swipeCellCurrentAction.value = null;

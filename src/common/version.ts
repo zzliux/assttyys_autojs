@@ -667,6 +667,10 @@ export const versionList = [{
     version: '20230416_01_dev',
     desc: `优化：ui界面使用vue3重构，方案列表页在横屏下显示2列，自动记录滚动条位置。
 修复：体服六道莹草在选阵容的莹草界面不点击确定的问题`
+}, {
+    version: '20230420_01_dev',
+    desc: `优化：51绿标新增参数偏移；
+修复：删除方案后无法进入其它方案`
 }];
 
 export default versionList[versionList.length - 1].version;

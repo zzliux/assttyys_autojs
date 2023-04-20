@@ -38,6 +38,11 @@ export class Func051 implements IFuncOrigin {
 			desc: '准备时查找坐标，开局后立即进行绿标，需取消锁定阵容，并将该功能排序排在准备前',
 			type: 'switch',
 			default: false,
+		}, {
+			name: 'offset',
+			desc: '文本模式的偏移，格式x,y，如填-5,5，点击区域将向左和下各偏移5个像素',
+			type: 'text',
+			default: '0,0'
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{
@@ -87,6 +92,7 @@ export class Func051 implements IFuncOrigin {
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisconf = thisScript.scheme.config['51'];
+		const [offsetX, offsetY] = (thisconf.offset as string || '0,0').split(',').map(item => parseInt(item, 10));
 
 		// 准备界面就开始查找，找到后记录坐标，在战斗开始后第一时间对找到的坐标进行标记
 		if (thisconf.preSearch) {
@@ -128,10 +134,10 @@ export class Func051 implements IFuncOrigin {
 					let rx = p.x + thisOperator[0].oper[1][2] / 2;
 					let ry = p.y + thisOperator[0].oper[0][3] + thisOperator[0].oper[1][3] / 2;
 					let toClick = [
-						lx > 0 ? lx : 0,
-						ly > 0 ? ly : 0,
-						rx < thisOperator[0].oper[2][2] ? rx : thisOperator[0].oper[2][2],
-						ry < thisOperator[0].oper[2][3] ? ry : thisOperator[0].oper[2][3],
+						Math.max(lx, 0) + offsetX,
+						Math.max(ly, 0) + offsetY,
+						Math.min(rx, thisOperator[0].oper[2][2]) + offsetX,
+						Math.min(ry,thisOperator[0].oper[2][3]) + offsetY,
 						1000
 					];
 					thisScript.global.greenPosition = toClick;
@@ -247,10 +253,10 @@ export class Func051 implements IFuncOrigin {
 				let rx = p.x + thisOperator[0].oper[1][2] / 2;
 				let ry = p.y + thisOperator[0].oper[0][3] + thisOperator[0].oper[1][3] / 2;
 				toClick = [
-					Math.max(lx, 0),
-					Math.max(ly, 0),
-					Math.min(rx, thisOperator[0].oper[2][2]),
-					Math.min(ry, thisOperator[0].oper[2][3]),
+					Math.max(lx, 0) + offsetX,
+					Math.max(ly, 0) + offsetY,
+					Math.min(rx, thisOperator[0].oper[2][2]) + offsetX,
+					Math.min(ry, thisOperator[0].oper[2][3]) + offsetY,
 					1000
 				];
 			}
