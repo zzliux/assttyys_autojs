@@ -129,6 +129,21 @@ export class Func030 implements IFuncOrigin {
          [center,602,441,0xf9eec9],
          [center,623,440,0xf9eec9]]
          ]
+   }, {
+      desc: [
+         1280, 720,
+         [
+            [left, 36, 24, 0xf7eaab],
+            [right, 1208, 81, 0x90685c],
+            [right, 1228, 621, 0xd6c095],
+            [right, 1203, 602, 0x3b1e0d],
+            [right, 974, 640, 0xc9a87b],
+            [center, 798, 40, 0x593615],
+         ]
+      ],
+      oper: [
+         [center, 1280, 720, 1153, 572, 1243, 663, 1000],
+      ]
    }]
    operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
       let thisconf = thisScript.scheme.config['30'];
@@ -183,7 +198,7 @@ export class Func030 implements IFuncOrigin {
       if (thisScript.oper({
          id: 30,
          name: '斗技_杂项',
-         operator: thisOperator.slice(0, -4)
+         operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[4], thisOperator[10]]
       })) { return true; }
    }
 }

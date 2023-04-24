@@ -32,7 +32,7 @@ export class Func019 implements IFuncOrigin {
 			[center, 1280, 720, 245,444, 304,522, 500], // 第一个怪物位置
 			[center, 1280, 720, 591,429, 654,504, 500], // 第二个怪物位置
 			[center, 1280, 720, 978,460, 1046,515, 500], // 第三个怪物位置
-			[center, 1280, 720, 1132,562, 1210,640, 6000], // 开始
+			[center, 1280, 720, 1132,562, 1210,640, 9000], // 开始
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
