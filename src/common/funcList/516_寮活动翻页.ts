@@ -15,17 +15,22 @@ export class Func516 implements IFuncOrigin {
             name: 'count',
             desc: '连续执行x次后执行完成',
             type: 'list',
-            data: ['2', '3', '4', '5', '6', '7', '8', '9'],
-            default: '3',
+            data: ['20', '40', '60', '80', '100'],
+            default: '40',
             value: null,
         }, {
             name: 'afterCountOper',
             desc: '执行完成的操作',
             type: 'list',
-            data: ['停止脚本', '退出式神录'],
-            default: '退出式神录',
+            data: ['停止脚本', '切换方案'],
+            default: '停止脚本',
             value: null,
-        }]
+        }, {
+			name: 'next_scheme',
+			desc: '下一个方案',
+			type: 'scheme',
+			default: '通用准备退出',
+		}]
     }];
     operator: IFuncOperatorOrigin[] = [
         {
@@ -59,7 +64,23 @@ export class Func516 implements IFuncOrigin {
             name: '检测_寮活动神社',
             operator: [{ desc: thisOperator[0].desc }]
         })) {
-            if (thisScript.global.liao_activity_page_flag) {
+
+            if (thisScript.global.liao_activity_page_flag >= defaultCount) {
+                thisScript.global.liao_activity_page_flag = 0;
+
+                if ('停止脚本' === thisConf.afterCountOper) {
+					thisScript.doOspPush(thisScript, { text: `寮活动翻页次数已达到限制次数${defaultCount}，脚本已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+					thisScript.stop();
+				} else if ('切换方案' === thisConf.afterCountOper) {
+					// let oper = thisOperator[0].oper[2];
+					// thisScript.helperBridge.regionClick([oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.setCurrentScheme(thisConf.next_scheme as string);
+					thisScript.myToast(`切换方案为[${thisConf.next_scheme}]`);
+					thisScript.rerun();
+				}
+            }
+
+            if (thisScript.global.liao_activity_page_flag % 2 === 1) {
                 //  滑动寮活动神社
                 thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[1], thisOperator[0].oper[0], [1200, 1500], 1000);
             } else {

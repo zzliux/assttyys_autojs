@@ -89,8 +89,25 @@ export class Func026 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1075, 550, 1150, 631, 1000]
 		]
+	},
+	{	//	检测_逢魔界面 逢魔·极
+		desc: [
+			1280, 720,
+			[
+				[right, 974, 428, 0xd05b45],
+				[center, 347, 471, 0xdc583d],
+				[center, 810, 656, 0x5a5650],
+				[center, 921, 677, 0x521c18],
+				[right, 1024, 656, 0x331215],
+				[left, 42, 48, 0x50545d],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 478, 554, 828, 620, 1200]	//	点击 空白处
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
+
 		if (thisScript.oper({
 			name: '现世逢魔_界面判断',
 			operator: [{ desc: thisOperator[0].desc }]
@@ -125,7 +142,7 @@ export class Func026 implements IFuncOrigin {
 		}
 		if (thisScript.oper({
 			name: '宝箱_不领|神秘任务_不做|鬼王_挑战',
-			operator: [thisOperator[3], thisOperator[4], thisOperator[5]]
+			operator: [thisOperator[3], thisOperator[4], thisOperator[5], thisOperator[6]]
 		})) {
 			return true;
 		}

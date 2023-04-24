@@ -59,7 +59,6 @@ export class Func506 implements IFuncOrigin {
 					[right, 1043, 291, 0xf6b2b2],
 					[right, 988, 286, 0x93211f],
 					[center, 946, 228, 0x3f2c19],
-					[right, 1086, 182, 0x573d25],
 				]
 			],
 			oper: [
@@ -343,6 +342,7 @@ export class Func506 implements IFuncOrigin {
 				desc: thisOperator[6].desc
 			}]
 		})) {
+			thisScript.global.liao_activity_page_flag = 0;
 			const next_scheme = '道馆';
 			thisScript.setCurrentScheme(next_scheme as string, {
 				liao_activity_state: _liao_activity_state
@@ -374,6 +374,7 @@ export class Func506 implements IFuncOrigin {
 			operator: [thisOperator[9]]
 		})) {
 			sleep(2000);
+			thisScript.global.liao_activity_page_flag = 0;
 			const next_scheme = '首领退治';
 			thisScript.setCurrentScheme(next_scheme as string, {
 				liao_activity_state: _liao_activity_state
@@ -406,6 +407,7 @@ export class Func506 implements IFuncOrigin {
 			operator: [thisOperator[12]]
 		})) {
 			sleep(2000);
+			thisScript.global.liao_activity_page_flag = 0;
 			const next_scheme = '狭间暗域';
 			thisScript.setCurrentScheme(next_scheme as string, {
 				liao_activity_state: _liao_activity_state
@@ -431,6 +433,7 @@ export class Func506 implements IFuncOrigin {
 				});
 
 				sleep(2000);
+				thisScript.global.liao_activity_page_flag = 0;
 				const next_scheme = '宴会';
 				thisScript.setCurrentScheme(next_scheme as string, {
 					liao_activity_state: _liao_activity_state
@@ -439,8 +442,6 @@ export class Func506 implements IFuncOrigin {
 				thisScript.rerun();
 			}
 		}
-
-		thisScript.global.liao_activity_page_flag = !thisScript.global.liao_activity_page_flag;
 
 		if (thisScript.oper({
 			name: '检测_狩猎战是否已开启',
@@ -506,6 +507,7 @@ export class Func506 implements IFuncOrigin {
 		})) {
 
 			sleep(2000);
+			thisScript.global.liao_activity_page_flag = 0;
 			const next_scheme = '狩猎战';
 			thisScript.setCurrentScheme(next_scheme as string, {
 				liao_activity_state: _liao_activity_state
@@ -519,6 +521,7 @@ export class Func506 implements IFuncOrigin {
 			operator: [thisOperator[10]]
 		})) {
 			sleep(2000);
+			thisScript.global.liao_activity_page_flag = 0;
 			const next_scheme = '阴门挑战';
 			thisScript.setCurrentScheme(next_scheme as string, {
 				liao_activity_state: _liao_activity_state
@@ -530,6 +533,7 @@ export class Func506 implements IFuncOrigin {
 		//	做延时识别
 		if (thisScript.global.checked_yard_count > 5) {
 			thisScript.global.checked_yard_count = 0;
+			thisScript.global.liao_activity_page_flag += 1;
 			return false;
 		} else {
 			sleep(500);

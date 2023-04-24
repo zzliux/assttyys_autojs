@@ -9,6 +9,16 @@ const right = 2;
 export class Func508 implements IFuncOrigin {
 	id = 508;
 	name = '逢魔首领';
+	config = [{
+		desc: '是否开启极',
+		config: [{
+			name: 'switch_ji_enabled',
+			desc: '是否启用逢魔·极',
+			type: 'switch',
+			default: false,
+			value: false,
+		}]
+	}];
 	operator: IFuncOperatorOrigin[] = [{
 		desc: [	//	检测_现世逢魔奖励是否已领取
 			1280, 720,
@@ -27,7 +37,8 @@ export class Func508 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[right, 1280, 720, 1002, 645, 1045, 693, 1000]  // 进入首领按钮
+			[right, 1280, 720, 1002, 645, 1045, 693, 1000],  // 进入首领按钮
+			[center, 1280, 720, 903, 658, 940, 689, 1000]  // 进入首领极按钮
 		]
 	}, {	// 检测_是否找到逢魔首领
 		desc: [
@@ -198,7 +209,7 @@ export class Func508 implements IFuncOrigin {
 				if (thisScript.oper({
 					name: '检测_点击寻找首领按钮',
 					operator: [{
-						oper: thisOperator[0].oper,
+						oper: [thisOperator[0].oper[thisConf['switch_ji_enabled'] ? 1 : 0]],
 					}]
 				})) {
 					if (!thisScript.global.fm_boss_btn_click_cnt) {
@@ -276,7 +287,7 @@ export class Func508 implements IFuncOrigin {
 				if(thisScript.oper({
 					name: '检测_点击寻找首领按钮',
 					operator: [{
-						oper: thisOperator[0].oper,
+						oper: [thisOperator[0].oper[thisConf['switch_ji_enabled'] ? 1 : 0]],
 					}]
 				})) {
 					if (!thisScript.global.fm_boss_btn_click_cnt) {

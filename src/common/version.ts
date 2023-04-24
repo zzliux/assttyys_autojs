@@ -667,6 +667,9 @@ export const versionList = [{
     version: '20230416_01_dev',
     desc: `优化：ui界面使用vue3重构，方案列表页在横屏下显示2列，自动记录滚动条位置。
 修复：体服六道莹草在选阵容的莹草界面不点击确定的问题`
+}, {
+    version: '20230424_01',
+    desc: `优化：508逢魔增加逢魔极，修复首领退治bug退治成功后识别失败，优化红标功能(可以耍了)，优化寮活动翻页功能(需要重置方案《庭院进入寮每日活动》)`
 }];
 
 export default versionList[versionList.length - 1].version;

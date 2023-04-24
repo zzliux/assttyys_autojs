@@ -38,16 +38,14 @@ export class Func311 implements IFuncOrigin {
     {
       // 开始战斗后的场景
       desc: [
-        1280,
-        720,
+        1280, 720,
         [
           [left, 34, 23, 0xdbb48b],
           [left, 106, 24, 0xcfa375],
-          [right, 1270, 132, 0x48371f],
           [right, 1270, 700, 0x241919],
           [right, 1268, 80, 0x946430],
           [right, 1266, 545, 0x573f26],
-        ],
+        ]
       ],
     },
   ];

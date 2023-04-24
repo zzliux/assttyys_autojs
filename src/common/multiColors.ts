@@ -422,6 +422,16 @@ const multiColor: IMultiColorOrigin = {
                     [center, 580, 345, 0xd1a28d],
                     [center, 574, 385, 0xe5cc68],
                 ]
+            ],
+            [
+                1280, 720,
+                [
+                    [center, 592, 460, 0xdd8b79],
+                    [center, 578, 440, 0xd4a190],
+                    [center, 595, 474, 0xf46d28],
+                    [center, 587, 474, 0xf47028],
+                    [center, 539, 456, 0xd7c9ba],
+                ]
             ]
         ]
     },
@@ -458,6 +468,17 @@ const multiColor: IMultiColorOrigin = {
                     [center, 570, 584, 0xe0af9e],
                     [center, 578, 567, 0xc59281],
                     [center, 574, 603, 0xefdb7d],
+                ]
+            ],
+            [
+                1280, 720,
+                [
+                    [center, 577, 456, 0xba8978],
+                    [center, 556, 469, 0xe8caaf],
+                    [center, 592, 472, 0xd78773],
+                    [center, 595, 488, 0x918989],
+                    [center, 587, 488, 0xf46f28],
+                    [center, 538, 477, 0xd7c9ba],
                 ]
             ]
         ]

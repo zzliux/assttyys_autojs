@@ -167,7 +167,12 @@ const SchemeList: IScheme[] = [{
     id: 10,
     schemeName: '逢魔日常',
     star: true,
-    list: [1, 2, 3, 23, 24, 26, 508, 8, 504]
+    list: [1, 2, 3, 23, 24, 26, 508, 8, 504],
+    config: {
+        '508': {
+            switch_ji_enabled: false
+        }
+    }
 }, {
     id: 11,
     schemeName: '百鬼夜行',
@@ -366,6 +371,11 @@ const SchemeList: IScheme[] = [{
         "506": {
             auto_switch_enabled: true,
             gateOfHades_switch: false
+        },
+        "516": {
+            count: '40',
+            afterCountOper: '停止脚本',
+            next_scheme: '通用准备退出'
         }
     }
 }, {
@@ -530,6 +540,11 @@ const SchemeList: IScheme[] = [{
         "506": {
             auto_switch_enabled: false,
             gateOfHades_switch: true
+        },
+        "516": {
+            count: '40',
+            afterCountOper: '停止脚本',
+            next_scheme: '通用准备退出'
         }
     }
 },
@@ -541,6 +556,11 @@ const SchemeList: IScheme[] = [{
         "506": {
             auto_switch_enabled: false,
             gateOfHades_switch: false
+        },
+        "516": {
+            count: '40',
+            afterCountOper: '停止脚本',
+            next_scheme: '通用准备退出'
         }
     }
 },

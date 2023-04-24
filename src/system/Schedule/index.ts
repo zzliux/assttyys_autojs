@@ -252,6 +252,9 @@ class Schedule {
 
                         job = _job;
                         this.jobQueue.splice(jobIndex, 1);
+                    } else {
+                        // 如果队列中已存在执行的任务，去掉该任务
+                        this.jobQueue.splice(this.jobQueue.findIndex(item => item.id === job.id), 1);
                     }
                 } else {
                     job = _job;
