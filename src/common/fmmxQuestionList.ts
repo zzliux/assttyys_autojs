@@ -1190,6 +1190,7 @@ export default [
   },
   { question: '兑换语音表情需要以下哪些道具', ans: '其余选项皆对' },
   { question: '百鬼夜行中每位阴阳师每天最多被邀请多少次', ans: '3' },
+  // 2023-04-25 添加 https://ngabbs.com/read.php?tid=27091575&rand=796
   { quesiton: '阴阳师-平安物语第二季其片尾曲叫做', ans: '真夏物语' },
   {
     quesiton: "'刹那莲华绽放'恢复友方生命总量与帝释天的哪个属性有关",
