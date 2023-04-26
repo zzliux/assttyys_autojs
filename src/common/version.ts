@@ -679,6 +679,9 @@ export const versionList = [{
 }, {
     version: '20230426_01',
     desc: '新增：爬塔活动妖塔燃战'
+}, {
+    version: '20230416_02',
+    desc: '修复：逢魔密信报错'
 }];
 
 export default versionList[versionList.length - 1].version;
