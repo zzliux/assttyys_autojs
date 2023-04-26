@@ -657,6 +657,10 @@ const SchemeList: IScheme[] = [{
         }
     }
 }, {
+    id: 63,
+    schemeName: '重启模拟器',
+    list: [991]
+}, {
     id: 99,
     schemeName: '伊吹之擂',
     list: [0, 3, 24, 99, 100],

@@ -682,6 +682,9 @@ export const versionList = [{
 }, {
     version: '20230416_02',
     desc: '修复：逢魔密信报错'
+}, {
+    version: '20230427_01',
+    desc: '新增：重启模拟器方案与定时任务；修复：逢魔·极挑战弹窗适配'
 }];
 
 export default versionList[versionList.length - 1].version;

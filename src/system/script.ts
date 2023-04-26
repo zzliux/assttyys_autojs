@@ -14,7 +14,7 @@ import { IFunc } from '@/interface/IFunc';
 import { IScheme } from '@/interface/IScheme';
 import { IMultiColor } from '@/interface/IMultiColor';
 import { globalRoot, globalRootType } from '@/system/GlobalStore/index';
-import { Job } from '@/system/Schedule';
+import schedule, { Job } from '@/system/Schedule';
 import { MyFloaty } from '@/system/MyFloaty';
 
 /**
@@ -36,6 +36,7 @@ export class Script {
     ocrDetector: MlkitOcrDetector; // yunxi的ocr
     helperBridge: any; //IhelperBridge;
     job: Job;
+    schedule: typeof schedule;
 
     /**
      * 运行次数，下标为funcList中的id，值为这个func成功执行的次数；
@@ -99,6 +100,7 @@ export class Script {
         this.storeCommon = storeCommon;
         this.doOspPush = doOspPush;
         this.myToast = myToast;
+        this.schedule = schedule;
     }
 
     initOcrIfNeeded() {

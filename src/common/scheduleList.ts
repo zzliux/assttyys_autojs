@@ -187,6 +187,20 @@ const ScheduleDefaultList: JobOptions[] = [
       scheme: '定时任务-启动游戏-悬赏',
     }
   },
+  {
+    id: 14,
+    name: '重启模拟器',
+    desc: '自动判断十分钟后是否有定时任务，否则重启模拟器，注意，目前jio并没有自启动功能，请配合模拟器脚本共同使用',
+    checked: false,
+    lastRunTime: null,
+    nextDate: null,
+    repeatMode: 3,
+    interval: '* 0 4 * * *',
+    level: '0',
+    config: {
+      scheme: '重启模拟器',
+    }
+  }
 ];
 
 export default ScheduleDefaultList;

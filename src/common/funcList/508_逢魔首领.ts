@@ -142,6 +142,23 @@ export class Func508 implements IFuncOrigin {
 				[left, 180, 22, 0xd4c4a3],
 			]
 		]
+	}, {	// 检测_逢魔·极 首领BOSS挑战页
+		desc:
+		[
+			1280, 720,
+			[
+				[right, 1108, 84, 0xcb9d66],
+				[right, 1181, 140, 0x8e3128],
+				[right, 1214, 625, 0x9a4037],
+				[right, 1056, 621, 0x1d0c0a],
+				[left, 73, 585, 0x892b25],
+				[center, 610, 127, 0xcab9ab],
+			]
+		],
+		oper: [
+			[right, 1280, 720, 1096, 549, 1177, 606, 1000],	//	点击挑战
+			[right, 1280, 720, 1149, 76, 1168, 97, 1000]	//	点击关闭
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['508'];
@@ -184,13 +201,13 @@ export class Func508 implements IFuncOrigin {
 		if (thisScript.oper({
 			name: '检测_首领BOSS挑战页',
 			operator: [{
-				desc: thisOperator[2].desc
+				desc: thisOperator[thisConf['switch_ji_enabled'] ? 8 : 2].desc
 			}]
 		})) {
 			thisScript.oper({
 				name: '点击首领BOSS挑战按钮',
 				operator: [{
-					oper: [thisOperator[2].oper[0]]
+					oper: [thisOperator[thisConf['switch_ji_enabled'] ? 8 : 2].oper[0]]
 				}]
 			});
 			console.log('检测首领boss是否能挑战,重试次数为:', thisScript.global.checked_yard_count)
@@ -201,7 +218,7 @@ export class Func508 implements IFuncOrigin {
 				thisScript.oper({
 					name: '检测_关闭首领BOSS',
 					operator: [{
-						oper: [thisOperator[2].oper[1]]
+						oper: [thisOperator[thisConf['switch_ji_enabled'] ? 8 : 2].oper[1]]
 					}]
 				});
 
