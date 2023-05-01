@@ -62,7 +62,18 @@ export default function webviewSettigns() {
             name: 'foreground_service',
             type: 'autojs_inner_setting',
             enabled: $settings.isEnabled('foreground_service')
-        }];
+        }
+        // , {
+        //     desc: '开机自启',
+        //     name: 'launch_after_boot',
+        //     type: 'assttyys_setting_launch_after_boot',
+        //     //@ts-ignore
+        //     enabled: !!$work_manager.queryIntentTasks({
+        //         action: android.Intent.ACTION_BOOT_COMPLETED
+        //     }).length,
+        // }
+        ];
+        
         if (device.sdkInt >= 23) {
             ret.push({
                 desc: '忽略电池优化',
@@ -208,6 +219,35 @@ export default function webviewSettigns() {
                 // todo 卸载扩展
                 toastLog('已安装扩展请勿取消');
                 done(false);
+            }
+        } else if ('assttyys_setting_launch_after_boot' === item.type) {
+            if (item.enabled) {
+                //@ts-ignore
+                $work_manager.addIntentTask({
+                    path: context.getFilesDir().getAbsolutePath() + '/project/main.js',
+                    action: android.Intent.ACTION_BOOT_COMPLETED
+                });
+                //@ts-ignore
+                const tasks = $work_manager.queryIntentTasks({
+                    action: android.Intent.ACTION_BOOT_COMPLETED
+                });
+                console.log(tasks);
+                if (tasks.length > 0) {
+                    done(true);
+                } else {
+                    done(false);
+                }
+            } else {
+                //@ts-ignore
+                const tasks = $work_manager.queryIntentTasks({
+                    action: android.Intent.ACTION_BOOT_COMPLETED
+                });
+                tasks.forEach(task => {
+                    console.log("删除: ", task);
+                    //@ts-ignore
+                    log($work_manager.removeIntentTask(task.id));
+                });
+                done(true);
             }
         }
     });
