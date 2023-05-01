@@ -171,7 +171,7 @@ export class Func051 implements IFuncOrigin {
 
 			if (thisScript.global.greenPosition && thisScript.oper({
 				id: 51,
-				name: '战斗界面检测',
+				name: '绿标-战斗界面检测',
 				operator: [{
 					desc: thisOperator[0].desc,
 				}]
@@ -184,7 +184,7 @@ export class Func051 implements IFuncOrigin {
 
 		if (thisScript.oper({
 			id: 51,
-			name: '战斗界面检测',
+			name: '绿标-战斗界面检测',
 			operator: [{
 				desc: thisOperator[0].desc,
 			}]

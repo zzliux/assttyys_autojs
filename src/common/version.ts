@@ -685,6 +685,9 @@ export const versionList = [{
 }, {
     version: '20230427_01',
     desc: '新增：重启模拟器方案与定时任务；修复：逢魔·极挑战弹窗适配'
+}, {
+    version: '20230501_01',
+    desc: '修复：311红标 默认参数修改为自定义坐标，之前有使用红标的伙伴请修改一下红标的参数，另外，劳动节快乐哦，我在家里也很快乐 : )'
 }];
 
 export default versionList[versionList.length - 1].version;
