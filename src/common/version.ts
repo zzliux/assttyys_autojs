@@ -688,6 +688,9 @@ export const versionList = [{
 }, {
     version: '20230501_01',
     desc: '修复：311红标 默认参数修改为自定义坐标，之前有使用红标的伙伴请修改一下红标的参数，另外，劳动节快乐哦，我在家里也很快乐 : )'
+}, {
+    version: '20230501_02',
+    desc: '优化：强化退出结算等点击时的用户特征'
 }];
 
 export default versionList[versionList.length - 1].version;

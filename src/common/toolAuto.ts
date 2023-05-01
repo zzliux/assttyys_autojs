@@ -129,6 +129,27 @@ export function getRegionBiasRnd(region, pointBias, influence) {
 }
 
 /**
+ * 根据str进行hash，返回值在lowerBound与upperBound之间
+ * @param lowerBound 下限
+ * @param upperBound 上限
+ * @param str 被hash的字符串
+ * @returns 
+ */
+export function hash(lowerBound: number, upperBound: number, str: string): number {
+    let hash = 0;
+    if (str.length === 0) {
+        return lowerBound;
+    }
+    for (let i = 0; i < str.length; i++) {
+        let charCode = str.charCodeAt(i);
+        hash = ((hash << 5) - hash) + charCode;
+        hash = hash & hash; // Convert to 32bit integer
+    }
+    let range = upperBound - lowerBound + 1;
+    return (hash & 0x7fffffff) % range + lowerBound;
+}
+
+/**
  * 根据Androidid 和点击区域 hash 出一个偏向点，偏向点不能过于接近start和end
  * @param {*} str 
  * @param {*} start 

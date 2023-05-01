@@ -69,7 +69,7 @@ export default function webviewSettigns() {
         //     type: 'assttyys_setting_launch_after_boot',
         //     //@ts-ignore
         //     enabled: !!$work_manager.queryIntentTasks({
-        //         action: android.Intent.ACTION_BOOT_COMPLETED
+        //         action: 'android.intent.action.BOOT_COMPLETED'
         //     }).length,
         // }
         ];
@@ -225,11 +225,11 @@ export default function webviewSettigns() {
                 //@ts-ignore
                 $work_manager.addIntentTask({
                     path: context.getFilesDir().getAbsolutePath() + '/project/main.js',
-                    action: android.Intent.ACTION_BOOT_COMPLETED
+                    action: 'android.intent.action.BOOT_COMPLETED'
                 });
                 //@ts-ignore
                 const tasks = $work_manager.queryIntentTasks({
-                    action: android.Intent.ACTION_BOOT_COMPLETED
+                    action: 'android.intent.action.BOOT_COMPLETED'
                 });
                 console.log(tasks);
                 if (tasks.length > 0) {
@@ -240,7 +240,7 @@ export default function webviewSettigns() {
             } else {
                 //@ts-ignore
                 const tasks = $work_manager.queryIntentTasks({
-                    action: android.Intent.ACTION_BOOT_COMPLETED
+                    action: 'android.intent.action.BOOT_COMPLETED'
                 });
                 tasks.forEach(task => {
                     console.log("删除: ", task);

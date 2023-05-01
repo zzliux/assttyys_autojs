@@ -1,6 +1,6 @@
 import { getWidthPixels, getHeightPixels } from "@auto.pro/core";
 import drawFloaty from "@/system/drawFloaty";
-import { getRegionBiasRnd, strHashToNum } from '@/common/toolAuto';
+import { getRegionBiasRnd, hash, strHashToNum } from '@/common/toolAuto';
 import { IMyAutomator } from '@/system/MyAutomator';
 
 const normal = -1; //定义常量
@@ -138,20 +138,21 @@ export class helperBridge implements IhelperBridge {
         // 生成一套，然后给regionClick操作
         let oper = [];
         transedOperStepRandom.forEach(item => {
-            let sum = 0;
-            for (let i = 0; i < item.length; i++) {
-                sum += item[i][5];
-            }
-            let rn = random(0, sum - 1);
-            let curSum = 0;
-            for (let i = 0; i < item.length; i++) {
-                // 命中
-                if (rn >= curSum && rn < curSum + item[i][5]) {
-                    oper.push(item[i]);
-                    break;
-                }
-                curSum += item[i][5];
-            }
+            // let sum = 0;
+            // for (let i = 0; i < item.length; i++) {
+            //     sum += item[i][5];
+            // }
+            // let rn = random(0, sum - 1);
+            // let curSum = 0;
+            // for (let i = 0; i < item.length; i++) {
+            //     // 命中
+            //     if (rn >= curSum && rn < curSum + item[i][5]) {
+            //         oper.push(item[i]);
+            //         break;
+            //     }
+            //     curSum += item[i][5];
+            // }
+            oper.push(item[hash(0, item.length - 1, device.getAndroidId())]);
         });
         this.regionClick(oper, randomSleep);
     }
