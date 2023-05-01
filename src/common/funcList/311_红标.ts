@@ -22,7 +22,7 @@ export class Func311 implements IFuncOrigin {
           desc: '红标类型',
           type: 'list',
           data: ['自定义坐标'],
-          default: '自定义文本',
+          default: '自定义坐标',
         },
         {
           name: 'redPosition',
@@ -63,7 +63,7 @@ export class Func311 implements IFuncOrigin {
     if (
       thisScript.oper({
         id: 311,
-        name: '战斗界面检测',
+        name: '红标-战斗界面检测',
         operator: [
           {
             desc: thisOperator[0].desc,
