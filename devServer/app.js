@@ -6,6 +6,7 @@ const staticProxys = [
 
 const Koa = require('koa')
 const Router = require('koa-router');
+const compress = require('koa-compress');
 const fsPromise = require('fs').promises;
 
 const app = new Koa();
@@ -13,6 +14,14 @@ const router = new Router();
 
 (async function () {
     let fileList = [];
+
+    app.use(compress({
+        filter: function (content_type) {
+            return true
+        },
+        threshold: 512,
+        flush: require('zlib').Z_SYNC_FLUSH
+    }))
 
     for (let item of staticProxys) {
         fileList = [...fileList, ...(await listAll(item)).map(item => `/${item}`)];
