@@ -26,7 +26,7 @@ export class Func205 implements IFuncOrigin {
 			[left, 1280, 720, 0, 0, 893 - 843, 244 - 197, 500], // 技能大小
 			[right, 1280, 720, 1165, 622, 1230, 699, 500], // 仿造区域
 			[left, 1280, 720, 16, 23, 60, 65, 700], // 左上角返回
-			[center, 1280, 720, 674, 406, 842, 456, 800], // 仿造
+			[center, 1280, 720, 674, 406, 842, 456, 800], // 确认
 		],
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
