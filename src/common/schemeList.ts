@@ -381,7 +381,7 @@ const SchemeList: IScheme[] = [{
 }, {
     id: 35,
     schemeName: "六道萤草",
-    list: [0, 1, 2, 3, 24, 201, 202, 203, 207, 204, 205, 206, 208],
+    list: [0, 1, 2, 3, 24, 201, 202, 203, 207, 204, 205, 206, 208, 209],
     commonConfig: {
         loopDelay: 200,
         afterClickDelayRandom: 200,

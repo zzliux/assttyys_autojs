@@ -693,7 +693,7 @@ export const versionList = [{
     desc: '优化：强化退出结算等点击时的用户特征'
 }, {
     version: '20230502_01',
-    desc: '优化：六道莹草新增功能209神秘之屿转换，请手动在六道莹草方案中启用该功能。'
+    desc: '优化：六道萤草增功能209神秘之屿转换，请手动在六道萤草方案中启用该功能。'
 }];
 
 export default versionList[versionList.length - 1].version;
