@@ -694,6 +694,9 @@ export const versionList = [{
 }, {
     version: '20230502_01',
     desc: '优化：六道萤草增功能209神秘之屿转换，请手动在六道萤草方案中启用该功能。'
+}, {
+    version: '20230503_01',
+    desc: '修复：六道萤草转换成功后不点击的问题'
 }];
 
 export default versionList[versionList.length - 1].version;

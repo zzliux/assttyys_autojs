@@ -137,13 +137,15 @@ export class Func203 implements IFuncOrigin {
 		]
 	}, {
 		// 转换成功确认
-		desc: [1280, 720,
+		desc: [
+			1280, 720,
 			[
-				[center, 542, 152, 0xffe99c],
-				[center, 738, 189, 0xfff2c7],
-				[center, 658, 171, 0xffefb8],
-				[center, 616, 177, 0xffefbd],
-				[center, 635, 202, 0xdcca7c],
+				[center, 654, 368, 0xf9e9c5],
+				[center, 738, 189, 0xfff3c7],
+				[center, 628, 175, 0xffefba],
+				[left, 23, 44, 0x3b3d3e],
+				[left, 251, 42, 0x160e06],
+				[center, 617, 177, 0xfff0bc],
 			]
 		],
 		oper: [
