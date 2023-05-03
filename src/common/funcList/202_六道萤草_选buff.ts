@@ -114,7 +114,7 @@ export class Func202 implements IFuncOrigin {
 			// [center, 1280, 720, 113, 257, 321, 346, -1], // 第一个
 			// [center, 1280, 720, 386, 262, 593, 344, -1], // 第二个
 			// [center, 1280, 720, 659, 257, 868, 342, -1], // 第三个
-			[center, 1280, 720, 113, 257, 868, 342, -1], // 一起的框框
+			[center, 1280, 720, 91, 249, 897, 361, -1], // 一起的框框
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -205,7 +205,7 @@ export class Func202 implements IFuncOrigin {
 						coins = 0;
 					}
 				}
-				
+
 				// 如果三个里面有两个为xx加成，则不刷新，省钱
 				// thisOperator[4].oper.forEach(item => {
 				// 	const r = thisScript.findText('.+加成', 0, item, '包含');
