@@ -15,45 +15,45 @@ export class OcrResult {
     }
 }
 
-export class MlkitOcrDetector {
+export class TomatoOcrDetector {
     instance: any;
     constructor() {
-        const MLKitOCR = $plugins.load('org.autojs.autojspro.plugin.mlkit.ocr');
-        this.instance = new MLKitOCR();
+        const TomatoOcr = $plugins.load('com.tomato.ocr');
+        this.instance = new TomatoOcr();
     }
     loadImage(bitmap: any): Array<OcrResult> {
-        const ajImg = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(bitmap);
+        // const ajImg = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(bitmap);
         console.time('ocr.detect');
-        const resultOrigin = this.instance.detect(ajImg);
+        const resultOrigin = this.instance.ocrBitmap(bitmap);
         console.timeEnd('ocr.detect');
-        ajImg.recycle();
+        console.log(JSON.stringify(resultOrigin));
+        // ajImg.recycle();
         const result = resultOrigin.map(item => {
-            return new OcrResult(item.confidence, item.text, item.rotation, [{
+            return new OcrResult(item.score, item.words, item.rotation, [{
                 // 左上
-                x: item.bounds.left,
-                y: item.bounds.top
+                x: item.location[0][0],
+                y: item.location[0][1]
             }, {
                 // 右上
-                x: item.bounds.right,
-                y: item.bounds.top
+                x: item.location[1][0],
+                y: item.location[1][1]
             }, {
                 // 右下
-                x: item.bounds.right,
-                y: item.bounds.bottom
+                x: item.location[2][0],
+                y: item.location[2][1]
             }, {
                 // 左下
-                x: item.bounds.left,
-                y: item.bounds.bottom
+                x: item.location[3][0],
+                y: item.location[3][1]
             }]);
         });
-        console.log(JSON.stringify(result));
         return result;
     }
 }
 
-class MlkitOcr {
+class TomatoOcr {
 
-    detector: MlkitOcrDetector;
+    detector: TomatoOcrDetector;
 
     constructor() {
         this.detector = null;
@@ -64,7 +64,7 @@ class MlkitOcr {
      */
     isInstalled(): boolean {
         try { 
-            $plugins.load('org.autojs.autojspro.plugin.mlkit.ocr');
+            $plugins.load('com.tomato.ocr');
         } catch (e) {
             console.error(e);
             return false;
@@ -74,6 +74,7 @@ class MlkitOcr {
 
     /**
      * 安装
+     * TODO
      */
     install(option: { failCallback: Function, successCallback: Function }): void {
         let self = this;
@@ -82,55 +83,12 @@ class MlkitOcr {
             option.failCallback();
             return;
         }
-        dialogs.confirm('提示', '大约消耗11Mb，是否下载OCR扩展？', function (cr) {
-            if (cr) {
-                try {
-                    threads.start(function () {
-                        try {
-                            toastLog('下载中，请稍后...');
-                            // const path = context.getExternalFilesDir(null).getAbsolutePath() + '/assttyus_ng/ocr';
-                            const path = files.cwd() + '/plugins'
-                            let url = 'https://assttyys.zzliux.cn/static/autojspro-mlkit-ocr-plugin-1.1.apk';
-                            const r = http.get(url);
-                            console.log(`下载路径${path}`);
-                            files.ensureDir(path + '/autojspro-mlkit-ocr-plugin-1.1.apk');
-                            if (files.exists(path + '/autojspro-mlkit-ocr-plugin-1.1.apk')) {
-                                files.remove(path + '/autojspro-mlkit-ocr-plugin-1.1.apk');
-                            }
-                            // @ts-ignore
-                            files.writeBytes(path + '/org.autojs.autojspro.plugin.mlkit.ocr.apk', r.body.bytes());
-                            if (ocr.isInstalled()) {
-                                toastLog('安装完成');
-                                option.successCallback();
-                            } else {
-                                toastLog('安装出错');
-                                option.failCallback();
-                            }
-                            // if (isRoot) {
-                            //     shell('install -t ' + path + '/autojspro-mlkit-ocr-plugin-1.1.apk', true);
-                            // } else {
-                                // app.viewFile(path + '/autojspro-mlkit-ocr-plugin-1.1.apk');
-                            // }
-                        } catch (e) {
-                            toast(e);
-                            console.error($debug.getStackTrace(e));
-                            option.failCallback();
-                        }
-                    });
-                } catch (e) {
-                    toast(e);
-                    console.error($debug.getStackTrace(e));
-                    option.failCallback();
-                }
-            } else {
-                option.failCallback();
-            }
-        });
+        // TODO
     }
 
-    prepare(): MlkitOcrDetector {
+    prepare(): TomatoOcrDetector {
         try {
-            this.detector = new MlkitOcrDetector()
+            this.detector = new TomatoOcrDetector()
             return this.detector;
         } catch (e) {
             console.error($debug.getStackTrace(e));
@@ -142,7 +100,7 @@ class MlkitOcr {
         return this.findTextByOcr(this.detector, getBmpFunc, text, timeout, region, textMatchMode);
     }
 
-    findTextByOcr(detector: MlkitOcrDetector, getBmpFunc: Function, text: string, timeout: number, region: Array<number>, textMatchMode: string): Array<OcrResult> {
+    findTextByOcr(detector: TomatoOcrDetector, getBmpFunc: Function, text: string, timeout: number, region: Array<number>, textMatchMode: string): Array<OcrResult> {
         const startTime = new Date().getTime();
         while (true) {
             let bmp = getBmpFunc();
@@ -179,23 +137,23 @@ class MlkitOcr {
         let toDraw = [];
         if (textMatchMode === '包含') {
             let reg = new RegExp(text);
-            res = ocrResult.filter(item => reg.test(item.label));
             toDraw = ocrResult.map(item => ({
                 region: [item.points[0].x, item.points[0].y, item.points[2].x, item.points[2].y],
                 color: reg.test(item.label) ? 'green' : 'red',
                 text: item.label + ':' + item.confidence
             }));
+            res = ocrResult.filter(item => reg.test(item.label));
         } else /*if (textMatchMode === '模糊') */{
-            res = ocrResult.filter(item => {
-                item.similar = similarity(item.label, text);
-                return (item.similar as number) >= (similarityRatio || .5)
-            });
-            res.sort((a, b) => (b.similar || 0) - (a.similar || 0));
             toDraw = ocrResult.map(item => ({
                 region: [item.points[0].x, item.points[0].y, item.points[2].x, item.points[2].y],
                 color: item.similar as number >= (similarityRatio || .5) ? 'green' : 'red',
                 text: item.label + ':' + item.confidence
             }));
+            res = ocrResult.filter(item => {
+                item.similar = similarity(item.label, text);
+                return (item.similar as number) >= (similarityRatio || .5)
+            });
+            res.sort((a, b) => (b.similar || 0) - (a.similar || 0));
         }
         // 开了绘制有可能绘制内容也被ocr给识别了
         if (drawFloaty.instacne) {
@@ -205,4 +163,4 @@ class MlkitOcr {
     }
 }
 
-export const ocr = new MlkitOcr();
+export const ocr = new TomatoOcr();

@@ -195,7 +195,7 @@ export class Func202 implements IFuncOrigin {
 				let coins = 50;
 				if (thisScript.getOcr()) {
 					let result = thisScript.findText('.+', 0, thisOperator[0].oper[3], '包含');
-					console.log(result);
+					console.log(JSON.stringify(result));
 					if (result.length) {
 						coins = parseInt(result[0].label);
 						if (Number.isNaN(coins)) {
@@ -212,6 +212,7 @@ export class Func202 implements IFuncOrigin {
 				// 	if (r.length) jcCnt++;
 				// });
 				const r = thisScript.findText('.+加成', 0, thisOperator[4].oper[0], '包含');
+				console.log(JSON.stringify(r));
 				if (r.length >= 2) {
 					thisScript.global.d6RefreshCnt = 3;
 				}
