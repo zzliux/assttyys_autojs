@@ -89,22 +89,39 @@ export class Func016 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 522, 52, 557, 81, 1200]		//	极转为普通
 		]
+	}, {
+		desc: [
+			1280, 720,
+			[
+				[left, 59, 56, 0x8a909d],
+				[right, 1243, 40, 0x813939],
+				[right, 1157, 48, 0xb1ada1],
+				[right, 1071, 123, 0xd79b86],
+				[right, 913, 147, 0xffd682],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 158, 118, 821, 626, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: '探索界面',
 			operator: [thisOperator[3]]
 		})) {
-
 			return true;
 		}
 
 		if (thisScript.oper({
 			name: '地鬼_挑战_关闭',
-			operator: [{
-				desc: thisOperator[1].desc,
-				oper: thisOperator[1].oper,
-			}]
+			operator: [thisOperator[1]]
+		})) {
+			return true;
+		}
+
+		if (thisScript.oper({
+			name: '地鬼_筛选界面_关闭',
+			operator: [thisOperator[5]]
 		})) {
 			return true;
 		}
@@ -131,7 +148,6 @@ export class Func016 implements IFuncOrigin {
 			}
 
 			if (thisScript.global.dgCurNum === -1) {
-
 				thisScript.helperBridge.regionClick([thisOperator[2].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
 				const next_scheme = '返回庭院';
 				thisScript.setCurrentScheme(next_scheme);

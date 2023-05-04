@@ -38,10 +38,12 @@ export class Func209 implements IFuncOrigin {
 			[left, 1280, 720, 913, 355, 998, 440, 500], // 区域10
 			[left, 1280, 720, 1003, 353, 1089, 443, 500], // 区域11
 			[left, 1280, 720, 1093, 355, 1179, 445, 500], // 区域12
+			[right, 1280, 720, 15, 17, 66, 69, 500], // 退出
+			[center, 1280, 720, 676, 405, 842, 460, 500], // 退出确认
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		if (!thisScript.global.d6NextEvent && thisScript.oper({
+		if (thisScript.oper({
 			id: 209,
 			name: '六道萤草_神秘之屿_转换界面判断',
 			operator: [{
@@ -64,8 +66,22 @@ export class Func209 implements IFuncOrigin {
 					}
 				}
 				if (flag) {
-					const toClick = [thisOperator[0].oper[i], thisOperator[0].oper[0], thisOperator[0].oper[2]]
+					const toClick = [thisOperator[0].oper[i]]
 					thisScript.helperBridge.regionClick(toClick, thisScript.scheme.commonConfig.afterClickDelayRandom);
+
+					sleep(200);
+					thisScript.keepScreen();
+					if (!thisScript.oper({
+						id: 209,
+						name: '六道萤草_神秘之屿_转换界面判断',
+						operator: [{
+							desc: thisOperator[0].desc,
+							oper: [thisOperator[0].oper[16], thisOperator[0].oper[17]]
+						}]
+					})) {
+						const toClick2 = [thisOperator[0].oper[0], thisOperator[0].oper[2]];
+						thisScript.helperBridge.regionClick(toClick2, thisScript.scheme.commonConfig.afterClickDelayRandom);
+					}
 					break;
 				}
 			}

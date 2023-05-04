@@ -209,16 +209,17 @@ export class Func000 implements IFuncOrigin {
 				thisScript.doOspPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 				// 停止脚本时关闭应用
 				if (thisconf.stop_with_launched_app_exit) {
-					let storeSettings = thisScript.storeCommon.get('settings', {});
-					if (storeSettings.defaultLaunchAppList && storeSettings.defaultLaunchAppList.length) {
-						storeSettings.defaultLaunchAppList.forEach(packageName => {
-							thisScript.myToast(`停止应用[${packageName}]`);
-							$shell(`am force-stop ${packageName}`, true);
-							sleep(1000);
-						});
-					} else {
-						thisScript.myToast('未配置关联应用，不执行停止操作');
-					}
+					// let storeSettings = thisScript.storeCommon.get('settings', {});
+					// if (storeSettings.defaultLaunchAppList && storeSettings.defaultLaunchAppList.length) {
+					// 	storeSettings.defaultLaunchAppList.forEach(packageName => {
+					// 		thisScript.myToast(`停止应用[${packageName}]`);
+					// 		$shell(`am force-stop ${packageName}`, true);
+					// 		sleep(1000);
+					// 	});
+					// } else {
+					// 	thisScript.myToast('未配置关联应用，不执行停止操作');
+					// }
+					thisScript.stopRelatedApp();
 				}
 				thisScript.stop();
 			}

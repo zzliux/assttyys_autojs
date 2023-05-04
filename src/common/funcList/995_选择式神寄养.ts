@@ -241,17 +241,20 @@ export class Func995 implements IFuncOrigin {
 				thisScript.rerun();
 			} else if ('关闭应用' === thisConf.afterCountOper) {
 				sleep(1000);
-				let storeSettings = thisScript.storeCommon.get('settings', {});
-				if (storeSettings.defaultLaunchAppList && storeSettings.defaultLaunchAppList.length) {
-					storeSettings.defaultLaunchAppList.forEach(packageName => {
-						thisScript.myToast(`停止应用[${packageName}]`);
-						$shell(`am force-stop ${packageName}`, true);
-						sleep(1000);
-					});
-					thisScript.doOspPush(thisScript, { text: '寄养成功，脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-				} else {
-					thisScript.myToast('未配置关联应用，不执行停止操作');
-				}
+				// let storeSettings = thisScript.storeCommon.get('settings', {});
+				// if (storeSettings.defaultLaunchAppList && storeSettings.defaultLaunchAppList.length) {
+				// 	storeSettings.defaultLaunchAppList.forEach(packageName => {
+				// 		thisScript.myToast(`停止应用[${packageName}]`);
+				// 		$shell(`am force-stop ${packageName}`, true);
+				// 		sleep(1000);
+				// 	});
+				// 	thisScript.doOspPush(thisScript, { text: '寄养成功，脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+				// } else {
+				// 	thisScript.myToast('未配置关联应用，不执行停止操作');
+				// }
+
+				thisScript.stopRelatedApp();
+				thisScript.doOspPush(thisScript, { text: '寄养成功，脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 				thisScript.stop();
 			}
 		}

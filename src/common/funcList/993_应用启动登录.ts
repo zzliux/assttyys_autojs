@@ -284,26 +284,15 @@ export class Func993 implements IFuncOrigin {
 			}
 		}
 
-		let packageName;
-		let storeSettings = thisScript.storeCommon.get('settings', {});
-		if (storeSettings.defaultLaunchAppList && storeSettings.defaultLaunchAppList.length) {
-			packageName = storeSettings.defaultLaunchAppList[0];
-		}
-		const isInstalled = app.getAppName(packageName);
 
-		if (isInstalled && thisScript.global.app_is_open_flag >= 3 && thisScript.global.app_is_open_flag !== 99) {
+		if (thisScript.global.app_is_open_flag >= 3 && thisScript.global.app_is_open_flag !== 99) {
 			if (thisConf.is_shutdown_the_game_before) {
-				console.log(`杀应用${packageName}`);
-				$shell(`am force-stop ${packageName}`, true);
+				// $shell(`am force-stop ${packageName}`, true);
+				thisScript.stopRelatedApp();
 				sleep(5000);
 			}
-			console.log(`正在启动应用${packageName}`);
-			app.launchPackage(packageName);
+			thisScript.launchRelatedApp();
 			thisScript.global.app_is_open_flag = 99;
-		} else if (!isInstalled) {
-			thisScript.myToast(`未找到对应的应用[${packageName}]`);
-			thisScript.doOspPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-			thisScript.stop();
 		} else if (thisScript.global.app_is_open_flag < 3) {
 			sleep(1000);
 			thisScript.global.app_is_open_flag++;

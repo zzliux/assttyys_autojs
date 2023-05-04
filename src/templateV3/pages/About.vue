@@ -90,7 +90,7 @@ const props = defineProps({
   // 版本查询
   let versionInfo = await AutoWeb.autoPromise("versionInfo");
   version.value = versionInfo.storeVersion;
-  versionInfoList.value = versionInfo.versionList;
+  versionInfoList.value = versionInfo.versionList.toReversed();
 })();
 
 function openOpenSource() {
