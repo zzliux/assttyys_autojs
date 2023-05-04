@@ -78,35 +78,49 @@ export class Func507 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 448, 488, 894, 574, 1200],
 		]
+	}, {
+		// 狩猎战 鬼王来袭 右下角点击集结中
+		desc: [
+			1280, 720,
+			[
+				[left, 70, 60, 0xc2cbe0],
+				[center, 640, 34, 0x4f5d7f],
+				[center, 716, 25, 0xe3d395],
+				[center, 624, 55, 0x888ca3],
+				[left, 91, 88, 0x231c3a],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1068, 606, 1265, 695, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['507'];
 
 		if (thisScript.oper({
 			name: '检测_是否为挑战奉献榜场景_待开始',
-			operator: [{
-				desc: thisOperator[0].desc,
-				oper: thisOperator[0].oper
-			}]
+			operator: [thisOperator[0]]
 		})) {
 			return true;
 		}
 
 		if (thisScript.oper({
 			name: '检测_挑战是否可用',
-			operator: [{
-				desc: thisOperator[1].desc,
-				oper: thisOperator[1].oper
-			}]
+			operator: [thisOperator[1]]
+		})) {
+			return true;
+		}
+
+		if (thisScript.oper({
+			name: '狩猎战_鬼王来袭_右下角点击集结中',
+			operator: [thisOperator[5]]
 		})) {
 			return true;
 		}
 
 		if (thisScript.oper({
 			name: '检测_是否有酒瓶',
-			operator: [{
-				desc: thisOperator[3].desc
-			}]
+			operator: [thisOperator[3]]
 		})) {
 			let point = thisScript.findMultiColor('狩猎_酒瓶');
 
@@ -120,26 +134,21 @@ export class Func507 implements IFuncOrigin {
 					1200
 				]];
 				thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+				return true;
 			}
 			return false;
 		}
 
 		if (thisScript.oper({
 			name: '检测_是否领取酒瓶奖励页',
-			operator: [{
-				desc: thisOperator[4].desc,
-				oper: thisOperator[4].oper
-			}]
+			operator: [thisOperator[4]]
 		})) {
 			return true;
 		}
 
 		if (thisScript.oper({
 			name: '检测_挑战奉献榜场景_已结束',
-			operator: [{
-				desc: thisOperator[2].desc,
-				oper: thisOperator[2].oper
-			}]
+			operator: [thisOperator[2]]
 		})) {
 
 			if (thisScript.runtimeParams && thisScript.runtimeParams.liao_activity_state) {
@@ -158,7 +167,7 @@ export class Func507 implements IFuncOrigin {
 				thisScript.myToast(`切换方案为[${next_scheme}]`);
 				thisScript.rerun();
 			}
-
+			return true;
 		}
 		return false;
 	}

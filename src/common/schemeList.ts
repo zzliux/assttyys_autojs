@@ -422,11 +422,7 @@ const SchemeList: IScheme[] = [{
     id: 41,
     schemeName: "实例-更换式神预设御魂",
     groupName: "切换方案样例",
-    list: [
-        509,
-        510,
-        511
-    ],
+    list: [509, 510, 511],
     config: {
         "510": {
             groupName: "默认分组",
@@ -441,30 +437,22 @@ const SchemeList: IScheme[] = [{
 {
     id: 42,
     schemeName: "阴门挑战",
-    list: [
-        0, 1, 2, 3, 5, 513
-    ]
+    list: [0, 1, 2, 3, 5, 513]
 },
 {
     id: 43,
     schemeName: "首领退治",
-    list: [
-        0, 1, 2, 3, 512
-    ]
+    list: [0, 1, 2, 3, 512]
 },
 {
     id: 44,
     schemeName: "狭间暗域",
-    list: [
-        0, 1, 3, 514, 515
-    ]
+    list: [0, 1, 3, 514, 515]
 },
 {
     id: 45,
     schemeName: "喂猫喂狗",
-    list: [
-        3, 517
-    ]
+    list: [3, 517]
 },
 {
     id: 46,
