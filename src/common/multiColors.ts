@@ -2741,6 +2741,19 @@ const multiColor: IMultiColorOrigin = {
                 ]
             ]
         ]
+    },
+    "勾协判定": {
+        region: [center, 1280, 720, 648, 456, 720, 528],
+        desc: [
+            [1280,720,
+                [
+                [center,696,488,0xef4c34],
+                [center,699,489,0xf5502b],
+                [center,699,493,0xe92c12],
+                [center,696,493,0xe9331a]
+                ]
+                ]
+        ]
     }
 }
 

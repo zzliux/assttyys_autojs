@@ -101,14 +101,20 @@ export class Func003 implements IFuncOrigin {
 		})) {
 			return true;
 		}
-		if (thisconf.switch && thisconf.type === '接受') {
-			if (thisScript.oper({
-				name: '悬赏协作_' + thisconf.type + '_勾协',
-				operator: [{
-					desc: thisOperator[1].desc,
-					oper: [thisOperator[0].oper[1]]
-				}]
-			}, 0)) {
+
+		if (thisconf.switch && thisconf.type === '接受' && thisScript.oper({
+			name: '悬赏协作',
+			operator: [{
+				desc: [thisOperator[0].desc[0]]
+			}]
+		})) {
+			if (thisScript.findMultiColor("勾协判定")) {
+				thisScript.oper({
+					name: '悬赏协作_' + thisconf.type + '_勾协',
+					operator: [{
+						oper: [thisOperator[0].oper[1]]
+					}]
+				})
 				thisScript.doOspPush(thisScript, { text: '接受到勾协。', before() { thisScript.myToast('正在上传数据'); } });
 				return true;
 			} else if (thisScript.oper({
@@ -120,7 +126,12 @@ export class Func003 implements IFuncOrigin {
 			}, 0)) {
 				return true;
 			}
-		} else {
+		} else if (thisScript.oper({
+			name: '悬赏协作',
+			operator: [{
+				desc: [thisOperator[0].desc[0]]
+			}]
+		})) {
 			return thisScript.oper({
 				name: '悬赏协作_' + thisconf.type,
 				operator: [{
