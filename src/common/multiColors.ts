@@ -2744,6 +2744,7 @@ const multiColor: IMultiColorOrigin = {
     },
     "勾协判定": {
         region: [center, 1280, 720, 648, 456, 720, 528],
+        similar: 98,
         desc: [
             [1280,720,
                 [
