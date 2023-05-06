@@ -91,6 +91,7 @@ const props = defineProps({
   let versionInfo = await AutoWeb.autoPromise("versionInfo");
   version.value = versionInfo.storeVersion;
   versionInfoList.value = versionInfo.versionList;
+  versionInfoList.value.reverse();
 })();
 
 function openOpenSource() {

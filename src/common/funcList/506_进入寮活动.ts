@@ -93,12 +93,14 @@ export class Func506 implements IFuncOrigin {
 			]
 		}, { // 检测_鬼王集结点
 			desc: [1280, 720,
-				[[center, 684, 30, 0xf7e5ac],
-				[center, 590, 40, 0x5c6887],
-				[center, 516, 15, 0x28295d],
-				[center, 761, 22, 0xe6d391],
-				[center, 810, 44, 0xfef8d2],
-				[right, 1155, 622, 0x2c160e]]
+				[
+					[center, 684, 30, 0xf7e5ac],
+					[center, 590, 40, 0x5c6887],
+					[center, 516, 15, 0x28295d],
+					[center, 761, 22, 0xe6d391],
+					[center, 810, 44, 0xfef8d2],
+					[right, 1155, 622, 0x2c160e]
+				]
 			],
 			oper: [
 				[right, 1280, 720, 1068, 602, 1268, 680, 1200]  // 点击鬼王集结点，固定地图右下角

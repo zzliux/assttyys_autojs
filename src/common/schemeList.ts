@@ -422,11 +422,7 @@ const SchemeList: IScheme[] = [{
     id: 41,
     schemeName: "实例-更换式神预设御魂",
     groupName: "切换方案样例",
-    list: [
-        509,
-        510,
-        511
-    ],
+    list: [509, 510, 511],
     config: {
         "510": {
             groupName: "默认分组",
@@ -441,30 +437,22 @@ const SchemeList: IScheme[] = [{
 {
     id: 42,
     schemeName: "阴门挑战",
-    list: [
-        0, 1, 2, 3, 5, 513
-    ]
+    list: [0, 1, 2, 3, 5, 513]
 },
 {
     id: 43,
     schemeName: "首领退治",
-    list: [
-        0, 1, 2, 3, 512
-    ]
+    list: [0, 1, 2, 3, 512]
 },
 {
     id: 44,
     schemeName: "狭间暗域",
-    list: [
-        0, 1, 3, 514, 515
-    ]
+    list: [0, 1, 3, 514, 515]
 },
 {
     id: 45,
     schemeName: "喂猫喂狗",
-    list: [
-        3, 517
-    ]
+    list: [3, 517]
 },
 {
     id: 46,
@@ -664,12 +652,21 @@ const SchemeList: IScheme[] = [{
     id: 99,
     schemeName: '伊吹之擂',
     list: [0, 3, 24, 99, 100],
-}, {
-    id: 101,
+}
+// , {
+//     id: 101,
+//     groupName: '活动',
+//     schemeName: '银之绮都_妖塔燃战',
+//     star: true,
+//     list: [0, 1, 2, 3, 128]
+// }
+, {
+    id: 102,
     groupName: '活动',
-    schemeName: '银之绮都_妖塔燃战',
+    schemeName: '夏日游园会_消消乐',
     star: true,
-    list: [0, 1, 2, 3, 128]
+    list: [0, 3, 129, 130],
+    commonConfig: { multiColorSimilar: 95 }
 }
     // 完整demo
     // , {
