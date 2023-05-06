@@ -126,12 +126,7 @@ export class Func003 implements IFuncOrigin {
 			}, 0)) {
 				return true;
 			}
-		} else if (thisScript.oper({
-			name: '悬赏协作',
-			operator: [{
-				desc: [thisOperator[0].desc[0]]
-			}]
-		})) {
+		} else {
 			return thisScript.oper({
 				name: '悬赏协作_' + thisconf.type,
 				operator: [{
