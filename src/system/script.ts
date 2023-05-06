@@ -735,18 +735,20 @@ export class Script {
         let storeSettings = storeCommon.get('settings', {});
         if (storeSettings.defaultLaunchAppList && storeSettings.defaultLaunchAppList.length) {
 
-            // 先跳到自己的界面
-            var i = new android.content.Intent(activity, activity.class);
-            i.addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK);
-            i.addFlags(android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            context.startActivity(i);
-            sleep(2000);
+            // // 先跳到自己的界面
+            // var i = new android.content.Intent(activity, activity.class);
+            // i.addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK);
+            // i.addFlags(android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            // context.startActivity(i);
+            // sleep(2000);
 
-            // 目标进程就变成后台了，就可以通过杀后台进程实现杀应用
-            const am = context.getSystemService(context.ACTIVITY_SERVICE);
+            // // 目标进程就变成后台了，就可以通过杀后台进程实现杀应用
+            // const am = context.getSystemService(context.ACTIVITY_SERVICE);
             storeSettings.defaultLaunchAppList.forEach(packageName => {
-                am.killBackgroundProcesses(packageName);
+                // am.killBackgroundProcesses(packageName);
+                $shell(`am force-stop ${packageName}`, true);
                 myToast(`杀应用${packageName}`);
+                sleep(100);
             });
 
         } else {
