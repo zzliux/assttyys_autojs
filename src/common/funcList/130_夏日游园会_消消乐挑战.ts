@@ -7,7 +7,7 @@ const right = 2;
 
 export class Func130 implements IFuncOrigin {
 	id = 130;
-	name = '妖塔燃战_挑战';
+	name = '夏日游园会_消消乐_挑战';
 	operator: IFuncOperatorOrigin[] = [{
 		desc: [
             1280, 720,

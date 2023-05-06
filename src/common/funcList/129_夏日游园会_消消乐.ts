@@ -8,6 +8,20 @@ const right = 2;
 export class Func129 implements IFuncOrigin {
     id = 129;
     name = '夏日游园会_消消乐';
+    config = [{
+        desc: '配置',
+        config: [{
+            name: 'auto_push_enabled',
+            desc: '结束后使用osp推送',
+            type: 'switch',
+            default: false,
+        }, {
+            name: 'auto_exit_enabled',
+            desc: '100关(满收益)后主动退出，需启用ocr扩展',
+            type: 'switch',
+            default: false,
+        }]
+    }];
     operator: IFuncOperatorOrigin[] = [{//  红
         desc: [1280, 720,
             [
@@ -21,6 +35,7 @@ export class Func129 implements IFuncOrigin {
             [center, 1280, 720, 314, 32, 76, 68, 75]
         ]
     }, {
+        // 界面检测
         desc: [1280, 720,
             [
                 [right, 1026, 138, 0xd7e2e3],
@@ -28,6 +43,11 @@ export class Func129 implements IFuncOrigin {
                 [right, 1084, 139, 0xe4eded],
                 [right, 1112, 140, 0xd9e4e5]
             ]
+        ],
+        oper: [
+            [center, 1280, 720, 400, 127, 862, 278, -1], // 第x关的识别区域
+            [left, 1280, 720, 14, 14, 72, 68, 1000], // 退出
+            [center, 1280, 720, 475, 295, 557, 383, 1000], // 确认
         ]
     }, {
         // 第x关
@@ -58,8 +78,8 @@ export class Func129 implements IFuncOrigin {
             ]
         ],
         oper: [
-            [center, 1280, 720, 268, 487, 1005, 693, 800],
-            [center, 1280, 720, 673, 407, 843, 458, 500],
+            [center, 1280, 720, 268, 487, 1005, 693, 1000],
+            [center, 1280, 720, 673, 407, 843, 458, 1000],
         ]
     }, {
         // 玩死了，不玩了，游戏结束
@@ -78,9 +98,50 @@ export class Func129 implements IFuncOrigin {
         ]
     }];
     operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
+        const thisConf = thisScript.scheme.config['129'];
+        if (thisConf && thisConf.auto_push_enabled && thisScript.oper({
+            name: '夏日游园会_消消乐_推送',
+            operator: [{
+                desc: thisOperator[4].desc
+            }]
+        })) {
+            thisScript.doOspPush(thisScript, { text: '夏日游园会消消乐本局已结束，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+            sleep(200);
+        }
+
+        if (thisConf && thisConf.auto_exit_enabled) {
+            let ocrResult = thisScript.findTextWithCompareColor(
+                '\\d+',
+                500,
+                thisOperator[1].oper[0],
+                '包含',
+                {
+                    name: '夏日游园会_消消乐_第x关检测',
+                    operator: [{
+                        desc: thisOperator[2].desc,
+                    }]
+                }
+            );
+            if (ocrResult.length > 0) {
+                const curLevelStr = ocrResult[0].label;
+                const curLevel = parseInt(curLevelStr.match(/(\d+)/)[1]);
+                thisScript.myToast(`当前第${curLevel}关`);
+                if (curLevel > 100) {
+                    return thisScript.oper({
+                        id: 129,
+                        name: '夏日游园会_消消乐_退出',
+                        operator: [{
+                            desc: thisOperator[2].desc,
+                            oper: [...thisOperator[2].oper, thisOperator[1].oper[1], thisOperator[1].oper[2]]
+                        }]
+                    })
+                }
+            }
+        }
+
         if (thisScript.oper({
-            name: '夏日游园会_消消乐_过关点击',
-            operator: [thisOperator[2]]
+            name: '夏日游园会_消消乐_杂项',
+            operator: [thisOperator[2], thisOperator[3], thisOperator[4]]
         })) {
             return true;
         }
