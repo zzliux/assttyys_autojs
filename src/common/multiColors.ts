@@ -2689,6 +2689,58 @@ const multiColor: IMultiColorOrigin = {
                 [left, 270, 542, 0xcd9462]]
             ]
         ]
+    },
+    "消消乐_红": {
+        region: [center, 1280, 720, 0, 0, 1279, 719],
+        desc: [
+            [1280, 720,
+                [
+                    [center, 341, 67, 0xf6a1b9],
+                    [center, 354, 68, 0xf6a3bb],
+                    [center, 341, 76, 0xf8b8c9],
+                    [center, 355, 76, 0xf8bac9]
+                ]
+            ]
+        ]
+    },
+    "消消乐_黑": {
+        region: [center, 1280, 720, 0, 0, 1279, 719],
+        desc: [
+            [1280, 720,
+                [
+                    [center, 565, 235, 0x45464a],
+                    [center, 584, 236, 0x4a4d50],
+                    [center, 584, 232, 0x242c32],
+                    [center, 564, 232, 0x2d313a]
+                ]
+            ]
+        ]
+    },
+    "消消乐_蓝": {
+        region: [center, 1280, 720, 0, 0, 1279, 719],
+        desc: [
+            [1280, 720,
+                [
+                    [center, 494, 62, 0x7abfda],
+                    [center, 503, 62, 0x80c1dc],
+                    [center, 494, 69, 0x85cfe3],
+                    [center, 506, 69, 0x8fd4e6]
+                ]
+            ]
+        ]
+    },
+    "消消乐_黄": {
+        region: [center, 1280, 720, 0, 0, 1279, 719],
+        desc: [
+            [1280, 720,
+                [
+                    [center, 566, 129, 0xeaae35],
+                    [center, 586, 130, 0xe6b433],
+                    [center, 570, 132, 0xdfa734],
+                    [center, 580, 132, 0xdfa736]
+                ]
+            ]
+        ]
     }
 }
 
