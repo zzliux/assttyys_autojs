@@ -31,7 +31,8 @@ function bswap(map, x, y, dir) {
         case 3: offset = [1, 0]; break;
         case 4: offset = [0, -1]; break;
     }
-    const [nX, nY] = offset;
+    const nX = x + offset[0];
+    const nY = y + offset[1];
     if (nX < 0 || nY < 0 || nX >= map.length || nY >= map[nX].length) {
         return false;
     }
@@ -125,17 +126,21 @@ function erase(map) {
     return cnt3 + cnt4 * 4 + cnt5 * 10 + erase(map);
 }
 
+function logMap(map) {
+    console.log('\n' + map.map(item => item.join(' ')).join('\n') + '\n');
+}
+
 // 棋盘优解
 const mapSet = {};
 
-function dfs(map, deep) {
+function dfs(map, deep, maxDepth) {
     const key = JSON.stringify(map);
     if (mapSet[key]) {
         return mapSet[key];
     }
-    let ret = { x: -1, y: -1, dir: -1, score: 0};
-    if (deep >= 3) {
-        return { x: -1, y: -1, dir: 1, score: 0};
+    let ret = { x: -1, y: -1, dir: -1, score: 0, path: []};
+    if (deep >= maxDepth) {
+        return { x: -1, y: -1, dir: 1, score: 0, path: []};
     }
     let score = 0; //erase(newMap);
     for (let x = 0; x < map.length; x++) {
@@ -145,14 +150,17 @@ function dfs(map, deep) {
                 const newMap = JSON.parse(key);
                 bswap(newMap, x, y, dir);
                 score = erase(newMap);
+                let d = null;
                 if (score) {
-                    score += dfs(newMap, deep + 1).score;
+                    d = dfs(newMap, deep + 1, maxDepth);
+                    score += d.score;
                 }
                 if (ret.score < score) {
                     ret.score = score;
                     ret.x = x;
                     ret.y = y;
                     ret.dir = dir;
+                    ret.path = [{ x, y, dir, score }, ...d.path.map(item => ({ x: item.x, y: item.y, dir: item.dir, score: item.score}))];
                 }
             }
         }
@@ -162,7 +170,12 @@ function dfs(map, deep) {
     mapSet[key] = ret;
     return ret;
 }
-const r = dfs(mapGlobal, 0);
-console.log(r);
+const r = dfs(mapGlobal, 0, 4);
 
-
+logMap(mapGlobal);
+for (let i = 0; i < r.path.length; i++) {
+    console.log(r.path[i]);
+    bswap(mapGlobal, r.path[i].x, r.path[i].y, r.path[i].dir);
+    erase(mapGlobal);
+    logMap(mapGlobal);
+}
