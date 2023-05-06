@@ -22,7 +22,7 @@ export class Func003 implements IFuncOrigin {
 			name: 'switch',
 			desc: '仅接受勾协',
 			type: 'switch',
-			default: 'true',
+			default: 'false',
 			value: null,
 		}]
 	}];
@@ -115,7 +115,7 @@ export class Func003 implements IFuncOrigin {
 						oper: [thisOperator[0].oper[1]]
 					}]
 				})
-				thisScript.doOspPush(thisScript, { text: '接受到勾协。', before() { thisScript.myToast('正在上传数据'); } });
+				thisScript.doOspPush(thisScript, { text: '接受到勾协，请确认是否影响到主体方案', before() { thisScript.myToast('正在上传数据'); } });
 				return true;
 			} else if (thisScript.oper({
 				name: '悬赏协作_' + thisconf.type + '_非勾协关闭',

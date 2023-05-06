@@ -703,6 +703,9 @@ export const versionList = [{
 修复：地鬼卡在筛选的界面
 尝试修复：六道萤草在没有可转换的时候卡住的问题
 优化：关于界面查看版本历史修改为倒序`
+},{
+    version: '20230506_02',
+    desc: `修复：不接勾协(如果影响主体方案请关闭"只接勾协")`
 }];
 
 export default versionList[versionList.length - 1].version;
