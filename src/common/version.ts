@@ -703,6 +703,9 @@ export const versionList = [{
 修复：地鬼卡在筛选的界面
 尝试修复：六道萤草在没有可转换的时候卡住的问题
 优化：关于界面查看版本历史修改为倒序`
+}, {
+    version: '20230506_02',
+    desc: `优化：夏日游园会_消消乐可自动退出与推送，有需要的同学请手动开启`
 }];
 
 export default versionList[versionList.length - 1].version;
