@@ -43,7 +43,38 @@ export class Func129 implements IFuncOrigin {
             ]
         ],
         oper: [
-            [center, 1280, 720, 303, 453, 993, 669, 1000],
+            [center, 1280, 720, 303, 453, 993, 669, 500],
+        ]
+    }, {
+        // 玩死了，不玩了，步数耗尽
+        desc: [
+            1280, 720,
+            [
+                [left, 36, 36, 0x595e69],
+                [left, 279, 41, 0x13130f],
+                [center, 463, 379, 0x588eaf],
+                [center, 857, 372, 0x6095b4],
+                [center, 808, 207, 0x84c7d4],
+            ]
+        ],
+        oper: [
+            [center, 1280, 720, 268, 487, 1005, 693, 800],
+            [center, 1280, 720, 673, 407, 843, 458, 500],
+        ]
+    }, {
+        // 玩死了，不玩了，游戏结束
+        desc: [
+            1280, 720,
+            [
+                [left, 38, 39, 0x5c6169],
+                [left, 278, 42, 0x13140f],
+                [center, 753, 259, 0x4b779e],
+                [center, 1224, 103, 0x132838],
+                [center, 673, 211, 0xfee1bc],
+            ]
+        ],
+        oper: [
+            [center, 1280, 720, 289, 494, 977, 692, 1000],
         ]
     }];
     operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -93,6 +124,10 @@ export class Func129 implements IFuncOrigin {
 
 
             const curResult = dfs(arr, 0, 1);
+            if (curResult.dir < 0) {
+                sleep(500);
+                return false;
+            }
             let offset;
             switch (curResult.dir) {
                 case 1: offset = [-1, 0]; break;
@@ -110,7 +145,7 @@ export class Func129 implements IFuncOrigin {
                     thisOperator[0].oper[0][1] + thisOperator[0].oper[0][4] * curResult.x,
                     thisOperator[0].oper[0][0] + thisOperator[0].oper[0][2] * curResult.y + thisOperator[0].oper[0][3],
                     thisOperator[0].oper[0][1] + thisOperator[0].oper[0][4] * curResult.x + thisOperator[0].oper[0][3],
-                    200
+                    150
                 ],
                 //第二个点
                 [
@@ -172,33 +207,33 @@ function erase(map) {
     for (let i = 0; i < m; i++) {
         for (let j = 0; j < n; j++) {
             // 竖3
-            if (i + 2 < m && map[i][j] != 0) {
+            if (i + 2 < m && map[i][j] != 0 && map[i][j] != 5) {
                 if (abs(map[i][j]) == abs(map[i + 1][j]) &&
                     abs(map[i + 1][j]) == abs(map[i + 2][j]))
                     map[i][j] = map[i + 1][j] = map[i + 2][j] = -abs(map[i][j]), cnt3++;
             }
             // 横3
-            if (j + 2 < n && map[i][j] != 0) {
+            if (j + 2 < n && map[i][j] != 0 && map[i][j] != 5) {
                 if (abs(map[i][j]) == abs(map[i][j + 1]) &&
                     abs(map[i][j + 1]) == abs(map[i][j + 2]))
                     map[i][j] = map[i][j + 1] = map[i][j + 2] = -abs(map[i][j]), cnt3++;
             }
             // 竖4
-            if (i + 3 < m && map[i][j] != 0) {
+            if (i + 3 < m && map[i][j] != 0 && map[i][j] != 5) {
                 if (abs(map[i][j]) == abs(map[i + 1][j]) &&
                     abs(map[i + 1][j]) == abs(map[i + 2][j]) &&
                     abs(map[i + 2][j]) == abs(map[i + 3][j]))
                     map[i][j] = map[i + 1][j] = map[i + 2][j] = map[i + 3][j] = -abs(map[i][j]), cnt4++;
             }
             // 横4
-            if (j + 3 < n && map[i][j] != 0) {
+            if (j + 3 < n && map[i][j] != 0 && map[i][j] != 5) {
                 if (abs(map[i][j]) == abs(map[i][j + 1]) &&
                     abs(map[i][j + 1]) == abs(map[i][j + 2]) &&
                     abs(map[i][j + 2]) == abs(map[i][j + 3]))
                     map[i][j] = map[i][j + 1] = map[i][j + 2] = map[i][j + 3] = -abs(map[i][j]), cnt4++;
             }
             // 竖5
-            if (i + 4 < m && map[i][j] != 0) {
+            if (i + 4 < m && map[i][j] != 0 && map[i][j] != 5) {
                 if (abs(map[i][j]) == abs(map[i + 1][j]) &&
                     abs(map[i + 1][j]) == abs(map[i + 2][j]) &&
                     abs(map[i + 2][j]) == abs(map[i + 3][j]) &&
@@ -206,7 +241,7 @@ function erase(map) {
                     map[i][j] = map[i + 1][j] = map[i + 2][j] = map[i + 3][j] = map[i + 4][j] = -abs(map[i][j]), cnt5++;
             }
             // 横5
-            if (j + 4 < n && map[i][j] != 0) {
+            if (j + 4 < n && map[i][j] != 0 && map[i][j] != 5) {
                 if (abs(map[i][j]) == abs(map[i][j + 1]) &&
                     abs(map[i][j + 1]) == abs(map[i][j + 2]) &&
                     abs(map[i][j + 2]) == abs(map[i][j + 3]) &&
@@ -251,9 +286,9 @@ function dfs(map, deep, maxDepth) {
     if (mapSet[key]) {
         return mapSet[key];
     }
-    let ret = { x: -1, y: -1, dir: -1, score: 0, path: []};
+    let ret = { x: -1, y: -1, dir: -1, score: 0, path: [] };
     if (deep >= maxDepth) {
-        return { x: -1, y: -1, dir: 1, score: 0, path: []};
+        return { x: -1, y: -1, dir: 1, score: 0, path: [] };
     }
     let score = 0; //erase(newMap);
     for (let x = 0; x < map.length; x++) {
@@ -273,7 +308,7 @@ function dfs(map, deep, maxDepth) {
                     ret.x = x;
                     ret.y = y;
                     ret.dir = dir;
-                    ret.path = [{ x, y, dir, score }, ...d.path.map(item => ({ x: item.x, y: item.y, dir: item.dir, score: item.score}))];
+                    ret.path = [{ x, y, dir, score }, ...d.path.map(item => ({ x: item.x, y: item.y, dir: item.dir, score: item.score }))];
                 }
             }
         }

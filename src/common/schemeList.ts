@@ -665,7 +665,7 @@ const SchemeList: IScheme[] = [{
     groupName: '活动',
     schemeName: '夏日游园会_消消乐',
     star: true,
-    list: [0, 3, 129],
+    list: [0, 3, 129, 130],
     commonConfig: { multiColorSimilar: 95 }
 }
     // 完整demo
