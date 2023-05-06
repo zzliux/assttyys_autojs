@@ -124,9 +124,10 @@ export class Func129 implements IFuncOrigin {
             );
             if (ocrResult.length > 0) {
                 const curLevelStr = ocrResult[0].label;
-                const curLevel = parseInt(curLevelStr.match(/(\d+)/)[1]);
+                const curLevel = parseInt(curLevelStr.match(/(\d+)/)[1], 10);
                 thisScript.myToast(`当前第${curLevel}关`);
-                if (curLevel > 100) {
+                // 加上和上局一起的判断用于修正识别错误
+                if (curLevel === thisScript.global.xxlLastLevel + 1 && curLevel > 100) {
                     return thisScript.oper({
                         id: 129,
                         name: '夏日游园会_消消乐_退出',
@@ -136,6 +137,7 @@ export class Func129 implements IFuncOrigin {
                         }]
                     })
                 }
+                thisScript.global.xxlLastLevel = curLevel;
             }
         }
 
@@ -166,7 +168,7 @@ export class Func129 implements IFuncOrigin {
                     let arrFind = [`消消乐_红`, `消消乐_黑`, `消消乐_蓝`, `消消乐_黄`]
                     for (let i = 0; i < 4; i++) {
                         arr[y][x] = 5;
-                        if (thisScript.findMultiColor(arrFind[i], region)) {
+                        if (thisScript.findMultiColor(arrFind[i], region, false, true)) {
                             arr[y][x] = i + 1;
                             break;
                         }

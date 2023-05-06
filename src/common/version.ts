@@ -708,6 +708,9 @@ export const versionList = [{
     version: '20230506_02',
     desc: `尝试修复：不接勾协(如果影响主体方案请关闭"只接勾协")
 优化：夏日游园会_消消乐可自动退出与推送，有需要的同学请手动开启`
+}, {
+    version: '20230507_01',
+    desc: '尝试修复：消消乐因识别关卡退出的情况'
 }];
 
 export default versionList[versionList.length - 1].version;

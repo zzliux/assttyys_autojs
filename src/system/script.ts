@@ -290,7 +290,7 @@ export class Script {
      * @param {Boolean} multiRegion 给true的话表示inRegion为region的数组
      * @returns 
      */
-    findMultiColor(key: string, inRegion?: any, multiRegion?: boolean) {
+    findMultiColor(key: string, inRegion?: any, multiRegion?: boolean, noLog?: boolean) {
         this.initRedList();
         if (!multiRegion) {
             let region = inRegion || this.multiColor[key].region;
@@ -300,7 +300,9 @@ export class Script {
                 let item = desc[i];
                 let point = this.helperBridge.helper.FindMultiColor(region[0], region[1], region[2], region[3], item, similar, true);
                 if (point.x !== -1) {
-                    console.log(`[${key}]第${i}个查找成功， 坐标为：(${point.x}, ${point.y})`);
+                    if (!noLog) {
+                        console.log(`[${key}]第${i}个查找成功， 坐标为：(${point.x}, ${point.y})`);
+                    }
                     if (drawFloaty.instacne && item) {
                         let toDraw = item.map(kk => {
                             return {
@@ -324,7 +326,9 @@ export class Script {
                     let item = desc[i];
                     let point = this.helperBridge.helper.FindMultiColor(region[0], region[1], region[2], region[3], item, similar, true);
                     if (point.x !== -1) {
-                        console.log(`[${key}]第${i}个查找成功， 坐标为：(${point.x}, ${point.y})`);
+                        if (!noLog) {
+                            console.log(`[${key}]第${i}个查找成功， 坐标为：(${point.x}, ${point.y})`);
+                        }
                         if (drawFloaty.instacne && item) {
                             let toDraw = item.map(kk => {
                                 return {

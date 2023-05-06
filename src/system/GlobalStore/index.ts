@@ -52,6 +52,7 @@ export type globalRootType = {
     yl_next: number,//言灵对弈下一个
     bgy_three: boolean; //百鬼奕三胜
     bgy_ten: boolean; //百鬼奕十次
+    xxlLastLevel: number;
 }
 
 export const globalRoot: globalRootType = {
@@ -108,4 +109,5 @@ export const globalRoot: globalRootType = {
     yl_next: 0,
     bgy_three: false,
     bgy_ten: false,
+    xxlLastLevel: 0,
 }
