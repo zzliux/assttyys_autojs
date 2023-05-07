@@ -92,14 +92,14 @@ export class Func506 implements IFuncOrigin {
 				[left, 1280, 720, 155, 417, 365, 574, 1000]
 			]
 		}, { // 检测_鬼王集结点
-			desc: [1280, 720,
+			desc: [
+				1280, 720,
 				[
-					[center, 684, 30, 0xf7e5ac],
 					[center, 590, 40, 0x5c6887],
-					[center, 516, 15, 0x28295d],
-					[center, 761, 22, 0xe6d391],
-					[center, 810, 44, 0xfef8d2],
-					[right, 1155, 622, 0x2c160e]
+					[right, 1155, 622, 0x2c160e],
+					[center, 720, 24, 0xebd798],
+					[center, 761, 20, 0xe4ce8a],
+					[left, 68, 61, 0xc5cce1],
 				]
 			],
 			oper: [
@@ -451,43 +451,40 @@ export class Func506 implements IFuncOrigin {
 				desc: thisOperator[4].desc
 			}]
 		})) {
-			console.log(thisConf.gateOfHades_switch);
 
-			if (!thisConf.gateOfHades_switch) {
-				return false;
-			}
-
-			if (_liao_activity_state) {
-				let nowDateDay = new Date().getDay();
-				console.log('今天是周', nowDateDay);
-
-				switch (nowDateDay) {
-					case 5:
-					case 0: {
-						if (!(_liao_activity_state.narrow && _liao_activity_state.banquet)) {
-							return false;
+			if (thisConf.gateOfHades_switch) {
+				if (_liao_activity_state) {
+					let nowDateDay = new Date().getDay();
+					console.log('今天是周', nowDateDay);
+	
+					switch (nowDateDay) {
+						case 5:
+						case 0: {
+							if (!(_liao_activity_state.narrow && _liao_activity_state.banquet)) {
+								return false;
+							}
+							break;
+						};
+						case 6: {
+							if (!(_liao_activity_state.narrow && _liao_activity_state.huntBoss)) {
+								return false;
+							}
+							break;
 						}
-						break;
-					};
-					case 6: {
-						if (!(_liao_activity_state.narrow && _liao_activity_state.huntBoss)) {
-							return false;
-						}
-						break;
 					}
 				}
-			}
-
-
-			if (_liao_activity_state && _liao_activity_state.hunt) {
-				return true;
-			} else {
-				return thisScript.oper({
-					name: '检测_狩猎战是否已开启',
-					operator: [{
-						oper: thisOperator[4].oper
-					}]
-				});
+	
+	
+				if (_liao_activity_state && _liao_activity_state.hunt) {
+					return true;
+				} else {
+					return thisScript.oper({
+						name: '检测_狩猎战是否已开启',
+						operator: [{
+							oper: thisOperator[4].oper
+						}]
+					});
+				}
 			}
 		}
 
