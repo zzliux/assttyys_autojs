@@ -711,6 +711,10 @@ export const versionList = [{
 }, {
     version: '20230507_01',
     desc: '尝试修复：消消乐因识别关卡退出的情况'
+}, {
+    version: '20230508_01',
+    desc: `修复：部分设备狩猎战不进的问题；
+修复：寮活动翻页的问题`
 }];
 
 export default versionList[versionList.length - 1].version;
