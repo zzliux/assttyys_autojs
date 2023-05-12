@@ -56,8 +56,9 @@ export class Func204 implements IFuncOrigin {
 				thisScript.myToast(`选择事件${en}`);
 				sleep(200);
 				thisScript.global.d6NextEvent = undefined;
+				return true;
 			}
-			return true;
+			return false;
 		}
 		return false;
 	}

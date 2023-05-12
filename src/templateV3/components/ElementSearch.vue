@@ -1,12 +1,23 @@
 <template>
-    <span style="position: relative; margin-right: 10px">
-        <i @click="inputer.focus()" class="van-icon van-icon-search" style="position: absolute; top: 5px; left: 4px"></i>
-        <input v-model="highLightStr" @input="elementSearchInputEvent" @keyup="elementSearchKeyEvent" ref="inputer" class="element-search">
-    </span>
+  <span style="position: relative; margin-right: 10px">
+    <i
+      @click="inputer.focus()"
+      class="van-icon van-icon-search"
+      style="position: absolute; top: 5px; left: 4px"
+    ></i>
+    <input
+      type="text"
+      v-model="highLightStr"
+      @input="elementSearchInputEvent"
+      @keyup="elementSearchKeyEvent"
+      ref="inputer"
+      class="element-search"
+    />
+  </span>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref } from "vue";
 
 const props = defineProps({
   refSearchAttrName: String,
@@ -14,52 +25,101 @@ const props = defineProps({
 });
 
 const inputer = ref();
-const highLightStr = ref('');
-const highLightFullStr = ref('');
+const highLightStr = ref("");
+const highLightFullStr = ref("");
 
-
-let lastSearchStr = '';
+let lastSearchStr = "";
 let lastSearchIndex = 0;
 let lastList = [];
-function elementSearchInputEvent() {
+function elementSearchInputEventOrigin(e, up) {
   if (highLightStr.value === lastSearchStr) {
     const list = document.querySelectorAll(`[${props.refSearchAttrName}*="${lastSearchStr}"]`);
-    if (list.length) {
-      const thisEle = list[(++lastSearchIndex) % list.length];
-      highLightFullStr.value = thisEle.getAttribute('scheme-list-name');
-      thisEle.scrollIntoView({
-        behavior: "smooth",
-        block:    "center"
-      });
-    } else {
-      highLightFullStr.value = '';
+    const highLightList = document.querySelectorAll(`[${props.refHighLightAttrName}*="${lastSearchStr}"]`);
+
+    for (let i = 0; i < lastList.length; i++) {
+      lastList[i].style.backgroundColor = ''
     }
+    lastList = [];
+
+    if (list.length && highLightList.length) {
+      const thisIndex = (up ? (--lastSearchIndex + list.length) : (++lastSearchIndex + list.length)) % list.length;
+      const thisEle = list[thisIndex];
+      highLightFullStr.value = thisEle.getAttribute(props.refSearchAttrName);
+
+      for (let i = 0; i < highLightList.length; i++) {
+        if (thisIndex === i) {
+          highLightList[i].style.backgroundColor = '#eee8aa'
+        } else {
+          highLightList[i].style.backgroundColor = '#ffffe0'
+        }
+      }
+
+      setTimeout(() => {
+        thisEle.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+      }, 0);
+    } else {
+      highLightFullStr.value = "";
+    }
+    lastList = highLightList;
   } else {
     lastSearchStr = highLightStr.value;
     const list = document.querySelectorAll(`[${props.refSearchAttrName}*="${lastSearchStr}"]`);
-    if (list.length) {
-      const thisEle = list[0];
-      thisEle.scrollIntoView({
-        behavior: "smooth",
-        block:    "center"
-      });
-      highLightFullStr.value = thisEle.getAttribute('scheme-list-name');
-      lastSearchIndex = 0;
-    } else {
-      highLightFullStr.value = '';
+    const highLightList = document.querySelectorAll(`[${props.refHighLightAttrName}*="${lastSearchStr}"]`);
+    
+    for (let i = 0; i < lastList.length; i++) {
+      lastList[i].style.backgroundColor = ''
     }
+    lastList = [];
+
+    if (list.length && highLightList.length) {
+      const thisEle = list[0];
+      highLightFullStr.value = thisEle.getAttribute(props.refSearchAttrName);
+      lastSearchIndex = 0;
+
+      highLightList[0].style.backgroundColor = '#eee8aa'
+      for (let i = 1; i < highLightList.length; i++) {
+        highLightList[i].style.backgroundColor = '#ffffe0'
+      }
+      setTimeout(() => {
+        thisEle.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+      }, 0);
+    } else {
+      highLightFullStr.value = "";
+    }
+    lastList = highLightList;
   }
 }
 
 function elementSearchKeyEvent(e) {
   if (e.keyCode === 13) {
-    elementSearchInputEvent();
+    elementSearchInputEvent(e, e.shiftKey);
   }
 }
 
+const elementSearchInputEvent = throttle(elementSearchInputEventOrigin, 200);
+
+function throttle(fn, delay){
+	let valid = true;
+	return function(){
+		if(valid) { //如果阀门已经打开，就继续往下
+			fn.apply(this, arguments);//定时器结束后执行
+      setTimeout(()=> {
+				valid = true;//执行完成后打开阀门
+			}, delay)
+			valid = false;//关闭阀门
+		}
+	}
+}
+
+
 </script>
 <style scoped>
-
 .element-search {
   transition: all 250ms;
   display: inline-block;
@@ -79,7 +139,7 @@ function elementSearchKeyEvent(e) {
   user-select: auto;
 }
 .element-search:focus {
-  background-color: #f2f3f5;
+  background-color: #f4f5f7;
   width: 200px;
 }
 </style>

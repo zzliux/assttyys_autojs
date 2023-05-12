@@ -11,10 +11,10 @@
         </template>
         <template #right>
           <!-- <van-icon name="todo-list-o" size="18" @click="exportAndImportModel = true"/> -->
-          <span style="position: relative; margin-right: 10px">
-            <i @click="schemeSearchInputer.focus()" class="van-icon van-icon-search" style="position: absolute; top: 5px; left: 4px"></i>
-            <input v-model="highLightSchemeStr" @input="schemeSearchInputEvent" @keyup="schemeSearchKeyEvent" ref="schemeSearchInputer" class="scheme-search">
-          </span>
+          <element-search
+            refSearchAttrName="scheme-list-name"
+            refHighLightAttrName="scheme-list-to-highlit"
+          />
           <span size="18" @click="exportAndImportModel = true">更多</span>
         </template>
       </van-nav-bar>
@@ -41,7 +41,7 @@
           class="item-list-container"
         >
           <template #item="{ element, index }">
-            <div class="item-container">
+            <div class="item-container" :scheme-list-name="element.schemeName">
               <van-swipe-cell
                 class="item-line"
                 center
@@ -51,12 +51,13 @@
                 :stop-propagation="true"
                 :disabled="filterGroupName !== '全部'"
               >
-                <span :scheme-list-name="element.schemeName">
+                <span>
                   <div v-if="element.groupName" class="group-color" :style="'background-color: ' + getGroupColor(element.groupName)"></div>
                   <div
+                    :scheme-list-to-highlit="element.schemeName"
                     class="item van-cell van-cell--center"
                     @click="schemeClickEvent($event, element)"
-                    :style="'margin-left: ' + (element.groupName ? '6px' : '0px') + '; background-color:' + ((highLightSchemeName && element.schemeName === highLightSchemeName) ? '#eee8aa' : (highLightSchemeStr && element.schemeName.indexOf(highLightSchemeStr) > -1 ? '#ffffe0' : 'white'))"
+                    :style="'margin-left: ' + (element.groupName ? '6px' : '0px')"
                   >
                     <div class="van-cell__title item-title" :style="'margin-left: ' + (!element.groupName ? '6px' : '0px')">{{ element.schemeName }}</div>
                     <div class="van-cell__value item-value" :style="'margin-right: ' + (element.groupName ? '6px' : '0px')">
@@ -171,6 +172,7 @@ import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import ExportSchemeDialog from "../components/ExportSchemeDialog.vue";
 import ImportSchemeDialog from "../components/ImportSchemeDialog.vue";
+import ElementSearch from "../components/ElementSearch";
 import draggable from "@marshallswain/vuedraggable";
 import { mergeSchemeList } from "../../common/toolWeb";
 import dSchemeList from "../../common/schemeList";
@@ -461,44 +463,6 @@ async function filterGroupNameChange() {
   schemeList.value = filterd;
 }
 
-let lastSearchSchemeStr = '';
-let lastSearchSchemeIndex = 0;
-function schemeSearchInputEvent() {
-  if (highLightSchemeStr.value === lastSearchSchemeStr) {
-    const list = document.querySelectorAll(`[scheme-list-name*="${lastSearchSchemeStr}"]`);
-    if (list.length) {
-      const thisEle = list[(++lastSearchSchemeIndex) % list.length];
-      highLightSchemeName.value = thisEle.getAttribute('scheme-list-name');
-      thisEle.scrollIntoView({
-        behavior: "smooth",
-        block:    "center"
-      });
-    } else {
-      highLightSchemeName.value = '';
-    }
-  } else {
-    lastSearchSchemeStr = highLightSchemeStr.value;
-    const list = document.querySelectorAll(`[scheme-list-name*="${lastSearchSchemeStr}"]`);
-    if (list.length) {
-      const thisEle = list[0];
-      thisEle.scrollIntoView({
-        behavior: "smooth",
-        block:    "center"
-      });
-      highLightSchemeName.value = thisEle.getAttribute('scheme-list-name');
-      lastSearchSchemeIndex = 0;
-    } else {
-      highLightSchemeName.value = '';
-    }
-  }
-}
-
-function schemeSearchKeyEvent(e) {
-  if (e.keyCode === 13) {
-    schemeSearchInputEvent();
-  }
-}
-
 </script>
 
 <style scoped>
@@ -563,28 +527,5 @@ function schemeSearchKeyEvent(e) {
 }
 .import-export-btn:hover {
   background: #ccc;
-}
-
-.scheme-search {
-  transition: all 250ms;
-  display: inline-block;
-  box-sizing: border-box;
-  width: 24px;
-  min-width: 0;
-  margin: 0;
-  padding-left: 24px;
-  color: var(--van-field-input-text-color);
-  line-height: inherit;
-  background-color: transparent;
-  text-align: left;
-  border: 0;
-  border-radius: 6px;
-  resize: none;
-  -webkit-user-select: auto;
-  user-select: auto;
-}
-.scheme-search:focus {
-  background-color: #f2f3f5;
-  width: 200px;
 }
 </style>

@@ -8,6 +8,10 @@
         :style="'padding-top: ' + (statusBarHeight || 0) + 'px'"
       >
          <template #right>
+          <element-search
+            refSearchAttrName="func-list-name"
+            refHighLightAttrName="func-list-to-highlight"
+          />
           <van-icon name="setting-o" size="18"  @click="showCommonConfig($event, commonConfig)" />
           <!-- <van-icon name="success" size="18" @click="saveScheme" /> -->
         </template>
@@ -35,8 +39,9 @@
             <div
               class="item"
               center
-              >
-              <div class="item-header" @click="showConfig($event, element)">
+              :func-list-name="element.id + ' ' + element.name"
+            >
+              <div class="item-header" :func-list-to-highlight="element.id + ' ' + element.name" @click="showConfig($event, element)">
                 <div class="item-title">{{element.id + ' ' + element.name + (element.config && element.config.length ? ' *': '')}}</div>
                 <div class="item-value">
                   <span class="handle-area"><van-icon class="handle noShowConfigEvent" size="18" name="bars" /></span>
@@ -99,6 +104,7 @@ import draggable from '@marshallswain/vuedraggable'
 import dfuncList from "../../common/funcListIndex";
 import dCommonConfig from "../../common/commonConfig";
 import funcConfigBox from '../components/FuncConfigBox.vue';
+import ElementSearch from "../components/ElementSearch";
 import funcConfigDialog from '../components/FuncConfigDialog.vue';
 import appListLauchDialog from '../components/AppListLaunchDialog.vue';
 import { merge } from '@/common/tool';
