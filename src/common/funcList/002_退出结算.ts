@@ -293,17 +293,16 @@ export class Func002 implements IFuncOrigin {
 			]
 		],
 	}, {
-		// 金币妖怪
+		// 经验金币妖怪
 		desc: [1280, 720,
 			[
 				[center, 435, 68, 0x831a10],
 				[center, 364, 67, 0xc94130],
 				[left, 297, 44, 0xc83d2e],
 				[center, 754, 81, 0xdfca9b],
-				[center, 653, 184, 0xf8f3e0],
-				[center, 755, 208, 0xf3eedb],
-				[center, 643, 194, 0x89b9cc],
-				[left, 68, 197, 0x8abdce]
+				[left, 68, 197, 0x8abdce],
+				[left, 140, 215, 0x7a5445],
+				[left, 139, 238, 0x2b0910]
 			]
 		],
 		oper: [
