@@ -2746,16 +2746,31 @@ const multiColor: IMultiColorOrigin = {
         region: [center, 1280, 720, 648, 456, 720, 528],
         similar: 98,
         desc: [
-            [1280,720,
+            [1280, 720,
                 [
-                [center,696,488,0xef4c34],
-                [center,699,489,0xf5502b],
-                [center,699,493,0xe92c12],
-                [center,696,493,0xe9331a]
+                    [center, 696, 488, 0xef4c34],
+                    [center, 699, 489, 0xf5502b],
+                    [center, 699, 493, 0xe92c12],
+                    [center, 696, 493, 0xe9331a]
                 ]
-                ]
+            ]
         ]
-    }
+    },
+    "突破失败": {
+        region: [center, 1280, 720, 380, 140, 1230, 485],
+        similar: 96,
+        desc: [
+            [1280, 720,
+                [
+                    [center, 445, 314, 0xDAAD61],
+                    [center, 443, 286, 0x2a0905],
+                    [center, 461, 305, 0x390b06],
+                    [center, 446, 308, 0xedcd7f],
+                    [center, 459, 322, 0xd5a74c]
+                ]
+            ]
+        ]
+    },
 }
 
 export default multiColor;
