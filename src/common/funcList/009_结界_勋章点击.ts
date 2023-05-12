@@ -76,15 +76,15 @@ export class Func009 implements IFuncOrigin {
 			for (let key of multiColorKey) {
 				let point = thisScript.findMultiColor(key);
 				let add = thisOperator[0].oper[3];
-				if (point && thistype === '个人突破' && ((point.x > thisOperator[0].oper[2][0] &&
-					point.x < thisOperator[0].oper[2][0] + thisOperator[0].oper[2][3]) ||
-					(point.x > thisOperator[0].oper[2][1] &&
-						point.x < thisOperator[0].oper[2][1] + thisOperator[0].oper[2][3]) ||
-					(point.x > thisOperator[0].oper[2][2] &&
-						point.x < thisOperator[0].oper[2][2] + thisOperator[0].oper[2][3]))) {
-					console.log("识别到点击范围在头像框附近，对点击范围更正");
-					add = thisOperator[0].oper[1];
-				}
+				// if (point && thistype === '个人突破' && ((point.x > thisOperator[0].oper[2][0] &&
+				// 	point.x < thisOperator[0].oper[2][0] + thisOperator[0].oper[2][3]) ||
+				// 	(point.x > thisOperator[0].oper[2][1] &&
+				// 		point.x < thisOperator[0].oper[2][1] + thisOperator[0].oper[2][3]) ||
+				// 	(point.x > thisOperator[0].oper[2][2] &&
+				// 		point.x < thisOperator[0].oper[2][2] + thisOperator[0].oper[2][3]))) {
+				// 	console.log("识别到点击范围在头像框附近，对点击范围更正");
+				// 	add = thisOperator[0].oper[1];
+				// }
 				if (point) {
 					let oper = [[
 						point.x + thisOperator[0].oper[0][0] + add[0],

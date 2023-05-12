@@ -645,7 +645,7 @@ export const versionList = [{
 }, {
     version: '20230405_03',
     desc: '优化：逢魔挑战中若查找10次首领仍未进入挑战择将直接标记为已挑战boss'
-},{
+}, {
     version: '20230406_01',
     desc: '优化：探索可及时识别boss'
 }, {
@@ -715,6 +715,11 @@ export const versionList = [{
     version: '20230508_01',
     desc: `修复：部分设备狩猎战不进的问题；
 修复：寮活动翻页的问题`
+}, {
+    version: '202305012_01',
+    desc: `修复:妖气封印
+优化:结算退出可识别经验副本
+优化:结界三次刷新增加"无法九胜时才三次刷新开关`
 }];
 
 export default versionList[versionList.length - 1].version;
