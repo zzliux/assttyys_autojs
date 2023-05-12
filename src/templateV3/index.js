@@ -48,12 +48,12 @@ var router = createRouter({
 		window.savedPosition = savedPosition || { left: 0, top: 0 };
 		return new Promise((resolve, reject) => {
 			setTimeout(() => {
-				if (savedPosition) {
+				if (to.name === 'index' && savedPosition) {
 					resolve({ ...savedPosition, behavior: 'smooth' });
 				} else {
-					resolve({ left: 0, top: 0,  behavior: 'smooth'  });
+					resolve({ left: 0, top: 0 });
 				}
-			}, 600);
+			}, 500);
 		});
 	},
 	routes: [{

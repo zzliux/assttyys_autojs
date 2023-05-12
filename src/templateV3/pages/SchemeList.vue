@@ -1,13 +1,20 @@
 <template>
   <div>
     <div class="navbar_box">
-      <van-nav-bar title="ASSTTYYS NG" :style="'padding-top: ' + (statusBarHeight || 0) + 'px'">
+      <van-nav-bar :style="'padding-top: ' + (statusBarHeight || 0) + 'px'">
         <template #left>
           <van-icon name="wap-nav" size="18" @click="$router.push('/settings')" />
           <!-- <van-icon name="success" size="18" @click="saveScheme" /> -->
         </template>
+        <template #title>
+          ASSTTYYS NG
+        </template>
         <template #right>
           <!-- <van-icon name="todo-list-o" size="18" @click="exportAndImportModel = true"/> -->
+          <span style="position: relative; margin-right: 10px">
+            <i @click="schemeSearchInputer.focus()" class="van-icon van-icon-search" style="position: absolute; top: 5px; left: 4px"></i>
+            <input v-model="highLightSchemeStr" @input="schemeSearchInputEvent" @keyup="schemeSearchKeyEvent" ref="schemeSearchInputer" class="scheme-search">
+          </span>
           <span size="18" @click="exportAndImportModel = true">更多</span>
         </template>
       </van-nav-bar>
@@ -44,12 +51,12 @@
                 :stop-propagation="true"
                 :disabled="filterGroupName !== '全部'"
               >
-                <span>
+                <span :scheme-list-name="element.schemeName">
                   <div v-if="element.groupName" class="group-color" :style="'background-color: ' + getGroupColor(element.groupName)"></div>
                   <div
                     class="item van-cell van-cell--center"
                     @click="schemeClickEvent($event, element)"
-                    :style="'margin-left: ' + (element.groupName ? '6px' : '0px')"
+                    :style="'margin-left: ' + (element.groupName ? '6px' : '0px') + '; background-color:' + ((highLightSchemeName && element.schemeName === highLightSchemeName) ? '#eee8aa' : (highLightSchemeStr && element.schemeName.indexOf(highLightSchemeStr) > -1 ? '#ffffe0' : 'white'))"
                   >
                     <div class="van-cell__title item-title" :style="'margin-left: ' + (!element.groupName ? '6px' : '0px')">{{ element.schemeName }}</div>
                     <div class="van-cell__value item-value" :style="'margin-right: ' + (element.groupName ? '6px' : '0px')">
@@ -188,6 +195,9 @@ const groupNameIndex = ref(0);
 const exportAndImportModel = ref(false);
 const exportModel = ref(false);
 const importModel = ref(false);
+const schemeSearchInputer = ref();
+const highLightSchemeStr = ref('');
+const highLightSchemeName = ref('');
 
 const filterGroupNames = ref([{ text: '全部', value: '全部' }]);
 const filterGroupName = ref('全部');
@@ -450,6 +460,41 @@ async function filterGroupNameChange() {
   }
   schemeList.value = filterd;
 }
+
+let lastSearchSchemeStr = '';
+let lastSearchSchemeIndex = 0;
+function schemeSearchInputEvent() {
+  if (highLightSchemeStr.value === lastSearchSchemeStr) {
+    const list = document.querySelectorAll(`[scheme-list-name*="${lastSearchSchemeStr}"]`);
+    if (list.length) {
+      const thisEle = list[(++lastSearchSchemeIndex) % list.length];
+      highLightSchemeName.value = thisEle.getAttribute('scheme-list-name');
+      thisEle.scrollIntoView({
+        behavior: "smooth",
+        block:    "center"
+      });
+    }
+  } else {
+    lastSearchSchemeStr = highLightSchemeStr.value;
+    const list = document.querySelectorAll(`[scheme-list-name*="${lastSearchSchemeStr}"]`);
+    if (list.length) {
+      const thisEle = list[0];
+      thisEle.scrollIntoView({
+        behavior: "smooth",
+        block:    "center"
+      });
+      highLightSchemeName.value = thisEle.getAttribute('scheme-list-name');
+      lastSearchSchemeIndex = 0;
+    }
+  }
+}
+
+function schemeSearchKeyEvent(e) {
+  if (e.keyCode === 13) {
+    schemeSearchInputEvent();
+  }
+}
+
 </script>
 
 <style scoped>
@@ -514,5 +559,28 @@ async function filterGroupNameChange() {
 }
 .import-export-btn:hover {
   background: #ccc;
+}
+
+.scheme-search {
+  transition: all 250ms;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 24px;
+  min-width: 0;
+  margin: 0;
+  padding-left: 24px;
+  color: var(--van-field-input-text-color);
+  line-height: inherit;
+  background-color: transparent;
+  text-align: left;
+  border: 0;
+  border-radius: 6px;
+  resize: none;
+  -webkit-user-select: auto;
+  user-select: auto;
+}
+.scheme-search:focus {
+  background-color: #f2f3f5;
+  width: 200px;
 }
 </style>
