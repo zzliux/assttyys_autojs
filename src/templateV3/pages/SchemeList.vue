@@ -473,6 +473,8 @@ function schemeSearchInputEvent() {
         behavior: "smooth",
         block:    "center"
       });
+    } else {
+      highLightSchemeStr.value = '';
     }
   } else {
     lastSearchSchemeStr = highLightSchemeStr.value;
@@ -485,6 +487,8 @@ function schemeSearchInputEvent() {
       });
       highLightSchemeName.value = thisEle.getAttribute('scheme-list-name');
       lastSearchSchemeIndex = 0;
+    } else {
+      highLightSchemeStr.value = '';
     }
   }
 }
