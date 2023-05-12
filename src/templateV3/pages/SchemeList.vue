@@ -474,7 +474,7 @@ function schemeSearchInputEvent() {
         block:    "center"
       });
     } else {
-      highLightSchemeStr.value = '';
+      highLightSchemeName.value = '';
     }
   } else {
     lastSearchSchemeStr = highLightSchemeStr.value;
@@ -488,7 +488,7 @@ function schemeSearchInputEvent() {
       highLightSchemeName.value = thisEle.getAttribute('scheme-list-name');
       lastSearchSchemeIndex = 0;
     } else {
-      highLightSchemeStr.value = '';
+      highLightSchemeName.value = '';
     }
   }
 }
