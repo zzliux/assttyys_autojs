@@ -193,7 +193,7 @@ export class Func202 implements IFuncOrigin {
 				}
 				// 判断剩下多少钱，如果剩下的钱不够刷新直接给刷新次数置为上限
 				let coins = 50;
-				if (thisScript.getOcr()) {
+				if (thisScript.getOcrDetector()) {
 					let result = thisScript.findText('.+', 0, thisOperator[0].oper[3], '包含');
 					console.log(JSON.stringify(result));
 					if (result.length) {

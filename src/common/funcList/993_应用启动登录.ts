@@ -306,7 +306,7 @@ export class Func993 implements IFuncOrigin {
 		})) {
 			let toDetectAreaBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[0].oper[1].slice(0, 4))
 			console.time('ocr.detect.area');
-			let resultArea = thisScript.getOcr().loadImage(toDetectAreaBmp);
+			let resultArea = thisScript.getOcrDetector().loadImage(toDetectAreaBmp);
 			console.timeEnd('ocr.detect.area');
 			toDetectAreaBmp.recycle();
 
@@ -356,7 +356,7 @@ export class Func993 implements IFuncOrigin {
 			});
 			let switchGameAreaBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[5].oper[0].slice(0, 4))
 			console.time('ocr.game.area');
-			let resultGameArea = thisScript.getOcr().loadImage(switchGameAreaBmp);
+			let resultGameArea = thisScript.getOcrDetector().loadImage(switchGameAreaBmp);
 			console.timeEnd('ocr.game.area');
 			switchGameAreaBmp.recycle();
 			console.log(resultGameArea);

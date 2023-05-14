@@ -31,7 +31,7 @@ export class Func023 implements IFuncOrigin {
 			// 识别问题
 			let toDetectQuestionBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[0].oper[0].slice(0, 4));
 			console.time('ocr.detect.question');
-			let resultQuestion = thisScript.getOcr().loadImage(toDetectQuestionBmp);
+			let resultQuestion = thisScript.getOcrDetector().loadImage(toDetectQuestionBmp);
 			console.timeEnd('ocr.detect.question');
 			toDetectQuestionBmp.recycle();
 			let question = '';
@@ -45,7 +45,7 @@ export class Func023 implements IFuncOrigin {
 
 			let toDetectAnsBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[0].oper[1].slice(0, 4));
 			console.time('ocr.detect.ans');
-			let resultAns = thisScript.getOcr().loadImage(toDetectAnsBmp);
+			let resultAns = thisScript.getOcrDetector().loadImage(toDetectAnsBmp);
 			console.timeEnd('ocr.detect.ans');
 			toDetectAnsBmp.recycle();
 

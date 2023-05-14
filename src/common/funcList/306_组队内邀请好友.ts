@@ -127,7 +127,7 @@ export class Func306 implements IFuncOrigin {
           operator: [{ oper: [thisOperator[1].oper[1]] }]
         })
       }
-      if (thisScript.getOcr()) {
+      if (thisScript.getOcrDetector()) {
         let result = thisScript.findText('.+', 0, thisOperator[1].oper[2], '包含');
         if (result.length === 0) {
           console.log(`未识别到任何昵称`);

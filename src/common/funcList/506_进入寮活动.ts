@@ -301,7 +301,7 @@ export class Func506 implements IFuncOrigin {
 		})) {
 			let toDetectAreaBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[3].oper[0].slice(0, 4))
 			console.time('ocr.detect.area');
-			let resultArea = thisScript.getOcr().loadImage(toDetectAreaBmp);
+			let resultArea = thisScript.getOcrDetector().loadImage(toDetectAreaBmp);
 			console.timeEnd('ocr.detect.area');
 			toDetectAreaBmp.recycle();
 

@@ -89,7 +89,7 @@ export class Func304 implements IFuncOrigin {
       operator: [{
         desc: thisOperator[1].desc
       }]
-    }) && thisScript.getOcr()) {
+    }) && thisScript.getOcrDetector()) {
       const realTimeBmp = thisScript.findTextWithCompareColor(
         '.+', 0, thisOperator[1].oper[1], '包含',
         {

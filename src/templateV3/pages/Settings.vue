@@ -216,8 +216,15 @@ async function setShapedScreenConfigEnabled(e, item) {
   await AutoWeb.autoPromise('setShapedScreenConfigEnabled', item);
   item.loading = false;
 }
-async function saveSettings(item) {
+async function saveSettings(item, reload) {
   await AutoWeb.autoPromise('saveSetting', item);
+  if (reload) {
+    let rsettings = (await AutoWeb.autoPromise('getSettings'));
+    rsettings.forEach(item => {
+      item.loading = false;
+    });
+    settings.value = rsettings;
+  }
 }
 async function showItemConfigList(event, item) {
   popupCurItem.value = item;
@@ -229,6 +236,12 @@ async function popupListConfirm({ selectedOptions }) {
   popupCurItem.value.value = selectedOptions[0].text;
   popupListShown.value = false;
   await AutoWeb.autoPromise('saveSetting', popupCurItem.value);
+  
+  let rsettings = (await AutoWeb.autoPromise('getSettings'));
+  rsettings.forEach(item => {
+    item.loading = false;
+  });
+  settings.value = rsettings;
 }
 function debounce (func, wait, args) {
   if (timeout.value) clearTimeout(timeout.value)

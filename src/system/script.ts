@@ -4,7 +4,9 @@ import funcList from '@/common/funcListIndex';
 import defaultSchemeList from '@/common/schemeList';
 import helperBridge, { IhelperBridge } from '@/system/helperBridge';
 import multiColor from '@/common/multiColors';
-import { MlkitOcrDetector, ocr, OcrResult } from '@/system/MlkitOcr';
+import { IOcr, IOcrDetector, OcrResult } from './Ocr/IOcr';
+import { mlkitOcr } from '@/system/Ocr/MlkitOcr';
+import { yunxiOcr } from '@/system/Ocr/YunxiOcr';
 import { setCurrentScheme } from '@/common/tool';
 import { getWidthPixels, getHeightPixels } from "@auto.pro/core";
 import schemeDialog from './schemeDialog';
@@ -33,7 +35,8 @@ export class Script {
     runDate: Date; // 运行启动时间
     currentDate: Date; // 最近一次功能执行时间
     lastFuncDateTime: Date; // 上次功能执行时间
-    ocrDetector: MlkitOcrDetector; // yunxi的ocr
+    ocrDetector: IOcrDetector; // yunxi的ocr
+    ocr: IOcr;
     helperBridge: any; //IhelperBridge;
     job: Job;
     schedule: typeof schedule;
@@ -104,20 +107,32 @@ export class Script {
     }
 
     initOcrIfNeeded() {
-        if (!this.ocrDetector) {
-            this.ocrDetector = ocr.prepare();
+        let storeSettings = storeCommon.get('settings', {});
+        if (!this.ocrDetector || storeSettings.ocrType !== this.ocr.typeName) {
+            if (storeSettings.ocrType === 'MlkitOcr') {
+                this.ocrDetector = mlkitOcr.prepare();
+                this.ocr = mlkitOcr;
+            } else if (storeSettings.ocrType === 'YunxiOcr') {
+                this.ocrDetector = yunxiOcr.prepare();
+                this.ocr = yunxiOcr;
+            }
         }
     }
 
     // 获取ocr对象，重复调用仅在第一次进行实例化
-    getOcr(): MlkitOcrDetector {
+    getOcrDetector(): IOcrDetector {
         this.initOcrIfNeeded();
         return this.ocrDetector;
     }
 
+    getOcr(): IOcr {
+        this.initOcrIfNeeded();
+        return this.ocr;
+    }
+
     findText(text: string, timeout: number, region: Array<number>, textMatchMode: string): Array<OcrResult> {
         this.initOcrIfNeeded();
-        return ocr.findText(function () {
+        return this.getOcr().findText(function () {
             script.keepScreen(); // 更新图片
             return script.helperBridge.helper.GetBitmap(); // 返回bmp
         }, text, timeout, region, textMatchMode);
@@ -135,7 +150,7 @@ export class Script {
             if (!this.oper(currFunc)) return [];
 
             // 超时时间设置为0，表示找一次就行，由外部手工控制循环
-            const result = ocr.findText(function () {
+            const result = this.getOcr().findText(function () {
                 self.keepScreen(); // 更新图片
                 return self.helperBridge.helper.GetBitmap(); // 返回bmp
             }, text, 0, region, textMatchMode);
@@ -154,7 +169,7 @@ export class Script {
 
     findTextByOcrResult(text: string, ocrResult: Array<OcrResult>, textMatchMode: string, similarityRatio?: number): Array<OcrResult> {
         this.initOcrIfNeeded();
-        return ocr.findTextByOcrResult(text, ocrResult, textMatchMode, similarityRatio);
+        return this.getOcr().findTextByOcrResult(text, ocrResult, textMatchMode, similarityRatio);
     }
 
     /**

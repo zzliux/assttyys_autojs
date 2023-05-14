@@ -1,21 +1,8 @@
 import { similarity } from "@/common/tool";
-import drawFloaty from "./drawFloaty";
+import drawFloaty from "../drawFloaty";
+import { IOcr, IOcrDetector, OcrResult } from "./IOcr";
 
-export class OcrResult {
-    confidence: number;
-    label: string;
-    rotation: number;
-    points: Array<{x: number, y: number}>;
-    similar?: number | false;
-    constructor(confidence: number, label: string, rotation: number, points: Array<{x: number, y: number}>) {
-        this.confidence = confidence;
-        this.label = label;
-        this.rotation = rotation;
-        this.points = points;
-    }
-}
-
-export class MlkitOcrDetector {
+export class MlkitOcrDetector implements IOcrDetector {
     instance: any;
     constructor() {
         const MLKitOCR = $plugins.load('org.autojs.autojspro.plugin.mlkit.ocr');
@@ -51,9 +38,10 @@ export class MlkitOcrDetector {
     }
 }
 
-class MlkitOcr {
+class MlkitOcr implements IOcr {
 
     detector: MlkitOcrDetector;
+    typeName: string = 'MlkitOcr';
 
     constructor() {
         this.detector = null;
@@ -99,7 +87,7 @@ class MlkitOcr {
                             }
                             // @ts-ignore
                             files.writeBytes(path + '/org.autojs.autojspro.plugin.mlkit.ocr.apk', r.body.bytes());
-                            if (ocr.isInstalled()) {
+                            if (mlkitOcr.isInstalled()) {
                                 toastLog('安装完成');
                                 option.successCallback();
                             } else {
@@ -205,4 +193,4 @@ class MlkitOcr {
     }
 }
 
-export const ocr = new MlkitOcr();
+export const mlkitOcr = new MlkitOcr();

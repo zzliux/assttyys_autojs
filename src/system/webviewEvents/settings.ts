@@ -5,7 +5,8 @@ import { storeCommon } from '@/system/store';
 import { getInstalledPackages, requestMyScreenCapture } from '@/common/toolAuto';
 import { isRoot } from "@auto.pro/core";
 import helperBridge from '@/system/helperBridge';
-import { ocr } from '@/system/MlkitOcr';
+import { mlkitOcr } from '@/system/Ocr/MlkitOcr';
+import { yunxiOcr } from "../Ocr/YunxiOcr";
 
 
 export default function webviewSettigns() {
@@ -21,6 +22,12 @@ export default function webviewSettigns() {
             }
             storeCommon.put('settings', storeSettings);
         }
+
+        if (!storeSettings.ocrType) {
+            storeSettings.ocrType = 'MlkitOcr';
+            storeCommon.put('settings', storeSettings);
+        }
+
         let ret = [];
         ret.push({
             desc: '点击/滑动模式',
@@ -93,10 +100,17 @@ export default function webviewSettigns() {
             type: 'assttyys_setting_floaty_debugger_draw',
             enabled: !!drawFloaty.instacne
         }, {
+            desc: 'OCR扩展类型',
+            name: 'ocrType',
+            type: 'assttyys_setting',
+            stype: 'list',
+            data: ['MlkitOcr', 'YunxiOcr'],
+            value: storeSettings.ocrType
+        }, {
             desc: 'OCR扩展',
             name: 'ocr_extend',
             type: 'assttyys_setting_ocr_extend',
-            enabled: ocr.isInstalled()
+            enabled: storeSettings.ocrType === 'MlkitOcr' ? mlkitOcr.isInstalled() : yunxiOcr.isInstalled()
         }, {
             desc: '启用osp推送',
             name: 'use_osp',
@@ -204,10 +218,16 @@ export default function webviewSettigns() {
             console.log(drawFloaty);
             done(true);
         } else if ('assttyys_setting_ocr_extend' === item.type) {
+            let storeSettings = storeCommon.get('settings', {});
             if (item.enabled) {
+                let ocr = null;
+                if (storeSettings.ocrType === 'MlkitOcr') {
+                    ocr = mlkitOcr;
+                } else if (storeSettings.ocrType === 'YunxiOcr') {
+                    ocr = yunxiOcr;
+                }
                 ocr.install({
                     successCallback: function () {
-                        console.log(111);
                         done(true)
                     },
                     failCallback: function () {
