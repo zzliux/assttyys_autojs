@@ -23,7 +23,24 @@ export class Func999 implements IFuncOrigin {
             type: 'text',
             default: '队伍1',
             value: '队伍1',
-        }]
+        }, {
+            name: 'fastMode',
+            desc: '开启快速坐标模式（仅以下参数生效）',
+            type: 'switch',
+            default: 'false',
+        }, {
+            name: 'groupNum',
+            desc: '目标预设的分组在第N个（输入数字，只支持8个以内）',
+            type: 'text',
+            default: '1',
+            value: '1',
+        }, {
+            name: 'defaultNum',
+            desc: '目标预设在第N个（输入数字，只支持4个以内）',
+            type: 'text',
+            default: '1',
+            value: '1',
+        }],
     }];
     operator: IFuncOperatorOrigin[] = [
         {   // 检测是否为式神录
@@ -139,10 +156,21 @@ export class Func999 implements IFuncOrigin {
                 [center, 1280, 720, 550, 342, 572, 367, 1200],  //  今天不再提示
                 [center, 1280, 720, 592, 412, 682, 447, 1200]   //  点击确定
             ]
+        }, {     //分组
+            oper: [
+                [right, 1280, 720, 1107, 95, 1229, 141, 70],    //分组第一，像素相隔70
+            ]
+        }, {     //选预设
+            oper: [
+                [right, 1280, 720, 975, 157, 1003, 176, 500],     //预设第一
+                [right, 1280, 720, 976, 306, 1001, 327, 500],     //预设第二
+                [right, 1280, 720, 978, 454, 1004, 482, 500],    //预设第三
+                [right, 1280, 720, 978, 606, 1001, 625, 500],    //预设第四
+
+            ]
         }];
     operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
         let thisConf = thisScript.scheme.config['510'];
-
         thisScript.oper({
             name: '检测_弹窗',
             operator: [thisOperator[3], thisOperator[4], thisOperator[5], thisOperator[6]]
@@ -168,116 +196,24 @@ export class Func999 implements IFuncOrigin {
                     desc: thisOperator[2].desc
                 }]
             })) {
-                if (thisScript.global.change_shikigami_state === 'flushed') {
-
-                    thisScript.helperBridge.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [1200, 1500], 1000);
-
-                    let toDetectAreaBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[2].oper[5].slice(0, 4))
-                    console.time('ocr.detect.area');
-                    let resultArea = thisScript.getOcr().loadImage(toDetectAreaBmp);
-                    console.timeEnd('ocr.detect.area');
-                    toDetectAreaBmp.recycle();
-
-                    let _first_group_name = ''
-                    if (Array.isArray(resultArea) && resultArea.length > 0 && resultArea[0].label) {
-                        if (resultArea[0] && resultArea[0].label) {
-                            console.log('识别成功,目前顶端预设分组名称为:' + resultArea[0].label);
-                            _first_group_name = resultArea[0].label;
-                        }
-                    }
-
-                    if (_first_group_name === thisScript.global.change_shikigami_last_group_name) {
-                        thisScript.global.change_shikigami_list_swipe_times++;
-                        console.log('已经到顶了');
-                        sleep(600);
-                    }
-
-                    if (thisScript.global.change_shikigami_list_swipe_times >= 3) {
-                        thisScript.global.change_shikigami_state = 'search_group';
-                        thisScript.global.change_shikigami_list_swipe_times = 0;
-                        thisScript.global.change_shikigami_last_group_name = undefined;
-                    } else if (_first_group_name.trim()) {
-                        thisScript.global.change_shikigami_last_group_name = _first_group_name;
-                    }
-
-                    return true;
-                } else if (thisScript.global.change_shikigami_state === 'search_group') {
-                    const grounpName = thisConf.groupName as string;
-                    let result = thisScript.findText(grounpName, 5000, thisOperator[2].oper[2], '模糊');
-
-                    if (result.length === 0) {
-                        console.log(`未识别分组${thisConf.groupName}`);
-                        return false;
-                    } else {
-                        console.log('识别分组成功:' + result, thisConf.groupName);
-
-                        let p = {
-                            x: (result[0].points[0].x + result[0].points[1].x) / 2,
-                            y: (result[0].points[0].y + result[0].points[3].y) / 2,
-                        }
-
-                        let lx = p.x - 5
-                        let ly = p.y - 5;
-                        let rx = p.x + 5;
-                        let ry = p.y + 5;
-
-                        let toClick = [
-                            lx > 0 ? lx : 0,
-                            ly > 0 ? ly : 0,
-                            rx,
-                            ry,
-                            1000
-                        ];
-                        console.log('分组目标坐标为:', toClick.toString(), p);
-                        thisScript.global.change_shikigami_state = 'search_default';
-                        thisScript.global.change_shikigami_list_swipe_times = 0;    //  重置翻页
-                        thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
-                        return true;
-                    }
-                } else if (thisScript.global.change_shikigami_state === 'search_default') {
-                    const defaultName = thisConf.defaultName as string;
-                    let result = thisScript.findText(defaultName, 5000, thisOperator[2].oper[3], '模糊');
-
-                    if (result.length === 0) {
-                        console.log(`未识别队伍预设${thisConf.defaultName}`);
-                        return false;
-                    } else {
-                        console.log('识别队伍预设成功:' + result, thisConf.defaultName);
-
-                        let p = {
-                            x: (result[0].points[0].x + result[0].points[1].x) / 2,
-                            y: (result[0].points[0].y + result[0].points[3].y) / 2,
-                        }
-
-                        let lx = p.x - 5
-                        let ly = p.y - 5;
-                        let rx = p.x + 5;
-                        let ry = p.y + 5;
-
-                        let toClick = [
-                            lx > 0 ? lx : 0,
-                            ly > 0 ? ly : 0,
-                            rx,
-                            ry,
-                            1000
-                        ];
-                        console.log('队伍预设目标坐标为:', toClick.toString(), p);
-                        thisScript.global.change_shikigami_state = 'change_team_default_1';
-                        thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
-                        sleep(1200)
-                    }
-                } else if (thisScript.global.change_shikigami_state.includes('change_team_default')) {
-                    let point = thisScript.findMultiColor('式神录_当前选中队伍预设');
-
-                    if (point) {
-                        console.log(`式神录_当前选中队伍预设`);
+                if (thisConf && thisConf.fastMode) {
+                    if (thisScript.global.change_shikigami_state === 'flushed') {
+                        thisScript.helperBridge.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [500, 700], 500);
+                        thisScript.helperBridge.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [500, 700], 500);
+                        let tureGroupNum = Number(thisConf.groupNum) - 1
                         let oper = [[
-                            point.x - 2,
-                            point.y - 2,
-                            point.x + 2,
-                            point.y + 2,
-                            1200
+                            thisOperator[7].oper[0][0],
+                            thisOperator[7].oper[0][1] + (thisOperator[7].oper[0][4] * tureGroupNum),
+                            thisOperator[7].oper[0][2],
+                            thisOperator[7].oper[0][3] + (thisOperator[7].oper[0][4] * tureGroupNum),
+                            500
                         ]];
+                        thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+                        thisScript.global.change_shikigami_state = 'change_team_default_1';
+                    } else if (thisScript.global.change_shikigami_state.includes('change_team_default')) {
+                        console.log(`式神录_当前选中队伍预设`);
+                        let trueDefaultNum = Number(thisConf.defaultNum) - 1;
+                        let oper = thisOperator[8].oper[trueDefaultNum];
                         //  需要点击两次
                         if (thisScript.global.change_shikigami_state === 'change_team_default_1') {
                             thisScript.global.change_shikigami_state = 'change_team_default_2';
@@ -285,17 +221,150 @@ export class Func999 implements IFuncOrigin {
                             thisScript.global.change_shikigami_state = 'finish';
                         }
 
-                        thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+                        thisScript.helperBridge.regionClick([oper], thisScript.scheme.commonConfig.afterClickDelayRandom);
+
+                    } else if (thisScript.global.change_shikigami_state === 'finish') {
+                        return thisScript.oper({
+                            name: '退出式神录',
+                            operator: [{
+                                oper: [thisOperator[2].oper[4]]
+                            }]
+                        });
                     }
-                } else if (thisScript.global.change_shikigami_state === 'finish') {
-                    return thisScript.oper({
-                        name: '退出式神录',
-                        operator: [{
-                            oper: [thisOperator[2].oper[4]]
-                        }]
-                    });
+
+                } else {//ocr模式
+                    if (thisScript.global.change_shikigami_state === 'flushed') {
+
+                        thisScript.helperBridge.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [1200, 1500], 1000);
+
+                        let toDetectAreaBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[2].oper[5].slice(0, 4))
+                        console.time('ocr.detect.area');
+                        let resultArea = thisScript.getOcr().loadImage(toDetectAreaBmp);
+                        console.timeEnd('ocr.detect.area');
+                        toDetectAreaBmp.recycle();
+
+                        let _first_group_name = ''
+                        if (Array.isArray(resultArea) && resultArea.length > 0 && resultArea[0].label) {
+                            if (resultArea[0] && resultArea[0].label) {
+                                console.log('识别成功,目前顶端预设分组名称为:' + resultArea[0].label);
+                                _first_group_name = resultArea[0].label;
+                            }
+                        }
+
+                        if (_first_group_name === thisScript.global.change_shikigami_last_group_name) {
+                            thisScript.global.change_shikigami_list_swipe_times++;
+                            console.log('已经到顶了');
+                            sleep(600);
+                        }
+
+                        if (thisScript.global.change_shikigami_list_swipe_times >= 3) {
+                            thisScript.global.change_shikigami_state = 'search_group';
+                            thisScript.global.change_shikigami_list_swipe_times = 0;
+                            thisScript.global.change_shikigami_last_group_name = undefined;
+                        } else if (_first_group_name.trim()) {
+                            thisScript.global.change_shikigami_last_group_name = _first_group_name;
+                        }
+
+                        return true;
+                    } else if (thisScript.global.change_shikigami_state === 'search_group') {
+                        const grounpName = thisConf.groupName as string;
+                        let result = thisScript.findText(grounpName, 5000, thisOperator[2].oper[2], '模糊');
+
+                        if (result.length === 0) {
+                            console.log(`未识别分组${thisConf.groupName}`);
+                            return false;
+                        } else {
+                            console.log('识别分组成功:' + result, thisConf.groupName);
+
+                            let p = {
+                                x: (result[0].points[0].x + result[0].points[1].x) / 2,
+                                y: (result[0].points[0].y + result[0].points[3].y) / 2,
+                            }
+
+                            let lx = p.x - 5
+                            let ly = p.y - 5;
+                            let rx = p.x + 5;
+                            let ry = p.y + 5;
+
+                            let toClick = [
+                                lx > 0 ? lx : 0,
+                                ly > 0 ? ly : 0,
+                                rx,
+                                ry,
+                                1000
+                            ];
+                            console.log('分组目标坐标为:', toClick.toString(), p);
+                            thisScript.global.change_shikigami_state = 'search_default';
+                            thisScript.global.change_shikigami_list_swipe_times = 0;    //  重置翻页
+                            thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
+                            return true;
+                        }
+                    } else if (thisScript.global.change_shikigami_state === 'search_default') {
+                        const defaultName = thisConf.defaultName as string;
+                        let result = thisScript.findText(defaultName, 5000, thisOperator[2].oper[3], '模糊');
+
+                        if (result.length === 0) {
+                            console.log(`未识别队伍预设${thisConf.defaultName}`);
+                            return false;
+                        } else {
+                            console.log('识别队伍预设成功:' + result, thisConf.defaultName);
+
+                            let p = {
+                                x: (result[0].points[0].x + result[0].points[1].x) / 2,
+                                y: (result[0].points[0].y + result[0].points[3].y) / 2,
+                            }
+
+                            let lx = p.x - 5
+                            let ly = p.y - 5;
+                            let rx = p.x + 5;
+                            let ry = p.y + 5;
+
+                            let toClick = [
+                                lx > 0 ? lx : 0,
+                                ly > 0 ? ly : 0,
+                                rx,
+                                ry,
+                                1000
+                            ];
+                            console.log('队伍预设目标坐标为:', toClick.toString(), p);
+                            thisScript.global.change_shikigami_state = 'change_team_default_1';
+                            thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
+                            sleep(1200)
+                        }
+                    } else if (thisScript.global.change_shikigami_state.includes('change_team_default')) {
+                        let point = thisScript.findMultiColor('式神录_当前选中队伍预设');
+
+                        if (point) {
+                            console.log(`式神录_当前选中队伍预设`);
+                            let oper = [[
+                                point.x - 2,
+                                point.y - 2,
+                                point.x + 2,
+                                point.y + 2,
+                                1200
+                            ]];
+                            //  需要点击两次
+                            if (thisScript.global.change_shikigami_state === 'change_team_default_1') {
+                                thisScript.global.change_shikigami_state = 'change_team_default_2';
+                            } else {
+                                thisScript.global.change_shikigami_state = 'finish';
+                            }
+
+                            thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+                        }
+                    } else if (thisScript.global.change_shikigami_state === 'finish') {
+                        return thisScript.oper({
+                            name: '退出式神录',
+                            operator: [{
+                                oper: [thisOperator[2].oper[4]]
+                            }]
+                        });
+                    }
                 }
             }
+
+
+
         }
         return false;
     }
