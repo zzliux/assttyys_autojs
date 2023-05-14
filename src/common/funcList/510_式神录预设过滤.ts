@@ -25,7 +25,7 @@ export class Func999 implements IFuncOrigin {
             value: '队伍1',
         }, {
             name: 'fastMode',
-            desc: '开启快速坐标模式（仅以下参数生效）',
+            desc: '开启快速坐标模式（仅以下参数生效，以损失精准度获取速度）',
             type: 'switch',
             default: 'false',
         }, {
