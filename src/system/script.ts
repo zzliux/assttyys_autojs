@@ -763,6 +763,8 @@ export class Script {
 
             // // 目标进程就变成后台了，就可以通过杀后台进程实现杀应用
             // const am = context.getSystemService(context.ACTIVITY_SERVICE);
+
+            
             storeSettings.defaultLaunchAppList.forEach(packageName => {
                 // am.killBackgroundProcesses(packageName);
                 $shell(`am force-stop ${packageName}`, true);

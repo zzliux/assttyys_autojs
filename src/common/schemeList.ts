@@ -326,7 +326,7 @@ const SchemeList: IScheme[] = [{
     schemeName: "定时任务-启动游戏-式神寄养",
     star: true,
     groupName: "式神寄养",
-    list: [3, 503, 993],
+    list: [1, 2, 3, 503, 993],
     config: {
         "993": {
             area: "",
@@ -396,7 +396,7 @@ const SchemeList: IScheme[] = [{
     schemeName: "定时任务-启动游戏-每日寮活动",
     star: true,
     groupName: "定时任务",
-    list: [3, 503, 993],
+    list: [1, 2, 3, 503, 993],
     config: {
         "993": {
             area: "",
@@ -416,7 +416,7 @@ const SchemeList: IScheme[] = [{
     schemeName: "定时任务-启动游戏-每日逢魔",
     star: true,
     groupName: "定时任务",
-    list: [3, 503, 993],
+    list: [1, 2, 3, 503, 993],
     config: {
         "993": {
             area: "",
@@ -468,7 +468,7 @@ const SchemeList: IScheme[] = [{
     schemeName: "定时任务-启动游戏-喂猫喂狗",
     star: false,
     groupName: "定时任务",
-    list: [3, 503, 993],
+    list: [1, 2, 3, 503, 993],
     config: {
         "993": {
             area: "",
@@ -509,7 +509,7 @@ const SchemeList: IScheme[] = [{
     schemeName: "定时任务-启动游戏-寮突",
     star: true,
     groupName: "定时任务",
-    list: [3, 503, 993],
+    list: [1, 2, 3, 503, 993],
     config: {
         "993": {
             area: "",
@@ -526,7 +526,7 @@ const SchemeList: IScheme[] = [{
     schemeName: "定时任务-启动游戏-地鬼",
     star: true,
     groupName: "定时任务",
-    list: [3, 503, 993],
+    list: [1, 2, 3, 503, 993],
     config: {
         "993": {
             area: "",
@@ -575,7 +575,7 @@ const SchemeList: IScheme[] = [{
     schemeName: "定时任务-启动游戏-庭院进入寮每日活动(包含阴门)",
     star: true,
     groupName: "定时任务",
-    list: [3, 503, 993],
+    list: [1, 2, 3, 503, 993],
     config: {
         "993": {
             area: "",
@@ -592,7 +592,7 @@ const SchemeList: IScheme[] = [{
     schemeName: "定时任务-启动游戏-庭院进入寮每日活动(不包含阴门)",
     star: true,
     groupName: "定时任务",
-    list: [3, 503, 993],
+    list: [1, 2, 3, 503, 993],
     config: {
         "993": {
             area: "",
@@ -640,7 +640,7 @@ const SchemeList: IScheme[] = [{
     schemeName: "定时任务-启动游戏-悬赏",
     star: false,
     groupName: "定时任务",
-    list: [3, 503, 993],
+    list: [1, 2, 3, 503, 993],
     config: {
         "993": {
             area: "",

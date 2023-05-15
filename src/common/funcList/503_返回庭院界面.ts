@@ -238,6 +238,21 @@ export class Func503 implements IFuncOrigin {
 				[center, 1280, 720, 1179, 105, 1238, 163, 1000],
 				[center, 1280, 720, 29, 31, 82, 92, 1000],
 			]
+		}, {
+			// 18 客户端更新窗口关闭
+			desc: [
+				1280, 720,
+				[
+					[center, 405, 395, 0xeddccc],
+					[center, 869, 419, 0xeddccc],
+					[center, 714, 556, 0xf4b25f],
+					[center, 915, 131, 0x65333b],
+					[right, 1224, 50, 0x54422f],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 894, 119, 941, 175, 1000],
+			]
 		}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['503'];
@@ -248,7 +263,8 @@ export class Func503 implements IFuncOrigin {
 				thisOperator[0], thisOperator[1], thisOperator[2], 
 				thisOperator[3], thisOperator[5], thisOperator[6],
 				thisOperator[7], thisOperator[10], thisOperator[11],
-				thisOperator[14], thisOperator[15], thisOperator[17]
+				thisOperator[14], thisOperator[15], thisOperator[17],
+				thisOperator[18],
 			]
 		})) {
 			return true;

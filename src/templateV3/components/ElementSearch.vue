@@ -20,17 +20,27 @@
 import { ref } from "vue";
 import { useRouter, useRoute } from 'vue-router';
 
-function throttle(fn, delay){
-	let valid = true;
-	return function(){
-		if(valid) { //如果阀门已经打开，就继续往下
-			fn.apply(this, arguments);//定时器结束后执行
-      setTimeout(()=> {
-				valid = true;//执行完成后打开阀门
-			}, delay)
-			valid = false;//关闭阀门
-		}
-	}
+function throttle(func, delay) {
+  let timeout = null;
+  let previous = 0;
+  return function() {
+    let now = Date.now();
+    let remaining = delay - (now - previous);
+    if (remaining <= 0) {
+      if (timeout) {
+        clearTimeout(timeout);
+        timeout = null;
+      }
+      previous = now;
+      func.apply(this, arguments);
+    } else if (!timeout) {
+      timeout = setTimeout(() => {
+        previous = Date.now();
+        timeout = null;
+        func.apply(this, arguments);
+      }, remaining);
+    }
+  }
 }
 
 const props = defineProps({

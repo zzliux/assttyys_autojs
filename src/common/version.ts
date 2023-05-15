@@ -727,6 +727,10 @@ export const versionList = [{
 优化：启动游戏相关内置方案增加503功能，降低重启游戏的可能性；
 优化：503返回庭院增加对突破界面的识别；
 `
+}, {
+    version: '20230515_02_dev',
+    desc: `优化：993/503功能增加关闭更新提醒弹窗
+优化：启动游戏相关内置方案增加1和2功能，降低重启游戏的可能性；`
 }];
 
 export default versionList[versionList.length - 1].version;

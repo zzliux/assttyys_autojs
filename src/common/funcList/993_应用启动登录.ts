@@ -131,7 +131,7 @@ export class Func993 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1168, 592, 1230, 690, 5000]	// 在首页打开菜单
 		]
-	}, {	// 页面是否为庭院(菜单已展开) 只支持默认庭院皮肤与默认装饰
+	}, {	// 8 页面是否为庭院(菜单已展开) 只支持默认庭院皮肤与默认装饰
 		desc:   
 			[1280, 720,
 				[[right, 1226, 47, 0xcda47a],
@@ -139,7 +139,7 @@ export class Func993 implements IFuncOrigin {
 				[center, 389, 65, 0xfbc573],
 				[right, 1228, 646, 0xd6c6c3]]
 			]
-	}, {	// 登陆后是否有皮肤广告弹窗
+	}, {	// 9 登陆后是否有皮肤广告弹窗
 		desc:   
 			[1280, 720,
 				[[right, 1191, 97, 0xe79292],
@@ -150,7 +150,7 @@ export class Func993 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1166, 72, 1209, 110, 1200], // 关闭按钮
 		]
-	}, {	// 网络连接出错弹窗
+	}, {	// 10 网络连接出错弹窗
 		desc:   
 			[1280, 720,
 				[[center, 910, 436, 0x009688],
@@ -161,7 +161,7 @@ export class Func993 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 875, 426, 924, 450, 1200], // 确认按钮
 		]
-	}, {	// 同心队弹窗
+	}, {	// 11 同心队弹窗
 		desc:  
 			[1280, 720,
 				[[right, 1127, 628, 0xf4b25f],
@@ -173,7 +173,7 @@ export class Func993 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1155, 91, 1204, 138, 1200] // 关闭按钮
 		]
-	}, {	// 检测_无响应窗口
+	}, {	// 12 检测_无响应窗口
 		desc:
 			[
 				1280, 720,
@@ -189,7 +189,7 @@ export class Func993 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 425, 436, 484, 464, 1200]	//	点击等待
 		]
-	}, {	// 页面是否为庭院(菜单已展开)另一种图标 御祝图标 只支持默认庭院皮肤与默认装饰
+	}, {	// 13 页面是否为庭院(菜单已展开)另一种图标 御祝图标 只支持默认庭院皮肤与默认装饰
 		desc: 	
 			[1280, 720,
 				[
@@ -199,7 +199,7 @@ export class Func993 implements IFuncOrigin {
 					[center, 673, 651, 0xdb8b3f],
 				]
 			],
-	}, {	// 继续战斗弹窗
+	}, {	// 14 继续战斗弹窗
 		desc:
 			[
 				1280, 720,
@@ -215,7 +215,7 @@ export class Func993 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 492, 405, 590, 440, 1200]	//	点击取消
 		]
-	}, {	// 是否为公告页(22年公告)
+	}, {	// 15 是否为公告页(22年公告)
 		desc:
 			[1280, 720,
 				[[center, 648, 37, 0x676060],
@@ -227,7 +227,7 @@ export class Func993 implements IFuncOrigin {
 			[right, 1280, 720, 1190, 135, 1242, 186, 1200],  // 点击关闭公告
 		]
 	}, {
-		// 庭院已打开菜单，另另外一种图标
+		// 16 庭院已打开菜单，另另外一种图标
 		desc: [
 			1280, 720,
 			[
@@ -237,6 +237,21 @@ export class Func993 implements IFuncOrigin {
 				[center, 683, 657, 0xda6b29],
 			]
 		]
+	}, {
+		// 17 客户端更新窗口关闭
+		desc: [
+			1280, 720,
+			[
+				[center, 405, 395, 0xeddccc],
+				[center, 869, 419, 0xeddccc],
+				[center, 714, 556, 0xf4b25f],
+				[center, 915, 131, 0x65333b],
+				[right, 1224, 50, 0x54422f],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 894, 119, 941, 175, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['993'];
@@ -245,6 +260,7 @@ export class Func993 implements IFuncOrigin {
 		}
 
 		if (thisScript.oper({
+			id: 993,
 			name: '是否为庭院(未展开菜单)',
 			operator: [{
 				desc: thisOperator[7].desc,
@@ -256,6 +272,7 @@ export class Func993 implements IFuncOrigin {
 		}
 
 		if (thisScript.oper({
+			id: 993,
 			name: '是否为庭院',
 			operator: [{
 				desc: thisOperator[8].desc,
@@ -283,7 +300,6 @@ export class Func993 implements IFuncOrigin {
 				return false;
 			}
 		}
-
 
 		if (thisScript.global.app_is_open_flag >= 3 && thisScript.global.app_is_open_flag !== 99) {
 			if (thisConf.is_shutdown_the_game_before) {
@@ -390,8 +406,14 @@ export class Func993 implements IFuncOrigin {
 		}
 
 		if (thisScript.oper({
+			id: 993,
 			name: '登陆后是否有弹窗',
-			operator: [thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[6], thisOperator[9], thisOperator[10], thisOperator[11], thisOperator[12], thisOperator[14], thisOperator[15]]
+			operator: [
+				thisOperator[1], thisOperator[2], thisOperator[3],
+				thisOperator[6], thisOperator[9], thisOperator[10],
+				thisOperator[11], thisOperator[12], thisOperator[14],
+				thisOperator[15], thisOperator[17]
+			]
 		})) {
 			return true;
 		}
@@ -408,6 +430,7 @@ export class Func993 implements IFuncOrigin {
 				1200
 			]];
 			thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+			return true;
 		}
 
 		return false;
