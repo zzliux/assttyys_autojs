@@ -197,9 +197,6 @@ const groupNameIndex = ref(0);
 const exportAndImportModel = ref(false);
 const exportModel = ref(false);
 const importModel = ref(false);
-const schemeSearchInputer = ref();
-const highLightSchemeStr = ref('');
-const highLightSchemeName = ref('');
 
 const filterGroupNames = ref([{ text: '全部', value: '全部' }]);
 const filterGroupName = ref('全部');

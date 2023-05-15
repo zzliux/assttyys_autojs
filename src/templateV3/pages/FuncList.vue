@@ -98,7 +98,7 @@
   </div>
 </template>
 <script setup>
-import { ref, reactive, computed } from 'vue';
+import { ref, computed } from 'vue';
 import { useRoute } from 'vue-router';
 import draggable from '@marshallswain/vuedraggable'
 import dfuncList from "../../common/funcListIndex";
