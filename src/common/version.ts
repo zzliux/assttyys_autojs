@@ -720,6 +720,13 @@ export const versionList = [{
     desc: `修复:妖气封印
 优化:结算退出可识别经验副本
 优化:结界三次刷新增加"无法九胜时才三次刷新开关`
+}, {
+    version: '20230514_02_dev',
+    desc: `新增：方案和功能可搜索；
+新增：ocr插件YunxiOcr；
+优化：启动游戏相关内置方案增加503功能，降低重启游戏的可能性；
+优化：503返回庭院增加对突破界面的识别；
+`
 }];
 
 export default versionList[versionList.length - 1].version;

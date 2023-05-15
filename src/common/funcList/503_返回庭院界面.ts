@@ -26,13 +26,13 @@ export class Func503 implements IFuncOrigin {
 			name: 'afterCountOper',
 			desc: '执行完成的操作',
 			type: 'list',
-			data: ['停止脚本', '关闭应用'],
+			data: ['停止脚本', '关闭应用', '不进行任何操作'],
 			default: '停止脚本',
 			value: null,
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [
-		{	// 探索地图
+		{	// 0 探索地图
 			desc: [1280, 720,
 				[[left, 53, 61, 0xe7edfc],
 				[left, 78, 60, 0x273771],
@@ -44,7 +44,7 @@ export class Func503 implements IFuncOrigin {
 			oper: [
 				[left, 1280, 720, 30, 35, 76, 80, 1000],
 			]
-		}, { 	// 阴阳寮神设首页
+		}, { 	// 1 阴阳寮神设首页
 			desc: [1280, 720,
 				[[left, 44, 28, 0xf1e0ad],
 				[left, 74, 32, 0xaa885f],
@@ -55,7 +55,7 @@ export class Func503 implements IFuncOrigin {
 			oper: [
 				[left, 1280, 720, 25, 9, 74, 55, 2000]
 			]
-		}, { 	// 斗技
+		}, { 	// 2 斗技
 			desc: [1280, 720,
 				[[left, 126, 26, 0xf8f3e0],
 				[left, 164, 26, 0xe3decf],
@@ -65,7 +65,7 @@ export class Func503 implements IFuncOrigin {
 			oper: [
 				[left, 1280, 720, 22, 6, 65, 45, 1000]
 			]
-		}, {	// 栏目
+		}, {	// 3 栏目
 			desc: [1280, 720,
 				[[center, 568, 108, 0x973933],
 				[center, 742, 62, 0x8c3131],
@@ -76,7 +76,7 @@ export class Func503 implements IFuncOrigin {
 			oper: [
 				[right, 1280, 720, 1124, 75, 1163, 103, 1000]
 			]
-		}, {	// 5 旧版町中界面
+		}, {	// 4 旧版町中界面
 			desc: [1280, 720,
 				[[right, 1067, 221, 0xb5aaad],
 				[right, 1054, 321, 0x989694],
@@ -88,7 +88,7 @@ export class Func503 implements IFuncOrigin {
 			oper: [
 				[right, 1280, 720, 1012, 228, 1093, 298, 1000],
 			]
-		}, {	// 现世逢魔
+		}, {	// 5 现世逢魔
 			desc: [1280, 720,
 				[[left, 19, 700, 0x3c3841],
 				[left, 42, 46, 0xc3cbdf],
@@ -100,7 +100,7 @@ export class Func503 implements IFuncOrigin {
 			oper: [
 				[left, 1280, 720, 27, 25, 72, 73, 1000],
 			]
-		}, {	// 宠物后院(管他有没有人用)
+		}, {	// 6 宠物后院(管他有没有人用)
 			desc: [1280, 720,
 				[[left, 34, 630, 0x4c3b3b],
 				[left, 59, 672, 0x442b23],
@@ -111,7 +111,7 @@ export class Func503 implements IFuncOrigin {
 			oper: [
 				[left, 1280, 720, 37, 24, 70, 61, 1000],
 			]
-		}, {	// 召唤屋(管他有没有人用)
+		}, {	// 7 召唤屋(管他有没有人用)
 			desc: [1280, 720,
 				[[left, 148, 38, 0xb28956],
 				[left, 171, 28, 0xb28956],
@@ -123,7 +123,7 @@ export class Func503 implements IFuncOrigin {
 			oper: [
 				[left, 1280, 720, 31, 8, 76, 50, 1000],
 			]
-		}, {	// 页面是否为庭院(菜单未展开) 只支持默认庭院皮肤与默认装饰
+		}, {	// 8 页面是否为庭院(菜单未展开) 只支持默认庭院皮肤与默认装饰
 			desc:
 				[1280, 720,
 					[[right, 1226, 47, 0xcda47a],
@@ -131,7 +131,7 @@ export class Func503 implements IFuncOrigin {
 					[center, 389, 65, 0xfbc573],
 					[right, 1207, 637, 0xdfd1cb]]
 				]
-		}, {	// 10 页面是否为庭院(菜单已展开) 只支持默认庭院皮肤与默认装饰
+		}, {	// 9 页面是否为庭院(菜单已展开) 只支持默认庭院皮肤与默认装饰
 			desc:
 				[1280, 720,
 					[[right, 1226, 47, 0xcda47a],
@@ -139,7 +139,7 @@ export class Func503 implements IFuncOrigin {
 					[center, 389, 65, 0xfbc573],
 					[right, 1228, 646, 0xd6c6c3]]
 				]
-		}, { 	// 判断_阴阳寮主页
+		}, { 	// 10 判断_阴阳寮主页
 			desc: [
 				1280, 720,
 				[
@@ -152,7 +152,7 @@ export class Func503 implements IFuncOrigin {
 			oper: [
 				[left, 1280, 720, 23, 10, 71, 56, 2000],   // 返回按钮
 			]
-		}, { 	// 判断_是否为己方结界
+		}, { 	// 11 判断_是否为己方结界
 			desc: [1280, 720,
 				[[center, 611, 300, 0x0c0804],
 				[center, 913, 305, 0x0c0804],
@@ -163,7 +163,7 @@ export class Func503 implements IFuncOrigin {
 			oper: [
 				[left, 1280, 720, 23, 10, 71, 56, 2000],   // 返回按钮
 			]
-		}, {	// 判断_是否为庭院中的'町中'立牌
+		}, {	// 12 判断_是否为庭院中的'町中'立牌
 			desc: [
 				1280, 720,
 				[
@@ -173,7 +173,7 @@ export class Func503 implements IFuncOrigin {
 					[center, 754, 302, 0xaba896],
 				]
 			]
-		}, {	// 页面是否为庭院(菜单已展开)另一种图标 御祝图标 只支持默认庭院皮肤与默认装饰
+		}, {	// 13 页面是否为庭院(菜单已展开)另一种图标 御祝图标 只支持默认庭院皮肤与默认装饰
 			desc:
 				[1280, 720,
 					[
@@ -183,7 +183,7 @@ export class Func503 implements IFuncOrigin {
 						[center, 673, 651, 0xdb8b3f],
 					]
 				],
-		}, {	// 15 判断_阴阳寮成就页
+		}, {	// 14 判断_阴阳寮成就页
 			desc:
 				[
 					1280, 720,
@@ -200,7 +200,7 @@ export class Func503 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 357, 535, 1045, 662, 1200]	//	点击空白处
 			]
-		}, {	//式神录
+		}, {	// 15 式神录
 			desc: [1280, 720,
 				[[left, 114, 15, 0xaf8c56],
 				[left, 155, 29, 0xaf8c56],
@@ -211,7 +211,7 @@ export class Func503 implements IFuncOrigin {
 				[center, 1280, 720, 21, 9, 59, 43, 1000],
 			]
 		}, {
-			// 17 庭院已打开菜单，另另外一种图标
+			// 16 庭院已打开菜单，另另外一种图标
 			desc: [
 				1280, 720,
 				[
@@ -221,13 +221,35 @@ export class Func503 implements IFuncOrigin {
 					[center, 683, 657, 0xda6b29],
 				]
 			]
+		}, {
+			// 17 突破界面
+			desc: [
+				1280, 720,
+				[
+					[center, 171, 104, 0x4a3624],
+					[center, 564, 89, 0x5e4735],
+					[center, 718, 92, 0x583716],
+					[center, 728, 86, 0xdebc56],
+					[center, 1210, 130, 0xebdac9],
+					[center, 1076, 104, 0x4d3826],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 1179, 105, 1238, 163, 1000],
+				[center, 1280, 720, 29, 31, 82, 92, 1000],
+			]
 		}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['503'];
 
 		if (thisScript.oper({
 			name: '返回庭院',
-			operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[5], thisOperator[6], thisOperator[7], thisOperator[10], thisOperator[11], thisOperator[14], thisOperator[15]]
+			operator: [
+				thisOperator[0], thisOperator[1], thisOperator[2], 
+				thisOperator[3], thisOperator[5], thisOperator[6],
+				thisOperator[7], thisOperator[10], thisOperator[11],
+				thisOperator[14], thisOperator[15], thisOperator[17]
+			]
 		})) {
 			return true;
 		}
