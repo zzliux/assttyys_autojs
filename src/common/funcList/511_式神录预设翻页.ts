@@ -75,13 +75,14 @@ export class Func511 implements IFuncOrigin {
             oper: [
                 [center, 1280, 720, 705, 461, 806, 473, -1],    //  预设分组 滑动开始位置
                 [center, 1280, 720, 727, 274, 837, 290, -1],    //  预设分组 滑动结束位置
-                [right, 1280, 720, 1087,563, 1245,626, -1],     //  预设分组最后一项区域
+                [right, 1280, 720, 1087, 563, 1245, 626, -1],     //  预设分组最后一项区域
             ]
         }];
     operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
         let thisConf = thisScript.scheme.config['511'];
+        let thisConfFor510 = thisScript.scheme.config['510'];
         let defaultCount = +thisConf.count;
-        if (thisScript.oper({
+        if (thisConfFor510.fastMode == false && thisScript.oper({
             id: 511,
             name: '式神录已展开 预设 侧栏_判断',
             operator: [{ desc: thisOperator[0].desc }]
@@ -113,7 +114,7 @@ export class Func511 implements IFuncOrigin {
                     thisScript.global.change_shikigami_list_swipe_times++;
                     console.log('找不到指定预设分组');
                     sleep(600);
-                } else if ( _last_group_name === thisScript.global.change_shikigami_last_group_name) {
+                } else if (_last_group_name === thisScript.global.change_shikigami_last_group_name) {
                     thisScript.global.change_shikigami_list_swipe_times++;
                     console.log('找不到指定队伍预设');
                     sleep(600);

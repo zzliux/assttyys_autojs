@@ -85,7 +85,6 @@ export class Func007 implements IFuncOrigin {
 		let thisconf = thisScript.scheme.config['7'];
 		if (thisconf && thisconf.switch_nineWin) {
 			let point = thisScript.findMultiColor("突破失败");
-			log(point)
 			if (point) {
 				boo_nineWin = true;
 			} else {
@@ -93,7 +92,7 @@ export class Func007 implements IFuncOrigin {
 			}
 		}
 		if (boo_nineWin) {
-			log("三次刷新")
+			log("识别到失败结界,执行三次刷新")
 			return thisScript.oper({
 				id: 7,
 				name: '三次刷新',

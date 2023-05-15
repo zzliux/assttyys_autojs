@@ -1680,6 +1680,7 @@ const multiColor: IMultiColorOrigin = {
     },
     '关闭的BUFF_御魂': {
         region: [center, 1280, 720, 744, 116, 919, 530],
+        similar: 88,
         desc: [
             [1280, 720,
                 [
@@ -2758,7 +2759,7 @@ const multiColor: IMultiColorOrigin = {
     },
     "突破失败": {
         region: [center, 1280, 720, 380, 140, 1230, 485],
-        similar: 96,
+        similar: 95,
         desc: [
             [1280, 720,
                 [
@@ -2767,6 +2768,15 @@ const multiColor: IMultiColorOrigin = {
                     [center, 461, 305, 0x390b06],
                     [center, 446, 308, 0xedcd7f],
                     [center, 459, 322, 0xd5a74c]
+                ]
+            ],
+            [1280, 720,
+                [
+                    [right, 1091, 287, 0xc89541],
+                    [right, 1104, 284, 0x260703],
+                    [right, 1125, 308, 0x3d0c07],
+                    [right, 1116, 313, 0xdfba5f],
+                    [right, 1126, 323, 0xd2a047]
                 ]
             ]
         ]
