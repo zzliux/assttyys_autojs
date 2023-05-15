@@ -9,6 +9,7 @@
       >
          <template #right>
           <element-search
+            ref="eleSearch"
             refSearchAttrName="func-list-name"
             refHighLightAttrName="func-list-to-highlight"
           />
@@ -98,7 +99,7 @@
   </div>
 </template>
 <script setup>
-import { ref, reactive, computed } from 'vue';
+import { ref, computed } from 'vue';
 import { useRoute } from 'vue-router';
 import draggable from '@marshallswain/vuedraggable'
 import dfuncList from "../../common/funcListIndex";
@@ -130,6 +131,7 @@ const scheme = ref(null);
 const appListLauchDialogShown = ref(false);
 const appListLauchList = ref([]);
 const startBtnClickEventLoading = ref(false);
+const eleSearch = ref();
 
 
 const props = defineProps({
@@ -161,6 +163,7 @@ const dragOptions = computed({
     }
   }
   await loadScheme('getScheme', $route.query.schemeName);
+  eleSearch.value.doHighlightFromQuery();
 })()
 
 async function loadScheme(func, schemeName) {

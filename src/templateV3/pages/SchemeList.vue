@@ -12,6 +12,7 @@
         <template #right>
           <!-- <van-icon name="todo-list-o" size="18" @click="exportAndImportModel = true"/> -->
           <element-search
+            ref="eleSearch"
             refSearchAttrName="scheme-list-name"
             refHighLightAttrName="scheme-list-to-highlit"
           />
@@ -197,9 +198,7 @@ const groupNameIndex = ref(0);
 const exportAndImportModel = ref(false);
 const exportModel = ref(false);
 const importModel = ref(false);
-const schemeSearchInputer = ref();
-const highLightSchemeStr = ref('');
-const highLightSchemeName = ref('');
+const eleSearch = ref();
 
 const filterGroupNames = ref([{ text: '全部', value: '全部' }]);
 const filterGroupName = ref('全部');
@@ -213,6 +212,7 @@ const props = defineProps({
   schemeList.value = mergeSchemeList(savedSchemeList, dSchemeList);
   // 获取后保存一下方案列表，避免出现展示内容与保存内容不一样的情况
   AutoWeb.autoPromise('saveSchemeList', schemeList.value);
+  eleSearch.value.doHighlightFromQuery();
 })();
 
 const dragOptions = computed({

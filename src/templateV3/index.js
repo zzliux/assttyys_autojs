@@ -51,7 +51,7 @@ var router = createRouter({
 				if (to.name === 'index' && savedPosition) {
 					resolve({ ...savedPosition, behavior: 'smooth' });
 				} else {
-					resolve({ left: 0, top: 0 });
+					resolve(false);
 				}
 			}, 500);
 		});
