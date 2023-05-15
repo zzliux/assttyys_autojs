@@ -10,14 +10,15 @@ export class Func027 implements IFuncOrigin {
 	name = '组队_创建或匹配';
 	desc = '在庭院中点击下方的组队按钮后点击创建或排队按钮';
 	operator: IFuncOperatorOrigin[] = [{//妖气自动匹配中的 图像
-		desc: [1280, 720,
+		desc: [
+			1280, 720,
 			[
 				[center, 862, 6, 0x331612],
 				[center, 796, 53, 0xd6c4a1],
 				[center, 858, 98, 0x2b0c05],
 				[center, 328, 11, 0x2a0904],
-				[center, 328, 96, 0x491b15],
-				[center, 358, 50, 0x755021]
+				[center, 358, 50, 0x755021],
+				[right, 1230, 49, 0xcea576],
 			]
 		],
 		oper: [
