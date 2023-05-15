@@ -326,12 +326,15 @@ const SchemeList: IScheme[] = [{
     schemeName: "定时任务-启动游戏-式神寄养",
     star: true,
     groupName: "式神寄养",
-    list: [3, 993],
+    list: [3, 503, 993],
     config: {
         "993": {
             area: "",
             is_shutdown_the_game_before: true,
             next_scheme: "式神寄养"
+        },
+        "503": {
+            afterCountOper: "不进行任何操作"
         }
     },
 }, {
@@ -393,12 +396,15 @@ const SchemeList: IScheme[] = [{
     schemeName: "定时任务-启动游戏-每日寮活动",
     star: true,
     groupName: "定时任务",
-    list: [3, 993],
+    list: [3, 503, 993],
     config: {
         "993": {
             area: "",
             is_shutdown_the_game_before: true,
             next_scheme: "庭院进入寮每日活动"
+        },
+        "503": {
+            afterCountOper: "不进行任何操作"
         }
     },
 }, {
@@ -410,12 +416,15 @@ const SchemeList: IScheme[] = [{
     schemeName: "定时任务-启动游戏-每日逢魔",
     star: true,
     groupName: "定时任务",
-    list: [3, 993],
+    list: [3, 503, 993],
     config: {
         "993": {
             area: "",
             is_shutdown_the_game_before: true,
             next_scheme: "逢魔日常"
+        },
+        "503": {
+            afterCountOper: "不进行任何操作"
         }
     },
 }, {
@@ -459,12 +468,15 @@ const SchemeList: IScheme[] = [{
     schemeName: "定时任务-启动游戏-喂猫喂狗",
     star: false,
     groupName: "定时任务",
-    list: [3, 993],
+    list: [3, 503, 993],
     config: {
         "993": {
             area: "",
             is_shutdown_the_game_before: true,
             next_scheme: "喂猫喂狗"
+        },
+        "503": {
+            afterCountOper: "不进行任何操作"
         }
     },
 },
@@ -497,12 +509,15 @@ const SchemeList: IScheme[] = [{
     schemeName: "定时任务-启动游戏-寮突",
     star: true,
     groupName: "定时任务",
-    list: [3, 993],
+    list: [3, 503, 993],
     config: {
         "993": {
             area: "",
             is_shutdown_the_game_before: true,
             next_scheme: "寮突破"
+        },
+        "503": {
+            afterCountOper: "不进行任何操作"
         }
     },
 },
@@ -511,12 +526,15 @@ const SchemeList: IScheme[] = [{
     schemeName: "定时任务-启动游戏-地鬼",
     star: true,
     groupName: "定时任务",
-    list: [3, 993],
+    list: [3, 503, 993],
     config: {
         "993": {
             area: "",
             is_shutdown_the_game_before: true,
             next_scheme: "地鬼日常"
+        },
+        "503": {
+            afterCountOper: "不进行任何操作"
         }
     },
 },
@@ -557,12 +575,15 @@ const SchemeList: IScheme[] = [{
     schemeName: "定时任务-启动游戏-庭院进入寮每日活动(包含阴门)",
     star: true,
     groupName: "定时任务",
-    list: [3, 993],
+    list: [3, 503, 993],
     config: {
         "993": {
             area: "",
             is_shutdown_the_game_before: true,
             next_scheme: "庭院进入寮每日活动(包含阴门)"
+        },
+        "503": {
+            afterCountOper: "不进行任何操作"
         }
     },
 },
@@ -571,12 +592,15 @@ const SchemeList: IScheme[] = [{
     schemeName: "定时任务-启动游戏-庭院进入寮每日活动(不包含阴门)",
     star: true,
     groupName: "定时任务",
-    list: [3, 993],
+    list: [3, 503, 993],
     config: {
         "993": {
             area: "",
             is_shutdown_the_game_before: true,
             next_scheme: "庭院进入寮每日活动(不包含阴门)"
+        },
+        "503": {
+            afterCountOper: "不进行任何操作"
         }
     },
 },
@@ -616,12 +640,15 @@ const SchemeList: IScheme[] = [{
     schemeName: "定时任务-启动游戏-悬赏",
     star: false,
     groupName: "定时任务",
-    list: [3, 993],
+    list: [3, 503, 993],
     config: {
         "993": {
             area: "",
             is_shutdown_the_game_before: true,
             next_scheme: "悬赏"
+        },
+        "503": {
+            afterCountOper: "不进行任何操作"
         }
     },
 }, {
