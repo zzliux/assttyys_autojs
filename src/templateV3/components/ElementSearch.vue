@@ -18,19 +18,53 @@
 
 <script setup>
 import { ref } from "vue";
+import { useRouter, useRoute } from 'vue-router';
+
+function throttle(fn, delay){
+	let valid = true;
+	return function(){
+		if(valid) { //如果阀门已经打开，就继续往下
+			fn.apply(this, arguments);//定时器结束后执行
+      setTimeout(()=> {
+				valid = true;//执行完成后打开阀门
+			}, delay)
+			valid = false;//关闭阀门
+		}
+	}
+}
 
 const props = defineProps({
   refSearchAttrName: String,
   refHighLightAttrName: String,
 });
+const $router = useRouter();
+const $route = useRoute();
+
 
 const inputer = ref();
 const highLightStr = ref("");
 const highLightFullStr = ref("");
 
+
+if (!localStorage.getItem('elementSearch')) {
+  localStorage.setItem('elementSearch', JSON.stringify({}));
+}
+
+const store = JSON.parse(localStorage.getItem('elementSearch'));
+const key = $route.fullPath;
+if (!store[key]) {
+  storeInfo('', -1);
+}
+function storeInfo (k, i) {
+  store[key] = { k, i };
+  localStorage.setItem('elementSearch', JSON.stringify(store));
+}
+
+
 let lastSearchStr = "";
 let lastSearchIndex = 0;
 let lastList = [];
+
 function elementSearchInputEventOrigin(e, up) {
   if (highLightStr.value === lastSearchStr) {
     const list = document.querySelectorAll(`[${props.refSearchAttrName}*="${lastSearchStr}"]`);
@@ -59,6 +93,8 @@ function elementSearchInputEventOrigin(e, up) {
           behavior: "smooth",
           block: "center",
         });
+        
+        storeInfo(highLightStr.value, thisIndex);
       }, 0);
     } else {
       highLightFullStr.value = "";
@@ -88,6 +124,8 @@ function elementSearchInputEventOrigin(e, up) {
           behavior: "smooth",
           block: "center",
         });
+        
+        storeInfo(highLightStr.value, 0);
       }, 0);
     } else {
       highLightFullStr.value = "";
@@ -104,20 +142,14 @@ function elementSearchKeyEvent(e) {
 
 const elementSearchInputEvent = throttle(elementSearchInputEventOrigin, 200);
 
-function throttle(fn, delay){
-	let valid = true;
-	return function(){
-		if(valid) { //如果阀门已经打开，就继续往下
-			fn.apply(this, arguments);//定时器结束后执行
-      setTimeout(()=> {
-				valid = true;//执行完成后打开阀门
-			}, delay)
-			valid = false;//关闭阀门
-		}
-	}
-}
+function doHighlightFromQuery() {
+  highLightStr.value = store[key].k;
+  lastSearchStr = store[key].k;
+  lastSearchIndex = store[key].i - 1;
+  setTimeout(elementSearchInputEvent, 100);
+};
 
-
+defineExpose({ doHighlightFromQuery });
 </script>
 <style scoped>
 .element-search {
