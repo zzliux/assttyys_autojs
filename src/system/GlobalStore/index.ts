@@ -91,7 +91,7 @@ export const globalRoot: globalRootType = {
     back_courtyard_to_next_scheme: '',
     fm_kiss_boss_flag: false,
     fm_boss_btn_click_cnt: 0,
-    change_shikigami_flag: false,
+    change_shikigami_flag: true,
     change_shikigami_state: 'flushed',
     change_shikigami_list_swipe_times: 0,
     change_shikigami_last_group_name: undefined,

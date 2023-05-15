@@ -242,7 +242,7 @@ export class Func503 implements IFuncOrigin {
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['503'];
 
-		if (thisScript.oper({
+		if (thisScript.global.change_shikigami_flag && thisScript.oper({
 			name: '返回庭院',
 			operator: [
 				thisOperator[0], thisOperator[1], thisOperator[2], 
@@ -254,7 +254,7 @@ export class Func503 implements IFuncOrigin {
 			return true;
 		}
 
-		if (thisScript.oper({
+		if (thisScript.global.change_shikigami_flag && thisScript.oper({
 			name: '是否为庭院',
 			operator: [{
 				desc: thisOperator[8].desc

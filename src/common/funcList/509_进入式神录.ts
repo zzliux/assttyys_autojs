@@ -84,83 +84,81 @@ export class Func509 implements IFuncOrigin {
 		},
 		{
 			desc: //	狩猎
-			[
-				1280, 720,
 				[
-					[left, 47, 31, 0xd7c5a2],
-					[left, 108, 24, 0xd7c5a2],
-					[left, 181, 23, 0xd6c5a4],
-					[center, 930, 659, 0xe3d8d8],
-					[center, 940, 679, 0x493a38],
-					[right, 984, 621, 0xebb552],
-				]
-			],
+					1280, 720,
+					[
+						[left, 47, 31, 0xd7c5a2],
+						[left, 108, 24, 0xd7c5a2],
+						[left, 181, 23, 0xd6c5a4],
+						[center, 930, 659, 0xe3d8d8],
+						[center, 940, 679, 0x493a38],
+						[right, 984, 621, 0xebb552],
+					]
+				],
 			oper: [
 				[center, 1280, 720, 922, 628, 993, 681, 1200]	//	点击_式神
 			]
 		},
-	{
-		desc:	//	检测_阴门
-		[
-			1280, 720,
-			[
-				[left, 125, 56, 0x493624],
-				[right, 1124, 56, 0x493624],
-				[right, 1208, 76, 0x632942],
-				[right, 1194, 397, 0x180a28],
-				[right, 1137, 634, 0xc1b7ac],
-				[center, 330, 615, 0xf4b25f],
-				[center, 454, 630, 0xf4b25f],
-				[left, 130, 646, 0x9a8f83],
+		{
+			desc:	//	检测_阴门
+				[
+					1280, 720,
+					[
+						[left, 125, 56, 0x493624],
+						[right, 1124, 56, 0x493624],
+						[right, 1208, 76, 0x632942],
+						[right, 1194, 397, 0x180a28],
+						[right, 1137, 634, 0xc1b7ac],
+						[center, 330, 615, 0xf4b25f],
+						[center, 454, 630, 0xf4b25f],
+						[left, 130, 646, 0x9a8f83],
+					]
+				],
+			oper: [
+				[left, 1280, 720, 145, 601, 190, 646, 1200]	//	点击式神按钮
 			]
-		],
-		oper: [
-			[left, 1280, 720, 145,601, 190,646, 1200]	//	点击式神按钮
-		]
-	},
-	{
-        desc: //    检测_狭间
-            [
-                1280, 720,
-                [
-                    [right, 1165, 597, 0xd5bfc2],
-                    [right, 1155, 659, 0xd9c3c5],
-                    [right, 1168, 491, 0xddd3c4],
-                    [center, 476, 412, 0x53170f],
-                    [right, 1016, 111, 0xe8d4cf],
-                    [center, 547, 582, 0x840517],
-                ]
-            ],
-        oper: [
-            [right, 1280, 720, 1135,456, 1182,498, 1200]    //  点击式神按钮
-        ]
-    },
-	{	//	检测_首领
-		desc:
-		[
-			1280, 720,
-			[
-				[left, 182, 37, 0xd5c4a3],
-				[left, 108, 26, 0xd7c5a2],
-				[left, 47, 28, 0xd7c5a2],
-				[left, 232, 139, 0x583716],
-				[left, 76, 550, 0x322219],
-				[right, 1039, 648, 0xd3c3bd],
-				[center, 872, 606, 0x493a38],
-				[center, 727, 611, 0xdfc7ac],
+		},
+		{
+			desc: //    检测_狭间
+				[
+					1280, 720,
+					[
+						[right, 1165, 597, 0xd5bfc2],
+						[right, 1155, 659, 0xd9c3c5],
+						[right, 1168, 491, 0xddd3c4],
+						[center, 476, 412, 0x53170f],
+						[right, 1016, 111, 0xe8d4cf],
+						[center, 547, 582, 0x840517],
+					]
+				],
+			oper: [
+				[right, 1280, 720, 1135, 456, 1182, 498, 1200]    //  点击式神按钮
 			]
-		],
-		oper: [
-			[right, 1280, 720, 1008,600, 1081,671, 1200]	//	点击式神按钮
-		]
-	}];
+		},
+		{	//	检测_首领
+			desc:
+				[
+					1280, 720,
+					[
+						[left, 182, 37, 0xd5c4a3],
+						[left, 108, 26, 0xd7c5a2],
+						[left, 47, 28, 0xd7c5a2],
+						[left, 232, 139, 0x583716],
+						[left, 76, 550, 0x322219],
+						[right, 1039, 648, 0xd3c3bd],
+						[center, 872, 606, 0x493a38],
+						[center, 727, 611, 0xdfc7ac],
+					]
+				],
+			oper: [
+				[right, 1280, 720, 1008, 600, 1081, 671, 1200]	//	点击式神按钮
+			]
+		}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.global.change_shikigami_flag) {
-			return false;
-		} else {
 			if (thisScript.oper({
 				name: '庭院进入式神录',
-				operator: [thisOperator[0], thisOperator[1],thisOperator[2], thisOperator[4], thisOperator[5], thisOperator[6], thisOperator[7]]
+				operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[4], thisOperator[5], thisOperator[6], thisOperator[7]]
 			})) {
 				return true;
 			}
@@ -169,8 +167,10 @@ export class Func509 implements IFuncOrigin {
 				name: '是否为式神录',
 				operator: [thisOperator[3]]
 			})) {
-				thisScript.global.change_shikigami_flag = true;
+				thisScript.global.change_shikigami_flag = false;
 			}
+		} else {
+			return false;
 		}
 		return false;
 	}
