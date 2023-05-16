@@ -157,17 +157,17 @@ export class Func509 implements IFuncOrigin {
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.global.change_shikigami_flag) {
 			if (thisScript.oper({
-				name: '庭院进入式神录',
-				operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[4], thisOperator[5], thisOperator[6], thisOperator[7]]
-			})) {
-				return true;
-			}
-
-			if (thisScript.oper({
 				name: '是否为式神录',
 				operator: [thisOperator[3]]
 			})) {
 				thisScript.global.change_shikigami_flag = false;
+			}
+
+			if (thisScript.oper({
+				name: '庭院进入式神录',
+				operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[4], thisOperator[5], thisOperator[6], thisOperator[7]]
+			})) {
+				return true;
 			}
 		} else {
 			return false;

@@ -24,7 +24,7 @@ export class Func503 implements IFuncOrigin {
 			default: '通用准备退出',
 		}, {
 			name: 'afterCountOper',
-			desc: '执行完成的操作',
+			desc: '不开启切换方案	则',
 			type: 'list',
 			data: ['停止脚本', '关闭应用', '不进行任何操作'],
 			default: '停止脚本',
@@ -33,16 +33,19 @@ export class Func503 implements IFuncOrigin {
 	}];
 	operator: IFuncOperatorOrigin[] = [
 		{	// 0 探索地图
-			desc: [1280, 720,
-				[[left, 53, 61, 0xe7edfc],
-				[left, 78, 60, 0x273771],
-				[left, 36, 82, 0x1c1322],
-				[right, 1160, 143, 0x0b0909],
-				[right, 1157, 198, 0x755320],
-				[center, 454, 43, 0xfde8d0]]
+			desc: [
+				1280, 720,
+				[
+					[left, 44, 59, 0xf0f5fb],
+					[right, 1235, 30, 0xd4ae83],
+					[right, 1262, 186, 0x45312b],
+					[center, 870, 714, 0x8b613e],
+					[left, 67, 654, 0xd05bcf],
+					[right, 1269, 671, 0x44312a],
+				]
 			],
 			oper: [
-				[left, 1280, 720, 30, 35, 76, 80, 1000],
+				[center, 1280, 720, 32, 34, 76, 81, 1000],
 			]
 		}, { 	// 1 阴阳寮神设首页
 			desc: [1280, 720,
@@ -233,10 +236,6 @@ export class Func503 implements IFuncOrigin {
 					[center, 1210, 130, 0xebdac9],
 					[center, 1076, 104, 0x4d3826],
 				]
-			],
-			oper: [
-				[center, 1280, 720, 1179, 105, 1238, 163, 1000],
-				[center, 1280, 720, 29, 31, 82, 92, 1000],
 			]
 		}, {
 			// 18 客户端更新窗口关闭
@@ -256,15 +255,19 @@ export class Func503 implements IFuncOrigin {
 		}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['503'];
-
+		if (thisScript.oper({
+			name: '突破界面内不执行换预设',
+			operator: [thisOperator[17]]
+		})) {
+			thisScript.global.change_shikigami_flag = false;
+		}
 		if (thisScript.global.change_shikigami_flag && thisScript.oper({
 			name: '返回庭院',
 			operator: [
-				thisOperator[0], thisOperator[1], thisOperator[2], 
+				thisOperator[0], thisOperator[1], thisOperator[2],
 				thisOperator[3], thisOperator[5], thisOperator[6],
 				thisOperator[7], thisOperator[10], thisOperator[11],
-				thisOperator[14], thisOperator[15], thisOperator[17],
-				thisOperator[18],
+				thisOperator[14], thisOperator[15], thisOperator[18],
 			]
 		})) {
 			return true;
@@ -322,7 +325,7 @@ export class Func503 implements IFuncOrigin {
 						// } else {
 						// 	thisScript.myToast('未配置关联应用，不执行停止操作');
 						// }
-						
+
 						thisScript.stopRelatedApp();
 						thisScript.doOspPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，应用[${packageName}]已杀，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 						sleep(2000);
