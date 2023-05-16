@@ -23,12 +23,12 @@ import { useRouter, useRoute } from 'vue-router';
 function throttle(fn, delay){
 	let valid = true;
 	return function(){
-		if(valid) { //如果阀门已经打开，就继续往下
-			fn.apply(this, arguments);//定时器结束后执行
+		if(valid) {
+			fn.apply(this, arguments);
+      valid = false;
       setTimeout(()=> {
-				valid = true;//执行完成后打开阀门
+				valid = true;
 			}, delay)
-			valid = false;//关闭阀门
 		}
 	}
 }

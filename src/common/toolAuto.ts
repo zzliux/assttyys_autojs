@@ -129,6 +129,31 @@ export function getRegionBiasRnd(region, pointBias, influence) {
 }
 
 /**
+ * new bing生成的服从二维正态分布的函数，手动调了下根据influence与region生成方差
+ * @param region 
+ * @param pointBias 
+ * @param influence 
+ * @returns 
+ */
+export function getRegionBiasRnd2(region, pointBias, influence) {
+    const [meanX, meanY] = pointBias;
+    const sdX = (0.1 / influence * influence) * (region[2] - region[0]);
+    const sdY = (0.1 / influence * influence) * (region[3] - region[1]);
+    let u = 0,
+        v = 0;
+    while (u === 0) u = Math.random();
+    while (v === 0) v = Math.random();
+    let x = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+    let y = Math.sqrt(-2.0 * Math.log(u)) * Math.sin(2.0 * Math.PI * v);
+    x = meanX + x * sdX;
+    y = meanY + y * sdY;
+    if (x < region[0] || x > region[2] || y < region[1] || y > region[3]) {
+        return getRegionBiasRnd2(region, pointBias, influence * 2);
+    }
+    return [x, y];
+}
+
+/**
  * 根据str进行hash，返回值在lowerBound与upperBound之间
  * @param lowerBound 下限
  * @param upperBound 上限
@@ -172,7 +197,7 @@ export function strHashToNum(str, start, end) {
  * @param {*} userToken 
  * @param {*} data 
  */
-export function ospPush (userToken: string, data: { type: string, data: string}[] | string) {
+export function ospPush(userToken: string, data: { type: string, data: string }[] | string) {
     return http.postJson('https://assttyys.zzliux.cn/api/osp/send', {
         // @ts-ignore
         userToken,
@@ -185,7 +210,7 @@ export function ospPush (userToken: string, data: { type: string, data: string}[
  * @param {Script} thisScript 
  * @param options
  */
-export function doOspPush (thisScript: Script, options: {
+export function doOspPush(thisScript: Script, options: {
     text: string,
     before?: () => void,
     after?: () => void
