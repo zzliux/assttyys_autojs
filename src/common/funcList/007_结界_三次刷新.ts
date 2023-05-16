@@ -20,34 +20,40 @@ export class Func007 implements IFuncOrigin {
 			value: null,
 		}]
 	}];
-	operator: IFuncOperatorOrigin[] = [{  // CD
-		desc: [1280, 720,
-			[[center, 549, 93, 0x5a4130],
-			[center, 720, 93, 0x583716],
-			[center, 224, 104, 0x4a3525],
-			[center, 997, 127, 0x958c83],
-			[center, 400, 610, 0xfd9328],
-			[center, 995, 595, 0xAEA69E],
-			[center, 646, 97, 0xf8f3e0]]
+	operator: IFuncOperatorOrigin[] = [{
+		desc: [
+			// 0 CD
+			1280, 720,
+			[
+				[center, 549, 93, 0x5a4130],
+				[center, 720, 93, 0x583716],
+				[center, 224, 104, 0x4a3525],
+				[center, 997, 127, 0x958c83],
+				[center, 400, 610, 0xfd9328],
+				[center, 995, 595, 0xAEA69E],
+				[center, 646, 97, 0xf8f3e0]
+			]
 		],
 		oper: [
 			[center, 1280, 720, -1, -1, -1, -1, 5000]
 		]
-	}, {  // 呱太CD
+	}, {  // 1 呱太 CD
 		desc: [1280, 720,
-			[[center, 549, 93, 0x5a4130],
-			[center, 720, 93, 0x583716],
-			[center, 224, 104, 0x4a3525],
-			[center, 997, 127, 0x958c83],
-			[center, 341, 609, 0xFEAA2D],
-			[center, 396, 610, 0x373C5A],
-			[center, 995, 595, 0xAEA69E],
-			[center, 646, 97, 0xf8f3e0]]
+			[
+				[center, 549, 93, 0x5a4130],
+				[center, 720, 93, 0x583716],
+				[center, 224, 104, 0x4a3525],
+				[center, 997, 127, 0x958c83],
+				[center, 341, 609, 0xFEAA2D],
+				[center, 396, 610, 0x373C5A],
+				[center, 995, 595, 0xAEA69E],
+				[center, 646, 97, 0xf8f3e0]
+			]
 		],
 		oper: [
 			[center, 1280, 720, -1, -1, -1, -1, 30000]
 		]
-	}, {	// 刷新
+	}, { // 2 刷新
 		desc: [1280, 720,
 			[
 				[center, 549, 93, 0x5a4130],
@@ -64,41 +70,52 @@ export class Func007 implements IFuncOrigin {
 			[center, 1280, 720, 970, 573, 1130, 621, 1500],
 			[center, 1280, 720, 674, 407, 839, 457, 2000]
 		]
-	}, {	// 有呱太活动的刷新
+	}, {	// 3 有呱太活动的刷新
 		desc: [1280, 720,
-			[[center, 342, 610, 0xffaf2d],
-			[center, 396, 610, 0x383c5d],
-			[center, 1008, 598, 0xf4b25f],
-			[center, 704, 596, 0x83b542],
-			[center, 1205, 112, 0x632d34],
-			[center, 721, 94, 0x583716],
-			[center, 370, 100, 0x4e3926],
-			[center, 122, 450, 0xdedacf]]
+			[
+				[center, 342, 610, 0xffaf2d],
+				[center, 396, 610, 0x383c5d],
+				[center, 1008, 598, 0xf4b25f],
+				[center, 704, 596, 0x83b542],
+				[center, 1205, 112, 0x632d34],
+				[center, 721, 94, 0x583716],
+				[center, 370, 100, 0x4e3926],
+				[center, 122, 450, 0xdedacf]
+			]
 		],
 		oper: [
 			[center, 1280, 720, 970, 573, 1130, 621, 1500],
 			[center, 1280, 720, 674, 407, 839, 457, 2000]
 		]
+	}, {
+		// 4 突破界面
+		desc: [
+			1280, 720,
+			[
+				[center, 549, 93, 0x5a4130],
+				[center, 720, 93, 0x583716],
+				[center, 224, 104, 0x4a3525],
+				[center, 997, 127, 0x958c83],
+				[center, 646, 97, 0xf8f3e0],
+			]
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		let boo_nineWin = true;
-		let thisconf = thisScript.scheme.config['7'];
-		if (thisconf && thisconf.switch_nineWin) {
-			let point = thisScript.findMultiColor("突破失败");
-			if (point) {
-				boo_nineWin = true;
-			} else {
-				boo_nineWin = false;
+		if (thisScript.oper({
+			name: '突破界面_判断',
+			operator: [thisOperator[4]]
+		})) {
+			const thisconf = thisScript.scheme.config['7'];
+			const switch_nineWin = thisconf?.switch_nineWin;
+			if ((switch_nineWin && thisScript.findMultiColor("突破失败")) || !switch_nineWin) {
+				return thisScript.oper({
+					id: 7,
+					name: '三次刷新',
+					operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[3]]
+				});
 			}
 		}
-		if (boo_nineWin) {
-			log("识别到失败结界,执行三次刷新")
-			return thisScript.oper({
-				id: 7,
-				name: '三次刷新',
-				operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[3]]
-			});
-		}
+		return false;
 	};
 }
 
