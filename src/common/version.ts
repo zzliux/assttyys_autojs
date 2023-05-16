@@ -733,6 +733,9 @@ export const versionList = [{
 优化：993/503功能增加关闭更新提醒弹窗
 优化：启动游戏相关内置方案增加1和2功能，降低重启游戏的可能性；
 优化：生成的点击坐标更加的服从正态分布`
+}, {
+    version: '20230517_01',
+    desc: `新增：定时任务添加免打扰模式，优化：定时任务页面，代码重构`
 }];
 
 export default versionList[versionList.length - 1].version;
