@@ -20,27 +20,17 @@
 import { ref } from "vue";
 import { useRouter, useRoute } from 'vue-router';
 
-function throttle(func, delay) {
-  let timeout = null;
-  let previous = 0;
-  return function() {
-    let now = Date.now();
-    let remaining = delay - (now - previous);
-    if (remaining <= 0) {
-      if (timeout) {
-        clearTimeout(timeout);
-        timeout = null;
-      }
-      previous = now;
-      func.apply(this, arguments);
-    } else if (!timeout) {
-      timeout = setTimeout(() => {
-        previous = Date.now();
-        timeout = null;
-        func.apply(this, arguments);
-      }, remaining);
-    }
-  }
+function throttle(fn, delay){
+	let valid = true;
+	return function(){
+		if(valid) {
+			fn.apply(this, arguments);
+      valid = false;
+      setTimeout(()=> {
+				valid = true;
+			}, delay)
+		}
+	}
 }
 
 const props = defineProps({
