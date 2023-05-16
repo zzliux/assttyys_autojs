@@ -10,23 +10,34 @@ import { yunxiOcr } from "../Ocr/YunxiOcr";
 
 
 export default function webviewSettigns() {
+    
+    /** 初始化配置 */
+    let initStoreSettings = storeCommon.get('settings', {});
+    if (typeof initStoreSettings.tapType === 'undefined') {
+        if (device.sdkInt >= 24) {
+            initStoreSettings.tapType = '无障碍';
+        } else {
+            initStoreSettings.tapType = 'Root';
+        }
+    }
+
+    if (typeof initStoreSettings.ocrType === 'undefined') {
+        initStoreSettings.ocrType = 'MlkitOcr';
+    }
+
+    if (typeof initStoreSettings.floaty_scheme_direct_run === 'undefined') {
+        initStoreSettings.floaty_scheme_direct_run = false;
+    }
+
+    if(typeof initStoreSettings.osp_user_token === 'undefined') {
+        initStoreSettings.osp_user_token = '';
+    }
+
+    storeCommon.put('settings', initStoreSettings);
 
     // 获取配置列表
     webview.on("getSettings").subscribe(([_param, done]) => {
         let storeSettings = storeCommon.get('settings', {});
-        if (!storeSettings.tapType) {
-            if (device.sdkInt >= 24) {
-                storeSettings.tapType = '无障碍';
-            } else {
-                storeSettings.tapType = 'Root';
-            }
-            storeCommon.put('settings', storeSettings);
-        }
-
-        if (!storeSettings.ocrType) {
-            storeSettings.ocrType = 'MlkitOcr';
-            storeCommon.put('settings', storeSettings);
-        }
 
         let ret = [];
         ret.push({
@@ -93,7 +104,7 @@ export default function webviewSettigns() {
             desc: '悬浮选择方案后是否直接启动脚本',
             name: 'floaty_scheme_direct_run',
             type: 'assttyys_setting',
-            enabled: storeSettings.floaty_scheme_direct_run || false
+            enabled: storeSettings.floaty_scheme_direct_run
         }, {
             desc: '调试绘制',
             name: 'floaty_debugger_draw',
@@ -121,7 +132,7 @@ export default function webviewSettigns() {
             name: 'osp_user_token',
             type: 'assttyys_setting',
             stype: 'text',
-            value: storeSettings.osp_user_token || ''
+            value: storeSettings.osp_user_token
         }];
         done(ret);
     });

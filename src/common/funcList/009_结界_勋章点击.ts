@@ -33,13 +33,16 @@ export class Func009 implements IFuncOrigin {
 		]
 	}];
 	operator: IFuncOperatorOrigin[] = [{
+		// 0 突破界面
 		desc: [1280, 720,
-			[[center, 171, 104, 0x4a3624],
-			[center, 564, 89, 0x5e4735],
-			[center, 718, 92, 0x583716],
-			[center, 728, 86, 0xdebc56],
-			[center, 1210, 130, 0xebdac9],
-			[center, 1076, 104, 0x4d3826]]
+			[
+				[center, 171, 104, 0x4a3624],
+				[center, 564, 89, 0x5e4735],
+				[center, 718, 92, 0x583716],
+				[center, 728, 86, 0xdebc56],
+				[center, 1210, 130, 0xebdac9],
+				[center, 1076, 104, 0x4d3826]
+			]
 		],
 		oper: [
 			[left, 1280, 720, 30, 10, 160, 80, 500],
@@ -47,14 +50,17 @@ export class Func009 implements IFuncOrigin {
 			[left, 1280, 720, 160, 492, 824, 54, 0],//头像框 横轴坐标内
 			[left, 1280, 720, 0, 0, 0, 0, 0],
 		]
-	}, {//1,第一排第一列结界坐标
+	}, {
+		// 1 第一排第一列结界坐标
 		desc: [1280, 720,
-			[[center, 171, 104, 0x4a3624],
-			[center, 564, 89, 0x5e4735],
-			[center, 718, 92, 0x583716],
-			[center, 728, 86, 0xdebc56],
-			[center, 1210, 130, 0xebdac9],
-			[center, 1076, 104, 0x4d3826]]
+			[
+				[center, 171, 104, 0x4a3624],
+				[center, 564, 89, 0x5e4735],
+				[center, 718, 92, 0x583716],
+				[center, 728, 86, 0xdebc56],
+				[center, 1210, 130, 0xebdac9],
+				[center, 1076, 104, 0x4d3826]
+			]
 		],
 		oper: [
 			[left, 1280, 720, 147, 146, 465, 265, 500]
