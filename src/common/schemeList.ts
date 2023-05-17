@@ -679,6 +679,11 @@ const SchemeList: IScheme[] = [{
     id: 99,
     schemeName: '伊吹之擂',
     list: [0, 3, 24, 99, 100],
+}, {
+    id: 101,
+    schemeName: '活动_宴场维和',
+    list: [0, 1, 2, 3, 24, 131],
+    star: true,
 }
 // , {
 //     id: 101,
@@ -687,14 +692,14 @@ const SchemeList: IScheme[] = [{
 //     star: true,
 //     list: [0, 1, 2, 3, 128]
 // }
-, {
-    id: 102,
-    groupName: '活动',
-    schemeName: '夏日游园会_消消乐',
-    star: true,
-    list: [0, 3, 129, 130],
-    commonConfig: { multiColorSimilar: 95 }
-}
+// , {
+//     id: 102,
+//     groupName: '活动',
+//     schemeName: '夏日游园会_消消乐',
+//     star: true,
+//     list: [0, 3, 129, 130],
+//     commonConfig: { multiColorSimilar: 95 }
+// }
     // 完整demo
     // , {
     //     id: 2,

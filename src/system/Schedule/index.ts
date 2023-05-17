@@ -1,6 +1,7 @@
 import type { RepeatModeType, StatusType } from './type';
 import { deepClone } from '@/common/tool';
 import { checkedDateByCron, getNextByCron } from '@/common/toolCron';
+import { myToast } from '@/common/toolAuto';
 
 export class JobOptions {
 
@@ -141,8 +142,9 @@ class Schedule {
     jobList: Job[];
     jobStopCallback: Function;
     scheduleStatue: 'running' | 'idle' = 'idle';
+    lazyMode: boolean = false;  //  免打扰模式开官
 
-    /**
+        /**
      * @description 当前运行中的job
      */
     currentRunningJobId: number = null;
@@ -274,7 +276,18 @@ class Schedule {
                     this.currentRunningJobId = job.id;
                     currentRunningJob.isPaused = true;
                     console.log('--调度任务--当前任务不为空,执行任务:', job.id);
-                    job.doRun();
+
+                    if (!this.lazyMode) {
+                        job.doRun();
+                    } else {
+                        //  当前为免打扰模式，更新最近执行时间与下次执行时间
+                        job.lastRunTime = new Date();
+                        job.nextDate = new Date(Date.now() + Number.parseInt(job.interval, 10) * 60 * 1000);
+                        job.doDone();
+                        console.log('--免打扰模式已开启，任务已通过，名称为:', job.name);
+                        myToast('--免打扰模式已开启，任务已通过，名称为:' + job.name);
+                    }
+                    
                     console.log('--调度任务--当前执行任务为:', currentRunningJob && currentRunningJob.name);
                     console.log('--调度任务--调度中心状态为:', this.scheduleStatue);
                     console.log('--调度任务--当前调度队列为:', this.jobQueue.map(item => item.id));
@@ -287,7 +300,18 @@ class Schedule {
                 }
             } else {
                 this.currentRunningJobId = job.id;
-                job.doRun();
+
+                if (!this.lazyMode) {
+                    job.doRun();
+                } else {
+                    //  当前为免打扰模式，更新最近执行时间与下次执行时间
+                    job.lastRunTime = new Date();
+                    job.nextDate = new Date(Date.now() + Number.parseInt(job.interval, 10) * 60 * 1000);
+                    job.doDone();
+                    console.log('--免打扰模式已开启，任务已通过，名称为:', job.name);
+                    myToast('--免打扰模式已开启，任务已通过，名称为:' + job.name);
+                }
+
                 console.log('--调度任务--当前任务为空,执行任务:', job.id, 'Id为:', this.currentRunningJobId);
                 console.log('--调度任务--调度中心状态为:', this.scheduleStatue);
                 console.log('--调度任务--当前调度队列为:', this.jobQueue.map(item => item.id));

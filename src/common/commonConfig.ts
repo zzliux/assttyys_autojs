@@ -26,7 +26,7 @@ const CommonConfig = [{
             name: 'multiColorSimilar',
             desc: '多点找色相似度(%)',
             type: 'integer',
-            default: 98,
+            default: 97,
             value: null,
         }
     ]
