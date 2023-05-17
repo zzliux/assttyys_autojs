@@ -47,7 +47,7 @@ export class Func050 implements IFuncOrigin {
 			[center, 1280, 720, 0, 0, 855 - 782, 431 - 415, 2000],
 			[center, 1280, 720, 937, 272, 1160, 531, 500],
 			[center, 1280, 720, 431, 413, 743, 437, -1], // 翻页开始区域
-			[center, 1280, 720, 434, 344, 749, 368, -1], // 翻页结束区域
+			[center, 1280, 720, 434, 354, 749, 378, -1], // 翻页结束区域
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -68,7 +68,7 @@ export class Func050 implements IFuncOrigin {
 				// 没有找到的话就翻页
 				if (!thisScript.global.buff_enable_page_flag) {
 					thisScript.global.buff_enable_page_flag = true;
-					thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[2], thisOperator[0].oper[3], [800, 1600], 200);
+					thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[2], thisOperator[0].oper[3], [1200, 1600], 200);
 					return true;
 				}
 
