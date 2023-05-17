@@ -237,12 +237,11 @@ export class Func999 implements IFuncOrigin {
 
                         thisScript.helperBridge.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [1200, 1500], 1000);
 
-                    let toDetectAreaBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[2].oper[5].slice(0, 4))
-                    console.time('ocr.detect.area');
-                    let resultArea = thisScript.getOcrDetector().loadImage(toDetectAreaBmp);
-                    console.timeEnd('ocr.detect.area');
-                    toDetectAreaBmp.recycle();
-                    3
+                        let toDetectAreaBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[2].oper[5].slice(0, 4))
+                        console.time('ocr.detect.area');
+                        let resultArea = thisScript.getOcrDetector().loadImage(toDetectAreaBmp);
+                        console.timeEnd('ocr.detect.area');
+                        toDetectAreaBmp.recycle();
 
                         let _first_group_name = ''
                         if (Array.isArray(resultArea) && resultArea.length > 0 && resultArea[0].label) {
