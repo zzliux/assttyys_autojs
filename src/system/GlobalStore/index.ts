@@ -53,6 +53,7 @@ export type globalRootType = {
     bgy_three: boolean; //百鬼奕三胜
     bgy_ten: boolean; //百鬼奕十次
     xxlLastLevel: number;
+    buff_enable_page_flag: boolean; // 开启buff是否完成翻页
 }
 
 export const globalRoot: globalRootType = {
@@ -110,4 +111,5 @@ export const globalRoot: globalRootType = {
     bgy_three: false,
     bgy_ten: false,
     xxlLastLevel: 0,
+    buff_enable_page_flag: false,
 }

@@ -1680,7 +1680,7 @@ const multiColor: IMultiColorOrigin = {
     },
     '关闭的BUFF_御魂': {
         region: [center, 1280, 720, 744, 116, 919, 530],
-        similar: 80,
+        // similar: 80,
         desc: [
             [1280, 720,
                 [

@@ -741,8 +741,10 @@ export const versionList = [{
 优化：定时任务页面，代码重构；
 优化：六道萤草重置buff数量的逻辑`
 }, {
-    version: '20230517_03_dev',
-desc: `修复：搜索清空后重进又恢复的问题`
+    version: '20230517_04_dev',
+desc: `修复：搜索清空后重进又恢复的问题
+优化：贝塞尔滑动降低偏离幅度；
+优化：50开启buff找不到时会翻一次页`
 }];
 
 export default versionList[versionList.length - 1].version;
