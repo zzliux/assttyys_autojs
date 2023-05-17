@@ -128,9 +128,23 @@ export class Func202 implements IFuncOrigin {
 				萤火之光: [parseInt(thisconf.萤火之光 as string, 10) || 0, 5]
 			}
 		}
-		// TODO 待优化：达到目标个数后直接乱选buff
-		// TODO 待优化：只要有一个普通buff如生命加成、攻击加成、命中加成则不刷新
+		
+		// 首次的选buff界面，给它置为0
+		if (thisScript.oper({
+			name: '六道萤草_选buff',
+			operator: [{ desc: thisOperator[0].desc }]
+		})) {
+			thisScript.global.d6d = {
+				// 0当前个数，1目标个数
+				腐草为萤: [0, 5],
+				妖力化身: [0, 2],
+				六道净化: [0, 1],
+				萤火之光: [0, 5]
+			}
+		}
 
+		// TODO 待优化：达到目标个数后直接乱选buff
+		// 已优化：有两个或以上普通buff如生命加成、攻击加成、命中加成则不刷新
 		if (thisScript.oper({
 			name: '六道萤草_选buff',
 			operator: [{
