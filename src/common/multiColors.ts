@@ -1692,30 +1692,7 @@ const multiColor: IMultiColorOrigin = {
                     [center, 401, 206, 0x01c8dc],
                     [center, 407, 202, 0xd3c7be],
                 ]
-            ],
-            [1280, 720,//被邀请横幅遮挡住的御魂
-                [
-                    [center, 776, 212, 0xb10c2d],
-                    [center, 874, 213, 0x9e9b7d],
-                    [center, 867, 225, 0x9e9d7d],
-                    [center, 879, 224, 0x9e9b7d],
-                    [center, 381, 205, 0x1d5179],
-                    [center, 401, 205, 0x00a7c1],
-                    [center, 394, 203, 0x0091ba],
-                ]
-            ],
-            [1280, 720,//被邀请横幅遮挡住的御魂
-                [
-                    [center, 776, 212, 0xb10c2d],
-                    [center, 874, 213, 0x9e9b7d],
-                    [center, 867, 225, 0x9e9d7d],
-                    [center, 879, 224, 0x9e9b7d],
-                    [left, 45, 254, 0xdc6f5d],
-                    [left, 139, 259, 0x53af5e],
-                    [center, 401, 204, 0x0398b6],
-                ]
             ]
-
         ]
     },
     '关闭的BUFF_金币': {

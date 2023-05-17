@@ -47,6 +47,21 @@ export class Func050 implements IFuncOrigin {
 			[center, 1280, 720, 0, 0, 855 - 782, 431 - 415, 2000],
 			[center, 1280, 720, 937, 272, 1160, 531, 500],
 		]
+	}, {//被横幅遮挡的御魂BUFF
+		desc: [
+			1280, 720,
+			[
+				[left, 35, 244, 0xd96754],
+				[left, 52, 263, 0xe1705d],
+				[left, 129, 254, 0x57b363],
+				[left, 155, 246, 0x61bb6c],
+				[center, 394, 203, 0x0091ba],
+				[center, 774, 211, 0xad0f28],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 774, 210, 852, 231, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
@@ -56,6 +71,12 @@ export class Func050 implements IFuncOrigin {
 			}]
 		})) {
 			const thisconf = thisScript.scheme.config['50'];
+			if (thisconf.buff_type === '御魂' && thisScript.oper({
+				name: '被横幅遮挡的御魂BUFF',
+				operator: [thisOperator[1]]
+			})) {
+				return true;
+			}
 			let point = thisScript.findMultiColor(`关闭的BUFF_${thisconf.buff_type}`) || null
 			if (point) {
 				thisScript.helperBridge.regionClick([
