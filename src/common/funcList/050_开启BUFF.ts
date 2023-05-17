@@ -46,19 +46,16 @@ export class Func050 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 0, 0, 855 - 782, 431 - 415, 2000],
 			[center, 1280, 720, 937, 272, 1160, 531, 500],
-			[center, 1280, 720, 431, 413, 743, 437, -1], // 翻页开始区域
-			[center, 1280, 720, 434, 344, 749, 368, -1], // 翻页结束区域
 		]
 	}, {//被横幅遮挡的御魂BUFF
 		desc: [
 			1280, 720,
 			[
-				[left, 35, 244, 0xd96754],
-				[left, 52, 263, 0xe1705d],
-				[left, 129, 254, 0x57b363],
-				[left, 155, 246, 0x61bb6c],
-				[center, 394, 203, 0x0091ba],
-				[center, 774, 211, 0xad0f28],
+				[center, 401, 205, 0x009db1],
+				[center, 775, 211, 0xaf0d28],
+				[center, 456, 215, 0xe85c2e],
+				[center, 512, 221, 0xb83927],
+				[center, 468, 196, 0xefdfbf],
 			]
 		],
 		oper: [
@@ -86,14 +83,6 @@ export class Func050 implements IFuncOrigin {
 				], thisScript.scheme.commonConfig.afterClickDelayRandom);
 				return true;
 			} else {
-				// 没有找到的话就翻页
-				if (!thisScript.global.buff_enable_page_flag) {
-					thisScript.global.buff_enable_page_flag = true;
-					thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[2], thisOperator[0].oper[3], [800, 1600], 200);
-					return true;
-				}
-
-				// 再没找到就切换方案或结束
 				thisScript.helperBridge.regionClick([thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
 				if (thisconf && thisconf.scheme_switch_enabled) {
 					thisScript.setCurrentScheme(thisconf.next_scheme as string);
