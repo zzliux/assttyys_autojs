@@ -82,7 +82,7 @@ export class Func511 implements IFuncOrigin {
         let thisConf = thisScript.scheme.config['511'];
         let thisConfFor510 = thisScript.scheme.config['510'];
         let defaultCount = +thisConf.count;
-        if (thisConfFor510.fastMode == false && thisScript.oper({
+        if ( !thisConfFor510.fastMode && thisScript.oper({
             id: 511,
             name: '式神录已展开 预设 侧栏_判断',
             operator: [{ desc: thisOperator[0].desc }]

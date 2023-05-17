@@ -22,6 +22,16 @@ export class Func004 implements IFuncOrigin {
 			desc: '下一个方案',
 			type: 'scheme',
 			default: '通用准备退出',
+		},{
+			name: 'teammate_exit',
+			desc: '队长退出后切换方案',
+			type: 'switch',
+			default: true,
+		},{
+			name: 'teammate_exit_next_scheme',
+			desc: '下一个方案',
+			type: 'scheme',
+			default: '关闭BUFF',
 		},]
 	}]
 	operator: IFuncOperatorOrigin[] = [{
@@ -56,6 +66,32 @@ export class Func004 implements IFuncOrigin {
 			[left, 55, 402, 0xe3caa3],
 			[left, 51, 502, 0xe4cca3]]
 		]
+	}, {//3	挑战_亮
+		desc: [1280, 720,
+			[
+				[left, 43, 37, 0xf5e6a8],
+				[right, 1177, 667, 0xd8b871],
+				[right, 1187, 679, 0xcda35d],
+				[right, 1188, 609, 0xf1e096],
+				[left, 60, 39, 0x84582f],
+				[left, 19, 47, 0x281717]
+			]
+		]
+	}, {//4	挑战_暗
+		desc: [
+			1280, 720,
+			[
+				[left, 43, 37, 0xf5e6a8],
+				[right, 1210, 621, 0xd9d9d9],
+				[right, 1228, 658, 0xc8c8c8],
+				[right, 1214, 698, 0xff9d48],
+				[left, 60, 39, 0x84582f],
+				[left, 19, 47, 0x281717]
+			]
+		],
+		oper:[
+
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['4'];
@@ -68,11 +104,23 @@ export class Func004 implements IFuncOrigin {
 			thisScript.myToast(`切换方案为[${thisConf.next_scheme}]`);
 			thisScript.rerun();
 		} else {
-			return thisScript.oper({
+			if (thisScript.oper({
 				id: 4,
 				name: '接受邀请',
 				operator: thisOperator.slice(0, 2)
-			});
+			})) {
+				return true;
+			};
+		}
+
+		if (thisConf && thisConf.teammate_exit && thisScript.oper({
+			id: 4,
+			name: '队长退出',
+			operator: [thisOperator[3],thisOperator[4]]
+		})){
+			thisScript.setCurrentScheme(thisConf.teammate_exit_next_scheme as string);
+			thisScript.myToast(`切换方案为[${thisConf.teammate_exit_next_scheme}]`);
+			thisScript.rerun();
 		}
 	}
 }
