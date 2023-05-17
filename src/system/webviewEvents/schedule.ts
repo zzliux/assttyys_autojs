@@ -21,7 +21,10 @@ import { getNextByCron } from "@/common/toolCron";
 export default function webviewSchedule() {
 
     // cron的定时任务更新下次运行时间
-    const savedScheduleList = store.get("scheduleList", ScheduleDefaultList);
+    let savedScheduleList = store.get("scheduleList", ScheduleDefaultList);
+    if (!Array.isArray(savedScheduleList)) {
+        savedScheduleList=ScheduleDefaultList;
+    }
     savedScheduleList.forEach(item => {
         if (item.repeatMode === 3) {
             item.nextDate = getNextByCron(item.interval);
@@ -57,6 +60,15 @@ export default function webviewSchedule() {
         // }
 
         console.log('scheduleList已保存');
+        done("success");
+    });
+
+    webview.on("getScheduleInstance").subscribe(([param, done]) => {
+        done(schedule);
+    });
+
+    webview.on("setScheduleLazyMode").subscribe(([lazyMode, done]) => {
+        schedule.lazyMode = lazyMode;
         done("success");
     });
 
