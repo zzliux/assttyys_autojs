@@ -745,6 +745,10 @@ export const versionList = [{
 desc: `修复：搜索清空后重进又恢复的问题
 优化：贝塞尔滑动降低偏离幅度；
 优化：50开启buff找不到时会翻一次页`
+}, {
+    version: '20230519_01',
+    desc: `新增：定时任务-启动游戏-每日签到与收取邮件
+    修复：503增加“获取称号”的适配`
 }];
 
 export default versionList[versionList.length - 1].version;
