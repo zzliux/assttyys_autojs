@@ -740,6 +740,10 @@ export const versionList = [{
 修复：510未配置时导致511不翻页的问题；
 优化：定时任务页面，代码重构；
 优化：六道萤草重置buff数量的逻辑`
+}, {
+    version: '20230519_01',
+    desc: `新增：定时任务-启动游戏-每日签到与收取邮件
+    修复：503增加“获取称号”的适配`
 }];
 
 export default versionList[versionList.length - 1].version;
