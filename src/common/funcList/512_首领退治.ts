@@ -65,6 +65,20 @@ export class Func512 implements IFuncOrigin {
 					[left, 50, 20, 0xecd391],
 			]
 	]
+	},
+	{	//  检测_寮活动信息
+		desc: [
+			1280, 720,
+			[
+				[center, 480, 79, 0xb7a897],
+				[right, 1216, 159, 0xc57747],
+				[right, 1216, 543, 0x724938],
+				[right, 1219, 396, 0x885740],
+				[right, 1180, 294, 0x835941],
+				[center, 470, 656, 0xb3a392],
+				[right, 1112, 634, 0x518ab3],
+			]
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['512'];
@@ -78,7 +92,7 @@ export class Func512 implements IFuncOrigin {
 
 		if (thisScript.oper({
 			name: '检测_首领结束页',
-			operator: [thisOperator[1], thisOperator[2]]
+			operator: [thisOperator[1], thisOperator[2], thisOperator[3]]
 		})) {
 
 			if (thisScript.runtimeParams && thisScript.runtimeParams.liao_activity_state) {
