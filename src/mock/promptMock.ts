@@ -378,6 +378,8 @@ const promptMockData = {
     },
     clearStorage: null,
     exit: null,
+    setScheduleLazyMode: 'success',
+    getScheduleInstance: { lazyMode: true }
 };
 
 // 注入修改prompt
