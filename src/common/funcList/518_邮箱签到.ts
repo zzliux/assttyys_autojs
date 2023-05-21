@@ -415,7 +415,8 @@ export class Func518 implements IFuncOrigin {
       return thisScript.oper({
         id: 518,
         name: '检测_是否有邮件或签到',
-        operator: [thisOperator[4], thisOperator[9]],
+        operator: [thisOperator[4], thisOperator[9], thisOperator[16], 
+        thisOperator[18], thisOperator[20], thisOperator[21], thisOperator[22]],
       });
     }
 
@@ -431,6 +432,8 @@ export class Func518 implements IFuncOrigin {
           thisOperator[9],
           thisOperator[10],
           thisOperator[11],
+          
+          
         ],
       })
     ) {
@@ -448,13 +451,9 @@ export class Func518 implements IFuncOrigin {
           thisOperator[13],
           thisOperator[14],
           thisOperator[15],
-          thisOperator[16],
           thisOperator[17],
-          thisOperator[18],
           thisOperator[19],
-          thisOperator[20],
-          thisOperator[21],
-          thisOperator[22],
+          
         ],
       })
     ) {
