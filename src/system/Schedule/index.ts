@@ -68,6 +68,7 @@ export class JobOptions {
 
     /**
      * 任务是否已暂停
+     * @deprecated
      */
     isPaused?: boolean;
 }
@@ -139,15 +140,18 @@ class Schedule {
 
     timer: NodeJS.Timeout;
     timeout: number = 10000;
-    jobList: Job[];
+    jobList: Job[] = [];
     jobStopCallback: Function;
     scheduleStatue: 'running' | 'idle' = 'idle';
     lazyMode: boolean = false;  //  免打扰模式开官
 
-        /**
+    /**
      * @description 当前运行中的job
+     * @deprecated
      */
     currentRunningJobId: number = null;
+
+    currentRunningJob: Job = null;
 
     /**
      * @description 任务队列
@@ -156,7 +160,6 @@ class Schedule {
 
     constructor() {
         this.timer = setInterval(this.timerCallback.bind(this), this.timeout);
-        this.jobList = [];
     }
 
     add(job: Job): boolean {
@@ -184,6 +187,11 @@ class Schedule {
         return this.jobList;
     }
 
+    /**
+     * @param id 
+     * @returns 
+     * @deprecated
+     */
     getJobById(id: number): Job | null {
         const resultJobIndex = this.jobList.findIndex(item => item.id === id);
         if (resultJobIndex === -1) {
@@ -193,6 +201,77 @@ class Schedule {
         }
     }
 
+    /**
+     * 把job插入至有序队列，插入一次做一次冒泡
+     * @param job 
+     */
+    queueInsert(job: Job): void {
+        let index = this.jobQueue.length - 1;
+        this.jobQueue.push(null);
+        job.status = 'queueing';
+        while (index >= 0 && parseInt(this.jobQueue[index].level, 10) > parseInt(job.level, 10)) {
+            this.jobQueue[index + 1] = this.jobQueue[index];
+            this.jobQueue[index] = job;
+            index--;
+        }
+    }
+
+    /**
+     * 
+     * @returns 
+     */
+    queueShift(): Job {
+        if (this.jobQueue.length) {
+            return this.jobQueue.shift();
+        }
+        return null;
+    }
+
+    /**
+     * 调度timer，每x秒触发一次
+     * @returns 
+     */
+    timerCallback2() {
+
+        // 遍历所有的job，把到达执行时间的任务加入待执行队列
+        for (let i = 0; i < this.jobList.length; i++) {
+            const thisJob = this.jobList[i];
+            if (thisJob.status === 'waiting') {
+                if ((thisJob.nextDate.getTime() <= Date.now() && Date.now() - thisJob.nextDate.getTime() < 180000)) {
+                    this.queueInsert(thisJob);
+                    console.log(`[scheduller]入队列：${thisJob.name}`);
+                    console.log(`[scheduller]当前队列：\n${JSON.stringify(this.jobList, null, 4)}`);
+                }
+            }
+        }
+
+        // 检查当前任务的状态
+        if (this.currentRunningJob) {
+            if (this.currentRunningJob.status !== 'running') {
+                console.log(`[scheduller]任务执行完成：${JSON.stringify(this.currentRunningJob, null, 4)}`);
+                this.currentRunningJob = null;
+            } else {
+                return;
+            }
+        }
+
+        // 尝试从队列中取一个任务执行
+        this.currentRunningJob = this.queueShift();
+        if (!this.currentRunningJob) return;
+        if (this.lazyMode) {
+            // 免打扰模式
+            this.currentRunningJob.lastRunTime = new Date();
+            this.currentRunningJob.doDone();
+            console.log(`[scheduller]免打扰模式，已跳过任务：${JSON.stringify(this.currentRunningJob, null, 4)}`);
+        } else {
+            console.log(`[scheduller]执行任务：${JSON.stringify(this.currentRunningJob, null, 4)}`);
+            this.currentRunningJob.doRun();
+        }
+    }
+
+    /**
+     * @deprecated
+     */
     timerCallback() {
         let index = -1;
         let job: Job = null;
@@ -287,7 +366,7 @@ class Schedule {
                         console.log('--免打扰模式已开启，任务已通过，名称为:', job.name);
                         myToast('--免打扰模式已开启，任务已通过，名称为:' + job.name);
                     }
-                    
+
                     console.log('--调度任务--当前执行任务为:', currentRunningJob && currentRunningJob.name);
                     console.log('--调度任务--调度中心状态为:', this.scheduleStatue);
                     console.log('--调度任务--当前调度队列为:', this.jobQueue.map(item => item.id));

@@ -256,6 +256,40 @@ export class Func503 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 894, 119, 941, 175, 1000],
 			]
+		}, {
+			//	19 阴阳寮神社 获取称号弹窗
+			desc: [
+				1280, 720,
+				[
+					[center, 359, 256, 0xf5ebd6],
+					[center, 716, 256, 0xf3e4d0],
+					[right, 1004, 241, 0xc8b5a0],
+					[right, 1061, 227, 0x966a3a],
+					[right, 966, 472, 0xdccdb1],
+					[right, 1079, 444, 0xf1debf],
+					[center, 757, 211, 0x48261d],
+					[left, 296, 319, 0xb74039],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 576,550, 834,592, 600]	//	点击空白处
+			]
+		}, {
+			// 20 道馆地图
+			desc: [
+				1280, 720,
+				[
+					[right, 1240, 659, 0xdfdbcf],
+					[left, 33, 52, 0xeff5fb],
+					[left, 87, 617, 0xc2baaa],
+					[right, 953, 45, 0x25150c],
+					[right, 1228, 80, 0xddd3c1],
+					[right, 1251, 79, 0xc4b4a0],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 17, 25, 74, 79, 1000],
+			]
 		}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['503'];
@@ -266,7 +300,7 @@ export class Func503 implements IFuncOrigin {
 				thisOperator[3], thisOperator[5], thisOperator[6],
 				thisOperator[7], thisOperator[10], thisOperator[11],
 				thisOperator[14], thisOperator[15], thisOperator[17],
-				thisOperator[18],
+				thisOperator[18], thisOperator[19], thisOperator[20],
 			]
 		})) {
 			return true;

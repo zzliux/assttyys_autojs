@@ -44,9 +44,11 @@
             >
               <div class="item-header" :func-list-to-highlight="element.id + ' ' + element.name" @click="showConfig($event, element)">
                 <div class="item-title">{{element.id + ' ' + element.name + (element.config && element.config.length ? ' *': '')}}</div>
-                <div class="item-value">
-                  <span class="handle-area"><van-icon class="handle noShowConfigEvent" size="18" name="bars" /></span>
-                  <van-switch class="itemSwitch" @change="toggleSwitchEvent" v-model="element.checked" size="18" />
+                <div class="item-value" style="display: flex; padding-top: 5px">
+                  <span class="handle-area" style="padding-top: 3px"><van-icon class="handle noShowConfigEvent" size="18" name="bars" /></span>
+                  <span style="display: flex">
+                    <van-switch class="itemSwitch" @change="toggleSwitchEvent" v-model="element.checked" size="18" />
+                  </span>
                 </div>
                 <div v-if="element.desc" class="item-desc">{{element.desc}}</div>
               </div>
@@ -357,10 +359,9 @@ async function startBtnClickEvent() {
   margin-right: 18px;
 }
 .handle-area {
-  margin-top: 8px;
-  height: 24px;
+  height: 25px;
   width: 36px;
-  display: inline-block;
+  display: flex;
 }
 .itemSwitch {
   margin-right: 5px;

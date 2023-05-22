@@ -200,6 +200,20 @@ const ScheduleDefaultList: JobOptions[] = [
     config: {
       scheme: '重启模拟器',
     }
+  },
+  {
+    id: 15,
+    name: '每日签到与领取邮箱奖励',
+    desc: '每日签到与领取邮箱奖励',
+    checked: false,
+    lastRunTime: null,
+    nextDate: null,
+    repeatMode: 3,
+    interval: '* 10 1 * * *',
+    level: '1',
+    config: {
+      scheme: '定时任务-启动游戏-每日签到与收取邮件',
+    }
   }
 ];
 
