@@ -307,12 +307,14 @@ function itemBeforeClose(option) {
           swipeCellCurrentAction.value = null;
         });
       } else if ('copy' === swipeCellCurrentAction.value) {
+        itemClose();
         schemeNameInputType.value = 'copy';
         schemeNameInputShow.value = true;
         newScheme.value = merge({}, schemeList.value[swipeCellCurrentIndex.value]);
         newSchemeName.value = newScheme.value.schemeName;
         newGroupName.value = newScheme.value.groupName;
       } else if ('modify' === swipeCellCurrentAction.value) {
+        itemClose();
         schemeNameInputType.value = 'modify';
         newSchemeName.value = schemeList.value[swipeCellCurrentIndex.value].schemeName;
         schemeNameInputShow.value = true;

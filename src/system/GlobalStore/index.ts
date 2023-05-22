@@ -53,6 +53,7 @@ export type globalRootType = {
     bgy_three: boolean; //百鬼奕三胜
     bgy_ten: boolean; //百鬼奕十次
     xxlLastLevel: number;
+    buff_enable_page_flag: boolean; // 开启buff是否完成翻页
 }
 
 export const globalRoot: globalRootType = {
@@ -91,7 +92,7 @@ export const globalRoot: globalRootType = {
     back_courtyard_to_next_scheme: '',
     fm_kiss_boss_flag: false,
     fm_boss_btn_click_cnt: 0,
-    change_shikigami_flag: false,
+    change_shikigami_flag: true,
     change_shikigami_state: 'flushed',
     change_shikigami_list_swipe_times: 0,
     change_shikigami_last_group_name: undefined,
@@ -110,4 +111,5 @@ export const globalRoot: globalRootType = {
     bgy_three: false,
     bgy_ten: false,
     xxlLastLevel: 0,
+    buff_enable_page_flag: false,
 }

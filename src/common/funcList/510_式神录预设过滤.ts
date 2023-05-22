@@ -5,7 +5,7 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func999 implements IFuncOrigin {
+export class Func510 implements IFuncOrigin {
     id = 510;
     name = '更改式神录御魂';
     desc = '进入式神录更改式神御魂';

@@ -122,27 +122,15 @@ class MyAutomator implements IMyAutomator {
         let c1, c2;
         // TODO 开始和结束的附近的点需要更密集
         if (!type) {
-            if (random(1, 2) == 1) { // 左
-                c1 = [
-                    random(0, xMin),
-                    random((yMin + (yMax - yMin) / 4), (yMin + (yMax - yMin) / 2))
-                ];
-                c2 = [
-                    random(0, xMin),
-                    random((yMin + (yMax - yMin) / 2), 3 * (yMin + (yMax - yMin) / 4))
-                ];
-            } else { // 右
-                c1 = [
-                    random(xMax, screenWidth),
-                    random((yMin + (yMax - yMin) / 4), (yMin + (yMax - yMin) / 2))
-                ];
-                c2 = [
-                    random(xMax, screenWidth),
-                    random((yMin + (yMax - yMin) / 2), 3 * (yMin + (yMax - yMin) / 4))
-                ];
-            }
+            c1 = [
+                random(xMin, xMax),
+                random(yMin, yMax),
+            ];
+            c2 = [
+                random(xMin, xMax),
+                random(yMin, yMax),
+            ];
         } else {
-            // TODO 上和下的
         }
 
         const curve = new Bezier(x1, y1, ...c1, ...c2, x2, y2);

@@ -46,6 +46,8 @@ export class Func050 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 0, 0, 855 - 782, 431 - 415, 2000],
 			[center, 1280, 720, 937, 272, 1160, 531, 500],
+			[center, 1280, 720, 431, 413, 743, 437, -1], // 翻页开始区域
+			[center, 1280, 720, 434, 354, 749, 378, -1], // 翻页结束区域
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -63,6 +65,14 @@ export class Func050 implements IFuncOrigin {
 				], thisScript.scheme.commonConfig.afterClickDelayRandom);
 				return true;
 			} else {
+				// 没有找到的话就翻页
+				if (!thisScript.global.buff_enable_page_flag) {
+					thisScript.global.buff_enable_page_flag = true;
+					thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[2], thisOperator[0].oper[3], [1200, 1600], 200);
+					return true;
+				}
+
+				// 再没找到就切换方案或结束
 				thisScript.helperBridge.regionClick([thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
 				if (thisconf && thisconf.scheme_switch_enabled) {
 					thisScript.setCurrentScheme(thisconf.next_scheme as string);

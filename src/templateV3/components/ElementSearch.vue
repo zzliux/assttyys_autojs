@@ -55,7 +55,7 @@ const key = $route.fullPath;
 if (!store[key]) {
   storeInfo('', -1);
 }
-function storeInfo (k, i) {
+function storeInfo(k, i) {
   store[key] = { k, i };
   localStorage.setItem('elementSearch', JSON.stringify(store));
 }
@@ -66,6 +66,7 @@ let lastSearchIndex = 0;
 let lastList = [];
 
 function elementSearchInputEventOrigin(e, up) {
+  storeInfo(highLightStr.value, lastSearchIndex + (up ? -1 : 1));
   if (highLightStr.value === lastSearchStr) {
     const list = document.querySelectorAll(`[${props.refSearchAttrName}*="${lastSearchStr}"]`);
     const highLightList = document.querySelectorAll(`[${props.refHighLightAttrName}*="${lastSearchStr}"]`);
@@ -94,7 +95,6 @@ function elementSearchInputEventOrigin(e, up) {
           block: "center",
         });
         
-        storeInfo(highLightStr.value, thisIndex);
       }, 0);
     } else {
       highLightFullStr.value = "";
@@ -124,8 +124,6 @@ function elementSearchInputEventOrigin(e, up) {
           behavior: "smooth",
           block: "center",
         });
-        
-        storeInfo(highLightStr.value, 0);
       }, 0);
     } else {
       highLightFullStr.value = "";

@@ -75,6 +75,7 @@ export const webview = run(url, {
 });
 webview.webviewObject.clearCache(true);
 // webview.webviewObject.getSettings().setCacheMode(android.webkit.WebSettings.LOAD_NO_CACHE);
+// webview.webviewObject.setLayerType(android.view.View.LAYER_TYPE_HARDWARE, null); // 开启硬件加速
 
 // 监听退出事件，关闭前台服务
 events.on('exit', () => {

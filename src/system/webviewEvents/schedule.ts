@@ -23,7 +23,7 @@ export default function webviewSchedule() {
     // cron的定时任务更新下次运行时间
     let savedScheduleList = store.get("scheduleList", ScheduleDefaultList);
     if (!Array.isArray(savedScheduleList)) {
-        savedScheduleList=ScheduleDefaultList;
+        savedScheduleList = ScheduleDefaultList;
     }
     savedScheduleList.forEach(item => {
         if (item.repeatMode === 3) {

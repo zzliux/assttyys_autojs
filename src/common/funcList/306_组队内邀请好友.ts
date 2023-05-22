@@ -16,8 +16,8 @@ export class Func306 implements IFuncOrigin {
       name: 'selectArea',
       desc: '选择好友所在区域',
       type: 'list',
-      data: ['好友或最近', '跨区'],
-      default: '好友或最近',
+      data: ['好友', '跨区'],
+      default: '好友',
       value: null,
     }, {
       name: 'inviteName',
@@ -45,7 +45,7 @@ export class Func306 implements IFuncOrigin {
       [right, 1088, 254, 0xffffff]]
     ],
     oper: [
-      [center, 1280, 720, 1025, 194, 1145, 306, 1000]
+      [center, 1280, 720, 1025, 194, 1145, 306, 500]
     ]
   }, {//1,邀请界面
     desc: [1280, 720,
@@ -55,11 +55,9 @@ export class Func306 implements IFuncOrigin {
       [center, 776, 582, 0xf7b263]]
     ],
     oper: [
-      [center, 1280, 720, 478, 91, 563, 134, 1500],//好友或最近
-      [center, 1280, 720, 590, 88, 680, 135, 1500],//跨区
+      [center, 1280, 720, 310, 61, 790, 163, 0],//好友区域
       [center, 1280, 720, 436, 188, 910, 526, 0],//ocr区域
       [center, 1280, 720, 718, 553, 827, 597, 1500],//邀请
-      [center, 1280, 720, 360, 86, 454, 137, 1500],//最左刷新
     ]
   }, {//2,组队界面
     desc: [1280, 720,
@@ -106,29 +104,31 @@ export class Func306 implements IFuncOrigin {
       name: '邀请界面',
       operator: [{ desc: thisOperator[1].desc }]
     })) {
-
-      thisScript.oper({
-        id: 306,
-        name: "最左刷新",
-        operator: [{ oper: [thisOperator[1].oper[4]] }]
-      })
-
-      if ('好友或最近' === thisConf.selectArea) {
-        thisScript.oper({
-          id: 306,
-          name: "好友或最近",
-          operator: [{ oper: [thisOperator[1].oper[0]] }]
-        })
-      }
-      else if ('跨区' === thisConf.selectArea) {
-        thisScript.oper({
-          id: 306,
-          name: "跨区",
-          operator: [{ oper: [thisOperator[1].oper[1]] }]
-        })
-      }
       if (thisScript.getOcrDetector()) {
-        let result = thisScript.findText('.+', 0, thisOperator[1].oper[2], '包含');
+        let selectArea = thisScript.findText(thisConf.selectArea as string, 0, thisOperator[1].oper[0], '模糊');
+        if (selectArea.length === 0) {
+          console.log(`找不到好友按钮`);
+          return false;
+          // thisConf.inviteName as string
+        } else {
+        let p = {
+          x: (selectArea[0].points[0].x + selectArea[0].points[1].x) / 2,
+          y: (selectArea[0].points[0].y + selectArea[0].points[3].y) / 2,
+        }
+        let lx = p.x - 5;
+        let ly = p.y - 5;
+        let rx = p.x + 5;
+        let ry = p.y + 5;
+        let toClick = [
+          lx > 0 ? lx : 0,
+          ly > 0 ? ly : 0,
+          rx,
+          ry,
+          1000
+        ];
+        thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
+      }
+        let result = thisScript.findText('.+', 0, thisOperator[1].oper[1], '包含');
         if (result.length === 0) {
           console.log(`未识别到任何昵称`);
           return false;
@@ -157,7 +157,7 @@ export class Func306 implements IFuncOrigin {
             id: 306,
             name: '邀请按钮',
             operator: [{
-              oper: [thisOperator[1].oper[3]]
+              oper: [thisOperator[1].oper[2]]
             }]
           })) {
             return true;
