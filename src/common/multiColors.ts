@@ -2768,6 +2768,21 @@ const multiColor: IMultiColorOrigin = {
             ]
         ]
     },
+    "活动说明的感叹号": {
+        region: [center, 1280, 720, 100, 0, 350, 100],
+        desc: [
+            [1280, 720,
+                [
+                    [left, 250, 40, 0x593716],
+                    [left, 265, 40, 0x583716],
+                    [left, 258, 32, 0xe7c55b],
+                    [left, 258, 49, 0xd99e36],
+                    [left, 257, 56, 0x876238],
+                    [left, 257, 25, 0x8f6b4b]
+                ]
+            ]
+        ]
+    }
 }
 
 export default multiColor;
