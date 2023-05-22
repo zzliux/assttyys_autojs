@@ -159,7 +159,7 @@ class Schedule {
     jobQueue: Job[] = [];
 
     constructor() {
-        this.timer = setInterval(this.timerCallback.bind(this), this.timeout);
+        this.timer = setInterval(this.timerCallback2.bind(this), this.timeout);
     }
 
     add(job: Job): boolean {
@@ -211,9 +211,9 @@ class Schedule {
         job.status = 'queueing';
         while (index >= 0 && parseInt(this.jobQueue[index].level, 10) > parseInt(job.level, 10)) {
             this.jobQueue[index + 1] = this.jobQueue[index];
-            this.jobQueue[index] = job;
             index--;
         }
+        this.jobQueue[index + 1] = job;
     }
 
     /**
@@ -240,7 +240,7 @@ class Schedule {
                 if ((thisJob.nextDate.getTime() <= Date.now() && Date.now() - thisJob.nextDate.getTime() < 180000)) {
                     this.queueInsert(thisJob);
                     console.log(`[scheduller]入队列：${thisJob.name}`);
-                    console.log(`[scheduller]当前队列：\n${JSON.stringify(this.jobList, null, 4)}`);
+                    console.log(`[scheduller]当前队列：\n${JSON.stringify(this.jobQueue, null, 4)}`);
                 }
             }
         }
@@ -248,10 +248,16 @@ class Schedule {
         // 检查当前任务的状态
         if (this.currentRunningJob) {
             if (this.currentRunningJob.status !== 'running') {
+                // 当前已执行完成
                 console.log(`[scheduller]任务执行完成：${JSON.stringify(this.currentRunningJob, null, 4)}`);
                 this.currentRunningJob = null;
             } else {
-                return;
+                if (parseInt(this.currentRunningJob.level, 10) < parseInt(this.jobQueue[0]?.level, 10)) {
+                    // 队列中的优先级更高，打断执行
+                    this.currentRunningJob.doDone();
+                } else {
+                    return;
+                }
             }
         }
 
