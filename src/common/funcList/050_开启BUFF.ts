@@ -47,11 +47,25 @@ export class Func050 implements IFuncOrigin {
 			[center, 1280, 720, 0, 0, 855 - 782, 431 - 415, 2000],
 			[center, 1280, 720, 937, 272, 1160, 531, 500],
 		]
-	}, {//被横幅遮挡的御魂BUFF
+	}, {//被横幅遮挡的御魂BUFF 一种
 		desc: [
 			1280, 720,
 			[
 				[center, 401, 205, 0x009db1],
+				[center, 775, 211, 0xaf0d28],
+				[center, 456, 215, 0xe85c2e],
+				[center, 512, 221, 0xb83927],
+				[center, 468, 196, 0xefdfbf],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 774, 210, 852, 231, 1000],
+		]
+	},{//被横幅遮挡的御魂BUFF 二种
+		desc: [
+			1280, 720,
+			[
+				[center, 401, 205, 0x00bbd2],
 				[center, 775, 211, 0xaf0d28],
 				[center, 456, 215, 0xe85c2e],
 				[center, 512, 221, 0xb83927],
@@ -72,10 +86,17 @@ export class Func050 implements IFuncOrigin {
 			const thisconf = thisScript.scheme.config['50'];
 			if (thisconf.buff_type === '御魂' && thisScript.oper({
 				name: '被横幅遮挡的御魂BUFF',
-				operator: [thisOperator[1]]
+				operator: [thisOperator[1],thisOperator[2]]
 			})) {
 				return true;
 			}
+			let bmp = thisScript.helperBridge.helper.GetBitmap();
+                    let img = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(bmp);
+                    let path = `/sdcard/assttyys/${new Date().getTime()}.png`;
+                    files.ensureDir(path);
+                    img.saveTo(path);
+                    img.recycle();
+                    media.scanFile(path);
 			let point = thisScript.findMultiColor(`关闭的BUFF_${thisconf.buff_type}`) || null
 			if (point) {
 				thisScript.helperBridge.regionClick([

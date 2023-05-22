@@ -38,16 +38,18 @@ export class Func007 implements IFuncOrigin {
 			[center, 1280, 720, -1, -1, -1, -1, 5000]
 		]
 	}, {  // 1 呱太 CD
-		desc: [1280, 720,
+		desc: [
+			1280, 720,
 			[
 				[center, 549, 93, 0x5a4130],
 				[center, 720, 93, 0x583716],
 				[center, 224, 104, 0x4a3525],
 				[center, 997, 127, 0x958c83],
-				[center, 341, 609, 0xFEAA2D],
-				[center, 396, 610, 0x373C5A],
-				[center, 995, 595, 0xAEA69E],
-				[center, 646, 97, 0xf8f3e0]
+				[center, 646, 97, 0xf8f3e0],
+				[center, 350, 593, 0xcc7718],
+				[center, 384, 593, 0x2d2824],
+				[right, 972, 578, 0xb0a9a1],
+				[right, 1126, 616, 0xb0a9a1],
 			]
 		],
 		oper: [
@@ -71,16 +73,18 @@ export class Func007 implements IFuncOrigin {
 			[center, 1280, 720, 674, 407, 839, 457, 2000]
 		]
 	}, {	// 3 有呱太活动的刷新
-		desc: [1280, 720,
+		desc: [
+			1280, 720,
 			[
-				[center, 342, 610, 0xffaf2d],
-				[center, 396, 610, 0x383c5d],
-				[center, 1008, 598, 0xf4b25f],
-				[center, 704, 596, 0x83b542],
-				[center, 1205, 112, 0x632d34],
-				[center, 721, 94, 0x583716],
-				[center, 370, 100, 0x4e3926],
-				[center, 122, 450, 0xdedacf]
+				[center, 549, 93, 0x5a4130],
+				[center, 720, 93, 0x583716],
+				[center, 224, 104, 0x4a3525],
+				[center, 997, 127, 0x958c83],
+				[center, 646, 97, 0xf8f3e0],
+				[center, 350, 593, 0xcc7718],
+				[center, 384, 593, 0x2d2824],
+				[right, 976, 580, 0xf3b25e],
+				[right, 1116, 614, 0xf3b25e],
 			]
 		],
 		oper: [

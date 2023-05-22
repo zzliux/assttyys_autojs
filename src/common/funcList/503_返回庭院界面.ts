@@ -236,6 +236,10 @@ export class Func503 implements IFuncOrigin {
 					[center, 1210, 130, 0xebdac9],
 					[center, 1076, 104, 0x4d3826],
 				]
+			],
+			oper: [
+				[center, 1280, 720, 1187, 112, 1228, 150, 1000],
+				[center, 1280, 720, 31, 37, 79, 76, 1000],
 			]
 		}, {
 			// 18 客户端更新窗口关闭
@@ -255,25 +259,20 @@ export class Func503 implements IFuncOrigin {
 		}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['503'];
-		if (thisScript.oper({
-			name: '突破界面内不执行换预设',
-			operator: [thisOperator[17]]
-		})) {
-			thisScript.global.change_shikigami_flag = false;
-		}
 		if (thisScript.global.change_shikigami_flag && thisScript.oper({
 			name: '返回庭院',
 			operator: [
 				thisOperator[0], thisOperator[1], thisOperator[2],
 				thisOperator[3], thisOperator[5], thisOperator[6],
 				thisOperator[7], thisOperator[10], thisOperator[11],
-				thisOperator[14], thisOperator[15], thisOperator[18],
+				thisOperator[14], thisOperator[15], thisOperator[17],
+				thisOperator[18],
 			]
 		})) {
 			return true;
 		}
 
-		if (thisScript.global.change_shikigami_flag && thisScript.oper({
+		if (thisScript.oper({
 			name: '是否为庭院',
 			operator: [{
 				desc: thisOperator[8].desc
