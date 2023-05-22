@@ -115,7 +115,7 @@ body > #app {
 .slide-left-leave-active,
 .slide-right-enter-active,
 .slide-right-leave-active {
-  transition: all 0.3s ease-in-out;
+  transition: transform .3s;
   width: 100%;
   position: absolute;
   overflow: hidden;

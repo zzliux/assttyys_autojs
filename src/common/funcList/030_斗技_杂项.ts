@@ -21,14 +21,18 @@ export class Func030 implements IFuncOrigin {
    }]
    operator: IFuncOperatorOrigin[] = [{
       desc: [1280, 720,
-         [[left, 36, 25, 0xf7e8a9],
-         [right, 1210, 82, 0x725942],
-         [right, 1208, 178, 0x745845],
-         [right, 1202, 574, 0xd8c8a7],
-         [right, 1179, 602, 0x3c1e0c],
-         [right, 1202, 643, 0xe2cfa0],
-         [right, 1180, 624, 0xe2cca1],
-         [right, 1189, 626, 0x3c1e0c]]
+         [
+            [left, 36, 25, 0xf7e8a9],
+            [right, 1210, 82, 0x725942],
+            [right, 1208, 178, 0x745845],
+            [right, 1202, 574, 0xd8c8a7],
+            [right, 1179, 602, 0x3c1e0c],
+            [right, 1202, 643, 0xe2cfa0],
+            [right, 1180, 624, 0xe2cca1],
+            [right, 1189, 626, 0x3c1e0c],
+            [center, 843, 290, 0x6e3926], // 阵容按钮
+            [center, 832, 292, 0xfaeabe], // 阵容按钮
+         ]
       ],
       oper: [
          [right, 1280, 720, 1166, 580, 1232, 638, 1000]
@@ -90,14 +94,14 @@ export class Func030 implements IFuncOrigin {
       oper: [
          [left, 1280, 720, 44, 139, 77, 178, 1000]
       ]
-   }, {//5,斗技界面
+   }, { //5,斗技界面
       desc: [1280, 720,
          [[left, 36, 28, 0xf5eaab],
          [left, 221, 28, 0x583716],
          [right, 1207, 87, 0x725844],
          [right, 1204, 185, 0x735943]]
       ]
-   }, {//6,五段
+   }, { //6,五段
       desc: [1280, 720,
          [[center, 598, 344, 0x201b1c],
          [center, 635, 366, 0xcfcecb],
@@ -105,7 +109,7 @@ export class Func030 implements IFuncOrigin {
          [center, 614, 427, 0xf9eec9],
          [center, 611, 452, 0xf9eec9]]
       ]
-   }, {//7,九段
+   }, { //7,九段
       desc: [1280, 720,
          [[center, 598, 344, 0xcf9432],
          [center, 638, 354, 0x8e5b9f],
@@ -113,7 +117,7 @@ export class Func030 implements IFuncOrigin {
          [center, 611, 432, 0xf9eec9],
          [center, 612, 421, 0x894212]]
       ]
-   }, {//8,四段
+   }, { //8,四段
       desc: [1280, 720,
          [[center, 599, 342, 0x695649],
          [center, 639, 366, 0xd1cecb],
@@ -121,14 +125,14 @@ export class Func030 implements IFuncOrigin {
          [center, 612, 428, 0xf0e0ba],
          [center, 614, 444, 0x894212]]
       ]
-   },{//9,八段
-      desc:[1280,720,
-         [[center,601,345,0x200204],
-         [center,638,370,0xbd7924],
-         [center,679,348,0x200204],
-         [center,602,441,0xf9eec9],
-         [center,623,440,0xf9eec9]]
-         ]
+   }, { //9,八段
+      desc: [1280, 720,
+         [[center, 601, 345, 0x200204],
+         [center, 638, 370, 0xbd7924],
+         [center, 679, 348, 0x200204],
+         [center, 602, 441, 0xf9eec9],
+         [center, 623, 440, 0xf9eec9]]
+      ]
    }, {
       desc: [
          1280, 720,
