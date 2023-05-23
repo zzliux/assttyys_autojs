@@ -139,7 +139,7 @@ export class Job extends JobOptions {
 class Schedule {
 
     timer: NodeJS.Timeout;
-    timeout: number = 10000;
+    timeout: number = 5000;
     jobList: Job[] = [];
     jobStopCallback: Function;
     scheduleStatue: 'running' | 'idle' = 'idle';
@@ -255,6 +255,8 @@ class Schedule {
                 if (parseInt(this.currentRunningJob.level, 10) < parseInt(this.jobQueue[0]?.level, 10)) {
                     // 队列中的优先级更高，打断执行
                     this.currentRunningJob.doDone();
+                    // 插入回原来的队列
+                    this.queueInsert(this.currentRunningJob);
                 } else {
                     return;
                 }
