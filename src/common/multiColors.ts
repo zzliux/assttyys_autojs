@@ -1680,7 +1680,6 @@ const multiColor: IMultiColorOrigin = {
     },
     '关闭的BUFF_御魂': {
         region: [center, 1280, 720, 744, 116, 919, 530],
-        // similar: 80,
         desc: [
             [1280, 720,
                 [
@@ -1692,30 +1691,7 @@ const multiColor: IMultiColorOrigin = {
                     [center, 401, 206, 0x01c8dc],
                     [center, 407, 202, 0xd3c7be],
                 ]
-            ],
-            [1280, 720,//被邀请横幅遮挡住的御魂
-                [
-                    [center, 776, 212, 0xb10c2d],
-                    [center, 874, 213, 0x9e9b7d],
-                    [center, 867, 225, 0x9e9d7d],
-                    [center, 879, 224, 0x9e9b7d],
-                    [center, 381, 205, 0x1d5179],
-                    [center, 401, 205, 0x00a7c1],
-                    [center, 394, 203, 0x0091ba],
-                ]
-            ],
-            [1280, 720,//被邀请横幅遮挡住的御魂
-                [
-                    [center, 776, 212, 0xb10c2d],
-                    [center, 874, 213, 0x9e9b7d],
-                    [center, 867, 225, 0x9e9d7d],
-                    [center, 879, 224, 0x9e9b7d],
-                    [left, 45, 254, 0xdc6f5d],
-                    [left, 139, 259, 0x53af5e],
-                    [center, 401, 204, 0x0398b6],
-                ]
             ]
-
         ]
     },
     '关闭的BUFF_金币': {
@@ -2792,6 +2768,21 @@ const multiColor: IMultiColorOrigin = {
             ]
         ]
     },
+    "活动说明的感叹号": {
+        region: [center, 1280, 720, 100, 0, 350, 100],
+        desc: [
+            [1280, 720,
+                [
+                    [left, 250, 40, 0x593716],
+                    [left, 265, 40, 0x583716],
+                    [left, 258, 32, 0xe7c55b],
+                    [left, 258, 49, 0xd99e36],
+                    [left, 257, 56, 0x876238],
+                    [left, 257, 25, 0x8f6b4b]
+                ]
+            ]
+        ]
+    }
 }
 
 export default multiColor;

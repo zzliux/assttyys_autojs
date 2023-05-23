@@ -11,11 +11,14 @@ export class Func509 implements IFuncOrigin {
 	desc = '从不同页面进入式神录';
 	operator: IFuncOperatorOrigin[] = [
 		{   // 庭院_式神录
-			desc: [1280, 720,
-				[[center, 560, 608, 0xbc3433],
-				[center, 542, 639, 0x7b1515],
-				[center, 575, 646, 0xc1b8b0],
-				[center, 590, 638, 0xb07970]]
+			desc: [
+				1280, 720,
+				[
+					[right, 1095, 616, 0xbc172d],
+					[right, 1146, 616, 0xeab24e],
+					[right, 1130, 619, 0xe1d6d3],
+					[right, 1105, 635, 0xdbe6f2],
+				]
 			],
 			oper: [
 				[right, 1280, 720, 1106, 623, 1153, 653, 1200]	// 点击式神录
@@ -153,19 +156,42 @@ export class Func509 implements IFuncOrigin {
 			oper: [
 				[right, 1280, 720, 1008, 600, 1081, 671, 1200]	//	点击式神按钮
 			]
+		}, {// 庭院未打开菜单
+
+			desc: [1280, 720,
+				[[right, 1211, 606, 0x885f46],
+				[right, 1205, 624, 0x987777],
+				[right, 1208, 646, 0xaf4949],
+				[right, 1175, 680, 0xb08e7d]]
+			],
+			oper: [
+				[right, 1280, 720, 1168, 592, 1230, 690, 1000]
+			]
+		}, {// 突破界面
+			desc: [
+				1280, 720,
+				[
+					[center, 171, 104, 0x4a3624],
+					[center, 564, 89, 0x5e4735],
+					[center, 718, 92, 0x583716],
+					[center, 728, 86, 0xdebc56],
+					[center, 1210, 130, 0xebdac9],
+					[center, 1076, 104, 0x4d3826],
+				]
+			]
 		}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.global.change_shikigami_flag) {
 			if (thisScript.oper({
 				name: '是否为式神录',
-				operator: [thisOperator[3]]
+				operator: [thisOperator[3], thisOperator[10]]
 			})) {
 				thisScript.global.change_shikigami_flag = false;
 			}
 
 			if (thisScript.oper({
 				name: '庭院进入式神录',
-				operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[4], thisOperator[5], thisOperator[6], thisOperator[7]]
+				operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[4], thisOperator[5], thisOperator[6], thisOperator[7], thisOperator[9]]
 			})) {
 				return true;
 			}

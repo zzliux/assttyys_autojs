@@ -711,14 +711,9 @@ const SchemeList: IScheme[] = [
   },
   {
     id: 62,
-    schemeName: '每周百鬼奕',
+    schemeName: '通用活动',
     star: true,
     list: [0, 1, 2, 3, 312],
-    config: {
-      '312': {
-        switch_threeten: true,
-      },
-    },
   },
   {
     id: 63,

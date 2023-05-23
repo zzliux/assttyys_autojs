@@ -46,8 +46,34 @@ export class Func050 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 0, 0, 855 - 782, 431 - 415, 2000],
 			[center, 1280, 720, 937, 272, 1160, 531, 500],
-			[center, 1280, 720, 431, 413, 743, 437, -1], // 翻页开始区域
-			[center, 1280, 720, 434, 354, 749, 378, -1], // 翻页结束区域
+		]
+	}, {//被横幅遮挡的御魂BUFF 一种
+		desc: [
+			1280, 720,
+			[
+				[center, 401, 205, 0x009db1],
+				[center, 775, 211, 0xaf0d28],
+				[center, 456, 215, 0xe85c2e],
+				[center, 512, 221, 0xb83927],
+				[center, 468, 196, 0xefdfbf],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 774, 210, 852, 231, 1000],
+		]
+	},{//被横幅遮挡的御魂BUFF 二种
+		desc: [
+			1280, 720,
+			[
+				[center, 401, 205, 0x00bbd2],
+				[center, 775, 211, 0xaf0d28],
+				[center, 456, 215, 0xe85c2e],
+				[center, 512, 221, 0xb83927],
+				[center, 468, 196, 0xefdfbf],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 774, 210, 852, 231, 1000],
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -58,6 +84,19 @@ export class Func050 implements IFuncOrigin {
 			}]
 		})) {
 			const thisconf = thisScript.scheme.config['50'];
+			if (thisconf.buff_type === '御魂' && thisScript.oper({
+				name: '被横幅遮挡的御魂BUFF',
+				operator: [thisOperator[1],thisOperator[2]]
+			})) {
+				return true;
+			}
+			let bmp = thisScript.helperBridge.helper.GetBitmap();
+                    let img = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(bmp);
+                    let path = `/sdcard/assttyys/${new Date().getTime()}.png`;
+                    files.ensureDir(path);
+                    img.saveTo(path);
+                    img.recycle();
+                    media.scanFile(path);
 			let point = thisScript.findMultiColor(`关闭的BUFF_${thisconf.buff_type}`) || null
 			if (point) {
 				thisScript.helperBridge.regionClick([
@@ -65,14 +104,6 @@ export class Func050 implements IFuncOrigin {
 				], thisScript.scheme.commonConfig.afterClickDelayRandom);
 				return true;
 			} else {
-				// 没有找到的话就翻页
-				if (!thisScript.global.buff_enable_page_flag) {
-					thisScript.global.buff_enable_page_flag = true;
-					thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[2], thisOperator[0].oper[3], [1200, 1600], 200);
-					return true;
-				}
-
-				// 再没找到就切换方案或结束
 				thisScript.helperBridge.regionClick([thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
 				if (thisconf && thisconf.scheme_switch_enabled) {
 					thisScript.setCurrentScheme(thisconf.next_scheme as string);
