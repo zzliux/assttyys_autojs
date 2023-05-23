@@ -15,7 +15,7 @@ export class Func516 implements IFuncOrigin {
             name: 'count',
             desc: '连续执行x次后执行完成',
             type: 'list',
-            data: ['20', '40', '60', '80', '100'],
+            data: ['2','20', '40', '60', '80', '100'],
             default: '40',
             value: null,
         }, {
