@@ -90,13 +90,6 @@ export class Func050 implements IFuncOrigin {
 			})) {
 				return true;
 			}
-			let bmp = thisScript.helperBridge.helper.GetBitmap();
-                    let img = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(bmp);
-                    let path = `/sdcard/assttyys/${new Date().getTime()}.png`;
-                    files.ensureDir(path);
-                    img.saveTo(path);
-                    img.recycle();
-                    media.scanFile(path);
 			let point = thisScript.findMultiColor(`关闭的BUFF_${thisconf.buff_type}`) || null
 			if (point) {
 				thisScript.helperBridge.regionClick([
