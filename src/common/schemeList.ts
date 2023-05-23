@@ -723,7 +723,7 @@ const SchemeList: IScheme[] = [
   {
     id: 64,
     schemeName: '每日签到与收取邮件',
-    list: [0, 3, 518],
+    list: [0, 2, 3, 518],
     config: {
       '0': {
         jspd_enabled_longtime_nodo: true,

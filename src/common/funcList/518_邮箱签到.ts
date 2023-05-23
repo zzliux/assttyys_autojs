@@ -15,7 +15,7 @@ export class Func518 implements IFuncOrigin {
   desc = '庭院签到与领取邮箱奖励，只适配默认皮肤';
   operator: IFuncOperatorOrigin[] = [
     {
-      // 页面是否为庭院(菜单未展开) 只支持默认庭院皮肤与默认装饰
+      // 0 页面是否为庭院(菜单未展开) 只支持默认庭院皮肤与默认装饰
       desc: [
         1280,
         720,
@@ -28,7 +28,7 @@ export class Func518 implements IFuncOrigin {
       ],
     },
     {
-      // 页面是否为庭院(菜单已展开) 只支持默认庭院皮肤与默认装饰
+      // 1 页面是否为庭院(菜单已展开) 只支持默认庭院皮肤与默认装饰
       desc: [
         1280,
         720,
@@ -41,7 +41,7 @@ export class Func518 implements IFuncOrigin {
       ],
     },
     {
-      //	// 页面是否为庭院(菜单已展开)另一种图标 御祝图标 只支持默认庭院皮肤与默认装饰
+      //	2 页面是否为庭院(菜单已展开)另一种图标 御祝图标 只支持默认庭院皮肤与默认装饰
       desc: [
         1280,
         720,
@@ -54,7 +54,7 @@ export class Func518 implements IFuncOrigin {
       ],
     },
     {
-      // 庭院已打开菜单，另另外一种图标
+      // 3 庭院已打开菜单，另另外一种图标
       desc: [
         1280,
         720,
@@ -67,7 +67,7 @@ export class Func518 implements IFuncOrigin {
       ],
     },
     {
-      //  检测_是否有邮件
+      //  4 检测_是否有邮件
       desc: [
         1280,
         720,
@@ -83,7 +83,7 @@ export class Func518 implements IFuncOrigin {
       ],
     },
     {
-      //  检测_邮件弹窗_无全部领取
+      //  5 检测_邮件弹窗_无全部领取
       desc: [
         1280,
         720,
@@ -103,7 +103,7 @@ export class Func518 implements IFuncOrigin {
       ],
     },
     {
-      //  检测_邮件弹窗_领取全部
+      //  6 检测_邮件弹窗_领取全部
       desc: [
         1280,
         720,
@@ -122,7 +122,7 @@ export class Func518 implements IFuncOrigin {
       ],
     },
     {
-      //  检测_全部领取弹窗
+      //  7 检测_全部领取弹窗
       desc: [
         1280,
         720,
@@ -141,7 +141,7 @@ export class Func518 implements IFuncOrigin {
       ],
     },
     {
-      //  检测_获得奖励弹窗
+      //  8 检测_获得奖励弹窗
       desc: [
         1280,
         720,
@@ -161,7 +161,7 @@ export class Func518 implements IFuncOrigin {
       ],
     },
     {
-      //  检测_签到
+      //  9 检测_签到
       desc: [
         1280,
         720,
@@ -178,7 +178,7 @@ export class Func518 implements IFuncOrigin {
       ],
     },
     {
-      //  检测_签到盒子
+      //  10 检测_签到盒子
       desc: [
         1280,
         720,
@@ -196,7 +196,7 @@ export class Func518 implements IFuncOrigin {
       ],
     },
     {
-      //  检测_签到解读弹窗
+      //  11 检测_签到解读弹窗
       desc: [
         1280,
         720,
@@ -214,6 +214,182 @@ export class Func518 implements IFuncOrigin {
         [center, 1280, 720, 858, 96, 888, 118, 1200], //  点击关闭
       ],
     },
+    {
+      //  12 检测_签到解读弹窗_大吉
+      desc: [
+        1280,
+        720,
+        [
+          [center, 469, 99, 0xd3cec2],
+          [center, 789, 619, 0xc4beac],
+          [center, 847, 601, 0xe1d5c7],
+          [center, 848, 544, 0xedece3],
+          [center, 780, 102, 0xa39a8a],
+          [center, 461, 631, 0xc0b694],
+        ],
+      ],
+      oper: [
+        [center, 1280, 720, 858, 96, 888, 118, 1200], //  点击关闭
+      ],
+    },
+    {
+      //  13 检测_2000天御祝图标签到
+      desc: [
+        1280,
+        720,
+        [
+          [left, 280, 524, 0xc07e32],
+          [left, 258, 525, 0xbc832e],
+          [left, 268, 538, 0x905f21],
+          [left, 265, 492, 0xa66c23],
+        ],
+      ],
+      oper: [
+        [left, 1280, 720, 256, 500, 271, 530, 1200], //  点击_签到
+      ],
+    },
+    {
+      //  14 检测_2000天御祝图标每日奖励
+      desc: [
+        1280,
+        720,
+        [
+          [left, 246, 511, 0xeee2d1],
+          [left, 251, 507, 0xf1e9d8],
+          [left, 268, 521, 0xdb474f],
+          [left, 279, 518, 0xba363e],
+          [left, 250, 534, 0xa22b3c],
+          [left, 261, 539, 0xeeeedd],
+        ],
+      ],
+      oper: [
+        [left, 1280, 720, 258, 508, 276, 525, 1200], //  点击每日奖励
+      ],
+    },
+    {
+      //  15 检测_2000天御祝图标每日奖励领取确认弹窗
+      desc: [
+        1280,
+        720,
+        [
+          [center, 440, 240, 0xc4ae94],
+          [center, 838, 243, 0xcbb59e],
+          [center, 836, 476, 0xbda78d],
+          [center, 788, 420, 0xf4b25f],
+          [center, 577, 420, 0xdf6851],
+          [center, 440, 474, 0xc4ad93],
+          [center, 636, 273, 0xcbb59e],
+        ],
+      ],
+      oper: [
+        [center, 1280, 720, 696, 406, 784, 440, 1200], //  点击确认
+      ],
+    },
+    {
+      //  16 检测_寮包
+      desc: [
+        1280,
+        720,
+        [
+          [left, 268, 540, 0xddac72],
+          [left, 251, 535, 0xca8845],
+          [left, 261, 537, 0xca8d4c],
+        ],
+      ],
+      oper: [
+        [left, 1280, 720, 258, 508, 276, 525, 1200], //  点击寮包
+      ],
+    },
+    {
+      //  17 检测_寮包奖励
+      desc: [
+        1280, 720,
+        [
+          [center, 895, 211, 0x37271f],
+          [center, 370, 206, 0x38281c],
+          [center, 366, 459, 0x906a41],
+          [center, 915, 450, 0x8e6a41],
+          [center, 872, 257, 0xb29b82],
+          [center, 675, 204, 0xecdba8],
+        ]
+      ],
+      oper: [
+        [left, 1280, 720, 255, 575, 1058, 664, 1200], //  点击空白处
+      ]
+    },
+    {
+      //  18 检测_御魂加成
+      desc: [
+        1280, 720,
+        [
+          [left, 287, 528, 0x07ace3],
+          [left, 252, 535, 0xed7600],
+          [left, 250, 510, 0x109ace],
+        ]
+      ],
+      oper: [
+        [left, 1280, 720, 256, 500, 271, 530, 1200], //  点击_御魂加成
+      ],
+    },
+    {
+      //  19 检测_御魂_获取奖励
+      desc: [
+				1280, 720,
+				[
+					[center, 526, 194, 0xfbf1ca],
+					[center, 620, 196, 0xfbf4d0],
+					[center, 872, 300, 0xb29b82],
+					[center, 418, 288, 0xb69f86],
+					[center, 464, 406, 0xc9b298],
+				]
+			],
+      oper: [
+        [left, 1280, 720, 255, 575, 1058, 664, 1200], //  点击空白处
+      ]
+    },
+    {
+      //  20 检测_勾玉卡奖励
+      desc: [
+        1280, 720,
+        [
+          [center, 745, 515, 0xc6a98c],
+          [center, 760, 507, 0xe92b12],
+          [center, 739, 494, 0xb80e0e],
+        ]
+      ],
+      oper: [
+        [center, 1280, 720, 739,502, 756,516, 1200] //  点击勾玉卡
+      ]
+    },
+    {
+      //  21 检测_体力奖励
+      desc: [
+        1280, 720,
+        [
+          [center, 760, 518, 0x1e241c],
+          [center, 737, 510, 0x0e100c],
+          [center, 757, 507, 0xfc5825],
+          [center, 736, 493, 0xe05424],
+        ]
+      ],
+      oper: [
+        [center, 1280, 720, 739,502, 756,516, 1200] //  点击体力
+      ]
+    },
+    {
+      //  22 检测_同兰之心
+      desc: [
+        1280, 720,
+        [
+          [left, 277, 531, 0xbe3636],
+          [left, 263, 500, 0x942020],
+          [left, 282, 513, 0xf1bd69],
+        ]
+      ],
+      oper: [
+        [left, 1280, 720, 256, 500, 271, 530, 1200], //  点击_同兰之心
+      ]
+    }
   ];
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
     if (
@@ -239,7 +415,8 @@ export class Func518 implements IFuncOrigin {
       return thisScript.oper({
         id: 518,
         name: '检测_是否有邮件或签到',
-        operator: [thisOperator[4], thisOperator[9]],
+        operator: [thisOperator[4], thisOperator[9], thisOperator[16], 
+        thisOperator[18], thisOperator[20], thisOperator[21], thisOperator[22]],
       });
     }
 
@@ -255,6 +432,8 @@ export class Func518 implements IFuncOrigin {
           thisOperator[9],
           thisOperator[10],
           thisOperator[11],
+          
+          
         ],
       })
     ) {
@@ -264,10 +443,17 @@ export class Func518 implements IFuncOrigin {
     if (
       thisScript.oper({
         id: 518,
-        name: '检测_签到',
+        name: '检测_签到_每日奖励_寮包',
         operator: [
           thisOperator[10],
           thisOperator[11],
+          thisOperator[12],
+          thisOperator[13],
+          thisOperator[14],
+          thisOperator[15],
+          thisOperator[17],
+          thisOperator[19],
+          
         ],
       })
     ) {

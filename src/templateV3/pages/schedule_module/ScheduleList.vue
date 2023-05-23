@@ -40,7 +40,7 @@
           >
             <span>
               <div class="item-header" @click="showConfig($event, item)">
-                <div class="item-title">{{ item.id + ' ' + item.name }}</div>
+                <div class="item-title" :style="'color: ' + (item.nextDate ? (new Date().getTime() - item.nextDate.getTime() > 180000 ? 'red' : 'initial') : ('initial'))">{{ item.id + ' ' + item.name }}</div>
                 <div class="item-value">
                   <span class="handle-area"></span>
                   <van-switch
@@ -620,7 +620,8 @@ export default defineComponent({
       scheduleNameInputBeforeClose,
       repeatModeDialogConfirm,
       nextDateDialogConfirm,
-      
+      maxDate,
+      minDate,
     };
   },
 });
