@@ -752,6 +752,13 @@ export const versionList = [{
 优化：503增加道馆突破返回上一级；
 优化：名仕不参与斗技；
 优化：定时任务timer重构；`
+}, {
+    version: '20230523_01',
+    desc: `更新：呱太3次刷新比色点 
+    更新：开启被遮挡的御魂BUFF判定
+    恢复：返回庭院的突破识别并返回
+    修改：删除并更改百鬼奕功能
+    优化：进入式神录取点，防止转方案弹窗覆盖比色点`
 }];
 
 export default versionList[versionList.length - 1].version;
