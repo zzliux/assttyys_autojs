@@ -290,7 +290,7 @@ export class Func503 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 17, 25, 74, 79, 1000],
 			]
-		},{//21	点开勋章后的突破界面
+		}, { // 21 点开勋章后的突破界面
 			desc: [
 				1280, 720,
 				[
@@ -304,6 +304,23 @@ export class Func503 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 1180, 110, 1230, 153, 1000],
 			]
+		}, {
+			// 22 战斗场景退出
+			desc: [
+				1280, 720,
+				[
+					[left, 34, 23, 0xdbb48b],
+					[left, 106, 24, 0xcfa375],
+					[right, 1270, 132, 0x48371f],
+					[right, 1270, 700, 0x241919],
+					[right, 1268, 80, 0x946430],
+					[right, 1266, 545, 0x573f26],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 16, 12, 60, 56, 1000],
+				[center, 1280, 720, 678, 396, 806, 450, 3000],
+			]
 		}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['503'];
@@ -315,7 +332,7 @@ export class Func503 implements IFuncOrigin {
 				thisOperator[7], thisOperator[10], thisOperator[11],
 				thisOperator[14], thisOperator[15], thisOperator[17],
 				thisOperator[18], thisOperator[19], thisOperator[20],
-				thisOperator[21]
+				thisOperator[21], thisOperator[22],
 			]
 		})) {
 			return true;

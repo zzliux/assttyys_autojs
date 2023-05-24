@@ -22,7 +22,8 @@ export class Func131 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 1128, 587, 1235, 699, 1000],
-		]
+		],
+		retest: 2000
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let curCnt = 0;

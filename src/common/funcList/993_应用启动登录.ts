@@ -310,7 +310,7 @@ export class Func993 implements IFuncOrigin {
 			thisScript.launchRelatedApp();
 			thisScript.global.app_is_open_flag = 99;
 		} else if (thisScript.global.app_is_open_flag < 3) {
-			sleep(1000);
+			sleep(2000);
 			thisScript.global.app_is_open_flag++;
 		}
 

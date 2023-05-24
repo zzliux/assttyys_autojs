@@ -759,6 +759,12 @@ export const versionList = [{
     恢复：返回庭院的突破识别并返回
     修改：删除并更改百鬼奕功能
     优化：进入式神录取点，防止转方案弹窗覆盖比色点`
+}, {
+    version: '20230524_01',
+    desc: `尝试修复：被打断的任务不会恢复执行；
+优化：503返回庭院增加战斗场景识别退出；
+优化：131宴场维和挑战增加2s延时；
+`
 }];
 
 export default versionList[versionList.length - 1].version;
