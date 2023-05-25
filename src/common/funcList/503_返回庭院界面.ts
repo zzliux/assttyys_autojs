@@ -305,7 +305,7 @@ export class Func503 implements IFuncOrigin {
 				[center, 1280, 720, 1180, 110, 1230, 153, 1000],
 			]
 		}, {
-			// 22 战斗场景退出
+			// 22 战斗场景等待
 			desc: [
 				1280, 720,
 				[
@@ -317,9 +317,12 @@ export class Func503 implements IFuncOrigin {
 					[right, 1266, 545, 0x573f26],
 				]
 			],
+			// oper: [
+			// 	[center, 1280, 720, 16, 12, 60, 56, 1000],
+			// 	[center, 1280, 720, 678, 396, 806, 450, 3000],
+			// ]
 			oper: [
-				[center, 1280, 720, 16, 12, 60, 56, 1000],
-				[center, 1280, 720, 678, 396, 806, 450, 3000],
+				[center, 1280, 720, -1, -1, -1, -1, 2000]
 			]
 		}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {

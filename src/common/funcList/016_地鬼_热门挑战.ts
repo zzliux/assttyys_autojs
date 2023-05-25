@@ -10,6 +10,7 @@ export class Func016 implements IFuncOrigin {
 	name = '地鬼_热门挑战';
 	desc = '在地域鬼王界面时，自动选热门进行挑战';
 	operator: IFuncOperatorOrigin[] = [{
+		// 0
 		desc: [1280, 720,
 			[
 				[left, 60, 58, 0xc2cbe3],
@@ -31,7 +32,7 @@ export class Func016 implements IFuncOrigin {
 			[left, 1280, 720, 1104, 505, 1207, 583, 0], // 挑战
 		]
 	}, {
-		// 地鬼挑战页面
+		// 1 地鬼挑战页面
 		desc: [1280, 720,
 			[
 				[left, 137, 216, 0xddd6ce],
@@ -46,6 +47,7 @@ export class Func016 implements IFuncOrigin {
 			[center, 1280, 720, 1195, 30, 1226, 59, 500]	//	关闭_地鬼挑战弹窗
 		]
 	}, {
+		// 2
 		desc: [1280, 720,
 			[
 				[left, 202, 388, 0x161211], // 第0个没打
@@ -58,8 +60,9 @@ export class Func016 implements IFuncOrigin {
 			[left, 1280, 720, 51, 36, 95, 85, 1200], // 左上角的返回
 		]
 	}, {
-		// 探索地图界面
-		desc: [1280, 720,
+		// 3 探索地图界面（20230524正式服）
+		desc: [
+			1280, 720,
 			[
 				[left, 45, 60, 0xeff5fb],
 				[right, 1168, 146, 0xd9cec1],
@@ -67,14 +70,16 @@ export class Func016 implements IFuncOrigin {
 				[right, 1226, 30, 0xd3af84],
 				[left, 18, 705, 0x754830],
 				[left, 210, 711, 0x985b32],
+				[left, 771, 647, 0xb63345],
+				[left, 785, 647, 0x993344],
 			]
 		],
 		oper: [
 			[left, 1280, 720, 741, 638, 800, 695, 2000] // 探索地图进入地鬼
 		]
-	},
-	{
-		desc: [		//	地鬼_挑战页面_极
+	}, {
+		// 4 地鬼_挑战页面_极
+		desc: [
 			1280, 720,
 			[
 				[center, 447, 138, 0x9a4e50],
@@ -90,6 +95,7 @@ export class Func016 implements IFuncOrigin {
 			[center, 1280, 720, 522, 52, 557, 81, 1200]		//	极转为普通
 		]
 	}, {
+		// 5
 		desc: [
 			1280, 720,
 			[
@@ -103,16 +109,36 @@ export class Func016 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 158, 118, 821, 626, 1000],
 		]
+	}, {
+		// 6 探索地图界面（20230524体验服）
+		desc: [
+			1280, 720,
+			[
+				[left, 45, 60, 0xeff5fb],
+				[right, 1168, 146, 0xd9cec1],
+				[right, 1124, 32, 0xd7b388],
+				[right, 1226, 30, 0xd3af84],
+				[left, 18, 705, 0x754830],
+				[left, 210, 711, 0x985b32],
+				[left, 670, 647, 0xb63444],
+				[left, 699, 665, 0xddcab9],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 641, 633, 701, 698, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
+			id: 16,
 			name: '探索界面',
-			operator: [thisOperator[3]]
+			operator: [thisOperator[3], thisOperator[6]]
 		})) {
 			return true;
 		}
 
 		if (thisScript.oper({
+			id: 16,
 			name: '地鬼_挑战_关闭',
 			operator: [thisOperator[1]]
 		})) {
@@ -120,6 +146,7 @@ export class Func016 implements IFuncOrigin {
 		}
 
 		if (thisScript.oper({
+			id: 16,
 			name: '地鬼_筛选界面_关闭',
 			operator: [thisOperator[5]]
 		})) {
@@ -127,6 +154,7 @@ export class Func016 implements IFuncOrigin {
 		}
 
 		if (thisScript.oper({
+			id: 16,
 			name: '地鬼_热门挑战',
 			operator: [{
 				desc: thisOperator[0].desc,
@@ -182,6 +210,7 @@ export class Func016 implements IFuncOrigin {
 				sleep(1500);
 				return true;
 			}
+			return true;
 		}
 	}
 }

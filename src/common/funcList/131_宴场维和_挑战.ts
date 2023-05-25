@@ -27,7 +27,7 @@ export class Func131 implements IFuncOrigin {
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let curCnt = 0;
-		let maxCount = 3;
+		let maxCount = 6;
 		while (thisScript.oper({
 			id: 131,
 			name: '宴场维和挑战',
