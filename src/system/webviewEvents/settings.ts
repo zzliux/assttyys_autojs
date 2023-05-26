@@ -32,6 +32,10 @@ export default function webviewSettigns() {
     if(typeof initStoreSettings.osp_user_token === 'undefined') {
         initStoreSettings.osp_user_token = '';
     }
+    
+    if (typeof initStoreSettings.push_type === 'undefined') {
+        initStoreSettings.push_type = 'ospPush';
+    }
 
     storeCommon.put('settings', initStoreSettings);
 

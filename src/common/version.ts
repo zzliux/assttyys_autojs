@@ -770,6 +770,9 @@ export const versionList = [{
 优化：308进入秘闻适配20230524体服更新秘闻入口图标位置变化；
 优化：503返回庭院识别战斗场景后不操作，仅等待；
 `
+}, {
+    version: '20230526_01',
+    desc: '新增：推送支持onebot，自建机器人可参考`https://github.com/lc-cn/onebots`'
 }];
 
 export default versionList[versionList.length - 1].version;
