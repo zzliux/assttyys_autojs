@@ -173,7 +173,7 @@ export class Func994 implements IFuncOrigin {
 			if (thisScript.global.jy_list_swipe_times >= defaultCount) {
 				thisScript.global.jy_list_swipe_times = 0;
 				if ('停止脚本' === thisConf.afterCountOper) {
-					thisScript.doOspPush(thisScript, { text: `寄养翻页次数已达到限制次数${defaultCount}，脚本已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+					thisScript.doPush(thisScript, { text: `寄养翻页次数已达到限制次数${defaultCount}，脚本已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 					thisScript.stop();
 				} else if ('切换方案' === thisConf.afterCountOper) {
 					// let oper = thisOperator[0].oper[2];

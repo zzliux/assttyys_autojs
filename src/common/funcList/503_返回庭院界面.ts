@@ -378,7 +378,7 @@ export class Func503 implements IFuncOrigin {
 
 				if (!next_scheme) {
 					if ('停止脚本' === thisConf.afterCountOper || !thisConf.afterCountOper) {
-						thisScript.doOspPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+						thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 						thisScript.stop();
 					} else if ('关闭应用' === thisConf.afterCountOper) {
 						sleep(1000);
@@ -387,7 +387,7 @@ export class Func503 implements IFuncOrigin {
 						// 	storeSettings.defaultLaunchAppList.forEach(packageName => {
 						// 		thisScript.myToast(`停止应用[${packageName}]`);
 						// 		$shell(`am force-stop ${packageName}`, true);
-						// 		thisScript.doOspPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，应用[${packageName}]已杀，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+						// 		thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，应用[${packageName}]已杀，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 						// 		sleep(1000);
 						// 	});
 						// } else {
@@ -395,7 +395,7 @@ export class Func503 implements IFuncOrigin {
 						// }
 
 						thisScript.stopRelatedApp();
-						thisScript.doOspPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，应用[${packageName}]已杀，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+						thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，应用[${packageName}]已杀，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 						sleep(2000);
 						thisScript.stop();
 					}

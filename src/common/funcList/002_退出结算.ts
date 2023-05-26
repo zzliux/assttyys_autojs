@@ -369,7 +369,7 @@ export class Func002 implements IFuncOrigin {
 				sleep(3000);
 				return;
 			} else if (thisconf && !thisconf.no_sushi_switch_enabled) {
-				thisScript.doOspPush(thisScript, { text: '体力不够已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+				thisScript.doPush(thisScript, { text: '体力不够已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 				thisScript.stop();
 			}
 		}

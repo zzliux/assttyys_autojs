@@ -248,13 +248,13 @@ export class Func995 implements IFuncOrigin {
 				// 		$shell(`am force-stop ${packageName}`, true);
 				// 		sleep(1000);
 				// 	});
-				// 	thisScript.doOspPush(thisScript, { text: '寄养成功，脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+				// 	thisScript.doPush(thisScript, { text: '寄养成功，脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 				// } else {
 				// 	thisScript.myToast('未配置关联应用，不执行停止操作');
 				// }
 
 				thisScript.stopRelatedApp();
-				thisScript.doOspPush(thisScript, { text: '寄养成功，脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+				thisScript.doPush(thisScript, { text: '寄养成功，脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 				thisScript.stop();
 			}
 		}
