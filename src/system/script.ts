@@ -11,7 +11,7 @@ import { setCurrentScheme } from '@/common/tool';
 import { getWidthPixels, getHeightPixels } from "@auto.pro/core";
 import schemeDialog from './schemeDialog';
 import drawFloaty from '@/system/drawFloaty';
-import { myToast, doOspPush } from '@/common/toolAuto';
+import { myToast, doPush } from '@/common/toolAuto';
 import { IFunc } from '@/interface/IFunc';
 import { IScheme } from '@/interface/IScheme';
 import { IMultiColor } from '@/interface/IMultiColor';
@@ -59,11 +59,11 @@ export class Script {
     storeCommon: any;
 
     /**
-     * 发起osp消息推送
-     * @param {Script} thisScript 
+     * 发起消息推送
+     * @param {Script} thisScript
      * @param options
      */
-    doOspPush: (thisScript: Script, options: {
+    doPush: (thisScript: Script, options: {
         text: string,
         before?: () => void,
         after?: () => void
@@ -71,7 +71,7 @@ export class Script {
 
     /**
      * @description 消息提示
-     * @param {string}str 
+     * @param {string}str
      */
     myToast: (str: string) => void;
 
@@ -101,7 +101,7 @@ export class Script {
         };
         this.helperBridge = helperBridge;
         this.storeCommon = storeCommon;
-        this.doOspPush = doOspPush;
+        this.doPush = doPush;
         this.myToast = myToast;
         this.schedule = schedule;
     }
@@ -176,7 +176,7 @@ export class Script {
      * 截图，mode为true时表示对红色通过作为下标进行初始化，但执行需要一定时间，
      * 对截图进行一次初始化后可大幅提高多点找色效率，通常初始化一次红色通道后进行多次多点找色
      * 仅使用多点比色时mode给false或不传
-     * @param {Boolean} mode 
+     * @param {Boolean} mode
      */
     keepScreen(mode?: boolean) {
         helperBridge.helper.KeepScreen(mode || false);
@@ -199,7 +199,7 @@ export class Script {
 
     /**
      * 设置启动后回调
-     * @param {Function} callback 
+     * @param {Function} callback
      */
     setRunCallback(callback: Function) {
         this.runCallback = callback;
@@ -207,7 +207,7 @@ export class Script {
 
     /**
      * 设置停止后回调
-     * @param {Function} callback 
+     * @param {Function} callback
      */
     setStopCallback(callback: Function) {
         this.stopCallback = () => {
@@ -217,8 +217,8 @@ export class Script {
 
     /**
      * 根据scheme获取Funclist，Funclist中desc和oper相关坐标根据开发分辨率自动转换成运行分辨率
-     * @param {Scheme} scheme 
-     * @returns 
+     * @param {Scheme} scheme
+     * @returns
      */
     getFuncList(scheme: IScheme): IFunc[] {
         let retFunclist = [];
@@ -303,7 +303,7 @@ export class Script {
      * @param {String} key src\common\multiColors.js的key
      * @param {Region} inRegion 多点找色区域
      * @param {Boolean} multiRegion 给true的话表示inRegion为region的数组
-     * @returns 
+     * @returns
      */
     findMultiColor(key: string, inRegion?: any, multiRegion?: boolean, noLog?: boolean) {
         this.initRedList();
@@ -367,7 +367,7 @@ export class Script {
     * 执行多点找色(返回所有点坐标)
     * @param {String} key src\common\multiColors.js的key
     * @param {Region} inRegion 多点找色区域
-    * @returns 
+    * @returns
     */
     findMultiColorEx(key, inRegion?) {
         this.initRedList();
@@ -425,7 +425,7 @@ export class Script {
      * @param {String} key src\common\multiColors.js的key
      * @param {Integer} timeout 超时时间(ms)
      * @param {inRegion} inRegion 多点找色区域
-     * @returns 
+     * @returns
      */
     findMultiColorLoop(key, timeout, inRegion) {
         let times = Math.round(timeout / +this.scheme.commonConfig.loopDelay);
@@ -442,10 +442,10 @@ export class Script {
 
     /**
      * 多点比色，直到成功为止
-     * @param {Desc} desc 
-     * @param {Integer} timeout 
-     * @param {Integer} sign 
-     * @returns 
+     * @param {Desc} desc
+     * @param {Integer} timeout
+     * @param {Integer} sign
+     * @returns
      */
     compareColorLoop(desc, timeout: number, sign?: number) {
         /**
@@ -463,7 +463,7 @@ export class Script {
 
     /**
      * 运行脚本
-     * @returns 
+     * @returns
      */
     run() {
         return this._run();
@@ -475,7 +475,7 @@ export class Script {
 
     /**
      * 运行脚本，内部接口
-     * @returns 
+     * @returns
      */
     _run(job?: Job): void {
         if (this.runThread) return;
@@ -550,7 +550,7 @@ export class Script {
      * 若只有一个方案存在功能比色成功的话直接运行这个方案
      * 若有多个方案，可运行的方案通过悬浮列表进行选择
      * 若没有则提示无法识别当前界面
-     * @param {MyFloaty} myfloaty 
+     * @param {MyFloaty} myfloaty
      */
     autoRun(myfloaty: MyFloaty) {
         let self = this;
@@ -639,7 +639,7 @@ export class Script {
      * 关键函数，操作函数
      * 针对func进行多点比色，成功的话按顺序点击oper数组
      * 若operatorFunc为函数，operator则不执行，调用operatorFunc函数
-     * @param {*} currFunc 
+     * @param {*} currFunc
      * @param {*} retest 重试时间
      */
     oper(currFunc: IFunc, retest?: number) {
@@ -708,7 +708,7 @@ export class Script {
 
     /**
      * 根据func中的desc进行多点比色
-     * @param {*} currFunc 
+     * @param {*} currFunc
      */
     desc(currFunc: IFunc, commonConfig) {
         let operator = currFunc.operator || []; // 需要计算的坐标通过operater传进去使用
@@ -749,7 +749,7 @@ export class Script {
             myToast('未配置关联应用，不启动');
         }
     }
-    
+
     stopRelatedApp() {
         let storeSettings = storeCommon.get('settings', {});
         if (storeSettings.defaultLaunchAppList && storeSettings.defaultLaunchAppList.length) {
@@ -764,7 +764,7 @@ export class Script {
             // // 目标进程就变成后台了，就可以通过杀后台进程实现杀应用
             // const am = context.getSystemService(context.ACTIVITY_SERVICE);
 
-            
+
             storeSettings.defaultLaunchAppList.forEach(packageName => {
                 // am.killBackgroundProcesses(packageName);
                 $shell(`am force-stop ${packageName}`, true);

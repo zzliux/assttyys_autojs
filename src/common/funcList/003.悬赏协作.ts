@@ -89,7 +89,7 @@ export class Func003 implements IFuncOrigin {
 	}];
 
 	/**
-	 * 
+	 *
 	 * @param {*} thisScript script.js 这样可以拿到里面的对象用来做点击等操作
 	 * @param {*} thisOperator 转换过适合当前分辨率的operator
 	 */
@@ -115,7 +115,7 @@ export class Func003 implements IFuncOrigin {
 						oper: [thisOperator[0].oper[1]]
 					}]
 				})
-				thisScript.doOspPush(thisScript, { text: '接受到勾协，请确认是否影响到主体方案', before() { thisScript.myToast('正在上传数据'); } });
+				thisScript.doPush(thisScript, { text: '接受到勾协，请确认是否影响到主体方案', before() { thisScript.myToast('正在上传数据'); } });
 				return true;
 			} else if (thisScript.oper({
 				name: '悬赏协作_' + thisconf.type + '_非勾协关闭',

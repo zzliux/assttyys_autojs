@@ -105,7 +105,7 @@ export class Func312 implements IFuncOrigin {
       thisScript.global.bgy_ten = true;
     }
     if (thisScript.global.bgy_three && thisScript.global.bgy_ten) {
-      thisScript.doOspPush(thisScript, { text: '已三胜并获取十次奖励，已停止。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+      thisScript.doPush(thisScript, { text: '已三胜并获取十次奖励，已停止。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
       thisScript.stop();
       return true;
     }

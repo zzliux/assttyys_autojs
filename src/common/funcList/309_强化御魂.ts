@@ -203,8 +203,8 @@ export class Func309 implements IFuncOrigin {
       intensify_lagTime = new Date();
       if (intensify_lagTime.getTime() - thisScript.global.intensify_lagTime.getTime() > 2000) {
         if (++thisScript.global.intensify_NumOT > 2) {
-          thisScript.doOspPush(thisScript, { text: '多次未找到0级御魂，已停止。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-          thisScript.stop();  
+          thisScript.doPush(thisScript, { text: '多次未找到0级御魂，已停止。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+          thisScript.stop();
         }
         thisScript.helperBridge.regionBezierSwipe(thisOperator[11].oper[0], thisOperator[11].oper[1], [1000, 1100], 200);
         thisScript.global.intensify_lagTime = new Date();

@@ -104,7 +104,7 @@ export class Func310 implements IFuncOrigin {
         desc: thisOperator[3].desc
       }]
     })) {
-      thisScript.doOspPush(thisScript, { text: '经验已满，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+      thisScript.doPush(thisScript, { text: '经验已满，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
       thisScript.stop();
     }
     return false;

@@ -123,7 +123,7 @@ export class Func006 implements IFuncOrigin {
 			}]
 		})) {
 			let point = thisScript.findMultiColor('御魂挑战_喂猫喂狗');
-	
+
 			if (point) {
 				console.log(`查找御魂挑战_喂猫喂狗成功`);
 				let oper = [[
@@ -155,7 +155,7 @@ export class Func006 implements IFuncOrigin {
 			thisScript.keepScreen(false);
 			if (curCnt >= maxCount) {
 				thisScript.myToast(`连续执行${maxCount}次挑战后未开始，脚本自动停止`);
-				thisScript.doOspPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+				thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 				thisScript.stop();
 				sleep(2000);
 				return false;
