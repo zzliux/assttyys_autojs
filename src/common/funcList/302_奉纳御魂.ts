@@ -111,7 +111,7 @@ export class Func302 implements IFuncOrigin {
     ],
     oper: [
       [center, 1280, 720, 366, 118, 526, 152, 500],
-      [center, 1280, 720, 380, 284, 541, 330, 500],
+      [center, 1280, 720, 380, 284, 541, 330, 1500],
     ]
   }
   ];
@@ -134,14 +134,19 @@ export class Func302 implements IFuncOrigin {
           oper: thisOperator[8].oper
         }]
       })
+      return true;
     }
+
     if (thisScript.oper({
       name: '奉纳',
-      operator: [{
-        desc: thisOperator[0].desc,
-        oper: thisOperator[0].oper,
-      }]
-    })) { }
+      operator: [thisOperator[0],thisOperator[2],thisOperator[3],
+                thisOperator[4],thisOperator[7],
+              ]
+    })) { 
+      sleep(500)
+      return true;
+    }
+
     if (thisScript.oper({
       name: '第一排一行御魂',
       operator: [{
@@ -149,37 +154,9 @@ export class Func302 implements IFuncOrigin {
       }]
     })) {
       thisScript.helperBridge.regionClick([[...thisOperator[6].oper[0], 1000]], thisScript.scheme.commonConfig.afterClickDelayRandom)
+      return true;
     }
-    if (thisScript.oper({
-      name: '开始奉纳',
-      operator: [{
-        desc: thisOperator[2].desc,
-        oper: thisOperator[2].oper,
-      }]
-    })) {
-      sleep(300)
-    }
-    if (thisScript.oper({
-      name: '神赐第一排',
-      operator: [{
-        desc: thisOperator[3].desc,
-        oper: thisOperator[3].oper,
-      }]
-    })) { }
-    if (thisScript.oper({
-      name: '神赐第二排',
-      operator: [{
-        desc: thisOperator[4].desc,
-        oper: thisOperator[4].oper,
-      }]
-    })) { }
-    if (thisScript.oper({
-      name: '神赐第三排',
-      operator: [{
-        desc: thisOperator[7].desc,
-        oper: thisOperator[7].oper,
-      }]
-    })) { }
+
     if (!thisScript.oper({
       name: '第一排第一个御魂+0',
       operator: [{
@@ -187,10 +164,7 @@ export class Func302 implements IFuncOrigin {
       }]
     }) && thisScript.oper({
       name: '背景墙，灰奉纳',
-      operator: [{
-        desc: thisOperator[5].desc,
-        oper: thisOperator[5].oper
-      }]
+      operator: [thisOperator[5]]
     })) {
       let thisconf = thisScript.scheme.config['302'];
       if (thisconf && thisconf.scheme_switch_enabled) {
@@ -202,6 +176,8 @@ export class Func302 implements IFuncOrigin {
       } else {
         thisScript.doPush(thisScript, { text: '奉纳结束或未正确使用，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
         thisScript.stop();
+        sleep(3000);
+        return;
       }
     }
     return false;

@@ -82,33 +82,12 @@ export class Func301 implements IFuncOrigin {
   }];
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
     if (thisScript.oper({
-      name: '右下角贪食鬼',
-      operator: [{
-        desc: thisOperator[0].desc,
-        oper: thisOperator[0].oper,
-      }]
-    })) { }
-    if (thisScript.oper({
-      name: '进食习惯',
-      operator: [{
-        desc: thisOperator[1].desc,
-        oper: thisOperator[1].oper,
-      }]
-    })) { }
-    if (thisScript.oper({
       name: '贪食鬼',
-      operator: [{
-        desc: thisOperator[2].desc,
-        oper: thisOperator[2].oper,
-      }]
-    })) { }
-    if (thisScript.oper({
-      name: '不再提示',
-      operator: [{
-        desc: thisOperator[3].desc,
-        oper: thisOperator[3].oper,
-      }]
-    })) { }
+      operator: [thisOperator[0],thisOperator[1],thisOperator[2],thisOperator[3],
+    ]
+    })) { 
+      return true;
+    }
     if (thisScript.oper({
       name: '进食完毕或无进食御魂',
       operator: [{
