@@ -54,6 +54,7 @@ export type globalRootType = {
     bgy_ten: boolean; //百鬼奕十次
     xxlLastLevel: number;
     buff_enable_page_flag: boolean; // 开启buff是否完成翻页
+    team_up_Time: number;   //被邀请的次数
 }
 
 export const globalRoot: globalRootType = {
@@ -112,4 +113,5 @@ export const globalRoot: globalRootType = {
     bgy_ten: false,
     xxlLastLevel: 0,
     buff_enable_page_flag: false,
+    team_up_Time: 10,
 }

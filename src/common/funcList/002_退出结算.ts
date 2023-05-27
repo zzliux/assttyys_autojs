@@ -329,7 +329,7 @@ export class Func002 implements IFuncOrigin {
 			[center, 645, 214, 0xf8f3e0]]
 		],
 		oper: [
-			[center, 1280, 720, 916, 179, 951, 211, 1000]
+			[center, 1280, 720, 916, 179, 951, 211, 2000]
 		]
 	}, {
 		// 单人-失败太鼓
@@ -371,6 +371,8 @@ export class Func002 implements IFuncOrigin {
 			} else if (thisconf && !thisconf.no_sushi_switch_enabled) {
 				thisScript.doPush(thisScript, { text: '体力不够已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 				thisScript.stop();
+				sleep(3000);
+				return;
 			}
 		}
 		return thisScript.oper({

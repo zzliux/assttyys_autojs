@@ -773,6 +773,12 @@ export const versionList = [{
 }, {
     version: '20230526_01',
     desc: '新增：推送支持onebot，自建机器人可参考`https://github.com/lc-cn/onebots`'
+}, {
+    version: '20230527_01',
+    desc: `修复：302奉纳御魂问题
+优化：002体力不够后切换方案的延迟
+优化：306组队邀请多次不被接受就停止
+`
 }];
 
 export default versionList[versionList.length - 1].version;

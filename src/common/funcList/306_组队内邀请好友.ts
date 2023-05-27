@@ -77,9 +77,10 @@ export class Func306 implements IFuncOrigin {
     ],
   }]
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-
+    let thisConf = thisScript.scheme.config['306'];
     let team_up_Frist = thisScript.global.team_up_Frist;
     let team_up_lagTime = thisScript.global.team_up_lagTime;
+    let team_up_Time = 0;
     //非组队界面重置计时
     if (!team_up_lagTime || !thisScript.oper({
       name: '非组队界面',
@@ -96,10 +97,16 @@ export class Func306 implements IFuncOrigin {
       })) {
         thisScript.global.team_up_Frist = false;
         thisScript.global.team_up_lagTime = new Date();
+        team_up_Time++;
+        if (team_up_Time > thisScript.global.team_up_Time) {
+          thisScript.doPush(thisScript, { text: '多次邀请未响应，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+          thisScript.stop();
+          sleep(3000);
+          return;
+        }
       };
     }
 
-    let thisConf = thisScript.scheme.config['306'];
     if (thisScript.oper({
       name: '邀请界面',
       operator: [{ desc: thisOperator[1].desc }]
@@ -111,23 +118,23 @@ export class Func306 implements IFuncOrigin {
           return false;
           // thisConf.inviteName as string
         } else {
-        let p = {
-          x: (selectArea[0].points[0].x + selectArea[0].points[1].x) / 2,
-          y: (selectArea[0].points[0].y + selectArea[0].points[3].y) / 2,
+          let p = {
+            x: (selectArea[0].points[0].x + selectArea[0].points[1].x) / 2,
+            y: (selectArea[0].points[0].y + selectArea[0].points[3].y) / 2,
+          }
+          let lx = p.x - 5;
+          let ly = p.y - 5;
+          let rx = p.x + 5;
+          let ry = p.y + 5;
+          let toClick = [
+            lx > 0 ? lx : 0,
+            ly > 0 ? ly : 0,
+            rx,
+            ry,
+            1000
+          ];
+          thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
         }
-        let lx = p.x - 5;
-        let ly = p.y - 5;
-        let rx = p.x + 5;
-        let ry = p.y + 5;
-        let toClick = [
-          lx > 0 ? lx : 0,
-          ly > 0 ? ly : 0,
-          rx,
-          ry,
-          1000
-        ];
-        thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
-      }
         let result = thisScript.findText('.+', 0, thisOperator[1].oper[1], '包含');
         if (result.length === 0) {
           console.log(`未识别到任何昵称`);
@@ -174,6 +181,9 @@ export class Func306 implements IFuncOrigin {
         thisScript.setCurrentScheme(thisConf.next_scheme as string);
         thisScript.myToast(`切换方案为[${thisConf.next_scheme}]`);
         thisScript.rerun();
+        sleep(3000);
+        return;
+
       } else if (thisConf && thisConf.secondPlayer && !thisScript.oper({
         name: '三号位',
         operator: [{ desc: thisOperator[0].desc }]
@@ -181,6 +191,8 @@ export class Func306 implements IFuncOrigin {
         thisScript.setCurrentScheme(thisConf.next_scheme as string);
         thisScript.myToast(`切换方案为[${thisConf.next_scheme}]`);
         thisScript.rerun();
+        sleep(3000);
+        return;
       }
     }
     return false;
