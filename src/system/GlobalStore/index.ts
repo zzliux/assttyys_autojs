@@ -113,5 +113,5 @@ export const globalRoot: globalRootType = {
     bgy_ten: false,
     xxlLastLevel: 0,
     buff_enable_page_flag: false,
-    team_up_Time: 10,
+    team_up_Time: 0,
 }

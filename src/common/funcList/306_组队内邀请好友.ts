@@ -75,12 +75,15 @@ export class Func306 implements IFuncOrigin {
       [left, 60, 39, 0x84582f],
       [left, 19, 47, 0x281717]]
     ],
+    oper: [
+      [center, 1280, 720, 448, 552, 562, 600, 1000],//取消
+    ]
   }]
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
     let thisConf = thisScript.scheme.config['306'];
     let team_up_Frist = thisScript.global.team_up_Frist;
     let team_up_lagTime = thisScript.global.team_up_lagTime;
-    let team_up_Time = 0;
+    let team_up_Time = 10;
     //非组队界面重置计时
     if (!team_up_lagTime || !thisScript.oper({
       name: '非组队界面',
@@ -97,9 +100,9 @@ export class Func306 implements IFuncOrigin {
       })) {
         thisScript.global.team_up_Frist = false;
         thisScript.global.team_up_lagTime = new Date();
-        team_up_Time++;
-        if (team_up_Time > thisScript.global.team_up_Time) {
-          thisScript.doPush(thisScript, { text: '多次邀请未响应，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+        thisScript.global.team_up_Time++;
+        if (team_up_Time < thisScript.global.team_up_Time) {
+          thisScript.doPush(thisScript, { text: '多次邀请未响应，或多次未识别到昵称，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
           thisScript.stop();
           sleep(3000);
           return;
@@ -115,6 +118,7 @@ export class Func306 implements IFuncOrigin {
         let selectArea = thisScript.findText(thisConf.selectArea as string, 0, thisOperator[1].oper[0], '模糊');
         if (selectArea.length === 0) {
           console.log(`找不到好友按钮`);
+          thisScript.helperBridge.regionClick([thisOperator[3].oper[0]], thisScript.scheme.commonConfig.afterClickDelayRandom);
           return false;
           // thisConf.inviteName as string
         } else {
@@ -138,6 +142,7 @@ export class Func306 implements IFuncOrigin {
         let result = thisScript.findText('.+', 0, thisOperator[1].oper[1], '包含');
         if (result.length === 0) {
           console.log(`未识别到任何昵称`);
+          thisScript.global.team_up_Time++;
           return false;
           // thisConf.inviteName as string
         } else {
