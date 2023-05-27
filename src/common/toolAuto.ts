@@ -1,9 +1,9 @@
-import { IScheme } from '@/interface/IScheme';
-import { IhelperBridge } from '@/system/helperBridge';
-import type { Script } from '@/system/script';
+import {IScheme} from '@/interface/IScheme';
+import {IhelperBridge} from '@/system/helperBridge';
+import type {Script} from '@/system/script';
 
-import { storeCommon } from '@/system/store';
-import { getWidthPixels, getHeightPixels } from '@auto.pro/core';
+import {storeCommon} from '@/system/store';
+import {getWidthPixels, getHeightPixels} from '@auto.pro/core';
 
 // importClass(android.graphics.Color);
 // importPackage(android.content);
@@ -24,7 +24,7 @@ export function requestMyScreenCapture(callback: Function, helperBridge: Ihelper
  *    x, y:  两个坐标轴方向的相对距离
  *    timout: 多久后消失
  * }
- * @param {string} str 
+ * @param {string} str
  */
 function _toast(str: string) {
     let toast = android.widget.Toast.makeText(context.getApplicationContext(), str.toString(), android.widget.Toast.LENGTH_LONG);
@@ -44,12 +44,14 @@ function _toast(str: string) {
     //显示的位置
     toast.setGravity(android.view.Gravity.CENTER | android.view.Gravity.BOTTOM, 0, 0);
     toast.show();
-    setTimeout(function () { toast.cancel(); }, 1000)
+    setTimeout(function () {
+        toast.cancel();
+    }, 1000)
 }
 
 /**
  * @description 消息提示
- * @param {string}str 
+ * @param {string}str
  */
 export function myToast(str: string): void {
     ui.run(() => _toast(str));
@@ -60,6 +62,7 @@ function parsePMFlags(options, def) {
     if (!options) {
         return def;
     }
+
     function parseFlags(type, options) {
         let flags = 0;
         let flagStrings = options[type];
@@ -76,6 +79,7 @@ function parsePMFlags(options, def) {
         });
         return flags;
     }
+
     return def | parseFlags("get", options) | parseFlags("match", options);
 }
 
@@ -110,11 +114,11 @@ export const toJsArray = function (iterable) {
 
 
 /**
- * 
+ *
  * @param {*} region 区域[x1, y1, x2, y2]
  * @param {*} pointBias 偏向坐标 [x, y]
  * @param {*} influence 影响力 [0, 1]之间
- * @returns 
+ * @returns
  */
 export function getRegionBiasRnd(region, pointBias, influence) {
     let rnd1 = Math.random() * (region[2] - region[0]) + region[0];
@@ -130,10 +134,10 @@ export function getRegionBiasRnd(region, pointBias, influence) {
 
 /**
  * new bing生成的服从二维正态分布的函数，手动调了下根据influence与region生成方差
- * @param region 
- * @param pointBias 
- * @param influence 
- * @returns 
+ * @param region
+ * @param pointBias
+ * @param influence
+ * @returns
  */
 export function getRegionBiasRnd2(region, pointBias, influence) {
     const [meanX, meanY] = pointBias;
@@ -158,7 +162,7 @@ export function getRegionBiasRnd2(region, pointBias, influence) {
  * @param lowerBound 下限
  * @param upperBound 上限
  * @param str 被hash的字符串
- * @returns 
+ * @returns
  */
 export function hash(lowerBound: number, upperBound: number, str: string): number {
     let hash = 0;
@@ -176,10 +180,10 @@ export function hash(lowerBound: number, upperBound: number, str: string): numbe
 
 /**
  * 根据Androidid 和点击区域 hash 出一个偏向点，偏向点不能过于接近start和end
- * @param {*} str 
- * @param {*} start 
- * @param {*} end 
- * @returns 
+ * @param {*} str
+ * @param {*} start
+ * @param {*} end
+ * @returns
  */
 export function strHashToNum(str, start, end) {
     let sStart = (end - start) / 4 + start;
@@ -194,8 +198,8 @@ export function strHashToNum(str, start, end) {
 
 /**
  * 使用osp推送qq
- * @param {*} userToken 
- * @param {*} data 
+ * @param {*} userToken
+ * @param {*} data
  */
 export function ospPush(userToken: string, data: { type: string, data: string }[] | string) {
     return http.postJson('https://assttyys.zzliux.cn/api/osp/send', {
@@ -206,21 +210,38 @@ export function ospPush(userToken: string, data: { type: string, data: string }[
 }
 
 /**
- * 发起osp消息推送
- * @param {Script} thisScript 
+ * 发起oneBot推送
+ * @param url
+ * @param data
+ */
+export function oneBotPush(url: string, data: { type: string, data: Record<string, any> }[] | string) {
+    return http.postJson(url, {
+        // @ts-ignore
+        message: data
+    });
+}
+
+/**
+ * 发起消息推送
+ * @param {Script} thisScript
  * @param options
  */
-export function doOspPush(thisScript: Script, options: {
+export function doPush(thisScript: Script, options: {
     text: string,
     before?: () => void,
     after?: () => void
 }): void {
     let storeSettings = storeCommon.get('settings', {});
-    if (storeSettings.use_osp) {
-        if (!storeSettings.osp_user_token) {
-            console.error('未配置ospUserToken');
+    if (storeSettings.push_type === 'oneBot') {
+        if (!storeSettings.oneBot_url) {
+            console.error('未配置oneBot_url');
             return;
         }
+    } else if (storeSettings.use_osp && !storeSettings.osp_user_token) {
+        console.error('未配置ospUserToken');
+        return;
+    }
+    if (storeSettings.oneBot_url || storeSettings.use_osp) {
         try {
             thisScript.keepScreen();
             let bmp = scaleBmp(thisScript.helperBridge.helper.GetBitmap(), 0.5);
@@ -242,8 +263,26 @@ export function doOspPush(thisScript: Script, options: {
 
             // myToast('脚本即将停止，正在上传数据');
             options && options.before && options.before();
+            let res;
             // 上传
-            const res = ospPush(storeSettings.osp_user_token, data);
+            if (storeSettings.push_type === 'oneBot') {
+                const oneBotVersion = storeSettings.oneBot_version || '12';
+                const message = oneBotVersion === '12' ? data.map(item => {
+                    const {type, data} = item;
+                    return type === 'text' ? data : `[CQ:image,file=base64://${data}]`
+                }).join('') : data.map(item => {
+                    const {type, data} = item;
+                    return {
+                        type,
+                        data:{
+                            [type==='text'?'text':'file_id']:data
+                        }
+                    }
+                });
+                res = oneBotPush(storeSettings.oneBot_url, message)
+            } else {
+                res = ospPush(storeSettings.osp_user_token, data);
+            }
             // @ts-ignore
             myToast(`提交osp响应内容：${res.body.string()}`);
             options && options.after && options.after();
@@ -263,7 +302,6 @@ export function scaleBmp(bmp, scale: number) {
     bmp.recycle();
     return newBmp;
 }
-
 
 
 export const mergeSchemeList = (savedSchemeList: IScheme[], innerSchemeList: IScheme[]) => {

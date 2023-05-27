@@ -104,7 +104,7 @@ export class Func304 implements IFuncOrigin {
         let realTimeNum = Number(realTimeText.replace("%", "0"));
         console.log(`ocr识别为：[${realTimeNum}]`);
         if (!isNaN(realTimeNum) && (realTimeNum as number) > (thisconf.progress as number)) {
-          thisScript.doOspPush(thisScript, { text: '绘卷进度已达到目标进度。', before() { thisScript.myToast('绘卷进度已达到目标进度，正在上传数据'); } });
+          thisScript.doPush(thisScript, { text: '绘卷进度已达到目标进度。', before() { thisScript.myToast('绘卷进度已达到目标进度，正在上传数据'); } });
           if (thisconf && thisconf.scheme_switch_enabled) {
             thisScript.setCurrentScheme(thisconf.next_scheme as string);
             thisScript.myToast(`切换方案为[${thisconf.next_scheme}]`);

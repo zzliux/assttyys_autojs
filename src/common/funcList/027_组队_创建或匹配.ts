@@ -119,7 +119,7 @@ export class Func027 implements IFuncOrigin {
 			operator: [thisOperator[7]]
 		})) {
 			if (++thisScript.global.create_NumOT > 3) {
-				thisScript.doOspPush(thisScript, { text: '体力不够创房，已停止。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+				thisScript.doPush(thisScript, { text: '体力不够创房，已停止。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 				thisScript.stop();
 			}
 			return true;

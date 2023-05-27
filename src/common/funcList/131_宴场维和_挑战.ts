@@ -22,11 +22,12 @@ export class Func131 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 1128, 587, 1235, 699, 1000],
-		]
+		],
+		retest: 2000
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let curCnt = 0;
-		let maxCount = 3;
+		let maxCount = 6;
 		while (thisScript.oper({
 			id: 131,
 			name: '宴场维和挑战',
@@ -36,7 +37,7 @@ export class Func131 implements IFuncOrigin {
 			thisScript.keepScreen();
 			if (curCnt >= maxCount) {
 				thisScript.myToast(`连续执行${maxCount}次挑战后未开始，脚本自动停止`);
-				thisScript.doOspPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+				thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 				thisScript.stop();
 				sleep(2000);
 				return false;

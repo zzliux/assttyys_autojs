@@ -62,7 +62,7 @@ export class Func040 implements IFuncOrigin {
 					thisScript.rerun();
 					sleep(3000);
 				} else {
-					thisScript.doOspPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+					thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 					thisScript.stop();
 					sleep(3000);
 				}

@@ -105,7 +105,7 @@ export class Func129 implements IFuncOrigin {
                 desc: thisOperator[4].desc
             }]
         })) {
-            thisScript.doOspPush(thisScript, { text: '夏日游园会消消乐本局已结束，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+            thisScript.doPush(thisScript, { text: '夏日游园会消消乐本局已结束，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
             sleep(200);
         }
 
@@ -230,8 +230,8 @@ export class Func129 implements IFuncOrigin {
 /**
  * 交换
  * @param {*} map 地图
- * @param {*} x 
- * @param {*} y 
+ * @param {*} x
+ * @param {*} y
  * @param {*} dir 方向：1上，2右，3下，4左
  */
 function bswap(map, x, y, dir) {
@@ -259,7 +259,7 @@ function abs(n) {
 /**
  * 消除方块，并使其下落，取负数表示这个块被预消除，比如说横三和竖三组合的情况需要判断
  * 返回分数
- * @param {*} map 
+ * @param {*} map
  */
 function erase(map) {
     let cnt3 = 0, cnt4 = 0, cnt5 = 0;

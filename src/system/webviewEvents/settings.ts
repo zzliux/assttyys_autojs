@@ -10,7 +10,7 @@ import { yunxiOcr } from "../Ocr/YunxiOcr";
 
 
 export default function webviewSettigns() {
-    
+
     /** 初始化配置 */
     let initStoreSettings = storeCommon.get('settings', {});
     if (typeof initStoreSettings.tapType === 'undefined') {
@@ -31,6 +31,10 @@ export default function webviewSettigns() {
 
     if(typeof initStoreSettings.osp_user_token === 'undefined') {
         initStoreSettings.osp_user_token = '';
+    }
+    
+    if (typeof initStoreSettings.push_type === 'undefined') {
+        initStoreSettings.push_type = 'ospPush';
     }
 
     storeCommon.put('settings', initStoreSettings);
@@ -91,7 +95,7 @@ export default function webviewSettigns() {
         //     }).length,
         // }
         ];
-        
+
         if (device.sdkInt >= 23) {
             ret.push({
                 desc: '忽略电池优化',
@@ -122,18 +126,38 @@ export default function webviewSettigns() {
             name: 'ocr_extend',
             type: 'assttyys_setting_ocr_extend',
             enabled: storeSettings.ocrType === 'MlkitOcr' ? mlkitOcr.isInstalled() : yunxiOcr.isInstalled()
-        }, {
-            desc: '启用osp推送',
-            name: 'use_osp',
+        } ,{
+            desc:'消息推送方式',
+            name:'push_type',
             type: 'assttyys_setting',
-            enabled: storeSettings.use_osp
-        }, {
-            desc: 'ospUserToken',
-            name: 'osp_user_token',
-            type: 'assttyys_setting',
-            stype: 'text',
-            value: storeSettings.osp_user_token
+            stype: 'list',
+            data: ['ospPush', 'oneBot'],
+            value: storeSettings.push_type
         }];
+        if(storeSettings.push_type === 'oneBot'){
+            ret.push({
+                desc:'oneBot版本',
+                name:'oneBot_version',
+                type: 'assttyys_setting',
+                stype: 'list',
+                data: ['11', '12'],
+                value: storeSettings.oneBot_version
+            },{
+                desc:'推送地址',
+                name:'oneBot_url',
+                type: 'assttyys_setting',
+                stype: 'text',
+                value: storeSettings.oneBot_url
+            });
+        }else{
+            ret.push({
+                desc: 'ospUserToken',
+                name: 'osp_user_token',
+                type: 'assttyys_setting',
+                stype: 'text',
+                value: storeSettings.osp_user_token
+            })
+        }
         done(ret);
     });
 

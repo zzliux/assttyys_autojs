@@ -90,13 +90,6 @@ export class Func050 implements IFuncOrigin {
 			})) {
 				return true;
 			}
-			let bmp = thisScript.helperBridge.helper.GetBitmap();
-                    let img = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(bmp);
-                    let path = `/sdcard/assttyys/${new Date().getTime()}.png`;
-                    files.ensureDir(path);
-                    img.saveTo(path);
-                    img.recycle();
-                    media.scanFile(path);
 			let point = thisScript.findMultiColor(`关闭的BUFF_${thisconf.buff_type}`) || null
 			if (point) {
 				thisScript.helperBridge.regionClick([
@@ -110,7 +103,7 @@ export class Func050 implements IFuncOrigin {
 					thisScript.myToast(`切换方案为[${thisconf.next_scheme}]`);
 					thisScript.rerun();
 				} else {
-					thisScript.doOspPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+					thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 					thisScript.stop();
 				}
 				return true;

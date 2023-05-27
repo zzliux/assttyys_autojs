@@ -165,7 +165,7 @@ export class Func030 implements IFuncOrigin {
                name: '斗技_五段',
                operator: [thisOperator[6]]
             })) {
-               thisScript.doOspPush(thisScript, { text: '已达到段位，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+               thisScript.doPush(thisScript, { text: '已达到段位，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
                thisScript.stop();
                return true;
             }; break;
@@ -174,7 +174,7 @@ export class Func030 implements IFuncOrigin {
                name: '斗技_九段',
                operator: [thisOperator[7]]
             })) {
-               thisScript.doOspPush(thisScript, { text: '已达到段位，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+               thisScript.doPush(thisScript, { text: '已达到段位，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
                thisScript.stop();
                return true;
             }; break;
@@ -183,7 +183,7 @@ export class Func030 implements IFuncOrigin {
                name: '斗技_四段',
                operator: [thisOperator[8]]
             })) {
-               thisScript.doOspPush(thisScript, { text: '已达到段位，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+               thisScript.doPush(thisScript, { text: '已达到段位，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
                thisScript.stop();
                return true;
             }; break;
@@ -192,7 +192,7 @@ export class Func030 implements IFuncOrigin {
                name: '斗技_八段',
                operator: [thisOperator[9]]
             })) {
-               thisScript.doOspPush(thisScript, { text: '已达到段位，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+               thisScript.doPush(thisScript, { text: '已达到段位，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
                thisScript.stop();
                return true;
             }; break;

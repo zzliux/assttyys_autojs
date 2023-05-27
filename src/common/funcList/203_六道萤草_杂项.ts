@@ -12,7 +12,7 @@ export class Func203 implements IFuncOrigin {
 	config = [{
 		desc: '配置',
 		config: [{
-			name: 'ospPush',
+			name: 'pushResult',
 			desc: '结束时使用ospPush推送结果',
 			type: 'switch',
 			default: false,
@@ -393,8 +393,8 @@ export class Func203 implements IFuncOrigin {
 			if (thisconf.overTimes && thisScript.global.times >= thisconf.overTimes) {
 				toLog = `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。` + toLog;
 			}
-			if (thisconf.ospPush) {
-				thisScript.doOspPush(thisScript, {
+			if (thisconf.pushResult) {
+				thisScript.doPush(thisScript, {
 					text: toLog,
 					before() {
 						thisScript.myToast('正在上传数据');
