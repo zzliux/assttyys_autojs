@@ -32,9 +32,12 @@ export default function webviewSettigns() {
     if(typeof initStoreSettings.osp_user_token === 'undefined') {
         initStoreSettings.osp_user_token = '';
     }
-    
+
     if (typeof initStoreSettings.push_type === 'undefined') {
         initStoreSettings.push_type = 'ospPush';
+    }
+    if(typeof initStoreSettings.oneBot_version === 'undefined') {
+        initStoreSettings.oneBot_version = '12';
     }
 
     storeCommon.put('settings', initStoreSettings);
