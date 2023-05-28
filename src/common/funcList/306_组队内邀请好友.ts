@@ -28,7 +28,7 @@ export class Func306 implements IFuncOrigin {
       name: 'secondPlayer',
       desc: '邀请的是第二名好友（是否是三人组队）',
       type: 'switch',
-      default: 'false'
+      default: false
     }, {
       name: 'next_scheme',
       desc: '下一个方案',

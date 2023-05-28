@@ -22,7 +22,7 @@ export class Func003 implements IFuncOrigin {
 			name: 'switch',
 			desc: '仅接受勾协',
 			type: 'switch',
-			default: 'false',
+			default: false,
 			value: null,
 		}]
 	}];
