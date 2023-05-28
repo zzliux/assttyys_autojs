@@ -27,7 +27,7 @@ export class Func510 implements IFuncOrigin {
             name: 'fastMode',
             desc: '开启快速坐标模式（仅以下参数生效，以损失精准度获取速度）',
             type: 'switch',
-            default: 'false',
+            default: false,
         }, {
             name: 'groupNum',
             desc: '目标预设的分组在第N个（输入数字，只支持8个以内）',
