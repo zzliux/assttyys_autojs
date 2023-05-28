@@ -265,17 +265,19 @@ export function doPush(thisScript: Script, options: {
             options && options.before && options.before();
             let res;
             // 上传
+            console.log('push_type', storeSettings.push_type)
             if (storeSettings.push_type === 'oneBot') {
+                const removeBase64Prefix = (str: string) => str.replace(new RegExp('data:image/\\S+;base64,'), '');
                 const oneBotVersion = storeSettings.oneBot_version || '12';
-                const message = oneBotVersion === '12' ? data.map(item => {
+                const message = oneBotVersion !== '12' ? data.map(item => {
                     const {type, data} = item;
-                    return type === 'text' ? data : `[CQ:image,file=base64://${data}]`
+                    return type === 'text' ? data : `[CQ:image,file=base64://${removeBase64Prefix(data)}]`
                 }).join('') : data.map(item => {
                     const {type, data} = item;
                     return {
                         type,
                         data:{
-                            [type==='text'?'text':'file_id']:data
+                            [type==='text'?'text':'file_id']:type==='text'?data:`base64://${removeBase64Prefix(data)}`
                         }
                     }
                 });
