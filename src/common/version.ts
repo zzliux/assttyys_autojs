@@ -779,6 +779,10 @@ export const versionList = [{
 优化：002体力不够后切换方案的延迟
 优化：306组队邀请多次不被接受就停止
 `
+}, {
+    version: '20230528_01',
+    desc: `优化：返回定时任务界面时自动更新界面数据
+修复：3中仅接受勾协、7中无法九胜时才三次刷新、306中邀请的是第二名好友（是否是三人组队）、510中快速坐标模式配置初始值错误问题`
 }];
 
 export default versionList[versionList.length - 1].version;
