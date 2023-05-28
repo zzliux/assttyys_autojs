@@ -16,7 +16,7 @@ export class Func007 implements IFuncOrigin {
 			name: 'switch_nineWin',
 			desc: '无法九胜时才三次刷新',
 			type: 'switch',
-			default: 'fasle',
+			default: false,
 			value: null,
 		}]
 	}];
