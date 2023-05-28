@@ -779,6 +779,9 @@ export const versionList = [{
 优化：002体力不够后切换方案的延迟
 优化：306组队邀请多次不被接受就停止
 `
+}, {
+    version: '20230528_01_dev',
+    desc: `优化：返回定时任务界面时自动更新界面数据`
 }];
 
 export default versionList[versionList.length - 1].version;

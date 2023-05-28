@@ -254,7 +254,7 @@ import { getNextByCron } from '@/common/toolCron';
 import DateTimePicker from '../../components/DateTimePicker.vue';
 import { showNotify, showConfirmDialog } from 'vant';
 
-import { defineComponent, ref, onMounted, computed } from 'vue';
+import { defineComponent, ref, onMounted, onUnmounted, computed } from 'vue';
 import { useRoute } from 'vue-router';
 
 const scheduleDefaultFormData = {
@@ -343,10 +343,17 @@ export default defineComponent({
     });
 
     onMounted(async () => {
-      const savedScheduleList = await AutoWeb.autoPromise(
-        'getScheduleList',
-        null
-      );
+      await loadData();
+      // 加载数据挂载给window，方便auto->webview的方向通信以更新界面数据
+      window.loadScheduleData = loadData;
+    });
+
+    onUnmounted(() => {
+      window.loadScheduleData = null;
+    });
+
+    async function loadData() {
+      const savedScheduleList = await AutoWeb.autoPromise('getScheduleList', null);
 
       scheduleList.value = mergeScheduleList(savedScheduleList, dScheduleList);
 
@@ -354,7 +361,7 @@ export default defineComponent({
       AutoWeb.autoPromise('saveScheduleList', scheduleList.value);
 
       lazyMode.value = await AutoWeb.autoPromise('getScheduleInstance', null);
-    });
+    }
 
     async function refresh() {
       const savedScheduleList = await AutoWeb.autoPromise(

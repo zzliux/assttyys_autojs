@@ -62,6 +62,12 @@ export default function webviewSchemeList() {
             webview.runHtmlFunction("routeBack");
         });
 
+        // 注册返回界面的事件
+        fromEvent(ui.emitter, 'resume').subscribe((e) => {
+            // 更新定时任务界面的数据
+            webview.runHtmlJS('loadScheduleData && loadScheduleData()');
+        });
+
         // 初始化automator
         let storeSettings = storeCommon.get('settings', {});
         if (!storeSettings.tapType) {
