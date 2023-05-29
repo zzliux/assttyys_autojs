@@ -55,6 +55,7 @@ export type globalRootType = {
     xxlLastLevel: number;
     buff_enable_page_flag: boolean; // 开启buff是否完成翻页
     team_up_Time: number;   //被邀请的次数
+    game_area: string;  //  游戏区域
 }
 
 export const globalRoot: globalRootType = {
@@ -114,4 +115,5 @@ export const globalRoot: globalRootType = {
     xxlLastLevel: 0,
     buff_enable_page_flag: false,
     team_up_Time: 0,
+    game_area: '',
 }

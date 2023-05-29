@@ -517,7 +517,7 @@ const multiColor: IMultiColorOrigin = {
         ]
     },
     '皮肤广告关闭按钮': {
-        region: [left, 1280, 720, 1, 1, 1279, 719],
+        region: [right, 1280, 720, 1078, 22, 1261, 164],
         similar: 95,
         desc: [
             [
