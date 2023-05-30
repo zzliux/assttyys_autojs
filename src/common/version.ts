@@ -772,7 +772,7 @@ export const versionList = [{
 `
 }, {
     version: '20230526_01',
-    desc: '新增：推送支持onebot，自建机器人可参考`https://github.com/lc-cn/onebots`'
+    desc: '新增：推送支持OneBot，自建机器人可参考`https://github.com/lc-cn/onebots`'
 }, {
     version: '20230527_01',
     desc: `修复：302奉纳御魂问题
@@ -784,6 +784,11 @@ export const versionList = [{
     desc: `优化：返回定时任务界面时自动更新界面数据
 修复：3中仅接受勾协、7中无法九胜时才三次刷新、306中邀请的是第二名好友（是否是三人组队）、510中快速坐标模式配置初始值错误问题
 修复：OneBot推送错误的问题`
+}, {
+    version: '20230530_01',
+    desc: `优化：516寮活动翻页增加结束后不执行任何操作选项；
+优化：993应用启动登录皮肤广告识别错误的问题；
+`
 }];
 
 export default versionList[versionList.length - 1].version;
