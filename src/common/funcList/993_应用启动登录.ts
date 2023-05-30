@@ -308,6 +308,7 @@ export class Func993 implements IFuncOrigin {
 				sleep(5000);
 			}
 			thisScript.launchRelatedApp();
+			thisScript.global.game_area = '';
 			thisScript.global.app_is_open_flag = 99;
 		} else if (thisScript.global.app_is_open_flag < 3) {
 			sleep(2000);
@@ -332,6 +333,7 @@ export class Func993 implements IFuncOrigin {
 					for (let resultItem of resultArea) {
 						if (resultItem && resultItem.label) {
 							console.log('当前区域为' + resultItem.label);
+							thisScript.global.game_area = resultItem.label;
 							if (!resultItem.label.includes(String(thisConf.area))) {
 
 								return thisScript.oper({
@@ -405,33 +407,37 @@ export class Func993 implements IFuncOrigin {
 			}
 		}
 
-		if (thisScript.oper({
-			id: 993,
-			name: '登陆后是否有弹窗',
-			operator: [
-				thisOperator[1], thisOperator[2], thisOperator[3],
-				thisOperator[6], thisOperator[9], thisOperator[10],
-				thisOperator[11], thisOperator[12], thisOperator[14],
-				thisOperator[15], thisOperator[17]
-			]
-		})) {
-			return true;
+		//	游戏区域状态不为空
+		if (thisScript.global.game_area) {
+			if (thisScript.oper({
+				id: 993,
+				name: '登陆后是否有弹窗',
+				operator: [
+					thisOperator[1], thisOperator[2], thisOperator[3],
+					thisOperator[6], thisOperator[9], thisOperator[10],
+					thisOperator[11], thisOperator[12], thisOperator[14],
+					thisOperator[15], thisOperator[17]
+				]
+			})) {
+				return true;
+			}
+	
+			// 检测是否有皮肤广告	误触太多了，关了
+			let point = thisScript.findMultiColor('皮肤广告关闭按钮');
+			if (point) {
+				console.log('识别广告关闭按钮成功');
+				let oper = [[
+					point.x - 10,
+					point.y - 10,
+					point.x,
+					point.y,
+					1200
+				]];
+				thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+				return true;
+			}
 		}
-
-		// 检测是否有皮肤广告
-		let point = thisScript.findMultiColor('皮肤广告关闭按钮');
-		if (point) {
-			console.log('识别广告关闭按钮成功');
-			let oper = [[
-				point.x - 10,
-				point.y - 10,
-				point.x,
-				point.y,
-				1200
-			]];
-			thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
-			return true;
-		}
+		
 
 		return false;
 	}

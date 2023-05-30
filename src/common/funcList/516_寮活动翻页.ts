@@ -22,7 +22,7 @@ export class Func516 implements IFuncOrigin {
             name: 'afterCountOper',
             desc: '执行完成的操作',
             type: 'list',
-            data: ['停止脚本', '切换方案'],
+            data: ['停止脚本', '切换方案', '不做任何操作'],
             default: '停止脚本',
             value: null,
         }, {
@@ -77,7 +77,10 @@ export class Func516 implements IFuncOrigin {
 					thisScript.setCurrentScheme(thisConf.next_scheme as string);
 					thisScript.myToast(`切换方案为[${thisConf.next_scheme}]`);
 					thisScript.rerun();
-				}
+				} else if ('不做任何操作' === thisConf.afterCountOper) {
+                    thisScript.global.liao_activity_page_flag = defaultCount;
+                    return false;
+                }
             }
 
             if (thisScript.global.liao_activity_page_flag % 2 === 1) {
