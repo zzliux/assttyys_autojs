@@ -789,6 +789,9 @@ export const versionList = [{
     desc: `优化：516寮活动翻页增加结束后不执行任何操作选项；
 优化：993应用启动登录皮肤广告识别错误的问题；
 `
+}, {
+    version: '20230531_01',
+    desc: '新增：恋色障道（放在了宴场维和里面）'
 }];
 
 export default versionList[versionList.length - 1].version;

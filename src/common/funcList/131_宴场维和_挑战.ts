@@ -9,6 +9,7 @@ export class Func131 implements IFuncOrigin {
 	id = 131;
 	name = '宴场维和_挑战';
 	operator: IFuncOperatorOrigin[] = [{
+		// 宴场维和
 		desc: [
 			1280, 720,
 			[
@@ -24,6 +25,21 @@ export class Func131 implements IFuncOrigin {
 			[center, 1280, 720, 1128, 587, 1235, 699, 1000],
 		],
 		retest: 2000
+	}, {
+		// 恋色障道
+		desc: [
+			1280, 720,
+			[
+				[left, 44, 36, 0xf5e5a6],
+				[left, 250, 41, 0x593716],
+				[right, 1222, 652, 0xdad5ed],
+				[right, 1230, 686, 0x243469],
+				[right, 1069, 599, 0xe0e8f8],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1139, 594, 1244, 701, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let curCnt = 0;
