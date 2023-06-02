@@ -439,7 +439,7 @@ const SchemeList: IScheme[] = [
       '993': {
         area: '',
         is_shutdown_the_game_before: true,
-        next_scheme: '庭院进入寮每日活动',
+        next_scheme: '庭院进入寮每日活动(自动)',
       },
       '503': {
         afterCountOper: '不进行任何操作',
