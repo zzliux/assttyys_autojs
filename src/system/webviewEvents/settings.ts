@@ -34,7 +34,7 @@ export default function webviewSettigns() {
     }
 
     if (typeof initStoreSettings.push_type === 'undefined') {
-        initStoreSettings.push_type = 'ospPush';
+        initStoreSettings.push_type = '关闭推送';
     }
     if(typeof initStoreSettings.oneBot_version === 'undefined') {
         initStoreSettings.oneBot_version = '12';
@@ -134,7 +134,7 @@ export default function webviewSettigns() {
             name:'push_type',
             type: 'assttyys_setting',
             stype: 'list',
-            data: ['ospPush', 'oneBot'],
+            data: ['关闭推送', 'ospPush', 'oneBot'],
             value: storeSettings.push_type
         }];
         if(storeSettings.push_type === 'oneBot'){
