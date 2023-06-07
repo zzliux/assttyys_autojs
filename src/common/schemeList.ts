@@ -747,6 +747,11 @@ const SchemeList: IScheme[] = [
         afterCountOper: '不进行任何操作',
       },
     },
+  }, {
+    id: 66,
+    schemeName: '契灵',
+    list: [510,51,0, 1, 2, 3, 313],
+    star: true,
   },
   {
     id: 99,
@@ -758,7 +763,7 @@ const SchemeList: IScheme[] = [
     schemeName: '活动_宴场维和',
     list: [0, 1, 2, 3, 24, 131],
     star: true,
-  },
+  }
   // , {
   //     id: 101,
   //     groupName: '活动',

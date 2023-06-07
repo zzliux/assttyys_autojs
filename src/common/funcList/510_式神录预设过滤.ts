@@ -202,10 +202,10 @@ export class Func510 implements IFuncOrigin {
                         thisScript.helperBridge.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [500, 700], 500);
                         thisScript.helperBridge.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [500, 700], 500);
                         let tureGroupNum = null;
-                        if (thisScript.global.qiling_groupNum != null) {
-                            tureGroupNum = Number(thisScript.global.qiling_groupNum) - 1
-                        } else {
+                        if (thisScript.global.qiling_groupNum === null) {
                             tureGroupNum = Number(thisConf.groupNum) - 1
+                        } else {
+                            tureGroupNum = Number(thisScript.global.qiling_groupNum) - 1
                         }
                         let oper = [[
                             thisOperator[7].oper[0][0],
@@ -219,10 +219,10 @@ export class Func510 implements IFuncOrigin {
                     } else if (thisScript.global.change_shikigami_state.includes('change_team_default')) {
                         console.log(`式神录_当前选中队伍预设`);
                         let trueDefaultNum = null;
-                        if (thisScript.global.qiling_defaultNum != null) {
-                            trueDefaultNum = Number(thisScript.global.qiling_defaultNum) - 1;
-                        } else {
+                        if (thisScript.global.qiling_defaultNum === null) {
                             trueDefaultNum = Number(thisConf.defaultNum) - 1;
+                        } else {
+                            trueDefaultNum = Number(thisScript.global.qiling_defaultNum) - 1;
                         }
                         let oper = thisOperator[8].oper[trueDefaultNum];
                         //  需要点击两次
@@ -235,6 +235,9 @@ export class Func510 implements IFuncOrigin {
                         thisScript.helperBridge.regionClick([oper], thisScript.scheme.commonConfig.afterClickDelayRandom);
 
                     } else if (thisScript.global.change_shikigami_state === 'finish') {
+                        thisScript.global.qiling_groupNum = null;
+                        thisScript.global.qiling_defaultNum = null;
+                        
                         return thisScript.oper({
                             name: '退出式神录',
                             operator: [{

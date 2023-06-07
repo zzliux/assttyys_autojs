@@ -2782,7 +2782,62 @@ const multiColor: IMultiColorOrigin = {
                 ]
             ]
         ]
-    }
+    },
+    "契灵_火灵": {
+        region: [center, 1280, 720, 40, 444, 1138, 611],
+        desc: [[
+            1280, 720,
+            [
+                [right, 1047, 502, 0xfbfbec],
+                [right, 1053, 502, 0xa0c8bc],
+                [right, 1059, 504, 0xfbfbec],
+                [right, 1044, 510, 0xa0c8bc],
+                [right, 1053, 512, 0xa0c8bc],
+                [right, 1058, 511, 0xa0c8bc],
+            ]
+        ]]
+    },
+    "契灵_小黑": {
+        region: [center, 1280, 720, 40, 444, 1138, 611],
+        desc: [[
+            1280, 720,
+            [
+                [center, 424, 499, 0xfd8131],
+                [center, 430, 498, 0x9f2902],
+                [center, 437, 500, 0xfd8131],
+                [center, 422, 508, 0x9f2902],
+                [center, 428, 508, 0x9f2902],
+                [center, 436, 509, 0x9f2902],
+            ]
+        ]]
+    },
+    "契灵_镇墓兽": {
+        region: [center, 1280, 720, 40, 444, 1138, 611],
+        desc: [[
+            1280, 720,
+            [
+                [left, 247, 544, 0xfbfbec],
+                [left, 253, 545, 0xc9ab49],
+                [left, 259, 544, 0xfbfbec],
+                [left, 242, 552, 0xc9ab49],
+                [left, 252, 553, 0xc9ab49],
+                [left, 262, 554, 0xc8af4f],
+            ]
+        ]]
+    },
+    "契灵_茨球": {
+        region: [center, 1280, 720, 40, 444, 1138, 611],
+        desc: [[1280, 720,
+            [
+                [center, 713, 520, 0xffffff],
+                [center, 718, 520, 0xf1e7c8],
+                [center, 724, 521, 0xffffff],
+                [center, 709, 528, 0xf1e7c8],
+                [center, 718, 528, 0xf1e7c8],
+                [center, 723, 529, 0xf1e7c8],
+            ]
+        ]]
+    },
 }
 
 export default multiColor;

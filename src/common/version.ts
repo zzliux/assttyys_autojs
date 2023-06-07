@@ -792,6 +792,9 @@ export const versionList = [{
 }, {
     version: '20230531_01',
     desc: '新增：恋色障道（放在了宴场维和里面）'
+}, {
+    version: '20230601_01',
+    desc: '新增：契灵'
 }];
 
 export default versionList[versionList.length - 1].version;
