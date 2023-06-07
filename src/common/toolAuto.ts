@@ -1,9 +1,9 @@
-import {IScheme} from '@/interface/IScheme';
-import {IhelperBridge} from '@/system/helperBridge';
-import type {Script} from '@/system/script';
+import { IScheme } from '@/interface/IScheme';
+import { IhelperBridge } from '@/system/helperBridge';
+import type { Script } from '@/system/script';
 
-import {storeCommon} from '@/system/store';
-import {getWidthPixels, getHeightPixels} from '@auto.pro/core';
+import { storeCommon } from '@/system/store';
+import { getWidthPixels, getHeightPixels } from '@auto.pro/core';
 
 // importClass(android.graphics.Color);
 // importPackage(android.content);
@@ -232,66 +232,66 @@ export function doPush(thisScript: Script, options: {
     after?: () => void
 }): void {
     let storeSettings = storeCommon.get('settings', {});
-    if (storeSettings.push_type === 'oneBot') {
-        if (!storeSettings.oneBot_url) {
-            console.error('未配置oneBot_url');
-            return;
-        }
-    } else if (storeSettings.use_osp && !storeSettings.osp_user_token) {
+    if (storeSettings.push_type === '关闭推送') {
+        console.log('推送已关闭，不执行推送');
+        return;
+    }
+    if (storeSettings.push_type === 'oneBot' && !storeSettings.oneBot_url) {
+        console.error('未配置oneBot_url');
+        return;
+    } else if (storeSettings.push_type === 'ospPush' && !storeSettings.osp_user_token) {
         console.error('未配置ospUserToken');
         return;
     }
-    if (storeSettings.oneBot_url || storeSettings.use_osp) {
-        try {
-            thisScript.keepScreen();
-            let bmp = scaleBmp(thisScript.helperBridge.helper.GetBitmap(), 0.5);
-            let baos = new java.io.ByteArrayOutputStream();
-            bmp.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, baos);
-            baos.flush();
-            baos.close();
-            bmp.recycle();
+    try {
+        thisScript.keepScreen();
+        let bmp = scaleBmp(thisScript.helperBridge.helper.GetBitmap(), 0.5);
+        let baos = new java.io.ByteArrayOutputStream();
+        bmp.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, baos);
+        baos.flush();
+        baos.close();
+        bmp.recycle();
 
-            let b64str = android.util.Base64.encodeToString(baos.toByteArray(), android.util.Base64.NO_WRAP);
-            let data = [{
-                type: 'text',
-                data: options && options.text || ''
-            }, {
-                type: 'image',
-                data: b64str
-            }];
-            console.log('图片b64大小' + b64str.length);
+        let b64str = android.util.Base64.encodeToString(baos.toByteArray(), android.util.Base64.NO_WRAP);
+        let data = [{
+            type: 'text',
+            data: options && options.text || ''
+        }, {
+            type: 'image',
+            data: b64str
+        }];
+        console.log('图片b64大小' + b64str.length);
 
-            // myToast('脚本即将停止，正在上传数据');
-            options && options.before && options.before();
-            let res;
-            // 上传
-            console.log('push_type', storeSettings.push_type)
-            if (storeSettings.push_type === 'oneBot') {
-                const removeBase64Prefix = (str: string) => str.replace(new RegExp('data:image/\\S+;base64,'), '');
-                const oneBotVersion = storeSettings.oneBot_version || '12';
-                const message = oneBotVersion !== '12' ? data.map(item => {
-                    const {type, data} = item;
-                    return type === 'text' ? data : `[CQ:image,file=base64://${removeBase64Prefix(data)}]`
-                }).join('') : data.map(item => {
-                    const {type, data} = item;
-                    return {
-                        type,
-                        data:{
-                            [type==='text'?'text':'file_id']:type==='text'?data:`base64://${removeBase64Prefix(data)}`
-                        }
+        // myToast('脚本即将停止，正在上传数据');
+        options && options.before && options.before();
+        let res;
+        // 上传
+        console.log('push_type', storeSettings.push_type)
+        if (storeSettings.push_type === 'oneBot') {
+            const removeBase64Prefix = (str: string) => str.replace(new RegExp('data:image/\\S+;base64,'), '');
+            const oneBotVersion = storeSettings.oneBot_version || '12';
+            const message = oneBotVersion !== '12' ? data.map(item => {
+                const { type, data } = item;
+                return type === 'text' ? data : `[CQ:image,file=base64://${removeBase64Prefix(data)}]`
+            }).join('') : data.map(item => {
+                const { type, data } = item;
+                return {
+                    type,
+                    data: {
+                        [type === 'text' ? 'text' : 'file_id']: type === 'text' ? data : `base64://${removeBase64Prefix(data)}`
                     }
-                });
-                res = oneBotPush(storeSettings.oneBot_url, message)
-            } else {
-                res = ospPush(storeSettings.osp_user_token, data);
-            }
-            // @ts-ignore
-            myToast(`提交osp响应内容：${res.body.string()}`);
-            options && options.after && options.after();
-        } catch (e) {
-            myToast(`提交osp发生了错误：${e}`);
-            console.error($debug.getStackTrace(e));
+                }
+            });
+            res = oneBotPush(storeSettings.oneBot_url, message)
+        } else if (storeSettings.push_type === 'ospPush') {
+            res = ospPush(storeSettings.osp_user_token, data);
         }
+        // @ts-ignore
+        myToast(`提交推送响应内容：${res.body.string()}`);
+        options && options.after && options.after();
+    } catch (e) {
+        myToast(`提交推送发生了错误：${e}`);
+        console.error($debug.getStackTrace(e));
     }
 }
 

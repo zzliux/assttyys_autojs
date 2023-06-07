@@ -793,7 +793,10 @@ export const versionList = [{
     version: '20230531_01',
     desc: '新增：恋色障道（放在了宴场维和里面）'
 }, {
-    version: '20230601_01',
+    version: '20230605_01',
+    desc: '修复推送类型为ospPush时无法推送的问题'
+}, {
+    version: '20230608_01',
     desc: '新增：契灵'
 }];
 
