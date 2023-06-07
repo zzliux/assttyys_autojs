@@ -60,9 +60,9 @@ export class Func313 implements IFuncOrigin {
       [center, 1280, 720, 944, 568, 982, 600, 1000],//契灵式神录 
       [center, 1280, 720, 15, 1000, -1, -1, -1],//找色后加范围
       [center, 1280, 720, 1160, 475, 1198, 502, 500],//石头召唤
-      // [center, 1280, 720, 609, 122, 670, 170, 1000],//连线一号
-      // [center, 1280, 720, 809, 263, 881, 318, 1000],//连线二号
-      // [center, 1280, 720, 729, 509, 801, 564, 1000],//连线三号
+      [center, 1280, 720, 609, 122, 670, 170, 1000],//连线一号
+      [center, 1280, 720, 809, 263, 881, 318, 1000],//连线二号
+      [center, 1280, 720, 729, 509, 801, 564, 1000],//连线三号
     ]
   }, {//4  契灵挑战
     desc: [
@@ -258,8 +258,8 @@ export class Func313 implements IFuncOrigin {
       name: '契灵划线',
       operator: [thisOperator[9]]
     })) {
-      // @ts-ignore 
-      gesture(1000, [[428, 283], [635, 144], [846, 294]])
+      // gesture(1000, [[428, 283], [635, 144], [846, 294]])
+      thisScript.helperBridge.regionGesture(1000, [thisOperator[3].oper[3], thisOperator[3].oper[4], thisOperator[3].oper[5]]);
       return true;
     }
 
