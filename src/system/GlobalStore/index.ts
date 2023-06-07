@@ -56,6 +56,10 @@ export type globalRootType = {
     buff_enable_page_flag: boolean; // 开启buff是否完成翻页
     team_up_Time: number;   //被邀请的次数
     game_area: string;  //  游戏区域
+    qilingshitou_Time:number;   //契灵石头点击计数
+    qiling_stage:'find'|'change'|'attack';   //契灵阶段
+    qiling_groupNum:number| null;     //  契灵的预设分组
+    qiling_defaultNum:number| null;     //  契灵的预设阵容
 }
 
 export const globalRoot: globalRootType = {
@@ -116,4 +120,8 @@ export const globalRoot: globalRootType = {
     buff_enable_page_flag: false,
     team_up_Time: 0,
     game_area: '',
+    qilingshitou_Time:3,
+    qiling_stage:'find',
+    qiling_groupNum:null,
+    qiling_defaultNum:null
 }
