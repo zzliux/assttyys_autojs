@@ -8,8 +8,63 @@ const right = 2;
 export class Func313 implements IFuncOrigin {
   id = 313;
   name = '契灵';
-  desc = '循环追踪，无追踪后石头召唤，无石头则持续探查(游戏里预设需设置成：火灵阵容放在第四组第一个，小黑第二个，镇墓兽第三个，茨球第四个。探查阵容放在第五组第一个)';
-  operator: IFuncOperatorOrigin[] = [{//0   契灵界面
+  config = [{
+    desc: '召唤配置',
+    config: [{
+      name: 'summon_type',
+      desc: '召唤配置（使用鸣契石/直接探查）',
+      type: 'list',
+      data: ['鸣契石', '探查'],
+      default: '鸣契石'
+    }]
+  }, 
+  // {
+  //   desc: '式盘召唤配置',
+  //   config: [{
+  //     name: 'shipan_sort',
+  //     desc: '式盘优先级',
+  //     type: 'list',
+  //     data: ['小中大', '小大中', '中小大', '中大小', '大小中', '大中小'],
+  //     default: '小中大'
+  //   }, {
+  //     name: 'line_sort',
+  //     desc: '连线优先级',
+  //     type: 'list',
+  //     data: ['优先非推荐', '优先推荐'],
+  //     default: '优先非推荐'
+  //   }]
+  // }, 
+  {
+    desc: '用于战斗前进入式神录进行御魂装配，需启用510功能，逗号分隔，-1,-1表示不切换预设，5,1表示第5个分组第1组预设',
+    config: [{
+      name: 'preset_pair_探查',
+      desc: '探查',
+      type: 'text',
+      default: '5,1',
+    }, {
+      name: 'preset_pair_契灵_火灵',
+      desc: '契灵_火灵',
+      type: 'text',
+      default: '4,1',
+    }, {
+      name: 'preset_pair_契灵_小黑',
+      desc: '契灵_小黑',
+      type: 'text',
+      default: '4,2',
+    }, {
+      name: 'preset_pair_契灵_镇墓兽',
+      desc: '契灵_镇墓兽',
+      type: 'text',
+      default: '4,3',
+    }, {
+      name: 'preset_pair_契灵_茨球',
+      desc: '契灵_茨球',
+      type: 'text',
+      default: '4,4',
+    }]
+  }]
+  operator: IFuncOperatorOrigin[] = [{
+    // 0 契灵界面
     desc: [
       1280, 720,
       [
@@ -21,7 +76,8 @@ export class Func313 implements IFuncOrigin {
         [right, 1191, 485, 0x755bc7],
       ]
     ]
-  }, {//1 追踪
+  }, {
+    // 1 追踪
     desc: [
       1280, 720,
       [
@@ -39,7 +95,8 @@ export class Func313 implements IFuncOrigin {
       [center, 1280, 720, 1148, 602, 1225, 664, 4000],
       // [center, 1280, 720, 18, 472, 79, 501, 3000],
     ]
-  }, {//2  探查
+  }, {
+    // 2 探查
     desc: [
       1280, 720,
       [
@@ -55,16 +112,18 @@ export class Func313 implements IFuncOrigin {
     oper: [
       [center, 1280, 720, 1139, 586, 1223, 668, 2000],
     ]
-  }, {//3  契灵式神录 
+  }, {
+    // 3 契灵式神录 
     oper: [
-      [center, 1280, 720, 944, 568, 982, 600, 1000],//契灵式神录 
-      [center, 1280, 720, 15, 1000, -1, -1, -1],//找色后加范围
-      [center, 1280, 720, 1160, 475, 1198, 502, 500],//石头召唤
-      [center, 1280, 720, 609, 122, 670, 170, 1000],//连线一号
-      [center, 1280, 720, 809, 263, 881, 318, 1000],//连线二号
-      [center, 1280, 720, 729, 509, 801, 564, 1000],//连线三号
+      [center, 1280, 720, 944, 568, 982, 600, 1000], // 契灵式神录 
+      [center, 1280, 720, 15, 1000, -1, -1, -1], // 找色后加范围
+      [center, 1280, 720, 1160, 475, 1198, 502, 500], // 石头召唤
+      [center, 1280, 720, 609, 122, 670, 170, 1000], // 连线一号
+      [center, 1280, 720, 809, 263, 881, 318, 1000], // 连线二号
+      [center, 1280, 720, 729, 509, 801, 564, 1000], // 连线三号
     ]
-  }, {//4  契灵挑战
+  }, {
+    // 4 契灵挑战
     desc: [
       1280, 720,
       [
@@ -79,7 +138,8 @@ export class Func313 implements IFuncOrigin {
     oper: [
       [center, 1280, 720, 1154, 594, 1235, 665, 1000],
     ]
-  }, {//5   结契失败
+  }, {
+    // 5 结契失败
     desc: [
       1280, 720,
       [
@@ -94,7 +154,8 @@ export class Func313 implements IFuncOrigin {
     oper: [
       [center, 1280, 720, 444, 552, 814, 701, 1000],
     ]
-  }, {//6  结契成功
+  }, {
+    // 6 结契成功
     desc: [
       1280, 720,
       [
@@ -110,7 +171,8 @@ export class Func313 implements IFuncOrigin {
       [center, 1280, 720, 173, 534, 615, 691, 1000],
       [center, 1280, 720, 173, 534, 615, 691, 1000],
     ]
-  }, {//7  棋盘
+  }, {
+    // 7 棋盘
     desc: [
       1280, 720,
       [
@@ -126,7 +188,8 @@ export class Func313 implements IFuncOrigin {
     oper: [
       [center, 1280, 720, 312, 378, 385, 454, 1000],
     ]
-  }, {//8 结契成功
+  }, {
+    // 8 结契成功
     desc: [
       1280, 720,
       [
@@ -139,7 +202,8 @@ export class Func313 implements IFuncOrigin {
     oper: [
       [center, 1280, 720, 372, 548, 846, 687, 1000],
     ]
-  }, {//9  画线
+  }, {
+    // 9 画线
     desc: [
       1280, 720,
       [
@@ -151,7 +215,8 @@ export class Func313 implements IFuncOrigin {
         [center, 779, 197, 0xbd9949],
       ]
     ]
-  }, {//10  石头召唤选镇墓兽确认
+  }, {
+    // 10 石头召唤选镇墓兽确认
     desc: [
       1280, 720,
       [
@@ -171,9 +236,11 @@ export class Func313 implements IFuncOrigin {
   }]
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
     if (thisScript.oper({
+      id: 313,
       name: '契灵界面',
       operator: [thisOperator[0]]
     }) && thisScript.oper({
+      id: 313,
       name: '追踪',
       operator: [thisOperator[1]]
     })) {
@@ -181,9 +248,11 @@ export class Func313 implements IFuncOrigin {
     }
 
     if (thisScript.oper({
+      id: 313,
       name: '契灵界面',
       operator: [thisOperator[0]]
     }) && thisScript.oper({
+      id: 313,
       name: '探查',
       operator: [{ desc: thisOperator[2].desc }]
     })) {
@@ -192,8 +261,10 @@ export class Func313 implements IFuncOrigin {
         thisScript.global.qiling_Position = null;
         return true;
       }
-      let arrFind = [`契灵_火灵`, `契灵_小黑`, `契灵_镇墓兽`, `契灵_茨球`]
-      for (var i = 0; i < 4; i++) {
+      const thisConf = thisScript.scheme.config['313'];
+      let arrFind = [`契灵_火灵`, `契灵_小黑`, `契灵_镇墓兽`, `契灵_茨球`];
+      let i: number;
+      for (i = 0; i < arrFind.length; i++) {
         const p = thisScript.findMultiColor(arrFind[i])
         if (p) {
           const toClick = p;
@@ -208,53 +279,71 @@ export class Func313 implements IFuncOrigin {
           break;
         }
       }
-      if (i == 4) {
-        thisScript.helperBridge.regionClick([thisOperator[3].oper[2]], thisScript.scheme.commonConfig.afterClickDelayRandom);
-        thisScript.global.qiling_Position = thisOperator[2].oper[0];
+      if (i === 4) {
+        // 没找到任何契灵，选择召唤还是选择探查
+        if ('鸣契石' === thisConf.summon_type) {
+          // 单独走分支
+          let curCnt = 0;
+          let maxCount = 3;
+          while (thisScript.oper({
+            id: 313,
+            name: '鸣契石',
+            operator: [{
+              desc: thisOperator[2].desc,
+              oper: [thisOperator[3].oper[2]]
+            }]
+          })) {
+            curCnt++;
+            thisScript.keepScreen();
+            if (curCnt >= maxCount) {
+              thisScript.myToast(`连续执行${maxCount}次挑战后未开始，脚本自动停止`);
+              thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+              thisScript.stop();
+              sleep(2000);
+              return false;
+            }
+          }
+          if (curCnt) {
+            return true;
+          }
+        } else if ('探查' === thisConf.summon_type) {
+          // 探查通知下次点击区域为探查按钮，先要换御魂才行
+          thisScript.global.qiling_Position = thisOperator[2].oper[0];
+        }
+
+        const [p, q] = (thisConf[`preset_pair_探查`] as string).split(/[,，]\s/);
+        thisScript.global.preset_once_groupNum = parseInt(p, 10);
+        thisScript.global.preset_once_defaultNum = parseInt(q, 10);
+      } else {
+        const [p, q] = (thisConf[`preset_pair_${arrFind[i]}`] as string).split(/[,，]\s/);
+        thisScript.global.preset_once_groupNum = parseInt(p, 10);
+        thisScript.global.preset_once_defaultNum = parseInt(q, 10);
       }
-      switch (i) {
-        case 0:
-          thisScript.global.qiling_groupNum = 4;
-          thisScript.global.qiling_defaultNum = 1;
-          break;
-        case 1:
-          thisScript.global.qiling_groupNum = 4;
-          thisScript.global.qiling_defaultNum = 2;
-          break;
-        case 2:
-          thisScript.global.qiling_groupNum = 4;
-          thisScript.global.qiling_defaultNum = 3;
-          break;
-        case 3:
-          thisScript.global.qiling_groupNum = 4;
-          thisScript.global.qiling_defaultNum = 4;
-          break;
-        case 4:
-          thisScript.global.qiling_groupNum = 5;
-          thisScript.global.qiling_defaultNum = 1;
-          break;
-      }
-      if (thisScript.global.qiling_last === null) {
+
+      if (thisScript.global.qiling_last === null && thisScript.global.preset_once_groupNum > 0) {
         thisScript.global.qiling_last = i;
         thisScript.helperBridge.regionClick([thisOperator[3].oper[0]], thisScript.scheme.commonConfig.afterClickDelayRandom);
-      } else if (!(thisScript.global.qiling_last === i)) {
+        thisScript.global.change_shikigami_state = 'flushed';
+      } else if (thisScript.global.qiling_last !== i && thisScript.global.preset_once_groupNum > 0) {
         thisScript.helperBridge.regionClick([thisOperator[3].oper[0]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+        thisScript.global.change_shikigami_state = 'flushed';
       }
-      thisScript.global.change_shikigami_state = 'flushed'
       return true;
-
     }
 
     if (thisScript.oper({
+      id: 313,
       name: '契灵战斗',
-      operator: [thisOperator[4], thisOperator[5], thisOperator[6],
-      thisOperator[7], thisOperator[8],
+      operator: [
+        thisOperator[4], thisOperator[5], thisOperator[6],
+        thisOperator[7], thisOperator[8],
       ]
     })) {
       return true;
     }
 
     if (thisScript.oper({
+      id: 313,
       name: '契灵划线',
       operator: [thisOperator[9]]
     })) {
@@ -264,13 +353,14 @@ export class Func313 implements IFuncOrigin {
     }
 
     if (thisScript.oper({
+      id: 313,
       name: '石头召唤确认',
       operator: [thisOperator[10]]
-    })){
+    })) {
       thisScript.global.qiling_last = null;
-      thisScript.global.qiling_Position= null;
+      thisScript.global.qiling_Position = null;
       return true;
     }
-      return false;
+    return false;
   }
 }

@@ -750,7 +750,7 @@ const SchemeList: IScheme[] = [
   }, {
     id: 66,
     schemeName: '契灵',
-    list: [510, 51, 0, 1, 2, 3, 313, 511],
+    list: [510, 51, 0, 1, 2, 3, 313],
     star: true,
     config: {
       '510': {

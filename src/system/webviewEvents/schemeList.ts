@@ -65,7 +65,7 @@ export default function webviewSchemeList() {
         // 注册返回界面的事件
         fromEvent(ui.emitter, 'resume').subscribe((e) => {
             // 更新定时任务界面的数据
-            webview.runHtmlJS('loadScheduleData && loadScheduleData()');
+            webview.runHtmlJS('window.loadScheduleData && window.loadScheduleData()');
         });
 
         // 初始化automator
