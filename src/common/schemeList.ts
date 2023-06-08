@@ -750,8 +750,13 @@ const SchemeList: IScheme[] = [
   }, {
     id: 66,
     schemeName: '契灵',
-    list: [510,51,0, 1, 2, 3, 313],
+    list: [510, 51, 0, 1, 2, 3, 313, 511],
     star: true,
+    config: {
+      '510': {
+        fastMode: true
+      }
+    }
   },
   {
     id: 99,
