@@ -8,7 +8,7 @@ const right = 2;
 export class Func313 implements IFuncOrigin {
   id = 313;
   name = '契灵';
-  desc: '循环追踪，无追踪后石头召唤，无石头则持续探查(游戏里预设需设置成：火灵阵容放在第四组第一个，小黑第二个，镇墓兽第三个，茨球第四个。探查阵容放在第五组第一个)';
+  desc = '循环追踪，无追踪后石头召唤，无石头则持续探查(游戏里预设需设置成：火灵阵容放在第四组第一个，小黑第二个，镇墓兽第三个，茨球第四个。探查阵容放在第五组第一个)';
   operator: IFuncOperatorOrigin[] = [{//0   契灵界面
     desc: [
       1280, 720,
@@ -259,7 +259,7 @@ export class Func313 implements IFuncOrigin {
       operator: [thisOperator[9]]
     })) {
       // gesture(1000, [[428, 283], [635, 144], [846, 294]])
-      thisScript.helperBridge.regionGesture(1000, [thisOperator[3].oper[3], thisOperator[3].oper[4], thisOperator[3].oper[5]]);
+      thisScript.helperBridge.regionGesture([thisOperator[3].oper[3], thisOperator[3].oper[4], thisOperator[3].oper[5]], 1000, thisScript.scheme.commonConfig.afterClickDelayRandom);
       return true;
     }
 
