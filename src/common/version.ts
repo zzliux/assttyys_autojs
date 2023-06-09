@@ -796,7 +796,7 @@ export const versionList = [{
     version: '20230605_01',
     desc: '修复推送类型为ospPush时无法推送的问题'
 }, {
-    version: '20230609_01_dev',
+    version: '20230609_02_dev',
     desc: '新增：契灵'
 }];
 

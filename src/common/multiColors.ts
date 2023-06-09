@@ -2838,6 +2838,25 @@ const multiColor: IMultiColorOrigin = {
             ]
         ]]
     },
+    '契灵_连线_推荐': {
+        region: [center, 1280, 720, 355, 26, 975, 627],
+        desc: [[
+            1280, 720,
+            [
+                [center, 786, 489, 0xfbae14],
+                [center, 798, 501, 0xf7d708],
+                [center, 818, 498, 0xffba17],
+                [center, 814, 489, 0xfeae14],
+            ]
+        ], [1280, 720,
+            [
+                [center, 450, 248, 0xfbae14],
+                [center, 456, 247, 0xffae14],
+                [center, 482, 256, 0xfdbd15],
+                [center, 475, 243, 0xff9922],
+            ]
+        ]],
+    }
 }
 
 export default multiColor;

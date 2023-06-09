@@ -211,6 +211,19 @@ export class helperBridge implements IhelperBridge {
         const points = transedOper.map(item => {
             return getRegionBiasRnd2(item, [strHashToNum(device.getAndroidId(), item[0], item[2]), strHashToNum(device.getAndroidId(), item[1], item[3])], 1);
         });
+        
+        console.log(`执行滑动操作 === ${points}`);
+        if (drawFloaty.instacne) {
+            let toDraw = [...points.map(point => ({
+                color: 'red',
+                region: [point[0] - 5, point[1] - 5, point[0] + 5, point[1] + 5]
+            })), ...transedOper.map(item => ({
+                color: 'orange',
+                region: [item[0], item[1], item[2], item[3]]
+            }))];
+            drawFloaty.draw(toDraw, Math.max(duration - 20, 300));
+            sleep(200);
+        }
         this.automator.gesture(duration, ...points)
         sleep(random(0, randomSleep || 0));
     }

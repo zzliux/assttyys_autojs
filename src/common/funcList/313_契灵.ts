@@ -17,23 +17,22 @@ export class Func313 implements IFuncOrigin {
       data: ['鸣契石', '探查'],
       default: '鸣契石'
     }]
-  }, 
-  // {
-  //   desc: '式盘召唤配置',
-  //   config: [{
-  //     name: 'shipan_sort',
-  //     desc: '式盘优先级',
-  //     type: 'list',
-  //     data: ['小中大', '小大中', '中小大', '中大小', '大小中', '大中小'],
-  //     default: '小中大'
-  //   }, {
-  //     name: 'line_sort',
-  //     desc: '连线优先级',
-  //     type: 'list',
-  //     data: ['优先非推荐', '优先推荐'],
-  //     default: '优先非推荐'
-  //   }]
-  // }, 
+  }, {
+    desc: '式盘召唤配置',
+    config: [{
+      name: 'shipan_sort',
+      desc: '式盘选择',
+      type: 'list',
+      data: ['小', '中', '大'],
+      default: '小'
+    }, {
+      name: 'line_sort',
+      desc: '连线优先级',
+      type: 'list',
+      data: ['优先非推荐', '优先推荐'],
+      default: '优先非推荐'
+    }]
+  },
   {
     desc: '用于战斗前进入式神录进行御魂装配，需启用510功能，逗号分隔，-1,-1表示不切换预设，5,1表示第5个分组第1组预设',
     config: [{
@@ -118,9 +117,6 @@ export class Func313 implements IFuncOrigin {
       [center, 1280, 720, 944, 568, 982, 600, 1000], // 契灵式神录 
       [center, 1280, 720, 15, 1000, -1, -1, -1], // 找色后加范围
       [center, 1280, 720, 1160, 475, 1198, 502, 500], // 石头召唤
-      [center, 1280, 720, 609, 122, 670, 170, 1000], // 连线一号
-      [center, 1280, 720, 809, 263, 881, 318, 1000], // 连线二号
-      [center, 1280, 720, 729, 509, 801, 564, 1000], // 连线三号
     ]
   }, {
     // 4 契灵挑战
@@ -186,7 +182,9 @@ export class Func313 implements IFuncOrigin {
       ]
     ],
     oper: [
-      [center, 1280, 720, 312, 378, 385, 454, 1000],
+      [center, 1280, 720, 312, 378, 385, 454, 1000], // 小
+      [center, 1280, 720, 589, 434, 717, 551, 1000], // 中
+      [center, 1280, 720, 899, 403, 998, 506, 1000], // 大
     ]
   }, {
     // 8 结契成功
@@ -207,13 +205,27 @@ export class Func313 implements IFuncOrigin {
     desc: [
       1280, 720,
       [
-        [center, 701, 228, 0x4d3510],
-        [center, 494, 371, 0x5d4618],
-        [center, 722, 471, 0x554016],
-        [center, 500, 197, 0xbd9a4c],
-        [center, 636, 573, 0xbd9036],
-        [center, 779, 197, 0xbd9949],
+        [left, 31, 23, 0xbb9977],
+        [left, 175, 37, 0xb38f61],
+        [left, 255, 27, 0xb2916a],
+        [center, 770, 583, 0x8c673d],
+        [center, 508, 583, 0x8c673d],
+        [center, 430, 341, 0x8c673d],
+        [center, 1220, 646, 0x5e4e43],
       ]
+    ],
+    oper: [
+      [center, 1280, 720, 423, 217, 515, 297, -1], // 推荐查找区域左上
+      [center, 1280, 720, 640, 62, 722, 145, -1], // 推荐查找区域上
+      [center, 1280, 720, 845, 206, 931, 294, -1], // 推荐查找区域右上
+      [center, 1280, 720, 763, 447, 854, 536, -1], // 推荐查找区域右下
+      [center, 1280, 720, 512, 450, 599, 540, -1], // 推荐查找区域左下
+
+      [center, 1280, 720, 393, 260, 467, 333, 1000], // 连线左上
+      [center, 1280, 720, 609, 122, 670, 170, 1000], // 连线上
+      [center, 1280, 720, 809, 263, 881, 318, 1000], // 连线右上
+      [center, 1280, 720, 729, 509, 801, 564, 1000], // 连线右下
+      [center, 1280, 720, 472, 498, 545, 577, 1000], // 连线左下
     ]
   }, {
     // 10 石头召唤选镇墓兽确认
@@ -236,24 +248,23 @@ export class Func313 implements IFuncOrigin {
   }]
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
     if (thisScript.oper({
-      id: 313,
       name: '契灵界面',
       operator: [thisOperator[0]]
     }) && thisScript.oper({
       id: 313,
-      name: '追踪',
+      name: '契灵界面_追踪',
       operator: [thisOperator[1]]
     })) {
       return true;
     }
 
+    const thisConf = thisScript.scheme.config['313'];
     if (thisScript.oper({
-      id: 313,
       name: '契灵界面',
       operator: [thisOperator[0]]
     }) && thisScript.oper({
       id: 313,
-      name: '探查',
+      name: '契灵界面_探查',
       operator: [{ desc: thisOperator[2].desc }]
     })) {
       if (thisScript.global.qiling_Position) {
@@ -261,7 +272,6 @@ export class Func313 implements IFuncOrigin {
         thisScript.global.qiling_Position = null;
         return true;
       }
-      const thisConf = thisScript.scheme.config['313'];
       let arrFind = [`契灵_火灵`, `契灵_小黑`, `契灵_镇墓兽`, `契灵_茨球`];
       let i: number;
       for (i = 0; i < arrFind.length; i++) {
@@ -336,19 +346,77 @@ export class Func313 implements IFuncOrigin {
       name: '契灵战斗',
       operator: [
         thisOperator[4], thisOperator[5], thisOperator[6],
-        thisOperator[7], thisOperator[8],
+        thisOperator[8],
       ]
     })) {
       return true;
     }
 
+    // 选式盘，超过3次点着没反应，那就停止脚本并osp推送
+    const shipanIndex = { '小': 0, '中': 1, '大': 2 }[thisConf.shipan_sort as string];
+    let shipanCurCnt = 0;
+    let shipanMaxCount = 3;
+    while (thisScript.oper({
+      id: 313,
+      name: '契灵战斗_选式盘',
+      operator: [{
+        desc: thisOperator[7].desc,
+        oper: [thisOperator[7].oper[shipanIndex]]
+      }]
+    })) {
+      shipanCurCnt++;
+      thisScript.keepScreen();
+      if (shipanCurCnt >= shipanMaxCount) {
+        thisScript.myToast(`连续执行${shipanMaxCount}次挑战后未开始，脚本自动停止`);
+        thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+        thisScript.stop();
+        sleep(2000);
+        return false;
+      }
+    }
+    if (shipanCurCnt) {
+      return true;
+    }
+
     if (thisScript.oper({
       id: 313,
-      name: '契灵划线',
-      operator: [thisOperator[9]]
+      name: '契灵划线_场景',
+      operator: [{
+        desc: thisOperator[9].desc
+      }]
     })) {
       // gesture(1000, [[428, 283], [635, 144], [846, 294]])
-      thisScript.helperBridge.regionGesture([thisOperator[3].oper[3], thisOperator[3].oper[4], thisOperator[3].oper[5]], 1000, thisScript.scheme.commonConfig.afterClickDelayRandom);
+      // thisScript.helperBridge.regionGesture([thisOperator[3].oper[3], thisOperator[3].oper[4], thisOperator[3].oper[5]], 1000, thisScript.scheme.commonConfig.afterClickDelayRandom);
+      const points = thisScript.findMultiColorEx('契灵_连线_推荐');
+      const regionsOfRecommend = thisOperator[9].oper.slice(0, 5) // 0 ~ 4为推荐的查找区域
+      const regionsOfSwipe = thisOperator[9].oper.slice(5, 10) // 5 ~ 9为连线的区域
+      const recommend = []; // 推荐数组
+      let can = []; // 建议数组
+      for (let i = 0; i < points.length; i++) {
+        const regionIndex = indexOfRegion(points[i], regionsOfRecommend);
+        if (regionIndex >= 0) {
+          recommend.push(regionIndex);
+        }
+      }
+
+      if ('优先推荐' === thisConf.line_sort) {
+        can = recommend;
+      } else if ('优先非推荐' === thisConf.line_sort) {
+        can = [0, 1, 2, 3, 4].filter(n => (recommend.indexOf(n) < 0));
+      }
+
+      // 能连的小于三个，从剩下的里面补
+      if (can.length < 3) {
+        const left = [0, 1, 2, 3, 4].filter(n => (can.indexOf(n) < 0));
+        while (can.length < 3) {
+          can.push(left.splice(random(0, left.length - 1), 1)[0]);
+        }
+      }
+      // 连线
+      thisScript.myToast(`连线：${can}`);
+      const toGesture = can.map(n => regionsOfSwipe[n]);
+      thisScript.helperBridge.regionGesture(toGesture, 1000, thisScript.scheme.commonConfig.afterClickDelayRandom);
+      sleep(1000);
       return true;
     }
 
@@ -363,4 +431,23 @@ export class Func313 implements IFuncOrigin {
     }
     return false;
   }
+}
+
+
+
+/**
+ * 返回point在第几个region里，如果都不在，返回-1
+ * @param point 
+ * @param regions 
+ * @returns 
+ */
+function indexOfRegion(point: { x: number, y: number }, regions: number[][]): number {
+  const { x, y } = point;
+  for (let i = 0; i < regions.length; i++) {
+    const region = regions[i];
+    if (x >= region[0] && x <= region[2] && y >= region[1] && y <= region[3]) {
+      return i;
+    }
+  }
+  return -1;
 }
