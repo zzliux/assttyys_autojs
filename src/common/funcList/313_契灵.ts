@@ -245,6 +245,23 @@ export class Func313 implements IFuncOrigin {
       [center, 1280, 720, 970, 286, 1087, 435, 1000],
       [center, 1280, 720, 1151, 609, 1225, 667, 5000],
     ]
+  }, {
+    // 11 探索地图进入契灵之境
+    desc: [
+      1280, 720,
+      [
+        [left, 45, 60, 0xeff5fb],
+        [right, 1168, 146, 0xd9cec1],
+        [right, 1124, 32, 0xd7b388],
+        [right, 1226, 30, 0xd3af84],
+        [left, 18, 705, 0x754830],
+        [left, 210, 711, 0x985b32],
+        [left, 559, 658, 0xf3e5db],
+      ]
+    ],
+    oper: [
+      [left, 1280, 720, 938, 640, 996, 694, 1000],
+    ]
   }]
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
     if (thisScript.oper({
@@ -321,13 +338,15 @@ export class Func313 implements IFuncOrigin {
           thisScript.global.qiling_Position = thisOperator[2].oper[0];
         }
 
-        const [p, q] = (thisConf[`preset_pair_探查`] as string).split(/[,，]\s/);
-        thisScript.global.preset_once_groupNum = parseInt(p, 10);
-        thisScript.global.preset_once_defaultNum = parseInt(q, 10);
+        const [p, q] = (thisConf[`preset_pair_探查`] as string).split(/[,，]/);
+        // console.log(`设置预设分组：${p}, ${q}`);
+        thisScript.global.preset_once_groupNum = parseInt(p?.trim(), 10);
+        thisScript.global.preset_once_defaultNum = parseInt(q?.trim(), 10);
       } else {
-        const [p, q] = (thisConf[`preset_pair_${arrFind[i]}`] as string).split(/[,，]\s/);
-        thisScript.global.preset_once_groupNum = parseInt(p, 10);
-        thisScript.global.preset_once_defaultNum = parseInt(q, 10);
+        const [p, q] = (thisConf[`preset_pair_${arrFind[i]}`] as string).split(/[,，]/);
+        // console.log(`设置预设分组：${p}, ${q}`);
+        thisScript.global.preset_once_groupNum = parseInt(p?.trim(), 10);
+        thisScript.global.preset_once_defaultNum = parseInt(q?.trim(), 10);
       }
 
       if (thisScript.global.qiling_last === null && thisScript.global.preset_once_groupNum > 0) {
@@ -343,10 +362,10 @@ export class Func313 implements IFuncOrigin {
 
     if (thisScript.oper({
       id: 313,
-      name: '契灵战斗',
+      name: '契灵杂项',
       operator: [
         thisOperator[4], thisOperator[5], thisOperator[6],
-        thisOperator[8],
+        thisOperator[8], thisOperator[11],
       ]
     })) {
       return true;

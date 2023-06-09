@@ -69,7 +69,6 @@ export class Func308 implements IFuncOrigin {
 				[left, 18, 705, 0x754830],
 				[left, 210, 711, 0x985b32],
 				[left, 559, 658, 0xf3e5db],
-				[left, 581, 682, 0x0f0e0a],
 			]
 		],
 		oper: [

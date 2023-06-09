@@ -723,7 +723,7 @@ export class Script {
     };
 
     setCurrentScheme(schemeName: string, params?: Record<string, unknown>) {
-        if(params) {
+        if (params) {
             this.runtimeParams = params;
         } else {
             this.runtimeParams = null;
@@ -743,7 +743,7 @@ export class Script {
         let storeSettings = storeCommon.get('settings', {});
         if (storeSettings.defaultLaunchAppList && storeSettings.defaultLaunchAppList.length) {
             const packageName = storeSettings.defaultLaunchAppList[0]
-			console.log(`正在启动应用${packageName}`);
+            console.log(`正在启动应用${packageName}`);
             app.launchPackage(packageName);
         } else {
             myToast('未配置关联应用，不启动');
