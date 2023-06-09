@@ -434,7 +434,7 @@ export class Func313 implements IFuncOrigin {
       // 连线
       thisScript.myToast(`连线：${can}`);
       const toGesture = can.map(n => regionsOfSwipe[n]);
-      thisScript.helperBridge.regionGesture(toGesture, 1000, thisScript.scheme.commonConfig.afterClickDelayRandom);
+      thisScript.helperBridge.regionGesture(toGesture, random(1000, 2000), thisScript.scheme.commonConfig.afterClickDelayRandom);
       sleep(1000);
       return true;
     }
