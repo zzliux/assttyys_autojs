@@ -16,6 +16,12 @@ export class Func313 implements IFuncOrigin {
       type: 'list',
       data: ['鸣契石', '探查'],
       default: '鸣契石'
+    }, {
+      name: 'summon_qiling',
+      desc: '使用鸣契石时召唤哪个契灵',
+      type: 'list',
+      data: ['1 小黑', '2 茨球', '3 火灵', '4 镇墓兽'],
+      default: '4 镇墓兽'
     }]
   }, {
     desc: '式盘召唤配置',
@@ -228,22 +234,24 @@ export class Func313 implements IFuncOrigin {
       [center, 1280, 720, 472, 498, 545, 577, 1000], // 连线左下
     ]
   }, {
-    // 10 石头召唤选镇墓兽确认
+    // 10 石头召唤选契灵确认
     desc: [
       1280, 720,
       [
-        [center, 524, 623, 0xfee3bb],
-        [center, 597, 629, 0xe4d8c3],
-        [center, 669, 630, 0xd9c9b3],
-        [center, 729, 630, 0xf5efdc],
-        [center, 773, 626, 0xffe4c9],
-        [right, 1165, 628, 0xfefcea],
-        [right, 1196, 636, 0xfefcea],
+        [left, 44, 38, 0xf5e6a5],
+        [left, 65, 41, 0x8f5f33],
+        [right, 1187, 612, 0xe5dac4],
+        [right, 1199, 661, 0xe0d6bf],
+        [center, 554, 682, 0x22160d],
+        [center, 745, 681, 0x22160d],
       ]
     ],
     oper: [
-      [center, 1280, 720, 970, 286, 1087, 435, 1000],
-      [center, 1280, 720, 1151, 609, 1225, 667, 5000],
+      [center, 1280, 720, 151, 208, 276, 515, 1000], // 1 小黑
+      [center, 1280, 720, 403, 215, 533, 515, 1000], // 2 茨球
+      [center, 1280, 720, 657, 208, 791, 512, 1000], // 3 火灵
+      [center, 1280, 720, 921, 214, 1050, 510, 1000], // 4 镇墓兽
+      [center, 1280, 720, 1153, 601, 1227, 679, 1000], // 5 确认
     ]
   }, {
     // 11 探索地图进入契灵之境
@@ -339,12 +347,12 @@ export class Func313 implements IFuncOrigin {
         }
 
         const [p, q] = (thisConf[`preset_pair_探查`] as string).split(/[,，]/);
-        // console.log(`设置预设分组：${p}, ${q}`);
+        console.log(`设置探查预设分组：${p}, ${q}`);
         thisScript.global.preset_once_groupNum = parseInt(p?.trim(), 10);
         thisScript.global.preset_once_defaultNum = parseInt(q?.trim(), 10);
       } else {
         const [p, q] = (thisConf[`preset_pair_${arrFind[i]}`] as string).split(/[,，]/);
-        // console.log(`设置预设分组：${p}, ${q}`);
+        console.log(`设置${arrFind[i]}预设分组：${p}, ${q}`);
         thisScript.global.preset_once_groupNum = parseInt(p?.trim(), 10);
         thisScript.global.preset_once_defaultNum = parseInt(q?.trim(), 10);
       }
@@ -404,8 +412,6 @@ export class Func313 implements IFuncOrigin {
         desc: thisOperator[9].desc
       }]
     })) {
-      // gesture(1000, [[428, 283], [635, 144], [846, 294]])
-      // thisScript.helperBridge.regionGesture([thisOperator[3].oper[3], thisOperator[3].oper[4], thisOperator[3].oper[5]], 1000, thisScript.scheme.commonConfig.afterClickDelayRandom);
       const points = thisScript.findMultiColorEx('契灵_连线_推荐');
       const regionsOfRecommend = thisOperator[9].oper.slice(0, 5) // 0 ~ 4为推荐的查找区域
       const regionsOfSwipe = thisOperator[9].oper.slice(5, 10) // 5 ~ 9为连线的区域
@@ -430,19 +436,27 @@ export class Func313 implements IFuncOrigin {
         while (can.length < 3) {
           can.push(left.splice(random(0, left.length - 1), 1)[0]);
         }
+      } else {
+        // 超过3个取3个
+        can = can.slice(0, 3);
       }
       // 连线
-      thisScript.myToast(`连线：${can}`);
+      console.log(`连线：${can}`);
       const toGesture = can.map(n => regionsOfSwipe[n]);
-      thisScript.helperBridge.regionGesture(toGesture, random(1000, 2000), thisScript.scheme.commonConfig.afterClickDelayRandom);
+      thisScript.helperBridge.regionGesture(toGesture, random(1500, 2500), thisScript.scheme.commonConfig.afterClickDelayRandom);
       sleep(1000);
       return true;
     }
 
+
+    const qilingIndex = parseInt((thisConf.summon_qiling as string).split(' ')[0], 10) - 1;
     if (thisScript.oper({
       id: 313,
       name: '石头召唤确认',
-      operator: [thisOperator[10]]
+      operator: [{
+        desc: thisOperator[10].desc,
+        oper: [thisOperator[10].oper[qilingIndex], thisOperator[10].oper[4]]
+      }]
     })) {
       thisScript.global.qiling_last = null;
       thisScript.global.qiling_Position = null;
