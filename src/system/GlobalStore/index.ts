@@ -56,6 +56,7 @@ export type globalRootType = {
     buff_enable_page_flag: boolean; // 开启buff是否完成翻页
     team_up_Time: number;   //被邀请的次数
     game_area: string;  //  游戏区域
+    operate_finish_flag: boolean;  // 寄养完成操作flag 
 }
 
 export const globalRoot: globalRootType = {
@@ -116,4 +117,5 @@ export const globalRoot: globalRootType = {
     buff_enable_page_flag: false,
     team_up_Time: 0,
     game_area: '',
+    operate_finish_flag: false,
 }
