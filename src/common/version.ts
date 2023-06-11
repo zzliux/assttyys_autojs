@@ -796,9 +796,10 @@ export const versionList = [{
     version: '20230605_01',
     desc: '修复推送类型为ospPush时无法推送的问题'
 }, {
-    version: '20230610_02_dev',
+    version: '20230611_01',
     desc: `新增：契灵;
-修复：510式神录预设过滤与2退出结算冲突的问题`
+修复：510式神录预设过滤与2退出结算冲突的问题;
+优化：993应用登录支持同区多账号`
 }];
 
 export default versionList[versionList.length - 1].version;
