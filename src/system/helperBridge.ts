@@ -26,7 +26,7 @@ export interface IhelperBridge {
     helperPoly: object,
     getHelper(dw: number, dh: number),
     init: () => void,
-    regionClickTrans: (oper)=> any,
+    regionClickTrans: (oper) => any,
     setAutomator: (automator: IMyAutomator) => void,
     regionClick: (transedOper: [number, number, number, number, number][], randomSleep: number) => void,
     regionStepRandomClick: (transedOperStepRandom, randomSleep) => void,
@@ -59,7 +59,7 @@ export class helperBridge implements IhelperBridge {
             let regionHeight = null;
             let regionX = null;
             let regionY = null;
-            
+
             // if (oper[i][0] == center) {
             //     regionWidth = (oper[i][3] - oper[i][1]) * scale;
             //     regionHeight = (oper[i][4] - oper[i][2]) * scale;
@@ -102,6 +102,7 @@ export class helperBridge implements IhelperBridge {
 
     // [[1119, 504, 1227, 592, 2000]]
     // [[x1, y1, x2, y2, afterSleep, pressTimeout?]]
+    // 按顺序点击
     regionClick(transedOper: [number, number, number, number, number, number?][], randomSleep: number) {
         let self = this;
         transedOper.forEach(item => {
@@ -131,9 +132,9 @@ export class helperBridge implements IhelperBridge {
     }
 
     // [[
-	//     [69, 171, 170, 452, 1000, 2], // 最后一个参数，表示执行这个的概率，[0, 2)命中
-	//     [1104,72, 1200,687, 1000, 5], // [2, 5)命中 
-	// ]]
+    //     [69, 171, 170, 452, 1000, 2], // 最后一个参数，表示执行这个的概率，[0, 2)命中
+    //     [1104,72, 1200,687, 1000, 5], // [2, 5)命中 
+    // ]]
     regionStepRandomClick(transedOperStepRandom, randomSleep) {
         // 生成一套，然后给regionClick操作
         let oper = [];
@@ -173,20 +174,20 @@ export class helperBridge implements IhelperBridge {
     swipePath(paths) {
         // TODO root下需要补点，否则拖不过去
         // if (needRoot) {
-            // 使用rootautomator用画path
-            // ra获取报错的话就不管手势了，直接用Swipe代替
-            let time = 0;
-            paths.forEach(item => {
-                time += item.delay || 0;
-            });
-            this.automator.swipe(
-                paths[0].x, // x1
-                paths[0].y, // y1
-                paths[paths.length - 1].x, // x2
-                paths[paths.length - 1].y, // y2
-                time // duration
-            );
-            sleep(time + 10);
+        // 使用rootautomator用画path
+        // ra获取报错的话就不管手势了，直接用Swipe代替
+        let time = 0;
+        paths.forEach(item => {
+            time += item.delay || 0;
+        });
+        this.automator.swipe(
+            paths[0].x, // x1
+            paths[0].y, // y1
+            paths[paths.length - 1].x, // x2
+            paths[paths.length - 1].y, // y2
+            time // duration
+        );
+        sleep(time + 10);
         // } else {
         //     // 使用无障碍gesture画path
         //     let points = [[paths[0].x, paths[0].y]];
@@ -203,6 +204,28 @@ export class helperBridge implements IhelperBridge {
     // type0-竖直方向，1-水平方向 TODO
     regionBezierSwipe(transedOperS, transedOperE, duration, randomSleep, type) {
         return this.automator.regionBezierSwipe(transedOperS, transedOperE, duration, randomSleep, type);
+    }
+
+    // 使用oper[]按顺序滑动
+    regionGesture(transedOper: [number, number, number, number, number?, number?][], duration: number, randomSleep: number): void {
+        const points = transedOper.map(item => {
+            return getRegionBiasRnd2(item, [strHashToNum(device.getAndroidId(), item[0], item[2]), strHashToNum(device.getAndroidId(), item[1], item[3])], 1);
+        });
+        
+        console.log(`执行滑动操作 === ${points}`);
+        if (drawFloaty.instacne) {
+            let toDraw = [...points.map(point => ({
+                color: 'red',
+                region: [point[0] - 5, point[1] - 5, point[0] + 5, point[1] + 5]
+            })), ...transedOper.map(item => ({
+                color: 'orange',
+                region: [item[0], item[1], item[2], item[3]]
+            }))];
+            drawFloaty.draw(toDraw, Math.max(duration - 20, 300));
+            sleep(200);
+        }
+        this.automator.gesture(duration, ...points)
+        sleep(random(0, randomSleep || 0));
     }
 };
 

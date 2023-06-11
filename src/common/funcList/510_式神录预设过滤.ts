@@ -43,7 +43,7 @@ export class Func510 implements IFuncOrigin {
         }],
     }];
     operator: IFuncOperatorOrigin[] = [
-        {   // 检测是否为式神录
+        {   // 0 检测是否为式神录
             desc: [
                 1280, 720,
                 [
@@ -58,7 +58,7 @@ export class Func510 implements IFuncOrigin {
                     [left, 29, 673, 0x413028],
                 ]
             ]
-        }, {   // 式神录未展开 预设 侧栏
+        }, {  // 1 式神录未展开 预设 侧栏
             desc: [
                 1280, 720,
                 [
@@ -71,7 +71,7 @@ export class Func510 implements IFuncOrigin {
             oper: [
                 [right, 1280, 720, 340, 77, 413, 106, 1200]	// 点击预设
             ]
-        }, {   // 式神录已展开 预设 侧栏
+        }, {  // 2 式神录已展开 预设 侧栏
             desc:
                 [
                     1280, 720,
@@ -92,7 +92,7 @@ export class Func510 implements IFuncOrigin {
                 [left, 1280, 720, 24, 10, 65, 43, 1200],      //  退出
                 [right, 1280, 720, 1088, 88, 1244, 148, -1],    //  预设分组第一项区域
             ]
-        }, {   // 更改预设队伍确认框
+        }, {  // 3 更改预设队伍确认框
             desc:
                 [
                     1280, 720,
@@ -107,7 +107,7 @@ export class Func510 implements IFuncOrigin {
             oper: [
                 [center, 1280, 720, 711, 411, 812, 450, 1200]   //  点击确认
             ]
-        }, {   // 式神拓展包弹窗
+        }, {  // 4 式神拓展包弹窗
             desc:
                 [
                     1280, 720,
@@ -123,7 +123,7 @@ export class Func510 implements IFuncOrigin {
                 [center, 1280, 720, 417, 413, 439, 436, 1200],    //  30天不提示,
                 [center, 1280, 720, 910, 136, 944, 165, 1200],    //  关闭
             ]
-        }, {   // 检测_提示下载式神模型
+        }, {  // 5 检测_提示下载式神模型
             desc:
                 [
                     1280, 720,
@@ -139,7 +139,7 @@ export class Func510 implements IFuncOrigin {
             oper: [
                 [center, 1280, 720, 916, 144, 943, 167, 1200]   //  关闭
             ]
-        }, {   // 队伍预定锁定弹窗
+        }, {  // 6 队伍预定锁定弹窗
             desc: [
                 1280, 720,
                 [
@@ -153,28 +153,30 @@ export class Func510 implements IFuncOrigin {
                 ]
             ],
             oper: [
-                [center, 1280, 720, 550, 342, 572, 367, 1200],  //  今天不再提示
-                [center, 1280, 720, 592, 412, 682, 447, 1200]   //  点击确定
+                [center, 1280, 720, 550, 342, 572, 367, 1200],  // 今天不再提示
+                [center, 1280, 720, 592, 412, 682, 447, 1200]   // 点击确定
             ]
-        }, {     //分组
+        }, {  // 7 分组
             oper: [
-                [right, 1280, 720, 1107, 95, 1229, 141, 70],    //分组第一，像素相隔70
+                [right, 1280, 720, 1107, 95, 1229, 141, 70], // 分组第一，像素相隔70
             ]
-        }, {     //选预设
+        }, {  // 8 选预设
             oper: [
-                [right, 1280, 720, 975, 157, 1003, 176, 500],     //预设第一
-                [right, 1280, 720, 976, 306, 1001, 327, 500],     //预设第二
-                [right, 1280, 720, 978, 454, 1004, 482, 500],    //预设第三
-                [right, 1280, 720, 978, 606, 1001, 625, 500],    //预设第四
-
+                [right, 1280, 720, 975, 157, 1003, 176, 500], // 预设第一
+                [right, 1280, 720, 976, 306, 1001, 327, 500], // 预设第二
+                [right, 1280, 720, 978, 454, 1004, 482, 500], // 预设第三
+                [right, 1280, 720, 978, 606, 1001, 625, 500], // 预设第四
             ]
         }];
     operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
         let thisConf = thisScript.scheme.config['510'];
-        thisScript.oper({
+        if (thisScript.oper({
+            id: 510,
             name: '检测_弹窗',
             operator: [thisOperator[3], thisOperator[4], thisOperator[5], thisOperator[6]]
-        })
+        }) ) {
+            return true;
+        }
 
         if (thisScript.oper({
             name: '页面为式神录',
@@ -200,7 +202,12 @@ export class Func510 implements IFuncOrigin {
                     if (thisScript.global.change_shikigami_state === 'flushed') {
                         thisScript.helperBridge.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [500, 700], 500);
                         thisScript.helperBridge.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [500, 700], 500);
-                        let tureGroupNum = Number(thisConf.groupNum) - 1
+                        let tureGroupNum = null;
+                        if (!thisScript.global.preset_once_groupNum) {
+                            tureGroupNum = Number(thisConf.groupNum) - 1
+                        } else {
+                            tureGroupNum = Number(thisScript.global.preset_once_groupNum) - 1
+                        }
                         let oper = [[
                             thisOperator[7].oper[0][0],
                             thisOperator[7].oper[0][1] + (thisOperator[7].oper[0][4] * tureGroupNum),
@@ -210,9 +217,15 @@ export class Func510 implements IFuncOrigin {
                         ]];
                         thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
                         thisScript.global.change_shikigami_state = 'change_team_default_1';
+                        return true;
                     } else if (thisScript.global.change_shikigami_state.includes('change_team_default')) {
                         console.log(`式神录_当前选中队伍预设`);
-                        let trueDefaultNum = Number(thisConf.defaultNum) - 1;
+                        let trueDefaultNum = null;
+                        if (!thisScript.global.preset_once_defaultNum) {
+                            trueDefaultNum = Number(thisConf.defaultNum) - 1;
+                        } else {
+                            trueDefaultNum = Number(thisScript.global.preset_once_defaultNum) - 1;
+                        }
                         let oper = thisOperator[8].oper[trueDefaultNum];
                         //  需要点击两次
                         if (thisScript.global.change_shikigami_state === 'change_team_default_1') {
@@ -222,8 +235,11 @@ export class Func510 implements IFuncOrigin {
                         }
 
                         thisScript.helperBridge.regionClick([oper], thisScript.scheme.commonConfig.afterClickDelayRandom);
-
+                        return true;
                     } else if (thisScript.global.change_shikigami_state === 'finish') {
+                        thisScript.global.preset_once_groupNum = null;
+                        thisScript.global.preset_once_defaultNum = null;
+
                         return thisScript.oper({
                             name: '退出式神录',
                             operator: [{
@@ -231,7 +247,6 @@ export class Func510 implements IFuncOrigin {
                             }]
                         });
                     }
-
                 } else {//ocr模式
                     if (thisScript.global.change_shikigami_state === 'flushed') {
 
@@ -362,9 +377,6 @@ export class Func510 implements IFuncOrigin {
                     }
                 }
             }
-
-
-
         }
         return false;
     }
