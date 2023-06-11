@@ -2783,6 +2783,22 @@ const multiColor: IMultiColorOrigin = {
             ]
         ]
     },
+    "体力图标": {
+        region: [center, 1280, 720, 582, 2, 1269, 64],
+        desc: [
+            [
+                1280, 720,
+                [
+                    [center, 869, 23, 0xe86f2a],
+                    [center, 882, 23, 0xf47430],
+                    [center, 875, 36, 0xd34a22],
+                    [center, 888, 36, 0xfd6528],
+                    [center, 867, 37, 0x070906],
+                    [center, 882, 48, 0x1c2217],
+                ]
+            ]
+        ]
+    },
     "契灵_火灵": {
         region: [center, 1280, 720, 40, 444, 1138, 611],
         desc: [[

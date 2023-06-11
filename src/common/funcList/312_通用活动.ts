@@ -23,6 +23,12 @@ export class Func312 implements IFuncOrigin {
       type: 'text',
       default: '1,20',
       value: null,
+    },{
+      name: 'mod',
+      desc: '识别左上角活动说明图标（感叹号）才执行搜索，关闭时识别右上角体力图标',
+      type: 'switch',
+      default: true,
+      value: null,
     }]
   }]
   operator: IFuncOperatorOrigin[] = [{
@@ -46,7 +52,13 @@ export class Func312 implements IFuncOrigin {
   }];
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
     let thisConf = thisScript.scheme.config['312'];
-    if (thisScript.findMultiColor("活动说明的感叹号") && thisScript.getOcrDetector()) {
+    let truemod: string;
+    if (thisConf.mod){
+      truemod="活动说明的感叹号"
+    }else {
+      truemod="体力图标"
+    }
+    if (thisScript.findMultiColor(truemod) && thisScript.getOcrDetector()) {
       let result = thisScript.findText('.+', 0, thisOperator[0].oper[0], '包含');
       if (result.length === 0) {
         console.log(`未识别到任何字样`);
@@ -56,22 +68,13 @@ export class Func312 implements IFuncOrigin {
           console.log(`昵称历遍:${result[i].label}`)
         }
         let toClickRegion = null;
-        let fightForOne = thisScript.findTextByOcrResult("挑战", result, '包含')
-        let fightForTwo = thisScript.findTextByOcrResult("战斗", result, '包含')
+        let fightForOne = thisScript.findTextByOcrResult("战", result, '包含')
         if (fightForOne.length) {
           toClickRegion = [
             fightForOne[0].points[0].x,
             fightForOne[0].points[0].y,
             fightForOne[0].points[0].x,
             fightForOne[0].points[0].y + 65,
-            1000,
-          ]
-        } else if (fightForTwo.length) {
-          toClickRegion = [
-            fightForTwo[0].points[0].x,
-            fightForTwo[0].points[0].y,
-            fightForTwo[0].points[0].x,
-            fightForTwo[0].points[0].y + 65,
             1000,
           ]
         }
