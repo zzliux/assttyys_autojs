@@ -31,6 +31,7 @@ export type globalRootType = {
     jy_list_getTime_fault_count: number,
     jy_friends_enchantment_waitingtime: number,
     jy_enchantment_index: number,
+    jy_change_shikigami: 'change' | 'finish' | 'jy_flag',   //  寄养_是否更换养成式神(狗粮)
     back_courtyard_to_next_scheme: string,
     fm_kiss_boss_flag: boolean, //  逢魔 是否已击杀首领
     fm_boss_btn_click_cnt: number, // 点击逢魔首领按钮次数
@@ -92,6 +93,7 @@ export const globalRoot: globalRootType = {
     jy_list_getTime_fault_count: 0,
     jy_friends_enchantment_waitingtime: undefined,
     jy_enchantment_index: 0,
+    jy_change_shikigami: 'change',
     back_courtyard_to_next_scheme: '',
     fm_kiss_boss_flag: false,
     fm_boss_btn_click_cnt: 0,
