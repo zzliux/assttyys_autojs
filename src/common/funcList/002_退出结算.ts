@@ -172,6 +172,27 @@ export class Func002 implements IFuncOrigin {
 			]
 		],
 		notForCnt: true,
+	},
+	{
+		// 组队-胜利太鼓,斗技-胜利太鼓 - 适配
+		desc: [
+			1280, 720,
+			[
+				[center, 482, 104, 0x851b11],
+				[center, 480, 132, 0xcfc0aa],
+				[center, 514, 109, 0xc7b5a1],
+				[center, 429, 171, 0xd6c9b1],
+				[center, 510, 148, 0xab1c10],
+			]
+		],
+		operStepRandom: [
+			[
+				[center, 1280, 720, 124, 60, 1188, 363, 400, 5],
+				[center, 1280, 720, 90, 380, 380, 580, 400, 5],
+				[center, 1280, 720, 888, 359, 1204, 492, 400, 5],
+			]
+		],
+		notForCnt: true,
 	}
 		/*, { // 未打开的达摩
 				desc: [1280, 720,
