@@ -800,6 +800,10 @@ export const versionList = [{
     desc: `新增：契灵;
 修复：510式神录预设过滤与2退出结算冲突的问题;
 优化：993应用登录支持同区多账号`
+}, {
+    version: '20230614_01',
+    desc: `新增：寄养更换结界卡功能;
+修复：518自动签到无法领取签到奖励;`
 }];
 
 export default versionList[versionList.length - 1].version;
