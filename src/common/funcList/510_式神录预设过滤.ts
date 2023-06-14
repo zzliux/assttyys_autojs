@@ -217,7 +217,7 @@ export class Func510 implements IFuncOrigin {
                         ]];
                         thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
                         thisScript.global.change_shikigami_state = 'change_team_default_1';
-                        return true;
+                        // return true;
                     } else if (thisScript.global.change_shikigami_state.includes('change_team_default')) {
                         console.log(`式神录_当前选中队伍预设`);
                         let trueDefaultNum = null;
@@ -235,7 +235,7 @@ export class Func510 implements IFuncOrigin {
                         }
 
                         thisScript.helperBridge.regionClick([oper], thisScript.scheme.commonConfig.afterClickDelayRandom);
-                        return true;
+                        // return true;
                     } else if (thisScript.global.change_shikigami_state === 'finish') {
                         thisScript.global.preset_once_groupNum = null;
                         thisScript.global.preset_once_defaultNum = null;
