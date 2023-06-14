@@ -60,6 +60,10 @@ export type globalRootType = {
     team_up_Time: number;   //被邀请的次数
     game_area: string;  //  游戏区域
     operate_finish_flag: boolean;  // 寄养完成操作flag 
+    preset_once_groupNum: number | null;     // 一次性修改的预设分组
+    preset_once_defaultNum: number | null;     // 一次性修改的预设阵容
+    qiling_Position: number[] | null;   //  契灵的地图位置
+    qiling_last: number | null;     //  契灵的上次类型
 }
 
 export const globalRoot: globalRootType = {
@@ -124,4 +128,8 @@ export const globalRoot: globalRootType = {
     team_up_Time: 0,
     game_area: '',
     operate_finish_flag: false,
+    preset_once_groupNum: null,
+    preset_once_defaultNum: null,
+    qiling_Position: null,
+    qiling_last:null,
 }

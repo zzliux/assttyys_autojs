@@ -751,18 +751,28 @@ const SchemeList: IScheme[] = [
         afterCountOper: '不进行任何操作',
       },
     },
+  }, {
+    id: 66,
+    schemeName: '契灵',
+    list: [510, 0, 1, 51, 2, 3, 313, 29],
+    star: true,
+    config: {
+      '510': {
+        fastMode: true
+      }
+    }
   },
   {
     id: 99,
     schemeName: '伊吹之擂',
     list: [0, 3, 24, 99, 100],
   },
-  {
-    id: 101,
-    schemeName: '活动_宴场维和',
-    list: [0, 1, 2, 3, 24, 131],
-    star: true,
-  },
+  // {
+  //   id: 101,
+  //   schemeName: '活动_宴场维和',
+  //   list: [0, 1, 2, 3, 24, 131],
+  //   star: true,
+  // }
   // , {
   //     id: 101,
   //     groupName: '活动',

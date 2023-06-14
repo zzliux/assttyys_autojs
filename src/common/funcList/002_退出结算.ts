@@ -31,7 +31,7 @@ export class Func002 implements IFuncOrigin {
 	}];
 	operator: IFuncOperatorOrigin[] = [{
 		// 调整优先级，提高识别贪吃鬼的级别
-		// 左上角的贪吃鬼图标
+		// 0 左上角的贪吃鬼图标
 		desc: [1280, 720,
 			[
 				[left, 50, 66, 0x693430],
@@ -50,7 +50,7 @@ export class Func002 implements IFuncOrigin {
 		// 	]
 		// ],
 	}, {
-		// 左上角贪吃鬼，mumu截图
+		// 1 左上角贪吃鬼，mumu截图
 		desc: [1280, 720,
 			[
 				[left, 50, 66, 0x693430],
@@ -63,7 +63,7 @@ export class Func002 implements IFuncOrigin {
 			[right, 1280, 720, 1201, 102, 1278, 621, 400],
 		],
 	}, {
-		// 已打开的达摩，取点比较高
+		// 2 已打开的达摩，取点比较高
 		desc: [1280, 720,
 			[
 				[center, 482, 611, 0x3c82ca],
@@ -82,7 +82,7 @@ export class Func002 implements IFuncOrigin {
 			]
 		],
 		retest: 300
-	}, { // 已打开的达摩, 优先级最高
+	}, { // 3 已打开的达摩, 优先级最高
 		desc: [1280, 720,
 			[
 				[center, 482, 611, 0x3c82ca],
@@ -99,7 +99,7 @@ export class Func002 implements IFuncOrigin {
 		],
 		retest: 300
 	}, {
-		// 已打开的达摩 体服更新后的UI
+		// 4 已打开的达摩 体服更新后的UI
 		desc: [1280, 720,
 			[
 				[center, 438, 614, 0x3f84c9],
@@ -117,7 +117,7 @@ export class Func002 implements IFuncOrigin {
 		],
 		retest: 300
 	}, {
-		// 邀请好友确认
+		// 5 邀请好友确认
 		desc: [1280, 720,
 			[
 				[center, 460, 258, 0xcbb59e],
