@@ -123,7 +123,7 @@ export class Func501 implements IFuncOrigin {
 		// 庭院
 		desc: [1280, 720,
 			[
-				[left, 264, 41, 0x493738],
+				[left, 327,45, 0x7a5825],
 				[right, 1156, 37, 0xd7b28a],
 				[right, 1229, 48, 0xcfa676],
 				[right, 1228, 650, 0xd6c6c3],
