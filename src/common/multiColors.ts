@@ -2793,6 +2793,7 @@ const multiColor: IMultiColorOrigin = {
                     [left, 71, 267, 0x341d14],
                     [left, 60, 257, 0x3a2416],
                     [left, 113, 218, 0xf9c682],
+                    [left, 77, 265, 0xf7d54d],
                 ]
             ],
             [
@@ -2802,6 +2803,7 @@ const multiColor: IMultiColorOrigin = {
                     [center, 713, 267, 0x321b13],
                     [center, 751, 429, 0xf7d78b],
                     [center, 758, 231, 0xf6d388],
+                    [center, 719, 265, 0xf7d54d],
                 ]
             ]
         ]

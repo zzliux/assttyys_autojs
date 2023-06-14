@@ -369,6 +369,10 @@ const SchemeList: IScheme[] = [
       '503': {
         afterCountOper: '不进行任何操作',
       },
+      '998': {
+        change_enchantment_switch: false,
+        change_enchantment_type: '太鼓',
+      },
     },
   },
   {

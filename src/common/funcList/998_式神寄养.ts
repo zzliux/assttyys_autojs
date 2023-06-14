@@ -13,6 +13,28 @@ export class Func998 implements IFuncOrigin {
   id = 998;
   name = '式神寄养';
   desc = '阴阳寮式神寄养页面';
+  config = [
+    {
+      desc: '',
+      config: [
+        {
+          name: 'change_enchantment_switch',
+          desc: '更换结界卡开官',
+          type: 'switch',
+          default: false,
+          value: false,
+        },
+        {
+          name: 'change_enchantment_type',
+          desc: '更换结界卡的所属类型',
+          type: 'list',
+          data: ['太鼓', '斗鱼'],
+          default: '太鼓',
+          value: '太鼓',
+        },
+      ],
+    },
+  ];
   operator: IFuncOperatorOrigin[] = [
     {
       //	0 检测_是否有体力
@@ -49,7 +71,7 @@ export class Func998 implements IFuncOrigin {
       ],
     },
     {
-      //	2 检测_体力经验弹窗
+      //	2 检测_体力弹窗
       desc: [
         1280,
         720,
@@ -62,10 +84,13 @@ export class Func998 implements IFuncOrigin {
           [center, 782, 148, 0x6f5326],
           [center, 453, 678, 0x89341c],
           [center, 696, 675, 0x9cb9df],
+          [left, 297, 589, 0xe3e3da],
+          [center, 421, 271, 0x8d351f],
         ],
       ],
       oper: [
         [center, 1280, 720, 611, 476, 676, 519, 1200], //	点击领取
+        [center, 1280, 720, 956, 151, 994, 179, 1200], //  点击关闭
         [center, 1280, 720, 956, 151, 994, 179, 1200], //  点击关闭
       ],
     },
@@ -100,11 +125,10 @@ export class Func998 implements IFuncOrigin {
       ],
       oper: [
         [center, 1280, 720, 448, 609, 812, 671, 1200], //	点击 空白处
-        [center, 1280, 720, 957, 148, 996, 180, 1200], //	点击_关闭
       ],
     },
     {
-      // 5 点击式神寄养
+      // 5 点击 式神养成页 空式神寄养
       desc: [
         1280,
         720,
@@ -116,7 +140,7 @@ export class Func998 implements IFuncOrigin {
           [center, 756, 186, 0xac9b79],
         ],
       ],
-      oper: [[right, 1280, 720, 1142, 50, 1226, 129, 1200]],
+      oper: [[right, 1280, 720, 1142, 50, 1226, 129, 1200]], //  点击 空式神寄养
     },
     {
       //	6 检测_寄养的式神是否已经寄养结束
@@ -137,7 +161,7 @@ export class Func998 implements IFuncOrigin {
       ],
     },
     {
-      //	7 检测_式神寄养式神页
+      //	7 检测_式神寄养式页
       desc: [
         1280,
         720,
@@ -215,6 +239,7 @@ export class Func998 implements IFuncOrigin {
       ],
       oper: [
         [center, 1280, 720, 582, 270, 638, 400, 600], //  点击 式神养成
+        [center, 1280, 720, 890, 305, 917, 391, 600], //  点击 结界卡
       ],
     },
     {
@@ -232,19 +257,191 @@ export class Func998 implements IFuncOrigin {
         [center, 1280, 720, 904, 171, 939, 197, 1200], //  点击 结界卡奖励
       ],
     },
+    {
+      //  12 检测_是否狗粮满级了
+      desc: [
+        1280,
+        720,
+        [
+          [center, 933, 145, 0x605953],
+          [center, 323, 146, 0x625c55],
+          [center, 863, 254, 0xcbb59e],
+          [center, 420, 246, 0xcbb59e],
+          [center, 826, 426, 0xf4b25f],
+          [center, 589, 417, 0xdf6851],
+          [center, 744, 625, 0x68533e],
+        ],
+      ],
+      oper: [
+        [center, 1280, 720, 449, 415, 584, 448, 1200], //  点击 取消
+        [center, 1280, 720, 953, 145, 995, 183, 1200], //  点击 关闭
+      ],
+    },
+    {
+      //  13 检测_是否为结界卡界面
+      desc: [
+        1280,
+        720,
+        [
+          [left, 120, 76, 0x75542b],
+          [right, 1116, 109, 0xc7bdb2],
+          [center, 748, 64, 0x543b2b],
+          [right, 1150, 531, 0xb9b0a5],
+          [center, 562, 498, 0xc7bdb2],
+        ],
+      ],
+      oper: [
+        [right, 1280, 720, 1160, 96, 1202, 128, 1200], //  点击 关闭
+      ],
+    },
+    {
+      //  14 检测_结界卡界面_结界卡为空
+      desc: [
+        1280,
+        720,
+        [
+          [center, 850, 317, 0x452e20],
+          [center, 850, 205, 0x826c61],
+          [right, 1105, 100, 0xc7bdb3],
+          [left, 114, 71, 0x6b4d28],
+          [center, 747, 61, 0x543d2c],
+        ],
+      ],
+      oper: [
+        [center, 1280, 720, 381, 107, 486, 140, 1200], // 点击 结界卡类型下拉框
+      ],
+    },
+    {
+      //  15 检测_检测_结界卡界面_结界卡为空_下拉框已打开
+      desc: [
+        1280,
+        720,
+        [
+          [center, 844, 291, 0x452e20],
+          [center, 844, 211, 0x826c61],
+          [center, 575, 102, 0xc7bdb2],
+          [center, 466, 120, 0xe7d7c3],
+          [center, 490, 566, 0x825e49],
+          [center, 377, 192, 0xd7c9ba],
+        ],
+      ],
+      oper: [
+        [center, 1280, 720, 386, 248, 497, 278, 2000], // 点击 结界卡分类 太鼓
+        [center, 1280, 720, 392, 317, 491, 348, 2000], // 点击 结界卡分类 斗鱼
+        [left, 1280, 720, 278, 201, 465, 266, 2000], // 点击 第一个结界卡
+      ],
+    },
+    {
+      //  16 检测_结界卡已放置待激活
+      desc: [
+        1280,
+        720,
+        [
+          [center, 897, 276, 0xd0c8bf],
+          [center, 847, 208, 0x826c61],
+          [right, 1117, 117, 0xc7bdb2],
+          [center, 572, 107, 0xc7bdb2],
+          [right, 1088, 553, 0xfbf1b1],
+          [right, 1150, 563, 0xdec47e],
+          [right, 981, 605, 0x423128],
+        ],
+      ],
+      oper: [
+        [right, 1280, 720, 1062, 573, 1140, 638, 1200], //  点击激活
+      ],
+    },
+    {
+      //  17 检测_结界卡激活确认框
+      desc: [
+        1280,
+        720,
+        [
+          [center, 854, 188, 0x362d28],
+          [right, 1152, 561, 0x5c5235],
+          [right, 1109, 120, 0x524e49],
+          [center, 850, 255, 0xcbb59e],
+          [center, 430, 256, 0xcbb59e],
+          [center, 820, 436, 0xf4b25f],
+          [center, 580, 430, 0xdf6851],
+        ],
+      ],
+      oper: [
+        [center, 1280, 720, 704, 416, 820, 447, 1200], //  点击 确认
+      ],
+    },
+    {
+      //  18 检测_结界卡已激活
+      desc: [
+        1280,
+        720,
+        [
+          [center, 897, 276, 0xd0c8bf],
+          [center, 847, 208, 0x826c61],
+          [right, 1117, 117, 0xc7bdb2],
+          [center, 572, 107, 0xc7bdb2],
+          [right, 1088, 553, 0xf5eeae],
+          [right, 1150, 563, 0xddc27c],
+        ],
+      ],
+    },
+    {
+      //  19 检测_经验弹窗
+      desc: [
+        1280,
+        720,
+        [
+          [center, 332, 151, 0xeeddcc],
+          [center, 918, 159, 0xeddccc],
+          [center, 948, 556, 0xdfcebe],
+          [center, 372, 553, 0xdfcebe],
+          [center, 484, 133, 0x5d3c1f],
+          [center, 782, 148, 0x6f5326],
+          [center, 453, 678, 0x89341c],
+          [center, 696, 675, 0x9cb9df],
+          [center, 416, 193, 0xc2dbef],
+          [left, 292, 460, 0xffffff],
+        ],
+      ],
+    },
   ];
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
     let thisconf = thisScript.scheme.config['998'];
 
     if (
-      thisScript.global.jy_change_shikigami === 'change' &&
       thisScript.oper({
         id: 998,
-        name: '判断_是否为己方结界',
-        operator: [thisOperator[10]],
+        name: '检测_获取奖励',
+        operator: [
+          {
+            desc: thisOperator[4].desc,
+          },
+        ],
       })
     ) {
       return true;
+    }
+
+    if (
+      thisScript.global.jy_change_shikigami === 'change' &&
+      thisScript.oper({
+        id: 998,
+        name: '判断_是否为己方结界_点击式神育成',
+        operator: [
+          {
+            desc: thisOperator[10].desc,
+          },
+        ],
+      })
+    ) {
+      return thisScript.oper({
+        id: 998,
+        name: '点击式神育成',
+        operator: [
+          {
+            oper: [thisOperator[10].oper[0]],
+          },
+        ],
+      });
     }
 
     if (
@@ -259,8 +456,7 @@ export class Func998 implements IFuncOrigin {
         ],
       })
     ) {
-      if (thisScript.global.jy_change_shikigami === 'finish') {
-        thisScript.global.jy_change_shikigami = 'jy_flag';
+      if (thisScript.global.jy_change_shikigami === 'get_reward') {
         return thisScript.oper({
           id: 998,
           name: '退出式神寄养列表',
@@ -279,7 +475,7 @@ export class Func998 implements IFuncOrigin {
           operator: [thisOperator[9]],
         })
       ) {
-        thisScript.global.jy_change_shikigami = 'finish';
+        thisScript.global.jy_change_shikigami = 'get_reward';
         return true;
       }
 
@@ -310,12 +506,198 @@ export class Func998 implements IFuncOrigin {
         } else {
           // 狗粮没满级
           console.log('狗粮没满级');
-          thisScript.global.jy_change_shikigami = 'finish';
+          thisScript.global.jy_change_shikigami = 'get_reward';
           return true;
         }
       }
 
       return true;
+    }
+
+    if (
+      thisScript.oper({
+        id: 998,
+        name: '检测_是否狗粮满级了',
+        operator: [thisOperator[12]],
+      })
+    ) {
+      thisScript.global.jy_change_shikigami = 'change';
+      return true;
+    }
+
+    if (thisScript.global.jy_change_shikigami === 'get_reward') {
+      if (
+        thisScript.oper({
+          id: 998,
+          name: '获取体力奖励',
+          operator: [
+            thisOperator[0], //	0 检测_是否有体力
+            thisOperator[2], //	2 检测_体力弹窗
+          ],
+        })
+      ) {
+        return true;
+      } else {
+        if (thisScript.global.jy_experience_wine_pot_count < 3) {
+          if (
+            thisScript.oper({
+              id: 998,
+              name: '检测_是否有经验酒壶',
+              operator: [thisOperator[1]],
+            })
+          ) {
+            return true;
+          }
+        }
+
+        if (
+          thisScript.oper({
+            id: 998,
+            name: '检测_经验酒壶弹窗',
+            operator: [
+              {
+                desc: thisOperator[19].desc,
+                oper: thisOperator[2].oper,
+              },
+            ],
+          })
+        ) {
+          // 提取经验酒壶次数 + 1
+          thisScript.global.jy_experience_wine_pot_count += 1;
+          return true;
+        }
+
+        if (thisScript.global.jy_enchantment_experience_count < 1) {
+          if (
+            thisScript.oper({
+              id: 998,
+              name: '判断_是否有结界卡奖励',
+              operator: [thisOperator[11]],
+            })
+          ) {
+            thisScript.global.jy_enchantment_experience_count += 1;
+            return true;
+          }
+        }
+
+        if (
+          thisScript.oper({
+            id: 998,
+            name: '检测_寄养奖励',
+            operator: [thisOperator[3]],
+          })
+        ) {
+          // 获取寄养奖励是获取奖励的最后一步，获取成功后则开始更换结界卡逻辑
+          if (thisconf && thisconf.change_enchantment_switch) {
+            thisScript.global.jy_change_shikigami = 'change_enchantment';
+          } else {
+            thisScript.global.jy_change_shikigami = 'jy_flag';
+          }
+          
+          return true;
+        }
+      }
+    }
+
+    if (thisScript.global.jy_change_shikigami === 'change_enchantment') {
+      if (
+        thisScript.oper({
+          id: 998,
+          name: '更换结界卡',
+          operator: [
+            {
+              desc: thisOperator[10].desc,
+              oper: [thisOperator[10].oper[1]],
+            },
+          ],
+        })
+      ) {
+        return true;
+      }
+
+      if (
+        thisScript.oper({
+          id: 998,
+          name: '检测_结界卡激活确认框',
+          operator: [thisOperator[17]],
+        })
+      ) {
+        return true;
+      }
+
+      if (
+        thisScript.oper({
+          id: 998,
+          name: '检测_是否为结界卡界面',
+          operator: [
+            {
+              desc: thisOperator[13].desc,
+            },
+          ],
+        })
+      ) {
+        if (
+          thisScript.oper({
+            id: 998,
+            name: '检测_结界卡界面_结界卡为空_下拉框已打开',
+            operator: [
+              {
+                desc: thisOperator[15].desc,
+              },
+            ],
+          })
+        ) {
+          let change_enchantment_type_index =
+            thisconf && thisconf.change_enchantment_type === '斗鱼'
+              ? 1
+              : 0 || 0;
+          return thisScript.oper({
+            id: 998,
+            name: '点击 结界卡分类',
+            operator: [
+              {
+                oper: [
+                  thisOperator[15].oper[change_enchantment_type_index],
+                  thisOperator[15].oper[2],
+                ],
+              },
+            ],
+          });
+        }
+
+        if (
+          thisScript.oper({
+            id: 998,
+            name: '更换结界操作_点击下拉框',
+            operator: [thisOperator[14], thisOperator[16]],
+          })
+        ) {
+          return true;
+        }
+
+        if (
+          thisScript.oper({
+            id: 998,
+            name: '检测_结界卡已激活',
+            operator: [
+              {
+                desc: thisOperator[18].desc,
+              },
+            ],
+          })
+        ) {
+          thisScript.global.jy_change_shikigami = 'jy_flag';
+          return thisScript.oper({
+            id: 998,
+            name: '退出结界卡界面',
+            operator: [
+              {
+                oper: [thisOperator[13].oper[0]],
+              },
+            ],
+          });
+        }
+      }
     }
 
     if (thisScript.global.jy_change_shikigami === 'jy_flag') {
@@ -324,14 +706,11 @@ export class Func998 implements IFuncOrigin {
           id: 998,
           name: '检测是否为式神寄养列表',
           operator: [
-            thisOperator[0],
-            thisOperator[11],
-            thisOperator[1],
-            thisOperator[2],
-            thisOperator[3],
-            thisOperator[4],
+            {
+              desc: thisOperator[10].desc,
+              oper: [thisOperator[10].oper[0]],
+            },
             thisOperator[5],
-            thisOperator[10],
             thisOperator[6],
           ],
         })
