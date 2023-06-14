@@ -43,7 +43,6 @@ export class Func998 implements IFuncOrigin {
         720,
         [
           [center, 841, 490, 0x10100c],
-          [center, 840, 444, 0x691f0e],
           [center, 812, 459, 0x10100e],
           [center, 869, 457, 0x10100c],
           [center, 842, 480, 0x822f16],
@@ -344,6 +343,8 @@ export class Func998 implements IFuncOrigin {
           [right, 1088, 553, 0xfbf1b1],
           [right, 1150, 563, 0xdec47e],
           [right, 981, 605, 0x423128],
+          [center, 958, 604, 0x443228],
+          [center, 934, 640, 0x423128],
         ],
       ],
       oper: [
@@ -379,8 +380,10 @@ export class Func998 implements IFuncOrigin {
           [center, 847, 208, 0x826c61],
           [right, 1117, 117, 0xc7bdb2],
           [center, 572, 107, 0xc7bdb2],
-          [right, 1088, 553, 0xf5eeae],
-          [right, 1150, 563, 0xddc27c],
+          [right, 1150, 563, 0xdec47e],
+          [center, 946, 605, 0xc4a379],
+          [right, 986, 586, 0xd2af88],
+          [right, 974, 596, 0xbc9a73],
         ],
       ],
     },
@@ -587,13 +590,28 @@ export class Func998 implements IFuncOrigin {
             operator: [thisOperator[3]],
           })
         ) {
+          return true;
+        }
+
+        //	做延时识别
+        if (thisScript.global.checked_yard_count > 60) {
+          thisScript.global.checked_yard_count = 0;
+
           // 获取寄养奖励是获取奖励的最后一步，获取成功后则开始更换结界卡逻辑
           if (thisconf && thisconf.change_enchantment_switch) {
             thisScript.global.jy_change_shikigami = 'change_enchantment';
           } else {
             thisScript.global.jy_change_shikigami = 'jy_flag';
           }
-          
+
+          return true;
+        } else {
+          sleep(500);
+          if (!thisScript.global.checked_yard_count) {
+            thisScript.global.checked_yard_count = 1;
+          } else {
+            thisScript.global.checked_yard_count += 1;
+          }
           return true;
         }
       }
