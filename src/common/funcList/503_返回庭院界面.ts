@@ -204,11 +204,16 @@ export class Func503 implements IFuncOrigin {
 				[center, 1280, 720, 357, 535, 1045, 662, 1200]	//	点击空白处
 			]
 		}, {	// 15 式神录
-			desc: [1280, 720,
-				[[left, 114, 15, 0xaf8c56],
-				[left, 155, 29, 0xaf8c56],
-				[left, 183, 22, 0xae8b55],
-				[right, 1268, 16, 0x312421]]
+			desc: [
+				1280, 720,
+				[
+					[left, 114, 15, 0xaf8c56],
+					[left, 155, 29, 0xaf8c56],
+					[left, 183, 22, 0xae8b55],
+					[right, 1268, 16, 0x312421],
+					[left, 57, 643, 0xeae1d6],
+					[left, 69, 661, 0xfbefdf],
+				]
 			],
 			oper: [
 				[center, 1280, 720, 21, 9, 59, 43, 1000],
