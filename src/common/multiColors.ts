@@ -2808,6 +2808,31 @@ const multiColor: IMultiColorOrigin = {
             ]
         ]
     },
+    "寄养狗粮_空": {
+        region: [left, 1280, 720, 19,183, 1269,481],
+        desc: [
+            [
+                1280, 720,
+                [
+                    [center, 756, 203, 0x525252],
+                    [center, 756, 227, 0xd9bc99],
+                    [center, 778, 303, 0xc6c0ae],
+                    [center, 751, 290, 0x262420],
+                    [center, 760, 443, 0xdcbc96],
+                ]
+            ],
+            [
+                1280, 720,
+                [
+                    [center, 544, 203, 0x515151],
+                    [center, 546, 228, 0xd8bc9b],
+                    [center, 536, 290, 0x262420],
+                    [center, 543, 414, 0xc9c0ac],
+                    [center, 544, 445, 0xd5b48d],
+                ]
+            ]
+        ]
+    },
     "契灵_火灵": {
         region: [center, 1280, 720, 40, 444, 1138, 611],
         desc: [[
