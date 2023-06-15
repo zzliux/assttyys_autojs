@@ -179,18 +179,6 @@ export class Func998 implements IFuncOrigin {
     },
     {
       //	8 检测_式神育成是否不为空
-      desc: [
-        1280,
-        720,
-        [
-          [left, 112, 228, 0xf8d086],
-          [center, 324, 228, 0xf8d086],
-          [center, 542, 228, 0xf7d086],
-          [center, 752, 228, 0xf8d086],
-          [right, 968, 228, 0xf8d086],
-          [right, 1182, 228, 0xf8d086],
-        ],
-      ],
       oper: [
         [left, 1280, 720, 92, 299, 135, 333, 1200], //  第一个狗粮位置
         [left, 1280, 720, 297, 308, 352, 334, 1200], //  第二个狗粮位置
@@ -215,12 +203,13 @@ export class Func998 implements IFuncOrigin {
         ],
       ],
       oper: [
-        [center, 1280, 720, 466, 544, 516, 607, 1200], //	点击 第三个式神
-        [center, 1280, 720, 466, 544, 516, 607, 1200],
-        [center, 1280, 720, 466, 544, 516, 607, 1200],
-        [center, 1280, 720, 466, 544, 516, 607, 1200],
-        [center, 1280, 720, 466, 544, 516, 607, 1200],
-        [center, 1280, 720, 466, 544, 516, 607, 1200],
+        [center, 1280, 720, 472, 560, 495, 575, 1200], //	点击 第三个式神
+        [center, 1280, 720, 608, 559, 631, 574, 1200], //	点击 第四个式神
+        [center, 1280, 720, 745, 555, 769, 576, 1200], //	点击 第五个式神
+        [center, 1280, 720, 876, 556, 897, 572, 1200], //	点击 第六个式神
+        [center, 1280, 720, 1008, 558, 1032, 578, 1200], //	点击 第七个式神
+        [right, 1280, 720, 1041, 556, 1049, 592, -1], //  滑动开始
+        [right, 1280, 720, 896, 551, 908, 596, -1], //  滑动结束
       ],
     },
     {
@@ -471,50 +460,79 @@ export class Func998 implements IFuncOrigin {
         });
       }
 
-      if (
-        thisScript.oper({
-          id: 998,
-          name: '检测式神育成是否为空',
-          operator: [thisOperator[9]],
-        })
-      ) {
-        thisScript.global.jy_change_shikigami = 'get_reward';
+      console.log('检测式神育成是否不为空');
+      let fullLevelPoint = thisScript.findMultiColorEx('寄养狗粮_满级标识');
+      if (fullLevelPoint && fullLevelPoint.length > 0) {
+        console.log(`有狗粮满级了,清空狗粮`);
+
+        for (let i = 0; i < fullLevelPoint.length; i++) {
+          sleep(1000);
+
+          let oper = [
+            [
+              fullLevelPoint[i].x,
+              fullLevelPoint[i].y,
+              fullLevelPoint[i].x + 20,
+              fullLevelPoint[i].y + 20,
+              1200,
+            ],
+          ];
+          console.log(`清空满级狗粮`, i);
+          thisScript.helperBridge.regionClick(
+            oper,
+            thisScript.scheme.commonConfig.afterClickDelayRandom
+          );
+        }
+
         return true;
+      } else {
+        // 狗粮没满级
+        console.log('狗粮没满级');
       }
 
-      if (
-        thisScript.oper({
-          id: 998,
-          name: '检测式神育成是否不为空',
-          operator: [
-            {
-              desc: thisOperator[8].desc,
-            },
-          ],
-        })
-      ) {
-        console.log('检测式神育成是否不为空');
-        let point = thisScript.findMultiColor('寄养狗粮_满级标识');
-        if (point) {
-          console.log(`狗粮满级了,清空狗粮`);
+      let emptyPoint = thisScript.findMultiColorEx('寄养狗粮_空');
+      if (emptyPoint && emptyPoint.length > 0) {
+        let emptyCount = emptyPoint.length;
+
+        let shikigamiIndex = 6 - emptyCount;
+
+        if (shikigamiIndex === 5) {
+          // 需要滑动
+          thisScript.helperBridge.regionBezierSwipe(
+            thisOperator[9].oper[5],
+            thisOperator[9].oper[6],
+            [1200, 1250],
+            1000
+          );
+          sleep(1000);
           return thisScript.oper({
             id: 998,
-            name: '清空狗粮',
+            name: '缺一个狗粮补狗粮',
             operator: [
               {
-                oper: thisOperator[8].oper,
+                oper: [thisOperator[9].oper[4]],
               },
             ],
           });
         } else {
-          // 狗粮没满级
-          console.log('狗粮没满级');
-          thisScript.global.jy_change_shikigami = 'get_reward';
-          return true;
+          for (let i = 0; i < emptyCount; i++) {
+            sleep(1000);
+            thisScript.oper({
+              id: 998,
+              name: '补狗粮',
+              operator: [
+                {
+                  oper: [thisOperator[9].oper[shikigamiIndex]],
+                },
+              ],
+            });
+          }
         }
+        return true;
+      } else {
+        console.log('没有空位了');
+        thisScript.global.jy_change_shikigami = 'get_reward';
       }
-
-      return true;
     }
 
     if (
@@ -594,7 +612,7 @@ export class Func998 implements IFuncOrigin {
         }
 
         //	做延时识别
-        if (thisScript.global.checked_yard_count > 60) {
+        if (thisScript.global.checked_yard_count > 30) {
           thisScript.global.checked_yard_count = 0;
 
           // 获取寄养奖励是获取奖励的最后一步，获取成功后则开始更换结界卡逻辑

@@ -804,6 +804,9 @@ export const versionList = [{
     version: '20230614_01',
     desc: `新增：寄养更换结界卡功能;
 修复：518自动签到无法领取签到奖励;`
+}, {
+    version: '20230616_01',
+    desc: '优化：998换狗粮逻辑，优化518御魂已满情况'
 }];
 
 export default versionList[versionList.length - 1].version;
