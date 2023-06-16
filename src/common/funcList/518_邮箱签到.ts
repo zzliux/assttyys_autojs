@@ -303,7 +303,8 @@ export class Func518 implements IFuncOrigin {
     {
       //  17 检测_寮包奖励
       desc: [
-        1280, 720,
+        1280,
+        720,
         [
           [center, 895, 211, 0x37271f],
           [center, 370, 206, 0x38281c],
@@ -311,21 +312,22 @@ export class Func518 implements IFuncOrigin {
           [center, 915, 450, 0x8e6a41],
           [center, 872, 257, 0xb29b82],
           [center, 675, 204, 0xecdba8],
-        ]
+        ],
       ],
       oper: [
         [left, 1280, 720, 255, 575, 1058, 664, 1200], //  点击空白处
-      ]
+      ],
     },
     {
       //  18 检测_御魂加成
       desc: [
-        1280, 720,
+        1280,
+        720,
         [
           [left, 287, 528, 0x07ace3],
           [left, 252, 535, 0xed7600],
           [left, 250, 510, 0x109ace],
-        ]
+        ],
       ],
       oper: [
         [left, 1280, 720, 256, 500, 271, 530, 1200], //  点击_御魂加成
@@ -334,60 +336,82 @@ export class Func518 implements IFuncOrigin {
     {
       //  19 检测_御魂_获取奖励
       desc: [
-				1280, 720,
-				[
-					[center, 526, 194, 0xfbf1ca],
-					[center, 620, 196, 0xfbf4d0],
-					[center, 872, 300, 0xb29b82],
-					[center, 418, 288, 0xb69f86],
-					[center, 464, 406, 0xc9b298],
-				]
-			],
+        1280,
+        720,
+        [
+          [center, 526, 194, 0xfbf1ca],
+          [center, 620, 196, 0xfbf4d0],
+          [center, 872, 300, 0xb29b82],
+          [center, 418, 288, 0xb69f86],
+          [center, 464, 406, 0xc9b298],
+        ],
+      ],
       oper: [
         [left, 1280, 720, 255, 575, 1058, 664, 1200], //  点击空白处
-      ]
+      ],
     },
     {
       //  20 检测_勾玉卡奖励
       desc: [
-        1280, 720,
+        1280,
+        720,
         [
           [center, 745, 515, 0xc6a98c],
           [center, 760, 507, 0xe92b12],
           [center, 739, 494, 0xb80e0e],
-        ]
+        ],
       ],
       oper: [
-        [center, 1280, 720, 739,502, 756,516, 1200] //  点击勾玉卡
-      ]
+        [center, 1280, 720, 739, 502, 756, 516, 1200], //  点击勾玉卡
+      ],
     },
     {
       //  21 检测_体力奖励
       desc: [
-        1280, 720,
+        1280,
+        720,
         [
           [center, 760, 518, 0x1e241c],
           [center, 737, 510, 0x0e100c],
           [center, 757, 507, 0xfc5825],
           [center, 736, 493, 0xe05424],
-        ]
+        ],
       ],
       oper: [
-        [center, 1280, 720, 739,502, 756,516, 1200] //  点击体力
-      ]
+        [center, 1280, 720, 739, 502, 756, 516, 1200], //  点击体力
+      ],
     },
     {
       //  22 检测_同兰之心
       desc: [
-        1280, 720,
+        1280,
+        720,
         [
           [left, 277, 531, 0xbe3636],
           [left, 263, 500, 0x942020],
           [left, 282, 513, 0xf1bd69],
-        ]
+        ],
       ],
       oper: [
         [left, 1280, 720, 256, 500, 271, 530, 1200], //  点击_同兰之心
+      ],
+    },
+    {
+      //  23 检测_御魂是否满了
+      desc: [
+        1280, 720,
+        [
+          [center, 832, 249, 0xcbb59e],
+          [center, 831, 464, 0xcbb59e],
+          [center, 685, 415, 0xf4b25f],
+          [center, 595, 430, 0xf4b25f],
+          [center, 455, 464, 0xcbb59e],
+          [left, 133, 662, 0x655743],
+          [left, 277, 154, 0x59534d],
+        ]
+      ],
+      oper: [
+        [center, 1280, 720, 594,405, 685,435, 1200],  //点击 确认
       ]
     }
   ];
@@ -412,32 +436,95 @@ export class Func518 implements IFuncOrigin {
         ],
       })
     ) {
+
+      if (thisScript.global.checked_yard_count < 3) {
+        return thisScript.oper({
+          id: 518,
+          name: '检测_是否有邮件或签到',
+          operator: [
+            thisOperator[4],
+          ],
+        });
+      }
+
       return thisScript.oper({
         id: 518,
         name: '检测_是否有邮件或签到',
-        operator: [thisOperator[4], thisOperator[9], thisOperator[16], 
-        thisOperator[18], thisOperator[20], thisOperator[21], thisOperator[22]],
+        operator: [
+          thisOperator[9],
+          thisOperator[13],
+          thisOperator[16],
+          thisOperator[18],
+          thisOperator[20],
+          thisOperator[21],
+          thisOperator[22],
+        ],
       });
     }
 
     if (
       thisScript.oper({
         id: 518,
-        name: '检测_领取全部奖励弹窗',
+        name: '检测_领取奖励弹窗',
         operator: [
           thisOperator[5],
-          thisOperator[6],
           thisOperator[7],
           thisOperator[8],
           thisOperator[9],
           thisOperator[10],
           thisOperator[11],
-          
-          
         ],
       })
     ) {
       return true;
+    }
+
+    if (thisScript.oper({
+      id: 518,
+      name: '检测_御魂是否满了',
+      operator: [thisOperator[23]
+      ]
+    })) {
+      thisScript.global.checked_yard_count = 3;
+    }
+
+    if (thisScript.oper({
+      id: 518,
+      name: '检测_领取全部奖励弹窗',
+      operator: [
+        {
+          desc: thisOperator[6].desc
+        }
+      ]
+    })) {
+      //	超过3次领取失败 判断为御魂满了
+      if (thisScript.global.checked_yard_count > 3) {
+        return thisScript.oper({
+          id: 518,
+          name: '关闭弹窗',
+          operator: [
+            {
+              oper: [thisOperator[5].oper[1]]
+            }
+          ]
+        });
+      } else {
+        if (!thisScript.global.checked_yard_count) {
+          thisScript.global.checked_yard_count = 1;
+        } else {
+          thisScript.global.checked_yard_count += 1;
+        }
+
+        return thisScript.oper({
+          id: 518,
+          name: '检测_领取全部奖励弹窗',
+          operator: [
+            {
+              oper: thisOperator[6].oper
+            }
+          ]
+        });
+      }
     }
 
     if (
@@ -448,12 +535,10 @@ export class Func518 implements IFuncOrigin {
           thisOperator[10],
           thisOperator[11],
           thisOperator[12],
-          thisOperator[13],
           thisOperator[14],
           thisOperator[15],
           thisOperator[17],
           thisOperator[19],
-          
         ],
       })
     ) {

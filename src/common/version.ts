@@ -801,9 +801,12 @@ export const versionList = [{
 修复：510式神录预设过滤与2退出结算冲突的问题;
 优化：993应用登录支持同区多账号`
 }, {
-    version: '20230615_01',
-    desc: `修复：510式神录预设过滤不太正常;
-修复：ID太长导致打开buff界面失败`
+    version: '20230614_01',
+    desc: `新增：寄养更换结界卡功能;
+修复：518自动签到无法领取签到奖励;`
+}, {
+    version: '20230616_01',
+    desc: '优化：998换狗粮逻辑，优化518御魂已满情况'
 }];
 
 export default versionList[versionList.length - 1].version;

@@ -10,7 +10,7 @@ export class Func999 implements IFuncOrigin {
 	name = '式神育成';
 	desc = '打开阴阳寮式神育成页面';
 	operator: IFuncOperatorOrigin[] = [
-		{ // 在首页打开菜单
+		{ // 0 在首页打开菜单
 			desc: [1280, 720,
 				[[right, 1211, 606, 0x885f46],
 				[right, 1205, 624, 0x987777],
@@ -20,7 +20,7 @@ export class Func999 implements IFuncOrigin {
 			oper: [
 				[right, 1280, 720, 1168, 592, 1230, 690, 1200]	// 在首页打开菜单
 			]
-		}, { // 点击阴阳寮
+		}, { // 1 点击阴阳寮
 			desc: [1280, 720,
 				[[center, 560, 608, 0xbc3433],
 				[center, 542, 639, 0x7b1515],
@@ -30,7 +30,7 @@ export class Func999 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 544, 612, 594, 661, 1200]	// 点击阴阳寮
 			]
-		}, { // 点击阴阳寮，另外一种图标
+		}, { // 2 点击阴阳寮，另外一种图标
 			desc: [1280, 720,
 				[
 					[right, 1223, 662, 0xdbcbc7],
@@ -42,7 +42,7 @@ export class Func999 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 544, 612, 594, 661, 1200]	// 点击阴阳寮
 			]
-		}, { // 点击结界
+		}, { // 3 点击结界
 			desc: [
 				1280, 720,
 				[
@@ -55,18 +55,21 @@ export class Func999 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 1067, 624, 1129, 689, 1200]
 			]
-		}, { //	判断_是否为己方结界
-			desc: [1280, 720,
-				[[center, 611, 300, 0x0c0804],
-				[center, 913, 305, 0x0c0804],
-				[left, 318, 305, 0x0c0804],
-				[center, 613, 294, 0xe1cf6b],
-				[left, 202, 462, 0x10100c]]
+		}, {
+			// 4 庭院已打开菜单，另另外一种图标
+			desc: [
+				1280, 720,
+				[
+					[right, 1223, 658, 0xdac9c4],
+					[right, 1155, 41, 0xd6b187],
+					[center, 451, 631, 0xe6e3e1],
+					[center, 683, 657, 0xda6b29],
+				]
 			],
 			oper: [
-				[center, 1280, 720, 582, 270, 638, 400, 600]
+				[center, 1280, 720, 544, 612, 594, 661, 1200]	// 点击阴阳寮
 			]
-		}, { // 判断_奖励弹窗
+		}, { // 5 判断_奖励弹窗
 			desc:
 				[
 					1280, 720,
@@ -82,7 +85,7 @@ export class Func999 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 370, 516, 930, 674, 600]
 			]
-		}, { // 判断_领用寮资金
+		}, { // 6 判断_领用寮资金
 			desc:
 				[
 					1280, 720,
@@ -98,25 +101,11 @@ export class Func999 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 586, 442, 692, 470, 600] // 点击确认
 			]
-		}, {
-			// 庭院已打开菜单，另另外一种图标
-			desc: [
-				1280, 720,
-				[
-					[right, 1223, 658, 0xdac9c4],
-					[right, 1155, 41, 0xd6b187],
-					[center, 451, 631, 0xe6e3e1],
-					[center, 683, 657, 0xda6b29],
-				]
-			],
-			oper: [
-				[center, 1280, 720, 544, 612, 594, 661, 1200]	// 点击阴阳寮
-			]
 		}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: '进入式神寄养结界',
-			operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[4], thisOperator[5], thisOperator[6], thisOperator[7]]
+			operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[4], thisOperator[5], thisOperator[6]]
 		})) {
 			return true;
 		}
