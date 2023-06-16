@@ -136,7 +136,7 @@ export class Func313 implements IFuncOrigin {
         [right, 1193, 583, 0xddd0ba],
         [right, 1007, 648, 0xe2d6bf],
         [right, 1046, 670, 0x382015],
-        [right, 875, 563, 0x403930],
+        // [right, 875, 563, 0x403930],
       ]
     ],
     oper: [
