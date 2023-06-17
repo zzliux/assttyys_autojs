@@ -438,13 +438,15 @@ export class Func518 implements IFuncOrigin {
     ) {
 
       if (thisScript.global.checked_yard_count < 3) {
-        return thisScript.oper({
+        if (thisScript.oper({
           id: 518,
-          name: '检测_是否有邮件或签到',
+          name: '检测_是否有邮件',
           operator: [
             thisOperator[4],
           ],
-        });
+        })) {
+          return true;
+        }
       }
 
       return thisScript.oper({
