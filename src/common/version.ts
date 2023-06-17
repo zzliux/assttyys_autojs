@@ -808,8 +808,9 @@ export const versionList = [{
     version: '20230616_01',
     desc: '优化：998换狗粮逻辑，优化518御魂已满情况'
 }, {
-    version: '20230618_01_dev',
-    desc: '修复：适配新契灵'
+    version: '20230617_02_dev',
+    desc: `修复：适配新契灵；
+优化：40关闭buff，50开启buff增加点击后延时(fix #12)`
 }];
 
 export default versionList[versionList.length - 1].version;
