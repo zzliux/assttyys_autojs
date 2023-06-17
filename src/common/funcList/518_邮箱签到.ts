@@ -487,7 +487,7 @@ export class Func518 implements IFuncOrigin {
       operator: [thisOperator[23]
       ]
     })) {
-      thisScript.global.checked_yard_count = 3;
+      thisScript.global.checked_yard_count = 4;
     }
 
     if (thisScript.oper({
