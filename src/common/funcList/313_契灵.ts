@@ -109,9 +109,11 @@ export class Func313 implements IFuncOrigin {
         [right, 1181, 598, 0xfef4e6],
         [right, 1197, 613, 0xfef4e6],
         [right, 1202, 600, 0xfef4e6],
-        [right, 1161, 642, 0xe4652b],
-        [right, 1171, 650, 0xe85f29],
         [right, 1189, 648, 0xfdf3e5],
+        [left, 43, 40, 0xf5e5a6],
+        [right, 1236, 29, 0xd4ae83],
+        [right, 1042, 597, 0xc3a888],
+        [right, 1204, 627, 0xfef4e6],
       ]
     ],
     oper: [
@@ -120,7 +122,7 @@ export class Func313 implements IFuncOrigin {
   }, {
     // 3 契灵式神录 
     oper: [
-      [center, 1280, 720, 944, 568, 982, 600, 1000], // 契灵式神录 
+      [center, 1280, 720, 1030, 563, 1071, 608, 1000], // 契灵式神录 
       [center, 1280, 720, 15, 1000, -1, -1, -1], // 找色后加范围
       [center, 1280, 720, 1160, 475, 1198, 502, 500], // 石头召唤
     ]
@@ -129,16 +131,16 @@ export class Func313 implements IFuncOrigin {
     desc: [
       1280, 720,
       [
-        [center, 846, 645, 0xd9caa1],
-        [center, 870, 633, 0xeadfae],
-        [center, 867, 663, 0xc4aa88],
-        [center, 861, 648, 0x533332],
-        [right, 1174, 641, 0xff8f2f],
-        [right, 1197, 606, 0xfef4e6],
+        [left, 42, 39, 0xf6e8a9],
+        [left, 337, 33, 0x352e23],
+        [right, 1193, 583, 0xddd0ba],
+        [right, 1007, 648, 0xe2d6bf],
+        [right, 1046, 670, 0x382015],
+        // [right, 875, 563, 0x403930],
       ]
     ],
     oper: [
-      [center, 1280, 720, 1154, 594, 1235, 665, 1000],
+      [center, 1280, 720, 1142, 577, 1243, 676, 1000],
     ]
   }, {
     // 5 结契失败
