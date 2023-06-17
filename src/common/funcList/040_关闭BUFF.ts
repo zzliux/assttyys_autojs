@@ -50,7 +50,7 @@ export class Func040 implements IFuncOrigin {
 			let point = thisScript.findMultiColor('开启的BUFF') || null
 			if (point) {
 				thisScript.helperBridge.regionClick([
-					[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], 1500]
+					[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], 1000]
 				], thisScript.scheme.commonConfig.afterClickDelayRandom);
 				return true
 			} else {
