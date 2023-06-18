@@ -487,7 +487,8 @@ export class Func518 implements IFuncOrigin {
       operator: [thisOperator[23]
       ]
     })) {
-      thisScript.global.checked_yard_count = 3;
+      thisScript.global.checked_yard_count = 4;
+      thisScript.doPush(thisScript, { text: '御魂已满，无法收取邮件奖励', before() { thisScript.myToast('正在上传数据'); } });
     }
 
     if (thisScript.oper({
