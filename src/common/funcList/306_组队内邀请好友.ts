@@ -30,17 +30,17 @@ export class Func306 implements IFuncOrigin {
       type: 'switch',
       default: false
     }, {
-      name: 'inviteNameTwo',
-      desc: '第二位好友昵称',
-      type: 'text',
-      default: '第二位昵称'
-    }, {
       name: 'selectAreaTwo',
       desc: '第二位好友所在区域',
       type: 'list',
       data: ['好友', '跨区'],
       default: '好友',
       value: null,
+    }, {
+      name: 'inviteNameTwo',
+      desc: '第二位好友昵称',
+      type: 'text',
+      default: '第二位昵称'
     }, {
       name: 'next_scheme',
       desc: '下一个方案',
@@ -129,7 +129,7 @@ export class Func306 implements IFuncOrigin {
       if (thisScript.getOcrDetector()) {
         let selectArea = thisScript.findText(thisConf.selectArea as string, 0, thisOperator[1].oper[0], '模糊');
         if (selectArea.length === 0) {
-          console.log(`找不到好友按钮`);
+          console.log(`找不到第一位（好友/跨区）按钮`);
           thisScript.helperBridge.regionClick([thisOperator[3].oper[0]], thisScript.scheme.commonConfig.afterClickDelayRandom);
           return false;
         } else {
@@ -174,56 +174,59 @@ export class Func306 implements IFuncOrigin {
           }
           if (toClickRegion === null) {
             console.log(`未识别到第一位昵称:${thisConf.inviteName}`);
-            return false;
           }
           toClickRegion && thisScript.helperBridge.regionClick([toClickRegion], thisScript.scheme.commonConfig.afterClickDelayRandom);
-          let findInvNameTwo = thisScript.findTextByOcrResult(thisConf.inviteNameTwo as string, result, '包含')
+
           //邀请里点击第二位好友
-          let selectAreaTwo = thisScript.findText(thisConf.selectAreaTwo as string, 0, thisOperator[1].oper[0], '模糊');
-          if (selectAreaTwo.length === 0) {
-            console.log(`找不到第二位好友按钮`);
-            thisScript.helperBridge.regionClick([thisOperator[3].oper[0]], thisScript.scheme.commonConfig.afterClickDelayRandom);
-            return false;
-          } else {
-            let p = {
-              x: (selectAreaTwo[0].points[0].x + selectAreaTwo[0].points[1].x) / 2,
-              y: (selectAreaTwo[0].points[0].y + selectAreaTwo[0].points[3].y) / 2,
+          if (thisConf.secondPlayer) {
+            let selectAreaTwo = thisScript.findText(thisConf.selectAreaTwo as string, 0, thisOperator[1].oper[0], '模糊');
+            if (selectAreaTwo.length === 0) {
+              console.log(`找不到第二位（好友/跨区）按钮`);
+              thisScript.helperBridge.regionClick([thisOperator[3].oper[0]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+              return false;
+            } else {
+              let p = {
+                x: (selectAreaTwo[0].points[0].x + selectAreaTwo[0].points[1].x) / 2,
+                y: (selectAreaTwo[0].points[0].y + selectAreaTwo[0].points[3].y) / 2,
+              }
+              let lx = p.x - 5;
+              let ly = p.y - 5;
+              let rx = p.x + 5;
+              let ry = p.y + 5;
+              let toClick = [
+                lx > 0 ? lx : 0,
+                ly > 0 ? ly : 0,
+                rx,
+                ry,
+                1000
+              ];
+              thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
             }
-            let lx = p.x - 5;
-            let ly = p.y - 5;
-            let rx = p.x + 5;
-            let ry = p.y + 5;
-            let toClick = [
-              lx > 0 ? lx : 0,
-              ly > 0 ? ly : 0,
-              rx,
-              ry,
-              1000
-            ];
-            thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
+            thisScript.keepScreen();
+            result = thisScript.findText('.+', 0, thisOperator[1].oper[1], '包含');
+            let findInvNameTwo = thisScript.findTextByOcrResult(thisConf.inviteNameTwo as string, result, '包含')
+            if (findInvNameTwo.length) {
+              toClickRegionTwo = [
+                findInvNameTwo[0].points[0].x,
+                findInvNameTwo[0].points[0].y,
+                findInvNameTwo[0].points[0].x,
+                findInvNameTwo[0].points[0].y + 65,
+                1000,
+              ]
+            }
+            if (toClickRegionTwo === null) {
+              console.log(`未识别到第二位昵称:${thisConf.inviteNameTwo}`);
+            }
+            toClickRegionTwo && thisScript.helperBridge.regionClick([toClickRegionTwo], thisScript.scheme.commonConfig.afterClickDelayRandom);
           }
-          if (findInvNameTwo.length) {
-            toClickRegionTwo = [
-              findInvNameTwo[0].points[0].x,
-              findInvNameTwo[0].points[0].y,
-              findInvNameTwo[0].points[0].x,
-              findInvNameTwo[0].points[0].y + 65,
-              1000,
-            ]
-          }
-          if (toClickRegionTwo === null) {
-            console.log(`未识别到第二位昵称:${thisConf.inviteName}`);
-            return false;
-          }
-          toClickRegionTwo && thisScript.helperBridge.regionClick([toClickRegionTwo], thisScript.scheme.commonConfig.afterClickDelayRandom);
-          if (toClickRegion && thisScript.oper({
-            id: 306,
-            name: '邀请按钮',
-            operator: [{
-              oper: [thisOperator[1].oper[2]]
-            }]
-          })) {
-            return true;
+          if (toClickRegion || toClickRegionTwo) {
+            return thisScript.oper({
+              id: 306,
+              name: '邀请按钮',
+              operator: [{
+                oper: [thisOperator[1].oper[2]]
+              }]
+            });
           }
         }
       }
