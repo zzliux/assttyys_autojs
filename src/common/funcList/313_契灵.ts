@@ -292,7 +292,7 @@ export class Func313 implements IFuncOrigin {
     }) && thisScript.oper({
       id: 313,
       name: '契灵界面_探查',
-      operator: [{ desc: thisOperator[2].desc }]
+      operator: [{ desc: thisOperator[2].desc, retest: 500 }]
     })) {
       if (thisScript.global.qiling_Position) {
         thisScript.helperBridge.regionClick([thisScript.global.qiling_Position], thisScript.scheme.commonConfig.afterClickDelayRandom);

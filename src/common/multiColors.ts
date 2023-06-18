@@ -528,6 +528,15 @@ const multiColor: IMultiColorOrigin = {
                     [right, 1167, 88, 0xebd0ce],
                     [right, 1182, 91, 0xe8d1d1],
                 ]
+            ],
+            [
+                1280, 720,
+                [
+                    [right, 1189, 82, 0xe9d4d0],
+                    [right, 1177, 82, 0x9f3b5e],
+                    [right, 1192, 95, 0x9b4067],
+                    [right, 1200, 74, 0xe8d4cf],
+                ]
             ]
         ]
     },
