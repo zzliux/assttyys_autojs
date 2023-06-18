@@ -19,19 +19,21 @@ export class Func001 implements IFuncOrigin {
 		}],
 	}];
 	operator: IFuncOperatorOrigin[] = [{
-		desc: [1280,720,
-			[[right,1124,698,0xd0af86],
-			[right,1240,702,0xcead83],
-			[right,1191,596,0xa46149],
-			[right,1182,586,0xf7e6c3],
-			[center,360,699,0x241818],
-			[left,32,23,0xdbb48b]]
+		desc: [1280, 720,
+			[
+				[right, 1124, 698, 0xd0af86],
+				[right, 1240, 702, 0xcead83],
+				[right, 1191, 596, 0xa46149],
+				[right, 1182, 586, 0xf7e6c3],
+				[center, 360, 699, 0x241818],
+				[left, 32, 23, 0xdbb48b]
+			]
 		],
 		// 0-方向, 1-左上角x, 2-左上角y, 3-右下角x, 4-右下角y, 5-点击后延迟
 		oper: [
-			[right, 1280, 720, 1137,542, 1228,632, 2000], // 准备
-			[left, 1280, 720, 22,19, 52,47, 500], // 左上角返回
-			[center, 1280, 720, 683,401, 795,442, 500], // 确认
+			[right, 1280, 720, 1137, 542, 1228, 632, 2000], // 准备
+			[left, 1280, 720, 22, 19, 52, 47, 500], // 左上角返回
+			[center, 1280, 720, 683, 401, 795, 442, 500], // 确认
 		]
 	}, {
 		// 手动状态
@@ -47,10 +49,10 @@ export class Func001 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[left, 1280, 720, 37,637, 86,686, 1000]
+			[left, 1280, 720, 37, 637, 86, 686, 1000]
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]) : boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisconf = thisScript.scheme.config['1'];
 		if (thisconf.exitBeforeReady) {
 			return thisScript.oper({

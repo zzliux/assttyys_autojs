@@ -30,8 +30,17 @@ export class Func050 implements IFuncOrigin {
 			data: ['觉醒', '御魂', '金币', '经验'],
 			default: '经验'
 		}]
+	}, {
+		desc: '准备界面下开启buff',
+		config: [{
+			name: 'ready_once_buff',
+			desc: '是否在准备界面下开启buff，运行一次后不再运行，启用需将本功能排在“001准备”前',
+			type: 'switch',
+			default: false,
+		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{
+		// 0 buff界面
 		desc: [1280, 720,
 			[
 				[center, 352, 526, 0x9c977e],
@@ -47,7 +56,8 @@ export class Func050 implements IFuncOrigin {
 			[center, 1280, 720, 0, 0, 855 - 782, 431 - 415, 2000],
 			[center, 1280, 720, 937, 272, 1160, 531, 500],
 		]
-	}, {//被横幅遮挡的御魂BUFF 一种
+	}, {
+		// 1 被横幅遮挡的御魂BUFF 一种
 		desc: [
 			1280, 720,
 			[
@@ -61,7 +71,7 @@ export class Func050 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 774, 210, 852, 231, 1000],
 		]
-	},{//被横幅遮挡的御魂BUFF 二种
+	}, {// 2 被横幅遮挡的御魂BUFF 二种
 		desc: [
 			1280, 720,
 			[
@@ -75,18 +85,33 @@ export class Func050 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 774, 210, 852, 231, 1000],
 		]
+	}, {
+		// 3 准备界面
+		desc: [1280, 720,
+			[
+				[right, 1124, 698, 0xd0af86],
+				[right, 1240, 702, 0xcead83],
+				[right, 1191, 596, 0xa46149],
+				[right, 1182, 586, 0xf7e6c3],
+				[center, 360, 699, 0x241818],
+				[left, 32, 23, 0xdbb48b]
+			]
+		],
+		oper: [
+			[left, 1280, 720, 119, 659, 150, 712, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
+		const thisconf = thisScript.scheme.config['50'];
 		if (thisScript.oper({
 			name: 'BUFF界面',
 			operator: [{
 				desc: thisOperator[0].desc
 			}]
 		})) {
-			const thisconf = thisScript.scheme.config['50'];
 			if (thisconf.buff_type === '御魂' && thisScript.oper({
 				name: '被横幅遮挡的御魂BUFF',
-				operator: [thisOperator[1],thisOperator[2]]
+				operator: [thisOperator[1], thisOperator[2]]
 			})) {
 				return true;
 			}
@@ -95,6 +120,7 @@ export class Func050 implements IFuncOrigin {
 				thisScript.helperBridge.regionClick([
 					[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], 1000]
 				], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.global.opened_buff = true;
 				return true;
 			} else {
 				thisScript.helperBridge.regionClick([thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
@@ -102,12 +128,22 @@ export class Func050 implements IFuncOrigin {
 					thisScript.setCurrentScheme(thisconf.next_scheme as string);
 					thisScript.myToast(`切换方案为[${thisconf.next_scheme}]`);
 					thisScript.rerun();
-				} else {
+				} else if (thisconf && !thisconf.ready_once_buff) {
 					thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 					thisScript.stop();
 				}
 				return true;
 			}
 		}
+
+		if (thisconf && thisconf.ready_once_buff && !thisScript.global.opened_buff) {
+			return thisScript.oper({
+				id: 50,
+				name: '准备界面开buff',
+				operator: [thisOperator[3]]
+			});
+		}
+
+		return false;
 	}
 }
