@@ -233,8 +233,8 @@ export class Func510 implements IFuncOrigin {
                         } else {
                             thisScript.global.change_shikigami_state = 'finish';
                         }
-
                         thisScript.helperBridge.regionClick([oper], thisScript.scheme.commonConfig.afterClickDelayRandom);
+                        return true;
                     } else if (thisScript.global.change_shikigami_state === 'finish') {
                         thisScript.global.preset_once_groupNum = null;
                         thisScript.global.preset_once_defaultNum = null;
