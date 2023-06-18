@@ -21,8 +21,17 @@ export class Func040 implements IFuncOrigin {
 			type: 'scheme',
 			default: '寮突破',
 		}]
+	}, {
+		desc: '准备界面下关闭buff',
+		config: [{
+			name: 'ready_once_buff',
+			desc: '是否在准备界面下关闭buff，运行一次后不再运行，启用需将本功能排在“001准备”前',
+			type: 'switch',
+			default: false,
+		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{
+		// 0 buff界面
 		desc: [1280, 720,
 			[
 				[center, 352, 526, 0x9c977e],
@@ -38,8 +47,24 @@ export class Func040 implements IFuncOrigin {
 			[center, 1280, 720, 0, 0, 855 - 782, 431 - 415, 2000],
 			[center, 1280, 720, 110, 120, 338, 549, 500],
 		]
+	}, {
+		// 1 准备界面
+		desc: [1280, 720,
+			[
+				[right, 1124, 698, 0xd0af86],
+				[right, 1240, 702, 0xcead83],
+				[right, 1191, 596, 0xa46149],
+				[right, 1182, 586, 0xf7e6c3],
+				[center, 360, 699, 0x241818],
+				[left, 32, 23, 0xdbb48b]
+			]
+		],
+		oper: [
+			[left, 1280, 720, 119, 659, 150, 712, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
+		const thisconf = thisScript.scheme.config['40'];
 		if (thisScript.oper({
 			name: 'BUFF界面',
 			operator: [{
@@ -55,7 +80,6 @@ export class Func040 implements IFuncOrigin {
 				return true
 			} else {
 				thisScript.helperBridge.regionClick([thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
-				let thisconf = thisScript.scheme.config['40'];
 				if (thisconf && thisconf.scheme_switch_enabled) {
 					thisScript.setCurrentScheme(thisconf.next_scheme as string);
 					thisScript.myToast(`切换方案为[${thisconf.next_scheme}]`);
@@ -69,5 +93,15 @@ export class Func040 implements IFuncOrigin {
 				return false
 			}
 		}
+
+		if (thisconf && thisconf.ready_once_buff && !thisScript.global.closed_buff) {
+			return thisScript.oper({
+				id: 40,
+				name: '准备界面关buff',
+				operator: [thisOperator[1]]
+			});
+		}
+
+		return false;
 	}
 }

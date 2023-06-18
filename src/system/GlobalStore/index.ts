@@ -64,6 +64,8 @@ export type globalRootType = {
     preset_once_defaultNum: number | null;     // 一次性修改的预设阵容
     qiling_Position: number[] | null;   //  契灵的地图位置
     qiling_last: number | null;     //  契灵的上次类型
+    opened_buff: boolean; // 是否已执行开启buff
+    closed_buff: boolean; // 是否已执行关闭buff
 }
 
 export const globalRoot: globalRootType = {
@@ -131,5 +133,7 @@ export const globalRoot: globalRootType = {
     preset_once_groupNum: null,
     preset_once_defaultNum: null,
     qiling_Position: null,
-    qiling_last:null,
+    qiling_last: null,
+    opened_buff: false,
+    closed_buff: false,
 }
