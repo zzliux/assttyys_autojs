@@ -8,7 +8,7 @@ const right = 2;
 export class Func312 implements IFuncOrigin {
   id = 312;
   name = '通用活动';
-  desc: '截取右下角识别是否有“挑战”“进攻”字样（需要ocr）';
+  desc: '识别到左上角感叹号或者右上角体力图标后，再识别右下角是否有“战”字样（需要ocr）';
   config = [{
     desc: '',
     config: [{
@@ -22,12 +22,6 @@ export class Func312 implements IFuncOrigin {
       desc: '目标时间（输入数字，逗号分隔）',
       type: 'text',
       default: '1,20',
-      value: null,
-    },{
-      name: 'mod',
-      desc: '识别左上角活动说明图标（感叹号）才执行搜索，关闭时识别右上角体力图标',
-      type: 'switch',
-      default: true,
       value: null,
     }]
   }]
@@ -52,13 +46,7 @@ export class Func312 implements IFuncOrigin {
   }];
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
     let thisConf = thisScript.scheme.config['312'];
-    let truemod: string;
-    if (thisConf.mod){
-      truemod="活动说明的感叹号"
-    }else {
-      truemod="体力图标"
-    }
-    if (thisScript.findMultiColor(truemod) && thisScript.getOcrDetector()) {
+    if ((thisScript.findMultiColor("活动说明的感叹号") || thisScript.findMultiColor("体力图标")) && thisScript.getOcrDetector()) {
       let result = thisScript.findText('.+', 0, thisOperator[0].oper[0], '包含');
       if (result.length === 0) {
         console.log(`未识别到任何字样`);
@@ -96,10 +84,10 @@ export class Func312 implements IFuncOrigin {
         return false;
       } else {
         let realTime = String(result[0].label).split(':');
-        if (Number.isNaN(realTime[0])&& Number.isNaN(realTime[1])){
+        if (Number.isNaN(realTime[0]) && Number.isNaN(realTime[1])) {
           console.log("非数字，等待5秒继续检测");
           sleep(5000);
-        }else if(Number(realTime[0])==Number(time[0]) && Number(realTime[1])<=Number(time[1]) || Number(realTime[0])<Number(time[0])){
+        } else if (Number(realTime[0]) == Number(time[0]) && Number(realTime[1]) <= Number(time[1]) || Number(realTime[0]) < Number(time[0])) {
           return thisScript.oper({
             id: 312,
             name: '退出',
@@ -107,7 +95,7 @@ export class Func312 implements IFuncOrigin {
               oper: [thisOperator[0].oper[2], thisOperator[0].oper[3]]
             }]
           }, 0)
-        }else {
+        } else {
           sleep(5000);
         }
       }

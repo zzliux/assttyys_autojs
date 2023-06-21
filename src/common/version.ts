@@ -817,6 +817,10 @@ export const versionList = [{
 },{
     version: '20230618_02',
     desc: `优化：多个好友邀请的逻辑（影响现有的方案）`
+},{
+    version: '20230622',
+    desc: `修复：契灵石头召唤后即使相同契灵也会换预设
+优化：精简了通用活动`
 }];
 
 export default versionList[versionList.length - 1].version;

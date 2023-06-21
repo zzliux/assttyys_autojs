@@ -8,6 +8,7 @@ const right = 2;
 export class Func313 implements IFuncOrigin {
   id = 313;
   name = '契灵';
+  desc = '需自行设置好“结契设置”';
   config = [{
     desc: '召唤配置',
     config: [{
@@ -22,21 +23,6 @@ export class Func313 implements IFuncOrigin {
       type: 'list',
       data: ['1 小黑', '2 茨球', '3 火灵', '4 镇墓兽'],
       default: '4 镇墓兽'
-    }]
-  }, {
-    desc: '式盘召唤配置',
-    config: [{
-      name: 'shipan_sort',
-      desc: '式盘选择',
-      type: 'list',
-      data: ['小', '中', '大'],
-      default: '小'
-    }, {
-      name: 'line_sort',
-      desc: '连线优先级',
-      type: 'list',
-      data: ['优先非推荐', '优先推荐'],
-      default: '优先非推荐'
     }]
   },
   {
@@ -381,74 +367,74 @@ export class Func313 implements IFuncOrigin {
       return true;
     }
 
-    // 选式盘，超过3次点着没反应，那就停止脚本并osp推送
-    const shipanIndex = { '小': 0, '中': 1, '大': 2 }[thisConf.shipan_sort as string];
-    let shipanCurCnt = 0;
-    let shipanMaxCount = 3;
-    while (thisScript.oper({
-      id: 313,
-      name: '契灵战斗_选式盘',
-      operator: [{
-        desc: thisOperator[7].desc,
-        oper: [thisOperator[7].oper[shipanIndex]]
-      }]
-    })) {
-      shipanCurCnt++;
-      thisScript.keepScreen();
-      if (shipanCurCnt >= shipanMaxCount) {
-        thisScript.myToast(`连续执行${shipanMaxCount}次挑战后未开始，脚本自动停止`);
-        thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-        thisScript.stop();
-        sleep(2000);
-        return false;
-      }
-    }
-    if (shipanCurCnt) {
-      return true;
-    }
+    // // 选式盘，超过3次点着没反应，那就停止脚本并osp推送
+    // const shipanIndex = { '小': 0, '中': 1, '大': 2 }[thisConf.shipan_sort as string];
+    // let shipanCurCnt = 0;
+    // let shipanMaxCount = 3;
+    // while (thisScript.oper({
+    //   id: 313,
+    //   name: '契灵战斗_选式盘',
+    //   operator: [{
+    //     desc: thisOperator[7].desc,
+    //     oper: [thisOperator[7].oper[shipanIndex]]
+    //   }]
+    // })) {
+    //   shipanCurCnt++;
+    //   thisScript.keepScreen();
+    //   if (shipanCurCnt >= shipanMaxCount) {
+    //     thisScript.myToast(`连续执行${shipanMaxCount}次挑战后未开始，脚本自动停止`);
+    //     thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+    //     thisScript.stop();
+    //     sleep(2000);
+    //     return false;
+    //   }
+    // }
+    // if (shipanCurCnt) {
+    //   return true;
+    // }
 
-    if (thisScript.oper({
-      id: 313,
-      name: '契灵划线_场景',
-      operator: [{
-        desc: thisOperator[9].desc
-      }]
-    })) {
-      const points = thisScript.findMultiColorEx('契灵_连线_推荐');
-      const regionsOfRecommend = thisOperator[9].oper.slice(0, 5) // 0 ~ 4为推荐的查找区域
-      const regionsOfSwipe = thisOperator[9].oper.slice(5, 10) // 5 ~ 9为连线的区域
-      const recommend = []; // 推荐数组
-      let can = []; // 建议数组
-      for (let i = 0; i < points.length; i++) {
-        const regionIndex = indexOfRegion(points[i], regionsOfRecommend);
-        if (regionIndex >= 0) {
-          recommend.push(regionIndex);
-        }
-      }
+    // if (thisScript.oper({
+    //   id: 313,
+    //   name: '契灵划线_场景',
+    //   operator: [{
+    //     desc: thisOperator[9].desc
+    //   }]
+    // })) {
+    //   const points = thisScript.findMultiColorEx('契灵_连线_推荐');
+    //   const regionsOfRecommend = thisOperator[9].oper.slice(0, 5) // 0 ~ 4为推荐的查找区域
+    //   const regionsOfSwipe = thisOperator[9].oper.slice(5, 10) // 5 ~ 9为连线的区域
+    //   const recommend = []; // 推荐数组
+    //   let can = []; // 建议数组
+    //   for (let i = 0; i < points.length; i++) {
+    //     const regionIndex = indexOfRegion(points[i], regionsOfRecommend);
+    //     if (regionIndex >= 0) {
+    //       recommend.push(regionIndex);
+    //     }
+    //   }
 
-      if ('优先推荐' === thisConf.line_sort) {
-        can = recommend;
-      } else if ('优先非推荐' === thisConf.line_sort) {
-        can = [0, 1, 2, 3, 4].filter(n => (recommend.indexOf(n) < 0));
-      }
+    //   if ('优先推荐' === thisConf.line_sort) {
+    //     can = recommend;
+    //   } else if ('优先非推荐' === thisConf.line_sort) {
+    //     can = [0, 1, 2, 3, 4].filter(n => (recommend.indexOf(n) < 0));
+    //   }
 
-      // 能连的小于三个，从剩下的里面补
-      if (can.length < 3) {
-        const left = [0, 1, 2, 3, 4].filter(n => (can.indexOf(n) < 0));
-        while (can.length < 3) {
-          can.push(left.splice(random(0, left.length - 1), 1)[0]);
-        }
-      } else {
-        // 超过3个取3个
-        can = can.slice(0, 3);
-      }
-      // 连线
-      console.log(`连线：${can}`);
-      const toGesture = can.map(n => regionsOfSwipe[n]);
-      thisScript.helperBridge.regionGesture(toGesture, random(1500, 2500), thisScript.scheme.commonConfig.afterClickDelayRandom);
-      sleep(1000);
-      return true;
-    }
+    //   // 能连的小于三个，从剩下的里面补
+    //   if (can.length < 3) {
+    //     const left = [0, 1, 2, 3, 4].filter(n => (can.indexOf(n) < 0));
+    //     while (can.length < 3) {
+    //       can.push(left.splice(random(0, left.length - 1), 1)[0]);
+    //     }
+    //   } else {
+    //     // 超过3个取3个
+    //     can = can.slice(0, 3);
+    //   }
+    //   // 连线
+    //   console.log(`连线：${can}`);
+    //   const toGesture = can.map(n => regionsOfSwipe[n]);
+    //   thisScript.helperBridge.regionGesture(toGesture, random(1500, 2500), thisScript.scheme.commonConfig.afterClickDelayRandom);
+    //   sleep(1000);
+    //   return true;
+    // }
 
 
     const qilingIndex = parseInt((thisConf.summon_qiling as string).split(' ')[0], 10) - 1;
@@ -460,7 +446,6 @@ export class Func313 implements IFuncOrigin {
         oper: [thisOperator[10].oper[qilingIndex], thisOperator[10].oper[4]]
       }]
     })) {
-      thisScript.global.qiling_last = null;
       thisScript.global.qiling_Position = null;
       return true;
     }
@@ -470,19 +455,19 @@ export class Func313 implements IFuncOrigin {
 
 
 
-/**
- * 返回point在第几个region里，如果都不在，返回-1
- * @param point 
- * @param regions 
- * @returns 
- */
-function indexOfRegion(point: { x: number, y: number }, regions: number[][]): number {
-  const { x, y } = point;
-  for (let i = 0; i < regions.length; i++) {
-    const region = regions[i];
-    if (x >= region[0] && x <= region[2] && y >= region[1] && y <= region[3]) {
-      return i;
-    }
-  }
-  return -1;
-}
+// /**
+//  * 返回point在第几个region里，如果都不在，返回-1
+//  * @param point
+//  * @param regions
+//  * @returns
+//  */
+// function indexOfRegion(point: { x: number, y: number }, regions: number[][]): number {
+//   const { x, y } = point;
+//   for (let i = 0; i < regions.length; i++) {
+//     const region = regions[i];
+//     if (x >= region[0] && x <= region[2] && y >= region[1] && y <= region[3]) {
+//       return i;
+//     }
+//   }
+//   return -1;
+// }
