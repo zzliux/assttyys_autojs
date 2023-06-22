@@ -2943,7 +2943,7 @@ const multiColor: IMultiColorOrigin = {
     //     ]],
     // },
     '右下角锁定阵容': {
-        region: [center, 1280, 720, 734, 530, 1280, 720],
+        region: [center, 1280, 720, 734, 530, 1279, 719],
         desc: [
             [1280, 720,
                 [
