@@ -2852,7 +2852,7 @@ const multiColor: IMultiColorOrigin = {
     },
     "契灵_茨球": {
         region: [center, 1280, 720, 40, 444, 1138, 611],
-        desc: [[1280, 720,
+        desc: [ [1280, 720,
             [
                 [center, 713, 520, 0xffffff],
                 [center, 718, 520, 0xf1e7c8],
