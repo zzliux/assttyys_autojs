@@ -111,7 +111,26 @@ export class MyFloaty {
                     media.scanFile(path);
                     script.myToast(`截图已保存至${path}`);
                 });
+                return false;
             });
+
+        if (context.packageName.match(/debugplayer/)) {
+            this.fb.addItem('ViewLogConsole')
+                .setIcon('@drawable/ic_assignment_black_48dp')
+                //图标着色
+                .setTint('#FFFFFF')
+                .setColor('#FFCCCC')
+                .onClick((view, name) => {
+                    var i = new android.content.Intent(activity, activity.class);
+                    i.addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK);
+                    i.addFlags(android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    context.startActivity(i);
+                    setTimeout(() => {
+                        app.startActivity("console");
+                    }, 500);
+                    return false;
+                });
+        }
 
 
         this.fb.setAllButtonPadding(6);
