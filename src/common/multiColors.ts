@@ -2805,7 +2805,17 @@ const multiColor: IMultiColorOrigin = {
                     [center, 867, 37, 0x070906],
                     [center, 882, 48, 0x1c2217],
                 ]
-            ]
+            ],
+            [
+                1280, 720,
+                [
+                    [right, 1068, 27, 0xf08134],
+                    [right, 1064, 32, 0xe26629],
+                    [right, 1084, 34, 0xf77a2e],
+                    [right, 1066, 46, 0x0e100b],
+                    [right, 1081, 54, 0x161a11],
+                ]
+            ],
         ]
     },
     "契灵_火灵": {
@@ -2863,24 +2873,38 @@ const multiColor: IMultiColorOrigin = {
             ]
         ]]
     },
-    '契灵_连线_推荐': {
-        region: [center, 1280, 720, 355, 26, 975, 627],
-        desc: [[
-            1280, 720,
-            [
-                [center, 786, 489, 0xfbae14],
-                [center, 798, 501, 0xf7d708],
-                [center, 818, 498, 0xffba17],
-                [center, 814, 489, 0xfeae14],
+    // '契灵_连线_推荐': {
+    //     region: [center, 1280, 720, 355, 26, 975, 627],
+    //     desc: [[
+    //         1280, 720,
+    //         [
+    //             [center, 786, 489, 0xfbae14],
+    //             [center, 798, 501, 0xf7d708],
+    //             [center, 818, 498, 0xffba17],
+    //             [center, 814, 489, 0xfeae14],
+    //         ]
+    //     ], [1280, 720,
+    //         [
+    //             [center, 450, 248, 0xfbae14],
+    //             [center, 456, 247, 0xffae14],
+    //             [center, 482, 256, 0xfdbd15],
+    //             [center, 475, 243, 0xff9922],
+    //         ]
+    //     ]],
+    // },
+    '右下角锁定阵容': {
+        region: [center, 1280, 720, 1014, 0, 1134, 104],
+        desc: [
+            [1280, 720,
+                [
+                    [right, 1068, 27, 0xf08134],
+                    [right, 1064, 32, 0xe26629],
+                    [right, 1084, 34, 0xf77a2e],
+                    [right, 1066, 46, 0x0e100b],
+                    [right, 1081, 54, 0x161a11],
+                ]
             ]
-        ], [1280, 720,
-            [
-                [center, 450, 248, 0xfbae14],
-                [center, 456, 247, 0xffae14],
-                [center, 482, 256, 0xfdbd15],
-                [center, 475, 243, 0xff9922],
-            ]
-        ]],
+        ],
     }
 }
 

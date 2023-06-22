@@ -821,6 +821,9 @@ export const versionList = [{
     version: '20230622',
     desc: `修复：契灵石头召唤后即使相同契灵也会换预设
 优化：精简了通用活动`
+},{
+    version: '20230622_01',
+    desc: `优化：通用活动识图范围`
 }];
 
 export default versionList[versionList.length - 1].version;

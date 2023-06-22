@@ -8,7 +8,7 @@ const right = 2;
 export class Func312 implements IFuncOrigin {
   id = 312;
   name = '通用活动';
-  desc: '识别到左上角感叹号或者右上角体力图标后，再识别右下角是否有“战”字样（需要ocr）';
+  desc: '识别到“左上角感叹号”或“右上角体力”或“右下角锁定阵容”图标后，再识别右下角是否有“战”字样（需要ocr）';
   config = [{
     desc: '',
     config: [{
@@ -46,7 +46,8 @@ export class Func312 implements IFuncOrigin {
   }];
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
     let thisConf = thisScript.scheme.config['312'];
-    if ((thisScript.findMultiColor("活动说明的感叹号") || thisScript.findMultiColor("体力图标")) && thisScript.getOcrDetector()) {
+    if ((thisScript.findMultiColor("活动说明的感叹号") || thisScript.findMultiColor("体力图标") ||
+      thisScript.findMultiColor("右下角锁定阵容")) && thisScript.getOcrDetector()) {
       let result = thisScript.findText('.+', 0, thisOperator[0].oper[0], '包含');
       if (result.length === 0) {
         console.log(`未识别到任何字样`);
