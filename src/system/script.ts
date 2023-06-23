@@ -293,7 +293,6 @@ export class Script {
                 desc: helperBridge.helper.GetCmpColorArray(desc[0], desc[1], desc[2])
             };
         }
-        console.log(thisMultiDetectColor);
         this.multiDetectColors = thisMultiDetectColor;
     }
 
