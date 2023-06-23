@@ -1,6 +1,7 @@
 import { IScheme } from '@/interface/IScheme';
 import { IhelperBridge } from '@/system/helperBridge';
 import type { Script } from '@/system/script';
+import script from '@/system/script';
 
 import { storeCommon } from '@/system/store';
 import { getWidthPixels, getHeightPixels } from '@auto.pro/core';
@@ -13,6 +14,7 @@ export function requestMyScreenCapture(callback: Function, helperBridge: Ihelper
     requestScreenCaptureAsync(getWidthPixels() < getHeightPixels()).then(function (success: boolean) {
         if (success) {
             helperBridge.init();
+            script.initMultiDetectColors(); // 多点比色初始化要在helperbridge后才能进行
         }
         callback(success);
     });

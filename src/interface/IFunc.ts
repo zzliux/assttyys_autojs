@@ -14,7 +14,7 @@ export interface IFuncConfigOrigin {
 export interface IFuncOperatorOrigin {
 	desc?: [number, number, 
 		[number, number, number, number][]
-	];
+	] | string; // 如果是string的话表示从multiDetectColors.ts里面引用
 	oper?: [number, number, number, number, number, number, number, number][];
 	operStepRandom?: [number, number, number, number, number, number, number, number, number][][];
 	retest?: number;
@@ -22,7 +22,7 @@ export interface IFuncOperatorOrigin {
 }
 
 export interface IFuncOperator {
-	desc?: [number, number, number, number][];
+	desc?: [number, number, number, number][] | string;
 	oper?: [number, number, number, number, number][];
 	operStepRandom?: [number, number, number, number, number, number, number, number, number][][];
 	retest?: number;
@@ -37,6 +37,7 @@ export interface IFuncOrigin {
 	config?: IFuncConfigOrigin[];
 	operator?: IFuncOperatorOrigin[];
 	operatorFunc?(thisScript: Script, thisOperator: IFuncOperator[]): boolean;
+	transed?: boolean;
 }
 
 export interface IFunc {

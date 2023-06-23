@@ -19,16 +19,7 @@ export class Func001 implements IFuncOrigin {
 		}],
 	}];
 	operator: IFuncOperatorOrigin[] = [{
-		desc: [1280, 720,
-			[
-				[right, 1124, 698, 0xd0af86],
-				[right, 1240, 702, 0xcead83],
-				[right, 1191, 596, 0xa46149],
-				[right, 1182, 586, 0xf7e6c3],
-				[center, 360, 699, 0x241818],
-				[left, 32, 23, 0xdbb48b]
-			]
-		],
+		desc: '准备界面',
 		// 0-方向, 1-左上角x, 2-左上角y, 3-右下角x, 4-右下角y, 5-点击后延迟
 		oper: [
 			[right, 1280, 720, 1137, 542, 1228, 632, 2000], // 准备
@@ -37,17 +28,7 @@ export class Func001 implements IFuncOrigin {
 		]
 	}, {
 		// 手动状态
-		desc: [
-			1280, 720,
-			[
-				[left, 34, 23, 0xdbb48b],
-				[left, 106, 24, 0xcfa375],
-				[right, 1270, 132, 0x48371f],
-				[right, 1270, 700, 0x241919],
-				[left, 46, 671, 0xefc9ab],
-				[left, 81, 670, 0xf0caac],
-			]
-		],
+		desc: '战斗界面_手动状态',
 		oper: [
 			[left, 1280, 720, 37, 637, 86, 686, 1000]
 		]
@@ -59,7 +40,7 @@ export class Func001 implements IFuncOrigin {
 				id: 1,
 				name: '准备界面_退出',
 				operator: [{
-					desc: thisOperator[0].desc,
+					desc: '准备界面',
 					oper: [thisOperator[0].oper[1], thisOperator[0].oper[2]]
 				}]
 			}, 0)
@@ -68,7 +49,7 @@ export class Func001 implements IFuncOrigin {
 				id: 1,
 				name: '准备',
 				operator: [{
-					desc: thisOperator[0].desc,
+					desc: '准备界面',
 					oper: [thisOperator[0].oper[0]]
 				}]
 			}, 0) || thisScript.oper({

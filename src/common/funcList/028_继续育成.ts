@@ -75,7 +75,7 @@ export class Func028 implements IFuncOrigin {
 		}) && !thisScript.oper({
 			name: '育成_材料个数判断',
 			operator: [{
-				desc: [thisOperator[2].desc[cntIndex]],
+				desc: [thisOperator[2].desc[cntIndex] as [number, number, number, number]],
 			}]
 		})) {
 			thisScript.helperBridge.regionClick(thisOperator[1].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);

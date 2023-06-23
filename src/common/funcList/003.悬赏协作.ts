@@ -105,7 +105,7 @@ export class Func003 implements IFuncOrigin {
 		if (thisconf.switch && thisconf.type === '接受' && thisScript.oper({
 			name: '悬赏协作',
 			operator: [{
-				desc: [thisOperator[0].desc[0]]
+				desc: [thisOperator[0].desc[0] as [number, number, number, number]]
 			}]
 		})) {
 			if (thisScript.findMultiColor("勾协判定")) {

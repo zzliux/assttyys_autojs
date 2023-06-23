@@ -167,7 +167,7 @@ export class Func016 implements IFuncOrigin {
 				if (thisScript.oper({
 					name: `地鬼_检测第${i}个未打`,
 					operator: [{
-						desc: [thisOperator[2].desc[i]]
+						desc: [thisOperator[2].desc[i] as [number, number, number, number]]
 					}]
 				})) {
 					thisScript.global.dgCurNum = i;
