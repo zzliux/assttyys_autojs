@@ -6,7 +6,7 @@ const center = 1;
 const right = 2;
 
 const multiDetectColors: IMultiDetectColorsOrigin = {
-    '准备界面': {
+    '准备界面_未准备': {
         desc: [1280, 720,
             [
                 [right, 1124, 698, 0xd0af86],
@@ -17,6 +17,31 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
                 [left, 32, 23, 0xdbb48b]
             ]
         ]
+    },
+    '准备界面_已准备': {
+        desc: [1280, 720,
+			[
+				[right, 1085, 601, 0xd3aa81],
+				[right, 1267, 587, 0xd8bf96],
+				[right, 1181, 620, 0xf0deb6],
+				[right, 1147, 599, 0x3b3333],
+				[left, 34, 41, 0xcea274],
+				[left, 178, 52, 0x352824],
+				[center, 373, 700, 0x241818],
+			]
+		]
+    },
+    '战斗界面': {
+        desc: [1280, 720,
+			[
+				[left, 34, 23, 0xdbb48b],
+				[left, 106, 24, 0xcfa375],
+				[right, 1270, 132, 0x48371f],
+				[right, 1270, 700, 0x241919],
+				[right, 1268, 80, 0x946430],
+				[right, 1266, 545, 0x573f26],
+			]
+		]
     },
     '战斗界面_手动状态': {
         desc: [
@@ -231,6 +256,44 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 			]
 		]
     },
+    '突破界面': {
+        desc: [1280, 720,
+			[
+				[center, 171, 104, 0x4a3624],
+				[center, 564, 89, 0x5e4735],
+				[center, 718, 92, 0x583716],
+				[center, 728, 86, 0xdebc56],
+				[center, 1210, 130, 0xebdac9],
+				[center, 1076, 104, 0x4d3826],
+			]
+		]
+    },
+	'突破界面_寮': {
+		desc: [
+			1280, 720,
+			[
+				[center, 171, 104, 0x4a3624],
+				[center, 564, 89, 0x5e4735],
+				[center, 718, 92, 0x583716],
+				[center, 728, 86, 0xdebc56],
+				[center, 1210, 130, 0xebdac9],
+				[center, 1076, 104, 0x4d3826],
+				[left, 100, 653, 0xcaa97f],
+			]
+		]
+	},
+	'探索地图界面': {
+		desc: [1280, 720,
+			[
+				[left, 45, 60, 0xeff5fb],
+				[right, 1168, 146, 0xd9cec1],
+				[right, 1124, 32, 0xd7b388],
+				[right, 1226, 30, 0xd3af84],
+				[left, 18, 705, 0x754830],
+				[left, 210, 711, 0x985b32],
+			]
+		]
+	},
 };
 
 

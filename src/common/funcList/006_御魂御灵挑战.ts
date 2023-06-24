@@ -10,7 +10,7 @@ export class Func006 implements IFuncOrigin {
 	name = '御魂/御灵挑战';
 	desc = '在御魂或者御灵的挑战界面时，点击挑战按钮，连续点击3次后未开始将自动停止脚本';
 	operator: IFuncOperatorOrigin[] = [{
-		// 三类御魂
+		// 0 三类御魂
 		desc: [1280, 720,
 			[
 				[left, 44, 43, 0xc2cbe3],
@@ -24,7 +24,7 @@ export class Func006 implements IFuncOrigin {
 			[right, 1280, 720, 1116, 602, 1197, 683, 2000]
 		]
 	}, {
-		// 御灵
+		// 1 御灵
 		desc: [1280, 720,
 			[
 				[left, 37, 37, 0xc3cce1],
@@ -39,7 +39,7 @@ export class Func006 implements IFuncOrigin {
 			[right, 1280, 720, 1104, 595, 1196, 681, 2000]
 		]
 	}, {
-		// 觉醒
+		// 2 觉醒
 		desc: [1280, 720,
 			[
 				[left, 45, 45, 0xc2cbe3],
@@ -53,7 +53,7 @@ export class Func006 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1108, 593, 1204, 688, 2000]
 		]
-	}, { // 检测_喂猫喂狗弹窗
+	}, { // 3 检测_喂猫喂狗弹窗
 		desc: [
 			1280, 720,
 			[
@@ -69,7 +69,7 @@ export class Func006 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 920, 514, 974, 574, 1200] // 点击喂食
 		]
-	}, {	//	喂猫喂狗_获得奖励
+	}, { //	4 喂猫喂狗_获得奖励
 		desc:
 			[
 				1280, 720,
@@ -84,7 +84,7 @@ export class Func006 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 346, 492, 920, 594, 1200]	// 点击空白处
 		]
-	}, {	// 喂猫喂狗_发现宝藏
+	}, { // 5 喂猫喂狗_发现宝藏
 		desc:
 			[
 				1280, 720,
@@ -101,16 +101,7 @@ export class Func006 implements IFuncOrigin {
 		]
 	}, {
 		// 战斗界面
-		desc: [1280, 720,
-			[
-				[left, 34, 23, 0xdbb48b],
-				[left, 106, 24, 0xcfa375],
-				[right, 1270, 132, 0x48371f],
-				[right, 1270, 700, 0x241919],
-				[right, 1268, 80, 0x946430],
-				[right, 1266, 545, 0x573f26],
-			]
-		],
+		desc: '战斗界面',
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let curCnt = 0;
@@ -119,7 +110,7 @@ export class Func006 implements IFuncOrigin {
 		if (thisScript.oper({
 			name: '战斗界面检测',
 			operator: [{
-				desc: thisOperator[6].desc,
+				desc: '战斗界面',
 			}]
 		})) {
 			let point = thisScript.findMultiColor('御魂挑战_喂猫喂狗');

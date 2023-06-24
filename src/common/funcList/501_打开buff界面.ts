@@ -10,16 +10,7 @@ export class Func501 implements IFuncOrigin {
 	desc = '支持从探索地图、庭院、组队打开buff界面';
 	operator: IFuncOperatorOrigin[] = [{
 		// 探索地图打开buff界面
-		desc: [1280, 720,
-			[
-				[left, 45, 60, 0xeff5fb],
-				[right, 1168, 146, 0xd9cec1],
-				[right, 1124, 32, 0xd7b388],
-				[right, 1226, 30, 0xd3af84],
-				[left, 18, 705, 0x754830],
-				[left, 210, 711, 0x985b32],
-			]
-		],
+		desc: '探索地图界面',
 		oper: [
 			[center, 1280, 720, 428, 24, 453, 65, 1500],
 		]

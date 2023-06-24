@@ -30,16 +30,7 @@ export class Func033 implements IFuncOrigin {
 	}];
 	operator: IFuncOperatorOrigin[] = [{
 		// 战斗场景
-		desc: [1280, 720,
-			[
-				[left, 34, 23, 0xdbb48b],
-				[left, 106, 24, 0xcfa375],
-				[right, 1270, 132, 0x48371f],
-				[right, 1270, 700, 0x241919],
-				[right, 1268, 80, 0x946430],
-				[right, 1266, 545, 0x573f26],
-			]
-		],
+		desc: '战斗界面',
 		oper: [
 			[left, 1280, 720, 163, 16, 192, 40, 1000], // 0-公频聊天按钮
 			[left, 1280, 720, 95, 18, 122, 44, 5000], // 1-好友聊天按钮

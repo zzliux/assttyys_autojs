@@ -10,16 +10,7 @@ export class Func013 implements IFuncOrigin {
 	name = '探索_地图进入最后一章';
 	desc = '在地图界面时，点击最后一章进行挑战';
 	operator: IFuncOperatorOrigin[] = [{
-		desc: [1280, 720,
-			[
-				[left, 45, 60, 0xeff5fb],
-				[right, 1168, 146, 0xd9cec1],
-				[right, 1124, 32, 0xd7b388],
-				[right, 1226, 30, 0xd3af84],
-				[left, 18, 705, 0x754830],
-				[left, 210, 711, 0x985b32],
-			]
-		],
+		desc: '探索地图界面',
 		oper: [
 			[right, 1280, 720, 1056,557, 1246,643,1000],
 			[center, 1280, 720, 446,201, 492,255, 200],

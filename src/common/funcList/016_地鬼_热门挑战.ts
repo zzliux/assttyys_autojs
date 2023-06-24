@@ -60,22 +60,10 @@ export class Func016 implements IFuncOrigin {
 			[left, 1280, 720, 51, 36, 95, 85, 1200], // 左上角的返回
 		]
 	}, {
-		// 3 探索地图界面（20230524正式服）
-		desc: [
-			1280, 720,
-			[
-				[left, 45, 60, 0xeff5fb],
-				[right, 1168, 146, 0xd9cec1],
-				[right, 1124, 32, 0xd7b388],
-				[right, 1226, 30, 0xd3af84],
-				[left, 18, 705, 0x754830],
-				[left, 210, 711, 0x985b32],
-				[left, 771, 647, 0xb63345],
-				[left, 785, 647, 0x993344],
-			]
-		],
+		// 3 探索地图界面
+		desc: '探索地图界面',
 		oper: [
-			[left, 1280, 720, 741, 638, 800, 695, 2000] // 探索地图进入地鬼
+			[center, 1280, 720, 641, 633, 701, 698, 1000],
 		]
 	}, {
 		// 4 地鬼_挑战页面_极
@@ -109,30 +97,12 @@ export class Func016 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 158, 118, 821, 626, 1000],
 		]
-	}, {
-		// 6 探索地图界面（20230524体验服）
-		desc: [
-			1280, 720,
-			[
-				[left, 45, 60, 0xeff5fb],
-				[right, 1168, 146, 0xd9cec1],
-				[right, 1124, 32, 0xd7b388],
-				[right, 1226, 30, 0xd3af84],
-				[left, 18, 705, 0x754830],
-				[left, 210, 711, 0x985b32],
-				[left, 670, 647, 0xb63444],
-				[left, 699, 665, 0xddcab9],
-			]
-		],
-		oper: [
-			[center, 1280, 720, 641, 633, 701, 698, 1000],
-		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			id: 16,
 			name: '探索界面',
-			operator: [thisOperator[3], thisOperator[6]]
+			operator: [thisOperator[3]]
 		})) {
 			return true;
 		}
