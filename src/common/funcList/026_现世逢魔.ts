@@ -116,7 +116,7 @@ export class Func026 implements IFuncOrigin {
 				if (thisScript.oper({
 					name: `现世逢魔_第${i}次`,
 					operator: [{
-						desc: [thisOperator[1].desc[i]],
+						desc: [thisOperator[1].desc[i] as [number, number, number, number]],
 						oper: [
 							thisOperator[0].oper[0],
 							thisOperator[1].oper[i]

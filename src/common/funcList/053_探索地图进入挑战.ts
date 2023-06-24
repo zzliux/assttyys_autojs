@@ -20,16 +20,7 @@ export class Func053 implements IFuncOrigin {
 	}];
 	operator: IFuncOperatorOrigin[] = [{
 		// 0 探索地图界面
-		desc: [1280, 720,
-			[
-				[left, 45, 60, 0xeff5fb],
-				[right, 1168, 146, 0xd9cec1],
-				[right, 1124, 32, 0xd7b388],
-				[right, 1226, 30, 0xd3af84],
-				[left, 18, 705, 0x754830],
-				[left, 210, 711, 0x985b32],
-			]
-		],
+		desc: '探索地图界面',
 		oper: [
 			[left, 1280, 720, 155, 640, 211, 694, 1000], // 御魂
 			[left, 1280, 720, 346, 634, 404, 695, 1000], // 御灵

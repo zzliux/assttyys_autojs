@@ -47,16 +47,7 @@ export class Func051 implements IFuncOrigin {
 	}];
 	operator: IFuncOperatorOrigin[] = [{
 		// 开始战斗后的场景
-		desc: [1280, 720,
-			[
-				[left, 34, 23, 0xdbb48b],
-				[left, 106, 24, 0xcfa375],
-				[right, 1270, 132, 0x48371f],
-				[right, 1270, 700, 0x241919],
-				[right, 1268, 80, 0x946430],
-				[right, 1266, 545, 0x573f26],
-			]
-		],
+		desc: '战斗界面',
 		oper: [
 			[left, 1280, 720, 0, 0, 0, 70, -1], // A的下方位置
 			[left, 1280, 720, 0, 0, 26, 40, -1], // 下方位置的矩形
@@ -66,29 +57,10 @@ export class Func051 implements IFuncOrigin {
 		]
 	}, {
 		// 准备界面 - 未准备
-		desc: [1280, 720,
-			[
-				[right, 1124, 698, 0xd0af86],
-				[right, 1240, 702, 0xcead83],
-				[right, 1191, 596, 0xa46149],
-				[right, 1182, 586, 0xf7e6c3],
-				[center, 360, 699, 0x241818],
-				[left, 32, 23, 0xdbb48b]
-			]
-		],
+		desc: '准备界面_未准备',
 	}, {
 		// 准备界面 - 已准备
-		desc: [1280, 720,
-			[
-				[right, 1085, 601, 0xd3aa81],
-				[right, 1267, 587, 0xd8bf96],
-				[right, 1181, 620, 0xf0deb6],
-				[right, 1147, 599, 0x3b3333],
-				[left, 34, 41, 0xcea274],
-				[left, 178, 52, 0x352824],
-				[center, 373, 700, 0x241818],
-			]
-		]
+		desc: '准备界面_已准备'
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisconf = thisScript.scheme.config['51'];
@@ -100,9 +72,9 @@ export class Func051 implements IFuncOrigin {
 				id: 51,
 				name: '准备界面检测',
 				operator: [{
-					desc: thisOperator[1].desc,
+					desc: '准备界面_未准备',
 				}, {
-					desc: thisOperator[2].desc,
+					desc: '准备界面_已准备',
 				}]
 			})) {
 				if (thisconf.greenType === '自定义文本' && !thisScript.global.greenPosition) {
@@ -115,9 +87,9 @@ export class Func051 implements IFuncOrigin {
 							id: 51,
 							name: '准备界面检测',
 							operator: [{
-								desc: thisOperator[1].desc,
+								desc: '准备界面_未准备',
 							}, {
-								desc: thisOperator[2].desc,
+								desc: '准备界面_已准备',
 							}]
 						}
 					);
@@ -236,7 +208,7 @@ export class Func051 implements IFuncOrigin {
 						id: 51,
 						name: '战斗界面检测',
 						operator: [{
-							desc: thisOperator[0].desc,
+							desc: '战斗界面',
 						}]
 					}
 				);

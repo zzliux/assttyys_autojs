@@ -231,17 +231,7 @@ export class Func503 implements IFuncOrigin {
 			]
 		}, {
 			// 17 突破界面
-			desc: [
-				1280, 720,
-				[
-					[center, 171, 104, 0x4a3624],
-					[center, 564, 89, 0x5e4735],
-					[center, 718, 92, 0x583716],
-					[center, 728, 86, 0xdebc56],
-					[center, 1210, 130, 0xebdac9],
-					[center, 1076, 104, 0x4d3826],
-				]
-			],
+			desc: '突破界面',
 			oper: [
 				[center, 1280, 720, 1187, 112, 1228, 150, 1000],
 				[center, 1280, 720, 31, 37, 79, 76, 1000],
@@ -311,17 +301,7 @@ export class Func503 implements IFuncOrigin {
 			]
 		}, {
 			// 22 战斗场景等待
-			desc: [
-				1280, 720,
-				[
-					[left, 34, 23, 0xdbb48b],
-					[left, 106, 24, 0xcfa375],
-					[right, 1270, 132, 0x48371f],
-					[right, 1270, 700, 0x241919],
-					[right, 1268, 80, 0x946430],
-					[right, 1266, 545, 0x573f26],
-				]
-			],
+			desc: '战斗界面',
 			// oper: [
 			// 	[center, 1280, 720, 16, 12, 60, 56, 1000],
 			// 	[center, 1280, 720, 678, 396, 806, 450, 3000],

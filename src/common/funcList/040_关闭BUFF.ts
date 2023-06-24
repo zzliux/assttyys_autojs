@@ -49,16 +49,7 @@ export class Func040 implements IFuncOrigin {
 		]
 	}, {
 		// 1 准备界面
-		desc: [1280, 720,
-			[
-				[right, 1124, 698, 0xd0af86],
-				[right, 1240, 702, 0xcead83],
-				[right, 1191, 596, 0xa46149],
-				[right, 1182, 586, 0xf7e6c3],
-				[center, 360, 699, 0x241818],
-				[left, 32, 23, 0xdbb48b]
-			]
-		],
+		desc: '准备界面_未准备',
 		oper: [
 			[left, 1280, 720, 119, 659, 150, 712, 1000],
 		]
