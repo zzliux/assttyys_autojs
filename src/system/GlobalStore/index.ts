@@ -66,6 +66,7 @@ export type globalRootType = {
     qiling_last: number | null;     //  契灵的上次类型
     opened_buff: boolean; // 是否已执行开启buff
     closed_buff: boolean; // 是否已执行关闭buff
+    daily_collection: 'friend' | 'store' | 'courtyard';   //  每日奖励领取
 }
 
 export const globalRoot: globalRootType = {
@@ -136,4 +137,5 @@ export const globalRoot: globalRootType = {
     qiling_last: null,
     opened_buff: false,
     closed_buff: false,
+    daily_collection: 'friend',
 }

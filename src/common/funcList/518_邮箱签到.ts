@@ -26,6 +26,11 @@ export class Func518 implements IFuncOrigin {
           [right, 1207, 637, 0xdfd1cb],
         ],
       ],
+      oper: [
+        [right, 1280, 720, 1168, 592, 1230, 690, 5000], // 庭院打开菜单
+        [center, 1280, 720, 882, 626, 924, 668, 1200], //  庭院点击好友
+        [center, 1280, 720, 660,626, 697,664, 1200],  //  庭院点击商店
+      ],
     },
     {
       // 1 页面是否为庭院(菜单已展开) 只支持默认庭院皮肤与默认装饰
@@ -399,7 +404,8 @@ export class Func518 implements IFuncOrigin {
     {
       //  23 检测_御魂是否满了
       desc: [
-        1280, 720,
+        1280,
+        720,
         [
           [center, 832, 249, 0xcbb59e],
           [center, 831, 464, 0xcbb59e],
@@ -408,10 +414,186 @@ export class Func518 implements IFuncOrigin {
           [center, 455, 464, 0xcbb59e],
           [left, 133, 662, 0x655743],
           [left, 277, 154, 0x59534d],
+        ],
+      ],
+      oper: [
+        [center, 1280, 720, 594, 405, 685, 435, 1200], //点击 确认
+      ],
+    },
+    {
+      //  24 检测_好友弹窗_左下角为好友
+      desc: [
+        1280,
+        720,
+        [
+          [left, 86, 653, 0xeff1eb],
+          [left, 99, 631, 0x2c1c1b],
+          [left, 156, 173, 0xd4c4b3],
+          [left, 175, 134, 0xdbb291],
+          [right, 1120, 624, 0xf4b25f],
+          [center, 745, 72, 0x58402f],
+        ],
+      ],
+      oper: [
+        [left, 1280, 720, 85, 634, 125, 689, 2000], //  点击左下角好友
+        [left, 1280, 720, 19,47, 58,70, 1200], // 点击 吉闻
+      ],
+    },
+    {
+      //  25 检测_领取友情点_是否有一键收取
+      desc: [
+        1280,
+        720,
+        [
+          [center, 495, 104, 0xcbbdaa],
+          [left, 228, 127, 0xd4ab89],
+          [left, 96, 549, 0xffce7d],
+          [left, 183, 646, 0x301c18],
+          [left, 90, 573, 0xfdd37d],
+          [right, 1208, 584, 0x5d3c28],
+          [right, 1125, 616, 0xf4b25f],
+        ],
+      ],
+      oper: [
+        [left, 1280, 720, 78, 541, 166, 579, 1200], // 点击 一键收取
+      ],
+    },
+    {
+      //  26 友情点已领取
+      desc: [
+        1280, 720,
+        [
+          [center, 495, 104, 0xcbbdaa],
+          [left, 228, 127, 0xd4ab89],
+          [left, 183, 646, 0x301c18],
+          [right, 1208, 584, 0x5d3c28],
+          [right, 1125, 616, 0xf4b25f],
+          [left, 109, 588, 0x715848],
         ]
       ],
       oper: [
-        [center, 1280, 720, 594,405, 685,435, 1200],  //点击 确认
+        [right, 1280, 720, 1159, 102, 1190, 131, 1200], // 点击 关闭
+      ],
+    },
+    {
+      //  27 检测_吉闻_有一键祝福
+      desc: [
+        1280, 720,
+        [
+          [left, 263, 122, 0xe3ceb2],
+          [right, 1207, 500, 0xfcd37c],
+          [right, 1093, 583, 0xf3f3e7],
+          [right, 1030, 120, 0xe3cdaf],
+          [right, 1105, 381, 0x5d3c28],
+          [left, 153, 167, 0x57514a],
+        ]
+      ],
+      oper: [
+        [right, 1280, 720, 1069,578, 1105,623, 1200]  //  点击_一键祝福
+      ]
+    },
+    {
+      //  28 检测_一键祝福弹窗
+      desc: [
+        1280, 720,
+        [
+          [center, 432, 216, 0xcbc1b6],
+          [center, 855, 502, 0xcfc1ba],
+          [center, 700, 457, 0xf4b25f],
+          [center, 825, 398, 0xe3dbd3],
+          [center, 564, 446, 0xf4b25f],
+        ]
+      ],
+      oper: [
+        [center, 1280, 720, 577,443, 710,476, 1200] //  点击_祝福
+      ]
+    },
+    {
+      //  29 检测_无祝福
+      desc: [
+        1280, 720,
+        [
+          [left, 263, 122, 0xe3ceb2],
+          [right, 1030, 120, 0xe3cdaf],
+          [right, 1105, 381, 0x5d3c28],
+          [left, 153, 167, 0x57514a],
+          [right, 1045, 619, 0xe3c9aa],
+          [right, 1049, 541, 0xe0c8af],
+        ]
+      ],
+      oper: [
+        [right, 1280, 720, 1060,125, 1093,161, 1200]  //  点击_关闭
+      ]
+    },
+    {
+      //  30  检测_商店_热门推荐
+      desc: [
+        1280, 720,
+        [
+          [right, 1204, 28, 0xd7c5a2],
+          [right, 1009, 147, 0xe7d5cf],
+          [right, 1148, 663, 0x280a0a],
+          [right, 1008, 540, 0x251210],
+          [right, 1041, 550, 0x503434],
+        ]
+      ],
+      oper: [
+        [right, 1280, 720, 1000,136, 1022,156, 1200]  //  点击 关闭
+      ]
+    },
+    {
+      //  31 检测_商店主页
+      desc: [
+        1280, 720,
+        [
+          [right, 1198, 652, 0xd03b3b],
+          [right, 1129, 642, 0x301d19],
+          [right, 1027, 662, 0xb53bf8],
+          [center, 866, 658, 0x3c7acf],
+          [center, 765, 669, 0xfffe72],
+          [right, 1243, 294, 0x2a2228],
+          [right, 1157, 291, 0x8e464d],
+          [right, 1094, 404, 0x453828],
+        ]
+      ],
+      oper: [
+        [right, 1280, 720, 1154,643, 1200,675, 1200]  //  点击 礼包屋
+      ]
+    },
+    {
+      //  32 检测_商店_礼包屋_推荐页签_含每日免费领取
+      desc: [
+        1280, 720,
+        [
+          [left, 30, 26, 0xf4e4a4],
+          [right, 1249, 28, 0xd7c5a2],
+          [right, 1197, 652, 0xd03b3b],
+          [right, 1018, 633, 0xa361dc],
+          [left, 278, 330, 0xc16345],
+          [left, 232, 271, 0xeedece],
+          [left, 261, 227, 0x212121],
+        ]
+      ],
+      oper: [
+        [left, 1280, 720, 218,223, 284,282, 1200],  //  点击 每日领取
+      ]
+    },
+    {
+      //  33  检测_商店_礼包屋
+      desc: [
+        1280, 720,
+        [
+          [left, 29, 26, 0xf4e7a9],
+          [right, 1249, 28, 0xd7c5a2],
+          [right, 1195, 652, 0xd03b3b],
+          [right, 1204, 60, 0x140a08],
+          [center, 866, 660, 0x3c7acf],
+          [left, 20, 558, 0x493c30],
+        ]
+      ],
+      oper: [
+        [left, 1280, 720, 21,9, 51,42, 1200],  //  点击 礼包屋返回
+        [left, 1280, 720, 26,37, 72,81, 1200],  //  点击 商店返回
       ]
     }
   ];
@@ -423,6 +605,7 @@ export class Func518 implements IFuncOrigin {
         operator: [
           {
             desc: thisOperator[0].desc,
+            oper: [thisOperator[0].oper[0]],
           },
           {
             desc: thisOperator[1].desc,
@@ -436,15 +619,38 @@ export class Func518 implements IFuncOrigin {
         ],
       })
     ) {
+      if (thisScript.global.daily_collection === 'friend') {
+        return thisScript.oper({
+          id: 518,
+          name: '点击_好友',
+          operator: [
+            {
+              oper: [thisOperator[0].oper[1]],
+            },
+          ],
+        });
+      }
+
+      if (thisScript.global.daily_collection === 'store') {
+        return thisScript.oper({
+          id: 518,
+          name: '点击_商店',
+          operator: [
+            {
+              oper: [thisOperator[0].oper[2]],
+            },
+          ],
+        });
+      }
 
       if (thisScript.global.checked_yard_count < 3) {
-        if (thisScript.oper({
-          id: 518,
-          name: '检测_是否有邮件',
-          operator: [
-            thisOperator[4],
-          ],
-        })) {
+        if (
+          thisScript.oper({
+            id: 518,
+            name: '检测_是否有邮件',
+            operator: [thisOperator[4]],
+          })
+        ) {
           return true;
         }
       }
@@ -467,6 +673,28 @@ export class Func518 implements IFuncOrigin {
     if (
       thisScript.oper({
         id: 518,
+        name: '检测_商店_礼包屋',
+        operator: [
+          {
+            desc: thisOperator[33].desc
+          }
+        ],
+      }) && thisScript.global.daily_collection !== 'store'
+    ) {
+      return thisScript.oper({
+        id: 518,
+        name: '返回庭院',
+        operator: [
+          {
+            oper: thisOperator[33].oper
+          }
+        ],
+      })
+    }
+
+    if (
+      thisScript.oper({
+        id: 518,
         name: '检测_领取奖励弹窗',
         operator: [
           thisOperator[5],
@@ -481,25 +709,33 @@ export class Func518 implements IFuncOrigin {
       return true;
     }
 
-    if (thisScript.oper({
-      id: 518,
-      name: '检测_御魂是否满了',
-      operator: [thisOperator[23]
-      ]
-    })) {
+    if (
+      thisScript.oper({
+        id: 518,
+        name: '检测_御魂是否满了',
+        operator: [thisOperator[23]],
+      })
+    ) {
       thisScript.global.checked_yard_count = 4;
-      thisScript.doPush(thisScript, { text: '御魂已满，无法收取邮件奖励', before() { thisScript.myToast('正在上传数据'); } });
+      thisScript.doPush(thisScript, {
+        text: '御魂已满，无法收取邮件奖励',
+        before() {
+          thisScript.myToast('正在上传数据');
+        },
+      });
     }
 
-    if (thisScript.oper({
-      id: 518,
-      name: '检测_领取全部奖励弹窗',
-      operator: [
-        {
-          desc: thisOperator[6].desc
-        }
-      ]
-    })) {
+    if (
+      thisScript.oper({
+        id: 518,
+        name: '检测_领取全部奖励弹窗',
+        operator: [
+          {
+            desc: thisOperator[6].desc,
+          },
+        ],
+      })
+    ) {
       //	超过3次领取失败 判断为御魂满了
       if (thisScript.global.checked_yard_count > 3) {
         return thisScript.oper({
@@ -507,9 +743,9 @@ export class Func518 implements IFuncOrigin {
           name: '关闭弹窗',
           operator: [
             {
-              oper: [thisOperator[5].oper[1]]
-            }
-          ]
+              oper: [thisOperator[5].oper[1]],
+            },
+          ],
         });
       } else {
         if (!thisScript.global.checked_yard_count) {
@@ -523,9 +759,9 @@ export class Func518 implements IFuncOrigin {
           name: '检测_领取全部奖励弹窗',
           operator: [
             {
-              oper: thisOperator[6].oper
-            }
-          ]
+              oper: thisOperator[6].oper,
+            },
+          ],
         });
       }
     }
@@ -542,9 +778,42 @@ export class Func518 implements IFuncOrigin {
           thisOperator[15],
           thisOperator[17],
           thisOperator[19],
+          thisOperator[24], //  检测_好友弹窗
+          thisOperator[25], //  领取友情点
+          thisOperator[27], //  检测_吉闻_有一键祝福
+          thisOperator[28], //  一键祝福弹窗
+          thisOperator[29], //  无祝福
+          thisOperator[30], //  检测_商店_热门推荐
+          thisOperator[31], //  检测_商店主页
         ],
       })
     ) {
+      return true;
+    }
+
+    if (
+      thisScript.oper({
+        id: 518,
+        name: '友情点已领取',
+        operator: [
+          thisOperator[26], //  友情点已领取 关闭弹窗
+        ],
+      })
+    ) {
+      thisScript.global.daily_collection = 'store';
+      return true;
+    }
+
+    if (
+      thisScript.oper({
+        id: 518,
+        name: '检测_商店_礼包屋_推荐页签',
+        operator: [
+          thisOperator[32], 
+        ],
+      })
+    ) {
+      thisScript.global.daily_collection = 'courtyard';
       return true;
     }
 
