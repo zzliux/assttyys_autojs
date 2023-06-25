@@ -125,12 +125,6 @@ const SchemeList: IScheme[] = [
     list: [3, 22],
   },
   {
-    id: 15,
-    schemeName: '组队_自动匹配流程',
-    star: true,
-    list: [0, 1, 2, 3, 5, 27],
-  },
-  {
     id: 16,
     schemeName: '继续育成',
     list: [3, 28],
