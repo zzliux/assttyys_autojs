@@ -830,6 +830,9 @@ export const versionList = [{
 },{
     version: '20230626',
     desc: `优化：组队306邀请速度`
+},{
+    version: '20230627',
+    desc: `增加：314领取花合战功能`
 }];
 
 export default versionList[versionList.length - 1].version;
