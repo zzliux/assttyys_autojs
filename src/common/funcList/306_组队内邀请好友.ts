@@ -149,6 +149,7 @@ export class Func306 implements IFuncOrigin {
             1000
           ];
           thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
+          thisScript.keepScreen();
         }
         let result = thisScript.findText('.+', 0, thisOperator[1].oper[1], '包含');
         if (result.length === 0) {
@@ -179,31 +180,33 @@ export class Func306 implements IFuncOrigin {
 
           //邀请里点击第二位好友
           if (thisConf.secondPlayer) {
-            let selectAreaTwo = thisScript.findText(thisConf.selectAreaTwo as string, 0, thisOperator[1].oper[0], '模糊');
-            if (selectAreaTwo.length === 0) {
-              console.log(`找不到第二位（好友/跨区）按钮`);
-              thisScript.helperBridge.regionClick([thisOperator[3].oper[0]], thisScript.scheme.commonConfig.afterClickDelayRandom);
-              return false;
-            } else {
-              let p = {
-                x: (selectAreaTwo[0].points[0].x + selectAreaTwo[0].points[1].x) / 2,
-                y: (selectAreaTwo[0].points[0].y + selectAreaTwo[0].points[3].y) / 2,
+            if (thisConf.selectArea != thisConf.selectAreaTwo) {
+              let selectAreaTwo = thisScript.findText(thisConf.selectAreaTwo as string, 0, thisOperator[1].oper[0], '模糊');
+              if (selectAreaTwo.length === 0) {
+                console.log(`找不到第二位（好友/跨区）按钮`);
+                thisScript.helperBridge.regionClick([thisOperator[3].oper[0]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+                return false;
+              } else {
+                let p = {
+                  x: (selectAreaTwo[0].points[0].x + selectAreaTwo[0].points[1].x) / 2,
+                  y: (selectAreaTwo[0].points[0].y + selectAreaTwo[0].points[3].y) / 2,
+                }
+                let lx = p.x - 5;
+                let ly = p.y - 5;
+                let rx = p.x + 5;
+                let ry = p.y + 5;
+                let toClick = [
+                  lx > 0 ? lx : 0,
+                  ly > 0 ? ly : 0,
+                  rx,
+                  ry,
+                  1000
+                ];
+                thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
+                thisScript.keepScreen();
+                result = thisScript.findText('.+', 0, thisOperator[1].oper[1], '包含');
               }
-              let lx = p.x - 5;
-              let ly = p.y - 5;
-              let rx = p.x + 5;
-              let ry = p.y + 5;
-              let toClick = [
-                lx > 0 ? lx : 0,
-                ly > 0 ? ly : 0,
-                rx,
-                ry,
-                1000
-              ];
-              thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
             }
-            thisScript.keepScreen();
-            result = thisScript.findText('.+', 0, thisOperator[1].oper[1], '包含');
             let findInvNameTwo = thisScript.findTextByOcrResult(thisConf.inviteNameTwo as string, result, '包含')
             if (findInvNameTwo.length) {
               toClickRegionTwo = [
