@@ -71,13 +71,10 @@ export class Func998 implements IFuncOrigin {
     },
     {
       //	2 检测_体力弹窗
-      desc: [
-        1280,
-        720,
+      desc: [1280, 720,
         [
           [center, 332, 151, 0xeeddcc],
           [center, 918, 159, 0xeddccc],
-          [center, 948, 556, 0xdfcebe],
           [center, 372, 553, 0xdfcebe],
           [center, 484, 133, 0x5d3c1f],
           [center, 782, 148, 0x6f5326],
@@ -384,13 +381,11 @@ export class Func998 implements IFuncOrigin {
         [
           [center, 332, 151, 0xeeddcc],
           [center, 918, 159, 0xeddccc],
-          [center, 948, 556, 0xdfcebe],
           [center, 372, 553, 0xdfcebe],
           [center, 484, 133, 0x5d3c1f],
           [center, 782, 148, 0x6f5326],
           [center, 453, 678, 0x89341c],
           [center, 696, 675, 0x9cb9df],
-          [center, 416, 193, 0xc2dbef],
           [left, 292, 460, 0xffffff],
         ],
       ],

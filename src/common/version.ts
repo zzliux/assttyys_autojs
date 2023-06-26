@@ -828,8 +828,9 @@ export const versionList = [{
     version: '20230624_01',
     desc: `优化：518 添加领取友情点与商店每日领取`
 },{
-    version: '20230626',
-    desc: `优化：组队306邀请速度`
+    version: '20230626_01',
+    desc: `优化：组队306邀请速度
+修复：998寄养时有招财上宾时会卡体力食盒的问题`
 }];
 
 export default versionList[versionList.length - 1].version;
