@@ -92,28 +92,6 @@ export class MyFloaty {
                 self.runEventFlag = false;
                 return false;
             });
-
-        this.fb.addItem('CapScreen')
-            .setIcon('@drawable/ic_landscape_black_48dp')
-            //图标着色
-            .setTint('#FFFFFF')
-            .setColor('#FF3300')
-            .onClick((view, name) => {
-                threads.start(function () {
-                    sleep(600);
-                    script.keepScreen(); // 更新图片
-                    let bmp = script.helperBridge.helper.GetBitmap();
-                    let img = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(bmp);
-                    let path = `/sdcard/assttyys/screenshot/${new Date().getTime()}.png`;
-                    files.ensureDir(path);
-                    img.saveTo(path);
-                    img.recycle();
-                    media.scanFile(path);
-                    script.myToast(`截图已保存至${path}`);
-                });
-                return false;
-            });
-
         if (context.packageName.match(/debugplayer/)) {
             this.fb.addItem('ViewLogConsole')
                 .setIcon('@drawable/ic_assignment_black_48dp')
