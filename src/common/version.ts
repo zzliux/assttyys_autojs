@@ -831,6 +831,9 @@ export const versionList = [{
     version: '20230626_01',
     desc: `优化：组队306邀请速度
 修复：998寄养时有招财上宾时会卡体力食盒的问题`
+}, {
+    version: '20230628_01',
+    desc: '新增：活动森间试炼'
 }];
 
 export default versionList[versionList.length - 1].version;
