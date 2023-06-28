@@ -834,6 +834,9 @@ export const versionList = [{
 },{
     version: '20230627',
     desc: `增加：314领取花合战功能`
+},{
+    version: '20230628',
+    desc: `优化：312通用活动，现在可以自行设置点击区域`
 }];
 
 export default versionList[versionList.length - 1].version;
