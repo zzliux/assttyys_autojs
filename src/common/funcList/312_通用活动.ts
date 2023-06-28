@@ -1,5 +1,6 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator, IFuncConfigOrigin } from '@/interface/IFunc';
 import { Script } from '@/system/script';
+import { routeLocationKey } from 'vue-router';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -8,10 +9,22 @@ const right = 2;
 export class Func312 implements IFuncOrigin {
   id = 312;
   name = '通用活动';
-  desc: '识别到“左上角感叹号”或“右上角体力”或“右下角锁定阵容”图标后，再识别右下角是否有“战”字样（需要ocr）';
+  desc: '识别到“左上角感叹号”或“右上角体力”或“右下角锁定阵容”图标后，再识别右下角是否有“战”字样（需要ocr），详细看手册';
   config = [{
     desc: '',
     config: [{
+      name: 'xySwitch',
+      desc: '不识别“战”字直接点固定坐标',
+      type: 'switch',
+      default: false,
+      value: null,
+    }, {
+      name: 'xy',
+      desc: '固定坐标，格式为：左上角x,左上角y,右下角x,右下角y，例：1134,590,1225,645',
+      type: 'text',
+      default: '1134,590,1225,645',
+      value: null,
+    }, {
       name: 'exit',
       desc: '达到时间后退出',
       type: 'switch',
@@ -38,7 +51,7 @@ export class Func312 implements IFuncOrigin {
       ]
     ],
     oper: [
-      [center, 1280, 720, 1073, 533, 1275, 716, -1],//右下角范围
+      [center, 1280, 720, 750, 420, 1279, 719, -1],//右下角范围
       [center, 1280, 720, 1166, 48, 1233, 81, -1],//时间范围
       [left, 1280, 720, 22, 19, 52, 47, 500], // 左上角返回
       [center, 1280, 720, 683, 401, 795, 442, 500], // 确认
@@ -47,31 +60,52 @@ export class Func312 implements IFuncOrigin {
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
     let thisConf = thisScript.scheme.config['312'];
     if ((thisScript.findMultiColor("活动说明的感叹号") || thisScript.findMultiColor("体力图标") ||
-      thisScript.findMultiColor("右下角锁定阵容")) && thisScript.getOcrDetector()) {
-      let result = thisScript.findText('.+', 0, thisOperator[0].oper[0], '包含');
-      if (result.length === 0) {
-        console.log(`未识别到任何字样`);
-        return false;
-      } else {
-        for (let i in result) {
-          console.log(`昵称历遍:${result[i].label}`)
+      thisScript.findMultiColor("右下角锁定阵容"))) {
+      if (!thisConf.xySwitch && thisScript.getOcrDetector()) {
+        let result = thisScript.findText('.+', 0, thisOperator[0].oper[0], '包含');
+        if (result.length === 0) {
+          console.log(`未识别到任何字样`);
+          return false;
+        } else {
+          for (let i in result) {
+            console.log(`昵称历遍:${result[i].label}`)
+          }
+          let toClickRegion = null;
+          let fightForOne = thisScript.findTextByOcrResult("战", result, '包含')
+          if (fightForOne.length) {
+            toClickRegion = [
+              fightForOne[0].points[0].x,
+              fightForOne[0].points[0].y,
+              fightForOne[0].points[0].x,
+              fightForOne[0].points[0].y + 65,
+              1000,
+            ]
+          }
+          if (toClickRegion && thisScript.helperBridge.regionClick([toClickRegion], thisScript.scheme.commonConfig.afterClickDelayRandom)) {
+            sleep(1000);
+            return true;
+          }
         }
-        let toClickRegion = null;
-        let fightForOne = thisScript.findTextByOcrResult("战", result, '包含')
-        if (fightForOne.length) {
-          toClickRegion = [
-            fightForOne[0].points[0].x,
-            fightForOne[0].points[0].y,
-            fightForOne[0].points[0].x,
-            fightForOne[0].points[0].y + 65,
-            1000,
-          ]
-        }
-        if (toClickRegion && thisScript.helperBridge.regionClick([toClickRegion], thisScript.scheme.commonConfig.afterClickDelayRandom)) {
-          sleep(1000);
+      } else if (thisConf.xySwitch) {
+        let xy = String(thisConf.xy).split(',');
+        if (xy.length !== 4) {
+          thisScript.myToast('1自定义坐标格式定义错误，请检查');
           return true;
         }
+        let inX1 = parseInt(xy[0]);
+        let inY1 = parseInt(xy[1]);
+        let inX2 = parseInt(xy[2]);
+        let inY2 = parseInt(xy[3]);
+        if (Number.isNaN(inX1) || Number.isNaN(inY1) || Number.isNaN(inX2) || Number.isNaN(inY2)) {
+          thisScript.myToast('自定义坐标格式定义错误，请检查');
+          return true;
+        };
+        let oper = [
+          [inX1, inY1, inX2, inY2, 1000]
+        ];
+        thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
       }
+
     }
 
     if (thisConf.exit && thisScript.oper({
