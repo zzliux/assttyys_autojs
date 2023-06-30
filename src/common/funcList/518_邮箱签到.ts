@@ -29,7 +29,7 @@ export class Func518 implements IFuncOrigin {
       oper: [
         [right, 1280, 720, 1168, 592, 1230, 690, 5000], // 庭院打开菜单
         [center, 1280, 720, 882, 626, 924, 668, 1200], //  庭院点击好友
-        [center, 1280, 720, 660,626, 697,664, 1200],  //  庭院点击商店
+        [center, 1280, 720, 660, 626, 697, 664, 1200], //  庭院点击商店
       ],
     },
     {
@@ -436,7 +436,7 @@ export class Func518 implements IFuncOrigin {
       ],
       oper: [
         [left, 1280, 720, 85, 634, 125, 689, 2000], //  点击左下角好友
-        [left, 1280, 720, 19,47, 58,70, 1200], // 点击 吉闻
+        [left, 1280, 720, 19, 47, 58, 70, 1200], // 点击 吉闻
       ],
     },
     {
@@ -461,7 +461,8 @@ export class Func518 implements IFuncOrigin {
     {
       //  26 友情点已领取
       desc: [
-        1280, 720,
+        1280,
+        720,
         [
           [center, 495, 104, 0xcbbdaa],
           [left, 228, 127, 0xd4ab89],
@@ -469,7 +470,7 @@ export class Func518 implements IFuncOrigin {
           [right, 1208, 584, 0x5d3c28],
           [right, 1125, 616, 0xf4b25f],
           [left, 109, 588, 0x715848],
-        ]
+        ],
       ],
       oper: [
         [right, 1280, 720, 1159, 102, 1190, 131, 1200], // 点击 关闭
@@ -478,7 +479,8 @@ export class Func518 implements IFuncOrigin {
     {
       //  27 检测_吉闻_有一键祝福
       desc: [
-        1280, 720,
+        1280,
+        720,
         [
           [left, 263, 122, 0xe3ceb2],
           [right, 1207, 500, 0xfcd37c],
@@ -486,32 +488,34 @@ export class Func518 implements IFuncOrigin {
           [right, 1030, 120, 0xe3cdaf],
           [right, 1105, 381, 0x5d3c28],
           [left, 153, 167, 0x57514a],
-        ]
+        ],
       ],
       oper: [
-        [right, 1280, 720, 1069,578, 1105,623, 1200]  //  点击_一键祝福
-      ]
+        [right, 1280, 720, 1069, 578, 1105, 623, 1200], //  点击_一键祝福
+      ],
     },
     {
       //  28 检测_一键祝福弹窗
       desc: [
-        1280, 720,
+        1280,
+        720,
         [
           [center, 432, 216, 0xcbc1b6],
           [center, 855, 502, 0xcfc1ba],
           [center, 700, 457, 0xf4b25f],
           [center, 825, 398, 0xe3dbd3],
           [center, 564, 446, 0xf4b25f],
-        ]
+        ],
       ],
       oper: [
-        [center, 1280, 720, 577,443, 710,476, 1200] //  点击_祝福
-      ]
+        [center, 1280, 720, 577, 443, 710, 476, 1200], //  点击_祝福
+      ],
     },
     {
       //  29 检测_无祝福
       desc: [
-        1280, 720,
+        1280,
+        720,
         [
           [left, 263, 122, 0xe3ceb2],
           [right, 1030, 120, 0xe3cdaf],
@@ -519,32 +523,33 @@ export class Func518 implements IFuncOrigin {
           [left, 153, 167, 0x57514a],
           [right, 1045, 619, 0xe3c9aa],
           [right, 1049, 541, 0xe0c8af],
-        ]
+        ],
       ],
       oper: [
-        [right, 1280, 720, 1060,125, 1093,161, 1200]  //  点击_关闭
-      ]
+        [right, 1280, 720, 1060, 125, 1093, 161, 1200], //  点击_关闭
+      ],
     },
     {
       //  30  检测_商店_热门推荐
       desc: [
-        1280, 720,
+        1280,
+        720,
         [
           [right, 1204, 28, 0xd7c5a2],
           [right, 1009, 147, 0xe7d5cf],
-          [right, 1148, 663, 0x280a0a],
           [right, 1008, 540, 0x251210],
           [right, 1041, 550, 0x503434],
-        ]
+        ],
       ],
       oper: [
-        [right, 1280, 720, 1000,136, 1022,156, 1200]  //  点击 关闭
-      ]
+        [right, 1280, 720, 1000, 136, 1022, 156, 1200], //  点击 关闭
+      ],
     },
     {
       //  31 检测_商店主页
       desc: [
-        1280, 720,
+        1280,
+        720,
         [
           [right, 1198, 652, 0xd03b3b],
           [right, 1129, 642, 0x301d19],
@@ -554,34 +559,30 @@ export class Func518 implements IFuncOrigin {
           [right, 1243, 294, 0x2a2228],
           [right, 1157, 291, 0x8e464d],
           [right, 1094, 404, 0x453828],
-        ]
+        ],
       ],
       oper: [
-        [right, 1280, 720, 1154,643, 1200,675, 1200]  //  点击 礼包屋
-      ]
+        [right, 1280, 720, 1154, 643, 1200, 675, 1200], //  点击 礼包屋
+      ],
     },
     {
-      //  32 检测_商店_礼包屋_推荐页签_含每日免费领取
-      desc: [
+      //  32 检测_商店_礼包屋_推荐页签
+      desc:[
         1280, 720,
         [
           [left, 30, 26, 0xf4e4a4],
           [right, 1249, 28, 0xd7c5a2],
           [right, 1197, 652, 0xd03b3b],
           [right, 1018, 633, 0xa361dc],
-          [left, 278, 330, 0xc16345],
-          [left, 232, 271, 0xeedece],
-          [left, 261, 227, 0x212121],
+          [left, 146, 132, 0x301e1c],
         ]
-      ],
-      oper: [
-        [left, 1280, 720, 218,223, 284,282, 1200],  //  点击 每日领取
       ]
     },
     {
       //  33  检测_商店_礼包屋
       desc: [
-        1280, 720,
+        1280,
+        720,
         [
           [left, 29, 26, 0xf4e7a9],
           [right, 1249, 28, 0xd7c5a2],
@@ -589,12 +590,65 @@ export class Func518 implements IFuncOrigin {
           [right, 1204, 60, 0x140a08],
           [center, 866, 660, 0x3c7acf],
           [left, 20, 558, 0x493c30],
+        ],
+      ],
+      oper: [
+        [left, 1280, 720, 21, 9, 51, 42, 1200], //  点击 礼包屋返回
+        [left, 1280, 720, 26, 37, 72, 81, 1200], //  点击 商店返回
+      ],
+    },
+    {
+      //  34 检测_好友羁绊提升弹窗
+      desc: [
+        1280,
+        720,
+        [
+          [center, 833, 136, 0x7c5c2e],
+          [center, 588, 369, 0x301c10],
+          [center, 626, 413, 0xcf9796],
+          [center, 683, 412, 0x2d1b10],
+          [center, 375, 104, 0x3c3832],
+          [center, 584, 445, 0x8e5b39],
+        ],
+      ],
+      oper: [
+        [right, 1280, 720, 1143, 72, 1176, 101, 1200] //  点击关闭
+      ],
+    },
+    {
+      //  35 检测_商店_礼包屋_热卖页签
+      desc: [
+        1280, 720,
+        [
+          [left, 30, 26, 0xf4e4a4],
+          [right, 1226, 130, 0xfcdab2],
+          [right, 1227, 222, 0x967e71],
+          [right, 1227, 312, 0x967d71],
+          [right, 1196, 652, 0xd03b3b],
+          [right, 1028, 662, 0xb43bf8],
+          [center, 866, 662, 0x3a7cce],
         ]
       ],
       oper: [
-        [left, 1280, 720, 21,9, 51,42, 1200],  //  点击 礼包屋返回
-        [left, 1280, 720, 26,37, 72,81, 1200],  //  点击 商店返回
+        [right, 1280, 720, 1186,194, 1237,247, 1200]  //  点击 推荐页签
       ]
+    },
+    {
+      //  36 检测_商店_推荐页签_每日领取
+      desc: [
+        1280, 720,
+        [
+          [left, 234, 227, 0xe0e0e0],
+          [left, 276, 331, 0xc26245],
+          [left, 231, 272, 0xedded0],
+          [left, 262, 228, 0x212120],
+          [left, 199, 341, 0xd0af86],
+          [left, 190, 188, 0x271616],
+        ]
+      ],
+      oper: [
+        [left, 1280, 720, 218, 223, 284, 282, 1200], //  点击 每日领取
+      ],
     }
   ];
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -676,20 +730,21 @@ export class Func518 implements IFuncOrigin {
         name: '检测_商店_礼包屋',
         operator: [
           {
-            desc: thisOperator[33].desc
-          }
+            desc: thisOperator[33].desc,
+          },
         ],
-      }) && thisScript.global.daily_collection !== 'store'
+      }) &&
+      thisScript.global.daily_collection !== 'store'
     ) {
       return thisScript.oper({
         id: 518,
         name: '返回庭院',
         operator: [
           {
-            oper: thisOperator[33].oper
-          }
+            oper: thisOperator[33].oper,
+          },
         ],
-      })
+      });
     }
 
     if (
@@ -785,6 +840,8 @@ export class Func518 implements IFuncOrigin {
           thisOperator[29], //  无祝福
           thisOperator[30], //  检测_商店_热门推荐
           thisOperator[31], //  检测_商店主页
+          thisOperator[34], //  检测_好友羁绊
+          thisOperator[35], //  检测_商店_礼包屋_热卖页签
         ],
       })
     ) {
@@ -808,12 +865,28 @@ export class Func518 implements IFuncOrigin {
       thisScript.oper({
         id: 518,
         name: '检测_商店_礼包屋_推荐页签',
-        operator: [
-          thisOperator[32], 
-        ],
+        operator: [thisOperator[32]],
       })
     ) {
-      thisScript.global.daily_collection = 'courtyard';
+
+      //  若3次找不到每日领取，直接视为已领取
+      if (
+        thisScript.oper({
+          id: 518,
+          name: '检测_商店_推荐页签_每日领取',
+          operator: [thisOperator[36]],
+        })
+       || thisScript.global.checked_yard_count >= 3) {
+        thisScript.global.checked_yard_count = 0;
+        thisScript.global.daily_collection = 'courtyard';
+      }
+
+      if (!thisScript.global.checked_yard_count) {
+        thisScript.global.checked_yard_count = 1;
+      } else {
+        thisScript.global.checked_yard_count += 1;
+      }
+      sleep(1000);
       return true;
     }
 
