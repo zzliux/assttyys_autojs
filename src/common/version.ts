@@ -843,6 +843,9 @@ export const versionList = [{
 },{
     version: '202306230_01',
     desc: `优化：账号被顶会停止脚本`
+},{
+    version: '20230701_01',
+    desc: `优化：518添加适配好友羁绊与商店热卖`
 }];
 
 export default versionList[versionList.length - 1].version;
