@@ -86,6 +86,23 @@ export class Func003 implements IFuncOrigin {
 			[center, 1280, 720, 517, 521, 841, 689, 1000],
 			[center, 1280, 720, 509, 650, 912, 716, 1000]
 		]
+	}, {//4	其他设备登录(被顶掉)
+		desc: [
+			1280, 720,
+			[
+				[center, 437, 258, 0x624333],
+				[center, 841, 257, 0x664535],
+				[center, 457, 289, 0xcbb59c],
+				[center, 819, 428, 0xcbb59c],
+				[center, 484, 329, 0x584f45],
+				[center, 733, 322, 0x2b2723],
+				[center, 581, 379, 0x963a2d],
+				[center, 700, 428, 0x973c2e],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 584, 382, 700, 429, 1000],
+		]
 	}];
 
 	/**
@@ -101,7 +118,15 @@ export class Func003 implements IFuncOrigin {
 		})) {
 			return true;
 		}
-
+		if (thisScript.oper({
+			name: '意外情况,停止脚本',
+			operator: [thisOperator[4]]
+		})) {
+			thisScript.doPush(thisScript, { text: `意外情况已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+			thisScript.stop();
+			sleep(3000);
+			return true;
+		}
 		if (thisconf.switch && thisconf.type === '接受' && thisScript.oper({
 			name: '悬赏协作',
 			operator: [{

@@ -268,8 +268,7 @@ const SchemeList: IScheme[] = [
         fastMode: true
       }
     }
-  },
-  {
+  }, {
     id: 99,
     schemeName: '伊吹之擂',
     list: [0, 3, 24, 99, 100],

@@ -828,8 +828,21 @@ export const versionList = [{
     version: '20230624_01',
     desc: `优化：518 添加领取友情点与商店每日领取`
 },{
-    version: '20230626',
-    desc: `优化：组队306邀请速度`
+    version: '20230626_01',
+    desc: `优化：组队306邀请速度
+修复：998寄养时有招财上宾时会卡体力食盒的问题`
+}, {
+    version: '20230627',
+    desc: `增加：314领取花合战功能`
+}, {
+    version: '20230628_01',
+    desc: '新增：活动森间试炼'
+},{
+    version: '20230628_02',
+    desc: `优化：312通用活动，现在可以自行设置点击区域`
+},{
+    version: '202306230_01',
+    desc: `优化：账号被顶会停止脚本`
 }];
 
 export default versionList[versionList.length - 1].version;
