@@ -101,6 +101,8 @@ export class Func304 implements IFuncOrigin {
         })
       if (realTimeBmp.length != 0) {
         let realTimeText = realTimeBmp[0].label;
+        realTimeText = realTimeText.replace("%", "0");
+        realTimeText = realTimeText.replace("-", ".");
         let realTimeNum = Number(realTimeText.replace("%", "0"));
         console.log(`ocr识别为：[${realTimeNum}]`);
         if (!isNaN(realTimeNum) && (realTimeNum as number) > (thisconf.progress as number)) {
