@@ -852,6 +852,9 @@ export const versionList = [{
 }, {
     version: '20230706_02',
     desc: '修复：邀约协作'
+}, {
+    version: '20230707_01',
+    desc: '优化：998添加 低星结界卡适配'
 }];
 
 export default versionList[versionList.length - 1].version;
