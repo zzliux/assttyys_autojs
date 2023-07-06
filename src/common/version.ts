@@ -849,6 +849,9 @@ export const versionList = [{
 }, {
     version: '20230706_01',
     desc: '新增：邀约悬赏（在3悬赏协作配置，默认为自动关闭）'
+}, {
+    version: '20230706_02',
+    desc: '修复：邀约协作'
 }];
 
 export default versionList[versionList.length - 1].version;

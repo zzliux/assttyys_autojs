@@ -112,14 +112,15 @@ export class Func003 implements IFuncOrigin {
 		]
 	}, { // 5 邀约协作
 		desc: [
-			1282, 722,
+			1280, 720,
 			[
-				[center, 862, 430, 0x59b664],
-				[center, 858, 530, 0xd96856],
-				[center, 639, 154, 0xd5c4a7],
-				[center, 776, 133, 0xfde193],
-				[center, 787, 143, 0xffea9f],
-				[center, 413, 191, 0xd9be97],
+				[center, 420, 202, 0xd9bd97],
+				[center, 434, 158, 0xbc8a4d],
+				[center, 571, 149, 0xd7c3a6],
+				[center, 791, 146, 0xffeca2],
+				[center, 778, 120, 0x8c4a3a],
+				[center, 854, 438, 0x57b260],
+				[center, 857, 529, 0xdd705f],
 			]
 		],
 		oper: [
@@ -137,12 +138,14 @@ export class Func003 implements IFuncOrigin {
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisconf = thisScript.scheme.config['3']; // 获取配置
 		if (thisScript.oper({
+			id: 3,
 			name: '清除垃圾弹窗',
 			operator: [thisOperator[2], thisOperator[3]]
 		})) {
 			return true;
 		}
 		if (thisScript.oper({
+			id: 3,
 			name: '意外情况,停止脚本',
 			operator: [thisOperator[4]]
 		})) {
@@ -152,6 +155,7 @@ export class Func003 implements IFuncOrigin {
 			return true;
 		}
 		if (thisconf.switch && thisconf.type === '接受' && thisScript.oper({
+			id: 3,
 			name: '悬赏协作',
 			operator: [{
 				desc: [thisOperator[0].desc[0] as [number, number, number, number]]
@@ -159,6 +163,7 @@ export class Func003 implements IFuncOrigin {
 		})) {
 			if (thisScript.findMultiColor("勾协判定")) {
 				thisScript.oper({
+					id: 3,
 					name: '悬赏协作_' + thisconf.type + '_勾协',
 					operator: [{
 						oper: [thisOperator[0].oper[1]]
@@ -177,6 +182,7 @@ export class Func003 implements IFuncOrigin {
 			}
 		} else {
 			return thisScript.oper({
+				id: 3,
 				name: '悬赏协作_' + thisconf.type,
 				operator: [{
 					desc: thisOperator[0].desc,
@@ -187,10 +193,11 @@ export class Func003 implements IFuncOrigin {
 					}[thisconf.type as string]]]
 				}]
 			}) || thisScript.oper({
-				name: '邀约协作_' + thisconf.type,
+				id: 3,
+				name: '邀约协作_' + (thisconf.yytype || '关闭'),
 				operator: [{
-					desc: thisOperator[0].desc,
-					oper: [thisOperator[0].oper[{
+					desc: thisOperator[5].desc,
+					oper: [thisOperator[5].oper[{
 						'关闭': 0,
 						'接受': 1,
 						'拒绝': 2
