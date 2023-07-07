@@ -13,9 +13,9 @@ const target = 'dev_release';
 (async () => {
     await fsPromise.mkdir(target, { recursive: true });
     await Promise.all(statics.map((source) => {
-        return fsPromise.cp(source, target + '/static/' + source, { recursive: true, filter: (src) => (!src.includes('LICENSE')) });
+        return fsPromise.cp(source, target + '/' + source, { recursive: true, filter: (src) => (!src.includes('LICENSE')) });
     }));
-    fsPromise.writeFile(target + '/index', JSON.stringify((await listAll(target)).map(a => a.replace(new RegExp('^' + target ), ''))));
+    fsPromise.writeFile(target + '/index.html', JSON.stringify((await listAll(target)).map(a => a.replace(new RegExp('^' + target + '/'), ''))));
 })();
 
 
