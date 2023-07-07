@@ -8,6 +8,7 @@ const statics = [
 ];
 
 const target = 'dev_release';
+const prefix = '/assttyys_autojs';
 
 
 (async () => {
@@ -15,7 +16,7 @@ const target = 'dev_release';
     await Promise.all(statics.map((source) => {
         return fsPromise.cp(source, target + '/' + source, { recursive: true, filter: (src) => (!src.includes('LICENSE')) });
     }));
-    fsPromise.writeFile(target + '/index', JSON.stringify((await listAll(target)).map(a => a.replace(new RegExp('^' + target + '/'), ''))));
+    fsPromise.writeFile(target + '/index', JSON.stringify((await listAll(target)).map(a => a.replace(new RegExp('^' + target + '/'), prefix))));
 })();
 
 
