@@ -15,7 +15,7 @@ const target = 'dev_release';
     await Promise.all(statics.map((source) => {
         return fsPromise.cp(source, target + '/static/' + source, { recursive: true, filter: (src) => (!src.includes('LICENSE')) });
     }));
-    fsPromise.writeFile(target + '/index', JSON.stringify((await listAll(target)).map(a => a.replace(new RegExp('^' + target + '/'), '/static/'))));
+    fsPromise.writeFile(target + '/index', JSON.stringify((await listAll(target)).map(a => a.replace(new RegExp('^' + target ), ''))));
 })();
 
 
