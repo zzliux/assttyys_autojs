@@ -925,7 +925,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
     //     ]
     // },
     '庭院_探索灯笼': {
-        region: [center, 1280, 720, 0, 83, 1279, 412],
+        region: [center, 1280, 720, 0, 83, 1006, 284],
         desc: [
             [1280, 720,
                 [
@@ -960,7 +960,39 @@ const multiFindColors: IMultiFindColorsOrigin = {
                     [center, 712, 128, 0xcda281],
                     [center, 679, 198, 0xffffde],
                 ]
-            ]
+            ],
+
+            // 亮着的
+            [
+                1280, 720,
+                [
+                    [center, 670, 121, 0x3d393d],
+                    [center, 662, 146, 0xfffffd],
+                    [center, 678, 159, 0x606060],
+                    [center, 681, 173, 0xffffff],
+                    [center, 699, 141, 0xffffc9],
+                ]
+            ],
+            [
+                1280, 720,
+                [
+                    [center, 487, 111, 0x2f2f2f],
+                    [center, 486, 136, 0xffffeb],
+                    [center, 492, 148, 0x595959],
+                    [center, 512, 155, 0xffffff],
+                    [center, 523, 169, 0xffffe5],
+                ]
+            ],
+            [
+                1280, 720,
+                [
+                    [center, 874, 115, 0x333334],
+                    [center, 886, 122, 0x3a3a3b],
+                    [center, 891, 138, 0xffffe6],
+                    [center, 897, 178, 0xffffee],
+                    [center, 879, 158, 0x5b5b5b],
+                ]
+            ],
         ]
     },
     '探索_宝箱': {
