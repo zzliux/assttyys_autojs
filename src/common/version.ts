@@ -855,6 +855,9 @@ export const versionList = [{
 }, {
     version: '20230707_01',
     desc: '优化：998添加 低星结界卡适配'
+}, {
+    version: '20230708_01',
+    desc: '优化：定时任务添加狭间，优化506，去除自动配置'
 }];
 
 export default versionList[versionList.length - 1].version;

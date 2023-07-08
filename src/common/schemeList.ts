@@ -406,22 +406,22 @@ const SchemeList: IScheme[] = [
     schemeName: '狩猎战',
     list: [0, 1, 2, 3, 507],
   },
-  {
-    id: 34,
-    schemeName: '庭院进入寮每日活动(自动)',
-    list: [3, 505, 506, 516],
-    config: {
-      '506': {
-        auto_switch_enabled: true,
-        gateOfHades_switch: false,
-      },
-      '516': {
-        count: '40',
-        afterCountOper: '停止脚本',
-        next_scheme: '通用准备退出',
-      },
-    },
-  },
+  // {
+  //   id: 34,
+  //   schemeName: '庭院进入寮每日活动(自动)',
+  //   list: [3, 505, 506, 516],
+  //   config: {
+  //     '506': {
+  //       auto_switch_enabled: true,
+  //       gateOfHades_switch: false,
+  //     },
+  //     '516': {
+  //       count: '40',
+  //       afterCountOper: '停止脚本',
+  //       next_scheme: '通用准备退出',
+  //     },
+  //   },
+  // },
   {
     id: 35,
     schemeName: '六道萤草',
@@ -433,23 +433,23 @@ const SchemeList: IScheme[] = [
       multiColorSimilar: 95,
     },
   },
-  {
-    id: 36,
-    schemeName: '定时任务-启动游戏-每日寮活动',
-    star: true,
-    groupName: '定时任务',
-    list: [1, 2, 3, 503, 993],
-    config: {
-      '993': {
-        area: '',
-        is_shutdown_the_game_before: true,
-        next_scheme: '庭院进入寮每日活动(自动)',
-      },
-      '503': {
-        afterCountOper: '不进行任何操作',
-      },
-    },
-  },
+  // {
+  //   id: 36,
+  //   schemeName: '定时任务-启动游戏-每日寮活动',
+  //   star: true,
+  //   groupName: '定时任务',
+  //   list: [1, 2, 3, 503, 993],
+  //   config: {
+  //     '993': {
+  //       area: '',
+  //       is_shutdown_the_game_before: true,
+  //       next_scheme: '庭院进入寮每日活动(自动)',
+  //     },
+  //     '503': {
+  //       afterCountOper: '不进行任何操作',
+  //     },
+  //   },
+  // },
   {
     id: 39,
     schemeName: '夜行荒河',
@@ -588,33 +588,21 @@ const SchemeList: IScheme[] = [
   {
     id: 53,
     schemeName: '庭院进入寮每日活动(包含阴门)',
-    list: [3, 505, 506, 516],
+    list: [3, 505, 506],
     config: {
       '506': {
-        auto_switch_enabled: false,
         gateOfHades_switch: true,
-      },
-      '516': {
-        count: '40',
-        afterCountOper: '停止脚本',
-        next_scheme: '通用准备退出',
-      },
+      }
     },
   },
   {
     id: 54,
     schemeName: '庭院进入寮每日活动(不包含阴门)',
-    list: [3, 505, 506, 516],
+    list: [3, 505, 506],
     config: {
       '506': {
-        auto_switch_enabled: false,
         gateOfHades_switch: false,
-      },
-      '516': {
-        count: '40',
-        afterCountOper: '停止脚本',
-        next_scheme: '通用准备退出',
-      },
+      }
     },
   },
   {
@@ -740,7 +728,7 @@ const SchemeList: IScheme[] = [
     schemeName: '定时任务-启动游戏-每日签到与收取邮件',
     star: true,
     groupName: '定时任务',
-    list: [1, 2, 3, 503, 993],
+    list: [1, 2, 3, 314, 503, 993],
     config: {
       '993': {
         area: '',
@@ -762,15 +750,46 @@ const SchemeList: IScheme[] = [
       }
     }
   }, {
+    id: 67,
+    schemeName: '庭院进入寮每日活动(狭间)',
+    list: [3, 505, 506, 516],
+    config: {
+      '506': {
+        gateOfHades_switch: false,
+      },
+      '516': {
+        count: '2',
+        afterCountOper: '不做任何操作',
+        next_scheme: '通用准备退出',
+      },
+    },
+  }, {
+    id: 68,
+    schemeName: '定时任务-启动游戏-庭院进入寮每日活动(狭间)',
+    star: true,
+    groupName: '定时任务',
+    list: [1, 2, 3, 503, 993],
+    config: {
+      '993': {
+        area: '',
+        is_shutdown_the_game_before: true,
+        next_scheme: '庭院进入寮每日活动(狭间)',
+      },
+      '503': {
+        afterCountOper: '不进行任何操作',
+      },
+    },
+  }, {
     id: 99,
     schemeName: '伊吹之擂',
     list: [0, 3, 24, 99, 100],
-  }, {
-    id: 101,
-    schemeName: '活动_森间试炼',
-    list: [0, 1, 2, 3, 24, 132],
-    star: true,
-  }
+  }, 
+  // {
+  //   id: 101,
+  //   schemeName: '活动_森间试炼',
+  //   list: [0, 1, 2, 3, 24, 132],
+  //   star: true,
+  // }
   // , {
   //     id: 101,
   //     groupName: '活动',

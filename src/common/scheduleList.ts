@@ -142,7 +142,7 @@ const ScheduleDefaultList: JobOptions[] = [
     interval: '* 59 18 * * 5,6,0',
     level: '10',
     config: {
-      scheme: '定时任务-启动游戏-庭院进入寮每日活动(不包含阴门)',
+      scheme: '定时任务-启动游戏-庭院进入寮每日活动(狭间)',
     }
   },
   {
