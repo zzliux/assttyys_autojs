@@ -161,7 +161,7 @@ export default function webviewSettigns() {
                 name: 'msgPush_prefix',
                 type: 'assttyys_setting',
                 stype: 'text',
-                value: '[ASSTTYYS]'
+                value: storeSettings.msgPush_prefix
             });
         } else if (storeSettings.push_type === 'ospPush') {
             ret.push({
@@ -175,7 +175,7 @@ export default function webviewSettigns() {
                 name: 'msgPush_prefix',
                 type: 'assttyys_setting',
                 stype: 'text',
-                value: '[ASSTTYYS]'
+                value: storeSettings.msgPush_prefix
             })
         }
         done(ret);
