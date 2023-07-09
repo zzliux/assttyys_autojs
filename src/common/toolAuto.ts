@@ -257,6 +257,9 @@ export function doPush(thisScript: Script, options: {
         let b64str = android.util.Base64.encodeToString(baos.toByteArray(), android.util.Base64.NO_WRAP);
         let data = [{
             type: 'text',
+            data: storeSettings.msgPush_prefix
+        }, {
+            type: 'text',
             data: options && options.text || ''
         }, {
             type: 'image',

@@ -29,15 +29,20 @@ export default function webviewSettigns() {
         initStoreSettings.floaty_scheme_direct_run = false;
     }
 
-    if(typeof initStoreSettings.osp_user_token === 'undefined') {
+    if (typeof initStoreSettings.osp_user_token === 'undefined') {
         initStoreSettings.osp_user_token = '';
     }
 
     if (typeof initStoreSettings.push_type === 'undefined') {
         initStoreSettings.push_type = '关闭推送';
     }
-    if(typeof initStoreSettings.oneBot_version === 'undefined') {
+
+    if (typeof initStoreSettings.oneBot_version === 'undefined') {
         initStoreSettings.oneBot_version = '12';
+    }
+
+    if (typeof initStoreSettings.msgPush_prefix === 'undefined') {
+        initStoreSettings.msgPush_prefix = '[ASSTTYYS]';
     }
 
     storeCommon.put('settings', initStoreSettings);
@@ -88,15 +93,15 @@ export default function webviewSettigns() {
             type: 'autojs_inner_setting',
             enabled: $settings.isEnabled('foreground_service')
         }
-        // , {
-        //     desc: '开机自启',
-        //     name: 'launch_after_boot',
-        //     type: 'assttyys_setting_launch_after_boot',
-        //     //@ts-ignore
-        //     enabled: !!$work_manager.queryIntentTasks({
-        //         action: 'android.intent.action.BOOT_COMPLETED'
-        //     }).length,
-        // }
+            // , {
+            //     desc: '开机自启',
+            //     name: 'launch_after_boot',
+            //     type: 'assttyys_setting_launch_after_boot',
+            //     //@ts-ignore
+            //     enabled: !!$work_manager.queryIntentTasks({
+            //         action: 'android.intent.action.BOOT_COMPLETED'
+            //     }).length,
+            // }
         ];
 
         if (device.sdkInt >= 23) {
@@ -129,36 +134,48 @@ export default function webviewSettigns() {
             name: 'ocr_extend',
             type: 'assttyys_setting_ocr_extend',
             enabled: storeSettings.ocrType === 'MlkitOcr' ? mlkitOcr.isInstalled() : yunxiOcr.isInstalled()
-        } ,{
-            desc:'消息推送方式',
-            name:'push_type',
+        }, {
+            desc: '消息推送方式',
+            name: 'push_type',
             type: 'assttyys_setting',
             stype: 'list',
             data: ['关闭推送', 'ospPush', 'oneBot'],
             value: storeSettings.push_type
         }];
-        if(storeSettings.push_type === 'oneBot'){
+        if (storeSettings.push_type === 'oneBot') {
             ret.push({
-                desc:'oneBot版本',
-                name:'oneBot_version',
+                desc: 'oneBot版本',
+                name: 'oneBot_version',
                 type: 'assttyys_setting',
                 stype: 'list',
                 data: ['11', '12'],
                 value: storeSettings.oneBot_version
-            },{
-                desc:'推送地址',
-                name:'oneBot_url',
+            }, {
+                desc: '推送地址',
+                name: 'oneBot_url',
                 type: 'assttyys_setting',
                 stype: 'text',
                 value: storeSettings.oneBot_url
+            }, {
+                desc: '推送内容前缀',
+                name: 'msgPush_prefix',
+                type: 'assttyys_setting',
+                stype: 'text',
+                value: '[ASSTTYYS]'
             });
-        }else{
+        } else if (storeSettings.push_type === 'ospPush') {
             ret.push({
-                desc: 'ospUserToken',
+                desc: 'ospUserToken(因作者bot寄了，请自行部署OneBot使用)',
                 name: 'osp_user_token',
                 type: 'assttyys_setting',
                 stype: 'text',
                 value: storeSettings.osp_user_token
+            }, {
+                desc: '推送内容前缀',
+                name: 'msgPush_prefix',
+                type: 'assttyys_setting',
+                stype: 'text',
+                value: '[ASSTTYYS]'
             })
         }
         done(ret);
