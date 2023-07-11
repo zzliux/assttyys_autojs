@@ -858,6 +858,9 @@ export const versionList = [{
 }, {
     version: '20230708_01',
     desc: '优化：定时任务添加狭间，优化506，去除自动配置'
+}, {
+    version: '20230712_01',
+    desc: '优化：993同区多账号添加账号序号功能，优化寄养，狩猎 找色方案'
 }];
 
 export default versionList[versionList.length - 1].version;
