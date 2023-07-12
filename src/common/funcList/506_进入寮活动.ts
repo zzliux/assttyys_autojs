@@ -11,13 +11,15 @@ export class Func506 implements IFuncOrigin {
 	desc = '进入已开启寮活动，如道馆、宴会、狩猎战、首领退治';
 	config = [{
 		desc: '结束后切换方案',
-		config: [{
-			name: 'auto_switch_enabled',
-			desc: '是否启用自动模式(1-4道馆狩猎，5、7狭宴阴，6狭首阴',
-			type: 'switch',
-			default: false,
-			value: false,
-		}, {
+		config: [
+		// 	{
+		// 	name: 'auto_switch_enabled',
+		// 	desc: '是否启用自动模式(1-4道馆狩猎，5、7狭宴阴，6狭首阴',
+		// 	type: 'switch',
+		// 	default: false,
+		// 	value: false,
+		// }, 
+		{
 			name: 'gateOfHades_switch',
 			desc: '是否进入阴门挑战(用于周末阴门)',
 			type: 'switch',
@@ -228,38 +230,38 @@ export class Func506 implements IFuncOrigin {
 			}
 		} else {
 
-			if (thisConf.auto_switch_enabled) {
-				let nowDateDay = new Date().getDay();
-				switch (nowDateDay) {
-					case 1:
-					case 2:
-					case 3:
-					case 4: {
-						_liao_activity_state = {
-							dojo: false,
-							hunt: false,
-						}
-						break;
-					};
-					case 6: {
-						_liao_activity_state = {
-							huntBoss: false,
-							narrow: false,
-							gateOfHades: false,
-						}
-						break;
-					}
-					case 5:
-					case 0: {	//	TODO: 无奈之举，有没有大佬把这三个给做了
-						_liao_activity_state = {
-							banquet: false,
-							narrow: false,
-							gateOfHades: false,
-						}
-						break;
-					}
-				}
-			}
+			// if (thisConf.auto_switch_enabled) {
+			// 	let nowDateDay = new Date().getDay();
+			// 	switch (nowDateDay) {
+			// 		case 1:
+			// 		case 2:
+			// 		case 3:
+			// 		case 4: {
+			// 			_liao_activity_state = {
+			// 				dojo: false,
+			// 				hunt: false,
+			// 			}
+			// 			break;
+			// 		};
+			// 		case 6: {
+			// 			_liao_activity_state = {
+			// 				huntBoss: false,
+			// 				narrow: false,
+			// 				gateOfHades: false,
+			// 			}
+			// 			break;
+			// 		}
+			// 		case 5:
+			// 		case 0: {	//	TODO: 无奈之举，有没有大佬把这三个给做了
+			// 			_liao_activity_state = {
+			// 				banquet: false,
+			// 				narrow: false,
+			// 				gateOfHades: false,
+			// 			}
+			// 			break;
+			// 		}
+			// 	}
+			// }
 
 		}
 

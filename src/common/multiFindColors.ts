@@ -311,7 +311,6 @@ const multiFindColors: IMultiFindColorsOrigin = {
             [
                 1280, 720,
                 [
-                    [center, 649, 235, 0x82675d],
                     [center, 580, 192, 0xd7c9ba],
                     [center, 572, 215, 0xd7c9ba],
                     [center, 577, 252, 0xd7c9ba],
@@ -324,7 +323,12 @@ const multiFindColors: IMultiFindColorsOrigin = {
                     [center, 580, 510, 0xd7c9ba],
                     [center, 572, 532, 0xd7c9ba],
                     [center, 577, 562, 0xd7c9ba],
-                    [center, 635, 242, 0xcbb59e],
+                    [center, 625, 330, 0xcbb59e],
+                    [center, 681, 336, 0xcbb59e],
+                    [center, 627, 556, 0xcbb59e],
+                    [center, 735, 554, 0xcbb59e],
+                    [center, 725, 181, 0xcbb59e],
+                    [center, 627, 181, 0xcbb59e],
                 ]
             ]
         ]
@@ -925,7 +929,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
     //     ]
     // },
     '庭院_探索灯笼': {
-        region: [center, 1280, 720, 0, 83, 1279, 412],
+        region: [center, 1280, 720, 0, 83, 1006, 284],
         desc: [
             [1280, 720,
                 [
@@ -960,7 +964,39 @@ const multiFindColors: IMultiFindColorsOrigin = {
                     [center, 712, 128, 0xcda281],
                     [center, 679, 198, 0xffffde],
                 ]
-            ]
+            ],
+
+            // 亮着的
+            [
+                1280, 720,
+                [
+                    [center, 670, 121, 0x3d393d],
+                    [center, 662, 146, 0xfffffd],
+                    [center, 678, 159, 0x606060],
+                    [center, 681, 173, 0xffffff],
+                    [center, 699, 141, 0xffffc9],
+                ]
+            ],
+            [
+                1280, 720,
+                [
+                    [center, 487, 111, 0x2f2f2f],
+                    [center, 486, 136, 0xffffeb],
+                    [center, 492, 148, 0x595959],
+                    [center, 512, 155, 0xffffff],
+                    [center, 523, 169, 0xffffe5],
+                ]
+            ],
+            [
+                1280, 720,
+                [
+                    [center, 874, 115, 0x333334],
+                    [center, 886, 122, 0x3a3a3b],
+                    [center, 891, 138, 0xffffe6],
+                    [center, 897, 178, 0xffffee],
+                    [center, 879, 158, 0x5b5b5b],
+                ]
+            ],
         ]
     },
     '探索_宝箱': {
@@ -1262,6 +1298,18 @@ const multiFindColors: IMultiFindColorsOrigin = {
                     [left, 26, 462, 0x352424],
                     [left, 128, 513, 0x27303c]
                 ]
+            ],
+            [1280, 720,
+                [
+                    [left, 85, 406, 0xbc5993a],
+                    [left, 70, 405, 0x7a5529],
+                    [left, 56, 405, 0x6d4e21],
+                    [left, 28, 431, 0x472e2e],
+                    [left, 106, 429, 0x493131],
+                    [left, 106, 467, 0x312020],
+                    [left, 26, 462, 0x352424],
+                    [left, 128, 513, 0x27303c]
+                ]
             ]
         ]
     },
@@ -1292,9 +1340,9 @@ const multiFindColors: IMultiFindColorsOrigin = {
                     [right, 1176, 212, 0x754420],
                     [right, 1169, 270, 0xe0be58],
                     [right, 1180, 427, 0xe7d6b2],
-                    [right, 1103, 556, 0xb1937b],
+                    // [right, 1103, 556, 0xb1937b],
                     [right, 1105, 611, 0xe1d8c0],
-                    [right, 1088, 620, 0xf48a37],
+                    // [right, 1088, 620, 0xf48a37],
                     [right, 1153, 79, 0x533b23],
                     [right, 1192, 328, 0xfef2c2]
                 ]
@@ -1306,13 +1354,14 @@ const multiFindColors: IMultiFindColorsOrigin = {
                     [right, 1176, 212, 0x754420],
                     [right, 1169, 270, 0xe0be58],
                     [right, 1180, 427, 0xe7d6b2],
-                    [right, 1103, 556, 0xb1937b],
+                    // [right, 1103, 556, 0xb1937b],
                     [right, 1105, 611, 0xe1d8c0],
-                    [right, 1088, 620, 0xf48a37],
+                    // [right, 1088, 620, 0xf48a37],
                     [right, 1153, 79, 0x533b23],
                     [right, 1192, 328, 0xfef2c2]
                 ]
             ],
+
         ]
     },
     "探索界面_检测左边是否有追踪任务的悬浮列表": {
@@ -2397,11 +2446,12 @@ const multiFindColors: IMultiFindColorsOrigin = {
             [
                 1280, 720,
                 [
-                    [center, 657, 433, 0xdac9b8],
-                    [center, 637, 419, 0x98edfe],
-                    [center, 673, 429, 0xa3f2ff],
-                    [center, 663, 453, 0x77472b],
-                    [center, 660, 406, 0xfefdfd],
+                    [center, 641, 455, 0x10100c],
+                    [center, 641, 436, 0x654028],
+                    [center, 645, 409, 0x10100c],
+                    [center, 672, 417, 0x16160e],
+                    [center, 673, 447, 0x613d27],
+                    [center, 656, 425, 0xeeeae6],
                 ]
             ]
         ]

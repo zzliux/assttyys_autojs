@@ -17,13 +17,20 @@ export class Func003 implements IFuncOrigin {
 			type: 'list',
 			data: ['关闭', '接受', '拒绝'],
 			default: '关闭',
-			value: null,
 		}, {
 			name: 'switch',
 			desc: '仅接受勾协',
 			type: 'switch',
 			default: false,
-			value: null,
+		}]
+	}, {
+		desc: '邀约协作（活动）',
+		config: [{
+			name: 'yytype',
+			desc: '操作',
+			type: 'list',
+			data: ['关闭', '接受', '拒绝'],
+			default: '关闭'
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{
@@ -57,7 +64,7 @@ export class Func003 implements IFuncOrigin {
 			[center, 668, 510, 0x7746a8],
 			[center, 694, 490, 0xef492e]]
 		]
-	}, {	// 判断_阴阳寮成就页	这些乱七八糟的弹窗统一找个地方放吧，烦死了，暂时先放着:)
+	}, { // 2 判断_阴阳寮成就页 这些乱七八糟的弹窗统一找个地方放吧，烦死了，暂时先放着:)
 		desc:
 			[
 				1280, 720,
@@ -74,7 +81,7 @@ export class Func003 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 357, 535, 1045, 662, 1200]	//	点击空白处
 		]
-	}, {//3,呱太弹窗
+	}, { // 3 呱太弹窗
 		desc: [1280, 720,
 			[[center, 568, 225, 0xb7b052],
 			[center, 733, 228, 0x4d4da2],
@@ -86,7 +93,7 @@ export class Func003 implements IFuncOrigin {
 			[center, 1280, 720, 517, 521, 841, 689, 1000],
 			[center, 1280, 720, 509, 650, 912, 716, 1000]
 		]
-	}, {//4	其他设备登录(被顶掉)
+	}, { // 4 其他设备登录(被顶掉)
 		desc: [
 			1280, 720,
 			[
@@ -103,6 +110,24 @@ export class Func003 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 584, 382, 700, 429, 1000],
 		]
+	}, { // 5 邀约协作
+		desc: [
+			1280, 720,
+			[
+				[center, 420, 202, 0xd9bd97],
+				[center, 434, 158, 0xbc8a4d],
+				[center, 571, 149, 0xd7c3a6],
+				[center, 791, 146, 0xffeca2],
+				[center, 778, 120, 0x8c4a3a],
+				[center, 854, 438, 0x57b260],
+				[center, 857, 529, 0xdd705f],
+			]
+		],
+		oper: [
+			[center, 1282, 722, 762, 118, 796, 151, 1000], // 关闭
+			[center, 1282, 722, 836, 410, 880, 457, 1000], // 接受
+			[center, 1282, 722, 834, 510, 880, 556, 1000], // 拒绝
+		]
 	}];
 
 	/**
@@ -113,12 +138,14 @@ export class Func003 implements IFuncOrigin {
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisconf = thisScript.scheme.config['3']; // 获取配置
 		if (thisScript.oper({
+			id: 3,
 			name: '清除垃圾弹窗',
 			operator: [thisOperator[2], thisOperator[3]]
 		})) {
 			return true;
 		}
 		if (thisScript.oper({
+			id: 3,
 			name: '意外情况,停止脚本',
 			operator: [thisOperator[4]]
 		})) {
@@ -128,6 +155,7 @@ export class Func003 implements IFuncOrigin {
 			return true;
 		}
 		if (thisconf.switch && thisconf.type === '接受' && thisScript.oper({
+			id: 3,
 			name: '悬赏协作',
 			operator: [{
 				desc: [thisOperator[0].desc[0] as [number, number, number, number]]
@@ -135,6 +163,7 @@ export class Func003 implements IFuncOrigin {
 		})) {
 			if (thisScript.findMultiColor("勾协判定")) {
 				thisScript.oper({
+					id: 3,
 					name: '悬赏协作_' + thisconf.type + '_勾协',
 					operator: [{
 						oper: [thisOperator[0].oper[1]]
@@ -153,6 +182,7 @@ export class Func003 implements IFuncOrigin {
 			}
 		} else {
 			return thisScript.oper({
+				id: 3,
 				name: '悬赏协作_' + thisconf.type,
 				operator: [{
 					desc: thisOperator[0].desc,
@@ -162,7 +192,18 @@ export class Func003 implements IFuncOrigin {
 						'拒绝': 2
 					}[thisconf.type as string]]]
 				}]
-			}, 0);
+			}) || thisScript.oper({
+				id: 3,
+				name: '邀约协作_' + (thisconf.yytype || '关闭'),
+				operator: [{
+					desc: thisOperator[5].desc,
+					oper: [thisOperator[5].oper[{
+						'关闭': 0,
+						'接受': 1,
+						'拒绝': 2
+					}[(thisconf.yytype || '关闭') as string]]]
+				}]
+			});
 		};
 	}
 }

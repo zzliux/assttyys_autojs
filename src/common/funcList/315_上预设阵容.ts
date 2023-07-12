@@ -1,0 +1,113 @@
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
+import { Script } from '@/system/script';
+const normal = -1; //定义常量
+const left = 0;
+const center = 1;
+const right = 2;
+
+export class Func315 implements IFuncOrigin {
+  id = 315;
+  name = '上预设阵容';
+  desc = '准备前上固定预设';
+  config = [{
+    desc: '',
+    config: [{
+      name: 'groupNum',
+      desc: '目标阵容的分组在第N个（输入数字，只支持7个以内）',
+      type: 'text',
+      default: '1',
+      value: '1',
+    }, {
+      name: 'defaultNum',
+      desc: '目标阵容在第N个（输入数字，只支持4个以内）',
+      type: 'text',
+      default: '1',
+      value: '1',
+    }],
+  }];
+  operator: IFuncOperatorOrigin[] = [{//0 准备的预设
+    desc: [1280, 720,
+      [
+        [right, 1124, 698, 0xd0af86],
+        [right, 1240, 702, 0xcead83],
+        [right, 1191, 596, 0xa46149],
+        [right, 1182, 586, 0xf7e6c3],
+        [center, 40, 678, 0xe08673],
+        [left, 32, 23, 0xdbb48b]
+      ]
+    ],
+    oper: [
+      [center, 1280, 720, 42, 662, 74, 703, 1000],
+    ]
+  }, {//1  准备预设里界面
+    desc: [
+      1280, 720,
+      [
+        [left, 31, 236, 0x714803],
+        [center, 688, 277, 0x5a4536],
+        [center, 644, 248, 0xdfc9b6],
+        [center, 637, 611, 0xdfc9b6],
+        [left, 174, 614, 0x76512c],
+      ]
+    ]
+  }, {//2  预设组
+    oper: [
+      [center, 1280, 720, 33, 242, 162, 291, 63], // 分组第一，像素相隔63
+    ]
+  }, {//3  选预设
+    oper: [
+      [right, 1280, 720, 205, 241, 655, 340, 500], // 预设第一
+      [right, 1280, 720, 197, 359, 655, 462, 500], // 预设第二
+      [right, 1280, 720, 197, 477, 658, 584, 500], // 预设第三
+      [right, 1280, 720, 197, 597, 660, 628, 500], // 预设第四
+    ]
+  }, {//4  出战
+    oper: [
+      [right, 1280, 720, 359, 648, 491, 683, 500], // 出战
+    ]
+  }, {//5  战斗界面
+    desc: '战斗界面'
+  }
+  ]
+  operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
+    let thisConf = thisScript.scheme.config['315'];
+    if (thisScript.global.shangyushe) {
+      if (thisScript.oper({
+        name: '准备的预设',
+        operator: [thisOperator[0]
+        ]
+      })) {
+        return true;
+      }
+      if (thisScript.oper({
+        name: '准备预设里界面',
+        operator: [thisOperator[1]
+        ]
+      })) {
+        let tureGroupNum = Number(thisConf.groupNum) - 1
+        let trueDefaultNum = Number(thisConf.defaultNum) - 1;
+        let oper = [[
+          thisOperator[2].oper[0][0],
+          thisOperator[2].oper[0][1] + (thisOperator[2].oper[0][4] * tureGroupNum),
+          thisOperator[2].oper[0][2],
+          thisOperator[2].oper[0][3] + (thisOperator[2].oper[0][4] * tureGroupNum),
+          500
+        ]];
+        thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+        let opertwo = thisOperator[3].oper[trueDefaultNum];
+        thisScript.helperBridge.regionClick([opertwo], thisScript.scheme.commonConfig.afterClickDelayRandom);
+        thisScript.helperBridge.regionClick(thisOperator[4].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+        thisScript.global.shangyushe = false;
+        return true;
+      }
+    }
+    if (thisScript.oper({
+      name: '战斗界面',
+      operator: [thisOperator[5]
+      ]
+    })) {
+      thisScript.global.shangyushe = true;
+    }
+    return false;
+  }
+}

@@ -357,7 +357,7 @@ export class Func998 implements IFuncOrigin {
       ],
     },
     {
-      //  18 检测_结界卡已激活
+      //  18 检测_结界卡已激活_高星(4+星)适配
       desc: [
         1280,
         720,
@@ -387,6 +387,23 @@ export class Func998 implements IFuncOrigin {
           [center, 453, 678, 0x89341c],
           [center, 696, 675, 0x9cb9df],
           [left, 292, 460, 0xffffff],
+        ],
+      ],
+    },
+    {
+      //  20 检测_结界卡已激活_低星(3-星)适配
+      desc: [
+        1280,
+        720,
+        [
+          [center, 897, 276, 0xd0c8bf],
+          [center, 847, 208, 0x826c61],
+          [right, 1117, 117, 0xc7bdb2],
+          [center, 572, 107, 0xc7bdb2],
+          [right, 1150, 563, 0xdec47e],
+          [center, 946, 605, 0xc4a379],
+          [right, 986, 586, 0x3f2f27],
+          [right, 974, 596, 0x403027],
         ],
       ],
     },
@@ -713,6 +730,9 @@ export class Func998 implements IFuncOrigin {
             operator: [
               {
                 desc: thisOperator[18].desc,
+              },
+              {
+                desc: thisOperator[20].desc,
               },
             ],
           })

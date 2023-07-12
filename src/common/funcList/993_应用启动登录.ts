@@ -38,12 +38,19 @@ export class Func993 implements IFuncOrigin {
           default: '式神寄养',
         },
         {
+          name: 'account_index',
+          desc: '账号序号(用于同区多账号，指从上往下数第N个账号，目前指适配三个账号的情况，账号序号优先级大于账号昵称！)',
+          type: 'text',
+          default: 0,
+          value: 0,
+        },
+        {
           name: 'account_name',
-          desc: '账号昵称(用于同区多账号，可以只填容易识别的字眼，程序会包含识别)',
+          desc: '账号昵称(用于同区多账号，建议只填容易识别的字眼(OCR识别容易识别失败，字数越少容错率越高)，程序会包含识别)',
           type: 'text',
           default: '',
           value: '',
-        }
+        },
       ],
     },
   ];
@@ -354,13 +361,41 @@ export class Func993 implements IFuncOrigin {
       ],
       oper: [
         [left, 1280, 720, 106, 101, 424, 607, 1200], //  多账号区域
+        [left, 1280, 720, 142, 142, 261, 180, 1200], //  第一个账号坐标
+        [left, 1280, 720, 126, 272, 264, 307, 1200], //  第二个账号坐标
+        [left, 1280, 720, 126, 377, 289, 409, 1200], //  第三个账号坐标(瞎猜的，没有三个账号同区的场景)
       ],
-    },
+    }, { // 19 看CG确认窗口点取消
+      desc: [
+        1280, 720,
+        [
+          [center, 498, 416, 0xdf6851],
+          [center, 646, 420, 0xcbb59c],
+          [center, 716, 421, 0xf3b25e],
+          [center, 438, 236, 0x634233],
+          [center, 764, 329, 0xcbb59c],
+          [center, 856, 376, 0xcbb59c],
+          [center, 656, 465, 0xc3ad93],
+          [center, 423, 485, 0x674536],
+        ]
+      ],
+      oper: [
+        [center, 1280, 720, 471, 395, 595, 455, 1000],
+      ]
+    }
   ];
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
     let thisConf = thisScript.scheme.config['993'];
     if (typeof thisScript.global.app_is_open_flag === 'undefined') {
       thisScript.global.app_is_open_flag = 0;
+    }
+
+    if (thisScript.oper({
+      id: 993,
+      name: '登录时不看CG',
+      operator: [thisOperator[19]],
+    })) {
+      return true;
     }
 
     if (
@@ -494,7 +529,6 @@ export class Func993 implements IFuncOrigin {
     }
 
     if (
-      thisConf.account_name &&
       thisScript.global.game_area &&
       thisScript.oper({
         name: '是否为同区多账号',
@@ -505,71 +539,85 @@ export class Func993 implements IFuncOrigin {
         ],
       })
     ) {
-      let toDetectAreaBmp = thisScript.helperBridge.helper.GetBitmap(
-        ...thisOperator[18].oper[0].slice(0, 4)
-      );
-      console.time('ocr.detect.area');
-      let resultArea = thisScript.getOcrDetector().loadImage(toDetectAreaBmp);
-      console.timeEnd('ocr.detect.area');
-      toDetectAreaBmp.recycle();
+      if (thisConf.account_index) {
+        let index = parseInt(thisConf.account_index as string, 10);
+        if (index > 3 || index < 1) {
+          console.log('993 ==> 账号序号有误，大于3小于1，请检查账号序号!');
+          thisScript.stop();
+          return false;
+        }
+        return thisScript.oper({
+          name: `点击第${thisConf.account_index}个同区账号`,
+          operator: [
+            {
+              oper: [thisOperator[18].oper[index], thisOperator[0].oper[0]],
+            },
+          ],
+        });
+      } else if (thisConf.account_name) {
+        let toDetectAreaBmp = thisScript.helperBridge.helper.GetBitmap(
+          ...thisOperator[18].oper[0].slice(0, 4)
+        );
+        console.time('ocr.detect.area');
+        let resultArea = thisScript.getOcrDetector().loadImage(toDetectAreaBmp);
+        console.timeEnd('ocr.detect.area');
+        toDetectAreaBmp.recycle();
 
-      if (
-        Array.isArray(resultArea) &&
-        resultArea.length > 0 &&
-        resultArea[0].label
-      ) {
-        console.log('识别成功，识别结果为:', resultArea);
-        if (thisConf.account_name) {
-          for (let resultItem of resultArea) {
-            if (resultItem && resultItem.label) {
-              console.log('当前账号为' + resultItem.label);
-              if (resultItem.label.includes(String(thisConf.account_name))) {
+        if (
+          Array.isArray(resultArea) &&
+          resultArea.length > 0 &&
+          resultArea[0].label
+        ) {
+          console.log('识别成功，识别结果为:', resultArea);
+          if (thisConf.account_name) {
+            for (let resultItem of resultArea) {
+              if (resultItem && resultItem.label) {
+                console.log('当前账号为' + resultItem.label);
+                if (resultItem.label.includes(String(thisConf.account_name))) {
+                  let p = {
+                    x:
+                      (resultItem.points[0].x + resultItem.points[1].x) / 2 +
+                      thisOperator[18].oper[0][0], // 补位
+                    y:
+                      (resultItem.points[0].y + resultItem.points[3].y) / 2 +
+                      thisOperator[18].oper[0][1],
+                  };
 
-                let p = {
-                  x:
-                    (resultItem.points[0].x + resultItem.points[1].x) / 2 +
-                    thisOperator[18].oper[0][0], // 补位
-                  y:
-                    (resultItem.points[0].y + resultItem.points[3].y) / 2 +
-                    thisOperator[18].oper[0][1],
-                };
-    
-                let lx = p.x - 10;
-                let ly = p.y - 10;
-                let rx = p.x + 10;
-                let ry = p.y + 10;
-    
-                let toClick = [
-                  lx > 0 ? lx : 0,
-                  ly > 0 ? ly : 0,
-                  rx ,
-                  ry ,
-                  1200,
-                ];
-                console.log('识别成功, 点击坐标为', toClick);
-    
-                thisScript.helperBridge.regionClick(
-                  [toClick],
-                  thisScript.scheme.commonConfig.afterClickDelayRandom
-                );
+                  let lx = p.x - 10;
+                  let ly = p.y - 10;
+                  let rx = p.x + 10;
+                  let ry = p.y + 10;
 
-                return thisScript.oper({
-                  name: '点击开始游戏',
-                  operator: [
-                    {
-                      oper: [thisOperator[0].oper[0]],
-                    },
-                  ],
-                });
+                  let toClick = [
+                    lx > 0 ? lx : 0,
+                    ly > 0 ? ly : 0,
+                    rx,
+                    ry,
+                    1200,
+                  ];
+                  console.log('识别成功, 点击坐标为', toClick);
+
+                  thisScript.helperBridge.regionClick(
+                    [toClick],
+                    thisScript.scheme.commonConfig.afterClickDelayRandom
+                  );
+
+                  return thisScript.oper({
+                    name: '点击开始游戏',
+                    operator: [
+                      {
+                        oper: [thisOperator[0].oper[0]],
+                      },
+                    ],
+                  });
+                }
               }
             }
           }
+        } else {
+          console.log('识别同区账号失败，识别结果为:', resultArea);
+          return false;
         }
-
-        
-      } else {
-        console.log('识别同区账号失败，识别结果为:', resultArea);
-        return false;
       }
     }
 
