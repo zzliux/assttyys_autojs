@@ -109,7 +109,6 @@ export class Func314 implements IFuncOrigin {
         name: '花合战_领取奖励',
         operator: [thisOperator[3]]
       })) {
-        thisScript.global.huahezhan = false;
         return true;
       } else {
         //退出
