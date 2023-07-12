@@ -258,6 +258,39 @@ const SchemeList: IScheme[] = [
     schemeName: '通用活动',
     star: true,
     list: [0, 1, 2, 3, 312],
+  },
+  {
+    id: 63,
+    schemeName: '重启模拟器',
+    list: [991],
+  },
+  {
+    id: 64,
+    schemeName: '每日签到与收取邮件',
+    list: [0, 2, 3, 518],
+    config: {
+      '0': {
+        jspd_enabled_longtime_nodo: true,
+        jspd_times_longtime_nodo: 1,
+      },
+    },
+  },
+  {
+    id: 65,
+    schemeName: '定时任务-启动游戏-每日签到与收取邮件',
+    star: true,
+    groupName: '定时任务',
+    list: [1, 2, 3, 503, 993],
+    config: {
+      '993': {
+        area: '',
+        is_shutdown_the_game_before: true,
+        next_scheme: '每日签到与收取邮件',
+      },
+      '503': {
+        afterCountOper: '不进行任何操作',
+      },
+    },
   }, {
     id: 66,
     schemeName: '契灵',
@@ -269,10 +302,78 @@ const SchemeList: IScheme[] = [
       }
     }
   }, {
+    id: 67,
+    schemeName: '庭院进入寮每日活动(狭间)',
+    list: [3, 505, 506, 516],
+    config: {
+      '506': {
+        gateOfHades_switch: false,
+      },
+      '516': {
+        count: '2',
+        afterCountOper: '不做任何操作',
+        next_scheme: '通用准备退出',
+      },
+    },
+  }, {
+    id: 68,
+    schemeName: '定时任务-启动游戏-庭院进入寮每日活动(狭间)',
+    star: true,
+    groupName: '定时任务',
+    list: [1, 2, 3, 503, 993],
+    config: {
+      '993': {
+        area: '',
+        is_shutdown_the_game_before: true,
+        next_scheme: '庭院进入寮每日活动(狭间)',
+      },
+      '503': {
+        afterCountOper: '不进行任何操作',
+      },
+    },
+  }, {
     id: 99,
     schemeName: '伊吹之擂',
     list: [0, 3, 24, 99, 100],
+  }, {
+    id: 101,
+    schemeName: '活动_森间试炼',
+    list: [0, 1, 2, 3, 24, 132],
+    star: true,
   }
+  // , {
+  //     id: 101,
+  //     groupName: '活动',
+  //     schemeName: '银之绮都_妖塔燃战',
+  //     star: true,
+  //     list: [0, 1, 2, 3, 128]
+  // }
+  // , {
+  //     id: 102,
+  //     groupName: '活动',
+  //     schemeName: '夏日游园会_消消乐',
+  //     star: true,
+  //     list: [0, 3, 129, 130],
+  //     commonConfig: { multiColorSimilar: 95 }
+  // }
+  // 完整demo
+  // , {
+  //     id: 2,
+  //     schemeName: '组队队长',
+  //     star: false,
+  //     list: [0, ], // funcList中的id集合
+  //     config: { // 方案中的配置，如返回空的话使用默认配置
+  //         '1': { // key为功能的ID（1表示准备）
+  //             enabled: false,
+  //             position: '五人-左1'
+  //         }
+  //     },
+  //     commonConfig: { // 通用参数
+  //         clickDelay: 200, // 点击后固定延时
+  //         clickDelayRandom: 1000, // 点击后延时随机数
+  //         // 等
+  //     }
+  // }
 ];
 
 let commonConfig = {};
