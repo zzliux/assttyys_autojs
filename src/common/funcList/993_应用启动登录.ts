@@ -365,12 +365,37 @@ export class Func993 implements IFuncOrigin {
         [left, 1280, 720, 126, 272, 264, 307, 1200], //  第二个账号坐标
         [left, 1280, 720, 126, 377, 289, 409, 1200], //  第三个账号坐标(瞎猜的，没有三个账号同区的场景)
       ],
-    },
+    }, { // 19 看CG确认窗口点取消
+      desc: [
+        1280, 720,
+        [
+          [center, 498, 416, 0xdf6851],
+          [center, 646, 420, 0xcbb59c],
+          [center, 716, 421, 0xf3b25e],
+          [center, 438, 236, 0x634233],
+          [center, 764, 329, 0xcbb59c],
+          [center, 856, 376, 0xcbb59c],
+          [center, 656, 465, 0xc3ad93],
+          [center, 423, 485, 0x674536],
+        ]
+      ],
+      oper: [
+        [center, 1280, 720, 471, 395, 595, 455, 1000],
+      ]
+    }
   ];
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
     let thisConf = thisScript.scheme.config['993'];
     if (typeof thisScript.global.app_is_open_flag === 'undefined') {
       thisScript.global.app_is_open_flag = 0;
+    }
+
+    if (thisScript.oper({
+      id: 993,
+      name: '登录时不看CG',
+      operator: [thisOperator[19]],
+    })) {
+      return true;
     }
 
     if (

@@ -861,6 +861,9 @@ export const versionList = [{
 }, {
     version: '20230712_01',
     desc: '优化：993同区多账号添加账号序号功能，优化寄养，狩猎 找色方案'
+}, {
+    version: '20230712_01',
+    desc: '优化：993登录游戏关闭看CG的提示'
 }];
 
 export default versionList[versionList.length - 1].version;
