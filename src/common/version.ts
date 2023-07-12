@@ -867,6 +867,9 @@ export const versionList = [{
 }, {
     version: '20230712_03',
     desc: `优化：45、44强化适配`
+}, {
+    version: '20230713_01',
+    desc: `增加：315功能,战斗前换预设阵容`
 }];
 
 export default versionList[versionList.length - 1].version;

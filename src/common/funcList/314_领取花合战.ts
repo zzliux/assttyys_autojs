@@ -5,7 +5,7 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func504 implements IFuncOrigin {
+export class Func314 implements IFuncOrigin {
   id = 314;
   name = '领取花合战';
   operator: IFuncOperatorOrigin[] = [{//0 庭院未打开菜单
