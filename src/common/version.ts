@@ -870,6 +870,11 @@ export const versionList = [{
 }, {
     version: '20230713_01',
     desc: `增加：315功能,战斗前换预设阵容`
+}, {
+    version: '20230714_01',
+    desc: `优化:315改为每次方案只换一次
+修复:组队邀请范围
+修复:多次领取花合战`
 }];
 
 export default versionList[versionList.length - 1].version;
