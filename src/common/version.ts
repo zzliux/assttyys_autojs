@@ -875,6 +875,10 @@ export const versionList = [{
     desc: `优化:315改为每次方案只换一次
 修复:组队邀请范围
 修复:多次领取花合战`
+}, {
+    version: '20230716_01',
+    desc: `修复：518 993适配
+优化：508逢魔首领 极 的逻辑`
 }];
 
 export default versionList[versionList.length - 1].version;
