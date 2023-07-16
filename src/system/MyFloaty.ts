@@ -132,7 +132,6 @@ export class MyFloaty {
                 });
         }
 
-
         this.fb.setAllButtonPadding(6);
         this.fb.getViewUtil('logo').setPadding(0);
         this.fb.setColor('#00000000');

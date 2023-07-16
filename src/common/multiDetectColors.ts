@@ -296,10 +296,40 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 	},
 	'庭院未打开菜单': {
 		desc: [1280, 720,
-			[[right, 1211, 606, 0x885f46],
-			[right, 1205, 624, 0x987777],
-			[right, 1208, 646, 0xaf4949],
-			[right, 1175, 680, 0xb08e7d]]
+			[
+				[right, 1211, 606, 0x885f46],
+				[right, 1205, 624, 0x987777],
+				[right, 1208, 646, 0xaf4949],
+				[right, 1175, 680, 0xb08e7d]
+			]
+		]
+	},
+	'探索章节_挑战': {
+		desc: [
+			1280, 720,
+			[
+				[center, 318, 417, 0xc7af95],
+				[center, 358, 133, 0x493625],
+				[center, 1046, 135, 0x64323b],
+				[center, 986, 539, 0xf3b25e],
+				[center, 1095, 545, 0xe5d2ab],
+				[center, 511, 562, 0xc7af94],
+				[center, 1109, 385, 0x633d21],
+			]
+		]
+	},
+	'探索章节_挑战2': {
+		desc: [
+			1280, 720,
+			[
+				[center, 289, 124, 0x493625],
+				[center, 1053, 125, 0x642d36],
+				[center, 990, 532, 0xf3b25e],
+				[center, 509, 552, 0xc7af94],
+				// [center, 346, 405, 0xc7af95],
+				[center, 1122, 419, 0x864e1f],
+				[center, 1101, 537, 0xebd9b3],
+			]
 		]
 	}
 };
