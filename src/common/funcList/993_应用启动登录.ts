@@ -219,15 +219,15 @@ export class Func993 implements IFuncOrigin {
       ],
     },
     {
-      // 10 网络连接出错弹窗
+      // 10 网络连接出错弹窗(适配 mumu6)
       desc: [
         1280,
         720,
         [
-          [center, 910, 436, 0x009688],
           [center, 928, 260, 0xffffff],
           [center, 330, 254, 0xffffff],
           [center, 332, 462, 0xffffff],
+          [center, 376, 294, 0xf9e4d8],
         ],
       ],
       oper: [
@@ -252,7 +252,7 @@ export class Func993 implements IFuncOrigin {
       ],
     },
     {
-      // 12 检测_无响应窗口
+      // 12 检测_无响应窗口(适配 雷电)
       desc: [
         1280,
         720,
@@ -364,6 +364,22 @@ export class Func993 implements IFuncOrigin {
         [left, 1280, 720, 142, 142, 261, 180, 1200], //  第一个账号坐标
         [left, 1280, 720, 126, 272, 264, 307, 1200], //  第二个账号坐标
         [left, 1280, 720, 126, 377, 289, 409, 1200], //  第三个账号坐标(瞎猜的，没有三个账号同区的场景)
+      ],
+    },
+    {
+      // 19 网络连接出错弹窗(适配 雷电)
+      desc: [
+        1280,
+        720,
+        [
+          [center, 910, 436, 0x009688],
+          [center, 928, 260, 0xffffff],
+          [center, 330, 254, 0xffffff],
+          [center, 332, 462, 0xffffff],
+        ],
+      ],
+      oper: [
+        [center, 1280, 720, 875, 426, 924, 450, 1200], // 确认按钮
       ],
     },
   ];
@@ -682,6 +698,7 @@ export class Func993 implements IFuncOrigin {
           thisOperator[14],
           thisOperator[15],
           thisOperator[17],
+          thisOperator[19],
         ],
       })
     ) {

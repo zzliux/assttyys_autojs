@@ -567,16 +567,17 @@ export class Func518 implements IFuncOrigin {
     },
     {
       //  32 检测_商店_礼包屋_推荐页签
-      desc:[
-        1280, 720,
+      desc: [
+        1280,
+        720,
         [
           [left, 30, 26, 0xf4e4a4],
           [right, 1249, 28, 0xd7c5a2],
           [right, 1197, 652, 0xd03b3b],
           [right, 1018, 633, 0xa361dc],
           [left, 146, 132, 0x301e1c],
-        ]
-      ]
+        ],
+      ],
     },
     {
       //  33  检测_商店_礼包屋
@@ -607,18 +608,18 @@ export class Func518 implements IFuncOrigin {
           [center, 588, 369, 0x301c10],
           [center, 626, 413, 0xcf9796],
           [center, 683, 412, 0x2d1b10],
-          [center, 375, 104, 0x3c3832],
           [center, 584, 445, 0x8e5b39],
         ],
       ],
       oper: [
-        [right, 1280, 720, 1143, 72, 1176, 101, 1200] //  点击关闭
+        [right, 1280, 720, 1143, 72, 1176, 101, 1200], //  点击关闭
       ],
     },
     {
       //  35 检测_商店_礼包屋_热卖页签
       desc: [
-        1280, 720,
+        1280,
+        720,
         [
           [left, 30, 26, 0xf4e4a4],
           [right, 1226, 130, 0xfcdab2],
@@ -627,16 +628,17 @@ export class Func518 implements IFuncOrigin {
           [right, 1196, 652, 0xd03b3b],
           [right, 1028, 662, 0xb43bf8],
           [center, 866, 662, 0x3a7cce],
-        ]
+        ],
       ],
       oper: [
-        [right, 1280, 720, 1186,194, 1237,247, 1200]  //  点击 推荐页签
-      ]
+        [right, 1280, 720, 1186, 194, 1237, 247, 1200], //  点击 推荐页签
+      ],
     },
     {
       //  36 检测_商店_推荐页签_每日领取
       desc: [
-        1280, 720,
+        1280,
+        720,
         [
           [left, 234, 227, 0xe0e0e0],
           [left, 276, 331, 0xc26245],
@@ -644,12 +646,27 @@ export class Func518 implements IFuncOrigin {
           [left, 262, 228, 0x212120],
           [left, 199, 341, 0xd0af86],
           [left, 190, 188, 0x271616],
-        ]
+        ],
       ],
       oper: [
         [left, 1280, 720, 218, 223, 284, 282, 1200], //  点击 每日领取
       ],
-    }
+    },
+    {
+      //  37 检测_商店_热门推荐_另一种适配
+      desc: [
+        1280,
+        720,
+        [
+          [right, 1085, 493, 0x4a1a19],
+          [right, 1075, 534, 0x5c1919],
+          [right, 1139, 594, 0x64413d],
+          [right, 1137, 606, 0x412725],
+          [center, 571, 587, 0x6c4741],
+        ],
+      ],
+      oper: [[right, 1280, 720, 1115, 108, 1149, 136, 1200]],
+    },
   ];
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
     if (
@@ -842,6 +859,7 @@ export class Func518 implements IFuncOrigin {
           thisOperator[31], //  检测_商店主页
           thisOperator[34], //  检测_好友羁绊
           thisOperator[35], //  检测_商店_礼包屋_热卖页签
+          thisOperator[37], //  检测_商店_热门推荐_另一种适配
         ],
       })
     ) {
@@ -868,15 +886,15 @@ export class Func518 implements IFuncOrigin {
         operator: [thisOperator[32]],
       })
     ) {
-
       //  若3次找不到每日领取，直接视为已领取
       if (
         thisScript.oper({
           id: 518,
           name: '检测_商店_推荐页签_每日领取',
           operator: [thisOperator[36]],
-        })
-       || thisScript.global.checked_yard_count >= 3) {
+        }) ||
+        thisScript.global.checked_yard_count >= 3
+      ) {
         thisScript.global.checked_yard_count = 0;
         thisScript.global.daily_collection = 'courtyard';
       }
