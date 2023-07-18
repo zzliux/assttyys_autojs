@@ -879,6 +879,9 @@ export const versionList = [{
     version: '20230716_01',
     desc: `修复：518 993适配
 优化：508逢魔首领 极 的逻辑`
+}, {
+    version: '20230718_01',
+    desc: `优化：执行方案时增加延时，避免误识别`
 }];
 
 export default versionList[versionList.length - 1].version;
