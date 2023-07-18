@@ -5,6 +5,12 @@ import { merge } from './tool';
 
 const SchemeList: IScheme[] = [
   {
+    id: 1,
+    schemeName: '通用准备退出',
+    star: true,
+    list: [0, 1, 2, 3],
+  },
+  {
     id: 2,
     schemeName: '组队乘客',
     star: true,
@@ -15,6 +21,27 @@ const SchemeList: IScheme[] = [
     schemeName: '组队司机',
     star: true,
     list: [0, 1, 2, 3, 5],
+  },
+  {
+    id: 4,
+    schemeName: '个人御魂',
+    star: false,
+    list: [0, 1, 2, 3, 6],
+  },
+  {
+    id: 5,
+    schemeName: '个人突破',
+    list: [0, 1, 2, 3, 7, 10, 8, 9, 11],
+    config: {
+      '8': {
+        count: '2',
+        afterCountOper: '停止脚本',
+        type: '个人突破',
+      },
+      '10': {
+        type: '个人突破',
+      },
+    },
   },
   {
     id: 5,
@@ -98,6 +125,33 @@ const SchemeList: IScheme[] = [
     },
   },
   {
+    id: 6,
+    schemeName: '寮突破',
+    star: true,
+    list: [0, 1, 2, 3, 8, 9, 10, 12, 29],
+    config: {
+      '8': {
+        count: '2',
+        afterCountOper: '关闭界面',
+        type: '寮突破',
+      },
+      '10': {
+        type: '寮突破',
+      },
+    },
+  },
+  {
+    id: 7,
+    schemeName: '个人探索',
+    star: true,
+    list: [0, 15, 1, 2, 3, 13, 14, 29],
+    config: {
+      '0': {
+        next_scheme: '关闭BUFF',
+      },
+    },
+  },
+  {
     id: 8,
     schemeName: '组队探索_队长',
     star: false,
@@ -120,9 +174,70 @@ const SchemeList: IScheme[] = [
     },
   },
   {
+    id: 9,
+    schemeName: '地鬼日常',
+    star: true,
+    list: [1, 2, 16, 29],
+  },
+  {
+    id: 10,
+    schemeName: '逢魔日常',
+    star: true,
+    list: [1, 2, 3, 23, 24, 26, 508, 8, 504],
+    config: {
+      '508': {
+        switch_ji_enabled: false,
+      },
+    },
+  },
+  {
+    id: 11,
+    schemeName: '百鬼夜行',
+    list: [3, 17, 18, 19, 20, 21],
+  },
+  {
     id: 12,
     schemeName: '抽厕纸',
     list: [3, 22],
+  },
+  {
+    id: 13,
+    groupName: '切换方案样例',
+    schemeName: '例_个人探索30次_转个人突破',
+    star: true,
+    list: [0, 15, 1, 2, 3, 13, 14],
+    config: {
+      '0': {
+        jspd_enabled_2: true,
+        jspd_times_2: 30,
+        scheme_switch_enabled: true,
+        next_scheme: '例_个人突破_结束后转寮突破',
+      },
+    },
+  },
+  {
+    id: 14,
+    groupName: '切换方案样例',
+    schemeName: '例_个人突破_结束后转寮突破',
+    star: true,
+    list: [0, 1, 2, 3, 7, 10, 8, 9, 11, 25],
+    config: {
+      '8': {
+        count: '2',
+        afterCountOper: '切换方案',
+        type: '个人突破',
+        next_scheme: '寮突破',
+      },
+      '10': {
+        type: '个人突破',
+      },
+    },
+  },
+  {
+    id: 15,
+    schemeName: '组队_自动匹配流程',
+    star: true,
+    list: [0, 1, 2, 3, 5, 27],
   },
   {
     id: 16,
@@ -138,6 +253,12 @@ const SchemeList: IScheme[] = [
     id: 18,
     schemeName: '结界卡_继续合成',
     list: [0, 3, 31],
+  },
+  {
+    id: 19,
+    schemeName: '道馆',
+    list: [0, 1, 2, 3, 32],
+    star: true,
   },
   {
     id: 22,
@@ -168,6 +289,18 @@ const SchemeList: IScheme[] = [
     },
   },
   {
+    id: 24,
+    schemeName: '金币妖怪',
+    star: true,
+    list: [0, 1, 2, 3, 39, 35, 36, 37, 38, 40],
+  },
+  {
+    id: 25,
+    schemeName: '宴会',
+    star: true,
+    list: [3, 1003, 1000, 1001, 1002, 1004],
+  },
+  {
     id: 26,
     schemeName: '关闭BUFF',
     list: [502, 1, 2, 3, 29, 40, 501],
@@ -177,10 +310,220 @@ const SchemeList: IScheme[] = [
     schemeName: '开启BUFF_打探索',
     list: [501, 50],
   },
+  //  {
+  //     id: 28,
+  //     schemeName: '悬赏_庭院打开悬赏界面',
+  //     list: [52],
+  // },
+  {
+    id: 29,
+    schemeName: '返回庭院',
+    list: [3, 503],
+    config: {
+      '503': {
+        scheme_switch_enabled: false,
+        next_scheme: '通用准备退出',
+        afterCountOper: '停止脚本',
+      },
+    },
+  },
+  {
+    id: 30,
+    schemeName: '式神寄养',
+    star: true,
+    groupName: '式神寄养',
+    list: [3, 999, 998, 997, 994, 995],
+    config: {
+      '3': {
+        type: '关闭',
+      },
+      '994': {
+        count: '6',
+        maxTimeForwait: '10',
+        afterCountOper: '停止脚本',
+        next_scheme: '通用准备退出',
+      },
+      '995': {
+        next_scheme: '返回庭院',
+        afterCountOper: '停止脚本',
+        isAutoFosterCare: true,
+        maxTimeForwait: '10',
+      },
+      '997': {
+        priority: '太鼓6->太鼓5->太鼓4->太鼓3->斗鱼6->斗鱼5->斗鱼4',
+      },
+    },
+  },
+  {
+    id: 31,
+    schemeName: '定时任务-启动游戏-式神寄养',
+    star: true,
+    groupName: '式神寄养',
+    list: [1, 2, 3, 503, 993],
+    config: {
+      '993': {
+        area: '',
+        is_shutdown_the_game_before: true,
+        next_scheme: '式神寄养',
+      },
+      '503': {
+        afterCountOper: '不进行任何操作',
+      },
+      '998': {
+        change_enchantment_switch: false,
+        change_enchantment_type: '太鼓',
+      },
+    },
+  },
+  {
+    id: 32,
+    schemeName: '式神指定寄养',
+    star: true,
+    groupName: '定时任务',
+    list: [3, 999, 998, 996, 994, 995],
+    config: {
+      '3': {
+        type: '关闭',
+      },
+      '994': {
+        count: '3',
+        afterCountOper: '停止脚本',
+        next_scheme: '通用准备退出',
+      },
+      '995': {
+        next_scheme: '返回庭院',
+        afterCountOper: '停止脚本',
+        isAutoFosterCare: true,
+        maxTimeForwait: '10',
+      },
+      '996': {
+        friendName: '老王',
+      },
+    },
+  },
+  {
+    id: 33,
+    schemeName: '狩猎战',
+    list: [0, 1, 2, 3, 507],
+  },
+  {
+    id: 34,
+    schemeName: '庭院进入寮每日活动(自动)',
+    list: [3, 505, 506, 516],
+    config: {
+      '506': {
+        auto_switch_enabled: true,
+        gateOfHades_switch: false,
+      },
+      '516': {
+        count: '40',
+        afterCountOper: '停止脚本',
+        next_scheme: '通用准备退出',
+      },
+    },
+  },
+  {
+    id: 35,
+    schemeName: '六道萤草',
+    list: [0, 1, 2, 3, 24, 201, 202, 203, 207, 204, 205, 206, 208, 209],
+    commonConfig: {
+      loopDelay: 200,
+      afterClickDelayRandom: 200,
+      colorSimilar: 93,
+      multiColorSimilar: 95,
+    },
+  },
+  {
+    id: 36,
+    schemeName: '定时任务-启动游戏-每日寮活动',
+    star: true,
+    groupName: '定时任务',
+    list: [1, 2, 3, 503, 993],
+    config: {
+      '993': {
+        area: '',
+        is_shutdown_the_game_before: true,
+        next_scheme: '庭院进入寮每日活动(自动)',
+      },
+      '503': {
+        afterCountOper: '不进行任何操作',
+      },
+    },
+  },
   {
     id: 39,
     schemeName: '夜行荒河',
     list: [2, 3, 220, 221],
+  },
+  {
+    id: 40,
+    schemeName: '定时任务-启动游戏-每日逢魔',
+    star: true,
+    groupName: '定时任务',
+    list: [1, 2, 3, 503, 993],
+    config: {
+      '993': {
+        area: '',
+        is_shutdown_the_game_before: true,
+        next_scheme: '逢魔日常',
+      },
+      '503': {
+        afterCountOper: '不进行任何操作',
+      },
+    },
+  },
+  {
+    id: 41,
+    schemeName: '实例-更换式神预设御魂',
+    groupName: '切换方案样例',
+    list: [509, 510, 511],
+    config: {
+      '510': {
+        groupName: '默认分组',
+        defaultName: '队伍1',
+      },
+      '511': {
+        count: '3',
+        afterCountOper: '退出式神录',
+      },
+    },
+  },
+  {
+    id: 42,
+    schemeName: '阴门挑战',
+    list: [0, 1, 2, 3, 5, 513],
+  },
+  {
+    id: 43,
+    schemeName: '首领退治',
+    list: [0, 1, 2, 3, 512],
+  },
+  {
+    id: 44,
+    schemeName: '狭间暗域',
+    list: [0, 1, 3, 514, 515],
+  },
+  {
+    id: 45,
+    schemeName: '喂猫喂狗',
+    list: [3, 517],
+  },
+  {
+    id: 46,
+    schemeName: '定时任务-启动游戏-喂猫喂狗',
+    star: false,
+    groupName: '定时任务',
+    list: [1, 2, 3, 503, 993],
+    config: {
+      '993': {
+        area: '',
+        is_shutdown_the_game_before: true,
+        next_scheme: '喂猫喂狗',
+      },
+      '503': {
+        afterCountOper: '不进行任何操作',
+      },
+    },
   },
   {
     id: 47,
@@ -207,6 +550,106 @@ const SchemeList: IScheme[] = [
     groupName: '绘卷进度检测',
     schemeName: '绘卷进度_持续查询进度',
     list: [0, 305],
+  },
+  {
+    id: 51,
+    schemeName: '定时任务-启动游戏-寮突',
+    star: true,
+    groupName: '定时任务',
+    list: [1, 2, 3, 503, 993],
+    config: {
+      '993': {
+        area: '',
+        is_shutdown_the_game_before: true,
+        next_scheme: '寮突破',
+      },
+      '503': {
+        afterCountOper: '不进行任何操作',
+      },
+    },
+  },
+  {
+    id: 52,
+    schemeName: '定时任务-启动游戏-地鬼',
+    star: true,
+    groupName: '定时任务',
+    list: [1, 2, 3, 503, 993],
+    config: {
+      '993': {
+        area: '',
+        is_shutdown_the_game_before: true,
+        next_scheme: '地鬼日常',
+      },
+      '503': {
+        afterCountOper: '不进行任何操作',
+      },
+    },
+  },
+  {
+    id: 53,
+    schemeName: '庭院进入寮每日活动(包含阴门)',
+    list: [3, 505, 506, 516],
+    config: {
+      '506': {
+        auto_switch_enabled: false,
+        gateOfHades_switch: true,
+      },
+      '516': {
+        count: '40',
+        afterCountOper: '停止脚本',
+        next_scheme: '通用准备退出',
+      },
+    },
+  },
+  {
+    id: 54,
+    schemeName: '庭院进入寮每日活动(不包含阴门)',
+    list: [3, 505, 506, 516],
+    config: {
+      '506': {
+        auto_switch_enabled: false,
+        gateOfHades_switch: false,
+      },
+      '516': {
+        count: '40',
+        afterCountOper: '停止脚本',
+        next_scheme: '通用准备退出',
+      },
+    },
+  },
+  {
+    id: 55,
+    schemeName: '定时任务-启动游戏-庭院进入寮每日活动(包含阴门)',
+    star: true,
+    groupName: '定时任务',
+    list: [1, 2, 3, 503, 993],
+    config: {
+      '993': {
+        area: '',
+        is_shutdown_the_game_before: true,
+        next_scheme: '庭院进入寮每日活动(包含阴门)',
+      },
+      '503': {
+        afterCountOper: '不进行任何操作',
+      },
+    },
+  },
+  {
+    id: 56,
+    schemeName: '定时任务-启动游戏-庭院进入寮每日活动(不包含阴门)',
+    star: true,
+    groupName: '定时任务',
+    list: [1, 2, 3, 503, 993],
+    config: {
+      '993': {
+        area: '',
+        is_shutdown_the_game_before: true,
+        next_scheme: '庭院进入寮每日活动(不包含阴门)',
+      },
+      '503': {
+        afterCountOper: '不进行任何操作',
+      },
+    },
   },
   {
     id: 57,
@@ -241,6 +684,23 @@ const SchemeList: IScheme[] = [
       multiColorSimilar: 93,
     },
     star: true,
+  },
+  {
+    id: 60,
+    schemeName: '定时任务-启动游戏-悬赏',
+    star: false,
+    groupName: '定时任务',
+    list: [1, 2, 3, 503, 993],
+    config: {
+      '993': {
+        area: '',
+        is_shutdown_the_game_before: true,
+        next_scheme: '悬赏',
+      },
+      '503': {
+        afterCountOper: '不进行任何操作',
+      },
+    },
   },
   {
     id: 61,
