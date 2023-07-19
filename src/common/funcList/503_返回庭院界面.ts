@@ -33,17 +33,7 @@ export class Func503 implements IFuncOrigin {
 	}];
 	operator: IFuncOperatorOrigin[] = [
 		{	// 0 探索地图
-			desc: [
-				1280, 720,
-				[
-					[left, 44, 59, 0xf0f5fb],
-					[right, 1235, 30, 0xd4ae83],
-					[right, 1262, 186, 0x45312b],
-					[center, 870, 714, 0x8b613e],
-					[left, 67, 654, 0xd05bcf],
-					[right, 1269, 671, 0x44312a],
-				]
-			],
+			desc: '探索地图界面',
 			oper: [
 				[center, 1280, 720, 32, 34, 76, 81, 1000],
 			]
