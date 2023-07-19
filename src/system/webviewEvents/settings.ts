@@ -6,7 +6,8 @@ import { getInstalledPackages, requestMyScreenCapture } from '@/common/toolAuto'
 import { isRoot } from "@auto.pro/core";
 import helperBridge from '@/system/helperBridge';
 import { mlkitOcr } from '@/system/Ocr/MlkitOcr';
-import { yunxiOcr } from "../Ocr/YunxiOcr";
+import { yunxiOcr } from "@/system/Ocr/YunxiOcr";
+import { myShell } from "@/system/MyAutomator";
 
 
 export default function webviewSettigns() {
@@ -112,6 +113,21 @@ export default function webviewSettigns() {
                 enabled: $power_manager.isIgnoringBatteryOptimizations()
             });
         }
+
+        if (device.sdkInt >= 31 && isRoot) { // 安卓12，有root
+            // 不受信任触摸事件
+            const unTrunstedTouchStatus = myShell.execAndWaitFor('settings get global block_untrusted_touches');
+            if (typeof unTrunstedTouchStatus !== 'undefined') {
+                console.log('unTrunstedTouchStatus', unTrunstedTouchStatus);
+                ret.push({
+                    desc: '允许不受信任触摸的事件穿透',
+                    name: 'unTrunstedTouchStatus',
+                    type: 'autojs_inner_setting_unTrunstedTouchStatus',
+                    enabled: 0 === parseInt(unTrunstedTouchStatus) ? true : false
+                });
+            }
+        }
+
         ret = [...ret, {
             desc: '悬浮选择方案后是否直接启动脚本',
             name: 'floaty_scheme_direct_run',
@@ -247,6 +263,14 @@ export default function webviewSettigns() {
                 //     images.stopScreenCapture();
                 //     done(true);
                 // });
+            }
+        } else if ('autojs_inner_setting_unTrunstedTouchStatus' === item.type) {
+            if (item.enabled) {
+                myShell.execAndWaitFor('settings put global block_untrusted_touches 0');
+                done(true);
+            } else {
+                toastLog('请勿关闭允许不受信任触摸的事件穿透');
+                done(false);
             }
         } else if ('assttyys_setting' === item.type) {
             let storeSettings = storeCommon.get('settings', {});

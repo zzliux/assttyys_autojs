@@ -879,6 +879,10 @@ export const versionList = [{
     version: '20230716_01',
     desc: `修复：518 993适配
 优化：508逢魔首领 极 的逻辑`
+}, {
+    version: '20230719_01',
+    desc: `优化：安卓12+ + root环境增加设置选项：允许不受信任触摸的事件穿透
+优化：安卓10+ + 有无障碍环境申请截图权限时自动点击“立即开始”`
 }];
 
 export default versionList[versionList.length - 1].version;

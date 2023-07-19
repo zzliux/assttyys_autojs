@@ -10,6 +10,20 @@ import { getWidthPixels, getHeightPixels } from '@auto.pro/core';
 // importPackage(android.content);
 
 export function requestMyScreenCapture(callback: Function, helperBridge: IhelperBridge) {
+    if (device.sdkInt >= 29 && auto.service) {
+        // 安卓10以上，有无障碍服务，通过无障碍服务把申请权限点了
+        threads.start(function () {
+            let cnt = 0;
+            while (cnt++ < 10) {
+                const obj = text('立即开始').findOnce() || desc('立即开始').findOnce();
+                if (obj) {
+                    obj.click();
+                    break;
+                }
+                sleep(500);
+            }
+        });
+    }
     // @ts-ignore
     requestScreenCaptureAsync(getWidthPixels() < getHeightPixels()).then(function (success: boolean) {
         if (success) {
