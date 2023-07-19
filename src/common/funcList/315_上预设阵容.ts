@@ -45,8 +45,8 @@ export class Func315 implements IFuncOrigin {
       [
         [left, 31, 236, 0x714803],
         [center, 688, 277, 0x5a4536],
-        [center, 644, 248, 0xdfc9b6],
-        [center, 637, 611, 0xdfc9b6],
+        [center, 580, 254, 0xdfc9b6],
+        [center, 580, 614, 0xdfc9b6],
         [left, 174, 614, 0x76512c],
       ]
     ]
@@ -74,15 +74,13 @@ export class Func315 implements IFuncOrigin {
     if (thisScript.global.shangyushe) {
       if (thisScript.oper({
         name: '准备的预设',
-        operator: [thisOperator[0]
-        ]
+        operator: [thisOperator[0]]
       })) {
         return true;
       }
       if (thisScript.oper({
         name: '准备预设里界面',
-        operator: [thisOperator[1]
-        ]
+        operator: [thisOperator[1]]
       })) {
         let tureGroupNum = Number(thisConf.groupNum) - 1
         let trueDefaultNum = Number(thisConf.defaultNum) - 1;
@@ -100,13 +98,6 @@ export class Func315 implements IFuncOrigin {
         thisScript.global.shangyushe = false;
         return true;
       }
-    }
-    if (thisScript.oper({
-      name: '战斗界面',
-      operator: [thisOperator[5]
-      ]
-    })) {
-      thisScript.global.shangyushe = true;
     }
     return false;
   }

@@ -882,6 +882,10 @@ export const versionList = [{
 }, {
     version: '20230718_01',
     desc: `优化：执行方案时增加延时，避免误识别`
+}, {
+    version: '20230719_01',
+    desc: `优化：安卓12+ + root环境增加设置选项：允许不受信任触摸的事件穿透
+优化：安卓10+ + 有无障碍环境申请截图权限时自动点击“立即开始”`
 }];
 
 export default versionList[versionList.length - 1].version;

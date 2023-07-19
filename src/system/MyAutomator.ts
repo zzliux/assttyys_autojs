@@ -1,5 +1,8 @@
-import { getWidthPixels } from "@auto.pro/core";
+import { getWidthPixels, isRoot } from "@auto.pro/core";
 import Bezier from 'bezier-js';
+
+// @ts-ignore
+export const myShell = isRoot ? new Shell(true) : undefined;
 
 export interface IMyAutomator {
     tapType: number;
@@ -167,8 +170,7 @@ class MyAutomator implements IMyAutomator {
                 }
             },5000)
         } else if (this.tapType == 2) {
-            // @ts-ignore
-            this.shell = new Shell(true);
+            this.shell = myShell;
         } else if (this.tapType == 3) {
             // none
         }
