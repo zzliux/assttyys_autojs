@@ -43,7 +43,7 @@ export class Func315 implements IFuncOrigin {
     desc: [
       1280, 720,
       [
-        [left, 31, 236, 0x714803],
+        [left, 70,226, 0x77522d],
         [center, 688, 277, 0x5a4536],
         [center, 580, 254, 0xdfc9b6],
         [center, 580, 614, 0xdfc9b6],
