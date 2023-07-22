@@ -43,7 +43,7 @@ export class Func013 implements IFuncOrigin {
 			let point = thisScript.findMultiColor('探索_宝箱');
 			if (point) {
 				let oper = [[point.x, point.y, point.x + thisOperator[2].oper[0][2], point.y + thisOperator[2].oper[0][3], thisOperator[2].oper[0][4]]];
-				thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick(oper);
 				return true;
 			} else {
 				if (thisScript.oper({
@@ -54,7 +54,7 @@ export class Func013 implements IFuncOrigin {
 					}]
 				})) {
 					if (thisScript.compareColorLoop(thisOperator[1].desc, 3000)) {
-						thisScript.helperBridge.regionClick([thisOperator[0].oper[1], thisOperator[0].oper[2]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+						thisScript.regionClick([thisOperator[0].oper[1], thisOperator[0].oper[2]]);
 						return true;
 					}
 				}

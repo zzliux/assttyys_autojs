@@ -490,10 +490,7 @@ export class Func998 implements IFuncOrigin {
             ],
           ];
           console.log(`清空满级狗粮`, i);
-          thisScript.helperBridge.regionClick(
-            oper,
-            thisScript.scheme.commonConfig.afterClickDelayRandom
-          );
+          thisScript.regionClick(oper);
         }
 
         return true;
@@ -510,12 +507,7 @@ export class Func998 implements IFuncOrigin {
 
         if (shikigamiIndex === 5) {
           // 需要滑动
-          thisScript.helperBridge.regionBezierSwipe(
-            thisOperator[9].oper[5],
-            thisOperator[9].oper[6],
-            [1200, 1250],
-            1000
-          );
+          thisScript.regionBezierSwipe(thisOperator[9].oper[5], thisOperator[9].oper[6], [1200, 1250], 0, 1000);
           sleep(1000);
           return thisScript.oper({
             id: 998,

@@ -73,7 +73,7 @@ export class Func516 implements IFuncOrigin {
 					thisScript.stop();
 				} else if ('切换方案' === thisConf.afterCountOper) {
 					// let oper = thisOperator[0].oper[2];
-					// thisScript.helperBridge.regionClick([oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
+					// thisScript.regionClick([oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
 					thisScript.setCurrentScheme(thisConf.next_scheme as string);
 					thisScript.myToast(`切换方案为[${thisConf.next_scheme}]`);
 					thisScript.rerun();
@@ -85,9 +85,9 @@ export class Func516 implements IFuncOrigin {
 
             if (thisScript.global.liao_activity_page_flag % 2 === 1) {
                 //  滑动寮活动神社
-                thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[1], thisOperator[0].oper[0], [1200, 1500], 1000);
+                thisScript.regionBezierSwipe(thisOperator[0].oper[1], thisOperator[0].oper[0], [1200, 1500], 0, 1000);
             } else {
-                thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [1200, 1500], 1000);
+                thisScript.regionBezierSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [1200, 1500], 0, 1000);
             }
             sleep(500);
         }

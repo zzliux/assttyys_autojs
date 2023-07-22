@@ -13,8 +13,7 @@ export interface IMyAutomator {
     setTapType(tapType: 0 | 1 | 2 | 3): void;
     press(x: number, y: number, delay: number): void;
     swipe(x0: number, y0: number, x1: number, y1: number, delay: number): void;
-    regionBezierSwipe(transedOperS: Array<number>, transedOperE: Array<number>, duration: Array<number>, randomSleep: number, type: number): void;
-
+    regionBezierSwipe(transedOperS: Array<number>, transedOperE: Array<number>, duration: Array<number>, baseSleep: number, randomSleep: number, type?: number): void;
 }
 
 class MyAutomator implements IMyAutomator {
@@ -97,7 +96,7 @@ class MyAutomator implements IMyAutomator {
     gesture = gesture;
 
     // helperBridge过来的
-    regionBezierSwipe(transedOperS: Array<number>, transedOperE: Array<number>, duration: Array<number>, randomSleep: number, type: number): void {
+    regionBezierSwipe(transedOperS: Array<number>, transedOperE: Array<number>, duration: Array<number>, baseSleep: number, randomSleep: number, type?: number): void {
         const time = random(duration[0], duration[1])
         // swipe(
         //     random(transedOperS[0], transedOperS[2]), // x1
@@ -148,7 +147,7 @@ class MyAutomator implements IMyAutomator {
             points.push(pointsOrigin[item]);
         });
         this.gesture(time, ...points);
-        sleep(time + random(0, randomSleep));
+        sleep(baseSleep + time + random(0, randomSleep));
     }
 
     constructor(tapType: number, dirctionReverse?: boolean) {

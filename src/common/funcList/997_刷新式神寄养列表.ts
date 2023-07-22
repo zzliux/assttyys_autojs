@@ -108,7 +108,7 @@ export class Func997 implements IFuncOrigin {
 						desc: thisOperator[3].desc,
 					}]
 				})) {
-					thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [1200, 1500], 200);
+					thisScript.regionBezierSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [1200, 1500], 0, 200);
 				}
 
 				thisScript.oper({
@@ -150,7 +150,7 @@ export class Func997 implements IFuncOrigin {
 					point.y,
 					1200
 				]];
-				thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick(oper);
 
 
 				return thisScript.oper({

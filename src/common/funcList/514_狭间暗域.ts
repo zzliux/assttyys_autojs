@@ -176,7 +176,7 @@ export class Func514 implements IFuncOrigin {
                     point.y + 10,
                     120
                 ]];
-                thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+                thisScript.regionClick(oper);
                 return true;
             }
 

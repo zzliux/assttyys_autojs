@@ -92,7 +92,7 @@ export class Func047 implements IFuncOrigin {
 					let oper = [
 						[point.x, point.y, point.x + 1, point.y + 1, 1000]
 					];
-					thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.regionClick(oper);
 					return true;
 				} else {
 					// 如果没有追踪任务就滑动，可能是真蛇之类的把任务挤下去了
@@ -111,7 +111,7 @@ export class Func047 implements IFuncOrigin {
 							return;
 						}
 					}
-					thisScript.helperBridge.regionSwipe(thisOperator[1].oper[0], thisOperator[1].oper[1], [100, 300], 2000);
+					thisScript.regionSwipe(thisOperator[1].oper[0], thisOperator[1].oper[1], [100, 300], 0, 2000);
 					swiper++
 					return true
 				}

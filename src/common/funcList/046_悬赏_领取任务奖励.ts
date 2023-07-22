@@ -51,7 +51,7 @@ export class Func046 implements IFuncOrigin {
 				let oper = [
 					[point.x, point.y, point.x + 1, point.y + 1, 1000]
 				];
-				thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick(oper);
 				return true;
 			} else {
 				return false

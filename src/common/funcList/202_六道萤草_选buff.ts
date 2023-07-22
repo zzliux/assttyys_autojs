@@ -234,12 +234,12 @@ export class Func202 implements IFuncOrigin {
 				if (thisScript.global.d6RefreshCnt < 3 && coins >= 50) {
 					// 刷新次数小于3次，金币大于50则刷新
 					thisScript.global.d6RefreshCnt++;
-					thisScript.helperBridge.regionClick([thisOperator[0].oper[1], thisOperator[0].oper[2]], thisScript.scheme.commonConfig.afterClickDelayRandom); // 刷新
+					thisScript.regionClick([thisOperator[0].oper[1], thisOperator[0].oper[2]]); // 刷新
 				} else {
 					// 随机点
 					let rn = random(0, 2);
 					thisScript.myToast(`没找到，随机点击第${rn + 1}个`);
-					thisScript.helperBridge.regionClick([thisOperator[1].oper[rn]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.regionClick([thisOperator[1].oper[rn]]);
 					thisScript.global.d6RefreshCnt = 0;
 					// 如果有确认奖励就能很快的跳出
 					thisScript.compareColorLoop(thisOperator[3].desc, 1500);
@@ -264,7 +264,7 @@ export class Func202 implements IFuncOrigin {
 					toClick.y + thisOperator[0].oper[0][3],
 					thisOperator[0].oper[0][4],
 				];
-				thisScript.helperBridge.regionClick([toClickRegion], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick([toClickRegion]);
 				// 如果有确认奖励就能很快的跳出
 				thisScript.compareColorLoop(thisOperator[3].desc, 1500);
 				// if (thisScript.global.d6d[type][0] === 0) {

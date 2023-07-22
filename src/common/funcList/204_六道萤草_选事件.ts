@@ -52,7 +52,7 @@ export class Func204 implements IFuncOrigin {
 					p.y + thisOperator[0].oper[0][3],
 					thisOperator[0].oper[0][4]
 				];
-				thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick([toClick]);
 				thisScript.myToast(`选择事件${en}`);
 				sleep(200);
 				thisScript.global.d6NextEvent = undefined;

@@ -30,9 +30,7 @@ export class Func044 implements IFuncOrigin {
 		// 由于阴阳师的问题，有时候这个弹窗位置会有偏差，所以无法使用多点比色进行弹窗确认
 		let point = thisScript.findMultiColor('悬赏_挑战弹窗界面') || null
 		if (point) {
-			thisScript.helperBridge.regionClick([
-				[1045, 131, 1064, 146, 1000]
-			], thisScript.scheme.commonConfig.afterClickDelayRandom);
+			thisScript.regionClick([[1045, 131, 1064, 146, 1000]]);
 			return true;
 		} else {
 			return false

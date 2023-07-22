@@ -33,9 +33,7 @@ export class Func1002 implements IFuncOrigin {
 			})) {
 			let point = thisScript.findMultiColor('宴会_爆竹经验') || null
 			if (point) {
-				thisScript.helperBridge.regionClick([
-					[point.x, point.y, point.x + 1, point.y + 1, 1500]
-				], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick([[point.x, point.y, point.x + 1, point.y + 1, 1500]]);
 				return true
 			} else {
 				return false

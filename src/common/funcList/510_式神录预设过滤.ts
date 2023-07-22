@@ -200,8 +200,8 @@ export class Func510 implements IFuncOrigin {
             })) {
                 if (thisConf && thisConf.fastMode) {
                     if (thisScript.global.change_shikigami_state === 'flushed') {
-                        thisScript.helperBridge.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [500, 700], 500);
-                        thisScript.helperBridge.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [500, 700], 500);
+                        thisScript.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [500, 700], 0, 500);
+                        thisScript.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [500, 700], 0, 500);
                         let tureGroupNum = null;
                         if (!thisScript.global.preset_once_groupNum) {
                             tureGroupNum = Number(thisConf.groupNum) - 1
@@ -215,7 +215,7 @@ export class Func510 implements IFuncOrigin {
                             thisOperator[7].oper[0][3] + (thisOperator[7].oper[0][4] * tureGroupNum),
                             500
                         ]];
-                        thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+                        thisScript.regionClick(oper);
                         thisScript.global.change_shikigami_state = 'change_team_default_1';
                         return true;
                     } else if (thisScript.global.change_shikigami_state.includes('change_team_default')) {
@@ -233,7 +233,7 @@ export class Func510 implements IFuncOrigin {
                         } else {
                             thisScript.global.change_shikigami_state = 'finish';
                         }
-                        thisScript.helperBridge.regionClick([oper], thisScript.scheme.commonConfig.afterClickDelayRandom);
+                        thisScript.regionClick([oper]);
                         return true;
                     } else if (thisScript.global.change_shikigami_state === 'finish') {
                         thisScript.global.preset_once_groupNum = null;
@@ -248,7 +248,7 @@ export class Func510 implements IFuncOrigin {
                 } else {//ocr模式
                     if (thisScript.global.change_shikigami_state === 'flushed') {
 
-                        thisScript.helperBridge.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [1200, 1500], 1000);
+                        thisScript.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [1200, 1500], 0, 1000);
 
                         let toDetectAreaBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[2].oper[5].slice(0, 4))
                         console.time('ocr.detect.area');
@@ -309,7 +309,7 @@ export class Func510 implements IFuncOrigin {
                             console.log('分组目标坐标为:', toClick.toString(), p);
                             thisScript.global.change_shikigami_state = 'search_default';
                             thisScript.global.change_shikigami_list_swipe_times = 0;    //  重置翻页
-                            thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
+                            thisScript.regionClick([toClick]);
                             return true;
                         }
                     } else if (thisScript.global.change_shikigami_state === 'search_default') {
@@ -341,7 +341,7 @@ export class Func510 implements IFuncOrigin {
                             ];
                             console.log('队伍预设目标坐标为:', toClick.toString(), p);
                             thisScript.global.change_shikigami_state = 'change_team_default_1';
-                            thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
+                            thisScript.regionClick([toClick]);
                             sleep(1200)
                         }
                     } else if (thisScript.global.change_shikigami_state.includes('change_team_default')) {
@@ -363,7 +363,7 @@ export class Func510 implements IFuncOrigin {
                                 thisScript.global.change_shikigami_state = 'finish';
                             }
 
-                            thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+                            thisScript.regionClick(oper);
                         }
                     } else if (thisScript.global.change_shikigami_state === 'finish') {
                         return thisScript.oper({

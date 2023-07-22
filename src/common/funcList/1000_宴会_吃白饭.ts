@@ -97,7 +97,7 @@ export class Func1000 implements IFuncOrigin {
 					point1.y,
 					120
 				]];
-				thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick(oper);
 				return true;
 			}
 

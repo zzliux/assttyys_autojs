@@ -36,9 +36,7 @@ export class Func039 implements IFuncOrigin {
 					name: '金币妖怪_退出组队界面',
 					operator: [thisOperator[0]]
 				})) {
-				thisScript.helperBridge.regionClick([
-					[359, 45, 396, 74, 1000]
-				], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick([[359, 45, 396, 74, 1000]]);
 				return true
 			} else {
 				return false

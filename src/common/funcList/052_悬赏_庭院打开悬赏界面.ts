@@ -113,9 +113,7 @@ export class Func052 implements IFuncOrigin {
 		})) {
 			const point = thisScript.findMultiColor('悬赏_庭院检测悬赏图标') || null;
 			if (point !== null) {
-				thisScript.helperBridge.regionClick([
-					[point.x, point.y, point.x + 20, point.y + 20, 1000]
-				], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick([[point.x, point.y, point.x + 20, point.y + 20, 1000]]);
 				return true
 			} else {
 				return false

@@ -889,6 +889,10 @@ export const versionList = [{
 }, {
     version: '20230719_02',
     desc: '优化：503返回庭院不识别探索地图界面'
+}, {
+    version: '20230723_01',
+    desc: `新增：六道椒图
+优化：增加点击后延时基数`
 }];
 
 export default versionList[versionList.length - 1].version;

@@ -84,7 +84,7 @@ export class Func009 implements IFuncOrigin {
 						// point.x,
 						// point.y,
 						thisOperator[0].oper[0][4]]];
-					thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.regionClick(oper);
 					//第一排第一列结界坐标
 					let fristFirstOper = thisOperator[1].oper[0] //[147, 146, 465, 265];
 					let thisconf = thisScript.scheme.config['9'];

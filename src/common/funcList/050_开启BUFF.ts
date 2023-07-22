@@ -108,13 +108,13 @@ export class Func050 implements IFuncOrigin {
 			}
 			let point = thisScript.findMultiColor(`关闭的BUFF_${thisconf.buff_type}`) || null
 			if (point) {
-				thisScript.helperBridge.regionClick([
+				thisScript.regionClick([
 					[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], 1000]
-				], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				]);
 				thisScript.global.opened_buff = true;
 				return true;
 			} else {
-				thisScript.helperBridge.regionClick([thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick([thisOperator[0].oper[1]]);
 				if (thisconf && thisconf.scheme_switch_enabled) {
 					thisScript.setCurrentScheme(thisconf.next_scheme as string);
 					thisScript.myToast(`切换方案为[${thisconf.next_scheme}]`);

@@ -56,7 +56,7 @@ export class Func123 implements IFuncOrigin {
                     p.y + thisOperator[0].oper[0][3] - thisOperator[0].oper[0][1],
                     thisOperator[0].oper[0][4]
                 ]];
-                thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+                thisScript.regionClick(oper);
                 return true;
             }
         }

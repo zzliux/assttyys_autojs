@@ -216,10 +216,7 @@ export class Func508 implements IFuncOrigin {
       if (point) {
         console.log(`逢魔_捡垃圾`);
         let oper = [[point.x - 2, point.y - 2, point.x + 2, point.y + 2, 1200]];
-        thisScript.helperBridge.regionClick(
-          oper,
-          thisScript.scheme.commonConfig.afterClickDelayRandom
-        );
+        thisScript.regionClick(oper);
       }
 
       if (!thisScript.global.fm_kiss_boss_flag) {

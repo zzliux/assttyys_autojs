@@ -270,7 +270,7 @@ export class Func313 implements IFuncOrigin {
 			operator: [{ desc: thisOperator[2].desc, retest: 500 }]
 		})) {
 			if (thisScript.global.qiling_Position) {
-				thisScript.helperBridge.regionClick([thisScript.global.qiling_Position], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick([thisScript.global.qiling_Position]);
 				thisScript.global.qiling_Position = null;
 				return true;
 			}
@@ -336,10 +336,10 @@ export class Func313 implements IFuncOrigin {
 
 			if (thisScript.global.qiling_last === null && thisScript.global.preset_once_groupNum > 0) {
 				thisScript.global.qiling_last = i;
-				thisScript.helperBridge.regionClick([thisOperator[3].oper[0]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick([thisOperator[3].oper[0]]);
 				thisScript.global.change_shikigami_state = 'flushed';
 			} else if (thisScript.global.qiling_last !== i && thisScript.global.preset_once_groupNum > 0) {
-				thisScript.helperBridge.regionClick([thisOperator[3].oper[0]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick([thisOperator[3].oper[0]]);
 				thisScript.global.change_shikigami_state = 'flushed';
 			}
 			return true;

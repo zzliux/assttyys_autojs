@@ -360,7 +360,7 @@ export class Func316 implements IFuncOrigin {
          name: '六道椒图_选事件',
          operator: [{ desc: thisOperator[0].desc }, { desc: thisOperator[2].desc }]
       })) {
-         thisScript.helperBridge.regionClick([thisOperator[1].oper[thisScript.global.d6Loop]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+         thisScript.regionClick([thisOperator[1].oper[thisScript.global.d6Loop]]);
          if (++thisScript.global.d6Loop > 2) {
             thisScript.global.d6Loop = 0;
          }
@@ -393,12 +393,12 @@ export class Func316 implements IFuncOrigin {
                   point.y + 440,
                   500
                ]];
-               thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+               thisScript.regionClick(oper);
                thisScript.global.d6RouFeng++;
                return true;
             }
             else if (thisScript.findMultiColor("六道椒图_低级buff")) {//  有低级buff_选择跳过
-               thisScript.helperBridge.regionClick([thisOperator[4].oper[0]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+               thisScript.regionClick([thisOperator[4].oper[0]]);
                return true;
             } else if (thisScript.oper({//无升级按钮_选择刷新
                name: '六道椒图_刷新buff',
@@ -406,11 +406,11 @@ export class Func316 implements IFuncOrigin {
             })) {
                return true;
             } else {//无升级按钮无刷新_选择跳过
-               thisScript.helperBridge.regionClick([thisOperator[4].oper[0]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+               thisScript.regionClick([thisOperator[4].oper[0]]);
                return true;
             }
          } else {
-            thisScript.helperBridge.regionClick([thisOperator[4].oper[0]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+            thisScript.regionClick([thisOperator[4].oper[0]]);
          }
          log("当前柔风数量:" + thisScript.global.d6RouFeng);
          return true;
@@ -431,12 +431,12 @@ export class Func316 implements IFuncOrigin {
                   point.y + 140,
                   500
                ]];
-               thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
-               thisScript.helperBridge.regionClick([thisOperator[7].oper[0]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+               thisScript.regionClick(oper);
+               thisScript.regionClick([thisOperator[7].oper[0]]);
                thisScript.global.d6RouFeng++;
             }
          }
-         thisScript.helperBridge.regionClick([thisOperator[7].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+         thisScript.regionClick([thisOperator[7].oper[1]]);
          log("当前柔风数量:" + thisScript.global.d6RouFeng);
          return true;
       }

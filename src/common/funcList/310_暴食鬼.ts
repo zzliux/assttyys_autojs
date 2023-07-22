@@ -92,7 +92,7 @@ export class Func310 implements IFuncOrigin {
         name: '暴食鬼选_经验',
         operator: thisOperator.slice(1, 4)
       })) {
-        thisScript.helperBridge.regionClick([[...thisOperator[0].oper[0], 1000]], thisScript.scheme.commonConfig.afterClickDelayRandom)
+        thisScript.regionClick([[...thisOperator[0].oper[0], 1000]])
         return true;
       }
 

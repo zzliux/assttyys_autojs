@@ -130,7 +130,7 @@ export class Func306 implements IFuncOrigin {
         let selectArea = thisScript.findText(thisConf.selectArea as string, 0, thisOperator[1].oper[0], '模糊');
         if (selectArea.length === 0) {
           console.log(`找不到第一位（好友/跨区）按钮`);
-          thisScript.helperBridge.regionClick([thisOperator[3].oper[0]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+          thisScript.regionClick([thisOperator[3].oper[0]]);
           return false;
         } else {
           let p = {
@@ -148,7 +148,7 @@ export class Func306 implements IFuncOrigin {
             ry,
             1000
           ];
-          thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
+          thisScript.regionClick([toClick]);
           thisScript.keepScreen();
         }
         let result = thisScript.findText('.+', 0, thisOperator[1].oper[1], '包含');
@@ -176,7 +176,7 @@ export class Func306 implements IFuncOrigin {
           if (toClickRegion === null) {
             console.log(`未识别到第一位昵称:${thisConf.inviteName}`);
           }
-          toClickRegion && thisScript.helperBridge.regionClick([toClickRegion], thisScript.scheme.commonConfig.afterClickDelayRandom);
+          toClickRegion && thisScript.regionClick([toClickRegion]);
 
           //邀请里点击第二位好友
           if (thisConf.secondPlayer) {
@@ -184,7 +184,7 @@ export class Func306 implements IFuncOrigin {
               let selectAreaTwo = thisScript.findText(thisConf.selectAreaTwo as string, 0, thisOperator[1].oper[0], '模糊');
               if (selectAreaTwo.length === 0) {
                 console.log(`找不到第二位（好友/跨区）按钮`);
-                thisScript.helperBridge.regionClick([thisOperator[3].oper[0]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+                thisScript.regionClick([thisOperator[3].oper[0]]);
                 return false;
               } else {
                 let p = {
@@ -202,7 +202,7 @@ export class Func306 implements IFuncOrigin {
                   ry,
                   1000
                 ];
-                thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
+                thisScript.regionClick([toClick]);
                 thisScript.keepScreen();
                 result = thisScript.findText('.+', 0, thisOperator[1].oper[1], '包含');
               }
@@ -220,7 +220,7 @@ export class Func306 implements IFuncOrigin {
             if (toClickRegionTwo === null) {
               console.log(`未识别到第二位昵称:${thisConf.inviteNameTwo}`);
             }
-            toClickRegionTwo && thisScript.helperBridge.regionClick([toClickRegionTwo], thisScript.scheme.commonConfig.afterClickDelayRandom);
+            toClickRegionTwo && thisScript.regionClick([toClickRegionTwo]);
           }
           if (toClickRegion || toClickRegionTwo) {
             return thisScript.oper({

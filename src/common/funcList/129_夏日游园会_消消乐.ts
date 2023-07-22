@@ -220,7 +220,7 @@ export class Func129 implements IFuncOrigin {
                 ],
             ]
             console.log(curResult);
-            thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+            thisScript.regionClick(oper);
             return true;
         }
     }

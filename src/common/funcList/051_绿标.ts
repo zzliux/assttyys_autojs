@@ -135,8 +135,8 @@ export class Func051 implements IFuncOrigin {
 						1000
 					]
 					sleep(500);
-					thisScript.helperBridge.regionClick([thisOperator[0].oper[4]], thisScript.scheme.commonConfig.afterClickDelayRandom);
-					thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.regionClick([thisOperator[0].oper[4]]);
+					thisScript.regionClick([toClick]);
 					return true;
 				}
 			}
@@ -148,7 +148,7 @@ export class Func051 implements IFuncOrigin {
 					desc: thisOperator[0].desc,
 				}]
 			})) {
-				thisScript.helperBridge.regionClick([thisScript.global.greenPosition], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick([thisScript.global.greenPosition]);
 				thisScript.global.greenPosition = null;
 				return true;
 			}
@@ -243,7 +243,7 @@ export class Func051 implements IFuncOrigin {
 						}
 					} while (new Date().getTime() - thisScript.global.greenNonDTime < 3000);
 				}
-				thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick([toClick]);
 				return true;
 			}
 		}

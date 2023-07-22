@@ -88,10 +88,7 @@ export class Func311 implements IFuncOrigin {
 
         // 点一次 需要准备方案重置才能再次点击
         thisScript.global.redFlag = true;
-        thisScript.helperBridge.regionClick(
-          [toClick],
-          thisScript.scheme.commonConfig.afterClickDelayRandom
-        );
+        thisScript.regionClick([toClick]);
         return true;
       }
     }

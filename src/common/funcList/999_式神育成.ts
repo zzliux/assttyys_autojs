@@ -127,7 +127,7 @@ export class Func999 implements IFuncOrigin {
 					point.y,
 					1200
 				]];
-				thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick(oper);
 				return true;
 			}
 
@@ -142,7 +142,7 @@ export class Func999 implements IFuncOrigin {
 					point1.y,
 					1200
 				]];
-				thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick(oper);
 				return true;
 			}
 

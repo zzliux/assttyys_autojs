@@ -73,13 +73,13 @@ export class Func023 implements IFuncOrigin {
 				let stdAns = thisScript.search(ansList, 'text', stdQuestion.data.ans);
 				if (stdAns) {
 					thisScript.myToast(`选择答案: ${stdAns.data.text}, 置信度为: ${(stdQuestion.similarity * stdAns.similarity).toFixed(4)}`);
-					thisScript.helperBridge.regionClick([[...stdAns.data.rect, 1500]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.regionClick([[...stdAns.data.rect, 1500]]);
 					return true;
 				}			
 			}
 			
 			thisScript.myToast(`题库中没找到对应的答案，默认选择第一个答案`);
-			thisScript.helperBridge.regionClick([[...ansList[0].rect, 1500]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+			thisScript.regionClick([[...ansList[0].rect, 1500]]);
 			return true;
 		}
 		return false;

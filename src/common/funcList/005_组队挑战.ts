@@ -84,7 +84,7 @@ export class Func005 implements IFuncOrigin {
 		}, 0)) {
 			let thisconf = thisScript.scheme.config['5']; // 获取配置
 			if (thisconf.type === '有人就开') {
-				thisScript.helperBridge.regionClick(thisOperator[3].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick(thisOperator[3].oper);
 				return true;
 			} else if (thisconf.type === '三人') {
 				if (!thisScript.oper({
@@ -94,7 +94,7 @@ export class Func005 implements IFuncOrigin {
 					name: '组队挑战_乘客2无人',
 					operator: [thisOperator[2]]
 				}, 0)) {
-					thisScript.helperBridge.regionClick(thisOperator[3].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.regionClick(thisOperator[3].oper);
 					return true;
 				}
 			}

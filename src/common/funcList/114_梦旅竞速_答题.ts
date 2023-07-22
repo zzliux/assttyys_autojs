@@ -186,7 +186,7 @@ export class Func114 implements IFuncOrigin {
 			}
 			if (flag) {
 				thisScript.myToast(`选择答案: ${stdAns.data.text}, 置信度为: ${(stdQuestion.similarity * stdAns.similarity).toFixed(4)}`);
-				thisScript.helperBridge.regionClick([[...stdAns.data.rect, 500]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick([[...stdAns.data.rect, 500]]);
 				return true;
 			}
 			return false;

@@ -133,7 +133,7 @@ export class Func026 implements IFuncOrigin {
 					desc: thisOperator[2].desc,
 				}]
 			})) {
-				thisScript.helperBridge.regionClick(thisOperator[2].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick(thisOperator[2].oper);
 				sleep(5000);
 				return true;
 			}

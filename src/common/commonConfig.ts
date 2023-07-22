@@ -9,6 +9,13 @@ const CommonConfig = [{
             value: null,
         },
         {
+            name: 'afterClickDelayBase',
+            desc: '点击后延时基数',
+            type: 'integer',
+            default: 0,
+            value: null,
+        },
+        {
             name: 'afterClickDelayRandom',
             desc: '点击后延时随机数',
             type: 'integer',

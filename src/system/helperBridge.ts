@@ -28,11 +28,11 @@ export interface IhelperBridge {
     init: () => void,
     regionClickTrans: (oper) => any,
     setAutomator: (automator: IMyAutomator) => void,
-    regionClick: (transedOper: [number, number, number, number, number][], randomSleep: number) => void,
-    regionStepRandomClick: (transedOperStepRandom, randomSleep) => void,
-    regionSwipe: (transedOperS, transedOperE, duration, randomSleep) => void,
+    regionClick: (transedOper: [number, number, number, number, number][], baseSleep: number, randomSleep: number) => void,
+    regionStepRandomClick: (transedOperStepRandom, baseSleep: number, randomSleep: number) => void,
+    regionSwipe: (transedOperS, transedOperE, duration, baseSleep, randomSleep) => void,
     swipePath: (paths) => void,
-    regionBezierSwipe: (transedOperS, transedOperE, duration, randomSleep, type) => void,
+    regionBezierSwipe: (transedOperS, transedOperE, duration, baseSleep, randomSleep, type?) => void,
 }
 
 export class helperBridge implements IhelperBridge {
@@ -103,7 +103,7 @@ export class helperBridge implements IhelperBridge {
     // [[1119, 504, 1227, 592, 2000]]
     // [[x1, y1, x2, y2, afterSleep, pressTimeout?]]
     // 按顺序点击
-    regionClick(transedOper: [number, number, number, number, number, number?][], randomSleep: number) {
+    regionClick(transedOper: [number, number, number, number, number, number?][], baseSleep: number, randomSleep: number) {
         let self = this;
         transedOper.forEach(item => {
             if (item[0] >= 0) {
@@ -127,7 +127,7 @@ export class helperBridge implements IhelperBridge {
             } else {
                 console.log(`传入坐标信息为(${JSON.stringify(item)}), 不执行操作`);
             }
-            sleep(item[4] + random(0, randomSleep || 0));
+            sleep(item[4] + random(baseSleep || 0, randomSleep || 0));
         });
     }
 
@@ -135,7 +135,7 @@ export class helperBridge implements IhelperBridge {
     //     [69, 171, 170, 452, 1000, 2], // 最后一个参数，表示执行这个的概率，[0, 2)命中
     //     [1104,72, 1200,687, 1000, 5], // [2, 5)命中 
     // ]]
-    regionStepRandomClick(transedOperStepRandom, randomSleep) {
+    regionStepRandomClick(transedOperStepRandom, baseSleep: number, randomSleep: number): void {
         // 生成一套，然后给regionClick操作
         let oper = [];
         transedOperStepRandom.forEach(item => {
@@ -155,9 +155,9 @@ export class helperBridge implements IhelperBridge {
             // }
             oper.push(item[hash(0, item.length - 1, device.getAndroidId())]);
         });
-        this.regionClick(oper, randomSleep);
+        this.regionClick(oper, baseSleep, randomSleep);
     }
-    regionSwipe(transedOperS, transedOperE, duration, randomSleep) {
+    regionSwipe(transedOperS, transedOperE, duration, baseSleep, randomSleep) {
         const time = random(duration[0], duration[1])
         this.automator.swipe(
             random(transedOperS[0], transedOperS[2]), // x1
@@ -166,7 +166,7 @@ export class helperBridge implements IhelperBridge {
             random(transedOperE[1], transedOperE[3]), // y2
             time // duration
         );
-        sleep(time + random(0, randomSleep))
+        sleep(baseSleep + time + random(0, randomSleep))
     }
     /**
      * @paths [{ x: 123, y: 234 }, { delay: 200, x: 111, y: 333}, { delay: 200, x: 111, y: 222 }]
@@ -202,8 +202,8 @@ export class helperBridge implements IhelperBridge {
     }
     // [1119, 504, 1227, 592, 2000]
     // type0-竖直方向，1-水平方向 TODO
-    regionBezierSwipe(transedOperS, transedOperE, duration, randomSleep, type) {
-        return this.automator.regionBezierSwipe(transedOperS, transedOperE, duration, randomSleep, type);
+    regionBezierSwipe(transedOperS, transedOperE, duration, baseSleep, randomSleep, type?) {
+        return this.automator.regionBezierSwipe(transedOperS, transedOperE, duration, baseSleep, randomSleep, type);
     }
 
     // 使用oper[]按顺序滑动
@@ -211,7 +211,7 @@ export class helperBridge implements IhelperBridge {
         const points = transedOper.map(item => {
             return getRegionBiasRnd2(item, [strHashToNum(device.getAndroidId(), item[0], item[2]), strHashToNum(device.getAndroidId(), item[1], item[3])], 1);
         });
-        
+
         console.log(`执行滑动操作 === ${points}`);
         if (drawFloaty.instacne) {
             let toDraw = [...points.map(point => ({

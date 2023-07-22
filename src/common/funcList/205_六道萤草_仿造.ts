@@ -91,7 +91,7 @@ export class Func205 implements IFuncOrigin {
 			}
 			if (!toClick) {
 				// 没有就退
-				thisScript.helperBridge.regionClick([thisOperator[0].oper[2], thisOperator[0].oper[3]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick([thisOperator[0].oper[2], thisOperator[0].oper[3]]);
 			} else {
 				// 找到了就点
 				thisScript.myToast(`选择${type}`);
@@ -102,7 +102,7 @@ export class Func205 implements IFuncOrigin {
 					toClick.y + thisOperator[0].oper[0][3],
 					thisOperator[0].oper[0][4],
 				];
-				thisScript.helperBridge.regionClick([toClickRegion, thisOperator[0].oper[1], thisOperator[0].oper[3]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick([toClickRegion, thisOperator[0].oper[1], thisOperator[0].oper[3]]);
 				thisScript.global.d6d[type][0]++;
 				console.log(`thisScript.global.d6d: ${JSON.stringify(thisScript.global.d6d)}`);
 				thisScript.myToast(`当前buff：${['腐草为萤', '妖力化身', '六道净化', '萤火之光'].map(name => name + ':' + thisScript.global.d6d[name][0]).join(', ')}`);

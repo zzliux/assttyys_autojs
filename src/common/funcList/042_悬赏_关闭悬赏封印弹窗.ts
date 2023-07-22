@@ -90,9 +90,7 @@ export class Func042 implements IFuncOrigin {
 				desc: thisOperator[1].desc
 			}]
 		})) {
-			thisScript.helperBridge.regionClick([
-				[1164, 116, 1189, 143, 500]
-			], thisScript.scheme.commonConfig.afterClickDelayRandom);
+			thisScript.regionClick([[1164, 116, 1189, 143, 500]]);
 			return true
 		} else {
 			// 如果所有任务已经完成,就关闭弹窗后停止脚本或者执行下个方案
@@ -102,9 +100,7 @@ export class Func042 implements IFuncOrigin {
 					desc: thisOperator[2].desc
 				}]
 			})) {
-				thisScript.helperBridge.regionClick([
-					[1164, 116, 1189, 143, 1000]
-				], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick([[1164, 116, 1189, 143, 1000]]);
 				const thisconf = thisScript.scheme.config['42'];
 				if (thisconf && thisconf.scheme_switch_enabled) {
 					thisScript.setCurrentScheme(thisconf.next_scheme as string);

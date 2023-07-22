@@ -334,7 +334,7 @@ export class Func506 implements IFuncOrigin {
 
 					console.log('识别成功, 点击坐标为', toClick);
 
-					thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.regionClick([toClick]);
 					return true;
 				}
 			}

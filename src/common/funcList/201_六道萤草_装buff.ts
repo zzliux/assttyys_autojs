@@ -122,7 +122,7 @@ export class Func201 implements IFuncOrigin {
 				retest: 800
 			}]
 		})) {
-			thisScript.helperBridge.regionClick([thisOperator[0].oper[0]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+			thisScript.regionClick([thisOperator[0].oper[0]]);
 			thisScript.global.d6LoadBuff = false;
 			return true;
 		}
@@ -136,7 +136,7 @@ export class Func201 implements IFuncOrigin {
 				retest: 800
 			}]
 		})) {
-			thisScript.helperBridge.regionClick([thisOperator[3].oper[0]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+			thisScript.regionClick([thisOperator[3].oper[0]]);
 			return true;
 		}
 
@@ -158,7 +158,7 @@ export class Func201 implements IFuncOrigin {
 			}]
 		})) {
 			// 先卸buff
-			thisScript.helperBridge.regionClick([thisOperator[1].oper[0], thisOperator[1].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+			thisScript.regionClick([thisOperator[1].oper[0], thisOperator[1].oper[1]]);
 
 			// 再装buff
 			const buffNames = ['腐草为萤', '妖力化身', '六道净化', '萤火之光'];
@@ -167,12 +167,12 @@ export class Func201 implements IFuncOrigin {
 				const buffName = buffNames[bufInd];
 				const p = thisScript.findMultiColor(`六道萤草_仿造_${buffName}`); // 用仿造的色组
 				if (p) {
-					thisScript.helperBridge.regionClick([[
+					thisScript.regionClick([[
 						p.x, p.y, p.x + thisOperator[1].oper[3][2], p.y + thisOperator[1].oper[3][3], thisOperator[1].oper[3][4]
-					]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+					]]);
 					// 有可能会没点到，没点到就再点一次
 					if (thisScript.compareColorLoop(thisOperator[4].desc, 500)) {
-						thisScript.helperBridge.regionClick([thisOperator[1].oper[2]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+						thisScript.regionClick([thisOperator[1].oper[2]]);
 					} else {
 						bufInd--;
 					}
@@ -184,7 +184,7 @@ export class Func201 implements IFuncOrigin {
 				}
 			}
 			sleep(500);
-			thisScript.helperBridge.regionClick([thisOperator[1].oper[4], thisOperator[1].oper[4]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+			thisScript.regionClick([thisOperator[1].oper[4], thisOperator[1].oper[4]]);
 			sleep(500);
 			thisScript.global.d6LoadedBuff = true;
 			return true;

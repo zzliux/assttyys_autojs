@@ -40,7 +40,7 @@ export class Func2001 implements IFuncOrigin {
 						500,
 					]
 				];
-				thisScript.helperBridge.regionClick(clickRegion, thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick(clickRegion);
 				return true;
 			}
 		}

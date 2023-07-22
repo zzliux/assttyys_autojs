@@ -163,7 +163,7 @@ export class Func309 implements IFuncOrigin {
         desc: thisOperator[6].desc
       }]
     })) {
-      thisScript.helperBridge.regionClick([[...thisOperator[6].oper[0], 1000]], thisScript.scheme.commonConfig.afterClickDelayRandom)
+      thisScript.regionClick([[...thisOperator[6].oper[0], 1000]])
       thisScript.global.intensify_lagTime = new Date();
       return true;
     } else if (thisconf.switch == false && thisScript.oper({
@@ -188,7 +188,7 @@ export class Func309 implements IFuncOrigin {
       let point_intensify = thisScript.findMultiColor('御魂强化_强化');
       if (point_intensify) {
         let oper_intensify = [[point_intensify.x, point_intensify.y, point_intensify.x + thisOperator[8].oper[0][2], point_intensify.y + thisOperator[8].oper[0][3], thisOperator[8].oper[0][4]]];
-        thisScript.helperBridge.regionClick(oper_intensify, thisScript.scheme.commonConfig.afterClickDelayRandom);
+        thisScript.regionClick(oper_intensify);
         thisScript.global.intensify_lagTime = new Date();
         thisScript.global.intensify_NumOT = 0
         return true;
@@ -196,7 +196,7 @@ export class Func309 implements IFuncOrigin {
       let point_level = thisScript.findMultiColor('御魂强化_零级');
       if (point_level) {
         let oper_level = [[point_level.x, point_level.y, point_level.x + thisOperator[8].oper[1][2], point_level.y + thisOperator[8].oper[1][3], thisOperator[8].oper[1][4]]];
-        thisScript.helperBridge.regionClick(oper_level, thisScript.scheme.commonConfig.afterClickDelayRandom);
+        thisScript.regionClick(oper_level);
         thisScript.global.intensify_lagTime = new Date();
         return true;
       }
@@ -206,7 +206,7 @@ export class Func309 implements IFuncOrigin {
           thisScript.doPush(thisScript, { text: '多次未找到0级御魂，已停止。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
           thisScript.stop();
         }
-        thisScript.helperBridge.regionBezierSwipe(thisOperator[11].oper[0], thisOperator[11].oper[1], [1000, 1100], 200);
+        thisScript.regionBezierSwipe(thisOperator[11].oper[0], thisOperator[11].oper[1], [1000, 1100], 0, 200);
         thisScript.global.intensify_lagTime = new Date();
         return true;
       }

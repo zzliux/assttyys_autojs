@@ -34,15 +34,9 @@ export class Func1003 implements IFuncOrigin {
 			})) {
 			let point = thisScript.findMultiColor('宴会_式神满级') || null
 			if (point) {
-				thisScript.helperBridge.regionClick([
-					[1193, 533, 1238, 590, 1500]
-				], thisScript.scheme.commonConfig.afterClickDelayRandom);
-				thisScript.helperBridge.regionClick([
-					[342, 496, 430, 649, 2000]
-				], thisScript.scheme.commonConfig.afterClickDelayRandom);
-				thisScript.helperBridge.regionClick([
-					[1022, 166, 1179, 509, 1000]
-				], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick([[1193, 533, 1238, 590, 1500]]);
+				thisScript.regionClick([[342, 496, 430, 649, 2000]]);
+				thisScript.regionClick([[1022, 166, 1179, 509, 1000]]);
 				return true
 			} else {
 				return false

@@ -90,7 +90,7 @@ export class Func504 implements IFuncOrigin {
 				let oper = [
 					[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]
 				];
-				thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick(oper);
 				sleep(2000);
 				return true;
 			}
@@ -101,7 +101,7 @@ export class Func504 implements IFuncOrigin {
 		// 	let oper = [
 		// 		[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]
 		// 	];
-		// 	thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+		// 	thisScript.regionClick(oper);
 		// 	sleep(2000);
 
 		// 	return false;

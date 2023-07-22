@@ -88,7 +88,7 @@ export class Func511 implements IFuncOrigin {
             operator: [{ desc: thisOperator[0].desc }]
         })) {
             if (thisScript.global.change_shikigami_state === 'search_group') {
-                thisScript.helperBridge.regionBezierSwipe(thisOperator[1].oper[0], thisOperator[1].oper[1], [1200, 1500], 1000);
+                thisScript.regionBezierSwipe(thisOperator[1].oper[0], thisOperator[1].oper[1], [1200, 1500], 0, 1000);
 
                 let toDetectAreaBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[2].oper[2].slice(0, 4))
                 console.time('ocr.detect.area');
@@ -124,7 +124,7 @@ export class Func511 implements IFuncOrigin {
                     thisScript.global.change_shikigami_last_group_name = _last_group_name;
                 }
             } else if (thisScript.global.change_shikigami_state === 'search_default') {
-                thisScript.helperBridge.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [1200, 1500], 1000);
+                thisScript.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [1200, 1500], 0, 1000);
 
                 if (thisScript.oper({
                     id: 511,

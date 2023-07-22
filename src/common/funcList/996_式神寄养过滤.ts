@@ -76,7 +76,7 @@ export class Func996 implements IFuncOrigin {
 				1000
 			];
 			console.log('目标坐标为:', toClick.toString(), p);
-			thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
+			thisScript.regionClick([toClick]);
 
 			return thisScript.oper({
 				id: 996,

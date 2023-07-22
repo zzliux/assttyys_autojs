@@ -81,7 +81,8 @@ export class Func312 implements IFuncOrigin {
               1000,
             ]
           }
-          if (toClickRegion && thisScript.helperBridge.regionClick([toClickRegion], thisScript.scheme.commonConfig.afterClickDelayRandom)) {
+          if (toClickRegion) {
+            thisScript.regionClick([toClickRegion]);
             sleep(1000);
             return true;
           }
@@ -103,7 +104,7 @@ export class Func312 implements IFuncOrigin {
         let oper = [
           [inX1, inY1, inX2, inY2, 1000]
         ];
-        thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+        thisScript.regionClick(oper);
       }
 
     }

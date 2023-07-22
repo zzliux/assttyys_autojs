@@ -78,7 +78,7 @@ export class Func028 implements IFuncOrigin {
 				desc: [thisOperator[2].desc[cntIndex] as [number, number, number, number]],
 			}]
 		})) {
-			thisScript.helperBridge.regionClick(thisOperator[1].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+			thisScript.regionClick(thisOperator[1].oper,);
 			return true;
 		}
 		return false;

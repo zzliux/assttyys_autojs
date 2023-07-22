@@ -49,7 +49,7 @@ export class Func207 implements IFuncOrigin {
 				if (p) {
 					thisScript.global.d6NextEvent = ['宁息'];
 				} else {
-					thisScript.helperBridge.regionClick(thisOperator[0].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.regionClick(thisOperator[0].oper);
 					thisScript.global.d6NextEvent = ['宁息'];
 					return true;
 				}

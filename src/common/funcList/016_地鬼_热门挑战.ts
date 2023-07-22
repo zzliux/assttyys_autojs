@@ -146,7 +146,7 @@ export class Func016 implements IFuncOrigin {
 			}
 
 			if (thisScript.global.dgCurNum === -1) {
-				thisScript.helperBridge.regionClick([thisOperator[2].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick([thisOperator[2].oper[1]]);
 				const next_scheme = '返回庭院';
 				thisScript.setCurrentScheme(next_scheme);
 				thisScript.myToast(`切换方案为[${next_scheme}]`);
@@ -154,11 +154,11 @@ export class Func016 implements IFuncOrigin {
 				return;
 			}
 			let clickOper = thisOperator[0].oper[2 + thisScript.global.dgCurNum];
-			thisScript.helperBridge.regionClick([thisOperator[0].oper[0], thisOperator[0].oper[1], clickOper], thisScript.scheme.commonConfig.afterClickDelayRandom);
+			thisScript.regionClick([thisOperator[0].oper[0], thisOperator[0].oper[1], clickOper]);
 			// sleep(1500);
 
 			if (thisScript.compareColorLoop(thisOperator[4].desc, 3000)) {
-				thisScript.helperBridge.regionClick(thisOperator[4].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick(thisOperator[4].oper);
 			}
 
 
@@ -173,9 +173,9 @@ export class Func016 implements IFuncOrigin {
 						point.x + thisOperator[0].oper[5][2],
 						point.y + thisOperator[0].oper[5][3],
 					];
-					thisScript.helperBridge.regionSwipe(beginRegion, thisOperator[0].oper[6], [100, 300], 200);
+					thisScript.regionSwipe(beginRegion, thisOperator[0].oper[6], [100, 300], 0, 200);
 				}
-				thisScript.helperBridge.regionClick([thisOperator[0].oper[7]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick([thisOperator[0].oper[7]]);
 				thisScript.myToast(`地鬼_热门挑战_第${thisScript.global.dgCurNum + 1}次`);
 				sleep(1500);
 				return true;

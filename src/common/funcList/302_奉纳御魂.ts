@@ -153,7 +153,7 @@ export class Func302 implements IFuncOrigin {
         desc: thisOperator[1].desc,
       }]
     })) {
-      thisScript.helperBridge.regionClick([[...thisOperator[6].oper[0], 1000]], thisScript.scheme.commonConfig.afterClickDelayRandom)
+      thisScript.regionClick([[...thisOperator[6].oper[0], 1000]]);
       return true;
     }
 

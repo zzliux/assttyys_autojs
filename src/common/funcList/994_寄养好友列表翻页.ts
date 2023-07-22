@@ -98,7 +98,7 @@ export class Func994 implements IFuncOrigin {
 			name: '寄养界面_判断',
 			operator: [{ desc: thisOperator[0].desc }]
 		})) {
-			thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [200, 250], 200);
+			thisScript.regionBezierSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [200, 250], 0, 200);
 			if (!thisScript.global.jy_list_swipe_times) {
 				thisScript.global.jy_list_swipe_times = 0;
 			}
@@ -177,7 +177,7 @@ export class Func994 implements IFuncOrigin {
 					thisScript.stop();
 				} else if ('切换方案' === thisConf.afterCountOper) {
 					// let oper = thisOperator[0].oper[2];
-					// thisScript.helperBridge.regionClick([oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
+					// thisScript.regionClick([oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
 					thisScript.setCurrentScheme(thisConf.next_scheme as string);
 					thisScript.myToast(`切换方案为[${thisConf.next_scheme}]`);
 					thisScript.rerun();

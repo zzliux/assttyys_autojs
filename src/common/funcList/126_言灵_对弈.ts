@@ -90,7 +90,7 @@ export class Func126 implements IFuncOrigin {
       let point = thisScript.findMultiColor('言灵活动_对弈');
       if (point) {
         let oper = [[point.x, point.y, point.x + thisOperator[1].oper[0][2], point.y + thisOperator[1].oper[0][3], thisOperator[1].oper[0][4]]];
-        thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+        thisScript.regionClick(oper);
       } else if (thisScript.oper({
         id: 126,
         name: '倒计时',
@@ -100,7 +100,7 @@ export class Func126 implements IFuncOrigin {
           thisScript.global.yl_next=0;
         }
         let x = thisScript.global.yl_next;
-        thisScript.helperBridge.regionClick([thisOperator[3].oper[x]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+        thisScript.regionClick([thisOperator[3].oper[x]]);
         thisScript.keepScreen(false);
         if (!thisScript.oper({
           id: 126,

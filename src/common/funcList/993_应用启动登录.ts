@@ -614,10 +614,7 @@ export class Func993 implements IFuncOrigin {
                   ];
                   console.log('识别成功, 点击坐标为', toClick);
 
-                  thisScript.helperBridge.regionClick(
-                    [toClick],
-                    thisScript.scheme.commonConfig.afterClickDelayRandom
-                  );
+                  thisScript.regionClick([toClick]);
 
                   return thisScript.oper({
                     name: '点击开始游戏',
@@ -698,10 +695,7 @@ export class Func993 implements IFuncOrigin {
             ];
             console.log('识别成功, 点击坐标为', toClick);
 
-            thisScript.helperBridge.regionClick(
-              [toClick],
-              thisScript.scheme.commonConfig.afterClickDelayRandom
-            );
+            thisScript.regionClick([toClick]);
             return true;
           }
         }
@@ -738,10 +732,7 @@ export class Func993 implements IFuncOrigin {
       if (point) {
         console.log('识别广告关闭按钮成功');
         let oper = [[point.x - 10, point.y - 10, point.x, point.y, 1200]];
-        thisScript.helperBridge.regionClick(
-          oper,
-          thisScript.scheme.commonConfig.afterClickDelayRandom
-        );
+        thisScript.regionClick(oper);
         return true;
       }
     }

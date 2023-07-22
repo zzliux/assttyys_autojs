@@ -142,49 +142,49 @@ export class Func206 implements IFuncOrigin {
 				if (!toClick) {
 					// 没找到就执行下一个操作
 					if (typeof thisScript.global.d6NextStation === 'undefined' || thisScript.global.d6NextStation === '翻页') {
-						thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[4], thisOperator[0].oper[5], [400, 1000], 200);
+						thisScript.regionBezierSwipe(thisOperator[0].oper[4], thisOperator[0].oper[5], [400, 1000], 0, 200);
 						thisScript.global.d6NextStation = '刷新';
 					} else if (thisScript.global.d6NextStation === '刷新' && coins >= 300) {
-						thisScript.helperBridge.regionClick([thisOperator[0].oper[6]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+						thisScript.regionClick([thisOperator[0].oper[6]]);
 
 						// 刷新没有确认了，该逻辑作废
 						// if (thisScript.compareColorLoop(thisOperator[1].desc, 800)) {
 						// 	// 刷新弹出确认，没有到上限
-						// 	thisScript.helperBridge.regionClick([thisOperator[0].oper[7]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+						// 	thisScript.regionClick([thisOperator[0].oper[7]]);
 						// 	// 刷新后再翻回来
-						// 	thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[5], thisOperator[0].oper[4], [400, 1000], 200);
+						// 	thisScript.regionBezierSwipe(thisOperator[0].oper[5], thisOperator[0].oper[4], [400, 1000], 0, 200);
 						// } else {
 						// 	// 刷新没退出确认，到上限了，直接退出
-						// 	thisScript.helperBridge.regionClick([thisOperator[0].oper[0], thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+						// 	thisScript.regionClick([thisOperator[0].oper[0], thisOperator[0].oper[1]]);
 						// }
 						// 刷新或退出重置相关状态
 						if (typeof thisScript.global.d6NxRefreshCnt === 'undefined') {
 							thisScript.global.d6NxRefreshCnt = 0;
 						}
 						if (thisScript.global.d6NxRefreshCnt >= 3) {
-							thisScript.helperBridge.regionClick([thisOperator[0].oper[0], thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+							thisScript.regionClick([thisOperator[0].oper[0], thisOperator[0].oper[1]]);
 							// 退出后重置相关状态
 							thisScript.global.d6NxRefreshCnt = 0;
 							thisScript.global.d6NxFilter = [];
 							thisScript.global.d6NextStation = '翻页';
 						} else {
-							thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[5], thisOperator[0].oper[4], [400, 1000], 200);
+							thisScript.regionBezierSwipe(thisOperator[0].oper[5], thisOperator[0].oper[4], [400, 1000], 0, 200);
 							thisScript.global.d6NxRefreshCnt++;
 						}
 						thisScript.global.d6NxFilter = [];
 						thisScript.global.d6NextStation = '翻页';
 					} else {
-						thisScript.helperBridge.regionClick([thisOperator[0].oper[0], thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+						thisScript.regionClick([thisOperator[0].oper[0], thisOperator[0].oper[1]]);
 						// 退出后重置相关状态
 						thisScript.global.d6NxRefreshCnt = 0;
 						thisScript.global.d6NxFilter = [];
 						thisScript.global.d6NextStation = '翻页';
 					}
 				} else {
-					thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.regionClick([toClick]);
 					// 购买确认，如果超时无确认则表示该商品已经被买过了，增加过滤，已经买过的也增加过滤，过滤在刷新与退出后重置
 					if (thisScript.compareColorLoop(thisOperator[2].desc, 800)) {
-						thisScript.helperBridge.regionClick([thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+						thisScript.regionClick([thisOperator[0].oper[1]]);
 						// 已购买的buff增加过滤
 						if (!thisScript.global.d6NxFilter) thisScript.global.d6NxFilter = [];
 						thisScript.global.d6NxFilter.push(type);
@@ -211,7 +211,7 @@ export class Func206 implements IFuncOrigin {
 				}
 			} else {
 				thisScript.myToast('钱不够用，撤退');
-				thisScript.helperBridge.regionClick([thisOperator[0].oper[0], thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick([thisOperator[0].oper[0], thisOperator[0].oper[1]]);
 				// 退出后重置相关状态
 				thisScript.global.d6NxRefreshCnt = 0;
 				thisScript.global.d6NxFilter = [];

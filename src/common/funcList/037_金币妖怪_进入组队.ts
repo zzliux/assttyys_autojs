@@ -55,7 +55,7 @@ export class Func037 implements IFuncOrigin {
 		})) {
 			let point = thisScript.findMultiColor('金币妖怪_金币妖怪字样') || null;
 			if (!point) {
-				thisScript.helperBridge.regionSwipe(thisOperator[0].oper[scroll ? 0 : 1], thisOperator[0].oper[scroll ? 1 : 0], [100, 300], 3000);
+				thisScript.regionSwipe(thisOperator[0].oper[scroll ? 0 : 1], thisOperator[0].oper[scroll ? 1 : 0], [100, 300], 0, 3000);
 				swiper++
 				if (swiper >= 6) {
 					swiper = 0
@@ -66,7 +66,7 @@ export class Func037 implements IFuncOrigin {
 				let oper = [
 					[point.x, point.y, point.x + 10, point.y + 10, 1000]
 				];
-				thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick(oper);
 				return true
 			} else {
 				return false

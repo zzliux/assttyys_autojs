@@ -54,7 +54,7 @@ export class Func208 implements IFuncOrigin {
 			}
 			thisScript.myToast(`当前buff：${['腐草为萤', '妖力化身', '六道净化', '萤火之光'].map(name => name + ':' + thisScript.global.d6d[name][0]).join(', ')}`);
 
-			thisScript.helperBridge.regionClick([thisOperator[0].oper[0]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+			thisScript.regionClick([thisOperator[0].oper[0]]);
 			return true;
 		}
 		return false;

@@ -39,9 +39,7 @@ export class Func038 implements IFuncOrigin {
 			})) {
 			let point2 = thisScript.findMultiColor('金币妖怪_判断队伍是否有人') || null;
 			if (!point2) {
-				thisScript.helperBridge.regionClick([
-					[1191, 610, 1245, 674, 1000]
-				], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick([[1191, 610, 1245, 674, 1000]]);
 			} else {
 				return false
 			}

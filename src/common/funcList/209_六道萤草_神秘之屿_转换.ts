@@ -67,7 +67,7 @@ export class Func209 implements IFuncOrigin {
 				}
 				if (flag) {
 					const toClick = [thisOperator[0].oper[i]]
-					thisScript.helperBridge.regionClick(toClick, thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.regionClick(toClick);
 
 					sleep(200);
 					thisScript.keepScreen();
@@ -80,7 +80,7 @@ export class Func209 implements IFuncOrigin {
 						}]
 					})) {
 						const toClick2 = [thisOperator[0].oper[0], thisOperator[0].oper[2]];
-						thisScript.helperBridge.regionClick(toClick2, thisScript.scheme.commonConfig.afterClickDelayRandom);
+						thisScript.regionClick(toClick2);
 					}
 					break;
 				}

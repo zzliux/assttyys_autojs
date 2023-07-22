@@ -112,7 +112,7 @@ export class Func314 implements IFuncOrigin {
         return true;
       } else {
         //退出
-        thisScript.helperBridge.regionClick(thisOperator[5].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+        thisScript.regionClick(thisOperator[5].oper);
         thisScript.global.huahezhan = false;
         return true;
       }

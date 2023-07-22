@@ -105,13 +105,13 @@ export class Func008 implements IFuncOrigin {
 			if (thisScript.findMultiColor('结界_进攻_灰', region, true)) {
 				if (thisConf.cdSwitchSchemeEnable) {
 					let oper = thisOperator[0].oper[1];
-					thisScript.helperBridge.regionClick([oper, oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.regionClick([oper, oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
 					thisScript.setCurrentScheme(thisConf.cdSwitchScheme as string);
 					thisScript.myToast(`切换方案为[${thisConf.cdSwitchScheme}]`);
 					thisScript.rerun();
 				} else {
 					let oper = thisOperator[0].oper[1];
-					thisScript.helperBridge.regionClick([oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.regionClick([oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
 					let cdWaiteTimePair = String(thisConf.cdWaitTime).split(',');
 					if (cdWaiteTimePair.length === 1) {
 						thisScript.myToast(`寮突破CD, ${(parseInt(cdWaiteTimePair[0]))}秒后再次检测`);
@@ -127,21 +127,21 @@ export class Func008 implements IFuncOrigin {
 		}
 		while (point = thisScript.findMultiColor('结界_进攻', region, true)) {
 			let oper = [[point.x, point.y, point.x + +thisOperator[0].oper[0][2], point.y + +thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
-			thisScript.helperBridge.regionClick(oper, 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
+			thisScript.regionClick(oper, 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
 			thisScript.keepScreen(true);
 			console.log('结界_进攻:', count);
 			if (--count === 0) {
 				if ('停止脚本' === thisConf.afterCountOper) {
 					let oper = thisOperator[0].oper[1];
-					thisScript.helperBridge.regionClick([oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.regionClick([oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
 					thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 					thisScript.stop();
 				} else if ('关闭界面' === thisConf.afterCountOper) {
 					let oper = thisOperator[0].oper[1];
-					thisScript.helperBridge.regionClick([oper, oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.regionClick([oper, oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
 				} else if ('切换方案' === thisConf.afterCountOper) {
 					let oper = thisOperator[0].oper[1];
-					thisScript.helperBridge.regionClick([oper, oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.regionClick([oper, oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
 					thisScript.setCurrentScheme(thisConf.next_scheme as string);
 					thisScript.myToast(`切换方案为[${thisConf.next_scheme}]`);
 					thisScript.rerun();

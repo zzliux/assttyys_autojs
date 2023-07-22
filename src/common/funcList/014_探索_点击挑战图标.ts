@@ -101,7 +101,7 @@ export class Func014 implements IFuncOrigin {
 				operator: [{ desc: thisOperator[2].desc }],
 			})) {
 				sleep(1000);
-				thisScript.helperBridge.regionClick(thisOperator[2].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick(thisOperator[2].oper);
 				thisScript.global.tsAttackSwhipeNum = 1;
 				return true;
 			}
@@ -111,7 +111,7 @@ export class Func014 implements IFuncOrigin {
 				point = thisScript.findMultiColor('探索_挑战BOSS');
 				if (point) {
 					let oper = [[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
-					thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.regionClick(oper);
 					thisScript.global.tsAttackSwhipeNum = 1;
 					return true;
 				}
@@ -122,7 +122,7 @@ export class Func014 implements IFuncOrigin {
 					point = thisScript.findMultiColor('探索_挑战BOSS');
 					if (point) {
 						let oper = [[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
-						thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+						thisScript.regionClick(oper);
 						thisScript.global.tsAttackSwhipeNum = 1;
 						return true;
 					}
@@ -160,7 +160,7 @@ export class Func014 implements IFuncOrigin {
 			}
 			if (point) {
 				let oper = [[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
-				thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick(oper);
 				return true;
 			} else {
 				if (--thisScript.global.tsAttackSwhipeNum <= 0) {
@@ -168,7 +168,7 @@ export class Func014 implements IFuncOrigin {
 						name: '探索界面_判断',
 						operator: [{ desc: thisOperator[0].desc, retest: 2500 }],
 					})) {
-						thisScript.helperBridge.regionClick([thisOperator[0].oper[3], thisOperator[0].oper[4]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+						thisScript.regionClick([thisOperator[0].oper[3], thisOperator[0].oper[4]]);
 						thisScript.global.tsAttackSwhipeNum = undefined;
 					}
 					return true;
@@ -178,11 +178,11 @@ export class Func014 implements IFuncOrigin {
 					operator: [{ desc: thisOperator[0].desc }],
 				})) {
 					thisScript.myToast(`剩余滑屏次数：${thisScript.global.tsAttackSwhipeNum}`);
-					thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[1], thisOperator[0].oper[2], {
+					thisScript.regionBezierSwipe(thisOperator[0].oper[1], thisOperator[0].oper[2], {
 						'快': [200, 400],
 						'中': [500, 700],
 						'慢': [800, 1200],
-					}[String(thisconf.swipeSpeed) || '慢'], 200);
+					}[String(thisconf.swipeSpeed) || '慢'], 0, 200);
 					sleep(500);
 					thisScript.keepScreen(true);
 				} else {

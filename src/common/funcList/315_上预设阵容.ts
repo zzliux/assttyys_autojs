@@ -91,10 +91,10 @@ export class Func315 implements IFuncOrigin {
           thisOperator[2].oper[0][3] + (thisOperator[2].oper[0][4] * tureGroupNum),
           500
         ]];
-        thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+        thisScript.regionClick(oper);
         let opertwo = thisOperator[3].oper[trueDefaultNum];
-        thisScript.helperBridge.regionClick([opertwo], thisScript.scheme.commonConfig.afterClickDelayRandom);
-        thisScript.helperBridge.regionClick(thisOperator[4].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+        thisScript.regionClick([opertwo]);
+        thisScript.regionClick(thisOperator[4].oper);
         thisScript.global.shangyushe = false;
         return true;
       }

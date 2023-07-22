@@ -71,10 +71,8 @@ export class Func043 implements IFuncOrigin {
 				let oper = [
 					[unknownStory.x + 440, unknownStory.y, unknownStory.x + thisOperator[0].oper[0][2] + 440, unknownStory.y + thisOperator[0].oper[0][3], 4000]
 				];
-				thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
-				thisScript.helperBridge.regionClick([
-					[887, 514, 1004, 560, 1000]
-				], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick(oper);
+				thisScript.regionClick([[887, 514, 1004, 560, 1000]]);
 				return true
 				// 如果没有挑战副本就寻找秘闻副本
 			} else if (!unknownStory) {
@@ -86,10 +84,8 @@ export class Func043 implements IFuncOrigin {
 					let oper = [
 						[challenge.x + 440, challenge.y, challenge.x + thisOperator[0].oper[0][2] + 440, challenge.y + thisOperator[0].oper[0][3], 4000]
 					];
-					thisScript.helperBridge.regionClick(oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
-					thisScript.helperBridge.regionClick([
-						[1055, 563, 1131, 642, 1000]
-					], thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.regionClick(oper);
+					thisScript.regionClick([[1055, 563, 1131, 642, 1000]]);
 					return true
 				} else {
 					// 如果秘闻和挑战都没有就取消任务追踪
@@ -98,9 +94,7 @@ export class Func043 implements IFuncOrigin {
 						operator: [thisOperator[1]]
 					}) != null) {
 						// 关闭任务弹窗
-						thisScript.helperBridge.regionClick([
-							[430, 633, 780, 698, 1000]
-						], thisScript.scheme.commonConfig.afterClickDelayRandom);
+						thisScript.regionClick([[430, 633, 780, 698, 1000]]);
 						return true
 					} else {
 						return false

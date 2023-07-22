@@ -142,7 +142,7 @@
 								ry < thisOperator[1].oper[2][3] ? ry : thisOperator[1].oper[2][3],
 								4000
 							];
-							thisScript.helperBridge.regionClick([toClick], thisScript.scheme.commonConfig.afterClickDelayRandom);
+							thisScript.regionClick([toClick]);
 							return true;
 						} else {
 							toastLog('未识别式神别名“A”');

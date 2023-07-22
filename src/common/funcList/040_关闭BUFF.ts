@@ -65,12 +65,12 @@ export class Func040 implements IFuncOrigin {
 			// 金币妖怪_判断挑战次数是否用完
 			let point = thisScript.findMultiColor('开启的BUFF') || null
 			if (point) {
-				thisScript.helperBridge.regionClick([
+				thisScript.regionClick([
 					[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], 1000]
-				], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				]);
 				return true
 			} else {
-				thisScript.helperBridge.regionClick([thisOperator[0].oper[1]], thisScript.scheme.commonConfig.afterClickDelayRandom);
+				thisScript.regionClick([thisOperator[0].oper[1]]);
 				if (thisconf && thisconf.scheme_switch_enabled) {
 					thisScript.setCurrentScheme(thisconf.next_scheme as string);
 					thisScript.myToast(`切换方案为[${thisconf.next_scheme}]`);

@@ -48,7 +48,7 @@ export class Func012 implements IFuncOrigin {
 			name: '突破界面_判断',
 			operator: [{ desc: thisOperator[0].desc }]
 		})) {
-			thisScript.helperBridge.regionBezierSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [800, 1600], 200);
+			thisScript.regionBezierSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [800, 1600], 0, 200);
 			if (!thisScript.global.tp_swipe_times) {
 				thisScript.global.tp_swipe_times = 0;
 			}
@@ -60,7 +60,7 @@ export class Func012 implements IFuncOrigin {
 					thisScript.stop();
 				} else if ('切换方案' === thisConf.afterCountOper) {
 					let oper = thisOperator[0].oper[2];
-					thisScript.helperBridge.regionClick([oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.regionClick([oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
 					thisScript.setCurrentScheme(thisConf.next_scheme as string);
 					thisScript.myToast(`切换方案为[${thisConf.next_scheme}]`);
 					thisScript.rerun();

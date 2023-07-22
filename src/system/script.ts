@@ -39,7 +39,7 @@ export class Script {
     lastFuncDateTime: Date; // 上次功能执行时间
     ocrDetector: IOcrDetector; // yunxi的ocr
     ocr: IOcr;
-    helperBridge: any; //IhelperBridge;
+    helperBridge: IhelperBridge; //IhelperBridge;
     job: Job;
     schedule: typeof schedule;
 
@@ -719,11 +719,11 @@ export class Script {
                     if (item.operStepRandom) {
                         if (currFunc.id)
                             console.log(`oper_success：[item.operStepRandom] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper}`);
-                        helperBridge.regionStepRandomClick(item.operStepRandom, this.scheme.commonConfig.afterClickDelayRandom);
+                        helperBridge.regionStepRandomClick(item.operStepRandom, this.scheme.commonConfig.afterClickDelayBase as number, this.scheme.commonConfig.afterClickDelayRandom as number);
                     } else if (item.oper) {
                         if (currFunc.id)
                             console.log(`oper_success：[item.oper] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper}`);
-                        helperBridge.regionClick(item.oper, +this.scheme.commonConfig.afterClickDelayRandom);
+                        helperBridge.regionClick(item.oper, this.scheme.commonConfig.afterClickDelayBase as number || 0, this.scheme.commonConfig.afterClickDelayRandom as number);
                     } else {
                         if (currFunc.id)
                             console.log(`oper_success: [] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper}`);
@@ -808,6 +808,24 @@ export class Script {
         } else {
             myToast('未配置关联应用，不结束');
         }
+    }
+
+    regionClick(oper, baseSleep?, randomSleep?) {
+        baseSleep = baseSleep || this.scheme.commonConfig.afterClickDelayBase || 0;
+        randomSleep = randomSleep || this.scheme.commonConfig.afterClickDelayRandom || 0
+        this.helperBridge.regionClick(oper, baseSleep, randomSleep);
+    }
+
+    regionSwipe(operSrc, operDest, duration, baseSleep?, randomSleep?) {
+        baseSleep = baseSleep || this.scheme.commonConfig.afterClickDelayBase || 0;
+        randomSleep = randomSleep || this.scheme.commonConfig.afterClickDelayRandom || 0
+        this.helperBridge.regionSwipe(operSrc, operDest, duration, baseSleep, randomSleep);
+    }
+
+    regionBezierSwipe(operSrc, operDest, duration, baseSleep?, randomSleep?, type?) {
+        baseSleep = baseSleep || this.scheme.commonConfig.afterClickDelayBase || 0;
+        randomSleep = randomSleep || this.scheme.commonConfig.afterClickDelayRandom || 0
+        this.helperBridge.regionBezierSwipe(operSrc, operDest, duration, baseSleep, randomSleep, type)
     }
 }
 

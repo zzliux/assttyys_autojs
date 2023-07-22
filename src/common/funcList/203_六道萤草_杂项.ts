@@ -402,7 +402,7 @@ export class Func203 implements IFuncOrigin {
 				});
 			} else {
 			}
-			thisScript.helperBridge.regionClick(thisOperator[1].oper, thisScript.scheme.commonConfig.afterClickDelayRandom);
+			thisScript.regionClick(thisOperator[1].oper);
 			if (thisconf.overTimes && thisScript.global.times >= thisconf.overTimes) {
 				thisScript.stop();
 			}
