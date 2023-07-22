@@ -335,6 +335,23 @@ export class Func316 implements IFuncOrigin {
       oper: [
          [center, 1280, 720, 1130, 19, 1232, 43, 500],
       ]
+   }, { // 21 使用极的双倍
+      desc: [
+         1280, 720,
+         [
+            [center, 516, 443, 0xdf6851],
+            [center, 686, 446, 0xf3b25e],
+            [center, 667, 367, 0xf7e51d],
+            [center, 879, 288, 0x282d38],
+            [center, 434, 306, 0x272b33],
+            [center, 152, 169, 0x594a25],
+            [center, 120, 237, 0x575235],
+            [center, 256, 223, 0x31211a],
+         ]
+      ],
+      oper: [
+         [center, 1280, 720, 671, 419, 794, 467, 1000],
+      ]
    }];
    operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 
@@ -347,6 +364,17 @@ export class Func316 implements IFuncOrigin {
          if (++thisScript.global.d6Loop > 2) {
             thisScript.global.d6Loop = 0;
          }
+         // // 调试截图begin
+         // let bmp = thisScript.helperBridge.helper.GetBitmap();
+         // let img = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(bmp);
+         // let fname = `${new Date().getTime()}.png`;
+         // let path = `/storage/emulated/0/$MuMu12Shared/Screenshots/${fname}`;
+         // files.ensureDir(path);
+         // img.saveTo(path);
+         // img.recycle();
+         // bmp.recycle();
+         // thisScript.myToast(`已保存截图：${fname}`);
+         // // 调试截图end
          return true;
       }
 
@@ -430,7 +458,7 @@ export class Func316 implements IFuncOrigin {
          operator: [
             thisOperator[3], thisOperator[5], thisOperator[6], thisOperator[8],
             thisOperator[9], thisOperator[10], thisOperator[12], thisOperator[13],
-            thisOperator[14], thisOperator[19], thisOperator[20]
+            thisOperator[14], thisOperator[19], thisOperator[20], thisOperator[21]
          ]
       })) {
          return true;
@@ -446,11 +474,11 @@ export class Func316 implements IFuncOrigin {
          thisScript.global.d6RouFeng = 1;
          thisScript.global.d6dCurrentBegin = new Date().getTime();
          if (!thisScript.global.d6dBegin) {
-				thisScript.global.d6dBegin = new Date().getTime();
-			}
+            thisScript.global.d6dBegin = new Date().getTime();
+         }
          if (!thisScript.global.times) {
-				thisScript.global.times = 0;
-			}
+            thisScript.global.times = 0;
+         }
          thisScript.global.times++
          return true;
       }

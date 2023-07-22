@@ -792,6 +792,11 @@ const SchemeList: IScheme[] = [
       },
     },
   }, {
+    id: 69,
+    schemeName: '六道椒图',
+    star: true,
+    list: [0, 1, 2, 3, 24, 316],
+  }, {
     id: 99,
     schemeName: '伊吹之擂',
     list: [0, 3, 24, 99, 100],

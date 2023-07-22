@@ -18,6 +18,7 @@ export function requestMyScreenCapture(callback: Function, helperBridge: Ihelper
                 const obj = text('立即开始').findOnce() || desc('立即开始').findOnce();
                 if (obj) {
                     obj.click();
+                    myToast('已自动允许截图权限');
                     break;
                 }
                 sleep(500);

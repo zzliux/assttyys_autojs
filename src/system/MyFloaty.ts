@@ -108,6 +108,7 @@ export class MyFloaty {
                     files.ensureDir(path);
                     img.saveTo(path);
                     img.recycle();
+                    bmp.recycle();
                     media.scanFile(path);
                     script.myToast(`截图已保存至${path}`);
                 });
