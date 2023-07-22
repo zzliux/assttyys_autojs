@@ -2843,7 +2843,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
         ]
     },
     "寄养狗粮_满级标识": {
-        region: [left, 1280, 720, 38,226, 1251,289 ],
+        region: [left, 1280, 720, 38, 226, 1251, 289],
         desc: [
             [
                 1280, 720,
@@ -2868,7 +2868,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
         ]
     },
     "寄养狗粮_空": {
-        region: [left, 1280, 720, 19,183, 1269,481],
+        region: [left, 1280, 720, 19, 183, 1269, 481],
         desc: [
             [
                 1280, 720,
@@ -2962,7 +2962,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
     },
     "契灵_茨球": {
         region: [center, 1280, 720, 40, 444, 1138, 611],
-        desc: [ [1280, 720,
+        desc: [[1280, 720,
             [
                 [center, 713, 520, 0xffffff],
                 [center, 718, 520, 0xf1e7c8],
@@ -3002,6 +3002,48 @@ const multiFindColors: IMultiFindColorsOrigin = {
                     [right, 1084, 34, 0xf77a2e],
                     [right, 1066, 46, 0x0e100b],
                     [right, 1081, 54, 0x161a11],
+                ]
+            ]
+        ],
+    },,
+    '六道椒图_低级buff': {
+        region: [center, 1280, 720, 141, 131, 882, 312],
+        desc: [
+            [
+                1280, 720,
+                [
+                    [left, 171, 216, 0x4787cf],
+                    [left, 262, 216, 0x5aa1f6],
+                    [left, 214, 171, 0x4585d6],
+                ]
+            ]
+        ],
+    },
+    '六道椒图_升级buff': {
+        region: [center, 1280, 720, 160, 149, 827, 200],
+        desc: [
+            [
+                1280, 720,
+                [
+                    [center, 479, 166, 0xffe4af],
+                    [center, 483, 166, 0xffe8b8],
+                    [center, 483, 169, 0xffe1a2],
+                    [center, 481, 170, 0xffdd94],
+                ]
+            ]
+        ],
+    },
+    '六道椒图_购买buff': {
+        region: [center, 1280, 720, 0, 0, 1279, 719],
+        desc: [
+            [
+                1280, 720,
+                [
+                    [right, 1071, 153, 0x2bdaf1],
+                    [right, 1074, 157, 0x2ee3e4],
+                    [right, 1069, 165, 0xa25287],
+                    [right, 1056, 164, 0xa55284],
+                    [right, 1060, 138, 0xffffff],
                 ]
             ]
         ],
