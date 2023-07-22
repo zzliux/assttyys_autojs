@@ -67,8 +67,10 @@ export type globalRootType = {
     opened_buff: boolean; // 是否已执行开启buff
     closed_buff: boolean; // 是否已执行关闭buff
     daily_collection: 'friend' | 'store' | 'courtyard';   //  每日奖励领取
-    huahezhan:boolean;//    是否已领取花合战
-    shangyushe:boolean;//    是否已上过预设
+    huahezhan: boolean;//    是否已领取花合战
+    shangyushe: boolean;//    是否已上过预设
+    d6Loop:  number;//     椒图事件点击循环数
+    d6RouFeng: number;//     椒图柔风实时buff数
 }
 
 export const globalRoot: globalRootType = {
@@ -140,6 +142,8 @@ export const globalRoot: globalRootType = {
     opened_buff: false,
     closed_buff: false,
     daily_collection: 'friend',
-    huahezhan:true,
-    shangyushe:true,
+    huahezhan: true,
+    shangyushe: true,
+    d6Loop:0,
+    d6RouFeng: 1,
 }
