@@ -467,7 +467,7 @@ export class Func316 implements IFuncOrigin {
          const cost = ((now - thisScript.global.d6dBegin) / 1000 / 60).toFixed(2); // 分
          const costAvg = Math.floor((now - thisScript.global.d6dBegin) / 1000 / (thisScript.global.times || 0)) // 秒
          // 中途进入的不计次
-         const bufLog = `本局buff：${thisScript.global.d6RouFeng}`;
+         const bufLog = `本局柔风buff：${thisScript.global.d6RouFeng}`;
          let toLog = `${bufLog}。通关次数: ${thisScript.global.times || 0}次, 本次通关时间: ${currentCost}秒, 平均通关时间: ${costAvg}秒, 总通关时间: ${cost}分`;
          thisScript.myToast(toLog);
          if (thisconf.overTimes && thisScript.global.times >= thisconf.overTimes) {
