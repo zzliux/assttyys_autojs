@@ -1,4 +1,5 @@
-import { IFuncOrigin, IFuncOperatorOrigin } from '@/interface/IFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
+import { Script } from '@/system/script';
 const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -26,5 +27,27 @@ export class Func036 implements IFuncOrigin {
 			[center, 1280, 720, 410, 289, 426, 309, 500],
 			[center, 1280, 720, 534, 491, 746, 537, 1000]
 		]
-	}]
+	}];
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
+		let curCnt = 0;
+		let maxCount = 3;
+		while (thisScript.oper({
+			name: '金币妖怪_创建队伍',
+			operator: thisOperator
+		})) {
+			curCnt++;
+			thisScript.keepScreen();
+			if (curCnt >= maxCount) {
+				thisScript.myToast(`连续执行${maxCount}次挑战后未开始，脚本自动停止`);
+				thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+				thisScript.stop();
+				sleep(2000);
+				return true;
+			}
+		}
+		if (curCnt) {
+			return true;
+		}
+		return false;
+	}
 }
