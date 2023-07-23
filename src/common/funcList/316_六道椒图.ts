@@ -486,7 +486,9 @@ export class Func316 implements IFuncOrigin {
       if (thisScript.oper({
          id: 316,
          name: '六道椒图_结束',
-         operator: [thisOperator[16]]
+         operator: [{
+            desc: thisOperator[16].desc
+         }]
       })) {
          const thisconf = thisScript.scheme.config['316'];
          thisconf.overTimes = Math.floor(Number(thisconf.overTimes) || 0);
@@ -497,10 +499,11 @@ export class Func316 implements IFuncOrigin {
          // 中途进入的不计次
          const bufLog = `本局柔风buff：${thisScript.global.d6RouFeng}`;
          let toLog = `${bufLog}。通关次数: ${thisScript.global.times || 0}次, 本次通关时间: ${currentCost}秒, 平均通关时间: ${costAvg}秒, 总通关时间: ${cost}分`;
-         thisScript.myToast(toLog);
          if (thisconf.overTimes && thisScript.global.times >= thisconf.overTimes) {
             toLog = `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。` + toLog;
          }
+         thisScript.myToast(toLog);
+        
          if (thisconf.pushResult) {
             thisScript.doPush(thisScript, {
                text: toLog,
@@ -508,7 +511,15 @@ export class Func316 implements IFuncOrigin {
                   thisScript.myToast('正在上传数据');
                }
             });
+            sleep(2000);
          }
+
+         if (thisconf.overTimes && thisScript.global.times >= thisconf.overTimes) {
+            toLog = `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。` + toLog;
+            thisScript.stop();
+         }
+
+         thisScript.regionClick(thisOperator[16].oper);
          return true;
       }
 
