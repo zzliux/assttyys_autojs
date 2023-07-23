@@ -100,6 +100,7 @@ export class Func050 implements IFuncOrigin {
 				desc: thisOperator[0].desc
 			}]
 		})) {
+			thisScript.global.opened_buff = true;
 			if (thisconf.buff_type === '御魂' && thisScript.oper({
 				name: '被横幅遮挡的御魂BUFF',
 				operator: [thisOperator[1], thisOperator[2]]
@@ -111,7 +112,6 @@ export class Func050 implements IFuncOrigin {
 				thisScript.regionClick([
 					[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], 1000]
 				]);
-				thisScript.global.opened_buff = true;
 				return true;
 			} else {
 				thisScript.regionClick([thisOperator[0].oper[1]]);
