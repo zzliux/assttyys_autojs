@@ -240,18 +240,14 @@ export class Func306 implements IFuncOrigin {
       operator: [{ desc: thisOperator[3].desc }]
     }, 0)) {
       if (thisConf && !thisConf.secondPlayer) {
-        thisScript.setCurrentScheme(thisConf.next_scheme as string);
-        thisScript.myToast(`切换方案为[${thisConf.next_scheme}]`);
-        thisScript.rerun();
+        thisScript.rerun(thisConf.next_scheme);
         sleep(3000);
         return;
       } else if (thisConf && thisConf.secondPlayer && !thisScript.oper({
         name: '三号位',
         operator: [{ desc: thisOperator[0].desc }]
       })) {
-        thisScript.setCurrentScheme(thisConf.next_scheme as string);
-        thisScript.myToast(`切换方案为[${thisConf.next_scheme}]`);
-        thisScript.rerun();
+        thisScript.rerun(thisConf.next_scheme);
         sleep(3000);
         return;
       }

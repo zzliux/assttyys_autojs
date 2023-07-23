@@ -72,11 +72,7 @@ export class Func516 implements IFuncOrigin {
 					thisScript.doPush(thisScript, { text: `寮活动翻页次数已达到限制次数${defaultCount}，脚本已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 					thisScript.stop();
 				} else if ('切换方案' === thisConf.afterCountOper) {
-					// let oper = thisOperator[0].oper[2];
-					// thisScript.regionClick([oper], 500 + thisScript.scheme.commonConfig.afterClickDelayRandom);
-					thisScript.setCurrentScheme(thisConf.next_scheme as string);
-					thisScript.myToast(`切换方案为[${thisConf.next_scheme}]`);
-					thisScript.rerun();
+					thisScript.rerun(thisConf.next_scheme);
 				} else if ('不做任何操作' === thisConf.afterCountOper) {
                     thisScript.global.liao_activity_page_flag = defaultCount;
                     return false;

@@ -224,9 +224,7 @@ export class Func506 implements IFuncOrigin {
 			console.log('寮活动当前状况为: ', _liao_activity_state, '返回庭院flag状态为: ', _finishFlag);
 			if (_finishFlag) {
 				const next_scheme = '返回庭院';
-				thisScript.setCurrentScheme(next_scheme);
-				thisScript.myToast(`切换方案为[${next_scheme}]`);
-				thisScript.rerun();
+				thisScript.rerun(next_scheme);
 			}
 		} else {
 
@@ -290,9 +288,7 @@ export class Func506 implements IFuncOrigin {
 			}]
 		})) {
 			const next_scheme = '返回庭院';
-			thisScript.setCurrentScheme(next_scheme as string);
-			thisScript.myToast(`切换方案为[${next_scheme}]`);
-			thisScript.rerun();
+			thisScript.rerun(next_scheme);
 		}
 
 		if (thisScript.oper({
@@ -348,11 +344,9 @@ export class Func506 implements IFuncOrigin {
 		})) {
 			thisScript.global.liao_activity_page_flag = 0;
 			const next_scheme = '道馆';
-			thisScript.setCurrentScheme(next_scheme as string, {
+			thisScript.rerun(next_scheme, {
 				liao_activity_state: _liao_activity_state
 			});
-			thisScript.myToast(`切换方案为[${next_scheme}]`);
-			thisScript.rerun();
 		}
 
 		if (thisScript.oper({
@@ -380,11 +374,9 @@ export class Func506 implements IFuncOrigin {
 			sleep(2000);
 			thisScript.global.liao_activity_page_flag = 0;
 			const next_scheme = '首领退治';
-			thisScript.setCurrentScheme(next_scheme as string, {
+			thisScript.rerun(next_scheme, {
 				liao_activity_state: _liao_activity_state
 			});
-			thisScript.myToast(`切换方案为[${next_scheme}]`);
-			thisScript.rerun();
 		}
 
 		if (thisScript.oper({
@@ -413,11 +405,9 @@ export class Func506 implements IFuncOrigin {
 			sleep(2000);
 			thisScript.global.liao_activity_page_flag = 0;
 			const next_scheme = '狭间暗域';
-			thisScript.setCurrentScheme(next_scheme as string, {
+			thisScript.rerun(next_scheme, {
 				liao_activity_state: _liao_activity_state
 			});
-			thisScript.myToast(`切换方案为[${next_scheme}]`);
-			thisScript.rerun();
 		}
 
 		if (thisScript.oper({
@@ -439,11 +429,9 @@ export class Func506 implements IFuncOrigin {
 				sleep(2000);
 				thisScript.global.liao_activity_page_flag = 0;
 				const next_scheme = '宴会';
-				thisScript.setCurrentScheme(next_scheme as string, {
+				thisScript.rerun(next_scheme, {
 					liao_activity_state: _liao_activity_state
 				});
-				thisScript.myToast(`切换方案为[${next_scheme}]`);
-				thisScript.rerun();
 			}
 		}
 
@@ -510,11 +498,9 @@ export class Func506 implements IFuncOrigin {
 			sleep(2000);
 			thisScript.global.liao_activity_page_flag = 0;
 			const next_scheme = '狩猎战';
-			thisScript.setCurrentScheme(next_scheme as string, {
+			thisScript.rerun(next_scheme, {
 				liao_activity_state: _liao_activity_state
 			});
-			thisScript.myToast(`切换方案为[${next_scheme}]`);
-			thisScript.rerun();
 		}
 
 		if (thisScript.oper({
@@ -524,11 +510,9 @@ export class Func506 implements IFuncOrigin {
 			sleep(2000);
 			thisScript.global.liao_activity_page_flag = 0;
 			const next_scheme = '阴门挑战';
-			thisScript.setCurrentScheme(next_scheme as string, {
+			thisScript.rerun(next_scheme, {
 				liao_activity_state: _liao_activity_state
 			});
-			thisScript.myToast(`切换方案为[${next_scheme}]`);
-			thisScript.rerun();
 		}
 
 		//	做延时识别

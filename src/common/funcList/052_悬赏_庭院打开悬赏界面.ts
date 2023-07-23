@@ -130,9 +130,7 @@ export class Func052 implements IFuncOrigin {
 				const thisconf = thisScript.scheme.config['52'];
 				thisScript.global.xsOpened = true;
 				if (thisconf && thisconf.scheme_switch_enabled) {
-					thisScript.setCurrentScheme(thisconf.next_scheme as string);
-					thisScript.myToast(`切换方案为[${thisconf.next_scheme}]`);
-					thisScript.rerun();
+					thisScript.rerun(thisconf.next_scheme);
 					sleep(3000);
 				} else {
 					return false

@@ -375,11 +375,9 @@ export class Func503 implements IFuncOrigin {
 						thisScript.stop();
 					}
 				} else {
-					thisScript.setCurrentScheme(next_scheme as string, {
+					thisScript.rerun(next_scheme, {
 						...thisScript.runtimeParams,
 					});
-					thisScript.myToast(`切换方案为[${next_scheme}]`);
-					thisScript.rerun();
 				}
 			}
 		}

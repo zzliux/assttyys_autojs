@@ -322,9 +322,7 @@ export class Func995 implements IFuncOrigin {
             },
           ],
         });
-        thisScript.setCurrentScheme(thisConf.next_scheme as string);
-        thisScript.myToast(`切换方案为[${thisConf.next_scheme}]`);
-        thisScript.rerun();
+        thisScript.rerun(thisConf.next_scheme);
       } else if ('关闭应用' === thisConf.afterCountOper) {
         sleep(1000);
         // let storeSettings = thisScript.storeCommon.get('settings', {});

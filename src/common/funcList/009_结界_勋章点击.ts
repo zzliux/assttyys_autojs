@@ -91,9 +91,7 @@ export class Func009 implements IFuncOrigin {
 					if (Number(oper[0][0]) > fristFirstOper[0] && Number(oper[0][1]) > fristFirstOper[1] && Number(oper[0][2]) < fristFirstOper[2] && Number(oper[0][3]) < fristFirstOper[3]) {
 						console.log("检测点击范围在第一排第一列结界内");
 						if (thisconf && thisconf.scheme_switch_enabled) {
-							thisScript.setCurrentScheme(thisconf.next_scheme as string);
-							thisScript.myToast(`切换方案为[${thisconf.next_scheme}]`);
-							thisScript.rerun();
+							thisScript.rerun(thisconf.next_scheme);
 							sleep(3000);
 							return;
 						}

@@ -231,9 +231,7 @@ export class Func002 implements IFuncOrigin {
 			operator: thisOperator.slice(-2, -1)
 		})) {
 			if (thisconf && thisconf.no_sushi_switch_enabled) {
-				thisScript.setCurrentScheme(thisconf.next_scheme as string);
-				thisScript.myToast(`切换方案为[${thisconf.next_scheme}]`);
-				thisScript.rerun();
+				thisScript.rerun(thisconf.next_scheme);
 				sleep(3000);
 				return;
 			} else if (thisconf && !thisconf.no_sushi_switch_enabled) {

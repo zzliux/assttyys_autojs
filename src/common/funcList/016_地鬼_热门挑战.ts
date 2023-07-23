@@ -148,9 +148,7 @@ export class Func016 implements IFuncOrigin {
 			if (thisScript.global.dgCurNum === -1) {
 				thisScript.regionClick([thisOperator[2].oper[1]]);
 				const next_scheme = '返回庭院';
-				thisScript.setCurrentScheme(next_scheme);
-				thisScript.myToast(`切换方案为[${next_scheme}]`);
-				thisScript.rerun();
+				thisScript.rerun(next_scheme);
 				return;
 			}
 			let clickOper = thisOperator[0].oper[2 + thisScript.global.dgCurNum];

@@ -100,9 +100,7 @@ export class Func004 implements IFuncOrigin {
 			name: '接受邀请',
 			operator: [{ desc: thisOperator[0].desc }, { desc: thisOperator[1].desc }]
 		})) {
-			thisScript.setCurrentScheme(thisConf.next_scheme as string);
-			thisScript.myToast(`切换方案为[${thisConf.next_scheme}]`);
-			thisScript.rerun();
+			thisScript.rerun(thisConf.next_scheme);
 		} else {
 			if (thisScript.oper({
 				id: 4,
@@ -118,9 +116,7 @@ export class Func004 implements IFuncOrigin {
 			name: '队长退出',
 			operator: [thisOperator[3],thisOperator[4]]
 		})){
-			thisScript.setCurrentScheme(thisConf.teammate_exit_next_scheme as string);
-			thisScript.myToast(`切换方案为[${thisConf.teammate_exit_next_scheme}]`);
-			thisScript.rerun();
+			thisScript.rerun(thisConf.teammate_exit_next_scheme);
 		}
 	}
 }

@@ -168,9 +168,7 @@ export class Func302 implements IFuncOrigin {
     })) {
       let thisconf = thisScript.scheme.config['302'];
       if (thisconf && thisconf.scheme_switch_enabled) {
-        thisScript.setCurrentScheme(thisconf.next_scheme as string);
-        thisScript.myToast(`切换方案为[${thisconf.next_scheme}]`);
-        thisScript.rerun();
+        thisScript.rerun(thisconf.next_scheme);
         sleep(3000);
         return;
       } else {

@@ -106,9 +106,7 @@ export class Func008 implements IFuncOrigin {
 				if (thisConf.cdSwitchSchemeEnable) {
 					let oper = thisOperator[0].oper[1];
 					thisScript.regionClick([oper, oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
-					thisScript.setCurrentScheme(thisConf.cdSwitchScheme as string);
-					thisScript.myToast(`切换方案为[${thisConf.cdSwitchScheme}]`);
-					thisScript.rerun();
+					thisScript.rerun(thisConf.cdSwitchScheme);
 				} else {
 					let oper = thisOperator[0].oper[1];
 					thisScript.regionClick([oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
@@ -142,9 +140,7 @@ export class Func008 implements IFuncOrigin {
 				} else if ('切换方案' === thisConf.afterCountOper) {
 					let oper = thisOperator[0].oper[1];
 					thisScript.regionClick([oper, oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
-					thisScript.setCurrentScheme(thisConf.next_scheme as string);
-					thisScript.myToast(`切换方案为[${thisConf.next_scheme}]`);
-					thisScript.rerun();
+					thisScript.rerun(thisConf.next_scheme);
 				}
 				break;
 			}

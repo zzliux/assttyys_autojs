@@ -455,9 +455,7 @@ export class Func993 implements IFuncOrigin {
         thisScript.global.app_is_open_flag < 3
       ) {
         thisScript.global.checked_yard_count = 0;
-        thisScript.setCurrentScheme(thisConf.next_scheme as string);
-        thisScript.myToast(`切换方案为[${thisConf.next_scheme}]`);
-        thisScript.rerun();
+        thisScript.rerun(thisConf.next_scheme);
         sleep(3000);
         return true;
       } else {

@@ -55,6 +55,7 @@
               <div v-if="element.id === showConfigId" class="item-config">
                 <func-config-box
                   v-model:configModalObject="configModalObject"
+                  showStop
                 ></func-config-box>
               </div>
             </div>

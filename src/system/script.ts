@@ -644,7 +644,19 @@ export class Script {
     /**
      * 重新运行，一般在运行过程中通过setCurrenScheme切换方案后调用，停止再运行
      */
-    rerun() {
+    rerun(schemeName?: unknown, params?: Record<string, unknown>) {
+        if ('__停止脚本__' === schemeName) {
+            this.doPush(this, {
+                text: `[${this.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`,
+                before() { myToast('脚本即将停止，正在上传数据'); }
+            });
+            this.stop();
+            sleep(3000);
+            return;
+        } else if (schemeName) {
+            this.setCurrentScheme(schemeName as string, params);
+            this.myToast(`切换方案为[${schemeName}]`);
+        }
         events.broadcast.emit('SCRIPT_RERUN', '');
     };
 

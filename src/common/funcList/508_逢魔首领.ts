@@ -407,9 +407,7 @@ export class Func508 implements IFuncOrigin {
     ) {
       if (thisScript.global.fm_kiss_boss_flag) {
         const next_scheme = '返回庭院';
-        thisScript.setCurrentScheme(next_scheme);
-        thisScript.myToast(`切换方案为[${next_scheme}]`);
-        thisScript.rerun();
+        thisScript.rerun(next_scheme);
       } else {
 				//	检测 是否有开启 逢魔·极
 				if (thisConf && thisConf['switch_ji_enabled']) {

@@ -103,9 +103,7 @@ export class Func042 implements IFuncOrigin {
 				thisScript.regionClick([[1164, 116, 1189, 143, 1000]]);
 				const thisconf = thisScript.scheme.config['42'];
 				if (thisconf && thisconf.scheme_switch_enabled) {
-					thisScript.setCurrentScheme(thisconf.next_scheme as string);
-					thisScript.myToast(`切换方案为[${thisconf.next_scheme}]`);
-					thisScript.rerun();
+					thisScript.rerun(thisconf.next_scheme);
 				} else {
 					thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 					thisScript.stop();

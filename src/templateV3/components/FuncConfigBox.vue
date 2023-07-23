@@ -88,6 +88,7 @@ import { reactive, ref } from "vue";
 const props = defineProps({
   show: Boolean,
   configModalObject: Object,
+  showStop: Boolean,
 });
 
 const configItemItemShowPicker = ref(false);
@@ -112,7 +113,12 @@ function configItemItemPickerConfirm({ selectedOptions }) {
 
 async function showItemConfigScheme(e, configItemItem) {
   let schemeListA = await AutoWeb.autoPromise('getSchemeList');
-  let groupScheme = ['全部', ...await AutoWeb.autoPromise('getGroupNames')].map(item => ({ text: item, value: item, children: getSchemeNamesByGroupName(item, schemeListA) }));
+  
+  let groupNames = ['全部', ...await AutoWeb.autoPromise('getGroupNames')];
+  if (props.showStop) {
+    groupNames.unshift('__停止脚本__');
+  }
+  let groupScheme = groupNames.map(item => ({ text: item, value: item, children: getSchemeNamesByGroupName(item, schemeListA) }));
 
   schemeList.value = groupScheme;
   curItemItem.value = configItemItem;
@@ -123,6 +129,8 @@ function getSchemeNamesByGroupName(groupName, schemeNames) {
   const left = merge([], schemeNames);
   if (groupName === '全部') {
     return left.map(item => ({ text: item.schemeName, value: item.schemeName }));
+  } else if (groupName === '__停止脚本__') {
+    return [{ text: '__停止脚本__', value: '__停止脚本__' }];
   }
 
   // 1. 根据groupName过滤

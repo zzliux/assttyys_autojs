@@ -237,9 +237,7 @@ export class Func517 implements IFuncOrigin {
             operator: [thisOperator[9]]
         })) {
             const next_scheme = '返回庭院';
-            thisScript.setCurrentScheme(next_scheme);
-            thisScript.myToast(`切换方案为[${next_scheme}]`);
-            thisScript.rerun();
+            thisScript.rerun(next_scheme);
         }
 
         if (thisScript.oper({
