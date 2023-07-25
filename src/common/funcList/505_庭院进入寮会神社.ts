@@ -10,12 +10,7 @@ export class Func505 implements IFuncOrigin {
 	desc = '庭院进入寮会神社_判断';
 	operator: IFuncOperatorOrigin[] = [{
 		// 在庭院打开菜单
-		desc: [1280, 720,
-			[[right, 1211, 606, 0x885f46],
-			[right, 1205, 624, 0x987777],
-			[right, 1208, 646, 0xaf4949],
-			[right, 1175, 680, 0xb08e7d]]
-		],
+		desc: '页面是否为庭院_菜单未展开_只支持默认庭院皮肤与默认装饰',
 		oper: [
 			[right, 1280, 720, 1168, 592, 1230, 690, 1200]	// 在首页打开菜单
 		]
@@ -31,28 +26,13 @@ export class Func505 implements IFuncOrigin {
 		]
 	}, {
 		// 点击阴阳寮，另外一种图标
-		desc: [1280, 720,
-			[
-				[right, 1223, 662, 0xdbcbc7],
-				[right, 1155, 41, 0xd7b188],
-				[center, 451, 631, 0xe8e4e1],
-				[center, 673, 651, 0xdb8b3f],
-			]
-		],
+		desc: '页面是否为庭院_菜单已展开_另一种图标_御祝图标_只支持默认庭院皮肤与默认装饰',
 		oper: [
 			[center, 1280, 720, 544, 612, 594, 661, 1200]	// 点击阴阳寮
 		]
 	}, {
 		// 庭院已打开菜单，另另外一种图标
-		desc: [
-			1280, 720,
-			[
-				[right, 1223, 658, 0xdac9c4],
-				[right, 1155, 41, 0xd6b187],
-				[center, 451, 631, 0xe6e3e1],
-				[center, 683, 657, 0xda6b29],
-			]
-		],
+		desc: '庭院已打开菜单_另另外一种图标',
 		oper: [
 			[center, 1280, 720, 544, 612, 594, 661, 1200]	// 点击阴阳寮
 		]
