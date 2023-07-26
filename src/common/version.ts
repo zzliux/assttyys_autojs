@@ -894,7 +894,11 @@ export const versionList = [{
     desc: `新增：六道椒图
 优化：增加点击后延时基数`
 }, {
-    version: '新增：守缘合战'
+    version: '20230726_01',
+    desc: `优化：统一庭院识别 优化338逻辑，增加对前往寄养弹窗适配`
+}, {
+    version: '20230726_02',
+    desc: '新增：守缘合战',
 }];
 
 export default versionList[versionList.length - 1].version;

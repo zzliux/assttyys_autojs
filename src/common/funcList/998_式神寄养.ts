@@ -407,6 +407,25 @@ export class Func998 implements IFuncOrigin {
         ],
       ],
     },
+    {
+      //  21  检测_是否前往寄养弹窗
+      desc: [
+        1280, 720,
+        [
+          [center, 797, 177, 0x9e866e],
+          [center, 836, 177, 0xcbb59e],
+          [center, 805, 505, 0xf4b25f],
+          [center, 667, 534, 0xf4b25f],
+          [center, 640, 518, 0xcbb59e],
+          [center, 611, 508, 0xf4b25f],
+          [center, 470, 530, 0xf4b25f],
+          [center, 441, 549, 0xcbb59e],
+        ]
+      ],
+      oper: [
+        [center, 1280, 720, 392,590, 872,666, 1200] //  点击空白处_退出
+      ]
+    }
   ];
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
     let thisconf = thisScript.scheme.config['998'];
@@ -419,6 +438,7 @@ export class Func998 implements IFuncOrigin {
           {
             desc: thisOperator[4].desc,
           },
+          thisOperator[21]
         ],
       })
     ) {
