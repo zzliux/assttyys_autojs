@@ -801,9 +801,9 @@ const SchemeList: IScheme[] = [
     schemeName: '伊吹之擂',
     list: [0, 3, 24, 99, 100],
   }, {
-    id: 101,
-    schemeName: '活动_森间试炼',
-    list: [0, 1, 2, 3, 24, 132],
+    id: 102,
+    schemeName: '活动_守缘合战',
+    list: [0, 1, 2, 3, 24, 133],
     star: true,
   }
   // , {

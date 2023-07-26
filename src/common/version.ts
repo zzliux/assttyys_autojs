@@ -893,6 +893,8 @@ export const versionList = [{
     version: '20230723_01',
     desc: `新增：六道椒图
 优化：增加点击后延时基数`
+}, {
+    version: '新增：守缘合战'
 }];
 
 export default versionList[versionList.length - 1].version;
