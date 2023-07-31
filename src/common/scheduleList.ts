@@ -214,6 +214,34 @@ const ScheduleDefaultList: JobOptions[] = [
     config: {
       scheme: '定时任务-启动游戏-每日签到与收取邮件',
     }
+  },
+  {
+    id: 16,
+    name: '经验妖怪',
+    desc: '经验妖怪',
+    checked: false,
+    lastRunTime: null,
+    nextDate: null,
+    repeatMode: 3,
+    interval: '* 5 0 * * *',
+    level: '6',
+    config: {
+      scheme: '定时任务-启动游戏-经验妖怪',
+    }
+  },
+  {
+    id: 17,
+    name: '金币妖怪',
+    desc: '金币妖怪',
+    checked: false,
+    lastRunTime: null,
+    nextDate: null,
+    repeatMode: 3,
+    interval: '* 5 0 * * *',
+    level: '6',
+    config: {
+      scheme: '定时任务-启动游戏-金币妖怪',
+    }
   }
 ];
 

@@ -291,8 +291,14 @@ const SchemeList: IScheme[] = [
   {
     id: 24,
     schemeName: '金币妖怪',
-    star: true,
-    list: [0, 1, 2, 3, 39, 35, 36, 37, 38, 40],
+    list: [0, 1, 2, 3, 35, 37, 38],
+    config: {
+      '37': {
+        target: '金币妖怪',
+        createMode: '创建队伍',
+        next_scheme: '关闭BUFF',
+      },
+    },
   },
   {
     id: 25,
@@ -751,7 +757,8 @@ const SchemeList: IScheme[] = [
         afterCountOper: '不进行任何操作',
       },
     },
-  }, {
+  }, 
+  {
     id: 66,
     schemeName: '契灵',
     list: [510, 0, 1, 51, 2, 3, 313, 29],
@@ -796,7 +803,92 @@ const SchemeList: IScheme[] = [
     schemeName: '六道椒图',
     star: true,
     list: [0, 1, 2, 3, 24, 316],
-  }, {
+  }, 
+  {
+    id: 70,
+    schemeName: '开启经验BUFF_经验妖怪',
+    list: [501, 50],
+    config: {
+      '50': {
+        scheme_switch_enabled: true,
+        next_scheme: '经验妖怪',
+        buff_type: '经验',
+        ready_once_buff: false,
+      },
+    },
+  },
+  {
+    id: 71,
+    schemeName: '开启金币BUFF_金币妖怪',
+    list: [501, 50],
+    config: {
+      '50': {
+        scheme_switch_enabled: true,
+        next_scheme: '金币妖怪',
+        buff_type: '金币',
+        ready_once_buff: false,
+      },
+    },
+  },
+  {
+    id: 72,
+    schemeName: '经验妖怪',
+    list: [0, 1, 2, 3, 35, 37, 38],
+    config: {
+      '37': {
+        target: '经验妖怪',
+        createMode: '创建队伍',
+        next_scheme: '关闭BUFF',
+      },
+    },
+  },
+  {
+    id: 73,
+    schemeName: '年兽',
+    list: [0, 1, 2, 3, 35, 37, 38],
+    config: {
+      '37': {
+        target: '年兽',
+        createMode: '自动匹配',
+        next_scheme: '关闭BUFF',
+      },
+    },
+  },
+  {
+    id: 74,
+    schemeName: '定时任务-启动游戏-金币妖怪',
+    star: true,
+    groupName: '定时任务',
+    list: [1, 2, 3, 503, 993],
+    config: {
+      '993': {
+        area: '',
+        is_shutdown_the_game_before: true,
+        next_scheme: '开启金币BUFF_金币妖怪',
+      },
+      '503': {
+        afterCountOper: '不进行任何操作',
+      },
+    },
+  }, 
+  {
+    id: 75,
+    schemeName: '定时任务-启动游戏-经验妖怪',
+    star: true,
+    groupName: '定时任务',
+    list: [1, 2, 3, 503, 993],
+    config: {
+      '993': {
+        area: '',
+        is_shutdown_the_game_before: true,
+        next_scheme: '开启经验BUFF_经验妖怪',
+      },
+      '503': {
+        afterCountOper: '不进行任何操作',
+      },
+    },
+  }, 
+  {
     id: 99,
     schemeName: '伊吹之擂',
     list: [0, 3, 24, 99, 100],

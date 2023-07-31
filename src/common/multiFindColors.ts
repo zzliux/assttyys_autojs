@@ -359,6 +359,16 @@ const multiFindColors: IMultiFindColorsOrigin = {
                     [center, 344, 254, 0xd7c9b9],
                     [center, 339, 187, 0xd7c9ba]
                 ]
+            ],
+            [
+                1280, 720,
+                [
+                    [center, 556, 510, 0x68a1a8],
+                    [center, 593, 507, 0x325667],
+                    [center, 595, 518, 0xf8882c],
+                    [center, 555, 518, 0xfa9130],
+                    [center, 572, 508, 0x5f9199],
+                ]
             ]
         ]
     },
@@ -375,6 +385,17 @@ const multiFindColors: IMultiFindColorsOrigin = {
                     [center, 339, 187, 0xd7c9ba],
                     [center, 578, 243, 0xed7610]
                 ]
+            ],
+            [
+                1280, 720,
+                [
+                    [center, 575, 397, 0x6da7a7],
+                    [center, 595, 411, 0x948c8c],
+                    [center, 554, 411, 0xf37c16],
+                    [center, 574, 401, 0x54868e],
+                    [center, 558, 400, 0x599098],
+                    [center, 568, 400, 0x5d8f97],
+                ]
             ]
         ]
     },
@@ -390,6 +411,17 @@ const multiFindColors: IMultiFindColorsOrigin = {
                     [center, 344, 254, 0xd7c9b9],
                     [center, 339, 187, 0xd7c9ba],
                     [center, 578, 243, 0xed7610]
+                ]
+            ],
+            [
+                1280, 720,
+                [
+                    [center, 566, 552, 0x6ca6a6],
+                    [center, 595, 565, 0x948c8c],
+                    [center, 587, 565, 0x948c8c],
+                    [center, 555, 565, 0xf7832c],
+                    [center, 555, 557, 0x619a9a],
+                    [center, 578, 552, 0x6fa9a9],
                 ]
             ]
         ]

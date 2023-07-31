@@ -899,6 +899,11 @@ export const versionList = [{
 }, {
     version: '20230726_02',
     desc: '新增：守缘合战',
+}, {
+    version: '20230731_01',
+    desc: `新增：经验妖怪，年兽，开启金币buff_金币妖怪，
+    更新：金币妖怪方案（请重置金币妖怪方案）
+    优化：寄养 斗鱼适配`,
 }];
 
 export default versionList[versionList.length - 1].version;
