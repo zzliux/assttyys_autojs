@@ -904,6 +904,10 @@ export const versionList = [{
     desc: `新增：经验妖怪，年兽，开启金币buff_金币妖怪，
     更新：金币妖怪方案（请重置金币妖怪方案）
     优化：寄养 斗鱼适配`,
+},{
+    version: '20230803_01',
+    desc: `更新：强化御魂
+    优化：隐藏历史活动`,
 }];
 
 export default versionList[versionList.length - 1].version;
