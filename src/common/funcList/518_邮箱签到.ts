@@ -631,6 +631,22 @@ export class Func518 implements IFuncOrigin {
       ],
       oper: [[right, 1280, 720, 1115, 108, 1149, 136, 1200]],
     },
+    {
+      // 38 检测是否为好友弹窗 页签处于最近
+      desc: [
+        1280, 720,
+        [
+          [left, 156, 173, 0xd4c4b3],
+          [left, 175, 134, 0xa2765d],
+          [center, 745, 72, 0x58402f],
+          [center, 338, 137, 0xdbb291],
+          [right, 1220, 168, 0x653f20],
+        ]
+      ],
+      oper: [
+        [left, 1280, 720, 156,97, 226,135, 1200]  //  点击 好友页签
+      ]
+    }
   ];
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
     if (
@@ -824,6 +840,7 @@ export class Func518 implements IFuncOrigin {
           thisOperator[34], //  检测_好友羁绊
           thisOperator[35], //  检测_商店_礼包屋_热卖页签
           thisOperator[37], //  检测_商店_热门推荐_另一种适配
+          thisOperator[38], //  检测是否为好友弹窗 页签处于最近
         ],
       })
     ) {

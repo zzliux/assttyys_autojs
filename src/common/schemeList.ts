@@ -824,7 +824,7 @@ const SchemeList: IScheme[] = [
     config: {
       '50': {
         scheme_switch_enabled: true,
-        next_scheme: '金币妖怪',
+        next_scheme: '金币',
         buff_type: '金币',
         ready_once_buff: false,
       },
@@ -836,7 +836,7 @@ const SchemeList: IScheme[] = [
     list: [0, 1, 2, 3, 35, 37, 38],
     config: {
       '37': {
-        target: '经验妖怪',
+        target: '经验',
         createMode: '创建队伍',
         next_scheme: '关闭BUFF',
       },
