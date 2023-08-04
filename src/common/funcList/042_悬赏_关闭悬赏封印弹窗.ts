@@ -24,42 +24,22 @@ export class Func042 implements IFuncOrigin {
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{
-		desc: [1280, 720,
+		desc: [
+			// 已适配66，一键取消界面点击右上角关闭
+			1280, 720,
 			[
-				[center, 505, 45, 0x46454c],
-				[center, 880, 62, 0x3f3e44],
-				[center, 560, 84, 0x5b4332],
-				[right, 1022, 88, 0x4c3827],
-				[right, 1098, 581, 0xfff3b0],
-				[right, 1110, 581, 0xfee7b8],
-				[right, 1097, 605, 0xfedb92],
-				[right, 1124, 604, 0xf0dd8f],
-				[right, 1108, 595, 0xf2e4a1],
-				[right, 1149, 600, 0x58290a]
+				[center, 1175, 121, 0x65343d],
+				[center, 546, 84, 0x58402f],
+				[center, 714, 81, 0x5c3a1a],
+				[center, 844, 67, 0x3e3c42],
+				[center, 1117, 615, 0x3c2a18],
+				[center, 1142, 653, 0xddb03f],
+				[center, 1100, 582, 0xf7efad],
+				[center, 1159, 581, 0xf7eead],
 			]
 		],
 		oper: [
-			[left, 1280, 720, 1164, 116, 1189, 143, 500],
-		]
-	},
-	// 旧
-	{
-		desc: [1280, 720,
-			[
-				[center, 644, 40, 0x544321],
-				[center, 638, 52, 0x75542a],
-				[left, 95, 124, 0x7b7372],
-				[left, 105, 90, 0x634724],
-				[right, 1161, 85, 0x553c1f],
-				[right, 1097, 582, 0xffeeaa],
-				[right, 1110, 580, 0xf9eba8],
-				[right, 1107, 611, 0xf4e39a],
-				[right, 1128, 606, 0xe5cf89],
-				[right, 1122, 584, 0xf4e3a4]
-			]
-		],
-		oper: [
-			[left, 1280, 720, 1164, 116, 1189, 143, 500],
+			[center, 1280, 720, 1153, 112, 1202, 157, 1000],
 		]
 	},
 	// 如果所有任务已经完成
@@ -84,30 +64,24 @@ export class Func042 implements IFuncOrigin {
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: '悬赏_关闭悬赏封印弹窗',
+			operator: [thisOperator[0]]
+		})) {
+			return true
+		}
+		// 如果所有任务已经完成,就关闭弹窗后停止脚本或者执行下个方案
+		if (thisScript.oper({
+			name: '悬赏_关闭悬赏封印弹窗',
 			operator: [{
-				desc: thisOperator[0].desc
-			}, {
 				desc: thisOperator[1].desc
 			}]
 		})) {
-			thisScript.regionClick([[1164, 116, 1189, 143, 500]]);
-			return true
-		} else {
-			// 如果所有任务已经完成,就关闭弹窗后停止脚本或者执行下个方案
-			if (thisScript.oper({
-				name: '悬赏_关闭悬赏封印弹窗',
-				operator: [{
-					desc: thisOperator[2].desc
-				}]
-			})) {
-				thisScript.regionClick([[1164, 116, 1189, 143, 1000]]);
-				const thisconf = thisScript.scheme.config['42'];
-				if (thisconf && thisconf.scheme_switch_enabled) {
-					thisScript.rerun(thisconf.next_scheme);
-				} else {
-					thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-					thisScript.stop();
-				}
+			thisScript.regionClick([[1164, 116, 1189, 143, 1000]]);
+			const thisconf = thisScript.scheme.config['42'];
+			if (thisconf && thisconf.scheme_switch_enabled) {
+				thisScript.rerun(thisconf.next_scheme);
+			} else {
+				thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+				thisScript.stop();
 			}
 		}
 	}

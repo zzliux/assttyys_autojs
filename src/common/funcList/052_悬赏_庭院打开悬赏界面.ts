@@ -38,32 +38,16 @@ export class Func052 implements IFuncOrigin {
 		desc: '庭院已打开菜单_另另外一种图标'
 	}, {
 		// 悬赏界面
-		desc: [1280, 720,
+		desc: [
+			// 已适配66，一键追踪界面点一键追踪
+			1280, 720,
 			[
-				[left, 99, 69, 0x3a383e],
-				[center, 641, 50, 0x7c5a2e],
-				[center, 599, 82, 0x685646],
-				[center, 731, 81, 0x5c3919],
-				[right, 1180, 120, 0x67323c],
-				[right, 1166, 87, 0x654824],
-				[right, 961, 84, 0x725233],
-				[center, 878, 81, 0x4c3727],
-				[center, 521, 96, 0x664b31]
-			]
-		],
-		oper: [
-			[left, 1280, 720, 1120, 587, 1180, 645, 1000]
-		]
-	}, {
-		// 悬赏界面 旧
-		desc: [1280, 720,
-			[
-				[left, 116, 67, 0x3d3c42],
-				[left, 114, 88, 0x634624],
-				[center, 365, 85, 0x4f3928],
-				[center, 640, 50, 0x7a5930],
-				[right, 1022, 87, 0x4b3826],
-				[right, 1156, 81, 0x583f27]
+				[center, 1175, 121, 0x65343d],
+				[center, 546, 84, 0x58402f],
+				[center, 714, 81, 0x5c3a1a],
+				[center, 844, 67, 0x3e3c42],
+				[center, 1117, 615, 0x3c2a18],
+				[center, 1142, 653, 0xddb03f],
 			]
 		],
 		oper: [
@@ -91,25 +75,22 @@ export class Func052 implements IFuncOrigin {
 			} else {
 				return false
 			}
-		} else {
-			if (thisScript.oper({
-				name: '悬赏_悬赏界面',
-				operator: [{
-					desc: thisOperator[3].desc
-				}, {
-					desc: thisOperator[4].desc
-				}]
-			})) {
-				const thisconf = thisScript.scheme.config['52'];
-				thisScript.global.xsOpened = true;
-				if (thisconf && thisconf.scheme_switch_enabled) {
-					thisScript.rerun(thisconf.next_scheme);
-					sleep(3000);
-				} else {
-					return false
-				}
-			}
-			return false
 		}
+		if (thisScript.oper({
+			name: '悬赏_悬赏界面',
+			operator: [{
+				desc: thisOperator[4].desc
+			}]
+		})) {
+			const thisconf = thisScript.scheme.config['52'];
+			thisScript.global.xsOpened = true;
+			if (thisconf && thisconf.scheme_switch_enabled) {
+				thisScript.rerun(thisconf.next_scheme);
+				sleep(3000);
+			} else {
+				return false
+			}
+		}
+		return false
 	}
 }
