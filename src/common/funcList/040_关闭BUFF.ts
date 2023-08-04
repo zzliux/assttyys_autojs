@@ -31,18 +31,8 @@ export class Func040 implements IFuncOrigin {
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{
-		// 0 buff界面
-		desc: [1280, 720,
-			[
-				[center, 352, 526, 0x9c977e],
-				[center, 933, 526, 0x747865],
-				[center, 848, 528, 0xb89e7c],
-				[center, 497, 522, 0x9e9d8c],
-				[center, 363, 120, 0xd4c4bb],
-				[center, 913, 121, 0xd8c7bf],
-				[center, 878, 124, 0xdfd4cb]
-			]
-		],
+		// 0 已适配66 buff界面
+		desc: 'BUFF界面',
 		oper: [
 			[center, 1280, 720, 0, 0, 855 - 782, 431 - 415, 2000],
 			[center, 1280, 720, 110, 120, 338, 549, 500],

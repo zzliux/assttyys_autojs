@@ -54,37 +54,37 @@ export class Func995 implements IFuncOrigin {
     {
       // 0 检测_第一个坑位是否有可寄养的空位
       desc: [
-        1280,
-        720,
+        1280, 720,
         [
-          [right, 1188, 85, 0x7b776e],
-          [right, 1162, 125, 0xac9b7a],
-          [left, 71, 645, 0xffffff],
-          [right, 1170, 574, 0xedcba9],
-        ],
+          [right, 1185, 132, 0xbf9f79],
+          [right, 1186, 93, 0x262520],
+          [right, 1193, 78, 0xcfc9b9],
+          [left, 68, 645, 0xffffff],
+          [left, 35, 49, 0xecf3fa],
+          [left, 238, 45, 0x593716],
+          [left, 497, 33, 0x150f0c],
+        ]
       ],
       oper: [
         [center, 1280, 720, 565, 500, 670, 675, 1200], // 点击排位第一的式神（前三为达摩）
       ],
-    },
-    {
+    }, {
       // 1 检测_第二个坑位是否有可寄养的空位
       desc: [
-        1280,
-        720,
+        1280, 720,
         [
-          [left, 71, 645, 0xffffff],
-          [right, 1170, 574, 0xedcba9],
-          [right, 1019, 85, 0x7c786e],
-          [right, 993, 125, 0xac9b7a],
-        ],
+          [right, 1018, 94, 0x272420],
+          [right, 1019, 129, 0xb69d7c],
+          [right, 1029, 54, 0xe6cfb1],
+          [left, 68, 645, 0xffffff],
+          [left, 35, 49, 0xecf3fa],
+          [left, 238, 45, 0x593716],
+          [left, 497, 33, 0x150f0c],
+        ]
       ],
-    },
-    {
+    }, {
       // 2 检测_第一个坑位是否可用且被占用
-      desc: [
-        1280,
-        720,
+      desc: [1280, 720,
         [
           [right, 1144, 88, 0xf4e9b6],
           [right, 1228, 93, 0xf1e4ad],
@@ -96,12 +96,9 @@ export class Func995 implements IFuncOrigin {
         [right, 1280, 720, 962, 120, 1231, 146, 600], // 寄养位置的所剩时间方位，用于检测所剩时间
         [left, 1280, 720, 23, 10, 71, 56, 2000], // 返回按钮
       ],
-    },
-    {
+    }, {
       // 3 检测_结界界面是否可寄养
-      desc: [
-        1280,
-        720,
+      desc: [1280, 720,
         [
           [center, 611, 300, 0x0c0804],
           [center, 913, 305, 0x0c0804],
@@ -113,12 +110,9 @@ export class Func995 implements IFuncOrigin {
       oper: [
         [center, 1280, 720, 576, 129, 649, 204, 1200], // 点击寄养
       ],
-    },
-    {
+    }, {
       // 4 检测_是否为好友结界
-      desc: [
-        1280,
-        720,
+      desc: [1280, 720,
         [
           [left, 63, 48, 0x2a3b74],
           [left, 32, 48, 0xeff5fb],
@@ -129,12 +123,9 @@ export class Func995 implements IFuncOrigin {
       oper: [
         [left, 1280, 720, 17, 17, 69, 70, 1200], // 点击返回
       ],
-    },
-    {
+    }, {
       // 5 检测_好友结界是否没有挂结界卡
-      desc: [
-        1280,
-        720,
+      desc: [1280, 720,
         [
           [left, 63, 48, 0x2a3b74],
           [left, 32, 48, 0xeff5fb],
@@ -147,12 +138,9 @@ export class Func995 implements IFuncOrigin {
           [center, 919, 291, 0x3d2c28],
         ],
       ],
-    },
-    {
+    }, {
       // 6 检测_第二个坑位是否可用且被占用
-      desc: [
-        1280,
-        720,
+      desc: [1280, 720,
         [
           [right, 975, 88, 0xf4e9b6],
           [right, 1059, 93, 0xf1e4ad],
@@ -160,12 +148,9 @@ export class Func995 implements IFuncOrigin {
           [right, 1055, 123, 0xd7b674],
         ],
       ],
-    },
-    {
-      desc: [
-        // 7 确认寄养所选式神弹窗
-        1280,
-        720,
+    }, {
+      // 7 确认寄养所选式神弹窗
+      desc: [1280, 720,
         [
           [center, 527, 279, 0xcbb59e],
           [center, 489, 159, 0x9e866e],
@@ -179,12 +164,9 @@ export class Func995 implements IFuncOrigin {
       oper: [
         [center, 1280, 720, 672, 514, 798, 572, 2000], // 点击确认
       ],
-    },
-    {
+    }, {
       // 8 检测_是否为好友结界双坑位
-      desc: [
-        1280,
-        720,
+      desc: [1280, 720,
         [
           [center, 906, 83, 0xaa3620],
           [center, 907, 116, 0xa5361d],
@@ -194,12 +176,9 @@ export class Func995 implements IFuncOrigin {
           [right, 1170, 567, 0xe8d7ae],
         ],
       ],
-    },
-    {
+    }, {
       // 9 检测_是否为好友结界单坑位
-      desc: [
-        1280,
-        720,
+      desc: [1280, 720,
         [
           [left, 32, 44, 0xf0f5fb],
           [left, 238, 44, 0x583716],
@@ -208,12 +187,9 @@ export class Func995 implements IFuncOrigin {
           [right, 1086, 84, 0xa8371e],
         ],
       ],
-    },
-    {
-			// 10 检测_是否为育成候补式神弹窗
-      desc: [
-        1280,
-        720,
+    }, {
+      // 10 检测_是否为育成候补式神弹窗
+      desc: [1280, 720,
         [
           [center, 419, 244, 0xcbb49a],
           [center, 863, 245, 0xcbb59e],
@@ -299,20 +275,20 @@ export class Func995 implements IFuncOrigin {
         operator: [thisOperator[7]],
       })
     ) {
-			thisScript.global.operate_finish_flag = true;
-			return true;
+      thisScript.global.operate_finish_flag = true;
+      return true;
     }
 
-		if (thisScript.oper({
-			id: 995,
-			name: '检测_育成弹窗确认按钮',
-			operator: [thisOperator[10]],
-		})) {
-			return true;
-		}
+    if (thisScript.oper({
+      id: 995,
+      name: '检测_育成弹窗确认按钮',
+      operator: [thisOperator[10]],
+    })) {
+      return true;
+    }
 
-		if (thisScript.global.operate_finish_flag) {
-			if ('停止脚本' === thisConf.afterCountOper) {
+    if (thisScript.global.operate_finish_flag) {
+      if ('停止脚本' === thisConf.afterCountOper) {
         thisScript.oper({
           id: 995,
           name: '返回_阴阳寮页面',
@@ -346,7 +322,7 @@ export class Func995 implements IFuncOrigin {
         });
         thisScript.stop();
       }
-		}
+    }
 
     if (
       thisScript.oper({

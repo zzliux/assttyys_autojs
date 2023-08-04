@@ -9,7 +9,7 @@ export class Func996 implements IFuncOrigin {
 	id = 996;
 	name = '式神寄养过滤';
 	desc = '式神寄养过滤';
-	config =[
+	config = [
 		{
 			desc: '寄存好友',
 			config: [{
@@ -24,10 +24,12 @@ export class Func996 implements IFuncOrigin {
 	operator: IFuncOperatorOrigin[] = [{
 		// 检测是否为式神寄养列表
 		desc: [1280, 720,
-			[[left, 186, 171, 0x30221f],
-			[center, 555, 138, 0xcbb59e],
-			[center, 880, 562, 0xf4b25f],
-			[center, 705, 347, 0xccb59e]]
+			[
+				[left, 188, 172, 0x352721],
+				[center, 555, 138, 0xcbb59e],
+				[center, 880, 562, 0xf4b25f],
+				[center, 705, 347, 0xccb59e]
+			]
 		],
 		oper: [
 			[center, 1280, 720, 210, 169, 634, 567, 1000], // 好友列表区域

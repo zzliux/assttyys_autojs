@@ -506,7 +506,7 @@ export class Func998 implements IFuncOrigin {
               fullLevelPoint[i].y,
               fullLevelPoint[i].x + 20,
               fullLevelPoint[i].y + 20,
-              1200,
+              200,
             ],
           ];
           console.log(`清空满级狗粮`, i);

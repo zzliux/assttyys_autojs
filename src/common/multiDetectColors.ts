@@ -7,14 +7,15 @@ const right = 2;
 
 const multiDetectColors: IMultiDetectColorsOrigin = {
 	'准备界面_未准备': {
-		desc: [1280, 720,
+		desc: [
+			1280, 720,
 			[
-				[right, 1124, 698, 0xd0af86],
 				[right, 1240, 702, 0xcead83],
-				[right, 1191, 596, 0xa46149],
 				[right, 1182, 586, 0xf7e6c3],
 				[center, 360, 699, 0x241818],
-				[left, 32, 23, 0xdbb48b]
+				[left, 32, 23, 0xdbb48b],
+				[right, 1122, 698, 0xddbb8f],
+				[right, 1202, 572, 0x551111],
 			]
 		]
 	},
@@ -333,9 +334,7 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 		]
 	},
 	'页面是否为庭院_菜单未展开_只支持默认庭院皮肤与默认装饰': {
-		desc: [
-			1280,
-			720,
+		desc: [1280, 720,
 			[
 				[right, 1226, 47, 0xcda47a],
 				[right, 1157, 45, 0xb39671],
@@ -345,9 +344,7 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 		]
 	},
 	'页面是否为庭院_菜单已展开_只支持默认庭院皮肤与默认装饰': {
-		desc: [
-			1280,
-			720,
+		desc: [1280, 720,
 			[
 				[right, 1226, 47, 0xcda47a],
 				[right, 1157, 45, 0xb29670],
@@ -357,9 +354,7 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 		],
 	},
 	'页面是否为庭院_菜单已展开_另一种图标_御祝图标_只支持默认庭院皮肤与默认装饰': {
-		desc: [
-			1280,
-			720,
+		desc: [1280, 720,
 			[
 				[right, 1223, 662, 0xdbcbc7],
 				[right, 1155, 41, 0xd7b188],
@@ -369,9 +364,7 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 		],
 	},
 	'庭院已打开菜单_另另外一种图标': {
-		desc: [
-			1280,
-			720,
+		desc: [1280, 720,
 			[
 				[right, 1223, 658, 0xdac9c4],
 				[right, 1155, 41, 0xd6b187],
@@ -379,6 +372,20 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 				[center, 683, 657, 0xda6b29],
 			],
 		],
+	},
+	'BUFF界面': {
+		desc: [
+			1280, 720,
+			[
+				[center, 342, 529, 0x828270],
+				[center, 938, 533, 0x6b715d],
+				[center, 371, 128, 0xd4c6bc],
+				[center, 908, 145, 0xddd0c6],
+				[center, 407, 534, 0x8e8b79],
+				[center, 371, 510, 0x868471],
+				[center, 913, 149, 0xddd0c6],
+			]
+		]
 	}
 };
 

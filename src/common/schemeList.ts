@@ -263,7 +263,7 @@ const SchemeList: IScheme[] = [
   {
     id: 22,
     schemeName: '秘闻',
-    list: [0, 51, 1, 2, 3, 34],
+    list: [0, 51, 1, 2, 3, 34, 308],
     star: true,
     config: {
       '0': {
