@@ -758,8 +758,14 @@ export class Script {
                 let res = null;
                 if (typeof item.desc === 'string') {
                     res = helperBridge.helper.CompareColorEx(this.multiDetectColors[item.desc].desc, commonConfig.colorSimilar, false);
+                    if (res) {
+                        console.log(`desc_sucess：[string] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} id:${id}`);
+                    }
                 } else if (item.desc.length > 3) {
                     res = helperBridge.helper.CompareColorEx(item.desc, commonConfig.colorSimilar, false);
+                    if (res) {
+                        console.log(`desc_sucess：[array] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} id:${id}`);
+                    }
                 }
                 if (res) return true;
             }

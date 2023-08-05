@@ -55,18 +55,18 @@ export class Func313 implements IFuncOrigin {
 		}]
 	}]
 	operator: IFuncOperatorOrigin[] = [{
-		// 0 契灵界面
+		// 0 已适配66 契灵界面
 		desc: [
 			1280, 720,
 			[
-				[left, 44, 38, 0xf5e6a5],
-				[left, 133, 36, 0xf5f1e0],
-				[left, 177, 36, 0xf6f2e1],
-				[left, 222, 38, 0xf4f0df],
-				[left, 276, 34, 0xedc958],
-				[right, 1191, 485, 0x755bc7],
+				[right, 1238, 29, 0xd4ae83],
+				[right, 1200, 491, 0xddf0bf],
+				[left, 44, 39, 0xf6e7a7],
+				[left, 98, 39, 0x7a5b39],
+				[left, 170, 39, 0x5c4122],
+				[left, 269, 41, 0x593716],
 			]
-		]
+		],
 	}, {
 		// 1 追踪
 		desc: [
@@ -87,7 +87,7 @@ export class Func313 implements IFuncOrigin {
 			// [center, 1280, 720, 18, 472, 79, 501, 3000],
 		]
 	}, {
-		// 2 探查
+		// 2 已适配66 探查
 		desc: [
 			1280, 720,
 			[
@@ -95,7 +95,6 @@ export class Func313 implements IFuncOrigin {
 				[right, 1181, 598, 0xfef4e6],
 				[right, 1197, 613, 0xfef4e6],
 				[right, 1202, 600, 0xfef4e6],
-				[right, 1189, 648, 0xfdf3e5],
 				[left, 43, 40, 0xf5e5a6],
 				[right, 1236, 29, 0xd4ae83],
 				[right, 1042, 597, 0xc3a888],
