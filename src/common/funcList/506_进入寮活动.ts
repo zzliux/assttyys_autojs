@@ -12,20 +12,20 @@ export class Func506 implements IFuncOrigin {
 	config = [{
 		desc: '结束后切换方案',
 		config: [
-		// 	{
-		// 	name: 'auto_switch_enabled',
-		// 	desc: '是否启用自动模式(1-4道馆狩猎，5、7狭宴阴，6狭首阴',
-		// 	type: 'switch',
-		// 	default: false,
-		// 	value: false,
-		// }, 
-		{
-			name: 'gateOfHades_switch',
-			desc: '是否进入阴门挑战(用于周末阴门)',
-			type: 'switch',
-			default: false,
-			value: false,
-		}]
+			// 	{
+			// 	name: 'auto_switch_enabled',
+			// 	desc: '是否启用自动模式(1-4道馆狩猎，5、7狭宴阴，6狭首阴',
+			// 	type: 'switch',
+			// 	default: false,
+			// 	value: false,
+			// }, 
+			{
+				name: 'gateOfHades_switch',
+				desc: '是否进入阴门挑战(用于周末阴门)',
+				type: 'switch',
+				default: false,
+				value: false,
+			}]
 	}];
 	operator: IFuncOperatorOrigin[] = [
 		{// 检查_道馆是否已开启
@@ -40,14 +40,22 @@ export class Func506 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 407, 169, 608, 322, 1200]	// 打开道馆
 			]
-		}, { // 检查_首领退治是否已开启
-			desc: [1280, 720,
-				[[center, 765, 235, 0xb63b32],
-				[center, 815, 265, 0xdebae3],
-				[center, 840, 242, 0x241212],
-				[center, 846, 185, 0x802318],
-				[center, 705, 242, 0x070605],
-				[center, 750, 256, 0xa96b68]]
+		}, { // 1 检查_首领退治是否已开启
+			desc: [
+				1280, 720,
+				[
+					[left, 42, 31, 0xf4e4a4],
+					[center, 744, 39, 0x593716],
+					[center, 724, 9, 0x575059],
+					[center, 736, 237, 0x403d38],
+					[center, 766, 235, 0xaf3a31],
+					[center, 760, 245, 0xe3e0da],
+					[center, 842, 198, 0xffdd66],
+					[center, 837, 216, 0x3c291d],
+					[center, 857, 232, 0x352117],
+					[center, 851, 197, 0x453022],
+					[center, 854, 193, 0x4c3422],
+				]
 			],
 			oper: [
 				[center, 1280, 720, 656, 177, 855, 322, 1200]	// 打开首领退治
@@ -446,7 +454,7 @@ export class Func506 implements IFuncOrigin {
 				if (_liao_activity_state) {
 					let nowDateDay = new Date().getDay();
 					console.log('今天是周', nowDateDay);
-	
+
 					switch (nowDateDay) {
 						case 5:
 						case 0: {
@@ -463,8 +471,8 @@ export class Func506 implements IFuncOrigin {
 						}
 					}
 				}
-	
-	
+
+
 				if (_liao_activity_state && _liao_activity_state.hunt) {
 					return true;
 				} else {
