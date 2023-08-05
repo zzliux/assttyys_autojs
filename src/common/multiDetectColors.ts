@@ -50,12 +50,12 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 			[
 				[left, 34, 23, 0xdbb48b],
 				[left, 106, 24, 0xcfa375],
-				[right, 1270, 132, 0x48371f],
 				[right, 1270, 700, 0x241919],
-				[left, 46, 671, 0xefc9ab],
-				[left, 81, 670, 0xf0caac],
+				[right, 1270, 130, 0x422f1d],
+				[left, 48, 670, 0xeec8ab],
+				[left, 82, 669, 0xf0caac],
 			]
-		]
+		],
 	},
 	'退出结算_左上角贪吃鬼': {
 		desc: [1280, 720,
@@ -386,6 +386,21 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 				[center, 913, 149, 0xddd0c6],
 			]
 		]
+	},
+	'斗技主界面': {
+		desc: [1280, 720,
+			[
+				[right, 1210, 82, 0x725942],
+				[right, 1208, 178, 0x745845],
+				[right, 1202, 574, 0xd8c8a7],
+				[right, 1179, 602, 0x3c1e0c],
+				[right, 1202, 643, 0xe2cfa0],
+				[right, 1180, 624, 0xe2cca1],
+				[right, 1189, 626, 0x3c1e0c],
+				[center, 843, 290, 0x6e3926], // 阵容按钮
+				[center, 832, 292, 0xfaeabe], // 阵容按钮
+			],
+		],
 	}
 };
 

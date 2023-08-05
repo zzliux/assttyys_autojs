@@ -32,12 +32,12 @@ export class Func503 implements IFuncOrigin {
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [
-		{	// 0 探索地图
+		{ // 0 探索地图
 			desc: '探索地图界面',
 			oper: [
 				[center, 1280, 720, 32, 34, 76, 81, 1000],
 			]
-		}, { 	// 1 阴阳寮神设首页
+		}, {  // 1 阴阳寮神设首页
 			desc: [1280, 720,
 				[[left, 44, 28, 0xf1e0ad],
 				[left, 74, 32, 0xaa885f],
@@ -48,17 +48,12 @@ export class Func503 implements IFuncOrigin {
 			oper: [
 				[left, 1280, 720, 25, 9, 74, 55, 2000]
 			]
-		}, { 	// 2 斗技
-			desc: [1280, 720,
-				[[left, 126, 26, 0xf8f3e0],
-				[left, 164, 26, 0xe3decf],
-				[right, 1203, 598, 0x3e1c0c],
-				[right, 1196, 555, 0xb94311]]
-			],
+		}, {  // 2 斗技
+			desc: '斗技主界面',
 			oper: [
 				[left, 1280, 720, 22, 6, 65, 45, 1000]
 			]
-		}, {	// 3 栏目
+		}, { // 3 栏目
 			desc: [1280, 720,
 				[[center, 568, 108, 0x973933],
 				[center, 742, 62, 0x8c3131],
@@ -69,7 +64,7 @@ export class Func503 implements IFuncOrigin {
 			oper: [
 				[right, 1280, 720, 1124, 75, 1163, 103, 1000]
 			]
-		}, {	// 4 旧版町中界面
+		}, { // 4 旧版町中界面
 			desc: [1280, 720,
 				[[right, 1067, 221, 0xb5aaad],
 				[right, 1054, 321, 0x989694],
@@ -81,7 +76,7 @@ export class Func503 implements IFuncOrigin {
 			oper: [
 				[right, 1280, 720, 1012, 228, 1093, 298, 1000],
 			]
-		}, {	// 5 现世逢魔
+		}, { // 5 现世逢魔
 			desc: [1280, 720,
 				[[left, 19, 700, 0x3c3841],
 				[left, 42, 46, 0xc3cbdf],
@@ -93,7 +88,7 @@ export class Func503 implements IFuncOrigin {
 			oper: [
 				[left, 1280, 720, 27, 25, 72, 73, 1000],
 			]
-		}, {	// 6 宠物后院(管他有没有人用)
+		}, { // 6 宠物后院(管他有没有人用)
 			desc: [1280, 720,
 				[[left, 34, 630, 0x4c3b3b],
 				[left, 59, 672, 0x442b23],
@@ -104,7 +99,7 @@ export class Func503 implements IFuncOrigin {
 			oper: [
 				[left, 1280, 720, 37, 24, 70, 61, 1000],
 			]
-		}, {	// 7 召唤屋(管他有没有人用)
+		}, { // 7 召唤屋(管他有没有人用)
 			desc: [1280, 720,
 				[[left, 148, 38, 0xb28956],
 				[left, 171, 28, 0xb28956],
@@ -117,13 +112,13 @@ export class Func503 implements IFuncOrigin {
 				[left, 1280, 720, 31, 8, 76, 50, 1000],
 			]
 		}, {
-      // 8 页面是否为庭院(菜单未展开) 只支持默认庭院皮肤与默认装饰
-      desc: '页面是否为庭院_菜单未展开_只支持默认庭院皮肤与默认装饰',
-    },
-    {
-      // 9 页面是否为庭院(菜单已展开) 只支持默认庭院皮肤与默认装饰
-      desc:'页面是否为庭院_菜单已展开_只支持默认庭院皮肤与默认装饰',
-    }, { 	// 10 判断_阴阳寮主页
+		 // 8 页面是否为庭院(菜单未展开) 只支持默认庭院皮肤与默认装饰
+			desc: '页面是否为庭院_菜单未展开_只支持默认庭院皮肤与默认装饰',
+		},
+		{
+		 // 9 页面是否为庭院(菜单已展开) 只支持默认庭院皮肤与默认装饰
+			desc: '页面是否为庭院_菜单已展开_只支持默认庭院皮肤与默认装饰',
+		}, {  // 10 判断_阴阳寮主页
 			desc: [
 				1280, 720,
 				[
@@ -136,7 +131,7 @@ export class Func503 implements IFuncOrigin {
 			oper: [
 				[left, 1280, 720, 23, 10, 71, 56, 2000],   // 返回按钮
 			]
-		}, { 	// 11 判断_是否为己方结界
+		}, {  // 11 判断_是否为己方结界
 			desc: [1280, 720,
 				[[center, 611, 300, 0x0c0804],
 				[center, 913, 305, 0x0c0804],
@@ -147,7 +142,7 @@ export class Func503 implements IFuncOrigin {
 			oper: [
 				[left, 1280, 720, 23, 10, 71, 56, 2000],   // 返回按钮
 			]
-		}, {	// 12 判断_是否为庭院中的'町中'立牌
+		}, { // 12 判断_是否为庭院中的'町中'立牌
 			desc: [
 				1280, 720,
 				[
@@ -158,9 +153,9 @@ export class Func503 implements IFuncOrigin {
 				]
 			]
 		}, {
-      //	13 页面是否为庭院(菜单已展开)另一种图标 御祝图标 只支持默认庭院皮肤与默认装饰
-      desc: '页面是否为庭院_菜单已展开_另一种图标_御祝图标_只支持默认庭院皮肤与默认装饰',
-    }, {	// 14 判断_阴阳寮成就页
+		 //	13 页面是否为庭院(菜单已展开)另一种图标 御祝图标 只支持默认庭院皮肤与默认装饰
+			desc: '页面是否为庭院_菜单已展开_另一种图标_御祝图标_只支持默认庭院皮肤与默认装饰',
+		}, { // 14 判断_阴阳寮成就页
 			desc:
 				[
 					1280, 720,
@@ -175,9 +170,9 @@ export class Func503 implements IFuncOrigin {
 					]
 				],
 			oper: [
-				[center, 1280, 720, 357, 535, 1045, 662, 1200]	//	点击空白处
+				[center, 1280, 720, 357, 535, 1045, 662, 1200] //	点击空白处
 			]
-		}, {	// 15 式神录
+		}, { // 15 式神录
 			desc: [
 				1280, 720,
 				[
@@ -193,17 +188,17 @@ export class Func503 implements IFuncOrigin {
 				[center, 1280, 720, 21, 9, 59, 43, 1000],
 			]
 		}, {
-      // 16 庭院已打开菜单，另另外一种图标
-      desc: '庭院已打开菜单_另另外一种图标',
-    }, {
-			// 17 突破界面
+		 // 16 庭院已打开菜单，另另外一种图标
+			desc: '庭院已打开菜单_另另外一种图标',
+		}, {
+		 // 17 突破界面
 			desc: '突破界面',
 			oper: [
 				[center, 1280, 720, 1187, 112, 1228, 150, 1000],
 				[center, 1280, 720, 31, 37, 79, 76, 1000],
 			]
 		}, {
-			// 18 客户端更新窗口关闭
+		 // 18 客户端更新窗口关闭
 			desc: [
 				1280, 720,
 				[
@@ -218,7 +213,7 @@ export class Func503 implements IFuncOrigin {
 				[center, 1280, 720, 894, 119, 941, 175, 1000],
 			]
 		}, {
-			//	19 阴阳寮神社 获取称号弹窗
+		 //	19 阴阳寮神社 获取称号弹窗
 			desc: [
 				1280, 720,
 				[
@@ -233,10 +228,10 @@ export class Func503 implements IFuncOrigin {
 				]
 			],
 			oper: [
-				[center, 1280, 720, 576,550, 834,592, 600]	//	点击空白处
+				[center, 1280, 720, 576, 550, 834, 592, 600] //	点击空白处
 			]
 		}, {
-			// 20 道馆地图
+		 // 20 道馆地图
 			desc: [
 				1280, 720,
 				[
@@ -266,12 +261,12 @@ export class Func503 implements IFuncOrigin {
 				[center, 1280, 720, 1180, 110, 1230, 153, 1000],
 			]
 		}, {
-			// 22 战斗场景等待
+		 // 22 战斗场景等待
 			desc: '战斗界面',
-			// oper: [
-			// 	[center, 1280, 720, 16, 12, 60, 56, 1000],
-			// 	[center, 1280, 720, 678, 396, 806, 450, 3000],
-			// ]
+		 // oper: [
+		 // 	[center, 1280, 720, 16, 12, 60, 56, 1000],
+		 // 	[center, 1280, 720, 678, 396, 806, 450, 3000],
+		 // ]
 			oper: [
 				[center, 1280, 720, -1, -1, -1, -1, 2000]
 			]
@@ -305,7 +300,7 @@ export class Func503 implements IFuncOrigin {
 			}]
 		})) {
 
-			// 町中与庭院几乎一致。。。只能用牌子来做比较
+		 // 町中与庭院几乎一致。。。只能用牌子来做比较
 			if (thisScript.oper({
 				name: '旧版町中界面',
 				operator: [{
@@ -333,17 +328,17 @@ export class Func503 implements IFuncOrigin {
 						thisScript.stop();
 					} else if ('关闭应用' === thisConf.afterCountOper) {
 						sleep(1000);
-						// let storeSettings = thisScript.storeCommon.get('settings', {});
-						// if (storeSettings.defaultLaunchAppList && storeSettings.defaultLaunchAppList.length) {
-						// 	storeSettings.defaultLaunchAppList.forEach(packageName => {
-						// 		thisScript.myToast(`停止应用[${packageName}]`);
-						// 		$shell(`am force-stop ${packageName}`, true);
-						// 		thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，应用[${packageName}]已杀，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-						// 		sleep(1000);
-						// 	});
-						// } else {
-						// 	thisScript.myToast('未配置关联应用，不执行停止操作');
-						// }
+					 // let storeSettings = thisScript.storeCommon.get('settings', {});
+					 // if (storeSettings.defaultLaunchAppList && storeSettings.defaultLaunchAppList.length) {
+					 // 	storeSettings.defaultLaunchAppList.forEach(packageName => {
+					 // 		thisScript.myToast(`停止应用[${packageName}]`);
+					 // 		$shell(`am force-stop ${packageName}`, true);
+					 // 		thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，应用[${packageName}]已杀，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+					 // 		sleep(1000);
+					 // 	});
+					 // } else {
+					 // 	thisScript.myToast('未配置关联应用，不执行停止操作');
+					 // }
 
 						thisScript.stopRelatedApp();
 						thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，应用[${packageName}]已杀，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
