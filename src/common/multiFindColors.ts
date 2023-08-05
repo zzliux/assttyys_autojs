@@ -1428,6 +1428,15 @@ const multiFindColors: IMultiFindColorsOrigin = {
                     [left, 263, 354, 0xf4deb2]
                 ]
             ],
+            [1280, 720, // 封
+                [
+                    [center, 249, 346, 0xffe9c7],
+                    [center, 262, 348, 0xfee8bd],
+                    [center, 253, 372, 0xb39c77],
+                    [center, 264, 373, 0xa52e2c],
+                    [center, 274, 341, 0xd4d4d4],
+                ]
+            ],
             // 旧
             [1280, 720, // 封
                 [
