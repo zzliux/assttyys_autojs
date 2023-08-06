@@ -29,5 +29,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: dev_release
+          publish_dir: dev_release/${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
           publish_branch: dev_release
