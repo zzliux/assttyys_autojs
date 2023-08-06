@@ -12,6 +12,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Extract branch name
+        shell: bash
+        run: echo "BRANCH_NAME=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_ENV
+
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
         with:
@@ -22,8 +26,11 @@ jobs:
       - name: Build
         run: npm run build2
 
+      - name: Clone Page
+        run: git clone https://github.com/zzliux/assttyys_autojs.git --branch dev_release --single-branch dev_release
+
       - name: Pack
-        run: node pack_dev_release.js ${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
+        run: node pack_dev_release.js ${{ env.BRANCH_NAME }}
  
       - name: Page Deploy
         uses: peaceiris/actions-gh-pages@v3
