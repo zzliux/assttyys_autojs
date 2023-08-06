@@ -3,7 +3,11 @@ name: release_to_github_page
 on:
   push:
     branches:
-      - ${{ GITHUB_REF_NAME }}
+      - master
+      - zz_dev
+      - kk_dev
+      - hn_dev
+      - v66_dev
 jobs:
   deploy:
     runs-on: ubuntu-latest
