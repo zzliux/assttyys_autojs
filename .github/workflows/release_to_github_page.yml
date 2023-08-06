@@ -1,5 +1,5 @@
 name: release_to_github_page
- 
+
 on:
   push:
     branches:
@@ -23,7 +23,7 @@ jobs:
         run: npm run build2
 
       - name: Pack
-        run: node pack_dev_release.js ${{ GITHUB_REF_NAME }}
+        run: node pack_dev_release.js ${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
  
       - name: Page Deploy
         uses: peaceiris/actions-gh-pages@v3
