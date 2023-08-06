@@ -10,15 +10,15 @@ export class Func043 implements IFuncOrigin {
 	name = '悬赏_点击前往任务副本';
 	desc = '只会挑战能挑战副本或秘闻副本完成的任务，如任务推荐副本前两项没有挑战副本或秘闻副本选项则会取消追踪该任务。无法完成未揭晓谜底的猜谜任务';
 	operator: IFuncOperatorOrigin[] = [{
-		desc: [1280, 720,
+		desc: [
+			1280, 720,
 			[
-				[left, 198, 164, 0x947363],
 				[center, 466, 167, 0x8b6d60],
 				[center, 719, 165, 0x8a6b5e],
 				[center, 532, 195, 0x7d3030],
 				[center, 589, 196, 0x8b3232],
-				[center, 659, 203, 0xb65d5a],
-				[left, 274, 556, 0x917265]
+				[center, 274, 556, 0x917265],
+				[center, 198, 166, 0x957969],
 			]
 		],
 		oper: [
