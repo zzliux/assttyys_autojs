@@ -1,9 +1,13 @@
-name: master_release_to_github_page
- 
+name: release_to_github_page
+
 on:
   push:
     branches:
       - master
+      - zz_dev
+      - kk_dev
+      - hn_dev
+      - v66_dev
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -16,7 +20,10 @@ jobs:
       - run: npm install
  
       - name: Build
-        run: npm run build_dev_release
+        run: npm run build2
+
+      - name: Pack
+        run: node pack_dev_release.js ${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
  
       - name: Page Deploy
         uses: peaceiris/actions-gh-pages@v3

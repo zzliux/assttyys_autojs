@@ -7,8 +7,7 @@ const statics = [
     'project.json',
 ];
 
-const target = 'dev_release';
-
+const target = 'dev_release/' + process.argv[2];
 
 (async () => {
     await fsPromise.mkdir(target, { recursive: true });
