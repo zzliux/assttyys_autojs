@@ -35,3 +35,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: dev_release/${{ env.BRANCH_NAME }}
           publish_branch: dev_release
+          keep_files: true
