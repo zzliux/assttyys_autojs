@@ -9,10 +9,10 @@ export class Func206 implements IFuncOrigin {
 	id = 206;
 	name = '六道萤草_宁息';
 	operator: IFuncOperatorOrigin[] = [{
-		// 宁息
+		// 0 已适配66 宁息
 		desc: [1280, 720,
 			[
-				[right, 1214, 180, 0x274658],
+				[right, 1225, 189, 0xcfe7de],
 				[right, 1218, 251, 0x334f5b],
 				[right, 1221, 631, 0xdacaa9],
 				[left, 26, 42, 0xeaf2f2],
@@ -85,7 +85,7 @@ export class Func206 implements IFuncOrigin {
 				coins = parseInt(result[0].label) || 0;
 			}
 			if (coins >= 200) {
-				
+
 				let confPriorty = thisScript.scheme.config['202'].priority || '腐草为萤,妖力化身,六道净化,萤火之光';
 				let priorty = String(confPriorty).split(',') // 未达到目标的优先级
 					.filter(item => cost[item] <= coins) // 钱不够的过滤
