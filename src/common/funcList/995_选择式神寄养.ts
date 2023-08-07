@@ -52,7 +52,7 @@ export class Func995 implements IFuncOrigin {
   ];
   operator: IFuncOperatorOrigin[] = [
     {
-      // 0 检测_第一个坑位是否有可寄养的空位
+      // 0 已适配66 检测_第一个坑位是否有可寄养的空位
       desc: [
         1280, 720,
         [
@@ -62,14 +62,14 @@ export class Func995 implements IFuncOrigin {
           [left, 68, 645, 0xffffff],
           [left, 35, 49, 0xecf3fa],
           [left, 238, 45, 0x593716],
-          [left, 497, 33, 0x150f0c],
+          [center, 460, 43, 0x19120f],
         ]
       ],
       oper: [
         [center, 1280, 720, 565, 500, 670, 675, 1200], // 点击排位第一的式神（前三为达摩）
       ],
     }, {
-      // 1 检测_第二个坑位是否有可寄养的空位
+      // 1 已适配66 检测_第二个坑位是否有可寄养的空位
       desc: [
         1280, 720,
         [
@@ -79,7 +79,7 @@ export class Func995 implements IFuncOrigin {
           [left, 68, 645, 0xffffff],
           [left, 35, 49, 0xecf3fa],
           [left, 238, 45, 0x593716],
-          [left, 497, 33, 0x150f0c],
+          [center, 460, 43, 0x19120f],
         ]
       ],
     }, {
