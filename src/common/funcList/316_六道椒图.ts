@@ -367,6 +367,37 @@ export class Func316 implements IFuncOrigin {
         oper: [
             [center, 1280, 720, 491, 419, 615, 471, 1000],
         ]
+    }, { // 23 商店确认购买
+        desc: [
+            1280, 720,
+            [
+                [left, 115, 37, 0x66645c],
+                [left, 212, 30, 0x66645c],
+                [center, 463, 428, 0xdf6851],
+                [center, 700, 436, 0xf3b25e],
+                [right, 1200, 166, 0x56534f],
+                [right, 1202, 310, 0x11141c],
+            ]
+        ],
+        oper: [
+            [center, 1280, 720, 678, 409, 837, 453, 500],// 确认购买
+            [center, 1280, 720, 1174, 588, 1241, 649, 500],// 退出商店
+        ]
+    }, { // 24 御神经验
+        desc: [
+            1280, 720,
+            [
+                [center, 581, 138, 0xfff0b7],
+                [center, 610, 134, 0xffeeb3],
+                [center, 674, 138, 0xfff2bc],
+                [center, 708, 137, 0xfff0bc],
+                [center, 694, 649, 0x69759f],
+                [center, 589, 644, 0xbfcad6],
+            ]
+        ],
+        oper: [
+            [right, 1280, 720, 872, 146, 1197, 539, 500],
+        ]
     }];
     operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 
@@ -379,23 +410,22 @@ export class Func316 implements IFuncOrigin {
             if (++thisScript.global.d6Loop > 2) {
                 thisScript.global.d6Loop = 0;
             }
-            // // 调试截图begin
-            // let bmp = thisScript.helperBridge.helper.GetBitmap();
-            // let img = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(bmp);
-            // let fname = `${new Date().getTime()}.png`;
-            // let path = `/storage/emulated/0/$MuMu12Shared/Screenshots/${fname}`;
-            // files.ensureDir(path);
-            // img.saveTo(path);
-            // img.recycle();
-            // bmp.recycle();
-            // thisScript.myToast(`已保存截图：${fname}`);
-            // // 调试截图end
             return true;
         }
 
         if (thisScript.oper({
+            id: 316, name: '六道椒图_商店确认购买',
+            operator: [{ desc: thisOperator[23].desc }]
+        })) {
+            thisScript.regionClick([thisOperator[23].oper[0]]);
+            thisScript.regionClick([thisOperator[23].oper[1]]);
+            thisScript.global.d6RouFeng++;
+            console.log("当前柔风数量:" + thisScript.global.d6RouFeng);
+            return true;
+        }
+        if (thisScript.oper({
             id: 316,
-            name: '六道椒图_选buff',
+            name: '六道椒图_商店购买buff',
             operator: [{ desc: thisOperator[4].desc }]
         })) {
             if (thisScript.global.d6RouFeng < 5) { //  柔风达标前选buff
@@ -447,12 +477,14 @@ export class Func316 implements IFuncOrigin {
                         500
                     ]];
                     thisScript.regionClick(oper);
-                    thisScript.regionClick([thisOperator[7].oper[0]]);
-                    thisScript.global.d6RouFeng++;
+                } else {
+                    thisScript.regionClick([thisOperator[22].oper[1]]);
+                    console.log("当前柔风数量:" + thisScript.global.d6RouFeng);
+                    return true;
                 }
             }
             thisScript.regionClick([thisOperator[7].oper[1]]);
-            log("当前柔风数量:" + thisScript.global.d6RouFeng);
+            console.log("当前柔风数量:" + thisScript.global.d6RouFeng);
             return true;
         }
 
