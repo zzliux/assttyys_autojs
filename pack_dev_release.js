@@ -7,15 +7,14 @@ const statics = [
     'project.json',
 ];
 
-const target = 'dev_release';
-
+const target = 'dev_release/' + process.argv[2];
 
 (async () => {
     await fsPromise.mkdir(target, { recursive: true });
     await Promise.all(statics.map((source) => {
         return fsPromise.cp(source, target + '/' + source, { recursive: true, filter: (src) => (!src.includes('LICENSE')) });
     }));
-    fsPromise.writeFile(target + '/index.html', JSON.stringify((await listAll(target)).map(a => a.replace(new RegExp('^' + target), ''))));
+    fsPromise.writeFile(target + '/index.html', JSON.stringify((await listAll(target)).map(a => a.replace(new RegExp('^' + target), '')).filter(a => a !== '/index.html')));
 })();
 
 
