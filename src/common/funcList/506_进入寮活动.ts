@@ -28,19 +28,27 @@ export class Func506 implements IFuncOrigin {
 			}]
 	}];
 	operator: IFuncOperatorOrigin[] = [
-		{// 检查_道馆是否已开启
+		{// 0 已适配66 检查_道馆是否已开启
 
-			desc: [1280, 720,
-				[[center, 520, 212, 0xdad1c0],
-				[center, 476, 260, 0xdccdbc],
-				[center, 532, 278, 0xc6934f],
-				[center, 598, 233, 0x9b6f3b],
-				[center, 600, 182, 0xcc4c27]]
+			desc: [
+				1280, 720,
+				[
+					[left, 42, 31, 0xf4e4a4],
+					[center, 744, 39, 0x593716],
+					[center, 724, 9, 0x575059],
+					[center, 736, 237, 0x403d38],
+					[center, 766, 235, 0xaf3a31],
+					[center, 760, 245, 0xe3e0da],
+					[center, 591, 187, 0x593e25],
+					[center, 612, 211, 0x261b15],
+					[center, 595, 193, 0xfff970],
+					[center, 601, 250, 0x462e1c],
+				]
 			],
 			oper: [
 				[center, 1280, 720, 407, 169, 608, 322, 1200]	// 打开道馆
 			]
-		}, { // 1 检查_首领退治是否已开启
+		}, { // 1 已适配66 检查_首领退治是否已开启
 			desc: [
 				1280, 720,
 				[
@@ -60,7 +68,7 @@ export class Func506 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 656, 177, 855, 322, 1200]	// 打开首领退治
 			]
-		}, { // 检查_宴会是否已开启
+		}, { // 2 检查_宴会是否已开启
 			desc: [
 				1280, 720,
 				[
@@ -74,15 +82,17 @@ export class Func506 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 896, 172, 1103, 321, 1200]	// 打开宴会
 			]
-		}, { // 检查_是否为道馆地图页面
-			desc: [1280, 720,
+		}, { // 3 已适配66 检查_是否为道馆地图页面
+			desc: [
+				1280, 720,
 				[
-					[left, 214, 45, 0x706e61],
-					[left, 44, 53, 0xacbdef],
-					[left, 62, 51, 0x2f4079],
-					[left, 250, 48, 0x5a3816],
-					[left, 162, 644, 0x44281f],
-					[left, 91, 620, 0xb9b1a1]
+					[left, 38, 53, 0xeef4fb],
+					[left, 247, 53, 0x593716],
+					[left, 91, 614, 0xc1b8aa],
+					[left, 255, 60, 0xd39c37],
+					[left, 118, 66, 0xf8f3e0],
+					[left, 175, 54, 0xf8f3e0],
+					[left, 205, 651, 0x573b28],
 				]
 			],
 			oper: [
