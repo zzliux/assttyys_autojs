@@ -42,12 +42,12 @@ export class Func309 implements IFuncOrigin {
     desc: [
       1280, 720,
       [
-        [center, 773, 161, 0xd8a85a],
-        [center, 731, 161, 0xd0a459],
-        [center, 731, 195, 0xc89d55],
-        [center, 773, 195, 0xc29c56],
-        [right, 1183, 628, 0xf6e6af],
-        [right, 1221, 680, 0xecca95],
+        [center, 883, 94, 0xd8a85f],
+        [center, 926, 84, 0xfadc97],
+        [right, 962, 98, 0xc88e49],
+        [right, 993, 85, 0xffd794],
+        [right, 1033, 82, 0xe4c459],
+        [right, 1032, 102, 0xd39a34],
       ]
     ],
     oper: [
@@ -142,12 +142,28 @@ export class Func309 implements IFuncOrigin {
       operator: [{ desc: thisOperator[0].desc }]
     })) {
       thisScript.regionClick([[...thisOperator[0].oper[0], 1000]]);
+      thisScript.global.upYuHun = false;
+      return true;
+    }
+    if (thisScript.global.upYuHun && thisScript.oper({
+      name: '强化御魂_金币不足',
+      operator: [thisOperator[2], thisOperator[5]]
+    })) {
+      thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+      thisScript.stop();
+      return true;
+    }
+    if (thisScript.oper({
+      name: '强化御魂_金币不足',
+      operator: [thisOperator[2], thisOperator[5]]
+    })) {
+      thisScript.global.upYuHun = true;
       return true;
     }
     return thisScript.oper({
       name: '强化御魂',
-      operator: [thisOperator[7], thisOperator[1],thisOperator[2], thisOperator[3],
-      thisOperator[4], thisOperator[5], thisOperator[6]]
+      operator: [thisOperator[7], thisOperator[1], thisOperator[3],
+      thisOperator[4], thisOperator[6]]
     })
   }
 }
