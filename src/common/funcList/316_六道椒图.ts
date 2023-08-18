@@ -477,6 +477,7 @@ export class Func316 implements IFuncOrigin {
                         500
                     ]];
                     thisScript.regionClick(oper);
+                    thisScript.regionClick([thisOperator[22].oper[1]]);
                 } else {
                     thisScript.regionClick([thisOperator[22].oper[1]]);
                     console.log("当前柔风数量:" + thisScript.global.d6RouFeng);
