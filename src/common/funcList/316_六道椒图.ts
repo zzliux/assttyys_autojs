@@ -465,6 +465,10 @@ export class Func316 implements IFuncOrigin {
                log("当前柔风数量:" + thisScript.global.d6RouFeng);
                return true;
             }
+         } else {
+            thisScript.regionClick([thisOperator[22].oper[1]]);
+            log("当前柔风数量:" + thisScript.global.d6RouFeng);
+            return true;
          }
 
 
