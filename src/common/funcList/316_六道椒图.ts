@@ -463,12 +463,23 @@ export class Func316 implements IFuncOrigin {
 
         if (thisScript.oper({
             id: 316,
-            name: '六道椒图_商店',
+            name: '六道椒图_商店确认购买',
+            operator: [{ desc: thisOperator[22].desc }]
+        })) {
+            thisScript.regionClick([thisOperator[22].oper[0]]);
+            thisScript.regionClick([thisOperator[22].oper[1]]);
+            thisScript.global.d6RouFeng++;
+            log("当前柔风数量:" + thisScript.global.d6RouFeng);
+            return true;
+        }
+        if (thisScript.oper({
+            id: 316,
+            name: '六道椒图_商店购买buff',
             operator: [{ desc: thisOperator[7].desc }]
         })) {
-            if (thisScript.global.d6RouFeng < 5) { //  柔风达标前购买buff
+            if (thisScript.global.d6RouFeng < 5) {//  柔风达标前购买buff
                 let point = thisScript.findMultiColor("六道椒图_购买buff");
-                if (point) { //  有购买按钮_选择购买
+                if (point) {//  有购买按钮_选择购买
                     let oper = [[
                         point.x - 10,
                         point.y + 50,
@@ -480,13 +491,14 @@ export class Func316 implements IFuncOrigin {
                     thisScript.regionClick([thisOperator[22].oper[1]]);
                 } else {
                     thisScript.regionClick([thisOperator[22].oper[1]]);
-                    console.log("当前柔风数量:" + thisScript.global.d6RouFeng);
+                    log("当前柔风数量:" + thisScript.global.d6RouFeng);
                     return true;
                 }
+            } else {
+                thisScript.regionClick([thisOperator[22].oper[1]]);
+                console.log("当前柔风数量:" + thisScript.global.d6RouFeng);
+                return true;
             }
-            thisScript.regionClick([thisOperator[7].oper[1]]);
-            console.log("当前柔风数量:" + thisScript.global.d6RouFeng);
-            return true;
         }
 
         if (thisScript.oper({

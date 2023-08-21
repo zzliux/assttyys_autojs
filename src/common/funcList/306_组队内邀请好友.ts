@@ -166,9 +166,9 @@ export class Func306 implements IFuncOrigin {
           let findInvName = thisScript.findTextByOcrResult(thisConf.inviteName as string, result, '包含')
           if (findInvName.length) {
             toClickRegion = [
-              findInvName[0].points[0].x,
+              findInvName[0].points[0].x + 10,
               findInvName[0].points[0].y,
-              findInvName[0].points[0].x,
+              findInvName[0].points[0].x + 50,
               findInvName[0].points[0].y + 65,
               1000,
             ]
@@ -210,9 +210,9 @@ export class Func306 implements IFuncOrigin {
             let findInvNameTwo = thisScript.findTextByOcrResult(thisConf.inviteNameTwo as string, result, '包含')
             if (findInvNameTwo.length) {
               toClickRegionTwo = [
-                findInvNameTwo[0].points[0].x,
+                findInvNameTwo[0].points[0].x + 10,
                 findInvNameTwo[0].points[0].y,
-                findInvNameTwo[0].points[0].x,
+                findInvNameTwo[0].points[0].x + 50,
                 findInvNameTwo[0].points[0].y + 65,
                 1000,
               ]
