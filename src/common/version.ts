@@ -916,6 +916,10 @@ export const versionList = [{
     version: '20230818_01',
     desc: `优化：强化御魂,进步不够就停止
     修复：六道椒图卡在商店`,
+},{
+    version: '202308121_01',
+    desc: `修复：六道椒图商店不返回
+    修复:邀请好友`,
 }];
 
 export default versionList[versionList.length - 1].version;
