@@ -33,6 +33,8 @@
   "versionCode": 1,
   "versionName": "0.0.2.dev",
   "ignore": [
+    "devServer",
+    ".github",
     ".gitignore",
     "build",
     "node_modules",
@@ -53,7 +55,9 @@
     "docs",
     "assttyys_ng.zip",
     "pack.js",
+    "pack_dev_release.js",
     "run.js",
+    "babel.config.js",
     ".git",
     ".gitignore",
     ".workflow",
