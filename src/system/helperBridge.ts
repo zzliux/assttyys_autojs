@@ -42,6 +42,7 @@ export class helperBridge implements IhelperBridge {
     getHelper(dw: number, dh: number) {
         if (!this.helperPoly[dw + '_' + dh]) {
             this.helperPoly[dw + '_' + dh] = com.scriptlib.AnchorGraphicHelper.Create(runtime, dw, dh, 0, 0, screenWidth - 1, screenHeight - 1);
+            console.log(`初始化helper:[${dw}, ${dh}]:${this.helperPoly[dw + '_' + dh]}`);
         }
         return this.helperPoly[dw + '_' + dh];
     }

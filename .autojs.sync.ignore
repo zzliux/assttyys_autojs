@@ -1,10 +1,14 @@
+devServer
+.github
+.gitignore
 build
 node_modules
 config
 src
 test
-# hotrun
+hotrun
 .babelrc
+.babel.config.js
 jsconfig.json
 tsconfig.json
 package-lock.json
@@ -16,12 +20,10 @@ README_AUTO_TEMPLATE_VUE.md
 docs
 assttyys_ng.zip
 pack.js
+pack_dev_release.js
 run.js
+babel.config.js
 .git
-.gitignores
+.gitignore
 .workflow
 yarn.lock
-.autojs.sync.ignore
-.autojs.build.ignore
-.autojs.source.ignore
-plugins
