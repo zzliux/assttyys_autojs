@@ -1,0 +1,66 @@
+{
+  "assets": [],
+  "build": {
+    "build_id": "7917803D-4",
+    "build_number": 4,
+    "build_time": 1625579232692,
+    "release": false
+  },
+  "encryptLevel": 1,
+  "useFeatures": [],
+  "icon": "res/icon.png",
+  "launchConfig": {
+    "displaySplash": true,
+    "hideLogs": true,
+    "splashIcon": "res/splashIcon.png",
+    "splashText": "Powered By AutoJS Pro",
+    "stableMode": true
+  },
+  "main": "dist/auto.js",
+  "name": "assttyys_ng",
+  "optimization": {
+    "removeAccessibilityService": false,
+    "removeOpenCv": true,
+    "unusedResources": false
+  },
+  "packageName": "com.zzliux.assttyysngfull936",
+  "permissionConfig": {
+    "requestListOnStartup": [
+      "android.permission.WRITE_EXTERNAL_STORAGE"
+    ]
+  },
+  "scripts": {},
+  "versionCode": 1,
+  "versionName": "0.0.2.dev",
+  "ignore": [
+    "devServer",
+    ".github",
+    ".gitignore",
+    "build",
+    "node_modules",
+    "config",
+    "src",
+    "test",
+    "hotrun",
+    ".babelrc",
+    ".babel.config.js",
+    "jsconfig.json",
+    "tsconfig.json",
+    "package-lock.json",
+    "package.json",
+    "webpack.config.js",
+    "LICENSE",
+    "README.md",
+    "README_AUTO_TEMPLATE_VUE.md",
+    "docs",
+    "assttyys_ng.zip",
+    "pack.js",
+    "pack_dev_release.js",
+    "run.js",
+    "babel.config.js",
+    ".git",
+    ".gitignore",
+    ".workflow",
+    "yarn.lock"
+  ]
+}
