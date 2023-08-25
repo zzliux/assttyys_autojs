@@ -9,24 +9,18 @@ const right = 2;
 export class Func312 implements IFuncOrigin {
   id = 312;
   name = '通用活动';
-  desc: '识别到“左上角感叹号”或“右上角体力”或“右下角锁定阵容”图标后，再识别右下角是否有“战”字样（需要ocr），详细看手册';
+  desc: '识别到“左上角感叹号”或“右上角体力”或“右下角锁定阵容”图标后，再点设定的坐标范围，详细看手册';
   config = [{
     desc: '',
     config: [{
-      name: 'xySwitch',
-      desc: '不识别“战”字直接点固定坐标',
-      type: 'switch',
-      default: false,
-      value: null,
-    }, {
       name: 'xy',
-      desc: '固定坐标，格式为：左上角x,左上角y,右下角x,右下角y，例：1134,590,1225,645',
+      desc: '点击坐标范围，格式为：左上角x,左上角y,右下角x,右下角y，例：1134,590,1225,645',
       type: 'text',
       default: '1134,590,1225,645',
       value: null,
     }, {
       name: 'exit',
-      desc: '达到时间后退出',
+      desc: '达到时间后退出(需要ocr)',
       type: 'switch',
       default: false,
       value: null,
@@ -59,38 +53,22 @@ export class Func312 implements IFuncOrigin {
   }];
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
     let thisConf = thisScript.scheme.config['312'];
-    if ((thisScript.findMultiColor("活动说明的感叹号") || thisScript.findMultiColor("体力图标") ||
+    let curCnt = 0;
+    let maxCount = 5;
+    while ((thisScript.findMultiColor("活动说明的感叹号") || thisScript.findMultiColor("体力图标") ||
       thisScript.findMultiColor("右下角锁定阵容"))) {
-      if (!thisConf.xySwitch && thisScript.getOcrDetector()) {
-        let result = thisScript.findText('.+', 0, thisOperator[0].oper[0], '包含');
-        if (result.length === 0) {
-          console.log(`未识别到任何字样`);
-          return false;
-        } else {
-          for (let i in result) {
-            console.log(`昵称历遍:${result[i].label}`)
-          }
-          let toClickRegion = null;
-          let fightForOne = thisScript.findTextByOcrResult("战", result, '包含')
-          if (fightForOne.length) {
-            toClickRegion = [
-              fightForOne[0].points[0].x,
-              fightForOne[0].points[0].y,
-              fightForOne[0].points[0].x,
-              fightForOne[0].points[0].y + 65,
-              1000,
-            ]
-          }
-          if (toClickRegion) {
-            thisScript.regionClick([toClickRegion]);
-            sleep(1000);
-            return true;
-          }
-        }
-      } else if (thisConf.xySwitch) {
+      curCnt++;
+      if (curCnt >= maxCount) {
+        thisScript.myToast(`连续执行${maxCount}次挑战后未开始，脚本自动停止`);
+        thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+        thisScript.stop();
+        sleep(2000);
+        return false;
+      }//复制活动停止代码
+      {//执行点击
         let xy = String(thisConf.xy).split(',');
         if (xy.length !== 4) {
-          thisScript.myToast('1自定义坐标格式定义错误，请检查');
+          thisScript.myToast('自定义坐标格式定义错误，请检查');
           return true;
         }
         let inX1 = parseInt(xy[0]);
@@ -106,7 +84,7 @@ export class Func312 implements IFuncOrigin {
         ];
         thisScript.regionClick(oper);
       }
-
+      thisScript.keepScreen();
     }
 
     if (thisConf.exit && thisScript.oper({
@@ -137,6 +115,9 @@ export class Func312 implements IFuncOrigin {
       }
     }
 
+    if (curCnt) {
+      return true;
+    }
     return false;
   }
 }
