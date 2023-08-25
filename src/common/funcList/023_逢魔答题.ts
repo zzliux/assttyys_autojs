@@ -20,6 +20,7 @@ export class Func023 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 429,163, 429 + 433, 163 + 72, 0], // 问题区域
 			[center, 1280, 720, 426,252, 426 + 446, 252 + 264, 0], // 答案区域
+			[center, 1280, 720, 487,276,810,320, 1200]	//	第一条答案区域
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -44,12 +45,20 @@ export class Func023 implements IFuncOrigin {
 			console.log(`搜索题库:${JSON.stringify(stdQuestion)}`);
 
 			let toDetectAnsBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[0].oper[1].slice(0, 4));
+			let img = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(toDetectAnsBmp);
+			let path = `/sdcard/assttyys/screenshot/${new Date().getTime()}.png`;
+			files.ensureDir(path);
+			img.saveTo(path);
+			img.recycle();
+			media.scanFile(path);
 			console.time('ocr.detect.ans');
 			let resultAns = thisScript.getOcrDetector().loadImage(toDetectAnsBmp);
 			console.timeEnd('ocr.detect.ans');
 			toDetectAnsBmp.recycle();
 
 			if (resultAns.length < 1) {
+				thisScript.myToast(`题库中没找到对应的答案，默认选择第一个答案`);
+				thisScript.regionClick([thisOperator[0].oper[2]]);
 				return true;
 			}
 
