@@ -10,19 +10,20 @@ export class Func514 implements IFuncOrigin {
     id = 514;
     name = '狭间暗域';
     operator: IFuncOperatorOrigin[] = [{
-        desc: //    检测_选择暗域页面未封印
+        desc: //    检测_选择暗域页面未封印未开启
+        [
+            1280, 720,
             [
-                1280, 720,
-                [
-                    [left, 269, 206, 0xe4d0ad],
-                    [left, 297, 181, 0xe4d8b3],
-                    [left, 182, 227, 0xccaadd],
-                    [left, 251, 364, 0xc9bb97],
-                    [center, 431, 155, 0xe1d6b3],
-                    [center, 716, 176, 0xe8e0bf],
-                    [right, 1090, 155, 0xe7dcaf],
-                ]
-            ],
+                [left, 269, 206, 0xe4d0ad],
+                [left, 297, 181, 0xe4d8b3],
+                [left, 182, 227, 0xccaadd],
+                [left, 251, 364, 0xc9bb97],
+                [center, 431, 155, 0xe1d6b3],
+                [center, 716, 176, 0xe8e0bf],
+                [right, 1090, 155, 0xe7dcaf],
+                [right, 1177, 603, 0x231b1c],
+            ]
+        ],
         oper: [
             [left, 1280, 720, 108, 256, 293, 364, 1200],  // 点击神龙
             [center, 1280, 720, 407, 175, 592, 283, 1200], // 点击孔雀
