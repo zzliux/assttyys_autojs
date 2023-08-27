@@ -926,8 +926,10 @@ export const versionList = [{
 尝试修复：自动识别的偶现报错问题`
 }, {
     version: '20230825_01',
-    desc: `修复:通用活动关闭ocr模式, 增加点击超时关闭
-    `
+    desc: `修复：通用活动关闭ocr模式, 增加点击超时关闭`
+}, {
+    version: '20230827_01',
+    desc: `修复：逢魔答题闪退的问题`
 }];
 
 export default versionList[versionList.length - 1].version;
