@@ -814,17 +814,19 @@ export class Script {
 
             // // 目标进程就变成后台了，就可以通过杀后台进程实现杀应用
             // const am = context.getSystemService(context.ACTIVITY_SERVICE);
-
+            const ret = [];
 
             storeSettings.defaultLaunchAppList.forEach(packageName => {
                 // am.killBackgroundProcesses(packageName);
                 $shell(`am force-stop ${packageName}`, true);
                 myToast(`杀应用${packageName}`);
+                ret.push(packageName);
                 sleep(100);
             });
-
+            return ret;
         } else {
             myToast('未配置关联应用，不结束');
+            return [];
         }
     }
 
