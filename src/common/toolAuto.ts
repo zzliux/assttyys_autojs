@@ -261,7 +261,8 @@ export function doPush(thisScript: Script, options: {
         return;
     }
     try {
-        thisScript.keepScreen();
+        // 停止前不更新截图
+        // thisScript.keepScreen();
         let bmp = scaleBmp(thisScript.helperBridge.helper.GetBitmap(), 0.5);
         let baos = new java.io.ByteArrayOutputStream();
         bmp.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, baos);

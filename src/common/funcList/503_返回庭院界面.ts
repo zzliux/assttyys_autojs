@@ -345,8 +345,8 @@ export class Func503 implements IFuncOrigin {
 						// 	thisScript.myToast('未配置关联应用，不执行停止操作');
 						// }
 
-						thisScript.stopRelatedApp();
-						thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，应用[${packageName}]已杀，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+						const packageNames = thisScript.stopRelatedApp();
+						thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，应用[${packageNames}]已杀，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 						sleep(2000);
 						thisScript.stop();
 					}
