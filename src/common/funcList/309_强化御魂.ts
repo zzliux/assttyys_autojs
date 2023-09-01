@@ -98,7 +98,7 @@ export class Func309 implements IFuncOrigin {
     ],
     oper: [
       [center, 1280, 720, 876, 615, 935, 664, 500],//计算
-      [center, 1280, 720, 876, 615, 935, 664, 2000],//强化
+      [center, 1280, 720, 876, 615, 935, 664, 2500],//强化
     ]
   }, {//6  +15计算强化
     desc: [
@@ -138,6 +138,7 @@ export class Func309 implements IFuncOrigin {
   ]
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
     if (thisScript.oper({
+      id: 309,
       name: '强化御魂',
       operator: [{ desc: thisOperator[0].desc }]
     })) {
@@ -145,7 +146,26 @@ export class Func309 implements IFuncOrigin {
       thisScript.global.upYuHun = false;
       return true;
     }
+    if (thisScript.oper({
+      id: 309,
+      name: '强化御魂_金币不足',
+      operator: [thisOperator[2], thisOperator[5]]
+    })) {
+      thisScript.global.upYuHun = true;
+      return true;
+    }
+    if (thisScript.oper({
+      id: 309,
+      name: '强化御魂',
+      operator: [thisOperator[7], thisOperator[1], thisOperator[3],
+      thisOperator[4], thisOperator[6]]
+    })){
+      thisScript.global.upYuHun = false;
+      return true;
+    }
+
     if (thisScript.global.upYuHun && thisScript.oper({
+      id: 309,
       name: '强化御魂_金币不足',
       operator: [thisOperator[2], thisOperator[5]]
     })) {
@@ -153,17 +173,5 @@ export class Func309 implements IFuncOrigin {
       thisScript.stop();
       return true;
     }
-    if (thisScript.oper({
-      name: '强化御魂_金币不足',
-      operator: [thisOperator[2], thisOperator[5]]
-    })) {
-      thisScript.global.upYuHun = true;
-      return true;
-    }
-    return thisScript.oper({
-      name: '强化御魂',
-      operator: [thisOperator[7], thisOperator[1], thisOperator[3],
-      thisOperator[4], thisOperator[6]]
-    })
   }
 }

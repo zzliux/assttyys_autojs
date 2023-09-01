@@ -917,7 +917,7 @@ export const versionList = [{
     desc: `优化：强化御魂,进步不够就停止
     修复：六道椒图卡在商店`,
 }, {
-    version: '202308121_01',
+    version: '20230821_01',
     desc: `修复：六道椒图商店不返回
     修复:邀请好友`,
 }, {
@@ -930,6 +930,12 @@ export const versionList = [{
 }, {
     version: '20230827_01',
     desc: `修复：逢魔答题闪退的问题`
+}, {
+    version: '20230901_01',
+    desc: `修复:花合战多次领取
+    修复:开始绿标功能时不实行手动切换自动
+    修复:强化御魂无法正常进行
+    `
 }];
 
 export default versionList[versionList.length - 1].version;
