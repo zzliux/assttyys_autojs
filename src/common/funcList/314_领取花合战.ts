@@ -55,7 +55,6 @@ export class Func314 implements IFuncOrigin {
     oper: [
       [center, 1280, 720, 911, 611, 965, 655, 1500],
       [center, 1280, 720, 911, 611, 965, 655, 1500],
-      [center, 1280, 720, 24, 20, 60, 55, 1000],
     ]
   }, {//4 花合战
     desc: [

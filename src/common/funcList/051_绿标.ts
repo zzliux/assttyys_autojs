@@ -61,11 +61,20 @@ export class Func051 implements IFuncOrigin {
 	}, {
 		// 准备界面 - 已准备
 		desc: '准备界面_已准备'
+	}, {
+		// 手动状态
+		desc: '战斗界面_手动状态',
+		oper: [
+			[left, 1280, 720, 37, 637, 86, 686, 1000]
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisconf = thisScript.scheme.config['51'];
 		const [offsetX, offsetY] = (thisconf.offset as string || '0,0').split(',').map(item => parseInt(item, 10));
-
+		thisScript.oper({
+      name: '绿标内手动切自动',
+      operator: [thisOperator[3]]
+    })
 		// 准备界面就开始查找，找到后记录坐标，在战斗开始后第一时间对找到的坐标进行标记
 		if (thisconf.preSearch) {
 			if (thisScript.oper({
