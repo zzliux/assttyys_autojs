@@ -939,6 +939,9 @@ export const versionList = [{
 }, {
     version: '20230902_01',
     desc: '新增: gotify推送方式'
+}, {
+    version: '20230902_02',
+    desc: '新增: pushplus推送方式'
 }];
 
 export default versionList[versionList.length - 1].version;
