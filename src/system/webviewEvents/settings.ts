@@ -155,7 +155,7 @@ export default function webviewSettigns() {
             name: 'push_type',
             type: 'assttyys_setting',
             stype: 'list',
-            data: ['关闭推送', 'Gotify', 'ospPush', 'oneBot'],
+            data: ['关闭推送', 'Gotify', 'pushplus', 'ospPush', 'oneBot'],
             value: storeSettings.push_type
         }];
         if (storeSettings.push_type === 'oneBot') {
@@ -212,6 +212,20 @@ export default function webviewSettigns() {
                 type: 'assttyys_setting',
                 stype: 'text',
                 value: storeSettings.gotify_url
+            })
+        } else if (storeSettings.push_type === 'pushplus') {
+            ret.push({
+                desc: 'token',
+                name: 'pushplus_token',
+                type: 'assttyys_setting',
+                stype: 'text',
+                value: storeSettings.pushplus_token
+            }, {
+                desc: '推送内容前缀',
+                name: 'msgPush_prefix',
+                type: 'assttyys_setting',
+                stype: 'text',
+                value: storeSettings.msgPush_prefix
             })
         }
         done(ret);

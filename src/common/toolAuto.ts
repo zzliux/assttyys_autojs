@@ -248,6 +248,10 @@ export function oneBotPush(url: string, data: { type: string, data: Record<strin
     return http.postJson(url, data);
 }
 
+export function pushplusPush(data: any) {
+    return http.post('https://pushplus.plus/send', data)
+}
+
 /**
  * 发起消息推送
  * @param {Script} thisScript
@@ -272,11 +276,17 @@ export function doPush(thisScript: Script, options: {
     } else if (storeSettings.push_type === 'Gotify' && !storeSettings.gotify_url) {
         console.error('未配置gotify_url');
         return;
+    } else if (storeSettings.push_type === 'pushplus' && !storeSettings.pushplus_token) {
+        console.error('未配置pushplus token');
     }
     try {
         // 停止前不更新截图
         // thisScript.keepScreen();
-        let bmp = scaleBmp(thisScript.helperBridge.helper.GetBitmap(), 0.5);
+        let scale = 0.5;
+        if (storeSettings.push_type === 'pushplus') {
+            scale = 0.05;
+        }
+        let bmp = scaleBmp(thisScript.helperBridge.helper.GetBitmap(), scale);
         let baos = new java.io.ByteArrayOutputStream();
         bmp.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, baos);
         baos.flush();
@@ -330,9 +340,15 @@ export function doPush(thisScript: Script, options: {
                 },
                 message: `${options.text}  \n  ![](data:image/png;base64,${b64str})`
             });
+        } else if (storeSettings.push_type === 'pushplus') {
+            res = pushplusPush({
+                token: storeSettings.pushplus_token,
+                title: `${storeSettings.msgPush_prefix} ASSTTYYS消息通知`,
+                content: `<p>${options.text}</p><img src="data:image/png;base64,${b64str}" />`
+            })
         }
         // @ts-ignore
-        // myToast(`提交推送响应内容：${res.body.string()}`);
+        myToast(`提交推送响应内容：${res.body.string()}`);
         options && options.after && options.after();
     } catch (e) {
         myToast(`提交推送发生了错误：${e}`);
