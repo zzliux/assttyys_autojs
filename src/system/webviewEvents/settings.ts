@@ -155,7 +155,7 @@ export default function webviewSettigns() {
             name: 'push_type',
             type: 'assttyys_setting',
             stype: 'list',
-            data: ['关闭推送', 'ospPush', 'oneBot'],
+            data: ['关闭推送', 'Gotify', 'ospPush', 'oneBot'],
             value: storeSettings.push_type
         }];
         if (storeSettings.push_type === 'oneBot') {
@@ -192,6 +192,26 @@ export default function webviewSettigns() {
                 type: 'assttyys_setting',
                 stype: 'text',
                 value: storeSettings.msgPush_prefix
+            })
+        } else if (storeSettings.push_type === 'Gotify') {
+            ret.push({
+                desc: 'gotify的token',
+                name: 'gotify_user_token',
+                type: 'assttyys_setting',
+                stype: 'text',
+                value: storeSettings.gotify_user_token
+            }, {
+                desc: '推送内容前缀',
+                name: 'msgPush_prefix',
+                type: 'assttyys_setting',
+                stype: 'text',
+                value: storeSettings.msgPush_prefix
+            }, {
+                desc: '推送地址',
+                name: 'gotify_url',
+                type: 'assttyys_setting',
+                stype: 'text',
+                value: storeSettings.gotify_url
             })
         }
         done(ret);
