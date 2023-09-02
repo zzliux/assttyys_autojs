@@ -239,6 +239,16 @@ export function oneBotPush(url: string, data: { type: string, data: Record<strin
 }
 
 /**
+ * 发起gotify推送
+ * @url https://gotify.net/docs/index
+ * @param url
+ * @param data
+ */
+ export function gotifyPush(url: string, data: any) {
+    return http.postJson(url, data);
+}
+
+/**
  * 发起消息推送
  * @param {Script} thisScript
  * @param options
@@ -258,6 +268,9 @@ export function doPush(thisScript: Script, options: {
         return;
     } else if (storeSettings.push_type === 'ospPush' && !storeSettings.osp_user_token) {
         console.error('未配置ospUserToken');
+        return;
+    } else if (storeSettings.push_type === 'Gotify' && !storeSettings.gotify_url) {
+        console.error('未配置gotify_url');
         return;
     }
     try {
@@ -306,9 +319,20 @@ export function doPush(thisScript: Script, options: {
             res = oneBotPush(storeSettings.oneBot_url, message)
         } else if (storeSettings.push_type === 'ospPush') {
             res = ospPush(storeSettings.osp_user_token, data);
+        } else if (storeSettings.push_type === 'Gotify') {
+            res = gotifyPush(`${storeSettings.gotify_url}?token=${storeSettings.gotify_user_token}`, {
+                title: storeSettings.msgPush_prefix,
+                priority: 8,    // 消息等级 https://github.com/gotify/android
+                extras: {
+                    "client::display": {
+                        contentType: "text/markdown"    //  将message标记为markdown
+                    }
+                },
+                message: `${options.text}  \n  ![](data:image/png;base64,${b64str})`
+            });
         }
         // @ts-ignore
-        myToast(`提交推送响应内容：${res.body.string()}`);
+        // myToast(`提交推送响应内容：${res.body.string()}`);
         options && options.after && options.after();
     } catch (e) {
         myToast(`提交推送发生了错误：${e}`);

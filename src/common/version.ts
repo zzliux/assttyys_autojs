@@ -936,6 +936,9 @@ export const versionList = [{
     修复:开始绿标功能时不实行手动切换自动
     修复:强化御魂无法正常进行
     `
+}, {
+    version: '20230902_01',
+    desc: '新增: gotify推送方式'
 }];
 
 export default versionList[versionList.length - 1].version;
