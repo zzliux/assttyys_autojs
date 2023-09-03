@@ -282,9 +282,18 @@ export function doPush(thisScript: Script, options: {
     try {
         // 停止前不更新截图
         // thisScript.keepScreen();
+        // 根据不同推送方式调整图片压缩率
         let scale = 0.5;
-        if (storeSettings.push_type === 'pushplus') {
-            scale = 0.05;
+
+        switch(storeSettings.push_type) {
+            case 'pushplus':
+                scale = 0.05;
+                break;
+            case 'Gotify':
+                scale = 0.4;
+                break;
+            default:
+                scale = 0.5;
         }
         let bmp = scaleBmp(thisScript.helperBridge.helper.GetBitmap(), scale);
         let baos = new java.io.ByteArrayOutputStream();
@@ -348,7 +357,8 @@ export function doPush(thisScript: Script, options: {
             })
         }
         // @ts-ignore
-        myToast(`提交推送响应内容：${res.body.string()}`);
+        // myToast(`提交推送响应内容：${res.body.string()}`);
+        myToast(`推送成功!`);
         options && options.after && options.after();
     } catch (e) {
         myToast(`提交推送发生了错误：${e}`);
