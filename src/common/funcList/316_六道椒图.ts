@@ -383,7 +383,6 @@ export class Func316 implements IFuncOrigin {
    operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 
       if (thisScript.oper({
-         id: 316,
          name: '六道椒图_选事件',
          operator: [{ desc: thisOperator[0].desc }, { desc: thisOperator[2].desc }]
       })) {
@@ -411,6 +410,7 @@ export class Func316 implements IFuncOrigin {
                ]];
                thisScript.regionClick(oper);
                thisScript.global.d6RouFeng++;
+               log("当前柔风数量:" + thisScript.global.d6RouFeng);
                return true;
             }
             else if (thisScript.findMultiColor("六道椒图_低级buff")) {//  有低级buff_选择跳过
@@ -459,6 +459,7 @@ export class Func316 implements IFuncOrigin {
                   500
                ]];
                thisScript.regionClick(oper);
+               thisScript.global.d6RouFeng++;
                thisScript.regionClick([thisOperator[22].oper[1]]);
             } else {
                thisScript.regionClick([thisOperator[22].oper[1]]);
@@ -482,6 +483,7 @@ export class Func316 implements IFuncOrigin {
          ]
       })) {
          thisScript.global.d6RouFeng++;
+         log("当前柔风数量:" + thisScript.global.d6RouFeng);
          return true;
       }
 
