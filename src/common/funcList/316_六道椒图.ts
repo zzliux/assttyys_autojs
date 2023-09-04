@@ -464,10 +464,10 @@ export class Func316 implements IFuncOrigin {
         if (thisScript.oper({
             id: 316,
             name: '六道椒图_商店确认购买',
-            operator: [{ desc: thisOperator[22].desc }]
+            operator: [{ desc: thisOperator[23].desc }]
         })) {
-            thisScript.regionClick([thisOperator[22].oper[0]]);
-            thisScript.regionClick([thisOperator[22].oper[1]]);
+            thisScript.regionClick([thisOperator[23].oper[0]]);
+            thisScript.regionClick([thisOperator[23].oper[1]]);
             thisScript.global.d6RouFeng++;
             log("当前柔风数量:" + thisScript.global.d6RouFeng);
             return true;
@@ -488,14 +488,14 @@ export class Func316 implements IFuncOrigin {
                         500
                     ]];
                     thisScript.regionClick(oper);
-                    thisScript.regionClick([thisOperator[22].oper[1]]);
+                    thisScript.regionClick([thisOperator[23].oper[1]]);
                 } else {
-                    thisScript.regionClick([thisOperator[22].oper[1]]);
+                    thisScript.regionClick([thisOperator[23].oper[1]]);
                     log("当前柔风数量:" + thisScript.global.d6RouFeng);
                     return true;
                 }
             } else {
-                thisScript.regionClick([thisOperator[22].oper[1]]);
+                thisScript.regionClick([thisOperator[23].oper[1]]);
                 console.log("当前柔风数量:" + thisScript.global.d6RouFeng);
                 return true;
             }
