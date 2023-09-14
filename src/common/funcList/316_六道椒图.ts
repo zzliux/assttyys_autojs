@@ -239,11 +239,11 @@ export class Func316 implements IFuncOrigin {
          1280, 720,
          [
             [right, 1221, 254, 0xd8d2cf],
-            [right, 1257, 256, 0xe2dad2],
             [right, 1225, 387, 0x323746],
-            [right, 1256, 385, 0x2a2f3e],
             [right, 1182, 640, 0x8c7e60],
             [right, 1230, 668, 0x8c7e60],
+            [right, 1247, 242, 0xd7cfc3],
+            [right, 1246, 383, 0x282e3e],
          ]
       ],
       oper: [
@@ -379,6 +379,18 @@ export class Func316 implements IFuncOrigin {
       oper: [
          [right, 1280, 720, 872, 146, 1197, 539, 500],
       ]
+   }, {//24  低级buff
+      desc: [
+         1280, 720,
+         [
+            [left, 171, 219, 0x4c8dda],
+            [left, 262, 216, 0x5aa1f6],
+            [center, 445, 216, 0x4685cc],
+            [center, 535, 216, 0x589ef1],
+            [center, 719, 218, 0x4a89d4],
+            [center, 809, 215, 0x5aa2f6],
+         ]
+      ]
    }];
    operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 
@@ -413,7 +425,11 @@ export class Func316 implements IFuncOrigin {
                log("当前柔风数量:" + thisScript.global.d6RouFeng);
                return true;
             }
-            else if (thisScript.findMultiColor("六道椒图_低级buff")) {//  有低级buff_选择跳过
+            else if (thisScript.oper({
+               id: 316,
+               name: '六道椒图_低级buff',
+               operator: [thisOperator[24]]
+            })) {//  有低级buff_选择跳过
                thisScript.regionClick([thisOperator[4].oper[0]]);
                return true;
             } else if (thisScript.oper({//无升级按钮_选择刷新

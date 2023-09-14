@@ -3010,19 +3010,6 @@ const multiFindColors: IMultiFindColorsOrigin = {
             ]
         ],
     },
-    '六道椒图_低级buff': {
-        region: [center, 1280, 720, 141, 131, 882, 312],
-        desc: [
-            [
-                1280, 720,
-                [
-                    [left, 171, 216, 0x4787cf],
-                    [left, 262, 216, 0x5aa1f6],
-                    [left, 214, 171, 0x4585d6],
-                ]
-            ]
-        ],
-    },
     '六道椒图_升级buff': {
         region: [center, 1280, 720, 160, 149, 827, 200],
         desc: [
