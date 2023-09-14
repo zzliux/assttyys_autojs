@@ -512,18 +512,17 @@ export class Func518 implements IFuncOrigin {
     {
       //  31 检测_商店主页
       desc: [
-        1280,
-        720,
+        1280, 720,
         [
-          [right, 1198, 652, 0xd03b3b],
-          [right, 1129, 642, 0x301d19],
-          [right, 1027, 662, 0xb53bf8],
-          [center, 866, 658, 0x3c7acf],
-          [center, 765, 669, 0xfffe72],
+          [right, 1198, 652, 0xd23a3a],
+          [right, 1129, 642, 0x472824],
+          [right, 1027, 662, 0xb646fe],
+          [center, 869, 670, 0x3c7ccf],
+          [center, 775, 671, 0xfffd74],
           [right, 1243, 294, 0x2a2228],
-          [right, 1157, 291, 0x8e464d],
-          [right, 1094, 404, 0x453828],
-        ],
+          [right, 1157, 291, 0x8e464c],
+          [right, 1094, 404, 0x443829],
+        ]
       ],
       oper: [
         [right, 1280, 720, 1154, 643, 1200, 675, 1200], //  点击 礼包屋
@@ -532,30 +531,28 @@ export class Func518 implements IFuncOrigin {
     {
       //  32 检测_商店_礼包屋_推荐页签
       desc: [
-        1280,
-        720,
+        1280, 720,
         [
           [left, 30, 26, 0xf4e4a4],
           [right, 1249, 28, 0xd7c5a2],
           [right, 1197, 652, 0xd03b3b],
-          [right, 1018, 633, 0xa361dc],
-          [left, 146, 132, 0x301e1c],
-        ],
+          [right, 1025, 663, 0xb43af9],
+          [left, 99, 115, 0x2f1e1a],
+        ]
       ],
     },
     {
       //  33  检测_商店_礼包屋
       desc: [
-        1280,
-        720,
+        1280, 720,
         [
-          [left, 29, 26, 0xf4e7a9],
-          [right, 1249, 28, 0xd7c5a2],
-          [right, 1195, 652, 0xd03b3b],
-          [right, 1204, 60, 0x140a08],
-          [center, 866, 660, 0x3c7acf],
-          [left, 20, 558, 0x493c30],
-        ],
+          [left, 29, 26, 0xf5e7a7],
+          [right, 1249, 28, 0xd7c4a1],
+          [right, 1195, 652, 0xd03a3a],
+          [right, 1204, 60, 0x130a08],
+          [center, 866, 660, 0x3973c6],
+          [left, 20, 558, 0x645241],
+        ]
       ],
       oper: [
         [left, 1280, 720, 21, 9, 51, 42, 1200], //  点击 礼包屋返回
@@ -582,17 +579,16 @@ export class Func518 implements IFuncOrigin {
     {
       //  35 检测_商店_礼包屋_热卖页签
       desc: [
-        1280,
-        720,
+        1280, 720,
         [
           [left, 30, 26, 0xf4e4a4],
           [right, 1226, 130, 0xfcdab2],
           [right, 1227, 222, 0x967e71],
           [right, 1227, 312, 0x967d71],
-          [right, 1196, 652, 0xd03b3b],
-          [right, 1028, 662, 0xb43bf8],
-          [center, 866, 662, 0x3a7cce],
-        ],
+          [right, 1175, 673, 0xd03a3a],
+          [center, 869, 670, 0x3c7ccf],
+          [center, 775, 671, 0xfffd74],
+        ]
       ],
       oper: [
         [right, 1280, 720, 1186, 194, 1237, 247, 1200], //  点击 推荐页签
@@ -601,16 +597,17 @@ export class Func518 implements IFuncOrigin {
     {
       //  36 检测_商店_推荐页签_每日领取
       desc: [
-        1280,
-        720,
+        1280, 720,
         [
-          [left, 234, 227, 0xe0e0e0],
-          [left, 276, 331, 0xc26245],
-          [left, 231, 272, 0xedded0],
-          [left, 262, 228, 0x212120],
-          [left, 199, 341, 0xd0af86],
-          [left, 190, 188, 0x271616],
-        ],
+          [left, 285, 196, 0xececeb],
+          [left, 285, 323, 0xdfa555],
+          [center, 478, 326, 0xdba155],
+          [left, 273, 186, 0x1a1a1a],
+          [left, 313, 192, 0x282524],
+          [center, 431, 283, 0x2e1e2b],
+          [center, 446, 251, 0xde2110],
+          [left, 211, 272, 0xebded4],
+        ]
       ],
       oper: [
         [left, 1280, 720, 218, 223, 284, 282, 1200], //  点击 每日领取

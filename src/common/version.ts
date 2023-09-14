@@ -944,7 +944,7 @@ export const versionList = [{
     desc: '新增: pushplus推送方式'
 }, {
     version: '202309014_01',
-    desc: '优化:六道椒图'
+    desc: '优化:六道椒图, 修复：商店样式更新'
 }];
 
 export default versionList[versionList.length - 1].version;
