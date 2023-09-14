@@ -239,6 +239,20 @@ export function oneBotPush(url: string, data: { type: string, data: Record<strin
 }
 
 /**
+ * 发起gotify推送
+ * @url https://gotify.net/docs/index
+ * @param url
+ * @param data
+ */
+ export function gotifyPush(url: string, data: any) {
+    return http.postJson(url, data);
+}
+
+export function pushplusPush(data: any) {
+    return http.post('https://pushplus.plus/send', data)
+}
+
+/**
  * 发起消息推送
  * @param {Script} thisScript
  * @param options
@@ -259,11 +273,29 @@ export function doPush(thisScript: Script, options: {
     } else if (storeSettings.push_type === 'ospPush' && !storeSettings.osp_user_token) {
         console.error('未配置ospUserToken');
         return;
+    } else if (storeSettings.push_type === 'Gotify' && !storeSettings.gotify_url) {
+        console.error('未配置gotify_url');
+        return;
+    } else if (storeSettings.push_type === 'pushplus' && !storeSettings.pushplus_token) {
+        console.error('未配置pushplus token');
     }
     try {
         // 停止前不更新截图
         // thisScript.keepScreen();
-        let bmp = scaleBmp(thisScript.helperBridge.helper.GetBitmap(), 0.5);
+        // 根据不同推送方式调整图片压缩率
+        let scale = 0.5;
+
+        switch(storeSettings.push_type) {
+            case 'pushplus':
+                scale = 0.05;
+                break;
+            case 'Gotify':
+                scale = 0.4;
+                break;
+            default:
+                scale = 0.5;
+        }
+        let bmp = scaleBmp(thisScript.helperBridge.helper.GetBitmap(), scale);
         let baos = new java.io.ByteArrayOutputStream();
         bmp.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, baos);
         baos.flush();
@@ -306,9 +338,27 @@ export function doPush(thisScript: Script, options: {
             res = oneBotPush(storeSettings.oneBot_url, message)
         } else if (storeSettings.push_type === 'ospPush') {
             res = ospPush(storeSettings.osp_user_token, data);
+        } else if (storeSettings.push_type === 'Gotify') {
+            res = gotifyPush(`${storeSettings.gotify_url}?token=${storeSettings.gotify_user_token}`, {
+                title: storeSettings.msgPush_prefix,
+                priority: 8,    // 消息等级 https://github.com/gotify/android
+                extras: {
+                    "client::display": {
+                        contentType: "text/markdown"    //  将message标记为markdown
+                    }
+                },
+                message: `${options.text}  \n  ![](data:image/png;base64,${b64str})`
+            });
+        } else if (storeSettings.push_type === 'pushplus') {
+            res = pushplusPush({
+                token: storeSettings.pushplus_token,
+                title: `${storeSettings.msgPush_prefix} ASSTTYYS消息通知`,
+                content: `<p>${options.text}</p><img src="data:image/png;base64,${b64str}" />`
+            })
         }
         // @ts-ignore
-        myToast(`提交推送响应内容：${res.body.string()}`);
+        // myToast(`提交推送响应内容：${res.body.string()}`);
+        myToast(`推送成功!`);
         options && options.after && options.after();
     } catch (e) {
         myToast(`提交推送发生了错误：${e}`);
