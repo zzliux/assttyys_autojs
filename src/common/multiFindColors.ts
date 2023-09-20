@@ -3038,6 +3038,23 @@ const multiFindColors: IMultiFindColorsOrigin = {
                 ]
             ]
         ],
+    },
+    '破晓之时_放弃': {
+        region: [center, 1280, 720, 783, 172, 1259, 584],
+        desc: [
+            [
+                1280, 720,
+                [
+                    [center, 874, 468, 0xffe8b3],
+                    [center, 896, 469, 0xffe7b4],
+                    [center, 903, 484, 0xfeecca],
+                    [center, 896, 497, 0xfdf1de],
+                    [center, 874, 498, 0xfdf2df],
+                    [center, 955, 483, 0xf9eeda],
+                    [right, 976, 480, 0xfaefdb],
+                ]
+            ]
+        ],
     }
 }
 

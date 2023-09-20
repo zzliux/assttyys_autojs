@@ -945,6 +945,9 @@ export const versionList = [{
 }, {
     version: '202309014_01',
     desc: '优化:六道椒图'
+}, {
+    version: '202309020_01',
+    desc: '增加:破晓之时(自行筹齐5个月读buuf再开启,方案只会乱点关卡和放弃)'
 }];
 
 export default versionList[versionList.length - 1].version;
