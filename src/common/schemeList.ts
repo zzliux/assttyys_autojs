@@ -757,7 +757,7 @@ const SchemeList: IScheme[] = [
         afterCountOper: '不进行任何操作',
       },
     },
-  }, 
+  },
   {
     id: 66,
     schemeName: '契灵',
@@ -803,7 +803,7 @@ const SchemeList: IScheme[] = [
     schemeName: '六道椒图',
     star: true,
     list: [0, 1, 2, 3, 24, 316],
-  }, 
+  },
   {
     id: 70,
     schemeName: '开启经验BUFF_经验妖怪',
@@ -870,7 +870,7 @@ const SchemeList: IScheme[] = [
         afterCountOper: '不进行任何操作',
       },
     },
-  }, 
+  },
   {
     id: 75,
     schemeName: '定时任务-启动游戏-经验妖怪',
@@ -887,17 +887,23 @@ const SchemeList: IScheme[] = [
         afterCountOper: '不进行任何操作',
       },
     },
-  }, 
+  },
   {
     id: 99,
     schemeName: '伊吹之擂',
     list: [0, 3, 24, 99, 100],
   }, {
     id: 102,
-    schemeName: '活动_真火切磋',
-    list: [0, 1, 2, 3, 24, 134],
+    schemeName: '活动_破晓之时',
+    list: [0, 1, 2, 3, 24, 317],
     groupName: '活动',
     star: true,
+    config: {
+      '0': { // key为功能的ID（1表示准备）
+        jspd_enabled_longtime_nodo:true,
+        jspd_times_longtime_nodo:3,
+      }
+    },
   }
   // , {
   //   id: 102,
