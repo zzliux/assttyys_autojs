@@ -947,7 +947,10 @@ export const versionList = [{
     desc: '优化:六道椒图, 修复：商店样式更新'
 }, {
     version: '202309020_01',
-    desc: '增加:破晓之时(自行筹齐5个月读buuf再开启,方案只会乱点关卡和放弃)'
+    desc: '增加:破晓之时(自行筹齐5个谎言再开启,方案只会乱点关卡和放弃)'
+}, {
+    version: '20230923_01',
+    desc: '优化：破晓之时：开局时自动选谎言式神，若开局无法存在无谎言可选时将停止脚本；遗物自动选择游走的雷光。'
 }];
 
 export default versionList[versionList.length - 1].version;

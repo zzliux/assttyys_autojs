@@ -8,7 +8,7 @@ const right = 2;
 export class Func317 implements IFuncOrigin {
   id = 317;
   name = '破晓之时';
-  desc = "自行筹齐5个月读buuf再开启,方案只会乱点关卡和放弃";
+  desc = "自行筹齐5个谎言后再开启，功能只会乱点关卡和放弃";
   operator: IFuncOperatorOrigin[] = [{
     desc: [
       1280, 720,
@@ -22,7 +22,7 @@ export class Func317 implements IFuncOrigin {
         [left, 202, 508, 0xb57f6a],
       ]
     ]
-  }, {//1 挑战
+  }, {// 1 挑战
     desc: [
       1280, 720,
       [
@@ -37,7 +37,7 @@ export class Func317 implements IFuncOrigin {
     oper: [
       [center, 1280, 720, 858, 442, 912, 490, 500]
     ]
-  }, {//2 挑战成功
+  }, {// 2 挑战成功
     desc: [
       1280, 720,
       [
@@ -52,7 +52,7 @@ export class Func317 implements IFuncOrigin {
     oper: [
       [center, 1280, 720, 940, 350, 1217, 507, 500]
     ]
-  }, {//3 获取成功
+  }, {// 3 获取成功
     desc: [
       1280, 720,
       [
@@ -66,7 +66,7 @@ export class Func317 implements IFuncOrigin {
     oper: [
       [center, 1280, 720, 857, 459, 913, 506, 500]
     ]
-  }, {//4 六道挑战
+  }, {// 4 六道挑战
     desc: [
       1280, 720,
       [
@@ -81,7 +81,7 @@ export class Func317 implements IFuncOrigin {
     oper: [
       [center, 1280, 720, 860, 464, 913, 509, 500]
     ]
-  }, {//5 六道挑战
+  }, {// 5 六道挑战
     desc: [
       1280, 720,
       [
@@ -101,7 +101,7 @@ export class Func317 implements IFuncOrigin {
       [center, 1280, 720, 976, 280, 1039, 341, 500], // 位置:右位
       [center, 1280, 720, 612, 143, 698, 207, 500], // 位置:上位
     ]
-  }, {//7 结束
+  }, {//  7 结束
     desc: [
       1280, 720,
       [
@@ -130,7 +130,7 @@ export class Func317 implements IFuncOrigin {
 
       ]
     ]
-  }, {//9 事件
+  }, {// 9 事件
     desc: [
       1280, 720,
       [
@@ -147,26 +147,103 @@ export class Func317 implements IFuncOrigin {
       [center, 1280, 720, 342, 294, 453, 387, 500], // 位置:右位
       [center, 1280, 720, 598, 216, 709, 297, 500], // 位置:上位
     ]
+  }, {
+    // 10 打赢了选式神放弃
+    desc: [
+      1280, 720,
+      [
+        [left, 28, 38, 0xdccff0],
+        [left, 241, 36, 0x593716],
+        [left, 323, 23, 0x2c2e54],
+        [center, 600, 653, 0xeed1b2],
+        [right, 1204, 640, 0xffefcf],
+        [right, 1230, 636, 0xffebc8],
+        [right, 1234, 626, 0x3f3138],
+      ]
+    ],
+    oper: [
+      [center, 1280, 720, 1183, 609, 1243, 671, 1000],
+    ]
+  }, {
+    // 11 请选择一个遗物
+    desc: [
+      1280, 720,
+      [
+        [left, 27, 34, 0xd8cbed],
+        [left, 244, 35, 0x583616],
+        [center, 453, 592, 0xe6cbab],
+        [left, 80, 628, 0x16141c],
+        [center, 760, 587, 0xefd2b3],
+        [right, 1215, 643, 0xffefd1],
+        [right, 1226, 657, 0x382d34],
+      ]
+    ],
+    oper: [
+      [center, 1280, 720, 1183, 609, 1243, 671, 1000],
+    ]
+  }, {
+    // 12 选择初始式神
+    desc: [
+      1280, 720,
+      [
+        [left, 35, 38, 0xf7e7a8],
+        [center, 1200, 616, 0x423324],
+        [center, 887, 639, 0xdfcc8b],
+        [center, 602, 622, 0x413222],
+        [center, 263, 605, 0xf9f1b6],
+        [center, 773, 143, 0xf2c986],
+      ]
+    ]
   }];
 
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
     if (thisScript.oper({
+      id: 317,
       name: '破晓之时_执行事件',
       operator: [thisOperator[1], thisOperator[2], thisOperator[3],
-      thisOperator[4], thisOperator[5], thisOperator[9],]
+      thisOperator[4], thisOperator[5], thisOperator[9], thisOperator[10]]
     })) {
+      return true;
+    }
+
+    if (thisScript.oper({
+      id: 317,
+      name: '破晓之时_选择一个遗物',
+      operator: [{
+        desc: thisOperator[11].desc
+      }]
+    })) {
+      let point = thisScript.findMultiColor('破晓之时_游走的雷光');
+      let clickRegion = thisOperator[11].oper;
+      if (point) {
+        clickRegion = [[point.x, point.y, point.x + 70, point.y + 20, 200]];
+      }
+      thisScript.regionClick(clickRegion);
+      return true;
+    }
+
+    if (thisScript.oper({
+      id: 317,
+      name: '破晓之时_选择选择初始式神',
+      operator: [{
+        desc: thisOperator[12].desc
+      }]
+    })) {
+      let point = thisScript.findMultiColor('破晓之时_初始式神选择_谎言');
+      if (point) {
+        const clickRegion = [[point.x, point.y, point.x + 40, point.y + 40, 200]];
+        thisScript.regionClick(clickRegion);
+      } else {
+        thisScript.doPush(thisScript, { text: `本局无法在开局前凑齐谎言，请自行凑齐谎言后开启脚本。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+        thisScript.stop();
+        sleep(2000);
+      }
       return true;
     }
 
     let point = thisScript.findMultiColor('破晓之时_放弃');
     if (point) {
-      let oper = [[
-        point.x - 5,
-        point.y - 5,
-        point.x + 5,
-        point.y + 5,
-        1200
-      ]];
+      let oper = [[point.x - 5, point.y - 5, point.x + 5, point.y + 5, 1200]];
       sleep(500);
       thisScript.regionClick(oper);
       return true;
@@ -189,6 +266,7 @@ export class Func317 implements IFuncOrigin {
     })) {
       thisScript.doPush(thisScript, { text: `脚本已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
       thisScript.stop();
+      sleep(2000);
     }
   }
 }
