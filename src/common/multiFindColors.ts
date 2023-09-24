@@ -2956,6 +2956,47 @@ const multiFindColors: IMultiFindColorsOrigin = {
                 ]
             ]
         ],
+    },
+    '破晓之时_游走的雷光': {
+        region: [center, 1280, 720, 356, 519, 938, 653],
+        desc: [[
+            1280, 720,
+            [
+                [center, 430, 580, 0xf1d0af],
+                [center, 548, 599, 0xcfae87],
+                [center, 476, 337, 0xebda83],
+                [center, 491, 383, 0x3d314f],
+                [center, 508, 284, 0x2b1f2f],
+                [center, 471, 394, 0xae56b3],
+            ]
+        ]],
+    },
+    '破晓之时_初始式神选择_谎言': {
+        region: [center, 1280, 720, 191, 564, 1244, 686],
+        desc: [[
+            1280, 720,
+            [
+                [center, 863, 607, 0xf6efb2],
+                [center, 683, 411, 0x232324],
+                [center, 708, 412, 0x29292b],
+                [center, 696, 406, 0x2a2b2e],
+                [center, 908, 622, 0x413222],
+                [center, 892, 639, 0xe0cd8b],
+                [center, 710, 412, 0x242524],
+            ]
+        ],
+        [
+            1280, 720,
+            [
+                [center, 247, 607, 0xf6efb2],
+                [center, 293, 622, 0x413222],
+                [center, 275, 639, 0xe0cd8b],
+                [center, 64, 472, 0x232323],
+                [center, 69, 464, 0x262627],
+                [center, 80, 460, 0x2a2b2e],
+                [center, 93, 464, 0x232324],
+            ]
+        ]],
     }
 }
 
