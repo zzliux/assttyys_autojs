@@ -346,14 +346,13 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 	},
 	'页面是否为庭院_菜单已展开_只支持默认庭院皮肤与默认装饰': {
 		desc: [
-			1280,
-			720,
+			1280, 720,
 			[
 				[right, 1226, 47, 0xcda47a],
-				[right, 1157, 45, 0xb29670],
-				[center, 389, 65, 0xfbc573],
 				[right, 1228, 646, 0xd6c6c3],
-			],
+				[center, 366, 56, 0xf9cf9a],
+				[right, 1154, 40, 0xd7b288],
+			]
 		],
 	},
 	'页面是否为庭院_菜单已展开_另一种图标_御祝图标_只支持默认庭院皮肤与默认装饰': {

@@ -954,6 +954,9 @@ export const versionList = [{
 }, {
     version: '20230927_01',
     desc: '修复：庭院加成图标，修复庭院未展开菜单适配'
+}, {
+    version: '20230929_01',
+    desc: '修复：修复庭院已展开菜单适配'
 }];
 
 export default versionList[versionList.length - 1].version;
