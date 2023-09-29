@@ -951,6 +951,9 @@ export const versionList = [{
 }, {
     version: '20230923_01',
     desc: '优化：破晓之时：开局时自动选谎言式神，若开局无法存在无谎言可选时将停止脚本；遗物自动选择游走的雷光。'
+}, {
+    version: '20230927_01',
+    desc: '修复：庭院加成图标，修复庭院未展开菜单适配'
 }];
 
 export default versionList[versionList.length - 1].version;
