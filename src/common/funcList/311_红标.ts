@@ -21,13 +21,12 @@ export class Func311 implements IFuncOrigin {
           name: 'redType',
           desc: '红标类型',
           type: 'list',
-          data: ['自定义坐标'],
-          default: '自定义坐标',
+          data: ['PVE顶部BOSS血条固定红标', '自定义坐标'],
+          default: 'PVE顶部BOSS血条固定红标',
         },
         {
           name: 'redPosition',
-          desc:
-            '红标坐标，仅红标类型为自定义坐标时生效，(格式x(横轴),y(纵轴)左上角为0,0)，实际点击时xy坐标会在±20内随机点击，如625,220',
+          desc: '红标坐标，仅红标类型为自定义坐标时生效，(格式x(横轴),y(纵轴)左上角为0,0)，实际点击时xy坐标会在±20内随机点击，如625,220',
           type: 'text',
           default: '625,220',
         },
@@ -36,14 +35,40 @@ export class Func311 implements IFuncOrigin {
   ];
   operator: IFuncOperatorOrigin[] = [
     {
-      // 开始战斗后的场景
+      //  开始战斗后的场景
       desc: '战斗界面',
     },
+    {
+      //  1 检测_PVE顶部BOSS血条
+      desc: [
+        1280,
+        720,
+        [
+          [center, 430, 3, 0x42291f],
+          [center, 380, 5, 0x41271f],
+          [center, 337, 4, 0x1e110c],
+        ],
+      ],
+      oper: [
+        [center, 1280, 720, 387, 15, 418, 54, 1200], //  点击 PVE顶部BOSS血条红标
+      ],
+    },
+    {
+      //  检测_PVE顶部BOSS血条已添加红标
+      desc: [
+        1280,
+        720,
+        [
+          [center, 395, 47, 0x755842],
+          [center, 410, 59, 0x755743],
+          [center, 430, 3, 0x42291f],
+          [center, 380, 5, 0x41271f],
+          [center, 337, 4, 0x1e110c],
+        ],
+      ],
+    },
   ];
-  operatorFunc(
-    thisScript: Script,
-    thisOperator: IFuncOperator[]
-  ): boolean {
+  operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
     let thisconf = thisScript.scheme.config['311'];
 
     // 已点击 需要准备方案重置
@@ -90,6 +115,30 @@ export class Func311 implements IFuncOrigin {
         thisScript.global.redFlag = true;
         thisScript.regionClick([toClick]);
         return true;
+      } else if (thisconf.redType === 'PVE顶部BOSS血条固定红标') {
+        if (
+          thisScript.oper({
+            id: 311,
+            name: '红标-PVE顶部BOSS血条已被标记',
+            operator: [thisOperator[2]],
+          })
+        ) {
+          // 点一次 需要准备方案重置才能再次点击
+          thisScript.global.redFlag = true;
+          return true;
+        }
+
+        if (
+          thisScript.oper({
+            id: 311,
+            name: '红标-检测_PVE顶部BOSS血条并点击红标',
+            operator: [thisOperator[1]],
+          })
+        ) {
+          // 点一次 需要准备方案重置才能再次点击
+          thisScript.global.redFlag = true;
+          return true;
+        }
       }
     }
 
