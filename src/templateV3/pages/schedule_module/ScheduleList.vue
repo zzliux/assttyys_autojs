@@ -16,11 +16,25 @@
       class="rv_inner"
       :style="'padding-top: ' + (46 + (statusBarHeight || 0)) + 'px'"
     >
-      <div class="van-cell-group__title" style="position: relative;">
+      <div class="van-cell-group__title" style="position: relative">
         <span>定时任务</span>
-        <span style="position: absolute; right: 16px; bottom: 3px; display: flex; text-align: right;">
+        <span
+          style="
+            position: absolute;
+            right: 16px;
+            bottom: 3px;
+            display: flex;
+            text-align: right;
+          "
+        >
           <span>免打扰模式（开启后，定时任务会直接跳过执行）：</span>
-          <span><van-switch v-model="lazyModeCpt" size="14" :loading="lazyModeLoading"></van-switch></span>
+          <span
+            ><van-switch
+              v-model="lazyModeCpt"
+              size="14"
+              :loading="lazyModeLoading"
+            ></van-switch
+          ></span>
         </span>
       </div>
       <TransitionGroup tag="span" type="transition" name="flip-list">
@@ -38,18 +52,42 @@
             :stop-propagation="true"
             :disabled="item.checked"
           >
-            <span>
+            <div>
               <div class="item-header" @click="showConfig($event, item)">
-                <div class="item-title" :style="'color: ' + (item.nextDate ? (new Date().getTime() - item.nextDate.getTime() > 180000 ? 'red' : 'initial') : ('initial'))">{{ item.id + ' ' + item.name }}</div>
-                <div class="item-value">
-                  <span class="handle-area"></span>
-                  <van-switch
-                    class="itemSwitch"
-                    v-model="item.checked"
-                    size="18"
-                    @change="onScheduleChange($event, item)"
-                  />
+                <div class="item__container">
+                  <div
+                    class="item-title"
+                    :style="
+                      'color: ' +
+                      (item.nextDate
+                        ? new Date().getTime() - item.nextDate.getTime() >
+                          180000
+                          ? 'red'
+                          : 'initial'
+                        : 'initial')
+                    "
+                  >
+                    {{ item.id + ' ' + item.name }}
+                  </div>
+                  <div class="item-value" style="display: flex">
+                    <span class="handle-area"></span>
+                    <van-button
+                      type="danger"
+                      text="立即执行"
+                      round
+                      size="mini"
+                      style="margin-right: 5px"
+                      @click.stop="runSchedule($event, item)"
+                    ></van-button>
+                    <van-switch
+                      class="itemSwitch"
+                      v-model="item.checked"
+                      size="18"
+                      @change="onScheduleChange($event, item)"
+                    />
+                  </div>
                 </div>
+
                 <div v-if="item.desc" class="item-desc">{{ item.desc }}</div>
                 <div class="item-desc">
                   上次执行开始时间:
@@ -66,7 +104,7 @@
                   }}
                 </div>
               </div>
-            </span>
+            </div>
             <template #right>
               <van-button
                 type="danger"
@@ -183,11 +221,7 @@
           box-shadow: 1px 1px 1px #eaeaea;
         "
       >
-        <van-cell
-          class="itemAdd"
-          center
-          @click="addScheduleClickEvent($event)"
-        >
+        <van-cell class="itemAdd" center @click="addScheduleClickEvent($event)">
           <div style="text-align: center; height: 24px">
             <van-icon
               name="plus"
@@ -353,7 +387,10 @@ export default defineComponent({
     });
 
     async function loadData() {
-      const savedScheduleList = await AutoWeb.autoPromise('getScheduleList', null);
+      const savedScheduleList = await AutoWeb.autoPromise(
+        'getScheduleList',
+        null
+      );
 
       scheduleList.value = mergeScheduleList(savedScheduleList, dScheduleList);
 
@@ -374,6 +411,21 @@ export default defineComponent({
 
     function saveScheduleList() {
       return AutoWeb.autoPromise('saveScheduleList', scheduleList.value);
+    }
+
+    async function runSchedule(e, item) {
+      if (Array.isArray(jobList.value)) {
+        item.nextDate = new Date(Date.now());
+        if (item.checked) {
+          if (!item.config.scheme) {
+            await AutoWeb.autoPromise('toast', '请设置执行方案');
+            item.checked = false;
+            return;
+          }
+        }
+        await saveScheduleList();
+        await AutoWeb.autoPromise('scheduleChange', item);
+      }
     }
 
     async function onScheduleChange(e, item) {
@@ -619,6 +671,7 @@ export default defineComponent({
       itemBeforeClose,
       showConfig,
       onScheduleChange,
+      runSchedule,
       showItemConfigScheme,
       showRepeatModeDialog,
       intervalInputEvent,
@@ -663,6 +716,10 @@ export default defineComponent({
   box-shadow: 1px 1px 1px #eaeaea;
 }
 
+.item__container {
+  display: flex;
+    justify-content: space-between;
+}
 .item-header {
   padding: 0px 16px 0px 16px;
 }
@@ -679,7 +736,7 @@ export default defineComponent({
 
 .item-value {
   margin-top: 5px;
-  float: right;
+  /* float: right; */
 }
 
 .item-desc {

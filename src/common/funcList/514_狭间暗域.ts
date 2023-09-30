@@ -235,7 +235,7 @@ export class Func514 implements IFuncOrigin {
                 sleep(2000);
 
                 // 点击多次未能挑战，该boss已被挑战
-                if (thisScript.global.checked_yard_count >= 5) {
+                if (thisScript.global.checked_yard_count >= 3) {
                     thisScript.global.checked_yard_count = 0;
                     let currentState = '';
 

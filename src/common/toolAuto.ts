@@ -290,7 +290,7 @@ export function doPush(thisScript: Script, options: {
                 scale = 0.05;
                 break;
             case 'Gotify':
-                scale = 0.4;
+                scale = 0.3;
                 break;
             default:
                 scale = 0.5;

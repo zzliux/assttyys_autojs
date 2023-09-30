@@ -304,7 +304,12 @@ const SchemeList: IScheme[] = [
     id: 25,
     schemeName: '宴会',
     star: true,
-    list: [0, 3, 1003, 1000, 1001, 1002, 1004],
+    list: [0, 3, 1000, 1001],
+    config: {
+      '1001': {
+        change_shikigami_index: '1',
+      },
+    },
   },
   {
     id: 26,

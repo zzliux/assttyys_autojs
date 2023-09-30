@@ -954,6 +954,15 @@ export const versionList = [{
 }, {
     version: '20230927_01',
     desc: '修复：庭院加成图标，修复庭院未展开菜单适配'
+}, {
+    version: '20230929_01',
+    desc: '修复：修复庭院已展开菜单适配'
+}, {
+    version: '20230929_02',
+    desc: `优化：寄养功能，增加空结界列表适配能力
+    优化 红标逻辑，增加PVEBOSS血条红标功能
+    优化 宴会 增加添加狗粮逻辑
+    优化 狭间 减少首领挑战次数`
 }];
 
 export default versionList[versionList.length - 1].version;
