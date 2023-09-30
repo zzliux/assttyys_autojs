@@ -15,7 +15,7 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 				[center, 360, 699, 0x241818],
 				[left, 32, 23, 0xdbb48b],
 				[right, 1122, 698, 0xddbb8f],
-				[right, 1202, 572, 0x551111],
+				// [right, 1202, 572, 0x551111],
 			]
 		]
 	},
