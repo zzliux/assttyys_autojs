@@ -464,7 +464,21 @@ const multiFindColors: IMultiFindColorsOrigin = {
                     [center, 587, 474, 0xf47028],
                     [center, 539, 456, 0xd7c9ba],
                 ]
-            ]
+            ],
+            [
+                1280, 720,
+                [
+                    [center, 595, 244, 0xf28628],
+                    [center, 587, 244, 0xf28729],
+                    [center, 579, 244, 0xf28729],
+                    [center, 571, 244, 0xf28729],
+                    [center, 563, 244, 0xf28729],
+                    [center, 555, 244, 0xf28729],
+                    [center, 586, 234, 0xdd9e8a],
+                    [center, 581, 210, 0xd2a08c],
+                    [center, 590, 232, 0xde9682],
+                ]
+            ],
         ]
     },
     '结界卡_太鼓5星': {
