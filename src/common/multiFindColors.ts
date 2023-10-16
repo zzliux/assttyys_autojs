@@ -323,13 +323,8 @@ const multiFindColors: IMultiFindColorsOrigin = {
                     [center, 580, 510, 0xd7c9ba],
                     [center, 572, 532, 0xd7c9ba],
                     [center, 577, 562, 0xd7c9ba],
-                    [center, 625, 187, 0xcbb59e],
-                    [center, 625, 579, 0xcbb59e],
-                    [center, 681, 336, 0xcbb59e],
-                    [center, 627, 556, 0xcbb59e],
-                    [center, 735, 554, 0xcbb59e],
-                    [center, 725, 181, 0xcbb59e],
-                    [center, 627, 181, 0xcbb59e],
+                    [center, 802, 554, 0xf6b45b],
+                    [center, 959, 554, 0xf4b260],
                 ]
             ]
         ]
@@ -469,7 +464,21 @@ const multiFindColors: IMultiFindColorsOrigin = {
                     [center, 587, 474, 0xf47028],
                     [center, 539, 456, 0xd7c9ba],
                 ]
-            ]
+            ],
+            [
+                1280, 720,
+                [
+                    [center, 595, 244, 0xf28628],
+                    [center, 587, 244, 0xf28729],
+                    [center, 579, 244, 0xf28729],
+                    [center, 571, 244, 0xf28729],
+                    [center, 563, 244, 0xf28729],
+                    [center, 555, 244, 0xf28729],
+                    [center, 586, 234, 0xdd9e8a],
+                    [center, 581, 210, 0xd2a08c],
+                    [center, 590, 232, 0xde9682],
+                ]
+            ],
         ]
     },
     '结界卡_太鼓5星': {
