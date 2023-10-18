@@ -27,6 +27,11 @@ export class Func002 implements IFuncOrigin {
 			desc: '下一个方案',
 			type: 'scheme',
 			default: '关闭BUFF',
+		}, {
+			name: 'mini_area_click',
+			desc: '是否缩小区域点击，解决部分掉落过多时点击错误的问题',
+			type: 'switch',
+			default: false,
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{
@@ -88,7 +93,7 @@ export class Func002 implements IFuncOrigin {
 		],
 		notForCnt: true, // 点击确认不统计退出结算的次数
 	}, {
-		// 单人-胜利太鼓
+		// 6 单人-胜利太鼓
 		desc: '退出结算_单人_胜利太鼓',
 		operStepRandom: [
 			[
@@ -98,7 +103,7 @@ export class Func002 implements IFuncOrigin {
 		],
 		notForCnt: true,
 	}, {
-		// 组队-胜利太鼓,斗技-胜利太鼓
+		// 7 组队-胜利太鼓,斗技-胜利太鼓
 		desc: '退出结算_组队_胜利太鼓',
 		operStepRandom: [
 			[
@@ -110,7 +115,7 @@ export class Func002 implements IFuncOrigin {
 		notForCnt: true,
 	},
 	{
-		// 组队-胜利太鼓,斗技-胜利太鼓 - 适配
+		// 8 组队-胜利太鼓,斗技-胜利太鼓 - 适配
 		desc: '退出结算_斗技_胜利太鼓',
 		operStepRandom: [
 			[
@@ -240,6 +245,25 @@ export class Func002 implements IFuncOrigin {
 				sleep(3000);
 				return;
 			}
+		}
+		if (thisconf && thisconf.mini_area_click && thisScript.oper({
+			id: 2,
+			name: '退出结算_小区域点击',
+			operator: [{
+				desc: '退出结算_已打开的达摩_1',
+				oper: thisOperator[0].oper
+			}, {
+				desc: '退出结算_已打开的达摩_2',
+				oper: thisOperator[0].oper
+			}, {
+				desc: '退出结算_已打开的达摩_3',
+				oper: thisOperator[0].oper
+			}, {
+				desc: '退出结算_单人_胜利太鼓',
+				oper: thisOperator[0].oper
+			}]
+		})) {
+			return true
 		}
 		return thisScript.oper({
 			id: 2,

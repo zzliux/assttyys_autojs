@@ -3006,6 +3006,52 @@ const multiFindColors: IMultiFindColorsOrigin = {
                 [center, 93, 464, 0x232324],
             ]
         ]],
+    },
+    '返回图标': {
+        region: [left, 1280, 720, 0, 0, 253, 145],
+        desc: [[ // 准备界面、站斗界面的左上角返回图标
+            1280, 720,
+            [
+                [center, 28, 23, 0xd9b48c],
+                [center, 33, 40, 0xcea478],
+                [center, 46, 31, 0xd8b289],
+                [center, 60, 33, 0x825e41],
+                [center, 11, 31, 0x896343],
+                [center, 36, 7, 0x4c3432],
+            ]
+        ], [ // 对弈竞猜界面左上角的返回图标
+            1280, 720,
+            [
+                [center, 38, 24, 0x8e6036],
+                [center, 40, 53, 0x8a5d33],
+                [center, 46, 39, 0xf6e7a8],
+                [center, 71, 39, 0x855a31],
+                [center, 59, 63, 0xd8be8d],
+            ]
+        ], [ // 商店主界面的左上角返回图标
+            1280, 720,
+            [
+                [center, 35, 38, 0x2d156a],
+                [center, 35, 58, 0xf0f5fb],
+                [center, 35, 83, 0x21162b],
+                [center, 61, 83, 0x201c47],
+                [center, 57, 72, 0xdeeaf8],
+                [center, 56, 41, 0xd5e4f5],
+                [center, 74, 43, 0x1a2662],
+            ]
+        ], [ // 道馆突破主界面的左上角返回图标
+            1280, 720,
+            [
+                [center, 25, 21, 0xd6c4a1],
+                [center, 48, 29, 0xd6c4a1],
+                [center, 43, 20, 0xd6c4a1],
+                [center, 35, 45, 0xd6c4a1],
+                [center, 27, 39, 0xd6c4a0],
+                [center, 27, 51, 0x2b1f12],
+                [center, 51, 47, 0x2c2013],
+                [center, 40, 9, 0x291a10],
+            ]
+        ]]
     }
 }
 

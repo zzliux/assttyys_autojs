@@ -966,6 +966,9 @@ export const versionList = [{
 }, {
     version: '20231016_01',
     desc: '修复：椒图柔风计数'
+}, {
+    version: '20231018_01',
+    desc: '优化：02退出结算增加参数“小区域点击”，用于解决掉落过多时点击错误的问题'
 }];
 
 export default versionList[versionList.length - 1].version;
