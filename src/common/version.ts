@@ -963,6 +963,9 @@ export const versionList = [{
     优化 红标逻辑，增加PVEBOSS血条红标功能
     优化 宴会 增加添加狗粮逻辑
     优化 狭间 减少首领挑战次数`
+}, {
+    version: '20231016_01',
+    desc: '修复：椒图柔风计数'
 }];
 
 export default versionList[versionList.length - 1].version;

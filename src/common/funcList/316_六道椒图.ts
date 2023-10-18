@@ -475,7 +475,6 @@ export class Func316 implements IFuncOrigin {
                   500
                ]];
                thisScript.regionClick(oper);
-               thisScript.global.d6RouFeng++;
                thisScript.regionClick([thisOperator[22].oper[1]]);
             } else {
                thisScript.regionClick([thisOperator[22].oper[1]]);
