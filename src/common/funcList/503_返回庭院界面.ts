@@ -274,7 +274,13 @@ export class Func503 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, -1, -1, -1, -1, 2000]
 			]
-		}];
+		}, {
+			// 23 战斗场景_手动状态等待
+			desc: '战斗界面_手动状态',
+			oper: [
+				[center, 1280, 720, -1, -1, -1, -1, 2000]
+			]
+	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let thisConf = thisScript.scheme.config['503'];
 		if (thisScript.global.change_shikigami_flag && thisScript.oper({
