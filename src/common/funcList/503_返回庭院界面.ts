@@ -294,11 +294,11 @@ export class Func503 implements IFuncOrigin {
 		}
 
 		// 查找返回图标
-		const backPoint = thisScript.findMultiColor('返回图标');
-		if (backPoint) {
-			thisScript.regionClick([[backPoint.x, backPoint.y, backPoint.x + 20, backPoint.y + 20, 1200]]);
-			return true;
-		}
+		// const backPoint = thisScript.findMultiColor('返回图标');
+		// if (backPoint) {
+		// 	thisScript.regionClick([[backPoint.x, backPoint.y, backPoint.x + 20, backPoint.y + 20, 1200]]);
+		// 	return true;
+		// }
 
 		if (thisScript.oper({
 			name: '是否为庭院',
