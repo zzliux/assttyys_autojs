@@ -43,12 +43,14 @@ export class Func027 implements IFuncOrigin {
 		]
 	}, {
 		desc: [1280, 720,
-			[[center, 840, 143, 0xd7c8ba],
-			[center, 623, 620, 0xccbbaa],
-			[center, 721, 625, 0xf4b25f],
-			[center, 422, 631, 0xdc935a],
-			[center, 722, 156, 0xdbcdc4],
-			[center, 1134, 98, 0x482f28]]
+			[
+				[center, 840, 143, 0xd7c8ba],
+				[center, 623, 620, 0xccbbaa],
+				[center, 721, 625, 0xf4b25f],
+				[center, 446, 625, 0xf3b25e],
+				[center, 722, 156, 0xdbcdc4],
+				[center, 1134, 98, 0x482f28]
+			]
 		],
 		oper: [
 			[center, 1280, 720, 702, 601, 865, 650, 1000] //组队界面 自动匹配
