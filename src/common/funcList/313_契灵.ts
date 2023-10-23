@@ -338,6 +338,7 @@ export class Func313 implements IFuncOrigin {
 				thisScript.regionClick([thisOperator[3].oper[0]]);
 				thisScript.global.change_shikigami_state = 'flushed';
 			} else if (thisScript.global.qiling_last !== i && thisScript.global.preset_once_groupNum > 0) {
+				thisScript.global.qiling_last = i;
 				thisScript.regionClick([thisOperator[3].oper[0]]);
 				thisScript.global.change_shikigami_state = 'flushed';
 			}
