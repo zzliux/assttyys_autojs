@@ -969,6 +969,11 @@ export const versionList = [{
 }, {
     version: '20231018_01',
     desc: '优化：02退出结算增加参数“小区域点击”，用于解决掉落过多时点击错误的问题'
-}];
+}, {
+    version: '20231026_01',
+    desc: `优化:51绿标,准备后先识别是否有绿标(道馆需求)(需开启功能51内的准备前查找坐标选项)
+    优化:1准备后延时时间
+    修复:316椒图柔风计数,需重置方案或者手动把功能316移至功能2前`
+},];
 
 export default versionList[versionList.length - 1].version;

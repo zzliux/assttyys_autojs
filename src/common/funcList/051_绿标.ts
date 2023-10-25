@@ -35,7 +35,7 @@ export class Func051 implements IFuncOrigin {
 			default: '模糊'
 		}, {
 			name: 'preSearch',
-			desc: '准备时查找坐标，开局后立即进行绿标，需取消锁定阵容，并将该功能排序排在准备前',
+			desc: '准备前查找坐标，准备后立即进行绿标，需取消锁定阵容，并将该功能排序排在准备前(准备后已绿标则不会再次绿标)',
 			type: 'switch',
 			default: false,
 		}, {
@@ -53,7 +53,7 @@ export class Func051 implements IFuncOrigin {
 			[left, 1280, 720, 0, 0, 26, 40, -1], // 下方位置的矩形
 			[left, 1280, 720, 0, 0, 1279, 719, -1], // 屏幕大小
 			[center, 1280, 720, 0, 200, 1279, 590, -1], // 文本识别的区域
-			[right, 1280, 720, 1137,542, 1228,632, 700], // 准备
+			[right, 1280, 720, 1137, 542, 1228, 632, 700], // 准备
 		]
 	}, {
 		// 准备界面 - 未准备
@@ -72,9 +72,9 @@ export class Func051 implements IFuncOrigin {
 		let thisconf = thisScript.scheme.config['51'];
 		const [offsetX, offsetY] = (thisconf.offset as string || '0,0').split(',').map(item => parseInt(item, 10));
 		thisScript.oper({
-      name: '绿标内手动切自动',
-      operator: [thisOperator[3]]
-    })
+			name: '绿标内手动切自动',
+			operator: [thisOperator[3]]
+		})
 		// 准备界面就开始查找，找到后记录坐标，在战斗开始后第一时间对找到的坐标进行标记
 		if (thisconf.preSearch) {
 			if (thisScript.oper({
@@ -118,7 +118,7 @@ export class Func051 implements IFuncOrigin {
 						Math.max(lx, 0) + offsetX,
 						Math.max(ly, 0) + offsetY,
 						Math.min(rx, thisOperator[0].oper[2][2]) + offsetX,
-						Math.min(ry,thisOperator[0].oper[2][3]) + offsetY,
+						Math.min(ry, thisOperator[0].oper[2][3]) + offsetY,
 						1000
 					];
 					thisScript.global.greenPosition = toClick;
@@ -143,9 +143,7 @@ export class Func051 implements IFuncOrigin {
 						inY + 20,
 						1000
 					]
-					sleep(500);
-					thisScript.regionClick([thisOperator[0].oper[4]]);
-					thisScript.regionClick([toClick]);
+					thisScript.global.greenPosition = toClick;
 					return true;
 				}
 			}
@@ -157,7 +155,9 @@ export class Func051 implements IFuncOrigin {
 					desc: thisOperator[0].desc,
 				}]
 			})) {
-				thisScript.regionClick([thisScript.global.greenPosition]);
+				if (!thisScript.findMultiColor('绿标')){
+					thisScript.regionClick([thisScript.global.greenPosition]);
+				}
 				thisScript.global.greenPosition = null;
 				return true;
 			}

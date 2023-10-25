@@ -8,6 +8,7 @@ const right = 2;
 export class Func316 implements IFuncOrigin {
    id = 316;
    name = '六道椒图';
+   desc: '应排在[2退出结算]前';
    config = [{
       desc: '配置',
       config: [{
