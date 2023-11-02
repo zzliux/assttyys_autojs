@@ -317,7 +317,7 @@ export class Func503 implements IFuncOrigin {
 			}]
 		})) {
 
-		 // 町中与庭院几乎一致。。。只能用牌子来做比较
+			// 町中与庭院几乎一致。。。只能用牌子来做比较
 			if (thisScript.oper({
 				name: '旧版町中界面',
 				operator: [{
@@ -345,17 +345,17 @@ export class Func503 implements IFuncOrigin {
 						thisScript.stop();
 					} else if ('关闭应用' === thisConf.afterCountOper) {
 						sleep(1000);
-					 // let storeSettings = thisScript.storeCommon.get('settings', {});
-					 // if (storeSettings.defaultLaunchAppList && storeSettings.defaultLaunchAppList.length) {
-					 // 	storeSettings.defaultLaunchAppList.forEach(packageName => {
-					 // 		thisScript.myToast(`停止应用[${packageName}]`);
-					 // 		$shell(`am force-stop ${packageName}`, true);
-					 // 		thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，应用[${packageName}]已杀，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-					 // 		sleep(1000);
-					 // 	});
-					 // } else {
-					 // 	thisScript.myToast('未配置关联应用，不执行停止操作');
-					 // }
+						// let storeSettings = thisScript.storeCommon.get('settings', {});
+						// if (storeSettings.defaultLaunchAppList && storeSettings.defaultLaunchAppList.length) {
+						// 	storeSettings.defaultLaunchAppList.forEach(packageName => {
+						// 		thisScript.myToast(`停止应用[${packageName}]`);
+						// 		$shell(`am force-stop ${packageName}`, true);
+						// 		thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，应用[${packageName}]已杀，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+						// 		sleep(1000);
+						// 	});
+						// } else {
+						// 	thisScript.myToast('未配置关联应用，不执行停止操作');
+						// }
 
 						const packageNames = thisScript.stopRelatedApp();
 						thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，应用[${packageNames}]已杀，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });

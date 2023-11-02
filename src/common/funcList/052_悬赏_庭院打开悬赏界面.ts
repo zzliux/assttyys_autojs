@@ -2,7 +2,7 @@ import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFu
 import { Script } from '@/system/script';
 const left = 0;
 const center = 1;
-const right = 2;
+// const right = 2;
 
 export class Func052 implements IFuncOrigin {
 	id = 52;

@@ -3,7 +3,7 @@ import { Script } from '@/system/script';
 // const normal = -1; //定义常量
 const left = 0;
 const center = 1;
-const right = 2;
+// const right = 2;
 let swiper = 0
 
 export class Func047 implements IFuncOrigin {
