@@ -8,8 +8,8 @@
  * @LastEditTime: 2021-04-19 12:19:14
  */
 
+/*eslint-disable */
 let mUtil = {};
-
 (function () {
     const scale = context.getResources().getDisplayMetrics().density;
     let config = context.getResources().getConfiguration();

@@ -1,6 +1,6 @@
 import { Script } from '@/system/script';
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -105,7 +105,7 @@ export class Func006 implements IFuncOrigin {
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let curCnt = 0;
-		let maxCount = 3;
+		const maxCount = 3;
 
 		if (thisScript.oper({
 			name: '战斗界面检测',
@@ -113,11 +113,11 @@ export class Func006 implements IFuncOrigin {
 				desc: '战斗界面',
 			}]
 		})) {
-			let point = thisScript.findMultiColor('御魂挑战_喂猫喂狗');
+			const point = thisScript.findMultiColor('御魂挑战_喂猫喂狗');
 
 			if (point) {
-				console.log(`查找御魂挑战_喂猫喂狗成功`);
-				let oper = [[
+				console.log('查找御魂挑战_喂猫喂狗成功');
+				const oper = [[
 					point.x - 5,
 					point.y - 5,
 					point.x + 5,

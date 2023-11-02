@@ -1,7 +1,7 @@
 import { Script } from '@/system/script';
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -91,7 +91,7 @@ export class Func014 implements IFuncOrigin {
 			// })) {
 			// 	return true;
 			// }
-			let thisconf = thisScript.scheme.config['14'];
+			const thisconf = thisScript.scheme.config['14'];
 			if (thisScript.global.tsAttackSwhipeNum === undefined) {
 				thisScript.global.tsAttackSwhipeNum = parseInt(String(thisconf.swipeTime), 10);
 				// sleep(3000); // 从地图进来，先休息一下再进行判断
@@ -110,7 +110,7 @@ export class Func014 implements IFuncOrigin {
 			if ('无差别' === thisconf.type) {
 				point = thisScript.findMultiColor('探索_挑战BOSS');
 				if (point) {
-					let oper = [[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
+					const oper = [[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
 					thisScript.regionClick(oper);
 					thisScript.global.tsAttackSwhipeNum = 1;
 					return true;
@@ -121,7 +121,7 @@ export class Func014 implements IFuncOrigin {
 				do {
 					point = thisScript.findMultiColor('探索_挑战BOSS');
 					if (point) {
-						let oper = [[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
+						const oper = [[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
 						thisScript.regionClick(oper);
 						thisScript.global.tsAttackSwhipeNum = 1;
 						return true;
@@ -133,13 +133,13 @@ export class Func014 implements IFuncOrigin {
 						flagPointAll = thisScript.findMultiColorEx('探索_掉落标识');
 					}
 					if (flagPointAll.length > 0) {
-						let pointAll = thisScript.findMultiColorEx('探索_挑战');
+						const pointAll = thisScript.findMultiColorEx('探索_挑战');
 						if (pointAll.length > 0) {
 							let minDistPow = 0xFFFFFFFF;
-							for (let flagPoint of flagPointAll) {
-								for (let kPoint of pointAll) {
+							for (const flagPoint of flagPointAll) {
+								for (const kPoint of pointAll) {
 									if (kPoint.y - thisOperator[0].oper[5][2] > flagPoint.y) continue; // 排除挑战图标高度不在经验/掉落标识之上的
-									let distPow = Math.pow(kPoint.x - flagPoint.x, 2) + Math.pow(kPoint.y - flagPoint.y, 2);
+									const distPow = Math.pow(kPoint.x - flagPoint.x, 2) + Math.pow(kPoint.y - flagPoint.y, 2);
 									if (minDistPow > distPow) {
 										minDistPow = distPow;
 										point = kPoint;
@@ -159,7 +159,7 @@ export class Func014 implements IFuncOrigin {
 				} while (!point && --trycnt > 0);
 			}
 			if (point) {
-				let oper = [[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
+				const oper = [[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
 				thisScript.regionClick(oper);
 				return true;
 			} else {

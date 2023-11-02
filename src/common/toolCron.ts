@@ -25,7 +25,7 @@ export function checkedDateByCron(cronData: string, nowDate = new Date()) {
     const _dateCron = _cronArray[3];
     _result.push(compareDate(_dateCron, nowDate.getDate()));
 
-    const _monthCron = _cronArray[4];
+    // const _monthCron = _cronArray[4];
     _result.push(compareDate(_cronArray[4], nowDate.getMonth()));
 
     const _dayCron = _cronArray[5];
@@ -105,27 +105,25 @@ export function getNextByCron(cronData: string, nowDate = new Date(), _runCount 
     // console.log('y', nowDate.toString());
 
     // 判断当前位是否有更改，若有变更，其后置位取最小值
-    switch (true) {
-        case _originalDate.getFullYear() !== nowDate.getFullYear(): {
-            const _t = isGreaterCron(_monthCron, 0);
-            nowDate.setMonth(_t.time);
-        }
-        case _originalDate.getMonth() !== nowDate.getMonth(): {
-            const _t = isGreaterCron(_dateCron, 1);
-            _t.time !== 0 && nowDate.setDate(_t.time);
-        }
-        case _originalDate.getDate() !== nowDate.getDate(): {
-            const _t = isGreaterCron(_hourCron, 0);
-            nowDate.setHours(_t.time);
-        }
-        case _originalDate.getHours() !== nowDate.getHours(): {
-            const _t = isGreaterCron(_minuteCron, 0);
-            nowDate.setMinutes(_t.time);
-        }
-        case _originalDate.getMinutes() !== nowDate.getMinutes(): {
-            const _t = isGreaterCron(_secondCron, 0);
-            nowDate.setSeconds(_t.time);
-        }
+    if (_originalDate.getFullYear() !== nowDate.getFullYear()) {
+        const _t = isGreaterCron(_monthCron, 0);
+        nowDate.setMonth(_t.time);
+    }
+    if (_originalDate.getMonth() !== nowDate.getMonth()) {
+        const _t = isGreaterCron(_dateCron, 1);
+        _t.time !== 0 && nowDate.setDate(_t.time);
+    }
+    if (_originalDate.getDate() !== nowDate.getDate()) {
+        const _t = isGreaterCron(_hourCron, 0);
+        nowDate.setHours(_t.time);
+    }
+    if (_originalDate.getHours() !== nowDate.getHours()) {
+        const _t = isGreaterCron(_minuteCron, 0);
+        nowDate.setMinutes(_t.time);
+    }
+    if (_originalDate.getMinutes() !== nowDate.getMinutes()) {
+        const _t = isGreaterCron(_secondCron, 0);
+        nowDate.setSeconds(_t.time);
     }
 
     // 判断当前日期是否符合cron

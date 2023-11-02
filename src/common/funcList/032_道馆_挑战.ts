@@ -1,6 +1,6 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -61,7 +61,7 @@ export class Func032 implements IFuncOrigin {
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		let thisConf = thisScript.scheme.config['32'];
+		// const thisconf = thisScript.scheme.config['32'];
 
 		if (thisScript.oper({
 			name: '检测_挑战是否可用',

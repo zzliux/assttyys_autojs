@@ -1,6 +1,6 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -64,11 +64,11 @@ export class Func043 implements IFuncOrigin {
 				desc: thisOperator[2].desc
 			}]
 		})) {
-			let unknownStory, challengeArr;
-			unknownStory = thisScript.findMultiColor('悬赏_挑战字样') || null;
+			let challengeArr;
+			const unknownStory = thisScript.findMultiColor('悬赏_挑战字样') || null;
 			// 如果有挑战副本
 			if (unknownStory) {
-				let oper = [
+				const oper = [
 					[unknownStory.x + 440, unknownStory.y, unknownStory.x + thisOperator[0].oper[0][2] + 440, unknownStory.y + thisOperator[0].oper[0][3], 4000]
 				];
 				thisScript.regionClick(oper);
@@ -81,7 +81,7 @@ export class Func043 implements IFuncOrigin {
 					const challenge = challengeArr.reduce((min, obj) => {
 						return obj.y < min.y ? obj : min;
 					});
-					let oper = [
+					const oper = [
 						[challenge.x + 440, challenge.y, challenge.x + thisOperator[0].oper[0][2] + 440, challenge.y + thisOperator[0].oper[0][3], 4000]
 					];
 					thisScript.regionClick(oper);

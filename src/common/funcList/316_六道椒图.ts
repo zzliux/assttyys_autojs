@@ -1,6 +1,6 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -412,9 +412,9 @@ export class Func316 implements IFuncOrigin {
          operator: [{ desc: thisOperator[4].desc }]
       })) {
          if (thisScript.global.d6RouFeng < 5) {//  柔风达标前选buff
-            let point = thisScript.findMultiColor("六道椒图_升级buff");
+            const point = thisScript.findMultiColor('六道椒图_升级buff');
             if (point) {//  有升级按钮_选择升级
-               let oper = [[
+               const oper = [[
                   point.x - 40,
                   point.y + 410,
                   point.x + 70,
@@ -423,7 +423,7 @@ export class Func316 implements IFuncOrigin {
                ]];
                thisScript.regionClick(oper);
                thisScript.global.d6RouFeng++;
-               log("当前柔风数量:" + thisScript.global.d6RouFeng);
+               log('当前柔风数量:' + thisScript.global.d6RouFeng);
                return true;
             }
             else if (thisScript.oper({
@@ -445,7 +445,7 @@ export class Func316 implements IFuncOrigin {
          } else {
             thisScript.regionClick([thisOperator[4].oper[0]]);
          }
-         log("当前柔风数量:" + thisScript.global.d6RouFeng);
+         log('当前柔风数量:' + thisScript.global.d6RouFeng);
          return true;
       }
 
@@ -457,7 +457,7 @@ export class Func316 implements IFuncOrigin {
          thisScript.regionClick([thisOperator[22].oper[0]]);
          thisScript.regionClick([thisOperator[22].oper[1]]);
          thisScript.global.d6RouFeng++;
-         log("当前柔风数量:" + thisScript.global.d6RouFeng);
+         log('当前柔风数量:' + thisScript.global.d6RouFeng);
          return true;
       }
       if (thisScript.oper({
@@ -466,9 +466,9 @@ export class Func316 implements IFuncOrigin {
          operator: [{ desc: thisOperator[7].desc }]
       })) {
          if (thisScript.global.d6RouFeng < 5) {//  柔风达标前购买buff
-            let point = thisScript.findMultiColor("六道椒图_购买buff");
+            const point = thisScript.findMultiColor('六道椒图_购买buff');
             if (point) {//  有购买按钮_选择购买
-               let oper = [[
+               const oper = [[
                   point.x - 10,
                   point.y + 50,
                   point.x + 10,
@@ -479,12 +479,12 @@ export class Func316 implements IFuncOrigin {
                thisScript.regionClick([thisOperator[22].oper[1]]);
             } else {
                thisScript.regionClick([thisOperator[22].oper[1]]);
-               log("当前柔风数量:" + thisScript.global.d6RouFeng);
+               log('当前柔风数量:' + thisScript.global.d6RouFeng);
                return true;
             }
          } else {
             thisScript.regionClick([thisOperator[22].oper[1]]);
-            log("当前柔风数量:" + thisScript.global.d6RouFeng);
+            log('当前柔风数量:' + thisScript.global.d6RouFeng);
             return true;
          }
 
@@ -499,7 +499,7 @@ export class Func316 implements IFuncOrigin {
          ]
       })) {
          thisScript.global.d6RouFeng++;
-         log("当前柔风数量:" + thisScript.global.d6RouFeng);
+         log('当前柔风数量:' + thisScript.global.d6RouFeng);
          return true;
       }
 

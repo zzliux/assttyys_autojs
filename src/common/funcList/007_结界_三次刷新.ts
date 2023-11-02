@@ -1,8 +1,8 @@
 import { Script } from '@/system/script';
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 
-const normal = -1; //定义常量
-const left = 0;
+// const normal = -1; //定义常量
+// const left = 0;
 const center = 1;
 const right = 2;
 
@@ -111,7 +111,7 @@ export class Func007 implements IFuncOrigin {
 		})) {
 			const thisconf = thisScript.scheme.config['7'];
 			const switch_nineWin = thisconf?.switch_nineWin;
-			if ((switch_nineWin && thisScript.findMultiColor("突破失败")) || !switch_nineWin) {
+			if ((switch_nineWin && thisScript.findMultiColor('突破失败')) || !switch_nineWin) {
 				return thisScript.oper({
 					id: 7,
 					name: '三次刷新',
@@ -120,7 +120,7 @@ export class Func007 implements IFuncOrigin {
 			}
 		}
 		return false;
-	};
+	}
 }
 
 export default new Func007();

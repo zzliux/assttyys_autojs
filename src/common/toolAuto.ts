@@ -25,7 +25,7 @@ export function requestMyScreenCapture(callback: Function, helperBridge: Ihelper
             }
         });
     }
-    // @ts-ignore
+    // @ts-expect-error d.ts文件问题
     requestScreenCaptureAsync(getWidthPixels() < getHeightPixels()).then(function (success: boolean) {
         if (success) {
             helperBridge.init();
@@ -44,7 +44,7 @@ export function requestMyScreenCapture(callback: Function, helperBridge: Ihelper
  * @param {string} str
  */
 function _toast(str: string) {
-    let toast = android.widget.Toast.makeText(context.getApplicationContext(), str.toString(), android.widget.Toast.LENGTH_LONG);
+    const toast = android.widget.Toast.makeText(context.getApplicationContext(), str.toString(), android.widget.Toast.LENGTH_LONG);
     // let layout = toast.getView();
     //设置景
     // layout.setBackgroundColor(android.graphics.Color.parseColor("#000000"))
@@ -82,7 +82,7 @@ function parsePMFlags(options, def) {
 
     function parseFlags(type, options) {
         let flags = 0;
-        let flagStrings = options[type];
+        const flagStrings = options[type];
         if (!flagStrings) {
             return flags;
         }
@@ -91,24 +91,24 @@ function parsePMFlags(options, def) {
         }
         flagStrings.forEach(str => {
             // TODO 找到aj源码里面的PM是啥玩意儿
-            // @ts-ignore
-            flags |= PM[(type + "_" + str).toUpperCase()];
+            // @ts-expect-error d.ts文件问题
+            flags |= PM[(type + '_' + str).toUpperCase()];
         });
         return flags;
     }
 
-    return def | parseFlags("get", options) | parseFlags("match", options);
+    return def | parseFlags('get', options) | parseFlags('match', options);
 }
 
 export const getInstalledApps = function (options) {
-    let flags = parsePMFlags(options, android.content.pm.PackageManager.GET_META_DATA);
+    const flags = parsePMFlags(options, android.content.pm.PackageManager.GET_META_DATA);
     return toJsArray(context.packageManager.getInstalledApplications(flags)).map(appInfo => {
         return new com.stardust.autojs.core.pm.AppInfo(context, appInfo)
     });
 }
 
 export const getInstalledPackages = function (options?) {
-    let flags = parsePMFlags(options, android.content.pm.PackageManager.GET_META_DATA);
+    const flags = parsePMFlags(options, android.content.pm.PackageManager.GET_META_DATA);
     return toJsArray(context.packageManager.getInstalledPackages(flags)).map(pkgInfo => {
         pkgInfo.applicationInfo = new com.stardust.autojs.core.pm.AppInfo(context, pkgInfo.applicationInfo);
         return pkgInfo;
@@ -116,13 +116,13 @@ export const getInstalledPackages = function (options?) {
 }
 
 export const getApkInfo = function (file, options) {
-    let flags = parsePMFlags(options, android.content.pm.PackageManager.GET_META_DATA);
+    const flags = parsePMFlags(options, android.content.pm.PackageManager.GET_META_DATA);
     return context.packageManager.getPackageArchiveInfo(files.path(file), flags);
 }
 
 export const toJsArray = function (iterable) {
-    var iterator = iterable.iterator();
-    var arr = [];
+    const iterator = iterable.iterator();
+    const arr = [];
     while (iterator.hasNext()) {
         arr.push(iterator.next());
     }
@@ -138,10 +138,10 @@ export const toJsArray = function (iterable) {
  * @returns
  */
 export function getRegionBiasRnd(region, pointBias, influence) {
-    let rnd1 = Math.random() * (region[2] - region[0]) + region[0];
-    let rnd2 = Math.random() * (region[3] - region[1]) + region[1];
-    let mix1 = Math.sqrt(Math.random() * influence);
-    let mix2 = Math.sqrt(Math.abs(mix1 * mix1 - Math.pow(Math.random() * influence, 2)));
+    const rnd1 = Math.random() * (region[2] - region[0]) + region[0];
+    const rnd2 = Math.random() * (region[3] - region[1]) + region[1];
+    const mix1 = Math.sqrt(Math.random() * influence);
+    const mix2 = Math.sqrt(Math.abs(mix1 * mix1 - Math.pow(Math.random() * influence, 2)));
     if (region[2] - region[0] < region[3] - region[1]) {
         return [Math.floor(rnd1 * (1 - mix1) + pointBias[0] * mix1), Math.floor(rnd2 * (1 - mix2) + pointBias[1] * mix2)];
     } else {
@@ -187,11 +187,11 @@ export function hash(lowerBound: number, upperBound: number, str: string): numbe
         return lowerBound;
     }
     for (let i = 0; i < str.length; i++) {
-        let charCode = str.charCodeAt(i);
+        const charCode = str.charCodeAt(i);
         hash = ((hash << 5) - hash) + charCode;
         hash = hash & hash; // Convert to 32bit integer
     }
-    let range = upperBound - lowerBound + 1;
+    const range = upperBound - lowerBound + 1;
     return (hash & 0x7fffffff) % range + lowerBound;
 }
 
@@ -203,10 +203,10 @@ export function hash(lowerBound: number, upperBound: number, str: string): numbe
  * @returns
  */
 export function strHashToNum(str, start, end) {
-    let sStart = (end - start) / 4 + start;
-    let sEnd = (start - end) / 4 + end;
+    const sStart = (end - start) / 4 + start;
+    const sEnd = (start - end) / 4 + end;
     let sum = 0;
-    let factor = 13;
+    const factor = 13;
     for (let i = 0; i < str.length; i++) {
         sum += str.charCodeAt(i) * factor;
     }
@@ -220,7 +220,7 @@ export function strHashToNum(str, start, end) {
  */
 export function ospPush(userToken: string, data: { type: string, data: string }[] | string) {
     return http.postJson('https://assttyys.zzliux.cn/api/osp/send', {
-        // @ts-ignore
+        // @ts-expect-error d.ts文件问题
         userToken,
         data
     });
@@ -233,7 +233,7 @@ export function ospPush(userToken: string, data: { type: string, data: string }[
  */
 export function oneBotPush(url: string, data: { type: string, data: Record<string, any> }[] | string) {
     return http.postJson(url, {
-        // @ts-ignore
+        // @ts-expect-error d.ts文件问题
         message: data
     });
 }
@@ -262,7 +262,7 @@ export function doPush(thisScript: Script, options: {
     before?: () => void,
     after?: () => void
 }): void {
-    let storeSettings = storeCommon.get('settings', {});
+    const storeSettings = storeCommon.get('settings', {});
     if (storeSettings.push_type === '关闭推送') {
         console.log('推送已关闭，不执行推送');
         return;
@@ -295,15 +295,15 @@ export function doPush(thisScript: Script, options: {
             default:
                 scale = 0.5;
         }
-        let bmp = scaleBmp(thisScript.helperBridge.helper.GetBitmap(), scale);
-        let baos = new java.io.ByteArrayOutputStream();
+        const bmp = scaleBmp(thisScript.helperBridge.helper.GetBitmap(), scale);
+        const baos = new java.io.ByteArrayOutputStream();
         bmp.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, baos);
         baos.flush();
         baos.close();
         bmp.recycle();
 
-        let b64str = android.util.Base64.encodeToString(baos.toByteArray(), android.util.Base64.NO_WRAP);
-        let data = [{
+        const b64str = android.util.Base64.encodeToString(baos.toByteArray(), android.util.Base64.NO_WRAP);
+        const data = [{
             type: 'text',
             data: storeSettings.msgPush_prefix
         }, {
@@ -343,8 +343,8 @@ export function doPush(thisScript: Script, options: {
                 title: storeSettings.msgPush_prefix,
                 priority: 8,    // 消息等级 https://github.com/gotify/android
                 extras: {
-                    "client::display": {
-                        contentType: "text/markdown"    //  将message标记为markdown
+                    'client::display': {
+                        contentType: 'text/markdown'    //  将message标记为markdown
                     }
                 },
                 message: `${options.text}  \n  ![](data:image/png;base64,${b64str})`
@@ -356,9 +356,9 @@ export function doPush(thisScript: Script, options: {
                 content: `<p>${options.text}</p><img src="data:image/png;base64,${b64str}" />`
             })
         }
-        // @ts-ignore
+        console.log(res.body.string());
         // myToast(`提交推送响应内容：${res.body.string()}`);
-        myToast(`推送成功!`);
+        myToast('推送成功!');
         options && options.after && options.after();
     } catch (e) {
         myToast(`提交推送发生了错误：${e}`);
@@ -367,22 +367,22 @@ export function doPush(thisScript: Script, options: {
 }
 
 export function scaleBmp(bmp, scale: number) {
-    let width = bmp.getWidth();
-    let height = bmp.getHeight();
-    let matrix = new android.graphics.Matrix();
+    const width = bmp.getWidth();
+    const height = bmp.getHeight();
+    const matrix = new android.graphics.Matrix();
     matrix.postScale(scale, scale);
-    let newBmp = android.graphics.Bitmap.createBitmap(bmp, 0, 0, width, height, matrix, false);
+    const newBmp = android.graphics.Bitmap.createBitmap(bmp, 0, 0, width, height, matrix, false);
     bmp.recycle();
     return newBmp;
 }
 
 
 export const mergeSchemeList = (savedSchemeList: IScheme[], innerSchemeList: IScheme[]) => {
-    let toMerge = [];
-    for (let innerScheme of innerSchemeList) {
+    const toMerge = [];
+    for (const innerScheme of innerSchemeList) {
         let flag = true;
         innerScheme.inner = true;
-        for (let savedScheme of savedSchemeList) {
+        for (const savedScheme of savedSchemeList) {
             if (savedScheme.schemeName === innerScheme.schemeName) {
                 flag = false;
                 break;

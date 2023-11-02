@@ -1,6 +1,6 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -78,19 +78,19 @@ export class Func206 implements IFuncOrigin {
 			// ajImg.saveTo(`/sdcard/Pictures/${new Date().getTime()}.png`);
 			// ajImg.recycle();
 
-			let cost = { '腐草为萤': 300, '妖力化身': 300, '六道净化': 200, '萤火之光': 300 };
+			const cost = { '腐草为萤': 300, '妖力化身': 300, '六道净化': 200, '萤火之光': 300 };
 			let coins = 0;
-			let result = thisScript.findText('.+', 0, thisOperator[0].oper[2], '包含');
+			const result = thisScript.findText('.+', 0, thisOperator[0].oper[2], '包含');
 			if (result.length) {
 				coins = parseInt(result[0].label) || 0;
 			}
 			if (coins >= 200) {
 				
-				let confPriorty = thisScript.scheme.config['202'].priority || '腐草为萤,妖力化身,六道净化,萤火之光';
-				let priorty = String(confPriorty).split(',') // 未达到目标的优先级
+				const confPriorty = thisScript.scheme.config['202'].priority || '腐草为萤,妖力化身,六道净化,萤火之光';
+				const priorty = String(confPriorty).split(',') // 未达到目标的优先级
 					.filter(item => cost[item] <= coins) // 钱不够的过滤
 					.filter(item => (thisScript.global.d6NxFilter || []).indexOf(item) === -1); // 无法购买的过滤
-				let priorty2 = ['萤火之光', '妖力化身'] // 达到目标后的优先级
+				const priorty2 = ['萤火之光', '妖力化身'] // 达到目标后的优先级
 					.filter(item => cost[item] <= coins) // 钱不够的过滤
 					.filter(item => (thisScript.global.d6NxFilter || []).indexOf(item) === -1); // 无法购买的过滤
 

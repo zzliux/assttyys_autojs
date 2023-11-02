@@ -1,6 +1,6 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -57,8 +57,8 @@ export class Func516 implements IFuncOrigin {
             ]
         }];
     operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-        let thisConf = thisScript.scheme.config['516'];
-        let defaultCount = +thisConf.count;
+        const thisConf = thisScript.scheme.config['516'];
+        const defaultCount = +thisConf.count;
         if (thisScript.oper({
             id: 516,
             name: '检测_寮活动神社',

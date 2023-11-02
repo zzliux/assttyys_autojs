@@ -4,7 +4,7 @@ import {
   IFuncOperator,
 } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -428,7 +428,7 @@ export class Func998 implements IFuncOrigin {
     }
   ];
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-    let thisconf = thisScript.scheme.config['998'];
+    const thisconf = thisScript.scheme.config['998'];
 
     if (
       thisScript.oper({
@@ -493,14 +493,14 @@ export class Func998 implements IFuncOrigin {
       }
 
       console.log('检测式神育成是否不为空');
-      let fullLevelPoint = thisScript.findMultiColorEx('寄养狗粮_满级标识');
+      const fullLevelPoint = thisScript.findMultiColorEx('寄养狗粮_满级标识');
       if (fullLevelPoint && fullLevelPoint.length > 0) {
-        console.log(`有狗粮满级了,清空狗粮`);
+        console.log('有狗粮满级了,清空狗粮');
 
         for (let i = 0; i < fullLevelPoint.length; i++) {
           sleep(1000);
 
-          let oper = [
+          const oper = [
             [
               fullLevelPoint[i].x,
               fullLevelPoint[i].y,
@@ -509,7 +509,7 @@ export class Func998 implements IFuncOrigin {
               1200,
             ],
           ];
-          console.log(`清空满级狗粮`, i);
+          console.log('清空满级狗粮', i);
           thisScript.regionClick(oper);
         }
 
@@ -519,11 +519,11 @@ export class Func998 implements IFuncOrigin {
         console.log('狗粮没满级');
       }
 
-      let emptyPoint = thisScript.findMultiColorEx('寄养狗粮_空');
+      const emptyPoint = thisScript.findMultiColorEx('寄养狗粮_空');
       if (emptyPoint && emptyPoint.length > 0) {
-        let emptyCount = emptyPoint.length;
+        const emptyCount = emptyPoint.length;
 
-        let shikigamiIndex = 6 - emptyCount;
+        const shikigamiIndex = 6 - emptyCount;
 
         if (shikigamiIndex === 5) {
           // 需要滑动
@@ -707,7 +707,7 @@ export class Func998 implements IFuncOrigin {
             ],
           })
         ) {
-          let change_enchantment_type_index =
+          const change_enchantment_type_index =
             thisconf && thisconf.change_enchantment_type === '斗鱼'
               ? 1
               : 0 || 0;

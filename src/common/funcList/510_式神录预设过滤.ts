@@ -1,6 +1,6 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -169,7 +169,7 @@ export class Func510 implements IFuncOrigin {
             ]
         }];
     operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-        let thisConf = thisScript.scheme.config['510'];
+        const thisConf = thisScript.scheme.config['510'];
         if (thisScript.oper({
             id: 510,
             name: '检测_弹窗',
@@ -208,7 +208,7 @@ export class Func510 implements IFuncOrigin {
                         } else {
                             tureGroupNum = Number(thisScript.global.preset_once_groupNum) - 1
                         }
-                        let oper = [[
+                        const oper = [[
                             thisOperator[7].oper[0][0],
                             thisOperator[7].oper[0][1] + (thisOperator[7].oper[0][4] * tureGroupNum),
                             thisOperator[7].oper[0][2],
@@ -219,14 +219,14 @@ export class Func510 implements IFuncOrigin {
                         thisScript.global.change_shikigami_state = 'change_team_default_1';
                         return true;
                     } else if (thisScript.global.change_shikigami_state.includes('change_team_default')) {
-                        console.log(`式神录_当前选中队伍预设`);
+                        console.log('式神录_当前选中队伍预设');
                         let trueDefaultNum = null;
                         if (!thisScript.global.preset_once_defaultNum) {
                             trueDefaultNum = Number(thisConf.defaultNum) - 1;
                         } else {
                             trueDefaultNum = Number(thisScript.global.preset_once_defaultNum) - 1;
                         }
-                        let oper = thisOperator[8].oper[trueDefaultNum];
+                        const oper = thisOperator[8].oper[trueDefaultNum];
                         //  需要点击两次
                         if (thisScript.global.change_shikigami_state === 'change_team_default_1') {
                             thisScript.global.change_shikigami_state = 'change_team_default_2';
@@ -250,9 +250,9 @@ export class Func510 implements IFuncOrigin {
 
                         thisScript.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [1200, 1500], 0, 1000);
 
-                        let toDetectAreaBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[2].oper[5].slice(0, 4))
+                        const toDetectAreaBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[2].oper[5].slice(0, 4))
                         console.time('ocr.detect.area');
-                        let resultArea = thisScript.getOcrDetector().loadImage(toDetectAreaBmp);
+                        const resultArea = thisScript.getOcrDetector().loadImage(toDetectAreaBmp);
                         console.timeEnd('ocr.detect.area');
                         toDetectAreaBmp.recycle();
 
@@ -281,7 +281,7 @@ export class Func510 implements IFuncOrigin {
                         return true;
                     } else if (thisScript.global.change_shikigami_state === 'search_group') {
                         const grounpName = thisConf.groupName as string;
-                        let result = thisScript.findText(grounpName, 5000, thisOperator[2].oper[2], '模糊');
+                        const result = thisScript.findText(grounpName, 5000, thisOperator[2].oper[2], '模糊');
 
                         if (result.length === 0) {
                             console.log(`未识别分组${thisConf.groupName}`);
@@ -289,17 +289,17 @@ export class Func510 implements IFuncOrigin {
                         } else {
                             console.log('识别分组成功:' + result, thisConf.groupName);
 
-                            let p = {
+                            const p = {
                                 x: (result[0].points[0].x + result[0].points[1].x) / 2,
                                 y: (result[0].points[0].y + result[0].points[3].y) / 2,
                             }
 
-                            let lx = p.x - 5
-                            let ly = p.y - 5;
-                            let rx = p.x + 5;
-                            let ry = p.y + 5;
+                            const lx = p.x - 5
+                            const ly = p.y - 5;
+                            const rx = p.x + 5;
+                            const ry = p.y + 5;
 
-                            let toClick = [
+                            const toClick = [
                                 lx > 0 ? lx : 0,
                                 ly > 0 ? ly : 0,
                                 rx,
@@ -314,7 +314,7 @@ export class Func510 implements IFuncOrigin {
                         }
                     } else if (thisScript.global.change_shikigami_state === 'search_default') {
                         const defaultName = thisConf.defaultName as string;
-                        let result = thisScript.findText(defaultName, 5000, thisOperator[2].oper[3], '模糊');
+                        const result = thisScript.findText(defaultName, 5000, thisOperator[2].oper[3], '模糊');
 
                         if (result.length === 0) {
                             console.log(`未识别队伍预设${thisConf.defaultName}`);
@@ -322,17 +322,17 @@ export class Func510 implements IFuncOrigin {
                         } else {
                             console.log('识别队伍预设成功:' + result, thisConf.defaultName);
 
-                            let p = {
+                            const p = {
                                 x: (result[0].points[0].x + result[0].points[1].x) / 2,
                                 y: (result[0].points[0].y + result[0].points[3].y) / 2,
                             }
 
-                            let lx = p.x - 5
-                            let ly = p.y - 5;
-                            let rx = p.x + 5;
-                            let ry = p.y + 5;
+                            const lx = p.x - 5
+                            const ly = p.y - 5;
+                            const rx = p.x + 5;
+                            const ry = p.y + 5;
 
-                            let toClick = [
+                            const toClick = [
                                 lx > 0 ? lx : 0,
                                 ly > 0 ? ly : 0,
                                 rx,
@@ -345,11 +345,11 @@ export class Func510 implements IFuncOrigin {
                             sleep(1200)
                         }
                     } else if (thisScript.global.change_shikigami_state.includes('change_team_default')) {
-                        let point = thisScript.findMultiColor('式神录_当前选中队伍预设');
+                        const point = thisScript.findMultiColor('式神录_当前选中队伍预设');
 
                         if (point) {
-                            console.log(`式神录_当前选中队伍预设`);
-                            let oper = [[
+                            console.log('式神录_当前选中队伍预设');
+                            const oper = [[
                                 point.x - 2,
                                 point.y - 2,
                                 point.x + 2,

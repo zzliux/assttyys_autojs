@@ -1,9 +1,9 @@
-import { IFuncOrigin, IFuncOperatorOrigin } from "@/interface/IFunc";
+import { IFuncOrigin, IFuncOperatorOrigin } from '@/interface/IFunc';
 
-const normal = -1; //定义常量
-const left = 0;
+// const normal = -1; //定义常量
+// const left = 0;
 const center = 1;
-const right = 2;
+// const right = 2;
 
 export class Func022 implements IFuncOrigin {
 	id = 22;

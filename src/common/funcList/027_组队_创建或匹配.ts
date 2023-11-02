@@ -1,6 +1,6 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -87,7 +87,7 @@ export class Func027 implements IFuncOrigin {
 			operator: thisOperator.slice(0, -1)
 		})) {
 			return true;
-		};
+		}
 		if (thisScript.oper({
 			id: 27,
 			name: '组队_创建',
@@ -98,14 +98,14 @@ export class Func027 implements IFuncOrigin {
 				thisScript.stop();
 			}
 			return true;
-		};
+		}
 		if (!thisScript.oper({
 			id: 27,
 			name: '组队_非创建界面',
 			operator: [{ desc: thisOperator[7].desc }]
 		})) {
 			thisScript.global.create_NumOT = 0;
-		};
+		}
 		return false;
 	}
 }

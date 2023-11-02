@@ -5,7 +5,7 @@ import {
 } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -144,7 +144,7 @@ export class Func512 implements IFuncOrigin {
 		}
   ];
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-    let thisConf = thisScript.scheme.config['512'];
+    // const thisconf = thisScript.scheme.config['512'];
 
     if (
       thisScript.oper({

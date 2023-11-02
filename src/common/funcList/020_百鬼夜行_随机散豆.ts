@@ -1,9 +1,9 @@
 import { Script } from '@/system/script';
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
-const right = 2;
+// const right = 2;
 
 export class Func020 implements IFuncOrigin {
 	id = 20;
@@ -59,7 +59,7 @@ export class Func020 implements IFuncOrigin {
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		let thisconf = thisScript.scheme.config['20'];
+		const thisconf = thisScript.scheme.config['20'];
 		if (thisconf && thisconf.mode === '快速模式') {
 			if (thisScript.oper({
 				id: 20,

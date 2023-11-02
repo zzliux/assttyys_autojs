@@ -4,7 +4,7 @@ export function search(list: Record<string, any>[], prop: string, str: string, f
 	let maxSimilarity = 0;
 	let maxSimilarityIndex = -1;
 	for (let i = 0; i < list.length; i++) {
-		let sim = similarity(list[i][prop], str, filterSimilar) || 0;
+		const sim = similarity(list[i][prop], str, filterSimilar) || 0;
 		if (sim > maxSimilarity) {
 			maxSimilarity = sim;
 			maxSimilarityIndex = i;
@@ -24,13 +24,13 @@ export function questionSearch(str: string) {
 }
 
 export function similarity(s1: string, s2: string, filterSimilar?: number) {
-	let len1 = s1.length;
-	let len2 = s2.length;
-	let maxLen = Math.max(len1, len2);
-	let thres = Math.floor((1 - (filterSimilar || 0)) * maxLen); // 编辑距离超过这个数后直接返回false，加快匹配速度;
+	const len1 = s1.length;
+	const len2 = s2.length;
+	const maxLen = Math.max(len1, len2);
+	const thres = Math.floor((1 - (filterSimilar || 0)) * maxLen); // 编辑距离超过这个数后直接返回false，加快匹配速度;
 
 
-	let matrix = []
+	const matrix = []
 
 	for (let i = 0; i <= len1; i++) {
 		// 构造二维数组
@@ -47,7 +47,7 @@ export function similarity(s1: string, s2: string, filterSimilar?: number) {
 				if (s1[i - 1] != s2[j - 1]) { // 相同为0，不同置1
 					cost = 1
 				}
-				let temp = matrix[i - 1][j - 1] + cost
+				const temp = matrix[i - 1][j - 1] + cost
 
 				matrix[i][j] = Math.min(matrix[i - 1][j] + 1, matrix[i][j - 1] + 1, temp);
 				if ((i === j || (i === len1 && i < j) || (j === len2 && i > j)) && matrix[i][j] > thres) {
@@ -60,7 +60,7 @@ export function similarity(s1: string, s2: string, filterSimilar?: number) {
 }
 
 export function setCurrentScheme(schemeName: string, store) {
-	let savedSchemeList = store.get("schemeList", []);
+	const savedSchemeList = store.get('schemeList', []);
 	for (let i = 0; i < savedSchemeList.length; i++) {
 		if (savedSchemeList[i].schemeName === schemeName) {
 			store.put('currentScheme', savedSchemeList[i]);
@@ -74,7 +74,7 @@ const getRawType = (val) => {
 	return Object.prototype.toString.call(val).slice(8, -1);
 };
 const isPlainObject = (val) => {
-	return getRawType(val) === "Object";
+	return getRawType(val) === 'Object';
 };
 
 const isPlainObjectOrArray = (val) => {
@@ -117,12 +117,12 @@ export const merge = (object, ...sources) => {
 }
 
 export function deepClone<T>(obj: T): T {
-	if (!obj && typeof obj !== "object") {
-		throw new Error("error arguments deepClone");
+	if (!obj && typeof obj !== 'object') {
+		throw new Error('error arguments deepClone');
 	}
 	const targetObj = obj.constructor === Array ? [] : {};
 	Object.keys(obj).forEach(keys => {
-		if (obj[keys] && typeof obj[keys] === "object") {
+		if (obj[keys] && typeof obj[keys] === 'object') {
 			targetObj[keys] = deepClone(obj[keys]);
 		} else {
 			targetObj[keys] = obj[keys];

@@ -1,7 +1,7 @@
-import { Script } from "@/system/script";
-import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from "@/interface/IFunc";
+import { Script } from '@/system/script';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -34,7 +34,7 @@ export class Func001 implements IFuncOrigin {
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		let thisconf = thisScript.scheme.config['1'];
+		const thisconf = thisScript.scheme.config['1'];
 		if (thisconf.exitBeforeReady) {
 			return thisScript.oper({
 				id: 1,

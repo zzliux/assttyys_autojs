@@ -4,7 +4,7 @@ import {
   IFuncOperator,
 } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -366,7 +366,7 @@ export class Func993 implements IFuncOrigin {
     },
   ];
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-    let thisConf = thisScript.scheme.config['993'];
+    const thisConf = thisScript.scheme.config['993'];
     if (typeof thisScript.global.app_is_open_flag === 'undefined') {
       thisScript.global.app_is_open_flag = 0;
     }
@@ -460,11 +460,11 @@ export class Func993 implements IFuncOrigin {
         ],
       })
     ) {
-      let toDetectAreaBmp = thisScript.helperBridge.helper.GetBitmap(
+      const toDetectAreaBmp = thisScript.helperBridge.helper.GetBitmap(
         ...thisOperator[0].oper[1].slice(0, 4)
       );
       console.time('ocr.detect.area');
-      let resultArea = thisScript.getOcrDetector().loadImage(toDetectAreaBmp);
+      const resultArea = thisScript.getOcrDetector().loadImage(toDetectAreaBmp);
       console.timeEnd('ocr.detect.area');
       toDetectAreaBmp.recycle();
 
@@ -476,7 +476,7 @@ export class Func993 implements IFuncOrigin {
         console.log('识别成功，识别结果为:', resultArea);
         thisScript.global.game_area = resultArea[0].label;
         if (thisConf.area) {
-          for (let resultItem of resultArea) {
+          for (const resultItem of resultArea) {
             if (resultItem && resultItem.label) {
               console.log('当前区域为' + resultItem.label);
               if (!resultItem.label.includes(String(thisConf.area))) {
@@ -519,7 +519,7 @@ export class Func993 implements IFuncOrigin {
       })
     ) {
       if (thisConf.account_index) {
-        let index = parseInt(thisConf.account_index as string, 10);
+        const index = parseInt(thisConf.account_index as string, 10);
         if (index > 3 || index < 1) {
           console.log('993 ==> 账号序号有误，大于3小于1，请检查账号序号!');
           thisScript.stop();
@@ -534,11 +534,11 @@ export class Func993 implements IFuncOrigin {
           ],
         });
       } else if (thisConf.account_name) {
-        let toDetectAreaBmp = thisScript.helperBridge.helper.GetBitmap(
+        const toDetectAreaBmp = thisScript.helperBridge.helper.GetBitmap(
           ...thisOperator[18].oper[0].slice(0, 4)
         );
         console.time('ocr.detect.area');
-        let resultArea = thisScript.getOcrDetector().loadImage(toDetectAreaBmp);
+        const resultArea = thisScript.getOcrDetector().loadImage(toDetectAreaBmp);
         console.timeEnd('ocr.detect.area');
         toDetectAreaBmp.recycle();
 
@@ -549,11 +549,11 @@ export class Func993 implements IFuncOrigin {
         ) {
           console.log('识别成功，识别结果为:', resultArea);
           if (thisConf.account_name) {
-            for (let resultItem of resultArea) {
+            for (const resultItem of resultArea) {
               if (resultItem && resultItem.label) {
                 console.log('当前账号为' + resultItem.label);
                 if (resultItem.label.includes(String(thisConf.account_name))) {
-                  let p = {
+                  const p = {
                     x:
                       (resultItem.points[0].x + resultItem.points[1].x) / 2 +
                       thisOperator[18].oper[0][0], // 补位
@@ -562,12 +562,12 @@ export class Func993 implements IFuncOrigin {
                       thisOperator[18].oper[0][1],
                   };
 
-                  let lx = p.x - 10;
-                  let ly = p.y - 10;
-                  let rx = p.x + 10;
-                  let ry = p.y + 10;
+                  const lx = p.x - 10;
+                  const ly = p.y - 10;
+                  const rx = p.x + 10;
+                  const ry = p.y + 10;
 
-                  let toClick = [
+                  const toClick = [
                     lx > 0 ? lx : 0,
                     ly > 0 ? ly : 0,
                     rx,
@@ -617,11 +617,11 @@ export class Func993 implements IFuncOrigin {
           },
         ],
       });
-      let switchGameAreaBmp = thisScript.helperBridge.helper.GetBitmap(
+      const switchGameAreaBmp = thisScript.helperBridge.helper.GetBitmap(
         ...thisOperator[5].oper[0].slice(0, 4)
       );
       console.time('ocr.game.area');
-      let resultGameArea = thisScript
+      const resultGameArea = thisScript
         .getOcrDetector()
         .loadImage(switchGameAreaBmp);
       console.timeEnd('ocr.game.area');
@@ -632,9 +632,9 @@ export class Func993 implements IFuncOrigin {
         resultGameArea.length > 0 &&
         resultGameArea[0].label
       ) {
-        for (let resultGameItem of resultGameArea) {
+        for (const resultGameItem of resultGameArea) {
           if (resultGameItem.label.includes(String(thisConf.area))) {
-            let p = {
+            const p = {
               x:
                 (resultGameItem.points[0].x + resultGameItem.points[1].x) / 2 +
                 thisOperator[5].oper[0][0], // 补位
@@ -643,12 +643,12 @@ export class Func993 implements IFuncOrigin {
                 thisOperator[5].oper[0][1],
             };
 
-            let lx = p.x - thisOperator[5].oper[1][2] / 2;
-            let ly = thisOperator[5].oper[1][1];
-            let rx = p.x + thisOperator[5].oper[1][2] / 2;
-            let ry = thisOperator[5].oper[1][3];
+            const lx = p.x - thisOperator[5].oper[1][2] / 2;
+            const ly = thisOperator[5].oper[1][1];
+            const rx = p.x + thisOperator[5].oper[1][2] / 2;
+            const ry = thisOperator[5].oper[1][3];
 
-            let toClick = [
+            const toClick = [
               lx > 0 ? lx : 0,
               ly > 0 ? ly : 0,
               rx < thisOperator[5].oper[2][2] ? rx : thisOperator[5].oper[2][2],
@@ -690,10 +690,10 @@ export class Func993 implements IFuncOrigin {
     //	游戏区域状态不为空
     if (thisScript.global.game_area) {
       // 检测是否有皮肤广告	误触太多了，关了
-      let point = thisScript.findMultiColor('皮肤广告关闭按钮');
+      const point = thisScript.findMultiColor('皮肤广告关闭按钮');
       if (point) {
         console.log('识别广告关闭按钮成功');
-        let oper = [[point.x - 10, point.y - 10, point.x, point.y, 1200]];
+        const oper = [[point.x - 10, point.y - 10, point.x, point.y, 1200]];
         thisScript.regionClick(oper);
         return true;
       }

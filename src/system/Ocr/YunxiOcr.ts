@@ -1,13 +1,13 @@
-import { similarity } from "@/common/tool";
-import drawFloaty from "../drawFloaty";
-import { IOcr, IOcrDetector, OcrResult } from "./IOcr";
+import { similarity } from '@/common/tool';
+import drawFloaty from '../drawFloaty';
+import { IOcr, IOcrDetector, OcrResult } from './IOcr';
 
 class YunxiOcrDetector implements IOcrDetector {
     instance = null;
     initResult: boolean = false;
 
     init(path1, path2, path3) {
-        var result = this.instance.init(4, files.read(path1), files.path(path2), files.path(path3)); //设置模型文件路径
+        const result = this.instance.init(4, files.read(path1), files.path(path2), files.path(path3)); //设置模型文件路径
         if (result) {
             return true;
         } else {
@@ -18,7 +18,7 @@ class YunxiOcrDetector implements IOcrDetector {
 
     constructor(path1, path2, path3) {
         this.instance = new com.plugin.PaddleOCR.YunxiPlugin(context);
-        var isLoad = this.instance.OnLoad();
+        const isLoad = this.instance.OnLoad();
         this.initResult = this.init(path1, path2, path3);
         console.log(`YunxiOcr Prepared: ${isLoad}`);
         events.on('exit', () => {
@@ -28,7 +28,7 @@ class YunxiOcrDetector implements IOcrDetector {
 
     loadImage(bitmap) {
         if (this.initResult === true) {
-            var result = this.instance.ocr(bitmap, 0.1);
+            const result = this.instance.ocr(bitmap, 0.1);
             return JSON.parse(result);
         } else {
             return null;
@@ -59,7 +59,7 @@ export class YunxiOcr implements IOcr {
             path + '/ocr/data/chi_sim.traineddata',
         ];
         let flag = true
-        for (let path of toCheckPaths) {
+        for (const path of toCheckPaths) {
             if (!files.exists(path)) {
                 console.error(`该文件不存在${path}`);
                 flag = false;
@@ -72,7 +72,7 @@ export class YunxiOcr implements IOcr {
      * 安装
      */
     install(option) {
-        let self = this;
+        const self = this;
         dialogs.confirm('提示', '大约消耗12Mb，是否下载OCR扩展？', function (cr) {
             if (cr) {
                 try {
@@ -87,7 +87,7 @@ export class YunxiOcr implements IOcr {
                             const r = http.get(url);
                             console.log(`解压路径：${path}`);
                             files.ensureDir(path + '/ocr_deps.zip');
-                            // @ts-ignore
+                            // @ts-expect-error d.ts文件问题
                             files.writeBytes(path + '/ocr_deps.zip', r.body.bytes());
                             $zip.unzip(path + '/ocr_deps.zip', path);
                             toastLog('下载完成');
@@ -130,15 +130,16 @@ export class YunxiOcr implements IOcr {
 
     findTextByOcr(detector: YunxiOcrDetector, getBmpFunc: Function, text: string, timeout: number, region: number[], textMatchMode: string) {
         const startTime = new Date().getTime();
+        // eslint-disable-next-line no-constant-condition
         while (true) {
             console.time('ocr.detect');
             let bmp = getBmpFunc();
             if (region) {
-                let newBmp = android.graphics.Bitmap.createBitmap(bmp, region[0], region[1], region[2] - region[0], region[3] - region[1]);
+                const newBmp = android.graphics.Bitmap.createBitmap(bmp, region[0], region[1], region[2] - region[0], region[3] - region[1]);
                 bmp.recycle();
                 bmp = newBmp;
             }
-            let rs = detector.loadImage(bmp);
+            const rs = detector.loadImage(bmp);
             bmp.recycle()
             console.timeEnd('ocr.detect');
 
@@ -170,7 +171,7 @@ export class YunxiOcr implements IOcr {
         let res = [];
         let toDraw = [];
         if (textMatchMode === '包含') {
-            let reg = new RegExp(text);
+            const reg = new RegExp(text);
             res = ocrResult.filter(item => reg.test(item.label));
             toDraw = ocrResult.map(item => ({
                 region: [item.points[0].x, item.points[0].y, item.points[2].x, item.points[2].y],

@@ -1,10 +1,10 @@
-import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator, IFuncConfigOrigin } from '@/interface/IFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
-const right = 2;
+// const right = 2;
 
 export class Func312 implements IFuncOrigin {
   id = 312;
@@ -52,11 +52,11 @@ export class Func312 implements IFuncOrigin {
     ]
   }];
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-    let thisConf = thisScript.scheme.config['312'];
+    const thisConf = thisScript.scheme.config['312'];
     let curCnt = 0;
-    let maxCount = 5;
-    while ((thisScript.findMultiColor("活动说明的感叹号") || thisScript.findMultiColor("体力图标") ||
-      thisScript.findMultiColor("右下角锁定阵容"))) {
+    const maxCount = 5;
+    while ((thisScript.findMultiColor('活动说明的感叹号') || thisScript.findMultiColor('体力图标') ||
+      thisScript.findMultiColor('右下角锁定阵容'))) {
       curCnt++;
       if (curCnt >= maxCount) {
         thisScript.myToast(`连续执行${maxCount}次挑战后未开始，脚本自动停止`);
@@ -66,20 +66,20 @@ export class Func312 implements IFuncOrigin {
         return false;
       }//复制活动停止代码
       {//执行点击
-        let xy = String(thisConf.xy).split(',');
+        const xy = String(thisConf.xy).split(',');
         if (xy.length !== 4) {
           thisScript.myToast('自定义坐标格式定义错误，请检查');
           return true;
         }
-        let inX1 = parseInt(xy[0]);
-        let inY1 = parseInt(xy[1]);
-        let inX2 = parseInt(xy[2]);
-        let inY2 = parseInt(xy[3]);
+        const inX1 = parseInt(xy[0]);
+        const inY1 = parseInt(xy[1]);
+        const inX2 = parseInt(xy[2]);
+        const inY2 = parseInt(xy[3]);
         if (Number.isNaN(inX1) || Number.isNaN(inY1) || Number.isNaN(inX2) || Number.isNaN(inY2)) {
           thisScript.myToast('自定义坐标格式定义错误，请检查');
           return true;
-        };
-        let oper = [
+        }
+        const oper = [
           [inX1, inY1, inX2, inY2, 1000]
         ];
         thisScript.regionClick(oper);
@@ -91,15 +91,15 @@ export class Func312 implements IFuncOrigin {
       name: '当前成绩',
       operator: [{ desc: thisOperator[0].desc }]
     }) && thisScript.getOcrDetector()) {
-      let time = String(thisConf.time).split(',');
-      let result = thisScript.findText('.+', 0, thisOperator[0].oper[1], '包含');
+      const time = String(thisConf.time).split(',');
+      const result = thisScript.findText('.+', 0, thisOperator[0].oper[1], '包含');
       if (result.length === 0) {
-        console.log(`未识别到任何字样`);
+        console.log('未识别到任何字样');
         return false;
       } else {
-        let realTime = String(result[0].label).split(':');
+        const realTime = String(result[0].label).split(':');
         if (Number.isNaN(realTime[0]) && Number.isNaN(realTime[1])) {
-          console.log("非数字，等待5秒继续检测");
+          console.log('非数字，等待5秒继续检测');
           sleep(5000);
         } else if (Number(realTime[0]) == Number(time[0]) && Number(realTime[1]) <= Number(time[1]) || Number(realTime[0]) < Number(time[0])) {
           return thisScript.oper({

@@ -7,7 +7,7 @@
  * @LastEditors: 大柒
  * @LastEditTime: 2021-04-19 16:44:52
  */
-
+/*eslint-disable */
 global.FloatButton = function () {
     require('./widget/RoundButton');
     let fbUtil = require('./js/init');

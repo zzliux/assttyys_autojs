@@ -1,7 +1,7 @@
 import { Script } from '@/system/script';
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -95,27 +95,27 @@ export class Func008 implements IFuncOrigin {
 		}, 0)) {
 			return false;
 		}
-		let thisConf = thisScript.scheme.config['8'];
+		const thisConf = thisScript.scheme.config['8'];
 		let count = +thisConf.count;
-		let defaultCount = count;
+		const defaultCount = count;
 		let point = null;
 		let region = [thisOperator[0].oper[2]];
 		if ('寮突破' === thisConf.type) {
 			region = [thisOperator[0].oper[3], thisOperator[0].oper[4]];
 			if (thisScript.findMultiColor('结界_进攻_灰', region, true)) {
 				if (thisConf.cdSwitchSchemeEnable) {
-					let oper = thisOperator[0].oper[1];
+					const oper = thisOperator[0].oper[1];
 					thisScript.regionClick([oper, oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
 					thisScript.rerun(thisConf.cdSwitchScheme);
 				} else {
-					let oper = thisOperator[0].oper[1];
+					const oper = thisOperator[0].oper[1];
 					thisScript.regionClick([oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
-					let cdWaiteTimePair = String(thisConf.cdWaitTime).split(',');
+					const cdWaiteTimePair = String(thisConf.cdWaitTime).split(',');
 					if (cdWaiteTimePair.length === 1) {
 						thisScript.myToast(`寮突破CD, ${(parseInt(cdWaiteTimePair[0]))}秒后再次检测`);
 						sleep(1000 * (parseInt(cdWaiteTimePair[0])));
 					} else {
-						let cdWaitTime = random(parseInt(cdWaiteTimePair[0]), parseInt(cdWaiteTimePair[1]));
+						const cdWaitTime = random(parseInt(cdWaiteTimePair[0]), parseInt(cdWaiteTimePair[1]));
 						thisScript.myToast(`寮突破CD, ${(cdWaitTime)}秒后再次检测`);
 						sleep(1000 * (cdWaitTime));
 					}
@@ -123,22 +123,23 @@ export class Func008 implements IFuncOrigin {
 				}
 			}
 		}
+		// eslint-disable-next-line no-cond-assign
 		while (point = thisScript.findMultiColor('结界_进攻', region, true)) {
-			let oper = [[point.x, point.y, point.x + +thisOperator[0].oper[0][2], point.y + +thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
+			const oper = [[point.x, point.y, point.x + +thisOperator[0].oper[0][2], point.y + +thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]];
 			thisScript.regionClick(oper, 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
 			thisScript.keepScreen(true);
 			console.log('结界_进攻:', count);
 			if (--count === 0) {
 				if ('停止脚本' === thisConf.afterCountOper) {
-					let oper = thisOperator[0].oper[1];
+					const oper = thisOperator[0].oper[1];
 					thisScript.regionClick([oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
 					thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 					thisScript.stop();
 				} else if ('关闭界面' === thisConf.afterCountOper) {
-					let oper = thisOperator[0].oper[1];
+					const oper = thisOperator[0].oper[1];
 					thisScript.regionClick([oper, oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
 				} else if ('切换方案' === thisConf.afterCountOper) {
-					let oper = thisOperator[0].oper[1];
+					const oper = thisOperator[0].oper[1];
 					thisScript.regionClick([oper, oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
 					thisScript.rerun(thisConf.next_scheme);
 				}
@@ -149,5 +150,5 @@ export class Func008 implements IFuncOrigin {
 			return true;
 		}
 		return false;
-	};
+	}
 }

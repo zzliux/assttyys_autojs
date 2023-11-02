@@ -1,6 +1,6 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -69,7 +69,7 @@ export class Func051 implements IFuncOrigin {
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		let thisconf = thisScript.scheme.config['51'];
+		const thisconf = thisScript.scheme.config['51'];
 		const [offsetX, offsetY] = (thisconf.offset as string || '0,0').split(',').map(item => parseInt(item, 10));
 		thisScript.oper({
 			name: '绿标内手动切自动',
@@ -87,7 +87,7 @@ export class Func051 implements IFuncOrigin {
 				}]
 			})) {
 				if (thisconf.greenType === '自定义文本' && !thisScript.global.greenPosition) {
-					let result = thisScript.findTextWithCompareColor(
+					const result = thisScript.findTextWithCompareColor(
 						thisconf.greenText as string,
 						3000,
 						thisOperator[0].oper[3],
@@ -106,15 +106,15 @@ export class Func051 implements IFuncOrigin {
 						console.log(`未识别式神别名“${thisconf.greenText}”`);
 						return true;
 					}
-					let p = {
+					const p = {
 						x: (result[0].points[0].x + result[0].points[1].x) / 2,
 						y: (result[0].points[0].y + result[0].points[3].y) / 2,
 					}
-					let lx = p.x - thisOperator[0].oper[1][2] / 2;
-					let ly = p.y + thisOperator[0].oper[0][3] - thisOperator[0].oper[1][3] / 2;
-					let rx = p.x + thisOperator[0].oper[1][2] / 2;
-					let ry = p.y + thisOperator[0].oper[0][3] + thisOperator[0].oper[1][3] / 2;
-					let toClick = [
+					const lx = p.x - thisOperator[0].oper[1][2] / 2;
+					const ly = p.y + thisOperator[0].oper[0][3] - thisOperator[0].oper[1][3] / 2;
+					const rx = p.x + thisOperator[0].oper[1][2] / 2;
+					const ry = p.y + thisOperator[0].oper[0][3] + thisOperator[0].oper[1][3] / 2;
+					const toClick = [
 						Math.max(lx, 0) + offsetX,
 						Math.max(ly, 0) + offsetY,
 						Math.min(rx, thisOperator[0].oper[2][2]) + offsetX,
@@ -125,13 +125,13 @@ export class Func051 implements IFuncOrigin {
 					return true;
 				} else if (thisconf.greenType === '自定义坐标' && !thisScript.global.greenPosition) {
 					let toClick = null;
-					let posPam = String(thisconf.greenPosition).split(',');
+					const posPam = String(thisconf.greenPosition).split(',');
 					if (posPam.length !== 2) {
 						thisScript.myToast('自定义坐标格式定义错误，请检查');
 						return true;
 					}
-					let inX = parseInt(posPam[0]);
-					let inY = parseInt(posPam[1]);
+					const inX = parseInt(posPam[0]);
+					const inY = parseInt(posPam[1]);
 					if (Number.isNaN(inX) || Number.isNaN(inY)) {
 						thisScript.myToast('自定义坐标格式定义错误，请检查');
 						return true;
@@ -189,13 +189,13 @@ export class Func051 implements IFuncOrigin {
 			// 开启绿标
 			let toClick = null;
 			if (thisconf.greenType === '自定义坐标') {
-				let posPam = String(thisconf.greenPosition).split(',');
+				const posPam = String(thisconf.greenPosition).split(',');
 				if (posPam.length !== 2) {
 					thisScript.myToast('自定义坐标格式定义错误，请检查');
 					return true;
 				}
-				let inX = parseInt(posPam[0]);
-				let inY = parseInt(posPam[1]);
+				const inX = parseInt(posPam[0]);
+				const inY = parseInt(posPam[1]);
 				if (Number.isNaN(inX) || Number.isNaN(inY)) {
 					thisScript.myToast('自定义坐标格式定义错误，请检查');
 					return true;
@@ -208,7 +208,7 @@ export class Func051 implements IFuncOrigin {
 					1000
 				]
 			} else if (thisconf.greenType === '自定义文本') {
-				let result = thisScript.findTextWithCompareColor(
+				const result = thisScript.findTextWithCompareColor(
 					thisconf.greenText as string,
 					5000,
 					thisOperator[0].oper[3],
@@ -225,14 +225,14 @@ export class Func051 implements IFuncOrigin {
 					console.log(`未识别式神别名“${thisconf.greenText}”`);
 					return false;
 				}
-				let p = {
+				const p = {
 					x: (result[0].points[0].x + result[0].points[1].x) / 2,
 					y: (result[0].points[0].y + result[0].points[3].y) / 2,
 				}
-				let lx = p.x - thisOperator[0].oper[1][2] / 2;
-				let ly = p.y + thisOperator[0].oper[0][3] - thisOperator[0].oper[1][3] / 2;
-				let rx = p.x + thisOperator[0].oper[1][2] / 2;
-				let ry = p.y + thisOperator[0].oper[0][3] + thisOperator[0].oper[1][3] / 2;
+				const lx = p.x - thisOperator[0].oper[1][2] / 2;
+				const ly = p.y + thisOperator[0].oper[0][3] - thisOperator[0].oper[1][3] / 2;
+				const rx = p.x + thisOperator[0].oper[1][2] / 2;
+				const ry = p.y + thisOperator[0].oper[0][3] + thisOperator[0].oper[1][3] / 2;
 				toClick = [
 					Math.max(lx, 0) + offsetX,
 					Math.max(ly, 0) + offsetY,

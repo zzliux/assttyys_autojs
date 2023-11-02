@@ -1,7 +1,7 @@
 import { Script } from '@/system/script';
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -92,10 +92,10 @@ export class Func306 implements IFuncOrigin {
     ]
   }]
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-    let thisConf = thisScript.scheme.config['306'];
-    let team_up_Frist = thisScript.global.team_up_Frist;
+    const thisConf = thisScript.scheme.config['306'];
+    const team_up_Frist = thisScript.global.team_up_Frist;
     let team_up_lagTime = thisScript.global.team_up_lagTime;
-    let team_up_Time = 10;
+    const team_up_Time = 10;
     //非组队界面重置计时
     if (!team_up_lagTime || !thisScript.oper({
       name: '非组队界面',
@@ -119,7 +119,7 @@ export class Func306 implements IFuncOrigin {
           sleep(3000);
           return;
         }
-      };
+      }
     }
 
     if (thisScript.oper({
@@ -127,21 +127,21 @@ export class Func306 implements IFuncOrigin {
       operator: [{ desc: thisOperator[1].desc }]
     })) {
       if (thisScript.getOcrDetector()) {
-        let selectArea = thisScript.findText(thisConf.selectArea as string, 0, thisOperator[1].oper[0], '模糊');
+        const selectArea = thisScript.findText(thisConf.selectArea as string, 0, thisOperator[1].oper[0], '模糊');
         if (selectArea.length === 0) {
-          console.log(`找不到第一位（好友/跨区）按钮`);
+          console.log('找不到第一位（好友/跨区）按钮');
           thisScript.regionClick([thisOperator[3].oper[0]]);
           return false;
         } else {
-          let p = {
+          const p = {
             x: (selectArea[0].points[0].x + selectArea[0].points[1].x) / 2,
             y: (selectArea[0].points[0].y + selectArea[0].points[3].y) / 2,
           }
-          let lx = p.x - 5;
-          let ly = p.y - 5;
-          let rx = p.x + 5;
-          let ry = p.y + 5;
-          let toClick = [
+          const lx = p.x - 5;
+          const ly = p.y - 5;
+          const rx = p.x + 5;
+          const ry = p.y + 5;
+          const toClick = [
             lx > 0 ? lx : 0,
             ly > 0 ? ly : 0,
             rx,
@@ -153,17 +153,17 @@ export class Func306 implements IFuncOrigin {
         }
         let result = thisScript.findText('.+', 0, thisOperator[1].oper[1], '包含');
         if (result.length === 0) {
-          console.log(`未识别到任何昵称`);
+          console.log('未识别到任何昵称');
           thisScript.global.team_up_Time++;
           return false;
         } else {
           let toClickRegion = null;
           let toClickRegionTwo = null;
-          for (let i in result) {
+          for (const i in result) {
             console.log(`昵称历遍:${result[i].label}`)
           }
           //邀请里点击第一位好友
-          let findInvName = thisScript.findTextByOcrResult(thisConf.inviteName as string, result, '包含')
+          const findInvName = thisScript.findTextByOcrResult(thisConf.inviteName as string, result, '包含')
           if (findInvName.length) {
             toClickRegion = [
               findInvName[0].points[0].x + 10,
@@ -181,21 +181,21 @@ export class Func306 implements IFuncOrigin {
           //邀请里点击第二位好友
           if (thisConf.secondPlayer) {
             if (thisConf.selectArea != thisConf.selectAreaTwo) {
-              let selectAreaTwo = thisScript.findText(thisConf.selectAreaTwo as string, 0, thisOperator[1].oper[0], '模糊');
+              const selectAreaTwo = thisScript.findText(thisConf.selectAreaTwo as string, 0, thisOperator[1].oper[0], '模糊');
               if (selectAreaTwo.length === 0) {
-                console.log(`找不到第二位（好友/跨区）按钮`);
+                console.log('找不到第二位（好友/跨区）按钮');
                 thisScript.regionClick([thisOperator[3].oper[0]]);
                 return false;
               } else {
-                let p = {
+                const p = {
                   x: (selectAreaTwo[0].points[0].x + selectAreaTwo[0].points[1].x) / 2,
                   y: (selectAreaTwo[0].points[0].y + selectAreaTwo[0].points[3].y) / 2,
                 }
-                let lx = p.x - 5;
-                let ly = p.y - 5;
-                let rx = p.x + 5;
-                let ry = p.y + 5;
-                let toClick = [
+                const lx = p.x - 5;
+                const ly = p.y - 5;
+                const rx = p.x + 5;
+                const ry = p.y + 5;
+                const toClick = [
                   lx > 0 ? lx : 0,
                   ly > 0 ? ly : 0,
                   rx,
@@ -207,7 +207,7 @@ export class Func306 implements IFuncOrigin {
                 result = thisScript.findText('.+', 0, thisOperator[1].oper[1], '包含');
               }
             }
-            let findInvNameTwo = thisScript.findTextByOcrResult(thisConf.inviteNameTwo as string, result, '包含')
+            const findInvNameTwo = thisScript.findTextByOcrResult(thisConf.inviteNameTwo as string, result, '包含')
             if (findInvNameTwo.length) {
               toClickRegionTwo = [
                 findInvNameTwo[0].points[0].x + 10,
@@ -233,7 +233,7 @@ export class Func306 implements IFuncOrigin {
           }
         }
       }
-    };
+    }
 
     if (thisScript.oper({
       name: '组队挑战_判断',

@@ -1,6 +1,6 @@
-import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator, IFuncConfigOrigin } from '@/interface/IFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -274,7 +274,7 @@ export class Func313 implements IFuncOrigin {
 				thisScript.global.qiling_Position = null;
 				return true;
 			}
-			let arrFind = [`契灵_火灵`, `契灵_小黑`, `契灵_镇墓兽`, `契灵_茨球`];
+			const arrFind = ['契灵_火灵', '契灵_小黑', '契灵_镇墓兽', '契灵_茨球'];
 			let i: number;
 			for (i = 0; i < arrFind.length; i++) {
 				const p = thisScript.findMultiColor(arrFind[i])
@@ -296,7 +296,7 @@ export class Func313 implements IFuncOrigin {
 				if ('鸣契石' === thisConf.summon_type) {
 					// 单独走分支
 					let curCnt = 0;
-					let maxCount = 3;
+					const maxCount = 3;
 					while (thisScript.oper({
 						id: 313,
 						name: '鸣契石',
@@ -323,7 +323,7 @@ export class Func313 implements IFuncOrigin {
 					thisScript.global.qiling_Position = thisOperator[2].oper[0];
 				}
 
-				const [p, q] = (thisConf[`preset_pair_探查`] as string).split(/[,，]/);
+				const [p, q] = (thisConf['preset_pair_探查'] as string).split(/[,，]/);
 				console.log(`设置探查预设分组：${p}, ${q}`);
 				thisScript.global.preset_once_groupNum = parseInt(p?.trim(), 10);
 				thisScript.global.preset_once_defaultNum = parseInt(q?.trim(), 10);

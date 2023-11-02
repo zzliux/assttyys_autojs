@@ -1,9 +1,9 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
-const right = 2;
+// const right = 2;
 
 export class Func040 implements IFuncOrigin {
 	id = 40;
@@ -63,7 +63,7 @@ export class Func040 implements IFuncOrigin {
 			}]
 		})) {
 			// 金币妖怪_判断挑战次数是否用完
-			let point = thisScript.findMultiColor('开启的BUFF') || null
+			const point = thisScript.findMultiColor('开启的BUFF') || null
 			if (point) {
 				thisScript.regionClick([
 					[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], 1000]

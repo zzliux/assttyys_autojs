@@ -1,7 +1,7 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -95,7 +95,7 @@ export class Func507 implements IFuncOrigin {
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		let thisConf = thisScript.scheme.config['507'];
+		// const thisconf = thisScript.scheme.config['507'];
 
 		if (thisScript.oper({
 			name: '检测_是否为挑战奉献榜场景_待开始',
@@ -122,11 +122,11 @@ export class Func507 implements IFuncOrigin {
 			name: '检测_是否有酒瓶',
 			operator: [thisOperator[3]]
 		})) {
-			let point = thisScript.findMultiColor('狩猎_酒瓶');
+			const point = thisScript.findMultiColor('狩猎_酒瓶');
 
 			if (point) {
-				console.log(`查找酒瓶结界成功`);
-				let oper = [[
+				console.log('查找酒瓶结界成功');
+				const oper = [[
 					point.x - 5,
 					point.y - 5,
 					point.x + 5,

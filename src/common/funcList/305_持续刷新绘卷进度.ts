@@ -1,7 +1,7 @@
 import { Script } from '@/system/script';
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -55,7 +55,7 @@ export class Func305 implements IFuncOrigin {
   }]
 
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-    let thisconf = thisScript.scheme.config['305'];
+    const thisconf = thisScript.scheme.config['305'];
     const emaki = Number(thisconf.choiceEmaki) - 1;
     // console.log(thisOperator[0].oper[1])
     if (thisScript.oper({
@@ -65,8 +65,8 @@ export class Func305 implements IFuncOrigin {
         oper: [thisOperator[0].oper[emaki], thisOperator[0].oper[6]]
       }]
     })) {
-      let cdWaiteTimePair = String(thisconf.cdWaitTime).split(',');
-      let cdWaitTime = random(parseInt(cdWaiteTimePair[0]), parseInt(cdWaiteTimePair[1]));
+      const cdWaiteTimePair = String(thisconf.cdWaitTime).split(',');
+      const cdWaitTime = random(parseInt(cdWaiteTimePair[0]), parseInt(cdWaiteTimePair[1]));
       thisScript.myToast(`绘卷刷新CD, ${(cdWaitTime)}秒后再次检测`);
       sleep(1000 * (cdWaitTime));
     }
@@ -76,7 +76,9 @@ export class Func305 implements IFuncOrigin {
         desc: thisOperator[1].desc,
         oper: thisOperator[1].oper,
       }]
-    })) { }
+    })) {
+      // ?? nothing to do
+    }
     return false;
   }
 }

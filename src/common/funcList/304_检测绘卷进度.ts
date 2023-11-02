@@ -1,7 +1,7 @@
 import { Script } from '@/system/script';
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -75,7 +75,7 @@ export class Func304 implements IFuncOrigin {
   }]
 
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-    let thisconf = thisScript.scheme.config['304'];
+    const thisconf = thisScript.scheme.config['304'];
     const emaki = Number(thisconf.choiceEmaki) - 1;
     if (thisScript.oper({
       name: '绘卷界面',
@@ -83,7 +83,9 @@ export class Func304 implements IFuncOrigin {
         desc: thisOperator[0].desc,
         oper: [thisOperator[0].oper[emaki], thisOperator[0].oper[6]]
       }]
-    })) { }
+    })) {
+      // ?? nothing to do
+    }
     if (thisScript.oper({
       name: '绘卷进度界面',
       operator: [{
@@ -101,9 +103,9 @@ export class Func304 implements IFuncOrigin {
         })
       if (realTimeBmp.length != 0) {
         let realTimeText = realTimeBmp[0].label;
-        realTimeText = realTimeText.replace("%", "0");
-        realTimeText = realTimeText.replace("-", ".");
-        let realTimeNum = Number(realTimeText.replace("%", "0"));
+        realTimeText = realTimeText.replace('%', '0');
+        realTimeText = realTimeText.replace('-', '.');
+        const realTimeNum = Number(realTimeText.replace('%', '0'));
         console.log(`ocr识别为：[${realTimeNum}]`);
         if (!isNaN(realTimeNum) && (realTimeNum as number) > (thisconf.progress as number)) {
           thisScript.doPush(thisScript, { text: '绘卷进度已达到目标进度。', before() { thisScript.myToast('绘卷进度已达到目标进度，正在上传数据'); } });
@@ -115,8 +117,8 @@ export class Func304 implements IFuncOrigin {
             thisScript.stop();
           }
         } else if (!isNaN(realTimeNum) && (realTimeNum as number) < (thisconf.progress as number)) {
-          let cdWaiteTimePair = String(thisconf.cdWaitTime).split(',');
-          let cdWaitTime = random(parseInt(cdWaiteTimePair[0]), parseInt(cdWaiteTimePair[1]));
+          const cdWaiteTimePair = String(thisconf.cdWaitTime).split(',');
+          const cdWaitTime = random(parseInt(cdWaiteTimePair[0]), parseInt(cdWaiteTimePair[1]));
           thisScript.myToast(`绘卷刷新CD, ${(cdWaitTime)}秒后再次检测`);
           sleep(1000 * (cdWaitTime));
         }

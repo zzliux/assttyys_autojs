@@ -1,7 +1,7 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -278,7 +278,7 @@ export class Func503 implements IFuncOrigin {
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		let thisConf = thisScript.scheme.config['503'];
+		const thisConf = thisScript.scheme.config['503'];
 		if (thisScript.global.change_shikigami_flag && thisScript.oper({
 			name: '返回庭院',
 			operator: [

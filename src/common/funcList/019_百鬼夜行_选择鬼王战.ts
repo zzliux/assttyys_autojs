@@ -1,7 +1,7 @@
 import { Script } from '@/system/script';
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
-const normal = -1; //定义常量
-const left = 0;
+// const normal = -1; //定义常量
+// const left = 0;
 const center = 1;
 const right = 2;
 
@@ -36,7 +36,7 @@ export class Func019 implements IFuncOrigin {
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		let thisconf = thisScript.scheme.config['19'];
+		const thisconf = thisScript.scheme.config['19'];
 		let oper = null;
 		if ('随机' === thisconf.bossPosition) {
 			oper = [thisOperator[0].oper[random(0, 2)], thisOperator[0].oper[3]];

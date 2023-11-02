@@ -2,6 +2,7 @@
 作者：神麤詭末
 QQ：2682963017
 */
+/*eslint-disable */
 var InputHideUtil = function () {
     // importClass(Packages.android.graphics.Rect);
     // importClass(Packages.android.view.ViewTreeObserver);

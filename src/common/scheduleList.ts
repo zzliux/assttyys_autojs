@@ -2,7 +2,7 @@
  * TODO 使用system/Schedule的Job作为ScheduleDefaultList的元素
  */
 
-import { JobOptions } from "@/system/Schedule";
+import { JobOptions } from '@/system/Schedule';
 
 const ScheduleDefaultList: JobOptions[] = [
   {

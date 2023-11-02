@@ -1,6 +1,6 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -91,11 +91,11 @@ export class Func999 implements IFuncOrigin {
 				desc: thisOperator[3].desc
 			}]
 		})) {
-			let point = thisScript.findMultiColor('阴阳寮_奖励体力');
+			const point = thisScript.findMultiColor('阴阳寮_奖励体力');
 
 			if (point) {
-				console.log(`查找阴阳寮_奖励体力成功`);
-				let oper = [[
+				console.log('查找阴阳寮_奖励体力成功');
+				const oper = [[
 					point.x,
 					point.y,
 					point.x,
@@ -106,11 +106,11 @@ export class Func999 implements IFuncOrigin {
 				return true;
 			}
 
-			let point1 = thisScript.findMultiColor('阴阳寮_奖励金币');
+			const point1 = thisScript.findMultiColor('阴阳寮_奖励金币');
 
 			if (point1) {
-				console.log(`查找阴阳寮_奖励金币成功`);
-				let oper = [[
+				console.log('查找阴阳寮_奖励金币成功');
+				const oper = [[
 					point1.x,
 					point1.y,
 					point1.x,

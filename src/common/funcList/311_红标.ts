@@ -4,10 +4,10 @@ import {
   IFuncOperator,
 } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
-const left = 0;
+// const normal = -1; //定义常量
+// const left = 0;
 const center = 1;
-const right = 2;
+// const right = 2;
 
 export class Func311 implements IFuncOrigin {
   id = 311;
@@ -69,7 +69,7 @@ export class Func311 implements IFuncOrigin {
     },
   ];
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-    let thisconf = thisScript.scheme.config['311'];
+    const thisconf = thisScript.scheme.config['311'];
 
     // 已点击 需要准备方案重置
     if (thisScript.global.redFlag) {
@@ -90,13 +90,13 @@ export class Func311 implements IFuncOrigin {
       // 开启红标
       let toClick = null;
       if (thisconf.redType === '自定义坐标') {
-        let posPam = String(thisconf.redPosition).split(',');
+        const posPam = String(thisconf.redPosition).split(',');
         if (posPam.length !== 2) {
           thisScript.myToast('自定义坐标格式定义错误，请检查');
           return true;
         }
-        let inX = parseInt(posPam[0]);
-        let inY = parseInt(posPam[1]);
+        const inX = parseInt(posPam[0]);
+        const inY = parseInt(posPam[1]);
         if (Number.isNaN(inX) || Number.isNaN(inY)) {
           thisScript.myToast('自定义坐标格式定义错误，请检查');
           return true;

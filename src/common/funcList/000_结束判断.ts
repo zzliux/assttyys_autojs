@@ -103,11 +103,11 @@ export class Func000 implements IFuncOrigin {
 		}]
 	}];
 	operatorFunc(thisScript: Script, _thisOperator): boolean {
-		let thisconf = thisScript.scheme.config['0'];
+		const thisconf = thisScript.scheme.config['0'];
 
 		// 长时间未执行任何功能后停止脚本
 		if (thisconf.jspd_enabled_longtime_nodo) {
-			let now = new Date();
+			const now = new Date();
 			if (now.getTime() - thisScript.currentDate.getTime() > +thisconf.jspd_times_longtime_nodo * 60000) {
 				thisScript.myToast(`因长时间(${cvtTime((now.getTime() - thisScript.currentDate.getTime()) / 1000)})未执行任何操作，脚本停止`);
 				stopOrReRun();
@@ -122,9 +122,9 @@ export class Func000 implements IFuncOrigin {
 				currentNotifyDate = new Date();
 				thisScript.global.currentNotifyDate = currentNotifyDate;
 			}
-			let now = new Date();
+			const now = new Date();
 			if (now.getTime() - currentNotifyDate.getTime() > +thisconf.jspd_txpl_zjsj * 1000) {
-				let leftSec = (+thisconf.jspd_times_zjsj * 60000 + thisScript.runDate.getTime() - now.getTime()) / 1000;
+				const leftSec = (+thisconf.jspd_times_zjsj * 60000 + thisScript.runDate.getTime() - now.getTime()) / 1000;
 				thisScript.global.currentNotifyDate = new Date();
 				thisScript.myToast(`脚本将于${cvtTime(leftSec)}后停止`);
 			}
