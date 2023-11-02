@@ -1,6 +1,6 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -37,8 +37,8 @@ export class Func205 implements IFuncOrigin {
 				retest: 300,
 			}]
 		})) {
-			let priorty = ['腐草为萤', '妖力化身', '萤火之光']; // 未达到目标的优先级，如果没有净化则不会出现在仿造里面，直接删去
-			let priorty2 = ['萤火之光', '妖力化身']; // 达到目标后的优先级
+			const priorty = ['腐草为萤', '妖力化身', '萤火之光']; // 未达到目标的优先级，如果没有净化则不会出现在仿造里面，直接删去
+			const priorty2 = ['萤火之光', '妖力化身']; // 达到目标后的优先级
 			let toClick = null;
 			let type = null;
 			let overCnt = 0;

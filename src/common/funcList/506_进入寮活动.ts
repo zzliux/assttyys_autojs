@@ -1,6 +1,6 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -227,9 +227,9 @@ export class Func506 implements IFuncOrigin {
 				]
 		}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		let thisConf = thisScript.scheme.config['506'];
+		const thisConf = thisScript.scheme.config['506'];
 
-		let _liao_activity_state: any = thisScript.runtimeParams ? thisScript.runtimeParams.liao_activity_state : undefined;
+		const _liao_activity_state: any = thisScript.runtimeParams ? thisScript.runtimeParams.liao_activity_state : undefined;
 		if (_liao_activity_state) {
 			let _finishFlag = true;
 
@@ -315,9 +315,9 @@ export class Func506 implements IFuncOrigin {
 				desc: thisOperator[3].desc
 			}]
 		})) {
-			let toDetectAreaBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[3].oper[0].slice(0, 4))
+			const toDetectAreaBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[3].oper[0].slice(0, 4))
 			console.time('ocr.detect.area');
-			let resultArea = thisScript.getOcrDetector().loadImage(toDetectAreaBmp);
+			const resultArea = thisScript.getOcrDetector().loadImage(toDetectAreaBmp);
 			console.timeEnd('ocr.detect.area');
 			toDetectAreaBmp.recycle();
 
@@ -328,17 +328,17 @@ export class Func506 implements IFuncOrigin {
 				if (resultAreaTarget && resultAreaTarget.label) {
 					console.log('当前区域为' + resultAreaTarget.label, '坐标为' + resultAreaTarget.points[0].x, resultAreaTarget.points[0].y, resultAreaTarget.points[3].x, resultAreaTarget.points[3].y);
 
-					let p = {
+					const p = {
 						x: ((resultAreaTarget.points[0].x + resultAreaTarget.points[1].x) / 2),
 						y: ((resultAreaTarget.points[0].y + resultAreaTarget.points[3].y + 150) / 2),
 					}
 
-					let lx = p.x - 25;
-					let ly = p.y - 8;
-					let rx = p.x + 25;
-					let ry = p.y + 8;
+					const lx = p.x - 25;
+					const ly = p.y - 8;
+					const rx = p.x + 25;
+					const ry = p.y + 8;
 
-					let toClick = [
+					const toClick = [
 						lx,
 						ly,
 						rx,
@@ -462,7 +462,7 @@ export class Func506 implements IFuncOrigin {
 
 			if (thisConf.gateOfHades_switch) {
 				if (_liao_activity_state) {
-					let nowDateDay = new Date().getDay();
+					const nowDateDay = new Date().getDay();
 					console.log('今天是周', nowDateDay);
 
 					switch (nowDateDay) {
@@ -472,7 +472,7 @@ export class Func506 implements IFuncOrigin {
 								return false;
 							}
 							break;
-						};
+						}
 						case 6: {
 							if (!(_liao_activity_state.narrow && _liao_activity_state.huntBoss)) {
 								return false;

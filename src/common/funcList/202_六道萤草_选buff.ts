@@ -1,6 +1,6 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -153,9 +153,9 @@ export class Func202 implements IFuncOrigin {
 				desc: thisOperator[1].desc
 			}]
 		}, 500)) {
-			let confPriorty = thisconf.priority || '腐草为萤,妖力化身,六道净化,萤火之光';
-			let priorty = String(confPriorty).split(','); // 未达到目标的优先级
-			let priorty2 = ['萤火之光', '妖力化身']; // 达到目标后的优先级
+			const confPriorty = thisconf.priority || '腐草为萤,妖力化身,六道净化,萤火之光';
+			const priorty = String(confPriorty).split(','); // 未达到目标的优先级
+			const priorty2 = ['萤火之光', '妖力化身']; // 达到目标后的优先级
 			let toClick = null;
 			let type = null;
 			let overCnt = 0;
@@ -208,7 +208,7 @@ export class Func202 implements IFuncOrigin {
 				// 判断剩下多少钱，如果剩下的钱不够刷新直接给刷新次数置为上限
 				let coins = 50;
 				if (thisScript.getOcrDetector()) {
-					let result = thisScript.findText('.+', 0, thisOperator[0].oper[3], '包含');
+					const result = thisScript.findText('.+', 0, thisOperator[0].oper[3], '包含');
 					console.log(JSON.stringify(result));
 					if (result.length) {
 						coins = parseInt(result[0].label);
@@ -237,7 +237,7 @@ export class Func202 implements IFuncOrigin {
 					thisScript.regionClick([thisOperator[0].oper[1], thisOperator[0].oper[2]]); // 刷新
 				} else {
 					// 随机点
-					let rn = random(0, 2);
+					const rn = random(0, 2);
 					thisScript.myToast(`没找到，随机点击第${rn + 1}个`);
 					thisScript.regionClick([thisOperator[1].oper[rn]]);
 					thisScript.global.d6RefreshCnt = 0;

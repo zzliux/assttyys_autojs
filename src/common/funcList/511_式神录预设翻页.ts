@@ -1,6 +1,6 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -79,9 +79,9 @@ export class Func511 implements IFuncOrigin {
             ]
         }];
     operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-        let thisConf = thisScript.scheme.config['511'];
-        let thisConfFor510 = thisScript.scheme.config['510'];
-        let defaultCount = +thisConf.count;
+        const thisConf = thisScript.scheme.config['511'];
+        const thisConfFor510 = thisScript.scheme.config['510'];
+        const defaultCount = +thisConf.count;
         if (!thisConfFor510.fastMode && thisScript.oper({
             id: 511,
             name: '式神录已展开 预设 侧栏_判断',
@@ -90,9 +90,9 @@ export class Func511 implements IFuncOrigin {
             if (thisScript.global.change_shikigami_state === 'search_group') {
                 thisScript.regionBezierSwipe(thisOperator[1].oper[0], thisOperator[1].oper[1], [1200, 1500], 0, 1000);
 
-                let toDetectAreaBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[2].oper[2].slice(0, 4))
+                const toDetectAreaBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[2].oper[2].slice(0, 4))
                 console.time('ocr.detect.area');
-                let resultArea = thisScript.getOcrDetector().loadImage(toDetectAreaBmp);
+                const resultArea = thisScript.getOcrDetector().loadImage(toDetectAreaBmp);
                 console.timeEnd('ocr.detect.area');
                 toDetectAreaBmp.recycle();
 

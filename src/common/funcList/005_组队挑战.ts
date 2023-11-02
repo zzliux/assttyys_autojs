@@ -1,7 +1,7 @@
-import { Script } from "@/system/script";
-import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from "@/interface/IFunc";
+import { Script } from '@/system/script';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -82,7 +82,7 @@ export class Func005 implements IFuncOrigin {
 			name: '组队挑战_判断',
 			operator: [{ desc: thisOperator[0].desc }]
 		}, 0)) {
-			let thisconf = thisScript.scheme.config['5']; // 获取配置
+			const thisconf = thisScript.scheme.config['5']; // 获取配置
 			if (thisconf.type === '有人就开') {
 				thisScript.regionClick(thisOperator[3].oper);
 				return true;

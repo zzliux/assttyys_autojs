@@ -15,13 +15,13 @@ const drawFloaty = {
 
     // 初始化
     init(option?) {
-        if (!!this.instacne) return;
+        if (this.instacne) return;
         
         if (option) {
             this.option.statusBarHeight = option.statusBarHeight || 0
         }
         
-        let self = this;
+        const self = this;
         self.instacne = floaty.rawWindow(`
             <frame>
                 <canvas id="board"/>
@@ -33,65 +33,65 @@ const drawFloaty = {
         });
 
          // 命中框画笔（绿）
-        var paintGreen = new android.graphics.Paint();
+        const paintGreen = new android.graphics.Paint();
         paintGreen.setAntiAlias(true); //抗锯齿
         paintGreen.setAlpha(255); //0~255透明度
         paintGreen.setFakeBoldText(true);
         paintGreen.setStrokeWidth(2);
         paintGreen.setStyle(android.graphics.Paint.Style.STROKE);
-        paintGreen.setColor(colors.parseColor("#FF00FF00"));
-        var textPaintGreen = new android.graphics.Paint();
+        paintGreen.setColor(colors.parseColor('#FF00FF00'));
+        const textPaintGreen = new android.graphics.Paint();
         textPaintGreen.setTextSize(15);
-        textPaintGreen.setColor(colors.parseColor("#FF00FF00"));
+        textPaintGreen.setColor(colors.parseColor('#FF00FF00'));
  
         // 未命中框画笔（红）
-        var paintRed = new android.graphics.Paint();
+        const paintRed = new android.graphics.Paint();
         paintRed.setAntiAlias(true); //抗锯齿
         paintRed.setAlpha(255); //0~255透明度
         paintRed.setFakeBoldText(true);
         paintRed.setStrokeWidth(2);
         paintRed.setStyle(android.graphics.Paint.Style.STROKE);
-        paintRed.setColor(colors.parseColor("#FFFF0000"));
-        var textPaintRed = new android.graphics.Paint();
+        paintRed.setColor(colors.parseColor('#FFFF0000'));
+        const textPaintRed = new android.graphics.Paint();
         textPaintRed.setTextSize(15);
-        textPaintRed.setColor(colors.parseColor("#FFFF0000"));
+        textPaintRed.setColor(colors.parseColor('#FFFF0000'));
         
         // 点击区域画笔（橙）
-        var paintOrange = new android.graphics.Paint();
+        const paintOrange = new android.graphics.Paint();
         paintOrange.setAntiAlias(true); //抗锯齿
         paintOrange.setAlpha(255); //0~255透明度
         paintOrange.setFakeBoldText(true);
         paintOrange.setStrokeWidth(2);
         paintOrange.setStyle(android.graphics.Paint.Style.STROKE);
-        paintOrange.setColor(colors.parseColor("#FF963200"));
-        var textPaintOrange = new android.graphics.Paint();
+        paintOrange.setColor(colors.parseColor('#FF963200'));
+        const textPaintOrange = new android.graphics.Paint();
         textPaintOrange.setTextSize(15);
-        textPaintOrange.setColor(colors.parseColor("#FF963200"));
+        textPaintOrange.setColor(colors.parseColor('#FF963200'));
 
-        var paintLine = new android.graphics.Paint();
+        const paintLine = new android.graphics.Paint();
         paintLine.setAntiAlias(true);//抗锯齿
         paintLine.setAlpha(255);//0~255透明度
         paintLine.setFakeBoldText(true);
         paintLine.setStrokeWidth(1);
         paintLine.setStyle(android.graphics.Paint.Style.STROKE);
-        paintLine.setColor(colors.parseColor("#FF963200"));
+        paintLine.setColor(colors.parseColor('#FF963200'));
 
-        self.instacne.board.on("draw", function(canvas) {
+        self.instacne.board.on('draw', function(canvas) {
             canvas.drawColor(0, android.graphics.PorterDuff.Mode.CLEAR);
-            let toDraw = self.toDraw || [];
+            const toDraw = self.toDraw || [];
             // if (toDraw.length) {
             //     console.log(`准备绘制：${JSON.stringify(toDraw)}`);
             // }
             let toMove = 0;
             let pts = [];
-            let now = new Date().getTime();
-            for (let item of toDraw) {
+            const now = new Date().getTime();
+            for (const item of toDraw) {
                 if (now >= item.et) {
                     toMove++
                     continue;
                 }
-                let color = item.color;
-                let region = item.region;
+                const color = item.color;
+                const region = item.region;
                 let paint = null;
                 let textPaint = null;
                 switch (color) {
@@ -115,7 +115,7 @@ const drawFloaty = {
                 if (item.text) {
                     canvas.drawText(item.text, region[0], region[3] + 15, textPaint);
                 }
-            };
+            }
             self.toDraw.splice(0, toMove)
             canvas.drawLines(pts, paintLine);
         });

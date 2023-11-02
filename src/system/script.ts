@@ -9,7 +9,7 @@ import { IOcr, IOcrDetector, OcrResult } from './Ocr/IOcr';
 import { mlkitOcr } from '@/system/Ocr/MlkitOcr';
 import { yunxiOcr } from '@/system/Ocr/YunxiOcr';
 import { setCurrentScheme } from '@/common/tool';
-import { getWidthPixels, getHeightPixels } from "@auto.pro/core";
+import { getWidthPixels, getHeightPixels } from '@auto.pro/core';
 import schemeDialog from './schemeDialog';
 import drawFloaty from '@/system/drawFloaty';
 import { myToast, doPush } from '@/common/toolAuto';
@@ -109,7 +109,7 @@ export class Script {
     }
 
     initOcrIfNeeded() {
-        let storeSettings = storeCommon.get('settings', {});
+        const storeSettings = storeCommon.get('settings', {});
         if (!this.ocrDetector || storeSettings.ocrType !== this.ocr.typeName) {
             if (storeSettings.ocrType === 'MlkitOcr') {
                 this.ocrDetector = mlkitOcr.prepare();
@@ -147,6 +147,7 @@ export class Script {
         this.initOcrIfNeeded();
         const self = this;
         const startTime = new Date().getTime();
+        // eslint-disable-next-line no-constant-condition
         while (true) {
             // 先判断场景，场景不对就直接返回空
             if (!this.oper(currFunc)) return [];
@@ -187,7 +188,7 @@ export class Script {
         } else {
             this.hasRedList = false;
         }
-    };
+    }
 
     /**
      * 初始化红色通道
@@ -197,7 +198,7 @@ export class Script {
             helperBridge.helper.GetRedList();
             this.hasRedList = true;
         }
-    };
+    }
 
     /**
      * 设置启动后回调
@@ -205,7 +206,7 @@ export class Script {
      */
     setRunCallback(callback: Function) {
         this.runCallback = callback;
-    };
+    }
 
     /**
      * 设置停止后回调
@@ -215,7 +216,7 @@ export class Script {
         this.stopCallback = () => {
             callback();
         };
-    };
+    }
 
     /**
      * 根据scheme获取Funclist，Funclist中desc和oper相关坐标根据开发分辨率自动转换成运行分辨率
@@ -223,14 +224,14 @@ export class Script {
      * @returns
      */
     getFuncList(scheme: IScheme): IFunc[] {
-        let retFunclist = [];
+        const retFunclist = [];
         if (!this.funcMap) {
             this.funcMap = {};
             funcList.forEach(item => this.funcMap[item.id] = item);
         }
         for (let i = 0; i < scheme.list.length; i++) {
-            let thisFuncList = this.funcMap[scheme.list[i]];
-            let operator = thisFuncList.operator;
+            const thisFuncList = this.funcMap[scheme.list[i]];
+            const operator = thisFuncList.operator;
             if (!thisFuncList.transed && operator) {
                 for (let k = 0; k < operator.length; k++) {
                     if (operator[k].desc) {
@@ -254,7 +255,7 @@ export class Script {
             retFunclist.push(thisFuncList);
         }
         return retFunclist;
-    };
+    }
 
     /**
      * 将funcList中operator里面的desc和oper转换为适用当前正在分辨率的坐标
@@ -263,7 +264,7 @@ export class Script {
         this.scheme = store.get('currentScheme', null);
         if (null === this.scheme) return;
         this.scheme.funcList = this.getFuncList(this.scheme);
-    };
+    }
 
     // getScheduleJobInstance(key) {
     //     if (!this.scheduleMap) {
@@ -286,8 +287,8 @@ export class Script {
      * 根据 src\common\multiDetectColors.ts 初始化多点比色数组，相关坐标根据开发分辨率自动转换成运行分辨率
      */
     initMultiDetectColors() {
-        let thisMultiDetectColor = {};
-        for (let key in multiDetectColors) {
+        const thisMultiDetectColor = {};
+        for (const key in multiDetectColors) {
             const { desc } = multiDetectColors[key];
             thisMultiDetectColor[key] = {
                 desc: helperBridge.helper.GetCmpColorArray(desc[0], desc[1], desc[2])
@@ -300,23 +301,23 @@ export class Script {
      * 根据 src\common\multiFindColors.ts 初始化多点找色数组，相关坐标根据开发分辨率自动转换成运行分辨率
      */
     initMultiFindColors() {
-        let thisMultiFindColor = {};
-        for (let key in multiFindColors) {
+        const thisMultiFindColor = {};
+        for (const key in multiFindColors) {
             thisMultiFindColor[key] = {
                 region: [0, 0, this.device.width, this.device.height],
                 desc: []
             };
-            for (let desc of multiFindColors[key].desc) {
+            for (const desc of multiFindColors[key].desc) {
                 thisMultiFindColor[key].desc.push(this.helperBridge.helper.GetFindColorArray(desc[0], desc[1], desc[2]));
             }
             if (multiFindColors[key].region) {
-                let sr = this.helperBridge.getHelper(multiFindColors[key].region[1], multiFindColors[key].region[2]).GetPoint(multiFindColors[key].region[3], multiFindColors[key].region[4], multiFindColors[key].region[0]);
-                let er = this.helperBridge.getHelper(multiFindColors[key].region[1], multiFindColors[key].region[2]).GetPoint(multiFindColors[key].region[5], multiFindColors[key].region[6], multiFindColors[key].region[0]);
+                const sr = this.helperBridge.getHelper(multiFindColors[key].region[1], multiFindColors[key].region[2]).GetPoint(multiFindColors[key].region[3], multiFindColors[key].region[4], multiFindColors[key].region[0]);
+                const er = this.helperBridge.getHelper(multiFindColors[key].region[1], multiFindColors[key].region[2]).GetPoint(multiFindColors[key].region[5], multiFindColors[key].region[6], multiFindColors[key].region[0]);
                 thisMultiFindColor[key].region = [sr.x, sr.y, er.x, er.y];
             }
         }
         this.multiFindColors = thisMultiFindColor;
-    };
+    }
 
     /**
      * 执行多点找色
@@ -328,18 +329,18 @@ export class Script {
     findMultiColor(key: string, inRegion?: any, multiRegion?: boolean, noLog?: boolean) {
         this.initRedList();
         if (!multiRegion) {
-            let region = inRegion || this.multiFindColors[key].region;
-            let desc = this.multiFindColors[key].desc;
-            let similar = this.multiFindColors[key].similar || this.scheme.commonConfig.multiColorSimilar
+            const region = inRegion || this.multiFindColors[key].region;
+            const desc = this.multiFindColors[key].desc;
+            const similar = this.multiFindColors[key].similar || this.scheme.commonConfig.multiColorSimilar
             for (let i = 0; i < desc.length; i++) {
-                let item = desc[i];
-                let point = this.helperBridge.helper.FindMultiColor(region[0], region[1], region[2], region[3], item, similar, true);
+                const item = desc[i];
+                const point = this.helperBridge.helper.FindMultiColor(region[0], region[1], region[2], region[3], item, similar, true);
                 if (point.x !== -1) {
                     if (!noLog) {
                         console.log(`[${key}]第${i}个查找成功， 坐标为：(${point.x}, ${point.y})`);
                     }
                     if (drawFloaty.instacne && item) {
-                        let toDraw = item.map(kk => {
+                        const toDraw = item.map(kk => {
                             return {
                                 color: 'green',
                                 region: [point.x + kk[0] - 5, point.y + kk[1] - 5, point.x + kk[0] + 5, point.y + kk[1] + 5]
@@ -353,19 +354,19 @@ export class Script {
                 }
             }
         } else {
-            for (let inRegion2 of inRegion) {
-                let region = inRegion2;
-                let desc = this.multiFindColors[key].desc;
-                let similar = this.multiFindColors[key].similar || this.scheme.commonConfig.multiColorSimilar
+            for (const inRegion2 of inRegion) {
+                const region = inRegion2;
+                const desc = this.multiFindColors[key].desc;
+                const similar = this.multiFindColors[key].similar || this.scheme.commonConfig.multiColorSimilar
                 for (let i = 0; i < desc.length; i++) {
-                    let item = desc[i];
-                    let point = this.helperBridge.helper.FindMultiColor(region[0], region[1], region[2], region[3], item, similar, true);
+                    const item = desc[i];
+                    const point = this.helperBridge.helper.FindMultiColor(region[0], region[1], region[2], region[3], item, similar, true);
                     if (point.x !== -1) {
                         if (!noLog) {
                             console.log(`[${key}]第${i}个查找成功， 坐标为：(${point.x}, ${point.y})`);
                         }
                         if (drawFloaty.instacne && item) {
-                            let toDraw = item.map(kk => {
+                            const toDraw = item.map(kk => {
                                 return {
                                     color: 'green',
                                     region: [point.x + kk[0] - 5, point.y + kk[1] - 5, point.x + kk[0] + 5, point.y + kk[1] + 5]
@@ -381,7 +382,7 @@ export class Script {
             }
         }
         return null;
-    };
+    }
 
     /**
     * 执行多点找色(返回所有点坐标)
@@ -391,18 +392,18 @@ export class Script {
     */
     findMultiColorEx(key, inRegion?) {
         this.initRedList();
-        let region = inRegion || this.multiFindColors[key].region;
-        let desc = this.multiFindColors[key].desc;
-        let similar = this.multiFindColors[key].similar || this.scheme.commonConfig.multiColorSimilar;
-        let ret = [];
+        const region = inRegion || this.multiFindColors[key].region;
+        const desc = this.multiFindColors[key].desc;
+        const similar = this.multiFindColors[key].similar || this.scheme.commonConfig.multiColorSimilar;
+        const ret = [];
         for (let i = 0; i < desc.length; i++) {
-            let item = desc[i];
-            let pointAll = this.helperBridge.helper.FindMultiColorEx(region[0], region[1], region[2], region[3], item, similar, true);
+            const item = desc[i];
+            const pointAll = this.helperBridge.helper.FindMultiColorEx(region[0], region[1], region[2], region[3], item, similar, true);
             for (let j = 0; j < pointAll.size(); j++) {
-                let point = pointAll.get(j);
+                const point = pointAll.get(j);
                 ret.push(point);
                 if (drawFloaty.instacne) {
-                    let toDraw = item.map(kk => {
+                    const toDraw = item.map(kk => {
                         return {
                             color: 'green',
                             region: [point.x + kk[0] - 5, point.y + kk[1] - 5, point.x + kk[0] + 5, point.y + kk[1] + 5]
@@ -419,12 +420,12 @@ export class Script {
         }
 
         // 过滤位置接近的结果
-        let ret2 = [];
+        const ret2 = [];
         for (let i = 0; i < ret.length; i++) {
             let flag = true;
-            let p1 = ret[i];
+            const p1 = ret[i];
             for (let j = i + 1; j < ret.length; j++) {
-                let p2 = ret[j];
+                const p2 = ret[j];
                 // 两个点的距离小于30px表示相同点，过滤
                 if (Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2)) < 30) {
                     flag = false;
@@ -436,7 +437,7 @@ export class Script {
             }
         }
         return ret2;
-    };
+    }
 
 
 
@@ -451,14 +452,14 @@ export class Script {
         let times = Math.round(timeout / +this.scheme.commonConfig.loopDelay);
         while (times--) {
             this.keepScreen(true);
-            let point = this.findMultiColor(key, inRegion, false);
+            const point = this.findMultiColor(key, inRegion, false);
             if (point) {
                 return point;
             }
             sleep(+this.scheme.commonConfig.loopDelay);
         }
         return null;
-    };
+    }
 
     /**
      * 多点比色，直到成功为止
@@ -479,7 +480,7 @@ export class Script {
          * @param sign:        跳出条件,0为比色成功时返回,1为比色失败时返回
          */
         return this.helperBridge.helper.CompareColorExLoop(desc, this.scheme.commonConfig.colorSimilar, true, timeout, this.scheme.commonConfig.loopDelay, sign || 0);
-    };
+    }
 
     /**
      * 运行脚本
@@ -487,7 +488,7 @@ export class Script {
      */
     run() {
         return this._run();
-    };
+    }
 
     runWithJob(job: Job): void {
         return this._run(job);
@@ -500,7 +501,7 @@ export class Script {
     _run(job?: Job): void {
         if (this.runThread) return;
         this.job = job;
-        var self = this;
+        const self = this;
         try {
             this.initFuncList();
             this.initMultiFindColors();
@@ -537,6 +538,7 @@ export class Script {
         // console.log(`运行方案[${this.scheme.schemeName}]`);
         this.runThread = threads.start(function () {
             try {
+                // eslint-disable-next-line no-constant-condition
                 while (true) {
                     self.keepScreen(false);
                     for (let i = 0; i < self.scheme.funcList.length; i++) {
@@ -563,7 +565,7 @@ export class Script {
         if (typeof this.runCallback === 'function') {
             this.runCallback();
         }
-    };
+    }
 
     /**
      * 根据当前界面判断自动运行的脚本
@@ -573,16 +575,16 @@ export class Script {
      * @param {MyFloaty} myfloaty
      */
     autoRun(myfloaty: MyFloaty) {
-        let self = this;
+        const self = this;
         self.keepScreen(false);
         threads.start(function () {
-            let staredSchemeList = store.get('schemeList', defaultSchemeList).filter(item => {
+            const staredSchemeList = store.get('schemeList', defaultSchemeList).filter(item => {
                 return item.star //&& item.id != 99;
             });
-            let canRunSchemeList = [];
-            let funcDescCess = {};
+            const canRunSchemeList = [];
+            const funcDescCess = {};
             for (let j = 0; j < staredSchemeList.length; j++) {
-                let tarFuncList = self.getFuncList(staredSchemeList[j]);
+                const tarFuncList = self.getFuncList(staredSchemeList[j]);
                 let flag = false;
                 for (let i = 0; i < tarFuncList.length; i++) {
                     if (typeof funcDescCess[tarFuncList[i].id] !== 'undefined') {
@@ -613,14 +615,14 @@ export class Script {
                 schemeDialog.show(myfloaty, canRunSchemeList);
             }
         });
-    };
+    }
 
     /**
      * 停止脚本
      */
     stop() {
         events.broadcast.emit('SCRIPT_STOP', '');
-    };
+    }
 
     /**
      * 停止脚本，内部接口
@@ -639,7 +641,7 @@ export class Script {
             this.runThread.interrupt();
         }
         this.runThread = null;
-    };
+    }
 
     /**
      * 重新运行，一般在运行过程中通过setCurrenScheme切换方案后调用，停止再运行
@@ -658,7 +660,7 @@ export class Script {
             this.myToast(`切换方案为[${schemeName}]`);
         }
         events.broadcast.emit('SCRIPT_RERUN', '');
-    };
+    }
 
     rerunWithJob(job: Job): void {
         this._stop();
@@ -675,8 +677,8 @@ export class Script {
      * @param {*} retest 重试时间
      */
     oper(currFunc: IFunc, retest?: number) {
-        let operator = currFunc.operator; // 需要计算的坐标通过operater传进去使用
-        let operatorFunc = currFunc.operatorFunc;
+        const operator = currFunc.operator; // 需要计算的坐标通过operater传进去使用
+        const operatorFunc = currFunc.operatorFunc;
         if (typeof operatorFunc === 'function') {
             if (operatorFunc.call(null, this, operator)) {
                 console.log('oper_success: [function] currFunc.name' + currFunc.name);
@@ -684,7 +686,7 @@ export class Script {
             }
         } else {
             for (let id = 0; id < operator.length; id++) {
-                let item = operator[id];
+                const item = operator[id];
                 let rs;
                 if (item.desc && item.desc.length) {
                     if (typeof item.desc === 'string') {
@@ -701,7 +703,7 @@ export class Script {
                         if (typeof item.desc === 'string') {
                             thisDesc = this.multiDetectColors[item.desc as string].desc;
                         }
-                        let toDraw = [...thisDesc.map(kk => {
+                        const toDraw = [...thisDesc.map(kk => {
                             return {
                                 color: 'green',
                                 region: [kk[0] - 5, kk[1] - 5, kk[0] + 5, kk[1] + 5]
@@ -744,16 +746,16 @@ export class Script {
                 }
             }
         }
-    };
+    }
 
     /**
      * 根据func中的desc进行多点比色
      * @param {*} currFunc
      */
     desc(currFunc: IFunc, commonConfig) {
-        let operator = currFunc.operator || []; // 需要计算的坐标通过operater传进去使用
+        const operator = currFunc.operator || []; // 需要计算的坐标通过operater传进去使用
         for (let id = 0; id < operator.length; id++) {
-            let item = operator[id];
+            const item = operator[id];
             if (item.desc) {
                 let res = null;
                 if (typeof item.desc === 'string') {
@@ -771,7 +773,7 @@ export class Script {
             }
         }
         return false;
-    };
+    }
 
     setCurrentScheme(schemeName: string, params?: Record<string, unknown>) {
         if (params) {
@@ -780,18 +782,18 @@ export class Script {
             this.runtimeParams = null;
         }
         return setCurrentScheme(schemeName, store);
-    };
+    }
 
     search(list: Record<string, any>[], prop: string, str: string, filterSimilar?: number) {
         return search(list, prop, str, filterSimilar)
-    };
+    }
 
     questionSearch(str: string) {
         return questionSearch(str);
-    };
+    }
 
     launchRelatedApp() {
-        let storeSettings = storeCommon.get('settings', {});
+        const storeSettings = storeCommon.get('settings', {});
         if (storeSettings.defaultLaunchAppList && storeSettings.defaultLaunchAppList.length) {
             const packageName = storeSettings.defaultLaunchAppList[0]
             console.log(`正在启动应用${packageName}`);
@@ -802,7 +804,7 @@ export class Script {
     }
 
     stopRelatedApp() {
-        let storeSettings = storeCommon.get('settings', {});
+        const storeSettings = storeCommon.get('settings', {});
         if (storeSettings.defaultLaunchAppList && storeSettings.defaultLaunchAppList.length) {
 
             // // 先跳到自己的界面

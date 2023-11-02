@@ -1,9 +1,9 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
-const left = 0;
+// const normal = -1; //定义常量
+// const left = 0;
 const center = 1;
-const right = 2;
+// const right = 2;
 
 export class Func036 implements IFuncOrigin {
 	id = 36;
@@ -30,7 +30,7 @@ export class Func036 implements IFuncOrigin {
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let curCnt = 0;
-		let maxCount = 3;
+		const maxCount = 3;
 		while (thisScript.oper({
 			name: '金币妖怪_创建队伍',
 			operator: thisOperator

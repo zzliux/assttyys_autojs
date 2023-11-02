@@ -104,7 +104,7 @@
 
 
         // 获取当前配置
-		let thisconf = thisScript.scheme.config['1'];
+		const thisconf = thisScript.scheme.config['1'];
 		if (thisconf.exitBeforeReady) {
             /**
              * oper函数主要处理多点比色成功后执行点击操作，或用于场景判断

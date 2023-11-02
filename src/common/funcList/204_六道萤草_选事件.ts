@@ -1,6 +1,6 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -32,7 +32,7 @@ export class Func204 implements IFuncOrigin {
 				// retest: 100,
 			}]
 		})) {
-			let eventNames = thisScript.global.d6NextEvent || ['鏖战', '混沌', '神秘', '宁息'];
+			const eventNames = thisScript.global.d6NextEvent || ['鏖战', '混沌', '神秘', '宁息'];
 			// let eventNames = ['鏖战', '混沌', '神秘', '宁息'];
 			// TODO 待优化：buff达到目标个数后优先神秘与宁息，再混沌再鏖战
 			let p = null;

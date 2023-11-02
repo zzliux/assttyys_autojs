@@ -7,7 +7,7 @@
  * @LastEditors: 大柒
  * @LastEditTime: 2021-04-22 20:27:28
  */
-
+/*eslint-disable */
 function Anim(gd) {
     let fb = gd;
     let data = fb.getConfig();

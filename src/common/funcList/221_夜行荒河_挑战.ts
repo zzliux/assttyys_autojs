@@ -1,8 +1,8 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
-const center = 1;
+// const center = 1;
 const right = 2;
 
 export class Func220 implements IFuncOrigin {
@@ -41,7 +41,7 @@ export class Func220 implements IFuncOrigin {
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let curCnt = 0;
-		let maxCount = 3;
+		const maxCount = 3;
 		while (thisScript.oper({
 			id: 221,
 			name: '夜行荒河_挑战',

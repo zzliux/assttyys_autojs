@@ -225,7 +225,7 @@ export class Func037 implements IFuncOrigin {
       })
     ) {
       if (thisScript.global.team_up_lagTime) {
-        let time = Number.parseInt(thisconf.wait_time as string, 10);
+        const time = Number.parseInt(thisconf.wait_time as string, 10);
         if (
           new Date().getTime() - thisScript.global.team_up_lagTime.getTime() >
           time * 60000
@@ -248,8 +248,8 @@ export class Func037 implements IFuncOrigin {
         }
       }
 
-      let target = (thisconf && thisconf.target) || '金币';
-      let result = thisScript.findText(
+      const target = (thisconf && thisconf.target) || '金币';
+      const result = thisScript.findText(
         target as string,
         5000,
         thisOperator[0].oper[2],
@@ -257,17 +257,17 @@ export class Func037 implements IFuncOrigin {
       );
 
       if (result.length > 0) {
-        let p = {
+        const p = {
           x: (result[0].points[0].x + result[0].points[1].x) / 2,
           y: (result[0].points[0].y + result[0].points[3].y) / 2,
         };
 
-        let lx = p.x - 5;
-        let ly = p.y - 5;
-        let rx = p.x + 5;
-        let ry = p.y + 5;
+        const lx = p.x - 5;
+        const ly = p.y - 5;
+        const rx = p.x + 5;
+        const ry = p.y + 5;
 
-        let toClick = [lx > 0 ? lx : 0, ly > 0 ? ly : 0, rx, ry, 1000];
+        const toClick = [lx > 0 ? lx : 0, ly > 0 ? ly : 0, rx, ry, 1000];
         console.log('妖怪组队__识别成功，识别结果为:', toClick.toString(), p);
         thisScript.regionClick(
           [toClick],

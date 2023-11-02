@@ -1,19 +1,19 @@
-import { webview } from "@/system";
+import { webview } from '@/system';
 import drawFloaty from '@/system/drawFloaty';
 import myFloaty from '@/system/MyFloaty';
 import { storeCommon } from '@/system/store';
 import { getInstalledPackages, requestMyScreenCapture } from '@/common/toolAuto';
-import { isRoot } from "@auto.pro/core";
+import { isRoot } from '@auto.pro/core';
 import helperBridge from '@/system/helperBridge';
 import { mlkitOcr } from '@/system/Ocr/MlkitOcr';
-import { yunxiOcr } from "@/system/Ocr/YunxiOcr";
-import { myShell } from "@/system/MyAutomator";
+import { yunxiOcr } from '@/system/Ocr/YunxiOcr';
+import { myShell } from '@/system/MyAutomator';
 
 
 export default function webviewSettigns() {
 
     /** 初始化配置 */
-    let initStoreSettings = storeCommon.get('settings', {});
+    const initStoreSettings = storeCommon.get('settings', {});
     if (typeof initStoreSettings.tapType === 'undefined') {
         if (device.sdkInt >= 24) {
             initStoreSettings.tapType = '无障碍';
@@ -49,10 +49,10 @@ export default function webviewSettigns() {
     storeCommon.put('settings', initStoreSettings);
 
     // 获取配置列表
-    webview.on("getSettings").subscribe(([_param, done]) => {
-        let storeSettings = storeCommon.get('settings', {});
+    webview.on('getSettings').subscribe(([_param, done]) => {
+        const storeSettings = storeCommon.get('settings', {});
 
-        let ret = [];
+        let  ret = [];
         ret.push({
             desc: '点击/滑动模式',
             name: 'tapType',
@@ -74,7 +74,7 @@ export default function webviewSettigns() {
                 desc: '截图权限',
                 name: 'screenCapturePermission',
                 type: 'autojs_inner_settings_capture_permission',
-                // @ts-ignore
+                // @ts-expect-error 依赖的d.ts不全
                 enabled: !!images.getScreenCaptureOptions()
             });
         }
@@ -98,7 +98,7 @@ export default function webviewSettigns() {
             //     desc: '开机自启',
             //     name: 'launch_after_boot',
             //     type: 'assttyys_setting_launch_after_boot',
-            //     //@ts-ignore
+            //     // @ts-expect-error
             //     enabled: !!$work_manager.queryIntentTasks({
             //         action: 'android.intent.action.BOOT_COMPLETED'
             //     }).length,
@@ -232,7 +232,7 @@ export default function webviewSettigns() {
     });
 
     // 保存配置
-    webview.on("saveSetting").subscribe(([item, done]) => {
+    webview.on('saveSetting').subscribe(([item, done]) => {
         if ('autojs_inner_setting' === item.type) {
             $settings.setEnabled(item.name, item.enabled);
             done(true);
@@ -269,7 +269,7 @@ export default function webviewSettigns() {
                 toastLog('在回到程序前请手动开启悬浮窗权限');
                 floaty.requestPermission();
                 let count = 0;
-                let timmer = setInterval(function () {
+                const timmer = setInterval(function () {
                     count++;
                     if (count > 20) {
                         clearInterval(timmer);
@@ -307,7 +307,7 @@ export default function webviewSettigns() {
                 done(false);
             }
         } else if ('assttyys_setting' === item.type) {
-            let storeSettings = storeCommon.get('settings', {});
+            const storeSettings = storeCommon.get('settings', {});
             if ((item.stype || 'switch') === 'switch') {
                 storeSettings[item.name] = item.enabled;
             } else if (item.stype === 'text') {
@@ -331,7 +331,7 @@ export default function webviewSettigns() {
             console.log(drawFloaty);
             done(true);
         } else if ('assttyys_setting_ocr_extend' === item.type) {
-            let storeSettings = storeCommon.get('settings', {});
+            const storeSettings = storeCommon.get('settings', {});
             if (item.enabled) {
                 let ocr = null;
                 if (storeSettings.ocrType === 'MlkitOcr') {
@@ -355,12 +355,12 @@ export default function webviewSettigns() {
             }
         } else if ('assttyys_setting_launch_after_boot' === item.type) {
             if (item.enabled) {
-                //@ts-ignore
+                // @ts-expect-error 依赖的d.ts不全
                 $work_manager.addIntentTask({
                     path: context.getFilesDir().getAbsolutePath() + '/project/main.js',
                     action: 'android.intent.action.BOOT_COMPLETED'
                 });
-                //@ts-ignore
+                // @ts-expect-error 依赖的d.ts不全
                 const tasks = $work_manager.queryIntentTasks({
                     action: 'android.intent.action.BOOT_COMPLETED'
                 });
@@ -371,13 +371,13 @@ export default function webviewSettigns() {
                     done(false);
                 }
             } else {
-                //@ts-ignore
+                // @ts-expect-error 依赖的d.ts不全
                 const tasks = $work_manager.queryIntentTasks({
                     action: 'android.intent.action.BOOT_COMPLETED'
                 });
                 tasks.forEach(task => {
-                    console.log("删除: ", task);
-                    //@ts-ignore
+                    console.log('删除: ', task);
+                    // @ts-expect-error 依赖的d.ts不全
                     log($work_manager.removeIntentTask(task.id));
                 });
                 done(true);
@@ -386,24 +386,24 @@ export default function webviewSettigns() {
     });
 
     // 打开日志
-    webview.on("startActivityForLog").subscribe(([_param, done]) => {
-        app.startActivity("console");
+    webview.on('startActivityForLog').subscribe(([_param, done]) => {
+        app.startActivity('console');
         done();
     });
 
     // 清空storage
-    webview.on("clearStorage").subscribe(([_param, done]) => {
+    webview.on('clearStorage').subscribe(([_param, done]) => {
         storages.remove('asttyys_ng');
         done();
     });
 
     // 获取所有应用列表
     webview.on('getToSetDefaultLaunchAppList').subscribe(([_param, done]) => {
-        let storeSettings = storeCommon.get('settings', {});
-        let defaultLaunchAppList = storeSettings.defaultLaunchAppList || [];
-        let packageList = getInstalledPackages();
+        const storeSettings = storeCommon.get('settings', {});
+        const defaultLaunchAppList = storeSettings.defaultLaunchAppList || [];
+        const packageList = getInstalledPackages();
         // done([]);
-        let appList = packageList.filter(packageInfo => {
+        const appList = packageList.filter(packageInfo => {
             // 保留非系统应用
             return (packageInfo.applicationInfo.flags & android.content.pm.ApplicationInfo.FLAG_SYSTEM) === 0;
         }).map(packageInfo => {
@@ -419,20 +419,20 @@ export default function webviewSettigns() {
     });
 
     webview.on('getIconByPackageName').subscribe(([packageName, done]) => {
-        let packageList = getInstalledPackages().filter(packageInfo => packageInfo.packageName === packageName);
+        const packageList = getInstalledPackages().filter(packageInfo => packageInfo.packageName === packageName);
         if (packageList.length === 0) {
             done(null);
             return;
         }
-        let packageInfo = packageList[0];
+        const packageInfo = packageList[0];
         let bmp = null;
         try {
-            let appIcon = packageInfo.applicationInfo.loadIcon(context.getPackageManager());
+            const appIcon = packageInfo.applicationInfo.loadIcon(context.getPackageManager());
             if (appIcon.getBitmap) {
                 bmp = appIcon.getBitmap();
             } else if (appIcon.getBackground && appIcon.getForeground) {
                 bmp = android.graphics.Bitmap.createBitmap(appIcon.getIntrinsicWidth(), appIcon.getIntrinsicHeight(), android.graphics.Bitmap.Config.ARGB_8888);
-                let canvas = new android.graphics.Canvas(bmp);
+                const canvas = new android.graphics.Canvas(bmp);
                 appIcon.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
                 appIcon.draw(canvas);
             }
@@ -440,7 +440,7 @@ export default function webviewSettigns() {
                 done(null);
                 return;
             }
-            let baos = new java.io.ByteArrayOutputStream();
+            const baos = new java.io.ByteArrayOutputStream();
             bmp.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, baos);
             baos.flush();
             baos.close();
@@ -456,7 +456,7 @@ export default function webviewSettigns() {
 
     // 保存默认启动应用，在功能列表界面点击启动后直接启动已配置的应用
     webview.on('saveToSetDefaultLaunchAppList').subscribe(([packageNameList, done]) => {
-        let storeSettings = storeCommon.get('settings', {});
+        const storeSettings = storeCommon.get('settings', {});
         storeSettings.defaultLaunchAppList = packageNameList;
         storeCommon.put('settings', storeSettings);
         done(true);
@@ -464,9 +464,9 @@ export default function webviewSettigns() {
 
     // 获取异型屏兼容强化配置
     webview.on('getShapedScreenConfig').subscribe(([_param, done]) => {
-        let shapedScreenDevices = ['xiaomi 11(3200*1440)'];
-        let storedShapedScreenConfig = storeCommon.get('shapedScreenConfig', []);
-        let ret = [];
+        const shapedScreenDevices = ['xiaomi 11(3200*1440)'];
+        const storedShapedScreenConfig = storeCommon.get('shapedScreenConfig', []);
+        const ret = [];
         shapedScreenDevices.forEach(deviceName => {
             let enabled = false;
             for (let i = 0; i < storedShapedScreenConfig.length; i++) {
@@ -486,8 +486,8 @@ export default function webviewSettigns() {
 
     // 保存异型屏兼容强化配置
     webview.on('setShapedScreenConfigEnabled').subscribe(([deviceParam, done]) => {
-        let storedShapedScreenConfig = storeCommon.get('shapedScreenConfig', []);
-        let indx = storedShapedScreenConfig.indexOf(deviceParam.device);
+        const storedShapedScreenConfig = storeCommon.get('shapedScreenConfig', []);
+        const indx = storedShapedScreenConfig.indexOf(deviceParam.device);
         if (indx === -1) {
             if (deviceParam.enabled) {
                 storedShapedScreenConfig.push(deviceParam.device);

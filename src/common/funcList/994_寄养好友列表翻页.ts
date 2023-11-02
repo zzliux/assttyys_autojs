@@ -1,9 +1,9 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
-const right = 2;
+// const right = 2;
 
 export class Func994 implements IFuncOrigin {
 	id = 994;
@@ -101,8 +101,8 @@ export class Func994 implements IFuncOrigin {
 			],
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		let thisConf = thisScript.scheme.config['994'];
-		let defaultCount = +thisConf.count * 2;	// 共有两个页签
+		const thisConf = thisScript.scheme.config['994'];
+		const defaultCount = +thisConf.count * 2;	// 共有两个页签
 		if (thisScript.oper({
 			id: 994,
 			name: '寄养界面_判断',
@@ -116,8 +116,8 @@ export class Func994 implements IFuncOrigin {
 			const findOccupyColor = '式神寄养_全列表被占用';
 			const findEmptyColor = '式神寄养_全列表空结界卡';
 
-			let occupyPoint = thisScript.findMultiColor(findOccupyColor);
-			let emptyPoint = thisScript.findMultiColor(findEmptyColor);
+			const occupyPoint = thisScript.findMultiColor(findOccupyColor);
+			const emptyPoint = thisScript.findMultiColor(findEmptyColor);
 
 			if (occupyPoint || emptyPoint) {
 				console.log(`全列表被占用: ${occupyPoint}`, `全列表空结界卡: ${emptyPoint}`);

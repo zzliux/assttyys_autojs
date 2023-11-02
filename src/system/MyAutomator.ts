@@ -1,7 +1,7 @@
-import { getWidthPixels, isRoot } from "@auto.pro/core";
+import { isRoot } from '@auto.pro/core';
 import Bezier from 'bezier-js';
 
-// @ts-ignore
+// @ts-expect-error d.ts文件问题
 export const myShell = isRoot ? new Shell(true) : undefined;
 
 export interface IMyAutomator {
@@ -25,11 +25,12 @@ class MyAutomator implements IMyAutomator {
     setTapType(tapType: 0 | 1 | 2 | 3): void {
         this.tapType = { '无障碍': 0, 'RootAutomator': 1, 'Shell': 2, 'Root': 3 }[tapType]; // 0 无障碍， 1 RootAutomator， 2 Shell， 3 普通Root
         console.log(`修改automator：${tapType}：${this.tapType}`);
-        let self = this;
+        const self = this;
         if (this.tapType == 0) {
+            // TODO
         } else if (this.tapType == 1) {
-            let thd = threads.start(function () {
-                // @ts-ignore
+            const thd = threads.start(function () {
+                // @ts-expect-error d.ts文件问题
                 if (!self.RA) self.RA = new RootAutomator();
             });
             // 5秒无响应直接杀死
@@ -40,7 +41,7 @@ class MyAutomator implements IMyAutomator {
                 }
             },5000)
         } else if (this.tapType == 2) {
-            // @ts-ignore
+            // @ts-expect-error d.ts文件问题
             if (!this.shell) this.shell = new Shell(true);
         } else if (this.tapType == 3) {
             // none
@@ -49,10 +50,10 @@ class MyAutomator implements IMyAutomator {
 
     press(x: number, y: number, delay: number): void {
         if (this.dirctionReverse) {
-            let dm = context.getResources().getDisplayMetrics();
-            let wm = context.getSystemService(context.WINDOW_SERVICE);
+            const dm = context.getResources().getDisplayMetrics();
+            const wm = context.getSystemService(context.WINDOW_SERVICE);
             wm.getDefaultDisplay().getRealMetrics(dm);
-            let tmpx = dm.heightPixels - y;
+            const tmpx = dm.heightPixels - y;
             y = x;
             x = tmpx;
         }
@@ -69,8 +70,8 @@ class MyAutomator implements IMyAutomator {
 
     swipe(x0: number, y0: number, x1: number, y1: number, delay: number): void {
         if (this.dirctionReverse) {
-            let dm = context.getResources().getDisplayMetrics();
-            let wm = context.getSystemService(context.WINDOW_SERVICE);
+            const dm = context.getResources().getDisplayMetrics();
+            const wm = context.getSystemService(context.WINDOW_SERVICE);
             wm.getDefaultDisplay().getRealMetrics(dm);
             let tmpx = dm.heightPixels - y0;
             y0 = x0;
@@ -120,7 +121,7 @@ class MyAutomator implements IMyAutomator {
         const xMin = Math.min(x1, x2);
         const yMax = Math.max(y1, y2);
         const yMin = Math.min(y1, y2);
-        const screenWidth = getWidthPixels();
+        // const screenWidth = getWidthPixels();
         let c1, c2;
         // TODO 开始和结束的附近的点需要更密集
         if (!type) {
@@ -133,6 +134,7 @@ class MyAutomator implements IMyAutomator {
                 random(yMin, yMax),
             ];
         } else {
+            // TODO
         }
 
         const curve = new Bezier(x1, y1, ...c1, ...c2, x2, y2);
@@ -142,7 +144,7 @@ class MyAutomator implements IMyAutomator {
             toRetain.push(i);
         }
         toRetain = toRetain.sort((a, b) => Math.floor(a) - Math.floor(b));
-        let points = [];
+        const points = [];
         toRetain.forEach(item => {
             points.push(pointsOrigin[item]);
         });
@@ -151,14 +153,15 @@ class MyAutomator implements IMyAutomator {
     }
 
     constructor(tapType: number, dirctionReverse?: boolean) {
-        let self = this;
+        const self = this;
         this.tapType = { '无障碍': 0, 'RootAutomator': 1, 'Shell': 2, 'Root': 3 }[tapType]; // 0 无障碍， 1 RootAutomator， 2 Shell， 3 普通Root
         console.log(`初始化automator：${tapType}`);
         this.dirctionReverse = dirctionReverse;
         if (this.tapType == 0) {
+            // TODO
         } else if (this.tapType == 1) {
-            let thd = threads.start(function () {
-                // @ts-ignore
+            const thd = threads.start(function () {
+                // @ts-expect-error d.ts文件问题
                 self.RA = new RootAutomator();
             });
             // 5秒无响应直接杀死

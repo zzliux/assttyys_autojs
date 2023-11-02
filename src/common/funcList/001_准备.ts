@@ -1,7 +1,7 @@
-import { Script } from "@/system/script";
-import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from "@/interface/IFunc";
+import { Script } from '@/system/script';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -22,7 +22,7 @@ export class Func001 implements IFuncOrigin {
 		desc: '准备界面_未准备',
 		// 0-方向, 1-左上角x, 2-左上角y, 3-右下角x, 4-右下角y, 5-点击后延迟
 		oper: [
-			[right, 1280, 720, 1137, 542, 1228, 632, 2000], // 准备
+			[right, 1280, 720, 1137, 542, 1228, 632, 1000], // 准备
 			[left, 1280, 720, 22, 19, 52, 47, 1500], // 左上角返回
 			[center, 1280, 720, 683, 401, 795, 442, 500], // 确认
 		]
@@ -34,7 +34,7 @@ export class Func001 implements IFuncOrigin {
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		let thisconf = thisScript.scheme.config['1'];
+		const thisconf = thisScript.scheme.config['1'];
 		if (thisconf.exitBeforeReady) {
 			return thisScript.oper({
 				id: 1,

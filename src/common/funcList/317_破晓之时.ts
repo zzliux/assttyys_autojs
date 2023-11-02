@@ -1,6 +1,6 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -8,7 +8,7 @@ const right = 2;
 export class Func317 implements IFuncOrigin {
   id = 317;
   name = '破晓之时';
-  desc = "自行筹齐5个谎言后再开启，功能只会乱点关卡和放弃";
+  desc = '自行筹齐5个谎言后再开启，功能只会乱点关卡和放弃';
   operator: IFuncOperatorOrigin[] = [{
     desc: [
       1280, 720,
@@ -213,7 +213,7 @@ export class Func317 implements IFuncOrigin {
         desc: thisOperator[11].desc
       }]
     })) {
-      let point = thisScript.findMultiColor('破晓之时_游走的雷光');
+      const point = thisScript.findMultiColor('破晓之时_游走的雷光');
       let clickRegion = thisOperator[11].oper;
       if (point) {
         clickRegion = [[point.x, point.y, point.x + 70, point.y + 20, 200]];
@@ -229,21 +229,21 @@ export class Func317 implements IFuncOrigin {
         desc: thisOperator[12].desc
       }]
     })) {
-      let point = thisScript.findMultiColor('破晓之时_初始式神选择_谎言');
+      const point = thisScript.findMultiColor('破晓之时_初始式神选择_谎言');
       if (point) {
         const clickRegion = [[point.x, point.y, point.x + 40, point.y + 40, 200]];
         thisScript.regionClick(clickRegion);
       } else {
-        thisScript.doPush(thisScript, { text: `本局无法在开局前凑齐谎言，请自行凑齐谎言后开启脚本。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+        thisScript.doPush(thisScript, { text: '本局无法在开局前凑齐谎言，请自行凑齐谎言后开启脚本。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
         thisScript.stop();
         sleep(2000);
       }
       return true;
     }
 
-    let point = thisScript.findMultiColor('破晓之时_放弃');
+    const point = thisScript.findMultiColor('破晓之时_放弃');
     if (point) {
-      let oper = [[point.x - 5, point.y - 5, point.x + 5, point.y + 5, 1200]];
+      const oper = [[point.x - 5, point.y - 5, point.x + 5, point.y + 5, 1200]];
       sleep(500);
       thisScript.regionClick(oper);
       return true;
@@ -264,7 +264,7 @@ export class Func317 implements IFuncOrigin {
       name: '破晓之时_结束',
       operator: [thisOperator[7]]
     })) {
-      thisScript.doPush(thisScript, { text: `脚本已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+      thisScript.doPush(thisScript, { text: '脚本已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
       thisScript.stop();
       sleep(2000);
     }

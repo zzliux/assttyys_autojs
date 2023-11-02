@@ -1,8 +1,8 @@
 import { Script } from '@/system/script';
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 
-const normal = -1; //定义常量
-const left = 0;
+// const normal = -1; //定义常量
+// const left = 0;
 const center = 1;
 const right = 2;
 
@@ -95,7 +95,7 @@ export class Func301 implements IFuncOrigin {
         oper: [thisOperator[4].oper[0], thisOperator[4].oper[1]]
       }]
     })) {
-      let thisconf = thisScript.scheme.config['301'];
+      const thisconf = thisScript.scheme.config['301'];
       if (thisconf && thisconf.scheme_switch_enabled) {
         thisScript.rerun(thisconf.next_scheme);
         sleep(3000);

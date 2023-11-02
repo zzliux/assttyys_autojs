@@ -1,13 +1,13 @@
-import { webview } from "@/system";
+import { webview } from '@/system';
 
 export default function webviewAbout() {
 
-    webview.on("openOpenSource").subscribe(([_param, done]) => {
+    webview.on('openOpenSource').subscribe(([_param, done]) => {
         app.openUrl('https://gitee.com/zzliux/assttyys_autojs');
         done();
     });
 
-    webview.on("mailTo").subscribe(([_param, done]) => {
+    webview.on('mailTo').subscribe(([_param, done]) => {
         try {
             context.startActivity(app.intent({
                 action: 'android.intent.action.SENDTO',
@@ -23,7 +23,7 @@ export default function webviewAbout() {
         done();
     });
 
-    webview.on("copyToClip").subscribe(([str, done]) => {
+    webview.on('copyToClip').subscribe(([str, _done]) => {
         setClip(str);
         toastLog('复制成功');
     });

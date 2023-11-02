@@ -4,7 +4,7 @@ import {
   IFuncOperator,
 } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -103,11 +103,11 @@ export class Func1000 implements IFuncOrigin {
         ],
       })
     ) {
-      let point1 = thisScript.findMultiColor('宴会_举高高');
+      const point1 = thisScript.findMultiColor('宴会_举高高');
 
       if (point1) {
-        console.log(`查找举高高成功`);
-        let oper = [[point1.x, point1.y, point1.x, point1.y, 120]];
+        console.log('查找举高高成功');
+        const oper = [[point1.x, point1.y, point1.x, point1.y, 120]];
         thisScript.regionClick(oper);
         return true;
       }

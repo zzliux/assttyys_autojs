@@ -1,9 +1,9 @@
 import { Script } from '@/system/script';
-import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from "@/interface/IFunc";
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
-const center = 1;
+// const center = 1;
 const right = 2;
 
 export class Func004 implements IFuncOrigin {
@@ -94,7 +94,7 @@ export class Func004 implements IFuncOrigin {
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		let thisConf = thisScript.scheme.config['4'];
+		const thisConf = thisScript.scheme.config['4'];
 		if (thisConf && thisConf.exit && thisScript.oper({
 			id: 4,
 			name: '接受邀请',
@@ -108,7 +108,7 @@ export class Func004 implements IFuncOrigin {
 				operator: thisOperator.slice(0, 2)
 			})) {
 				return true;
-			};
+			}
 		}
 
 		if (thisConf && thisConf.teammate_exit && thisScript.oper({

@@ -1,6 +1,6 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -31,7 +31,7 @@ export class Func1002 implements IFuncOrigin {
 					desc: thisOperator[0].desc
 				}]
 			})) {
-			let point = thisScript.findMultiColor('宴会_爆竹经验') || null
+			const point = thisScript.findMultiColor('宴会_爆竹经验') || null
 			if (point) {
 				thisScript.regionClick([[point.x, point.y, point.x + 1, point.y + 1, 1500]]);
 				return true

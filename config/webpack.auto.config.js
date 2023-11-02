@@ -4,6 +4,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const AutoProWebpackPlugin = require('@auto.pro/webpack-plugin')
 const ProgressPlugin = require('progress-bar-webpack-plugin')
 const Unpack = require('./devUnpack')
+const ESLintWebpackPlugin = require('eslint-webpack-plugin')
 
 const dictionary = []
 for (let i = 1024; i < 2048; i++) {
@@ -71,6 +72,10 @@ const config = {
 module.exports = (env, argv) => {
     if (argv.mode === 'development') {
         config.plugins = [
+            new ESLintWebpackPlugin({
+                extensions: ['ts'],
+                
+            }),
             new CleanWebpackPlugin({
                 cleanOnceBeforeBuildPatterns: [__dirname + '/../dist/auto.js']
             }),
@@ -81,6 +86,9 @@ module.exports = (env, argv) => {
         // config.devtool = 'source-map'
     } else {
         config.plugins = [
+            new ESLintWebpackPlugin({
+                extensions: ['ts'],
+            }),
             new CleanWebpackPlugin({
                 cleanOnceBeforeBuildPatterns: [__dirname + '/../dist/auto.js'],
             }),

@@ -4,7 +4,7 @@ import {
   IFuncOperator,
 } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -190,7 +190,7 @@ export class Func030 implements IFuncOrigin {
     },
   ];
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-    let thisconf = thisScript.scheme.config['30'];
+    const thisconf = thisScript.scheme.config['30'];
     if (
       thisconf &&
       thisconf.level &&

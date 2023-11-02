@@ -1,9 +1,9 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
-const left = 0;
+// const normal = -1; //定义常量
+// const left = 0;
 const center = 1;
-const right = 2;
+// const right = 2;
 
 export class Func992 implements IFuncOrigin {
     id = 992;
@@ -120,11 +120,11 @@ export class Func992 implements IFuncOrigin {
             return true;
         }
 
-        let point1 = thisScript.findMultiColor('红包_皇菊御祝');
+        const point1 = thisScript.findMultiColor('红包_皇菊御祝');
 
         if (point1) {
-            console.log(`查找红包成功`);
-            let oper = [[
+            console.log('查找红包成功');
+            const oper = [[
                 point1.x - 10,
                 point1.y - 10,
                 point1.x + 10,
@@ -135,11 +135,11 @@ export class Func992 implements IFuncOrigin {
             return true;
         }
 
-        let point2 = thisScript.findMultiColor('红包_鸢尾御祝');
+        const point2 = thisScript.findMultiColor('红包_鸢尾御祝');
 
         if (point2) {
-            console.log(`查找红包成功`);
-            let oper = [[
+            console.log('查找红包成功');
+            const oper = [[
                 point2.x - 10,
                 point2.y - 10,
                 point2.x + 10,
@@ -150,11 +150,11 @@ export class Func992 implements IFuncOrigin {
             return true;
         }
 
-        let point3 = thisScript.findMultiColor('红包_夜樱御祝');
+        const point3 = thisScript.findMultiColor('红包_夜樱御祝');
 
         if (point3) {
-            console.log(`查找红包成功`);
-            let oper = [[
+            console.log('查找红包成功');
+            const oper = [[
                 point3.x - 10,
                 point3.y - 10,
                 point3.x + 10,

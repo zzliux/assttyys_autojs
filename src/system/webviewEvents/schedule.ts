@@ -1,10 +1,10 @@
-import { webview } from "@/system";
+import { webview } from '@/system';
 import script from '@/system/script';
 import store from '@/system/store';
 import ScheduleDefaultList from '@/common/scheduleList';
 import schedule, { Job, JobOptions } from '@/system/Schedule'
-import { setCurrentScheme } from "@/common/tool";
-import { getNextByCron } from "@/common/toolCron";
+import { setCurrentScheme } from '@/common/tool';
+import { getNextByCron } from '@/common/toolCron';
 // // import schedule from 'node-schedule';
 
 // const emt = events.emitter()
@@ -21,7 +21,7 @@ import { getNextByCron } from "@/common/toolCron";
 export default function webviewSchedule() {
 
     // cron的定时任务更新下次运行时间
-    let savedScheduleList = store.get("scheduleList", ScheduleDefaultList);
+    let savedScheduleList = store.get('scheduleList', ScheduleDefaultList);
     if (!Array.isArray(savedScheduleList)) {
         savedScheduleList = ScheduleDefaultList;
     }
@@ -37,8 +37,8 @@ export default function webviewSchedule() {
 
 
     // 返回已保存的方案列表，如果未保存过，返回common中的scheduleList
-    webview.on("getScheduleList").subscribe(([param, done]) => {
-        let savedScheduleList = store.get("scheduleList", ScheduleDefaultList);
+    webview.on('getScheduleList').subscribe(([_param, done]) => {
+        const savedScheduleList = store.get('scheduleList', ScheduleDefaultList);
 
         // if (Array.isArray(savedScheduleList)) {
         //     savedScheduleList.forEach(item => {
@@ -51,8 +51,8 @@ export default function webviewSchedule() {
     });
 
     // 保存方案列表
-    webview.on("saveScheduleList").subscribe(([scheduleList, done]) => {
-        store.put("scheduleList", scheduleList);
+    webview.on('saveScheduleList').subscribe(([scheduleList, done]) => {
+        store.put('scheduleList', scheduleList);
         // if (Array.isArray(scheduleList)) {
         //     scheduleList.forEach(item => {
         //         item.job && script.setScheduleJobInstance(item.id, item.job);
@@ -60,16 +60,16 @@ export default function webviewSchedule() {
         // }
 
         console.log('scheduleList已保存');
-        done("success");
+        done('success');
     });
 
-    webview.on("getScheduleInstance").subscribe(([param, done]) => {
+    webview.on('getScheduleInstance').subscribe(([_param, done]) => {
         done(schedule);
     });
 
-    webview.on("setScheduleLazyMode").subscribe(([lazyMode, done]) => {
+    webview.on('setScheduleLazyMode').subscribe(([lazyMode, done]) => {
         schedule.lazyMode = lazyMode;
-        done("success");
+        done('success');
     });
 
 
@@ -109,8 +109,8 @@ export default function webviewSchedule() {
         }
 
         function updateJobStore(job: JobOptions) {
-            const sl = store.get("scheduleList", ScheduleDefaultList);
-            for (let storedJob of sl) {
+            const sl = store.get('scheduleList', ScheduleDefaultList);
+            for (const storedJob of sl) {
                 if (storedJob.name === job.name) {
                     storedJob.nextDate = job.nextDate;
                     storedJob.lastRunTime = job.lastRunTime;

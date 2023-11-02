@@ -1,8 +1,8 @@
-import { Script } from "@/system/script";
-import { IFuncOrigin, IFuncOperator, IFuncOperatorOrigin } from "@/interface/IFunc";
+import { Script } from '@/system/script';
+import { IFuncOrigin, IFuncOperator, IFuncOperatorOrigin } from '@/interface/IFunc';
 
-const normal = -1; //定义常量
-const left = 0;
+// const normal = -1; //定义常量
+// const left = 0;
 const center = 1;
 const right = 2;
 
@@ -136,7 +136,7 @@ export class Func003 implements IFuncOrigin {
 	 * @param {*} thisOperator 转换过适合当前分辨率的operator
 	 */
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		let thisconf = thisScript.scheme.config['3']; // 获取配置
+		const thisconf = thisScript.scheme.config['3']; // 获取配置
 		if (thisScript.oper({
 			id: 3,
 			name: '清除垃圾弹窗',
@@ -149,7 +149,7 @@ export class Func003 implements IFuncOrigin {
 			name: '意外情况,停止脚本',
 			operator: [thisOperator[4]]
 		})) {
-			thisScript.doPush(thisScript, { text: `意外情况已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+			thisScript.doPush(thisScript, { text: '意外情况已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 			thisScript.stop();
 			sleep(3000);
 			return true;
@@ -161,7 +161,7 @@ export class Func003 implements IFuncOrigin {
 				desc: [thisOperator[0].desc[0] as [number, number, number, number]]
 			}]
 		})) {
-			if (thisScript.findMultiColor("勾协判定")) {
+			if (thisScript.findMultiColor('勾协判定')) {
 				thisScript.oper({
 					id: 3,
 					name: '悬赏协作_' + thisconf.type + '_勾协',
@@ -204,7 +204,7 @@ export class Func003 implements IFuncOrigin {
 					}[(thisconf.yytype || '关闭') as string]]]
 				}]
 			});
-		};
+		}
 	}
 }
 

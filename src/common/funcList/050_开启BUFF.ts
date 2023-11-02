@@ -1,9 +1,9 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
-const right = 2;
+// const right = 2;
 
 export class Func050 implements IFuncOrigin {
 	id = 50;
@@ -97,7 +97,7 @@ export class Func050 implements IFuncOrigin {
 			})) {
 				return true;
 			}
-			let point = thisScript.findMultiColor(`关闭的BUFF_${thisconf.buff_type}`) || null
+			const point = thisScript.findMultiColor(`关闭的BUFF_${thisconf.buff_type}`) || null
 			if (point) {
 				thisScript.regionClick([
 					[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], 1000]

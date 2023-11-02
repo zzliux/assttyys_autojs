@@ -5,7 +5,7 @@ import {
 } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -180,7 +180,7 @@ export class Func508 implements IFuncOrigin {
     }
   ];
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-    let thisConf = thisScript.scheme.config['508'];
+    const thisConf = thisScript.scheme.config['508'];
 
     if (
       thisScript.oper({
@@ -192,11 +192,11 @@ export class Func508 implements IFuncOrigin {
         ],
       })
     ) {
-      let point = thisScript.findMultiColor('逢魔_捡垃圾');
+      const point = thisScript.findMultiColor('逢魔_捡垃圾');
 
       if (point) {
-        console.log(`逢魔_捡垃圾`);
-        let oper = [[point.x - 2, point.y - 2, point.x + 2, point.y + 2, 1200]];
+        console.log('逢魔_捡垃圾');
+        const oper = [[point.x - 2, point.y - 2, point.x + 2, point.y + 2, 1200]];
         thisScript.regionClick(oper);
       }
 

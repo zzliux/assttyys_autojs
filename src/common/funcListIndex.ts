@@ -1,7 +1,7 @@
 // 自动加载funcList目录下所有配置统一导出
 const fl = require.context('./funcList', false, /\.[jt]s$/);
 
-let funcList = [];
+const funcList = [];
 
 fl.keys().forEach(key => {
     const keys = Object.keys(fl(key));

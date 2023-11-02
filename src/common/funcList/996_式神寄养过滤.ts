@@ -1,9 +1,9 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
-const right = 2;
+// const right = 2;
 
 export class Func996 implements IFuncOrigin {
 	id = 996;
@@ -42,7 +42,7 @@ export class Func996 implements IFuncOrigin {
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		let thisconf = thisScript.scheme.config['996'];
+		const thisconf = thisScript.scheme.config['996'];
 
 		if (thisScript.oper({
 			id: 996,
@@ -51,7 +51,7 @@ export class Func996 implements IFuncOrigin {
 				desc: thisOperator[0].desc,
 			}]
 		})) {
-			let result = thisScript.findText(String(thisconf.friendName), 5000, thisOperator[0].oper[0], '模糊');
+			const result = thisScript.findText(String(thisconf.friendName), 5000, thisOperator[0].oper[0], '模糊');
 
 			if (result.length === 0) {
 				console.log(`未识别${thisconf.friendName}`);
@@ -60,17 +60,17 @@ export class Func996 implements IFuncOrigin {
 
 			console.log('识别成功:' + result, thisconf.friendName);
 
-			let p = {
+			const p = {
 				x: (result[0].points[0].x + result[0].points[1].x) / 2,
 				y: (result[0].points[0].y + result[0].points[3].y) / 2,
 			}
 
-			let lx = thisOperator[0].oper[1][0];
-			let ly = p.y - thisOperator[0].oper[1][1];
-			let rx = thisOperator[0].oper[1][2];
-			let ry = p.y + thisOperator[0].oper[1][3];
+			const lx = thisOperator[0].oper[1][0];
+			const ly = p.y - thisOperator[0].oper[1][1];
+			const rx = thisOperator[0].oper[1][2];
+			const ry = p.y + thisOperator[0].oper[1][3];
 
-			let toClick = [
+			const toClick = [
 				lx > 0 ? lx : 0,
 				ly > 0 ? ly : 0,
 				rx < thisOperator[0].oper[2][2] ? rx : thisOperator[0].oper[2][2],

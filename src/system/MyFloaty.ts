@@ -11,7 +11,7 @@ export class MyFloaty {
     runEventFlag: boolean = false;
     init() {
         if (this.fb) return;
-        let self = this;
+        const self = this;
         this.fb = new FloatButton();
         this.fb.setMenuOpenAngle(180);
         this.fb.setAllButtonSize(30);
@@ -27,7 +27,7 @@ export class MyFloaty {
         //     //背景颜色
         //     .setColor('#0099FF')
         //     //点击事件
-        //     .onClick((view, name) => {
+        //     .onClick((_view, _name) => {
         //         self.runEventFlag = false;
         //         script.stop();
         //         var i = new android.content.Intent(activity, activity.class);
@@ -39,7 +39,7 @@ export class MyFloaty {
 
 
 
-        let runStopItem = this.fb.addItem('RunStop');
+        const runStopItem = this.fb.addItem('RunStop');
         //启用复选框属性
         runStopItem.toCheckbox(mUtil => {
             //未选中样式
@@ -72,7 +72,7 @@ export class MyFloaty {
             //背景颜色
             .setColor('#bfc1c0')
             //点击事件
-            .onClick((view, name) => {
+            .onClick((_view, _name) => {
                 script.stop();
                 schemeDialog.show(this);
                 self.runEventFlag = false;
@@ -86,7 +86,7 @@ export class MyFloaty {
             //背景颜色
             .setColor('#FF9933')
             //点击事件
-            .onClick((view, name) => {
+            .onClick((_view, _name) => {
                 script.stop();
                 self.thisRun('autoRun');
                 self.runEventFlag = false;
@@ -98,13 +98,13 @@ export class MyFloaty {
             //图标着色
             .setTint('#FFFFFF')
             .setColor('#FF3300')
-            .onClick((view, name) => {
+            .onClick((_view, _name) => {
                 threads.start(function () {
                     sleep(600);
                     script.keepScreen(); // 更新图片
-                    let bmp = script.helperBridge.helper.GetBitmap();
-                    let img = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(bmp);
-                    let path = `/sdcard/assttyys/screenshot/${new Date().getTime()}.png`;
+                    const bmp = script.helperBridge.helper.GetBitmap();
+                    const img = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(bmp);
+                    const path = `/sdcard/assttyys/screenshot/${new Date().getTime()}.png`;
                     files.ensureDir(path);
                     img.saveTo(path);
                     img.recycle();
@@ -121,13 +121,13 @@ export class MyFloaty {
                 //图标着色
                 .setTint('#FFFFFF')
                 .setColor('#FFCCCC')
-                .onClick((view, name) => {
-                    var i = new android.content.Intent(activity, activity.class);
+                .onClick((_view, _name) => {
+                    const i = new android.content.Intent(activity, activity.class);
                     i.addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK);
                     i.addFlags(android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     context.startActivity(i);
                     setTimeout(() => {
-                        app.startActivity("console");
+                        app.startActivity('console');
                     }, 500);
                     return false;
                 });
@@ -146,7 +146,7 @@ export class MyFloaty {
             runStopItem.setChecked(true);
             // self.fb.setTint('#ff08bc92');
             ui.run(function () {
-                // @ts-ignore
+                // @ts-expect-error d.ts文件问题
                 self.fb.getView('logo').setColorFilter(colors.argb(255, 0x08, 0xbc, 0x92));
             });
         });
@@ -159,7 +159,7 @@ export class MyFloaty {
             runStopItem.setChecked(false);
             // self.fb.setTint('#00000000');
             ui.run(function () {
-                // @ts-ignore
+                // @ts-expect-error d.ts文件问题
                 self.fb.getView('logo').setColorFilter(colors.argb(0, 0, 0, 0));
             });
         });
@@ -168,8 +168,8 @@ export class MyFloaty {
     thisRun(type?: string) {
         type = type || 'run';
         if (app.autojs.versionCode >= 8081200) {
-            // @ts-ignore
-            let capOpt = images.getScreenCaptureOptions();
+            // @ts-expect-error d.ts文件问题
+            const capOpt = images.getScreenCaptureOptions();
             if (null == capOpt) {
                 // 通过报错来切换图标状态
                 script[type](this);

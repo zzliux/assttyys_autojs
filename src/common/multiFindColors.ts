@@ -1,6 +1,6 @@
-import { IMultiFindColorsOrigin } from "@/interface/IMultiColor";
+import { IMultiFindColorsOrigin } from '@/interface/IMultiColor';
 
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -1298,7 +1298,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
 
         ]
     },
-    "探索界面_检测左边是否有追踪任务的悬浮列表": {
+    '探索界面_检测左边是否有追踪任务的悬浮列表': {
         region: [left, 1280, 720, 0, 95, 154, 284],
         desc: [
             // 适配“拓”
@@ -1358,7 +1358,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
 
         ]
     },
-    "地鬼_探索界面检测地鬼入口": {
+    '地鬼_探索界面检测地鬼入口': {
         region: [left, 1280, 720, 407, 594, 1040, 713],
         desc: [
             [1280, 720,
@@ -1387,7 +1387,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
 
         ]
     },
-    "悬赏_庭院检测悬赏图标": {
+    '悬赏_庭院检测悬赏图标': {
         region: [left, 1280, 720, 0, 88, 1280, 520],
         desc: [
             [1280, 720, // 封
@@ -2514,7 +2514,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
             ]
         ]
     },
-    "狭间暗域_怪物分布奖励": {
+    '狭间暗域_怪物分布奖励': {
         region: [left, 1280, 720, 96, 90, 223, 643],
         desc: [
             [
@@ -2538,7 +2538,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
             ]
         ]
     },
-    "阴阳寮_奖励体力": {
+    '阴阳寮_奖励体力': {
         region: [left, 1280, 720, 219, 301, 592, 407],
         desc: [
             [
@@ -2551,7 +2551,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
             ]
         ]
     },
-    "阴阳寮_奖励金币": {
+    '阴阳寮_奖励金币': {
         region: [left, 1280, 720, 219, 301, 592, 407],
         desc: [
             [
@@ -2578,7 +2578,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
             ]
         ]
     },
-    "御魂挑战_喂猫喂狗": {
+    '御魂挑战_喂猫喂狗': {
         region: [left, 1280, 720, 153, 96, 377, 511],
         desc: [
             [
@@ -2593,7 +2593,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
             ]
         ]
     },
-    "宴会_举高高": {
+    '宴会_举高高': {
         region: [left, 1280, 720, 127, 155, 1171, 569],
         desc: [
             [
@@ -2610,7 +2610,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
             ]
         ]
     },
-    "鬼城岐事_判定": {
+    '鬼城岐事_判定': {
         // 优先上次选择
         region: [right, 1280, 720, 787, 185, 1250, 620],
         desc: [
@@ -2638,7 +2638,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
             ]
         ]
     },
-    "言灵活动_对弈": {
+    '言灵活动_对弈': {
         region: [right, 1280, 720, 12, 358, 824, 574],
         desc: [
             [1280, 720,
@@ -2651,7 +2651,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
             ]
         ]
     },
-    "消消乐_红": {
+    '消消乐_红': {
         region: [center, 1280, 720, 0, 0, 1279, 719],
         desc: [
             [1280, 720,
@@ -2664,7 +2664,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
             ]
         ]
     },
-    "消消乐_黑": {
+    '消消乐_黑': {
         region: [center, 1280, 720, 0, 0, 1279, 719],
         desc: [
             [1280, 720,
@@ -2677,7 +2677,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
             ]
         ]
     },
-    "消消乐_蓝": {
+    '消消乐_蓝': {
         region: [center, 1280, 720, 0, 0, 1279, 719],
         desc: [
             [1280, 720,
@@ -2690,7 +2690,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
             ]
         ]
     },
-    "消消乐_黄": {
+    '消消乐_黄': {
         region: [center, 1280, 720, 0, 0, 1279, 719],
         desc: [
             [1280, 720,
@@ -2703,7 +2703,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
             ]
         ]
     },
-    "勾协判定": {
+    '勾协判定': {
         region: [center, 1280, 720, 648, 456, 720, 528],
         similar: 98,
         desc: [
@@ -2717,7 +2717,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
             ]
         ]
     },
-    "突破失败": {
+    '突破失败': {
         region: [center, 1280, 720, 380, 140, 1230, 485],
         similar: 95,
         desc: [
@@ -2741,7 +2741,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
             ]
         ]
     },
-    "活动说明的感叹号": {
+    '活动说明的感叹号': {
         region: [center, 1280, 720, 100, 0, 350, 100],
         desc: [
             [1280, 720,
@@ -2756,7 +2756,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
             ]
         ]
     },
-    "寄养狗粮_满级标识": {
+    '寄养狗粮_满级标识': {
         region: [left, 1280, 720, 38, 226, 1251, 289],
         desc: [
             [
@@ -2781,7 +2781,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
             ]
         ]
     },
-    "寄养狗粮_空": {
+    '寄养狗粮_空': {
         region: [left, 1280, 720, 19, 183, 1269, 481],
         desc: [
             [
@@ -2806,7 +2806,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
             ]
         ]
     },
-    "体力图标": {
+    '体力图标': {
         region: [center, 1280, 720, 582, 2, 1269, 64],
         desc: [
             [
@@ -2832,7 +2832,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
             ],
         ]
     },
-    "契灵_火灵": {
+    '契灵_火灵': {
         region: [center, 1280, 720, 40, 444, 1138, 611],
         desc: [[
             1280, 720,
@@ -2846,7 +2846,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
             ]
         ]]
     },
-    "契灵_小黑": {
+    '契灵_小黑': {
         region: [center, 1280, 720, 40, 444, 1138, 611],
         desc: [[
             1280, 720,
@@ -2860,7 +2860,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
             ]
         ]]
     },
-    "契灵_镇墓兽": {
+    '契灵_镇墓兽': {
         region: [center, 1280, 720, 40, 444, 1138, 611],
         desc: [[
             1280, 720,
@@ -2874,7 +2874,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
             ]
         ]]
     },
-    "契灵_茨球": {
+    '契灵_茨球': {
         region: [center, 1280, 720, 40, 444, 1138, 611],
         desc: [[1280, 720,
             [

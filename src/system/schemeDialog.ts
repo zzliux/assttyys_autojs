@@ -6,7 +6,7 @@ import defaultSchemeList from '@/common/schemeList';
  */
 export default {
     show(myfloaty, schemeList?) {
-        let staredSchemeList = schemeList || store.get('schemeList', defaultSchemeList).filter(item => {
+        const staredSchemeList = schemeList || store.get('schemeList', defaultSchemeList).filter(item => {
             return item.star //&& item.id != 99;
         });
         if (staredSchemeList.length === 0) {
@@ -19,7 +19,7 @@ export default {
             }), i => {
                 if (i < 0) return; // 取消
                 store.put('currentScheme', staredSchemeList[i]);
-                let storeSettings = storeCommon.get('settings', {});
+                const storeSettings = storeCommon.get('settings', {});
                 if (storeSettings.floaty_scheme_direct_run) {
                     // myfloaty.fy.start();
                     setTimeout(()=> {

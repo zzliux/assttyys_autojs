@@ -1,6 +1,6 @@
-import { similarity } from "@/common/tool";
-import drawFloaty from "../drawFloaty";
-import { IOcr, IOcrDetector, OcrResult } from "./IOcr";
+import { similarity } from '@/common/tool';
+import drawFloaty from '../drawFloaty';
+import { IOcr, IOcrDetector, OcrResult } from './IOcr';
 
 export class MlkitOcrDetector implements IOcrDetector {
     instance: any;
@@ -64,7 +64,6 @@ class MlkitOcr implements IOcr {
      * 安装
      */
     install(option: { failCallback: Function, successCallback: Function }): void {
-        let self = this;
         if (app.autojs.versionCode < '9121400') {
             toastLog('软件版本过低，当前版本不支持ocr请安装新版');
             option.failCallback();
@@ -78,14 +77,14 @@ class MlkitOcr implements IOcr {
                             toastLog('下载中，请稍后...');
                             // const path = context.getExternalFilesDir(null).getAbsolutePath() + '/assttyus_ng/ocr';
                             const path = files.cwd() + '/plugins'
-                            let url = 'https://assttyys.zzliux.cn/static/autojspro-mlkit-ocr-plugin-1.1.apk';
+                            const url = 'https://assttyys.zzliux.cn/static/autojspro-mlkit-ocr-plugin-1.1.apk';
                             const r = http.get(url);
                             console.log(`下载路径${path}`);
                             files.ensureDir(path + '/autojspro-mlkit-ocr-plugin-1.1.apk');
                             if (files.exists(path + '/autojspro-mlkit-ocr-plugin-1.1.apk')) {
                                 files.remove(path + '/autojspro-mlkit-ocr-plugin-1.1.apk');
                             }
-                            // @ts-ignore
+                            // @ts-expect-error d.ts文件问题
                             files.writeBytes(path + '/org.autojs.autojspro.plugin.mlkit.ocr.apk', r.body.bytes());
                             if (mlkitOcr.isInstalled()) {
                                 toastLog('安装完成');
@@ -132,14 +131,15 @@ class MlkitOcr implements IOcr {
 
     findTextByOcr(detector: MlkitOcrDetector, getBmpFunc: Function, text: string, timeout: number, region: Array<number>, textMatchMode: string): Array<OcrResult> {
         const startTime = new Date().getTime();
+        // eslint-disable-next-line no-constant-condition
         while (true) {
             let bmp = getBmpFunc();
             if (region) {
-                let newBmp = android.graphics.Bitmap.createBitmap(bmp, region[0], region[1], region[2] - region[0], region[3] - region[1]);
+                const newBmp = android.graphics.Bitmap.createBitmap(bmp, region[0], region[1], region[2] - region[0], region[3] - region[1]);
                 bmp.recycle();
                 bmp = newBmp;
             }
-            let rs = detector.loadImage(bmp);
+            const rs = detector.loadImage(bmp);
             bmp.recycle()
 
             if (region) {
@@ -151,7 +151,7 @@ class MlkitOcr implements IOcr {
                 });
             }
             
-            let res = this.findTextByOcrResult(text, rs, textMatchMode);
+            const res = this.findTextByOcrResult(text, rs, textMatchMode);
             
             if (res.length > 0) {
                 // console.log('识别结果', JSON.stringify(rs));
@@ -166,7 +166,7 @@ class MlkitOcr implements IOcr {
         let res = [];
         let toDraw = [];
         if (textMatchMode === '包含') {
-            let reg = new RegExp(text);
+            const reg = new RegExp(text);
             res = ocrResult.filter(item => reg.test(item.label));
             toDraw = ocrResult.map(item => ({
                 region: [item.points[0].x, item.points[0].y, item.points[2].x, item.points[2].y],

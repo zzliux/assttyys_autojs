@@ -1,15 +1,15 @@
 runtime.unloadDex('./assets/lib/scriptlib.dex');
 runtime.loadDex('./assets/lib/scriptlib.dex');
 
-import core, { closeForeground, setSystemUiVisibility, getWidthPixels, getHeightPixels } from '@auto.pro/core'
+import core, { closeForeground, setSystemUiVisibility } from '@auto.pro/core'
 import { run } from '@auto.pro/webview'
 
 // $debug.setMemoryLeakDetectionEnabled(true);
 
-let needCap = '竖屏';
-if (getWidthPixels() > getHeightPixels()) {
-    needCap = '横屏';
-}
+// let needCap = '竖屏';
+// if (getWidthPixels() > getHeightPixels()) {
+//     needCap = '横屏';
+// }
 core({
     // needCap: needCap,
     // capType: '同步',

@@ -1,9 +1,9 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
-const right = 2;
+// const right = 2;
 
 export class Func033 implements IFuncOrigin {
 	id = 33;
@@ -89,6 +89,7 @@ export class Func033 implements IFuncOrigin {
 					// 点击存在红点的频道
 					let point = null;
 					thisScript.keepScreen(true);
+					// eslint-disable-next-line no-cond-assign
 					while (point = thisScript.findMultiColor('公频聊天_未读红点')) {
 						const oper = [[point.x, point.y, point.x + thisOperator[0].oper[6][2], point.y + thisOperator[0].oper[6][3], thisOperator[0].oper[6][4]]];
 						thisScript.regionClick(oper, 1000 + +thisScript.scheme.commonConfig.afterClickDelayRandom);

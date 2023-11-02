@@ -29,7 +29,7 @@ export class Func2001 implements IFuncOrigin {
 				desc: thisOperator[0].desc
 			}]
 		})) {
-			let point = thisScript.findMultiColor('开号_剧情更多按钮');
+			const point = thisScript.findMultiColor('开号_剧情更多按钮');
 			if (point) {
 				let clickRegion = [
 					[

@@ -87,7 +87,7 @@ export class Func126 implements IFuncOrigin {
       name: '倒计时',
       operator: [thisOperator[4]]
     })) {
-      let point = thisScript.findMultiColor('言灵活动_对弈');
+      const point = thisScript.findMultiColor('言灵活动_对弈');
       if (point) {
         let oper = [[point.x, point.y, point.x + thisOperator[1].oper[0][2], point.y + thisOperator[1].oper[0][3], thisOperator[1].oper[0][4]]];
         thisScript.regionClick(oper);

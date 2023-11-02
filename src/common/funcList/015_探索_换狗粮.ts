@@ -1,6 +1,6 @@
 import { Script } from '@/system/script';
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -68,7 +68,7 @@ export class Func015 implements IFuncOrigin {
 			operator: [{ desc: thisOperator[0].desc }]
 		}, 1000)) {
 			if (thisScript.findMultiColor('准备界面_满级标识')) {
-				let thisconf = thisScript.scheme.config['15'];
+				const thisconf = thisScript.scheme.config['15'];
 				if (!thisconf.dog_food_type || '素材' === thisconf.dog_food_type) {
 					// 素材
 					while (thisScript.oper({
@@ -109,7 +109,7 @@ export class Func015 implements IFuncOrigin {
 					sleep(1500);
 					thisScript.regionClick([thisOperator[0].oper[2], thisOperator[0].oper[4]]);
 					sleep(1500);
-					let handlePos = (thisconf.handle_position as number);
+					const handlePos = (thisconf.handle_position as number);
 					// 先用把手拖一段距离
 					if (handlePos) {
 						thisScript.regionSwipe(thisOperator[0].oper[13], [
@@ -129,7 +129,7 @@ export class Func015 implements IFuncOrigin {
 						point = thisScript.findMultiColor('准备_N卡');
 						thisScript.keepScreen(true);
 					}
-					let path1 = [
+					const path1 = [
 						{
 							x: point.x + random(thisOperator[0].oper[15][0], thisOperator[0].oper[15][2]),
 							y: point.y + random(thisOperator[0].oper[15][1], thisOperator[0].oper[15][3])
@@ -137,7 +137,7 @@ export class Func015 implements IFuncOrigin {
 						{ delay: 800, x: null, y: null }, 
 						{ delay: 800, x: null, y: null }
 					];
-					let path2 = [
+					const path2 = [
 						{
 							x: point.x + random(thisOperator[0].oper[16][0], thisOperator[0].oper[16][2]),
 							y: point.y + random(thisOperator[0].oper[16][1], thisOperator[0].oper[16][3])

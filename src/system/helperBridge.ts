@@ -1,21 +1,21 @@
-import { getWidthPixels, getHeightPixels } from "@auto.pro/core";
-import drawFloaty from "@/system/drawFloaty";
+import { getWidthPixels, getHeightPixels } from '@auto.pro/core';
+import drawFloaty from '@/system/drawFloaty';
 import { getRegionBiasRnd2, hash, strHashToNum } from '@/common/toolAuto';
 import { IMyAutomator } from '@/system/MyAutomator';
 
-const normal = -1; //定义常量
-const left = 0;
-const center = 1;
-const right = 2;
-const needRoot = device.sdkInt < 24;
+// const normal = -1; //定义常量
+// const left = 0;
+// const center = 1;
+// const right = 2;
+// const needRoot = device.sdkInt < 24;
 
 const devWidth = 1280;
 const devHeight = 720;
 let screenWidth = getWidthPixels();
 let screenHeight = getHeightPixels();
-const scale = screenHeight / devHeight;
+// const scale = screenHeight / devHeight;
 if (screenWidth < screenHeight) {
-    let t = screenWidth;
+    const t = screenWidth;
     screenWidth = screenHeight;
     screenHeight = t;
 }
@@ -49,17 +49,17 @@ export class helperBridge implements IhelperBridge {
     init() {
         console.log('init', com.scriptlib.AnchorGraphicHelper);
         console.log(`ScriptLib Version: ${com.scriptlib.AnchorGraphicHelper.Version()}`);
-        console.log(`ScriptLib initializing`);
+        console.log('ScriptLib initializing');
         this.helper = this.getHelper(devWidth, devHeight);
-        console.log(`ScriptLib initialize success`);
+        console.log('ScriptLib initialize success');
     }
     // [[right, 1280, 720, 1119, 504, 1227, 592, 2000]]
     regionClickTrans(oper) {
         for (let i = 0; i < oper.length; i++) {
-            let regionWidth = null;
-            let regionHeight = null;
-            let regionX = null;
-            let regionY = null;
+            // let regionWidth = null;
+            // let regionHeight = null;
+            // let regionX = null;
+            // let regionY = null;
 
             // if (oper[i][0] == center) {
             //     regionWidth = (oper[i][3] - oper[i][1]) * scale;
@@ -89,8 +89,8 @@ export class helperBridge implements IhelperBridge {
             if (oper[i][3] === -1) {
                 oper[i] = [-1, -1, -1, -1, ...oper[i].slice(7)]
             } else {
-                let sr = this.getHelper(oper[i][1], oper[i][2]).GetPoint(oper[i][3], oper[i][4], oper[i][0]);
-                let er = this.getHelper(oper[i][1], oper[i][2]).GetPoint(oper[i][5], oper[i][6], oper[i][0]);
+                const sr = this.getHelper(oper[i][1], oper[i][2]).GetPoint(oper[i][3], oper[i][4], oper[i][0]);
+                const er = this.getHelper(oper[i][1], oper[i][2]).GetPoint(oper[i][5], oper[i][6], oper[i][0]);
                 oper[i] = [sr.x, sr.y, er.x, er.y, ...oper[i].slice(7)]
             }
         }
@@ -105,7 +105,7 @@ export class helperBridge implements IhelperBridge {
     // [[x1, y1, x2, y2, afterSleep, pressTimeout?]]
     // 按顺序点击
     regionClick(transedOper: [number, number, number, number, number, number?][], baseSleep: number, randomSleep: number) {
-        let self = this;
+        const self = this;
         transedOper.forEach(item => {
             if (item[0] >= 0) {
                 // let x = random(item[0], item[2]);
@@ -114,7 +114,7 @@ export class helperBridge implements IhelperBridge {
                 const pressTimeout = item[5] ? random(item[5], item[5] + 50) : random(10, 60);
                 console.log(`执行点击操作 === x坐标:${x}, y坐标:${y}`);
                 if (drawFloaty.instacne) {
-                    let toDraw = [{
+                    const toDraw = [{
                         color: 'orange',
                         region: [item[0], item[1], item[2], item[3]]
                     }, {
@@ -138,7 +138,7 @@ export class helperBridge implements IhelperBridge {
     // ]]
     regionStepRandomClick(transedOperStepRandom, baseSleep: number, randomSleep: number): void {
         // 生成一套，然后给regionClick操作
-        let oper = [];
+        const oper = [];
         transedOperStepRandom.forEach(item => {
             // let sum = 0;
             // for (let i = 0; i < item.length; i++) {
@@ -215,7 +215,7 @@ export class helperBridge implements IhelperBridge {
 
         console.log(`执行滑动操作 === ${points}`);
         if (drawFloaty.instacne) {
-            let toDraw = [...points.map(point => ({
+            const toDraw = [...points.map(point => ({
                 color: 'red',
                 region: [point[0] - 5, point[1] - 5, point[0] + 5, point[1] + 5]
             })), ...transedOper.map(item => ({
@@ -228,7 +228,7 @@ export class helperBridge implements IhelperBridge {
         this.automator.gesture(duration, ...points)
         sleep(random(0, randomSleep || 0));
     }
-};
+}
 
 const helperBridgeService = new helperBridge();
 

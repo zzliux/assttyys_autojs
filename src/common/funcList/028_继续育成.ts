@@ -1,7 +1,7 @@
-import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from "@/interface/IFunc";
-import { Script } from "@/system/script";
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
+import { Script } from '@/system/script';
 
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -60,8 +60,8 @@ export class Func028 implements IFuncOrigin {
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		let thisconf = thisScript.scheme.config['28'];
-		let cntIndex = (thisconf.count as number) - 1;
+		const thisconf = thisScript.scheme.config['28'];
+		const cntIndex = (thisconf.count as number) - 1;
 		if (thisScript.oper({
 			name: '继续育成',
 			operator: [thisOperator[0]]

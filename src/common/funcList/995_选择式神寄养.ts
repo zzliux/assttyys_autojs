@@ -5,7 +5,7 @@ import {
 } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -209,7 +209,7 @@ export class Func995 implements IFuncOrigin {
     },
   ];
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-    let thisConf = thisScript.scheme.config['995'];
+    const thisConf = thisScript.scheme.config['995'];
     const maxTimeForwait = parseInt(thisConf.maxTimeForwait as string, 10);
     if (!thisScript.global.jy_list_getTime_fault_count) {
       thisScript.global.jy_list_getTime_fault_count = 0;
@@ -256,7 +256,7 @@ export class Func995 implements IFuncOrigin {
       }) &&
       thisConf.isAutoFosterCare
     ) {
-      console.log(`好友没有挂结界卡，切换到自选结界`);
+      console.log('好友没有挂结界卡，切换到自选结界');
       return thisScript.oper({
         id: 995,
         name: '返回我的结界页面，切换至自选结界逻辑',

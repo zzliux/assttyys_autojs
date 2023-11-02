@@ -4,17 +4,17 @@ import {
   IFuncOperator,
 } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
-const left = 0;
-const center = 1;
-const right = 2;
+// const normal = -1; //定义常量
+// const left = 0;
+// const center = 1;
+// const right = 2;
 
 export class Func991 implements IFuncOrigin {
   id = 991;
   name = '重启模拟器';
   desc = '重启模拟器，减少模拟器崩溃的几率(官方说的: ))';
   operator: IFuncOperatorOrigin[] = [];
-  operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
+  operatorFunc(thisScript: Script, _thisOperator: IFuncOperator[]): boolean {
     const jobList = thisScript.schedule.getJobList();
     for (let i = 0; i < jobList.length; i++) {
       const thisJob = jobList[i];

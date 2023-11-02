@@ -1,7 +1,7 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -115,7 +115,7 @@ export class Func514 implements IFuncOrigin {
         ]
     }];
     operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-        let thisConf = thisScript.scheme.config['514'];
+        // const thisconf = thisScript.scheme.config['514'];
 
         if (thisScript.oper({
             name: '检测_选择暗域页面未封印',
@@ -164,11 +164,11 @@ export class Func514 implements IFuncOrigin {
             }]
         })) {
 
-            let point = thisScript.findMultiColor('狭间暗域_怪物分布奖励');
+            const point = thisScript.findMultiColor('狭间暗域_怪物分布奖励');
 
             if (point) {
-                console.log(`怪物分布奖励获取成功`);
-                let oper = [[
+                console.log('怪物分布奖励获取成功');
+                const oper = [[
                     point.x - 10,
                     point.y - 10,
                     point.x + 10,

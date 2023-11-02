@@ -1,6 +1,6 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -70,7 +70,7 @@ export class Func315 implements IFuncOrigin {
   }
   ]
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-    let thisConf = thisScript.scheme.config['315'];
+    const thisConf = thisScript.scheme.config['315'];
     if (thisScript.global.shangyushe) {
       if (thisScript.oper({
         name: '准备的预设',
@@ -82,9 +82,9 @@ export class Func315 implements IFuncOrigin {
         name: '准备预设里界面',
         operator: [thisOperator[1]]
       })) {
-        let tureGroupNum = Number(thisConf.groupNum) - 1
-        let trueDefaultNum = Number(thisConf.defaultNum) - 1;
-        let oper = [[
+        const tureGroupNum = Number(thisConf.groupNum) - 1
+        const trueDefaultNum = Number(thisConf.defaultNum) - 1;
+        const oper = [[
           thisOperator[2].oper[0][0],
           thisOperator[2].oper[0][1] + (thisOperator[2].oper[0][4] * tureGroupNum),
           thisOperator[2].oper[0][2],
@@ -92,7 +92,7 @@ export class Func315 implements IFuncOrigin {
           500
         ]];
         thisScript.regionClick(oper);
-        let opertwo = thisOperator[3].oper[trueDefaultNum];
+        const opertwo = thisOperator[3].oper[trueDefaultNum];
         thisScript.regionClick([opertwo]);
         thisScript.regionClick(thisOperator[4].oper);
         thisScript.global.shangyushe = false;

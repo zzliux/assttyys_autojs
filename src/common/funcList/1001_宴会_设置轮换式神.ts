@@ -4,7 +4,7 @@ import {
   IFuncOperator,
 } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -55,7 +55,7 @@ export class Func1001 implements IFuncOrigin {
     },
   ];
   operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-    let thisconf = thisScript.scheme.config['1001'];
+    const thisconf = thisScript.scheme.config['1001'];
 
     if (
       thisScript.oper({
@@ -67,7 +67,7 @@ export class Func1001 implements IFuncOrigin {
         ],
       })
     ) {
-      let change_shikigami_index = thisconf
+      const change_shikigami_index = thisconf
         ? Number.parseInt(thisconf.change_shikigami_index as string, 10)
         : 1;
 

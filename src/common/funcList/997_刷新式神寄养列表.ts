@@ -1,9 +1,9 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
-const right = 2;
+// const right = 2;
 
 export class Func997 implements IFuncOrigin {
 	id = 997;
@@ -81,8 +81,8 @@ export class Func997 implements IFuncOrigin {
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		let thisconf = thisScript.scheme.config['997']; // 获取配置
-		let priority = String(thisconf.priority).split('->');
+		const thisconf = thisScript.scheme.config['997']; // 获取配置
+		const priority = String(thisconf.priority).split('->');
 
 		const multiColorKey = priority.map(item => `结界卡_${item}星`);
 
@@ -137,15 +137,15 @@ export class Func997 implements IFuncOrigin {
 				return true;
 			}
 
-			let key = multiColorKey[thisScript.global.jy_enchantment_index - 1];
+			const key = multiColorKey[thisScript.global.jy_enchantment_index - 1];
 			console.log(`查找${key}结界`);
 			sleep(2000);
 			thisScript.keepScreen(true);
-			let point = thisScript.findMultiColor(key);
+			const point = thisScript.findMultiColor(key);
 
 			if (point) {
 				console.log(`查找${key}结界成功`);
-				let oper = [[
+				const oper = [[
 					point.x - 20,
 					point.y - 20,
 					point.x,
@@ -187,4 +187,4 @@ export class Func997 implements IFuncOrigin {
 		}
 		return false;
 	}
-};
+}

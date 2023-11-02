@@ -951,19 +951,19 @@ const SchemeList: IScheme[] = [
   // }
 ];
 
-let commonConfig = {};
+const commonConfig = {};
 for (let i = 0; i < commonConfigArr.length; i++) {
   for (let j = 0; j < commonConfigArr[i].config.length; j++) {
-    let item = commonConfigArr[i].config[j];
+    const item = commonConfigArr[i].config[j];
     commonConfig[item.name] = item.default;
   }
 }
-let allConfig = {};
+const allConfig = {};
 for (let i = 0; i < funcList.length; i++) {
-  let configs = funcList[i].config;
+  const configs = funcList[i].config;
   if (configs) {
     allConfig[funcList[i].id] = {};
-    for (let config of configs) {
+    for (const config of configs) {
       config.config.forEach((item) => {
         allConfig[funcList[i].id][item.name] = item.default;
       });
@@ -976,7 +976,7 @@ const innerSchemeListName = {};
 
 SchemeList.forEach((item, id) => {
   innerSchemeListName[item.schemeName] = true;
-  let thisConfig = {};
+  const thisConfig = {};
   item.list.forEach((funcId) => {
     if (allConfig[funcId]) {
       thisConfig[funcId] = allConfig[funcId];

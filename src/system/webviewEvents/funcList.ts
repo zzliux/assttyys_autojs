@@ -1,4 +1,4 @@
-import { webview } from "@/system";
+import { webview } from '@/system';
 import { merge, setCurrentScheme } from '@/common/tool';
 import store, { storeCommon } from '@/system/store';
 import { getInstalledPackages, mergeSchemeList } from '@/common/toolAuto';
@@ -8,9 +8,9 @@ import script from '@/system/script';
 export default function webviewFuncList() {
 
     // 获取方案
-    webview.on("getScheme").subscribe(([schemeName, done]) => {
-        let savedSchemeList = store.get("schemeList", []);
-        let schemeList = mergeSchemeList(savedSchemeList, defaultSchemeList);
+    webview.on('getScheme').subscribe(([schemeName, done]) => {
+        const savedSchemeList = store.get('schemeList', []);
+        const schemeList = mergeSchemeList(savedSchemeList, defaultSchemeList);
         for (let i = 0; i < schemeList.length; i++) {
             if (schemeList[i].schemeName === schemeName) {
                 console.log(`getScheme: ${JSON.stringify(schemeList[i], null, 4)}`);
@@ -23,8 +23,8 @@ export default function webviewFuncList() {
     });
 
     // 获取默认方案
-    webview.on("getDefaultScheme").subscribe(([schemeName, done]) => {
-        let schemeList = merge([], defaultSchemeList);
+    webview.on('getDefaultScheme').subscribe(([schemeName, done]) => {
+        const schemeList = merge([], defaultSchemeList);
         for (let i = 0; i < schemeList.length; i++) {
             if (schemeList[i].schemeName === schemeName) {
                 console.log(`getDefaultScheme: ${JSON.stringify(schemeList[i], null, 4)}`);
@@ -38,10 +38,10 @@ export default function webviewFuncList() {
 
 
     // 保存方案
-    webview.on("saveScheme").subscribe(([scheme, done]) => {
-        let savedSchemeList = store.get("schemeList", defaultSchemeList);
+    webview.on('saveScheme').subscribe(([scheme, done]) => {
+        const savedSchemeList = store.get('schemeList', defaultSchemeList);
         console.log(`saveScheme: ${JSON.stringify(scheme, null, 4)}`);
-        let schemeList = mergeSchemeList(savedSchemeList, defaultSchemeList);
+        const schemeList = mergeSchemeList(savedSchemeList, defaultSchemeList);
         for (let i = 0; i < schemeList.length; i++) {
             if (schemeList[i].schemeName === scheme.schemeName) {
                 scheme.id = schemeList[i].id;
@@ -49,12 +49,12 @@ export default function webviewFuncList() {
                 break;
             }
         }
-        store.put("schemeList", schemeList);
-        done("success");
+        store.put('schemeList', schemeList);
+        done('success');
     });
 
     // 点击保存，设置当前方案
-    webview.on("setCurrentScheme").subscribe(([schemeName, done]) => {
+    webview.on('setCurrentScheme').subscribe(([schemeName, done]) => {
         setCurrentScheme(schemeName, store);
         done();
     });
@@ -72,9 +72,9 @@ export default function webviewFuncList() {
     });
 
     // 点击启动按钮，返回启动信息
-    webview.on("startScript").subscribe(([_param, done]) => {
-        let storeSettings = storeCommon.get('settings', {});
-        let defaultLaunchAppList = storeSettings.defaultLaunchAppList || [];
+    webview.on('startScript').subscribe(([_param, done]) => {
+        const storeSettings = storeCommon.get('settings', {});
+        const defaultLaunchAppList = storeSettings.defaultLaunchAppList || [];
         if (defaultLaunchAppList.length == 0) {
             done(null);
             script.rerun();
@@ -88,11 +88,11 @@ export default function webviewFuncList() {
             script.rerun();
             launchPackage(defaultLaunchAppList[0]);
         } else {
-            let storeSettings = storeCommon.get('settings', {});
-            let defaultLaunchAppList = storeSettings.defaultLaunchAppList || [];
-            let packageList = getInstalledPackages();
+            const storeSettings = storeCommon.get('settings', {});
+            const defaultLaunchAppList = storeSettings.defaultLaunchAppList || [];
+            const packageList = getInstalledPackages();
             // done([]);
-            let appList = packageList.filter(packageInfo => {
+            const appList = packageList.filter(packageInfo => {
                 // 保留非系统应用
                 return (packageInfo.applicationInfo.flags & android.content.pm.ApplicationInfo.FLAG_SYSTEM) === 0 && defaultLaunchAppList.indexOf(packageInfo.packageName) !== -1;
             }).map(packageInfo => {

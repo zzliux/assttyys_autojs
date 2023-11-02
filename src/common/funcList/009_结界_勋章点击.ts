@@ -1,10 +1,10 @@
 import { Script } from '@/system/script';
-import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from "@/interface/IFunc";
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
-const center = 1;
-const right = 2;
+// const center = 1;
+// const right = 2;
 
 export class Func009 implements IFuncOrigin {
 	id = 9;
@@ -53,17 +53,17 @@ export class Func009 implements IFuncOrigin {
 			name: '突破界面_判断',
 			operator: [{ desc: thisOperator[0].desc }]
 		}, 0)) {
-			let thisconfFor008 = thisScript.scheme.config['8']; // 获取8功能配置
-			let thistype = thisconfFor008.type;
-			let thisconf = thisScript.scheme.config['9']; // 获取配置
-			let priority = String(thisconf.priority).split('->');
-			let multiColorKey = [];
-			for (let item of priority) {
+			// const thisconfFor008 = thisScript.scheme.config['8']; // 获取8功能配置
+			// const thistype = thisconfFor008.type;
+			const thisconf = thisScript.scheme.config['9']; // 获取配置
+			const priority = String(thisconf.priority).split('->');
+			const multiColorKey = [];
+			for (const item of priority) {
 				multiColorKey.push(`结界_${item}勋章`);
 			}
-			for (let key of multiColorKey) {
-				let point = thisScript.findMultiColor(key);
-				let add = thisOperator[0].oper[3];
+			for (const key of multiColorKey) {
+				const point = thisScript.findMultiColor(key);
+				const add = thisOperator[0].oper[3];
 				// if (point && thistype === '个人突破' && ((point.x > thisOperator[0].oper[2][0] &&
 				// 	point.x < thisOperator[0].oper[2][0] + thisOperator[0].oper[2][3]) ||
 				// 	(point.x > thisOperator[0].oper[2][1] &&
@@ -74,7 +74,7 @@ export class Func009 implements IFuncOrigin {
 				// 	add = thisOperator[0].oper[1];
 				// }
 				if (point) {
-					let oper = [[
+					const oper = [[
 						point.x + thisOperator[0].oper[0][0] + add[0],
 						point.y + thisOperator[0].oper[0][1] + add[1],
 						point.x + thisOperator[0].oper[0][2] + add[2],
@@ -86,10 +86,10 @@ export class Func009 implements IFuncOrigin {
 						thisOperator[0].oper[0][4]]];
 					thisScript.regionClick(oper);
 					//第一排第一列结界坐标
-					let fristFirstOper = thisOperator[1].oper[0] //[147, 146, 465, 265];
-					let thisconf = thisScript.scheme.config['9'];
+					const fristFirstOper = thisOperator[1].oper[0] //[147, 146, 465, 265];
+					const thisconf = thisScript.scheme.config['9'];
 					if (Number(oper[0][0]) > fristFirstOper[0] && Number(oper[0][1]) > fristFirstOper[1] && Number(oper[0][2]) < fristFirstOper[2] && Number(oper[0][3]) < fristFirstOper[3]) {
-						console.log("检测点击范围在第一排第一列结界内");
+						console.log('检测点击范围在第一排第一列结界内');
 						if (thisconf && thisconf.scheme_switch_enabled) {
 							thisScript.rerun(thisconf.next_scheme);
 							sleep(3000);

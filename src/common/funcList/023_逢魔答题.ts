@@ -1,9 +1,9 @@
 import { Script } from '@/system/script';
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
-const normal = -1; //定义常量
-const left = 0;
+// const normal = -1; //定义常量
+// const left = 0;
 const center = 1;
-const right = 2;
+// const right = 2;
 
 export class Func023 implements IFuncOrigin {
 	id = 23;
@@ -32,9 +32,9 @@ export class Func023 implements IFuncOrigin {
 		})) {
 			// let screenImg = images.captureScreen();
 			// 识别问题
-			let toDetectQuestionBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[0].oper[0].slice(0, 4));
+			const toDetectQuestionBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[0].oper[0].slice(0, 4));
 			console.time('ocr.detect.question');
-			let resultQuestion = thisScript.getOcrDetector().loadImage(toDetectQuestionBmp);
+			const resultQuestion = thisScript.getOcrDetector().loadImage(toDetectQuestionBmp);
 			console.timeEnd('ocr.detect.question');
 			toDetectQuestionBmp.recycle();
 			let question = '';
@@ -43,33 +43,33 @@ export class Func023 implements IFuncOrigin {
 			}
 			console.log(`识别题目: ${question}`);
 
-			let stdQuestion = thisScript.questionSearch(question.replace(/[^\u4e00-\u9fa5a-zA-Z0-9]/g, ''));
+			const stdQuestion = thisScript.questionSearch(question.replace(/[^\u4e00-\u9fa5a-zA-Z0-9]/g, ''));
 			console.log(`搜索题库:${JSON.stringify(stdQuestion)}`);
 
-			let toDetectAnsBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[0].oper[1].slice(0, 4));
+			const toDetectAnsBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[0].oper[1].slice(0, 4));
 			console.time('ocr.detect.ans');
-			let resultAns = thisScript.getOcrDetector().loadImage(toDetectAnsBmp);
+			const resultAns = thisScript.getOcrDetector().loadImage(toDetectAnsBmp);
 			console.timeEnd('ocr.detect.ans');
 			toDetectAnsBmp.recycle();
 
 			if (resultAns.length < 1) {
-				let img = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(thisScript.helperBridge.helper.GetBitmap());
-				let path = `/sdcard/assttyys/screenshot/fmmxdt_${new Date().getTime()}.png`;
+				const img = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(thisScript.helperBridge.helper.GetBitmap());
+				const path = `/sdcard/assttyys/screenshot/fmmxdt_${new Date().getTime()}.png`;
 				files.ensureDir(path);
 				img.saveTo(path);
 				img.recycle();
 				media.scanFile(path);
 
-				thisScript.myToast(`题库中没找到对应的答案，默认选择第一个答案`);
+				thisScript.myToast('题库中没找到对应的答案，默认选择第一个答案');
 				thisScript.regionClick([thisOperator[0].oper[2]]);
 				return true;
 			}
 
-			let ansList = [];
+			const ansList = [];
 			for (let i = 0; i < resultAns.length; i++) {
-				let row = resultAns[i];
-				let frame = row.points;
-				let rect = [
+				const row = resultAns[i];
+				const frame = row.points;
+				const rect = [
 					thisOperator[0].oper[1][0] + frame[0].x,
 					thisOperator[0].oper[1][1] + frame[0].y,
 					thisOperator[0].oper[1][0] + frame[2].x,
@@ -82,7 +82,7 @@ export class Func023 implements IFuncOrigin {
 			}
 			console.log(`答案区域识别:${JSON.stringify(ansList)}`);
 			if (stdQuestion) {
-				let stdAns = thisScript.search(ansList, 'text', stdQuestion.data.ans);
+				const stdAns = thisScript.search(ansList, 'text', stdQuestion.data.ans);
 				if (stdAns) {
 					thisScript.myToast(`选择答案: ${stdAns.data.text}, 置信度为: ${(stdQuestion.similarity * stdAns.similarity).toFixed(4)}`);
 					thisScript.regionClick([[...stdAns.data.rect, 1500]]);
@@ -90,7 +90,7 @@ export class Func023 implements IFuncOrigin {
 				}
 			}
 
-			thisScript.myToast(`题库中没找到对应的答案，默认选择第一个答案`);
+			thisScript.myToast('题库中没找到对应的答案，默认选择第一个答案');
 			thisScript.regionClick([[...ansList[0].rect, 1500]]);
 			return true;
 		}

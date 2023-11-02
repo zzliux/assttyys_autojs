@@ -1,6 +1,6 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-const normal = -1; //定义常量
+// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
@@ -61,7 +61,7 @@ export class Func047 implements IFuncOrigin {
 			if (suspension != null) {
 				// 如果有悬浮列表
 				if (point != null) {
-					let oper = [
+					const oper = [
 						[point.x, point.y, point.x + 1, point.y + 1, 1000]
 					];
 					thisScript.regionClick(oper);
