@@ -45,21 +45,21 @@ export type globalRootType = {
     liao_activity_page_flag: number,   //  寮活动翻页标记
     banquet_change_flag: boolean,   //  宴会轮换开关标识
     gateOfHades_state: boolean,     //  阴门状态
-    team_up_lagTime: null | Date,    //组队延时
-    team_up_Frist: boolean,  //首次组队
+    team_up_lagTime: null | Date,    // 组队延时
+    team_up_Frist: boolean,  // 首次组队
     xsOpened: boolean, // 是否打开过悬赏
-    intensify_lagTime: null | Date, //强化延时
-    intensify_NumOT: number, //强化计数
-    create_NumOT: number, //创建队伍计数
+    intensify_lagTime: null | Date, // 强化延时
+    intensify_NumOT: number, // 强化计数
+    create_NumOT: number, // 创建队伍计数
     redFlag: boolean;   //  红标标识
-    yl_next: number,//言灵对弈下一个
-    bgy_three: boolean; //百鬼奕三胜
-    bgy_ten: boolean; //百鬼奕十次
+    yl_next: number, // 言灵对弈下一个
+    bgy_three: boolean; // 百鬼奕三胜
+    bgy_ten: boolean; // 百鬼奕十次
     xxlLastLevel: number;
     buff_enable_page_flag: boolean; // 开启buff是否完成翻页
-    team_up_Time: number;   //被邀请的次数
+    team_up_Time: number;   // 被邀请的次数
     game_area: string;  //  游戏区域
-    operate_finish_flag: boolean;  // 寄养完成操作flag 
+    operate_finish_flag: boolean;  // 寄养完成操作flag
     preset_once_groupNum: number | null;     // 一次性修改的预设分组
     preset_once_defaultNum: number | null;     // 一次性修改的预设阵容
     qiling_Position: number[] | null;   //  契灵的地图位置
@@ -75,77 +75,77 @@ export type globalRootType = {
 }
 
 export const globalRoot: globalRootType = {
-    currentNotifyDate: null,
-    app_is_open_flag: 0,
-    checked_yard_count: 0,
-    currentRunTimes: {},
-    running: undefined,
-    define_run_time: 0,
-    define_pause_time: 0,
-    runningTime: 0,
-    pauseTime: 0,
-    notifyTime: 0,
-    tp_swipe_times: 0,
-    tsAttackSwhipeNum: undefined,
-    dgCurNum: 0,
-    currentChatEnd: undefined,
-    greenPosition: null,
-    greenTagEnd: undefined,
-    greenNonDTime: 0,
-    d6LoadBuff: undefined,
-    d6LoadedBuff: undefined,
-    d6d: undefined,
-    d6RefreshCnt: undefined,
-    d6dCurrentBegin: undefined,
-    d6dBegin: undefined,
-    times: 0,
-    d6NxFilter: undefined,
-    d6NextStation: undefined,
-    d6NxRefreshCnt: undefined,
-    d6NextEvent: undefined,
-    jy_list_swipe_times: 0,
-    jy_list_getTime_fault_count: 0,
-    jy_friends_enchantment_waitingtime: undefined,
-    jy_enchantment_index: 0,
-    jy_change_shikigami: 'change',
-    jy_experience_wine_pot_count: 0,
-    jy_enchantment_experience_count: 0,
-    back_courtyard_to_next_scheme: '',
-    fm_kiss_boss_flag: false,
-    fm_boss_btn_click_cnt: 0,
-    change_shikigami_flag: true,
-    change_shikigami_state: 'flushed',
-    change_shikigami_list_swipe_times: 0,
-    change_shikigami_last_group_name: undefined,
-    narrow_state: undefined,
-    liao_activity_page_flag: 0,
-    banquet_change_flag: false,
-    gateOfHades_state: false,
-    team_up_lagTime: null,
-    team_up_Frist: true,
-    xsOpened: false,
-    intensify_lagTime: null,
-    intensify_NumOT: 0,
-    create_NumOT: 0,
-    redFlag: false,
-    yl_next: 0,
-    bgy_three: false,
-    bgy_ten: false,
-    xxlLastLevel: 0,
-    buff_enable_page_flag: false,
-    team_up_Time: 0,
-    game_area: '',
-    operate_finish_flag: false,
-    preset_once_groupNum: null,
-    preset_once_defaultNum: null,
-    qiling_Position: null,
-    qiling_last: null,
-    opened_buff: false,
-    closed_buff: false,
-    daily_collection: 'friend',
-    huahezhan: true,
-    shangyushe: true,
-    d6Loop:0,
-    d6RouFeng: 1,
-    upYuHun:false,
+	currentNotifyDate: null,
+	app_is_open_flag: 0,
+	checked_yard_count: 0,
+	currentRunTimes: {},
+	running: undefined,
+	define_run_time: 0,
+	define_pause_time: 0,
+	runningTime: 0,
+	pauseTime: 0,
+	notifyTime: 0,
+	tp_swipe_times: 0,
+	tsAttackSwhipeNum: undefined,
+	dgCurNum: 0,
+	currentChatEnd: undefined,
+	greenPosition: null,
+	greenTagEnd: undefined,
+	greenNonDTime: 0,
+	d6LoadBuff: undefined,
+	d6LoadedBuff: undefined,
+	d6d: undefined,
+	d6RefreshCnt: undefined,
+	d6dCurrentBegin: undefined,
+	d6dBegin: undefined,
+	times: 0,
+	d6NxFilter: undefined,
+	d6NextStation: undefined,
+	d6NxRefreshCnt: undefined,
+	d6NextEvent: undefined,
+	jy_list_swipe_times: 0,
+	jy_list_getTime_fault_count: 0,
+	jy_friends_enchantment_waitingtime: undefined,
+	jy_enchantment_index: 0,
+	jy_change_shikigami: 'change',
+	jy_experience_wine_pot_count: 0,
+	jy_enchantment_experience_count: 0,
+	back_courtyard_to_next_scheme: '',
+	fm_kiss_boss_flag: false,
+	fm_boss_btn_click_cnt: 0,
+	change_shikigami_flag: true,
+	change_shikigami_state: 'flushed',
+	change_shikigami_list_swipe_times: 0,
+	change_shikigami_last_group_name: undefined,
+	narrow_state: undefined,
+	liao_activity_page_flag: 0,
+	banquet_change_flag: false,
+	gateOfHades_state: false,
+	team_up_lagTime: null,
+	team_up_Frist: true,
+	xsOpened: false,
+	intensify_lagTime: null,
+	intensify_NumOT: 0,
+	create_NumOT: 0,
+	redFlag: false,
+	yl_next: 0,
+	bgy_three: false,
+	bgy_ten: false,
+	xxlLastLevel: 0,
+	buff_enable_page_flag: false,
+	team_up_Time: 0,
+	game_area: '',
+	operate_finish_flag: false,
+	preset_once_groupNum: null,
+	preset_once_defaultNum: null,
+	qiling_Position: null,
+	qiling_last: null,
+	opened_buff: false,
+	closed_buff: false,
+	daily_collection: 'friend',
+	huahezhan: true,
+	shangyushe: true,
+	d6Loop: 0,
+	d6RouFeng: 1,
+	upYuHun: false,
 }

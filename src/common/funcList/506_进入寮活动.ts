@@ -18,7 +18,7 @@ export class Func506 implements IFuncOrigin {
 			// 	type: 'switch',
 			// 	default: false,
 			// 	value: false,
-			// }, 
+			// },
 			{
 				name: 'gateOfHades_switch',
 				desc: '是否进入阴门挑战(用于周末阴门)',
@@ -28,7 +28,7 @@ export class Func506 implements IFuncOrigin {
 			}]
 	}];
 	operator: IFuncOperatorOrigin[] = [
-		{// 0 已适配66 检查_道馆是否已开启
+		{  // 0 已适配66 检查_道馆是否已开启
 
 			desc: [
 				1280, 720,
@@ -102,11 +102,11 @@ export class Func506 implements IFuncOrigin {
 			desc:
 				[1280, 720,
 					[[left, 244, 469, 0xc47f7e],
-					[left, 273, 485, 0xc95757],
-					[left, 260, 519, 0x735162],
-					[center, 362, 420, 0xfc0c0c],
-					[center, 355, 419, 0xfe1515],
-					[center, 346, 483, 0xc2ac91]]
+						[left, 273, 485, 0xc95757],
+						[left, 260, 519, 0x735162],
+						[center, 362, 420, 0xfc0c0c],
+						[center, 355, 419, 0xfe1515],
+						[center, 346, 483, 0xc2ac91]]
 				],
 			oper: [
 				[left, 1280, 720, 155, 417, 365, 574, 1000]
@@ -144,10 +144,10 @@ export class Func506 implements IFuncOrigin {
 			desc:
 				[1280, 720,
 					[[right, 1104, 568, 0xd7bfa5],
-					[right, 1175, 600, 0xdfc29d],
-					[right, 1122, 697, 0x5b0d07],
-					[right, 1086, 615, 0x272420],
-					[right, 1068, 593, 0xdec7aa]]
+						[right, 1175, 600, 0xdfc29d],
+						[right, 1122, 697, 0x5b0d07],
+						[right, 1086, 615, 0x272420],
+						[right, 1068, 593, 0xdec7aa]]
 				]
 		}, { //	检测_是否为道馆突破选择道馆页面
 			desc:
@@ -466,19 +466,19 @@ export class Func506 implements IFuncOrigin {
 					console.log('今天是周', nowDateDay);
 
 					switch (nowDateDay) {
-						case 5:
-						case 0: {
-							if (!(_liao_activity_state.narrow && _liao_activity_state.banquet)) {
-								return false;
-							}
-							break;
+					case 5:
+					case 0: {
+						if (!(_liao_activity_state.narrow && _liao_activity_state.banquet)) {
+							return false;
 						}
-						case 6: {
-							if (!(_liao_activity_state.narrow && _liao_activity_state.huntBoss)) {
-								return false;
-							}
-							break;
+						break;
+					}
+					case 6: {
+						if (!(_liao_activity_state.narrow && _liao_activity_state.huntBoss)) {
+							return false;
 						}
+						break;
+					}
 					}
 				}
 

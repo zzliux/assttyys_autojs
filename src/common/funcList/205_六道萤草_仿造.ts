@@ -59,7 +59,7 @@ export class Func205 implements IFuncOrigin {
 						break;
 					}
 				}
-				
+
 				// 3次都没找到的话，重选，不过滤
 				if (!toClick) {
 					for (let i = 0; i < priorty.length; i++) {

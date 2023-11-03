@@ -38,7 +38,7 @@ export class Func1004 implements IFuncOrigin {
 		oper: [
 			[left, 1280, 720, 1022, 166, 1179, 509, 1000],
 		]
-		}, {
+	}, {
 		// 鞭炮奖励
 		desc: [1280, 720,
 			[

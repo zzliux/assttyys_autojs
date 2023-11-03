@@ -155,7 +155,7 @@ export class Func051 implements IFuncOrigin {
 					desc: thisOperator[0].desc,
 				}]
 			})) {
-				if (!thisScript.findMultiColor('绿标')){
+				if (!thisScript.findMultiColor('绿标')) {
 					thisScript.regionClick([thisScript.global.greenPosition]);
 				}
 				thisScript.global.greenPosition = null;

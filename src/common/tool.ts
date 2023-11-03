@@ -56,7 +56,7 @@ export function similarity(s1: string, s2: string, filterSimilar?: number) {
 			}
 		}
 	}
-	return 1 - (matrix[len1][len2] / maxLen); //返回右下角的值
+	return 1 - (matrix[len1][len2] / maxLen); // 返回右下角的值
 }
 
 export function setCurrentScheme(schemeName: string, store) {

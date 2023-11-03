@@ -74,6 +74,7 @@ module.exports = (env, argv) => {
         config.plugins = [
             new ESLintWebpackPlugin({
                 extensions: ['ts'],
+                // fix: true, // 自动修复
                 
             }),
             new CleanWebpackPlugin({

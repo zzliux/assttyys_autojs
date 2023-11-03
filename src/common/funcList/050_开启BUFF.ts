@@ -61,7 +61,7 @@ export class Func050 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 774, 210, 852, 231, 1000],
 		]
-	}, {// 2 被横幅遮挡的御魂BUFF 二种
+	}, { // 2 被横幅遮挡的御魂BUFF 二种
 		desc: [
 			1280, 720,
 			[

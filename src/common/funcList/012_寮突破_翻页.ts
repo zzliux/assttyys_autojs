@@ -36,9 +36,9 @@ export class Func012 implements IFuncOrigin {
 	operator: IFuncOperatorOrigin[] = [{
 		desc: '突破界面_寮',
 		oper: [
-			[center, 1280, 720, 428,592, 1071,643, 0],
-			[center, 1280, 720, 431,234, 1064,318, 0],
-			[center, 1280, 720, 1188,115, 1225,151, 500],
+			[center, 1280, 720, 428, 592, 1071, 643, 0],
+			[center, 1280, 720, 431, 234, 1064, 318, 0],
+			[center, 1280, 720, 1188, 115, 1225, 151, 500],
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {

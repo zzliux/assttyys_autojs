@@ -33,7 +33,7 @@ export class Func994 implements IFuncOrigin {
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{
-		desc: 	// 0 已适配66 寄养界面_判断
+		desc: // 0 已适配66 寄养界面_判断
 			[1280, 720,
 				[
 					[left, 188, 172, 0x352721],

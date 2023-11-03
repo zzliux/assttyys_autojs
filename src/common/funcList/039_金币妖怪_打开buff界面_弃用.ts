@@ -26,16 +26,16 @@ export class Func039 implements IFuncOrigin {
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
-				name: '金币妖怪_组队列表',
-				operator: [{
-					desc: thisOperator[0].desc
-				}]
-			})) {
+			name: '金币妖怪_组队列表',
+			operator: [{
+				desc: thisOperator[0].desc
+			}]
+		})) {
 			const point = thisScript.findMultiColor('金币妖怪_判断挑战次数是否用完') || null
 			if (point && thisScript.oper({
-					name: '金币妖怪_退出组队界面',
-					operator: [thisOperator[0]]
-				})) {
+				name: '金币妖怪_退出组队界面',
+				operator: [thisOperator[0]]
+			})) {
 				thisScript.regionClick([[359, 45, 396, 74, 1000]]);
 				return true
 			} else {

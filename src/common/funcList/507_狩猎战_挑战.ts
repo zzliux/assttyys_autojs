@@ -12,10 +12,10 @@ export class Func507 implements IFuncOrigin {
 	operator: IFuncOperatorOrigin[] = [{	// 检测_是否为挑战奉献榜场景_待开始
 		desc: [1280, 720,
 			[[right, 1104, 568, 0xd7bfa5],
-			[right, 1175, 600, 0xdfc29d],
-			[right, 1122, 697, 0x5b0d07],
-			[right, 1086, 615, 0x272420],
-			[right, 1068, 593, 0xdec7aa]]
+				[right, 1175, 600, 0xdfc29d],
+				[right, 1122, 697, 0x5b0d07],
+				[right, 1086, 615, 0x272420],
+				[right, 1068, 593, 0xdec7aa]]
 		],
 		oper: [
 			[right, 1280, 720, 1073, 568, 1171, 646, 1000]  // 进入鬼王挑战页
@@ -38,13 +38,13 @@ export class Func507 implements IFuncOrigin {
 	}, {	// 检测_挑战奉献榜场景_已结束
 		desc: [1280, 720,
 			[[right, 1000, 648, 0xd42c23],
-			[right, 986, 624, 0x060503],
-			[right, 995, 671, 0x2d1c1c],
-			[right, 1095, 640, 0xf0d09e],
-			[right, 1155, 640, 0xe6bc83],
-			[right, 1128, 620, 0x272420],
-			[right, 1080, 595, 0x272420],
-			[right, 1157, 595, 0x272420]]
+				[right, 986, 624, 0x060503],
+				[right, 995, 671, 0x2d1c1c],
+				[right, 1095, 640, 0xf0d09e],
+				[right, 1155, 640, 0xe6bc83],
+				[right, 1128, 620, 0x272420],
+				[right, 1080, 595, 0x272420],
+				[right, 1157, 595, 0x272420]]
 		],
 		oper: [
 			[right, 1280, 720, 1166, 52, 1200, 86, 2200],

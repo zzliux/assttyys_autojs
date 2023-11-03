@@ -135,7 +135,6 @@ export class Func053 implements IFuncOrigin {
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		
 
 		const thisconf = thisScript.scheme.config['53'];
 		// '御魂-八岐大蛇', '御魂-业原火', '御魂-日轮之陨', '御魂-永生之海'

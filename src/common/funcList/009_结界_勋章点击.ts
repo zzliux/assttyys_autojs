@@ -38,7 +38,7 @@ export class Func009 implements IFuncOrigin {
 		oper: [
 			[left, 1280, 720, 30, 10, 160, 80, 500],
 			[left, 1280, 720, 80, 0, 40, 0, 500],
-			[left, 1280, 720, 160, 492, 824, 54, 0],//头像框 横轴坐标内
+			[left, 1280, 720, 160, 492, 824, 54, 0], // 头像框 横轴坐标内
 			[left, 1280, 720, 0, 0, 0, 0, 0],
 		]
 	}, {
@@ -85,8 +85,8 @@ export class Func009 implements IFuncOrigin {
 						// point.y,
 						thisOperator[0].oper[0][4]]];
 					thisScript.regionClick(oper);
-					//第一排第一列结界坐标
-					const fristFirstOper = thisOperator[1].oper[0] //[147, 146, 465, 265];
+					// 第一排第一列结界坐标
+					const fristFirstOper = thisOperator[1].oper[0] // [147, 146, 465, 265];
 					const thisconf = thisScript.scheme.config['9'];
 					if (Number(oper[0][0]) > fristFirstOper[0] && Number(oper[0][1]) > fristFirstOper[1] && Number(oper[0][2]) < fristFirstOper[2] && Number(oper[0][3]) < fristFirstOper[3]) {
 						console.log('检测点击范围在第一排第一列结界内');
