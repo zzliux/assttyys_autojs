@@ -5,9 +5,9 @@ import about from '@/system/webviewEvents/about';
 import schedule from '@/system/webviewEvents/schedule';
 
 export default function webviewEvents() {
-    schemeList();
-    funcList();
-    settings();
-    about();
-    schedule();
+	schemeList();
+	funcList();
+	settings();
+	about();
+	schedule();
 }

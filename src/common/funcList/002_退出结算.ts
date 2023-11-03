@@ -126,7 +126,7 @@ export class Func002 implements IFuncOrigin {
 		],
 		notForCnt: true,
 	}
-		/*, { // 未打开的达摩
+	/* , { // 未打开的达摩
 				desc: [1280, 720,
 					[[center, 667, 377, 0xba4618],
 					[center, 678, 316, 0x080808],
@@ -151,7 +151,7 @@ export class Func002 implements IFuncOrigin {
 				],
 				notForCnt: true,
 			}*/
-		, {
+	, {
 		// 单人-失败太鼓
 		desc: '退出结算_单人_失败太鼓',
 		operStepRandom: [

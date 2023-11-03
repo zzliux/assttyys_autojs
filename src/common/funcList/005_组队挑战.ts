@@ -65,9 +65,9 @@ export class Func005 implements IFuncOrigin {
 	}, { // 开始战斗后的场景，提供给方案的自动判断
 		desc: [1280, 720,
 			[[left, 32, 89, 0x5d361c],
-			[left, 32, 190, 0x5a321a],
-			[left, 55, 402, 0xe3caa3],
-			[left, 51, 502, 0xe4cca3]]
+				[left, 32, 190, 0x5a321a],
+				[left, 55, 402, 0xe3caa3],
+				[left, 51, 502, 0xe4cca3]]
 		]
 	}];
 	// 0-有人就开，1-第一个+号上的点，2-第二个+号上的点，如果1或者2任意一个匹配上了，说明人没满

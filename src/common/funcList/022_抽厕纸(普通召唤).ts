@@ -9,14 +9,14 @@ export class Func022 implements IFuncOrigin {
 	id = 22;
 	name = '抽厕纸(普通召唤)';
 	operator: IFuncOperatorOrigin[] = [{
-		desc: [1280,720,
-			[[center,442,650,0xf4b25f],
-			[center,707,647,0xf4b25f],
-			[center,586,671,0x964130],
-			[center,856,671,0x933e2d]]
+		desc: [1280, 720,
+			[[center, 442, 650, 0xf4b25f],
+				[center, 707, 647, 0xf4b25f],
+				[center, 586, 671, 0x964130],
+				[center, 856, 671, 0x933e2d]]
 		],
 		oper: [
-			[center, 1280, 720, 697,629, 855,665, 1000] // 再次召唤
+			[center, 1280, 720, 697, 629, 855, 665, 1000] // 再次召唤
 		]
 	}
 	// , {

@@ -128,7 +128,7 @@ export class Func202 implements IFuncOrigin {
 				萤火之光: [parseInt(thisconf.萤火之光 as string, 10) || 0, 5]
 			}
 		}
-		
+
 		// 首次的选buff界面，给它置为0
 		if (thisScript.oper({
 			name: '六道萤草_选buff',

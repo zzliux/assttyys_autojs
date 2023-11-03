@@ -140,12 +140,12 @@ export class Func509 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1008, 600, 1081, 671, 1200]	//	点击式神按钮
 		]
-	}, {// 庭院未打开菜单
+	}, { // 庭院未打开菜单
 		desc: '庭院未打开菜单',
 		oper: [
 			[right, 1280, 720, 1168, 592, 1230, 690, 1000]
 		]
-	}, {// 突破界面
+	}, { // 突破界面
 		desc: '突破界面'
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {

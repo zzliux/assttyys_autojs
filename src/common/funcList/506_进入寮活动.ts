@@ -18,24 +18,24 @@ export class Func506 implements IFuncOrigin {
 		// 	type: 'switch',
 		// 	default: false,
 		// 	value: false,
-		// }, 
-		{
-			name: 'gateOfHades_switch',
-			desc: '是否进入阴门挑战(用于周末阴门)',
-			type: 'switch',
-			default: false,
-			value: false,
-		}]
+		// },
+			{
+				name: 'gateOfHades_switch',
+				desc: '是否进入阴门挑战(用于周末阴门)',
+				type: 'switch',
+				default: false,
+				value: false,
+			}]
 	}];
 	operator: IFuncOperatorOrigin[] = [
-		{// 检查_道馆是否已开启
+		{ // 检查_道馆是否已开启
 
 			desc: [1280, 720,
 				[[center, 520, 212, 0xdad1c0],
-				[center, 476, 260, 0xdccdbc],
-				[center, 532, 278, 0xc6934f],
-				[center, 598, 233, 0x9b6f3b],
-				[center, 600, 182, 0xcc4c27]]
+					[center, 476, 260, 0xdccdbc],
+					[center, 532, 278, 0xc6934f],
+					[center, 598, 233, 0x9b6f3b],
+					[center, 600, 182, 0xcc4c27]]
 			],
 			oper: [
 				[center, 1280, 720, 407, 169, 608, 322, 1200]	// 打开道馆
@@ -43,11 +43,11 @@ export class Func506 implements IFuncOrigin {
 		}, { // 检查_首领退治是否已开启
 			desc: [1280, 720,
 				[[center, 765, 235, 0xb63b32],
-				[center, 815, 265, 0xdebae3],
-				[center, 840, 242, 0x241212],
-				[center, 846, 185, 0x802318],
-				[center, 705, 242, 0x070605],
-				[center, 750, 256, 0xa96b68]]
+					[center, 815, 265, 0xdebae3],
+					[center, 840, 242, 0x241212],
+					[center, 846, 185, 0x802318],
+					[center, 705, 242, 0x070605],
+					[center, 750, 256, 0xa96b68]]
 			],
 			oper: [
 				[center, 1280, 720, 656, 177, 855, 322, 1200]	// 打开首领退治
@@ -84,11 +84,11 @@ export class Func506 implements IFuncOrigin {
 			desc:
 				[1280, 720,
 					[[left, 244, 469, 0xc47f7e],
-					[left, 273, 485, 0xc95757],
-					[left, 260, 519, 0x735162],
-					[center, 362, 420, 0xfc0c0c],
-					[center, 355, 419, 0xfe1515],
-					[center, 346, 483, 0xc2ac91]]
+						[left, 273, 485, 0xc95757],
+						[left, 260, 519, 0x735162],
+						[center, 362, 420, 0xfc0c0c],
+						[center, 355, 419, 0xfe1515],
+						[center, 346, 483, 0xc2ac91]]
 				],
 			oper: [
 				[left, 1280, 720, 155, 417, 365, 574, 1000]
@@ -126,10 +126,10 @@ export class Func506 implements IFuncOrigin {
 			desc:
 				[1280, 720,
 					[[right, 1104, 568, 0xd7bfa5],
-					[right, 1175, 600, 0xdfc29d],
-					[right, 1122, 697, 0x5b0d07],
-					[right, 1086, 615, 0x272420],
-					[right, 1068, 593, 0xdec7aa]]
+						[right, 1175, 600, 0xdfc29d],
+						[right, 1122, 697, 0x5b0d07],
+						[right, 1086, 615, 0x272420],
+						[right, 1068, 593, 0xdec7aa]]
 				]
 		}, { //	检测_是否为道馆突破选择道馆页面
 			desc:
@@ -446,25 +446,25 @@ export class Func506 implements IFuncOrigin {
 				if (_liao_activity_state) {
 					const nowDateDay = new Date().getDay();
 					console.log('今天是周', nowDateDay);
-	
+
 					switch (nowDateDay) {
-						case 5:
-						case 0: {
-							if (!(_liao_activity_state.narrow && _liao_activity_state.banquet)) {
-								return false;
-							}
-							break;
+					case 5:
+					case 0: {
+						if (!(_liao_activity_state.narrow && _liao_activity_state.banquet)) {
+							return false;
 						}
-						case 6: {
-							if (!(_liao_activity_state.narrow && _liao_activity_state.huntBoss)) {
-								return false;
-							}
-							break;
+						break;
+					}
+					case 6: {
+						if (!(_liao_activity_state.narrow && _liao_activity_state.huntBoss)) {
+							return false;
 						}
+						break;
+					}
 					}
 				}
-	
-	
+
+
 				if (_liao_activity_state && _liao_activity_state.hunt) {
 					return true;
 				} else {

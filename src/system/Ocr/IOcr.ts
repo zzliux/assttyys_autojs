@@ -1,20 +1,20 @@
 export class OcrResult {
-    confidence: number;
-    label: string;
-    rotation: number;
-    points: Array<{x: number, y: number}>;
-    similar?: number | false;
-    constructor(confidence: number, label: string, rotation: number, points: Array<{x: number, y: number}>) {
-        this.confidence = confidence;
-        this.label = label;
-        this.rotation = rotation;
-        this.points = points;
-    }
+	confidence: number;
+	label: string;
+	rotation: number;
+	points: Array<{x: number, y: number}>;
+	similar?: number | false;
+	constructor(confidence: number, label: string, rotation: number, points: Array<{x: number, y: number}>) {
+		this.confidence = confidence;
+		this.label = label;
+		this.rotation = rotation;
+		this.points = points;
+	}
 }
 
 export interface IOcrDetector {
     instance: any;
-    loadImage(bitmap: any): Array<OcrResult> 
+    loadImage(bitmap: any): Array<OcrResult>
 }
 
 export interface IOcr {

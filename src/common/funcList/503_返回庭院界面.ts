@@ -39,10 +39,10 @@ export class Func503 implements IFuncOrigin {
 	}, { 	// 1 阴阳寮神设首页
 		desc: [1280, 720,
 			[[left, 44, 28, 0xf1e0ad],
-			[left, 74, 32, 0xaa885f],
-			[left, 53, 42, 0xedd28f],
-			[right, 1199, 89, 0x761021],
-			[right, 1189, 628, 0x8c6a44]]
+				[left, 74, 32, 0xaa885f],
+				[left, 53, 42, 0xedd28f],
+				[right, 1199, 89, 0x761021],
+				[right, 1189, 628, 0x8c6a44]]
 		],
 		oper: [
 			[left, 1280, 720, 25, 9, 74, 55, 2000]
@@ -50,9 +50,9 @@ export class Func503 implements IFuncOrigin {
 	}, { 	// 2 斗技
 		desc: [1280, 720,
 			[[left, 126, 26, 0xf8f3e0],
-			[left, 164, 26, 0xe3decf],
-			[right, 1203, 598, 0x3e1c0c],
-			[right, 1196, 555, 0xb94311]]
+				[left, 164, 26, 0xe3decf],
+				[right, 1203, 598, 0x3e1c0c],
+				[right, 1196, 555, 0xb94311]]
 		],
 		oper: [
 			[left, 1280, 720, 22, 6, 65, 45, 1000]
@@ -60,10 +60,10 @@ export class Func503 implements IFuncOrigin {
 	}, {	// 3 栏目
 		desc: [1280, 720,
 			[[center, 568, 108, 0x973933],
-			[center, 742, 62, 0x8c3131],
-			[center, 807, 50, 0x564c45],
-			[right, 1144, 88, 0xe7d5cf],
-			[right, 1113, 285, 0x5c3e2f]]
+				[center, 742, 62, 0x8c3131],
+				[center, 807, 50, 0x564c45],
+				[right, 1144, 88, 0xe7d5cf],
+				[right, 1113, 285, 0x5c3e2f]]
 		],
 		oper: [
 			[right, 1280, 720, 1124, 75, 1163, 103, 1000]
@@ -71,11 +71,11 @@ export class Func503 implements IFuncOrigin {
 	}, {	// 4 旧版町中界面
 		desc: [1280, 720,
 			[[right, 1067, 221, 0xb5aaad],
-			[right, 1054, 321, 0x989694],
-			[right, 1054, 344, 0x969592],
-			[right, 1052, 352, 0x999595],
-			[right, 1056, 413, 0x938f8f],
-			[right, 1054, 433, 0x8e8b8a]]
+				[right, 1054, 321, 0x989694],
+				[right, 1054, 344, 0x969592],
+				[right, 1052, 352, 0x999595],
+				[right, 1056, 413, 0x938f8f],
+				[right, 1054, 433, 0x8e8b8a]]
 		],
 		oper: [
 			[right, 1280, 720, 1012, 228, 1093, 298, 1000],
@@ -83,11 +83,11 @@ export class Func503 implements IFuncOrigin {
 	}, {	// 5 现世逢魔
 		desc: [1280, 720,
 			[[left, 19, 700, 0x3c3841],
-			[left, 42, 46, 0xc3cbdf],
-			[center, 754, 39, 0x583716],
-			[center, 1181, 650, 0xffffff],
-			[left, 43, 680, 0xc7957c],
-			[left, 54, 676, 0x433b42]]
+				[left, 42, 46, 0xc3cbdf],
+				[center, 754, 39, 0x583716],
+				[center, 1181, 650, 0xffffff],
+				[left, 43, 680, 0xc7957c],
+				[left, 54, 676, 0x433b42]]
 		],
 		oper: [
 			[left, 1280, 720, 27, 25, 72, 73, 1000],
@@ -95,10 +95,10 @@ export class Func503 implements IFuncOrigin {
 	}, {	// 6 宠物后院(管他有没有人用)
 		desc: [1280, 720,
 			[[left, 34, 630, 0x4c3b3b],
-			[left, 59, 672, 0x442b23],
-			[right, 1210, 669, 0xc79e70],
-			[right, 1122, 652, 0xb2cae3],
-			[center, 638, 16, 0xf3e7e3]]
+				[left, 59, 672, 0x442b23],
+				[right, 1210, 669, 0xc79e70],
+				[right, 1122, 652, 0xb2cae3],
+				[center, 638, 16, 0xf3e7e3]]
 		],
 		oper: [
 			[left, 1280, 720, 37, 24, 70, 61, 1000],
@@ -106,11 +106,11 @@ export class Func503 implements IFuncOrigin {
 	}, {	// 7 召唤屋(管他有没有人用)
 		desc: [1280, 720,
 			[[left, 148, 38, 0xb28956],
-			[left, 171, 28, 0xb28956],
-			[center, 516, 22, 0x73abc9],
-			[center, 544, 628, 0x5599dd],
-			[right, 1180, 30, 0xd2ab80],
-			[right, 1108, 35, 0xcb9e70]]
+				[left, 171, 28, 0xb28956],
+				[center, 516, 22, 0x73abc9],
+				[center, 544, 628, 0x5599dd],
+				[right, 1180, 30, 0xd2ab80],
+				[right, 1108, 35, 0xcb9e70]]
 		],
 		oper: [
 			[left, 1280, 720, 31, 8, 76, 50, 1000],
@@ -138,10 +138,10 @@ export class Func503 implements IFuncOrigin {
 	}, { 	// 11 判断_是否为己方结界
 		desc: [1280, 720,
 			[[center, 611, 300, 0x0c0804],
-			[center, 913, 305, 0x0c0804],
-			[left, 318, 305, 0x0c0804],
-			[center, 613, 294, 0xe1cf6b],
-			[left, 202, 462, 0x10100c]]
+				[center, 913, 305, 0x0c0804],
+				[left, 318, 305, 0x0c0804],
+				[center, 613, 294, 0xe1cf6b],
+				[left, 202, 462, 0x10100c]]
 		],
 		oper: [
 			[left, 1280, 720, 23, 10, 71, 56, 2000],   // 返回按钮

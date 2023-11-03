@@ -56,13 +56,13 @@ export class Func003 implements IFuncOrigin {
 	}, {
 		desc: [1280, 720,
 			[[center, 519, 139, 0xb29375],
-			[center, 727, 171, 0xb29375],
-			[center, 855, 518, 0xdc6958],
-			[center, 849, 422, 0x53ae5b],
-			[center, 572, 473, 0x9d7838],
-			[center, 618, 482, 0xdba83a],
-			[center, 668, 510, 0x7746a8],
-			[center, 694, 490, 0xef492e]]
+				[center, 727, 171, 0xb29375],
+				[center, 855, 518, 0xdc6958],
+				[center, 849, 422, 0x53ae5b],
+				[center, 572, 473, 0x9d7838],
+				[center, 618, 482, 0xdba83a],
+				[center, 668, 510, 0x7746a8],
+				[center, 694, 490, 0xef492e]]
 		]
 	}, { // 2 判断_阴阳寮成就页 这些乱七八糟的弹窗统一找个地方放吧，烦死了，暂时先放着:)
 		desc:
@@ -84,10 +84,10 @@ export class Func003 implements IFuncOrigin {
 	}, { // 3 呱太弹窗
 		desc: [1280, 720,
 			[[center, 568, 225, 0xb7b052],
-			[center, 733, 228, 0x4d4da2],
-			[center, 756, 236, 0xc0c45e],
-			[center, 879, 323, 0x690707],
-			[center, 690, 422, 0xd3ae72]]
+				[center, 733, 228, 0x4d4da2],
+				[center, 756, 236, 0xc0c45e],
+				[center, 879, 323, 0x690707],
+				[center, 690, 422, 0xd3ae72]]
 		],
 		oper: [
 			[center, 1280, 720, 517, 521, 841, 689, 1000],

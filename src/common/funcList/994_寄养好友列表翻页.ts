@@ -33,12 +33,12 @@ export class Func994 implements IFuncOrigin {
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{
-		desc: 	// 寄养界面_判断
+		desc: // 寄养界面_判断
 			[1280, 720,
 				[[left, 186, 171, 0x30221f],
-				[center, 555, 138, 0xcbb59e],
-				[center, 880, 562, 0xf4b25f],
-				[center, 705, 347, 0xccb59e]]
+					[center, 555, 138, 0xcbb59e],
+					[center, 880, 562, 0xf4b25f],
+					[center, 705, 347, 0xccb59e]]
 			],
 		oper: [
 			[center, 1280, 720, 221, 558, 611, 590, 0],	// 滑动起点
@@ -49,11 +49,11 @@ export class Func994 implements IFuncOrigin {
 		desc:	// 是否为好友列表底部
 			[1280, 720,
 				[[left, 186, 171, 0x30221f],
-				[center, 555, 138, 0xcbb59e],
-				[center, 880, 562, 0xf4b25f],
-				[center, 705, 347, 0xccb59e],
-				[left, 186, 522, 0xbe9c69],
-				[left, 271, 146, 0xe9c89e]]
+					[center, 555, 138, 0xcbb59e],
+					[center, 880, 562, 0xf4b25f],
+					[center, 705, 347, 0xccb59e],
+					[left, 186, 522, 0xbe9c69],
+					[left, 271, 146, 0xe9c89e]]
 			],
 		oper: [
 			[center, 1280, 720, 344, 101, 440, 152, 5000],  // 点击跨区页签
@@ -62,11 +62,11 @@ export class Func994 implements IFuncOrigin {
 		desc:	// 是否为跨区列表底部
 			[1280, 720,
 				[[left, 186, 171, 0x30221f],
-				[center, 555, 138, 0xcbb59e],
-				[center, 880, 562, 0xf4b25f],
-				[center, 705, 347, 0xccb59e],
-				[left, 186, 522, 0xbe9c69],
-				[left, 271, 146, 0xa46c4d]]
+					[center, 555, 138, 0xcbb59e],
+					[center, 880, 562, 0xf4b25f],
+					[center, 705, 347, 0xccb59e],
+					[left, 186, 522, 0xbe9c69],
+					[left, 271, 146, 0xa46c4d]]
 			],
 		oper: [
 			[center, 1280, 720, 222, 100, 321, 149, 5000],  // 点击好友页签
@@ -75,19 +75,19 @@ export class Func994 implements IFuncOrigin {
 		desc:	// 是否为好友列表
 			[1280, 720,
 				[[left, 186, 171, 0x30221f],
-				[center, 555, 138, 0xcbb59e],
-				[center, 880, 562, 0xf4b25f],
-				[center, 705, 347, 0xccb59e],
-				[left, 271, 146, 0xe9c89e]]
+					[center, 555, 138, 0xcbb59e],
+					[center, 880, 562, 0xf4b25f],
+					[center, 705, 347, 0xccb59e],
+					[left, 271, 146, 0xe9c89e]]
 			],
 	},	{
 		desc:	// 是否为跨区列表
 			[1280, 720,
 				[[left, 186, 171, 0x30221f],
-				[center, 555, 138, 0xcbb59e],
-				[center, 880, 562, 0xf4b25f],
-				[center, 705, 347, 0xccb59e],
-				[left, 271, 146, 0xa46c4d]]
+					[center, 555, 138, 0xcbb59e],
+					[center, 880, 562, 0xf4b25f],
+					[center, 705, 347, 0xccb59e],
+					[left, 271, 146, 0xa46c4d]]
 			],
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {

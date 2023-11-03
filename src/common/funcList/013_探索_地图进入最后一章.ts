@@ -12,22 +12,22 @@ export class Func013 implements IFuncOrigin {
 	operator: IFuncOperatorOrigin[] = [{
 		desc: '探索地图界面',
 		oper: [
-			[right, 1280, 720, 1056,557, 1246,643,1000],
-			[center, 1280, 720, 446,201, 492,255, 200],
-			[center, 1280, 720, 889,517, 1002,559, 1000]
+			[right, 1280, 720, 1056, 557, 1246, 643, 1000],
+			[center, 1280, 720, 446, 201, 492, 255, 200],
+			[center, 1280, 720, 889, 517, 1002, 559, 1000]
 		],
 		retest: 1000
 	}, {
-		desc: [1280,720,
-			[[center,276,129,0x493624],
-			[center,867,131,0x493624],
-			[center,1043,147,0xeecccc],
-			[center,904,535,0xf4b25f],
-			[right,1121,35,0xd7b389],
-			[right,1222,32,0xd3af85]]
+		desc: [1280, 720,
+			[[center, 276, 129, 0x493624],
+				[center, 867, 131, 0x493624],
+				[center, 1043, 147, 0xeecccc],
+				[center, 904, 535, 0xf4b25f],
+				[right, 1121, 35, 0xd7b389],
+				[right, 1222, 32, 0xd3af85]]
 		],
 		oper: [
-			[center, 1280, 720, 1036,133, 1065,158, 500]
+			[center, 1280, 720, 1036, 133, 1065, 158, 500]
 		]
 	}, {
 		oper: [

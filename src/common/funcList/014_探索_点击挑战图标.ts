@@ -57,15 +57,15 @@ export class Func014 implements IFuncOrigin {
 		// 自动轮换
 		desc: [1280, 720,
 			[[left, 132, 666, 0x646464],
-			[left, 66, 658, 0xedede5],
-			[left, 42, 67, 0xe8f2fb],
-			[right, 1120, 36, 0xd7b389],
-			[right, 1233, 34, 0xd3af83]]
+				[left, 66, 658, 0xedede5],
+				[left, 42, 67, 0xe8f2fb],
+				[right, 1120, 36, 0xd7b389],
+				[right, 1233, 34, 0xd3af83]]
 		],
 		oper: [
 			[left, 1280, 720, 122, 660, 245, 682, 500]
 		]
-	}, {//首领出现
+	}, { // 首领出现
 		desc: [1280, 720,
 			[
 				[center, 512, 344, 0xffffde],

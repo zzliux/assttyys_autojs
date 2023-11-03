@@ -21,41 +21,41 @@ export class Func020 implements IFuncOrigin {
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{
-		desc: [1280,720,
-			[[left,45,42,0xf5e5a3],
-			[center,242,657,0xf3b969],
-			[center,640,65,0x1C1321],
-			[center,598,31,0x201723],
-			[center,458,583,0x4f1e2c],
-			[center,371,657,0xffcf7a],
-			[center,392,660,0x422d2a],
-			[center,429,658,0x38272f]]
+		desc: [1280, 720,
+			[[left, 45, 42, 0xf5e5a3],
+				[center, 242, 657, 0xf3b969],
+				[center, 640, 65, 0x1C1321],
+				[center, 598, 31, 0x201723],
+				[center, 458, 583, 0x4f1e2c],
+				[center, 371, 657, 0xffcf7a],
+				[center, 392, 660, 0x422d2a],
+				[center, 429, 658, 0x38272f]]
 		],
 		oper: [
-			[center, 1280, 720, 391,645, 414,667, 1],
-			[center, 1280, 720, 679,612, 953,687, 1]
+			[center, 1280, 720, 391, 645, 414, 667, 1],
+			[center, 1280, 720, 679, 612, 953, 687, 1]
 		]
 	}, {
-		desc: [1280,720,
-			[[left,45,42,0xf5e5a3],
-			[center,242,657,0xf3b969],
-			[center,640,65,0x1C1321],
-			[center,598,31,0x201723],
-			[center,458,583,0x4f1e2c]]
+		desc: [1280, 720,
+			[[left, 45, 42, 0xf5e5a3],
+				[center, 242, 657, 0xf3b969],
+				[center, 640, 65, 0x1C1321],
+				[center, 598, 31, 0x201723],
+				[center, 458, 583, 0x4f1e2c]]
 		],
 		oper: [
-			[center, 1280, 720, 90,270, 1252,528, 10]
+			[center, 1280, 720, 90, 270, 1252, 528, 10]
 		]
 	}, {
-		desc: [1280,720,
-			[[left,45,42,0xf5e5a3],
-			[center,242,657,0xf3b969],
-			[center,640,65,0x1C1321],
-			[center,598,31,0x201723],
-			[center,458,583,0x4f1e2c]]
+		desc: [1280, 720,
+			[[left, 45, 42, 0xf5e5a3],
+				[center, 242, 657, 0xf3b969],
+				[center, 640, 65, 0x1C1321],
+				[center, 598, 31, 0x201723],
+				[center, 458, 583, 0x4f1e2c]]
 		],
 		oper: [
-			[center, 1280, 720, 90,270, 1252,528, 500]
+			[center, 1280, 720, 90, 270, 1252, 528, 500]
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {

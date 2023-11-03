@@ -44,10 +44,10 @@ export class Func033 implements IFuncOrigin {
 		// 公频聊天，关闭
 		desc: [1280, 720,
 			[[left, 48, 39, 0x917057],
-			[left, 655, 323, 0x4e3925],
-			[left, 532, 659, 0xf4b25f],
-			[left, 656, 357, 0xc1af8e],
-			[left, 634, 249, 0x625140]]
+				[left, 655, 323, 0x4e3925],
+				[left, 532, 659, 0xf4b25f],
+				[left, 656, 357, 0xc1af8e],
+				[left, 634, 249, 0x625140]]
 		],
 		oper: [
 			[left, 1280, 720, 640, 318, 672, 398, 1000],
@@ -56,10 +56,10 @@ export class Func033 implements IFuncOrigin {
 		// 好友聊天，关闭
 		desc: [1280, 720,
 			[[center, 707, 65, 0x5d3c1c],
-			[center, 908, 148, 0xc7bfb2],
-			[center, 1180, 99, 0x65313b],
-			[center, 966, 618, 0xd0af87],
-			[center, 524, 647, 0xb3a79d]]
+				[center, 908, 148, 0xc7bfb2],
+				[center, 1180, 99, 0x65313b],
+				[center, 966, 618, 0xd0af87],
+				[center, 524, 647, 0xb3a79d]]
 		],
 		oper: [
 			[center, 1280, 720, 1160, 96, 1200, 130, 1000],

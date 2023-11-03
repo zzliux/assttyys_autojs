@@ -42,10 +42,10 @@ export class Func032 implements IFuncOrigin {
 	}, {	// 检测_挑战结束场景
 		desc: [1280, 720,
 			[[center, 698, 44, 0xddbb77],
-			[center, 546, 42, 0x161629],
-			[center, 703, 48, 0xddbb77],
-			[center, 600, 51, 0xe0ca86],
-			[center, 645, 684, 0xc18f5d]]
+				[center, 546, 42, 0x161629],
+				[center, 703, 48, 0xddbb77],
+				[center, 600, 51, 0xe0ca86],
+				[center, 645, 684, 0xc18f5d]]
 		]
 	},
 	{	// 检测_攻打进度页

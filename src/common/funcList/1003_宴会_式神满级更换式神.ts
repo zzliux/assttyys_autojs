@@ -27,11 +27,11 @@ export class Func1003 implements IFuncOrigin {
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
-				name: '宴会_吃饭界面',
-				operator: [{
-					desc: thisOperator[0].desc
-				}]
-			})) {
+			name: '宴会_吃饭界面',
+			operator: [{
+				desc: thisOperator[0].desc
+			}]
+		})) {
 			const point = thisScript.findMultiColor('宴会_式神满级') || null
 			if (point) {
 				thisScript.regionClick([[1193, 533, 1238, 590, 1500]]);

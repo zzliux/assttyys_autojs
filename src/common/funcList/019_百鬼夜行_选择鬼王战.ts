@@ -21,18 +21,18 @@ export class Func019 implements IFuncOrigin {
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{
-		desc: [1280,720,
-			[[center,626,64,0x1F1627],
-			[center,45,45,0xf5e5a3],
-			[right,1177,574,0xc7a185],
-			[center,47,650,0x201018],
-			[center,997,628,0x7b4341]]
+		desc: [1280, 720,
+			[[center, 626, 64, 0x1F1627],
+				[center, 45, 45, 0xf5e5a3],
+				[right, 1177, 574, 0xc7a185],
+				[center, 47, 650, 0x201018],
+				[center, 997, 628, 0x7b4341]]
 		],
 		oper: [
-			[center, 1280, 720, 245,444, 304,522, 500], // 第一个怪物位置
-			[center, 1280, 720, 591,429, 654,504, 500], // 第二个怪物位置
-			[center, 1280, 720, 978,460, 1046,515, 500], // 第三个怪物位置
-			[center, 1280, 720, 1132,562, 1210,640, 9000], // 开始
+			[center, 1280, 720, 245, 444, 304, 522, 500], // 第一个怪物位置
+			[center, 1280, 720, 591, 429, 654, 504, 500], // 第二个怪物位置
+			[center, 1280, 720, 978, 460, 1046, 515, 500], // 第三个怪物位置
+			[center, 1280, 720, 1132, 562, 1210, 640, 9000], // 开始
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
