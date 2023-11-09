@@ -2029,6 +2029,13 @@ const multiFindColors: IMultiFindColorsOrigin = {
 					[center, 907, 210, 0x4dda7f],
 					[center, 905, 214, 0x5be386],
 				]
+			],
+			[1280, 720,
+				[
+					[left, 217, 345, 0x4bbd71],
+					[left, 217, 343, 0x49b56e],
+					[left, 218, 344, 0x62cf87],
+				]
 			]
 		]
 	},
