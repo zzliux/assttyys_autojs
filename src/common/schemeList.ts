@@ -897,19 +897,20 @@ const SchemeList: IScheme[] = [
 		id: 99,
 		schemeName: '伊吹之擂',
 		list: [0, 3, 24, 99, 100],
-	}, {
-		id: 102,
-		schemeName: '活动_破晓之时',
-		list: [0, 1, 2, 3, 24, 317],
-		groupName: '活动',
-		star: true,
-		config: {
-			'0': { // key为功能的ID（1表示准备）
-				jspd_enabled_longtime_nodo: true,
-				jspd_times_longtime_nodo: 3,
-			}
-		},
 	}
+	// , {
+	// 	id: 102,
+	// 	schemeName: '活动_破晓之时',
+	// 	list: [0, 1, 2, 3, 24, 317],
+	// 	groupName: '活动',
+	// 	star: true,
+	// 	config: {
+	// 		'0': { // key为功能的ID（1表示准备）
+	// 			jspd_enabled_longtime_nodo: true,
+	// 			jspd_times_longtime_nodo: 3,
+	// 		}
+	// 	},
+	// }
 	// , {
 	//   id: 102,
 	//   schemeName: '活动_守缘合战',
