@@ -287,7 +287,7 @@ export class Func503 implements IFuncOrigin {
 				thisOperator[7], thisOperator[10], thisOperator[11],
 				thisOperator[14], thisOperator[15], thisOperator[17],
 				thisOperator[18], thisOperator[19], thisOperator[20],
-				thisOperator[21], thisOperator[22], thisOperator[23],
+				thisOperator[21]
 			]
 		})) {
 			return true;
