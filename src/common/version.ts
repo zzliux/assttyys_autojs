@@ -981,6 +981,9 @@ export const versionList = [{
 }, {
 	version: '20231115_01',
 	desc: '修复：993增加关闭广告误触兜底方案'
+}, {
+	version: '20231120_01',
+	desc: '修复：返回庭院'
 }];
 
 export default versionList[versionList.length - 1].version;
