@@ -180,12 +180,12 @@ export class Func503 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
+				[left, 26, 12, 0x443028],
+				[left, 35, 27, 0xf7e9ab],
+				[left, 59, 27, 0x624532],
 				[left, 114, 15, 0xaf8c56],
-				[left, 155, 29, 0xaf8c56],
-				[left, 183, 22, 0xae8b55],
-				[right, 1268, 16, 0x312421],
-				[left, 57, 643, 0xeae1d6],
-				[left, 69, 661, 0xfbefdf],
+				[left, 155, 24, 0xaf8c56],
+				[left, 211, 20, 0x382720],
 			]
 		],
 		oper: [
@@ -291,7 +291,7 @@ export class Func503 implements IFuncOrigin {
 				thisOperator[7], thisOperator[10], thisOperator[11],
 				thisOperator[14], thisOperator[15], thisOperator[17],
 				thisOperator[18], thisOperator[19], thisOperator[20],
-				thisOperator[21], thisOperator[22], thisOperator[23],
+				thisOperator[21]
 			]
 		})) {
 			return true;

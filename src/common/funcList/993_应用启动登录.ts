@@ -364,6 +364,25 @@ export class Func993 implements IFuncOrigin {
 				[center, 1280, 720, 875, 426, 924, 450, 1200], // 确认按钮
 			],
 		},
+		{
+			//	21 关闭皮肤广告误触导致点击了庭院樱花树，兜底方案
+			desc: [
+				1280, 720,
+				[
+					[center, 649, 241, 0xede2d0],
+					[center, 752, 341, 0xede2d0],
+					[center, 680, 416, 0xede2d0],
+					[center, 577, 315, 0xede2d0],
+					[right, 1153, 37, 0x987e61],
+					[right, 1220, 35, 0x967b5c],
+					[right, 1207, 638, 0x9e9390],
+					[right, 1055, 428, 0x77746a],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 814, 470, 960, 613, 1200], // 点击空白处
+			]
+		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['993'];
@@ -681,6 +700,7 @@ export class Func993 implements IFuncOrigin {
 					thisOperator[15],
 					thisOperator[17],
 					thisOperator[20],
+					thisOperator[21],
 				],
 			})
 		) {
@@ -693,7 +713,7 @@ export class Func993 implements IFuncOrigin {
 			const point = thisScript.findMultiColor('皮肤广告关闭按钮');
 			if (point) {
 				console.log('识别广告关闭按钮成功');
-				const oper = [[point.x - 10, point.y - 10, point.x, point.y, 1200]];
+				const oper = [[point.x - 10, point.y - 10, point.x, point.y, 3000]];
 				thisScript.regionClick(oper);
 				return true;
 			}

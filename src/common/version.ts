@@ -978,6 +978,12 @@ export const versionList = [{
 	version: '20231109_01',
 	desc: `修复:51绿标天照被突破buff遮挡问题
 	删除了317破晓之时活动`
-},];
+}, {
+	version: '20231115_01',
+	desc: '修复：993增加关闭广告误触兜底方案'
+}, {
+	version: '20231120_01',
+	desc: '修复：返回庭院'
+}];
 
 export default versionList[versionList.length - 1].version;
