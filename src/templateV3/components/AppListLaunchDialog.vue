@@ -21,7 +21,7 @@
           </span>
           <span class="item-content">
             <div class="appName">{{ app.appName }}</div>
-            <div class="packageName">{{ app.packageName }}</div>
+            <div class="packageName">{{ app.packageName }} {{app.versionName}}</div>
           </span>
         </div>
       </div>
