@@ -1,8 +1,4 @@
-import {
-	IFuncOrigin,
-	IFuncOperatorOrigin,
-	IFuncOperator,
-} from '@/interface/IFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 // const normal = -1; //定义常量
 const left = 0;
@@ -382,6 +378,21 @@ export class Func993 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 814, 470, 960, 613, 1200], // 点击空白处
 			]
+		}, { // 22 应用宝公告关闭
+			desc: [
+				1280, 720,
+				[
+					[center, 428, 564, 0x7f7f7f],
+					[center, 861, 563, 0x7f7f7f],
+					[center, 431, 198, 0xffffff],
+					[center, 856, 211, 0xffffff],
+					[center, 856, 157, 0x9e9e9e],
+					[center, 860, 153, 0xaeaeae],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 844, 144, 872, 173, 1000],
+			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -392,8 +403,8 @@ export class Func993 implements IFuncOrigin {
 
 		if (thisScript.oper({
 			id: 993,
-			name: '登录时不看CG',
-			operator: [thisOperator[19]],
+			name: '登录时不看CG、应用宝公告关闭',
+			operator: [thisOperator[19], thisOperator[22]],
 		})) {
 			return true;
 		}
@@ -402,12 +413,7 @@ export class Func993 implements IFuncOrigin {
 			thisScript.oper({
 				id: 993,
 				name: '是否为庭院(未展开菜单)',
-				operator: [
-					{
-						desc: thisOperator[7].desc,
-						oper: thisOperator[7].oper,
-					},
-				],
+				operator: [thisOperator[7]],
 			})
 		) {
 			console.log('展开庭院菜单');
@@ -418,17 +424,7 @@ export class Func993 implements IFuncOrigin {
 			thisScript.oper({
 				id: 993,
 				name: '是否为庭院',
-				operator: [
-					{
-						desc: thisOperator[8].desc,
-					},
-					{
-						desc: thisOperator[13].desc,
-					},
-					{
-						desc: thisOperator[16].desc,
-					},
-				],
+				operator: [thisOperator[8], thisOperator[13], thisOperator[16]],
 			})
 		) {
 			// 做延时检测 防止登陆后的弹窗
@@ -472,11 +468,9 @@ export class Func993 implements IFuncOrigin {
 		if (
 			thisScript.oper({
 				name: '是否为登录页',
-				operator: [
-					{
-						desc: thisOperator[0].desc,
-					},
-				],
+				operator: [{
+					desc: thisOperator[0].desc,
+				}],
 			})
 		) {
 			const toDetectAreaBmp = thisScript.helperBridge.helper.GetBitmap(
@@ -501,11 +495,9 @@ export class Func993 implements IFuncOrigin {
 							if (!resultItem.label.includes(String(thisConf.area))) {
 								return thisScript.oper({
 									name: '切换区域',
-									operator: [
-										{
-											oper: thisOperator[4].oper,
-										},
-									],
+									operator: [{
+										oper: thisOperator[4].oper,
+									}],
 								});
 							}
 						}
@@ -514,11 +506,9 @@ export class Func993 implements IFuncOrigin {
 
 				return thisScript.oper({
 					name: '点击开始游戏',
-					operator: [
-						{
-							oper: [thisOperator[0].oper[0]],
-						},
-					],
+					operator: [{
+						oper: [thisOperator[0].oper[0]],
+					}],
 				});
 			} else {
 				console.log('识别游戏区域失败，识别结果为:', resultArea);
@@ -530,11 +520,9 @@ export class Func993 implements IFuncOrigin {
 			thisScript.global.game_area &&
 			thisScript.oper({
 				name: '是否为同区多账号',
-				operator: [
-					{
-						desc: thisOperator[18].desc,
-					},
-				],
+				operator: [{
+					desc: thisOperator[18].desc,
+				}],
 			})
 		) {
 			if (thisConf.account_index) {
@@ -599,11 +587,9 @@ export class Func993 implements IFuncOrigin {
 
 									return thisScript.oper({
 										name: '点击开始游戏',
-										operator: [
-											{
-												oper: [thisOperator[0].oper[0]],
-											},
-										],
+										operator: [{
+											oper: [thisOperator[0].oper[0]],
+										}],
 									});
 								}
 							}
@@ -620,29 +606,23 @@ export class Func993 implements IFuncOrigin {
 			thisConf.area &&
 			thisScript.oper({
 				name: '是否为切换区域页',
-				operator: [
-					{
-						desc: thisOperator[4].desc,
-					},
-				],
+				operator: [{
+					desc: thisOperator[4].desc,
+				}],
 			})
 		) {
 			thisScript.oper({
 				name: '点击展开角色区域',
-				operator: [
-					{
-						desc: thisOperator[5].desc,
-						oper: [thisOperator[5].oper[3]],
-					},
-				],
+				operator: [{
+					desc: thisOperator[5].desc,
+					oper: [thisOperator[5].oper[3]],
+				}],
 			});
 			const switchGameAreaBmp = thisScript.helperBridge.helper.GetBitmap(
 				...thisOperator[5].oper[0].slice(0, 4)
 			);
 			console.time('ocr.game.area');
-			const resultGameArea = thisScript
-				.getOcrDetector()
-				.loadImage(switchGameAreaBmp);
+			const resultGameArea = thisScript.getOcrDetector().loadImage(switchGameAreaBmp);
 			console.timeEnd('ocr.game.area');
 			switchGameAreaBmp.recycle();
 			console.log(resultGameArea);
@@ -688,18 +668,9 @@ export class Func993 implements IFuncOrigin {
 				id: 993,
 				name: '登陆后是否有弹窗',
 				operator: [
-					thisOperator[1],
-					thisOperator[2],
-					thisOperator[3],
-					thisOperator[6],
-					thisOperator[9],
-					thisOperator[10],
-					thisOperator[11],
-					thisOperator[12],
-					thisOperator[14],
-					thisOperator[15],
-					thisOperator[17],
-					thisOperator[20],
+					thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[6],
+					thisOperator[9], thisOperator[10], thisOperator[11], thisOperator[12],
+					thisOperator[14], thisOperator[15], thisOperator[17], thisOperator[20],
 					thisOperator[21],
 				],
 			})
