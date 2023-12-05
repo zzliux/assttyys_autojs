@@ -984,6 +984,10 @@ export const versionList = [{
 }, {
 	version: '20231120_01',
 	desc: '修复：返回庭院'
+}, {
+	version: '20231205_01',
+	desc: `优化：993适配应用宝登录时的公告界面关闭；
+优化：关联启动应用时显示应用版本号`
 }];
 
 export default versionList[versionList.length - 1].version;
