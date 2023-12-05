@@ -246,10 +246,10 @@ export class Func316 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[right, 1221, 254, 0xd8d2cf],
-				[right, 1257, 256, 0xe2dad2],
+				[right, 1227, 240, 0xdfd5be],
+				[right, 1215, 276, 0xe0dbda],
+				[right, 1212, 392, 0x343849],
 				[right, 1225, 387, 0x323746],
-				[right, 1256, 385, 0x2a2f3e],
 				[right, 1182, 640, 0x8c7e60],
 				[right, 1230, 668, 0x8c7e60],
 			]
@@ -282,13 +282,11 @@ export class Func316 implements IFuncOrigin {
 			[
 				[right, 1211, 657, 0xbbab7f],
 				[right, 1225, 633, 0xb8a67d],
-				[right, 1200, 41, 0x1f1a1c],
 				[right, 1200, 45, 0x99948a],
 				[right, 1204, 43, 0x9a968b],
 				[right, 1204, 40, 0x7d7870],
 				[right, 1198, 35, 0xb2ada1],
 				[right, 1198, 33, 0xb2ada1],
-				[right, 1205, 34, 0x221e1e],
 			]
 		],
 		oper: [
@@ -301,7 +299,6 @@ export class Func316 implements IFuncOrigin {
 				[right, 1211, 657, 0xbbab7f],
 				[right, 1225, 633, 0xb8a67d],
 				[right, 1197, 39, 0xa7a296],
-				[right, 1201, 39, 0x171012],
 				[right, 1205, 39, 0x8f8a80],
 				[right, 1205, 37, 0x8f8b80],
 				[right, 1197, 36, 0xa7a297],
