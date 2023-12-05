@@ -282,11 +282,13 @@ export class Func316 implements IFuncOrigin {
 			[
 				[right, 1211, 657, 0xbbab7f],
 				[right, 1225, 633, 0xb8a67d],
-				[right, 1199, 31, 0xb5b0a4],
-				[right, 1199, 36, 0xb8b2a7],
-				[right, 1205, 38, 0x9d988f],
-				[right, 1201, 44, 0xb0aba0],
-				[right, 1203, 30, 0x8c887e],
+				[right, 1200, 41, 0x1f1a1c],
+				[right, 1200, 45, 0x99948a],
+				[right, 1204, 43, 0x9a968b],
+				[right, 1204, 40, 0x7d7870],
+				[right, 1198, 35, 0xb2ada1],
+				[right, 1198, 33, 0xb2ada1],
+				[right, 1205, 34, 0x221e1e],
 			]
 		],
 		oper: [
@@ -298,10 +300,11 @@ export class Func316 implements IFuncOrigin {
 			[
 				[right, 1211, 657, 0xbbab7f],
 				[right, 1225, 633, 0xb8a67d],
-				[right, 1198, 36, 0xa49e93],
-				[right, 1206, 37, 0x948f85],
-				[right, 1202, 30, 0x767169],
-				[right, 1202, 44, 0x817d74],
+				[right, 1197, 39, 0xa7a296],
+				[right, 1201, 39, 0x171012],
+				[right, 1205, 39, 0x8f8a80],
+				[right, 1205, 37, 0x8f8b80],
+				[right, 1197, 36, 0xa7a297],
 			]
 		],
 		oper: [
@@ -399,7 +402,7 @@ export class Func316 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 872, 146, 1197, 539, 500],
 		]
-	}, { // v24 低级buff
+	}, { // 25 低级buff
 		desc: [
 			1280, 720,
 			[
