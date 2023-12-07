@@ -1,77 +1,78 @@
 export type globalRootType = {
-    currentNotifyDate: null | Date,
-    app_is_open_flag: number,
-    checked_yard_count: number,
-    currentRunTimes: Record<string, number>,
-    running: boolean,
-    define_run_time: number,
-    define_pause_time: number,
-    runningTime: number,
-    pauseTime: number,
-    notifyTime: number,
-    tp_swipe_times: number,
-    tsAttackSwhipeNum: number,
-    dgCurNum: number,
-    currentChatEnd: number,
-    greenPosition: number[] | null,
-    greenTagEnd: number,
-    greenNonDTime: number,
-    d6LoadBuff: boolean | null,
-    d6LoadedBuff: boolean | null
-    d6d: Record<string, number[]>,
-    d6RefreshCnt: number,
-    d6dCurrentBegin: number,
-    d6dBegin: number,
-    times: number,
-    d6NxFilter: string[],
-    d6NextStation: string,
-    d6NxRefreshCnt: number,
-    d6NextEvent: string[],
-    jy_list_swipe_times: number,
-    jy_list_getTime_fault_count: number,
-    jy_friends_enchantment_waitingtime: number,
-    jy_enchantment_index: number,
-    jy_change_shikigami: 'change' | 'get_reward' | 'change_enchantment' | 'jy_flag',   //  寄养_是否更换养成式神(狗粮)  更换式神 | 获取奖励 | 更换结界卡 | 寄养
-    jy_experience_wine_pot_count: number,   //  寄养获取经验酒壶次数
-    jy_enchantment_experience_count: number,   //  寄养获取结界卡奖励次数
-    back_courtyard_to_next_scheme: string,
-    fm_kiss_boss_flag: boolean, //  逢魔 是否已击杀首领
-    fm_boss_btn_click_cnt: number, // 点击逢魔首领按钮次数
-    change_shikigami_flag: boolean, //  更换式神
-    change_shikigami_state: 'flushed' | 'search_group' | 'search_default' | 'change_team_default_1' | 'change_team_default_2' | 'finish', //  跟换式神预设状态值
-    change_shikigami_list_swipe_times: number,
-    change_shikigami_last_group_name: string,   //  式神录预设分组最后一项的名称
-    narrow_state: Record<string, boolean>,   //  狭间暗域状态
-    liao_activity_page_flag: number,   //  寮活动翻页标记
-    banquet_change_flag: boolean,   //  宴会轮换开关标识
-    gateOfHades_state: boolean,     //  阴门状态
-    team_up_lagTime: null | Date,    // 组队延时
-    team_up_Frist: boolean,  // 首次组队
-    xsOpened: boolean, // 是否打开过悬赏
-    intensify_lagTime: null | Date, // 强化延时
-    intensify_NumOT: number, // 强化计数
-    create_NumOT: number, // 创建队伍计数
-    redFlag: boolean;   //  红标标识
-    yl_next: number, // 言灵对弈下一个
-    bgy_three: boolean; // 百鬼奕三胜
-    bgy_ten: boolean; // 百鬼奕十次
-    xxlLastLevel: number;
-    buff_enable_page_flag: boolean; // 开启buff是否完成翻页
-    team_up_Time: number;   // 被邀请的次数
-    game_area: string;  //  游戏区域
-    operate_finish_flag: boolean;  // 寄养完成操作flag
-    preset_once_groupNum: number | null;     // 一次性修改的预设分组
-    preset_once_defaultNum: number | null;     // 一次性修改的预设阵容
-    qiling_Position: number[] | null;   //  契灵的地图位置
-    qiling_last: number | null;     //  契灵的上次类型
-    opened_buff: boolean; // 是否已执行开启buff
-    closed_buff: boolean; // 是否已执行关闭buff
-    daily_collection: 'friend' | 'store' | 'courtyard';   //  每日奖励领取
-    huahezhan: boolean;//    是否已领取花合战
-    shangyushe: boolean;//    是否已上过预设
-    d6Loop:  number;//     椒图事件点击循环数
-    d6RouFeng: number;//     椒图柔风实时buff数
-    upYuHun:boolean;//      强化御魂记录界面次数
+	currentNotifyDate: null | Date,
+	app_is_open_flag: number,
+	checked_yard_count: number,
+	currentRunTimes: Record<string, number>,
+	running: boolean,
+	define_run_time: number,
+	define_pause_time: number,
+	runningTime: number,
+	pauseTime: number,
+	notifyTime: number,
+	tp_swipe_times: number,
+	tsAttackSwhipeNum: number,
+	dgCurNum: number,
+	currentChatEnd: number,
+	greenPosition: number[] | null,
+	greenTagEnd: number,
+	greenNonDTime: number,
+	d6LoadBuff: boolean | null,
+	d6LoadedBuff: boolean | null
+	d6d: Record<string, number[]>,
+	d6RefreshCnt: number,
+	d6dCurrentBegin: number,
+	d6dBegin: number,
+	times: number,
+	d6NxFilter: string[],
+	d6NextStation: string,
+	d6NxRefreshCnt: number,
+	d6NextEvent: string[],
+	jy_list_swipe_times: number,
+	jy_list_getTime_fault_count: number,
+	jy_friends_enchantment_waitingtime: number,
+	jy_enchantment_index: number,
+	jy_change_shikigami: 'change' | 'get_reward' | 'change_enchantment' | 'jy_flag',   //  寄养_是否更换养成式神(狗粮)  更换式神 | 获取奖励 | 更换结界卡 | 寄养
+	jy_experience_wine_pot_count: number,   //  寄养获取经验酒壶次数
+	jy_enchantment_experience_count: number,   //  寄养获取结界卡奖励次数
+	back_courtyard_to_next_scheme: string,
+	fm_kiss_boss_flag: boolean, //  逢魔 是否已击杀首领
+	fm_boss_btn_click_cnt: number, // 点击逢魔首领按钮次数
+	change_shikigami_flag: boolean, //  更换式神
+	change_shikigami_state: 'flushed' | 'search_group' | 'search_default' | 'change_team_default_1' | 'change_team_default_2' | 'finish', //  跟换式神预设状态值
+	change_shikigami_list_swipe_times: number,
+	change_shikigami_last_group_name: string,   //  式神录预设分组最后一项的名称
+	narrow_state: Record<string, boolean>,   //  狭间暗域状态
+	liao_activity_page_flag: number,   //  寮活动翻页标记
+	banquet_change_flag: boolean,   //  宴会轮换开关标识
+	gateOfHades_state: boolean,     //  阴门状态
+	team_up_lagTime: null | Date,    // 组队延时
+	team_up_Frist: boolean,  // 首次组队
+	xsOpened: boolean, // 是否打开过悬赏
+	intensify_lagTime: null | Date, // 强化延时
+	intensify_NumOT: number, // 强化计数
+	create_NumOT: number, // 创建队伍计数
+	redFlag: boolean;   //  红标标识
+	yl_next: number, // 言灵对弈下一个
+	bgy_three: boolean; // 百鬼奕三胜
+	bgy_ten: boolean; // 百鬼奕十次
+	xxlLastLevel: number;
+	buff_enable_page_flag: boolean; // 开启buff是否完成翻页
+	team_up_Time: number;   // 被邀请的次数
+	game_area: string;  //  游戏区域
+	operate_finish_flag: boolean;  // 寄养完成操作flag
+	preset_once_groupNum: number | null;     // 一次性修改的预设分组
+	preset_once_defaultNum: number | null;     // 一次性修改的预设阵容
+	qiling_Position: number[] | null;   //  契灵的地图位置
+	qiling_last: number | null;     //  契灵的上次类型
+	opened_buff: boolean; // 是否已执行开启buff
+	closed_buff: boolean; // 是否已执行关闭buff
+	daily_collection: 'friend' | 'store' | 'courtyard';   //  每日奖励领取
+	huahezhan: boolean;//    是否已领取花合战
+	shangyushe: boolean;//    是否已上过预设
+	d6Loop: number;//     椒图事件点击循环数
+	d6RouFeng: number;//     椒图柔风实时buff数
+	upYuHun: boolean;//      强化御魂记录界面次数
+	bgyxLastCapture: number; // 上次截图的时间戳
 }
 
 export const globalRoot: globalRootType = {
@@ -148,4 +149,5 @@ export const globalRoot: globalRootType = {
 	d6Loop: 0,
 	d6RouFeng: 1,
 	upYuHun: false,
+	bgyxLastCapture: undefined,
 }

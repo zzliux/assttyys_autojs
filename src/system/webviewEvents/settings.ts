@@ -4,6 +4,7 @@ import myFloaty from '@/system/MyFloaty';
 import { storeCommon } from '@/system/store';
 import { getInstalledPackages, requestMyScreenCapture } from '@/common/toolAuto';
 import { isRoot } from '@auto.pro/core';
+import ncnnBgyx from '@/system/ncnn/ncnnBgyx';
 import helperBridge from '@/system/helperBridge';
 import { mlkitOcr } from '@/system/Ocr/MlkitOcr';
 import { yunxiOcr } from '@/system/Ocr/YunxiOcr';
@@ -44,6 +45,10 @@ export default function webviewSettigns() {
 
 	if (typeof initStoreSettings.msgPush_prefix === 'undefined') {
 		initStoreSettings.msgPush_prefix = '[ASSTTYYS]';
+	}
+
+	if (typeof initStoreSettings.ncnn_bgyx === 'undefined') {
+		initStoreSettings.ncnn_bgyx = false;
 	}
 
 	storeCommon.put('settings', initStoreSettings);
@@ -150,6 +155,11 @@ export default function webviewSettigns() {
 			name: 'ocr_extend',
 			type: 'assttyys_setting_ocr_extend',
 			enabled: storeSettings.ocrType === 'MlkitOcr' ? mlkitOcr.isInstalled() : yunxiOcr.isInstalled()
+		}, {
+			desc: '百鬼夜行模型扩展（实验性功能）',
+			name: 'ncnn_bgyx',
+			type: 'assttyys_setting_ncnn_bgyx_extend',
+			enabled: storeSettings.ncnn_bgyx
 		}, {
 			desc: '消息推送方式',
 			name: 'push_type',
@@ -351,6 +361,15 @@ export default function webviewSettigns() {
 				// done(true);
 				// todo 卸载扩展
 				toastLog('已安装扩展请勿取消');
+				done(false);
+			}
+		} else if ('assttyys_setting_ncnn_bgyx_extend' === item.type) {
+			try {
+				ncnnBgyx.init();
+				done(true);
+			} catch (e) {
+				console.error(e);
+				console.error($debug.getStackTrace(e));
 				done(false);
 			}
 		} else if ('assttyys_setting_launch_after_boot' === item.type) {
