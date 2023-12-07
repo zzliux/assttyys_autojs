@@ -19,6 +19,7 @@ import { IMultiDetectColors, IMultiFindColors } from '@/interface/IMultiColor';
 import { globalRoot, globalRootType } from '@/system/GlobalStore/index';
 import schedule, { Job } from '@/system/Schedule';
 import { MyFloaty } from '@/system/MyFloaty';
+import ncnnBgyx from '@/system/ncnn/ncnnBgyx';
 
 /**
  * 脚本对象，一个程序只能有一个
@@ -42,6 +43,7 @@ export class Script {
 	helperBridge: IhelperBridge; // IhelperBridge;
 	job: Job;
 	schedule: typeof schedule;
+	ncnnBgyx = ncnnBgyx;
 
 	/**
      * 运行次数，下标为funcList中的id，值为这个func成功执行的次数；
