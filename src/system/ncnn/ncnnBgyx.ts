@@ -33,7 +33,7 @@ function sixNum(num, retain) {
 let instance = null;
 export default {
 
-	prob_threshold: 0.5, // 预测值，返回大于该值的锚框，该值越大返回的锚框数量越少
+	prob_threshold: 0.3, // 预测值，返回大于该值的锚框，该值越大返回的锚框数量越少
 	nms_thresh: 0.36, // 非极大值抑制，返回的锚框中重合面积不大于该值，该值越大返回的锚框重合率越高
 
 	init() {
