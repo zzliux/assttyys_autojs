@@ -23,7 +23,7 @@ export class Func016 implements IFuncOrigin {
 		],
 		oper: [
 			[right, 1280, 720, 1116, 34, 1148, 62, 1000], // 筛选
-			[right, 1280, 720, 1187, 155, 1239, 289, 500], // 热门
+			[right, 1280, 720, 1188, 102, 1240, 223, 500], // 热门
 			[right, 1280, 720, 1093, 235, 1136, 282, 500], // 第一个
 			[right, 1280, 720, 1096, 395, 1139, 447, 500], // 第二个
 			[right, 1280, 720, 1094, 547, 1140, 592, 500], // 第三个
@@ -40,7 +40,7 @@ export class Func016 implements IFuncOrigin {
 				[right, 1209, 43, 0xeecccc],
 				[right, 1204, 520, 0xe8d5b0],
 				[right, 1087, 624, 0xebe5ce],
-				[right, 1210, 391, 0xb25d3b],
+				[right, 1212, 615, 0x7d4030],
 			]
 		],
 		oper: [
