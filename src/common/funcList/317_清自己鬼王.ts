@@ -200,6 +200,7 @@ export class Func317 implements IFuncOrigin {
 			operator: [thisOperator[9], thisOperator[10]]
 		})) {
 			thisScript.global.waitFight = true;
+			thisScript.global.faXian_NumOT = 0;
 			return true;
 		}
 		// 分享鬼王被击杀后才再次攻打鬼王
