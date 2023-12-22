@@ -986,7 +986,10 @@ export const versionList = [{
 	desc: '修复：返回庭院'
 }, {
 	version: '20231222_01',
-	desc: '增加：超鬼王'
+	desc: '新增：超鬼王'
+}, {
+	version: '20231222_01',
+	desc: '修复：因地鬼筛选页新增悬赏页签导致热门挑战失效'
 }];
 
 export default versionList[versionList.length - 1].version;
