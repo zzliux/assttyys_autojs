@@ -995,7 +995,7 @@ export const versionList = [{
 	version: '20231222_01',
 	desc: '新增：超鬼王'
 }, {
-	version: '20231222_01',
+	version: '20231222_02',
 	desc: '修复：因地鬼筛选页新增悬赏页签导致热门挑战失效'
 }];
 
