@@ -149,5 +149,5 @@ export const globalRoot: globalRootType = {
 	d6Loop: 0,
 	d6RouFeng: 1,
 	upYuHun: false,
-	waitFight: false,
+	waitFight: true,
 }

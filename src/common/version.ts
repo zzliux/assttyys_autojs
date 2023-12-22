@@ -984,6 +984,9 @@ export const versionList = [{
 }, {
 	version: '20231120_01',
 	desc: '修复：返回庭院'
+}, {
+	version: '20231222_01',
+	desc: '增加：超鬼王'
 }];
 
 export default versionList[versionList.length - 1].version;
