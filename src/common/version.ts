@@ -985,8 +985,18 @@ export const versionList = [{
 	version: '20231120_01',
 	desc: '修复：返回庭院'
 }, {
+	version: '20231205_01',
+	desc: `优化：993适配应用宝登录时的公告界面关闭；
+优化：关联启动应用时显示应用版本号`
+}, {
+	version: '20231214_01',
+	desc: '修复：16地鬼点错筛选，卡挑战界面不返回'
+}, {
 	version: '20231222_01',
-	desc: '增加：超鬼王'
+	desc: '新增：超鬼王'
+}, {
+	version: '20231222_01',
+	desc: '修复：因地鬼筛选页新增悬赏页签导致热门挑战失效'
 }];
 
 export default versionList[versionList.length - 1].version;
