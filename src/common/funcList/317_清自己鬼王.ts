@@ -160,17 +160,19 @@ export class Func317 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 226, 320, 254, 352, 1000],
 		]
-	}, { // 12 票已清光
+	}, { // 12 疲劳上限
 		desc: [
 			1280, 720,
 			[
-				[center, 944, 32, 0xc8c5b6],
-				[center, 952, 31, 0xcbc8b9],
-				[center, 948, 24, 0x9a9487],
-				[center, 948, 39, 0xa39e90],
-				[right, 971, 32, 0xc0bdae],
-				[right, 991, 31, 0xc1beaf],
+				[center, 502, 365, 0x45448c],
+				[center, 514, 353, 0xa53f2d],
+				[center, 539, 363, 0x5044d6],
+				[center, 630, 472, 0xe9361e],
+				[center, 750, 212, 0x645248],
 			]
+		],
+		oper: [
+			[center, 1280, 720, 912, 178, 958, 216, 1000],
 		]
 	}];
 
@@ -179,18 +181,23 @@ export class Func317 implements IFuncOrigin {
 		const thisConf = thisScript.scheme.config['317'];
 		if (thisScript.oper({
 			id: 317,
-			name: '票已清光',
-			operator: [thisOperator[12]]
+			name: '搜索鬼王',
+			operator: [thisOperator[6]]
 		})) {
-			thisScript.doPush(thisScript, { text: '票已清光。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-			thisScript.stop();
-			sleep(3000);
+			thisScript.global.waitFight = true;
+			thisScript.global.faXian_NumOT++;
+			if (thisScript.global.faXian_NumOT > 3) {
+				thisScript.doPush(thisScript, { text: '多次点击未开始，票已清光。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+				thisScript.stop();
+				sleep(3000);
+				return true;
+			}
 			return true;
 		}
 		if (thisScript.oper({
 			id: 317,
-			name: '查询级别',
-			operator: [thisOperator[9], thisOperator[6], thisOperator[10]]
+			name: '结算中',
+			operator: [thisOperator[9], thisOperator[10]]
 		})) {
 			thisScript.global.waitFight = true;
 			return true;
@@ -249,6 +256,16 @@ export class Func317 implements IFuncOrigin {
 				thisScript.global.waitFight = false;
 				return true;
 			}
+		}
+		if (thisScript.oper({
+			id: 317,
+			name: '疲劳上限',
+			operator: [thisOperator[12]]
+		})) {
+			thisScript.doPush(thisScript, { text: '多次点击未开始，票已清光。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+			thisScript.stop();
+			sleep(3000);
+			return true;
 		}
 		return false;
 	}
