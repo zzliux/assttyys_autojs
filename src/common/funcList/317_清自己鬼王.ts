@@ -13,22 +13,10 @@ export class Func317 implements IFuncOrigin {
 	config = [{
 		desc: '',
 		config: [{
-			name: 'xy',
-			desc: '点击坐标范围，格式为：左上角x,左上角y,右下角x,右下角y，例：1134,590,1225,645',
-			type: 'text',
-			default: '1134,590,1225,645',
-			value: null,
-		}, {
-			name: 'exit',
-			desc: '达到时间后退出(需要ocr)',
+			name: 'fight_level_four',
+			desc: '是否清理4星',
 			type: 'switch',
-			default: false,
-			value: null,
-		}, {
-			name: 'time',
-			desc: '目标时间（输入数字，逗号分隔）',
-			type: 'text',
-			default: '1,20',
+			default: true,
 			value: null,
 		}]
 	}]
@@ -88,6 +76,17 @@ export class Func317 implements IFuncOrigin {
 			]
 		]
 	}, {// 5  极级别
+		desc: [
+			1280, 720,
+			[
+				[left, 32, 311, 0xfb8a75],
+				[left, 50, 311, 0xff967b],
+				[left, 41, 302, 0xfb383c],
+				[left, 41, 320, 0xffa296],
+				[left, 38, 311, 0xe2ecf1],
+				[left, 43, 311, 0xa16762],
+			]
+		]
 	}, { // 6  搜索鬼王
 		desc: [
 			1280, 720,
@@ -120,42 +119,136 @@ export class Func317 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1108, 583, 1215, 658, 1000],
 		]
-	}, { // 9  结算中
+	}, { // 9  自己鬼王 结算中
 		desc: [
 			1280, 720,
 			[
-				[center, 666, 510, 0xfdebb0],
-				[center, 682, 520, 0xffeeb3],
-				[center, 708, 496, 0xffeeb3],
-				[center, 722, 521, 0xffeeb3],
-				[center, 757, 507, 0xffeeb3],
+				[left, 20, 292, 0xffffd8],
+				[left, 273, 291, 0xffffea],
+				[center, 666, 511, 0xffeeb3],
+				[center, 711, 522, 0xffeeb3],
+				[center, 758, 509, 0xffeeb3],
+				[center, 722, 525, 0xffeeb3],
+			]
+		]
+	}, { // 10  好友鬼王 结算中
+		desc: [
+			1280, 720,
+			[
+				[left, 20, 465, 0xffffd8],
+				[left, 273, 466, 0xfffff2],
+				[center, 666, 511, 0xffeeb3],
+				[center, 711, 522, 0xffeeb3],
+				[center, 758, 509, 0xffeeb3],
+				[center, 722, 525, 0xffeeb3],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 92, 303, 260, 359, 1000],
+		]
+	}, {// 11	分享鬼王
+		desc: [
+			1280, 720,
+			[
+				[left, 225, 328, 0xffde79],
+				[left, 235, 318, 0x392611],
+				[left, 246, 317, 0x33260f],
+				[left, 257, 331, 0xf6d16c],
+				[left, 245, 337, 0xf7cf5b],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 226, 320, 254, 352, 1000],
+		]
+	}, {//12 票已清光
+		desc: [
+			1280, 720,
+			[
+				[center, 944, 32, 0xc8c5b6],
+				[center, 952, 31, 0xcbc8b9],
+				[center, 948, 24, 0x9a9487],
+				[center, 948, 39, 0xa39e90],
+				[right, 971, 32, 0xc0bdae],
+				[right, 991, 31, 0xc1beaf],
 			]
 		]
 	}];
+
+
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
+		const thisConf = thisScript.scheme.config['317'];
 		if (thisScript.oper({
 			id: 317,
-			name: '级别状态',
-			operator: [thisOperator[9], thisOperator[6]]
+			name: '票已清光',
+			operator: [thisOperator[12]]
 		})) {
+			thisScript.doPush(thisScript, { text: '票已清光。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+			thisScript.stop();
+			sleep(3000);
 			return true;
 		}
 		if (thisScript.oper({
 			id: 317,
+			name: '查询级别',
+			operator: [thisOperator[9], thisOperator[6], thisOperator[10]]
+		})) {
+			thisScript.global.waitFight = true;
+			return true;
+		}
+		// 分享鬼王被击杀后才再次攻打鬼王
+		if (thisScript.global.waitFight && thisScript.oper({
+			id: 317,
 			name: '鬼王界面',
 			operator: [thisOperator[0]]
-		}) && thisScript.oper({
-			id: 317,
-			name: '级别状态',
-			operator: [thisOperator[1], thisOperator[2], thisOperator[3]]
 		})) {
-			thisScript.oper({
+			let results = false;
+			// 处理易和中的级别
+			if (thisScript.oper({
 				id: 317,
-				name: '强力状态切换普通',
-				operator: [thisOperator[7]]
-			})
-			thisScript.regionClick([thisOperator[8].oper[0]]);
-			return true;
+				name: '鬼王等级:易或中',
+				operator: [thisOperator[1], thisOperator[2]]
+			})) {
+				thisScript.oper({
+					id: 317,
+					name: '强力状态切换普通',
+					operator: [thisOperator[7]]
+				})
+				thisScript.regionClick([thisOperator[8].oper[0]]);
+				return true;
+			};
+			// 识别高的级别
+			if (thisScript.oper({
+				id: 317,
+				name: '鬼王等级:高',
+				operator: [thisOperator[3]]
+			})) {
+				if (thisConf.fight_level_four) {
+					thisScript.oper({
+						id: 317,
+						name: '强力状态切换普通',
+						operator: [thisOperator[7]]
+					})
+					thisScript.regionClick([thisOperator[8].oper[0]]);
+					return true;
+				} else {
+					results = true;
+				}
+			}
+			// 识别难和极的级别
+			if (thisScript.oper({
+				id: 317,
+				name: '鬼王等级:难或极',
+				operator: [thisOperator[4], thisOperator[5]]
+			})) {
+				results = true;
+			}
+			//对不清理的鬼王集中处理
+			if (results) {
+				thisScript.doPush(thisScript, { text: '高星鬼王已出现。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+				sleep(3000);
+				thisScript.global.waitFight = false;
+				return true;
+			}
 		}
 		return false;
 	}

@@ -72,6 +72,7 @@ export type globalRootType = {
     d6Loop:  number;//     椒图事件点击循环数
     d6RouFeng: number;//     椒图柔风实时buff数
     upYuHun:boolean;//      强化御魂记录界面次数
+	waitFight:boolean;//      等待分享鬼王被击杀
 }
 
 export const globalRoot: globalRootType = {
@@ -148,4 +149,5 @@ export const globalRoot: globalRootType = {
 	d6Loop: 0,
 	d6RouFeng: 1,
 	upYuHun: false,
+	waitFight: false,
 }
