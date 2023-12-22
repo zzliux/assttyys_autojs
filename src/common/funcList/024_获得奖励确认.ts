@@ -10,25 +10,28 @@ export class Func024 implements IFuncOrigin {
 	name = '获得奖励确认';
 	operator: IFuncOperatorOrigin[] = [{
 		desc: [1280, 720, // 奖励只有1排
-			[[center, 424, 328, 0xbfa88f],
-			[center, 408, 237, 0x382a1c],
-			[center, 854, 241, 0x382a1c],
-			[center, 669, 242, 0xe6d79c],
-			[center, 869, 327, 0xb79e86],
-			[center, 926, 386, 0x825e34],
-			[center, 371, 395, 0x8b673e]]
+			[
+				[center, 424, 328, 0xbfa88f],
+				[center, 408, 237, 0x382a1c],
+				[center, 854, 241, 0x382a1c],
+				[center, 669, 242, 0xe6d79c],
+				[center, 869, 327, 0xb79e86],
+				[center, 926, 386, 0x825e34],
+				[center, 371, 395, 0x8b673e]
+			]
 		],
 		oper: [
 			[left, 1280, 720, 69, 171, 170, 452, 500]
 		]
 	}, {
 		desc: [1280, 720, // 奖励有2排
-			[[center, 401, 210, 0x39291d],
-			[center, 828, 208, 0x3c2a20],
-			[center, 602, 172, 0xfbf2cd],
-			[center, 917, 418, 0x8e6a41],
-			[center, 370, 430, 0x8d6940],
-			[center, 619, 254, 0xcbb59e]]
+			[
+				[center, 401, 210, 0x39291d],
+				[center, 828, 208, 0x3c2a20],
+				[center, 602, 172, 0xfbf2cd],
+				[center, 917, 418, 0x8e6a41],
+				[center, 370, 430, 0x8d6940],
+				[center, 619, 254, 0xcbb59e]]
 		],
 		oper: [
 			[left, 1280, 720, 69, 171, 170, 452, 500]
@@ -46,7 +49,7 @@ export class Func024 implements IFuncOrigin {
 		oper: [
 			[left, 1280, 720, 69, 171, 170, 452, 500]
 		]
-	}, {// 鬼王失败
+	}, { // 鬼王失败
 		desc: [
 			1280, 720,
 			[

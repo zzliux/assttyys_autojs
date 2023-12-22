@@ -75,7 +75,7 @@ export class Func317 implements IFuncOrigin {
 				[left, 41, 309, 0xdee5e9],
 			]
 		]
-	}, {// 5  极级别
+	}, { // 5  极级别
 		desc: [
 			1280, 720,
 			[
@@ -146,7 +146,7 @@ export class Func317 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 92, 303, 260, 359, 1000],
 		]
-	}, {// 11	分享鬼王
+	}, { // 11	分享鬼王
 		desc: [
 			1280, 720,
 			[
@@ -160,7 +160,7 @@ export class Func317 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 226, 320, 254, 352, 1000],
 		]
-	}, {//12 票已清光
+	}, { // 12 票已清光
 		desc: [
 			1280, 720,
 			[
@@ -215,7 +215,7 @@ export class Func317 implements IFuncOrigin {
 				})
 				thisScript.regionClick([thisOperator[8].oper[0]]);
 				return true;
-			};
+			}
 			// 识别高的级别
 			if (thisScript.oper({
 				id: 317,
@@ -242,7 +242,7 @@ export class Func317 implements IFuncOrigin {
 			})) {
 				results = true;
 			}
-			//对不清理的鬼王集中处理
+			// 对不清理的鬼王集中处理
 			if (results) {
 				thisScript.doPush(thisScript, { text: '高星鬼王已出现。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 				sleep(3000);
