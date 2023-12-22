@@ -991,6 +991,12 @@ export const versionList = [{
 }, {
 	version: '20231214_01',
 	desc: '修复：16地鬼点错筛选，卡挑战界面不返回'
+}, {
+	version: '20231222_01',
+	desc: '新增：超鬼王'
+}, {
+	version: '20231222_02',
+	desc: '修复：因地鬼筛选页新增悬赏页签导致热门挑战失效'
 }];
 
 export default versionList[versionList.length - 1].version;

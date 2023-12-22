@@ -73,6 +73,8 @@ export type globalRootType = {
 	d6RouFeng: number;//     椒图柔风实时buff数
 	upYuHun: boolean;//      强化御魂记录界面次数
 	bgyxLastCapture: number; // 上次截图的时间戳
+	waitFight: boolean;//      等待分享鬼王被击杀
+	faXian_NumOT: number, // 点击发现鬼王计数
 }
 
 export const globalRoot: globalRootType = {
@@ -150,4 +152,6 @@ export const globalRoot: globalRootType = {
 	d6RouFeng: 1,
 	upYuHun: false,
 	bgyxLastCapture: undefined,
+	waitFight: true,
+	faXian_NumOT: 0,
 }

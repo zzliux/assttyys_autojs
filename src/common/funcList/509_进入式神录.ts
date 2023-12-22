@@ -147,6 +147,20 @@ export class Func509 implements IFuncOrigin {
 		]
 	}, { // 突破界面
 		desc: '突破界面'
+	}, { // 超鬼王界面
+		desc: [
+			1280, 720,
+			[
+				[right, 1020, 655, 0x694a1b],
+				[right, 1048, 656, 0x654719],
+				[right, 1041, 663, 0xffecc5],
+				[right, 1034, 676, 0xfff1d8],
+				[right, 1024, 681, 0xfff3df],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1012, 649, 1055, 690, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.global.change_shikigami_flag) {
@@ -159,7 +173,7 @@ export class Func509 implements IFuncOrigin {
 
 			if (thisScript.oper({
 				name: '庭院进入式神录',
-				operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[4], thisOperator[5], thisOperator[6], thisOperator[7], thisOperator[9]]
+				operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[4], thisOperator[5], thisOperator[6], thisOperator[7], thisOperator[9], thisOperator[11]]
 			})) {
 				return true;
 			}
