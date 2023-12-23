@@ -997,6 +997,9 @@ export const versionList = [{
 }, {
 	version: '20231222_02',
 	desc: '修复：因地鬼筛选页新增悬赏页签导致热门挑战失效'
+}, {
+	version: '20231223_01',
+	desc: '新增：318_星灭切换'
 }];
 
 export default versionList[versionList.length - 1].version;

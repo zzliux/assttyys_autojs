@@ -22,7 +22,7 @@ export class Func318 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1190, 633, 1259, 691, 1000], // 清明
+			[center, 1280, 720, 1190, 633, 1259, 691, 250], // 清明
 		]
 	}, { // 1 开始战斗后的场景
 		desc: '战斗界面',
@@ -30,26 +30,15 @@ export class Func318 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[right, 1243, 698, 0xdac8bb],
-				[right, 1247, 697, 0xe2cfc2],
-				[right, 1251, 708, 0xdbc9bd],
-				[right, 1246, 708, 0xe1cec1],
-				[right, 1241, 708, 0xdbc9bd],
+				[right, 1247, 674, 0xe0cec1],
+				[right, 1251, 685, 0xdfccbf],
+				[right, 1246, 685, 0xe1cec1],
+				[right, 1241, 685, 0xdbc9bd],
+				[right, 1243, 680, 0x9d9086],
+				[right, 1243, 677, 0x8c8178],
 			]
 		]
-	}, { // 3 妖术三
-		desc: [
-			1280, 720,
-			[
-				[right, 1245, 695, 0xe2d0c3],
-				[right, 1242, 698, 0xd1c0b4],
-				[right, 1244, 702, 0xe4d1c4],
-				[right, 1240, 707, 0xd3c1b5],
-				[right, 1247, 712, 0xc6b5aa],
-				[right, 1250, 706, 0xd8c6ba],
-			]
-		]
-	}, { // 4 技能框
+	}, { // 3 技能框
 		desc: [
 			1280, 720,
 			[
@@ -78,7 +67,7 @@ export class Func318 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 318,
 			name: '技能框',
-			operator: [thisOperator[4]]
+			operator: [thisOperator[3]]
 		})) {
 			if (thisScript.oper({
 				id: 318,
