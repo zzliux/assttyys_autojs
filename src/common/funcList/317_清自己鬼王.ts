@@ -92,7 +92,7 @@ export class Func317 implements IFuncOrigin {
 			1280, 720,
 			[
 				[right, 1098, 635, 0xc48c16],
-				[right, 1224, 639, 0xbe8b17],
+				[right, 1193, 635, 0xfaecb8],
 				[right, 1101, 620, 0xce9415],
 				[right, 1225, 621, 0xc89116],
 				[right, 1165, 647, 0xf8ecb9],
