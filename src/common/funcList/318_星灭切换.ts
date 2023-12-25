@@ -9,7 +9,7 @@ const right = 2;
 export class Func318 implements IFuncOrigin {
 	id = 318;
 	name = '星灭切换';
-	desc = '必须带普通的镇墓兽契灵';
+	desc = '必须带普通的镇墓兽契灵，只有晴明会二三技能切换，其他阴阳师不会';
 	operator: IFuncOperatorOrigin[] = [{ // 0 契灵
 		desc: [
 			1280, 720,
@@ -42,6 +42,11 @@ export class Func318 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
+				[center, 940, 479, 0x1f2552],
+				[center, 956, 481, 0x3772b3],
+				[right, 965, 506, 0x1f214e],
+				[center, 928, 514, 0x383a91],
+				[center, 938, 504, 0xf4feff],
 				[center, 897, 445, 0xc79b56],
 				[right, 1250, 442, 0x9c6331],
 				[right, 1263, 445, 0xb18245],
@@ -50,8 +55,27 @@ export class Func318 implements IFuncOrigin {
 				[center, 904, 546, 0xb58447],
 			]
 		]
+	}, { // 4 未弹起的技能框和 技能坐标
+		desc: [
+			1280, 720,
+			[
+				[center, 895, 469, 0xbf9350],
+				[right, 1248, 466, 0xaa733d],
+				[right, 1266, 478, 0xbd8a49],
+				[right, 1265, 577, 0xb88c4e],
+				[center, 895, 569, 0xaa7743],
+				[center, 902, 577, 0xb08043],
+				[right, 1154, 483, 0x473a32],
+				[right, 1165, 462, 0x231a23],
+				[right, 1172, 486, 0x473a30],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1009, 487, 1052, 512, 1000], // 2技能
+			[center, 1280, 720, 1099, 482, 1147, 520, 1000], // 3技能
+			[center, 1280, 720, 1099, 482, 1147, 520, 1000], // 3技能
+		]
 	}];
-
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			id: 318,
@@ -74,32 +98,19 @@ export class Func318 implements IFuncOrigin {
 				name: '锁定妖术二中,切换为妖术三',
 				operator: [thisOperator[2]]
 			})) {
-				const point = thisScript.findMultiColor('晴明_星');
-				if (point) {
-					const oper = [[
-						point.x - 5,
-						point.y - 5,
-						point.x + 5,
-						point.y + 5,
-						1200
-					]];
-					thisScript.regionClick(oper);
-					return true;
-				}
+				thisScript.regionClick([thisOperator[4].oper[1]]);
 			} else {
-				const point = thisScript.findMultiColor('晴明_灭');
-				if (point) {
-					const oper = [[
-						point.x - 5,
-						point.y - 5,
-						point.x + 5,
-						point.y + 5,
-						1200
-					]];
-					thisScript.regionClick(oper);
-					return true;
-				}
+				thisScript.regionClick([thisOperator[4].oper[0]]);
 			}
+			return true;
+		}
+		if (thisScript.oper({
+			id: 318,
+			name: '未弹起的技能框',
+			operator: [{ desc: thisOperator[4].desc }]
+		})) {
+			thisScript.regionClick([thisOperator[0].oper[0]]);
+			return true;
 		}
 		return false;
 	}

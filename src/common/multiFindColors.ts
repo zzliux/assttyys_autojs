@@ -3159,38 +3159,6 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				[center, 40, 9, 0x291a10],
 			]
 		]]
-	},
-	'晴明_星': {
-		region: [right, 1280, 720, 895, 448, 1272, 607],
-		desc: [
-			[
-				1280, 720,
-				[
-					[right, 1124, 502, 0x130e24],
-					[right, 1125, 483, 0x050205],
-					[right, 1105, 515, 0x895ee5],
-					[right, 1139, 487, 0x926de4],
-					[right, 1115, 487, 0xc586ff],
-					[right, 1125, 522, 0x4b3d81],
-				]
-			]
-		]
-	},
-	'晴明_灭': {
-		region: [right, 1280, 720, 895, 448, 1272, 607],
-		desc: [
-			[
-				1280, 720,
-				[
-					[right, 1033, 506, 0x147be8],
-					[right, 1020, 492, 0xd2ffff],
-					[right, 1026, 481, 0x694ec9],
-					[right, 1035, 481, 0x040204],
-					[right, 1035, 518, 0xefffff],
-					[right, 1047, 495, 0xffffff],
-				]
-			]
-		]
 	}
 }
 
