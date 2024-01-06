@@ -74,6 +74,7 @@ export type globalRootType = {
 	upYuHun: boolean;//      强化御魂记录界面次数
 	waitFight: boolean;//      等待分享鬼王被击杀
 	faXian_NumOT: number, // 点击发现鬼王计数
+	youjiequyuan_ten: boolean;//      缘结趣游是否十抽
 }
 
 export const globalRoot: globalRootType = {
@@ -152,4 +153,5 @@ export const globalRoot: globalRootType = {
 	upYuHun: false,
 	waitFight: true,
 	faXian_NumOT: 0,
+	youjiequyuan_ten: true,
 }

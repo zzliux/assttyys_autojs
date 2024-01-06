@@ -900,8 +900,8 @@ const SchemeList: IScheme[] = [
 	},
 	{
 		id: 100,
-		schemeName: '清自己的鬼王',
-		list: [509, 510, 315, 0, 1, 2, 24, 317],
+		schemeName: '缘结趣游',
+		list: [0, 24, 319],
 	}
 	// , {
 	// 	id: 102,

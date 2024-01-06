@@ -1000,6 +1000,9 @@ export const versionList = [{
 }, {
 	version: '20231223_01',
 	desc: '新增：318_星灭切换'
+}, {
+	version: '20230106_01',
+	desc: '新增:319_缘结趣游和方案'
 }];
 
 export default versionList[versionList.length - 1].version;
