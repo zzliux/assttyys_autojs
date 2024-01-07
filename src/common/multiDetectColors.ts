@@ -7,14 +7,15 @@ const right = 2;
 
 const multiDetectColors: IMultiDetectColorsOrigin = {
 	'准备界面_未准备': {
-		desc: [1280, 720,
+		desc: [
+			1280, 720,
 			[
-				[right, 1124, 698, 0xd0af86],
 				[right, 1240, 702, 0xcead83],
-				[right, 1191, 596, 0xa46149],
 				[right, 1182, 586, 0xf7e6c3],
 				[center, 360, 699, 0x241818],
-				[left, 32, 23, 0xdbb48b]
+				[left, 32, 23, 0xdbb48b],
+				[right, 1122, 698, 0xddbb8f],
+				// [right, 1202, 572, 0x551111],
 			]
 		]
 	},
@@ -49,12 +50,12 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 			[
 				[left, 34, 23, 0xdbb48b],
 				[left, 106, 24, 0xcfa375],
-				[right, 1270, 132, 0x48371f],
 				[right, 1270, 700, 0x241919],
-				[left, 46, 671, 0xefc9ab],
-				[left, 81, 670, 0xf0caac],
+				[right, 1270, 130, 0x422f1d],
+				[left, 48, 670, 0xeec8ab],
+				[left, 82, 669, 0xf0caac],
 			]
-		]
+		],
 	},
 	'退出结算_左上角贪吃鬼': {
 		desc: [1280, 720,
@@ -356,9 +357,7 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 		],
 	},
 	'页面是否为庭院_菜单已展开_另一种图标_御祝图标_只支持默认庭院皮肤与默认装饰': {
-		desc: [
-			1280,
-			720,
+		desc: [1280, 720,
 			[
 				[right, 1223, 662, 0xdbcbc7],
 				[right, 1155, 41, 0xd7b188],
@@ -368,14 +367,41 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 		],
 	},
 	'庭院已打开菜单_另另外一种图标': {
-		desc: [
-			1280,
-			720,
+		desc: [1280, 720,
 			[
 				[right, 1223, 658, 0xdac9c4],
 				[right, 1155, 41, 0xd6b187],
 				[center, 451, 631, 0xe6e3e1],
 				[center, 683, 657, 0xda6b29],
+			],
+		],
+	},
+	'BUFF界面': {
+		desc: [
+			1280, 720,
+			[
+				[center, 342, 529, 0x828270],
+				[center, 938, 533, 0x6b715d],
+				[center, 371, 128, 0xd4c6bc],
+				[center, 908, 145, 0xddd0c6],
+				[center, 407, 534, 0x8e8b79],
+				[center, 371, 510, 0x868471],
+				[center, 913, 149, 0xddd0c6],
+			]
+		]
+	},
+	'斗技主界面': {
+		desc: [1280, 720,
+			[
+				[right, 1210, 82, 0x725942],
+				[right, 1208, 178, 0x745845],
+				[right, 1202, 574, 0xd8c8a7],
+				[right, 1179, 602, 0x3c1e0c],
+				[right, 1202, 643, 0xe2cfa0],
+				[right, 1180, 624, 0xe2cca1],
+				[right, 1189, 626, 0x3c1e0c],
+				[center, 843, 290, 0x6e3926], // 阵容按钮
+				[center, 832, 292, 0xfaeabe], // 阵容按钮
 			],
 		],
 	}

@@ -20,64 +20,66 @@ export class Func997 implements IFuncOrigin {
 			value: null,
 		}]
 	}];
-	operator: IFuncOperatorOrigin[] = [
-		{
-			// 检测是否微式神寄养列表
-			desc: [1280, 720,
-				[[left, 186, 171, 0x30221f],
+	operator: IFuncOperatorOrigin[] = [{
+		// 0 检测是否微式神寄养列表
+		desc: [1280, 720,
+			[
+				[left, 188, 172, 0x352721],
+				[center, 555, 138, 0xcbb59e],
+				[center, 880, 562, 0xf4b25f],
+				[center, 705, 347, 0xccb59e]
+			]
+		],
+		oper: [
+			[left, 1280, 720, 182, 182, 197, 195, 1200],		// 滑动起点
+			[left, 1280, 720, 175, 547, 195, 555, 1200],		// 滑动终点
+		],
+	}, {
+		oper: [
+			[center, 1280, 720, 795, 538, 967, 591, 3000],    // 进入结界按钮
+		]
+	}, {
+		desc:	// 是否为跨区列表底部
+			[1280, 720,
+				[
+					[left, 188, 172, 0x352721],
 					[center, 555, 138, 0xcbb59e],
 					[center, 880, 562, 0xf4b25f],
-					[center, 705, 347, 0xccb59e]]
+					[center, 705, 347, 0xccb59e],
+					[left, 186, 522, 0xbe9c69],
+					[left, 271, 146, 0xa46c4d]
+				]
 			],
-			oper: [
-				[left, 1280, 720, 182, 182, 197, 195, 1200],		// 滑动起点
-				[left, 1280, 720, 175, 547, 195, 555, 1200],		// 滑动终点
+		oper: [
+			[center, 1280, 720, 222, 95, 320, 152, 1200],     // 点击好友页签
+		]
+	}, {
+		desc:	// 是否为列表顶部
+			[1280, 720,
+				[
+					[left, 188, 172, 0x352721],
+					[center, 555, 138, 0xcbb59e],
+					[center, 880, 562, 0xf4b25f],
+					[center, 705, 347, 0xccb59e],
+					[left, 186, 189, 0xbe9c69]
+				]
 			],
-		},
-		{
-			oper: [
-				[center, 1280, 720, 795, 538, 967, 591, 3000],    // 进入结界按钮
-			]
-		},
-		{
-			desc:	// 是否为跨区列表底部
-				[1280, 720,
-					[[left, 186, 171, 0x30221f],
-						[center, 555, 138, 0xcbb59e],
-						[center, 880, 562, 0xf4b25f],
-						[center, 705, 347, 0xccb59e],
-						[left, 186, 522, 0xbe9c69],
-						[left, 271, 146, 0xa46c4d]]
-				],
-			oper: [
-				[center, 1280, 720, 222, 95, 320, 152, 1200],     // 点击好友页签
-			]
-		},
-		{
-			desc:	// 是否为列表顶部
-				[1280, 720,
-					[[left, 186, 171, 0x30221f],
-						[center, 555, 138, 0xcbb59e],
-						[center, 880, 562, 0xf4b25f],
-						[center, 705, 347, 0xccb59e],
-						[left, 186, 189, 0xbe9c69]]
-				],
-		},
-		{
-			desc:	// 是否为好友列表底部
-				[1280, 720,
-					[[left, 186, 171, 0x30221f],
-						[center, 555, 138, 0xcbb59e],
-						[center, 880, 562, 0xf4b25f],
-						[center, 705, 347, 0xccb59e],
-						[left, 186, 522, 0xbe9c69],
-						[left, 271, 146, 0xe9c89e]]
-				],
-			oper: [
-				[center, 1280, 720, 344, 101, 440, 152, 1200],    // 点击跨区页签
-			]
-		}
-	];
+	}, {
+		desc:	// 是否为好友列表底部
+			[1280, 720,
+				[
+					[left, 188, 172, 0x352721],
+					[center, 555, 138, 0xcbb59e],
+					[center, 880, 562, 0xf4b25f],
+					[center, 705, 347, 0xccb59e],
+					[left, 186, 522, 0xbe9c69],
+					[left, 271, 146, 0xe9c89e]
+				]
+			],
+		oper: [
+			[center, 1280, 720, 344, 101, 440, 152, 1200],    // 点击跨区页签
+		]
+	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['997']; // 获取配置
 		const priority = String(thisconf.priority).split('->');

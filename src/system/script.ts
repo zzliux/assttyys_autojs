@@ -19,6 +19,7 @@ import { IMultiDetectColors, IMultiFindColors } from '@/interface/IMultiColor';
 import { globalRoot, globalRootType } from '@/system/GlobalStore/index';
 import schedule, { Job } from '@/system/Schedule';
 import { MyFloaty } from '@/system/MyFloaty';
+import ncnnBgyx from '@/system/ncnn/ncnnBgyx';
 
 /**
  * 脚本对象，一个程序只能有一个
@@ -42,6 +43,7 @@ export class Script {
 	helperBridge: IhelperBridge; // IhelperBridge;
 	job: Job;
 	schedule: typeof schedule;
+	ncnnBgyx = ncnnBgyx;
 
 	/**
      * 运行次数，下标为funcList中的id，值为这个func成功执行的次数；
@@ -760,8 +762,14 @@ export class Script {
 				let res = null;
 				if (typeof item.desc === 'string') {
 					res = helperBridge.helper.CompareColorEx(this.multiDetectColors[item.desc].desc, commonConfig.colorSimilar, false);
+					if (res) {
+						console.log(`desc_sucess：[string] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} id:${id}`);
+					}
 				} else if (item.desc.length > 3) {
 					res = helperBridge.helper.CompareColorEx(item.desc, commonConfig.colorSimilar, false);
+					if (res) {
+						console.log(`desc_sucess：[array] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} id:${id}`);
+					}
 				}
 				if (res) return true;
 			}

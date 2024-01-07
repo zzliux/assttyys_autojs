@@ -30,22 +30,7 @@ export class Func030 implements IFuncOrigin {
 	operator: IFuncOperatorOrigin[] = [
 		{
 			// 0 检测_斗技主界面
-			desc: [
-				1280,
-				720,
-				[
-					// [left, 36, 25, 0xf7e8a9],  // 图裂识别容错
-					[right, 1210, 82, 0x725942],
-					[right, 1208, 178, 0x745845],
-					[right, 1202, 574, 0xd8c8a7],
-					[right, 1179, 602, 0x3c1e0c],
-					[right, 1202, 643, 0xe2cfa0],
-					[right, 1180, 624, 0xe2cca1],
-					[right, 1189, 626, 0x3c1e0c],
-					[center, 843, 290, 0x6e3926], // 阵容按钮
-					[center, 832, 292, 0xfaeabe], // 阵容按钮
-				],
-			],
+			desc: '斗技主界面',
 			oper: [[right, 1280, 720, 1166, 580, 1232, 638, 1000]],
 		},
 		{
@@ -102,8 +87,7 @@ export class Func030 implements IFuncOrigin {
 		{
 			// 4 自动上阵
 			desc: [
-				1280,
-				720,
+				1280, 720,
 				[
 					[center, 614, 60, 0x1c100c],
 					[center, 628, 58, 0xfff1cf],
@@ -113,7 +97,9 @@ export class Func030 implements IFuncOrigin {
 					[left, 60, 158, 0x826851],
 					[left, 69, 512, 0x423141],
 					[right, 1166, 532, 0xd5bb9d],
-				],
+					[left, 49, 181, 0xffffff],
+					[left, 65, 145, 0xffffff],
+				]
 			],
 			oper: [[left, 1280, 720, 44, 139, 77, 178, 1000]],
 		},

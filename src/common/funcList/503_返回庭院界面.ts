@@ -267,6 +267,10 @@ export class Func503 implements IFuncOrigin {
 	}, {
 		// 22 战斗场景等待
 		desc: '战斗界面',
+		// oper: [
+		// 	[center, 1280, 720, 16, 12, 60, 56, 1000],
+		// 	[center, 1280, 720, 678, 396, 806, 450, 3000],
+		// ]
 		oper: [
 			[center, 1280, 720, -1, -1, -1, -1, 2000]
 		]

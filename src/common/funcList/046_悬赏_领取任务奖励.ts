@@ -2,48 +2,23 @@ import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFu
 import { Script } from '@/system/script';
 // const normal = -1; //定义常量
 const left = 0;
-const center = 1;
-const right = 2;
+// const center = 1;
+// const right = 2;
 
 export class Func046 implements IFuncOrigin {
 	id = 46;
 	name = '悬赏_领取任务奖励';
 	operator: IFuncOperatorOrigin[] = [{
-		desc: [1280, 720,
-			[
-				[left, 35, 45, 0x2e1972],
-				[left, 67, 652, 0xde67e2],
-				[right, 1170, 145, 0xd5cec1],
-				[right, 1164, 29, 0xd8b38a],
-				[left, 190, 671, 0xd22c2b],
-				[center, 382, 641, 0xeedbc8],
-				[left, 145, 709, 0x70432d]
-			]
-		],
+		desc: '探索地图界面',
 		oper: [
 			[left, 1280, 720, 0, 0, 42, 51, 2000],
 		]
-	}, {
-		// 旧
-		desc: [1280, 720,
-			[
-				[left, 35, 45, 0x2e1972],
-				[left, 67, 652, 0xde67e2],
-				[right, 1170, 145, 0xd5cec1],
-				[right, 1164, 29, 0xd8b38a],
-				[left, 190, 671, 0xd22c2b],
-				[center, 382, 641, 0xeedbc8],
-				[left, 145, 709, 0x70432d]
-			]
-		],
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: '悬赏_探索界面',
 			operator: [{
 				desc: thisOperator[0].desc
-			}, {
-				desc: thisOperator[1].desc
 			}]
 		})) {
 			const point = thisScript.findMultiColor('悬赏_宝箱') || null;

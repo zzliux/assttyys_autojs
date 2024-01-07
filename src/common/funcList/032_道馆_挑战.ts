@@ -8,7 +8,7 @@ const right = 2;
 export class Func032 implements IFuncOrigin {
 	id = 32;
 	name = '道馆_挑战';
-	operator: IFuncOperatorOrigin[] = [{	// 检测_挑战是否可用
+	operator: IFuncOperatorOrigin[] = [{ // 0 检测_挑战是否可用
 		desc: [1280, 720,
 			[
 				[left, 64, 482, 0x291522],
@@ -24,31 +24,35 @@ export class Func032 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1138, 561, 1218, 641, 1000]
 		]
-	}, {	// 检测_挑战结束结算页
+	}, { // 1 已适配66 检测_挑战结束结算页
 		desc: [1280, 720,
 			[
 				[left, 221, 115, 0xf8f3e0],
-				[left, 152, 117, 0xaea797],
 				[left, 231, 115, 0x5a9ca5],
-				[left, 300, 633, 0xf4ebd9],
-				[left, 182, 634, 0x510c18],
-				[center, 381, 624, 0x712d1c],
-				[center, 371, 634, 0xd3b169]
+				[center, 182, 634, 0x520c19],
+				[center, 316, 633, 0x930618],
+				[center, 473, 85, 0xa11b11],
+				[center, 510, 83, 0x9f1c12],
+				[center, 486, 53, 0x7c1710],
+				[center, 510, 59, 0xc6b49f],
+				[center, 196, 101, 0x8bb9cb],
+				[center, 233, 111, 0x5aa1a8],
 			]
 		],
 		oper: [
 			[right, 1280, 720, 1146, 82, 1266, 696, 3000],
 		]
-	}, {	// 检测_挑战结束场景
+	}, { // 2 检测_挑战结束场景
 		desc: [1280, 720,
-			[[center, 698, 44, 0xddbb77],
+			[
+				[center, 698, 44, 0xddbb77],
 				[center, 546, 42, 0x161629],
 				[center, 703, 48, 0xddbb77],
 				[center, 600, 51, 0xe0ca86],
-				[center, 645, 684, 0xc18f5d]]
+				[center, 645, 684, 0xc18f5d]
+			]
 		]
-	},
-	{	// 检测_攻打进度页
+	}, { // 3 检测_攻打进度页
 		desc: [1280, 720,
 			[
 				[center, 451, 479, 0xc0714a],

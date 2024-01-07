@@ -28,23 +28,20 @@ export class Func508 implements IFuncOrigin {
 		},
 	];
 	operator: IFuncOperatorOrigin[] = [
-		{
-			desc: [
-				//	0 检测_现世逢魔奖励是否已领取
-				1280,
-				720,
+		{ // 0 已适配66 检测_现世逢魔奖励是否已领取
+			desc: [1280, 720,
 				[
 					// 逢魔场景
 					[left, 19, 700, 0x3c3841],
 					[left, 42, 46, 0xc3cbdf],
 					[center, 754, 39, 0x583716],
 					[center, 1181, 650, 0xffffff],
-					[left, 43, 680, 0xc7957c],
+					[left, 45, 680, 0xc99c7e],
 					[left, 54, 676, 0x433b42],
 					// 4次完成后的灰达摩
-					[right, 1230, 210, 0x767676],
-					[right, 1256, 248, 0x434343],
 					[right, 1242, 248, 0x494949],
+					[right, 1228, 209, 0x767676],
+					[right, 1243, 252, 0x333333],
 				],
 			],
 			oper: [
@@ -52,33 +49,31 @@ export class Func508 implements IFuncOrigin {
 			],
 		},
 		{
-			// 1 检测_是否找到逢魔首领
-			desc: [
-				1280,
-				720,
+			// 1 已适配66 检测_是否找到逢魔首领
+			desc: [1280, 720,
 				[
-					[center, 685, 398, 0x8c0717],
-					[center, 620, 396, 0x540c18],
-					[center, 690, 397, 0x930818],
-				],
+					[center, 694, 400, 0x810517],
+					[center, 615, 399, 0x500c19],
+					[center, 693, 401, 0x830417],
+				]
 			],
 			oper: [
 				[center, 1280, 720, 579, 303, 702, 407, 1200], //	点击逢魔首领
 			],
 		},
 		{
-			// 2 检测_首领BOSS挑战页
+			// 2 已适配66 检测_首领BOSS挑战页
 			desc: [
-				1280,
-				720,
+				1280, 720,
 				[
 					[left, 111, 57, 0xc3a765],
 					[left, 111, 245, 0xd4cbc3],
 					[left, 161, 673, 0xc3a561],
 					[center, 627, 621, 0x1f1b18],
 					[right, 1101, 265, 0xc7c5bc],
-					[right, 1004, 673, 0xad855e],
-				],
+					[right, 1129, 680, 0x5e1919],
+					[right, 1119, 564, 0xead8b9],
+				]
 			],
 			oper: [
 				[right, 1280, 720, 1120, 550, 1160, 587, 1000], //	点击挑战
@@ -87,9 +82,7 @@ export class Func508 implements IFuncOrigin {
 		},
 		{
 			// 3 检测_是否为提示框
-			desc: [
-				1280,
-				720,
+			desc: [1280, 720,
 				[
 					[right, 1058, 558, 0xcfc3b2],
 					[center, 815, 422, 0xf4b25f],
@@ -103,11 +96,8 @@ export class Func508 implements IFuncOrigin {
 				[center, 1280, 720, 677, 407, 838, 456, 1200],
 			],
 		},
-		{
-			desc: [
-				//	4 检测_点击进入战斗
-				1280,
-				720,
+		{ //	4 检测_点击进入战斗
+			desc: [1280, 720,
 				[
 					[left, 174, 36, 0xd5c5a4],
 					[left, 108, 26, 0xd7c5a2],
@@ -123,9 +113,7 @@ export class Func508 implements IFuncOrigin {
 		},
 		{
 			//	5 检测_战斗页结算页
-			desc: [
-				1280,
-				720,
+			desc: [1280, 720,
 				[
 					[center, 530, 115, 0xd3c4ae],
 					[left, 150, 197, 0xf6f1de],
@@ -140,9 +128,7 @@ export class Func508 implements IFuncOrigin {
 		},
 		{
 			//	6 检测_集结页结算页
-			desc: [
-				1280,
-				720,
+			desc: [1280, 720,
 				[
 					[center, 530, 115, 0xd3c4ae],
 					[left, 157, 210, 0xf8f3e0],
@@ -154,9 +140,7 @@ export class Func508 implements IFuncOrigin {
 		},
 		{
 			//	7 检测_逢魔BOSS集结场景
-			desc: [
-				1280,
-				720,
+			desc: [1280, 720,
 				[
 					[center, 846, 632, 0x8f4544],
 					[right, 1022, 609, 0xc73e4d],
@@ -168,9 +152,7 @@ export class Func508 implements IFuncOrigin {
 		},
 		{
 			// 8 检测_逢魔·极 首领BOSS挑战页
-			desc: [
-				1280,
-				720,
+			desc: [1280, 720,
 				[
 					[right, 1108, 84, 0xcb9d66],
 					[right, 1181, 140, 0x8e3128],
@@ -183,8 +165,7 @@ export class Func508 implements IFuncOrigin {
 		},
 		{
 			//	9 检测_是否有寻找 逢魔·极 按钮
-			desc: [
-				1280, 720,
+			desc: [1280, 720,
 				[
 					[right, 1022, 659, 0x8b3038],
 					[right, 1022, 646, 0x471a21],
@@ -200,7 +181,6 @@ export class Func508 implements IFuncOrigin {
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['508'];
-
 		if (
 			thisScript.oper({
 				name: '检测_结算页',
