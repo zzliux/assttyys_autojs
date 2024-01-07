@@ -1,5 +1,5 @@
 # Build
-dist
+
 
 # Logs
 logs
@@ -37,7 +37,7 @@ build
 # Dependency directories
 node_modules/
 jspm_packages/
-
+.github\workflows
 # TypeScript v1 declaration files
 typings/
 
