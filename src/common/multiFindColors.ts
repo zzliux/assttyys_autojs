@@ -783,130 +783,6 @@ const multiFindColors: IMultiFindColorsOrigin = {
 			]
 		]
 	},
-	'绿标_标识_A': {
-		region: [center, 1280, 720, 0, 156, 1279, 650],
-		similar: 90,
-		desc: [
-			[1280, 720,
-				[
-					[center, 59, 308, 0xdcc3b2],
-					[center, 59, 314, 0x8c372f],
-					[center, 59, 319, 0x8b362e],
-					[center, 53, 308, 0x89372d],
-					[center, 64, 308, 0x89372c],
-					[center, 63, 319, 0xd0ae9f],
-					[center, 54, 319, 0xdabeaf]
-				]
-			],
-			[1280, 720,
-				[
-					[center, 59, 308, 0xdcc2b0],
-					[center, 63, 308, 0x8c3423],
-					[center, 55, 308, 0x8c3423],
-					[center, 59, 314, 0x8f3426],
-					[center, 59, 320, 0x8c3424],
-					[center, 54, 319, 0xdabeac],
-					[center, 63, 319, 0xd1ad9c]
-				]
-			],
-			[1280, 720,
-				[
-					[center, 855, 252, 0xdfc7b6],
-					[center, 850, 251, 0x97443b],
-					[center, 860, 251, 0x97423b],
-					[center, 855, 257, 0x97413b],
-					[center, 855, 264, 0x99453d],
-					[center, 850, 263, 0xdabaac],
-					[center, 859, 262, 0xd8b7a9]
-				]
-			],
-			[1280, 720,
-				[
-					[center, 1132, 363, 0xdbc4b0],
-					[center, 1127, 363, 0x863a27],
-					[center, 1138, 363, 0x873f2b],
-					[center, 1132, 369, 0x873827],
-					[center, 1132, 375, 0x853321],
-					[center, 1128, 374, 0xcaa593],
-					[center, 1137, 374, 0xd2b4a2]
-				]
-			],
-			[1280, 720,
-				[
-					[center, 1132, 364, 0xc7aa97],
-					[center, 1126, 364, 0x8a4f3e],
-					[center, 1138, 364, 0x8d5441],
-					[center, 1132, 369, 0x8c4d3e],
-					[center, 1132, 374, 0x894637],
-					[center, 1129, 371, 0xd9c3b2],
-					[center, 1136, 371, 0xd0b5a4]
-				]
-			],
-			[1280, 720,
-				[
-					[center, 370, 304, 0xdbc6b3],
-					[center, 365, 303, 0x8a432f],
-					[center, 375, 303, 0x894330],
-					[center, 370, 310, 0x883b2b],
-					[center, 370, 316, 0x853321],
-					[center, 366, 314, 0xcead9b],
-					[center, 374, 313, 0xcba796]
-				]
-			],
-			[1280, 720,
-				[
-					[center, 370, 304, 0xdbc4b2],
-					[center, 365, 304, 0x843d30],
-					[center, 375, 304, 0x863828],
-					[center, 370, 310, 0x88382b],
-					[center, 370, 314, 0x873629],
-					[center, 366, 314, 0xceae9d],
-					[center, 374, 313, 0xcba898]
-				]
-			],
-			[1280, 720,
-				[
-					[center, 237, 352, 0x8d4139],
-					[center, 244, 353, 0xddc7b7],
-					[center, 244, 365, 0x8b423b],
-					[center, 240, 362, 0xd0b2a4],
-					[center, 248, 362, 0xd1b3a5],
-					[center, 244, 358, 0x8b403b],
-					[center, 249, 354, 0x8b4139]
-				]
-			],
-			[1280, 720,
-				[
-					[center, 239, 352, 0xb15946],
-					[center, 244, 353, 0xe6ccb9],
-					[center, 240, 363, 0xd5b0a0],
-					[center, 248, 362, 0xd8b6a5],
-					[center, 244, 363, 0x9e473a],
-					[center, 249, 353, 0xae5644]
-				]
-			],
-			[1280, 720,
-				[
-					[center, 841, 339, 0x8f3522],
-					[center, 847, 339, 0xdcc1ad],
-					[center, 852, 339, 0x882c17],
-					[center, 847, 351, 0x892d18],
-					[center, 851, 348, 0xd4b29f],
-					[center, 844, 348, 0xb77e6b]
-				]
-			],
-			[1280, 720,
-				[
-					[center, 461, 337, 0x903220],
-					[center, 467, 337, 0xddc1ae],
-					[center, 472, 337, 0x943522],
-					[center, 467, 348, 0x92301e],
-					[center, 463, 347, 0xd6b19f],
-					[center, 472, 347, 0xd5b09e]
-				]
-			]
-		]
-	},
 	'庭院_町中竖牌': {
 		region: [center, 1280, 720, 0, 83, 1279, 412],
 		desc: [
@@ -1931,9 +1807,9 @@ const multiFindColors: IMultiFindColorsOrigin = {
 			],
 			[1280, 720,
 				[
-					[left, 217, 345, 0x4bbd71],
-					[left, 217, 343, 0x49b56e],
-					[left, 218, 344, 0x62cf87],
+					[left, 217, 342, 0x36b866],
+					[left, 220, 342, 0x71ec9b],
+					[left, 219, 346, 0x6ddb92],
 				]
 			]
 		]
