@@ -58267,35 +58267,6 @@ var SchemeList = [
     },
     {
         id: 2,
-        schemeName: '【日常】组队司机70次',
-        groupName: '日常',
-        star: true,
-        list: [0, 1, 2, 3, 5],
-        config: {
-            '0': {
-                'jspd_enabled_longtime_nodo': true,
-                'jspd_times_longtime_nodo': 3,
-                'jspd_enabled_zjsj': false,
-                'jspd_times_zjsj': 30,
-                'jspd_txpl_zjsj': 60,
-                'jspd_enabled_1': false,
-                'jspd_times_1': 20,
-                'jspd_enabled_2': true,
-                'jspd_times_2': '70',
-                'stop_with_launched_app_exit': false,
-                'scheme_switch_enabled': false,
-                'next_scheme': '【绘卷】突破_9退4_进攻-30次探索',
-                'pause_enabled': false,
-                'define_run_time': '10,30',
-                'define_pause_time': '2,7'
-            },
-            '5': {
-                'type': '三人'
-            }
-        }
-    },
-    {
-        id: 2,
         schemeName: '【日常】突破_9退4_进攻',
         groupName: '日常',
         star: true,
@@ -58509,6 +58480,90 @@ var SchemeList = [
             },
             '10': {
                 type: '个人突破',
+            },
+        },
+    },
+    {
+        id: 2,
+        schemeName: '【日常】御魂组队司机70次',
+        groupName: '日常',
+        star: true,
+        list: [0, 1, 2, 3, 5],
+        config: {
+            '0': {
+                'jspd_enabled_longtime_nodo': true,
+                'jspd_times_longtime_nodo': 3,
+                'jspd_enabled_zjsj': false,
+                'jspd_times_zjsj': 30,
+                'jspd_txpl_zjsj': 60,
+                'jspd_enabled_1': false,
+                'jspd_times_1': 20,
+                'jspd_enabled_2': true,
+                'jspd_times_2': '70',
+                'stop_with_launched_app_exit': false,
+                'scheme_switch_enabled': false,
+                'next_scheme': '【绘卷】突破_9退4_进攻-30次探索',
+                'pause_enabled': false,
+                'define_run_time': '10,30',
+                'define_pause_time': '2,7'
+            },
+            '5': {
+                'type': '三人'
+            }
+        }
+    },
+    {
+        id: 2,
+        schemeName: '【日常】御魂组队乘客',
+        groupName: '日常',
+        star: true,
+        list: [0, 1, 2, 3, 4],
+    },
+    {
+        id: 2,
+        schemeName: '式神寄养',
+        groupName: '日常',
+        star: true,
+        list: [3, 999, 998, 997, 994, 995],
+        config: {
+            '3': {
+                type: '关闭',
+            },
+            '994': {
+                count: '6',
+                maxTimeForwait: '10',
+                afterCountOper: '停止脚本',
+                next_scheme: '通用准备退出',
+            },
+            '995': {
+                next_scheme: '返回庭院',
+                afterCountOper: '停止脚本',
+                isAutoFosterCare: true,
+                maxTimeForwait: '10',
+            },
+            '997': {
+                priority: '太鼓6->斗鱼6->太鼓5->斗鱼5->太鼓4->太鼓3->斗鱼4',
+            },
+        },
+    },
+    {
+        id: 2,
+        schemeName: '【日常】定时任务-启动游戏-式神寄养',
+        star: true,
+        groupName: '日常',
+        list: [1, 2, 3, 503, 993],
+        config: {
+            '993': {
+                area: '',
+                is_shutdown_the_game_before: true,
+                next_scheme: '【日常】式神寄养',
+            },
+            '503': {
+                afterCountOper: '不进行任何操作',
+            },
+            '998': {
+                change_enchantment_switch: false,
+                change_enchantment_type: '太鼓',
             },
         },
     },
