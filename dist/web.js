@@ -58294,6 +58294,197 @@ var SchemeList = [
             }
         }
     },
+    {
+        id: 2,
+        schemeName: '【日常】寮突破',
+        groupName: '日常',
+        star: true,
+        list: [509, 510, 511, 0, 51, 1, 2, 3, 8, 9, 10, 12, 29],
+        config: {
+            '0': {
+                'jspd_enabled_longtime_nodo': true,
+                'jspd_times_longtime_nodo': 3,
+                'jspd_enabled_zjsj': false,
+                'jspd_times_zjsj': 30,
+                'jspd_txpl_zjsj': 60,
+                'jspd_enabled_1': false,
+                'jspd_times_1': 20,
+                'jspd_enabled_2': false,
+                'jspd_times_2': 20,
+                'stop_with_launched_app_exit': false,
+                'scheme_switch_enabled': false,
+                'next_scheme': '【绘卷】30次探索-突破_9退4_进攻',
+                'pause_enabled': false,
+                'define_run_time': '10,30',
+                'define_pause_time': '2,7'
+            },
+            '8': {
+                count: '2',
+                afterCountOper: '关闭界面',
+                type: '寮突破',
+            },
+            '10': {
+                type: '寮突破',
+            },
+            '51': {
+                'greenType': '自定义坐标',
+                'greenPosition': '245,500',
+                'greenText': '绿标专用',
+                'greenTextMatchMode': '模糊',
+                'preSearch': true,
+                'offset': '0,0'
+            },
+            '510': {
+                'groupName': '默认分组',
+                'defaultName': '队伍1',
+                'fastMode': true,
+                'groupNum': '3',
+                'defaultNum': '1'
+            },
+            '511': {
+                'count': '3',
+                'afterCountOper': '退出式神录'
+            }
+        },
+    },
+    {
+        id: 2,
+        schemeName: '【日常】突破_9退4_进攻',
+        groupName: '日常',
+        star: true,
+        list: [509, 510, 511, 0, 51, 1, 2, 3, 8, 9, 11, 10, 25, 29],
+        config: {
+            '0': {
+                'jspd_enabled_longtime_nodo': true,
+                'jspd_times_longtime_nodo': 3,
+                'jspd_enabled_zjsj': false,
+                'jspd_times_zjsj': 30,
+                'jspd_txpl_zjsj': 60,
+                'jspd_enabled_1': false,
+                'jspd_times_1': 20,
+                'jspd_enabled_2': false,
+                'jspd_times_2': 20,
+                'stop_with_launched_app_exit': false,
+                'scheme_switch_enabled': false,
+                'next_scheme': '【绘卷】30次探索-突破_9退4_进攻',
+                'pause_enabled': false,
+                'define_run_time': '10,30',
+                'define_pause_time': '2,7'
+            },
+            '1': {
+                'exitBeforeReady': false
+            },
+            '2': {
+                'rechallenge': false,
+                'no_sushi_switch_enabled': false,
+                'next_scheme': '关闭BUFF'
+            },
+            '3': {
+                'type': '关闭',
+                'switch': 'true',
+                'yytype': '关闭'
+            },
+            '8': {
+                'count': '2',
+                'afterCountOper': '停止脚本',
+                'next_scheme': '【绘卷】30次探索-突破_9退4_进攻',
+                'type': '个人突破',
+                'cdWaitTime': '30,60',
+                'cdSwitchSchemeEnable': false,
+                'cdSwitchScheme': '个人突破'
+            },
+            '9': {
+                'priority': '4->5->3->2->1->0',
+                'scheme_switch_enabled': true,
+                'next_scheme': '【日常】突破_9退4_退出'
+            },
+            '10': {
+                'type': '个人突破'
+            },
+            '51': {
+                'greenType': '自定义坐标',
+                'greenPosition': '245,500',
+                'greenText': '绿标专用',
+                'greenTextMatchMode': '模糊',
+                'preSearch': true,
+                'offset': '0,0'
+            },
+            '510': {
+                'groupName': '默认分组',
+                'defaultName': '队伍1',
+                'fastMode': true,
+                'groupNum': '3',
+                'defaultNum': '1'
+            },
+            '511': {
+                'count': '3',
+                'afterCountOper': '退出式神录'
+            }
+        },
+    },
+    {
+        id: 2,
+        schemeName: '【日常】突破_9退4_退出',
+        groupName: '日常',
+        star: false,
+        list: [0, 1, 2, 3, 8, 9, 11, 10],
+        config: {
+            '0': {
+                'jspd_enabled_longtime_nodo': true,
+                'jspd_times_longtime_nodo': 3,
+                'jspd_enabled_zjsj': false,
+                'jspd_times_zjsj': 30,
+                'jspd_txpl_zjsj': 60,
+                'jspd_enabled_1': false,
+                'jspd_times_1': 20,
+                'jspd_enabled_2': true,
+                'jspd_times_2': '4',
+                'stop_with_launched_app_exit': false,
+                'scheme_switch_enabled': true,
+                'next_scheme': '【日常】突破_9退4_进攻',
+                'pause_enabled': false,
+                'define_run_time': '10,30',
+                'define_pause_time': '2,7'
+            },
+            '1': {
+                'exitBeforeReady': true
+            },
+            '2': {
+                'rechallenge': true,
+                'no_sushi_switch_enabled': false,
+                'next_scheme': '关闭BUFF'
+            },
+            '3': {
+                'type': '关闭',
+                'switch': 'true',
+                'yytype': '关闭'
+            },
+            '8': {
+                'count': '2',
+                'afterCountOper': '停止脚本',
+                'next_scheme': '【绘卷】30次探索-突破_9退4_进攻',
+                'type': '个人突破',
+                'cdWaitTime': '30,60',
+                'cdSwitchSchemeEnable': false,
+                'cdSwitchScheme': '个人突破'
+            },
+            '9': {
+                'priority': '0->1->2->3->4->5',
+                'scheme_switch_enabled': false,
+                'next_scheme': '个突_9退4_退出'
+            },
+            '10': {
+                'type': '个人突破'
+            }
+        },
+        commonConfig: {
+            'loopDelay': 200,
+            'afterClickDelayBase': 0,
+            'afterClickDelayRandom': 200,
+            'colorSimilar': 93,
+            'multiColorSimilar': 96
+        },
+    },
     // {
     // 	id: 2,
     // 	schemeName: '【日常】寮突破',
