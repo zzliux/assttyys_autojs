@@ -269,59 +269,59 @@ const SchemeList: IScheme[] = [
 			},
 		}
 	},
-	{
-		id: 2,
-		schemeName: '【日常】寮突破',
-		groupName: '日常',
-		star: true,
-		list: [509, 510, 511, 0, 1, 51, 2, 3, 8, 9, 10, 12, 29],
-		config: {
-			'0': {
-				'jspd_enabled_longtime_nodo': true,
-				'jspd_times_longtime_nodo': 3,
-				'jspd_enabled_zjsj': false,
-				'jspd_times_zjsj': 30,
-				'jspd_txpl_zjsj': 60,
-				'jspd_enabled_1': false,
-				'jspd_times_1': 20,
-				'jspd_enabled_2': false,
-				'jspd_times_2': 20,
-				'stop_with_launched_app_exit': false,
-				'scheme_switch_enabled': false,
-				'next_scheme': '【绘卷】30次探索-突破_9退4_进攻',
-				'pause_enabled': false,
-				'define_run_time': '10,30',
-				'define_pause_time': '2,7'
-			},
-			'8': {
-				count: '2',
-				afterCountOper: '关闭界面',
-				type: '寮突破',
-			},
-			'10': {
-				type: '寮突破',
-			},
-			'51': {
-				'greenType': '自定义坐标',
-				'greenPosition': '245,500',
-				'greenText': '绿标专用',
-				'greenTextMatchMode': '模糊',
-				'preSearch': true,
-				'offset': '0,0'
-			},
-			'510': {
-				'groupName': '默认分组',
-				'defaultName': '队伍1',
-				'fastMode': true,
-				'groupNum': '3',
-				'defaultNum': '1'
-			},
-			'511': {
-				'count': '3',
-				'afterCountOper': '退出式神录'
-			}
-		},
-	},
+	// {
+	// 	id: 2,
+	// 	schemeName: '【日常】寮突破',
+	// 	groupName: '日常',
+	// 	star: true,
+	// 	list: [509, 510, 511, 0, 1, 51, 2, 3, 8, 9, 10, 12, 29],
+	// 	config: {
+	// 		'0': {
+	// 			'jspd_enabled_longtime_nodo': true,
+	// 			'jspd_times_longtime_nodo': 3,
+	// 			'jspd_enabled_zjsj': false,
+	// 			'jspd_times_zjsj': 30,
+	// 			'jspd_txpl_zjsj': 60,
+	// 			'jspd_enabled_1': false,
+	// 			'jspd_times_1': 20,
+	// 			'jspd_enabled_2': false,
+	// 			'jspd_times_2': 20,
+	// 			'stop_with_launched_app_exit': false,
+	// 			'scheme_switch_enabled': false,
+	// 			'next_scheme': '【绘卷】30次探索-突破_9退4_进攻',
+	// 			'pause_enabled': false,
+	// 			'define_run_time': '10,30',
+	// 			'define_pause_time': '2,7'
+	// 		},
+	// 		'8': {
+	// 			count: '2',
+	// 			afterCountOper: '关闭界面',
+	// 			type: '寮突破',
+	// 		},
+	// 		'10': {
+	// 			type: '寮突破',
+	// 		},
+	// 		'51': {
+	// 			'greenType': '自定义坐标',
+	// 			'greenPosition': '245,500',
+	// 			'greenText': '绿标专用',
+	// 			'greenTextMatchMode': '模糊',
+	// 			'preSearch': true,
+	// 			'offset': '0,0'
+	// 		},
+	// 		'510': {
+	// 			'groupName': '默认分组',
+	// 			'defaultName': '队伍1',
+	// 			'fastMode': true,
+	// 			'groupNum': '3',
+	// 			'defaultNum': '1'
+	// 		},
+	// 		'511': {
+	// 			'count': '3',
+	// 			'afterCountOper': '退出式神录'
+	// 		}
+	// 	},
+	// },
 
 	/* 	{
 			id: 2,
