@@ -81,38 +81,52 @@ const isPlainObjectOrArray = (val) => {
 	return isPlainObject(val) || Array.isArray(val);
 };
 
+// 合并对象，返回一个新的对象
 const inMerge = (object, ...sources) => {
+	// 遍历sources中的每一个source
 	for (const source of sources) {
+		// 遍历source中的每一个key
 		for (const key in source) {
+			// 如果source[key]是undefined，且key在object中，则跳过
 			if (source[key] === undefined && key in object) {
 				continue;
 			}
+			// 如果source[key]是普通对象或数组，则进行合并
 			if (isPlainObjectOrArray(source[key])) {
+				// 如果object[key]是普通对象或数组，且类型相同，则进行合并
 				if (
 					isPlainObjectOrArray(object[key]) &&
 					getRawType(object[key]) === getRawType(source[key])
 				) {
+					// 如果object[key]是普通对象，则进行合并
 					if (isPlainObject(object[key])) {
 						inMerge(object[key], source[key]);
+					// 否则，将source[key]的值赋值给object[key]
 					} else {
 						object[key] = object[key].concat(source[key]);
 					}
+				// 否则，将source[key]的值赋值给object[key]
 				} else {
 					object[key] = source[key];
 				}
+			// 否则，将source[key]的值赋值给object[key]
 			} else {
 				object[key] = source[key];
 			}
 		}
 	}
+	// 返回新的对象
 	return object;
 };
-
+// 导出一个名为merge的函数，该函数接受两个参数：object和sources，sources是一个数组
 export const merge = (object, ...sources) => {
+	// 创建一个sources2数组，用于存放sources数组中的每一项的深拷贝
 	const sources2 = [];
+	// 遍历sources数组，将每一项的深拷贝放入sources2数组中
 	for (let i = 0; i < sources.length; i++) {
 		sources2.push(deepClone(sources[i]));
 	}
+	// 调用inMerge函数，将object和sources2数组中的每一项传入，并返回结果
 	return inMerge(object, ...sources2);
 }
 
