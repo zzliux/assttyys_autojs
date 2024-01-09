@@ -44460,8 +44460,8 @@ var SchemeList = [
             },
             '8': {
                 'count': '2',
-                'afterCountOper': '停止脚本',
-                'next_scheme': '【绘卷】30次探索-突破_9退4_进攻',
+                'afterCountOper': '切换方案',
+                'next_scheme': '【日常】寮突破',
                 'type': '个人突破',
                 'cdWaitTime': '30,60',
                 'cdSwitchSchemeEnable': false,
