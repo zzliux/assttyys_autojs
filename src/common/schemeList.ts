@@ -267,6 +267,9 @@ const SchemeList: IScheme[] = [
 				'define_run_time': '10,30',
 				'define_pause_time': '2,7'
 			},
+			'5': {
+				'type': '三人'
+			}
 		}
 	},
 	// {
