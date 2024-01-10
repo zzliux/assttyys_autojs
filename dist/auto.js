@@ -22186,7 +22186,7 @@ var Func016 = /** @class */ (function () {
             }
             if (thisScript.global.dgCurNum === -1) {
                 thisScript.regionClick([thisOperator[2].oper[1]]);
-                var next_scheme = '返回庭院';
+                var next_scheme = '【通用】返回庭院-停止脚本';
                 thisScript.rerun(next_scheme);
                 return;
             }
