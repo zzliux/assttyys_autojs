@@ -58521,7 +58521,7 @@ var SchemeList = [
     },
     {
         id: 2,
-        schemeName: '式神寄养',
+        schemeName: '【日常】式神寄养',
         groupName: '日常',
         star: true,
         list: [3, 999, 998, 997, 994, 995],
@@ -58564,6 +58564,301 @@ var SchemeList = [
             '998': {
                 change_enchantment_switch: false,
                 change_enchantment_type: '太鼓',
+            },
+        },
+    },
+    {
+        id: 2,
+        schemeName: '【日常】地鬼',
+        groupName: '日常',
+        star: true,
+        list: [1, 2, 16, 29],
+    },
+    {
+        id: 2,
+        schemeName: '【日常】定时任务-启动游戏-地鬼',
+        star: true,
+        groupName: '日常',
+        list: [1, 2, 3, 503, 993],
+        config: {
+            '993': {
+                area: '',
+                is_shutdown_the_game_before: true,
+                next_scheme: '【日常】地鬼',
+            },
+            '503': {
+                afterCountOper: '不进行任何操作',
+            },
+        },
+    },
+    {
+        id: 2,
+        schemeName: '【日常】逢魔',
+        groupName: '日常',
+        star: true,
+        list: [509, 510, 511, 1, 2, 3, 23, 24, 26, 508, 8, 504],
+        config: {
+            '508': {
+                switch_ji_enabled: false,
+            },
+            '510': {
+                'groupName': '默认分组',
+                'defaultName': '队伍1',
+                'fastMode': true,
+                'groupNum': '2',
+                'defaultNum': '1'
+            },
+            '511': {
+                'count': '3',
+                'afterCountOper': '退出式神录'
+            }
+        },
+    },
+    {
+        id: 2,
+        schemeName: '【日常】定时任务-启动游戏-逢魔',
+        star: true,
+        groupName: '日常',
+        list: [1, 2, 3, 503, 993],
+        config: {
+            '993': {
+                area: '',
+                is_shutdown_the_game_before: true,
+                next_scheme: '【日常】逢魔',
+            },
+            '503': {
+                afterCountOper: '不进行任何操作',
+            },
+        },
+    },
+    {
+        id: 2,
+        schemeName: '【日常】签到与邮件',
+        groupName: '日常',
+        list: [0, 2, 3, 518],
+        config: {
+            '0': {
+                jspd_enabled_longtime_nodo: true,
+                jspd_times_longtime_nodo: 1,
+            },
+        },
+    },
+    {
+        id: 2,
+        schemeName: '【日常】定时任务-启动游戏-签到与邮件',
+        star: true,
+        groupName: '日常',
+        list: [1, 2, 3, 503, 993],
+        config: {
+            '993': {
+                area: '',
+                is_shutdown_the_game_before: true,
+                next_scheme: '【日常】签到与邮件',
+            },
+            '503': {
+                afterCountOper: '不进行任何操作',
+            },
+        },
+    },
+    {
+        id: 2,
+        schemeName: '【日常】开启经验BUFF_经验妖怪',
+        groupName: '日常',
+        list: [501, 50],
+        config: {
+            '50': {
+                scheme_switch_enabled: true,
+                next_scheme: '【日常】经验妖怪',
+                buff_type: '经验',
+                ready_once_buff: false,
+            },
+        },
+    },
+    {
+        id: 2,
+        schemeName: '【日常】经验妖怪',
+        groupName: '日常',
+        list: [509, 510, 511, 0, 1, 2, 3, 35, 37, 38],
+        config: {
+            '37': {
+                target: '经验',
+                createMode: '创建队伍',
+                next_scheme: '【日常】关闭BUFF',
+            },
+            '510': {
+                'groupName': '默认分组',
+                'defaultName': '队伍1',
+                'fastMode': true,
+                'groupNum': '4',
+                'defaultNum': '2'
+            },
+            '511': {
+                'count': '3',
+                'afterCountOper': '退出式神录'
+            }
+        },
+    },
+    {
+        id: 2,
+        schemeName: '【日常】关闭BUFF',
+        groupName: '日常',
+        list: [502, 1, 2, 3, 29, 40, 501],
+    },
+    {
+        id: 2,
+        schemeName: '【日常】定时任务-启动游戏-经验妖怪',
+        star: true,
+        groupName: '日常',
+        list: [1, 2, 3, 503, 993],
+        config: {
+            '993': {
+                area: '',
+                is_shutdown_the_game_before: true,
+                next_scheme: '开启经验BUFF_经验妖怪',
+            },
+            '503': {
+                afterCountOper: '不进行任何操作',
+            },
+        },
+    },
+    {
+        id: 2,
+        schemeName: '【日常】开启金币BUFF_金币妖怪',
+        groupName: '日常',
+        list: [501, 50],
+        config: {
+            '50': {
+                scheme_switch_enabled: true,
+                next_scheme: '【日常】金币妖怪',
+                buff_type: '金币',
+                ready_once_buff: false,
+            },
+        },
+    },
+    {
+        id: 2,
+        schemeName: '【日常】金币妖怪',
+        groupName: '日常',
+        list: [509, 510, 511, 0, 1, 2, 3, 35, 37, 38],
+        config: {
+            '37': {
+                target: '金币',
+                createMode: '创建队伍',
+                next_scheme: '【日常】关闭BUFF',
+            },
+            '510': {
+                'groupName': '默认分组',
+                'defaultName': '队伍1',
+                'fastMode': true,
+                'groupNum': '4',
+                'defaultNum': '3'
+            },
+            '511': {
+                'count': '3',
+                'afterCountOper': '退出式神录'
+            }
+        },
+    },
+    {
+        id: 2,
+        schemeName: '【日常】定时任务-启动游戏-金币妖怪',
+        star: true,
+        groupName: '日常',
+        list: [1, 2, 3, 503, 993],
+        config: {
+            '993': {
+                area: '',
+                is_shutdown_the_game_before: true,
+                next_scheme: '开启金币BUFF_金币妖怪',
+            },
+            '503': {
+                afterCountOper: '不进行任何操作',
+            },
+        },
+    },
+    {
+        id: 3,
+        schemeName: '【周常】斗技',
+        star: false,
+        groupName: '周常',
+        list: [509, 510, 511, 0, 1, 2, 3, 30, 307],
+        config: {
+            '510': {
+                'groupName': '默认分组',
+                'defaultName': '队伍1',
+                'fastMode': true,
+                'groupNum': '6',
+                'defaultNum': '1'
+            },
+            '511': {
+                'count': '3',
+                'afterCountOper': '退出式神录'
+            }
+        },
+    },
+    {
+        id: 3,
+        schemeName: '【周常】定时任务-启动游戏-斗技',
+        star: true,
+        groupName: '周常',
+        list: [1, 2, 3, 503, 993],
+        config: {
+            '993': {
+                area: '',
+                is_shutdown_the_game_before: true,
+                next_scheme: '【周常】斗技',
+            },
+            '503': {
+                afterCountOper: '不进行任何操作',
+            },
+        },
+    },
+    {
+        id: 3,
+        schemeName: '【周常】秘闻',
+        star: true,
+        groupName: '周常',
+        list: [509, 510, 511, 0, 51, 1, 2, 3, 34, 29],
+        config: {
+            '0': {
+                jspd_enabled_1: true,
+                jspd_times_1: 11,
+            },
+            '51': {
+                'greenType': '自定义坐标',
+                'greenPosition': '245,500',
+                'greenText': '绿标专用',
+                'greenTextMatchMode': '模糊',
+                'preSearch': true,
+                'offset': '0,0'
+            },
+            '510': {
+                'groupName': '默认分组',
+                'defaultName': '队伍1',
+                'fastMode': true,
+                'groupNum': '7',
+                'defaultNum': '1'
+            },
+            '511': {
+                'count': '3',
+                'afterCountOper': '退出式神录',
+            },
+        },
+    },
+    {
+        id: 3,
+        schemeName: '【周常】定时任务-启动游戏-秘闻',
+        star: true,
+        groupName: '周常',
+        list: [1, 2, 3, 503, 993],
+        config: {
+            '993': {
+                area: '',
+                is_shutdown_the_game_before: true,
+                next_scheme: '【周常】秘闻',
+            },
+            '503': {
+                afterCountOper: '不进行任何操作',
             },
         },
     },
@@ -59566,6 +59861,7 @@ var SchemeList = [
             }
         } */
 ];
+// 遍历commonConfigArr，将每一项的config属性值赋值给commonConfig
 var commonConfig = {};
 for (var i = 0; i < _commonConfig__WEBPACK_IMPORTED_MODULE_1__["default"].length; i++) {
     for (var j = 0; j < _commonConfig__WEBPACK_IMPORTED_MODULE_1__["default"][i].config.length; j++) {
@@ -59573,6 +59869,7 @@ for (var i = 0; i < _commonConfig__WEBPACK_IMPORTED_MODULE_1__["default"].length
         commonConfig[item.name] = item.default;
     }
 }
+// 遍历funcList，将每一项的config属性值赋值给allConfig
 var allConfig = {};
 var _loop_1 = function (i) {
     var configs = _funcListIndex__WEBPACK_IMPORTED_MODULE_0__["default"][i].config;
@@ -59591,14 +59888,17 @@ for (var i = 0; i < _funcListIndex__WEBPACK_IMPORTED_MODULE_0__["default"].lengt
 }
 // 内置方案列表
 var innerSchemeListName = {};
+// 遍历SchemeList，将每一项的schemeName作为key，将item.list中的funcId作为value，存入innerSchemeListName中
 SchemeList.forEach(function (item, id) {
     innerSchemeListName[item.schemeName] = true;
     var thisConfig = {};
+    // 遍历item.list，如果allConfig中存在funcId，则将funcId作为key，allConfig[funcId]作为value，存入thisConfig中
     item.list.forEach(function (funcId) {
         if (allConfig[funcId]) {
             thisConfig[funcId] = allConfig[funcId];
         }
     });
+    // 将SchemeList[id]与merge函数的参数进行合并，并将合并后的结果赋值给SchemeList[id]
     SchemeList[id] = (0,_tool__WEBPACK_IMPORTED_MODULE_2__.merge)({}, {
         id: id + 1,
         schemeName: '未命名',
@@ -59609,6 +59909,7 @@ SchemeList.forEach(function (item, id) {
         commonConfig: commonConfig,
     }, item);
 });
+// 将innerSchemeListName赋值给schemeNameMap，并将SchemeList赋值给default
 var schemeNameMap = innerSchemeListName;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SchemeList);
 
@@ -59715,47 +60016,62 @@ var isPlainObject = function (val) {
 var isPlainObjectOrArray = function (val) {
     return isPlainObject(val) || Array.isArray(val);
 };
+// 合并对象，返回一个新的对象
 var inMerge = function (object) {
     var sources = [];
     for (var _i = 1; _i < arguments.length; _i++) {
         sources[_i - 1] = arguments[_i];
     }
+    // 遍历sources中的每一个source
     for (var _a = 0, sources_1 = sources; _a < sources_1.length; _a++) {
         var source = sources_1[_a];
+        // 遍历source中的每一个key
         for (var key in source) {
+            // 如果source[key]是undefined，且key在object中，则跳过
             if (source[key] === undefined && key in object) {
                 continue;
             }
+            // 如果source[key]是普通对象或数组，则进行合并
             if (isPlainObjectOrArray(source[key])) {
+                // 如果object[key]是普通对象或数组，且类型相同，则进行合并
                 if (isPlainObjectOrArray(object[key]) &&
                     getRawType(object[key]) === getRawType(source[key])) {
+                    // 如果object[key]是普通对象，则进行合并
                     if (isPlainObject(object[key])) {
                         inMerge(object[key], source[key]);
+                        // 否则，将source[key]的值赋值给object[key]
                     }
                     else {
                         object[key] = object[key].concat(source[key]);
                     }
+                    // 否则，将source[key]的值赋值给object[key]
                 }
                 else {
                     object[key] = source[key];
                 }
+                // 否则，将source[key]的值赋值给object[key]
             }
             else {
                 object[key] = source[key];
             }
         }
     }
+    // 返回新的对象
     return object;
 };
+// 导出一个名为merge的函数，该函数接受两个参数：object和sources，sources是一个数组
 var merge = function (object) {
     var sources = [];
     for (var _i = 1; _i < arguments.length; _i++) {
         sources[_i - 1] = arguments[_i];
     }
+    // 创建一个sources2数组，用于存放sources数组中的每一项的深拷贝
     var sources2 = [];
+    // 遍历sources数组，将每一项的深拷贝放入sources2数组中
     for (var i = 0; i < sources.length; i++) {
         sources2.push(deepClone(sources[i]));
     }
+    // 调用inMerge函数，将object和sources2数组中的每一项传入，并返回结果
     return inMerge.apply(void 0, __spreadArray([object], sources2, false));
 };
 function deepClone(obj) {

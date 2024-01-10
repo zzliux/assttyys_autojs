@@ -656,7 +656,7 @@ const SchemeList: IScheme[] = [
 		id: 2,
 		schemeName: '【日常】经验妖怪',
 		groupName: '日常',
-		list: [509, 510, 511,0, 1, 2, 3, 35, 37, 38],
+		list: [509, 510, 511, 0, 1, 2, 3, 35, 37, 38],
 		config: {
 			'37': {
 				target: '经验',
@@ -677,7 +677,7 @@ const SchemeList: IScheme[] = [
 		},
 	},
 	{
-		id: 2
+		id: 2,
 		schemeName: '【日常】关闭BUFF',
 		groupName: '日常',
 		list: [502, 1, 2, 3, 29, 40, 501],
@@ -717,7 +717,7 @@ const SchemeList: IScheme[] = [
 		id: 2,
 		schemeName: '【日常】金币妖怪',
 		groupName: '日常',
-		list: [509, 510, 511,0, 1, 2, 3, 35, 37, 38],
+		list: [509, 510, 511, 0, 1, 2, 3, 35, 37, 38],
 		config: {
 			'37': {
 				target: '金币',
@@ -756,7 +756,7 @@ const SchemeList: IScheme[] = [
 	},
 	{
 		id: 3,
-		schemeName:  '【周常】斗技',
+		schemeName: '【周常】斗技',
 		star: false,
 		groupName: '周常',
 		list: [509, 510, 511, 0, 1, 2, 3, 30, 307],
@@ -797,7 +797,6 @@ const SchemeList: IScheme[] = [
 		star: true,
 		groupName: '周常',
 		list: [509, 510, 511, 0, 51, 1, 2, 3, 34, 29],
-		star: true,
 		config: {
 			'0': {
 				jspd_enabled_1: true,
@@ -820,9 +819,8 @@ const SchemeList: IScheme[] = [
 			},
 			'511': {
 				'count': '3',
-				'afterCountOper': '退出式神录'
-			}
-			
+				'afterCountOper': '退出式神录',
+			},
 		},
 	},
 	{
