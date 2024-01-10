@@ -44771,15 +44771,9 @@ var SchemeList = [
             '37': {
                 target: '经验',
                 createMode: '自动匹配',
-                next_scheme: '【日常】关闭BUFF',
+                next_scheme: '【通用】关闭BUFF',
             },
         },
-    },
-    {
-        id: 2,
-        schemeName: '【日常】关闭BUFF',
-        groupName: '日常',
-        list: [502, 1, 2, 3, 29, 40, 501],
     },
     {
         id: 2,
@@ -44832,7 +44826,7 @@ var SchemeList = [
             '37': {
                 target: '金币',
                 createMode: '自动匹配',
-                next_scheme: '【日常】关闭BUFF',
+                next_scheme: '【通用】关闭BUFF',
             },
         },
     },
@@ -44938,6 +44932,25 @@ var SchemeList = [
                 afterCountOper: '不进行任何操作',
             },
         },
+    },
+    {
+        id: 5,
+        schemeName: '【通用】返回庭院-停止脚本',
+        groupName: '通用',
+        list: [3, 502, 503],
+        config: {
+            '503': {
+                scheme_switch_enabled: false,
+                next_scheme: '通用准备退出',
+                afterCountOper: '停止脚本',
+            },
+        }
+    },
+    {
+        id: 5,
+        schemeName: '【通用】关闭BUFF',
+        groupName: '通用',
+        list: [502, 1, 2, 3, 29, 40, 501],
     },
     // {
     // 	id: 2,
