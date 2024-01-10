@@ -706,16 +706,13 @@ const SchemeList: IScheme[] = [
 		id: 2,
 		schemeName: '【日常】开启金币BUFF_金币妖怪',
 		groupName: '日常',
-		list: [503, 509, 510, 511, 501, 50],
+		list: [509, 510, 511,  501, 50],
 		config: {
 			'50': {
 				scheme_switch_enabled: true,
 				next_scheme: '【日常】金币妖怪',
 				buff_type: '金币',
 				ready_once_buff: false,
-			},
-			'503': {
-				afterCountOper: '不进行任何操作',
 			},
 			'510': {
 				'groupName': '默认分组',
