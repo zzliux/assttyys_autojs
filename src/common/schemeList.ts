@@ -642,7 +642,7 @@ const SchemeList: IScheme[] = [
 		id: 2,
 		schemeName: '【日常】开启经验BUFF_经验妖怪',
 		groupName: '日常',
-		list: [501, 50],
+		list: [503, 509, 510, 511, 501, 50],
 		config: {
 			'50': {
 				scheme_switch_enabled: true,
@@ -650,18 +650,8 @@ const SchemeList: IScheme[] = [
 				buff_type: '经验',
 				ready_once_buff: false,
 			},
-		},
-	},
-	{
-		id: 2,
-		schemeName: '【日常】经验妖怪',
-		groupName: '日常',
-		list: [509, 510, 511, 0, 1, 2, 3, 35, 37, 38],
-		config: {
-			'37': {
-				target: '经验',
-				createMode: '创建队伍',
-				next_scheme: '【日常】关闭BUFF',
+			'503': {
+				afterCountOper: '不进行任何操作',
 			},
 			'510': {
 				'groupName': '默认分组',
@@ -674,6 +664,19 @@ const SchemeList: IScheme[] = [
 				'count': '3',
 				'afterCountOper': '退出式神录'
 			}
+		},
+	},
+	{
+		id: 2,
+		schemeName: '【日常】经验妖怪',
+		groupName: '日常',
+		list: [ 0, 1, 2, 3, 35, 37, 38],
+		config: {
+			'37': {
+				target: '经验',
+				createMode: '自动匹配',
+				next_scheme: '【日常】关闭BUFF',
+			},
 		},
 	},
 	{
@@ -692,7 +695,7 @@ const SchemeList: IScheme[] = [
 			'993': {
 				area: '',
 				is_shutdown_the_game_before: true,
-				next_scheme: '开启经验BUFF_经验妖怪',
+				next_scheme: '【日常】开启经验BUFF_经验妖怪',
 			},
 			'503': {
 				afterCountOper: '不进行任何操作',
@@ -703,7 +706,7 @@ const SchemeList: IScheme[] = [
 		id: 2,
 		schemeName: '【日常】开启金币BUFF_金币妖怪',
 		groupName: '日常',
-		list: [501, 50],
+		list: [503, 509, 510, 511, 501, 50],
 		config: {
 			'50': {
 				scheme_switch_enabled: true,
@@ -711,18 +714,8 @@ const SchemeList: IScheme[] = [
 				buff_type: '金币',
 				ready_once_buff: false,
 			},
-		},
-	},
-	{
-		id: 2,
-		schemeName: '【日常】金币妖怪',
-		groupName: '日常',
-		list: [509, 510, 511, 0, 1, 2, 3, 35, 37, 38],
-		config: {
-			'37': {
-				target: '金币',
-				createMode: '创建队伍',
-				next_scheme: '【日常】关闭BUFF',
+			'503': {
+				afterCountOper: '不进行任何操作',
 			},
 			'510': {
 				'groupName': '默认分组',
@@ -739,6 +732,19 @@ const SchemeList: IScheme[] = [
 	},
 	{
 		id: 2,
+		schemeName: '【日常】金币妖怪',
+		groupName: '日常',
+		list: [ 0, 1, 2, 3, 35, 37, 38],
+		config: {
+			'37': {
+				target: '金币',
+				createMode: '自动匹配',
+				next_scheme: '【日常】关闭BUFF',
+			},
+		},
+	},
+	{
+		id: 2,
 		schemeName: '【日常】定时任务-启动游戏-金币妖怪',
 		star: true,
 		groupName: '日常',
@@ -747,7 +753,7 @@ const SchemeList: IScheme[] = [
 			'993': {
 				area: '',
 				is_shutdown_the_game_before: true,
-				next_scheme: '开启金币BUFF_金币妖怪',
+				next_scheme: '【日常】开启金币BUFF_金币妖怪',
 			},
 			'503': {
 				afterCountOper: '不进行任何操作',
