@@ -58042,40 +58042,6 @@ __webpack_require__.r(__webpack_exports__);
 var SchemeList = [
     {
         id: 1,
-        schemeName: '【绘卷】定时任务-启动游戏-突破_9退4_进攻-30次探索',
-        groupName: '定时任务',
-        star: true,
-        list: [0, 1, 2, 3],
-        config: {
-            '1': {
-                'exitBeforeReady': false
-            },
-            '2': {
-                'rechallenge': false,
-                'no_sushi_switch_enabled': false,
-                'next_scheme': '关闭BUFF'
-            },
-            '3': {
-                'type': '接受',
-                'switch': 'true',
-                'yytype': '关闭'
-            },
-            '503': {
-                'scheme_switch_enabled': false,
-                'next_scheme': '通用准备退出',
-                'afterCountOper': '不进行任何操作'
-            },
-            '993': {
-                'area': '',
-                'is_shutdown_the_game_before': true,
-                'next_scheme': '【绘卷】突破_9退4_进攻-30次探索',
-                'account_index': 0,
-                'account_name': ''
-            }
-        },
-    },
-    {
-        id: 1,
         schemeName: '【日常】定时任务-启动游戏-式神寄养',
         star: true,
         groupName: '定时任务',
@@ -58093,6 +58059,27 @@ var SchemeList = [
                 change_enchantment_switch: false,
                 change_enchantment_type: '太鼓',
             },
+        },
+    },
+    {
+        id: 1,
+        schemeName: '【绘卷】定时任务-启动游戏-突破_9退4_进攻-30次探索',
+        groupName: '定时任务',
+        star: true,
+        list: [1, 2, 3, 503, 933],
+        config: {
+            '503': {
+                'scheme_switch_enabled': false,
+                'next_scheme': '通用准备退出',
+                'afterCountOper': '不进行任何操作'
+            },
+            '993': {
+                'area': '',
+                'is_shutdown_the_game_before': true,
+                'next_scheme': '【绘卷】突破_9退4_进攻-30次探索',
+                'account_index': 0,
+                'account_name': ''
+            }
         },
     },
     {
