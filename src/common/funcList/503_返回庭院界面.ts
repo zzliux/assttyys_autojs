@@ -363,6 +363,7 @@ export class Func503 implements IFuncOrigin {
 						thisScript.stop();
 					}
 				} else {
+					sleep(1000);
 					thisScript.rerun(next_scheme, {
 						...thisScript.runtimeParams,
 					});

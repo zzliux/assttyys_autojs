@@ -16,7 +16,7 @@ export class Func509 implements IFuncOrigin {
 				[right, 1095, 616, 0xbc172d],
 				[right, 1146, 616, 0xeab24e],
 				[right, 1130, 619, 0xe1d6d3],
-				[right, 1105, 635, 0xdbe6f2],
+				[right, 1105, 635, 0xacc1ef],
 			]
 		],
 		oper: [
