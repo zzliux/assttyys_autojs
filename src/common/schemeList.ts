@@ -445,6 +445,13 @@ const SchemeList: IScheme[] = [
 				priority: '太鼓6->斗鱼6->太鼓5->斗鱼5->太鼓4->太鼓3->斗鱼4',
 			},
 		},
+		commonConfig: {
+			'loopDelay': 200,
+			'afterClickDelayBase': 0,
+			'afterClickDelayRandom': 200,
+			'colorSimilar': 93,
+			'multiColorSimilar': 96
+		},
 	},
 	{
 		id: 2,
@@ -823,7 +830,7 @@ const SchemeList: IScheme[] = [
 	},
 	{
 		id: 5,
-		schemeName: '【通用】返回庭院-停止脚本',
+		schemeName: '返回庭院',
 		groupName: '通用',
 		list: [3, 502, 503],
 		config: {

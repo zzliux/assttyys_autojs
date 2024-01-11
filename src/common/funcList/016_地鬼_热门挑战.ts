@@ -147,7 +147,7 @@ export class Func016 implements IFuncOrigin {
 
 			if (thisScript.global.dgCurNum === -1) {
 				thisScript.regionClick([thisOperator[2].oper[1]]);
-				const next_scheme = '【通用】返回庭院-停止脚本';
+				const next_scheme = '返回庭院';
 				thisScript.rerun(next_scheme);
 				return;
 			}

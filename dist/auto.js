@@ -22186,7 +22186,7 @@ var Func016 = /** @class */ (function () {
             }
             if (thisScript.global.dgCurNum === -1) {
                 thisScript.regionClick([thisOperator[2].oper[1]]);
-                var next_scheme = '【通用】返回庭院-停止脚本';
+                var next_scheme = '返回庭院';
                 thisScript.rerun(next_scheme);
                 return;
             }
@@ -44555,6 +44555,13 @@ var SchemeList = [
                 priority: '太鼓6->斗鱼6->太鼓5->斗鱼5->太鼓4->太鼓3->斗鱼4',
             },
         },
+        commonConfig: {
+            'loopDelay': 200,
+            'afterClickDelayBase': 0,
+            'afterClickDelayRandom': 200,
+            'colorSimilar': 93,
+            'multiColorSimilar': 96
+        },
     },
     {
         id: 2,
@@ -44933,7 +44940,7 @@ var SchemeList = [
     },
     {
         id: 5,
-        schemeName: '【通用】返回庭院-停止脚本',
+        schemeName: '返回庭院',
         groupName: '通用',
         list: [3, 502, 503],
         config: {
