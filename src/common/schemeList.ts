@@ -529,7 +529,7 @@ const SchemeList: IScheme[] = [
 			'37': {
 				target: '经验',
 				createMode: '自动匹配',
-				next_scheme: '【通用】关闭BUFF',
+				next_scheme: '关闭BUFF',
 			},
 		},
 	},
@@ -567,7 +567,7 @@ const SchemeList: IScheme[] = [
 			'37': {
 				target: '金币',
 				createMode: '自动匹配',
-				next_scheme: '【通用】关闭BUFF',
+				next_scheme: '关闭BUFF',
 			},
 		},
 	},
@@ -830,6 +830,13 @@ const SchemeList: IScheme[] = [
 	},
 	{
 		id: 5,
+		schemeName: '通用活动',
+		groupName: '通用',
+		star: true,
+		list: [0, 1, 2, 3, 312],
+	},
+	{
+		id: 5,
 		schemeName: '返回庭院',
 		groupName: '通用',
 		list: [3, 502, 503],
@@ -843,7 +850,7 @@ const SchemeList: IScheme[] = [
 	},
 	{
 		id: 5,
-		schemeName: '【通用】关闭BUFF',
+		schemeName: '关闭BUFF',
 		groupName: '通用',
 		list: [502, 1, 2, 3, 29, 40, 501],
 	},
