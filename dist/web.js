@@ -57786,7 +57786,7 @@ var ScheduleDefaultList = [
         nextDate: null,
         repeatMode: 3,
         interval: '* * 15 0,6 11,12,13 0 * *',
-        level: '9',
+        level: '1',
         config: {
             scheme: '【绘卷】突破_9退4_进攻-30次探索',
         },
