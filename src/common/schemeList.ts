@@ -894,6 +894,11 @@ const SchemeList: IScheme[] = [
 		},
 	},
 	{
+		id: 76,
+		schemeName: '寮管理进入道馆开启界面',
+		list: [506, 509, 519],
+	},
+	{
 		id: 99,
 		schemeName: '伊吹之擂',
 		list: [0, 3, 24, 99, 100],
