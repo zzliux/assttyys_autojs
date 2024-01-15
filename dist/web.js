@@ -57791,6 +57791,20 @@ var ScheduleDefaultList = [
             scheme: '【绘卷】突破_9退4_进攻-30次探索',
         },
     },
+    {
+        id: 3,
+        name: '签到',
+        desc: '自动突破转探索30次',
+        checked: false,
+        lastRunTime: null,
+        nextDate: null,
+        repeatMode: 3,
+        interval: '* * 5 9 * * * * *',
+        level: '2',
+        config: {
+            scheme: '【绘卷】突破_9退4_进攻-30次探索',
+        },
+    },
     // {
     // 	id: 2,
     // 	name: '寮活动',
@@ -58678,7 +58692,7 @@ var SchemeList = [
                 'jspd_times_2': 20,
                 'stop_with_launched_app_exit': false,
                 'scheme_switch_enabled': true,
-                'next_scheme': '【绘卷】30次探索-突破_9退4_进攻',
+                'next_scheme': '返回庭院',
                 'pause_enabled': false,
                 'define_run_time': '10,30',
                 'define_pause_time': '2,7'
@@ -58699,7 +58713,7 @@ var SchemeList = [
             '8': {
                 'count': '2',
                 'afterCountOper': '切换方案',
-                'next_scheme': '【绘卷】30次探索-突破_9退4_进攻',
+                'next_scheme': '返回庭院',
                 'type': '个人突破',
                 'cdWaitTime': '30,60',
                 'cdSwitchSchemeEnable': false,

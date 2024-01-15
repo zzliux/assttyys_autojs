@@ -33,6 +33,20 @@ const ScheduleDefaultList: JobOptions[] = [
 			scheme: '【绘卷】突破_9退4_进攻-30次探索',
 		},
 	},
+	{
+		id: 3,
+		name: '签到',
+		desc: '自动突破转探索30次',
+		checked: false,
+		lastRunTime: null,
+		nextDate: null,
+		repeatMode: 3,
+		interval: '* * 5 9 * * * * *',
+		level: '2',
+		config: {
+			scheme: '【绘卷】突破_9退4_进攻-30次探索',
+		},
+	},
 	// {
 	// 	id: 2,
 	// 	name: '寮活动',
