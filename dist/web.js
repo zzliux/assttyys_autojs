@@ -58066,7 +58066,7 @@ var SchemeList = [
         schemeName: '【绘卷】定时任务-启动游戏-突破_9退4_进攻-30次探索',
         groupName: '定时任务',
         star: true,
-        list: [1, 2, 3, 503, 933],
+        list: [1, 2, 3, 503, 993],
         config: {
             '503': {
                 'scheme_switch_enabled': false,
