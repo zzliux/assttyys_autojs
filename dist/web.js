@@ -58753,7 +58753,7 @@ var SchemeList = [
         schemeName: '【绘卷】30次探索-突破_9退4_进攻',
         groupName: '绘卷',
         star: false,
-        list: [509, 510, 511, 503, 15, 0, 1, 2, 3, 13, 14, 29],
+        list: [509, 510, 511, 15, 0, 1, 2, 3, 13, 14, 29],
         config: {
             '0': {
                 'jspd_enabled_longtime_nodo': true,
