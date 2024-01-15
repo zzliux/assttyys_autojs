@@ -44766,7 +44766,7 @@ var SchemeList = [
                 'jspd_times_2': 20,
                 'stop_with_launched_app_exit': false,
                 'scheme_switch_enabled': true,
-                'next_scheme': '【绘卷】30次探索-突破_9退4_进攻',
+                'next_scheme': '返回庭院-30次探索-突破_9退4_进攻',
                 'pause_enabled': false,
                 'define_run_time': '10,30',
                 'define_pause_time': '2,7'
@@ -44787,7 +44787,7 @@ var SchemeList = [
             '8': {
                 'count': '2',
                 'afterCountOper': '切换方案',
-                'next_scheme': '【绘卷】30次探索-突破_9退4_进攻',
+                'next_scheme': '返回庭院-30次探索-突破_9退4_进攻',
                 'type': '个人突破',
                 'cdWaitTime': '30,60',
                 'cdSwitchSchemeEnable': false,
@@ -44841,7 +44841,7 @@ var SchemeList = [
                 'jspd_times_2': 30,
                 'stop_with_launched_app_exit': false,
                 'scheme_switch_enabled': true,
-                'next_scheme': '返回庭院',
+                'next_scheme': '返回庭院-突破_9退4_进攻-30次探索',
                 'pause_enabled': false,
                 'define_run_time': '10,30',
                 'define_pause_time': '2,7'
@@ -44951,6 +44951,32 @@ var SchemeList = [
             'colorSimilar': 93,
             'multiColorSimilar': 96
         },
+    },
+    {
+        id: 4,
+        schemeName: '返回庭院-30次探索-突破_9退4_进攻',
+        groupName: '绘卷',
+        list: [3, 502, 503],
+        config: {
+            '503': {
+                scheme_switch_enabled: true,
+                next_scheme: '【绘卷】30次探索-突破_9退4_进攻',
+                afterCountOper: '停止脚本',
+            },
+        }
+    },
+    {
+        id: 4,
+        schemeName: '返回庭院-突破_9退4_进攻-30次探索',
+        groupName: '绘卷',
+        list: [3, 502, 503],
+        config: {
+            '503': {
+                scheme_switch_enabled: true,
+                next_scheme: '【绘卷】突破_9退4_进攻-30次探索',
+                afterCountOper: '停止脚本',
+            },
+        }
     },
     {
         id: 5,
