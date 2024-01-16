@@ -69,7 +69,7 @@ const ScheduleDefaultList: JobOptions[] = [
 		lastRunTime: null,
 		nextDate: null,
 		repeatMode: 3,
-		interval: '* 25 9 * * * * *',
+		interval: '* 40 9 * * * * *',
 		level: '5',
 		config: {
 			scheme: '【日常】定时任务-启动游戏-金币妖怪',
