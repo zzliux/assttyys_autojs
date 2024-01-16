@@ -6,6 +6,23 @@ import { merge } from './tool';
 const SchemeList: IScheme[] = [
 	{
 		id: 1,
+		schemeName: '【日常】定时任务-启动游戏-寮突破',
+		star: true,
+		groupName: '定时任务',
+		list: [1, 2, 3, 502, 503, 993],
+		config: {
+			'993': {
+				area: '',
+				is_shutdown_the_game_before: true,
+				next_scheme: '【日常】寮突破',
+			},
+			'503': {
+				afterCountOper: '不进行任何操作',
+			},
+		},
+	},
+	{
+		id: 1,
 		schemeName: '【日常】定时任务-启动游戏-式神寄养',
 		star: true,
 		groupName: '定时任务',
@@ -18,10 +35,6 @@ const SchemeList: IScheme[] = [
 			},
 			'503': {
 				afterCountOper: '不进行任何操作',
-			},
-			'998': {
-				change_enchantment_switch: false,
-				change_enchantment_type: '太鼓',
 			},
 		},
 	},
@@ -576,7 +589,7 @@ const SchemeList: IScheme[] = [
 		schemeName: '【周常】斗技',
 		star: false,
 		groupName: '周常',
-		list: [509, 510, 511, 0, 1, 2, 3, 30, 307],
+		list: [509, 510, 511, 51, 0, 1, 2, 3, 30, 307],
 		config: {
 			'510': {
 				'groupName': '默认分组',
@@ -588,6 +601,14 @@ const SchemeList: IScheme[] = [
 			'511': {
 				'count': '3',
 				'afterCountOper': '退出式神录'
+			},
+			'51': {
+				'greenType': '自定义坐标',
+				'greenPosition': '245,500',
+				'greenText': '绿标专用',
+				'greenTextMatchMode': '模糊',
+				'preSearch': true,
+				'offset': '0,0'
 			}
 		},
 	},
@@ -596,7 +617,7 @@ const SchemeList: IScheme[] = [
 		schemeName: '【周常】秘闻',
 		star: false,
 		groupName: '周常',
-		list: [509, 510, 511, 0, 51, 1, 2, 3, 34, 29],
+		list: [509, 510, 511, 51, 0, 1, 2, 3, 34, 29],
 		config: {
 			'0': {
 				jspd_enabled_1: true,

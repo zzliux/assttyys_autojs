@@ -7,6 +7,20 @@ import { JobOptions } from '@/system/Schedule';
 const ScheduleDefaultList: JobOptions[] = [
 	{
 		id: 1,
+		name: '寮突破',
+		desc: '寮突破',
+		checked: true,
+		lastRunTime: null,
+		nextDate: null,
+		repeatMode: 3,
+		interval: '* 0 10,14,17 * * * * ',
+		level: '1',
+		config: {
+			scheme: '【日常】定时任务-启动游戏-寮突破',
+		}
+	},
+	{
+		id: 1,
 		name: '式神寄养',
 		desc: '自动续式神寄养，建议把执行时间提前5分钟，启动前需要退出游戏',
 		checked: false,
@@ -101,6 +115,34 @@ const ScheduleDefaultList: JobOptions[] = [
 		level: '7',
 		config: {
 			scheme: '【日常】定时任务-启动游戏-逢魔',
+		},
+	},
+	{
+		id: 8,
+		name: '斗技',
+		desc: '斗技',
+		checked: true,
+		lastRunTime: null,
+		nextDate: null,
+		repeatMode: 3,
+		interval: '* 45 13 * * 1 *',
+		level: '6',
+		config: {
+			scheme: '【周常】定时任务-启动游戏-斗技',
+		},
+	},
+	{
+		id: 9,
+		name: '秘闻',
+		desc: '秘闻',
+		checked: false,
+		lastRunTime: null,
+		nextDate: null,
+		repeatMode: 3,
+		interval: '* 45 13 * * 2 *',
+		level: '6',
+		config: {
+			scheme: '【周常】定时任务-启动游戏-秘闻',
 		},
 	},
 	// {
