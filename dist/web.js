@@ -58404,6 +58404,23 @@ var SchemeList = [
         },
     },
     {
+        id: 1,
+        schemeName: '奉纳御魂_贪食鬼吃经验',
+        star: true,
+        groupName: '定时任务',
+        list: [1, 2, 3, 502, 503, 993],
+        config: {
+            '993': {
+                area: '',
+                is_shutdown_the_game_before: true,
+                next_scheme: '奉纳御魂_贪食鬼吃经验',
+            },
+            '503': {
+                afterCountOper: '不进行任何操作',
+            },
+        },
+    },
+    {
         id: 2,
         schemeName: '【日常】突破_9退4_进攻',
         groupName: '日常',
@@ -59116,20 +59133,20 @@ var SchemeList = [
         id: 5,
         groupName: '通用',
         schemeName: '奉纳御魂_贪食鬼吃经验',
-        list: [0, 301, 303],
+        list: [0, 509, 301, 303],
         star: true,
     },
     {
         id: 5,
         groupName: '通用',
         schemeName: '奉纳御魂_开始奉纳',
-        star: true,
         list: [0, 2, 302],
     },
     {
         id: 5,
         schemeName: '抽厕纸',
         groupName: '通用',
+        star: true,
         list: [3, 22],
     },
     // {
