@@ -43844,7 +43844,7 @@ var ScheduleDefaultList = [
         lastRunTime: null,
         nextDate: null,
         repeatMode: 3,
-        interval: '* 0 10,14,17 * * * * ',
+        interval: '* 0 10,14,21 * * * * ',
         level: '1',
         config: {
             scheme: '【日常】定时任务-启动游戏-寮突破',
@@ -44297,6 +44297,23 @@ var SchemeList = [
                 area: '',
                 is_shutdown_the_game_before: true,
                 next_scheme: '【日常】寮突破',
+            },
+            '503': {
+                afterCountOper: '不进行任何操作',
+            },
+        },
+    },
+    {
+        id: 1,
+        schemeName: '【日常】定时任务-启动游戏-悬赏',
+        star: true,
+        groupName: '定时任务',
+        list: [1, 2, 3, 502, 503, 993],
+        config: {
+            '993': {
+                area: '',
+                is_shutdown_the_game_before: true,
+                next_scheme: '【日常】悬赏',
             },
             '503': {
                 afterCountOper: '不进行任何操作',
@@ -44831,6 +44848,28 @@ var SchemeList = [
         },
     },
     {
+        id: 2,
+        schemeName: '【日常】悬赏',
+        groupName: '日常',
+        list: [509, 510, 511, 0, 1, 2, 3, 52, 29, 41, 42, 43, 44, 45, 46, 47, 48, 49],
+        config: {
+            '52': {
+                scheme_switch_enabled: false,
+            },
+            '510': {
+                'groupName': '默认分组',
+                'defaultName': '队伍1',
+                'fastMode': true,
+                'groupNum': '4',
+                'defaultNum': '1'
+            },
+            '511': {
+                'count': '3',
+                'afterCountOper': '退出式神录'
+            }
+        },
+    },
+    {
         id: 3,
         schemeName: '【周常】斗技',
         star: false,
@@ -45146,6 +45185,26 @@ var SchemeList = [
         schemeName: '关闭BUFF',
         groupName: '通用',
         list: [502, 1, 2, 3, 29, 40, 501],
+    },
+    {
+        id: 5,
+        groupName: '通用',
+        schemeName: '奉纳御魂_贪食鬼吃经验',
+        list: [0, 301, 303],
+        star: true,
+    },
+    {
+        id: 5,
+        groupName: '通用',
+        schemeName: '奉纳御魂_开始奉纳',
+        star: true,
+        list: [0, 2, 302],
+    },
+    {
+        id: 5,
+        schemeName: '抽厕纸',
+        groupName: '通用',
+        list: [3, 22],
     },
     // {
     // 	id: 2,

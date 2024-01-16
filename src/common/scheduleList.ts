@@ -13,7 +13,7 @@ const ScheduleDefaultList: JobOptions[] = [
 		lastRunTime: null,
 		nextDate: null,
 		repeatMode: 3,
-		interval: '* 0 10,14,17 * * * * ',
+		interval: '* 0 10,14,21 * * * * ',
 		level: '1',
 		config: {
 			scheme: '【日常】定时任务-启动游戏-寮突破',

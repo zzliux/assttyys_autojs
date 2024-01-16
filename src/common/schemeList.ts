@@ -83,6 +83,23 @@ const SchemeList: IScheme[] = [
 	},
 	{
 		id: 1,
+		schemeName: '【日常】定时任务-启动游戏-悬赏',
+		star: true,
+		groupName: '定时任务',
+		list: [1, 2, 3, 502, 503, 993],
+		config: {
+			'993': {
+				area: '',
+				is_shutdown_the_game_before: true,
+				next_scheme: '【日常】悬赏',
+			},
+			'503': {
+				afterCountOper: '不进行任何操作',
+			},
+		},
+	},
+	{
+		id: 1,
 		schemeName: '【日常】定时任务-启动游戏-式神寄养',
 		star: true,
 		groupName: '定时任务',
@@ -561,7 +578,7 @@ const SchemeList: IScheme[] = [
 		id: 2,
 		schemeName: '【日常】经验妖怪',
 		groupName: '日常',
-		list: [ 0, 1, 2, 3, 35, 37, 38],
+		list: [0, 1, 2, 3, 35, 37, 38],
 		config: {
 			'37': {
 				target: '经验',
@@ -574,7 +591,7 @@ const SchemeList: IScheme[] = [
 		id: 2,
 		schemeName: '【日常】开启金币BUFF_金币妖怪',
 		groupName: '日常',
-		list: [509, 510, 511,  501, 50],
+		list: [509, 510, 511, 501, 50],
 		config: {
 			'50': {
 				scheme_switch_enabled: true,
@@ -599,13 +616,35 @@ const SchemeList: IScheme[] = [
 		id: 2,
 		schemeName: '【日常】金币妖怪',
 		groupName: '日常',
-		list: [ 0, 1, 2, 3, 35, 37, 38],
+		list: [0, 1, 2, 3, 35, 37, 38],
 		config: {
 			'37': {
 				target: '金币',
 				createMode: '自动匹配',
 				next_scheme: '关闭BUFF',
 			},
+		},
+	},
+	{
+		id: 2,
+		schemeName: '【日常】悬赏',
+		groupName: '日常',
+		list: [509, 510, 511, 0, 1, 2, 3, 52, 29, 41, 42, 43, 44, 45, 46, 47, 48, 49],
+		config: {
+			'52': {
+				scheme_switch_enabled: false,
+			},
+			'510': {
+				'groupName': '默认分组',
+				'defaultName': '队伍1',
+				'fastMode': true,
+				'groupNum': '4',
+				'defaultNum': '1'
+			},
+			'511': {
+				'count': '3',
+				'afterCountOper': '退出式神录'
+			}
 		},
 	},
 	{
@@ -924,6 +963,26 @@ const SchemeList: IScheme[] = [
 		schemeName: '关闭BUFF',
 		groupName: '通用',
 		list: [502, 1, 2, 3, 29, 40, 501],
+	},
+	{
+		id: 5,
+		groupName: '通用',
+		schemeName: '奉纳御魂_贪食鬼吃经验',
+		list: [0, 301, 303],
+		star: true,
+	},
+	{
+		id: 5,
+		groupName: '通用',
+		schemeName: '奉纳御魂_开始奉纳',
+		star: true,
+		list: [0, 2, 302],
+	},
+	{
+		id: 5,
+		schemeName: '抽厕纸',
+		groupName: '通用',
+		list: [3, 22],
 	},
 	// {
 	// 	id: 2,
