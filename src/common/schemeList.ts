@@ -9,7 +9,7 @@ const SchemeList: IScheme[] = [
 		schemeName: '【日常】定时任务-启动游戏-式神寄养',
 		star: true,
 		groupName: '定时任务',
-		list: [1, 2, 3, 503, 993],
+		list: [1, 2, 3, 502, 503, 993],
 		config: {
 			'993': {
 				area: '',
@@ -30,7 +30,7 @@ const SchemeList: IScheme[] = [
 		schemeName: '【绘卷】定时任务-启动游戏-突破_9退4_进攻-30次探索',
 		groupName: '定时任务',
 		star: true,
-		list: [1, 2, 3, 503, 993],
+		list: [1, 2, 3, 502, 503, 993],
 		config: {
 			'503': {
 				'scheme_switch_enabled': false,
@@ -51,7 +51,7 @@ const SchemeList: IScheme[] = [
 		schemeName: '【日常】定时任务-启动游戏-地鬼',
 		star: true,
 		groupName: '定时任务',
-		list: [1, 2, 3, 503, 993],
+		list: [1, 2, 3, 502, 503, 993],
 		config: {
 			'993': {
 				area: '',
@@ -68,7 +68,7 @@ const SchemeList: IScheme[] = [
 		schemeName: '【日常】定时任务-启动游戏-逢魔',
 		star: true,
 		groupName: '定时任务',
-		list: [1, 2, 3, 503, 993],
+		list: [1, 2, 3, 502, 503, 993],
 		config: {
 			'993': {
 				area: '',
@@ -85,7 +85,7 @@ const SchemeList: IScheme[] = [
 		schemeName: '【日常】定时任务-启动游戏-签到与邮件',
 		star: true,
 		groupName: '定时任务',
-		list: [1, 2, 3, 503, 993],
+		list: [1, 2, 3, 502, 503, 993],
 		config: {
 			'993': {
 				area: '',
@@ -102,7 +102,7 @@ const SchemeList: IScheme[] = [
 		schemeName: '【日常】定时任务-启动游戏-经验妖怪',
 		star: true,
 		groupName: '定时任务',
-		list: [1, 2, 3, 503, 993],
+		list: [1, 2, 3, 502, 503, 993],
 		config: {
 			'993': {
 				area: '',
@@ -119,7 +119,7 @@ const SchemeList: IScheme[] = [
 		schemeName: '【日常】定时任务-启动游戏-金币妖怪',
 		star: true,
 		groupName: '定时任务',
-		list: [1, 2, 3, 503, 993],
+		list: [1, 2, 3, 502, 503, 993],
 		config: {
 			'993': {
 				area: '',
@@ -136,7 +136,7 @@ const SchemeList: IScheme[] = [
 		schemeName: '【周常】定时任务-启动游戏-斗技',
 		star: true,
 		groupName: '定时任务',
-		list: [1, 2, 3, 503, 993],
+		list: [1, 2, 3, 502, 503, 993],
 		config: {
 			'993': {
 				area: '',
@@ -153,7 +153,7 @@ const SchemeList: IScheme[] = [
 		schemeName: '【周常】定时任务-启动游戏-秘闻',
 		star: true,
 		groupName: '定时任务',
-		list: [1, 2, 3, 503, 993],
+		list: [1, 2, 3, 502, 503, 993],
 		config: {
 			'993': {
 				area: '',
