@@ -5,6 +5,66 @@ import { merge } from './tool';
 
 const SchemeList: IScheme[] = [
 	{
+		id: 2,
+		schemeName: '【日常】御魂组队乘客',
+		groupName: '日常',
+		star: true,
+		list: [509, 510, 511, 0, 1, 2, 3, 4],
+		config: {
+			'510': {
+				'groupName': '默认分组',
+				'defaultName': '队伍1',
+				'fastMode': true,
+				'groupNum': '1',
+				'defaultNum': '1'
+			},
+			'511': {
+				'count': '3',
+				'afterCountOper': '退出式神录'
+			}
+		}
+	},
+	{
+		id: 2,
+		schemeName: '【日常】御魂组队司机70次',
+		groupName: '日常',
+		star: true,
+		list: [509, 510, 511, 0, 1, 2, 3, 5],
+		config: {
+			'0': {
+				'jspd_enabled_longtime_nodo': true,
+				'jspd_times_longtime_nodo': 3,
+				'jspd_enabled_zjsj': false,
+				'jspd_times_zjsj': 30,
+				'jspd_txpl_zjsj': 60,
+				'jspd_enabled_1': false,
+				'jspd_times_1': 20,
+				'jspd_enabled_2': true,
+				'jspd_times_2': '70',
+				'stop_with_launched_app_exit': false,
+				'scheme_switch_enabled': false,
+				'next_scheme': '【绘卷】突破_9退4_进攻-30次探索',
+				'pause_enabled': false,
+				'define_run_time': '10,30',
+				'define_pause_time': '2,7'
+			},
+			'5': {
+				'type': '三人'
+			},
+			'510': {
+				'groupName': '默认分组',
+				'defaultName': '队伍1',
+				'fastMode': true,
+				'groupNum': '1',
+				'defaultNum': '1'
+			},
+			'511': {
+				'count': '3',
+				'afterCountOper': '退出式神录'
+			}
+		}
+	},
+	{
 		id: 1,
 		schemeName: '【日常】定时任务-启动游戏-寮突破',
 		star: true,
@@ -395,42 +455,6 @@ const SchemeList: IScheme[] = [
 				type: '个人突破',
 			},
 		},
-	},
-	{
-		id: 2,
-		schemeName: '【日常】御魂组队司机70次',
-		groupName: '日常',
-		star: true,
-		list: [0, 1, 2, 3, 5],
-		config: {
-			'0': {
-				'jspd_enabled_longtime_nodo': true,
-				'jspd_times_longtime_nodo': 3,
-				'jspd_enabled_zjsj': false,
-				'jspd_times_zjsj': 30,
-				'jspd_txpl_zjsj': 60,
-				'jspd_enabled_1': false,
-				'jspd_times_1': 20,
-				'jspd_enabled_2': true,
-				'jspd_times_2': '70',
-				'stop_with_launched_app_exit': false,
-				'scheme_switch_enabled': false,
-				'next_scheme': '【绘卷】突破_9退4_进攻-30次探索',
-				'pause_enabled': false,
-				'define_run_time': '10,30',
-				'define_pause_time': '2,7'
-			},
-			'5': {
-				'type': '三人'
-			}
-		}
-	},
-	{
-		id: 2,
-		schemeName: '【日常】御魂组队乘客',
-		groupName: '日常',
-		star: true,
-		list: [0, 1, 2, 3, 4],
 	},
 	{
 		id: 2,
