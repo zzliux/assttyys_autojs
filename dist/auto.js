@@ -44288,6 +44288,23 @@ var SchemeList = [
     },
     {
         id: 1,
+        schemeName: '【日常】定时任务-启动游戏-突破_9退4_进攻',
+        star: true,
+        groupName: '定时任务',
+        list: [1, 2, 3, 502, 503, 993],
+        config: {
+            '993': {
+                area: '',
+                is_shutdown_the_game_before: true,
+                next_scheme: '【日常】突破_9退4_进攻',
+            },
+            '503': {
+                afterCountOper: '不进行任何操作',
+            },
+        },
+    },
+    {
+        id: 1,
         schemeName: '【日常】定时任务-启动游戏-寮突破',
         star: true,
         groupName: '定时任务',
@@ -44498,7 +44515,7 @@ var SchemeList = [
         id: 2,
         schemeName: '【日常】突破_9退4_进攻',
         groupName: '日常',
-        star: false,
+        star: true,
         list: [509, 510, 511, 0, 51, 1, 2, 3, 8, 9, 11, 10, 25, 29],
         config: {
             '0': {
@@ -44512,8 +44529,8 @@ var SchemeList = [
                 'jspd_enabled_2': false,
                 'jspd_times_2': 20,
                 'stop_with_launched_app_exit': false,
-                'scheme_switch_enabled': false,
-                'next_scheme': '【绘卷】30次探索-突破_9退4_进攻',
+                'scheme_switch_enabled': true,
+                'next_scheme': '返回庭院',
                 'pause_enabled': false,
                 'define_run_time': '10,30',
                 'define_pause_time': '2,7'
@@ -44587,8 +44604,8 @@ var SchemeList = [
                 'jspd_enabled_2': false,
                 'jspd_times_2': 20,
                 'stop_with_launched_app_exit': false,
-                'scheme_switch_enabled': false,
-                'next_scheme': '【绘卷】30次探索-突破_9退4_进攻',
+                'scheme_switch_enabled': true,
+                'next_scheme': '返回庭院',
                 'pause_enabled': false,
                 'define_run_time': '10,30',
                 'define_pause_time': '2,7'
