@@ -58422,7 +58422,7 @@ var SchemeList = [
     },
     {
         id: 1,
-        schemeName: '奉纳御魂_贪食鬼吃经验',
+        schemeName: '定时任务-奉纳御魂_贪食鬼吃经验',
         star: true,
         groupName: '定时任务',
         list: [1, 2, 3, 502, 503, 993],
@@ -58441,7 +58441,7 @@ var SchemeList = [
         id: 2,
         schemeName: '【日常】突破_9退4_进攻',
         groupName: '日常',
-        star: true,
+        star: false,
         list: [509, 510, 511, 0, 51, 1, 2, 3, 8, 9, 11, 10, 25, 29],
         config: {
             '0': {
@@ -58811,6 +58811,7 @@ var SchemeList = [
         id: 2,
         schemeName: '【日常】悬赏',
         groupName: '日常',
+        star: true,
         list: [509, 510, 511, 0, 1, 2, 3, 52, 29, 41, 42, 43, 44, 45, 46, 47, 48, 49],
         config: {
             '52': {
@@ -59145,6 +59146,12 @@ var SchemeList = [
         schemeName: '关闭BUFF',
         groupName: '通用',
         list: [502, 1, 2, 3, 29, 40, 501],
+        config: {
+            '40': {
+                scheme_switch_enabled: true,
+                next_scheme: '返回庭院'
+            }
+        }
     },
     {
         id: 5,
