@@ -57765,8 +57765,8 @@ __webpack_require__.r(__webpack_exports__);
 var ScheduleDefaultList = [
     {
         id: 1,
-        name: '寮突破',
-        desc: '寮突破',
+        name: '突破_9退4_进攻-寮突破',
+        desc: '突破_9退4_进攻转寮突破',
         checked: true,
         lastRunTime: null,
         nextDate: null,
@@ -57774,7 +57774,7 @@ var ScheduleDefaultList = [
         interval: '* 0 10,14,21 * * * * ',
         level: '1',
         config: {
-            scheme: '【日常】定时任务-启动游戏-寮突破',
+            scheme: '【日常】定时任务-启动游戏-突破_9退4_进攻',
         }
     },
     {
