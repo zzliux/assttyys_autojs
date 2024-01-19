@@ -58190,8 +58190,8 @@ var SchemeList = [
                 'jspd_enabled_2': true,
                 'jspd_times_2': '70',
                 'stop_with_launched_app_exit': false,
-                'scheme_switch_enabled': false,
-                'next_scheme': '【绘卷】突破_9退4_进攻-30次探索',
+                'scheme_switch_enabled': true,
+                'next_scheme': '返回庭院',
                 'pause_enabled': false,
                 'define_run_time': '10,30',
                 'define_pause_time': '2,7'
@@ -58211,6 +58211,86 @@ var SchemeList = [
                 'afterCountOper': '退出式神录'
             }
         }
+    },
+    {
+        id: 2,
+        schemeName: '组队探索_打手',
+        groupName: '日常',
+        star: true,
+        list: [509, 510, 511, 0, 15, 1, 2, 3, 4, 25],
+        config: {
+            '0': {
+                'jspd_enabled_longtime_nodo': true,
+                'jspd_times_longtime_nodo': 3,
+                'jspd_enabled_zjsj': false,
+                'jspd_times_zjsj': 30,
+                'jspd_txpl_zjsj': 60,
+                'jspd_enabled_1': false,
+                'jspd_times_1': 20,
+                'jspd_enabled_2': true,
+                'jspd_times_2': '15',
+                'stop_with_launched_app_exit': false,
+                'scheme_switch_enabled': true,
+                'next_scheme': '返回庭院',
+                'pause_enabled': false,
+                'define_run_time': '10,30',
+                'define_pause_time': '2,7'
+            },
+            '15': {
+                type: '打手',
+            },
+            '510': {
+                'groupName': '默认分组',
+                'defaultName': '队伍1',
+                'fastMode': true,
+                'groupNum': '4',
+                'defaultNum': '1'
+            },
+            '511': {
+                'count': '3',
+                'afterCountOper': '退出式神录'
+            }
+        },
+    },
+    {
+        id: 2,
+        schemeName: '组队探索_队长',
+        groupName: '日常',
+        star: true,
+        list: [509, 510, 511, 0, 15, 1, 2, 3, 5, 14],
+        config: {
+            '0': {
+                'jspd_enabled_longtime_nodo': true,
+                'jspd_times_longtime_nodo': 3,
+                'jspd_enabled_zjsj': false,
+                'jspd_times_zjsj': 30,
+                'jspd_txpl_zjsj': 60,
+                'jspd_enabled_1': false,
+                'jspd_times_1': 20,
+                'jspd_enabled_2': true,
+                'jspd_times_2': '15',
+                'stop_with_launched_app_exit': false,
+                'scheme_switch_enabled': false,
+                'next_scheme': '返回庭院',
+                'pause_enabled': false,
+                'define_run_time': '10,30',
+                'define_pause_time': '2,7'
+            },
+            '15': {
+                type: '队长',
+            },
+            '510': {
+                'groupName': '默认分组',
+                'defaultName': '队伍1',
+                'fastMode': true,
+                'groupNum': '4',
+                'defaultNum': '1'
+            },
+            '511': {
+                'count': '3',
+                'afterCountOper': '退出式神录'
+            }
+        },
     },
     {
         id: 1,
@@ -58604,8 +58684,8 @@ var SchemeList = [
             },
             '8': {
                 'count': '2',
-                'afterCountOper': '停止脚本',
-                'next_scheme': '【绘卷】30次探索-突破_9退4_进攻',
+                'afterCountOper': '切换方案',
+                'next_scheme': '【日常】寮突破',
                 'type': '个人突破',
                 'cdWaitTime': '30,60',
                 'cdSwitchSchemeEnable': false,
