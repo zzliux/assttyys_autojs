@@ -58154,7 +58154,7 @@ __webpack_require__.r(__webpack_exports__);
 var SchemeList = [
     {
         id: 2,
-        schemeName: '组队探索_打手',
+        schemeName: '【日常】组队探索_打手',
         groupName: '日常',
         star: true,
         list: [509, 510, 511, 0, 15, 1, 2, 3, 4, 25],
@@ -58194,7 +58194,7 @@ var SchemeList = [
     },
     {
         id: 2,
-        schemeName: '组队探索_队长',
+        schemeName: '【日常】组队探索_队长',
         groupName: '日常',
         star: true,
         list: [509, 510, 511, 0, 15, 1, 2, 3, 5, 14],
@@ -58233,9 +58233,9 @@ var SchemeList = [
         },
     },
     {
-        id: 2,
-        schemeName: '【日常】御魂组队乘客',
-        groupName: '日常',
+        id: 3,
+        schemeName: '【周常】御魂组队乘客',
+        groupName: '周常',
         star: true,
         list: [509, 510, 511, 0, 1, 2, 3, 4],
         config: {
@@ -58253,9 +58253,9 @@ var SchemeList = [
         }
     },
     {
-        id: 2,
-        schemeName: '【日常】御魂组队司机70次',
-        groupName: '日常',
+        id: 3,
+        schemeName: '【周常】御魂组队司机70次',
+        groupName: '周常',
         star: true,
         list: [509, 510, 511, 0, 1, 2, 3, 5],
         config: {
