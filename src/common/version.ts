@@ -1003,6 +1003,9 @@ export const versionList = [{
 }, {
 	version: '20230106_01',
 	desc: '新增:319_缘结趣游和方案'
+}, {
+	version: '20240119_01',
+	desc: '优化：导出的方案删除不必要的信息'
 }];
 
 export default versionList[versionList.length - 1].version;

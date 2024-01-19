@@ -31,7 +31,7 @@
           </van-col>
           <van-col span="12">
             <div style="margin: 5px 10px 5px 5px; border-radius:5px; overflow: hidden;box-shadow: 1px 1px 1px #eaeaea">
-              <van-button type="primary" block @click="editTextModal = true; exportString = JSON.stringify(schemeList.filter(i => i.export), null, 4)">
+              <van-button type="primary" block @click="doExport">
                 <i class="iconfont iconfont-fabusekuai"></i> 导出
               </van-button>
             </div>
@@ -56,7 +56,8 @@
 <script setup>
 import { ref, computed } from 'vue';
 import groupColor from '@/common/groupColors';
-
+import defaultFuncList from '@/common/funcListIndex';
+import defaultCommonConfig from '@/common/commonConfig';
 
 const props = defineProps({
   show: Boolean,
@@ -74,6 +75,87 @@ const dialogShow = computed({
     emit('update:show', val)
   }
 });
+
+function doExport() {
+  editTextModal.value = true;
+  exportString.value = JSON.stringify(simplifySchemeList(props.schemeList.filter(i => i.export)));
+}
+
+function getSingleDefaultConfig(func) {
+  const ret = {};
+  if (func.config) {
+    for (let configGroup of func.config) {
+      for (let config of configGroup.config) {
+        ret[config.name] = config.default;
+      }
+    }
+  }
+  if (Object.keys(ret).length) {
+    return ret;
+  }
+  return null;
+}
+
+function getCommonConfig() {
+  const ret = {};
+  for (let configGroup of defaultCommonConfig) {
+    for (let config of configGroup.config) {
+      ret[config.name] = config.default;
+    }
+  }
+  return ret;
+}
+
+function simplifySchemeList(schemeList) {
+  const allDefaultConfig = {};
+  defaultFuncList.forEach(func => {
+    const v = getSingleDefaultConfig(func);
+    if(v) {
+      allDefaultConfig[func.id] = v;
+    }
+  });
+  const allDefaultCommonConfig = getCommonConfig();
+
+  console.log(allDefaultConfig);
+  schemeList.forEach(expScheme => {
+    delete expScheme.id;
+    delete expScheme.inner;
+    delete expScheme.export;
+    // 删除默认功能配置
+    for (let funcId in expScheme.config) {
+      const defaultConfig = allDefaultConfig[funcId];
+      let flag = true;
+      for (let configKey in expScheme.config[funcId]) {
+        if (defaultConfig[configKey] == expScheme.config[funcId][configKey]) {
+          delete expScheme.config[funcId][configKey];
+        } else {
+          flag = false;
+        }
+      }
+      if (flag) {
+        delete expScheme.config[funcId]
+      }
+    }
+    if (expScheme.config && Object.keys(expScheme.config).length === 0) {
+      delete expScheme.config;
+    }
+
+    // 删除默认公共配置
+    let flag = true;
+    for (let commonConfigKey in expScheme.commonConfig) {
+      if (allDefaultCommonConfig[commonConfigKey] == expScheme.commonConfig[commonConfigKey]) {
+        delete expScheme.commonConfig[commonConfigKey];
+      } else {
+        flag = false;
+      }
+    }
+    if (flag) {
+      delete expScheme.commonConfigKey;
+    }
+    
+  });
+  return schemeList;
+}
 
 function cancel() {
   dialogShow.value = false
@@ -134,6 +216,7 @@ async function copyExportString() {
 </style>
 <style>
 textarea.van-field__control {
-  overflow:hidden
+  overflow:hidden;
+  word-break: break-all;
 }
 </style>
