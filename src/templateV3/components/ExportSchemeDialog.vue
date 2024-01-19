@@ -150,7 +150,7 @@ function simplifySchemeList(schemeList) {
       }
     }
     if (flag) {
-      delete expScheme.commonConfigKey;
+      delete expScheme.commonConfig;
     }
     
   });
