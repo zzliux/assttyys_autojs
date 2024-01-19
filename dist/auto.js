@@ -45286,7 +45286,7 @@ var SchemeList = [
         id: 5,
         schemeName: '返回庭院',
         groupName: '通用',
-        list: [3, 502, 503],
+        list: [1, 2, 3, 502, 503],
         config: {
             '503': {
                 scheme_switch_enabled: false,
