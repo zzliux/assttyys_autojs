@@ -44284,7 +44284,7 @@ var SchemeList = [
                 'jspd_enabled_2': true,
                 'jspd_times_2': '15',
                 'stop_with_launched_app_exit': false,
-                'scheme_switch_enabled': false,
+                'scheme_switch_enabled': true,
                 'next_scheme': '返回庭院',
                 'pause_enabled': false,
                 'define_run_time': '10,30',
