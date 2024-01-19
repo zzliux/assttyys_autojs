@@ -16,6 +16,11 @@ export class Func519 implements IFuncOrigin {
 			desc: '进入后切换至下个方案',
 			type: 'scheme',
 			default: '道馆',
+		}, {
+			name: 'day',
+			desc: '星期567不进入',
+			type: 'switch',
+			default: 'true',
 		}
 			// , {
 			// 	name: 'xiajian_scheme',
@@ -51,24 +56,24 @@ export class Func519 implements IFuncOrigin {
 				[left, 35, 52, 0xf0f5fb],
 			]
 		]
+	}, { // 2 道馆内
+		desc: [
+			1280, 720,
+			[
+				[left, 64, 482, 0x291522],
+				[left, 33, 38, 0xd7c5a2],
+				[left, 109, 24, 0xd7c5a2],
+				[left, 179, 37, 0xd7c6a5],
+			]
+		]
 	}
-		// , { // 2 狭间开启界面
-		// 	desc: [
-		// 		1280, 720,
-		// 		[
-		// 			[left, 269, 206, 0xe4d0ad],
-		// 			[left, 297, 181, 0xe4d8b3],
-		// 			[left, 182, 227, 0xccaadd],
-		// 			[left, 251, 364, 0xc9bb97],
-		// 			[center, 431, 155, 0xe1d6b3],
-		// 			[center, 716, 176, 0xe8e0bf],
-		// 			[right, 1090, 155, 0xe7dcaf],
-		// 		]
-		// 	]
-		// }
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['519'];
+		if (thisConf.day && (new Date().getDay() == 0 || new Date().getDay() == 5 || new Date().getDay() == 6)) {
+			thisScript.stop();
+			return true;
+		}
 		if (thisScript.oper({
 			id: 519,
 			name: '检测_寮活动神社',
@@ -84,8 +89,15 @@ export class Func519 implements IFuncOrigin {
 		}
 		if (thisScript.oper({
 			id: 519,
-			name: '检测_攻打道馆',
+			name: '检测_攻打道馆界面',
 			operator: [{ desc: thisOperator[1].desc }]
+		})) {
+			return true;
+		}
+		if (thisScript.oper({
+			id: 519,
+			name: '检测_道馆内',
+			operator: [{ desc: thisOperator[2].desc }]
 		})) {
 			thisScript.rerun(thisConf.daoguan_scheme);
 			return true;

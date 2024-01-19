@@ -896,7 +896,12 @@ const SchemeList: IScheme[] = [
 	{
 		id: 76,
 		schemeName: '寮管理进入道馆开启界面',
-		list: [506, 509, 519],
+		list: [505, 519, 503],
+		config: {
+			'503': {
+				jafterCountOper: '不进行任何操作',
+			}
+		},
 	},
 	{
 		id: 99,

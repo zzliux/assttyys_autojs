@@ -403,12 +403,12 @@ export class Func316 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[left, 171, 219, 0x4c8dda],
-				[left, 262, 216, 0x5aa1f6],
-				[center, 445, 216, 0x4685cc],
-				[center, 535, 216, 0x589ef1],
-				[center, 719, 218, 0x4a89d4],
-				[center, 809, 215, 0x5aa2f6],
+				[left, 217, 171, 0x4786d8],
+				[center, 490, 171, 0x4687d9],
+				[center, 762, 172, 0x4583d0],
+				[left, 263, 216, 0x5ba0f2],
+				[center, 536, 216, 0x5aa1f3],
+				[center, 809, 216, 0x5aa1f5],
 			]
 		]
 	}];
@@ -427,18 +427,8 @@ export class Func316 implements IFuncOrigin {
 		}
 
 		if (thisScript.oper({
-			id: 316, name: '六道椒图_商店确认购买',
-			operator: [{ desc: thisOperator[23].desc }]
-		})) {
-			thisScript.regionClick([thisOperator[23].oper[0]]);
-			thisScript.regionClick([thisOperator[23].oper[1]]);
-			thisScript.global.d6RouFeng++;
-			console.log('当前柔风数量:' + thisScript.global.d6RouFeng);
-			return true;
-		}
-		if (thisScript.oper({
 			id: 316,
-			name: '六道椒图_商店购买buff',
+			name: '六道椒图_事件购买buff',
 			operator: [{ desc: thisOperator[4].desc }]
 		})) {
 			if (thisScript.global.d6RouFeng < 5) {//  柔风达标前选buff
