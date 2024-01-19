@@ -43838,20 +43838,6 @@ var multiFindColors = {
 var ScheduleDefaultList = [
     {
         id: 1,
-        name: '突破_9退4_进攻-寮突破',
-        desc: '突破_9退4_进攻转寮突破',
-        checked: true,
-        lastRunTime: null,
-        nextDate: null,
-        repeatMode: 3,
-        interval: '* 0 10,14,21 * * * * ',
-        level: '1',
-        config: {
-            scheme: '【日常】定时任务-启动游戏-突破_9退4_进攻',
-        }
-    },
-    {
-        id: 1,
         name: '式神寄养',
         desc: '自动续式神寄养，建议把执行时间提前5分钟，启动前需要退出游戏',
         checked: false,
@@ -43880,6 +43866,20 @@ var ScheduleDefaultList = [
     },
     {
         id: 3,
+        name: '突破_9退4_进攻-寮突破',
+        desc: '突破_9退4_进攻转寮突破',
+        checked: true,
+        lastRunTime: null,
+        nextDate: null,
+        repeatMode: 3,
+        interval: '* 0 10,14,21 * * * * ',
+        level: '1',
+        config: {
+            scheme: '【日常】定时任务-启动游戏-突破_9退4_进攻',
+        }
+    },
+    {
+        id: 4,
         name: '签到',
         desc: '每日签到',
         checked: true,
@@ -43893,7 +43893,7 @@ var ScheduleDefaultList = [
         },
     },
     {
-        id: 4,
+        id: 5,
         name: '经验妖怪',
         desc: '经验妖怪',
         checked: true,
@@ -43907,7 +43907,7 @@ var ScheduleDefaultList = [
         },
     },
     {
-        id: 5,
+        id: 6,
         name: '金币妖怪',
         desc: '金币妖怪',
         checked: true,
@@ -43921,7 +43921,7 @@ var ScheduleDefaultList = [
         },
     },
     {
-        id: 6,
+        id: 7,
         name: '地鬼',
         desc: '地鬼',
         checked: true,
@@ -43935,7 +43935,7 @@ var ScheduleDefaultList = [
         },
     },
     {
-        id: 7,
+        id: 8,
         name: '逢魔',
         desc: '逢魔',
         checked: true,
@@ -43949,7 +43949,7 @@ var ScheduleDefaultList = [
         },
     },
     {
-        id: 8,
+        id: 9,
         name: '斗技',
         desc: '斗技',
         checked: true,
@@ -43963,7 +43963,7 @@ var ScheduleDefaultList = [
         },
     },
     {
-        id: 9,
+        id: 10,
         name: '秘闻',
         desc: '秘闻',
         checked: false,
