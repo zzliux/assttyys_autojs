@@ -145,7 +145,6 @@ const ScheduleDefaultList: JobOptions[] = [
 			scheme: '【周常】定时任务-启动游戏-秘闻',
 		},
 	},
-	
 ];
 
 export default ScheduleDefaultList;

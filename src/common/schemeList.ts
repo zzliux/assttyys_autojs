@@ -1024,7 +1024,7 @@ const SchemeList: IScheme[] = [
 		groupName: '通用',
 		star: true,
 		list: [3, 22],
-	},	
+	},
 ];
 
 // 遍历commonConfigArr，将每一项的config属性值赋值给commonConfig
