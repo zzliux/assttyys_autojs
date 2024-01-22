@@ -904,6 +904,11 @@ const SchemeList: IScheme[] = [
 		},
 	},
 	{
+		id: 77,
+		schemeName: '僵尸寮小号循环登录',
+		list: [0, 320, 321, 993],
+	},
+	{
 		id: 99,
 		schemeName: '伊吹之擂',
 		list: [0, 3, 24, 99, 100],
