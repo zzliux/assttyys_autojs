@@ -359,7 +359,7 @@ const SchemeList: IScheme[] = [
 			'995': {
 				maxTimeForwait: '10',
 				afterCountOper: '停止脚本',
-				isAutoFosterCare: true,				
+				isAutoFosterCare: true,
 				next_scheme: '返回庭院',
 			},
 			'997': {
