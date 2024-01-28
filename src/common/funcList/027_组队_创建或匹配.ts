@@ -13,12 +13,12 @@ export class Func027 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[center, 862, 6, 0x331612],
-				[center, 796, 53, 0xd6c4a1],
-				[center, 858, 98, 0x2b0c05],
-				[center, 328, 11, 0x2a0904],
-				[center, 358, 50, 0x755021],
-				[right, 1230, 49, 0xcea576],
+				[center, 373, 14, 0x260904],
+				[center, 730, 5, 0x2b0e17],
+				[center, 760, 98, 0x290a04],
+				[center, 411, 97, 0x300c13],
+				[center, 751, 43, 0xd6c5a0],
+				[center, 771, 61, 0xd7c3a2],
 			]
 		],
 		oper: [
@@ -57,7 +57,8 @@ export class Func027 implements IFuncOrigin {
 		]
 	}, {
 		desc: [1280, 720, // 组队界面
-			[[left, 42, 38, 0xf7e5a7],
+			[
+				[left, 42, 38, 0xf7e5a7],
 				[left, 76, 614, 0x94796b],
 				[right, 1194, 34, 0xd6c7a5],
 				[right, 1071, 628, 0xf7b263]]
@@ -70,7 +71,8 @@ export class Func027 implements IFuncOrigin {
 		desc: '庭院已打开菜单_另另外一种图标'
 	}, {
 		desc: [1280, 720, // 创建队伍
-			[[left, 228, 62, 0xed8ba1],
+			[
+				[left, 228, 62, 0xed8ba1],
 				[center, 398, 66, 0x624430],
 				[center, 402, 584, 0xde6952],
 				[center, 877, 590, 0xf7b263]]

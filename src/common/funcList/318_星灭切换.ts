@@ -24,7 +24,8 @@ export class Func318 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 1194, 636, 1252, 695, 0], // 晴明
-		]
+		],
+		retest: 500
 	}, { // 1 开始战斗后的场景
 		desc: '战斗界面',
 	}, { // 2 妖术二
@@ -43,7 +44,6 @@ export class Func318 implements IFuncOrigin {
 			1280, 720,
 			[
 				[center, 940, 479, 0x1f2552],
-				[center, 956, 481, 0x3772b3],
 				[right, 965, 506, 0x1f214e],
 				[center, 928, 514, 0x383a91],
 				[center, 938, 504, 0xf4feff],
