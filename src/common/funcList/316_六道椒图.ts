@@ -411,6 +411,20 @@ export class Func316 implements IFuncOrigin {
 				[center, 809, 216, 0x5aa1f5],
 			]
 		]
+	}, { // 26 万象赐福取消购买
+		desc: [
+			1280, 720,
+			[
+				[center, 434, 109, 0x94561e],
+				[center, 814, 104, 0x9c5520],
+				[center, 623, 565, 0xe9371f],
+				[center, 695, 564, 0xf3b25e],
+				[center, 783, 456, 0xffdda4],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 939, 148, 1179, 281, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 
@@ -529,7 +543,7 @@ export class Func316 implements IFuncOrigin {
 				thisOperator[3], thisOperator[5], thisOperator[6], thisOperator[8],
 				thisOperator[9], thisOperator[10], thisOperator[12], thisOperator[13],
 				thisOperator[14], thisOperator[19], thisOperator[20], thisOperator[21],
-				thisOperator[22],
+				thisOperator[22], thisOperator[26],
 			]
 		})) {
 			return true;

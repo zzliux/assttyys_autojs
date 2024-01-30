@@ -46,8 +46,8 @@ export class Func315 implements IFuncOrigin {
 				[left, 70, 226, 0x77522d],
 				[center, 688, 277, 0x5a4536],
 				[center, 580, 254, 0xdfc9b6],
-				[left, 176, 349, 0x6d4531],
 				[center, 609, 256, 0xdfc9b6],
+				[left, 108, 289, 0xd2bda7],
 			]
 		]
 	}, { // 2  预设组

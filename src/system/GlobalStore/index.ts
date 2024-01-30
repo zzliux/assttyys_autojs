@@ -76,6 +76,8 @@ export type globalRootType = {
 	waitFight: boolean;//      等待分享鬼王被击杀
 	faXian_NumOT: number, // 点击发现鬼王计数
 	youjiequyuan_ten: boolean;//      缘结趣游是否十抽
+	dengluNumOT: number, // 登录账号计数
+	dengluState: boolean, // 登录账号状态
 }
 
 export const globalRoot: globalRootType = {
@@ -156,4 +158,6 @@ export const globalRoot: globalRootType = {
 	waitFight: true,
 	faXian_NumOT: 0,
 	youjiequyuan_ten: true,
+	dengluNumOT: 0,
+	dengluState: true,
 }

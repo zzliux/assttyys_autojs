@@ -125,33 +125,7 @@ export class Func002 implements IFuncOrigin {
 			]
 		],
 		notForCnt: true,
-	}
-	/* , { // 未打开的达摩
-				desc: [1280, 720,
-					[[center, 667, 377, 0xba4618],
-					[center, 678, 316, 0x080808],
-					[center, 589, 314, 0x060606],
-					[center, 636, 324, 0xe7e1cf],
-					[center, 588, 486, 0x330202]]
-				],
-				oper: [
-					[center, 1280, 720, 153,60, 1202,614, 800],
-				],
-				notForCnt: true,
-			}, { // 未打开的达摩
-				desc: [1280,720,
-					[[center,667,377,0xd35e2c],
-					[center,678,316,0x171614],
-					[center,589,314,0x1b1a16],
-					[center,636,324,0xfffae4],
-					[center,588,486,0x340303]]
-				],
-				oper: [
-					[center, 1280, 720, 153,60, 1202,614, 800],
-				],
-				notForCnt: true,
-			}*/
-	, {
+	}, {
 		// 单人-失败太鼓
 		desc: '退出结算_单人_失败太鼓',
 		operStepRandom: [
@@ -207,6 +181,21 @@ export class Func002 implements IFuncOrigin {
 		desc: '退出结算_经验金币妖怪_胜利太鼓',
 		oper: [
 			[center, 1280, 720, 535, 674, 743, 709, 1000],
+		]
+	}, { // 契灵结契失败
+		desc: [
+			1280, 720,
+			[
+				[center, 512, 297, 0xbbbbbb],
+				[center, 610, 277, 0xbbbbbb],
+				[center, 684, 295, 0xb0b0b0],
+				[center, 785, 296, 0xc0c0c0],
+				[center, 520, 339, 0x9f9f9f],
+				[center, 797, 328, 0xc1c1c1],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 444, 552, 814, 701, 1000],
 		]
 	}, { // 体力不足
 		desc: '退出结算_体力不足',
