@@ -343,22 +343,24 @@ const SchemeList: IScheme[] = [
 		schemeName: '式神寄养',
 		star: true,
 		groupName: '式神寄养',
-		list: [3, 999, 998, 997, 994, 995],
+		list: [0, 3, 999, 998, 997, 994, 995],
 		config: {
+			'0': {
+				jspd_times_longtime_nodo: 20,
+			},
 			'3': {
 				type: '关闭',
 			},
 			'994': {
 				count: '6',
-				maxTimeForwait: '10',
 				afterCountOper: '停止脚本',
 				next_scheme: '通用准备退出',
 			},
 			'995': {
-				next_scheme: '返回庭院',
+				maxTimeForwait: '10',
 				afterCountOper: '停止脚本',
 				isAutoFosterCare: true,
-				maxTimeForwait: '10',
+				next_scheme: '返回庭院',
 			},
 			'997': {
 				priority: '太鼓6->太鼓5->太鼓4->太鼓3->斗鱼6->斗鱼5->斗鱼4',
