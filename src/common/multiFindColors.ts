@@ -2933,6 +2933,35 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				[center, 40, 9, 0x291a10],
 			]
 		]]
+	},
+	'右边侧栏下一页图标': {
+		region: [center, 1280, 720, 1150, 145, 1261, 513],
+		desc: [[
+			1280, 720,
+			[
+				[right, 1204, 479, 0xfde894],
+				[right, 1204, 483, 0xfde995],
+				[right, 1213, 486, 0xffe995],
+				[right, 1217, 471, 0xffea95],
+				[right, 1215, 467, 0xffe694],
+				[right, 1203, 464, 0xffec97],
+			]
+		]]
+
+	},
+	'对弈竞猜': {
+		region: [center, 1280, 720, 1146, 191, 1268, 328],
+		desc: [[
+			1280, 720,
+			[
+				[right, 1204, 263, 0x69121b],
+				[right, 1210, 256, 0xa5d42a],
+				[right, 1196, 252, 0xfefeff],
+				[right, 1218, 252, 0xffffff],
+				[right, 1208, 278, 0xd8e3ba],
+				[right, 1206, 241, 0xe09d1f],
+			]
+		]]
 	}
 }
 

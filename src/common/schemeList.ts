@@ -917,7 +917,16 @@ const SchemeList: IScheme[] = [
 		id: 100,
 		schemeName: '缘结趣游',
 		list: [0, 24, 319],
-	}
+	}, {
+		id: 101,
+		schemeName: '对弈竞猜',
+		list: [0, 401],
+		config: {
+			'0': {
+				jspd_times_longtime_nodo: '1',
+			}
+		},
+	},
 	// , {
 	// 	id: 102,
 	// 	schemeName: '活动_破晓之时',
