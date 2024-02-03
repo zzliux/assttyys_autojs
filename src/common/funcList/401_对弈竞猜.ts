@@ -10,6 +10,16 @@ export class Func401 implements IFuncOrigin {
 	id = 401;
 	name = '对弈竞猜';
 	desc = '对弈竞猜选边';
+	config = [{
+		desc: '配置',
+		config: [{
+			name: 'follow_whose',
+			desc: '跟押哪位大佬',
+			type: 'list',
+			data: ['面灵气喵'],
+			default: '面灵气喵',
+		}],
+	}]
 	operator: IFuncOperatorOrigin[] = [{ // 0 庭院
 		desc: '页面是否为庭院_菜单未展开_只支持默认庭院皮肤与默认装饰'
 	}, { // 1 庭院
@@ -33,6 +43,7 @@ export class Func401 implements IFuncOrigin {
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
+		// TODO 收上一次的奖励
 		if (thisScript.oper({
 			id: 401,
 			name: '庭院内',
@@ -60,6 +71,54 @@ export class Func401 implements IFuncOrigin {
 			name: '对弈竞猜_选边',
 			operator: [{ desc: thisOperator[2].desc }]
 		})) {
+			const thisconf = thisScript.scheme.config['401'];
+			const rssUrl = {
+				'面灵气喵': 'https://rsshub.zzliux.cn/163/ds/462382f1127b46c5add1185d88f0ea40',
+				'姝酱': 'https://rsshub.zzliux.cn/163/ds/6f3189e218fb4f6492b99efcbbd79119',
+				'嘤嘤井': 'https://rsshub.zzliux.cn/163/ds/e7107cd3010e418da26672669d8eeb5e',
+			}[thisconf.follow_whose as string || '面灵气喵'];
+
+			// 获取下次下注场次时间
+			const now = new Date(1706965717000);
+			const h = now.getHours();
+			let nextH = Math.floor(h / 2) * 2 + 2 + '';
+			if (nextH.length === 1) nextH = '0' + nextH;
+			// @ts-expect-error d.ts文件问题
+			const str = http.get(rssUrl).body.string();
+			// 从最近的5个拿，避免拿到昨天的
+			const str2 = str.match(/<item[\s\S\n]+?<description>([\s\S\n]+?)<\/description>/g).slice(0, 5).join('');
+			console.log(str2);
+
+			// 该规则目前是面灵气喵的固定规则，其他的up还得再看看怎么搞
+			const reg = new RegExp(nextH + ':00.+?([左右红蓝])');
+			console.log(reg);
+			const r = str2.match(reg);
+			if (r) {
+				if (r[1] === '红' || r[1] === '左') {
+					// 押左 TODO 选择金额 确认
+					thisScript.regionClick([thisOperator[2].oper[0]]);
+
+					thisScript.myToast(`根据${thisconf.follow_whose}选择押左`);
+					thisScript.doPush(thisScript, { text: `根据${thisconf.follow_whose}选择押左`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+					thisScript.stop();
+					sleep(3000);
+
+				} else if (r[1] === '蓝' || r[1] === '右') {
+					// 押右 TODO 选择金额 确认
+					thisScript.regionClick([thisOperator[2].oper[1]]);
+
+					thisScript.myToast(`根据${thisconf.follow_whose}选择押右`);
+					thisScript.doPush(thisScript, { text: `根据${thisconf.follow_whose}选择押右`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+					thisScript.stop();
+					sleep(3000);
+				}
+			} else {
+				thisScript.myToast(`获取${thisconf.follow_whose}押注信息失败`);
+				thisScript.doPush(thisScript, { text: `获取${thisconf.follow_whose}押注信息失败`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+				thisScript.stop();
+				sleep(3000);
+			}
+
 			// 选边
 			// if (true) {
 			// 	thisScript.regionClick([thisOperator[2].oper[0]]);
