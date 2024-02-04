@@ -922,7 +922,7 @@ const SchemeList: IScheme[] = [
 	}, {
 		id: 101,
 		schemeName: '对弈竞猜',
-		list: [0, 401],
+		list: [0, 2, 401],
 		config: {
 			'0': {
 				jspd_times_longtime_nodo: '1',
