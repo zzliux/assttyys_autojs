@@ -79,9 +79,9 @@ export class Func401 implements IFuncOrigin {
 			}[thisconf.follow_whose as string || '面灵气喵'];
 
 			// 获取下次下注场次时间
-			const now = new Date(1706965717000);
+			const now = new Date();
 			const h = now.getHours();
-			let nextH = Math.floor(h / 2) * 2 + 2 + '';
+			let nextH = Math.floor(h / 2) * 2 + '';
 			if (nextH.length === 1) nextH = '0' + nextH;
 			// @ts-expect-error d.ts文件问题
 			const str = http.get(rssUrl).body.string();
