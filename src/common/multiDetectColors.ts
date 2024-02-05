@@ -295,16 +295,6 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 			]
 		]
 	},
-	'庭院未打开菜单': {
-		desc: [1280, 720,
-			[
-				[right, 1211, 606, 0x885f46],
-				[right, 1205, 624, 0x987777],
-				[right, 1208, 646, 0xaf4949],
-				[right, 1175, 680, 0xb08e7d]
-			]
-		]
-	},
 	'探索章节_挑战': {
 		desc: [
 			1280, 720,
