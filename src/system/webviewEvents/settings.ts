@@ -156,11 +156,12 @@ export default function webviewSettigns() {
 			type: 'assttyys_setting_ocr_extend',
 			enabled: storeSettings.ocrType === 'MlkitOcr' ? mlkitOcr.isInstalled() : yunxiOcr.isInstalled()
 		}, {
-			desc: '百鬼夜行模型扩展（实验性功能）',
-			name: 'ncnn_bgyx',
-			type: 'assttyys_setting_ncnn_bgyx_extend',
-			enabled: storeSettings.ncnn_bgyx
-		}, {
+		// 没做好，暂不启用
+		// 	desc: '百鬼夜行模型扩展（实验性功能）',
+		// 	name: 'ncnn_bgyx',
+		// 	type: 'assttyys_setting_ncnn_bgyx_extend',
+		// 	enabled: storeSettings.ncnn_bgyx
+		// }, {
 			desc: '消息推送方式',
 			name: 'push_type',
 			type: 'assttyys_setting',
