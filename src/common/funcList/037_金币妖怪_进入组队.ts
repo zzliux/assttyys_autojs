@@ -22,9 +22,8 @@ export class Func037 implements IFuncOrigin {
 					name: 'target',
 					desc: '启动目标',
 					type: 'list',
-					data: ['金币', '经验', '年兽', '石距'],
+					data: ['金币妖怪', '经验妖怪', '年兽', '石距'],
 					default: '金币妖怪',
-					value: '金币妖怪',
 				},
 				{
 					name: 'createMode',
@@ -32,21 +31,18 @@ export class Func037 implements IFuncOrigin {
 					type: 'list',
 					data: ['创建队伍', '自动匹配'],
 					default: '创建队伍',
-					value: '创建队伍',
 				},
 				{
 					name: 'wait_time',
 					desc: '组队等待时长(分钟)',
 					type: 'text',
 					default: '5',
-					value: '5',
 				},
 				{
 					name: 'next_scheme',
 					desc: '运行结束后的下一个方案',
 					type: 'scheme',
 					default: '关闭BUFF',
-					value: '关闭BUFF',
 				},
 			],
 		},
@@ -55,35 +51,31 @@ export class Func037 implements IFuncOrigin {
 		{
 			//	0 新组队页面
 			desc: [
-				1280,
-				720,
+				1280, 720,
 				[
 					[left, 52, 28, 0xf0d08d],
-					[left, 106, 32, 0xf5f0de],
-					[left, 126, 51, 0xefead7],
 					[left, 169, 40, 0x09090a],
-					[left, 56, 60, 0xc4a97c],
 					[right, 1221, 87, 0x754824],
 					[right, 1224, 621, 0x381f1c],
 					[right, 1219, 324, 0x3c2923],
-					[left, 138, 31, 0xc5bfae],
-				],
+					[center, 86, 619, 0x8d7565],
+					[center, 1226, 699, 0x3f2822],
+					[center, 617, 657, 0xd2c2b4],
+				]
 			],
 			oper: [
 				[center, 1280, 720, 171, 350, 326, 383, 1], //	滑动
 				[center, 1280, 720, 165, 258, 338, 304, 1], //	滑动
 				[left, 1280, 720, 117, 75, 392, 693, 1], //	组队 项目区域
-				[right, 1280, 720, 992, 600, 1154, 650, 1000], //	点击 创建队伍
-				[center, 1280, 720, 713, 610, 857, 642, 1000], //	点击 自动匹配
+				[right, 1280, 720, 992, 600, 1154, 650, 500], //	点击 创建队伍
+				[center, 1280, 720, 713, 610, 857, 642, 500], //	点击 自动匹配
 				[center, 1280, 720, 747, 35, 777, 65, 1000], // 5	点击 退出自动匹配
 				[left, 1280, 720, 32, 20, 65, 49, 1200], //	点击 退出组队界面
 			],
 		},
 		{
 			// 1 旧组队页面
-			desc: [
-				1280,
-				720,
+			desc: [1280, 720,
 				[
 					[left, 52, 28, 0xf0d08d],
 					[left, 106, 32, 0xf5f0de],
@@ -99,9 +91,7 @@ export class Func037 implements IFuncOrigin {
 		},
 		{
 			//	2 检测是否为队伍公开权限弹窗
-			desc: [
-				1280,
-				720,
+			desc: [1280, 720,
 				[
 					[center, 546, 517, 0xf4b25f],
 					[center, 730, 517, 0xf4b25f],
@@ -118,9 +108,7 @@ export class Func037 implements IFuncOrigin {
 		},
 		{
 			//	3	检测是否为确定退出自动匹配队列弹窗
-			desc: [
-				1280,
-				720,
+			desc: [1280, 720,
 				[
 					[center, 416, 248, 0xcbb59e],
 					[center, 865, 243, 0xc7b096],
@@ -135,9 +123,7 @@ export class Func037 implements IFuncOrigin {
 		},
 		{
 			//	4 检测是否为排队等待中
-			desc: [
-				1280,
-				720,
+			desc: [1280, 720,
 				[
 					[left, 52, 28, 0xf0d08d],
 					[left, 106, 32, 0xf5f0de],
@@ -156,9 +142,7 @@ export class Func037 implements IFuncOrigin {
 		},
 		{
 			//	5 检测是否不为排队等待中
-			desc: [
-				1280,
-				720,
+			desc: [1280, 720,
 				[
 					[left, 52, 28, 0xf0d08d],
 					[left, 106, 32, 0xf5f0de],
@@ -194,7 +178,7 @@ export class Func037 implements IFuncOrigin {
 				name: '金币妖怪_是否排队等待中',
 				operator: [thisOperator[4]],
 			}) &&
-      !thisScript.global.team_up_lagTime
+			!thisScript.global.team_up_lagTime
 		) {
 			thisScript.global.team_up_lagTime = new Date();
 		}
@@ -205,7 +189,7 @@ export class Func037 implements IFuncOrigin {
 				name: '金币妖怪_是否非排队等待中',
 				operator: [thisOperator[5]],
 			}) &&
-      thisScript.global.team_up_lagTime
+			thisScript.global.team_up_lagTime
 		) {
 			thisScript.global.team_up_lagTime = undefined;
 		}
@@ -228,7 +212,7 @@ export class Func037 implements IFuncOrigin {
 				const time = Number.parseInt(thisconf.wait_time as string, 10);
 				if (
 					new Date().getTime() - thisScript.global.team_up_lagTime.getTime() >
-          time * 60000
+					time * 60000
 				) {
 					console.log('排队时间超过了' + time * 60000);
 					thisScript.global.team_up_lagTime = undefined;
@@ -250,10 +234,10 @@ export class Func037 implements IFuncOrigin {
 
 			const target = (thisconf && thisconf.target) || '金币';
 			const result = thisScript.findText(
-        target as string,
-        5000,
-        thisOperator[0].oper[2],
-        '模糊'
+				target as string,
+				500,
+				thisOperator[0].oper[2],
+				'模糊|0.75'
 			);
 
 			if (result.length > 0) {
@@ -277,14 +261,14 @@ export class Func037 implements IFuncOrigin {
 				let createMode = 3;
 				if (thisconf && thisconf.createMode) {
 					switch (thisconf.createMode) {
-					case '创建队伍': {
-						createMode = 3;
-						break;
-					}
-					case '自动匹配': {
-						createMode = 4;
-						break;
-					}
+						case '创建队伍': {
+							createMode = 3;
+							break;
+						}
+						case '自动匹配': {
+							createMode = 4;
+							break;
+						}
 					}
 				}
 				if (

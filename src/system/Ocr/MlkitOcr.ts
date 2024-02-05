@@ -150,8 +150,10 @@ class MlkitOcr implements IOcr {
 					})
 				});
 			}
-
-			const res = this.findTextByOcrResult(text, rs, textMatchMode);
+			const [mode, simStr] = textMatchMode.split('|');
+			let sim = 0.5;
+			if (sim) sim = Number(simStr);
+			const res = this.findTextByOcrResult(text, rs, mode, sim);
 
 			if (res.length > 0) {
 				// console.log('识别结果', JSON.stringify(rs));

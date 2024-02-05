@@ -1009,6 +1009,13 @@ export const versionList = [{
 }, {
 	version: '20240205_01',
 	desc: '优化：狭间暗域添加boss挑战顺序选项'
+}, {
+	version: '20240205_02',
+	desc: `优化：037组队适配1.7.66+
+优化：经验妖怪、金币妖怪的启动与执行方案，在准备界面中开启buff，而不是在庭院就开；
+优化：经验妖怪、金币妖怪组队的ocr识别；
+优化：开启buff、关闭buff的默认配置，开启buff默认不切换方案，关闭buff下一个方案默认值为返回庭院；
+`
 }];
 
 export default versionList[versionList.length - 1].version;

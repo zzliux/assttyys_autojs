@@ -19,7 +19,7 @@ export class Func040 implements IFuncOrigin {
 			name: 'next_scheme',
 			desc: '下一个方案',
 			type: 'scheme',
-			default: '寮突破',
+			default: '返回庭院',
 		}]
 	}, {
 		desc: '准备界面下关闭buff',

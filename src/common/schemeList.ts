@@ -291,13 +291,17 @@ const SchemeList: IScheme[] = [
 	{
 		id: 24,
 		schemeName: '金币妖怪',
-		list: [0, 1, 2, 3, 35, 37, 38],
+		list: [0, 50, 1, 2, 3, 35, 37, 38],
 		config: {
 			'37': {
 				target: '金币妖怪',
 				createMode: '创建队伍',
 				next_scheme: '关闭BUFF',
 			},
+			'50': {
+				ready_once_buff: true,
+				buff_type: '金币',
+			}
 		},
 	},
 	{
@@ -314,7 +318,7 @@ const SchemeList: IScheme[] = [
 	{
 		id: 26,
 		schemeName: '关闭BUFF',
-		list: [502, 1, 2, 3, 29, 40, 501],
+		list: [502, 1, 2, 3, 501, 29, 40],
 	},
 	{
 		id: 27,
@@ -811,42 +815,46 @@ const SchemeList: IScheme[] = [
 		star: true,
 		list: [0, 1, 316, 2, 3, 24],
 	},
-	{
-		id: 70,
-		schemeName: '开启经验BUFF_经验妖怪',
-		list: [501, 50],
-		config: {
-			'50': {
-				scheme_switch_enabled: true,
-				next_scheme: '经验妖怪',
-				buff_type: '经验',
-				ready_once_buff: false,
-			},
-		},
-	},
-	{
-		id: 71,
-		schemeName: '开启金币BUFF_金币妖怪',
-		list: [501, 50],
-		config: {
-			'50': {
-				scheme_switch_enabled: true,
-				next_scheme: '金币',
-				buff_type: '金币',
-				ready_once_buff: false,
-			},
-		},
-	},
+	// {
+	// 	id: 70,
+	// 	schemeName: '开启经验BUFF_经验妖怪',
+	// 	list: [501, 50],
+	// 	config: {
+	// 		'50': {
+	// 			scheme_switch_enabled: true,
+	// 			next_scheme: '经验妖怪',
+	// 			buff_type: '经验',
+	// 			ready_once_buff: false,
+	// 		},
+	// 	},
+	// },
+	// {
+	// 	id: 71,
+	// 	schemeName: '开启金币BUFF_金币妖怪',
+	// 	list: [501, 50],
+	// 	config: {
+	// 		'50': {
+	// 			scheme_switch_enabled: true,
+	// 			next_scheme: '金币',
+	// 			buff_type: '金币',
+	// 			ready_once_buff: false,
+	// 		},
+	// 	},
+	// },
 	{
 		id: 72,
 		schemeName: '经验妖怪',
-		list: [0, 1, 2, 3, 35, 37, 38],
+		list: [0, 50, 1, 2, 3, 35, 37, 38],
 		config: {
 			'37': {
-				target: '经验',
+				target: '经验妖怪',
 				createMode: '创建队伍',
 				next_scheme: '关闭BUFF',
 			},
+			'50': {
+				ready_once_buff: true,
+				buff_type: '经验',
+			}
 		},
 	},
 	{
@@ -871,7 +879,7 @@ const SchemeList: IScheme[] = [
 			'993': {
 				area: '',
 				is_shutdown_the_game_before: true,
-				next_scheme: '开启金币BUFF_金币妖怪',
+				next_scheme: '金币妖怪',
 			},
 			'503': {
 				afterCountOper: '不进行任何操作',
@@ -888,7 +896,7 @@ const SchemeList: IScheme[] = [
 			'993': {
 				area: '',
 				is_shutdown_the_game_before: true,
-				next_scheme: '开启经验BUFF_经验妖怪',
+				next_scheme: '经验妖怪',
 			},
 			'503': {
 				afterCountOper: '不进行任何操作',
