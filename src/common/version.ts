@@ -1006,6 +1006,9 @@ export const versionList = [{
 }, {
 	version: '20240119_01',
 	desc: '优化：导出的方案删除不必要的信息'
+}, {
+	version: '20240205_01',
+	desc: '优化：狭间暗域添加boss挑战顺序选项'
 }];
 
 export default versionList[versionList.length - 1].version;
