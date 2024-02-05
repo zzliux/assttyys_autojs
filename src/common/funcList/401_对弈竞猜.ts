@@ -75,6 +75,11 @@ export class Func401 implements IFuncOrigin {
 			[center, 1280, 720, 1093, 509, 1138, 545, 1000],
 		]
 	}, { // 5 识别数字
+		oper: [
+			[center, 1280, 720, 112, 536, 238, 571, 100], // 左区域
+			[center, 1280, 720, 1090, 537, 1220, 574, 100], // 右区域
+		]
+
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
@@ -143,8 +148,10 @@ export class Func401 implements IFuncOrigin {
 					const realTimeBmpLeft = thisScript.findText('.+', 0, thisOperator[5].oper[0], '包含');
 					const realTimeBmpRight = thisScript.findText('.+', 0, thisOperator[5].oper[1], '包含');
 					if (realTimeBmpLeft.length != 0 && realTimeBmpRight.length != 0) {
-						console.log(`ocr识别为左右分别为：[${realTimeBmpLeft}],${realTimeBmpRight}`);
-						if (Number(realTimeBmpLeft) > Number(realTimeBmpRight)) {
+						const realTimeTextLeft = realTimeBmpLeft[0].label;
+						const realTimeTextpRight = realTimeBmpRight[0].label;
+						console.log(`ocr识别为左右分别为：${realTimeTextLeft},${realTimeTextpRight}`);
+						if (Number(realTimeTextLeft) < Number(realTimeTextpRight)) {
 							thisScript.regionClick([thisOperator[2].oper[0]]);
 						} else {
 							thisScript.regionClick([thisOperator[2].oper[1]]);
@@ -152,10 +159,9 @@ export class Func401 implements IFuncOrigin {
 					}
 				}
 			} else {
-				thisScript.myToast(`获取${thisconf.follow_whose}押注信息失败`);
-				thisScript.doPush(thisScript, { text: `获取${thisconf.follow_whose}押注信息失败`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-				thisScript.stop();
-				sleep(3000);
+				thisScript.myToast(`获取${thisconf.follow_whose}押注信息失败，1分钟后再次获取`);
+				thisScript.doPush(thisScript, { text: `获取${thisconf.follow_whose}押注信息失败，1分钟后再次获取`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+				sleep(60000);
 			}
 			// 押注确认
 			thisScript.regionClick([thisOperator[2].oper[2]]);
