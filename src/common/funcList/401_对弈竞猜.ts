@@ -130,7 +130,7 @@ export class Func401 implements IFuncOrigin {
 			console.log(str2);
 
 			// 该规则目前是面灵气喵的固定规则，其他的up还得再看看怎么搞
-			const reg = new RegExp(nextH + ':00.+?([左右红蓝])');
+			const reg = new RegExp(nextH + ':00.+?([左右红蓝]|翻盘)');
 			console.log(reg);
 			const r = str2.match(reg);
 			if (r) {
@@ -139,7 +139,7 @@ export class Func401 implements IFuncOrigin {
 				} else if (r[1] === '蓝' || r[1] === '右') { // 押右
 					thisScript.regionClick([thisOperator[2].oper[1]]);
 
-				} else if (r[1] === '翻盘' && thisScript.getOcrDetector()) {// 押翻盘
+				} else if (r[1] === '翻盘' && thisScript.getOcrDetector()) { // 押翻盘
 					const realTimeBmpLeft = thisScript.findText('.+', 0, thisOperator[5].oper[0], '包含');
 					const realTimeBmpRight = thisScript.findText('.+', 0, thisOperator[5].oper[1], '包含');
 					if (realTimeBmpLeft.length != 0 && realTimeBmpRight.length != 0) {
