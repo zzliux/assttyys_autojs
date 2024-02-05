@@ -136,7 +136,6 @@ export class Func401 implements IFuncOrigin {
 
 			// 该规则目前是面灵气喵的固定规则，其他的up还得再看看怎么搞
 			const reg = new RegExp(nextH + ':00.+?([左右红蓝]|翻盘)');
-			console.log(reg);
 			const r = str2.match(reg);
 			if (r) {
 				if (r[1] === '红' || r[1] === '左') { // 押左
