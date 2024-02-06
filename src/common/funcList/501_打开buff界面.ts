@@ -31,10 +31,12 @@ export class Func501 implements IFuncOrigin {
 	}, {
 		// 组队界面
 		desc: [1280, 720,
-			[[center, 642, 3, 0x101011],
+			[
+				[center, 642, 3, 0x101011],
 				[left, 42, 38, 0xf7e8aa],
 				[center, 641, 52, 0x080c0a],
-				[center, 648, 571, 0x422c29]]
+				[center, 648, 571, 0x422c29]
+			]
 		],
 		oper: [
 			[center, 1280, 720, 799, 38, 828, 76, 1500]

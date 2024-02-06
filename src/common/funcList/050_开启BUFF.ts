@@ -14,7 +14,7 @@ export class Func050 implements IFuncOrigin {
 			name: 'scheme_switch_enabled',
 			desc: '是否启用',
 			type: 'switch',
-			default: true,
+			default: false,
 		}, {
 			name: 'next_scheme',
 			desc: '下一个方案',

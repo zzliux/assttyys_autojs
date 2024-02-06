@@ -16,11 +16,6 @@ export class Func320 implements IFuncOrigin {
 			desc: '账号个数(同个账号的ios端和安卓端要分开算)',
 			type: 'text',
 			default: '0',
-		}, {
-			name: 'day',
-			desc: '星期567不进入',
-			type: 'switch',
-			default: 'true',
 		}
 			// , {
 			// 	name: 'xiajian_scheme',

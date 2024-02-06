@@ -242,6 +242,20 @@ const ScheduleDefaultList: JobOptions[] = [
 		config: {
 			scheme: '定时任务-启动游戏-金币妖怪',
 		}
+	},
+	{
+		id: 18,
+		name: '对弈竞猜',
+		desc: '对弈竞猜',
+		checked: false,
+		lastRunTime: null,
+		nextDate: null,
+		repeatMode: 3,
+		interval: '0 50 11,13,15,17,19,21,23 * * ? *',
+		level: '10',
+		config: {
+			scheme: '定时任务-启动游戏-对弈竞猜',
+		}
 	}
 ];
 
