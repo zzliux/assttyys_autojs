@@ -927,6 +927,23 @@ const SchemeList: IScheme[] = [
 		id: 100,
 		schemeName: '缘结趣游',
 		list: [0, 24, 319],
+	},
+	{
+		id: 102,
+		schemeName: '定时任务-启动游戏-对弈竞猜',
+		star: true,
+		groupName: '定时任务',
+		list: [1, 2, 3, 503, 993],
+		config: {
+			'993': {
+				area: '',
+				is_shutdown_the_game_before: true,
+				next_scheme: '对弈竞猜',
+			},
+			'503': {
+				afterCountOper: '不进行任何操作',
+			},
+		},
 	}, {
 		id: 101,
 		schemeName: '对弈竞猜',
@@ -937,40 +954,6 @@ const SchemeList: IScheme[] = [
 			}
 		},
 	},
-	// , {
-	// 	id: 102,
-	// 	schemeName: '活动_破晓之时',
-	// 	list: [0, 1, 2, 3, 24, 317],
-	// 	groupName: '活动',
-	// 	star: true,
-	// 	config: {
-	// 		'0': { // key为功能的ID（1表示准备）
-	// 			jspd_enabled_longtime_nodo: true,
-	// 			jspd_times_longtime_nodo: 3,
-	// 		}
-	// 	},
-	// }
-	// , {
-	//   id: 102,
-	//   schemeName: '活动_守缘合战',
-	//   list: [0, 1, 2, 3, 24, 133],
-	//   star: true,
-	// }
-	// , {
-	//     id: 101,
-	//     groupName: '活动',
-	//     schemeName: '银之绮都_妖塔燃战',
-	//     star: true,
-	//     list: [0, 1, 2, 3, 128]
-	// }
-	// , {
-	//     id: 102,
-	//     groupName: '活动',
-	//     schemeName: '夏日游园会_消消乐',
-	//     star: true,
-	//     list: [0, 3, 129, 130],
-	//     commonConfig: { multiColorSimilar: 95 }
-	// }
 	// 完整demo
 	// , {
 	//     id: 2,

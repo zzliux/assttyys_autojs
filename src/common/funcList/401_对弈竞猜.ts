@@ -157,20 +157,20 @@ export class Func401 implements IFuncOrigin {
 						}
 					}
 				}
+				// 押注确认
+				thisScript.regionClick([thisOperator[2].oper[2]]);
+				thisScript.regionClick([thisOperator[2].oper[3]]);
+				thisScript.regionClick([thisOperator[2].oper[3]]);
+				thisScript.regionClick([thisOperator[2].oper[4]]);
+				thisScript.myToast(`根据${thisconf.follow_whose}选择押${r[1]}`);
+				thisScript.doPush(thisScript, { text: `根据${thisconf.follow_whose}选择押${r[1]}`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+				thisScript.stop();
+				sleep(3000);
 			} else {
 				thisScript.myToast(`获取${thisconf.follow_whose}押注信息失败，1分钟后再次获取`);
 				thisScript.doPush(thisScript, { text: `获取${thisconf.follow_whose}押注信息失败，1分钟后再次获取`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 				sleep(60000);
 			}
-			// 押注确认
-			thisScript.regionClick([thisOperator[2].oper[2]]);
-			thisScript.regionClick([thisOperator[2].oper[3]]);
-			thisScript.regionClick([thisOperator[2].oper[3]]);
-			thisScript.regionClick([thisOperator[2].oper[4]]);
-			thisScript.myToast(`根据${thisconf.follow_whose}选择押${r[1]}`);
-			thisScript.doPush(thisScript, { text: `根据${thisconf.follow_whose}选择押${r[1]}`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-			thisScript.stop();
-			sleep(3000);
 		}
 		return false;
 	}
