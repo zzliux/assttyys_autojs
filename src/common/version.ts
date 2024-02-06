@@ -1016,6 +1016,9 @@ export const versionList = [{
 优化：经验妖怪、金币妖怪组队的ocr识别；
 优化：开启buff、关闭buff的默认配置，开启buff默认不切换方案，关闭buff下一个方案默认值为返回庭院；
 `
+}, {
+	version: '20240205_01',
+	desc: '适配1.7.66+的游戏客户端发布正式'
 }];
 
 export default versionList[versionList.length - 1].version;
