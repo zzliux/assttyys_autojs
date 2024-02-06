@@ -349,11 +349,11 @@ export class Func518 implements IFuncOrigin {
 			desc: [1280, 720,
 				[
 					[left, 86, 653, 0xeff1eb],
-					[left, 99, 631, 0x33221d],
+					[left, 90, 652, 0xeeede7],
 					[left, 156, 173, 0xd4c4b3],
 					[left, 175, 134, 0xdbb291],
 					[right, 1120, 624, 0xf4b25f],
-					[center, 737, 63, 0x6b4231],
+					[center, 718, 67, 0x5c3a19],
 				],
 			],
 			oper: [
@@ -367,11 +367,10 @@ export class Func518 implements IFuncOrigin {
 				[
 					[center, 495, 104, 0xcbbdaa],
 					[left, 228, 127, 0xd4ab89],
-					[left, 96, 549, 0xffce7d],
 					[left, 183, 646, 0x301c18],
-					[left, 90, 573, 0xfdd37d],
-					[right, 1208, 584, 0x664128],
 					[right, 1125, 616, 0xf4b25f],
+					[left, 96, 549, 0xffce7d],
+					[left, 90, 573, 0xfdd37d],
 				],
 			],
 			oper: [
@@ -385,9 +384,8 @@ export class Func518 implements IFuncOrigin {
 					[center, 495, 104, 0xcbbdaa],
 					[left, 228, 127, 0xd4ab89],
 					[left, 183, 646, 0x301c18],
-					[right, 1208, 584, 0x664128],
 					[right, 1125, 616, 0xf4b25f],
-					[left, 109, 589, 0xeed581],
+					[left, 157, 584, 0xd4c6b4],
 				],
 			],
 			oper: [
@@ -670,7 +668,7 @@ export class Func518 implements IFuncOrigin {
 					},
 				],
 			}) &&
-      thisScript.global.daily_collection !== 'store'
+			thisScript.global.daily_collection !== 'store'
 		) {
 			return thisScript.oper({
 				id: 518,
@@ -760,6 +758,19 @@ export class Func518 implements IFuncOrigin {
 		if (
 			thisScript.oper({
 				id: 518,
+				name: '友情点已领取',
+				operator: [
+					thisOperator[26], //  友情点已领取 关闭弹窗
+				],
+			})
+		) {
+			thisScript.global.daily_collection = 'store';
+			return true;
+		}
+
+		if (
+			thisScript.oper({
+				id: 518,
 				name: '检测_签到_每日奖励_寮包',
 				operator: [
 					thisOperator[10],
@@ -769,8 +780,8 @@ export class Func518 implements IFuncOrigin {
 					thisOperator[15],
 					thisOperator[17],
 					thisOperator[19],
-					thisOperator[24], //  检测_好友弹窗
 					thisOperator[25], //  领取友情点
+					thisOperator[24], //  检测_好友弹窗
 					thisOperator[27], //  检测_吉闻_有一键祝福
 					thisOperator[28], //  一键祝福弹窗
 					thisOperator[29], //  无祝福
@@ -789,19 +800,6 @@ export class Func518 implements IFuncOrigin {
 		if (
 			thisScript.oper({
 				id: 518,
-				name: '友情点已领取',
-				operator: [
-					thisOperator[26], //  友情点已领取 关闭弹窗
-				],
-			})
-		) {
-			thisScript.global.daily_collection = 'store';
-			return true;
-		}
-
-		if (
-			thisScript.oper({
-				id: 518,
 				name: '检测_商店_礼包屋_推荐页签',
 				operator: [thisOperator[32]],
 			})
@@ -813,7 +811,7 @@ export class Func518 implements IFuncOrigin {
 					name: '检测_商店_推荐页签_每日领取',
 					operator: [thisOperator[36]],
 				}) ||
-        thisScript.global.checked_yard_count >= 3
+				thisScript.global.checked_yard_count >= 3
 			) {
 				thisScript.global.checked_yard_count = 0;
 				thisScript.global.daily_collection = 'courtyard';
