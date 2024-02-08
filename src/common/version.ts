@@ -1019,6 +1019,9 @@ export const versionList = [{
 }, {
 	version: '20240205_01',
 	desc: '适配1.7.66+的游戏客户端发布正式'
+}, {
+	version: '20240208_01',
+	desc: '修复：道馆适配问题'
 }];
 
 export default versionList[versionList.length - 1].version;
