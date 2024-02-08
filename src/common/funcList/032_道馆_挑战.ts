@@ -53,14 +53,15 @@ export class Func032 implements IFuncOrigin {
 			]
 		]
 	}, { // 3 检测_攻打进度页
-		desc: [1280, 720,
+		desc: [
+			1280, 720,
 			[
-				[center, 451, 479, 0xc0714a],
 				[center, 476, 485, 0xd2c1c1],
 				[center, 424, 494, 0xca8642],
 				[center, 605, 278, 0xf8f3e0],
 				[center, 556, 274, 0xf7f2df],
-				[center, 636, 448, 0xf8f3e0]
+				[center, 636, 448, 0xf8f3e0],
+				[center, 461, 485, 0xbe2b1f],
 			]
 		]
 	}];
