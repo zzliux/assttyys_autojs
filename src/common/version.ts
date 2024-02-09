@@ -1022,6 +1022,10 @@ export const versionList = [{
 }, {
 	version: '20240208_01',
 	desc: '修复：道馆适配问题'
+}, {
+	version: '20240210_01',
+	desc: `龙年大吉！
+优化: 401庭院进入对弈竞猜的取色与逻辑`
 }];
 
 export default versionList[versionList.length - 1].version;

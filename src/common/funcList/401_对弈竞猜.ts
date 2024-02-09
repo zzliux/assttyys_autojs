@@ -94,7 +94,13 @@ export class Func401 implements IFuncOrigin {
 			name: '庭院内',
 			operator: [thisOperator[0], thisOperator[1]]
 		})) {
-			let point = thisScript.findMultiColor('对弈竞猜');
+			let point = null;
+			let cnt = 3;
+			while (cnt-- > 0 && !point) {
+				sleep(80);
+				thisScript.keepScreen(true);
+				point = thisScript.findMultiColor('对弈竞猜');
+			}
 			if (!point) {
 				point = thisScript.findMultiColor('右边侧栏下一页图标');
 			}
@@ -105,9 +111,10 @@ export class Func401 implements IFuncOrigin {
 					point.y - 5,
 					point.x + 5,
 					point.y + 5,
-					1200
+					200
 				]];
 				thisScript.regionClick(oper);
+				sleep(1400);
 				return true;
 			}
 		}

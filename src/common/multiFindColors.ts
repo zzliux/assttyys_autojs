@@ -2950,7 +2950,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
 
 	},
 	'对弈竞猜': {
-		region: [center, 1280, 720, 1146, 191, 1268, 328],
+		region: [center, 1280, 720, 1169, 143, 1253, 456],
 		desc: [[
 			1280, 720,
 			[
@@ -2960,6 +2960,16 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				[right, 1218, 252, 0xffffff],
 				[right, 1208, 278, 0xd8e3ba],
 				[right, 1206, 241, 0xe09d1f],
+			]
+		], [
+			1280, 720,
+			[
+				[right, 1201, 415, 0x72151c],
+				[right, 1219, 403, 0xffffff],
+				[right, 1193, 397, 0xe3a129],
+				[right, 1212, 423, 0xd34053],
+				[right, 1222, 431, 0xd2cdc8],
+				[right, 1187, 413, 0x6cb623],
 			]
 		]]
 	}
