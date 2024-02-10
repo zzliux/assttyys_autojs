@@ -170,6 +170,8 @@ export class Func401 implements IFuncOrigin {
 				thisScript.regionClick([thisOperator[2].oper[3]]);
 				thisScript.regionClick([thisOperator[2].oper[4]]);
 				thisScript.myToast(`根据${thisconf.follow_whose}选择押${r[1]}`);
+				// 推送的时候更新截图
+				thisScript.keepScreen();
 				thisScript.doPush(thisScript, { text: `根据${thisconf.follow_whose}选择押${r[1]}`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 				thisScript.stop();
 				sleep(3000);
