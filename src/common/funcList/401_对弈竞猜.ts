@@ -43,6 +43,7 @@ export class Func401 implements IFuncOrigin {
 			[center, 1280, 720, 835, 510, 890, 565, 1000], // 三十万
 			[center, 1280, 720, 1007, 416, 1109, 494, 1000], // 押注
 			[center, 1280, 720, 682, 408, 832, 448, 1000], // 押注确认
+			[left, 1280, 720, 25, 9, 74, 55, 2000], // 完了之后返回上一级（庭院）
 		]
 	}, { // 3 竞猜成功
 		desc: [
@@ -79,7 +80,6 @@ export class Func401 implements IFuncOrigin {
 			[center, 1280, 720, 112, 536, 238, 571, 100], // 左区域
 			[center, 1280, 720, 1090, 537, 1220, 574, 100], // 右区域
 		]
-
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
@@ -169,9 +169,10 @@ export class Func401 implements IFuncOrigin {
 				thisScript.regionClick([thisOperator[2].oper[3]]);
 				thisScript.regionClick([thisOperator[2].oper[3]]);
 				thisScript.regionClick([thisOperator[2].oper[4]]);
-				thisScript.myToast(`根据${thisconf.follow_whose}选择押${r[1]}`);
 				// 推送的时候更新截图
 				thisScript.keepScreen();
+				thisScript.regionClick([thisOperator[2].oper[5]]); // 更新截图后返回庭院
+				thisScript.myToast(`根据${thisconf.follow_whose}选择押${r[1]}`);
 				thisScript.doPush(thisScript, { text: `根据${thisconf.follow_whose}选择押${r[1]}`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 				thisScript.stop();
 				sleep(3000);
