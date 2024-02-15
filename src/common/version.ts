@@ -1026,6 +1026,9 @@ export const versionList = [{
 	version: '20240210_01',
 	desc: `龙年大吉！
 优化: 401庭院进入对弈竞猜的取色与逻辑`
+}, {
+	version: '20240215_01',
+	desc: '修复: 对弈竞猜图标倒计时后查找不到的问题'
 }];
 
 export default versionList[versionList.length - 1].version;
