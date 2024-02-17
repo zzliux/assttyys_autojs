@@ -1029,6 +1029,10 @@ export const versionList = [{
 }, {
 	version: '20240215_01',
 	desc: '修复: 对弈竞猜图标倒计时后查找不到的问题'
+}, {
+	version: '20240217_01',
+	desc: `优化：悬赏出现寮公告后不影响识别；
+优化：993调整为10秒内脚本自身未执行任何操作才重启关联应用`
 }];
 
 export default versionList[versionList.length - 1].version;

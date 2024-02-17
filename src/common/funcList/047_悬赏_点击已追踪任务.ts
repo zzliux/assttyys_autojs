@@ -47,6 +47,16 @@ export class Func047 implements IFuncOrigin {
 			[center, 1280, 720, 29, 461, 115, 467, 1],
 			[center, 1280, 720, 25, 174, 105, 178, 1]
 		]
+	}, {
+		desc: [
+			1280, 720,
+			[
+				[left, 5, 133, 0x4e3934],
+				[left, 40, 133, 0x44302a],
+				[left, 71, 133, 0x432e29],
+				[left, 87, 133, 0x432e29],
+			]
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
@@ -55,10 +65,14 @@ export class Func047 implements IFuncOrigin {
 				desc: thisOperator[0].desc
 			}]
 		})) {
-			const suspension = thisScript.findMultiColor('探索界面_检测左边是否有追踪任务的悬浮列表') || null;
+			const suspension = thisScript.oper({
+				name: '悬赏_探索界面_判断是否有悬赏',
+				operator: [thisOperator[2]]
+			}); // thisScript.findMultiColor('探索界面_检测左边是否有追踪任务的悬浮列表') || null;
+
 			const point = thisScript.findMultiColor('悬赏_已追踪任务') || null;
 			const thisconf = thisScript.scheme.config['47'];
-			if (suspension != null) {
+			if (suspension) {
 				// 如果有悬浮列表
 				if (point != null) {
 					const oper = [
