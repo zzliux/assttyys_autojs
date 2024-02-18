@@ -23,7 +23,12 @@ export class Func030 implements IFuncOrigin {
 					type: 'list',
 					data: ['名士', '四段', '五段', '九段'],
 					default: '名士',
-				},
+				}, {
+					name: 'isKnowledgePvP',
+					desc: '是否名仕局',
+					type: 'switch',
+					default: false,
+				}
 			],
 		},
 	];
@@ -35,9 +40,7 @@ export class Func030 implements IFuncOrigin {
 		},
 		{
 			// 1 有段位保护
-			desc: [
-				1280,
-				720,
+			desc: [1280, 720,
 				[
 					// [left, 37, 25, 0xf6e6a7],  // 图裂识别容错
 					[left, 207, 26, 0x583716],
@@ -52,9 +55,7 @@ export class Func030 implements IFuncOrigin {
 		},
 		{
 			// 2 有裂痕的段位保护
-			desc: [
-				1280,
-				720,
+			desc: [1280, 720,
 				[
 					// [left, 37, 25, 0xf6e6a7],  // 图裂识别容错
 					[left, 207, 26, 0x583716],
@@ -70,9 +71,7 @@ export class Func030 implements IFuncOrigin {
 		},
 		{
 			// 3 段位上升
-			desc: [
-				1280,
-				720,
+			desc: [1280, 720,
 				[
 					[center, 424, 329, 0xaa8957],
 					[center, 579, 298, 0xe6d8a9],
@@ -105,9 +104,7 @@ export class Func030 implements IFuncOrigin {
 		},
 		{
 			// 5,斗技界面
-			desc: [
-				1280,
-				720,
+			desc: [1280, 720,
 				[
 					// [left, 36, 28, 0xf5eaab],  // 图裂识别容错
 					[left, 221, 28, 0x583716],
@@ -118,9 +115,7 @@ export class Func030 implements IFuncOrigin {
 		},
 		{
 			// 6,五段
-			desc: [
-				1280,
-				720,
+			desc: [1280, 720,
 				[
 					[center, 598, 344, 0x201b1c],
 					[center, 635, 366, 0xcfcecb],
@@ -132,9 +127,7 @@ export class Func030 implements IFuncOrigin {
 		},
 		{
 			// 7,九段
-			desc: [
-				1280,
-				720,
+			desc: [1280, 720,
 				[
 					[center, 598, 344, 0xcf9432],
 					[center, 638, 354, 0x8e5b9f],
@@ -146,9 +139,7 @@ export class Func030 implements IFuncOrigin {
 		},
 		{
 			// 8,四段
-			desc: [
-				1280,
-				720,
+			desc: [1280, 720,
 				[
 					[center, 599, 342, 0x695649],
 					[center, 639, 366, 0xd1cecb],
@@ -160,9 +151,7 @@ export class Func030 implements IFuncOrigin {
 		},
 		{
 			// 9,八段
-			desc: [
-				1280,
-				720,
+			desc: [1280, 720,
 				[
 					[center, 601, 345, 0x200204],
 					[center, 638, 370, 0xbd7924],
@@ -174,9 +163,7 @@ export class Func030 implements IFuncOrigin {
 		},
 		{
 			// 10 适配支持逐原之争
-			desc: [
-				1280,
-				720,
+			desc: [1280, 720,
 				[
 					[left, 36, 24, 0xf7eaab],
 					[right, 1208, 81, 0x90685c],
@@ -187,6 +174,39 @@ export class Func030 implements IFuncOrigin {
 				],
 			],
 			oper: [[center, 1280, 720, 1153, 572, 1243, 663, 1000]],
+		},
+		{ // 11 名仕斗技界面
+			desc: [
+				1280, 720,
+				[
+					[left, 36, 24, 0xf7eaab],
+					[right, 1228, 621, 0xd6c095],
+					[right, 1203, 602, 0x3b1e0d],
+					[center, 798, 40, 0x593615],
+					[right, 1210, 80, 0x7b654f],
+					[left, 212, 624, 0xe67a59],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 1145, 575, 1245, 664, 1000],
+			]
+		},
+		{ // 12 禁选界面
+			desc: [
+				1280, 720,
+				[
+					[left, 29, 23, 0xd6c4a1],
+					[center, 610, 63, 0x1b0e0b],
+					[left, 80, 406, 0x533628],
+					[right, 1202, 409, 0x533628],
+					[right, 1132, 568, 0x000000],
+					[right, 1181, 601, 0x000000],
+					[right, 1168, 619, 0xe8ca96],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 1100, 523, 1241, 653, 1000],
+			]
 		},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -297,6 +317,17 @@ export class Func030 implements IFuncOrigin {
 			})
 		) {
 			return true;
+		}
+
+		if (thisconf.isKnowledgePvP) {
+			return thisScript.oper({
+				id: 30,
+				name: '斗技_杂项_名仕',
+				operator: [
+					thisOperator[11],
+					thisOperator[12],
+				],
+			})
 		}
 	}
 }
