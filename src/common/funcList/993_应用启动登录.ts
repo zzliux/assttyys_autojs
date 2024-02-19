@@ -447,7 +447,7 @@ export class Func993 implements IFuncOrigin {
 		// 10秒钟未执行过任何操作，杀应用重启
 		if (
 			thisScript.global.app_is_open_flag !== 99 &&
-			(new Date()).getTime() - Math.max(lastFuncDateTime?.getTime(), currentDate?.getTime(), runDate?.getTime()) > 10000
+			(new Date()).getTime() - Math.max(lastFuncDateTime?.getTime() || 0, currentDate?.getTime() || 0, runDate?.getTime() || 0) > 10000
 		) {
 			if (thisConf.is_shutdown_the_game_before) {
 				// $shell(`am force-stop ${packageName}`, true);
