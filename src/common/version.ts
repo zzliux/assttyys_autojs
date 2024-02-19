@@ -1033,6 +1033,9 @@ export const versionList = [{
 	version: '20240217_01',
 	desc: `优化：悬赏出现寮公告后不影响识别；
 优化：993调整为10秒内脚本自身未执行任何操作才重启关联应用`
+}, {
+	version: '20240219_01',
+	desc: '优化：308适配秘闻挑战开启按钮'
 }];
 
 export default versionList[versionList.length - 1].version;
