@@ -408,6 +408,24 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 				[center, 797, 177, 0xd3a965]
 			]
 		]
+	},
+	'寮神社界面': {
+		desc: [
+			1280, 720,
+			[
+				[right, 1176, 171, 0x7f543d],
+				[right, 1219, 173, 0x7a5138],
+				[right, 1220, 292, 0x7b5239],
+				[right, 1176, 288, 0x855640],
+				[right, 1179, 414, 0xbb764a],
+				[right, 1218, 418, 0xbb7148],
+				[right, 1178, 540, 0x81553f],
+				[right, 1221, 536, 0x7c533a],
+				[right, 1200, 662, 0x791f1f],
+				[left, 46, 36, 0xeddc9a],
+				[left, 50, 20, 0xecd391],
+			]
+		]
 	}
 };
 
