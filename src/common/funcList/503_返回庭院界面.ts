@@ -301,6 +301,11 @@ export class Func503 implements IFuncOrigin {
 		oper: [
 			[left, 1280, 720, 22, 7, 75, 54, 2000]
 		]
+	}, { // 25 寮信息界面
+		desc: '寮信息界面',
+		oper: [
+			[left, 1280, 720, 22, 7, 75, 54, 2000]
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['503'];
@@ -312,7 +317,7 @@ export class Func503 implements IFuncOrigin {
 				thisOperator[7], thisOperator[10], thisOperator[11],
 				thisOperator[14], thisOperator[15], thisOperator[17],
 				thisOperator[18], thisOperator[19], thisOperator[20],
-				thisOperator[21], thisOperator[24],
+				thisOperator[21], thisOperator[24], thisOperator[25],
 			]
 		})) {
 			return true;
