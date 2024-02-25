@@ -1,4 +1,4 @@
-import { similarity } from '@/common/tool';
+import { nlpSimilarity } from '@/common/toolAuto';
 import drawFloaty from '../drawFloaty';
 import { IOcr, IOcrDetector, OcrResult } from './IOcr';
 
@@ -180,13 +180,13 @@ export class YunxiOcr implements IOcr {
 			}));
 		} else /* if (textMatchMode === '模糊') */{
 			res = ocrResult.filter(item => {
-				item.similar = similarity(item.label, text);
-				return (item.similar as number) >= (similarityRatio || .5)
+				item.similar = nlpSimilarity(item.label, text);
+				return (item.similar as number) >= (similarityRatio || .7)
 			});
 			res.sort((a, b) => (b.similar || 0) - (a.similar || 0));
 			toDraw = ocrResult.map(item => ({
 				region: [item.points[0].x, item.points[0].y, item.points[2].x, item.points[2].y],
-				color: item.similar as number >= (similarityRatio || .5) ? 'green' : 'red',
+				color: item.similar as number >= (similarityRatio || .7) ? 'green' : 'red',
 				text: item.label + ':' + item.confidence
 			}));
 		}

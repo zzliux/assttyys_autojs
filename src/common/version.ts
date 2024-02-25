@@ -1036,6 +1036,9 @@ export const versionList = [{
 }, {
 	version: '20240219_01',
 	desc: '优化：308适配秘闻挑战开启按钮'
+}, {
+	version: '20240225_01',
+	desc: '优化：ocr找字的模糊匹配相似度修改为0.7(原0.5)，且字符串对比的相似度加入了字形计算因子'
 }];
 
 export default versionList[versionList.length - 1].version;
