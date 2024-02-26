@@ -62,7 +62,8 @@ export class Func304 implements IFuncOrigin {
 		]
 	}, { // 1,绘卷进度
 		desc: [1280, 720,
-			[[left, 43, 50, 0x393735],
+			[
+				[left, 43, 50, 0x393735],
 				[center, 637, 64, 0x946d52],
 				[center, 604, 652, 0x946d52],
 				[right, 1161, 67, 0xefcbce]]
@@ -105,7 +106,11 @@ export class Func304 implements IFuncOrigin {
 				let realTimeText = realTimeBmp[0].label;
 				realTimeText = realTimeText.replace('%', '0');
 				realTimeText = realTimeText.replace('-', '.');
-				const realTimeNum = Number(realTimeText.replace('%', '0'));
+				if (realTimeText === '100.CO0') {
+					console.log('ocr识别为：100.CO%，转换为100');
+					realTimeText = '100';
+				}
+				const realTimeNum = Number(realTimeText);
 				console.log(`ocr识别为：[${realTimeNum}]`);
 				if (!isNaN(realTimeNum) && (realTimeNum as number) > (thisconf.progress as number)) {
 					thisScript.doPush(thisScript, { text: '绘卷进度已达到目标进度。', before() { thisScript.myToast('绘卷进度已达到目标进度，正在上传数据'); } });

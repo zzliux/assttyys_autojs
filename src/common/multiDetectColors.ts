@@ -7,14 +7,14 @@ const right = 2;
 
 const multiDetectColors: IMultiDetectColorsOrigin = {
 	'准备界面_未准备': {
-		desc: [1280, 720,
+		desc: [
+			1280, 720,
 			[
-				[right, 1124, 698, 0xd0af86],
 				[right, 1240, 702, 0xcead83],
-				[right, 1191, 596, 0xa46149],
 				[right, 1182, 586, 0xf7e6c3],
 				[center, 360, 699, 0x241818],
-				[left, 32, 23, 0xdbb48b]
+				[left, 32, 23, 0xdbb48b],
+				[right, 1122, 698, 0xddbb8f],
 			]
 		]
 	},
@@ -49,12 +49,12 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 			[
 				[left, 34, 23, 0xdbb48b],
 				[left, 106, 24, 0xcfa375],
-				[right, 1270, 132, 0x48371f],
 				[right, 1270, 700, 0x241919],
-				[left, 46, 671, 0xefc9ab],
-				[left, 81, 670, 0xf0caac],
+				[right, 1270, 130, 0x422f1d],
+				[left, 48, 670, 0xeec8ab],
+				[left, 82, 669, 0xf0caac],
 			]
-		]
+		],
 	},
 	'退出结算_左上角贪吃鬼': {
 		desc: [1280, 720,
@@ -294,16 +294,6 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 			]
 		]
 	},
-	'庭院未打开菜单': {
-		desc: [1280, 720,
-			[
-				[right, 1211, 606, 0x885f46],
-				[right, 1205, 624, 0x987777],
-				[right, 1208, 646, 0xaf4949],
-				[right, 1175, 680, 0xb08e7d]
-			]
-		]
-	},
 	'探索章节_挑战': {
 		desc: [
 			1280, 720,
@@ -356,9 +346,7 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 		],
 	},
 	'页面是否为庭院_菜单已展开_另一种图标_御祝图标_只支持默认庭院皮肤与默认装饰': {
-		desc: [
-			1280,
-			720,
+		desc: [1280, 720,
 			[
 				[right, 1223, 662, 0xdbcbc7],
 				[right, 1155, 41, 0xd7b188],
@@ -368,9 +356,7 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 		],
 	},
 	'庭院已打开菜单_另另外一种图标': {
-		desc: [
-			1280,
-			720,
+		desc: [1280, 720,
 			[
 				[right, 1223, 658, 0xdac9c4],
 				[right, 1155, 41, 0xd6b187],
@@ -378,6 +364,83 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 				[center, 683, 657, 0xda6b29],
 			],
 		],
+	},
+	'BUFF界面': {
+		desc: [
+			1280, 720,
+			[
+				[center, 342, 529, 0x828270],
+				[center, 938, 533, 0x6b715d],
+				[center, 371, 128, 0xd4c6bc],
+				[center, 908, 145, 0xddd0c6],
+				[center, 407, 534, 0x8e8b79],
+				[center, 371, 510, 0x868471],
+				[center, 913, 149, 0xddd0c6],
+			]
+		]
+	},
+	'斗技主界面': {
+		desc: [1280, 720,
+			[
+				[right, 1210, 82, 0x725942],
+				[right, 1208, 178, 0x745845],
+				[right, 1202, 574, 0xd8c8a7],
+				[right, 1179, 602, 0x3c1e0c],
+				[right, 1202, 643, 0xe2cfa0],
+				[right, 1180, 624, 0xe2cca1],
+				[right, 1189, 626, 0x3c1e0c],
+				[center, 843, 290, 0x6e3926], // 阵容按钮
+				[center, 832, 292, 0xfaeabe], // 阵容按钮
+			],
+		],
+	},
+	'秘闻挑战开启': {
+		desc: [1280, 720,
+			[
+				[center, 379, 112, 0xf2edca],
+				[center, 372, 131, 0xe4cd9c],
+				[center, 371, 183, 0xc9a763],
+				[center, 531, 130, 0xe3caa1],
+				[center, 526, 180, 0xd3a863],
+				[center, 803, 150, 0xdbba80],
+				[center, 658, 156, 0xdcba77],
+				[center, 894, 186, 0xcda863],
+				[center, 797, 177, 0xd3a965]
+			]
+		]
+	},
+	'寮神社界面': {
+		desc: [
+			1280, 720,
+			[
+				[right, 1176, 171, 0x7f543d],
+				[right, 1219, 173, 0x7a5138],
+				[right, 1220, 292, 0x7b5239],
+				[right, 1176, 288, 0x855640],
+				[right, 1179, 414, 0xbb764a],
+				[right, 1218, 418, 0xbb7148],
+				[right, 1178, 540, 0x81553f],
+				[right, 1221, 536, 0x7c533a],
+				[right, 1200, 662, 0x791f1f],
+				[left, 46, 36, 0xeddc9a],
+				[left, 50, 20, 0xecd391],
+			]
+		]
+	},
+	'寮信息界面': {
+		desc: [
+			1280, 720,
+			[
+				[center, 733, 38, 0x593716],
+				[right, 1212, 171, 0xcc7c49],
+				[right, 1218, 279, 0x81533d],
+				[right, 1213, 415, 0x744a36],
+				[right, 1216, 536, 0x764b37],
+				[center, 130, 637, 0xb2a390],
+				[center, 979, 663, 0x29140e],
+				[center, 1090, 663, 0xbbb190],
+			]
+		]
 	}
 };
 

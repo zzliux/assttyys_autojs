@@ -27,15 +27,14 @@ export class Func316 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[left, 20, 43, 0xf0f6f7],
-				[left, 252, 38, 0x583716],
-				[left, 46, 656, 0xcdbb90],
-				[left, 36, 648, 0xc9b285],
-				[left, 201, 673, 0xc2ba90],
-				[right, 1126, 652, 0xf5e3b3],
-				[right, 1172, 623, 0xe5e1b9],
+				[left, 25, 43, 0xe8eaf5],
+				[left, 250, 40, 0x593716],
+				[left, 155, 50, 0xf8f3e0],
+				[left, 54, 648, 0x272d42],
+				[right, 1175, 598, 0x58452f],
+				[right, 1186, 626, 0x5b4730],
 			]
-		]
+		],
 	}, { // 1 点固定事件位置
 		oper: [
 			[center, 1280, 720, 625, 474, 734, 544, 0], // 位置:2位
@@ -46,33 +45,34 @@ export class Func316 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[left, 20, 43, 0xf0f6f7],
-				[left, 252, 38, 0x583716],
-				[left, 46, 656, 0xcdbb90],
-				[left, 36, 648, 0xc9b285],
-				[left, 201, 673, 0xc2ba90],
+				[left, 25, 43, 0xe8eaf5],
+				[left, 250, 40, 0x593716],
+				[left, 155, 50, 0xf8f3e0],
+				[left, 54, 648, 0x272d42],
 				[right, 1148, 648, 0xebebeb],
 				[right, 1150, 614, 0x505050],
 			]
 		]
-	}, { // 3  鏖战
+	}, { // 3 已适配66 鏖战
 		desc: [
 			1280, 720,
 			[
 				[left, 73, 532, 0x676a83],
 				[left, 121, 577, 0x636882],
-				[left, 115, 26, 0xf2eedc],
 				[left, 120, 40, 0xf8f3e0],
 				[left, 116, 48, 0xf8f3e0],
 				[left, 138, 41, 0xf8f3e0],
 				[left, 150, 35, 0xf8f3e0],
+				[center, 440, 264, 0x242a36],
+				[center, 745, 293, 0x242934],
+				[left, 252, 42, 0x593716],
 			]
 		],
 		oper: [
 			[center, 1280, 720, 785, 291, 909, 378, 500], // 右怪
-			[center, 1280, 720, 1120, 597, 1231, 682, 500], //  挑战
+			[center, 1280, 720, 1120, 597, 1231, 682, 500], // 挑战
 		]
-	}, { // 4  buff抉择
+	}, { // 4 buff抉择
 		desc: [
 			1280, 720,
 			[
@@ -86,22 +86,22 @@ export class Func316 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1034, 578, 1137, 621, 500], // 万相之赐
 		]
-	}, { // 5  混沌_宝箱
+	}, { // 5 已适配66 混沌_宝箱
 		desc: [
 			1280, 720,
 			[
 				[right, 1162, 637, 0x53606d],
 				[right, 1177, 642, 0xc7b38e],
 				[right, 1194, 633, 0xc4b08b],
-				[right, 1216, 636, 0xd9c9a6],
 				[right, 1217, 615, 0x36404a],
-				[right, 1190, 684, 0xb6b69c],
+				[right, 1202, 634, 0xd7c7a2],
+				[right, 1197, 606, 0x2d3643],
 			]
 		],
 		oper: [
 			[center, 1280, 720, 1160, 609, 1227, 659, 1000],
 		]
-	}, { // 6  混沌_怪物
+	}, { // 6 混沌_怪物
 		desc: [
 			1280, 720,
 			[
@@ -116,37 +116,42 @@ export class Func316 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 680, 292, 801, 379, 500],
-			[center, 1280, 720, 1120, 597, 1231, 682, 500], //  挑战
+			[center, 1280, 720, 1120, 597, 1231, 682, 500], // 挑战
 		]
-	}, { // 7  商店
+	}, { // 7 已适配66 商店
 		desc: [
 			1280, 720,
 			[
 				[center, 558, 628, 0xbdab86],
 				[right, 1210, 606, 0x505d66],
 				[right, 1199, 306, 0x333848],
-				[right, 1217, 288, 0x9e9fb1],
-				[right, 1211, 166, 0xe1d7c0],
+				[right, 1212, 335, 0x4f556c],
+				[right, 1219, 198, 0xe5dfd5],
 			]
+		],
+		oper: [
+			[center, 1280, 720, 678, 409, 837, 453, 500], // 确认购买
+			[center, 1280, 720, 1174, 588, 1241, 649, 500], // 退出商店
 		]
-	}, { // 8  星之屿
+	}, { // 8 已适配66 星之屿
 		desc: [
 			1280, 720,
 			[
 				[left, 73, 532, 0x676a83],
 				[left, 121, 577, 0x636882],
-				[left, 110, 31, 0xf8f3e0],
 				[left, 121, 31, 0xf8f3e0],
 				[left, 116, 41, 0xf8f3e0],
 				[left, 111, 52, 0xf8f3e0],
 				[left, 122, 52, 0xf8f3e0],
+				[center, 748, 253, 0x7b3a3a],
+				[center, 422, 257, 0x222731],
 			]
 		],
 		oper: [
 			[center, 1280, 720, 456, 274, 566, 347, 500],
-			[center, 1280, 720, 1120, 597, 1231, 682, 500], //  挑战
+			[center, 1280, 720, 1120, 597, 1231, 682, 500], // 挑战
 		]
-	}, { // 9  开始_开启
+	}, { // 9 开始_开启
 		desc: [
 			1280, 720,
 			[
@@ -162,7 +167,7 @@ export class Func316 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1128, 606, 1217, 664, 1000],
 		]
-	}, { // 10  开始_确定
+	}, { // 10 开始_确定
 		desc: [
 			1280, 720,
 			[
@@ -176,15 +181,15 @@ export class Func316 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1145, 597, 1228, 662, 1000],
 		]
-	}, { // 11  开始_开启_60体
+	}, { // 11 已适配66 开始_开启_60体
 		desc: [
 			1280, 720,
 			[
 				[right, 1166, 588, 0xfff4bd],
 				[right, 1181, 585, 0xfff5bd],
 				[right, 1182, 623, 0xffe9ad],
-				[right, 1162, 619, 0xffe5ad],
-				[right, 1208, 625, 0xf6efbd],
+				[right, 1181, 604, 0xfff0b5],
+				[right, 1206, 623, 0xfff5be],
 				[right, 1205, 653, 0xffe3ab],
 				[right, 1171, 641, 0x404e62],
 			]
@@ -192,7 +197,7 @@ export class Func316 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1142, 595, 1230, 659, 1000],
 		]
-	}, { // 12  开始_选择柔风
+	}, { // 12 开始_选择柔风
 		desc: [
 			1280, 720,
 			[
@@ -208,7 +213,7 @@ export class Func316 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 268, 574, 374, 617, 1000],
 		]
-	}, { // 13  确认奖励
+	}, { // 13 确认奖励
 		desc: [1280, 720,
 			[
 				[center, 554, 142, 0xfede96],
@@ -221,30 +226,32 @@ export class Func316 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 913, 129, 1245, 648, 500],
 		]
-	}, { // 14  神秘_转换
+	}, { // 14 已适配66 神秘_转换
 		desc: [
 			1280, 720,
 			[
 				[center, 913, 678, 0x39607c],
-				[right, 1117, 668, 0x62503c],
 				[center, 871, 230, 0x2ee1e5],
-				[center, 935, 74, 0xc6c4b7],
-				[center, 912, 72, 0xd9d5c6],
+				[right, 1137, 665, 0x2a1d11],
+				[center, 947, 65, 0x1d212c],
+				[right, 1008, 84, 0x171b23],
+				[left, 26, 39, 0xf3f4fb],
+				[left, 265, 40, 0x593716],
 			]
 		],
 		oper: [
 			[center, 1280, 720, 17, 20, 52, 58, 500],
 		]
-	}, { // 15  神秘_仿造
+	}, { // 15 神秘_仿造
 		desc: [
 			1280, 720,
 			[
-				[right, 1221, 254, 0xd8d2cf],
+				[right, 1227, 240, 0xdfd5be],
+				[right, 1215, 276, 0xe0dbda],
+				[right, 1212, 392, 0x343849],
 				[right, 1225, 387, 0x323746],
 				[right, 1182, 640, 0x8c7e60],
 				[right, 1230, 668, 0x8c7e60],
-				[right, 1247, 242, 0xd7cfc3],
-				[right, 1246, 383, 0x282e3e],
 			]
 		],
 		oper: [
@@ -253,7 +260,7 @@ export class Func316 implements IFuncOrigin {
 			[center, 1280, 720, 677, 406, 838, 456, 500],
 			[center, 1280, 720, 17, 20, 52, 58, 500],
 		]
-	}, { // 16  结束
+	}, { // 16 结束
 		desc: [
 			1280, 720,
 			[
@@ -269,38 +276,38 @@ export class Func316 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 517, 657, 1007, 710, 500],
 		]
-	}, { // 17  十位数的5
+	}, { // 17 十位数的5
 		desc: [
 			1280, 720,
 			[
 				[right, 1211, 657, 0xbbab7f],
 				[right, 1225, 633, 0xb8a67d],
-				[right, 1199, 31, 0xb5b0a4],
-				[right, 1199, 36, 0xb8b2a7],
-				[right, 1205, 38, 0x9d988f],
-				[right, 1201, 44, 0xb0aba0],
-				[right, 1203, 30, 0x8c887e],
+				[right, 1200, 45, 0x99948a],
+				[right, 1204, 43, 0x9a968b],
+				[right, 1204, 40, 0x7d7870],
+				[right, 1198, 35, 0xb2ada1],
+				[right, 1198, 33, 0xb2ada1],
 			]
 		],
 		oper: [
 			[center, 1280, 720, 1191, 621, 1243, 676, 500],
 		]
-	}, { // 18  十位数的0
+	}, { // 18 十位数的0
 		desc: [
 			1280, 720,
 			[
 				[right, 1211, 657, 0xbbab7f],
 				[right, 1225, 633, 0xb8a67d],
-				[right, 1198, 36, 0xa49e93],
-				[right, 1206, 37, 0x948f85],
-				[right, 1202, 30, 0x767169],
-				[right, 1202, 44, 0x817d74],
+				[right, 1197, 39, 0xa7a296],
+				[right, 1205, 39, 0x8f8a80],
+				[right, 1205, 37, 0x8f8b80],
+				[right, 1197, 36, 0xa7a297],
 			]
 		],
 		oper: [
 			[center, 1280, 720, 1191, 621, 1243, 676, 500],
 		]
-	}, { // 19  boss_挑战
+	}, { // 19 boss_挑战
 		desc: [
 			1280, 720,
 			[
@@ -315,18 +322,16 @@ export class Func316 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1120, 586, 1229, 678, 500],
 		]
-	}, { // 20  boss_跳过
+	}, { // 20 已适配66 boss_跳过
 		desc: [
 			1280, 720,
 			[
-				[right, 1143, 17, 0x223c61],
-				[right, 1134, 31, 0x244869],
-				[right, 1147, 31, 0xd1dced],
-				[right, 1165, 31, 0x264882],
-				[right, 1171, 30, 0xbccae0],
-				[right, 1181, 26, 0xe0e1f0],
-				[right, 1194, 29, 0x294174],
-				[right, 1211, 31, 0xd0ddee],
+				[right, 1203, 30, 0xd9e7f4],
+				[right, 1203, 34, 0xc8dbf1],
+				[right, 1207, 32, 0xd0e4f5],
+				[right, 1220, 32, 0xc8d4ec],
+				[right, 1211, 32, 0xccdaec],
+				[right, 1202, 36, 0xb7ccec],
 			]
 		],
 		oper: [
@@ -349,7 +354,21 @@ export class Func316 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 671, 419, 794, 467, 1000],
 		]
-	}, { // 22  商店确认购买
+	}, { // 22 双倍 点取消
+		desc: [
+			1280, 720,
+			[
+				[center, 516, 443, 0xdf6851],
+				[center, 686, 446, 0xf3b25e],
+				[center, 667, 367, 0xf7e51d],
+				[center, 879, 288, 0x282d38],
+				[center, 434, 306, 0x272b33],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 491, 419, 615, 471, 1000],
+		]
+	}, { // 23 商店确认购买
 		desc: [
 			1280, 720,
 			[
@@ -365,7 +384,7 @@ export class Func316 implements IFuncOrigin {
 			[center, 1280, 720, 678, 409, 837, 453, 500], // 确认购买
 			[center, 1280, 720, 1174, 588, 1241, 649, 500], // 退出商店
 		]
-	}, { // 23  御神经验
+	}, { // 24 御神经验
 		desc: [
 			1280, 720,
 			[
@@ -380,22 +399,37 @@ export class Func316 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 872, 146, 1197, 539, 500],
 		]
-	}, { // 24  低级buff
+	}, { // 25 低级buff
 		desc: [
 			1280, 720,
 			[
-				[left, 171, 219, 0x4c8dda],
-				[left, 262, 216, 0x5aa1f6],
-				[center, 445, 216, 0x4685cc],
-				[center, 535, 216, 0x589ef1],
-				[center, 719, 218, 0x4a89d4],
-				[center, 809, 215, 0x5aa2f6],
+				[left, 217, 171, 0x4786d8],
+				[center, 490, 171, 0x4687d9],
+				[center, 762, 172, 0x4583d0],
+				[left, 263, 216, 0x5ba0f2],
+				[center, 536, 216, 0x5aa1f3],
+				[center, 809, 216, 0x5aa1f5],
 			]
+		]
+	}, { // 26 万象赐福取消购买
+		desc: [
+			1280, 720,
+			[
+				[center, 434, 109, 0x94561e],
+				[center, 814, 104, 0x9c5520],
+				[center, 623, 565, 0xe9371f],
+				[center, 695, 564, 0xf3b25e],
+				[center, 783, 456, 0xffdda4],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 939, 148, 1179, 281, 1000],
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 
 		if (thisScript.oper({
+			id: 316,
 			name: '六道椒图_选事件',
 			operator: [{ desc: thisOperator[0].desc }, { desc: thisOperator[2].desc }]
 		})) {
@@ -408,7 +442,7 @@ export class Func316 implements IFuncOrigin {
 
 		if (thisScript.oper({
 			id: 316,
-			name: '六道椒图_选buff',
+			name: '六道椒图_事件购买buff',
 			operator: [{ desc: thisOperator[4].desc }]
 		})) {
 			if (thisScript.global.d6RouFeng < 5) {//  柔风达标前选buff
@@ -429,7 +463,7 @@ export class Func316 implements IFuncOrigin {
 				else if (thisScript.oper({
 					id: 316,
 					name: '六道椒图_低级buff',
-					operator: [thisOperator[24]]
+					operator: [thisOperator[25]]
 				})) {//  有低级buff_选择跳过
 					thisScript.regionClick([thisOperator[4].oper[0]]);
 					return true;
@@ -438,7 +472,7 @@ export class Func316 implements IFuncOrigin {
 					operator: [thisOperator[17], thisOperator[18]]
 				})) {
 					return true;
-				} else {// 无升级按钮无刷新_选择跳过
+				} else { // 无升级按钮无刷新_选择跳过
 					thisScript.regionClick([thisOperator[4].oper[0]]);
 					return true;
 				}
@@ -452,10 +486,10 @@ export class Func316 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 316,
 			name: '六道椒图_商店确认购买',
-			operator: [{ desc: thisOperator[22].desc }]
+			operator: [{ desc: thisOperator[23].desc }]
 		})) {
-			thisScript.regionClick([thisOperator[22].oper[0]]);
-			thisScript.regionClick([thisOperator[22].oper[1]]);
+			thisScript.regionClick([thisOperator[23].oper[0]]);
+			thisScript.regionClick([thisOperator[23].oper[1]]);
 			thisScript.global.d6RouFeng++;
 			log('当前柔风数量:' + thisScript.global.d6RouFeng);
 			return true;
@@ -476,20 +510,19 @@ export class Func316 implements IFuncOrigin {
 						500
 					]];
 					thisScript.regionClick(oper);
-					thisScript.regionClick([thisOperator[22].oper[1]]);
+					thisScript.regionClick([thisOperator[23].oper[1]]);
 				} else {
-					thisScript.regionClick([thisOperator[22].oper[1]]);
+					thisScript.regionClick([thisOperator[23].oper[1]]);
 					log('当前柔风数量:' + thisScript.global.d6RouFeng);
 					return true;
 				}
 			} else {
-				thisScript.regionClick([thisOperator[22].oper[1]]);
-				log('当前柔风数量:' + thisScript.global.d6RouFeng);
+				thisScript.regionClick([thisOperator[23].oper[1]]);
+				console.log('当前柔风数量:' + thisScript.global.d6RouFeng);
 				return true;
 			}
-
-
 		}
+
 
 		if (thisScript.oper({
 			id: 316,
@@ -510,7 +543,7 @@ export class Func316 implements IFuncOrigin {
 				thisOperator[3], thisOperator[5], thisOperator[6], thisOperator[8],
 				thisOperator[9], thisOperator[10], thisOperator[12], thisOperator[13],
 				thisOperator[14], thisOperator[19], thisOperator[20], thisOperator[21],
-				thisOperator[23],
+				thisOperator[22], thisOperator[26],
 			]
 		})) {
 			return true;

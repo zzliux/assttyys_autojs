@@ -50,8 +50,8 @@ export class Script {
      * 成功执行：多点比色成功或operatorFun返回为true
      */
 	runTimes: Record<string, number>;
-	lastFunc: any; // 最后执行成功的funcId
-	global: globalRootType;// 每次启动重置为空对象，用于功能里面存变量
+	lastFunc: number; // 最后执行成功的funcId
+	global: globalRootType; // 每次启动重置为空对象，用于功能里面存变量
 
 	/**
      * @description 方案运行中参数
@@ -762,8 +762,14 @@ export class Script {
 				let res = null;
 				if (typeof item.desc === 'string') {
 					res = helperBridge.helper.CompareColorEx(this.multiDetectColors[item.desc].desc, commonConfig.colorSimilar, false);
+					if (res) {
+						console.log(`desc_sucess：[string] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} id:${id}`);
+					}
 				} else if (item.desc.length > 3) {
 					res = helperBridge.helper.CompareColorEx(item.desc, commonConfig.colorSimilar, false);
+					if (res) {
+						console.log(`desc_sucess：[array] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} id:${id}`);
+					}
 				}
 				if (res) return true;
 			}

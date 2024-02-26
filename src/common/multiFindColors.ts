@@ -542,7 +542,22 @@ const multiFindColors: IMultiFindColorsOrigin = {
 					[center, 339, 187, 0xd7c9ba],
 					[center, 578, 243, 0xed7610]
 				]
-			]
+			],
+			[1280, 720,
+				[
+					[center, 595, 458, 0x928c8d],
+					[center, 587, 458, 0x928c8d],
+					[center, 579, 458, 0xf28a2a],
+					[center, 571, 458, 0xf28b2b],
+					[center, 563, 458, 0xf28c2b],
+					[center, 555, 458, 0xf28c2b],
+					[center, 555, 440, 0xe8cbaf],
+					[center, 589, 441, 0xd68672],
+					[center, 578, 424, 0xca9580],
+					[center, 596, 407, 0xd6c9b9],
+					[center, 340, 459, 0xd6c9b9],
+				]
+			],
 		]
 	},
 	'结界卡_太鼓3星': {
@@ -764,130 +779,6 @@ const multiFindColors: IMultiFindColorsOrigin = {
 					[center, 590, 662, 0x7a7a7a],
 					[center, 604, 662, 0x777777],
 					[center, 551, 507, 0xded8c6]
-				]
-			]
-		]
-	},
-	'绿标_标识_A': {
-		region: [center, 1280, 720, 0, 156, 1279, 650],
-		similar: 90,
-		desc: [
-			[1280, 720,
-				[
-					[center, 59, 308, 0xdcc3b2],
-					[center, 59, 314, 0x8c372f],
-					[center, 59, 319, 0x8b362e],
-					[center, 53, 308, 0x89372d],
-					[center, 64, 308, 0x89372c],
-					[center, 63, 319, 0xd0ae9f],
-					[center, 54, 319, 0xdabeaf]
-				]
-			],
-			[1280, 720,
-				[
-					[center, 59, 308, 0xdcc2b0],
-					[center, 63, 308, 0x8c3423],
-					[center, 55, 308, 0x8c3423],
-					[center, 59, 314, 0x8f3426],
-					[center, 59, 320, 0x8c3424],
-					[center, 54, 319, 0xdabeac],
-					[center, 63, 319, 0xd1ad9c]
-				]
-			],
-			[1280, 720,
-				[
-					[center, 855, 252, 0xdfc7b6],
-					[center, 850, 251, 0x97443b],
-					[center, 860, 251, 0x97423b],
-					[center, 855, 257, 0x97413b],
-					[center, 855, 264, 0x99453d],
-					[center, 850, 263, 0xdabaac],
-					[center, 859, 262, 0xd8b7a9]
-				]
-			],
-			[1280, 720,
-				[
-					[center, 1132, 363, 0xdbc4b0],
-					[center, 1127, 363, 0x863a27],
-					[center, 1138, 363, 0x873f2b],
-					[center, 1132, 369, 0x873827],
-					[center, 1132, 375, 0x853321],
-					[center, 1128, 374, 0xcaa593],
-					[center, 1137, 374, 0xd2b4a2]
-				]
-			],
-			[1280, 720,
-				[
-					[center, 1132, 364, 0xc7aa97],
-					[center, 1126, 364, 0x8a4f3e],
-					[center, 1138, 364, 0x8d5441],
-					[center, 1132, 369, 0x8c4d3e],
-					[center, 1132, 374, 0x894637],
-					[center, 1129, 371, 0xd9c3b2],
-					[center, 1136, 371, 0xd0b5a4]
-				]
-			],
-			[1280, 720,
-				[
-					[center, 370, 304, 0xdbc6b3],
-					[center, 365, 303, 0x8a432f],
-					[center, 375, 303, 0x894330],
-					[center, 370, 310, 0x883b2b],
-					[center, 370, 316, 0x853321],
-					[center, 366, 314, 0xcead9b],
-					[center, 374, 313, 0xcba796]
-				]
-			],
-			[1280, 720,
-				[
-					[center, 370, 304, 0xdbc4b2],
-					[center, 365, 304, 0x843d30],
-					[center, 375, 304, 0x863828],
-					[center, 370, 310, 0x88382b],
-					[center, 370, 314, 0x873629],
-					[center, 366, 314, 0xceae9d],
-					[center, 374, 313, 0xcba898]
-				]
-			],
-			[1280, 720,
-				[
-					[center, 237, 352, 0x8d4139],
-					[center, 244, 353, 0xddc7b7],
-					[center, 244, 365, 0x8b423b],
-					[center, 240, 362, 0xd0b2a4],
-					[center, 248, 362, 0xd1b3a5],
-					[center, 244, 358, 0x8b403b],
-					[center, 249, 354, 0x8b4139]
-				]
-			],
-			[1280, 720,
-				[
-					[center, 239, 352, 0xb15946],
-					[center, 244, 353, 0xe6ccb9],
-					[center, 240, 363, 0xd5b0a0],
-					[center, 248, 362, 0xd8b6a5],
-					[center, 244, 363, 0x9e473a],
-					[center, 249, 353, 0xae5644]
-				]
-			],
-			[1280, 720,
-				[
-					[center, 841, 339, 0x8f3522],
-					[center, 847, 339, 0xdcc1ad],
-					[center, 852, 339, 0x882c17],
-					[center, 847, 351, 0x892d18],
-					[center, 851, 348, 0xd4b29f],
-					[center, 844, 348, 0xb77e6b]
-				]
-			],
-			[1280, 720,
-				[
-					[center, 461, 337, 0x903220],
-					[center, 467, 337, 0xddc1ae],
-					[center, 472, 337, 0x943522],
-					[center, 467, 348, 0x92301e],
-					[center, 463, 347, 0xd6b19f],
-					[center, 472, 347, 0xd5b09e]
 				]
 			]
 		]
@@ -1199,72 +1090,14 @@ const multiFindColors: IMultiFindColorsOrigin = {
 	'悬赏_宝箱': {
 		region: [left, 1280, 720, 0, 92, 155, 557],
 		desc: [
-			[1280, 720,
+			[
+				1280, 720,
 				[
-					[left, 52, 343, 0xbd3925],
-					[left, 68, 342, 0xd4531d],
-					[left, 85, 342, 0x662608],
-					[left, 62, 355, 0xe6b02a],
-					[left, 50, 362, 0xdb9722],
-					[left, 74, 363, 0xc78523],
-					[left, 64, 369, 0x862b14],
-					[left, 85, 367, 0x400606]
-				]
-			],
-			[1280, 720,
-				[
-					[left, 55, 339, 0xbd431b],
-					[left, 70, 338, 0x652e26],
-					[left, 84, 339, 0xc15a22],
-					[left, 50, 352, 0xa52a1d],
-					[left, 61, 351, 0xecbb2e],
-					[left, 80, 354, 0x500806],
-					[left, 52, 362, 0xd58f1f],
-					[left, 65, 362, 0x891111],
-					[left, 82, 362, 0x70270e]
-				]
-			],
-			[1280, 720,
-				[
-					[left, 50, 342, 0xcf4f35],
-					[left, 61, 341, 0xb64b1d],
-					[left, 73, 341, 0xca4516],
-					[left, 84, 344, 0x773c11],
-					[left, 55, 354, 0x9b1617],
-					[left, 64, 354, 0xc78529],
-					[left, 83, 353, 0x530707],
-					[left, 79, 365, 0x4b0909]
-				]
-			],
-			// 旧
-			[1280, 720,
-				[
-					[left, 70, 337, 0x51252b],
-					[left, 50, 345, 0xb52c19],
-					[left, 85, 344, 0x7f401c],
-					[left, 60, 354, 0xe2aa30],
-					[left, 51, 360, 0xd18d22],
-					[left, 74, 366, 0xe19d26]
-				]
-			],
-			[1280, 720,
-				[
-					[left, 58, 192, 0xbd461f],
-					[left, 70, 194, 0x4a2839],
-					[left, 85, 194, 0xb25922],
-					[left, 59, 206, 0xe0a927],
-					[left, 49, 216, 0xcc8827],
-					[left, 86, 215, 0x682412],
-					[left, 78, 227, 0x460202]
-				]
-			],
-			[1280, 720,
-				[
-					[left, 71, 433, 0x3e1c29],
-					[left, 63, 449, 0xc08d16],
-					[left, 51, 456, 0xd08c1e],
-					[left, 73, 461, 0xd7931c],
-					[left, 83, 458, 0x551105]
+					[left, 53, 347, 0xb02a18],
+					[left, 84, 349, 0x4e0306],
+					[left, 83, 358, 0x4c0605],
+					[left, 73, 349, 0xb7381a],
+					[left, 72, 365, 0xc78521],
 				]
 			]
 		]
@@ -1272,85 +1105,20 @@ const multiFindColors: IMultiFindColorsOrigin = {
 	'悬赏_已追踪任务': {
 		region: [left, 1280, 720, 0, 112, 153, 555],
 		desc: [
-			[1280, 720,
+			[
+				1280, 720,
 				[
-					[left, 30, 239, 0xd2cdbd],
-					[left, 24, 247, 0x2f2b26],
-					[left, 109, 243, 0xc5c1b1],
-					[left, 102, 259, 0x282521],
-					[left, 84, 256, 0xeee9d6],
-					[left, 130, 268, 0x2b313d],
-					[left, 130, 277, 0x2a303a]
-				]
-			],
-			[1280, 720,
-				[
-					[left, 30, 384, 0xc7c3b3],
-					[left, 56, 383, 0xd2cebd],
-					[left, 61, 402, 0xe0dcca],
-					[left, 84, 402, 0xd8d3c2],
-					[left, 102, 402, 0xbab6a7],
-					[left, 130, 414, 0x272e3d],
-					[left, 130, 422, 0x29303d]
-				]
-			],
-			[1280, 720,
-				[
-					[left, 31, 245, 0xbfbaab],
-					[left, 57, 245, 0x656259],
-					[left, 75, 245, 0xa8a496],
-					[left, 108, 246, 0xd7d2c2],
-					[left, 51, 257, 0xa6a295],
-					[left, 84, 255, 0xe6e1d0],
-					[left, 103, 253, 0xbcb8a9],
-					[left, 130, 270, 0x28303d],
-					[left, 130, 276, 0x28303d]
-				]
-			],
-			// 旧
-			[1280, 720,
-				[
-					[left, 130, 418, 0x28303c],
-					[left, 36, 383, 0x989488],
-					[left, 60, 402, 0xa9a598],
-					[left, 83, 400, 0x79756b],
-					[left, 102, 402, 0xbab6a7]
-				]
-			],
-			[1280, 720,
-				[
-					[left, 36, 238, 0x9d998d],
-					[left, 26, 256, 0x8b877c],
-					[left, 61, 259, 0x33302b],
-					[left, 49, 259, 0x292622],
-					[left, 83, 256, 0xeae5d3],
-					[left, 84, 238, 0xafaa9d],
-					[left, 103, 259, 0x312e2a],
-					[left, 128, 272, 0x27303c]
-				]
-			],
-			[1280, 720,
-				[
-					[left, 85, 406, 0xb2904c],
-					[left, 70, 405, 0x7a5529],
-					[left, 56, 405, 0x6d4e21],
-					[left, 28, 431, 0x472e2e],
-					[left, 106, 429, 0x493131],
-					[left, 106, 467, 0x312020],
-					[left, 26, 462, 0x352424],
-					[left, 128, 513, 0x27303c]
-				]
-			],
-			[1280, 720,
-				[
-					[left, 85, 406, 0xbc5993a],
-					[left, 70, 405, 0x7a5529],
-					[left, 56, 405, 0x6d4e21],
-					[left, 28, 431, 0x472e2e],
-					[left, 106, 429, 0x493131],
-					[left, 106, 467, 0x312020],
-					[left, 26, 462, 0x352424],
-					[left, 128, 513, 0x27303c]
+					[left, 24, 160, 0xe9dabf],
+					[left, 129, 273, 0x28303d],
+					[left, 113, 215, 0x3c2826],
+					[left, 124, 203, 0xddcba9],
+					[left, 122, 237, 0xe2d2b2],
+					[left, 121, 249, 0xe4d4b4],
+					[left, 120, 262, 0xe4d4b5],
+					[left, 107, 231, 0x2a1c1b],
+					[left, 128, 276, 0x28303c],
+					[left, 128, 269, 0x262d3b],
+					[left, 120, 276, 0x272f3b],
 				]
 			]
 		]
@@ -1403,7 +1171,6 @@ const multiFindColors: IMultiFindColorsOrigin = {
 					[right, 1192, 328, 0xfef2c2]
 				]
 			],
-
 		]
 	},
 	'探索界面_检测左边是否有追踪任务的悬浮列表': {
@@ -1492,7 +1259,6 @@ const multiFindColors: IMultiFindColorsOrigin = {
 					[center, 854, 654, 0x9f5018]
 				]
 			]
-
 		]
 	},
 	'悬赏_庭院检测悬赏图标': {
@@ -1544,6 +1310,15 @@ const multiFindColors: IMultiFindColorsOrigin = {
 					[left, 273, 342, 0xfcefba],
 					[left, 265, 348, 0xe8d4ab],
 					[left, 263, 354, 0xf4deb2]
+				]
+			],
+			[1280, 720, // 封
+				[
+					[center, 249, 346, 0xffe9c7],
+					[center, 262, 348, 0xfee8bd],
+					[center, 253, 372, 0xb39c77],
+					[center, 264, 373, 0xa52e2c],
+					[center, 274, 341, 0xd4d4d4],
 				]
 			],
 			// 旧
@@ -2032,9 +1807,9 @@ const multiFindColors: IMultiFindColorsOrigin = {
 			],
 			[1280, 720,
 				[
-					[left, 217, 345, 0x4bbd71],
-					[left, 217, 343, 0x49b56e],
-					[left, 218, 344, 0x62cf87],
+					[left, 217, 342, 0x36b866],
+					[left, 220, 342, 0x71ec9b],
+					[left, 219, 346, 0x6ddb92],
 				]
 			]
 		]
@@ -2182,7 +1957,6 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				]
 			],
 			// TODO 三个时的中
-
 		]
 	},
 	'六道萤草_混沌': {
@@ -2748,7 +2522,8 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		region: [right, 1280, 720, 12, 358, 824, 574],
 		desc: [
 			[1280, 720,
-				[[left, 246, 523, 0xf9b274],
+				[
+					[left, 246, 523, 0xf9b274],
 					[left, 259, 525, 0xf9b274],
 					[left, 257, 529, 0x272420],
 					[left, 258, 538, 0xf8b173],
@@ -3156,6 +2931,67 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				[center, 27, 51, 0x2b1f12],
 				[center, 51, 47, 0x2c2013],
 				[center, 40, 9, 0x291a10],
+			]
+		]]
+	},
+	'右边侧栏下一页图标': {
+		region: [center, 1280, 720, 1150, 145, 1261, 513],
+		desc: [[
+			1280, 720,
+			[
+				[right, 1204, 479, 0xfde894],
+				[right, 1204, 483, 0xfde995],
+				[right, 1213, 486, 0xffe995],
+				[right, 1217, 471, 0xffea95],
+				[right, 1215, 467, 0xffe694],
+				[right, 1203, 464, 0xffec97],
+			]
+		]]
+
+	},
+	'对弈竞猜': {
+		region: [center, 1280, 720, 1169, 143, 1253, 456],
+		desc: [[
+			1280, 720,
+			[
+				[right, 1204, 263, 0x69121b],
+				[right, 1210, 256, 0xa5d42a],
+				[right, 1196, 252, 0xfefeff],
+				[right, 1218, 252, 0xffffff],
+				[right, 1208, 278, 0xd8e3ba],
+				[right, 1206, 241, 0xe09d1f],
+			]
+		], [
+			1280, 720,
+			[
+				[right, 1201, 415, 0x72151c],
+				[right, 1219, 403, 0xffffff],
+				[right, 1193, 397, 0xe3a129],
+				[right, 1212, 423, 0xd34053],
+				[right, 1222, 431, 0xd2cdc8],
+				[right, 1187, 413, 0x6cb623],
+			]
+		], [
+			1280, 720,
+			[
+				[right, 1201, 415, 0x75151f],
+				[right, 1219, 403, 0xe4e4e4],
+				[right, 1193, 397, 0xe3a129],
+				[right, 1212, 423, 0xcd414e],
+				[right, 1222, 431, 0xa4a19d],
+				[right, 1187, 413, 0x9bc467],
+			]
+		], [
+			1280, 720,
+			[
+				[center, 1195, 325, 0xf3f3f3],
+				[right, 1217, 325, 0xffffff],
+				[right, 1221, 335, 0xdc698c],
+				[right, 1250, 310, 0xd8d8c4],
+				[right, 1242, 315, 0xd2d0bd],
+				[right, 1209, 308, 0x110e0c],
+				[right, 1184, 315, 0xdbd4c6],
+				[right, 1185, 336, 0x67b61e],
 			]
 		]]
 	}

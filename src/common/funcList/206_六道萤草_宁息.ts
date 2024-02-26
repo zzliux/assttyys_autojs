@@ -9,10 +9,10 @@ export class Func206 implements IFuncOrigin {
 	id = 206;
 	name = '六道萤草_宁息';
 	operator: IFuncOperatorOrigin[] = [{
-		// 宁息
+		// 0 已适配66 宁息
 		desc: [1280, 720,
 			[
-				[right, 1214, 180, 0x274658],
+				[right, 1225, 189, 0xcfe7de],
 				[right, 1218, 251, 0x334f5b],
 				[right, 1221, 631, 0xdacaa9],
 				[left, 26, 42, 0xeaf2f2],

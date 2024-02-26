@@ -397,9 +397,6 @@ export class Func993 implements IFuncOrigin {
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['993'];
-		if (typeof thisScript.global.app_is_open_flag === 'undefined') {
-			thisScript.global.app_is_open_flag = 0;
-		}
 
 		if (thisScript.oper({
 			id: 993,
@@ -428,11 +425,8 @@ export class Func993 implements IFuncOrigin {
 			})
 		) {
 			// 做延时检测 防止登陆后的弹窗
-			if (
-				(thisScript.global.app_is_open_flag >= 3 &&
-					thisScript.global.checked_yard_count >= 10) ||
-				thisScript.global.app_is_open_flag < 3
-			) {
+			if (thisScript.global.checked_yard_count >= 10 ||
+				thisScript.global.app_is_open_flag === 0) {
 				thisScript.global.checked_yard_count = 0;
 				thisScript.rerun(thisConf.next_scheme);
 				sleep(3000);
@@ -448,9 +442,12 @@ export class Func993 implements IFuncOrigin {
 			}
 		}
 
+		const { lastFuncDateTime, currentDate, runDate } = thisScript;
+
+		// 10秒钟未执行过任何操作，杀应用重启
 		if (
-			thisScript.global.app_is_open_flag >= 3 &&
-			thisScript.global.app_is_open_flag !== 99
+			thisScript.global.app_is_open_flag !== 99 &&
+			(new Date()).getTime() - Math.max(lastFuncDateTime?.getTime() || 0, currentDate?.getTime() || 0, runDate?.getTime() || 0) > 10000
 		) {
 			if (thisConf.is_shutdown_the_game_before) {
 				// $shell(`am force-stop ${packageName}`, true);
@@ -460,9 +457,7 @@ export class Func993 implements IFuncOrigin {
 			thisScript.launchRelatedApp();
 			thisScript.global.game_area = '';
 			thisScript.global.app_is_open_flag = 99;
-		} else if (thisScript.global.app_is_open_flag < 3) {
-			sleep(2000);
-			thisScript.global.app_is_open_flag++;
+			return true;
 		}
 
 		if (

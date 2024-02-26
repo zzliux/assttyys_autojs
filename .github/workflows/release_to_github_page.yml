@@ -27,7 +27,7 @@ jobs:
         run: npm run build2
 
       - name: Clone Page
-        run: git clone https://github.com/zzliux/assttyys_autojs.git --branch dev_release --single-branch dev_release
+        run: git clone https://github.com/${{ github.repository }}.git --branch dev_release --single-branch dev_release
 
       - name: Pack
         run: node pack_dev_release.js ${{ env.BRANCH_NAME }}

@@ -46,11 +46,17 @@ export class Func306 implements IFuncOrigin {
 			desc: '下一个方案',
 			type: 'scheme',
 			default: '通用准备退出',
+		}, {
+			name: 'qilingmod',
+			desc: '契灵模式',
+			type: 'switch',
+			default: false,
 		}],
 	}];
 	operator: IFuncOperatorOrigin[] = [{ // 0,三号位
 		desc: [1280, 720,
-			[[center, 642, 3, 0x101011],
+			[
+				[center, 642, 3, 0x101011],
 				[left, 42, 38, 0xf7e8aa],
 				[center, 641, 52, 0x080c0a],
 				[center, 648, 571, 0x422c29],
@@ -61,7 +67,8 @@ export class Func306 implements IFuncOrigin {
 		]
 	}, { // 1,邀请界面
 		desc: [1280, 720,
-			[[center, 390, 570, 0xd6bead],
+			[
+				[center, 390, 570, 0xd6bead],
 				[center, 502, 574, 0xde6952],
 				[center, 638, 583, 0xd6bead],
 				[center, 776, 582, 0xf7b263]]
@@ -73,14 +80,16 @@ export class Func306 implements IFuncOrigin {
 		]
 	}, { // 2,组队界面
 		desc: [1280, 720,
-			[[center, 642, 3, 0x101011],
+			[
+				[center, 642, 3, 0x101011],
 				[left, 42, 38, 0xf7e8aa],
 				[center, 641, 52, 0x080c0a],
 				[center, 648, 571, 0x422c29]]
 		]
 	}, { // 3,组队挑战按钮
 		desc: [1280, 720,
-			[[left, 43, 37, 0xf5e6a8],
+			[
+				[left, 43, 37, 0xf5e6a8],
 				[right, 1177, 667, 0xd8b871],
 				[right, 1187, 679, 0xcda35d],
 				[right, 1188, 609, 0xf1e096],
@@ -89,6 +98,22 @@ export class Func306 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 448, 552, 562, 600, 1000], // 取消
+		]
+	}, { // 4 二号位
+		desc: [
+			1280, 720,
+			[
+				[center, 642, 3, 0x101011],
+				[left, 42, 38, 0xf7e8aa],
+				[center, 642, 266, 0xfffef8],
+				[center, 568, 427, 0x534a55],
+				[center, 722, 432, 0x554d56],
+				[center, 642, 302, 0xdccab3],
+			]
+		],
+		oper: [
+			[right, 1280, 720, 1192, 613, 1251, 677, 1000], // 点击挑战
+			[right, 1280, 720, 603, 223, 675, 278, 1000], // 点击二号位
 		]
 	}]
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -104,141 +129,161 @@ export class Func306 implements IFuncOrigin {
 			thisScript.global.team_up_lagTime = new Date();
 		}
 		team_up_lagTime = new Date();
-		// 开启后首次进入组队则邀请 或 停留组队界面超过10秒
+		// 开启后首次进入组队则邀请 或 停留组队界面超过15秒
 		if (team_up_Frist || team_up_lagTime.getTime() - thisScript.global.team_up_lagTime.getTime() > 15000) {
-			if (thisScript.oper({
-				name: '三号位',
-				operator: [thisOperator[0]]
+			// 契灵模式
+			if (thisConf.qilingmod && thisScript.oper({
+				name: '组队挑战契灵模式_判断是否邀请',
+				operator: [{ desc: thisOperator[3].desc }]
 			})) {
-				thisScript.global.team_up_Frist = false;
-				thisScript.global.team_up_lagTime = new Date();
-				thisScript.global.team_up_Time++;
-				if (team_up_Time < thisScript.global.team_up_Time) {
-					thisScript.doPush(thisScript, { text: '多次邀请未响应，或多次未识别到昵称，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-					thisScript.stop();
-					sleep(3000);
-					return;
-				}
+				thisScript.regionClick([thisOperator[4].oper[1]]);
+			} else {
+				// 普通模式
+				thisScript.oper({
+					name: '三号位',
+					operator: [thisOperator[0]]
+				})
 			}
+			thisScript.global.team_up_Frist = false;
+			thisScript.global.team_up_lagTime = new Date();
+			thisScript.global.team_up_Time++;
+			if (team_up_Time < thisScript.global.team_up_Time) {
+				thisScript.doPush(thisScript, { text: '多次邀请未响应，或多次未识别到昵称，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+				thisScript.stop();
+				sleep(3000);
+				return;
+			}
+			return true;
 		}
-
+		// 邀请界面_开始邀请好友
 		if (thisScript.oper({
 			name: '邀请界面',
 			operator: [{ desc: thisOperator[1].desc }]
-		})) {
-			if (thisScript.getOcrDetector()) {
-				const selectArea = thisScript.findText(thisConf.selectArea as string, 0, thisOperator[1].oper[0], '模糊');
-				if (selectArea.length === 0) {
-					console.log('找不到第一位（好友/跨区）按钮');
-					thisScript.regionClick([thisOperator[3].oper[0]]);
-					return false;
-				} else {
-					const p = {
-						x: (selectArea[0].points[0].x + selectArea[0].points[1].x) / 2,
-						y: (selectArea[0].points[0].y + selectArea[0].points[3].y) / 2,
-					}
-					const lx = p.x - 5;
-					const ly = p.y - 5;
-					const rx = p.x + 5;
-					const ry = p.y + 5;
-					const toClick = [
-						lx > 0 ? lx : 0,
-						ly > 0 ? ly : 0,
-						rx,
-						ry,
-						1000
-					];
-					thisScript.regionClick([toClick]);
-					thisScript.keepScreen();
+		}) && thisScript.getOcrDetector()) {
+			const selectArea = thisScript.findText(thisConf.selectArea as string, 0, thisOperator[1].oper[0], '模糊');
+			if (selectArea.length === 0) {
+				console.log('找不到第一位（好友/跨区）按钮');
+				thisScript.regionClick([thisOperator[3].oper[0]]);
+				return false;
+			} else {
+				const p = {
+					x: (selectArea[0].points[0].x + selectArea[0].points[1].x) / 2,
+					y: (selectArea[0].points[0].y + selectArea[0].points[3].y) / 2,
 				}
-				let result = thisScript.findText('.+', 0, thisOperator[1].oper[1], '包含');
-				if (result.length === 0) {
-					console.log('未识别到任何昵称');
-					thisScript.global.team_up_Time++;
-					return false;
-				} else {
-					let toClickRegion = null;
-					let toClickRegionTwo = null;
-					for (const i in result) {
-						console.log(`昵称历遍:${result[i].label}`)
+				const lx = p.x - 5;
+				const ly = p.y - 5;
+				const rx = p.x + 5;
+				const ry = p.y + 5;
+				const toClick = [
+					lx > 0 ? lx : 0,
+					ly > 0 ? ly : 0,
+					rx,
+					ry,
+					1000
+				];
+				thisScript.regionClick([toClick]);
+				thisScript.keepScreen();
+			}
+			let result = thisScript.findText('.+', 0, thisOperator[1].oper[1], '包含');
+			if (result.length === 0) {
+				console.log('未识别到任何昵称');
+				thisScript.global.team_up_Time++;
+				return false;
+			} else {
+				let toClickRegion = null;
+				let toClickRegionTwo = null;
+				for (const i in result) {
+					console.log(`昵称历遍:${result[i].label}`)
+				}
+				// 邀请里点击第一位好友
+				const findInvName = thisScript.findTextByOcrResult(thisConf.inviteName as string, result, '包含')
+				if (findInvName.length) {
+					toClickRegion = [
+						findInvName[0].points[0].x + 10,
+						findInvName[0].points[0].y,
+						findInvName[0].points[0].x + 50,
+						findInvName[0].points[0].y + 65,
+						1000,
+					]
+				}
+				if (toClickRegion === null) {
+					console.log(`未识别到第一位昵称:${thisConf.inviteName}`);
+				}
+				toClickRegion && thisScript.regionClick([toClickRegion]);
+
+				// 邀请里点击第二位好友
+				if (thisConf.secondPlayer) {
+					if (thisConf.selectArea != thisConf.selectAreaTwo) {
+						const selectAreaTwo = thisScript.findText(thisConf.selectAreaTwo as string, 0, thisOperator[1].oper[0], '模糊');
+						if (selectAreaTwo.length === 0) {
+							console.log('找不到第二位（好友/跨区）按钮');
+							thisScript.regionClick([thisOperator[3].oper[0]]);
+							return false;
+						} else {
+							const p = {
+								x: (selectAreaTwo[0].points[0].x + selectAreaTwo[0].points[1].x) / 2,
+								y: (selectAreaTwo[0].points[0].y + selectAreaTwo[0].points[3].y) / 2,
+							}
+							const lx = p.x - 5;
+							const ly = p.y - 5;
+							const rx = p.x + 5;
+							const ry = p.y + 5;
+							const toClick = [
+								lx > 0 ? lx : 0,
+								ly > 0 ? ly : 0,
+								rx,
+								ry,
+								1000
+							];
+							thisScript.regionClick([toClick]);
+							thisScript.keepScreen();
+							result = thisScript.findText('.+', 0, thisOperator[1].oper[1], '包含');
+						}
 					}
-					// 邀请里点击第一位好友
-					const findInvName = thisScript.findTextByOcrResult(thisConf.inviteName as string, result, '包含')
-					if (findInvName.length) {
-						toClickRegion = [
-							findInvName[0].points[0].x + 10,
-							findInvName[0].points[0].y,
-							findInvName[0].points[0].x + 50,
-							findInvName[0].points[0].y + 65,
+					const findInvNameTwo = thisScript.findTextByOcrResult(thisConf.inviteNameTwo as string, result, '包含')
+					if (findInvNameTwo.length) {
+						toClickRegionTwo = [
+							findInvNameTwo[0].points[0].x + 10,
+							findInvNameTwo[0].points[0].y,
+							findInvNameTwo[0].points[0].x + 50,
+							findInvNameTwo[0].points[0].y + 65,
 							1000,
 						]
 					}
-					if (toClickRegion === null) {
-						console.log(`未识别到第一位昵称:${thisConf.inviteName}`);
+					if (toClickRegionTwo === null) {
+						console.log(`未识别到第二位昵称:${thisConf.inviteNameTwo}`);
 					}
-					toClickRegion && thisScript.regionClick([toClickRegion]);
-
-					// 邀请里点击第二位好友
-					if (thisConf.secondPlayer) {
-						if (thisConf.selectArea != thisConf.selectAreaTwo) {
-							const selectAreaTwo = thisScript.findText(thisConf.selectAreaTwo as string, 0, thisOperator[1].oper[0], '模糊');
-							if (selectAreaTwo.length === 0) {
-								console.log('找不到第二位（好友/跨区）按钮');
-								thisScript.regionClick([thisOperator[3].oper[0]]);
-								return false;
-							} else {
-								const p = {
-									x: (selectAreaTwo[0].points[0].x + selectAreaTwo[0].points[1].x) / 2,
-									y: (selectAreaTwo[0].points[0].y + selectAreaTwo[0].points[3].y) / 2,
-								}
-								const lx = p.x - 5;
-								const ly = p.y - 5;
-								const rx = p.x + 5;
-								const ry = p.y + 5;
-								const toClick = [
-									lx > 0 ? lx : 0,
-									ly > 0 ? ly : 0,
-									rx,
-									ry,
-									1000
-								];
-								thisScript.regionClick([toClick]);
-								thisScript.keepScreen();
-								result = thisScript.findText('.+', 0, thisOperator[1].oper[1], '包含');
-							}
-						}
-						const findInvNameTwo = thisScript.findTextByOcrResult(thisConf.inviteNameTwo as string, result, '包含')
-						if (findInvNameTwo.length) {
-							toClickRegionTwo = [
-								findInvNameTwo[0].points[0].x + 10,
-								findInvNameTwo[0].points[0].y,
-								findInvNameTwo[0].points[0].x + 50,
-								findInvNameTwo[0].points[0].y + 65,
-								1000,
-							]
-						}
-						if (toClickRegionTwo === null) {
-							console.log(`未识别到第二位昵称:${thisConf.inviteNameTwo}`);
-						}
-						toClickRegionTwo && thisScript.regionClick([toClickRegionTwo]);
-					}
-					if (toClickRegion || toClickRegionTwo) {
-						return thisScript.oper({
-							id: 306,
-							name: '邀请按钮',
-							operator: [{
-								oper: [thisOperator[1].oper[2]]
-							}]
-						});
-					}
+					toClickRegionTwo && thisScript.regionClick([toClickRegionTwo]);
+				}
+				if (toClickRegion || toClickRegionTwo) {
+					return thisScript.oper({
+						id: 306,
+						name: '邀请按钮',
+						operator: [{
+							oper: [thisOperator[1].oper[2]]
+						}]
+					});
 				}
 			}
 		}
-
+		// 契灵模式_判断是否挑战
+		if (thisConf.qilingmod && thisScript.oper({
+			name: '组队挑战契灵模式_判断队友是否进入',
+			operator: [{ desc: thisOperator[3].desc }]
+		})) {
+			if (!thisScript.oper({
+				name: '二号位',
+				operator: [{ desc: thisOperator[4].desc }]
+			})) {
+				thisScript.regionClick([thisOperator[4].oper[0]]);
+			}
+			return true;
+		}
+		// 普通模式
 		if (thisScript.oper({
 			name: '组队挑战_判断',
 			operator: [{ desc: thisOperator[3].desc }]
-		}, 0)) {
+		})) {
 			if (thisConf && !thisConf.secondPlayer) {
 				thisScript.rerun(thisConf.next_scheme);
 				sleep(3000);

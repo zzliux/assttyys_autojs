@@ -33,17 +33,7 @@ export class Func312 implements IFuncOrigin {
 		}]
 	}]
 	operator: IFuncOperatorOrigin[] = [{
-		desc: [// 当前成绩
-			1280, 720,
-			[
-				[left, 73, 98, 0xdabe87],
-				[left, 95, 106, 0xe9d196],
-				[left, 117, 104, 0xdec38b],
-				[left, 144, 97, 0xe5cc92],
-				[left, 46, 28, 0xd8b38b],
-				[left, 178, 24, 0xd2b189],
-			]
-		],
+		desc: '战斗界面',
 		oper: [
 			[center, 1280, 720, 750, 420, 1279, 719, -1], // 右下角范围
 			[center, 1280, 720, 1166, 48, 1233, 81, -1], // 时间范围

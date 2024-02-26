@@ -1,6 +1,9 @@
 runtime.unloadDex('./assets/lib/scriptlib.dex');
 runtime.loadDex('./assets/lib/scriptlib.dex');
 
+runtime.unloadDex('./assets/lib/nlp-hanzi-similar-1.3.0.dex');
+runtime.loadDex('./assets/lib/nlp-hanzi-similar-1.3.0.dex');
+
 import core, { closeForeground, setSystemUiVisibility } from '@auto.pro/core'
 import { run } from '@auto.pro/webview'
 

@@ -23,6 +23,11 @@ export class Func313 implements IFuncOrigin {
 			type: 'list',
 			data: ['1 小黑', '2 茨球', '3 火灵', '4 镇墓兽'],
 			default: '4 镇墓兽'
+		}, {
+			name: 'team',
+			desc: '是否组队并且为组队队长（队员只需开启《组队乘客》方案）',
+			type: 'switch',
+			default: false
 		}]
 	},
 	{
@@ -55,18 +60,18 @@ export class Func313 implements IFuncOrigin {
 		}]
 	}]
 	operator: IFuncOperatorOrigin[] = [{
-		// 0 契灵界面
+		// 0 已适配66 契灵界面
 		desc: [
 			1280, 720,
 			[
-				[left, 44, 38, 0xf5e6a5],
-				[left, 133, 36, 0xf5f1e0],
-				[left, 177, 36, 0xf6f2e1],
-				[left, 222, 38, 0xf4f0df],
-				[left, 276, 34, 0xedc958],
-				[right, 1191, 485, 0x755bc7],
+				[right, 1238, 29, 0xd4ae83],
+				[right, 1200, 491, 0xddf0bf],
+				[left, 44, 39, 0xf6e7a7],
+				[left, 98, 39, 0x7a5b39],
+				[left, 170, 39, 0x5c4122],
+				[left, 269, 41, 0x593716],
 			]
-		]
+		],
 	}, {
 		// 1 追踪
 		desc: [
@@ -87,7 +92,7 @@ export class Func313 implements IFuncOrigin {
 			// [center, 1280, 720, 18, 472, 79, 501, 3000],
 		]
 	}, {
-		// 2 探查
+		// 2 已适配66 探查
 		desc: [
 			1280, 720,
 			[
@@ -95,7 +100,6 @@ export class Func313 implements IFuncOrigin {
 				[right, 1181, 598, 0xfef4e6],
 				[right, 1197, 613, 0xfef4e6],
 				[right, 1202, 600, 0xfef4e6],
-				[right, 1189, 648, 0xfdf3e5],
 				[left, 43, 40, 0xf5e5a6],
 				[right, 1236, 29, 0xd4ae83],
 				[right, 1042, 597, 0xc3a888],
@@ -122,11 +126,13 @@ export class Func313 implements IFuncOrigin {
 				[right, 1193, 583, 0xddd0ba],
 				[right, 1007, 648, 0xe2d6bf],
 				[right, 1046, 670, 0x382015],
-				// [right, 875, 563, 0x403930],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1142, 577, 1243, 676, 1000],
+			[center, 1280, 720, 1142, 577, 1243, 676, 1000], // 挑战
+			[center, 1280, 720, 962, 581, 1061, 656, 1000], // 求援
+			[center, 1280, 720, 407, 417, 429, 439, 1000], // 不公开
+			[center, 1280, 720, 537, 495, 744, 536, 1000], // 创建
 		]
 	}, {
 		// 5 结契失败
@@ -137,8 +143,8 @@ export class Func313 implements IFuncOrigin {
 				[center, 610, 277, 0xbbbbbb],
 				[center, 684, 295, 0xb0b0b0],
 				[center, 785, 296, 0xc0c0c0],
-				[right, 1204, 590, 0x875015],
-				[right, 1206, 627, 0x6c5220],
+				[center, 520, 339, 0x9f9f9f],
+				[center, 797, 328, 0xc1c1c1],
 			]
 		],
 		oper: [
@@ -339,6 +345,7 @@ export class Func313 implements IFuncOrigin {
 				thisScript.regionClick([thisOperator[3].oper[0]]);
 				thisScript.global.change_shikigami_state = 'flushed';
 			} else if (thisScript.global.qiling_last !== i && thisScript.global.preset_once_groupNum > 0) {
+				thisScript.global.qiling_last = i;
 				thisScript.regionClick([thisOperator[3].oper[0]]);
 				thisScript.global.change_shikigami_state = 'flushed';
 			}
@@ -347,85 +354,28 @@ export class Func313 implements IFuncOrigin {
 
 		if (thisScript.oper({
 			id: 313,
+			name: '契灵组队队长',
+			operator: [{ desc: thisOperator[4].desc }]
+		})) {
+			if (thisConf.team) {
+				thisScript.regionClick([thisOperator[4].oper[1]]);
+				thisScript.regionClick([thisOperator[4].oper[2]]);
+				thisScript.regionClick([thisOperator[4].oper[3]]);
+				thisScript.global.team_up_Frist = true;
+			} else {
+				thisScript.regionClick([thisOperator[4].oper[0]]);
+			}
+			return true;
+		}
+		if (thisScript.oper({
+			id: 313,
 			name: '契灵杂项',
 			operator: [
-				thisOperator[4], thisOperator[5], thisOperator[6],
-				thisOperator[8], thisOperator[11],
+				thisOperator[6], thisOperator[8], thisOperator[11],
 			]
 		})) {
 			return true;
 		}
-
-		// // 选式盘，超过3次点着没反应，那就停止脚本并osp推送
-		// const shipanIndex = { '小': 0, '中': 1, '大': 2 }[thisConf.shipan_sort as string];
-		// let shipanCurCnt = 0;
-		// let shipanMaxCount = 3;
-		// while (thisScript.oper({
-		//   id: 313,
-		//   name: '契灵战斗_选式盘',
-		//   operator: [{
-		//     desc: thisOperator[7].desc,
-		//     oper: [thisOperator[7].oper[shipanIndex]]
-		//   }]
-		// })) {
-		//   shipanCurCnt++;
-		//   thisScript.keepScreen();
-		//   if (shipanCurCnt >= shipanMaxCount) {
-		//     thisScript.myToast(`连续执行${shipanMaxCount}次挑战后未开始，脚本自动停止`);
-		//     thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-		//     thisScript.stop();
-		//     sleep(2000);
-		//     return false;
-		//   }
-		// }
-		// if (shipanCurCnt) {
-		//   return true;
-		// }
-
-		// if (thisScript.oper({
-		//   id: 313,
-		//   name: '契灵划线_场景',
-		//   operator: [{
-		//     desc: thisOperator[9].desc
-		//   }]
-		// })) {
-		//   const points = thisScript.findMultiColorEx('契灵_连线_推荐');
-		//   const regionsOfRecommend = thisOperator[9].oper.slice(0, 5) // 0 ~ 4为推荐的查找区域
-		//   const regionsOfSwipe = thisOperator[9].oper.slice(5, 10) // 5 ~ 9为连线的区域
-		//   const recommend = []; // 推荐数组
-		//   let can = []; // 建议数组
-		//   for (let i = 0; i < points.length; i++) {
-		//     const regionIndex = indexOfRegion(points[i], regionsOfRecommend);
-		//     if (regionIndex >= 0) {
-		//       recommend.push(regionIndex);
-		//     }
-		//   }
-
-		//   if ('优先推荐' === thisConf.line_sort) {
-		//     can = recommend;
-		//   } else if ('优先非推荐' === thisConf.line_sort) {
-		//     can = [0, 1, 2, 3, 4].filter(n => (recommend.indexOf(n) < 0));
-		//   }
-
-		//   // 能连的小于三个，从剩下的里面补
-		//   if (can.length < 3) {
-		//     const left = [0, 1, 2, 3, 4].filter(n => (can.indexOf(n) < 0));
-		//     while (can.length < 3) {
-		//       can.push(left.splice(random(0, left.length - 1), 1)[0]);
-		//     }
-		//   } else {
-		//     // 超过3个取3个
-		//     can = can.slice(0, 3);
-		//   }
-		//   // 连线
-		//   console.log(`连线：${can}`);
-		//   const toGesture = can.map(n => regionsOfSwipe[n]);
-		//   thisScript.helperBridge.regionGesture(toGesture, random(1500, 2500), thisScript.scheme.commonConfig.afterClickDelayRandom);
-		//   sleep(1000);
-		//   return true;
-		// }
-
-
 		const qilingIndex = parseInt((thisConf.summon_qiling as string).split(' ')[0], 10) - 1;
 		if (thisScript.oper({
 			id: 313,

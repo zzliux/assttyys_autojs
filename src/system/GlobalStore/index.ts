@@ -73,6 +73,11 @@ export type globalRootType = {
 	d6RouFeng: number;//     椒图柔风实时buff数
 	upYuHun: boolean;//      强化御魂记录界面次数
 	bgyxLastCapture: number; // 上次截图的时间戳
+	waitFight: boolean;//      等待分享鬼王被击杀
+	faXian_NumOT: number, // 点击发现鬼王计数
+	youjiequyuan_ten: boolean;//      缘结趣游是否十抽
+	dengluNumOT: number, // 登录账号计数
+	dengluState: boolean, // 登录账号状态
 }
 
 export const globalRoot: globalRootType = {
@@ -150,4 +155,9 @@ export const globalRoot: globalRootType = {
 	d6RouFeng: 1,
 	upYuHun: false,
 	bgyxLastCapture: undefined,
+	waitFight: true,
+	faXian_NumOT: 0,
+	youjiequyuan_ten: true,
+	dengluNumOT: 0,
+	dengluState: true,
 }

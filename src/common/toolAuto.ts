@@ -394,3 +394,23 @@ export const mergeSchemeList = (savedSchemeList: IScheme[], innerSchemeList: ISc
 	}
 	return [...savedSchemeList, ...toMerge];
 }
+
+let hanZiSimilarBridge = null;
+export function nlpSimilarity(s1: string, s2: string) {
+	console.log(`s1=${s1}`);
+	console.log(`s2=${s2}`);
+	if (!hanZiSimilarBridge) {
+		// @ts-expect-error dex包
+		hanZiSimilarBridge = new Packages.cn.zzliux.HanZiSimilarBridge();
+		hanZiSimilarBridge.init(
+			files.read(files.cwd() + '/assets/lib/nlp/bihuashu.txt'),
+			files.read(files.cwd() + '/assets/lib/nlp/bushou.txt'),
+			files.read(files.cwd() + '/assets/lib/nlp/jiegou.txt'),
+			files.read(files.cwd() + '/assets/lib/nlp/sijiao.txt'),
+			files.read(files.cwd() + '/assets/lib/nlp/userdefine.txt')
+		);
+	}
+	const result = hanZiSimilarBridge.similarity(s1, s2);
+	console.log(`result=${result}`);
+	return result;
+}

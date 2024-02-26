@@ -9,7 +9,7 @@ export class Func314 implements IFuncOrigin {
 	id = 314;
 	name = '领取花合战';
 	operator: IFuncOperatorOrigin[] = [{ // 0 庭院未打开菜单
-		desc: '庭院未打开菜单',
+		desc: '页面是否为庭院_菜单未展开_只支持默认庭院皮肤与默认装饰',
 		oper: [
 			[right, 1280, 720, 1168, 592, 1230, 690, 1000]
 		]

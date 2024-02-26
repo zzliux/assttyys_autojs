@@ -36,23 +36,29 @@ export class Func302 implements IFuncOrigin {
 			[center, 1280, 720, 1164, 212, 1211, 273, 1000]
 		]
 	}, {  // 1,第一排一行御魂+0
-		desc: [1280, 720, [
-			[left, 49, 134, 0x4a5de9],
-			[left, 108, 252, 0xe7e2d0],
-			[left, 112, 245, 0xf0ebd8],
-			[left, 116, 251, 0xe9e4d2],
-			[left, 175, 255, 0xffffff]]
+		desc: [
+			1280, 720,
+			[
+				[left, 100, 252, 0xe8e2d0],
+				[left, 105, 252, 0xe8e2d0],
+				[left, 110, 247, 0xede8d6],
+				[left, 117, 251, 0xe1dbc9],
+				[left, 112, 245, 0xf7f2df],
+			]
 		],
 		oper: [
 			[center, 1280, 720, 820, 644, 922, 688, 1000]
 		]
 	}, {  // 2,开始奉纳
-		desc: [1280, 720, [
-			[left, 49, 134, 0x4a5de9],
-			[left, 108, 252, 0xa5dde5],
-			[left, 112, 245, 0xb6e5e9],
-			[left, 116, 251, 0xa7dfe6],
-			[left, 173, 252, 0x0685aa]]
+		desc: [
+			1280, 720,
+			[
+				[left, 49, 134, 0x4a5de9],
+				[left, 112, 245, 0xb6e5e9],
+				[left, 173, 252, 0x0685aa],
+				[left, 100, 252, 0xa9dee6],
+				[left, 117, 252, 0xa0d8e1],
+			]
 		],
 		oper: [
 			[center, 1280, 720, 820, 644, 922, 688, 1700]
@@ -93,21 +99,26 @@ export class Func302 implements IFuncOrigin {
 		]
 	}, { // 7,神赐三排
 		desc: [1280, 720,
-			[[center, 368, 314, 0x906b41],
+			[
+				[center, 368, 314, 0x906b41],
 				[center, 920, 313, 0x8c6940],
 				[center, 616, 188, 0xddcc77],
-				[center, 666, 187, 0xdcb85b]]
+				[center, 666, 187, 0xdcb85b]
+			]
 		],
 		oper: [
 			[center, 1280, 720, 580, 604, 702, 668, 1000]
 		]
 	}, { // 8,更改排序方式
-		desc: [1280, 720,
-			[[center, 393, 130, 0xcdc7b6],
-				[center, 428, 142, 0xe9e4d1],
-				[center, 443, 136, 0xb4ad9e],
-				[center, 461, 138, 0xf4efdc],
-				[center, 485, 139, 0xe7e1cf]]
+		desc: [
+			1280, 720,
+			[
+				[center, 400, 135, 0xe3ddcb],
+				[center, 420, 135, 0xd1cbba],
+				[center, 444, 135, 0xb1aa9b],
+				[center, 461, 138, 0xe6e1cf],
+				[center, 490, 142, 0xdbd6c4],
+			]
 		],
 		oper: [
 			[center, 1280, 720, 366, 118, 526, 152, 500],
@@ -139,8 +150,8 @@ export class Func302 implements IFuncOrigin {
 
 		if (thisScript.oper({
 			name: '奉纳',
-			operator: [thisOperator[0], thisOperator[2], thisOperator[3],
-				thisOperator[4], thisOperator[7],
+			operator: [thisOperator[0], thisOperator[2], thisOperator[3]
+				, thisOperator[4], thisOperator[7]
 			]
 		})) {
 			sleep(500)

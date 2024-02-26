@@ -319,8 +319,7 @@ export class Func998 implements IFuncOrigin {
 		{
 			//  16 检测_结界卡已放置待激活
 			desc: [
-				1280,
-				720,
+				1280, 720,
 				[
 					[center, 897, 276, 0xd0c8bf],
 					[center, 847, 208, 0x826c61],
@@ -329,9 +328,9 @@ export class Func998 implements IFuncOrigin {
 					[right, 1088, 553, 0xfbf1b1],
 					[right, 1150, 563, 0xdec47e],
 					[right, 981, 605, 0x423128],
-					[center, 958, 604, 0x443228],
+					[center, 958, 590, 0x3f3025],
 					[center, 934, 640, 0x423128],
-				],
+				]
 			],
 			oper: [
 				[right, 1280, 720, 1062, 573, 1140, 638, 1200], //  点击激活
@@ -506,7 +505,7 @@ export class Func998 implements IFuncOrigin {
 							fullLevelPoint[i].y,
 							fullLevelPoint[i].x + 20,
 							fullLevelPoint[i].y + 20,
-							1200,
+							200,
 						],
 					];
 					console.log('清空满级狗粮', i);

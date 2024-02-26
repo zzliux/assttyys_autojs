@@ -263,7 +263,7 @@ const SchemeList: IScheme[] = [
 	{
 		id: 22,
 		schemeName: '秘闻',
-		list: [0, 51, 1, 2, 3, 34],
+		list: [0, 51, 1, 2, 3, 34, 308],
 		star: true,
 		config: {
 			'0': {
@@ -291,13 +291,17 @@ const SchemeList: IScheme[] = [
 	{
 		id: 24,
 		schemeName: '金币妖怪',
-		list: [0, 1, 2, 3, 35, 37, 38],
+		list: [0, 50, 1, 2, 3, 35, 37, 38],
 		config: {
 			'37': {
 				target: '金币妖怪',
 				createMode: '创建队伍',
 				next_scheme: '关闭BUFF',
 			},
+			'50': {
+				ready_once_buff: true,
+				buff_type: '金币',
+			}
 		},
 	},
 	{
@@ -314,7 +318,7 @@ const SchemeList: IScheme[] = [
 	{
 		id: 26,
 		schemeName: '关闭BUFF',
-		list: [502, 1, 2, 3, 29, 40, 501],
+		list: [502, 1, 2, 3, 501, 29, 40],
 	},
 	{
 		id: 27,
@@ -343,22 +347,24 @@ const SchemeList: IScheme[] = [
 		schemeName: '式神寄养',
 		star: true,
 		groupName: '式神寄养',
-		list: [3, 999, 998, 997, 994, 995],
+		list: [0, 3, 999, 998, 997, 994, 995],
 		config: {
+			'0': {
+				jspd_times_longtime_nodo: 20,
+			},
 			'3': {
 				type: '关闭',
 			},
 			'994': {
 				count: '6',
-				maxTimeForwait: '10',
 				afterCountOper: '停止脚本',
 				next_scheme: '通用准备退出',
 			},
 			'995': {
-				next_scheme: '返回庭院',
+				maxTimeForwait: '10',
 				afterCountOper: '停止脚本',
 				isAutoFosterCare: true,
-				maxTimeForwait: '10',
+				next_scheme: '返回庭院',
 			},
 			'997': {
 				priority: '太鼓6->太鼓5->太鼓4->太鼓3->斗鱼6->斗鱼5->斗鱼4',
@@ -809,42 +815,46 @@ const SchemeList: IScheme[] = [
 		star: true,
 		list: [0, 1, 316, 2, 3, 24],
 	},
-	{
-		id: 70,
-		schemeName: '开启经验BUFF_经验妖怪',
-		list: [501, 50],
-		config: {
-			'50': {
-				scheme_switch_enabled: true,
-				next_scheme: '经验妖怪',
-				buff_type: '经验',
-				ready_once_buff: false,
-			},
-		},
-	},
-	{
-		id: 71,
-		schemeName: '开启金币BUFF_金币妖怪',
-		list: [501, 50],
-		config: {
-			'50': {
-				scheme_switch_enabled: true,
-				next_scheme: '金币',
-				buff_type: '金币',
-				ready_once_buff: false,
-			},
-		},
-	},
+	// {
+	// 	id: 70,
+	// 	schemeName: '开启经验BUFF_经验妖怪',
+	// 	list: [501, 50],
+	// 	config: {
+	// 		'50': {
+	// 			scheme_switch_enabled: true,
+	// 			next_scheme: '经验妖怪',
+	// 			buff_type: '经验',
+	// 			ready_once_buff: false,
+	// 		},
+	// 	},
+	// },
+	// {
+	// 	id: 71,
+	// 	schemeName: '开启金币BUFF_金币妖怪',
+	// 	list: [501, 50],
+	// 	config: {
+	// 		'50': {
+	// 			scheme_switch_enabled: true,
+	// 			next_scheme: '金币',
+	// 			buff_type: '金币',
+	// 			ready_once_buff: false,
+	// 		},
+	// 	},
+	// },
 	{
 		id: 72,
 		schemeName: '经验妖怪',
-		list: [0, 1, 2, 3, 35, 37, 38],
+		list: [0, 50, 1, 2, 3, 35, 37, 38],
 		config: {
 			'37': {
-				target: '经验',
+				target: '经验妖怪',
 				createMode: '创建队伍',
 				next_scheme: '关闭BUFF',
 			},
+			'50': {
+				ready_once_buff: true,
+				buff_type: '经验',
+			}
 		},
 	},
 	{
@@ -869,7 +879,7 @@ const SchemeList: IScheme[] = [
 			'993': {
 				area: '',
 				is_shutdown_the_game_before: true,
-				next_scheme: '开启金币BUFF_金币妖怪',
+				next_scheme: '金币妖怪',
 			},
 			'503': {
 				afterCountOper: '不进行任何操作',
@@ -886,7 +896,7 @@ const SchemeList: IScheme[] = [
 			'993': {
 				area: '',
 				is_shutdown_the_game_before: true,
-				next_scheme: '开启经验BUFF_经验妖怪',
+				next_scheme: '经验妖怪',
 			},
 			'503': {
 				afterCountOper: '不进行任何操作',
@@ -894,44 +904,56 @@ const SchemeList: IScheme[] = [
 		},
 	},
 	{
+		id: 76,
+		schemeName: '寮管理进入道馆开启界面',
+		list: [505, 519, 503],
+		config: {
+			'503': {
+				jafterCountOper: '不进行任何操作',
+			}
+		},
+	},
+	{
+		id: 77,
+		schemeName: '僵尸寮小号循环登录',
+		list: [0, 320, 321, 993],
+	},
+	{
 		id: 99,
 		schemeName: '伊吹之擂',
 		list: [0, 3, 24, 99, 100],
-	}
-	// , {
-	// 	id: 102,
-	// 	schemeName: '活动_破晓之时',
-	// 	list: [0, 1, 2, 3, 24, 317],
-	// 	groupName: '活动',
-	// 	star: true,
-	// 	config: {
-	// 		'0': { // key为功能的ID（1表示准备）
-	// 			jspd_enabled_longtime_nodo: true,
-	// 			jspd_times_longtime_nodo: 3,
-	// 		}
-	// 	},
-	// }
-	// , {
-	//   id: 102,
-	//   schemeName: '活动_守缘合战',
-	//   list: [0, 1, 2, 3, 24, 133],
-	//   star: true,
-	// }
-	// , {
-	//     id: 101,
-	//     groupName: '活动',
-	//     schemeName: '银之绮都_妖塔燃战',
-	//     star: true,
-	//     list: [0, 1, 2, 3, 128]
-	// }
-	// , {
-	//     id: 102,
-	//     groupName: '活动',
-	//     schemeName: '夏日游园会_消消乐',
-	//     star: true,
-	//     list: [0, 3, 129, 130],
-	//     commonConfig: { multiColorSimilar: 95 }
-	// }
+	},
+	{
+		id: 100,
+		schemeName: '缘结趣游',
+		list: [0, 24, 319],
+	},
+	{
+		id: 102,
+		schemeName: '定时任务-启动游戏-对弈竞猜',
+		star: true,
+		groupName: '定时任务',
+		list: [1, 2, 3, 503, 993],
+		config: {
+			'993': {
+				area: '',
+				is_shutdown_the_game_before: true,
+				next_scheme: '对弈竞猜',
+			},
+			'503': {
+				afterCountOper: '不进行任何操作',
+			},
+		},
+	}, {
+		id: 101,
+		schemeName: '对弈竞猜',
+		list: [0, 2, 401],
+		config: {
+			'0': {
+				jspd_times_longtime_nodo: '1',
+			}
+		},
+	},
 	// 完整demo
 	// , {
 	//     id: 2,
