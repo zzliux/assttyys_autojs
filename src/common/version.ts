@@ -1039,6 +1039,9 @@ export const versionList = [{
 }, {
 	version: '20240225_01',
 	desc: '优化：ocr找字的模糊匹配相似度修改为0.7(原0.5)，且字符串对比的相似度加入了字形计算因子'
+}, {
+	version: '20240227_01',
+	desc: '修复：mumu12平板模式（横屏时）加载脚本无响应的问题'
 }];
 
 export default versionList[versionList.length - 1].version;

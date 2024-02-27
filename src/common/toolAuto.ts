@@ -25,8 +25,19 @@ export function requestMyScreenCapture(callback: Function, helperBridge: Ihelper
 			}
 		});
 	}
+	const width = getWidthPixels();
+	const height = getHeightPixels();
+
+	const rotation = activity.getWindowManager().getDefaultDisplay().getRotation();
+
+	// 1 rotation=0传width<height
+	// 2 rotation!=0传width>height
+	console.log('rotation', rotation);
+	console.log('width', width);
+	console.log('height', height);
+
 	// @ts-expect-error d.ts文件问题
-	requestScreenCaptureAsync(getWidthPixels() < getHeightPixels()).then(function (success: boolean) {
+	requestScreenCaptureAsync(rotation == 0 ? width < height: width > height).then(function (success: boolean) {
 		if (success) {
 			helperBridge.init();
 			script.initMultiDetectColors(); // 多点比色初始化要在helperbridge后才能进行
