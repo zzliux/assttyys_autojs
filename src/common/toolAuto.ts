@@ -25,8 +25,19 @@ export function requestMyScreenCapture(callback: Function, helperBridge: Ihelper
 			}
 		});
 	}
+	const width = getWidthPixels();
+	const height = getHeightPixels();
+
+	const rotation = activity.getWindowManager().getDefaultDisplay().getRotation();
+
+	// 1 rotation=0传width<height
+	// 2 rotation!=0传width>height
+	console.log('rotation', rotation);
+	console.log('width', width);
+	console.log('height', height);
+
 	// @ts-expect-error d.ts文件问题
-	requestScreenCaptureAsync(getWidthPixels() < getHeightPixels()).then(function (success: boolean) {
+	requestScreenCaptureAsync(rotation == 0 ? width < height: width > height).then(function (success: boolean) {
 		if (success) {
 			helperBridge.init();
 			script.initMultiDetectColors(); // 多点比色初始化要在helperbridge后才能进行
@@ -393,4 +404,24 @@ export const mergeSchemeList = (savedSchemeList: IScheme[], innerSchemeList: ISc
 		}
 	}
 	return [...savedSchemeList, ...toMerge];
+}
+
+let hanZiSimilarBridge = null;
+export function nlpSimilarity(s1: string, s2: string) {
+	console.log(`s1=${s1}`);
+	console.log(`s2=${s2}`);
+	if (!hanZiSimilarBridge) {
+		// @ts-expect-error dex包
+		hanZiSimilarBridge = new Packages.cn.zzliux.HanZiSimilarBridge();
+		hanZiSimilarBridge.init(
+			files.read(files.cwd() + '/assets/lib/nlp/bihuashu.txt'),
+			files.read(files.cwd() + '/assets/lib/nlp/bushou.txt'),
+			files.read(files.cwd() + '/assets/lib/nlp/jiegou.txt'),
+			files.read(files.cwd() + '/assets/lib/nlp/sijiao.txt'),
+			files.read(files.cwd() + '/assets/lib/nlp/userdefine.txt')
+		);
+	}
+	const result = hanZiSimilarBridge.similarity(s1, s2);
+	console.log(`result=${result}`);
+	return result;
 }

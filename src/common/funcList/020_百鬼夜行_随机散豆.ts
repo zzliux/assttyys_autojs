@@ -73,16 +73,16 @@ export class Func020 implements IFuncOrigin {
 		const thisconf = thisScript.scheme.config['20'];
 
 		if (thisconf && thisconf.mode === '目标检测') {
-			if (thisScript.oper({
-				id: 20,
-				name: '百鬼夜行_随机散豆_拖10豆',
-				operator: [{
-					desc: thisOperator[0].desc
-				}]
-			})) {
-				thisScript.regionSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [100, 300], 0, 200);
-				return true;
-			}
+			// if (thisScript.oper({
+			// 	id: 20,
+			// 	name: '百鬼夜行_随机散豆_拖10豆',
+			// 	operator: [{
+			// 		desc: thisOperator[0].desc
+			// 	}]
+			// })) {
+			// 	thisScript.regionSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [100, 300], 0, 200);
+			// 	return true;
+			// }
 			if (thisScript.oper({
 				id: 20,
 				name: '百鬼夜行_随机散豆_目标检测',

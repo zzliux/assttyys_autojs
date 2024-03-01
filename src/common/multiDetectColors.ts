@@ -393,6 +393,54 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 				[center, 832, 292, 0xfaeabe], // 阵容按钮
 			],
 		],
+	},
+	'秘闻挑战开启': {
+		desc: [1280, 720,
+			[
+				[center, 379, 112, 0xf2edca],
+				[center, 372, 131, 0xe4cd9c],
+				[center, 371, 183, 0xc9a763],
+				[center, 531, 130, 0xe3caa1],
+				[center, 526, 180, 0xd3a863],
+				[center, 803, 150, 0xdbba80],
+				[center, 658, 156, 0xdcba77],
+				[center, 894, 186, 0xcda863],
+				[center, 797, 177, 0xd3a965]
+			]
+		]
+	},
+	'寮神社界面': {
+		desc: [
+			1280, 720,
+			[
+				[right, 1176, 171, 0x7f543d],
+				[right, 1219, 173, 0x7a5138],
+				[right, 1220, 292, 0x7b5239],
+				[right, 1176, 288, 0x855640],
+				[right, 1179, 414, 0xbb764a],
+				[right, 1218, 418, 0xbb7148],
+				[right, 1178, 540, 0x81553f],
+				[right, 1221, 536, 0x7c533a],
+				[right, 1200, 662, 0x791f1f],
+				[left, 46, 36, 0xeddc9a],
+				[left, 50, 20, 0xecd391],
+			]
+		]
+	},
+	'寮信息界面': {
+		desc: [
+			1280, 720,
+			[
+				[center, 733, 38, 0x593716],
+				[right, 1212, 171, 0xcc7c49],
+				[right, 1218, 279, 0x81533d],
+				[right, 1213, 415, 0x744a36],
+				[right, 1216, 536, 0x764b37],
+				[center, 130, 637, 0xb2a390],
+				[center, 979, 663, 0x29140e],
+				[center, 1090, 663, 0xbbb190],
+			]
+		]
 	}
 };
 

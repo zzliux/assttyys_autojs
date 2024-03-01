@@ -22,19 +22,7 @@ export class Func048 implements IFuncOrigin {
 		]
 	}, {
 		// 秘闻挑战开启
-		desc: [1280, 720,
-			[
-				[center, 379, 112, 0xf2edca],
-				[center, 372, 131, 0xe4cd9c],
-				[center, 371, 183, 0xc9a763],
-				[center, 531, 130, 0xe3caa1],
-				[center, 526, 180, 0xd3a863],
-				[center, 803, 150, 0xdbba80],
-				[center, 658, 156, 0xdcba77],
-				[center, 894, 186, 0xcda863],
-				[center, 797, 177, 0xd3a965]
-			]
-		],
+		desc: '秘闻挑战开启',
 		oper: [
 			[left, 1280, 720, 452, 605, 870, 683, 2000],
 		]
