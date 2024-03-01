@@ -151,7 +151,7 @@ class MlkitOcr implements IOcr {
 				});
 			}
 			const [mode, simStr] = (textMatchMode || '').split('|');
-			let sim = 0.5;
+			let sim = 0.7;
 			if (sim) sim = Number(simStr);
 			const res = this.findTextByOcrResult(text, rs, mode, sim);
 

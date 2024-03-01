@@ -193,17 +193,7 @@ export class Func503 implements IFuncOrigin {
 			[center, 1280, 720, 357, 535, 1045, 662, 1200]	//	点击空白处
 		]
 	}, {	// 15 式神录
-		desc: [
-			1280, 720,
-			[
-				[left, 26, 12, 0x443028],
-				[left, 35, 27, 0xf7e9ab],
-				[left, 59, 27, 0x624532],
-				[left, 114, 15, 0xaf8c56],
-				[left, 155, 24, 0xaf8c56],
-				[left, 211, 20, 0x382720],
-			]
-		],
+		desc: '式神录',
 		oper: [
 			[center, 1280, 720, 21, 9, 59, 43, 1000],
 		]
@@ -310,6 +300,7 @@ export class Func503 implements IFuncOrigin {
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['503'];
 		if (thisScript.global.change_shikigami_flag && thisScript.oper({
+			id: 503,
 			name: '返回庭院',
 			operator: [
 				thisOperator[0], thisOperator[1], thisOperator[2],
@@ -345,6 +336,7 @@ export class Func503 implements IFuncOrigin {
 
 			// 町中与庭院几乎一致。。。只能用牌子来做比较
 			if (thisScript.oper({
+				id: 503,
 				name: '旧版町中界面',
 				operator: [{
 					desc: thisOperator[4].desc,
@@ -355,6 +347,7 @@ export class Func503 implements IFuncOrigin {
 			}
 
 			if (thisScript.oper({
+				id: 503,
 				name: '庭院界面',
 				operator: [{
 					desc: thisOperator[12].desc
