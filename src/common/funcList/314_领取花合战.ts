@@ -85,12 +85,26 @@ export class Func314 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 24, 20, 60, 55, 1000],
 		]
+	}, { // 6  花合战上新
+		desc: [
+			1280, 720,
+			[
+				[left, 86, 700, 0x3a3d58],
+				[left, 183, 700, 0x4a5173],
+				[center, 332, 651, 0x413b59],
+				[center, 457, 698, 0x726a94],
+				[center, 605, 691, 0xc3e8f7],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 750, 614, 1113, 682, 1000],
+		]
 	}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		thisScript.oper({
 			name: '花合战',
-			operator: [thisOperator[0], thisOperator[2],
+			operator: [thisOperator[0], thisOperator[2], thisOperator[6]
 			]
 		});
 

@@ -16,13 +16,12 @@ export class Func320 implements IFuncOrigin {
 			desc: '账号个数(同个账号的ios端和安卓端要分开算)',
 			type: 'text',
 			default: '0',
+		}, {
+			name: 'swipTimes',
+			desc: '邮箱登录界面下滑次数设置（需设置滑到底）',
+			type: 'text',
+			default: '1',
 		}
-			// , {
-			// 	name: 'xiajian_scheme',
-			// 	desc: '切换至狭间方案',
-			// 	type: 'scheme',
-			// 	default: '狭间暗域',
-			// }
 		]
 	}]
 	operator: IFuncOperatorOrigin[] = [{ // 0 登录界面
@@ -111,7 +110,11 @@ export class Func320 implements IFuncOrigin {
 			})) {
 				if (thisScript.global.dengluNumOT != 0 && thisScript.global.dengluNumOT % 2 == 0) {
 					thisScript.regionClick([thisOperator[1].oper[1]]);
-					thisScript.regionBezierSwipe(thisOperator[1].oper[3], thisOperator[1].oper[4], [300, 500], 0, 1000);
+					let x = 0;
+					while (Number(x) < Number(thisConf.swipTimes)) {
+						thisScript.regionBezierSwipe(thisOperator[1].oper[3], thisOperator[1].oper[4], [300, 500], 0, 1000);
+						x++;
+					}
 					thisScript.regionClick([thisOperator[1].oper[2]]);
 				}
 				if (thisScript.global.dengluNumOT < Number(thisConf.accountNum)) {

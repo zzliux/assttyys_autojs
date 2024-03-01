@@ -583,6 +583,22 @@ export class Func518 implements IFuncOrigin {
 			oper: [
 				[left, 1280, 720, 156, 97, 226, 135, 1200]  //  点击 好友页签
 			]
+		},
+		{ // 39 邮件_获得插画
+			desc: [
+				1280, 720,
+				[
+					[center, 530, 65, 0xfaf4ce],
+					[center, 610, 71, 0xfefdd5],
+					[center, 682, 74, 0xf2e8c1],
+					[center, 732, 77, 0xebe0b7],
+					[center, 550, 100, 0xae9562],
+					[center, 736, 107, 0xa18551],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 830, 15, 1101, 75, 1000],
+			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -692,6 +708,7 @@ export class Func518 implements IFuncOrigin {
 					thisOperator[9],
 					thisOperator[10],
 					thisOperator[11],
+					thisOperator[39],
 				],
 			})
 		) {
