@@ -69,8 +69,8 @@ export class Func316 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 785, 291, 909, 378, 500], // 右怪
-			[center, 1280, 720, 1120, 597, 1231, 682, 500], // 挑战
+			[center, 1280, 720, 785, 291, 909, 378, 0], // 右怪
+			// [center, 1280, 720, 1120, 597, 1231, 682, 500], // 挑战
 		]
 	}, { // 4 buff抉择
 		desc: [
@@ -99,7 +99,7 @@ export class Func316 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1160, 609, 1227, 659, 1000],
+			[center, 1280, 720, 1160, 609, 1227, 659, 500],
 		]
 	}, { // 6 混沌_怪物
 		desc: [
@@ -115,8 +115,8 @@ export class Func316 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 680, 292, 801, 379, 500],
-			[center, 1280, 720, 1120, 597, 1231, 682, 500], // 挑战
+			[center, 1280, 720, 680, 292, 801, 379, 0],
+			// [center, 1280, 720, 1120, 597, 1231, 682, 500], // 挑战
 		]
 	}, { // 7 已适配66 商店
 		desc: [
@@ -148,8 +148,8 @@ export class Func316 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 456, 274, 566, 347, 500],
-			[center, 1280, 720, 1120, 597, 1231, 682, 500], // 挑战
+			[center, 1280, 720, 456, 274, 566, 347, 0],
+			// [center, 1280, 720, 1120, 597, 1231, 682, 500], // 挑战
 		]
 	}, { // 9 开始_开启
 		desc: [
@@ -165,7 +165,7 @@ export class Func316 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1128, 606, 1217, 664, 1000],
+			[center, 1280, 720, 1128, 606, 1217, 664, 500],
 		]
 	}, { // 10 开始_确定
 		desc: [
@@ -179,7 +179,7 @@ export class Func316 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1145, 597, 1228, 662, 1000],
+			[center, 1280, 720, 1145, 597, 1228, 662, 500],
 		]
 	}, { // 11 已适配66 开始_开启_60体
 		desc: [
@@ -195,7 +195,7 @@ export class Func316 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1142, 595, 1230, 659, 1000],
+			[center, 1280, 720, 1142, 595, 1230, 659, 500],
 		]
 	}, { // 12 开始_选择柔风
 		desc: [
@@ -211,7 +211,7 @@ export class Func316 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 268, 574, 374, 617, 1000],
+			[center, 1280, 720, 268, 574, 374, 617, 500],
 		]
 	}, { // 13 确认奖励
 		desc: [1280, 720,
@@ -425,6 +425,20 @@ export class Func316 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 939, 148, 1179, 281, 1000],
 		]
+	}, { // 27 挑战
+		desc: [
+			1280, 720,
+			[
+				[left, 25, 42, 0xeaebf7],
+				[left, 64, 644, 0x232940],
+				[right, 1168, 632, 0xffe9b0],
+				[right, 1221, 601, 0x2a2e35],
+				[right, 1160, 692, 0xd6eaf3],
+			]
+		],
+		oper: [
+			[right, 1280, 720, 1120, 597, 1231, 682, 500], // 挑战
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 
@@ -433,11 +447,16 @@ export class Func316 implements IFuncOrigin {
 			name: '六道椒图_选事件',
 			operator: [{ desc: thisOperator[0].desc }, { desc: thisOperator[2].desc }]
 		})) {
-			thisScript.regionClick([thisOperator[1].oper[thisScript.global.d6Loop]]);
-			if (++thisScript.global.d6Loop > 2) {
-				thisScript.global.d6Loop = 0;
+			// thisScript.regionClick([thisOperator[1].oper[thisScript.global.d6Loop]]);
+			// if (++thisScript.global.d6Loop > 2) {
+			// 	thisScript.global.d6Loop = 0;
+			// }
+			const p = thisScript.findMultiColor('六道椒图_事件');
+			if (p) {
+				thisScript.regionClick([[p.x - 40, p.y + 20, p.x + 40, p.y + 80, 200]])
+				return true;
 			}
-			return true;
+			return false;
 		}
 
 		if (thisScript.oper({
@@ -543,7 +562,7 @@ export class Func316 implements IFuncOrigin {
 				thisOperator[3], thisOperator[5], thisOperator[6], thisOperator[8],
 				thisOperator[9], thisOperator[10], thisOperator[12], thisOperator[13],
 				thisOperator[14], thisOperator[19], thisOperator[20], thisOperator[21],
-				thisOperator[22], thisOperator[26],
+				thisOperator[22], thisOperator[26], thisOperator[27],
 			]
 		})) {
 			return true;

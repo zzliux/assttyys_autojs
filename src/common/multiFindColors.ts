@@ -2830,6 +2830,38 @@ const multiFindColors: IMultiFindColorsOrigin = {
 			]
 		],
 	},
+	'六道椒图_事件': {
+		region: [left, 1280, 720, 79, 86, 1046, 631],
+		desc: [
+			[ // 神秘
+				1280, 720,
+				[
+					[center, 643, 408, 0xf2e4c9],
+					[center, 643, 409, 0xf0e2c7],
+					[center, 643, 410, 0xeadcc2],
+					[center, 643, 411, 0xe9dcc1],
+				]
+			],
+			[ // 混沌
+				1280, 720,
+				[
+					[center, 724, 427, 0xf2e4c9],
+					[center, 725, 427, 0xf2e4c9],
+					[center, 725, 428, 0xf2e4c9],
+					[center, 724, 428, 0xf1e3c8],
+				]
+			],
+			[ // 鏖战
+				1280, 720,
+				[
+					[center, 915, 482, 0xf4e9d3],
+					[center, 916, 482, 0xf4e9d3],
+					[center, 916, 481, 0xf3e8d2],
+					[center, 915, 481, 0xf4e9d3],
+				]
+			],
+		]
+	},
 	'破晓之时_放弃': {
 		region: [center, 1280, 720, 783, 172, 1259, 584],
 		desc: [

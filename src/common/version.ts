@@ -1046,6 +1046,9 @@ export const versionList = [{
 	version: '20240301_01',
 	desc: `优化：511在503前且在式神录界面时优先执行503；
 修复：OCR找字部分情况下使用模糊匹配时相似度仍然为0.5的问题（应该为0.7）`
+}, {
+	version: '20240303_01',
+	desc: '优化：316六道椒图大幅提高选事件的效率'
 }];
 
 export default versionList[versionList.length - 1].version;
