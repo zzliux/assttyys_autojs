@@ -8,6 +8,16 @@ const right = 2;
 export class Func032 implements IFuncOrigin {
 	id = 32;
 	name = '道馆_挑战';
+	config = [{
+		desc: '配置',
+		config: [{
+			name: 'after_fail_operation',
+			desc: '挑战失败投票',
+			type: 'list',
+			data: ['不投票', '保留赏金', '再战道馆'],
+			default: '不投票',
+		}]
+	}];
 	operator: IFuncOperatorOrigin[] = [{ // 0 检测_挑战是否可用
 		desc: [1280, 720,
 			[
@@ -64,9 +74,55 @@ export class Func032 implements IFuncOrigin {
 				[center, 461, 485, 0xbe2b1f],
 			]
 		]
+	}, { // 4 失败_关闭
+		desc: [
+			1280, 720,
+			[
+				[center, 476, 49, 0x514a5b],
+				[center, 468, 74, 0x5d5468],
+				[center, 501, 78, 0x5a5165],
+				[left, 36, 41, 0x413b31],
+				[left, 60, 535, 0x270a13],
+				[center, 888, 153, 0xe4ded5],
+				[center, 771, 111, 0x695f51],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1147, 348, 1238, 614, 800],
+		]
+	}, { // 5 参与投票
+		desc: [
+			1280, 720,
+			[
+				[center, 655, 38, 0xe7c779],
+				[left, 34, 40, 0xd6c4a1],
+				[left, 107, 26, 0xd6c4a1],
+				[left, 169, 24, 0xd6c4a1],
+				[left, 61, 530, 0x8f2550],
+				[right, 1119, 282, 0x341f19],
+				[right, 1240, 281, 0x341e19],
+			]
+		],
+		oper: [
+			[right, 1280, 720, 1048, 237, 1144, 328, 800], // 保留赏金
+			[right, 1280, 720, 1166, 235, 1256, 328, 800], // 再战道馆
+		]
+	}, { // 6 道馆页_挑战成功
+		desc: [
+			1280, 720,
+			[
+				[left, 64, 482, 0x291522],
+				[left, 33, 38, 0xd7c5a2],
+				[left, 109, 24, 0xd7c5a2],
+				[left, 179, 37, 0xd7c6a5],
+				[center, 718, 666, 0xe9e4d2],
+				[center, 743, 669, 0xece7d5],
+				[center, 584, 663, 0xf4efdd],
+			]
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		// const thisconf = thisScript.scheme.config['32'];
+		const thisconf = thisScript.scheme.config['32'];
 
 		if (thisScript.oper({
 			name: '检测_挑战是否可用',
@@ -80,30 +136,38 @@ export class Func032 implements IFuncOrigin {
 		}
 
 		if (thisScript.oper({
+			id: 32,
 			name: '检测_挑战结束',
-			operator: [{
-				desc: thisOperator[1].desc,
-				oper: thisOperator[1].oper
-			}]
+			operator: [thisOperator[1], thisOperator[3], thisOperator[4]]
 		})) {
 			return true;
 		}
 
-		if (thisScript.oper({
-			name: '检测_挑战结束',
-			operator: [{
-				desc: thisOperator[3].desc,
-				oper: thisOperator[1].oper
-			}]
-		})) {
-			return true;
+		if (thisconf && thisconf.after_fail_operation) {
+			if (thisconf.after_fail_operation === '保留赏金') {
+				return thisScript.oper({
+					id: 32,
+					name: '道馆_保留赏金',
+					operator: [{
+						desc: thisOperator[5].desc,
+						oper: [thisOperator[1].oper[0]]
+					}]
+				})
+			} else if (thisconf.after_fail_operation === '再战道馆') {
+				return thisScript.oper({
+					id: 32,
+					name: '道馆_再战道馆',
+					operator: [{
+						desc: thisOperator[5].desc,
+						oper: [thisOperator[1].oper[1]]
+					}]
+				})
+			}
 		}
 
 		if (thisScript.oper({
 			name: '检测_挑战结束',
-			operator: [{
-				desc: thisOperator[2].desc
-			}]
+			operator: [thisOperator[2], thisOperator[6]]
 		})) {
 			if (thisScript.runtimeParams && thisScript.runtimeParams.liao_activity_state) {
 				thisScript.runtimeParams.liao_activity_state['dojo'] = true;
