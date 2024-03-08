@@ -146,7 +146,7 @@ async function doImport() {
     itemToSave.inner = false;
     itemToSave.id = ++maxId;
     itemToSave.commonConfig = merge({}, commonConfig, itemToSave.commonConfig || {});
-    const _config = itemToSave.config || {};
+    const _config = merge({}, itemToSave.config || {});
     itemToSave.list.forEach((id) => {
       for (let funcOrigin of dfuncList) {
         if (funcOrigin.id === id) {
