@@ -146,22 +146,22 @@ async function doImport() {
     itemToSave.inner = false;
     itemToSave.id = ++maxId;
     itemToSave.commonConfig = merge({}, commonConfig, itemToSave.commonConfig || {});
-
-    itemToSave.config = itemToSave.config || {};
+    const _config = itemToSave.config || {};
     itemToSave.list.forEach((id) => {
       for (let funcOrigin of dfuncList) {
         if (funcOrigin.id === id) {
           if (funcOrigin.config) {
-            itemToSave.config[id] = {};
+            _config[id] = {};
             funcOrigin.config.forEach(configGroup => {
               configGroup.config.forEach(configItem => {
-                itemToSave.config[id][configItem.name] = configItem.default;
+                _config[id][configItem.name] = configItem.default;
               })
             })
           }
         }
       }
     });
+    itemToSave.config = merge({}, _config, itemToSave.config || {})
   });
   await AutoWeb.autoPromise('saveSchemeList', [...savedSchemeList, ...toSave]);
   await AutoWeb.autoPromise('toast', '导入成功');
