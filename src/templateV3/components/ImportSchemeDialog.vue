@@ -144,7 +144,7 @@ async function doImport() {
   toSave.forEach(item => {
     item.inner = false;
     item.id = ++maxId;
-    item.commonConfig = merge(commonConfig, item.commonConfig);
+    item.commonConfig = merge({}, commonConfig, item.commonConfig || {});
   });
   await AutoWeb.autoPromise('saveSchemeList', [...savedSchemeList, ...toSave]);
   await AutoWeb.autoPromise('toast', '导入成功');
