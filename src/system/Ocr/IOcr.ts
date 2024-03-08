@@ -2,7 +2,7 @@ export class OcrResult {
 	confidence: number;
 	label: string;
 	rotation: number;
-	points: Array<{x: number, y: number}>;
+	points: Array<Point>;
 	similar?: number | false;
 	constructor(confidence: number, label: string, rotation: number, points: Array<{x: number, y: number}>) {
 		this.confidence = confidence;

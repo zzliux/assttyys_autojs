@@ -1052,6 +1052,9 @@ export const versionList = [{
 }, {
 	version: '20240306_01',
 	desc: '优化：32道馆挑战增加失败投票'
+}, {
+	version: '20240308_01',
+	desc: '新增：集音'
 }];
 
 export default versionList[versionList.length - 1].version;

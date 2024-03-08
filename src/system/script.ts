@@ -142,6 +142,23 @@ export class Script {
 		}, text, timeout, region, textMatchMode);
 	}
 
+	findNum(timeout: number, region: Array<number>): Array<OcrResult> {
+		this.initOcrIfNeeded();
+		return this.getOcr().findText(function () {
+			script.keepScreen(); // 更新图片
+			return script.helperBridge.helper.GetBitmap(); // 返回bmp
+		}, '\\d+', timeout, region, '包含').filter(item => {
+			item.label = item.label
+				.replace(/[sS]/g, '5')
+				.replace(/[oO]/g, '0')
+				.replace(/[zZ]/g, '2');
+			if (item.label.match(/^\d+$/)) {
+				return true;
+			}
+			return false;
+		});
+	}
+
 	/**
      * 先比色，再findText
      */
@@ -392,7 +409,7 @@ export class Script {
     * @param {Region} inRegion 多点找色区域
     * @returns
     */
-	findMultiColorEx(key, inRegion?) {
+	findMultiColorEx(key, inRegion?): Point[] {
 		this.initRedList();
 		const region = inRegion || this.multiFindColors[key].region;
 		const desc = this.multiFindColors[key].desc;
