@@ -57,8 +57,17 @@
 
 <script setup>
 import groupColor from '@/common/groupColors';
+import commonConfigArr from '@/common/commonConfig';
 import { ref, computed } from 'vue';
+import { merge } from '@/common/tool';
 
+const commonConfig = {};
+for (let i = 0; i < commonConfigArr.length; i++) {
+	for (let j = 0; j < commonConfigArr[i].config.length; j++) {
+		const item = commonConfigArr[i].config[j];
+		commonConfig[item.name] = item.default;
+	}
+}
 const props = defineProps({
   show: Boolean,
   importCallback: Function,
@@ -135,6 +144,7 @@ async function doImport() {
   toSave.forEach(item => {
     item.inner = false;
     item.id = ++maxId;
+    item.commonConfig = merge(commonConfig, item.commonConfig);
   });
   await AutoWeb.autoPromise('saveSchemeList', [...savedSchemeList, ...toSave]);
   await AutoWeb.autoPromise('toast', '导入成功');
