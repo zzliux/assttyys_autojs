@@ -953,7 +953,12 @@ const SchemeList: IScheme[] = [
 				jspd_times_longtime_nodo: '1',
 			}
 		},
-	},
+	}, {
+		id: 102,
+		schemeName: '音动小街_集音',
+		list: [0, 2, 3, 24, 101],
+		star: true,
+	}
 	// 完整demo
 	// , {
 	//     id: 2,
