@@ -446,7 +446,7 @@ export class Func316 implements IFuncOrigin {
 			id: 316,
 			name: '六道椒图_选事件',
 			operator: [{ desc: thisOperator[0].desc }, { desc: thisOperator[2].desc }]
-		})) {
+		}, 200)) {
 			// thisScript.regionClick([thisOperator[1].oper[thisScript.global.d6Loop]]);
 			// if (++thisScript.global.d6Loop > 2) {
 			// 	thisScript.global.d6Loop = 0;
