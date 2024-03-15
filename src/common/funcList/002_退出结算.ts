@@ -264,6 +264,7 @@ export class Func002 implements IFuncOrigin {
 			name: '退出结算_失败停止',
 			operator: [thisOperator[9], thisOperator[10]]
 		})) {
+			thisScript.doPush(thisScript, { text: '战斗失败，已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 			thisScript.stop();
 			sleep(3000);
 			return true
