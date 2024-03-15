@@ -60,6 +60,7 @@ import groupColor from '@/common/groupColors';
 import commonConfigArr from '@/common/commonConfig';
 import { ref, computed } from 'vue';
 import { merge } from '@/common/tool';
+import dfuncList from "../../common/funcListIndex";
 
 const commonConfig = {};
 for (let i = 0; i < commonConfigArr.length; i++) {
@@ -141,10 +142,26 @@ async function doImport() {
   }, 0);
   let toSave = schemeList.value;
   toSave = toSave.filter(item => item.export);
-  toSave.forEach(item => {
-    item.inner = false;
-    item.id = ++maxId;
-    item.commonConfig = merge({}, commonConfig, item.commonConfig || {});
+  toSave.forEach(itemToSave => {
+    itemToSave.inner = false;
+    itemToSave.id = ++maxId;
+    itemToSave.commonConfig = merge({}, commonConfig, itemToSave.commonConfig || {});
+    const _config = merge({}, itemToSave.config || {});
+    itemToSave.list.forEach((id) => {
+      for (let funcOrigin of dfuncList) {
+        if (funcOrigin.id === id) {
+          if (funcOrigin.config) {
+            _config[id] = {};
+            funcOrigin.config.forEach(configGroup => {
+              configGroup.config.forEach(configItem => {
+                _config[id][configItem.name] = configItem.default;
+              })
+            })
+          }
+        }
+      }
+    });
+    itemToSave.config = merge({}, _config, itemToSave.config || {})
   });
   await AutoWeb.autoPromise('saveSchemeList', [...savedSchemeList, ...toSave]);
   await AutoWeb.autoPromise('toast', '导入成功');

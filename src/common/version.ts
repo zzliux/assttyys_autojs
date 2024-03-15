@@ -1055,6 +1055,9 @@ export const versionList = [{
 }, {
 	version: '20240308_01',
 	desc: '新增：集音'
+}, {
+	version: '20240312_01',
+	desc: '优化：六道椒图'
 }];
 
 export default versionList[versionList.length - 1].version;

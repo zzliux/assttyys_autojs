@@ -150,7 +150,7 @@ export class Func032 implements IFuncOrigin {
 					name: '道馆_保留赏金',
 					operator: [{
 						desc: thisOperator[5].desc,
-						oper: [thisOperator[1].oper[0]]
+						oper: [thisOperator[5].oper[0]]
 					}]
 				})
 			} else if (thisconf.after_fail_operation === '再战道馆') {
@@ -159,7 +159,7 @@ export class Func032 implements IFuncOrigin {
 					name: '道馆_再战道馆',
 					operator: [{
 						desc: thisOperator[5].desc,
-						oper: [thisOperator[1].oper[1]]
+						oper: [thisOperator[5].oper[1]]
 					}]
 				})
 			}
