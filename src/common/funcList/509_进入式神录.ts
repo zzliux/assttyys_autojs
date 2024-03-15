@@ -13,10 +13,11 @@ export class Func509 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[right, 1095, 616, 0xbc172d],
-				[right, 1146, 616, 0xeab24e],
-				[right, 1130, 619, 0xe1d6d3],
-				[right, 1105, 635, 0xacc1ef],
+				[right, 1217, 620, 0xcca56e],
+				[right, 1222, 641, 0xddcdc7],
+				[right, 1221, 663, 0xdac9c4],
+				[right, 1219, 695, 0xb14c43],
+				[right, 1222, 706, 0x432118],
 			]
 		],
 		oper: [
