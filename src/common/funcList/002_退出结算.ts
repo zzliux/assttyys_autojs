@@ -32,6 +32,11 @@ export class Func002 implements IFuncOrigin {
 			desc: '是否缩小区域点击，解决部分掉落过多时点击错误的问题',
 			type: 'switch',
 			default: false,
+		}, {
+			name: 'fail',
+			desc: '失败后停止脚本',
+			type: 'switch',
+			default: false,
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{
@@ -126,7 +131,7 @@ export class Func002 implements IFuncOrigin {
 		],
 		notForCnt: true,
 	}, {
-		// 单人-失败太鼓
+		// 9 单人-失败太鼓
 		desc: '退出结算_单人_失败太鼓',
 		operStepRandom: [
 			[
@@ -135,7 +140,7 @@ export class Func002 implements IFuncOrigin {
 			]
 		],
 	}, {
-		// 组队-失败太鼓
+		// 10 组队-失败太鼓
 		desc: '退出结算_组队_失败太鼓',
 		operStepRandom: [
 			[
@@ -203,7 +208,7 @@ export class Func002 implements IFuncOrigin {
 			[center, 1280, 720, 916, 179, 951, 211, 2000]
 		]
 	}, {
-		// 单人-失败太鼓
+		// 单人-失败太鼓,重新挑战
 		desc: '退出结算_单人_失败太鼓',
 		oper: [
 			[center, 1280, 720, 813, 465, 909, 570, 500],
@@ -252,6 +257,15 @@ export class Func002 implements IFuncOrigin {
 				oper: thisOperator[0].oper
 			}]
 		})) {
+			return true
+		}
+		if (thisconf && thisconf.fail && thisScript.oper({
+			id: 2,
+			name: '退出结算_失败停止',
+			operator: [thisOperator[9], thisOperator[10]]
+		})) {
+			thisScript.stop();
+			sleep(3000);
 			return true
 		}
 		return thisScript.oper({
