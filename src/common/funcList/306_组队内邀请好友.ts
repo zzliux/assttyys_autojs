@@ -199,7 +199,7 @@ export class Func306 implements IFuncOrigin {
 				const findInvName = thisScript.findTextByOcrResult(thisConf.inviteName as string, result, '包含')
 				if (findInvName.length) {
 					toClickRegion = [
-						findInvName[0].points[0].x + 10,
+						findInvName[0].points[0].x + 20,
 						findInvName[0].points[0].y,
 						findInvName[0].points[0].x + 50,
 						findInvName[0].points[0].y + 65,

@@ -53,8 +53,6 @@ export class Func009 implements IFuncOrigin {
 			name: '突破界面_判断',
 			operator: [{ desc: thisOperator[0].desc }]
 		}, 0)) {
-			// const thisconfFor008 = thisScript.scheme.config['8']; // 获取8功能配置
-			// const thistype = thisconfFor008.type;
 			const thisconf = thisScript.scheme.config['9']; // 获取配置
 			const priority = String(thisconf.priority).split('->');
 			const multiColorKey = [];
@@ -64,25 +62,12 @@ export class Func009 implements IFuncOrigin {
 			for (const key of multiColorKey) {
 				const point = thisScript.findMultiColor(key);
 				const add = thisOperator[0].oper[3];
-				// if (point && thistype === '个人突破' && ((point.x > thisOperator[0].oper[2][0] &&
-				// 	point.x < thisOperator[0].oper[2][0] + thisOperator[0].oper[2][3]) ||
-				// 	(point.x > thisOperator[0].oper[2][1] &&
-				// 		point.x < thisOperator[0].oper[2][1] + thisOperator[0].oper[2][3]) ||
-				// 	(point.x > thisOperator[0].oper[2][2] &&
-				// 		point.x < thisOperator[0].oper[2][2] + thisOperator[0].oper[2][3]))) {
-				// 	console.log("识别到点击范围在头像框附近，对点击范围更正");
-				// 	add = thisOperator[0].oper[1];
-				// }
 				if (point) {
 					const oper = [[
 						point.x + thisOperator[0].oper[0][0] + add[0],
 						point.y + thisOperator[0].oper[0][1] + add[1],
 						point.x + thisOperator[0].oper[0][2] + add[2],
 						point.y + thisOperator[0].oper[0][3] + add[3],
-						// point.x,
-						// point.y,
-						// point.x,
-						// point.y,
 						thisOperator[0].oper[0][4]]];
 					thisScript.regionClick(oper);
 					// 第一排第一列结界坐标

@@ -51,33 +51,26 @@ export class Func050 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[center, 401, 205, 0x009db1],
-				[center, 775, 211, 0xaf0d28],
-				[center, 456, 215, 0xe85c2e],
-				[center, 512, 221, 0xb83927],
-				[center, 468, 196, 0xefdfbf],
-			]
-		],
-		oper: [
-			[center, 1280, 720, 774, 210, 852, 231, 1000],
-		]
-	}, { // 2 被横幅遮挡的御魂BUFF 二种
-		desc: [
-			1280, 720,
-			[
-				[center, 401, 205, 0x00bbd2],
-				[center, 775, 211, 0xaf0d28],
-				[center, 456, 215, 0xe85c2e],
-				[center, 512, 221, 0xb83927],
-				[center, 468, 196, 0xefdfbf],
+				[center, 466, 216, 0xf0d5ac],
+				[center, 493, 219, 0xf1d9b1],
+				[center, 665, 221, 0x37332f],
+				[center, 691, 219, 0x4d4843],
+				[center, 658, 226, 0x56504b],
+				[center, 695, 229, 0x726b65],
 			]
 		],
 		oper: [
 			[center, 1280, 720, 774, 210, 852, 231, 1000],
 		]
 	}, {
-		// 3 准备界面
+		// 2 未准备界面
 		desc: '准备界面_未准备',
+		oper: [
+			[left, 1280, 720, 119, 659, 150, 712, 1000],
+		]
+	}, {
+		// 3 已准备界面
+		desc: '准备界面_已准备',
 		oper: [
 			[left, 1280, 720, 119, 659, 150, 712, 1000],
 		]
@@ -93,7 +86,7 @@ export class Func050 implements IFuncOrigin {
 			thisScript.global.opened_buff = true;
 			if (thisconf.buff_type === '御魂' && thisScript.oper({
 				name: '被横幅遮挡的御魂BUFF',
-				operator: [thisOperator[1], thisOperator[2]]
+				operator: [thisOperator[1]]
 			})) {
 				return true;
 			}
@@ -119,7 +112,7 @@ export class Func050 implements IFuncOrigin {
 			return thisScript.oper({
 				id: 50,
 				name: '准备界面开buff',
-				operator: [thisOperator[3]]
+				operator: [thisOperator[2], thisOperator[3]]
 			});
 		}
 

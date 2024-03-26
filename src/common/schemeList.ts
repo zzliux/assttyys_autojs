@@ -927,38 +927,34 @@ const SchemeList: IScheme[] = [
 		id: 100,
 		schemeName: '缘结趣游',
 		list: [0, 24, 319],
-	},
-	{
-		id: 102,
-		schemeName: '定时任务-启动游戏-对弈竞猜',
-		star: true,
-		groupName: '定时任务',
-		list: [1, 2, 3, 503, 993],
-		config: {
-			'993': {
-				area: '',
-				is_shutdown_the_game_before: true,
-				next_scheme: '对弈竞猜',
-			},
-			'503': {
-				afterCountOper: '不进行任何操作',
-			},
-		},
-	}, {
-		id: 101,
-		schemeName: '对弈竞猜',
-		list: [0, 2, 401],
-		config: {
-			'0': {
-				jspd_times_longtime_nodo: '1',
-			}
-		},
-	}, {
-		id: 102,
-		schemeName: '音动小街_集音',
-		list: [0, 2, 3, 24, 101],
-		star: true,
 	}
+	// , {
+	// 	id: 102,
+	// 	schemeName: '定时任务-启动游戏-对弈竞猜',
+	// 	star: true,
+	// 	groupName: '定时任务',
+	// 	list: [1, 2, 3, 503, 993],
+	// 	config: {
+	// 		'993': {
+	// 			area: '',
+	// 			is_shutdown_the_game_before: true,
+	// 			next_scheme: '对弈竞猜',
+	// 		},
+	// 		'503': {
+	// 			afterCountOper: '不进行任何操作',
+	// 		},
+	// 	},
+	// }, {
+	// 	id: 101,
+	// 	schemeName: '对弈竞猜',
+	// 	list: [0, 2, 401],
+	// 	config: {
+	// 		'0': {
+	// 			jspd_times_longtime_nodo: '1',
+	// 		}
+	// 	},
+	// }
+	//
 	// 完整demo
 	// , {
 	//     id: 2,

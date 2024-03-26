@@ -296,6 +296,34 @@ export class Func503 implements IFuncOrigin {
 		oper: [
 			[left, 1280, 720, 22, 7, 75, 54, 2000]
 		]
+	}, { // 26 有邀请横幅的突破界面
+		desc: [
+			1280, 720,
+			[
+				[left, 34, 245, 0xd96855],
+				[left, 53, 261, 0xde6c5a],
+				[left, 127, 252, 0x57b362],
+				[left, 153, 249, 0x5cb767],
+				[right, 1200, 140, 0xe7d5cf],
+				[right, 1212, 130, 0xe8d6d0],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1181, 111, 1223, 150, 1000],
+		]
+	}, { // 27 组队界面
+		desc: [1280, 720,
+			[
+				[left, 43, 37, 0xf5e6a8],
+				[left, 60, 39, 0x84582f],
+				[left, 19, 47, 0x281717],
+				[left, 57, 565, 0xf9f9f1],
+				[center, 830, 58, 0xfee0c8],
+			]
+		],
+		oper: [
+			[left, 1280, 720, 31, 20, 70, 59, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['503'];
@@ -309,6 +337,7 @@ export class Func503 implements IFuncOrigin {
 				thisOperator[14], thisOperator[15], thisOperator[17],
 				thisOperator[18], thisOperator[19], thisOperator[20],
 				thisOperator[21], thisOperator[24], thisOperator[25],
+				thisOperator[26], thisOperator[27],
 			]
 		})) {
 			return true;

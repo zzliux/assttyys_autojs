@@ -118,8 +118,7 @@ export class Func002 implements IFuncOrigin {
 			]
 		],
 		notForCnt: true,
-	},
-	{
+	}, {
 		// 8 组队-胜利太鼓,斗技-胜利太鼓 - 适配
 		desc: '退出结算_斗技_胜利太鼓',
 		operStepRandom: [

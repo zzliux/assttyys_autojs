@@ -78,6 +78,7 @@ export type globalRootType = {
 	youjiequyuan_ten: boolean;//      缘结趣游是否十抽
 	dengluNumOT: number, // 登录账号计数
 	dengluState: boolean, // 登录账号状态
+	yaoqing_close: boolean, // 关闭_接受邀请
 }
 
 export const globalRoot: globalRootType = {
@@ -160,4 +161,5 @@ export const globalRoot: globalRootType = {
 	youjiequyuan_ten: true,
 	dengluNumOT: 0,
 	dengluState: true,
+	yaoqing_close: false,
 }

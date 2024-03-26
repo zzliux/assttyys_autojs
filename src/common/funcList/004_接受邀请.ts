@@ -14,7 +14,7 @@ export class Func004 implements IFuncOrigin {
 		desc: '',
 		config: [{
 			name: 'exit',
-			desc: '对邀请提示不做动作并切换方案（常用于组队队员开始前打开buff或组队队员停止当前方案）',
+			desc: '对邀请提示不做动作并切换方案（用于当做判断条件）',
 			type: 'switch',
 			default: false,
 		}, {
@@ -32,12 +32,18 @@ export class Func004 implements IFuncOrigin {
 			desc: '下一个方案',
 			type: 'scheme',
 			default: '关闭BUFF',
+		}, {
+			name: 'auto_team',
+			desc: '自动接受后不再处理接受邀请',
+			type: 'switch',
+			default: false,
 		},]
 	}]
 	operator: IFuncOperatorOrigin[] = [{
-		// 自动接受邀请
+		// 0 自动接受邀请
 		desc: [1280, 720,
-			[[left, 20, 254, 0x7e6750],
+			[
+				[left, 20, 254, 0x7e6750],
 				[left, 45, 248, 0xdf6e5b],
 				[left, 138, 260, 0x57b260],
 				[left, 234, 251, 0xefc791],
@@ -48,9 +54,10 @@ export class Func004 implements IFuncOrigin {
 		oper: [
 			[left, 1280, 720, 219, 237, 254, 275, 600]
 		]
-	}, { // 接受一次邀请
+	}, { // 1 接受一次邀请
 		desc: [1280, 720,
-			[[left, 128, 255, 0x58b361],
+			[
+				[left, 128, 255, 0x58b361],
 				[left, 45, 257, 0xdd6a59],
 				[left, 79, 222, 0xe3d3c2],
 				[left, 14, 299, 0xf1be36],
@@ -59,14 +66,7 @@ export class Func004 implements IFuncOrigin {
 		oper: [
 			[left, 1280, 720, 120, 239, 159, 273, 600]
 		]
-	}, { // 开始战斗后的场景，提供给方案的自动判断
-		desc: [1280, 720,
-			[[left, 32, 89, 0x5d361c],
-				[left, 32, 190, 0x5a321a],
-				[left, 55, 402, 0xe3caa3],
-				[left, 51, 502, 0xe4cca3]]
-		]
-	}, { // 3	挑战_亮
+	}, { // 2	挑战_亮
 		desc: [1280, 720,
 			[
 				[left, 43, 37, 0xf5e6a8],
@@ -77,7 +77,7 @@ export class Func004 implements IFuncOrigin {
 				[left, 19, 47, 0x281717]
 			]
 		]
-	}, { // 4	挑战_暗
+	}, { // 3	挑战_暗
 		desc: [
 			1280, 720,
 			[
@@ -95,28 +95,37 @@ export class Func004 implements IFuncOrigin {
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['4'];
-		if (thisConf && thisConf.exit && thisScript.oper({
-			id: 4,
-			name: '接受邀请',
-			operator: [{ desc: thisOperator[0].desc }, { desc: thisOperator[1].desc }]
-		})) {
-			thisScript.rerun(thisConf.next_scheme);
-		} else {
-			if (thisScript.oper({
-				id: 4,
-				name: '接受邀请',
-				operator: thisOperator.slice(0, 2)
-			})) {
-				return true;
-			}
-		}
-
 		if (thisConf && thisConf.teammate_exit && thisScript.oper({
 			id: 4,
 			name: '队长退出',
-			operator: [thisOperator[3], thisOperator[4]]
+			operator: [thisOperator[2], thisOperator[3]]
 		})) {
 			thisScript.rerun(thisConf.teammate_exit_next_scheme);
+		}
+		if (thisConf && thisConf.exit && thisScript.oper({
+			id: 4,
+			name: '邀请切换横幅',
+			operator: [thisOperator[0], thisOperator[1]]
+		})) {
+			thisScript.rerun(thisConf.next_scheme);
+		}
+		if (thisConf && thisConf.auto_team && thisScript.global.yaoqing_close) {
+			return true;
+		}
+		if (thisScript.oper({
+			id: 4,
+			name: '接受邀请',
+			operator: [thisOperator[0]]
+		})) {
+			thisScript.global.yaoqing_close = true;
+			return true;
+		}
+		if (thisScript.oper({
+			id: 4,
+			name: '接受邀请',
+			operator: [thisOperator[1]]
+		})) {
+			return true;
 		}
 	}
 }
