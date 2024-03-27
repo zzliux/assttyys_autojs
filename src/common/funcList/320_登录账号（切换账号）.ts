@@ -101,6 +101,9 @@ export class Func320 implements IFuncOrigin {
 				name: '登录账号_杂项',
 				operator: [thisOperator[0], thisOperator[3]]
 			})) {
+				// 读取 等待迭代
+				thisScript.global.juan_gouyu = true;
+				thisScript.global.daily_collection = 'friend'
 				return true;
 			}
 			if (thisScript.oper({

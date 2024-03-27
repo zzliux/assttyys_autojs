@@ -79,6 +79,7 @@ export type globalRootType = {
 	dengluNumOT: number, // 登录账号计数
 	dengluState: boolean, // 登录账号状态
 	yaoqing_close: boolean, // 关闭_接受邀请
+	juan_gouyu: boolean, // 捐勾玉
 }
 
 export const globalRoot: globalRootType = {
@@ -162,4 +163,5 @@ export const globalRoot: globalRootType = {
 	dengluNumOT: 0,
 	dengluState: true,
 	yaoqing_close: false,
+	juan_gouyu: true,
 }

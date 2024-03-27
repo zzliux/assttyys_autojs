@@ -49,6 +49,7 @@ export class Func009 implements IFuncOrigin {
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
+		// 读取当前0功能的退出次数,当第四次就重新修改成打9
 		if (thisScript.oper({
 			name: '突破界面_判断',
 			operator: [{ desc: thisOperator[0].desc }]
@@ -72,10 +73,10 @@ export class Func009 implements IFuncOrigin {
 					thisScript.regionClick(oper);
 					// 第一排第一列结界坐标
 					const fristFirstOper = thisOperator[1].oper[0] // [147, 146, 465, 265];
-					const thisconf = thisScript.scheme.config['9'];
 					if (Number(oper[0][0]) > fristFirstOper[0] && Number(oper[0][1]) > fristFirstOper[1] && Number(oper[0][2]) < fristFirstOper[2] && Number(oper[0][3]) < fristFirstOper[3]) {
 						console.log('检测点击范围在第一排第一列结界内');
 						if (thisconf && thisconf.scheme_switch_enabled) {
+							// 修改 0功能参数成退4
 							thisScript.rerun(thisconf.next_scheme);
 							sleep(3000);
 							return;
