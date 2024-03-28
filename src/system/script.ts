@@ -13,7 +13,7 @@ import { getWidthPixels, getHeightPixels } from '@auto.pro/core';
 import schemeDialog from './schemeDialog';
 import drawFloaty from '@/system/drawFloaty';
 import { myToast, doPush } from '@/common/toolAuto';
-import { IFunc, IFuncOrigin } from '@/interface/IFunc';
+import { IFunc, IFuncOrigin, schemeStartFunc, schemeStopFunc, schemeSwitchInFunc, schemeSwitchOutFunc, } from '@/interface/IFunc';
 import { IScheme } from '@/interface/IScheme';
 import { IMultiDetectColors, IMultiFindColors } from '@/interface/IMultiColor';
 import { globalRoot, globalRootType } from '@/system/GlobalStore/index';
@@ -44,6 +44,12 @@ export class Script {
 	job: Job;
 	schedule: typeof schedule;
 	ncnnBgyx = ncnnBgyx;
+	lifeCycleStages: {
+		schemeSwitchIn: schemeSwitchInFunc[],
+		schemeStart: schemeStartFunc[],
+		schemeStop: schemeStopFunc[],
+		schemeSwitchOut: schemeSwitchOutFunc[],
+	};
 
 	/**
      * 运行次数，下标为funcList中的id，值为这个func成功执行的次数；
@@ -78,7 +84,6 @@ export class Script {
      * @param {string}str
      */
 	myToast: (str: string) => void;
-
 
 	constructor() {
 		this.runThread = null;
@@ -283,6 +288,33 @@ export class Script {
 		this.scheme = store.get('currentScheme', null);
 		if (null === this.scheme) return;
 		this.scheme.funcList = this.getFuncList(this.scheme);
+	}
+
+	/**
+	 * 生命周期stage函数初始化
+	 */
+	initLifeCycleStage() {
+		const self = this;
+		self.lifeCycleStages = {
+			schemeSwitchIn: [],
+			schemeStart: [],
+			schemeStop: [],
+			schemeSwitchOut: [],
+		}
+		this.scheme.funcList.forEach(func => {
+			if (func.onSchemeSwitchIn) {
+				self.lifeCycleStages.schemeSwitchIn.push(func.onSchemeSwitchIn);
+			}
+			if (func.onSchemeStart) {
+				self.lifeCycleStages.schemeStart.push(func.onSchemeStart);
+			}
+			if (func.onSchemeStop) {
+				self.lifeCycleStages.schemeStop.push(func.onSchemeStop);
+			}
+			if (func.onSchemeSwitchOut) {
+				self.lifeCycleStages.schemeSwitchOut.push(func.onSchemeSwitchOut);
+			}
+		});
 	}
 
 	// getScheduleJobInstance(key) {
@@ -523,6 +555,8 @@ export class Script {
 		const self = this;
 		try {
 			this.initFuncList();
+			this.initLifeCycleStage(); // 先初始化才能运行switchIn和start生命周期
+
 			this.initMultiFindColors();
 			this.runDate = new Date();
 			this.currentDate = new Date();
