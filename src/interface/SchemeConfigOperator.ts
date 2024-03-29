@@ -1,7 +1,7 @@
 import store from '../system/store';
 import { SchemeConfig } from './IScheme';
-
-
+import script from '@/system/script';
+import { deepClone } from '@/common/tool';
 
 class SchemeConfigStore {
 	private static instance: SchemeConfigStore;
@@ -47,6 +47,10 @@ class SchemeConfigStore {
 			}
 		}
 		store.put('schemeList', schemeList);
+		// 回头更新script里面缓存的scheme.config
+		if (script.scheme?.schemeName === schemeName) {
+			script.scheme.config = deepClone(this.schemeConfigs[schemeName]);
+		}
 	}
 }
 

@@ -27,6 +27,7 @@ import { SchemeConfigOperator } from '@/interface/SchemeConfigOperator';
  */
 export class Script {
 	runThread: any; // 脚本运行线程
+	monitorThread: any; // 监听脚本的线程
 	runCallback: Function; // 运行后回调，一般用于修改悬浮样式
 	stopCallback: Function; // 停止后回调，异常停止、手动停止，在停止后都会调用
 	scheme: IScheme; // 运行的方案
@@ -557,12 +558,7 @@ export class Script {
 		// const schemeConfigReader = new SchemeConfigReader(this.scheme.schemeName);
 		try {
 			this.initFuncList();
-			this.initLifeCycleStage(); // 先初始化才能运行switchIn和start生命周期
-			const schemeConfigOperator = new SchemeConfigOperator(this.scheme.schemeName);
-			this.lifeCycleStages.schemeStart.forEach(stageFunc => {
-				stageFunc(this, schemeConfigOperator);
-			});
-
+			this.initLifeCycleStage();
 			this.initMultiFindColors();
 			this.runDate = new Date();
 			this.currentDate = new Date();
@@ -579,10 +575,6 @@ export class Script {
 			}
 		} catch (e) {
 			console.error(e);
-			const schemeConfigOperator = new SchemeConfigOperator(this.scheme.schemeName);
-			this.lifeCycleStages.schemeStop.forEach(stageFunc => {
-				stageFunc(this, schemeConfigOperator);
-			});
 			if (typeof self.stopCallback === 'function') {
 				self.stopCallback();
 			}
@@ -591,12 +583,23 @@ export class Script {
 			}
 			return;
 		}
-		// test start
-		// let img = images.captureScreen();
-		// img.saveTo('/sdcard/testimg.png');
-		// img.recycle();
-		// test end
+
+		if (this.schemeHistory.length) {
+			const lastScheme = this.schemeHistory[this.schemeHistory.length - 1];
+			const lastSchemeConfigOpeator = new SchemeConfigOperator(lastScheme.schemeName);
+			this.lifeCycleStages.schemeSwitchIn.forEach(stageFunc => {
+				stageFunc(this, lastSchemeConfigOpeator, schemeConfigOperator);
+			});
+		}
+
 		myToast(`运行方案[${this.scheme.schemeName}]`);
+
+		// 生命周期：schemeStart
+		const schemeConfigOperator = new SchemeConfigOperator(this.scheme.schemeName);
+		this.lifeCycleStages.schemeStart.forEach(stageFunc => {
+			stageFunc(this, schemeConfigOperator);
+		});
+
 		this.schemeHistory.push(this.scheme);
 		// console.log(`运行方案[${this.scheme.schemeName}]`);
 		this.runThread = threads.start(function () {
@@ -613,22 +616,28 @@ export class Script {
 					sleep(+self.scheme.commonConfig.loopDelay);
 				}
 			} catch (e) {
-				self.runThread = null;
+				// NONE
 				if (e.toString().indexOf('com.stardust.autojs.runtime.exception.ScriptInterruptedException') === -1) {
 					console.error($debug.getStackTrace(e));
 				}
-				const schemeConfigOperator = new SchemeConfigOperator(this.scheme.schemeName);
-				self.lifeCycleStages.schemeStop.forEach(stageFunc => {
-					stageFunc(this, schemeConfigOperator);
-				});
-				if (typeof self.stopCallback === 'function') {
-					self.stopCallback();
-				}
-				if (this.job) {
-					this.job.doDone();
-				}
 			}
 		});
+
+		self.monitorThread = threads.start(function () {
+			self.runThread.waitFor();
+			self.runThread.join();
+			self.runThread = null;
+			self.lifeCycleStages.schemeStop.forEach(stageFunc => {
+				stageFunc(self, schemeConfigOperator);
+			});
+			if (typeof self.stopCallback === 'function') {
+				self.stopCallback();
+			}
+			if (self.job) {
+				self.job.doDone();
+			}
+		});
+
 		if (typeof this.runCallback === 'function') {
 			this.runCallback();
 		}
@@ -723,6 +732,15 @@ export class Script {
 			sleep(3000);
 			return;
 		} else if (schemeName) {
+			const self = this
+			threads.start(function () {
+				self.monitorThread.join();
+				const thisSchemeConfigOpeator = new SchemeConfigOperator(self.scheme.schemeName);
+				const nextschemeConfigOperator = new SchemeConfigOperator(schemeName as string);
+				self.lifeCycleStages.schemeSwitchOut.forEach(stageFunc => {
+					stageFunc(self, thisSchemeConfigOpeator, nextschemeConfigOperator);
+				});
+			});
 			this.setCurrentScheme(schemeName as string, params);
 			this.myToast(`切换方案为[${schemeName}]`);
 		}

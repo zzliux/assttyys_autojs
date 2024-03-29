@@ -1,5 +1,6 @@
 import { Script } from '@/system/script';
 import { IFuncOrigin } from '@/interface/IFunc';
+import { SchemeConfigOperator } from '@/interface/SchemeConfigOperator';
 
 export class Func000 implements IFuncOrigin {
 	id = 0;
@@ -102,6 +103,34 @@ export class Func000 implements IFuncOrigin {
 			default: '2,7',
 		}]
 	}];
+
+	onSchemeSwitchIn(_thisScript: Script, _lastConfigOpeator: SchemeConfigOperator, _thisConfigOperator: SchemeConfigOperator): void {
+		console.log('onSchemeSwitchIn');
+	}
+
+	onSchemeStart(_thisScript: Script, _thisConfigOperator: SchemeConfigOperator): void {
+		// const a = thisConfigOperator.get(0, 'jspd_enabled_zjsj');
+		// const b = thisConfigOperator.get(0, 'jspd_times_zjsj');
+		// console.log('start ababababab', a, b);
+		// thisConfigOperator.set(0, 'jspd_enabled_zjsj', true);
+		// thisConfigOperator.set(0, 'jspd_times_zjsj', 0);
+		console.log('onSchemeStart');
+
+	}
+
+	onSchemeStop(_thisScript: Script, _thisConfigOperator: SchemeConfigOperator): void {
+		// const a = thisConfigOperator.get(0, 'jspd_enabled_zjsj');
+		// const b = thisConfigOperator.get(0, 'jspd_times_zjsj');
+		// thisConfigOperator.set(0, 'jspd_enabled_zjsj', false);
+		// thisConfigOperator.set(0, 'jspd_times_zjsj', 30);
+		// console.log('stop ababababab', a, b);
+		console.log('onSchemeStop');
+	}
+
+	onSchemeSwitchOut(_thisScript: Script, _thisConfigOperator: SchemeConfigOperator, _nextConfigOperator: SchemeConfigOperator): void {
+		console.log('onSchemeSwitchOut');
+	}
+
 	operatorFunc(thisScript: Script, _thisOperator): boolean {
 		const thisconf = thisScript.scheme.config['0'];
 
