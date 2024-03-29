@@ -439,6 +439,41 @@ export class Func316 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1120, 597, 1231, 682, 500], // 挑战
 		]
+	}, {
+		// 28 战斗失败选择放弃前行
+		desc: [
+			1280, 720,
+			[
+				[center, 449, 224, 0x724d3c],
+				[center, 442, 425, 0xdf6851],
+				[center, 691, 415, 0xf3b25e],
+				[center, 871, 223, 0x634334],
+				[center, 836, 406, 0x983b2e],
+				[center, 431, 371, 0xcbb59c],
+				[center, 846, 379, 0xcbb59c],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 673, 406, 844, 458, 1000],
+		]
+	}, {
+		// 29 战斗失败确定放弃
+		desc: [
+			1280, 720,
+			[
+				[center, 442, 222, 0x644434],
+				[center, 819, 222, 0x6a4737],
+				[center, 475, 352, 0xcbb59c],
+				[center, 692, 417, 0xf3b25e],
+				[center, 575, 408, 0xdf6851],
+				[center, 800, 397, 0x993b2f],
+				[center, 795, 346, 0xcbb59c],
+				[center, 478, 364, 0xcbb59c],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 680, 397, 802, 448, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 
@@ -562,7 +597,8 @@ export class Func316 implements IFuncOrigin {
 				thisOperator[3], thisOperator[5], thisOperator[6], thisOperator[8],
 				thisOperator[9], thisOperator[10], thisOperator[12], thisOperator[13],
 				thisOperator[14], thisOperator[19], thisOperator[20], thisOperator[21],
-				thisOperator[22], thisOperator[26], thisOperator[27],
+				thisOperator[22], thisOperator[26], thisOperator[27], thisOperator[28],
+				thisOperator[29],
 			]
 		})) {
 			return true;

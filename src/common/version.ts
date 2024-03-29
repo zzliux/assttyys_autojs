@@ -1058,6 +1058,11 @@ export const versionList = [{
 }, {
 	version: '20240312_01',
 	desc: '优化：六道椒图'
+}, {
+	version: '20240322_01',
+	desc: `优化：六道椒图失败自动放弃
+优化：战斗界面强化适配
+`
 }];
 
 export default versionList[versionList.length - 1].version;
