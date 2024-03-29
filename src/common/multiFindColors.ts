@@ -3066,6 +3066,21 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				[center, 924, 635, 0xfbf9de],
 			]
 		]]
+	},
+	'同心队挂机奖励': {
+		region: [center, 1280, 720, 69, 270, 185, 395],
+		desc: [[
+			1280, 720,
+			[
+				[left, 117, 340, 0xdcd6d5],
+				[left, 111, 328, 0xefe9e3],
+				[left, 128, 329, 0xe0dcdb],
+				[left, 102, 347, 0xc8403c],
+				[left, 130, 352, 0xcd3d35],
+				[left, 136, 346, 0xc1433d],
+			]
+		]],
+
 	}
 }
 

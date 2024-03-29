@@ -112,7 +112,7 @@ export class helperBridge implements IhelperBridge {
 				// let y = random(item[1], item[3]);
 				const [x, y] = getRegionBiasRnd2(item, [strHashToNum(device.getAndroidId(), item[0], item[2]), strHashToNum(device.getAndroidId(), item[1], item[3])], 1);
 				const pressTimeout = item[5] ? random(item[5], item[5] + 50) : random(10, 60);
-				console.log(`执行点击操作 === x坐标:${x}, y坐标:${y}`);
+				console.log(`执行点击操作 === x坐标:${Math.trunc(x)}, y坐标:${Math.trunc(y)}, oper为[${transedOper[0][0]}, ${transedOper[0][1]}, ${transedOper[0][2]}, ${transedOper[0][3]}, ${transedOper[0][4]}]`);
 				if (drawFloaty.instacne) {
 					const toDraw = [{
 						color: 'orange',

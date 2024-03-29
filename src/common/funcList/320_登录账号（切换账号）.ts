@@ -1,5 +1,7 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
+import { merge } from '@/common/tool';
+import { globalRoot } from '@/system/GlobalStore/index';
 // const normal = -1; //定义常量
 // const left = 0;
 const center = 1;
@@ -24,7 +26,7 @@ export class Func320 implements IFuncOrigin {
 		}
 		]
 	}]
-	operator: IFuncOperatorOrigin[] = [{ // 0 登录界面
+	operator: IFuncOperatorOrigin[] = [{ // 0 登录界面_用户中心
 		desc: [
 			1280, 720,
 			[
@@ -32,7 +34,7 @@ export class Func320 implements IFuncOrigin {
 				[right, 1213, 267, 0xb5a992],
 				[right, 1234, 264, 0xbcb19b],
 				[right, 1257, 271, 0xc6bda7],
-				[right, 1201, 241, 0x524332],
+				[right, 1234, 268, 0xc2b9a3],
 			]
 		],
 		oper: [
@@ -95,15 +97,20 @@ export class Func320 implements IFuncOrigin {
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['320'];
+		// 方案开启后先杀进程
+		if (thisScript.global.frist_open) {
+			thisScript.stopRelatedApp();
+			sleep(1000);
+			thisScript.launchRelatedApp();
+			thisScript.global.frist_open = false;
+			return true;
+		}
 		if (thisScript.global.dengluState) { // 登录状态
 			if (thisScript.oper({
 				id: 320,
 				name: '登录账号_杂项',
 				operator: [thisOperator[0], thisOperator[3]]
 			})) {
-				// 读取 等待迭代
-				thisScript.global.juan_gouyu = true;
-				thisScript.global.daily_collection = 'friend'
 				return true;
 			}
 			if (thisScript.oper({
@@ -111,6 +118,7 @@ export class Func320 implements IFuncOrigin {
 				name: '登录账号_登入',
 				operator: [{ desc: thisOperator[1].desc }]
 			})) {
+				// 往下滑X次
 				if (thisScript.global.dengluNumOT != 0 && thisScript.global.dengluNumOT % 2 == 0) {
 					thisScript.regionClick([thisOperator[1].oper[1]]);
 					let x = 0;
@@ -120,6 +128,7 @@ export class Func320 implements IFuncOrigin {
 					}
 					thisScript.regionClick([thisOperator[1].oper[2]]);
 				}
+				// 先点最后一个账号,达到次则停止
 				if (thisScript.global.dengluNumOT < Number(thisConf.accountNum)) {
 					thisScript.regionClick([thisOperator[1].oper[0]]);
 					return true;
@@ -128,6 +137,7 @@ export class Func320 implements IFuncOrigin {
 					return true;
 				}
 			}
+			// 选择ios端或者安卓端,增加计数
 			if (thisScript.oper({
 				id: 320,
 				name: '登录账号_选择端号',
@@ -139,6 +149,14 @@ export class Func320 implements IFuncOrigin {
 					thisScript.regionClick([thisOperator[2].oper[1]]);// ios端
 				}
 				thisScript.global.dengluNumOT++;
+				// 保存重置前的参数
+				const dengluNumOT = thisScript.global.dengluNumOT;
+				// 开始重置全局参数
+				thisScript.global = merge({}, globalRoot);
+				// 读取重置前的参数
+				thisScript.global.dengluNumOT = dengluNumOT;
+				console.log('重置参数完成');
+				thisScript.global.frist_open = false;
 				thisScript.global.dengluState = false;
 				return true;
 			}

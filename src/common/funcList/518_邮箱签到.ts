@@ -350,7 +350,7 @@ export class Func518 implements IFuncOrigin {
 				[
 					[left, 86, 653, 0xeff1eb],
 					[left, 90, 652, 0xeeede7],
-					[left, 156, 173, 0xd4c4b3],
+					[left, 150, 98, 0xc29472],
 					[left, 175, 134, 0xdbb291],
 					[right, 1120, 624, 0xf4b25f],
 					[center, 718, 67, 0x5c3a19],
@@ -401,7 +401,7 @@ export class Func518 implements IFuncOrigin {
 					[right, 1093, 583, 0xf3f3e7],
 					[right, 1030, 120, 0xe3cdaf],
 					[right, 1105, 381, 0x5d3c28],
-					[left, 153, 167, 0x57514a],
+					[left, 153, 106, 0x544234],
 				],
 			],
 			oper: [
@@ -430,7 +430,7 @@ export class Func518 implements IFuncOrigin {
 					[left, 263, 122, 0xe3ceb2],
 					[right, 1030, 120, 0xe3cdaf],
 					[right, 1105, 381, 0x5d3c28],
-					[left, 153, 167, 0x57514a],
+					[left, 153, 106, 0x544234],
 					[right, 1045, 619, 0xe3c9aa],
 					[right, 1049, 541, 0xe0c8af],
 				],
