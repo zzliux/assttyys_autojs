@@ -1,48 +1,76 @@
 import store from '../system/store';
 import { SchemeConfig } from './IScheme';
 
-export class SchemeConfigReader {
-	schemeName: string;
-	schemeConfig: SchemeConfig;
 
-	constructor(schemeName: string) {
-		this.schemeName = schemeName;
+
+class SchemeConfigStore {
+	private static instance: SchemeConfigStore;
+	private schemeConfigs: Record<string, SchemeConfig>;
+
+	private constructor() {
+		this.schemeConfigs = {};
+	}
+
+	public static getInstance(): SchemeConfigStore {
+		if (!SchemeConfigStore.instance) {
+			SchemeConfigStore.instance = new SchemeConfigStore();
+		}
+		return SchemeConfigStore.instance;
+	}
+
+	flushSchemeConfig(schemeName: string): void {
 		const schemeList = store.get('schemeList');
 		for (let i = 0; i < schemeList.length; i++) {
 			if (schemeList[i].schemeName === schemeName) {
-				this.schemeConfig = schemeList[i].config || {};
+				const schemeConfig = schemeList[i].config || {};
+				this.schemeConfigs[schemeName] = schemeConfig;
 				break;
 			}
 		}
-		if (!this.schemeConfig) {
-			this.schemeConfig = {};
-		}
 	}
 
-	get = (id: string | number, key: string): (boolean | string | number) => {
-		return this.schemeConfig[id][key];
-	};
-}
-
-export class SchemeConfigOperator extends SchemeConfigReader {
-
-	set = (id: string | number, key: string, value: (boolean | string | number)): void => {
-		// 更新内存配置
-		if (!this.schemeConfig[id]) {
-			this.schemeConfig[id] = {};
+	getSchemeConfig(schemeName: string): SchemeConfig {
+		const schemeConfig = this.schemeConfigs[schemeName];
+		if (!schemeConfig) {
+			this.flushSchemeConfig(schemeName);
 		}
-		this.schemeConfig[id][key] = value;
+		return schemeConfig;
+	}
 
-		// 回写配置
+	setSchemeConfig(schemeName: string, schemeConfig: SchemeConfig): void {
+		this.schemeConfigs[schemeName] = schemeConfig;
 		const schemeList = store.get('schemeList');
 		for (let i = 0; i < schemeList.length; i++) {
-			if (schemeList[i].schemeName === this.schemeName) {
-				schemeList[i].config = this.schemeConfig;
+			if (schemeList[i].schemeName === schemeName) {
+				schemeList[i].config = schemeConfig;
 				break;
 			}
 		}
 		store.put('schemeList', schemeList);
+	}
+}
+
+export class SchemeConfigReader {
+	schemeName: string;
+
+	constructor(schemeName: string) {
+		this.schemeName = schemeName;
+		SchemeConfigStore.getInstance().flushSchemeConfig(schemeName);
+	}
+
+	get = (id: string | number, key: string): (boolean | string | number) => {
+		const schemeConfig = SchemeConfigStore.getInstance().getSchemeConfig(this.schemeName);
+		return schemeConfig[id][key];
 	};
 }
 
-
+export class SchemeConfigOperator extends SchemeConfigReader {
+	set = (id: string | number, key: string, value: (boolean | string | number)): void => {
+		const schemeConfig = SchemeConfigStore.getInstance().getSchemeConfig(this.schemeName);
+		if (!schemeConfig[id]) {
+			schemeConfig[id] = {};
+		}
+		schemeConfig[id][key] = value;
+		SchemeConfigStore.getInstance().setSchemeConfig(this.schemeName, schemeConfig);
+	};
+}

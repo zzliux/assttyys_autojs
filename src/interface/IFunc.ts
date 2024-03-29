@@ -8,14 +8,13 @@ import { SchemeConfigOperator } from './SchemeConfigOperator';
  * onSchemeStop 当前方案停止
  * onSchemeSwitchOut 当前方案切出
  * @param thisScript
- * @param thisOperator
  * @param lastConfigOpeator 上一个方案配置操作类
  * @param thisConfigOperator 当前个方案配置操作类
  */
-export type schemeSwitchInFunc = (thisScript: Script, thisOperator: IFuncOperator[], lastConfigOpeator: SchemeConfigOperator, thisConfigOperator: SchemeConfigOperator) => void;
-export type schemeStartFunc = (thisScript: Script, thisOperator: IFuncOperator[], thisConfigOperator: SchemeConfigOperator) => void;
-export type schemeStopFunc = (thisScript: Script, thisOperator: IFuncOperator[], thisConfigOperator: SchemeConfigOperator) => void;
-export type schemeSwitchOutFunc = (thisScript: Script, thisOperator: IFuncOperator[], thisConfigOperator: SchemeConfigOperator, nextConfigOperator: SchemeConfigOperator) => void;
+export type schemeSwitchInFunc = (thisScript: Script, lastConfigOpeator: SchemeConfigOperator, thisConfigOperator: SchemeConfigOperator) => void;
+export type schemeStartFunc = (thisScript: Script, thisConfigOperator: SchemeConfigOperator) => void;
+export type schemeStopFunc = (thisScript: Script, thisConfigOperator: SchemeConfigOperator) => void;
+export type schemeSwitchOutFunc = (thisScript: Script, thisConfigOperator: SchemeConfigOperator, nextConfigOperator: SchemeConfigOperator) => void;
 
 
 export interface IFuncConfigOrigin {

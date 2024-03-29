@@ -20,6 +20,7 @@ import { globalRoot, globalRootType } from '@/system/GlobalStore/index';
 import schedule, { Job } from '@/system/Schedule';
 import { MyFloaty } from '@/system/MyFloaty';
 import ncnnBgyx from '@/system/ncnn/ncnnBgyx';
+import { SchemeConfigOperator } from '@/interface/SchemeConfigOperator';
 
 /**
  * 脚本对象，一个程序只能有一个
@@ -441,7 +442,7 @@ export class Script {
     * @param {Region} inRegion 多点找色区域
     * @returns
     */
-	findMultiColorEx(key, inRegion?): Point[] {
+	findMultiColorEx(key: string, inRegion?): Point[] {
 		this.initRedList();
 		const region = inRegion || this.multiFindColors[key].region;
 		const desc = this.multiFindColors[key].desc;
@@ -553,9 +554,14 @@ export class Script {
 		if (this.runThread) return;
 		this.job = job;
 		const self = this;
+		// const schemeConfigReader = new SchemeConfigReader(this.scheme.schemeName);
 		try {
 			this.initFuncList();
 			this.initLifeCycleStage(); // 先初始化才能运行switchIn和start生命周期
+			const schemeConfigOperator = new SchemeConfigOperator(this.scheme.schemeName);
+			this.lifeCycleStages.schemeStart.forEach(stageFunc => {
+				stageFunc(this, schemeConfigOperator);
+			});
 
 			this.initMultiFindColors();
 			this.runDate = new Date();
@@ -573,6 +579,10 @@ export class Script {
 			}
 		} catch (e) {
 			console.error(e);
+			const schemeConfigOperator = new SchemeConfigOperator(this.scheme.schemeName);
+			this.lifeCycleStages.schemeStop.forEach(stageFunc => {
+				stageFunc(this, schemeConfigOperator);
+			});
 			if (typeof self.stopCallback === 'function') {
 				self.stopCallback();
 			}
@@ -607,6 +617,10 @@ export class Script {
 				if (e.toString().indexOf('com.stardust.autojs.runtime.exception.ScriptInterruptedException') === -1) {
 					console.error($debug.getStackTrace(e));
 				}
+				const schemeConfigOperator = new SchemeConfigOperator(this.scheme.schemeName);
+				self.lifeCycleStages.schemeStop.forEach(stageFunc => {
+					stageFunc(this, schemeConfigOperator);
+				});
 				if (typeof self.stopCallback === 'function') {
 					self.stopCallback();
 				}
