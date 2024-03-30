@@ -18,38 +18,38 @@ class SchemeConfigStore {
 		return SchemeConfigStore.instance;
 	}
 
-	flushSchemeConfig(schemeName: string): void {
+	flushSchemeConfig(schemeName: string): SchemeConfig {
 		const schemeList = store.get('schemeList');
 		for (let i = 0; i < schemeList.length; i++) {
 			if (schemeList[i].schemeName === schemeName) {
 				const schemeConfig = schemeList[i].config || {};
 				this.schemeConfigs[schemeName] = schemeConfig;
-				break;
+				return schemeConfig;
 			}
 		}
 	}
 
 	getSchemeConfig(schemeName: string): SchemeConfig {
-		const schemeConfig = this.schemeConfigs[schemeName];
+		let schemeConfig = this.schemeConfigs[schemeName];
 		if (!schemeConfig) {
-			this.flushSchemeConfig(schemeName);
+			schemeConfig = this.flushSchemeConfig(schemeName);
 		}
 		return schemeConfig;
 	}
 
 	setSchemeConfig(schemeName: string, schemeConfig: SchemeConfig): void {
-		this.schemeConfigs[schemeName] = schemeConfig;
+		this.schemeConfigs[schemeName] = deepClone(schemeConfig);
 		const schemeList = store.get('schemeList');
 		for (let i = 0; i < schemeList.length; i++) {
 			if (schemeList[i].schemeName === schemeName) {
-				schemeList[i].config = schemeConfig;
+				schemeList[i].config = this.schemeConfigs[schemeName];
 				break;
 			}
 		}
 		store.put('schemeList', schemeList);
 		// 回头更新script里面缓存的scheme.config
 		if (script.scheme?.schemeName === schemeName) {
-			script.scheme.config = deepClone(this.schemeConfigs[schemeName]);
+			script.scheme.config = this.schemeConfigs[schemeName];
 		}
 	}
 }

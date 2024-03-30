@@ -28,6 +28,7 @@ import { SchemeConfigOperator } from '@/interface/SchemeConfigOperator';
 export class Script {
 	runThread: any; // 脚本运行线程
 	monitorThread: any; // 监听脚本的线程
+	switchOutThread: any; // 切出方案线程
 	runCallback: Function; // 运行后回调，一般用于修改悬浮样式
 	stopCallback: Function; // 停止后回调，异常停止、手动停止，在停止后都会调用
 	scheme: IScheme; // 运行的方案
@@ -603,6 +604,9 @@ export class Script {
 		this.schemeHistory.push(this.scheme);
 		// console.log(`运行方案[${this.scheme.schemeName}]`);
 		this.runThread = threads.start(function () {
+			if (self.switchOutThread && self.switchOutThread.isAlive()) {
+				self.switchOutThread.join();
+			}
 			try {
 				// eslint-disable-next-line no-constant-condition
 				while (true) {
@@ -733,18 +737,20 @@ export class Script {
 			return;
 		} else if (schemeName) {
 			const self = this
-			threads.start(function () {
+			self.switchOutThread = threads.start(function () {
 				self.monitorThread.join();
 				const thisSchemeConfigOpeator = new SchemeConfigOperator(self.scheme.schemeName);
 				const nextschemeConfigOperator = new SchemeConfigOperator(schemeName as string);
 				self.lifeCycleStages.schemeSwitchOut.forEach(stageFunc => {
 					stageFunc(self, thisSchemeConfigOpeator, nextschemeConfigOperator);
 				});
-				self.setCurrentScheme(schemeName as string, params);
+
 				self.myToast(`切换方案为[${schemeName}]`);
+				self.setCurrentScheme(schemeName as string, params);
 			});
+			// tmpTread.join();
+			events.broadcast.emit('SCRIPT_RERUN', '');
 		}
-		events.broadcast.emit('SCRIPT_RERUN', '');
 	}
 
 	rerunWithJob(job: Job): void {
@@ -949,7 +955,10 @@ events.broadcast.on('SCRIPT_RUN', () => {
 events.broadcast.on('SCRIPT_RERUN', () => {
 	script._stop(true);
 	setTimeout(() => {
-		script._run(script.job);
+		threads.start(function() {
+			script.switchOutThread.join();
+			script._run(script.job);
+		});
 	}, 510);
 });
 
