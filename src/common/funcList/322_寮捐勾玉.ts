@@ -76,16 +76,15 @@ export class Func518 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 788, 285, 831, 322, 1000],
 		]
-	}, { // 6 获得奖励
-		desc: [1280, 720,
+	}, { // 6 捐勾_获得寮勋章奖励
+		desc: [
+			1280, 720,
 			[
-				[center, 424, 328, 0xbfa88f],
-				[center, 408, 237, 0x382a1c],
-				[center, 854, 241, 0x382a1c],
-				[center, 669, 242, 0xe6d79c],
-				[center, 869, 327, 0xb79e86],
-				[center, 926, 386, 0x825e34],
-				[center, 371, 395, 0x8b673e]
+				[center, 570, 320, 0xbf4436],
+				[center, 684, 352, 0xa06e5f],
+				[center, 374, 239, 0x38291d],
+				[center, 923, 374, 0x87643b],
+				[center, 592, 365, 0xae7943],
 			]
 		],
 		oper: [

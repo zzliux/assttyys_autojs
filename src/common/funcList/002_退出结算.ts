@@ -197,6 +197,20 @@ export class Func002 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 444, 552, 814, 701, 1000],
 		]
+	}, { // 自选120关闭
+		desc: [
+			1280, 720,
+			[
+				[center, 508, 124, 0xf4d38b],
+				[center, 664, 127, 0xf7e4b3],
+				[center, 753, 135, 0xf4e1b8],
+				[center, 853, 106, 0xeece86],
+				[right, 1001, 494, 0x433325],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1045, 125, 1078, 154, 1000],
+		]
 	}, { // 体力不足
 		desc: '退出结算_体力不足',
 		oper: [

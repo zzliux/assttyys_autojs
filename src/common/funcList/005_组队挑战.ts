@@ -64,10 +64,35 @@ export class Func005 implements IFuncOrigin {
 		]
 	}, { // 开始战斗后的场景，提供给方案的自动判断
 		desc: [1280, 720,
-			[[left, 32, 89, 0x5d361c],
+			[
+				[left, 32, 89, 0x5d361c],
 				[left, 32, 190, 0x5a321a],
 				[left, 55, 402, 0xe3caa3],
 				[left, 51, 502, 0xe4cca3]]
+		]
+	}, { // 同心离线组队
+		desc: [
+			1280, 720,
+			[
+				[left, 43, 37, 0xf5e6a8],
+				[left, 60, 39, 0x84582f],
+				[left, 19, 47, 0x281717],
+				[right, 1190, 626, 0xefdb8e],
+				[right, 1216, 639, 0xecd27e],
+				[right, 1235, 663, 0xe6c666],
+			]
+		]
+	}, { // 同心离线组队
+		desc: [
+			1280, 720,
+			[
+				[left, 43, 37, 0xf7e9ac],
+				[left, 60, 39, 0x8f5f32],
+				[left, 19, 47, 0x2c1c1b],
+				[right, 1190, 626, 0x6a3617],
+				[right, 1216, 639, 0xecd27e],
+				[right, 1235, 663, 0xe6c56a],
+			]
 		]
 	}];
 	// 0-有人就开，1-第一个+号上的点，2-第二个+号上的点，如果1或者2任意一个匹配上了，说明人没满
@@ -80,7 +105,7 @@ export class Func005 implements IFuncOrigin {
 		}
 		if (thisScript.oper({
 			name: '组队挑战_判断',
-			operator: [{ desc: thisOperator[0].desc }]
+			operator: [{ desc: thisOperator[0].desc }, { desc: thisOperator[6].desc }, { desc: thisOperator[7].desc }]
 		}, 0)) {
 			const thisconf = thisScript.scheme.config['5']; // 获取配置
 			if (thisconf.type === '有人就开') {

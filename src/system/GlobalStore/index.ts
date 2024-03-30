@@ -81,7 +81,7 @@ export type globalRootType = {
 	yaoqing_close: boolean, // 关闭_接受邀请
 	juan_gouyu: boolean, // 捐勾玉
 	frist_open: boolean, // 首次开启方案
-	tongXinDui_ZhanDou: 'judgment' | 'prestore' | 'juexing' | 'yuhun' | 'back';   // 同心队预存阶段
+	tongXinDui_ZhanDou: 'judge' | 'prestore' | 'juexing' | 'stage' | 'yuhun' | 'back';   // 同心队预存阶段
 }
 
 export const globalRoot: globalRootType = {
@@ -167,5 +167,5 @@ export const globalRoot: globalRootType = {
 	yaoqing_close: false,
 	juan_gouyu: true,
 	frist_open: true,
-	tongXinDui_ZhanDou: 'judgment',
+	tongXinDui_ZhanDou: 'judge',
 }

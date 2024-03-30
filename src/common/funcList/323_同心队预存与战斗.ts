@@ -233,35 +233,67 @@ export class Func323 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 30, 653, 54, 670, 1000],
 		]
+	}, { // 16 寮界面
+		desc: [
+			1280, 720,
+			[
+				[right, 1096, 630, 0xb1251f],
+				[right, 1105, 662, 0xdbe3f1],
+				[left, 45, 39, 0xf4e4a3],
+				[center, 886, 644, 0xe0cbaa],
+			]
+		],
+		retest: 1500
+	}, { // 17 寮三十判定是否满三十
+		desc: [
+			1280, 720,
+			[
+				[left, 20, 166, 0xbd4529],
+				[left, 44, 177, 0x342017],
+				[left, 65, 173, 0x321e16],
+				[left, 103, 170, 0x311d15],
+				[left, 143, 206, 0x463024],
+				[left, 131, 205, 0x473125],
+				[left, 131, 211, 0x7b634d],
+				[left, 131, 200, 0x877055],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 29, 19, 71, 63, 1000],
+		]
+	}, { // 18 进入阴阳寮
+		desc: '页面是否为庭院_菜单已展开_只支持默认庭院皮肤与默认装饰',
+		oper: [
+			[center, 1280, 720, 544, 612, 594, 661, 1200]	// 点击阴阳寮
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		// 是否做过寮三十
-		if (thisScript.global.tongXinDui_ZhanDou === 'judgment') {
-			let curCnt = 0;
-			const maxCount = 3;
-			while (thisScript.oper({
-				id: 322,
-				name: '庭院界面_查找同心队奖励',
-				operator: [{ desc: thisOperator[0].desc }]
-			}, 0)) {
-				curCnt++;
-				thisScript.keepScreen(false);
-				const point = thisScript.findMultiColor('同心队挂机奖励');
-				if (point) {
-					const oper = [[point.x, point.y, point.x + thisOperator[9].oper[5][2], point.y + thisOperator[2].oper[0][3], thisOperator[2].oper[0][4]]];
-					thisScript.regionClick(oper);
-					thisScript.regionClick([thisOperator[9].oper[6]]);
-					// 找到奖励,直接跳转到预存阶段
-					thisScript.global.tongXinDui_ZhanDou = 'prestore'
+		if (thisScript.global.tongXinDui_ZhanDou === 'judge') {
+			if (thisScript.oper({
+				id: 323,
+				name: '进入阴阳寮',
+				operator: [thisOperator[18]]
+			})) {
+				return true;
+			}
+			if (thisScript.oper({
+				id: 323,
+				name: '寮界面内',
+				operator: [thisOperator[16]]
+			})) {
+				if (thisScript.oper({
+					id: 323,
+					name: '阴阳寮界面内',
+					operator: [thisOperator[17]]
+				})) {
+					thisScript.global.tongXinDui_ZhanDou = 'prestore';
+					return true;
+				} else {
+					thisScript.regionClick([thisOperator[17].oper[0]]);
+					thisScript.global.tongXinDui_ZhanDou = 'juexing';
 					return true;
 				}
-				if (curCnt >= maxCount) {
-					thisScript.myToast('未找到同心队奖励,执行寮三十');
-					// 未到奖励,直接跳转到寮三十阶段
-					thisScript.global.tongXinDui_ZhanDou = 'juexing'
-					return true;
-				}
-				sleep(300);
 			}
 		}
 		// 不做寮三十则预存_预存阶段
@@ -305,6 +337,24 @@ export class Func323 implements IFuncOrigin {
 				return true;
 			}
 			if (thisScript.runTimes['2'] >= 13) {
+				thisScript.global.tongXinDui_ZhanDou = 'stage';
+				return true;
+			}
+		}
+		// 做寮三十_转换副本阶段
+		if (thisScript.global.tongXinDui_ZhanDou === 'stage') {
+			if (thisScript.oper({
+				id: 323,
+				name: '同心队退出组队',
+				operator: [thisOperator[10]]
+			})) {
+				return true;
+			}
+			if (thisScript.oper({
+				id: 323,
+				name: '同心队重新集结',
+				operator: [thisOperator[7]]
+			})) {
 				thisScript.global.tongXinDui_ZhanDou = 'yuhun';
 				return true;
 			}
@@ -324,8 +374,8 @@ export class Func323 implements IFuncOrigin {
 			}
 			if (thisScript.oper({
 				id: 323,
-				name: '同心队重新集结和锁定阵容',
-				operator: [thisOperator[7], thisOperator[10], thisOperator[14], thisOperator[15]]
+				name: '同心队锁定阵容',
+				operator: [thisOperator[14], thisOperator[15]]
 			})) {
 				return true;
 			}
@@ -338,7 +388,7 @@ export class Func323 implements IFuncOrigin {
 		if (thisScript.global.tongXinDui_ZhanDou === 'back') {
 			if (thisScript.oper({
 				id: 323,
-				name: '同心队重新集结',
+				name: '同心队退出集结',
 				operator: [thisOperator[10], thisOperator[11], thisOperator[12], thisOperator[13]]
 			})) {
 				return true;

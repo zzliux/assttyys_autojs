@@ -599,6 +599,19 @@ export class Func518 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 830, 15, 1101, 75, 1000],
 			]
+		}, { // 40 神秘商人
+			desc: [
+				1280, 720,
+				[
+					[left, 316, 545, 0x4f0c18],
+					[left, 317, 560, 0x520c18],
+					[center, 435, 542, 0x870d19],
+					[center, 440, 555, 0x820416],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 991, 606, 1159, 693, 1000],
+			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -709,6 +722,7 @@ export class Func518 implements IFuncOrigin {
 					thisOperator[10],
 					thisOperator[11],
 					thisOperator[39],
+					thisOperator[40],
 				],
 			})
 		) {
