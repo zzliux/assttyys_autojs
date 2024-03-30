@@ -66,6 +66,7 @@ export class Func001 implements IFuncOrigin {
 				return true;
 			}
 		}
+		console.log('实际参数获取:' + thisconf.exitBeforeReady);
 	}
 }
 

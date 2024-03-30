@@ -71,6 +71,8 @@ export class Func009 implements IFuncOrigin {
 			_thisConfigOperator.set(0, 'jspd_times_2', 4);
 			_thisConfigOperator.set(0, 'auto_94', true);
 			_thisConfigOperator.set(0, 'next_scheme', '个突_9退4');
+			const a = _thisConfigOperator.get(1, 'exitBeforeReady');
+			console.log('a参数确认:' + a);
 			console.log('退4阶段')
 		}
 	}
