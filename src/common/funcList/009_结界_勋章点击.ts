@@ -20,7 +20,7 @@ export class Func009 implements IFuncOrigin {
 			default: '呱太->4->5->3->2->1->0',
 			value: null,
 		}, {
-			name: 'scheme_switch_enabled',
+			name: 'auto_94',
 			desc: '实行自动9退4',
 			type: 'switch',
 			default: false,
@@ -44,28 +44,34 @@ export class Func009 implements IFuncOrigin {
 		]
 	}];
 	onSchemeSwitchIn(_thisScript: Script, _lastConfigOpeator: SchemeConfigOperator, _thisConfigOperator: SchemeConfigOperator): void {
-		const thisconf = _thisScript.scheme.config['9'];
-		if (thisconf.scheme_switch_enabled) {
-			_thisConfigOperator.set(1, 'exitBeforeReady', false);
-			_thisConfigOperator.set(0, 'jspd_enabled_2', false);
+		const auto_94 = _thisConfigOperator.get(9, 'auto_94')
+		if (auto_94) {
+			if (_thisScript.global.tupo_94) {
+				_thisScript.global.tupo_94 = false;
+			} else {
+				_thisConfigOperator.set(1, 'exitBeforeReady', false);
+				_thisConfigOperator.set(0, 'jspd_enabled_2', false);
+				console.log('打9阶段')
+			}
 		}
 	}
 	onSchemeStart(_thisScript: Script, _thisConfigOperator: SchemeConfigOperator): void {
-		const thisconf = _thisScript.scheme.config['9'];
-		if (thisconf.scheme_switch_enabled) {
+		const auto_94 = _thisConfigOperator.get(9, 'auto_94')
+		if (auto_94) {
 			_thisConfigOperator.set(1, 'exitBeforeReady', false);
 			_thisConfigOperator.set(0, 'jspd_enabled_2', false);
+			_thisScript.global.tupo_94 = true;
 		}
-
 	}
 	onSchemeSwitchOut(_thisScript: Script, _thisConfigOperator: SchemeConfigOperator, _nextConfigOperator: SchemeConfigOperator): void {
-		const thisconf = _thisScript.scheme.config['9'];
-		if (thisconf.scheme_switch_enabled) {
+		const auto_94 = _thisConfigOperator.get(9, 'auto_94')
+		if (auto_94 && _thisScript.global.tupo_94) {
 			_thisConfigOperator.set(1, 'exitBeforeReady', true);
 			_thisConfigOperator.set(0, 'jspd_enabled_2', true);
 			_thisConfigOperator.set(0, 'jspd_times_2', 4);
-			_thisConfigOperator.set(0, 'scheme_switch_enabled', true);
+			_thisConfigOperator.set(0, 'auto_94', true);
 			_thisConfigOperator.set(0, 'next_scheme', '个突_9退4');
+			console.log('退4阶段')
 		}
 	}
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -95,7 +101,7 @@ export class Func009 implements IFuncOrigin {
 					const thisconf = thisScript.scheme.config['9'];
 					if (Number(oper[0][0]) > fristFirstOper[0] && Number(oper[0][1]) > fristFirstOper[1] && Number(oper[0][2]) < fristFirstOper[2] && Number(oper[0][3]) < fristFirstOper[3]) {
 						console.log('检测点击范围在第一排第一列结界内');
-						if (thisconf && thisconf.scheme_switch_enabled) {
+						if (thisconf && thisconf.auto_94) {
 							thisScript.rerun('个突_9退4');
 							sleep(3000);
 							return;
