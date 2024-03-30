@@ -1,6 +1,6 @@
 import { Script } from '@/system/script';
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
-
+import { SchemeConfigOperator } from '@/interface/SchemeConfigOperator';
 // const normal = -1; //定义常量
 const left = 0;
 // const center = 1;
@@ -20,15 +20,10 @@ export class Func009 implements IFuncOrigin {
 			default: '呱太->4->5->3->2->1->0',
 			value: null,
 		}, {
-			name: 'scheme_switch_enabled',
-			desc: '识别到攻打第一排第一列结界则切换方案',
+			name: 'auto_94',
+			desc: '实行自动9退4',
 			type: 'switch',
 			default: false,
-		}, {
-			name: 'next_scheme',
-			desc: '下一个方案',
-			type: 'scheme',
-			default: '个突_9退4_退出',
 		}
 		]
 	}];
@@ -45,16 +40,45 @@ export class Func009 implements IFuncOrigin {
 		// 1 第一排第一列结界坐标
 		desc: '突破界面',
 		oper: [
-			[left, 1280, 720, 147, 146, 465, 265, 500]
+			[left, 1280, 720, 0, 0, 1279, 719, 500]
 		]
 	}];
+	onSchemeSwitchIn(_thisScript: Script, _lastConfigOpeator: SchemeConfigOperator, _thisConfigOperator: SchemeConfigOperator): void {
+		const auto_94 = _thisConfigOperator.get(9, 'auto_94')
+		if (auto_94) {
+			if (_thisScript.global.tupo_94) {
+				_thisScript.global.tupo_94 = false;
+			} else {
+				_thisConfigOperator.set(1, 'exitBeforeReady', false);
+				_thisConfigOperator.set(0, 'jspd_enabled_2', false);
+				console.log('打9阶段')
+			}
+		}
+	}
+	onSchemeStart(_thisScript: Script, _thisConfigOperator: SchemeConfigOperator): void {
+		const auto_94 = _thisConfigOperator.get(9, 'auto_94')
+		if (auto_94) {
+			_thisConfigOperator.set(1, 'exitBeforeReady', false);
+			_thisConfigOperator.set(0, 'jspd_enabled_2', false);
+			_thisScript.global.tupo_94 = true;
+		}
+	}
+	onSchemeSwitchOut(_thisScript: Script, _thisConfigOperator: SchemeConfigOperator, _nextConfigOperator: SchemeConfigOperator): void {
+		const auto_94 = _thisConfigOperator.get(9, 'auto_94')
+		if (auto_94 && _thisScript.global.tupo_94) {
+			_thisConfigOperator.set(1, 'exitBeforeReady', true);
+			_thisConfigOperator.set(0, 'jspd_enabled_2', true);
+			_thisConfigOperator.set(0, 'jspd_times_2', 4);
+			_thisConfigOperator.set(0, 'auto_94', true);
+			_thisConfigOperator.set(0, 'next_scheme', '个突_9退4');
+			console.log('退4阶段')
+		}
+	}
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: '突破界面_判断',
 			operator: [{ desc: thisOperator[0].desc }]
 		}, 0)) {
-			// const thisconfFor008 = thisScript.scheme.config['8']; // 获取8功能配置
-			// const thistype = thisconfFor008.type;
 			const thisconf = thisScript.scheme.config['9']; // 获取配置
 			const priority = String(thisconf.priority).split('->');
 			const multiColorKey = [];
@@ -64,25 +88,12 @@ export class Func009 implements IFuncOrigin {
 			for (const key of multiColorKey) {
 				const point = thisScript.findMultiColor(key);
 				const add = thisOperator[0].oper[3];
-				// if (point && thistype === '个人突破' && ((point.x > thisOperator[0].oper[2][0] &&
-				// 	point.x < thisOperator[0].oper[2][0] + thisOperator[0].oper[2][3]) ||
-				// 	(point.x > thisOperator[0].oper[2][1] &&
-				// 		point.x < thisOperator[0].oper[2][1] + thisOperator[0].oper[2][3]) ||
-				// 	(point.x > thisOperator[0].oper[2][2] &&
-				// 		point.x < thisOperator[0].oper[2][2] + thisOperator[0].oper[2][3]))) {
-				// 	console.log("识别到点击范围在头像框附近，对点击范围更正");
-				// 	add = thisOperator[0].oper[1];
-				// }
 				if (point) {
 					const oper = [[
 						point.x + thisOperator[0].oper[0][0] + add[0],
 						point.y + thisOperator[0].oper[0][1] + add[1],
 						point.x + thisOperator[0].oper[0][2] + add[2],
 						point.y + thisOperator[0].oper[0][3] + add[3],
-						// point.x,
-						// point.y,
-						// point.x,
-						// point.y,
 						thisOperator[0].oper[0][4]]];
 					thisScript.regionClick(oper);
 					// 第一排第一列结界坐标
@@ -90,8 +101,8 @@ export class Func009 implements IFuncOrigin {
 					const thisconf = thisScript.scheme.config['9'];
 					if (Number(oper[0][0]) > fristFirstOper[0] && Number(oper[0][1]) > fristFirstOper[1] && Number(oper[0][2]) < fristFirstOper[2] && Number(oper[0][3]) < fristFirstOper[3]) {
 						console.log('检测点击范围在第一排第一列结界内');
-						if (thisconf && thisconf.scheme_switch_enabled) {
-							thisScript.rerun(thisconf.next_scheme);
+						if (thisconf && thisconf.auto_94) {
+							thisScript.rerun('个突_9退4');
 							sleep(3000);
 							return;
 						}
