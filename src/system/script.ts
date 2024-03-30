@@ -584,6 +584,7 @@ export class Script {
 			return;
 		}
 
+		const schemeConfigOperator = new SchemeConfigOperator(this.scheme.schemeName);
 		if (this.schemeHistory.length) {
 			const lastScheme = this.schemeHistory[this.schemeHistory.length - 1];
 			const lastSchemeConfigOpeator = new SchemeConfigOperator(lastScheme.schemeName);
@@ -595,7 +596,6 @@ export class Script {
 		myToast(`运行方案[${this.scheme.schemeName}]`);
 
 		// 生命周期：schemeStart
-		const schemeConfigOperator = new SchemeConfigOperator(this.scheme.schemeName);
 		this.lifeCycleStages.schemeStart.forEach(stageFunc => {
 			stageFunc(this, schemeConfigOperator);
 		});
@@ -740,9 +740,9 @@ export class Script {
 				self.lifeCycleStages.schemeSwitchOut.forEach(stageFunc => {
 					stageFunc(self, thisSchemeConfigOpeator, nextschemeConfigOperator);
 				});
+				self.setCurrentScheme(schemeName as string, params);
+				self.myToast(`切换方案为[${schemeName}]`);
 			});
-			this.setCurrentScheme(schemeName as string, params);
-			this.myToast(`切换方案为[${schemeName}]`);
 		}
 		events.broadcast.emit('SCRIPT_RERUN', '');
 	}
