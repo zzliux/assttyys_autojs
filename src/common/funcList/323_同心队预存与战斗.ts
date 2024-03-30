@@ -243,7 +243,6 @@ export class Func323 implements IFuncOrigin {
 				[center, 886, 644, 0xe0cbaa],
 			]
 		],
-		retest: 1500
 	}, { // 17 寮三十判定是否满三十
 		desc: [
 			1280, 720,
@@ -275,6 +274,22 @@ export class Func323 implements IFuncOrigin {
 				name: '进入阴阳寮',
 				operator: [thisOperator[18]]
 			})) {
+				sleep(1500);
+				thisScript.keepScreen();
+				const point = thisScript.findMultiColor('阴阳寮_奖励体力');
+				if (point) {
+					console.log('查找阴阳寮_奖励体力成功');
+					const oper = [[
+						point.x,
+						point.y,
+						point.x,
+						point.y,
+						1000
+					]];
+					thisScript.regionClick(oper);
+					thisScript.regionClick([thisOperator[17].oper[0]]);
+					return true;
+				}
 				return true;
 			}
 			if (thisScript.oper({

@@ -142,27 +142,6 @@ export class Func518 implements IFuncOrigin {
 		})) {
 			return true;
 		}
-		if (thisScript.oper({
-			name: '找体力_进寮信息',
-			operator: [{ desc: thisOperator[2].desc }]
-		})) {
-			sleep(1500);
-			thisScript.keepScreen();
-			const point = thisScript.findMultiColor('阴阳寮_奖励体力');
-			if (point) {
-				console.log('查找阴阳寮_奖励体力成功');
-				const oper = [[
-					point.x,
-					point.y,
-					point.x,
-					point.y,
-					1000
-				]];
-				thisScript.regionClick(oper);
-				thisScript.regionClick([thisOperator[6].oper[0]]);
-				return true;
-			}
-		}
 		if (thisScript.global.juan_gouyu && thisScript.oper({
 			name: '捐勾杂项',
 			operator: [thisOperator[0], thisOperator[1], thisOperator[2]
