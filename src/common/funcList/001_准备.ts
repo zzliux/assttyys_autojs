@@ -35,6 +35,7 @@ export class Func001 implements IFuncOrigin {
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['1'];
+		console.log('实际参数获取:' + thisconf.exitBeforeReady);
 		if (thisconf.exitBeforeReady) {
 			return thisScript.oper({
 				id: 1,
@@ -66,7 +67,6 @@ export class Func001 implements IFuncOrigin {
 				return true;
 			}
 		}
-		console.log('实际参数获取:' + thisconf.exitBeforeReady);
 	}
 }
 

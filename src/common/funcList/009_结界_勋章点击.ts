@@ -24,6 +24,11 @@ export class Func009 implements IFuncOrigin {
 			desc: '实行自动9退4',
 			type: 'switch',
 			default: false,
+		}, {
+			name: 'this_scheme',
+			desc: '打开"自动9退4"时, 需输入当前的方案名',
+			type: 'text',
+			default: '个突_9退4',
 		}
 		]
 	}];
@@ -40,41 +45,29 @@ export class Func009 implements IFuncOrigin {
 		// 1 第一排第一列结界坐标
 		desc: '突破界面',
 		oper: [
-			[left, 1280, 720, 0, 0, 1279, 719, 500]
+			[left, 1280, 720, 147, 146, 465, 265, 500]
 		]
 	}];
-	onSchemeSwitchIn(_thisScript: Script, _lastConfigOpeator: SchemeConfigOperator, _thisConfigOperator: SchemeConfigOperator): void {
-		const auto_94 = _thisConfigOperator.get(9, 'auto_94')
-		if (auto_94) {
-			if (_thisScript.global.tupo_94) {
-				_thisScript.global.tupo_94 = false;
-			} else {
-				_thisConfigOperator.set(1, 'exitBeforeReady', false);
-				_thisConfigOperator.set(0, 'jspd_enabled_2', false);
-				console.log('打9阶段')
-			}
-		}
-	}
-	onSchemeStart(_thisScript: Script, _thisConfigOperator: SchemeConfigOperator): void {
-		const auto_94 = _thisConfigOperator.get(9, 'auto_94')
-		if (auto_94) {
-			_thisConfigOperator.set(1, 'exitBeforeReady', false);
-			_thisConfigOperator.set(0, 'jspd_enabled_2', false);
-			_thisScript.global.tupo_94 = true;
-		}
-	}
 	onSchemeSwitchOut(_thisScript: Script, _thisConfigOperator: SchemeConfigOperator, _nextConfigOperator: SchemeConfigOperator): void {
 		const auto_94 = _thisConfigOperator.get(9, 'auto_94')
-		if (auto_94 && _thisScript.global.tupo_94) {
+		const exitBeforeReady = _thisConfigOperator.get(0, 'exitBeforeReady')
+		if (auto_94 && !exitBeforeReady) {
 			_thisConfigOperator.set(1, 'exitBeforeReady', true);
 			_thisConfigOperator.set(0, 'jspd_enabled_2', true);
-			_thisConfigOperator.set(0, 'jspd_times_2', 4);
-			_thisConfigOperator.set(0, 'auto_94', true);
-			_thisConfigOperator.set(0, 'next_scheme', '个突_9退4');
-			const a = _thisConfigOperator.get(1, 'exitBeforeReady');
-			console.log('a参数确认:' + a);
+			_thisConfigOperator.set(2, 'rechallenge', true);
 			console.log('退4阶段')
+		} else if (auto_94 && exitBeforeReady) {
+			_thisConfigOperator.set(1, 'exitBeforeReady', false);
+			_thisConfigOperator.set(0, 'jspd_enabled_2', false);
+			_thisConfigOperator.set(2, 'rechallenge', false);
+			console.log('打9阶段')
 		}
+	}
+	onSchemeStop(_thisScript: Script, _thisConfigOperator: SchemeConfigOperator): void {
+		_thisConfigOperator.set(1, 'exitBeforeReady', false);
+		_thisConfigOperator.set(0, 'jspd_enabled_2', false);
+		_thisConfigOperator.set(2, 'rechallenge', false);
+		console.log('脚本停止，重置参数')
 	}
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
@@ -104,7 +97,7 @@ export class Func009 implements IFuncOrigin {
 					if (Number(oper[0][0]) > fristFirstOper[0] && Number(oper[0][1]) > fristFirstOper[1] && Number(oper[0][2]) < fristFirstOper[2] && Number(oper[0][3]) < fristFirstOper[3]) {
 						console.log('检测点击范围在第一排第一列结界内');
 						if (thisconf && thisconf.auto_94) {
-							thisScript.rerun('个突_9退4');
+							thisScript.rerun(thisconf.this_scheme);
 							sleep(3000);
 							return;
 						}
