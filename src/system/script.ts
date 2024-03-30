@@ -541,6 +541,7 @@ export class Script {
      * @returns
      */
 	run() {
+		this.setCurrentScheme();
 		return this._run();
 	}
 
@@ -871,11 +872,16 @@ export class Script {
 		return false;
 	}
 
-	setCurrentScheme(schemeName: string, params?: Record<string, unknown>) {
+	setCurrentScheme(schemeName?: string, params?: Record<string, unknown>) {
 		if (params) {
 			this.runtimeParams = params;
 		} else {
 			this.runtimeParams = null;
+		}
+		if (!schemeName) {
+			const { schemeName: sName } = store.get('currentScheme', {});
+			if (!sName) return;
+			schemeName = sName;
 		}
 		return setCurrentScheme(schemeName, store);
 	}
