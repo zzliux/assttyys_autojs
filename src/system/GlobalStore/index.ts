@@ -83,6 +83,7 @@ export type globalRootType = {
 	tongXinDui_ZhanDou: 'judge' | 'prestore' | 'juexing' | 'stage' | 'yuhun' | 'back';   // 同心队预存阶段
 	zhenLvJu_tiLi: boolean, // 是否购买真旅居体力
 	nextChange: boolean, // 下次战斗更换式神
+	tupo_94: boolean, // 突破9退4状态 true为9, false为4
 }
 
 export const globalRoot: globalRootType = {
@@ -170,4 +171,5 @@ export const globalRoot: globalRootType = {
 	tongXinDui_ZhanDou: 'judge',
 	zhenLvJu_tiLi: true,
 	nextChange: false,
+	tupo_94: true,
 }

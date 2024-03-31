@@ -64,6 +64,7 @@ export function setCurrentScheme(schemeName: string, store) {
 	for (let i = 0; i < savedSchemeList.length; i++) {
 		if (savedSchemeList[i].schemeName === schemeName) {
 			store.put('currentScheme', savedSchemeList[i]);
+			console.log(`设置方案：${savedSchemeList[i].schemeName}`);
 			return;
 		}
 	}

@@ -1,4 +1,14 @@
-import { IFunc } from "./IFunc";
+import { IFunc } from './IFunc';
+
+export type SchemeConfig = {
+	[key: number]: {
+		[key: string]: string | boolean | number
+	}
+};
+
+export type CommonConfig = {
+	[key: string]: string | boolean | number
+};
 
 export interface IScheme {
 	id: number;
@@ -11,13 +21,7 @@ export interface IScheme {
 	 * 功能id的清单
 	 */
 	list: number[];
-	config?: {
-		[key: number]: {
-			[key: string]: string | boolean | number
-		}
-	};
-	commonConfig?: {
-		[key: string]: string | boolean | number
-	};
+	config?: SchemeConfig;
+	commonConfig?: CommonConfig;
 	funcList?: IFunc[];
 }
