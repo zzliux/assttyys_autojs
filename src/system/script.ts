@@ -541,6 +541,7 @@ export class Script {
      * @returns
      */
 	run() {
+		this.setCurrentScheme();
 		return this._run();
 	}
 
@@ -604,9 +605,6 @@ export class Script {
 		this.schemeHistory.push(this.scheme);
 		// console.log(`运行方案[${this.scheme.schemeName}]`);
 		this.runThread = threads.start(function () {
-			if (self.switchOutThread && self.switchOutThread.isAlive()) {
-				self.switchOutThread.join();
-			}
 			try {
 				// eslint-disable-next-line no-constant-condition
 				while (true) {
@@ -738,7 +736,9 @@ export class Script {
 		} else if (schemeName) {
 			const self = this
 			self.switchOutThread = threads.start(function () {
-				self.monitorThread.join();
+				if (self.monitorThread?.isAlive()) {
+					self.monitorThread.join();
+				}
 				const thisSchemeConfigOpeator = new SchemeConfigOperator(self.scheme.schemeName);
 				const nextschemeConfigOperator = new SchemeConfigOperator(schemeName as string);
 				self.lifeCycleStages.schemeSwitchOut.forEach(stageFunc => {
@@ -749,14 +749,20 @@ export class Script {
 				self.setCurrentScheme(schemeName as string, params);
 			});
 			// tmpTread.join();
-			events.broadcast.emit('SCRIPT_RERUN', '');
 		}
+		events.broadcast.emit('SCRIPT_RERUN', '');
 	}
 
 	rerunWithJob(job: Job): void {
+		const self = this;
 		this._stop();
 		setTimeout(() => {
-			this._run(job);
+			threads.start(function() {
+				if (self.switchOutThread?.isAlive()) {
+					self.switchOutThread.join();
+				}
+				self._run(job);
+			});
 		}, 510);
 	}
 
@@ -866,11 +872,16 @@ export class Script {
 		return false;
 	}
 
-	setCurrentScheme(schemeName: string, params?: Record<string, unknown>) {
+	setCurrentScheme(schemeName?: string, params?: Record<string, unknown>) {
 		if (params) {
 			this.runtimeParams = params;
 		} else {
 			this.runtimeParams = null;
+		}
+		if (!schemeName) {
+			const { schemeName: sName } = store.get('currentScheme', {});
+			if (!sName) return;
+			schemeName = sName;
 		}
 		return setCurrentScheme(schemeName, store);
 	}
@@ -956,7 +967,9 @@ events.broadcast.on('SCRIPT_RERUN', () => {
 	script._stop(true);
 	setTimeout(() => {
 		threads.start(function() {
-			script.switchOutThread.join();
+			if (script.switchOutThread?.isAlive()) {
+				script.switchOutThread.join();
+			}
 			script._run(script.job);
 		});
 	}, 510);

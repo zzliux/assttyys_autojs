@@ -51,6 +51,10 @@ export default function webviewSettigns() {
 		initStoreSettings.ncnn_bgyx = false;
 	}
 
+	if (typeof initStoreSettings.floaty_debugger_draw === 'undefined') {
+		initStoreSettings.floaty_debugger_draw = false;
+	}
+
 	storeCommon.put('settings', initStoreSettings);
 
 	// 获取配置列表
@@ -141,8 +145,9 @@ export default function webviewSettigns() {
 		}, {
 			desc: '调试绘制',
 			name: 'floaty_debugger_draw',
-			type: 'assttyys_setting_floaty_debugger_draw',
-			enabled: !!drawFloaty.instacne
+			type: 'assttyys_setting',
+			stype: 'switch',
+			enabled: storeSettings.floaty_debugger_draw // !!drawFloaty.instacne
 		}, {
 			desc: 'OCR扩展类型',
 			name: 'ocrType',
@@ -328,19 +333,20 @@ export default function webviewSettigns() {
 			}
 			if (item.name === 'tapType') {
 				helperBridge.automator.setTapType(item.value);
+			} else if (item.name === 'floaty_debugger_draw') {
+				if (item.enabled) {
+					drawFloaty.init();
+				} else {
+					drawFloaty.destroy();
+				}
 			}
 			storeCommon.put('settings', storeSettings);
 			done(true);
 			console.log(storeSettings);
 			toastLog('保存成功');
-		} else if ('assttyys_setting_floaty_debugger_draw' === item.type) {
-			if (item.enabled) {
-				drawFloaty.init();
-			} else {
-				drawFloaty.destroy();
-			}
-			console.log(drawFloaty);
-			done(true);
+		// } else if ('assttyys_setting_floaty_debugger_draw' === item.type) {
+		// 	console.log(drawFloaty);
+		// 	done(true);
 		} else if ('assttyys_setting_ocr_extend' === item.type) {
 			const storeSettings = storeCommon.get('settings', {});
 			if (item.enabled) {
