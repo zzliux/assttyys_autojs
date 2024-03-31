@@ -82,6 +82,7 @@ export type globalRootType = {
 	juan_gouyu: boolean, // 捐勾玉
 	frist_open: boolean, // 首次开启方案
 	tongXinDui_ZhanDou: 'judge' | 'prestore' | 'juexing' | 'stage' | 'yuhun' | 'back';   // 同心队预存阶段
+	zhenLvJu_tiLi: boolean, // 是否购买真旅居体力
 }
 
 export const globalRoot: globalRootType = {
@@ -168,4 +169,5 @@ export const globalRoot: globalRootType = {
 	juan_gouyu: true,
 	frist_open: true,
 	tongXinDui_ZhanDou: 'judge',
+	zhenLvJu_tiLi: true,
 }

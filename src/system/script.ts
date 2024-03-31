@@ -46,16 +46,17 @@ export class Script {
 	ncnnBgyx = ncnnBgyx;
 
 	/**
-     * 运行次数，下标为funcList中的id，值为这个func成功执行的次数；
-     * 成功执行：多点比色成功或operatorFun返回为true
-     */
+	 * 运行次数，下标为funcList中的id，值为这个func成功执行的次数；
+	 * 成功执行：多点比色成功或operatorFun返回为true
+	 */
 	runTimes: Record<string, number>;
 	lastFunc: number; // 最后执行成功的funcId
 	global: globalRootType; // 每次启动重置为空对象，用于功能里面存变量
+	shutDown: Record<string, boolean>; // 单次启动里关闭某项功能的运行
 
 	/**
-     * @description 方案运行中参数
-     */
+	 * @description 方案运行中参数
+	 */
 	runtimeParams: Record<string, unknown> | null;
 
 	// 设备信息
@@ -63,20 +64,20 @@ export class Script {
 	storeCommon: any;
 
 	/**
-     * 发起消息推送
-     * @param {Script} thisScript
-     * @param options
-     */
+	 * 发起消息推送
+	 * @param {Script} thisScript
+	 * @param options
+	 */
 	doPush: (thisScript: Script, options: {
-        text: string,
-        before?: () => void,
-        after?: () => void
-    }) => void;
+		text: string,
+		before?: () => void,
+		after?: () => void
+	}) => void;
 
 	/**
-     * @description 消息提示
-     * @param {string}str
-     */
+	 * @description 消息提示
+	 * @param {string}str
+	 */
 	myToast: (str: string) => void;
 
 
@@ -108,6 +109,7 @@ export class Script {
 		this.doPush = doPush;
 		this.myToast = myToast;
 		this.schedule = schedule;
+		this.runTimes = {};
 	}
 
 	initOcrIfNeeded() {
@@ -160,8 +162,8 @@ export class Script {
 	}
 
 	/**
-     * 先比色，再findText
-     */
+	 * 先比色，再findText
+	 */
 	findTextWithCompareColor(text: string, timeout: number, region: Array<number>, textMatchMode: string, currFunc: IFunc): Array<OcrResult> {
 		this.initOcrIfNeeded();
 		const self = this;
@@ -195,11 +197,11 @@ export class Script {
 	}
 
 	/**
-     * 截图，mode为true时表示对红色通过作为下标进行初始化，但执行需要一定时间，
-     * 对截图进行一次初始化后可大幅提高多点找色效率，通常初始化一次红色通道后进行多次多点找色
-     * 仅使用多点比色时mode给false或不传
-     * @param {Boolean} mode
-     */
+	 * 截图，mode为true时表示对红色通过作为下标进行初始化，但执行需要一定时间，
+	 * 对截图进行一次初始化后可大幅提高多点找色效率，通常初始化一次红色通道后进行多次多点找色
+	 * 仅使用多点比色时mode给false或不传
+	 * @param {Boolean} mode
+	 */
 	keepScreen(mode?: boolean) {
 		helperBridge.helper.KeepScreen(mode || false);
 		if (mode) {
@@ -210,8 +212,8 @@ export class Script {
 	}
 
 	/**
-     * 初始化红色通道
-     */
+	 * 初始化红色通道
+	 */
 	initRedList() {
 		if (!this.hasRedList) {
 			helperBridge.helper.GetRedList();
@@ -220,17 +222,17 @@ export class Script {
 	}
 
 	/**
-     * 设置启动后回调
-     * @param {Function} callback
-     */
+	 * 设置启动后回调
+	 * @param {Function} callback
+	 */
 	setRunCallback(callback: Function) {
 		this.runCallback = callback;
 	}
 
 	/**
-     * 设置停止后回调
-     * @param {Function} callback
-     */
+	 * 设置停止后回调
+	 * @param {Function} callback
+	 */
 	setStopCallback(callback: Function) {
 		this.stopCallback = () => {
 			callback();
@@ -238,10 +240,10 @@ export class Script {
 	}
 
 	/**
-     * 根据scheme获取Funclist，Funclist中desc和oper相关坐标根据开发分辨率自动转换成运行分辨率
-     * @param {Scheme} scheme
-     * @returns
-     */
+	 * 根据scheme获取Funclist，Funclist中desc和oper相关坐标根据开发分辨率自动转换成运行分辨率
+	 * @param {Scheme} scheme
+	 * @returns
+	 */
 	getFuncList(scheme: IScheme): IFunc[] {
 		const retFunclist = [];
 		if (!this.funcMap) {
@@ -277,8 +279,8 @@ export class Script {
 	}
 
 	/**
-     * 将funcList中operator里面的desc和oper转换为适用当前正在分辨率的坐标
-     */
+	 * 将funcList中operator里面的desc和oper转换为适用当前正在分辨率的坐标
+	 */
 	initFuncList() {
 		this.scheme = store.get('currentScheme', null);
 		if (null === this.scheme) return;
@@ -303,8 +305,8 @@ export class Script {
 	// };
 
 	/**
-     * 根据 src\common\multiDetectColors.ts 初始化多点比色数组，相关坐标根据开发分辨率自动转换成运行分辨率
-     */
+	 * 根据 src\common\multiDetectColors.ts 初始化多点比色数组，相关坐标根据开发分辨率自动转换成运行分辨率
+	 */
 	initMultiDetectColors() {
 		const thisMultiDetectColor = {};
 		for (const key in multiDetectColors) {
@@ -317,8 +319,8 @@ export class Script {
 	}
 
 	/**
-     * 根据 src\common\multiFindColors.ts 初始化多点找色数组，相关坐标根据开发分辨率自动转换成运行分辨率
-     */
+	 * 根据 src\common\multiFindColors.ts 初始化多点找色数组，相关坐标根据开发分辨率自动转换成运行分辨率
+	 */
 	initMultiFindColors() {
 		const thisMultiFindColor = {};
 		for (const key in multiFindColors) {
@@ -339,12 +341,12 @@ export class Script {
 	}
 
 	/**
-     * 执行多点找色
-     * @param {String} key src\common\multiColors.js的key
-     * @param {Region} inRegion 多点找色区域
-     * @param {Boolean} multiRegion 给true的话表示inRegion为region的数组
-     * @returns
-     */
+	 * 执行多点找色
+	 * @param {String} key src\common\multiColors.js的key
+	 * @param {Region} inRegion 多点找色区域
+	 * @param {Boolean} multiRegion 给true的话表示inRegion为region的数组
+	 * @returns
+	 */
 	findMultiColor(key: string, inRegion?: any, multiRegion?: boolean, noLog?: boolean) {
 		this.initRedList();
 		if (!multiRegion) {
@@ -404,11 +406,11 @@ export class Script {
 	}
 
 	/**
-    * 执行多点找色(返回所有点坐标)
-    * @param {String} key src\common\multiColors.js的key
-    * @param {Region} inRegion 多点找色区域
-    * @returns
-    */
+	* 执行多点找色(返回所有点坐标)
+	* @param {String} key src\common\multiColors.js的key
+	* @param {Region} inRegion 多点找色区域
+	* @returns
+	*/
 	findMultiColorEx(key, inRegion?): Point[] {
 		this.initRedList();
 		const region = inRegion || this.multiFindColors[key].region;
@@ -461,12 +463,12 @@ export class Script {
 
 
 	/**
-     * 执行多点找色，直到成功为止，返回多点找色坐标
-     * @param {String} key src\common\multiColors.js的key
-     * @param {Integer} timeout 超时时间(ms)
-     * @param {inRegion} inRegion 多点找色区域
-     * @returns
-     */
+	 * 执行多点找色，直到成功为止，返回多点找色坐标
+	 * @param {String} key src\common\multiColors.js的key
+	 * @param {Integer} timeout 超时时间(ms)
+	 * @param {inRegion} inRegion 多点找色区域
+	 * @returns
+	 */
 	findMultiColorLoop(key, timeout, inRegion) {
 		let times = Math.round(timeout / +this.scheme.commonConfig.loopDelay);
 		while (times--) {
@@ -481,30 +483,30 @@ export class Script {
 	}
 
 	/**
-     * 多点比色，直到成功为止
-     * @param {Desc} desc
-     * @param {Integer} timeout
-     * @param {Integer} sign
-     * @returns
-     */
+	 * 多点比色，直到成功为止
+	 * @param {Desc} desc
+	 * @param {Integer} timeout
+	 * @param {Integer} sign
+	 * @returns
+	 */
 	compareColorLoop(desc, timeout: number, sign?: number) {
 		/**
-         * 条件循环多点比色
-         *
-         * @param description: 色组描述
-         * @param sim:         相似度
-         * @param offset:      偏移查找
-         * @param timeout:     超时时间
-         * @param timelag:     间隔时间
-         * @param sign:        跳出条件,0为比色成功时返回,1为比色失败时返回
-         */
+		 * 条件循环多点比色
+		 *
+		 * @param description: 色组描述
+		 * @param sim:         相似度
+		 * @param offset:      偏移查找
+		 * @param timeout:     超时时间
+		 * @param timelag:     间隔时间
+		 * @param sign:        跳出条件,0为比色成功时返回,1为比色失败时返回
+		 */
 		return this.helperBridge.helper.CompareColorExLoop(desc, this.scheme.commonConfig.colorSimilar, true, timeout, this.scheme.commonConfig.loopDelay, sign || 0);
 	}
 
 	/**
-     * 运行脚本
-     * @returns
-     */
+	 * 运行脚本
+	 * @returns
+	 */
 	run() {
 		return this._run();
 	}
@@ -514,9 +516,9 @@ export class Script {
 	}
 
 	/**
-     * 运行脚本，内部接口
-     * @returns
-     */
+	 * 运行脚本，内部接口
+	 * @returns
+	 */
 	_run(job?: Job): void {
 		if (this.runThread) return;
 		this.job = job;
@@ -528,6 +530,7 @@ export class Script {
 			this.currentDate = new Date();
 			this.runTimes = {};
 			this.global = merge({}, globalRoot);
+			this.shutDown = {};
 			if (null === this.scheme) {
 				if (typeof self.stopCallback === 'function') {
 					self.stopCallback();
@@ -587,12 +590,12 @@ export class Script {
 	}
 
 	/**
-     * 根据当前界面判断自动运行的脚本
-     * 若只有一个方案存在功能比色成功的话直接运行这个方案
-     * 若有多个方案，可运行的方案通过悬浮列表进行选择
-     * 若没有则提示无法识别当前界面
-     * @param {MyFloaty} myfloaty
-     */
+	 * 根据当前界面判断自动运行的脚本
+	 * 若只有一个方案存在功能比色成功的话直接运行这个方案
+	 * 若有多个方案，可运行的方案通过悬浮列表进行选择
+	 * 若没有则提示无法识别当前界面
+	 * @param {MyFloaty} myfloaty
+	 */
 	autoRun(myfloaty: MyFloaty) {
 		const self = this;
 		self.keepScreen(false);
@@ -637,15 +640,15 @@ export class Script {
 	}
 
 	/**
-     * 停止脚本
-     */
+	 * 停止脚本
+	 */
 	stop() {
 		events.broadcast.emit('SCRIPT_STOP', '');
 	}
 
 	/**
-     * 停止脚本，内部接口
-     */
+	 * 停止脚本，内部接口
+	 */
 	_stop(flag?: boolean) {
 		if (null !== this.runThread) {
 			if (typeof this.stopCallback === 'function') {
@@ -663,8 +666,8 @@ export class Script {
 	}
 
 	/**
-     * 重新运行，一般在运行过程中通过setCurrenScheme切换方案后调用，停止再运行
-     */
+	 * 重新运行，一般在运行过程中通过setCurrenScheme切换方案后调用，停止再运行
+	 */
 	rerun(schemeName?: unknown, params?: Record<string, unknown>) {
 		if ('__停止脚本__' === schemeName) {
 			this.doPush(this, {
@@ -689,12 +692,12 @@ export class Script {
 	}
 
 	/**
-     * 关键函数，操作函数
-     * 针对func进行多点比色，成功的话按顺序点击oper数组
-     * 若operatorFunc为函数，operator则不执行，调用operatorFunc函数
-     * @param {*} currFunc
-     * @param {*} retest 重试时间
-     */
+	 * 关键函数，操作函数
+	 * 针对func进行多点比色，成功的话按顺序点击oper数组
+	 * 若operatorFunc为函数，operator则不执行，调用operatorFunc函数
+	 * @param {*} currFunc
+	 * @param {*} retest 重试时间
+	 */
 	oper(currFunc: IFunc, retest?: number) {
 		const operator = currFunc.operator; // 需要计算的坐标通过operater传进去使用
 		const operatorFunc = currFunc.operatorFunc;
@@ -768,9 +771,9 @@ export class Script {
 	}
 
 	/**
-     * 根据func中的desc进行多点比色
-     * @param {*} currFunc
-     */
+	 * 根据func中的desc进行多点比色
+	 * @param {*} currFunc
+	 */
 	desc(currFunc: IFunc, commonConfig) {
 		const operator = currFunc.operator || []; // 需要计算的坐标通过operater传进去使用
 		for (let id = 0; id < operator.length; id++) {

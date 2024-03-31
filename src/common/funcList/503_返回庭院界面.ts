@@ -324,9 +324,25 @@ export class Func503 implements IFuncOrigin {
 		oper: [
 			[left, 1280, 720, 31, 20, 70, 59, 1000],
 		]
+	}, { // 28 测试
+		desc: [
+			1280, 720,
+			[
+				[center, 397, 375, 0x2d3039],
+				[center, 893, 286, 0x2e313a],
+				[center, 332, 404, 0x2d3039],
+				[right, 1024, 326, 0x2e313a],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 856, 294, 1143, 490, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['503'];
+		console.log('改前' + thisScript.runTimes['503'])
+		thisScript.runTimes['503'] = 7;
+		console.log('改后' + thisScript.runTimes['503'])
 		if (thisScript.global.change_shikigami_flag && thisScript.oper({
 			id: 503,
 			name: '返回庭院',
@@ -337,7 +353,7 @@ export class Func503 implements IFuncOrigin {
 				thisOperator[14], thisOperator[15], thisOperator[17],
 				thisOperator[18], thisOperator[19], thisOperator[20],
 				thisOperator[21], thisOperator[24], thisOperator[25],
-				thisOperator[26], thisOperator[27],
+				thisOperator[26], thisOperator[27], thisOperator[28],
 			]
 		})) {
 			return true;

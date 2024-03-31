@@ -23,6 +23,11 @@ export class Func320 implements IFuncOrigin {
 			desc: '邮箱登录界面下滑次数设置（需设置滑到底）',
 			type: 'text',
 			default: '1',
+		}, {
+			name: 'close',
+			desc: '第一次启动前先关闭游戏(必须开启)',
+			type: 'switch',
+			default: true,
 		}
 		]
 	}]
@@ -98,7 +103,7 @@ export class Func320 implements IFuncOrigin {
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['320'];
 		// 方案开启后先杀进程
-		if (thisScript.global.frist_open) {
+		if (thisScript.global.frist_open && thisConf.close) {
 			thisScript.stopRelatedApp();
 			sleep(1000);
 			thisScript.launchRelatedApp();
