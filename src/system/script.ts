@@ -565,6 +565,10 @@ export class Script {
 				while (true) {
 					self.keepScreen(false);
 					for (let i = 0; i < self.scheme.funcList.length; i++) {
+						// 判断shutDown, 跳过函数
+						if (self.shutDownOpen && self.shutDown[self.scheme.funcList[i].id]) {
+							break;
+						}
 						if (self.oper(self.scheme.funcList[i], undefined)) {
 							self.currentDate = new Date();
 							break;
@@ -699,11 +703,7 @@ export class Script {
 	 * @param {*} currFunc
 	 * @param {*} retest 重试时间
 	 */
-	oper(currFunc: IFunc, retest?: number, shutDown?: boolean) {
-		// 判断shutDown, 跳过函数
-		if (this.shutDownOpen && shutDown[currFunc.id]) {
-			return true;
-		}
+	oper(currFunc: IFunc, retest?: number) {
 		const operator = currFunc.operator; // 需要计算的坐标通过operater传进去使用
 		const operatorFunc = currFunc.operatorFunc;
 		if (typeof operatorFunc === 'function') {
