@@ -1,4 +1,4 @@
-import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator, schemeStartFunc } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 import { merge } from '@/common/tool';
 import { globalRoot } from '@/system/GlobalStore/index';
@@ -100,7 +100,21 @@ export class Func320 implements IFuncOrigin {
 		desc: '页面是否为庭院_菜单已展开_只支持默认庭院皮肤与默认装饰',
 	}
 	];
-	
+	onSchemeSwitchIn(_thisScript: Script, _lastConfigOpeator: SchemeConfigOperator, _thisConfigOperator: SchemeConfigOperator): void {
+		_thisScript.global.frist_open = false;
+		_thisScript.global.dengluState = false;
+		_thisScript.shutDownOpen = true;
+		console.log('onSchemeSwitchIn');
+	}
+	onSchemeStart(_thisScript: Script, _thisConfigOperator: SchemeConfigOperator): void {
+		// const a = thisConfigOperator.get(0, 'jspd_enabled_zjsj');
+		// const b = thisConfigOperator.get(0, 'jspd_times_zjsj');
+		// console.log('start ababababab', a, b);
+		// thisConfigOperator.set(0, 'jspd_enabled_zjsj', true);
+		// thisConfigOperator.set(0, 'jspd_times_zjsj', 0);
+		const dengluNumOT = _thisScript.global.dengluNumOT;
+		console.log('onSchemeStart');
+	}
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['320'];
 		// 方案开启后先杀进程
@@ -162,11 +176,10 @@ export class Func320 implements IFuncOrigin {
 				// 读取重置前的参数
 				thisScript.global.dengluNumOT = dengluNumOT;
 				console.log('重置参数完成');
-				thisScript.shutDownOpen = true;
-				thisScript.global.frist_open = false;
-				thisScript.global.dengluState = false;
+				
+
 				return true;
-			}
+			});
 		}
 		thisScript.shutDownOpen = true;
 		if (thisScript.oper({
