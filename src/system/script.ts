@@ -52,6 +52,7 @@ export class Script {
 	runTimes: Record<string, number>;
 	lastFunc: number; // 最后执行成功的funcId
 	global: globalRootType; // 每次启动重置为空对象，用于功能里面存变量
+	shutDownOpen: boolean; // 启动'单次启动里关闭某项功能的运行'功能
 	shutDown: Record<string, boolean>; // 单次启动里关闭某项功能的运行
 
 	/**
@@ -98,6 +99,7 @@ export class Script {
 		this.runtimeParams = null;
 
 		this.runTimes = {};
+		this.shutDown = {};
 		this.lastFunc = null; // 最后执行成功的funcId
 		this.global = merge({}, globalRoot); // 每次启动重置为空对象，用于功能里面存变量
 		this.device = {
@@ -109,7 +111,6 @@ export class Script {
 		this.doPush = doPush;
 		this.myToast = myToast;
 		this.schedule = schedule;
-		this.runTimes = {};
 	}
 
 	initOcrIfNeeded() {
@@ -698,7 +699,11 @@ export class Script {
 	 * @param {*} currFunc
 	 * @param {*} retest 重试时间
 	 */
-	oper(currFunc: IFunc, retest?: number) {
+	oper(currFunc: IFunc, retest?: number, shutDown?: boolean) {
+		// 判断shutDown, 跳过函数
+		if (this.shutDownOpen && shutDown[currFunc.id]) {
+			return true;
+		}
 		const operator = currFunc.operator; // 需要计算的坐标通过operater传进去使用
 		const operatorFunc = currFunc.operatorFunc;
 		if (typeof operatorFunc === 'function') {
