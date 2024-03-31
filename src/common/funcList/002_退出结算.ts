@@ -46,12 +46,6 @@ export class Func002 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1201, 102, 1278, 621, 400],
 		],
-		// operStepRandom: [
-		// 	[
-		// 		[left, 1280, 720, 69, 171, 170, 452, 400, 2],
-		// 		[right, 1280, 720, 1104, 72, 1200, 528, 400, 5],
-		// 	]
-		// ],
 	}, {
 		// 1 左上角贪吃鬼，mumu截图
 		desc: '退出结算_左上角贪吃鬼_mumu',
@@ -238,6 +232,12 @@ export class Func002 implements IFuncOrigin {
 			name: '体力不足',
 			operator: thisOperator.slice(-2, -1)
 		})) {
+			if (thisScript.shutDownOpen) {
+				thisScript.shutDown['13'] = true;
+				thisScript.shutDown['14'] = true;
+				thisScript.shutDown['29'] = true;
+				return true;
+			}
 			if (thisconf && thisconf.no_sushi_switch_enabled) {
 				thisScript.rerun(thisconf.next_scheme);
 				sleep(3000);

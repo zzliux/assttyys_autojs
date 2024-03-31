@@ -100,6 +100,7 @@ export class Func320 implements IFuncOrigin {
 		desc: '页面是否为庭院_菜单已展开_只支持默认庭院皮肤与默认装饰',
 	}
 	];
+	
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['320'];
 		// 方案开启后先杀进程
@@ -161,11 +162,13 @@ export class Func320 implements IFuncOrigin {
 				// 读取重置前的参数
 				thisScript.global.dengluNumOT = dengluNumOT;
 				console.log('重置参数完成');
+				thisScript.shutDownOpen = true;
 				thisScript.global.frist_open = false;
 				thisScript.global.dengluState = false;
 				return true;
 			}
 		}
+		thisScript.shutDownOpen = true;
 		if (thisScript.oper({
 			id: 993,
 			name: '是否为庭院',

@@ -9,15 +9,6 @@ export class Func027 implements IFuncOrigin {
 	id = 27;
 	name = '组队_创建或匹配';
 	desc = '在庭院中点击下方的组队按钮后点击创建或排队按钮';
-	config = [{
-		desc: '',
-		config: [{
-			name: 'run_time',
-			desc: '设置运行次数,0则不生效',
-			type: 'text',
-			default: '0',
-		}]
-	}]
 	operator: IFuncOperatorOrigin[] = [{ // 妖气自动匹配中的 图像
 		desc: [
 			1280, 720,
@@ -110,35 +101,35 @@ export class Func027 implements IFuncOrigin {
 		]
 	}]
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		const thisConf = thisScript.scheme.config[27];
-		if (Number(thisConf.run_time) > thisScript.global.create_NumOT || Number(thisConf.run_time) == 0) {
-			let curCnt = 0;
-			const maxCount = 3;
-			while (thisScript.oper({
-				name: '组队_创建',
-				operator: [thisOperator[5], thisOperator[7]]
-			})) {
-				curCnt++;
-				thisScript.keepScreen();
-				if (curCnt >= maxCount && Number(thisConf.run_time) == 0) {
+		let curCnt = 0;
+		const maxCount = 3;
+		while (thisScript.oper({
+			name: '组队_创建',
+			operator: [thisOperator[5], thisOperator[7]]
+		})) {
+			curCnt++;
+			thisScript.keepScreen();
+			if (curCnt >= maxCount) {
+				// 只运行一次的开关
+				thisScript.regionClick([thisOperator[8].oper[0]]);
+				log('开关状态'+thisScript.shutDownOpen);
+				if (thisScript.shutDownOpen) {
+					thisScript.shutDown['27'] = true;
+					return true;
+				} else {
 					thisScript.doPush(thisScript, { text: '体力不够创房，已停止。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 					thisScript.stop();
 					sleep(2000);
 					return true;
-				} else if (curCnt >= maxCount) {
-					thisScript.global.create_NumOT = 1000;
-					thisScript.regionClick([thisOperator[8].oper[0]]);
-					return true;
 				}
-				thisScript.global.create_NumOT++;
 			}
-			if (thisScript.oper({
-				id: 27,
-				name: '组队_匹配',
-				operator: thisOperator.slice(0, -2)
-			})) {
-				return true;
-			}
+		}
+		if (thisScript.oper({
+			id: 27,
+			name: '组队_匹配',
+			operator: thisOperator.slice(0, -2)
+		})) {
+			return true;
 		}
 		return false;
 	}

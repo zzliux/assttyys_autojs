@@ -324,25 +324,37 @@ export class Func503 implements IFuncOrigin {
 		oper: [
 			[left, 1280, 720, 31, 20, 70, 59, 1000],
 		]
-	}, { // 28 测试
+	}, { // 28 探索里
 		desc: [
 			1280, 720,
 			[
-				[center, 397, 375, 0x2d3039],
-				[center, 893, 286, 0x2e313a],
-				[center, 332, 404, 0x2d3039],
-				[right, 1024, 326, 0x2e313a],
+				[center, 811, 659, 0xc2baa2],
+				[right, 1173, 35, 0xd7af86],
+				[left, 40, 65, 0xf0f5fb],
+				[center, 621, 45, 0xfce5cd],
+				[right, 1094, 603, 0xfa812c],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 856, 294, 1143, 490, 1000],
+			[center, 1280, 720, 28, 40, 77, 78, 1000],
+			[center, 1280, 720, 700, 386, 850, 418, 1000]
+		]
+	}, { // 29 章节内_普通_困难
+		desc: [1280, 720,
+			[
+				[center, 276, 129, 0x493624],
+				[center, 867, 131, 0x493624],
+				[center, 1043, 147, 0xeecccc],
+				[center, 904, 535, 0xf4b25f],
+				[right, 1121, 35, 0xd7b389],
+				[right, 1222, 32, 0xd3af85]]
+		],
+		oper: [
+			[center, 1280, 720, 1036, 133, 1065, 158, 500]
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['503'];
-		console.log('改前' + thisScript.runTimes['503'])
-		thisScript.runTimes['503'] = 7;
-		console.log('改后' + thisScript.runTimes['503'])
 		if (thisScript.global.change_shikigami_flag && thisScript.oper({
 			id: 503,
 			name: '返回庭院',
@@ -354,6 +366,7 @@ export class Func503 implements IFuncOrigin {
 				thisOperator[18], thisOperator[19], thisOperator[20],
 				thisOperator[21], thisOperator[24], thisOperator[25],
 				thisOperator[26], thisOperator[27], thisOperator[28],
+				thisOperator[29],
 			]
 		})) {
 			return true;

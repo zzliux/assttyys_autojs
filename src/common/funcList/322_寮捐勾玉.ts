@@ -133,7 +133,7 @@ export class Func518 implements IFuncOrigin {
 			name: '捐勾完成',
 			operator: [thisOperator[6], thisOperator[8]]
 		})) {
-			thisScript.global.juan_gouyu = false;
+			thisScript.shutDown['322'] = true;
 			return true;
 		}
 		if (thisScript.oper({
@@ -142,7 +142,7 @@ export class Func518 implements IFuncOrigin {
 		})) {
 			return true;
 		}
-		if (thisScript.global.juan_gouyu && thisScript.oper({
+		if (thisScript.oper({
 			name: '捐勾杂项',
 			operator: [thisOperator[0], thisOperator[1], thisOperator[2]
 				, thisOperator[4], thisOperator[5]]
@@ -162,7 +162,7 @@ export class Func518 implements IFuncOrigin {
 				thisScript.myToast('已达上限');
 				thisScript.regionClick([thisOperator[6].oper[0]]);
 				thisScript.regionClick([thisOperator[6].oper[0]]);
-				thisScript.global.juan_gouyu = false;
+				thisScript.shutDown['322'] = true;
 				sleep(1000);
 				return true;
 			}

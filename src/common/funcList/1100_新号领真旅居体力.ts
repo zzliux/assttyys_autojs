@@ -125,11 +125,10 @@ export class Func1100 implements IFuncOrigin {
 				name: '返回庭院',
 				operator: [thisOperator[3]]
 			})) {
-				thisScript.global.zhenLvJu_tiLi = null;
+				thisScript.shutDown['1100'] = true;
 				return true;
 			}
-		} else {
-			return false;
 		}
+		return false;
 	}
 }

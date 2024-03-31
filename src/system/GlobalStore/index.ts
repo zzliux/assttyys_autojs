@@ -79,10 +79,10 @@ export type globalRootType = {
 	dengluNumOT: number, // 登录账号计数
 	dengluState: boolean, // 登录账号状态
 	yaoqing_close: boolean, // 关闭_接受邀请
-	juan_gouyu: boolean, // 捐勾玉
 	frist_open: boolean, // 首次开启方案
 	tongXinDui_ZhanDou: 'judge' | 'prestore' | 'juexing' | 'stage' | 'yuhun' | 'back';   // 同心队预存阶段
 	zhenLvJu_tiLi: boolean, // 是否购买真旅居体力
+	nextChange: boolean, // 下次战斗更换式神
 }
 
 export const globalRoot: globalRootType = {
@@ -166,8 +166,8 @@ export const globalRoot: globalRootType = {
 	dengluNumOT: 0,
 	dengluState: true,
 	yaoqing_close: false,
-	juan_gouyu: true,
 	frist_open: true,
 	tongXinDui_ZhanDou: 'judge',
 	zhenLvJu_tiLi: true,
+	nextChange: false,
 }

@@ -567,7 +567,7 @@ export class Script {
 					for (let i = 0; i < self.scheme.funcList.length; i++) {
 						// 判断shutDown, 跳过函数
 						if (self.shutDownOpen && self.shutDown[self.scheme.funcList[i].id]) {
-							break;
+							continue;
 						}
 						if (self.oper(self.scheme.funcList[i], undefined)) {
 							self.currentDate = new Date();
