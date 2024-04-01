@@ -1,6 +1,5 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
-
 // const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -90,7 +89,7 @@ export class Func518 implements IFuncOrigin {
 			thisScript.regionSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [600, 800], 0, 500);
 			return false;
 		}
-		if (thisScript.runTimes['2'] > 0 && thisScript.oper({
+		if (thisScript.runTimes['2'] > 2 && thisScript.oper({
 			name: '锁定阵容',
 			operator: [thisOperator[3]]
 		})) {

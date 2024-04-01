@@ -4,7 +4,7 @@ import { Script } from '@/system/script';
 const left = 0;
 const center = 1;
 const right = 2;
-export class Func518 implements IFuncOrigin {
+export class Func322 implements IFuncOrigin {
 	id = 322;
 	name = '寮捐勾玉';
 	desc = '领取勾玉卡并且捐给寮勾玉(用于小号)';

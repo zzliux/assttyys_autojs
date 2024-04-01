@@ -136,7 +136,7 @@ export class Func323 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 145, 274, 361, 324, 1000],
 		]
-	}, { // 9 滑动区域_组队点击区域_同心队找色范围
+	}, { // 9 滑动区域_组队点击区域_同心队找色范围_ocr区域
 		oper: [
 			[center, 1280, 720, 400, 191, 578, 244, 200], // 滑动起始
 			[center, 1280, 720, 398, 595, 582, 709, 200], // 滑动结束
@@ -145,6 +145,8 @@ export class Func323 implements IFuncOrigin {
 			[center, 1280, 720, 813, 563, 933, 611, 1000], // 点击创建
 			[left, 1280, 720, 0, 0, 16, 16, 1000], // 同心队找色范围
 			[left, 1280, 720, 1033, 133, 1067, 159, 1000], // 同心队奖励关闭
+			[left, 1280, 720, 1033, 133, 1067, 159, 1000], // 同心队奖励关闭
+			[left, 1280, 720, 521, 355, 779, 553, 1000], // ocr区域
 		]
 	}, { // 10 退出组队
 		desc: [
@@ -332,6 +334,35 @@ export class Func323 implements IFuncOrigin {
 		}
 		// 做寮三十_觉醒阶段
 		if (thisScript.global.tongXinDui_ZhanDou === 'juexing') {
+			if (thisScript.getOcrDetector() && thisScript.oper({
+				id: 323,
+				name: '判断体力',
+				operator: [{ desc: thisOperator[1].desc }]
+			})) {
+				const result = thisScript.findText('.+', 0, thisOperator[9].oper[8], '包含');
+				if (result.length === 0) {
+					console.log('未识别到任何字样');
+					return false;
+				} else {
+					if (Number.isNaN(result[0].label) && Number.isNaN(result[1].label) && Number.isNaN(result[2].label) && Number.isNaN(result[3].label)) {
+						console.log('非数字，继续识别');
+						sleep(1000);
+						return true;
+					} else if (Number(result[0].label) < 120 || Number(result[1].label) < 120 || Number(result[2].label) < 120 || Number(result[3].label) < 120) {
+						thisScript.global.tongXinDui_ZhanDou = 'prestore';
+						return true;
+					} else {
+						if (thisScript.oper({
+							id: 323,
+							name: '同心队集结',
+							operator: [thisOperator[3]]
+						})) {
+							return true;
+						}
+					}
+				}
+				return true;
+			}
 			if (thisScript.oper({
 				id: 323,
 				name: '同心队集结',
@@ -416,6 +447,7 @@ export class Func323 implements IFuncOrigin {
 				return false;
 			}
 		}
+		// 待写 领取食盒+御魂完毕后再次预存
 		return false;
 	}
 }

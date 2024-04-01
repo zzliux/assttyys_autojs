@@ -442,11 +442,11 @@ export class Script {
 	}
 
 	/**
-    * 执行多点找色(返回所有点坐标)
-    * @param {String} key src\common\multiColors.js的key
-    * @param {Region} inRegion 多点找色区域
-    * @returns
-    */
+	* 执行多点找色(返回所有点坐标)
+	* @param {String} key src\common\multiColors.js的key
+	* @param {Region} inRegion 多点找色区域
+	* @returns
+	*/
 	findMultiColorEx(key: string, inRegion?): Point[] {
 		this.initRedList();
 		const region = inRegion || this.multiFindColors[key].region;
@@ -765,7 +765,7 @@ export class Script {
 		const self = this;
 		this._stop();
 		setTimeout(() => {
-			threads.start(function() {
+			threads.start(function () {
 				if (self.switchOutThread?.isAlive()) {
 					self.switchOutThread.join();
 				}
@@ -974,7 +974,7 @@ events.broadcast.on('SCRIPT_RUN', () => {
 events.broadcast.on('SCRIPT_RERUN', () => {
 	script._stop(true);
 	setTimeout(() => {
-		threads.start(function() {
+		threads.start(function () {
 			if (script.switchOutThread?.isAlive()) {
 				script.switchOutThread.join();
 			}
