@@ -162,12 +162,26 @@ export class Func509 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1012, 649, 1055, 690, 1000],
 		]
+	}, { // 点开勋章后的突破界面
+		desc: [
+			1280, 720,
+			[
+				[left, 178, 80, 0x18171a],
+				[center, 620, 42, 0x222124],
+				[left, 58, 649, 0x1d1e22],
+				[left, 142, 658, 0x4c463e],
+				[right, 1204, 134, 0x605855],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1180, 110, 1230, 153, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.global.change_shikigami_flag) {
 			if (thisScript.oper({
-				name: '是否为式神录',
-				operator: [thisOperator[3], thisOperator[10]]
+				name: '是否为式神录_突破界面_',
+				operator: [thisOperator[3], thisOperator[10], thisOperator[12]]
 			})) {
 				thisScript.global.change_shikigami_flag = false;
 			}

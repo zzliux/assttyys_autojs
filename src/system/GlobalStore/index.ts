@@ -80,10 +80,11 @@ export type globalRootType = {
 	dengluState: boolean, // 登录账号状态
 	yaoqing_close: boolean, // 关闭_接受邀请
 	frist_open: boolean, // 首次开启方案
-	tongXinDui_ZhanDou: 'judge' | 'prestore' | 'juexing' | 'stage' | 'yuhun' | 'back';   // 同心队预存阶段
+	tongXinDui_ZhanDou: 'collect' | 'judge' | 'prestore' | 'juexing' | 'stage' | 'yuhun' | 'back';   // 同心队预存阶段
 	zhenLvJu_tiLi: boolean, // 是否购买真旅居体力
 	nextChange: boolean, // 下次战斗更换式神
 	tupo_94: boolean, // 突破9退4状态 true为9, false为4
+	nowlevel: number, // 当前等级
 }
 
 export const globalRoot: globalRootType = {
@@ -168,8 +169,9 @@ export const globalRoot: globalRootType = {
 	dengluState: true,
 	yaoqing_close: false,
 	frist_open: true,
-	tongXinDui_ZhanDou: 'judge',
+	tongXinDui_ZhanDou: 'collect',
 	zhenLvJu_tiLi: true,
 	nextChange: false,
 	tupo_94: true,
+	nowlevel: 0,
 }

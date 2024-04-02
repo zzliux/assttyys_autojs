@@ -54,6 +54,7 @@ export class Func040 implements IFuncOrigin {
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['40'];
 		if (thisScript.oper({
+			id: 40,
 			name: 'BUFF界面',
 			operator: [{
 				desc: thisOperator[0].desc

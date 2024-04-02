@@ -1,4 +1,6 @@
-import { IFuncOrigin, IFuncOperatorOrigin } from '@/interface/IFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
+import { Script } from '@/system/script';
+
 // const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -8,6 +10,15 @@ export class Func501 implements IFuncOrigin {
 	id = 501;
 	name = '打开BUFF界面';
 	desc = '支持从探索地图、庭院、组队打开buff界面';
+	config = [{
+		desc: '',
+		config: [{
+			name: 'once',
+			desc: '开关过buff后不再打开buff界面',
+			type: 'switch',
+			default: false
+		}],
+	}];
 	operator: IFuncOperatorOrigin[] = [{
 		// 探索地图打开buff界面
 		desc: '探索地图界面',
@@ -41,5 +52,18 @@ export class Func501 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 799, 38, 828, 76, 1500]
 		]
-	}]
+	}];
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
+		const thisconf = thisScript.scheme.config['501'];
+		if (thisconf.once && (thisScript.runTimes['40'] > 0 || thisScript.runTimes['50'] > 0)) {
+			return false;
+		} else {
+			if (thisScript.oper({
+				name: '打开buff界面',
+				operator: thisOperator.slice(0)
+			})) {
+				return true;
+			}
+		}
+	}
 }

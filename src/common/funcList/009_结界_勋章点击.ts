@@ -43,25 +43,9 @@ export class Func009 implements IFuncOrigin {
 			[left, 1280, 720, 147, 146, 465, 265, 500]
 		]
 	}];
-	// onSchemeSwitchOut(_thisScript: Script, _thisConfigOperator: SchemeConfigOperator, _nextConfigOperator: SchemeConfigOperator): void {
-	// 	const auto_94 = _thisConfigOperator.get(9, 'auto_94')
-	// 	const exitBeforeReady = _thisConfigOperator.get(0, 'exitBeforeReady')
-	// 	if (auto_94 && !exitBeforeReady) {
-	// 		_thisConfigOperator.set(1, 'exitBeforeReady', true);
-	// 		_thisConfigOperator.set(0, 'jspd_enabled_2', true);
-	// 		_thisConfigOperator.set(2, 'rechallenge', true);
-	// 		console.log('退4阶段')
-	// 	} else if (auto_94 && exitBeforeReady) {
-	// 		_thisConfigOperator.set(1, 'exitBeforeReady', false);
-	// 		_thisConfigOperator.set(0, 'jspd_enabled_2', false);
-	// 		_thisConfigOperator.set(2, 'rechallenge', false);
-	// 		console.log('打9阶段')
-	// 	}
-	// }
-	onSchemeStop(_thisScript: Script, _thisConfigOperator: SchemeConfigOperator): void {
+	onSchemeSwitchOut(_thisScript: Script, _thisConfigOperator: SchemeConfigOperator, _nextConfigOperator: SchemeConfigOperator): void {
 		const auto_94 = _thisConfigOperator.get(9, 'auto_94')
-		const exitBeforeReady = _thisConfigOperator.get(0, 'exitBeforeReady')
-		log(_thisScript.scheme.config);
+		const exitBeforeReady = _thisConfigOperator.get(1, 'exitBeforeReady')
 		if (auto_94 && !exitBeforeReady) {
 			_thisConfigOperator.set(1, 'exitBeforeReady', true);
 			_thisConfigOperator.set(0, 'jspd_enabled_2', true);
@@ -74,14 +58,23 @@ export class Func009 implements IFuncOrigin {
 			console.log('打9阶段')
 		}
 	}
+	// onSchemeStop(_thisScript: Script, _thisConfigOperator: SchemeConfigOperator): void {
+	// 	const auto_94 = _thisConfigOperator.get(9, 'auto_94')
+	// 	const exitBeforeReady = _thisConfigOperator.get(0, 'exitBeforeReady')
+	// 	log(_thisScript.scheme.config);
+	// 	if (auto_94 && !exitBeforeReady) {
+	// 		_thisConfigOperator.set(1, 'exitBeforeReady', true);
+	// 		_thisConfigOperator.set(0, 'jspd_enabled_2', true);
+	// 		_thisConfigOperator.set(2, 'rechallenge', true);
+	// 		console.log('退4阶段')
+	// 	} else if (auto_94 && exitBeforeReady) {
+	// 		_thisConfigOperator.set(1, 'exitBeforeReady', false);
+	// 		_thisConfigOperator.set(0, 'jspd_enabled_2', false);
+	// 		_thisConfigOperator.set(2, 'rechallenge', false);
+	// 		console.log('打9阶段')
+	// 	}
+	// }
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		const thisconf = thisScript.scheme.config['9']; // 获取配置
-		if (thisconf && thisconf.auto_94) {
-			thisScript.rerun(thisconf.schemeName);
-			sleep(3000);
-			return;
-		}
-		// 读取当前0功能的退出次数,当第四次就重新修改成打9
 		if (thisScript.oper({
 			name: '突破界面_判断',
 			operator: [{ desc: thisOperator[0].desc }]

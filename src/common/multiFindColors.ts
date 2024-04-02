@@ -3081,6 +3081,21 @@ const multiFindColors: IMultiFindColorsOrigin = {
 			]
 		]],
 
+	},
+	'购买体力按钮': {
+		region: [center, 1280, 720, 830, 4, 1084, 100],
+		desc: [[
+			1280, 720,
+			[
+				[right, 1045, 29, 0xd7c4a1],
+				[right, 1045, 19, 0xd7c3a2],
+				[right, 1036, 28, 0xd7c3a2],
+				[right, 1055, 28, 0xd5c5a2],
+				[right, 1046, 36, 0xd7c3a2],
+				[center, 872, 32, 0x080907],
+				[center, 889, 42, 0x181d13],
+			]
+		]],
 	}
 }
 

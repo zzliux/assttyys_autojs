@@ -66,7 +66,8 @@ export class Func518 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 891, 658, 919, 678, 1000],
-		]
+		],
+		retest: 1000
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (!thisScript.global.nextChange && thisScript.oper({
@@ -76,24 +77,27 @@ export class Func518 implements IFuncOrigin {
 			thisScript.global.nextChange = true;
 			return true;
 		}
-		if (thisScript.global.nextChange && thisScript.oper({
-			name: '更换式神',
-			operator: [thisOperator[1]]
-		})) {
-			return true;
+		if (thisScript.global.nextChange) {
+			if (thisScript.oper({
+				name: '更换式神',
+				operator: [thisOperator[1]]
+			})) {
+				return true;
+			}
+			if (thisScript.oper({
+				name: '更换式神',
+				operator: [{ desc: thisOperator[2].desc }]
+			})) {
+				thisScript.regionSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [600, 800], 0, 500);
+				return false;
+			}
 		}
-		if (thisScript.global.nextChange && thisScript.oper({
-			name: '更换式神',
-			operator: [{ desc: thisOperator[2].desc }]
-		})) {
-			thisScript.regionSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [600, 800], 0, 500);
-			return false;
-		}
+
+
 		if (thisScript.runTimes['2'] > 2 && thisScript.oper({
 			name: '锁定阵容',
 			operator: [thisOperator[3]]
 		})) {
-			log('guanbi')
 			thisScript.shutDown['1101'] = true;
 			return true;
 		}

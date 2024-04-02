@@ -97,9 +97,30 @@ export class Func1100 implements IFuncOrigin {
 		]
 	}, { // 6 庭院
 		desc: '页面是否为庭院_菜单已展开_只支持默认庭院皮肤与默认装饰'
+	}, { // 7 菜单有同心队
+		desc: [
+			1280, 720,
+			[
+				[left, 202, 612, 0xed944e],
+				[left, 267, 611, 0xd87a3b],
+				[left, 225, 627, 0x8b3127],
+				[left, 315, 633, 0x9b3333],
+				[center, 360, 631, 0xa8a7b5],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 23, 37, 85, 89, 1000],
+		]
 	}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
+		if (thisScript.oper({
+			name: '有同心队',
+			operator: [thisOperator[7]]
+		})) {
+			thisScript.shutDown['1100'] = true;
+			return true;
+		}
 		if (thisScript.global.zhenLvJu_tiLi) {
 			if (thisScript.oper({
 				name: '购买体力',

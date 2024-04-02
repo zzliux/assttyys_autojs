@@ -98,9 +98,10 @@ export class Func314 implements IFuncOrigin {
 			]
 		],
 		oper: [
+			[center, 1280, 720, 1044, 560, 1258, 699, 3000],
 			[center, 1280, 720, 509, 631, 945, 710, 1000],
-			[center, 1280, 720, 509, 631, 945, 710, 1000],
-		]
+		],
+		retest: 3000,
 	}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {

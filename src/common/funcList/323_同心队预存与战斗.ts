@@ -125,12 +125,12 @@ export class Func323 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[left, 147, 126, 0x78502f],
 				[center, 363, 127, 0x78502f],
-				[left, 147, 183, 0x78502f],
 				[center, 363, 182, 0x78502f],
 				[right, 1220, 149, 0x875b4f],
 				[center, 761, 52, 0xd6c4a1],
+				[center, 362, 127, 0x78502f],
+				[center, 362, 184, 0x78502f],
 			]
 		],
 		oper: [
@@ -162,17 +162,18 @@ export class Func323 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 28, 18, 66, 55, 1000],
 			[center, 1280, 720, 674, 406, 838, 454, 1000],
-		]
+		],
+		retest: 1000,
 	}, { // 11 副本选择御魂一
 		desc: [
 			1280, 720,
 			[
-				[left, 147, 126, 0x78502f],
 				[center, 363, 127, 0x78502f],
-				[left, 147, 183, 0x78502f],
 				[center, 363, 182, 0x78502f],
 				[right, 1220, 149, 0x875b4f],
 				[center, 761, 52, 0xd6c4a1],
+				[center, 362, 127, 0x78502f],
+				[center, 362, 184, 0x78502f],
 			]
 		],
 		oper: [
@@ -265,19 +266,117 @@ export class Func323 implements IFuncOrigin {
 	}, { // 18 进入阴阳寮
 		desc: '页面是否为庭院_菜单已展开_只支持默认庭院皮肤与默认装饰',
 		oper: [
-			[center, 1280, 720, 544, 612, 594, 661, 1200]	// 点击阴阳寮
+			[center, 1280, 720, 544, 612, 594, 661, 3000]	// 点击阴阳寮
+		]
+	}, { // 19 进入结界
+		desc: [
+			1280, 720,
+			[
+				[left, 44, 38, 0xf7eaac],
+				[left, 54, 29, 0xefd38f],
+				[center, 900, 664, 0xc46339],
+				[right, 987, 622, 0xf75743],
+				[right, 1070, 626, 0xb1251f],
+				[right, 1092, 664, 0xdee4f0],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1063, 629, 1119, 678, 1000],
+		]
+	}, { // 20 食盒
+		desc: [
+			1280, 720,
+			[
+				[center, 805, 459, 0x654c32],
+				[center, 812, 459, 0x12100c],
+				[center, 869, 460, 0x120f0c],
+				[center, 877, 461, 0x58432e],
+				[center, 841, 482, 0x85321a],
+				[center, 840, 429, 0x11100c],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 819, 439, 861, 482, 1000],
+			[center, 1280, 720, 594, 510, 674, 563, 1000],
+		]
+	}, { // 21 退出食盒
+		desc: [
+			1280, 720,
+			[
+				[left, 302, 119, 0x443020],
+				[left, 310, 524, 0xf0f0e9],
+				[center, 568, 120, 0xdfb659],
+				[center, 720, 126, 0xd4a53e],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 949, 148, 994, 184, 1000],
+			[center, 1280, 720, 15, 23, 67, 65, 1000],
+		]
+	}, { // 22 队员列表
+		desc: [
+			1280, 720,
+			[
+				[left, 81, 442, 0xdabd8c],
+				[left, 81, 408, 0xf5e2b7],
+				[left, 113, 399, 0xf4deaf],
+				[left, 83, 242, 0xd4bbb8],
+				[left, 114, 251, 0xcdb0ac],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 580, 603, 757, 630, 1000],
+			[center, 1280, 720, 676, 406, 839, 453, 1000],
+			[center, 1280, 720, 78, 207, 115, 305, 1000],
+		]
+	}, { // 23 食盒小纸人的桌子
+		desc: [
+			1280, 720,
+			[
+				[center, 819, 547, 0xcdaa86],
+				[center, 834, 573, 0xb38b5e],
+				[center, 856, 573, 0x946643],
+				[center, 880, 572, 0x9a6943],
+				[center, 864, 547, 0xa58c64],
+			]
+		]
+	}, { // 24 樱花树满级
+		desc: [
+			1280, 720,
+			[
+				[center, 493, 491, 0xf0d9cc],
+				[center, 782, 496, 0xf8ece5],
+				[center, 470, 140, 0xfcf6e2],
+				[center, 764, 142, 0xf7eae2],
+				[center, 811, 145, 0xe4cb91],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 788, 127, 829, 164, 1000],
+		]
+	}, { // 25 合影关闭
+		desc: [
+			1280, 720,
+			[
+				[left, 319, 271, 0x2c59cb],
+				[center, 396, 318, 0xf17981],
+				[center, 499, 435, 0xf37975],
+				[center, 881, 508, 0xffd686],
+				[right, 968, 211, 0xe1c58d],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 948, 190, 988, 227, 1000],
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		// 是否做过寮三十
-		if (thisScript.global.tongXinDui_ZhanDou === 'judge') {
+		// 领取结界体力
+		if (thisScript.global.tongXinDui_ZhanDou === 'collect') {
 			if (thisScript.oper({
 				id: 323,
-				name: '进入阴阳寮',
-				operator: [thisOperator[18]]
+				name: '阴阳寮领体力',
+				operator: [{ desc: thisOperator[19].desc }]
 			})) {
-				sleep(1500);
-				thisScript.keepScreen();
 				const point = thisScript.findMultiColor('阴阳寮_奖励体力');
 				if (point) {
 					console.log('查找阴阳寮_奖励体力成功');
@@ -292,8 +391,35 @@ export class Func323 implements IFuncOrigin {
 					thisScript.regionClick([thisOperator[17].oper[0]]);
 					return true;
 				}
+			}
+			if (thisScript.oper({
+				id: 323,
+				name: '进入结界',
+				operator: [thisOperator[18], thisOperator[19], thisOperator[24], thisOperator[25]]
+			})) {
 				return true;
 			}
+			if (thisScript.oper({
+				id: 323,
+				name: '结界内_食盒小纸人的桌子',
+				operator: [thisOperator[23]]
+			})) {
+				if (thisScript.oper({
+					id: 323,
+					name: '领取食盒体力完毕',
+					operator: [thisOperator[20]]
+				})) {
+					thisScript.global.tongXinDui_ZhanDou = 'judge';
+				} else {
+					thisScript.regionClick([thisOperator[21].oper[1]]);
+					thisScript.global.tongXinDui_ZhanDou = 'judge';
+				}
+				sleep(3000);
+				return true;
+			}
+		}
+		// 是否做过寮三十
+		if (thisScript.global.tongXinDui_ZhanDou === 'judge') {
 			if (thisScript.oper({
 				id: 323,
 				name: '寮界面内',
@@ -312,23 +438,11 @@ export class Func323 implements IFuncOrigin {
 					return true;
 				}
 			}
-		}
-		// 不做寮三十则预存_预存阶段
-		if (thisScript.global.tongXinDui_ZhanDou === 'prestore') {
 			if (thisScript.oper({
 				id: 323,
-				name: '同心队预存与预存_进入和预存',
-				operator: [thisOperator[0], thisOperator[1]]
+				name: '从结界返回寮界面',
+				operator: [thisOperator[21]]
 			})) {
-				return true;
-			}
-			if (thisScript.oper({
-				id: 323,
-				name: '同心队预存完毕',
-				operator: [thisOperator[2]]
-			})) {
-				// 预存完毕,跳转到退出阶段
-				thisScript.global.tongXinDui_ZhanDou = 'back';
 				return true;
 			}
 		}
@@ -426,6 +540,25 @@ export class Func323 implements IFuncOrigin {
 				return true;
 			}
 			if (thisScript.runTimes['2'] >= 30) {
+				thisScript.global.tongXinDui_ZhanDou = 'prestore';
+				return true;
+			}
+		}
+		// 预存剩余体力
+		if (thisScript.global.tongXinDui_ZhanDou === 'prestore') {
+			if (thisScript.oper({
+				id: 323,
+				name: '同心队预存',
+				operator: [thisOperator[0], thisOperator[1], thisOperator[10], thisOperator[22]]
+			})) {
+				return true;
+			}
+			if (thisScript.oper({
+				id: 323,
+				name: '同心队预存完毕',
+				operator: [thisOperator[2]]
+			})) {
+				// 预存完毕,跳转到退出阶段
 				thisScript.global.tongXinDui_ZhanDou = 'back';
 				return true;
 			}
@@ -435,7 +568,7 @@ export class Func323 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 323,
 				name: '同心队退出集结',
-				operator: [thisOperator[10], thisOperator[11], thisOperator[12], thisOperator[13]]
+				operator: [thisOperator[11], thisOperator[12], thisOperator[13]]
 			})) {
 				return true;
 			}
@@ -444,10 +577,10 @@ export class Func323 implements IFuncOrigin {
 				name: '已在庭院中',
 				operator: [{ desc: thisOperator[0].desc }]
 			})) {
+				thisScript.shutDown['323'] = true;
 				return false;
 			}
 		}
-		// 待写 领取食盒+御魂完毕后再次预存
 		return false;
 	}
 }
