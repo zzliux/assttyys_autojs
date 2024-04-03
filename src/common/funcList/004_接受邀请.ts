@@ -105,7 +105,7 @@ export class Func004 implements IFuncOrigin {
 		if (thisConf && thisConf.exit && thisScript.oper({
 			id: 4,
 			name: '邀请切换横幅',
-			operator: [thisOperator[0], thisOperator[1]]
+			operator: [{ desc: thisOperator[0].desc }, { desc: thisOperator[1].desc }]
 		})) {
 			thisScript.rerun(thisConf.next_scheme);
 		}

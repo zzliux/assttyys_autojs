@@ -40,16 +40,23 @@ export class Func009 implements IFuncOrigin {
 		// 1 第一排第一列结界坐标
 		desc: '突破界面',
 		oper: [
-			[left, 1280, 720, 147, 146, 465, 265, 500]
+			[left, 1280, 720, 0, 0, 1279, 719, 500]
+			// [left, 1280, 720, 147, 146, 465, 265, 500]
 		]
 	}];
-	onSchemeSwitchOut(_thisScript: Script, _thisConfigOperator: SchemeConfigOperator, _nextConfigOperator: SchemeConfigOperator): void {
+	onSchemeStop(_thisScript: Script, _thisConfigOperator: SchemeConfigOperator): void {
 		const auto_94 = _thisConfigOperator.get(9, 'auto_94')
 		const exitBeforeReady = _thisConfigOperator.get(1, 'exitBeforeReady')
+		const thisconf = _thisScript.scheme.config['9']; // 获取配置
+		log(exitBeforeReady);
+		log(auto_94)
 		if (auto_94 && !exitBeforeReady) {
 			_thisConfigOperator.set(1, 'exitBeforeReady', true);
 			_thisConfigOperator.set(0, 'jspd_enabled_2', true);
+			_thisConfigOperator.set(0, 'jspd_times_2', 4);
 			_thisConfigOperator.set(2, 'rechallenge', true);
+			_thisConfigOperator.set(0, 'scheme_switch_enabled', true);
+			_thisConfigOperator.set(0, 'next_scheme', thisconf.schemeName);
 			console.log('退4阶段')
 		} else if (auto_94 && exitBeforeReady) {
 			_thisConfigOperator.set(1, 'exitBeforeReady', false);
@@ -57,23 +64,11 @@ export class Func009 implements IFuncOrigin {
 			_thisConfigOperator.set(2, 'rechallenge', false);
 			console.log('打9阶段')
 		}
+		const auto_94_out = _thisConfigOperator.get(9, 'auto_94')
+		const exitBeforeReady_out = _thisConfigOperator.get(1, 'exitBeforeReady')
+		log(exitBeforeReady_out);
+		log(auto_94_out)
 	}
-	// onSchemeStop(_thisScript: Script, _thisConfigOperator: SchemeConfigOperator): void {
-	// 	const auto_94 = _thisConfigOperator.get(9, 'auto_94')
-	// 	const exitBeforeReady = _thisConfigOperator.get(0, 'exitBeforeReady')
-	// 	log(_thisScript.scheme.config);
-	// 	if (auto_94 && !exitBeforeReady) {
-	// 		_thisConfigOperator.set(1, 'exitBeforeReady', true);
-	// 		_thisConfigOperator.set(0, 'jspd_enabled_2', true);
-	// 		_thisConfigOperator.set(2, 'rechallenge', true);
-	// 		console.log('退4阶段')
-	// 	} else if (auto_94 && exitBeforeReady) {
-	// 		_thisConfigOperator.set(1, 'exitBeforeReady', false);
-	// 		_thisConfigOperator.set(0, 'jspd_enabled_2', false);
-	// 		_thisConfigOperator.set(2, 'rechallenge', false);
-	// 		console.log('打9阶段')
-	// 	}
-	// }
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: '突破界面_判断',
