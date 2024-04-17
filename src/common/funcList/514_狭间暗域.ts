@@ -152,7 +152,7 @@ export class Func514 implements IFuncOrigin {
 				],
 			})
 		) {
-			if (thisconf.boss_order === '从小到大') {
+			if (thisconf && thisconf.boss_order === '从小到大') {
 				thisScript.global.narrow_state = {
 					'0_3': false,
 					'0_4': false,
