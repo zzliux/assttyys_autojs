@@ -70,30 +70,6 @@ export class Func005 implements IFuncOrigin {
 				[left, 55, 402, 0xe3caa3],
 				[left, 51, 502, 0xe4cca3]]
 		]
-	}, { // 同心离线组队
-		desc: [
-			1280, 720,
-			[
-				[left, 43, 37, 0xf5e6a8],
-				[left, 60, 39, 0x84582f],
-				[left, 19, 47, 0x281717],
-				[right, 1190, 626, 0xefdb8e],
-				[right, 1216, 639, 0xecd27e],
-				[right, 1235, 663, 0xe6c666],
-			]
-		]
-	}, { // 同心离线组队
-		desc: [
-			1280, 720,
-			[
-				[left, 43, 37, 0xf7e9ac],
-				[left, 60, 39, 0x8f5f32],
-				[left, 19, 47, 0x2c1c1b],
-				[right, 1190, 626, 0x6a3617],
-				[right, 1216, 639, 0xecd27e],
-				[right, 1235, 663, 0xe6c56a],
-			]
-		]
 	}];
 	// 0-有人就开，1-第一个+号上的点，2-第二个+号上的点，如果1或者2任意一个匹配上了，说明人没满
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {

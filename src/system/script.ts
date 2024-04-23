@@ -26,8 +26,6 @@ import ncnnBgyx from '@/system/ncnn/ncnnBgyx';
  */
 export class Script {
 	runThread: any; // 脚本运行线程
-	monitorThread: any; // 监听脚本的线程
-	switchOutThread: any; // 切出方案线程
 	runCallback: Function; // 运行后回调，一般用于修改悬浮样式
 	stopCallback: Function; // 停止后回调，异常停止、手动停止，在停止后都会调用
 	scheme: IScheme; // 运行的方案
@@ -549,6 +547,11 @@ export class Script {
 			}
 			return;
 		}
+		// test start
+		// let img = images.captureScreen();
+		// img.saveTo('/sdcard/testimg.png');
+		// img.recycle();
+		// test end
 		myToast(`运行方案[${this.scheme.schemeName}]`);
 		this.schemeHistory.push(this.scheme);
 		// console.log(`运行方案[${this.scheme.schemeName}]`);

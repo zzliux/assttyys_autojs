@@ -1,6 +1,5 @@
 import { Script } from '@/system/script';
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
-// import { SchemeConfigOperator } from '@/interface/SchemeConfigOperator';
 
 // const normal = -1; //定义常量
 const left = 0;

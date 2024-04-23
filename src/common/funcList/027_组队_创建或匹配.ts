@@ -25,21 +25,6 @@ export class Func027 implements IFuncOrigin {
 			[center, 1280, 720, -1, -1, -1, -1, 5000] // 匹配中等5秒
 		]
 	}, {
-		// 庭院已打开菜单，无同心队
-		desc: [
-			1280, 720,
-			[
-				[center, 353, 644, 0xb561d2],
-				[center, 394, 647, 0x7c40b3],
-				[center, 372, 647, 0xd7d1ce],
-				[center, 368, 622, 0xf2f2f0],
-				[center, 376, 602, 0xd66244],
-			]
-		],
-		oper: [
-			[center, 1280, 720, 355, 627, 397, 665, 1000],
-		]
-	}, {
 		// 庭院未打开菜单
 		desc: '页面是否为庭院_菜单未展开_只支持默认庭院皮肤与默认装饰',
 		oper: [
@@ -118,7 +103,7 @@ export class Func027 implements IFuncOrigin {
 		const maxCount = 3;
 		while (thisScript.oper({
 			name: '组队_创建',
-			operator: [thisOperator[5], thisOperator[8]]
+			operator: [thisOperator[4], thisOperator[7]]
 		})) {
 			curCnt++;
 			thisScript.keepScreen();
