@@ -95,6 +95,10 @@ const SchemeList: IScheme[] = [
 				'preSearch': true
 			},
 		},
+		commonConfig: {
+			// 通用参数
+			multiColorSimilar: 97,
+		},
 	},
 	{
 		id: 5,
