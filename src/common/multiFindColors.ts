@@ -664,7 +664,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		]
 	},
 	'探索_挑战': {
-		region: [center, 1280, 720, 0, 0, 1257, 547],
+		region: [center, 1280, 720, 87, 178, 1257, 547],
 		desc: [
 			[1280, 720,
 				[
