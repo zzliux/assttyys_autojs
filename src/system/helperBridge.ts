@@ -21,18 +21,18 @@ if (screenWidth < screenHeight) {
 }
 
 export interface IhelperBridge {
-    automator: IMyAutomator | null,
-    helper: any | null,
-    helperPoly: object,
-    getHelper(dw: number, dh: number),
-    init: () => void,
-    regionClickTrans: (oper) => any,
-    setAutomator: (automator: IMyAutomator) => void,
-    regionClick: (transedOper: [number, number, number, number, number][], baseSleep: number, randomSleep: number) => void,
-    regionStepRandomClick: (transedOperStepRandom, baseSleep: number, randomSleep: number) => void,
-    regionSwipe: (transedOperS, transedOperE, duration, baseSleep, randomSleep) => void,
-    swipePath: (paths) => void,
-    regionBezierSwipe: (transedOperS, transedOperE, duration, baseSleep, randomSleep, type?) => void,
+	automator: IMyAutomator | null,
+	helper: any | null,
+	helperPoly: object,
+	getHelper(dw: number, dh: number),
+	init: () => void,
+	regionClickTrans: (oper) => any,
+	setAutomator: (automator: IMyAutomator) => void,
+	regionClick: (transedOper: [number, number, number, number, number][], baseSleep: number, randomSleep: number) => void,
+	regionStepRandomClick: (transedOperStepRandom, baseSleep: number, randomSleep: number) => void,
+	regionSwipe: (transedOperS, transedOperE, duration, baseSleep, randomSleep) => void,
+	swipePath: (paths) => void,
+	regionBezierSwipe: (transedOperS, transedOperE, duration, baseSleep, randomSleep, type?) => void,
 }
 
 export class helperBridge implements IhelperBridge {
@@ -167,11 +167,12 @@ export class helperBridge implements IhelperBridge {
 			random(transedOperE[1], transedOperE[3]), // y2
 			time // duration
 		);
-		sleep(baseSleep + time + random(0, randomSleep))
+		sleep(baseSleep+ random(0, randomSleep))
+		console.log(`执行滑动操作 === ${transedOperS}`);
 	}
 	/**
-     * @paths [{ x: 123, y: 234 }, { delay: 200, x: 111, y: 333}, { delay: 200, x: 111, y: 222 }]
-     */
+	 * @paths [{ x: 123, y: 234 }, { delay: 200, x: 111, y: 333}, { delay: 200, x: 111, y: 222 }]
+	 */
 	swipePath(paths) {
 		// TODO root下需要补点，否则拖不过去
 		// if (needRoot) {

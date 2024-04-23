@@ -101,6 +101,8 @@ export class Func004 implements IFuncOrigin {
 			operator: [thisOperator[2], thisOperator[3]]
 		})) {
 			thisScript.rerun(thisConf.teammate_exit_next_scheme);
+			sleep(3000)
+			return true;
 		}
 		if (thisConf && thisConf.exit && thisScript.oper({
 			id: 4,
@@ -108,9 +110,11 @@ export class Func004 implements IFuncOrigin {
 			operator: [{ desc: thisOperator[0].desc }, { desc: thisOperator[1].desc }]
 		})) {
 			thisScript.rerun(thisConf.next_scheme);
+			sleep(3000)
+			return true;
 		}
 		if (thisConf && thisConf.auto_team && thisScript.global.yaoqing_close) {
-			return true;
+			return false;
 		}
 		if (thisScript.oper({
 			id: 4,

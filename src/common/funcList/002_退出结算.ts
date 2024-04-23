@@ -232,12 +232,6 @@ export class Func002 implements IFuncOrigin {
 			name: '体力不足',
 			operator: thisOperator.slice(-2, -1)
 		})) {
-			if (thisScript.shutDownOpen) {
-				thisScript.shutDown['13'] = true;
-				thisScript.shutDown['14'] = true;
-				thisScript.shutDown['29'] = true;
-				return true;
-			}
 			if (thisconf && thisconf.no_sushi_switch_enabled) {
 				thisScript.rerun(thisconf.next_scheme);
 				sleep(3000);

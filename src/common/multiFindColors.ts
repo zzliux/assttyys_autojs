@@ -664,7 +664,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		]
 	},
 	'探索_挑战': {
-		region: [center, 1280, 720, 87, 178, 1257, 547],
+		region: [center, 1280, 720, 0, 0, 1257, 547],
 		desc: [
 			[1280, 720,
 				[
@@ -683,7 +683,23 @@ const multiFindColors: IMultiFindColorsOrigin = {
 					[center, 1032, 488, 0x31396b],
 					[center, 1040, 508, 0x1a0e05]
 				]
-			]
+			],
+			[1280, 720, // 剧情内
+				[
+					[center, 737, 189, 0x262b58],
+					[center, 752, 171, 0xf8a9b5],
+					[center, 770, 189, 0xe3e3fe],
+					[center, 768, 211, 0x282c5a],
+				]
+			],
+			[1280, 720, // 剧情内
+				[
+					[right, 1129, 27, 0x252856],
+					[right, 1162, 31, 0xdcdcf7],
+					[right, 1137, 48, 0xdfdff7],
+					[right, 1161, 48, 0x333a6a],
+				]
+			],
 		]
 	},
 	'探索_挑战BOSS': {
@@ -3067,21 +3083,6 @@ const multiFindColors: IMultiFindColorsOrigin = {
 			]
 		]]
 	},
-	'同心队挂机奖励': {
-		region: [center, 1280, 720, 69, 270, 185, 395],
-		desc: [[
-			1280, 720,
-			[
-				[left, 117, 340, 0xdcd6d5],
-				[left, 111, 328, 0xefe9e3],
-				[left, 128, 329, 0xe0dcdb],
-				[left, 102, 347, 0xc8403c],
-				[left, 130, 352, 0xcd3d35],
-				[left, 136, 346, 0xc1433d],
-			]
-		]],
-
-	},
 	'购买体力按钮': {
 		region: [center, 1280, 720, 830, 4, 1084, 100],
 		desc: [[
@@ -3096,7 +3097,94 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				[center, 889, 42, 0x181d13],
 			]
 		]],
-	}
+	},
+	'敌方道馆_挑战': {
+		region: [center, 1280, 720, 15, 94, 965, 707,],
+		desc: [[
+			1280, 720,
+			[
+				[center, 699, 474, 0xf2e19a],
+				[center, 748, 521, 0xe7c765],
+				[center, 739, 487, 0x413123],
+				[center, 712, 512, 0x36291c],
+				[center, 723, 499, 0xecd27e],
+				[center, 409, 417, 0xca6c41],
+				[center, 413, 402, 0xc54c19],
+			]]
+		]
+	},
+	'未开启层数': {
+		region: [center, 1280, 720, 139, 131, 495, 634],
+		desc: [[
+			1280, 720,
+			[
+				[left, 198, 446, 0x939295],
+				[left, 199, 502, 0x494452],
+				[center, 446, 446, 0x939295],
+				[center, 450, 496, 0x676671],
+			]
+		]],
+	},
+	'夜溟彼岸花': {
+		region: [center, 1280, 720, 255, 61, 1027, 269],
+		desc: [[
+			1280, 720,
+			[
+				[center, 595, 175, 0xb43431],
+				[center, 595, 176, 0xcb3534],
+				[center, 595, 177, 0xb93432],
+				[center, 678, 177, 0x43332d],
+				[center, 679, 177, 0x43332d],
+				[center, 679, 176, 0x43332d],
+				[center, 678, 176, 0x43332d],
+				[center, 689, 176, 0x43332d],
+			]
+		]],
+	},
+	'剧情白点': {
+		region: [center, 1280, 720, 0, 108, 1279, 603],
+		desc: [[
+			1280, 720,
+			[
+				[center, 411, 342, 0xe1d2cf],
+				[center, 412, 342, 0xdccdc9],
+				[center, 412, 344, 0xddcccb],
+				[center, 411, 344, 0xdecccb],
+				[center, 424, 342, 0xd9d2ca],
+				[center, 426, 342, 0xd6d0c9],
+				[center, 426, 344, 0xdccfcc],
+				[center, 424, 344, 0xd9d2cc],
+				[center, 437, 344, 0xddd1d0],
+				[center, 438, 344, 0xe0d5d4],
+				[center, 438, 342, 0xdacfca],
+				[center, 437, 342, 0xdacfca],
+			]
+		]]
+	},
+	'剧情黄标': {
+		region: [center, 1280, 720, 0, 108, 1279, 603],
+		desc: [[
+			1280, 720,
+			[
+				[center, 565, 143, 0xfcfcfc],
+				[center, 503, 127, 0xdba41b],
+				[center, 526, 190, 0xcaa312],
+				[center, 592, 194, 0xdfb500],
+				[center, 625, 146, 0xe1ac12],
+			]
+		]]
+	},
+	'剧情问号': {
+		region: [center, 1280, 720, 0, 108, 1279, 603],
+		desc: [[
+			1280, 720,
+			[
+				[right, 1177, 270, 0xe1d7d9],
+				[right, 1188, 267, 0xddd5d4],
+				[right, 1183, 280, 0xdfd2d3],
+				[right, 1183, 290, 0xdfd3d0],
+			]
+		]]
+	},
 }
-
 export default multiFindColors;

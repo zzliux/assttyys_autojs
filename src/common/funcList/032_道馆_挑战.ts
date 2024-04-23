@@ -16,6 +16,16 @@ export class Func032 implements IFuncOrigin {
 			type: 'list',
 			data: ['不投票', '保留赏金', '再战道馆'],
 			default: '不投票',
+		}, {
+			name: 'exit_second',
+			desc: '不攻打第二阵容',
+			type: 'switch',
+			default: false,
+		}, {
+			name: 'exit_second_again',
+			desc: '第二次打道馆时继续不攻打第二阵容',
+			type: 'switch',
+			default: false,
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{ // 0 检测_挑战是否可用
@@ -120,10 +130,66 @@ export class Func032 implements IFuncOrigin {
 				[center, 584, 663, 0xf4efdd],
 			]
 		]
+	}, { // 7 第一阵容击破
+		desc: [
+			1280, 720,
+			[
+				[center, 500, 466, 0x805134],
+				[center, 420, 352, 0xb3845c],
+				[center, 561, 386, 0xd9be89],
+				[center, 713, 394, 0xbf9f6b],
+				[center, 770, 380, 0xe4d09f],
+				[center, 866, 352, 0xb3835a],
+				[center, 786, 459, 0x784a31],
+			]
+		],
+		oper: [
+			[left, 1280, 720, 22, 19, 52, 47, 1500], // 左上角返回
+			[left, 1280, 720, 22, 19, 52, 47, 1500], // 左上角返回
+			[center, 1280, 720, 683, 401, 795, 442, 500], // 确认
+		],
+		retest: 1000,
+	}, { // 8 放弃突破
+		desc: [
+			1280, 720,
+			[
+				[left, 60, 610, 0xad7b12],
+				[left, 112, 624, 0x473a39],
+				[left, 84, 651, 0xce992a],
+				[left, 124, 640, 0x979da0],
+				[left, 90, 668, 0x473a39],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 54, 595, 132, 669, 1000],
+			[center, 1280, 720, 677, 399, 797, 447, 1000],
+		]
+	}, { // 9 今日挑战成功
+		desc: [
+			1280, 720,
+			[
+				[center, 518, 653, 0xddd9c8],
+				[center, 533, 650, 0xdedac9],
+				[center, 558, 649, 0xe8e4d2],
+				[center, 577, 653, 0xc1beaf],
+				[center, 599, 650, 0xbdbbad],
+				[center, 622, 648, 0xe2decd],
+				[center, 644, 649, 0x9d9c91],
+				[center, 666, 649, 0xbab8aa],
+				[center, 690, 648, 0xb8b6a7],
+			]
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['32'];
-
+		if (thisScript.global.daoGuan_exit && thisScript.oper({
+			id: 32,
+			name: '检测_放弃突破',
+			operator: [thisOperator[8]]
+		})) {
+			thisScript.global.daoGuan_exit = false;
+			return true;
+		}
 		if (thisScript.oper({
 			name: '检测_挑战是否可用',
 			operator: [{
@@ -134,7 +200,6 @@ export class Func032 implements IFuncOrigin {
 		})) {
 			return true;
 		}
-
 		if (thisScript.oper({
 			id: 32,
 			name: '检测_挑战结束',
@@ -142,32 +207,34 @@ export class Func032 implements IFuncOrigin {
 		})) {
 			return true;
 		}
-
-		if (thisconf && thisconf.after_fail_operation) {
+		if (thisconf && thisconf.after_fail_operation && thisScript.oper({
+			id: 32,
+			name: '道馆_失败后抉择',
+			operator: [{ desc: thisOperator[5].desc }]
+		})) {
 			if (thisconf.after_fail_operation === '保留赏金') {
-				return thisScript.oper({
-					id: 32,
-					name: '道馆_保留赏金',
-					operator: [{
-						desc: thisOperator[5].desc,
-						oper: [thisOperator[5].oper[0]]
-					}]
-				})
+				thisScript.regionClick([thisOperator[5].oper[0]]);
 			} else if (thisconf.after_fail_operation === '再战道馆') {
-				return thisScript.oper({
-					id: 32,
-					name: '道馆_再战道馆',
-					operator: [{
-						desc: thisOperator[5].desc,
-						oper: [thisOperator[5].oper[1]]
-					}]
-				})
+				thisScript.regionClick([thisOperator[5].oper[1]]);
 			}
+			return true;
 		}
-
+		if (thisScript.global.daoGuan_again && thisconf.exit_second && thisScript.oper({
+			id: 32,
+			name: '检测_第二阵容退出',
+			operator: [thisOperator[7]]
+		})) {
+			thisScript.global.daoGuan_exit = true;
+			if (thisconf.exit_second_again) {
+				thisScript.global.daoGuan_again = true;
+			} else {
+				thisScript.global.daoGuan_again = false;
+			}
+			return true;
+		}
 		if (thisScript.oper({
 			name: '检测_挑战结束',
-			operator: [thisOperator[2], thisOperator[6]]
+			operator: [thisOperator[2], thisOperator[6], thisOperator[9]]
 		})) {
 			if (thisScript.runtimeParams && thisScript.runtimeParams.liao_activity_state) {
 				thisScript.runtimeParams.liao_activity_state['dojo'] = true;

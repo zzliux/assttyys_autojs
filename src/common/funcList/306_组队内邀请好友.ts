@@ -115,6 +115,8 @@ export class Func306 implements IFuncOrigin {
 			[right, 1280, 720, 1192, 613, 1251, 677, 1000], // 点击挑战
 			[right, 1280, 720, 603, 223, 675, 278, 1000], // 点击二号位
 		]
+	}, { // 5 战斗界面
+		desc: '战斗界面',
 	}]
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['306'];
@@ -127,6 +129,14 @@ export class Func306 implements IFuncOrigin {
 			operator: [{ desc: thisOperator[2].desc }]
 		})) {
 			thisScript.global.team_up_lagTime = new Date();
+		}
+		// 战斗界面重置计数
+		if (thisScript.oper({
+			name: '战斗界面',
+			operator: [{ desc: thisOperator[5].desc }]
+		})) {
+			thisScript.global.team_up_Time = 0;
+			return false;
 		}
 		team_up_lagTime = new Date();
 		// 开启后首次进入组队则邀请 或 停留组队界面超过15秒

@@ -1,6 +1,6 @@
 import { Script } from '@/system/script';
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
-import { SchemeConfigOperator } from '@/interface/SchemeConfigOperator';
+// import { SchemeConfigOperator } from '@/interface/SchemeConfigOperator';
 
 // const normal = -1; //定义常量
 const left = 0;
@@ -21,10 +21,15 @@ export class Func009 implements IFuncOrigin {
 			default: '呱太->4->5->3->2->1->0',
 			value: null,
 		}, {
-			name: 'auto_94',
-			desc: '实行自动9退4',
+			name: 'scheme_switch_enabled',
+			desc: '识别到攻打第一排第一列结界则切换方案',
 			type: 'switch',
 			default: false,
+		}, {
+			name: 'next_scheme',
+			desc: '下一个方案',
+			type: 'scheme',
+			default: '个突_9退4_退出',
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{
@@ -40,35 +45,10 @@ export class Func009 implements IFuncOrigin {
 		// 1 第一排第一列结界坐标
 		desc: '突破界面',
 		oper: [
-			[left, 1280, 720, 0, 0, 1279, 719, 500]
-			// [left, 1280, 720, 147, 146, 465, 265, 500]
+			// [left, 1280, 720, 0, 0, 1279, 719, 500]
+			[left, 1280, 720, 147, 146, 465, 265, 500]
 		]
 	}];
-	onSchemeStop(_thisScript: Script, _thisConfigOperator: SchemeConfigOperator): void {
-		const auto_94 = _thisConfigOperator.get(9, 'auto_94')
-		const exitBeforeReady = _thisConfigOperator.get(1, 'exitBeforeReady')
-		const thisconf = _thisScript.scheme.config['9']; // 获取配置
-		log(exitBeforeReady);
-		log(auto_94)
-		if (auto_94 && !exitBeforeReady) {
-			_thisConfigOperator.set(1, 'exitBeforeReady', true);
-			_thisConfigOperator.set(0, 'jspd_enabled_2', true);
-			_thisConfigOperator.set(0, 'jspd_times_2', 4);
-			_thisConfigOperator.set(2, 'rechallenge', true);
-			_thisConfigOperator.set(0, 'scheme_switch_enabled', true);
-			_thisConfigOperator.set(0, 'next_scheme', thisconf.schemeName);
-			console.log('退4阶段')
-		} else if (auto_94 && exitBeforeReady) {
-			_thisConfigOperator.set(1, 'exitBeforeReady', false);
-			_thisConfigOperator.set(0, 'jspd_enabled_2', false);
-			_thisConfigOperator.set(2, 'rechallenge', false);
-			console.log('打9阶段')
-		}
-		const auto_94_out = _thisConfigOperator.get(9, 'auto_94')
-		const exitBeforeReady_out = _thisConfigOperator.get(1, 'exitBeforeReady')
-		log(exitBeforeReady_out);
-		log(auto_94_out)
-	}
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: '突破界面_判断',
@@ -95,8 +75,8 @@ export class Func009 implements IFuncOrigin {
 					const fristFirstOper = thisOperator[1].oper[0] // [147, 146, 465, 265];
 					if (Number(oper[0][0]) > fristFirstOper[0] && Number(oper[0][1]) > fristFirstOper[1] && Number(oper[0][2]) < fristFirstOper[2] && Number(oper[0][3]) < fristFirstOper[3]) {
 						console.log('检测点击范围在第一排第一列结界内');
-						if (thisconf && thisconf.auto_94) {
-							thisScript.rerun(thisconf.schemeName);
+						if (thisconf && thisconf.scheme_switch_enabled) {
+							thisScript.rerun(thisconf.next_scheme);
 							sleep(3000);
 							return;
 						}

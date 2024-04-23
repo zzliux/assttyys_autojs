@@ -74,7 +74,7 @@ const SchemeList: IScheme[] = [
 		schemeName: '个突_9退4_进攻',
 		groupName: '个突9退4',
 		star: true,
-		list: [0, 1, 2, 3, 8, 9, 10],
+		list: [51, 0, 1, 2, 3, 8, 9, 10],
 		config: {
 			'0': {
 				scheme_switch_enabled: true,
@@ -87,14 +87,13 @@ const SchemeList: IScheme[] = [
 				type: '个人突破',
 			},
 			'9': {
-				priority: '4->5->3->2->1->0',
 				scheme_switch_enabled: true,
 			},
 			'10': { type: '个人突破' },
-		},
-		commonConfig: {
-			// 通用参数
-			multiColorSimilar: 97,
+			'51': {
+				greenType: '自定义坐标',
+				'preSearch': true
+			},
 		},
 	},
 	{
@@ -107,16 +106,16 @@ const SchemeList: IScheme[] = [
 				jspd_enabled_2: true,
 				jspd_times_2: '4',
 				scheme_switch_enabled: true,
-				next_scheme: '个突_9退4_进攻',
+				next_scheme: '__返回上个方案__',
 			},
 			'1': { exitBeforeReady: true },
 			'2': { rechallenge: true },
 			'8': {
 				count: '2',
-				afterCountOper: '停止脚本',
+				afterCountOper: '九退四_切换方案',
+				next_scheme: '__返回上个方案__',
 				type: '个人突破',
 			},
-			'9': { priority: '0->1->2->3->4->5' },
 			'10': { type: '个人突破' },
 		},
 		commonConfig: {
@@ -815,32 +814,6 @@ const SchemeList: IScheme[] = [
 		star: true,
 		list: [0, 1, 316, 2, 3, 24],
 	},
-	// {
-	// 	id: 70,
-	// 	schemeName: '开启经验BUFF_经验妖怪',
-	// 	list: [501, 50],
-	// 	config: {
-	// 		'50': {
-	// 			scheme_switch_enabled: true,
-	// 			next_scheme: '经验妖怪',
-	// 			buff_type: '经验',
-	// 			ready_once_buff: false,
-	// 		},
-	// 	},
-	// },
-	// {
-	// 	id: 71,
-	// 	schemeName: '开启金币BUFF_金币妖怪',
-	// 	list: [501, 50],
-	// 	config: {
-	// 		'50': {
-	// 			scheme_switch_enabled: true,
-	// 			next_scheme: '金币',
-	// 			buff_type: '金币',
-	// 			ready_once_buff: false,
-	// 		},
-	// 	},
-	// },
 	{
 		id: 72,
 		schemeName: '经验妖怪',
@@ -905,18 +878,27 @@ const SchemeList: IScheme[] = [
 	},
 	{
 		id: 76,
-		schemeName: '寮管理进入道馆开启界面',
-		list: [505, 519, 503],
+		schemeName: '僵尸寮自动攻打道馆',
+		list: [311, 32, 519, 505, 51, 0, 1, 2],
 		config: {
-			'503': {
-				jafterCountOper: '不进行任何操作',
-			}
+			'32': {
+				after_fail_operation: '再战道馆',
+				exit_second: true,
+			},
+			'51': {
+				greenType: '自定义坐标',
+				preSearch: true
+			},
+			'311': {
+				redType: '夜溟彼岸花',
+				sleepTime: 2.4
+			},
+			'519': {
+				defense: 1,
+				coefficient: 5,
+				day: true
+			},
 		},
-	},
-	{
-		id: 77,
-		schemeName: '僵尸寮小号循环登录',
-		list: [0, 320, 321, 993],
 	},
 	{
 		id: 99,

@@ -81,10 +81,11 @@ export type globalRootType = {
 	yaoqing_close: boolean, // 关闭_接受邀请
 	frist_open: boolean, // 首次开启方案
 	tongXinDui_ZhanDou: 'collect' | 'judge' | 'prestore' | 'juexing' | 'stage' | 'yuhun' | 'back';   // 同心队预存阶段
-	zhenLvJu_tiLi: boolean, // 是否购买真旅居体力
-	nextChange: boolean, // 下次战斗更换式神
-	tupo_94: boolean, // 突破9退4状态 true为9, false为4
-	nowlevel: number, // 当前等级
+	daoGuan_swip: boolean, // 选寮往下滑
+	daoGuan_compare: number[], // 选寮存储记录的值
+	daoGuan_click: boolean, // 选寮点挑战
+	daoGuan_exit: boolean, // 道馆退出突破
+	daoGuan_again: boolean, // 道馆再次攻打是否攻打第二阵容
 }
 
 export const globalRoot: globalRootType = {
@@ -170,8 +171,9 @@ export const globalRoot: globalRootType = {
 	yaoqing_close: false,
 	frist_open: true,
 	tongXinDui_ZhanDou: 'collect',
-	zhenLvJu_tiLi: true,
-	nextChange: false,
-	tupo_94: true,
-	nowlevel: 0,
+	daoGuan_swip: true,
+	daoGuan_compare: [],
+	daoGuan_click: false,
+	daoGuan_exit: false,
+	daoGuan_again: true,
 }

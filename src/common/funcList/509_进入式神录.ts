@@ -147,7 +147,10 @@ export class Func509 implements IFuncOrigin {
 			[right, 1280, 720, 1168, 592, 1230, 690, 1000]
 		]
 	}, { // 突破界面
-		desc: '突破界面'
+		desc: '突破界面',
+		oper: [
+			// [right, 1280, 720, 1207, 617, 1245, 649, 1200]	//	点击式神按钮
+		]
 	}, { // 超鬼王界面
 		desc: [
 			1280, 720,
@@ -162,31 +165,36 @@ export class Func509 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1012, 649, 1055, 690, 1000],
 		]
-	}, { // 点开勋章后的突破界面
+	}, { // 12 误触_情报界面
 		desc: [
 			1280, 720,
 			[
-				[left, 178, 80, 0x18171a],
-				[center, 620, 42, 0x222124],
-				[left, 58, 649, 0x1d1e22],
-				[left, 142, 658, 0x4c463e],
-				[right, 1204, 134, 0x605855],
+				[left, 42, 273, 0x1d0f0f],
+				[left, 40, 150, 0x664834],
+				[left, 44, 49, 0xf0f5fb],
+				[left, 63, 150, 0x6c4d37],
 			]
+		],
+		oper: [
+			[center, 1280, 720, 32, 34, 73, 65, 1000],
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.global.change_shikigami_flag) {
 			if (thisScript.oper({
-				name: '是否为式神录_突破界面_',
-				operator: [thisOperator[3], thisOperator[10], thisOperator[12]]
+				name: '是否为式神录',
+				operator: [thisOperator[3]]
 			})) {
 				thisScript.global.change_shikigami_flag = false;
 			}
-
 			if (thisScript.oper({
 				name: '庭院进入式神录',
-				operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[4], thisOperator[5], thisOperator[6], thisOperator[7], thisOperator[9], thisOperator[11]]
+				operator: [
+					thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[4],
+					thisOperator[5], thisOperator[6], thisOperator[7], thisOperator[9],
+					thisOperator[11], thisOperator[12]]
 			})) {
+				sleep(1000);
 				return true;
 			}
 		} else {

@@ -13,14 +13,13 @@ import { getWidthPixels, getHeightPixels } from '@auto.pro/core';
 import schemeDialog from './schemeDialog';
 import drawFloaty from '@/system/drawFloaty';
 import { myToast, doPush } from '@/common/toolAuto';
-import { IFunc, IFuncOrigin, schemeStartFunc, schemeStopFunc, schemeSwitchInFunc, schemeSwitchOutFunc, } from '@/interface/IFunc';
+import { IFunc, IFuncOrigin } from '@/interface/IFunc';
 import { IScheme } from '@/interface/IScheme';
 import { IMultiDetectColors, IMultiFindColors } from '@/interface/IMultiColor';
 import { globalRoot, globalRootType } from '@/system/GlobalStore/index';
 import schedule, { Job } from '@/system/Schedule';
 import { MyFloaty } from '@/system/MyFloaty';
 import ncnnBgyx from '@/system/ncnn/ncnnBgyx';
-import { SchemeConfigOperator } from '@/interface/SchemeConfigOperator';
 
 /**
  * 脚本对象，一个程序只能有一个
@@ -47,12 +46,6 @@ export class Script {
 	job: Job;
 	schedule: typeof schedule;
 	ncnnBgyx = ncnnBgyx;
-	lifeCycleStages: {
-		schemeSwitchIn: schemeSwitchInFunc[],
-		schemeStart: schemeStartFunc[],
-		schemeStop: schemeStopFunc[],
-		schemeSwitchOut: schemeSwitchOutFunc[],
-	};
 
 	/**
 	 * 运行次数，下标为funcList中的id，值为这个func成功执行的次数；
@@ -61,8 +54,6 @@ export class Script {
 	runTimes: Record<string, number>;
 	lastFunc: number; // 最后执行成功的funcId
 	global: globalRootType; // 每次启动重置为空对象，用于功能里面存变量
-	shutDownOpen: boolean; // 启动'单次启动里关闭某项功能的运行'功能
-	shutDown: Record<string, boolean>; // 单次启动里关闭某项功能的运行
 
 	/**
 	 * @description 方案运行中参数
@@ -107,7 +98,6 @@ export class Script {
 		this.runtimeParams = null;
 
 		this.runTimes = {};
-		this.shutDown = {};
 		this.lastFunc = null; // 最后执行成功的funcId
 		this.global = merge({}, globalRoot); // 每次启动重置为空对象，用于功能里面存变量
 		this.device = {
@@ -296,33 +286,6 @@ export class Script {
 		this.scheme.funcList = this.getFuncList(this.scheme);
 	}
 
-	/**
-	 * 生命周期stage函数初始化
-	 */
-	initLifeCycleStage() {
-		const self = this;
-		self.lifeCycleStages = {
-			schemeSwitchIn: [],
-			schemeStart: [],
-			schemeStop: [],
-			schemeSwitchOut: [],
-		}
-		this.scheme.funcList.forEach(func => {
-			if (func.onSchemeSwitchIn) {
-				self.lifeCycleStages.schemeSwitchIn.push(func.onSchemeSwitchIn);
-			}
-			if (func.onSchemeStart) {
-				self.lifeCycleStages.schemeStart.push(func.onSchemeStart);
-			}
-			if (func.onSchemeStop) {
-				self.lifeCycleStages.schemeStop.push(func.onSchemeStop);
-			}
-			if (func.onSchemeSwitchOut) {
-				self.lifeCycleStages.schemeSwitchOut.push(func.onSchemeSwitchOut);
-			}
-		});
-	}
-
 	// getScheduleJobInstance(key) {
 	//     if (!this.scheduleMap) {
 	//         this.scheduleMap = [];
@@ -447,7 +410,7 @@ export class Script {
 	* @param {Region} inRegion 多点找色区域
 	* @returns
 	*/
-	findMultiColorEx(key: string, inRegion?): Point[] {
+	findMultiColorEx(key, inRegion?): Point[] {
 		this.initRedList();
 		const region = inRegion || this.multiFindColors[key].region;
 		const desc = this.multiFindColors[key].desc;
@@ -560,16 +523,13 @@ export class Script {
 		if (this.runThread) return;
 		this.job = job;
 		const self = this;
-		// const schemeConfigReader = new SchemeConfigReader(this.scheme.schemeName);
 		try {
 			this.initFuncList();
-			this.initLifeCycleStage();
 			this.initMultiFindColors();
 			this.runDate = new Date();
 			this.currentDate = new Date();
 			this.runTimes = {};
 			this.global = merge({}, globalRoot);
-			this.shutDown = {};
 			if (null === this.scheme) {
 				if (typeof self.stopCallback === 'function') {
 					self.stopCallback();
@@ -589,23 +549,7 @@ export class Script {
 			}
 			return;
 		}
-
-		const schemeConfigOperator = new SchemeConfigOperator(this.scheme.schemeName);
-		if (this.schemeHistory.length) {
-			const lastScheme = this.schemeHistory[this.schemeHistory.length - 1];
-			const lastSchemeConfigOpeator = new SchemeConfigOperator(lastScheme.schemeName);
-			this.lifeCycleStages.schemeSwitchIn.forEach(stageFunc => {
-				stageFunc(this, lastSchemeConfigOpeator, schemeConfigOperator);
-			});
-		}
-
 		myToast(`运行方案[${this.scheme.schemeName}]`);
-
-		// 生命周期：schemeStart
-		this.lifeCycleStages.schemeStart.forEach(stageFunc => {
-			stageFunc(this, schemeConfigOperator);
-		});
-
 		this.schemeHistory.push(this.scheme);
 		// console.log(`运行方案[${this.scheme.schemeName}]`);
 		this.runThread = threads.start(function () {
@@ -614,10 +558,6 @@ export class Script {
 				while (true) {
 					self.keepScreen(false);
 					for (let i = 0; i < self.scheme.funcList.length; i++) {
-						// 判断shutDown, 跳过函数
-						if (self.shutDownOpen && self.shutDown[self.scheme.funcList[i].id]) {
-							continue;
-						}
 						if (self.oper(self.scheme.funcList[i], undefined)) {
 							self.currentDate = new Date();
 							break;
@@ -626,28 +566,18 @@ export class Script {
 					sleep(+self.scheme.commonConfig.loopDelay);
 				}
 			} catch (e) {
-				// NONE
+				self.runThread = null;
 				if (e.toString().indexOf('com.stardust.autojs.runtime.exception.ScriptInterruptedException') === -1) {
 					console.error($debug.getStackTrace(e));
 				}
+				if (typeof self.stopCallback === 'function') {
+					self.stopCallback();
+				}
+				if (this.job) {
+					this.job.doDone();
+				}
 			}
 		});
-
-		self.monitorThread = threads.start(function () {
-			self.runThread.waitFor();
-			self.runThread.join();
-			self.runThread = null;
-			self.lifeCycleStages.schemeStop.forEach(stageFunc => {
-				stageFunc(self, schemeConfigOperator);
-			});
-			if (typeof self.stopCallback === 'function') {
-				self.stopCallback();
-			}
-			if (self.job) {
-				self.job.doDone();
-			}
-		});
-
 		if (typeof this.runCallback === 'function') {
 			this.runCallback();
 		}
@@ -741,36 +671,33 @@ export class Script {
 			this.stop();
 			sleep(3000);
 			return;
-		} else if (schemeName) {
-			const self = this
-			self.switchOutThread = threads.start(function () {
-				if (self.monitorThread?.isAlive()) {
-					self.monitorThread.join();
+		} else if ('__返回上个方案__' === schemeName) {
+			if (this.schemeHistory.length) {
+				if (this.schemeHistory[this.schemeHistory.length - 2].schemeName) {
+					const lastSchemeName = this.schemeHistory[this.schemeHistory.length - 2].schemeName
+					this.setCurrentScheme(lastSchemeName as string, params);
+					this.myToast(`返回上个方案为[${schemeName}]`);
+				} else {
+					this.doPush(this, {
+						text: `[${this.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`,
+						before() { myToast('脚本即将停止，正在上传数据'); }
+					});
+					this.stop();
+					sleep(3000);
+					return;
 				}
-				const thisSchemeConfigOpeator = new SchemeConfigOperator(self.scheme.schemeName);
-				const nextschemeConfigOperator = new SchemeConfigOperator(schemeName as string);
-				self.lifeCycleStages.schemeSwitchOut.forEach(stageFunc => {
-					stageFunc(self, thisSchemeConfigOpeator, nextschemeConfigOperator);
-				});
-
-				self.myToast(`切换方案为[${schemeName}]`);
-				self.setCurrentScheme(schemeName as string, params);
-			});
-			// tmpTread.join();
+			}
+		} else if (schemeName) {
+			this.setCurrentScheme(schemeName as string, params);
+			this.myToast(`切换方案为[${schemeName}]`);
 		}
 		events.broadcast.emit('SCRIPT_RERUN', '');
 	}
 
 	rerunWithJob(job: Job): void {
-		const self = this;
 		this._stop();
 		setTimeout(() => {
-			threads.start(function () {
-				if (self.switchOutThread?.isAlive()) {
-					self.switchOutThread.join();
-				}
-				self._run(job);
-			});
+			this._run(job);
 		}, 510);
 	}
 
@@ -974,12 +901,7 @@ events.broadcast.on('SCRIPT_RUN', () => {
 events.broadcast.on('SCRIPT_RERUN', () => {
 	script._stop(true);
 	setTimeout(() => {
-		threads.start(function () {
-			if (script.switchOutThread?.isAlive()) {
-				script.switchOutThread.join();
-			}
-			script._run(script.job);
-		});
+		script._run(script.job);
 	}, 510);
 });
 

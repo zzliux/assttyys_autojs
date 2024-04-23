@@ -74,7 +74,6 @@ export class Func504 implements IFuncOrigin {
 			name: '町中_逢魔之时灯笼',
 			operator: [thisOperator[4]]
 		})) {
-			thisScript.shutDown['504'] = true;
 			return true;
 		}
 

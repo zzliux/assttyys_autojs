@@ -66,8 +66,6 @@ export class Func027 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 993, 605, 1151, 649, 1000], // 创建队伍
-			[center, 1280, 720, 404, 417, 432, 439, 1000], // 不公开
-			[center, 1280, 720, 534, 491, 742, 531, 2000]// 创建
 		]
 	}, {
 		desc: [1280, 720,
@@ -82,6 +80,21 @@ export class Func027 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 702, 601, 865, 650, 1000] // 组队界面 自动匹配
+		]
+	}, { // 经验妖怪界面
+		desc: [
+			1280, 720,
+			[
+				[center, 377, 143, 0x5e4030],
+				[center, 890, 143, 0x644434],
+				[center, 401, 572, 0x5d4030],
+				[center, 882, 573, 0x684635],
+				[center, 629, 515, 0xf3b25e],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 404, 414, 430, 438, 1000], // 经验妖怪界面_不公开
+			[center, 1280, 720, 536, 490, 739, 534, 1000], // 经验妖怪界面_创建
 		]
 	}, { // 创建队伍
 		desc: [1280, 720,
@@ -105,23 +118,16 @@ export class Func027 implements IFuncOrigin {
 		const maxCount = 3;
 		while (thisScript.oper({
 			name: '组队_创建',
-			operator: [thisOperator[5], thisOperator[7]]
+			operator: [thisOperator[5], thisOperator[8]]
 		})) {
 			curCnt++;
 			thisScript.keepScreen();
 			if (curCnt >= maxCount) {
-				// 只运行一次的开关
-				thisScript.regionClick([thisOperator[8].oper[0]]);
-				log('开关状态'+thisScript.shutDownOpen);
-				if (thisScript.shutDownOpen) {
-					thisScript.shutDown['27'] = true;
-					return true;
-				} else {
-					thisScript.doPush(thisScript, { text: '体力不够创房，已停止。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-					thisScript.stop();
-					sleep(2000);
-					return true;
-				}
+				thisScript.regionClick([thisOperator[9].oper[0]]);
+				thisScript.doPush(thisScript, { text: '体力不够创房，已停止。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+				thisScript.stop();
+				sleep(2000);
+				return true;
 			}
 		}
 		if (thisScript.oper({

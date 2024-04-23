@@ -296,22 +296,7 @@ export class Func503 implements IFuncOrigin {
 		oper: [
 			[left, 1280, 720, 22, 7, 75, 54, 2000]
 		]
-	}, { // 26 有邀请横幅的突破界面
-		desc: [
-			1280, 720,
-			[
-				[left, 34, 245, 0xd96855],
-				[left, 53, 261, 0xde6c5a],
-				[left, 127, 252, 0x57b362],
-				[left, 153, 249, 0x5cb767],
-				[right, 1200, 140, 0xe7d5cf],
-				[right, 1212, 130, 0xe8d6d0],
-			]
-		],
-		oper: [
-			[center, 1280, 720, 1181, 111, 1223, 150, 1000],
-		]
-	}, { // 27 组队界面
+	}, { // 26 组队界面
 		desc: [1280, 720,
 			[
 				[left, 43, 37, 0xf5e6a8],
@@ -324,7 +309,7 @@ export class Func503 implements IFuncOrigin {
 		oper: [
 			[left, 1280, 720, 31, 20, 70, 59, 1000],
 		]
-	}, { // 28 探索里
+	}, { // 27 探索里
 		desc: [
 			1280, 720,
 			[
@@ -339,7 +324,7 @@ export class Func503 implements IFuncOrigin {
 			[center, 1280, 720, 28, 40, 77, 78, 1000],
 			[center, 1280, 720, 700, 386, 850, 418, 1000]
 		]
-	}, { // 29 章节内_普通_困难
+	}, { // 28 章节界面_普通_困难
 		desc: [1280, 720,
 			[
 				[center, 276, 129, 0x493624],
@@ -364,9 +349,8 @@ export class Func503 implements IFuncOrigin {
 				thisOperator[7], thisOperator[10], thisOperator[11],
 				thisOperator[14], thisOperator[15], thisOperator[17],
 				thisOperator[18], thisOperator[19], thisOperator[20],
-				thisOperator[21], thisOperator[24], thisOperator[25],
-				thisOperator[26], thisOperator[27], thisOperator[28],
-				thisOperator[29],
+				thisOperator[21], thisOperator[22], thisOperator[24],
+				thisOperator[25], thisOperator[27], thisOperator[28],
 			]
 		})) {
 			return true;

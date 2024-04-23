@@ -46,7 +46,8 @@ export class Func501 implements IFuncOrigin {
 				[center, 642, 3, 0x101011],
 				[left, 42, 38, 0xf7e8aa],
 				[center, 641, 52, 0x080c0a],
-				[center, 648, 571, 0x422c29]
+				[center, 648, 571, 0x422c29],
+				[center, 816, 54, 0xfefbe4],
 			]
 		],
 		oper: [

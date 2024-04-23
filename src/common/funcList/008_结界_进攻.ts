@@ -23,7 +23,7 @@ export class Func008 implements IFuncOrigin {
 			name: 'afterCountOper',
 			desc: '执行完成的操作',
 			type: 'list',
-			data: ['停止脚本', '关闭界面', '切换方案'],
+			data: ['停止脚本', '关闭界面', '切换方案', '九退四_切换方案'],
 			default: '停止脚本',
 			value: null,
 		}, {
@@ -85,7 +85,7 @@ export class Func008 implements IFuncOrigin {
 			]
 		]
 	}];
-	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]) : boolean {
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (!thisScript.oper({
 			name: '突破界面_暗_判断',
 			operator: [{ desc: thisOperator[1].desc }]
@@ -142,6 +142,9 @@ export class Func008 implements IFuncOrigin {
 					const oper = thisOperator[0].oper[1];
 					thisScript.regionClick([oper, oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
 					thisScript.rerun(thisConf.next_scheme);
+				} else if ('九退四_切换方案' === thisConf.afterCountOper) {
+					thisScript.rerun(thisConf.next_scheme);
+					return true;
 				}
 				break;
 			}

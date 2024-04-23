@@ -151,6 +151,7 @@ export class Func309 implements IFuncOrigin {
 			operator: [thisOperator[2], thisOperator[5]]
 		})) {
 			thisScript.global.upYuHun = true;
+			return true;
 		}
 		if (thisScript.oper({
 			id: 309,
