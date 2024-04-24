@@ -676,15 +676,15 @@ export class Script {
 			return;
 		} else if ('__返回上个方案__' === schemeName) {
 			if (this.schemeHistory.length) {
-				if (this.schemeHistory[this.schemeHistory.length - 2].schemeName) {
+				if (this.schemeHistory.length > 1) {
 					const lastSchemeName = this.schemeHistory[this.schemeHistory.length - 2].schemeName
 					this.setCurrentScheme(lastSchemeName as string, params);
 					this.myToast(`返回上个方案为[${schemeName}]`);
 				} else {
 					this.doPush(this, {
-						text: `[${this.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`,
-						before() { myToast('脚本即将停止，正在上传数据'); }
+						text: `[${this.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`
 					});
+					myToast('无法查询到上个方案, 可能是此方案为第一个方案');
 					this.stop();
 					sleep(3000);
 					return;
