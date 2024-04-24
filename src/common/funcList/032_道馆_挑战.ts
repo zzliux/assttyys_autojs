@@ -219,7 +219,7 @@ export class Func032 implements IFuncOrigin {
 			}
 			return true;
 		}
-		if (thisScript.global.daoGuan_again && thisconf.exit_second && thisScript.oper({
+		if (thisconf && thisScript.global.daoGuan_again && thisconf.exit_second && thisScript.oper({
 			id: 32,
 			name: '检测_第二阵容退出',
 			operator: [thisOperator[7]]
