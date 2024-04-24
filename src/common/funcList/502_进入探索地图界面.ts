@@ -140,12 +140,14 @@ export class Func502 implements IFuncOrigin {
 		]
 	}, {
 		// 组队界面
-		desc: [1280, 720,
+		desc: [
+			1280, 720,
 			[
-				[center, 448, 624, 0xf4b25f],
-				[left, 41, 38, 0xf6e8aa],
-				[center, 926, 149, 0xd3c3b6],
-				[center, 621, 625, 0xcfbfae],
+				[left, 43, 38, 0xf6e8a9],
+				[left, 54, 471, 0xf8f3e0],
+				[left, 55, 553, 0xf8f3e0],
+				[center, 622, 52, 0x0e1316],
+				[left, 3, 693, 0x4f4965],
 			]
 		],
 		oper: [
