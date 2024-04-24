@@ -81,7 +81,7 @@ export class Func005 implements IFuncOrigin {
 		}
 		if (thisScript.oper({
 			name: '组队挑战_判断',
-			operator: [{ desc: thisOperator[0].desc }, { desc: thisOperator[6].desc }, { desc: thisOperator[7].desc }]
+			operator: [{ desc: thisOperator[0].desc }]
 		}, 0)) {
 			const thisconf = thisScript.scheme.config['5']; // 获取配置
 			if (thisconf.type === '有人就开') {
