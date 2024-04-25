@@ -63,6 +63,14 @@ export function setCurrentScheme(schemeName: string, store) {
 	const savedSchemeList = store.get('schemeList', []);
 	for (let i = 0; i < savedSchemeList.length; i++) {
 		if (savedSchemeList[i].schemeName === schemeName) {
+			if (!savedSchemeList[i].config) {
+				savedSchemeList[i].config = {};
+			}
+			savedSchemeList[i].list.forEach(funcId => {
+				if (!savedSchemeList[i][funcId]) {
+					savedSchemeList[i][funcId] = {};
+				}
+			});
 			store.put('currentScheme', savedSchemeList[i]);
 			console.log(`设置方案：${savedSchemeList[i].schemeName}`);
 			return;
