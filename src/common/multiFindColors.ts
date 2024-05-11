@@ -3098,5 +3098,21 @@ const multiFindColors: IMultiFindColorsOrigin = {
 			]
 		]],
 	},
+	'神荒': {
+		region: [center, 1280, 720, 255, 61, 1027, 269],
+		desc: [[
+			1280, 720,
+			[
+				[right, 971, 93, 0xceedff],
+				[center, 960, 72, 0x000c21],
+				[right, 971, 73, 0xfbfeff],
+				[center, 960, 91, 0xffffff],
+				[right, 961, 83, 0xc4e2ff],
+				[right, 981, 83, 0xc1e1ff],
+				[right, 976, 75, 0xfff2e4],
+			]
+		]],
+		similar: 95,
+	},
 }
 export default multiFindColors;
