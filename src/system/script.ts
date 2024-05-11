@@ -333,6 +333,9 @@ export class Script {
 				const er = this.helperBridge.getHelper(multiFindColors[key].region[1], multiFindColors[key].region[2]).GetPoint(multiFindColors[key].region[5], multiFindColors[key].region[6], multiFindColors[key].region[0]);
 				thisMultiFindColor[key].region = [sr.x, sr.y, er.x, er.y];
 			}
+			if (multiFindColors[key].similar) {
+				thisMultiFindColor[key].similar = multiFindColors[key].similar;
+			}
 		}
 		this.multiFindColors = thisMultiFindColor;
 	}
