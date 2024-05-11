@@ -333,6 +333,9 @@ export class Script {
 				const er = this.helperBridge.getHelper(multiFindColors[key].region[1], multiFindColors[key].region[2]).GetPoint(multiFindColors[key].region[5], multiFindColors[key].region[6], multiFindColors[key].region[0]);
 				thisMultiFindColor[key].region = [sr.x, sr.y, er.x, er.y];
 			}
+			if (multiFindColors[key].similar) {
+				thisMultiFindColor[key].similar = multiFindColors[key].similar;
+			}
 		}
 		this.multiFindColors = thisMultiFindColor;
 	}
@@ -846,25 +849,36 @@ export class Script {
 	stopRelatedApp() {
 		const storeSettings = storeCommon.get('settings', {});
 		if (storeSettings.defaultLaunchAppList && storeSettings.defaultLaunchAppList.length) {
+			let am = null;
+			if (storeSettings.kill_related_app_mode === 'android api') {
+				// // 先跳到自己的界面
+				// const i = new android.content.Intent(activity, activity.class);
+				// i.addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK);
+				// i.addFlags(android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP);
+				// context.startActivity(i);
+				// 跳到桌面
+				context.startActivity(app.intent({
+					action: android.content.Intent.ACTION_MAIN,
+					category: android.content.Intent.CATEGORY_HOME,
+					flags: ['ACTIVITY_NEW_TASK']
+				}));
+				sleep(2000);
+				// 目标进程就变成后台了，就可以通过杀后台进程实现杀应用
+				am = context.getSystemService(context.ACTIVITY_SERVICE);
+			}
 
-			// // 先跳到自己的界面
-			// var i = new android.content.Intent(activity, activity.class);
-			// i.addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK);
-			// i.addFlags(android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP);
-			// context.startActivity(i);
-			// sleep(2000);
-
-			// // 目标进程就变成后台了，就可以通过杀后台进程实现杀应用
-			// const am = context.getSystemService(context.ACTIVITY_SERVICE);
 			const ret = [];
-
 			storeSettings.defaultLaunchAppList.forEach(packageName => {
-				// am.killBackgroundProcesses(packageName);
-				$shell(`am force-stop ${packageName}`, true);
+				if (am) {
+					am.killBackgroundProcesses(packageName);
+				} else {
+					$shell(`am force-stop ${packageName}`, true);
+				}
 				myToast(`杀应用${packageName}`);
 				ret.push(packageName);
 				sleep(100);
 			});
+			sleep(500);
 			return ret;
 		} else {
 			myToast('未配置关联应用，不结束');

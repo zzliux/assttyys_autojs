@@ -56,7 +56,7 @@ export class Func501 implements IFuncOrigin {
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['501'];
-		if (thisconf.once && (thisScript.runTimes['40'] > 0 || thisScript.runTimes['50'] > 0)) {
+		if (thisconf?.once && (thisScript.runTimes['40'] > 0 || thisScript.runTimes['50'] > 0)) {
 			return false;
 		} else {
 			if (thisScript.oper({

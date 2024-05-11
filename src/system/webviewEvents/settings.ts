@@ -55,6 +55,10 @@ export default function webviewSettigns() {
 		initStoreSettings.floaty_debugger_draw = false;
 	}
 
+	if (typeof initStoreSettings.kill_related_app_mode === 'undefined') {
+		initStoreSettings.kill_related_app_mode = 'root';
+	}
+
 	storeCommon.put('settings', initStoreSettings);
 
 	// 获取配置列表
@@ -173,6 +177,13 @@ export default function webviewSettigns() {
 			stype: 'list',
 			data: ['关闭推送', 'Gotify', 'pushplus', 'ospPush', 'oneBot'],
 			value: storeSettings.push_type
+		}, {
+			desc: '关联应用停止模式',
+			name: 'kill_related_app_mode',
+			type: 'assttyys_setting',
+			stype: 'list',
+			data: ['root', 'android api'],
+			value: storeSettings.kill_related_app_mode
 		}];
 		if (storeSettings.push_type === 'oneBot') {
 			ret.push({
