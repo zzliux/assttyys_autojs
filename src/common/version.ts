@@ -1079,6 +1079,9 @@ export const versionList = [{
 }, {
 	version: '20240428_01',
 	desc: '新增：杀应用方式支持root或android api两种模式（原仅支持root）'
+}, {
+	version: '20240518_01',
+	desc: '优化：修改寮活动翻页逻辑：由上下滑动修改为上滑动后返回上一级'
 }];
 
 export default versionList[versionList.length - 1].version;
