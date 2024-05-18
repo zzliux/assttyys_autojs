@@ -425,3 +425,60 @@ export function nlpSimilarity(s1: string, s2: string) {
 	console.log(`result=${result}`);
 	return result;
 }
+
+export function isDebugPlayerRunning() {
+	return context.packageName.match(/debugplayer/) || context.packageName.match(/^org.autojs.autojs(pro)?$/);
+}
+
+
+// 保存原始console方法
+const originalMethods = {};
+const proxyMethods = ['assert', 'log', 'print', 'debug', 'verbose', 'info', 'warn', 'error'];
+proxyMethods.forEach((method) => {
+	originalMethods[method] = console[method];
+});
+export function doInitHookConsoleLog(remoteUrl: string) {
+	// 初始化时尝试调用远程日志，如果远程日志调用失败，则不做任何处理
+	try {
+		http.postJson(`${remoteUrl}/___dev_log`, {
+			// @ts-expect-error d.ts文件问题
+			t: new Date().getTime(),
+			m: 'I',
+			d: '远程日志初始化成功'
+		}, () => { });
+	} catch (e) {
+		toastLog('远程日志服务调用报错，请检查远程日志服务状态');
+		return;
+	}
+
+
+	const mMap = {
+		'assert': 'A',
+		'log': 'D',
+		'print': 'D',
+		'debug': 'D',
+		'verbose': 'V',
+		'info': 'I',
+		'warn': 'W',
+		'error': 'E',
+	};
+
+	proxyMethods.forEach((method) => {
+		console[method] = (...args: any) => {
+			// 先调用服务器API，忽略远程调用的报错
+			try {
+				http.postJson(`${remoteUrl}/___dev_log`, {
+					// @ts-expect-error d.ts文件问题
+					t: new Date().getTime(),
+					m: mMap[method],
+					d: args.map(arg => (typeof arg === 'object' ? JSON.stringify(arg) : arg)).join(' ')
+				}, () => { });
+			} catch (e) {
+				// nothing
+				toastLog('远程日志服务调用报错，请检查远程日志服务状态');
+			}
+			// 再调用原始的console方法
+			originalMethods[method].apply(console, args);
+		};
+	});
+}

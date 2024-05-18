@@ -4,6 +4,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { VueLoaderPlugin } = require('vue-loader')
 const CircularDependencyPlugin = require('circular-dependency-plugin')
+const DevServer = require('./devServer')
 
 module.exports = (env, argv) => {
     return {
@@ -172,7 +173,8 @@ module.exports = (env, argv) => {
                 onEnd({ compilation }) {
                     console.log('end detecting webpack modules cycles');
                 },
-            })
+            }),
+            ...(argv.mode === 'development' ? [new DevServer()] : [])
         ]
     }
 }

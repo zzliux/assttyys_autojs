@@ -1,4 +1,5 @@
 const Koa = require('koa');
+const { koaBody } = require('koa-body');
 const static = require('koa-static');
 const mount = require('koa-mount');
 const compress = require('koa-compress');
@@ -7,17 +8,20 @@ const fsPromise = fs.promises;
 
 const app = new Koa();
 
+app.use(koaBody());
+
 app.use(compress({
-    filter: function (content_type) {
+    filter: function (_content_type) {
         return true
     },
     threshold: 512,
-    flush: require('zlib').Z_SYNC_FLUSH
 }))
 
 
 app.use(async (ctx, next) => {
-    console.log(`load: ${ctx.path}`)
+    if (ctx.path !== '/___dev_log') {
+        console.log(`load: ${ctx.path}`)
+    }
     if (ctx.path === '/') {
         const staticProxys = [
             'assets',
@@ -31,6 +35,12 @@ app.use(async (ctx, next) => {
         ctx.body = JSON.stringify(fileList);
     } else if (ctx.path === '/project.json') {
         ctx.body = fs.createReadStream('project.json');
+    } else if (ctx.path === '/___dev_log') {
+        const { t, m, d } = ctx.request.body;
+        if (['info', 'log', 'trace', 'debug', 'error'].includes(m));
+        const dt = new Date(t);
+        console.log(`[remote] ${dt.toLocaleString()}.${dt.getTime() % 1000}/${m}: ${d}`);
+        ctx.body = 'success';
     } else {
         await next();
     }
@@ -85,16 +95,26 @@ async function listAll(src) {
     }
 }
 
-
+let count = 0;
 class DevServer {
     apply(compiler) {
-        app.listen(2516, () => {
-            const ipList = getLocalIP();
-            console.log('assttyys debug player 加载地址:');
-            ipList.forEach(ip => {
-                console.log(`http://${ip}:2516`);
-            });
-            console.log('\n');
+        compiler.hooks.done.tap('DevServer', (stats) => {
+            const hasErrors = stats.hasErrors();
+            setTimeout(() => {
+                count++;
+                if (hasErrors) {
+                    console.error('存在编译报错，请处理报错');
+                } else {
+                    console.log('代码已发生变更，请重新加载运行');
+                }
+                if (count === 2) {
+                    app.listen(2516, () => {
+                        const ipList = getLocalIP();
+                        console.log('\n\n\nassttyys debug player 加载/日志地址:');
+                        console.log(ipList.map(ip => `http://${ip}:2516`).join('\n'));
+                    });
+                }
+            }, 500);
         });
     }
 }
