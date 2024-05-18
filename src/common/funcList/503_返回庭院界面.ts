@@ -422,15 +422,22 @@ export class Func503 implements IFuncOrigin {
 						thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，应用[${packageNames}]已杀，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 						sleep(2000);
 						thisScript.stop();
+						return true;
 					}
 				} else {
 					sleep(1000);
 					thisScript.rerun(next_scheme, {
 						...thisScript.runtimeParams,
 					});
+					return true;
 				}
 			}
 		}
+
+		// TODO 不认识的界面，尝试发送back()/esc键事件
+		// mumu模拟器不认识的界面可以通过按esc或back返回上一级，可以考虑从这上面去优化
+		// back();
+		// sleep(1000);
 		return false;
 	}
 }
