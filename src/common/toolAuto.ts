@@ -37,7 +37,7 @@ export function requestMyScreenCapture(callback: Function, helperBridge: Ihelper
 	console.log('height', height);
 
 	// @ts-expect-error d.ts文件问题
-	requestScreenCaptureAsync(rotation == 0 ? width < height: width > height).then(function (success: boolean) {
+	requestScreenCaptureAsync(rotation == 0 ? width < height : width > height).then(function (success: boolean) {
 		if (success) {
 			helperBridge.init();
 			script.initMultiDetectColors(); // 多点比色初始化要在helperbridge后才能进行
@@ -269,9 +269,9 @@ export function pushplusPush(data: any) {
  * @param options
  */
 export function doPush(thisScript: Script, options: {
-    text: string,
-    before?: () => void,
-    after?: () => void
+	text: string,
+	before?: () => void,
+	after?: () => void
 }): void {
 	const storeSettings = storeCommon.get('settings', {});
 	if (storeSettings.push_type === '关闭推送') {
@@ -297,14 +297,14 @@ export function doPush(thisScript: Script, options: {
 		let scale = 0.5;
 
 		switch (storeSettings.push_type) {
-		case 'pushplus':
-			scale = 0.05;
-			break;
-		case 'Gotify':
-			scale = 0.3;
-			break;
-		default:
-			scale = 0.5;
+			case 'pushplus':
+				scale = 0.05;
+				break;
+			case 'Gotify':
+				scale = 0.3;
+				break;
+			default:
+				scale = 0.5;
 		}
 		const bmp = scaleBmp(thisScript.helperBridge.helper.GetBitmap(), scale);
 		const baos = new java.io.ByteArrayOutputStream();

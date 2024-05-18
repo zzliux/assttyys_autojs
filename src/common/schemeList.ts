@@ -436,7 +436,7 @@ const SchemeList: IScheme[] = [
 				gateOfHades_switch: false,
 			},
 			'516': {
-				count: '40',
+				count: '10',
 				afterCountOper: '停止脚本',
 				next_scheme: '通用准备退出',
 			},
@@ -615,7 +615,7 @@ const SchemeList: IScheme[] = [
 				gateOfHades_switch: true,
 			},
 			'516': {
-				count: '40',
+				count: '10',
 				afterCountOper: '停止脚本',
 				next_scheme: '通用准备退出',
 			},
@@ -631,7 +631,7 @@ const SchemeList: IScheme[] = [
 				gateOfHades_switch: false,
 			},
 			'516': {
-				count: '40',
+				count: '10',
 				afterCountOper: '停止脚本',
 				next_scheme: '通用准备退出',
 			},
