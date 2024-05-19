@@ -142,8 +142,8 @@ export class MyFloaty {
 			self.runEventFlag = true;
 			setTimeout(() => {
 				self.runEventFlag = false;
+				runStopItem.setChecked(true);
 			}, 500);
-			runStopItem.setChecked(true);
 			// self.fb.setTint('#ff08bc92');
 			ui.run(function () {
 				// @ts-expect-error d.ts文件问题
@@ -155,8 +155,8 @@ export class MyFloaty {
 			self.runEventFlag = true;
 			setTimeout(() => {
 				self.runEventFlag = false;
+				runStopItem.setChecked(false);
 			}, 500);
-			runStopItem.setChecked(false);
 			// self.fb.setTint('#00000000');
 			ui.run(function () {
 				// @ts-expect-error d.ts文件问题
