@@ -7,69 +7,75 @@ export class JobOptions {
 
 	id?: number;
 	/**
-     * job名
-     */
+	 * job名
+	 */
 	name: string;
 
 	/**
-     * job描述
-     */
+	 * job描述
+	 */
 	desc: string;
 
 	/**
-     * 是否启用
-     */
+	 * 是否启用
+	 */
 	checked?: boolean;
 
 	/**
-     * 上次运行开始时间
-     */
+	 * 上次运行开始时间
+	 */
 	lastRunTime?: Date;
 
 	/**
-     * 上次运行结束时间
-     */
+	 * 上次运行结束时间
+	 */
 	lastStopTime?: Date;
 
 	/**
-     * 下次执行时间
-     */
+	 * 下次执行时间
+	 */
 	nextDate: Date;
 
 	/**
-     * 重复模式： 0不重复运行，1从开始运行时间计算重复间隔，2从运行结束计算重复间隔，3CRON表达式
-     */
+	 * 重复模式： 0不重复运行，1从开始运行时间计算重复间隔，2从运行结束计算重复间隔，3CRON表达式
+	 */
 	repeatMode: RepeatModeType;
 
+
 	/**
-     * 间隔时间（min）
-     */
+	 * 运行间隔偏移，单位分钟，随机数，如-10,10
+	 */
+	nextOffset?: string;
+
+	/**
+	 * 间隔时间（min）
+	 */
 	interval: string;
 
 	/**
-     * 状态
-     */
+	 * 状态
+	 */
 	status?: StatusType;
 
 	/**
-     * 其它配置
-     */
+	 * 其它配置
+	 */
 	config?: Record<string, string>;
 
 	/**
-     * 开始运行时执行的回调
-     */
+	 * 开始运行时执行的回调
+	 */
 	runningCallback?: Function;
 
 	/**
-     * 执行任务优先级
-     */
+	 * 执行任务优先级
+	 */
 	level?: string;
 
 	/**
-     * 任务是否已暂停
-     * @deprecated
-     */
+	 * 任务是否已暂停
+	 * @deprecated
+	 */
 	isPaused?: boolean;
 }
 
@@ -83,18 +89,22 @@ export class Job extends JobOptions {
 
 	constructor(options: JobOptions) {
 		super();
-		this.id = options.id;
-		this.name = options.name;
-		this.desc = options.desc;
-		this.checked = options.checked;
-		this.lastRunTime = options.lastRunTime;
-		this.lastStopTime = options.lastStopTime;
-		this.nextDate = options.nextDate;
-		this.repeatMode = options.repeatMode;
-		this.interval = options.interval;
-		this.config = options.config;
-		this.runningCallback = options.runningCallback;
-		this.level = options.level;
+		Object.keys(options).forEach((key) => {
+			this[key] = options[key];
+		});
+		// this.id = options.id;
+		// this.name = options.name;
+		// this.desc = options.desc;
+		// this.checked = options.checked;
+		// this.lastRunTime = options.lastRunTime;
+		// this.lastStopTime = options.lastStopTime;
+		// this.nextDate = options.nextDate;
+		// this.repeatMode = options.repeatMode;
+		// this.interval = options.interval;
+		// this.nextOffset = options.nextOffset;
+		// this.config = options.config;
+		// this.runningCallback = options.runningCallback;
+		// this.level = options.level;
 	}
 
 	doRun = () => {
@@ -119,16 +129,30 @@ export class Job extends JobOptions {
 			this.doneCallback && this.doneCallback.apply(this);
 			return;
 		} else if (this.repeatMode === 2) {
-			this.nextDate = new Date(Date.now() + Number.parseInt(this.interval, 10) * 60 * 1000);
+			this.nextDate = this.mergeOffsetTime(new Date(Date.now() + Number.parseInt(this.interval, 10) * 60 * 1000));
 			this.doneCallback && this.doneCallback.apply(this);
 			this.status = 'waiting';
 			return;
 		} else if (this.repeatMode === 3) {
-			this.nextDate = getNextByCron(this.interval);
+			this.nextDate = this.mergeOffsetTime(getNextByCron(this.interval));
 			this.doneCallback && this.doneCallback.apply(this);
 			this.status = 'waiting';
 			return;
 		}
+	}
+
+	mergeOffsetTime(date: Date) {
+		let offsetTime = 0;
+		if (this.nextOffset) {
+			const parts = this.nextOffset?.split(',');
+			if (parts.length === 2) {
+				const [ offsetMinuteLow, offsetMinuteHigh ] = parts.map(item => parseInt(item));
+				if (Number.isInteger(offsetMinuteLow) && Number.isInteger(offsetMinuteHigh)) {
+					offsetTime = random(offsetMinuteLow * 60 * 1000, offsetMinuteHigh * 60 * 1000);
+				}
+			}
+		}
+		return new Date(date.getTime() + offsetTime);
 	}
 
 	setDoneCallback = (doneCallback: Function) => {
@@ -146,16 +170,16 @@ class Schedule {
 	lazyMode: boolean = false;  //  免打扰模式开官
 
 	/**
-     * @description 当前运行中的job
-     * @deprecated
-     */
+	 * @description 当前运行中的job
+	 * @deprecated
+	 */
 	currentRunningJobId: number = null;
 
 	currentRunningJob: Job = null;
 
 	/**
-     * @description 任务队列
-     */
+	 * @description 任务队列
+	 */
 	jobQueue: Job[] = [];
 
 	constructor() {
@@ -188,10 +212,10 @@ class Schedule {
 	}
 
 	/**
-     * @param id
-     * @returns
-     * @deprecated
-     */
+	 * @param id
+	 * @returns
+	 * @deprecated
+	 */
 	getJobById(id: number): Job | null {
 		const resultJobIndex = this.jobList.findIndex(item => item.id === id);
 		if (resultJobIndex === -1) {
@@ -202,9 +226,9 @@ class Schedule {
 	}
 
 	/**
-     * 把job插入至有序队列，插入一次做一次冒泡
-     * @param job
-     */
+	 * 把job插入至有序队列，插入一次做一次冒泡
+	 * @param job
+	 */
 	queueInsert(job: Job): void {
 		let index = this.jobQueue.length - 1;
 		this.jobQueue.push(null);
@@ -219,9 +243,9 @@ class Schedule {
 	}
 
 	/**
-     *
-     * @returns
-     */
+	 *
+	 * @returns
+	 */
 	queueShift(): Job {
 		if (this.jobQueue.length) {
 			const job = this.jobQueue.shift();
@@ -233,9 +257,9 @@ class Schedule {
 	}
 
 	/**
-     * 调度timer，每x秒触发一次
-     * @returns
-     */
+	 * 调度timer，每x秒触发一次
+	 * @returns
+	 */
 	timerCallback2() {
 
 		// 遍历所有的job，把到达执行时间的任务加入待执行队列
@@ -282,8 +306,8 @@ class Schedule {
 	}
 
 	/**
-     * @deprecated
-     */
+	 * @deprecated
+	 */
 	timerCallback() {
 		let index = -1;
 		let job: Job = null;
