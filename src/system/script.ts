@@ -13,19 +13,22 @@ import { getWidthPixels, getHeightPixels } from '@auto.pro/core';
 import schemeDialog from './schemeDialog';
 import drawFloaty from '@/system/drawFloaty';
 import { myToast, doPush } from '@/common/toolAuto';
-import { IFunc, IFuncOrigin } from '@/interface/IFunc';
+import { IFunc, IFuncOrigin, schemeStartFunc, schemeStopFunc, schemeSwitchInFunc, schemeSwitchOutFunc, } from '@/interface/IFunc';
 import { IScheme } from '@/interface/IScheme';
 import { IMultiDetectColors, IMultiFindColors } from '@/interface/IMultiColor';
 import { globalRoot, globalRootType } from '@/system/GlobalStore/index';
 import schedule, { Job } from '@/system/Schedule';
 import { MyFloaty } from '@/system/MyFloaty';
 import ncnnBgyx from '@/system/ncnn/ncnnBgyx';
+import { SchemeConfigOperator } from '@/interface/SchemeConfigOperator';
 
 /**
  * 脚本对象，一个程序只能有一个
  */
 export class Script {
 	runThread: any; // 脚本运行线程
+	monitorThread: any; // 监听脚本的线程
+	switchOutThread: any; // 切出方案线程
 	runCallback: Function; // 运行后回调，一般用于修改悬浮样式
 	stopCallback: Function; // 停止后回调，异常停止、手动停止，在停止后都会调用
 	scheme: IScheme; // 运行的方案
@@ -44,6 +47,12 @@ export class Script {
 	job: Job;
 	schedule: typeof schedule;
 	ncnnBgyx = ncnnBgyx;
+	lifeCycleStages: {
+		schemeSwitchIn: schemeSwitchInFunc[],
+		schemeStart: schemeStartFunc[],
+		schemeStop: schemeStopFunc[],
+		schemeSwitchOut: schemeSwitchOutFunc[],
+	};
 
 	/**
 	 * 运行次数，下标为funcList中的id，值为这个func成功执行的次数；
@@ -284,6 +293,33 @@ export class Script {
 		this.scheme.funcList = this.getFuncList(this.scheme);
 	}
 
+	/**
+	 * 生命周期stage函数初始化
+	 */
+	initLifeCycleStage() {
+		const self = this;
+		self.lifeCycleStages = {
+			schemeSwitchIn: [],
+			schemeStart: [],
+			schemeStop: [],
+			schemeSwitchOut: [],
+		}
+		this.scheme.funcList.forEach(func => {
+			if (func.onSchemeSwitchIn) {
+				self.lifeCycleStages.schemeSwitchIn.push(func.onSchemeSwitchIn);
+			}
+			if (func.onSchemeStart) {
+				self.lifeCycleStages.schemeStart.push(func.onSchemeStart);
+			}
+			if (func.onSchemeStop) {
+				self.lifeCycleStages.schemeStop.push(func.onSchemeStop);
+			}
+			if (func.onSchemeSwitchOut) {
+				self.lifeCycleStages.schemeSwitchOut.push(func.onSchemeSwitchOut);
+			}
+		});
+	}
+
 	// getScheduleJobInstance(key) {
 	//     if (!this.scheduleMap) {
 	//         this.scheduleMap = [];
@@ -411,7 +447,7 @@ export class Script {
 	* @param {Region} inRegion 多点找色区域
 	* @returns
 	*/
-	findMultiColorEx(key, inRegion?): Point[] {
+	findMultiColorEx(key: string, inRegion?): Point[] {
 		this.initRedList();
 		const region = inRegion || this.multiFindColors[key].region;
 		const desc = this.multiFindColors[key].desc;
@@ -526,6 +562,7 @@ export class Script {
 		const self = this;
 		try {
 			this.initFuncList();
+			this.initLifeCycleStage();
 			this.initMultiFindColors();
 			this.runDate = new Date();
 			this.currentDate = new Date();
@@ -550,12 +587,23 @@ export class Script {
 			}
 			return;
 		}
-		// test start
-		// let img = images.captureScreen();
-		// img.saveTo('/sdcard/testimg.png');
-		// img.recycle();
-		// test end
+
+		const schemeConfigOperator = new SchemeConfigOperator(this.scheme.schemeName);
+		if (this.schemeHistory.length) {
+			const lastScheme = this.schemeHistory[this.schemeHistory.length - 1];
+			const lastSchemeConfigOpeator = new SchemeConfigOperator(lastScheme.schemeName);
+			this.lifeCycleStages.schemeSwitchIn.forEach(stageFunc => {
+				stageFunc(this, lastSchemeConfigOpeator, schemeConfigOperator);
+			});
+		}
+
 		myToast(`运行方案[${this.scheme.schemeName}]`);
+
+		// 生命周期：schemeStart
+		this.lifeCycleStages.schemeStart.forEach(stageFunc => {
+			stageFunc(this, schemeConfigOperator);
+		});
+
 		this.schemeHistory.push(this.scheme);
 		// console.log(`运行方案[${this.scheme.schemeName}]`);
 		this.runThread = threads.start(function () {
@@ -572,18 +620,28 @@ export class Script {
 					sleep(+self.scheme.commonConfig.loopDelay);
 				}
 			} catch (e) {
-				self.runThread = null;
+				// NONE
 				if (e.toString().indexOf('com.stardust.autojs.runtime.exception.ScriptInterruptedException') === -1) {
 					console.error($debug.getStackTrace(e));
 				}
-				if (typeof self.stopCallback === 'function') {
-					self.stopCallback();
-				}
-				if (this.job) {
-					this.job.doDone();
-				}
 			}
 		});
+
+		self.monitorThread = threads.start(function () {
+			self.runThread.waitFor();
+			self.runThread.join();
+			self.runThread = null;
+			self.lifeCycleStages.schemeStop.forEach(stageFunc => {
+				stageFunc(self, schemeConfigOperator);
+			});
+			if (typeof self.stopCallback === 'function') {
+				self.stopCallback();
+			}
+			if (self.job) {
+				self.job.doDone();
+			}
+		});
+
 		if (typeof this.runCallback === 'function') {
 			this.runCallback();
 		}
@@ -694,16 +752,35 @@ export class Script {
 				}
 			}
 		} else if (schemeName) {
-			this.setCurrentScheme(schemeName as string, params);
-			this.myToast(`切换方案为[${schemeName}]`);
+			const self = this
+			self.switchOutThread = threads.start(function () {
+				if (self.monitorThread?.isAlive()) {
+					self.monitorThread.join();
+				}
+				const thisSchemeConfigOpeator = new SchemeConfigOperator(self.scheme.schemeName);
+				const nextschemeConfigOperator = new SchemeConfigOperator(schemeName as string);
+				self.lifeCycleStages.schemeSwitchOut.forEach(stageFunc => {
+					stageFunc(self, thisSchemeConfigOpeator, nextschemeConfigOperator);
+				});
+
+				self.myToast(`切换方案为[${schemeName}]`);
+				self.setCurrentScheme(schemeName as string, params);
+			});
+			// tmpTread.join();
 		}
 		events.broadcast.emit('SCRIPT_RERUN', '');
 	}
 
 	rerunWithJob(job: Job): void {
+		const self = this;
 		this._stop();
 		setTimeout(() => {
-			this._run(job);
+			threads.start(function () {
+				if (self.switchOutThread?.isAlive()) {
+					self.switchOutThread.join();
+				}
+				self._run(job);
+			});
 		}, 510);
 	}
 
@@ -918,7 +995,12 @@ events.broadcast.on('SCRIPT_RUN', () => {
 events.broadcast.on('SCRIPT_RERUN', () => {
 	script._stop(true);
 	setTimeout(() => {
-		script._run(script.job);
+		threads.start(function () {
+			if (script.switchOutThread?.isAlive()) {
+				script.switchOutThread.join();
+			}
+			script._run(script.job);
+		});
 	}, 510);
 });
 
