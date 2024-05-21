@@ -13,7 +13,8 @@ const ScheduleDefaultList: JobOptions[] = [
 		lastRunTime: null,
 		nextDate: null,
 		repeatMode: 2,
-		interval: '355',
+		interval: '359',
+		nextOffset: '0,5',
 		level: '10',
 		config: {
 			scheme: '定时任务-启动游戏-式神寄养',
@@ -28,6 +29,7 @@ const ScheduleDefaultList: JobOptions[] = [
 		nextDate: null,
 		repeatMode: 3,
 		interval: '0 0 19 * * *',
+		nextOffset: '0,1',
 		level: '10',
 		config: {
 			scheme: '定时任务-启动游戏-每日寮活动',
@@ -42,6 +44,7 @@ const ScheduleDefaultList: JobOptions[] = [
 		nextDate: null,
 		repeatMode: 3,
 		interval: '0 25 17 * * *',
+		nextOffset: '-10,30',
 		level: '10',
 		config: {
 			scheme: '定时任务-启动游戏-每日逢魔',
@@ -56,6 +59,7 @@ const ScheduleDefaultList: JobOptions[] = [
 		nextDate: null,
 		repeatMode: 3,
 		interval: '0 10 5,16,23 * * *',
+		nextOffset: '0,30',
 		level: '5',
 		config: {
 			scheme: '定时任务-启动游戏-喂猫喂狗',
@@ -70,6 +74,7 @@ const ScheduleDefaultList: JobOptions[] = [
 		nextDate: null,
 		repeatMode: 3,
 		interval: '0 10 7 * * *',
+		nextOffset: '0,30',
 		level: '1',
 		config: {
 			scheme: '定时任务-启动游戏-寮突',
@@ -84,6 +89,7 @@ const ScheduleDefaultList: JobOptions[] = [
 		nextDate: null,
 		repeatMode: 3,
 		interval: '0 0 10 * * *',
+		nextOffset: '0,30',
 		level: '6',
 		config: {
 			scheme: '定时任务-启动游戏-地鬼',
@@ -98,6 +104,7 @@ const ScheduleDefaultList: JobOptions[] = [
 		nextDate: null,
 		repeatMode: 3,
 		interval: '0 0 20 * * 5,6,0',
+		nextOffset: '0,5',
 		level: '10',
 		config: {
 			scheme: '庭院进入寮每日活动(包含阴门)',
@@ -112,6 +119,7 @@ const ScheduleDefaultList: JobOptions[] = [
 		nextDate: null,
 		repeatMode: 3,
 		interval: '0 59 18 * * 1-4',
+		nextOffset: '0,1',
 		level: '10',
 		config: {
 			scheme: '定时任务-启动游戏-庭院进入寮每日活动(包含阴门)',
@@ -126,6 +134,7 @@ const ScheduleDefaultList: JobOptions[] = [
 		nextDate: null,
 		repeatMode: 3,
 		interval: '0 5 19 * * 1-4',
+		nextOffset: '0,1',
 		level: '10',
 		config: {
 			scheme: '庭院进入寮每日活动(不包含阴门)',
@@ -140,6 +149,7 @@ const ScheduleDefaultList: JobOptions[] = [
 		nextDate: null,
 		repeatMode: 3,
 		interval: '0 59 18 * * 5,6,0',
+		nextOffset: '0,1',
 		level: '10',
 		config: {
 			scheme: '定时任务-启动游戏-庭院进入寮每日活动(狭间)',
@@ -154,6 +164,7 @@ const ScheduleDefaultList: JobOptions[] = [
 		nextDate: null,
 		repeatMode: 3,
 		interval: '0 5 19 * * 5,0',
+		nextOffset: '0,1',
 		level: '10',
 		config: {
 			scheme: '庭院进入寮每日活动(不包含阴门)',
@@ -168,6 +179,7 @@ const ScheduleDefaultList: JobOptions[] = [
 		nextDate: null,
 		repeatMode: 3,
 		interval: '0 5 19 * * 6',
+		nextOffset: '0,1',
 		level: '10',
 		config: {
 			scheme: '庭院进入寮每日活动(不包含阴门)',
@@ -182,6 +194,7 @@ const ScheduleDefaultList: JobOptions[] = [
 		nextDate: null,
 		repeatMode: 3,
 		interval: '0 0 7,1 * * *',
+		nextOffset: '0,30',
 		level: '1',
 		config: {
 			scheme: '定时任务-启动游戏-悬赏',
@@ -196,6 +209,7 @@ const ScheduleDefaultList: JobOptions[] = [
 		nextDate: null,
 		repeatMode: 3,
 		interval: '0 0 4 * * *',
+		nextOffset: '0,0',
 		level: '0',
 		config: {
 			scheme: '重启模拟器',
@@ -210,6 +224,7 @@ const ScheduleDefaultList: JobOptions[] = [
 		nextDate: null,
 		repeatMode: 3,
 		interval: '0 10 1 * * *',
+		nextOffset: '0,30',
 		level: '1',
 		config: {
 			scheme: '定时任务-启动游戏-每日签到与收取邮件',
@@ -224,6 +239,7 @@ const ScheduleDefaultList: JobOptions[] = [
 		nextDate: null,
 		repeatMode: 3,
 		interval: '0 5 0 * * *',
+		nextOffset: '0,30',
 		level: '6',
 		config: {
 			scheme: '定时任务-启动游戏-经验妖怪',
@@ -238,6 +254,7 @@ const ScheduleDefaultList: JobOptions[] = [
 		nextDate: null,
 		repeatMode: 3,
 		interval: '0 5 0 * * *',
+		nextOffset: '0,30',
 		level: '6',
 		config: {
 			scheme: '定时任务-启动游戏-金币妖怪',

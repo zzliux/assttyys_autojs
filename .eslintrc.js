@@ -27,17 +27,17 @@ module.exports = {
         'plugin:@typescript-eslint/recommended', // 添加TypeScript推荐规则
     ],
     parserOptions: {
-        project: './tsconfig.json', // 指定tsconfig.json文件
+        'project': './tsconfig.json', // 指定tsconfig.json文件
     },
     rules: {
-        quotes: ['error', 'single'], // 必须使用单引号
+        'quotes': ['error', 'single'], // 必须使用单引号
         'no-var': 'error',
         'spaced-comment': ['error', 'always'], // 注释符号后要有一个空格
         'arrow-spacing': "error", // 箭头函数的箭头前后必须要有空格
         'comma-spacing': ["error", { "before": false, "after": true }], // 逗号前不能有空格，逗号后必须有空格
         'func-call-spacing': ["error", "never"], // 调用函数时的函数名和左括号中不能有间隔
         'implicit-arrow-linebreak': ["error", "beside"], // 箭头函数右的括号不能护行
-        indent: ['error', 'tab'], // 缩进使用tab符号
+        'indent': ['error', 'tab', { "SwitchCase": 1 }], // 缩进使用tab符号
         'key-spacing': ['error', {
             beforeColon: false, // 冒号前不能有空格
             afterColon: true, // 冒号有1个空格

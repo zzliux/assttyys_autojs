@@ -2,7 +2,7 @@ import { webview } from '@/system';
 import drawFloaty from '@/system/drawFloaty';
 import myFloaty from '@/system/MyFloaty';
 import { storeCommon } from '@/system/store';
-import { getInstalledPackages, requestMyScreenCapture } from '@/common/toolAuto';
+import { doInitHookConsoleLog, getInstalledPackages, isDebugPlayerRunning, requestMyScreenCapture } from '@/common/toolAuto';
 import { isRoot } from '@auto.pro/core';
 import ncnnBgyx from '@/system/ncnn/ncnnBgyx';
 import helperBridge from '@/system/helperBridge';
@@ -57,6 +57,10 @@ export default function webviewSettigns() {
 
 	if (typeof initStoreSettings.kill_related_app_mode === 'undefined') {
 		initStoreSettings.kill_related_app_mode = 'root';
+	}
+
+	if (isDebugPlayerRunning() && initStoreSettings.remote_log_url === 'undefined') {
+		initStoreSettings.remote_log_url = '';
 	}
 
 	storeCommon.put('settings', initStoreSettings);
@@ -255,6 +259,16 @@ export default function webviewSettigns() {
 				value: storeSettings.msgPush_prefix
 			})
 		}
+
+		if (isDebugPlayerRunning()) {
+			ret.push({
+				desc: '远程日志地址',
+				name: 'remote_log_url',
+				type: 'assttyys_setting',
+				stype: 'text',
+				value: storeSettings.remote_log_url
+			});
+		}
 		done(ret);
 	});
 
@@ -350,6 +364,9 @@ export default function webviewSettigns() {
 				} else {
 					drawFloaty.destroy();
 				}
+			}
+			if (item.name === 'remote_log_url') {
+				doInitHookConsoleLog(item.value);
 			}
 			storeCommon.put('settings', storeSettings);
 			done(true);

@@ -261,14 +261,14 @@ export class Func037 implements IFuncOrigin {
 				let createMode = 3;
 				if (thisconf && thisconf.createMode) {
 					switch (thisconf.createMode) {
-					case '创建队伍': {
-						createMode = 3;
-						break;
-					}
-					case '自动匹配': {
-						createMode = 4;
-						break;
-					}
+						case '创建队伍': {
+							createMode = 3;
+							break;
+						}
+						case '自动匹配': {
+							createMode = 4;
+							break;
+						}
 					}
 				}
 				if (

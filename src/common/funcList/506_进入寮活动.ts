@@ -96,20 +96,21 @@ export class Func506 implements IFuncOrigin {
 			oper: [
 				[left, 1280, 720, 17, 140, 1244, 583, -1],  // 道馆出现方位
 			]
-		}, { // 检查_狩猎战是否开启
-			desc:
-				[1280, 720,
-					[[left, 244, 469, 0xc47f7e],
-						[left, 273, 485, 0xc95757],
-						[left, 260, 519, 0x735162],
-						[center, 362, 420, 0xfc0c0c],
-						[center, 355, 419, 0xfe1515],
-						[center, 346, 483, 0xc2ac91]]
-				],
+		}, { // 4 检查_狩猎战是否开启
+			desc: [1280, 720,
+				[
+					[left, 244, 469, 0xc47f7e],
+					[left, 273, 485, 0xc95757],
+					[left, 260, 519, 0x735162],
+					[center, 362, 420, 0xfc0c0c],
+					[center, 355, 419, 0xfe1515],
+					[center, 346, 483, 0xc2ac91]
+				]
+			],
 			oper: [
 				[left, 1280, 720, 155, 417, 365, 574, 1000]
 			]
-		}, { // 检测_鬼王集结点
+		}, { // 5 检测_鬼王集结点
 			desc: [
 				1280, 720,
 				[
@@ -123,7 +124,7 @@ export class Func506 implements IFuncOrigin {
 			oper: [
 				[right, 1280, 720, 1068, 602, 1268, 680, 1200]  // 点击鬼王集结点，固定地图右下角
 			]
-		}, { // 检测_是否为道馆页
+		}, { // 6 检测_是否为道馆页
 			desc:
 				[
 					1280, 720,
@@ -138,34 +139,34 @@ export class Func506 implements IFuncOrigin {
 						[left, 175, 22, 0xd4c4a3],
 					]
 				],
-		}, { // 检测_是否为挑战奉献榜场景_待开始
-			desc:
-				[1280, 720,
-					[[right, 1104, 568, 0xd7bfa5],
-						[right, 1175, 600, 0xdfc29d],
-						[right, 1122, 697, 0x5b0d07],
-						[right, 1086, 615, 0x272420],
-						[right, 1068, 593, 0xdec7aa]]
-				]
-		}, { //	检测_是否为道馆突破选择道馆页面
-			desc:
+		}, { // 7 检测_是否为挑战奉献榜场景_待开始
+			desc: [1280, 720,
 				[
-					1280, 720,
-					[
-						[left, 141, 77, 0xcb945a],
-						[left, 33, 52, 0xeff5fb],
-						[left, 245, 50, 0x583716],
-						[left, 203, 650, 0x5b3e2b],
-						[left, 89, 618, 0xc1b9a9],
-						[right, 1113, 650, 0xdfdbcf],
-						[right, 1103, 62, 0xddd3c0],
-						[right, 1251, 125, 0xc4b4a0],
-					]
-				],
+					[right, 1104, 568, 0xd7bfa5],
+					[right, 1175, 600, 0xdfc29d],
+					[right, 1122, 697, 0x5b0d07],
+					[right, 1086, 615, 0x272420],
+					[right, 1068, 593, 0xdec7aa]
+				]
+			]
+		}, { //	8 检测_是否为道馆突破选择道馆页面
+			desc: [
+				1280, 720,
+				[
+					[left, 141, 77, 0xcb945a],
+					[left, 33, 52, 0xeff5fb],
+					[left, 245, 50, 0x583716],
+					[left, 203, 650, 0x5b3e2b],
+					[left, 89, 618, 0xc1b9a9],
+					[right, 1113, 650, 0xdfdbcf],
+					[right, 1103, 62, 0xddd3c0],
+					[right, 1251, 125, 0xc4b4a0],
+				]
+			],
 			oper: [
 				[left, 1280, 720, 27, 28, 56, 65, 1200]	//	跑路
 			]
-		}, { //	检测_是否为首领退治集结页
+		}, { //	9 检测_是否为首领退治集结页
 			desc:
 				[
 					1280, 720,
@@ -180,7 +181,7 @@ export class Func506 implements IFuncOrigin {
 						[center, 727, 611, 0xdfc7ac],
 					]
 				]
-		}, { // 检测_阴门
+		}, { // 10 检测_阴门
 			desc:
 				[
 					1280, 720,
@@ -193,7 +194,7 @@ export class Func506 implements IFuncOrigin {
 						[center, 713, 25, 0xe3d698],
 					]
 				]
-		}, { //	检测_狭间暗域
+		}, { //	11 检测_狭间暗域
 			desc:
 				[
 					1280, 720,
@@ -209,7 +210,7 @@ export class Func506 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 702, 495, 848, 617, 1200]	//	点击狭间暗域
 			]
-		}, { //	检测_狭间页面
+		}, { //	12 检测_狭间页面
 			desc:
 				[
 					1280, 720,
@@ -223,6 +224,11 @@ export class Func506 implements IFuncOrigin {
 						[right, 1090, 155, 0xe7dcaf],
 					]
 				]
+		}, { // 13 寮神社界面返回
+			desc: '寮神社界面',
+			oper: [
+				[left, 1280, 720, 25, 10, 75, 54, 1000],     //  寮活动 返回区域
+			]
 		}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['506'];
@@ -276,7 +282,17 @@ export class Func506 implements IFuncOrigin {
 			// 		}
 			// 	}
 			// }
+		}
 
+		// 首次进入寮神社界面返回一次重新进，防止还有原来的缓存在里面
+		if (thisScript.global.liao_activity_page_flag == 0 && thisScript.oper({
+			id: 506,
+			name: '寮神社界面',
+			operator: [thisOperator[13]]
+		})) {
+			thisScript.global.liao_activity_page_flag += 2;
+			thisScript.myToast('首次进入寮神社界面，退出重进');
+			return true;
 		}
 
 		if (thisScript.oper({
@@ -336,13 +352,7 @@ export class Func506 implements IFuncOrigin {
 					const rx = p.x + 25;
 					const ry = p.y + 8;
 
-					const toClick = [
-						lx,
-						ly,
-						rx,
-						ry,
-						1200
-					];
+					const toClick = [lx, ly, rx, ry, 1200];
 
 					console.log('识别成功, 点击坐标为', toClick);
 
@@ -363,6 +373,7 @@ export class Func506 implements IFuncOrigin {
 			thisScript.rerun(next_scheme, {
 				liao_activity_state: _liao_activity_state
 			});
+			return true;
 		}
 
 		if (thisScript.oper({
@@ -393,6 +404,7 @@ export class Func506 implements IFuncOrigin {
 			thisScript.rerun(next_scheme, {
 				liao_activity_state: _liao_activity_state
 			});
+			return true;
 		}
 
 		if (thisScript.oper({
@@ -411,7 +423,6 @@ export class Func506 implements IFuncOrigin {
 					}]
 				});
 			}
-			return true;
 		}
 
 		if (thisScript.oper({
@@ -464,19 +475,19 @@ export class Func506 implements IFuncOrigin {
 					console.log('今天是周', nowDateDay);
 
 					switch (nowDateDay) {
-					case 5:
-					case 0: {
-						if (!(_liao_activity_state.narrow && _liao_activity_state.banquet)) {
-							return false;
+						case 5:
+						case 0: {
+							if (!(_liao_activity_state.narrow && _liao_activity_state.banquet)) {
+								return false;
+							}
+							break;
 						}
-						break;
-					}
-					case 6: {
-						if (!(_liao_activity_state.narrow && _liao_activity_state.huntBoss)) {
-							return false;
+						case 6: {
+							if (!(_liao_activity_state.narrow && _liao_activity_state.huntBoss)) {
+								return false;
+							}
+							break;
 						}
-						break;
-					}
 					}
 				}
 
