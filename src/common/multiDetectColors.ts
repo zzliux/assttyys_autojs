@@ -454,6 +454,23 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 				[left, 211, 20, 0x382720],
 			]
 		]
+	},
+	'结界卡超上限提示': {
+		desc: [
+			1280, 720,
+			[
+				[center, 443, 223, 0x704c3b],
+				[center, 839, 227, 0x4c3023],
+				[center, 551, 361, 0x402f11],
+				[center, 456, 418, 0xdf6851],
+				[center, 686, 440, 0xf3b25e],
+				[center, 849, 387, 0xcbb59c],
+				[center, 853, 306, 0xcbb59c],
+				[center, 462, 297, 0xcbb59c],
+				[center, 848, 268, 0xcbb59c],
+				[center, 454, 495, 0x6c4937],
+			]
+		]
 	}
 };
 

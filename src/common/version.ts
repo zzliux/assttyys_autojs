@@ -1085,6 +1085,9 @@ export const versionList = [{
 }, {
 	version: '20240519_01',
 	desc: '新增：定时任务支持随机时间偏移'
+}, {
+	version: '20240523_01',
+	desc: '优化：002退出结算支持关闭结界卡上限提示'
 }];
 
 export default versionList[versionList.length - 1].version;
