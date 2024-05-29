@@ -163,6 +163,7 @@ const promptMockData = {
     openOpenSource() { },
     mailTo() { },
     copyToClip() { },
+    copyPToClip() { },
     webloaded() { },
     getAppInfo: { msg: '' },
     starScheme: function (opt) {

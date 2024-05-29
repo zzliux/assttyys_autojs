@@ -101,7 +101,7 @@ function mailTo() {
   AutoWeb.autoPromise('mailTo', null);
 }
 function clipGroup() {
-  AutoWeb.autoPromise('copyToClip', 864842180);
+  AutoWeb.autoPromise('copyPToClip', 'https://qm.qq.com/q/H852T6N0OG');
 }
 
 </script>

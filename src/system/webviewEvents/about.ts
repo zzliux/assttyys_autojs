@@ -3,7 +3,7 @@ import { webview } from '@/system';
 export default function webviewAbout() {
 
 	webview.on('openOpenSource').subscribe(([_param, done]) => {
-		app.openUrl('https://gitee.com/zzliux/assttyys_autojs');
+		app.openUrl('https://github.com/zzliux/assttyys_autojs');
 		done();
 	});
 
@@ -26,5 +26,10 @@ export default function webviewAbout() {
 	webview.on('copyToClip').subscribe(([str, _done]) => {
 		setClip(str);
 		toastLog('复制成功');
+	});
+
+	webview.on('copyPToClip').subscribe(([str, _done]) => {
+		setClip(str);
+		toastLog('加群链接复制成功');
 	});
 }

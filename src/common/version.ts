@@ -1088,6 +1088,9 @@ export const versionList = [{
 }, {
 	version: '20240523_01',
 	desc: '优化：002退出结算支持关闭结界卡上限提示'
+}, {
+	version: '20240529_01',
+	desc: '修复：20240529更新后组队界面不识别的问题'
 }];
 
 export default versionList[versionList.length - 1].version;
