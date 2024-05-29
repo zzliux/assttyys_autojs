@@ -2,7 +2,7 @@ import { webview } from '@/system';
 import script from '@/system/script';
 import store from '@/system/store';
 import ScheduleDefaultList from '@/common/scheduleList';
-import schedule, { Job, JobOptions } from '@/system/Schedule'
+import schedule, { Job, JobOptions, mergeOffsetTime } from '@/system/Schedule'
 import { setCurrentScheme } from '@/common/tool';
 import { getNextByCron } from '@/common/toolCron';
 // // import schedule from 'node-schedule';
@@ -27,7 +27,7 @@ export default function webviewSchedule() {
 	}
 	savedScheduleList.forEach(item => {
 		if (item.repeatMode === 3) {
-			item.nextDate = getNextByCron(item.interval);
+			item.nextDate = mergeOffsetTime(getNextByCron(item.interval), item.nextOffset);
 		}
 		jobToSchedule(item);
 	});
@@ -86,6 +86,7 @@ export default function webviewSchedule() {
 
 	webview.on('scheduleChange').subscribe(([job, done]) => {
 		jobToSchedule(job);
+		schedule.immediateTimerInterval();
 		done();
 	});
 

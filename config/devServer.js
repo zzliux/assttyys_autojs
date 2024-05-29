@@ -20,7 +20,7 @@ app.use(compress({
 
 app.use(async (ctx, next) => {
     if (ctx.path !== '/___dev_log') {
-        console.log(`load: ${ctx.path}`)
+        console.log(`[${ctx.method}] ${ctx.path}`)
     }
     if (ctx.path === '/') {
         const staticProxys = [

@@ -79,6 +79,20 @@ export class JobOptions {
 	isPaused?: boolean;
 }
 
+export const mergeOffsetTime = function (date: Date, offsetStr: string) {
+	let offsetTime = 0;
+	if (offsetStr) {
+		const parts = offsetStr?.split(',');
+		if (parts.length === 2) {
+			const [ offsetMinuteLow, offsetMinuteHigh ] = parts.map(item => parseInt(item));
+			if (Number.isInteger(offsetMinuteLow) && Number.isInteger(offsetMinuteHigh)) {
+				offsetTime = random(offsetMinuteLow * 60 * 1000, offsetMinuteHigh * 60 * 1000);
+			}
+		}
+	}
+	return new Date(date.getTime() + offsetTime);
+}
+
 export class Job extends JobOptions {
 
 	private doneCallback: Function;
@@ -142,23 +156,14 @@ export class Job extends JobOptions {
 	}
 
 	mergeOffsetTime(date: Date) {
-		let offsetTime = 0;
-		if (this.nextOffset) {
-			const parts = this.nextOffset?.split(',');
-			if (parts.length === 2) {
-				const [ offsetMinuteLow, offsetMinuteHigh ] = parts.map(item => parseInt(item));
-				if (Number.isInteger(offsetMinuteLow) && Number.isInteger(offsetMinuteHigh)) {
-					offsetTime = random(offsetMinuteLow * 60 * 1000, offsetMinuteHigh * 60 * 1000);
-				}
-			}
-		}
-		return new Date(date.getTime() + offsetTime);
+		return mergeOffsetTime(date, this.nextOffset);
 	}
 
 	setDoneCallback = (doneCallback: Function) => {
 		this.doneCallback = doneCallback;
 	}
 }
+
 
 class Schedule {
 
@@ -254,6 +259,13 @@ class Schedule {
 			return job;
 		}
 		return null;
+	}
+
+	/**
+	 * 立即触发一次timer的回调
+	 */
+	immediateTimerInterval() {
+		this.timerCallback2.apply(this);
 	}
 
 	/**
