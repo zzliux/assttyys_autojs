@@ -1,7 +1,9 @@
 // require('@/system/FloatButton/FloatButton');
+import { isDebugPlayerRunning } from '@/common/toolAuto';
 import FloatButton from '@/system/FloatButton/FloatButton';
 import schemeDialog from '@/system/schemeDialog';
 import script from '@/system/script';
+import { showScheduleDialog } from '@/system/Schedule/scheduleDialog';
 
 /**
  * 悬浮按钮，对大柒的悬浮按钮进行封装
@@ -15,7 +17,7 @@ export class MyFloaty {
 		this.fb = new FloatButton();
 		this.fb.setMenuOpenAngle(180);
 		this.fb.setAllButtonSize(30);
-		this.fb.setMenuRadius(34);
+		this.fb.setMenuRadius(40);
 		this.fb.setIcon('file://' + files.cwd() + '/assets/img/ay.png');
 		this.fb.setColor('#FFFFFF');
 		this.fb.setAutoCloseMenuTime(3000);
@@ -115,7 +117,7 @@ export class MyFloaty {
 				return false;
 			});
 
-		if (context.packageName.match(/debugplayer/)) {
+		if (isDebugPlayerRunning()) {
 			this.fb.addItem('ViewLogConsole')
 				.setIcon('@drawable/ic_assignment_black_48dp')
 			// 图标着色
@@ -133,7 +135,18 @@ export class MyFloaty {
 				});
 		}
 
-		this.fb.setAllButtonPadding(6);
+		if ($device.sdkInt >= 23) { // android 6
+			this.fb.addItem('ScheduleList')
+				.setIcon('@drawable/ic_list_black_48dp')
+			// 图标着色
+				.setTint('#FFFFFF')
+				.setColor('#FF66CC')
+				.onClick((_view, _name) => {
+					showScheduleDialog();
+				});
+		}
+
+		this.fb.setAllButtonPadding(8);
 		this.fb.getViewUtil('logo').setPadding(0);
 		this.fb.setColor('#00000000');
 		this.fb.show();

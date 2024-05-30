@@ -216,6 +216,14 @@ class Schedule {
 		return this.jobList;
 	}
 
+	getJobQueue(): Job[] {
+		return this.jobQueue;
+	}
+
+	getRunningJub(): Job {
+		return this.currentRunningJob;
+	}
+
 	/**
 	 * @param id
 	 * @returns
@@ -228,6 +236,20 @@ class Schedule {
 		} else {
 			return this.jobList[resultJobIndex];
 		}
+	}
+
+	/**
+	 * 根据任务名获取任务
+	 * @param name 任务名
+	 * @returns Job
+	 */
+	getJobByName(name: string): Job | null {
+		for (const job of this.jobList) {
+			if (job.name === name) {
+				return job;
+			}
+		}
+		return null;
 	}
 
 	/**

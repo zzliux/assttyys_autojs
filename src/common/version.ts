@@ -1091,6 +1091,9 @@ export const versionList = [{
 }, {
 	version: '20240529_01',
 	desc: '修复：20240529更新后组队界面不识别的问题'
+}, {
+	version: '20240530_01',
+	desc: '新增：定时任务队列快捷清单'
 }];
 
 export default versionList[versionList.length - 1].version;
