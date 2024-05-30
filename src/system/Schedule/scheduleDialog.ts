@@ -113,7 +113,11 @@ function bueatifyTime(ms: number) {
 	const h = Math.abs(Math.floor(ms / 1000 / 60 / 60 % 24));
 	const m = Math.abs(Math.floor(ms / 1000 / 60 % 60));
 	const s = Math.abs(Math.floor(ms / 1000 % 60));
-	let str = `${d}天${h}时${m}分${s}秒`.replace(/^0天|^0天0时|^0天0时0分/g, '');
+	let str = '';
+	if (d) str += `${d}天`;
+	if (h) str += `${h}时`;
+	if (m) str += `${m}分`;
+	if (s) str += `${s}秒`;
 	if (ms < -180000) {
 		str = '已错过' + str;
 	} else if (ms < 0) {
