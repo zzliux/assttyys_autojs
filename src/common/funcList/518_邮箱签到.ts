@@ -385,7 +385,7 @@ export class Func518 implements IFuncOrigin {
 					[left, 228, 127, 0xd4ab89],
 					[left, 183, 646, 0x301c18],
 					[right, 1125, 616, 0xf4b25f],
-					[left, 157, 584, 0xd4c6b4],
+					[left, 130, 546, 0xc9bbaa],
 				],
 			],
 			oper: [
@@ -499,9 +499,9 @@ export class Func518 implements IFuncOrigin {
 				]
 			],
 			oper: [
-				[left, 1280, 720, 21, 9, 51, 42, 1200], //  点击 礼包屋返回
-				[left, 1280, 720, 1115, 108, 1149, 136, 1200], //  可能会出现礼包弹窗
-				[left, 1280, 720, 26, 37, 72, 81, 1200], //  点击 商店返回
+				[left, 1280, 720, 21, 9, 51, 42, 1800], //  点击 礼包屋返回
+				[left, 1280, 720, 1115, 108, 1149, 136, 1800], //  可能会出现礼包弹窗
+				[left, 1280, 720, 26, 37, 72, 81, 1800], //  点击 商店返回
 			],
 		},
 		{
@@ -553,7 +553,7 @@ export class Func518 implements IFuncOrigin {
 				]
 			],
 			oper: [
-				[left, 1280, 720, 218, 223, 284, 282, 1200], //  点击 每日领取
+				[left, 1280, 720, 218, 223, 284, 282, 2200], //  点击 每日领取
 			],
 		},
 		{
@@ -613,6 +613,21 @@ export class Func518 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 991, 606, 1159, 693, 1000],
 			]
+		}, { // 41 商店-热门推荐3
+			desc: [
+				1280, 720,
+				[
+					[left, 45, 36, 0xf5e6a6],
+					[center, 1186, 668, 0xaa0c0c],
+					[center, 1152, 656, 0x842121],
+					[center, 1005, 670, 0xf7cf5e],
+					[center, 1015, 636, 0xa163dd],
+					[center, 1223, 687, 0x533732],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 1146, 631, 1196, 691, 1000],
+			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -620,32 +635,25 @@ export class Func518 implements IFuncOrigin {
 			thisScript.oper({
 				id: 518,
 				name: '页面是否为庭院',
-				operator: [
-					{
-						desc: thisOperator[0].desc,
-						oper: [thisOperator[0].oper[0]],
-					},
-					{
-						desc: thisOperator[1].desc,
-					},
-					{
-						desc: thisOperator[2].desc,
-					},
-					{
-						desc: thisOperator[3].desc,
-					},
-				],
+				operator: [{
+					desc: thisOperator[0].desc,
+					oper: [thisOperator[0].oper[0]],
+				}, {
+					desc: thisOperator[1].desc,
+				}, {
+					desc: thisOperator[2].desc,
+				}, {
+					desc: thisOperator[3].desc,
+				}],
 			})
 		) {
 			if (thisScript.global.daily_collection === 'friend') {
 				return thisScript.oper({
 					id: 518,
 					name: '点击_好友',
-					operator: [
-						{
-							oper: [thisOperator[0].oper[1]],
-						},
-					],
+					operator: [{
+						oper: [thisOperator[0].oper[1]],
+					}],
 				});
 			}
 
@@ -653,11 +661,9 @@ export class Func518 implements IFuncOrigin {
 				return thisScript.oper({
 					id: 518,
 					name: '点击_商店',
-					operator: [
-						{
-							oper: [thisOperator[0].oper[2]],
-						},
-					],
+					operator: [{
+						oper: [thisOperator[0].oper[2], thisOperator[0].oper[2]], // 点两次跳过推荐
+					}],
 				});
 			}
 
@@ -692,22 +698,18 @@ export class Func518 implements IFuncOrigin {
 			thisScript.oper({
 				id: 518,
 				name: '检测_商店_礼包屋',
-				operator: [
-					{
-						desc: thisOperator[33].desc,
-					},
-				],
+				operator: [{
+					desc: thisOperator[33].desc,
+				}],
 			}) &&
 			thisScript.global.daily_collection !== 'store'
 		) {
 			return thisScript.oper({
 				id: 518,
 				name: '返回庭院',
-				operator: [
-					{
-						oper: thisOperator[33].oper,
-					},
-				],
+				operator: [{
+					oper: thisOperator[33].oper,
+				}],
 			});
 		}
 
@@ -750,11 +752,9 @@ export class Func518 implements IFuncOrigin {
 			thisScript.oper({
 				id: 518,
 				name: '检测_领取全部奖励弹窗',
-				operator: [
-					{
-						desc: thisOperator[6].desc,
-					},
-				],
+				operator: [{
+					desc: thisOperator[6].desc,
+				}],
 			})
 		) {
 			//	超过3次领取失败 判断为御魂满了
@@ -762,11 +762,9 @@ export class Func518 implements IFuncOrigin {
 				return thisScript.oper({
 					id: 518,
 					name: '关闭弹窗',
-					operator: [
-						{
-							oper: [thisOperator[5].oper[1]],
-						},
-					],
+					operator: [{
+						oper: [thisOperator[5].oper[1]],
+					}],
 				});
 			} else {
 				if (!thisScript.global.checked_yard_count) {
@@ -778,11 +776,9 @@ export class Func518 implements IFuncOrigin {
 				return thisScript.oper({
 					id: 518,
 					name: '检测_领取全部奖励弹窗',
-					operator: [
-						{
-							oper: thisOperator[6].oper,
-						},
-					],
+					operator: [{
+						oper: thisOperator[6].oper,
+					}],
 				});
 			}
 		}
@@ -823,6 +819,7 @@ export class Func518 implements IFuncOrigin {
 					thisOperator[35], //  检测_商店_礼包屋_热卖页签
 					thisOperator[37], //  检测_商店_热门推荐_另一种适配
 					thisOperator[38], //  检测是否为好友弹窗 页签处于最近
+					thisOperator[41], //  检测_商店_热门推荐3
 				],
 			})
 		) {
@@ -847,6 +844,8 @@ export class Func518 implements IFuncOrigin {
 			) {
 				thisScript.global.checked_yard_count = 0;
 				thisScript.global.daily_collection = 'courtyard';
+				// 已领取后返回庭院
+				thisScript.regionClick(thisOperator[33].oper);
 			}
 
 			if (!thisScript.global.checked_yard_count) {

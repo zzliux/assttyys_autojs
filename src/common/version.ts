@@ -1094,6 +1094,9 @@ export const versionList = [{
 }, {
 	version: '20240530_01',
 	desc: '新增：定时任务队列快捷清单'
+}, {
+	version: '20240606_01',
+	desc: '修复：518无限切换吉闻与友情点、商店跳过热门推荐动画、礼包屋不退回庭院。'
 }];
 
 export default versionList[versionList.length - 1].version;
