@@ -1097,6 +1097,9 @@ export const versionList = [{
 }, {
 	version: '20240606_01',
 	desc: '修复：518无限切换吉闻与友情点、商店跳过热门推荐动画、礼包屋不退回庭院。'
+}, {
+	version: '20240607_01',
+	desc: '优化：进入商店关闭扩展包弹窗',
 }];
 
 export default versionList[versionList.length - 1].version;

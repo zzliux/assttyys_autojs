@@ -628,6 +628,12 @@ export class Func518 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 1146, 631, 1196, 691, 1000],
 			]
+		}, { // 42 式神拓展包弹窗
+			desc: '式神拓展包弹窗',
+			oper: [
+				[center, 1280, 720, 908, 138, 950, 178, 1000],
+				[center, 1280, 720, 660, 626, 697, 664, 1200], //  商店位置，用于跳过动画
+			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -820,6 +826,7 @@ export class Func518 implements IFuncOrigin {
 					thisOperator[37], //  检测_商店_热门推荐_另一种适配
 					thisOperator[38], //  检测是否为好友弹窗 页签处于最近
 					thisOperator[41], //  检测_商店_热门推荐3
+					thisOperator[42], //  关式神拓展包弹窗并跳过动画
 				],
 			})
 		) {

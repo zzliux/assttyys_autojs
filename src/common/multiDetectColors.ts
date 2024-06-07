@@ -471,6 +471,18 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 				[center, 454, 495, 0x6c4937],
 			]
 		]
+	},
+	'式神拓展包弹窗': {
+		desc: [
+			1280, 720,
+			[
+				[center, 366, 191, 0xc8b29a],
+				[center, 909, 211, 0xcbb59e],
+				[center, 494, 290, 0x46322a],
+				[center, 600, 485, 0xf4b25f],
+				[center, 896, 516, 0xcbb59e],
+			]
+		]
 	}
 };
 
