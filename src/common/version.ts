@@ -1100,6 +1100,9 @@ export const versionList = [{
 }, {
 	version: '20240607_01',
 	desc: '优化：进入商店关闭扩展包弹窗',
+}, {
+	version: '20240607_02',
+	desc: '修复：启动过无下次执行时间的定时任务启动报错的问题',
 }];
 
 export default versionList[versionList.length - 1].version;

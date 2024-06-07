@@ -674,7 +674,7 @@ export default defineComponent({
     }
 
     function mergeOffsetTime(item) {
-      if (item.nextOffset) {
+      if (item && item.nextDate && item.nextOffset) {
         let offsetTime = 0;
         const parts = item.nextOffset?.split(',');
         if (parts.length === 2) {

@@ -81,7 +81,7 @@ export class JobOptions {
 
 export const mergeOffsetTime = function (date: Date, offsetStr: string) {
 	let offsetTime = 0;
-	if (offsetStr) {
+	if (date && offsetStr) {
 		const parts = offsetStr?.split(',');
 		if (parts.length === 2) {
 			const [ offsetMinuteLow, offsetMinuteHigh ] = parts.map(item => parseInt(item));
