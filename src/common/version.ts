@@ -1099,10 +1099,13 @@ export const versionList = [{
 	desc: '修复：518无限切换吉闻与友情点、商店跳过热门推荐动画、礼包屋不退回庭院。'
 }, {
 	version: '20240607_01',
-	desc: '优化：进入商店关闭扩展包弹窗',
+	desc: '优化：518进入商店关闭扩展包弹窗',
 }, {
 	version: '20240607_02',
 	desc: '修复：启动过无下次执行时间的定时任务启动报错的问题',
+}, {
+	version: '20240608_01',
+	desc: '修复：518领完黑蛋回不回庭院',
 }];
 
 export default versionList[versionList.length - 1].version;
