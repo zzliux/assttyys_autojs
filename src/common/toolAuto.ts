@@ -161,6 +161,34 @@ export function getRegionBiasRnd(region, pointBias, influence) {
 }
 
 /**
+ * 生成服从正态分布随机数，均值需尽量传入region的1/4至3/4区间内的值，否则容易出现均值统计概率过高的问题
+ * @param range 范围
+ * @param mean 均值
+ * @returns v
+ */
+export function getNormalRandom(range: [number, number], mean: number): number {
+	if (range[0] == range[1]) return range[0];
+	if (range[0] > range[1]) return getNormalRandom([range[1], range[0]], mean);
+	if (mean >= range[1]) mean = range[1];
+	if (mean <= range[0]) mean = range[0];
+
+	const stdDevMin = (range[1] - range[0]) / ((range[1] - range[0]) * 4 / Math.min(range[1] - mean, mean - range[0]))
+
+	let u = 0, v = 0;
+	while (u === 0) u = Math.random(); // 避免u为0
+	while (v === 0) v = Math.random();
+	const z = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+
+	const num = z * stdDevMin + mean; // 应用标准差和平均值
+
+	if (num < range[0] || num > range[1]) {
+		return getNormalRandom(range, mean);
+	}
+	return Math.floor(num);
+}
+
+
+/**
  * new bing生成的服从二维正态分布的函数，手动调了下根据influence与region生成方差
  * @param region
  * @param pointBias

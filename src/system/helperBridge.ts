@@ -1,6 +1,6 @@
 import { getWidthPixels, getHeightPixels } from '@auto.pro/core';
 import drawFloaty from '@/system/drawFloaty';
-import { getRegionBiasRnd2, hash, strHashToNum } from '@/common/toolAuto';
+import { getNormalRandom, getRegionBiasRnd2, hash, strHashToNum } from '@/common/toolAuto';
 import { IMyAutomator } from '@/system/MyAutomator';
 
 // const normal = -1; //定义常量
@@ -128,7 +128,10 @@ export class helperBridge implements IhelperBridge {
 			} else {
 				console.log(`传入坐标信息为(${JSON.stringify(item)}), 不执行操作`);
 			}
-			sleep(item[4] + random(baseSleep || 0, randomSleep || 0));
+
+			// sleep(item[4] + random(baseSleep || 0, randomSleep || 0));
+			const sleepRegion: [number, number] = [item[4] + (baseSleep || 0), item[4] + (baseSleep || 0) + (randomSleep || 0)];
+			sleep(getNormalRandom(sleepRegion, strHashToNum(device.getAndroidId(), sleepRegion[0], sleepRegion[1])))
 		});
 	}
 
@@ -167,7 +170,9 @@ export class helperBridge implements IhelperBridge {
 			random(transedOperE[1], transedOperE[3]), // y2
 			time // duration
 		);
-		sleep(baseSleep+ random(0, randomSleep))
+		// sleep(baseSleep + random(0, randomSleep))
+		const sleepRegion: [number, number] = [baseSleep, baseSleep + randomSleep];
+		sleep(getNormalRandom(sleepRegion, strHashToNum(device.getAndroidId(), sleepRegion[0], sleepRegion[1])))
 		console.log(`执行滑动操作 === ${transedOperS}`);
 	}
 	/**
@@ -226,8 +231,10 @@ export class helperBridge implements IhelperBridge {
 			drawFloaty.draw(toDraw, Math.max(duration - 20, 300));
 			sleep(200);
 		}
-		this.automator.gesture(duration, ...points)
-		sleep(random(0, randomSleep || 0));
+		this.automator.gesture(duration, ...points);
+		// sleep(random(0, randomSleep || 0));
+		const sleepRegion: [number, number] = [0, randomSleep || 0];
+		sleep(getNormalRandom(sleepRegion, strHashToNum(device.getAndroidId(), sleepRegion[0], sleepRegion[1])));
 	}
 }
 

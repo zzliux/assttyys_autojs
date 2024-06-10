@@ -1106,6 +1106,9 @@ export const versionList = [{
 }, {
 	version: '20240608_01',
 	desc: '修复：518领完黑蛋回不回庭院',
+}, {
+	version: '20240610_01',
+	desc: '优化：点击后的延时区间由线性随机修改为服从正态分布的随机'
 }];
 
 export default versionList[versionList.length - 1].version;
