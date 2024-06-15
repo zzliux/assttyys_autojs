@@ -69,49 +69,15 @@ class MlkitOcr implements IOcr {
 			option.failCallback();
 			return;
 		}
-		dialogs.confirm('提示', '大约消耗11Mb，是否下载OCR扩展？', function (cr) {
+		if (this.isInstalled()) {
+			option.successCallback();
+			return;
+		}
+		dialogs.confirm('提示', '请根据CPU架构自行下载并安装OCR插件', function (cr: boolean) {
 			if (cr) {
-				try {
-					threads.start(function () {
-						try {
-							toastLog('下载中，请稍后...');
-							// const path = context.getExternalFilesDir(null).getAbsolutePath() + '/assttyus_ng/ocr';
-							const path = files.cwd() + '/plugins'
-							const url = 'https://assttyys.zzliux.cn/static/autojspro-mlkit-ocr-plugin-1.1.apk';
-							const r = http.get(url);
-							console.log(`下载路径${path}`);
-							files.ensureDir(path + '/autojspro-mlkit-ocr-plugin-1.1.apk');
-							if (files.exists(path + '/autojspro-mlkit-ocr-plugin-1.1.apk')) {
-								files.remove(path + '/autojspro-mlkit-ocr-plugin-1.1.apk');
-							}
-							// @ts-expect-error d.ts文件问题
-							files.writeBytes(path + '/org.autojs.autojspro.plugin.mlkit.ocr.apk', r.body.bytes());
-							if (mlkitOcr.isInstalled()) {
-								toastLog('安装完成');
-								option.successCallback();
-							} else {
-								toastLog('安装出错');
-								option.failCallback();
-							}
-							// if (isRoot) {
-							//     shell('install -t ' + path + '/autojspro-mlkit-ocr-plugin-1.1.apk', true);
-							// } else {
-							// app.viewFile(path + '/autojspro-mlkit-ocr-plugin-1.1.apk');
-							// }
-						} catch (e) {
-							toast(e);
-							console.error($debug.getStackTrace(e));
-							option.failCallback();
-						}
-					});
-				} catch (e) {
-					toast(e);
-					console.error($debug.getStackTrace(e));
-					option.failCallback();
-				}
-			} else {
-				option.failCallback();
+				$app.openUrl('https://github.com/zzliux/assttyys_autojs/releases');
 			}
+			option.failCallback();
 		});
 	}
 
