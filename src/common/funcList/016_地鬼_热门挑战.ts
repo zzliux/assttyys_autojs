@@ -9,6 +9,15 @@ export class Func016 implements IFuncOrigin {
 	id = 16;
 	name = '地鬼_热门挑战';
 	desc = '在地域鬼王界面时，自动选热门进行挑战';
+	config = [{
+		desc: '结束后切换方案',
+		config: [{
+			name: 'next_scheme',
+			desc: '先切换至返回庭院，再由返回庭院切换至配置的目标方案',
+			type: 'scheme',
+			default: '__停止脚本__',
+		}]
+	}];
 	operator: IFuncOperatorOrigin[] = [{
 		// 0
 		desc: [1280, 720,
@@ -147,8 +156,12 @@ export class Func016 implements IFuncOrigin {
 
 			if (thisScript.global.dgCurNum === -1) {
 				thisScript.regionClick([thisOperator[2].oper[1]]);
+				const params: any = {};
+				if (thisScript.scheme.config['503'].next_scheme) {
+					params.next_scheme_name = thisScript.scheme.config['503'].next_scheme;
+				}
 				const next_scheme = '返回庭院';
-				thisScript.rerun(next_scheme);
+				thisScript.rerun(next_scheme, params);
 				return;
 			}
 			const clickOper = thisOperator[0].oper[2 + thisScript.global.dgCurNum];

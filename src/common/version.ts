@@ -1109,6 +1109,9 @@ export const versionList = [{
 }, {
 	version: '20240610_01',
 	desc: '优化：点击后的延时区间由线性随机修改为服从正态分布的随机'
+}, {
+	version: '20240627_01',
+	desc: '优化：016地鬼结束支持切换方案'
 }];
 
 export default versionList[versionList.length - 1].version;
