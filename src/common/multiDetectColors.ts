@@ -111,7 +111,7 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 			]
 		]
 	},
-	'退出结算_邀请好友确认_未勾': {
+	'退出结算_取消确认框_未勾': {
 		desc: [1280, 720,
 			[
 				[center, 460, 258, 0xcbb59e],
@@ -123,15 +123,14 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 			]
 		]
 	},
-	'退出结算_邀请好友确认_已勾': {
+	'退出结算_取消确认框': {
 		desc: [1280, 720,
 			[
 				[center, 460, 258, 0xcbb59e],
 				[center, 799, 268, 0xcbb59e],
 				[center, 467, 429, 0xdf6851],
 				[center, 700, 431, 0xf4b25f],
-				[center, 641, 429, 0xcbb59e],
-				[center, 550, 352, 0x4b5ee9]
+				[center, 641, 429, 0xcbb59e]
 			]
 		]
 	},

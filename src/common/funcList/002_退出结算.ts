@@ -85,7 +85,7 @@ export class Func002 implements IFuncOrigin {
 		retest: 300
 	}, {
 		// 5 邀请好友确认
-		desc: '退出结算_邀请好友确认_未勾',
+		desc: '退出结算_取消确认框_未勾',
 		oper: [
 			[center, 1280, 720, 550, 347, 730, 376, 300],
 			[center, 1280, 720, 680, 411, 838, 452, 1000],
@@ -226,7 +226,7 @@ export class Func002 implements IFuncOrigin {
 		retest: 800,
 	}, {
 		// 21 邀请好友确认
-		desc: '退出结算_邀请好友确认_已勾',
+		desc: '退出结算_取消确认框',
 		oper: [
 			[center, 1280, 720, 680, 411, 838, 452, 1000],
 		],
