@@ -1112,6 +1112,10 @@ export const versionList = [{
 }, {
 	version: '20240627_01',
 	desc: '优化：016地鬼结束支持切换方案'
+}, {
+	version: '20240627_02',
+	desc: `优化：508逢魔首领结束支持切换方案
+002退出结算对取消确认框额外判断是否已勾选`
 }];
 
 export default versionList[versionList.length - 1].version;

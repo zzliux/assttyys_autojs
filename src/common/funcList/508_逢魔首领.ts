@@ -16,15 +16,18 @@ export class Func508 implements IFuncOrigin {
 	config = [
 		{
 			desc: '是否开启极',
-			config: [
-				{
-					name: 'switch_ji_enabled',
-					desc: '是否启用逢魔·极',
-					type: 'switch',
-					default: false,
-					value: false,
-				},
-			],
+			config: [ {
+				name: 'switch_ji_enabled',
+				desc: '是否启用逢魔·极',
+				type: 'switch',
+				default: false,
+				value: false,
+			}, {
+				name: 'next_scheme',
+				desc: '先切换至返回庭院，再由返回庭院切换至配置的目标方案',
+				type: 'scheme',
+				default: '__停止脚本__',
+			}],
 		},
 	];
 	operator: IFuncOperatorOrigin[] = [
@@ -386,8 +389,9 @@ export class Func508 implements IFuncOrigin {
 			})
 		) {
 			if (thisScript.global.fm_kiss_boss_flag) {
-				const next_scheme = '返回庭院';
-				thisScript.rerun(next_scheme);
+				thisScript.rerun('返回庭院', {
+					next_scheme_name: thisConf.next_scheme
+				});
 			} else {
 				//	检测 是否有开启 逢魔·极
 				if (thisConf && thisConf['switch_ji_enabled']) {
