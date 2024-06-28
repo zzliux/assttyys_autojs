@@ -82,7 +82,7 @@
                     type="danger"
                     square
                     text="删除"
-                    v-if="!element.inner"
+                    v-if="!element.inner || true"
                     @click="swipeCellCurrentAction = filterGroupName === '全部' ? 'delete' : null ; swipeCellCurrentIndex = index"
                   /><van-button
                     type="primary"

@@ -771,11 +771,11 @@ export class Script {
 					if (item.operStepRandom) {
 						if (currFunc.id)
 							console.log(`oper_success：[item.operStepRandom] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper}`);
-						helperBridge.regionStepRandomClick(item.operStepRandom, this.scheme.commonConfig.afterClickDelayBase as number, this.scheme.commonConfig.afterClickDelayRandom as number);
+						helperBridge.regionStepRandomClick(item.operStepRandom, Math.floor(this.scheme.commonConfig.afterClickDelayBase as number), Math.floor(this.scheme.commonConfig.afterClickDelayRandom as number));
 					} else if (item.oper) {
 						if (currFunc.id)
 							console.log(`oper_success：[item.oper] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper}`);
-						helperBridge.regionClick(item.oper, this.scheme.commonConfig.afterClickDelayBase as number || 0, this.scheme.commonConfig.afterClickDelayRandom as number);
+						helperBridge.regionClick(item.oper, Math.floor(this.scheme.commonConfig.afterClickDelayBase as number || 0), Math.floor(this.scheme.commonConfig.afterClickDelayRandom as number));
 					} else {
 						if (currFunc.id)
 							console.log(`oper_success: [] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper}`);
@@ -886,9 +886,9 @@ export class Script {
 		}
 	}
 
-	regionClick(oper, baseSleep?, randomSleep?) {
-		baseSleep = baseSleep || this.scheme.commonConfig.afterClickDelayBase || 0;
-		randomSleep = randomSleep || this.scheme.commonConfig.afterClickDelayRandom || 0
+	regionClick(oper, baseSleep?: number, randomSleep?: number) {
+		baseSleep = baseSleep || Math.floor(this.scheme.commonConfig.afterClickDelayBase as number || 0);
+		randomSleep = randomSleep || Math.floor(this.scheme.commonConfig.afterClickDelayRandom as number || 0)
 		this.helperBridge.regionClick(oper, baseSleep, randomSleep);
 	}
 

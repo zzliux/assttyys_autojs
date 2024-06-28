@@ -1116,6 +1116,10 @@ export const versionList = [{
 	version: '20240627_02',
 	desc: `优化：508逢魔首领结束支持切换方案
 002退出结算对取消确认框额外判断是否已勾选`
+}, {
+	version: '20240629_01',
+	desc: `优化：内置方案允许删除；
+修复：修改了公共配置参数的延时相关参数引起的不正常延时`
 }];
 
 export default versionList[versionList.length - 1].version;
