@@ -1120,6 +1120,9 @@ export const versionList = [{
 	version: '20240629_01',
 	desc: `优化：内置方案允许删除；
 修复：修改了公共配置参数的延时相关参数引起的不正常延时`
+}, {
+	version: '20240629_02',
+	desc: '优化：内置方案允许删除，找回可通过创建同名内置方案后并重置该方案即可'
 }];
 
 export default versionList[versionList.length - 1].version;

@@ -208,8 +208,9 @@ const props = defineProps({
 });
 
 (async function () {
-  const savedSchemeList = await AutoWeb.autoPromise("getSchemeList", null)
-  schemeList.value = mergeSchemeList(savedSchemeList, dSchemeList);
+  const savedSchemeList = await AutoWeb.autoPromise("getSchemeList", null);
+  const deletedSchemeNames = await AutoWeb.autoPromise("getDeletedSchemeNames", null);
+  schemeList.value = mergeSchemeList(savedSchemeList, dSchemeList).filter(item => !deletedSchemeNames.includes(item.schemeName));
   // 获取后保存一下方案列表，避免出现展示内容与保存内容不一样的情况
   AutoWeb.autoPromise('saveSchemeList', schemeList.value);
   eleSearch.value.doHighlightFromQuery();
