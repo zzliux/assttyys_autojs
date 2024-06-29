@@ -117,6 +117,20 @@ export class Func306 implements IFuncOrigin {
 		]
 	}, { // 5 战斗界面
 		desc: '战斗界面',
+	}, { // 6 队友详细
+		desc: [
+			1280, 720,
+			[
+				[center, 859, 561, 0xea7d67],
+				[center, 688, 566, 0xdd705d],
+				[right, 1059, 622, 0x48322e],
+				[right, 1041, 213, 0x412d25],
+				[right, 1044, 278, 0xc6b4a3],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 347, 544, 471, 612, 1000],
+		]
 	}]
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['306'];

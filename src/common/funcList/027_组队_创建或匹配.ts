@@ -42,12 +42,13 @@ export class Func027 implements IFuncOrigin {
 			[left, 1280, 720, 427, 619, 486, 683, 1000]
 		]
 	}, { // 组队界面
-		desc: [1280, 720,
+		desc: [
+			1280, 720,
 			[
 				[left, 42, 38, 0xf7e5a7],
-				[left, 100, 513, 0x372422],
 				[right, 1194, 34, 0xd6c7a5],
-				[right, 1071, 628, 0xf7b263]
+				[right, 1071, 628, 0xf7b263],
+				[left, 48, 490, 0x3e2822],
 			]
 		],
 		oper: [

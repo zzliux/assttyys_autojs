@@ -184,14 +184,29 @@ export class Func311 implements IFuncOrigin {
 					name: '红标-行动条检测',
 					operator: [thisOperator[5]],
 				})) {
-					const point = thisScript.findMultiColor('夜溟彼岸花')
+					const point = thisScript.findMultiColor('神荒')
 					if (point) {
-						console.log('开局查找到溟彼岸花');
+						console.log('开局查找到神荒');
+						if (point.x > 307 && point.x < 428) {
+							thisScript.regionClick([thisOperator[3].oper[0]]);
+						} else if (point.x > 440 && point.x < 561) {
+							thisScript.regionClick([thisOperator[3].oper[1]]);
+						} else if (point.x > 589 && point.x < 710) {
+							thisScript.regionClick([thisOperator[3].oper[2]]);
+						} else if (point.x > 753 && point.x < 874) {
+							thisScript.regionClick([thisOperator[3].oper[3]]);
+						} else if (point.x > 892 && point.x < 1031) {
+							thisScript.regionClick([thisOperator[3].oper[4]]);
+						}
+					}
+					const point1 = thisScript.findMultiColor('夜溟彼岸花')
+					if (point1) {
+						console.log('开局查找到');
 						const oper = [[
-							point.x + 17,
-							point.y + 17,
-							point.x + 64,
-							point.y + 64,
+							point1.x + 17,
+							point1.y + 17,
+							point1.x + 64,
+							point1.y + 64,
 							1200
 						]];
 						sleep(Number(thisconf.sleepTime) * 1000);
