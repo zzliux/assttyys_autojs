@@ -207,7 +207,17 @@ export class Func030 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 1100, 523, 1241, 653, 1000],
 			]
-		},
+		}, { // 13 巅峰斗技
+			desc: '巅峰斗技主界面',
+			oper: [
+				[center, 1280, 720, 1167, 590, 1243, 659, 1000],
+			]
+		}, { // 14 巅峰斗技
+			desc: '巅峰斗技主界面_段位保护',
+			oper: [
+				[center, 1280, 720, 1167, 590, 1243, 659, 1000],
+			]
+		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['30'];
@@ -313,6 +323,8 @@ export class Func030 implements IFuncOrigin {
 					thisOperator[3],
 					thisOperator[4],
 					thisOperator[10],
+					thisOperator[13], // 巅峰斗技
+					thisOperator[14], // 巅峰斗技_段位保护
 				],
 			})
 		) {

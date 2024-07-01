@@ -406,6 +406,34 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 			],
 		],
 	},
+	'巅峰斗技主界面': {
+		desc: [
+			1280, 720,
+			[
+				[right, 1232, 617, 0xd0ba91],
+				[right, 1189, 627, 0x3b1e0d],
+				[right, 1190, 109, 0xd7ae7d],
+				[center, 776, 66, 0x593716],
+				[center, 715, 64, 0xf9f3ad],
+				[left, 38, 25, 0xf5e5a6],
+				[left, 223, 31, 0x593716],
+			]
+		]
+	},
+	'巅峰斗技主界面_段位保护': {
+		desc: [
+			1280, 720,
+			[
+				[right, 1232, 617, 0xbdbaa4],
+				[right, 1189, 627, 0x55565a],
+				[right, 1190, 109, 0xd7ae7d],
+				[center, 776, 66, 0x593716],
+				[center, 715, 64, 0xf9f3ad],
+				[left, 38, 25, 0xf5e5a6],
+				[left, 223, 31, 0x593716],
+			]
+		]
+	},
 	'秘闻挑战开启': {
 		desc: [1280, 720,
 			[

@@ -1123,6 +1123,9 @@ export const versionList = [{
 }, {
 	version: '20240629_02',
 	desc: '优化：内置方案允许删除，找回可通过创建同名内置方案后并重置该方案即可'
+}, {
+	version: '20240701_01',
+	desc: '优化：30斗技、503返回庭院支持巅峰斗技'
 }];
 
 export default versionList[versionList.length - 1].version;
