@@ -9,7 +9,7 @@ export class Func027 implements IFuncOrigin {
 	id = 27;
 	name = '组队_创建或匹配';
 	desc = '在庭院中点击下方的组队按钮后点击创建或排队按钮';
-	operator: IFuncOperatorOrigin[] = [{ // 妖气自动匹配中的 图像
+	operator: IFuncOperatorOrigin[] = [{ // 0 妖气自动匹配中的 图像
 		desc: [
 			1280, 720,
 			[
@@ -25,77 +25,45 @@ export class Func027 implements IFuncOrigin {
 			[center, 1280, 720, -1, -1, -1, -1, 5000] // 匹配中等5秒
 		]
 	}, {
-		// 庭院未打开菜单
+		// 1 庭院未打开菜单
 		desc: '页面是否为庭院_菜单未展开_只支持默认庭院皮肤与默认装饰',
 		oper: [
 			[right, 1280, 720, 1168, 592, 1230, 690, 1200]
 		]
-	}, { // 庭院已打开菜单
+	}, { // 2 庭院已打开菜单
 		desc: '页面是否为庭院_菜单已展开_只支持默认庭院皮肤与默认装饰',
 		oper: [
 			[left, 1280, 720, 427, 619, 486, 683, 1000]
 		]
 	}, {
-		// 庭院已打开菜单，另外一种图标
+		// 3 庭院已打开菜单，另外一种图标
 		desc: '页面是否为庭院_菜单已展开_另一种图标_御祝图标_只支持默认庭院皮肤与默认装饰',
 		oper: [
 			[left, 1280, 720, 427, 619, 486, 683, 1000]
 		]
-	}, { // 组队界面
-		desc: [
-			1280, 720,
-			[
-				[left, 42, 38, 0xf7e5a7],
-				[right, 1194, 34, 0xd6c7a5],
-				[right, 1071, 628, 0xf7b263],
-				[left, 48, 490, 0x3e2822],
-			]
-		],
+	}, { // 4 组队大厅界面
+		desc: '组队大厅',
 		oper: [
 			[center, 1280, 720, 993, 605, 1151, 649, 1000], // 创建队伍
 		]
-	}, {
-		desc: [1280, 720,
-			[
-				[center, 840, 143, 0xd7c8ba],
-				[center, 623, 620, 0xccbbaa],
-				[center, 721, 625, 0xf4b25f],
-				[center, 446, 625, 0xf3b25e],
-				[center, 722, 156, 0xdbcdc4],
-				[center, 1134, 98, 0x482f28]
-			]
-		],
+	}, { // 5 组队大厅界面(包含自动匹配按钮)
+		desc: '组队大厅_自动匹配',
 		oper: [
 			[center, 1280, 720, 702, 601, 865, 650, 1000] // 组队界面 自动匹配
 		]
-	}, { // 经验妖怪界面
-		desc: [
-			1280, 720,
-			[
-				[center, 377, 143, 0x5e4030],
-				[center, 890, 143, 0x644434],
-				[center, 401, 572, 0x5d4030],
-				[center, 882, 573, 0x684635],
-				[center, 629, 515, 0xf3b25e],
-			]
-		],
+	}, { // 6 组队大厅_创建队伍（不带选择副本类型）
+		desc: '组队大厅_创建队伍',
 		oper: [
 			[center, 1280, 720, 404, 414, 430, 438, 1000], // 经验妖怪界面_不公开
 			[center, 1280, 720, 536, 490, 739, 534, 1000], // 经验妖怪界面_创建
 		]
-	}, { // 创建队伍
-		desc: [1280, 720,
-			[
-				[left, 228, 62, 0xed8ba1],
-				[center, 398, 66, 0x624430],
-				[center, 402, 584, 0xde6952],
-				[center, 877, 590, 0xf7b263]]
-		],
+	}, { // 7 创建队伍
+		desc: '组队大厅_选择副本类型_创建队伍',
 		oper: [
 			[center, 1280, 720, 754, 499, 778, 521, 1000], // 不公开
 			[center, 1280, 720, 818, 567, 932, 612, 1000]// 创建
 		]
-	}, {
+	}, { // 8 返回
 		oper: [
 			[center, 1280, 720, 31, 20, 73, 61, 1000]// 返回
 		]
@@ -105,12 +73,12 @@ export class Func027 implements IFuncOrigin {
 		const maxCount = 3;
 		while (thisScript.oper({
 			name: '组队_创建',
-			operator: [thisOperator[4], thisOperator[7]]
+			operator: [thisOperator[4], thisOperator[6], thisOperator[7]]
 		})) {
 			curCnt++;
 			thisScript.keepScreen();
 			if (curCnt >= maxCount) {
-				thisScript.regionClick([thisOperator[9].oper[0]]);
+				thisScript.regionClick([thisOperator[8].oper[0]]);
 				thisScript.doPush(thisScript, { text: '体力不够创房，已停止。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 				thisScript.stop();
 				sleep(2000);
@@ -120,7 +88,11 @@ export class Func027 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 27,
 			name: '组队_匹配',
-			operator: thisOperator.slice(0, -2)
+			operator: [
+				thisOperator[0], thisOperator[1], thisOperator[2],
+				thisOperator[3], /* thisOperator[4], */thisOperator[5],
+				/* thisOperator[6], *//* thisOperator[7],*/
+			]
 		})) {
 			return true;
 		}

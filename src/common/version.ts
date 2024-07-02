@@ -1126,6 +1126,9 @@ export const versionList = [{
 }, {
 	version: '20240701_01',
 	desc: '优化：30斗技、503返回庭院支持巅峰斗技'
+}, {
+	version: '20240702_01',
+	desc: '优化：30斗技、503返回庭院支持巅峰斗技段位保护'
 }];
 
 export default versionList[versionList.length - 1].version;

@@ -347,6 +347,11 @@ export class Func503 implements IFuncOrigin {
 		oper: [
 			[left, 1280, 720, 22, 4, 67, 49, 500]
 		]
+	}, { // 31 巅峰斗技返回
+		desc: '巅峰斗技主界面_段位保护裂',
+		oper: [
+			[left, 1280, 720, 22, 4, 67, 49, 500]
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['503'];
@@ -361,7 +366,7 @@ export class Func503 implements IFuncOrigin {
 				thisOperator[18], thisOperator[19], thisOperator[20],
 				thisOperator[21], thisOperator[22], thisOperator[24],
 				thisOperator[25], thisOperator[27], thisOperator[28],
-				thisOperator[29], thisOperator[30],
+				thisOperator[29], thisOperator[30], thisOperator[31],
 			]
 		})) {
 			return true;

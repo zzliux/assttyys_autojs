@@ -434,6 +434,20 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 			]
 		]
 	},
+	'巅峰斗技主界面_段位保护裂': {
+		desc: [
+			1280, 720,
+			[
+				[right, 1232, 617, 0xadbbb4],
+				[right, 1190, 109, 0xd7ae7d],
+				[center, 776, 66, 0x593716],
+				[center, 715, 64, 0xf9f3ad],
+				[left, 38, 25, 0xf5e5a6],
+				[left, 223, 31, 0x593716],
+				[right, 1189, 624, 0x677d8f],
+			]
+		],
+	},
 	'秘闻挑战开启': {
 		desc: [1280, 720,
 			[
@@ -521,6 +535,52 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 				[center, 494, 290, 0x46322a],
 				[center, 600, 485, 0xf4b25f],
 				[center, 896, 516, 0xcbb59e],
+			]
+		]
+	},
+	'组队大厅': {
+		desc: [
+			1280, 720,
+			[
+				[left, 42, 38, 0xf7e5a7],
+				[right, 1194, 34, 0xd6c7a5],
+				[right, 1071, 628, 0xf7b263],
+				[left, 48, 490, 0x3e2822],
+			]
+		]
+	},
+	'组队大厅_自动匹配': {
+		desc: [1280, 720,
+			[
+				[center, 840, 143, 0xd7c8ba],
+				[center, 623, 620, 0xccbbaa],
+				[center, 721, 625, 0xf4b25f],
+				[center, 446, 625, 0xf3b25e],
+				[center, 722, 156, 0xdbcdc4],
+				[center, 1134, 98, 0x482f28]
+			]
+		]
+	},
+	'组队大厅_创建队伍': {
+		desc: [
+			1280, 720,
+			[
+				[center, 377, 143, 0x5e4030],
+				[center, 890, 143, 0x644434],
+				[center, 401, 572, 0x5d4030],
+				[center, 882, 573, 0x684635],
+				[center, 629, 515, 0xf3b25e],
+			]
+		],
+	},
+	'组队大厅_选择副本类型_创建队伍': {
+		desc: [
+			1280, 720,
+			[
+				[left, 228, 62, 0xec859d],
+				[center, 398, 66, 0x684a3b],
+				[center, 402, 584, 0xdf6851],
+				[center, 877, 590, 0xf3b25e],
 			]
 		]
 	}
