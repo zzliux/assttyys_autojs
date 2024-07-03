@@ -21,12 +21,16 @@ export class Func508 implements IFuncOrigin {
 				desc: '是否启用逢魔·极',
 				type: 'switch',
 				default: false,
-				value: false,
 			}, {
 				name: 'next_scheme',
 				desc: '先切换至返回庭院，再由返回庭院切换至配置的目标方案',
 				type: 'scheme',
 				default: '__停止脚本__',
+			}, {
+				name: 'times_for_search_boss',
+				desc: '查找多少次首领都没进去就不打了',
+				type: 'number',
+				default: 20,
 			}],
 		},
 	];
@@ -48,7 +52,7 @@ export class Func508 implements IFuncOrigin {
 				],
 			],
 			oper: [
-				[right, 1280, 720, 1002, 645, 1045, 693, 1000], // 进入首领按钮
+				[right, 1280, 720, 1002, 645, 1045, 693, 500], // 进入首领按钮
 			],
 		},
 		{
@@ -61,7 +65,7 @@ export class Func508 implements IFuncOrigin {
 				]
 			],
 			oper: [
-				[center, 1280, 720, 579, 303, 702, 407, 1200], //	点击逢魔首领
+				[center, 1280, 720, 579, 303, 702, 407, 300], //	点击逢魔首领
 			],
 		},
 		{
@@ -73,13 +77,12 @@ export class Func508 implements IFuncOrigin {
 					[left, 111, 245, 0xd4cbc3],
 					[left, 161, 673, 0xc3a561],
 					[center, 627, 621, 0x1f1b18],
-					[right, 1101, 265, 0xc7c5bc],
 					[right, 1129, 680, 0x5e1919],
 					[right, 1119, 564, 0xead8b9],
 				]
 			],
 			oper: [
-				[right, 1280, 720, 1120, 550, 1160, 587, 1000], //	点击挑战
+				[right, 1280, 720, 1120, 550, 1160, 587, 800], //	点击挑战
 				[right, 1280, 720, 1141, 68, 1160, 89, 1000], //	点击关闭
 			],
 		},
@@ -178,7 +181,7 @@ export class Func508 implements IFuncOrigin {
 				]
 			],
 			oper: [
-				[center, 1280, 720, 903, 658, 940, 689, 1000], // 进入首领极按钮
+				[center, 1280, 720, 903, 658, 940, 689, 500], // 进入首领极按钮
 			]
 		}
 	];
@@ -187,11 +190,9 @@ export class Func508 implements IFuncOrigin {
 		if (
 			thisScript.oper({
 				name: '检测_结算页',
-				operator: [
-					{
-						desc: thisOperator[7].desc,
-					},
-				],
+				operator: [{
+					desc: thisOperator[7].desc,
+				}],
 			})
 		) {
 			const point = thisScript.findMultiColor('逢魔_捡垃圾');
@@ -209,13 +210,9 @@ export class Func508 implements IFuncOrigin {
 
 		if (
 			thisScript.oper({
+				id: 508,
 				name: '检测_是否找到逢魔首领',
-				operator: [
-					{
-						desc: thisOperator[1].desc,
-						oper: thisOperator[1].oper,
-					},
-				],
+				operator: [thisOperator[1]],
 			})
 		) {
 			return true;
@@ -224,58 +221,52 @@ export class Func508 implements IFuncOrigin {
 		if (
 			thisScript.oper({
 				name: '检测_首领BOSS挑战页',
-				operator: [
-					{
-						desc: thisOperator[2].desc,
-					},
-					{
-						desc: thisOperator[8].desc,
-					},
-				],
+				operator: [{
+					desc: thisOperator[2].desc,
+				}, {
+					desc: thisOperator[8].desc,
+				}],
 			})
 		) {
 			thisScript.oper({
+				id: 508,
 				name: '点击首领BOSS挑战按钮',
-				operator: [
-					{
-						oper: [thisOperator[2].oper[0]],
-					},
-				],
+				operator: [{
+					oper: [thisOperator[2].oper[0]],
+				}],
 			});
 			console.log(
 				'检测首领boss是否能挑战,重试次数为:',
 				thisScript.global.checked_yard_count
 			);
 			// 做延时检测 防止不断重试点击挑战
-			if (thisScript.global.checked_yard_count >= 3) {
+			if (thisScript.global.checked_yard_count >= 5) {
 				thisScript.global.checked_yard_count = 0;
 				console.log('无法点击首领BOSS集结挑战，退出集结挑战页');
 				thisScript.oper({
+					id: 508,
 					name: '检测_关闭首领BOSS',
-					operator: [
-						{
-							oper: [
-								thisOperator[2].oper[1],
-							],
-						},
-					],
+					operator: [{
+						oper: [
+							thisOperator[2].oper[1],
+						],
+					}],
 				});
 
-				sleep(500);
+				sleep(150);
 
 				if (thisConf && thisConf['switch_ji_enabled']) {
 					if (
 						thisScript.oper({
+							id: 508,
 							name: '检测_是否有寻找 逢魔·极 按钮',
-							operator: [
-								thisOperator[9]
-							],
+							operator: [thisOperator[9]],
 						})
 					) {
 						if (!thisScript.global.fm_boss_btn_click_cnt) {
 							thisScript.global.fm_boss_btn_click_cnt = 0;
 						}
-						if (++thisScript.global.fm_boss_btn_click_cnt >= 10) {
+						if (++thisScript.global.fm_boss_btn_click_cnt >= (parseInt(thisConf.times_for_search_boss as string) || 20)) {
 							thisScript.global.fm_kiss_boss_flag = true;
 							thisScript.myToast(
 								`第${thisScript.global.fm_boss_btn_click_cnt}次点击查找逢魔·极首领按钮未成功进入首领挑战，标记挑战成功a`
@@ -291,18 +282,17 @@ export class Func508 implements IFuncOrigin {
 
 				if (
 					thisScript.oper({
+						id: 508,
 						name: '检测_点击寻找首领按钮',
-						operator: [
-							{
-								oper: thisOperator[0].oper,
-							},
-						],
+						operator: [{
+							oper: thisOperator[0].oper,
+						}],
 					})
 				) {
 					if (!thisScript.global.fm_boss_btn_click_cnt) {
 						thisScript.global.fm_boss_btn_click_cnt = 0;
 					}
-					if (++thisScript.global.fm_boss_btn_click_cnt >= 10) {
+					if (++thisScript.global.fm_boss_btn_click_cnt >= (parseInt(thisConf.times_for_search_boss as string) || 20)) {
 						thisScript.global.fm_kiss_boss_flag = true;
 						thisScript.myToast(
 							`第${thisScript.global.fm_boss_btn_click_cnt}次点击查找逢魔首领按钮未成功进入首领挑战，标记挑战成功a`
@@ -315,7 +305,7 @@ export class Func508 implements IFuncOrigin {
 					return true;
 				}
 			} else {
-				sleep(1500);
+				sleep(150);
 				if (!thisScript.global.checked_yard_count) {
 					thisScript.global.checked_yard_count = 1;
 				} else {
@@ -328,13 +318,9 @@ export class Func508 implements IFuncOrigin {
 
 		if (
 			thisScript.oper({
+				id: 508,
 				name: '检测_是否为提示框',
-				operator: [
-					{
-						desc: thisOperator[3].desc,
-						oper: thisOperator[3].oper,
-					},
-				],
+				operator: [thisOperator[3]],
 			})
 		) {
 			return true;
@@ -342,13 +328,9 @@ export class Func508 implements IFuncOrigin {
 
 		if (
 			thisScript.oper({
+				id: 508,
 				name: '检测_点击进入战斗',
-				operator: [
-					{
-						desc: thisOperator[4].desc,
-						oper: thisOperator[4].oper,
-					},
-				],
+				operator: [thisOperator[4]],
 			})
 		) {
 			return true;
@@ -357,21 +339,14 @@ export class Func508 implements IFuncOrigin {
 		if (
 			thisScript.oper({
 				name: '检测_结算页',
-				operator: [
-					{
-						desc: thisOperator[5].desc,
-						oper: thisOperator[5].oper,
-					},
-				],
+				operator: [thisOperator[5]],
 			}) ||
 			thisScript.oper({
 				name: '检测_结算页',
-				operator: [
-					{
-						desc: thisOperator[6].desc,
-						oper: thisOperator[5].oper,
-					},
-				],
+				operator: [{
+					desc: thisOperator[6].desc,
+					oper: thisOperator[5].oper,
+				}],
 			})
 		) {
 			thisScript.global.fm_kiss_boss_flag = true;
@@ -381,11 +356,9 @@ export class Func508 implements IFuncOrigin {
 		if (
 			thisScript.oper({
 				name: '检测_现世逢魔奖励是否已领取',
-				operator: [
-					{
-						desc: thisOperator[0].desc,
-					},
-				],
+				operator: [{
+					desc: thisOperator[0].desc,
+				}],
 			})
 		) {
 			if (thisScript.global.fm_kiss_boss_flag) {
@@ -404,7 +377,7 @@ export class Func508 implements IFuncOrigin {
 						if (!thisScript.global.fm_boss_btn_click_cnt) {
 							thisScript.global.fm_boss_btn_click_cnt = 0;
 						}
-						if (++thisScript.global.fm_boss_btn_click_cnt >= 4) {
+						if (++thisScript.global.fm_boss_btn_click_cnt >= (parseInt(thisConf.times_for_search_boss as string) || 20)) {
 							thisScript.global.fm_kiss_boss_flag = true;
 							thisScript.myToast(
 								`第${thisScript.global.fm_boss_btn_click_cnt}次点击查找逢魔·极首领按钮未成功进入首领挑战，标记挑战成功e`
@@ -420,18 +393,17 @@ export class Func508 implements IFuncOrigin {
 
 				if (
 					thisScript.oper({
+						id: 508,
 						name: '检测_点击寻找首领按钮',
-						operator: [
-							{
-								oper: thisOperator[0].oper,
-							},
-						],
+						operator: [{
+							oper: thisOperator[0].oper,
+						}],
 					})
 				) {
 					if (!thisScript.global.fm_boss_btn_click_cnt) {
 						thisScript.global.fm_boss_btn_click_cnt = 0;
 					}
-					if (++thisScript.global.fm_boss_btn_click_cnt >= 4) {
+					if (++thisScript.global.fm_boss_btn_click_cnt >= (parseInt(thisConf.times_for_search_boss as string) || 20)) {
 						thisScript.global.fm_kiss_boss_flag = true;
 						thisScript.myToast(
 							`第${thisScript.global.fm_boss_btn_click_cnt}次点击查找逢魔首领按钮未成功进入首领挑战，标记挑战成功e`
