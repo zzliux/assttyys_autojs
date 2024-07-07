@@ -1132,6 +1132,9 @@ export const versionList = [{
 }, {
 	version: '20240703_01',
 	desc: '修复：508逢魔首领不进夜荒魂；优化508/026逢魔挤车相关延时与点击次数'
+}, {
+	version: '20240707_01',
+	desc: '优化：503返回庭院允许配置可处理的界面，使用了503功能的方案建议重新保存一下'
 }];
 
 export default versionList[versionList.length - 1].version;

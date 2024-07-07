@@ -28,7 +28,136 @@ export class Func503 implements IFuncOrigin {
 			type: 'list',
 			data: ['停止脚本', '关闭应用', '不进行任何操作'],
 			default: '停止脚本',
-			value: null,
+		}]
+	}, {
+
+		desc: '选择需要执行操作的界面',
+		config: [{
+			name: 'oper_0',
+			desc: '0 探索地图界面',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_1',
+			desc: '1 阴阳寮神设首页',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_2',
+			desc: '2 斗技界面',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_3',
+			desc: '3 栏目',
+			type: 'switch',
+			default: true,
+		}, {
+
+			name: 'oper_5',
+			desc: '5 现世逢魔',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_6',
+			desc: '6 宠物后院',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_7',
+			desc: '7 召唤屋',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_10',
+			desc: '10 阴阳寮主页',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_11',
+			desc: '11 阴阳寮_寄养_己方结界',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_14',
+			desc: '14 阴阳寮成就页',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_15',
+			desc: '15 式神录',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_17',
+			desc: '17 突破界面',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_18',
+			desc: '18 客户端更新窗口关闭',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_19',
+			desc: '19 阴阳寮神社 获取称号弹窗',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_20',
+			desc: '20 道馆地图',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_21',
+			desc: '21 点开勋章后的突破界面',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_22',
+			desc: '22 战斗界面等待结束',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_23',
+			desc: '23 战斗界面_手动状态等待结束',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_24',
+			desc: '24 寮神社界面',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_25',
+			desc: '25 寮信息界面',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_27',
+			desc: '27 探索里面',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_28',
+			desc: '28 探索章节界面_普通_困难',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_29',
+			desc: '29 巅峰斗技主界面',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_30',
+			desc: '30 巅峰斗技主界面_段位保护',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_31',
+			desc: '31 巅峰斗技主界面_段位保护裂',
+			type: 'switch',
+			default: true,
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{	// 0 探索地图
@@ -49,7 +178,7 @@ export class Func503 implements IFuncOrigin {
 		oper: [
 			[left, 1280, 720, 25, 9, 74, 55, 2000]
 		]
-	}, { 	// 2 斗技
+	}, { 	// 2 斗技界面
 		desc: [1280, 720,
 			[
 				[left, 126, 26, 0xf8f3e0],
@@ -149,7 +278,7 @@ export class Func503 implements IFuncOrigin {
 		oper: [
 			[left, 1280, 720, 23, 10, 71, 56, 2000],   // 返回按钮
 		]
-	}, { 	// 11 判断_是否为己方结界
+	}, { 	// 11 阴阳寮_寄养_己方结界
 		desc: [1280, 720,
 			[
 				[center, 611, 300, 0x0c0804],
@@ -324,7 +453,7 @@ export class Func503 implements IFuncOrigin {
 			[center, 1280, 720, 28, 40, 77, 78, 1000],
 			[center, 1280, 720, 700, 386, 850, 418, 1000]
 		]
-	}, { // 28 章节界面_普通_困难
+	}, { // 28 探索章节界面_普通_困难
 		desc: [1280, 720,
 			[
 				[center, 276, 129, 0x493624],
@@ -355,21 +484,46 @@ export class Func503 implements IFuncOrigin {
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['503'];
-		if (thisScript.global.change_shikigami_flag && thisScript.oper({
-			id: 503,
-			name: '返回庭院',
-			operator: [
-				thisOperator[0], thisOperator[1], thisOperator[2],
-				thisOperator[3], thisOperator[5], thisOperator[6],
-				thisOperator[7], thisOperator[10], thisOperator[11],
-				thisOperator[14], thisOperator[15], thisOperator[17],
-				thisOperator[18], thisOperator[19], thisOperator[20],
-				thisOperator[21], thisOperator[22], thisOperator[24],
-				thisOperator[25], thisOperator[27], thisOperator[28],
-				thisOperator[29], thisOperator[30], thisOperator[31],
-			]
-		})) {
-			return true;
+		// if (thisScript.global.change_shikigami_flag && thisScript.oper({
+		// 	id: 503,
+		// 	name: '返回庭院',
+		// 	operator: [
+		// 		thisOperator[0], thisOperator[1], thisOperator[2],
+		// 		thisOperator[3], thisOperator[5], thisOperator[6],
+		// 		thisOperator[7], thisOperator[10], thisOperator[11],
+		// 		thisOperator[14], thisOperator[15], thisOperator[17],
+		// 		thisOperator[18], thisOperator[19], thisOperator[20],
+		// 		thisOperator[21], thisOperator[22], thisOperator[24],
+		// 		thisOperator[25], thisOperator[27], thisOperator[28],
+		// 		thisOperator[29], thisOperator[30], thisOperator[31],
+		// 	]
+		// })) {
+		// 	return true;
+		// }
+		if (thisScript.global.change_shikigami_flag) {
+			let enabledThisOperator = [];
+			if (typeof thisConf.oper_0 === 'undefined') {
+				// 升级兼容配置为空的情况，这一块代码暂时保留，以后有新增要处理的界面只新增配置，不修改这一块代码
+				enabledThisOperator = [
+					thisOperator[0], thisOperator[1], thisOperator[2],
+					thisOperator[3], thisOperator[5], thisOperator[6],
+					thisOperator[7], thisOperator[10], thisOperator[11],
+					thisOperator[14], thisOperator[15], thisOperator[17],
+					thisOperator[18], thisOperator[19], thisOperator[20],
+					thisOperator[21], thisOperator[22], thisOperator[24],
+					thisOperator[25], thisOperator[27], thisOperator[28],
+					thisOperator[29], thisOperator[30], thisOperator[31],
+				]
+			} else {
+				enabledThisOperator = Object.keys(thisConf).filter(keyName => /oper_\d+/.test(keyName) && thisConf[keyName]).map(keyName => thisOperator[parseInt(keyName.split('_')[1])]);
+			}
+			if (thisScript.oper({
+				id: 503,
+				name: '返回庭院',
+				operator: enabledThisOperator
+			})) {
+				return true;
+			}
 		}
 
 		// 查找返回图标
