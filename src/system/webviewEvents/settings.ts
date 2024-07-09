@@ -9,6 +9,7 @@ import helperBridge from '@/system/helperBridge';
 import { mlkitOcr } from '@/system/Ocr/MlkitOcr';
 import { yunxiOcr } from '@/system/Ocr/YunxiOcr';
 import { myShell } from '@/system/MyAutomator';
+import pushClients from '@/system/PushClient/index';
 
 
 export default function webviewSettigns() {
@@ -39,29 +40,29 @@ export default function webviewSettigns() {
 		initStoreSettings.push_type = '关闭推送';
 	}
 
-	if (typeof initStoreSettings.oneBot_version === 'undefined') {
-		initStoreSettings.oneBot_version = '12';
-	}
+	// if (typeof initStoreSettings.oneBot_version === 'undefined') {
+	// 	initStoreSettings.oneBot_version = '12';
+	// }
 
-	if (typeof initStoreSettings.msgPush_prefix === 'undefined') {
-		initStoreSettings.msgPush_prefix = '[ASSTTYYS]';
-	}
+	// if (typeof initStoreSettings.msgPush_prefix === 'undefined') {
+	// 	initStoreSettings.msgPush_prefix = '[ASSTTYYS]';
+	// }
 
-	if (typeof initStoreSettings.ncnn_bgyx === 'undefined') {
-		initStoreSettings.ncnn_bgyx = false;
-	}
+	// if (typeof initStoreSettings.ncnn_bgyx === 'undefined') {
+	// 	initStoreSettings.ncnn_bgyx = false;
+	// }
 
-	if (typeof initStoreSettings.floaty_debugger_draw === 'undefined') {
-		initStoreSettings.floaty_debugger_draw = false;
-	}
+	// if (typeof initStoreSettings.floaty_debugger_draw === 'undefined') {
+	// 	initStoreSettings.floaty_debugger_draw = false;
+	// }
 
-	if (typeof initStoreSettings.kill_related_app_mode === 'undefined') {
-		initStoreSettings.kill_related_app_mode = 'root';
-	}
+	// if (typeof initStoreSettings.kill_related_app_mode === 'undefined') {
+	// 	initStoreSettings.kill_related_app_mode = 'root';
+	// }
 
-	if (isDebugPlayerRunning() && initStoreSettings.remote_log_url === 'undefined') {
-		initStoreSettings.remote_log_url = '';
-	}
+	// if (isDebugPlayerRunning() && initStoreSettings.remote_log_url === 'undefined') {
+	// 	initStoreSettings.remote_log_url = '';
+	// }
 
 	storeCommon.put('settings', initStoreSettings);
 
@@ -175,13 +176,13 @@ export default function webviewSettigns() {
 		// 	type: 'assttyys_setting_ncnn_bgyx_extend',
 		// 	enabled: storeSettings.ncnn_bgyx
 		// }, {
-			desc: '消息推送方式',
-			name: 'push_type',
-			type: 'assttyys_setting',
-			stype: 'list',
-			data: ['关闭推送', 'Gotify', 'pushplus', 'ospPush', 'oneBot'],
-			value: storeSettings.push_type
-		}, {
+		// 	desc: '消息推送方式',
+		// 	name: 'push_type',
+		// 	type: 'assttyys_setting',
+		// 	stype: 'list',
+		// 	data: ['关闭推送', 'Gotify', 'pushplus', 'ospPush', 'oneBot'],
+		// 	value: storeSettings.push_type
+		// }, {
 			desc: '关联应用停止模式',
 			name: 'kill_related_app_mode',
 			type: 'assttyys_setting',
@@ -189,76 +190,91 @@ export default function webviewSettigns() {
 			data: ['root', 'android api'],
 			value: storeSettings.kill_related_app_mode
 		}];
-		if (storeSettings.push_type === 'oneBot') {
-			ret.push({
-				desc: 'oneBot版本',
-				name: 'oneBot_version',
-				type: 'assttyys_setting',
-				stype: 'list',
-				data: ['11', '12'],
-				value: storeSettings.oneBot_version
-			}, {
-				desc: '推送地址',
-				name: 'oneBot_url',
-				type: 'assttyys_setting',
-				stype: 'text',
-				value: storeSettings.oneBot_url
-			}, {
-				desc: '推送内容前缀',
-				name: 'msgPush_prefix',
-				type: 'assttyys_setting',
-				stype: 'text',
-				value: storeSettings.msgPush_prefix
-			});
-		} else if (storeSettings.push_type === 'ospPush') {
-			ret.push({
-				desc: 'ospUserToken(因作者bot寄了，请自行部署OneBot使用)',
-				name: 'osp_user_token',
-				type: 'assttyys_setting',
-				stype: 'text',
-				value: storeSettings.osp_user_token
-			}, {
-				desc: '推送内容前缀',
-				name: 'msgPush_prefix',
-				type: 'assttyys_setting',
-				stype: 'text',
-				value: storeSettings.msgPush_prefix
-			})
-		} else if (storeSettings.push_type === 'Gotify') {
-			ret.push({
-				desc: 'gotify的token',
-				name: 'gotify_user_token',
-				type: 'assttyys_setting',
-				stype: 'text',
-				value: storeSettings.gotify_user_token
-			}, {
-				desc: '推送内容前缀',
-				name: 'msgPush_prefix',
-				type: 'assttyys_setting',
-				stype: 'text',
-				value: storeSettings.msgPush_prefix
-			}, {
-				desc: '推送地址',
-				name: 'gotify_url',
-				type: 'assttyys_setting',
-				stype: 'text',
-				value: storeSettings.gotify_url
-			})
-		} else if (storeSettings.push_type === 'pushplus') {
-			ret.push({
-				desc: 'token',
-				name: 'pushplus_token',
-				type: 'assttyys_setting',
-				stype: 'text',
-				value: storeSettings.pushplus_token
-			}, {
-				desc: '推送内容前缀',
-				name: 'msgPush_prefix',
-				type: 'assttyys_setting',
-				stype: 'text',
-				value: storeSettings.msgPush_prefix
-			})
-		}
+
+		ret.push({
+			desc: '消息推送方式',
+			name: 'push_type',
+			type: 'assttyys_setting',
+			stype: 'list',
+			data: ['关闭推送', ...pushClients.map(item => item.name)],
+			value: storeSettings.push_type
+		});
+		pushClients.forEach(clientClass => {
+			if (clientClass.name === storeSettings.push_type) {
+				ret.push(...clientClass.getSettingsConfig());
+			}
+		});
+
+		// if (storeSettings.push_type === 'oneBot') {
+		// 	ret.push({
+		// 		desc: 'oneBot版本',
+		// 		name: 'oneBot_version',
+		// 		type: 'assttyys_setting',
+		// 		stype: 'list',
+		// 		data: ['11', '12'],
+		// 		value: storeSettings.oneBot_version
+		// 	}, {
+		// 		desc: '推送地址',
+		// 		name: 'oneBot_url',
+		// 		type: 'assttyys_setting',
+		// 		stype: 'text',
+		// 		value: storeSettings.oneBot_url
+		// 	}, {
+		// 		desc: '推送内容前缀',
+		// 		name: 'msgPush_prefix',
+		// 		type: 'assttyys_setting',
+		// 		stype: 'text',
+		// 		value: storeSettings.msgPush_prefix
+		// 	});
+		// } else if (storeSettings.push_type === 'ospPush') {
+		// 	ret.push({
+		// 		desc: 'ospUserToken(因作者bot寄了，请自行部署OneBot使用)',
+		// 		name: 'osp_user_token',
+		// 		type: 'assttyys_setting',
+		// 		stype: 'text',
+		// 		value: storeSettings.osp_user_token
+		// 	}, {
+		// 		desc: '推送内容前缀',
+		// 		name: 'msgPush_prefix',
+		// 		type: 'assttyys_setting',
+		// 		stype: 'text',
+		// 		value: storeSettings.msgPush_prefix
+		// 	})
+		// } else if (storeSettings.push_type === 'Gotify') {
+		// 	ret.push({
+		// 		desc: 'gotify的token',
+		// 		name: 'gotify_user_token',
+		// 		type: 'assttyys_setting',
+		// 		stype: 'text',
+		// 		value: storeSettings.gotify_user_token
+		// 	}, {
+		// 		desc: '推送内容前缀',
+		// 		name: 'msgPush_prefix',
+		// 		type: 'assttyys_setting',
+		// 		stype: 'text',
+		// 		value: storeSettings.msgPush_prefix
+		// 	}, {
+		// 		desc: '推送地址',
+		// 		name: 'gotify_url',
+		// 		type: 'assttyys_setting',
+		// 		stype: 'text',
+		// 		value: storeSettings.gotify_url
+		// 	})
+		// } else if (storeSettings.push_type === 'pushplus') {
+		// 	ret.push({
+		// 		desc: 'token',
+		// 		name: 'pushplus_token',
+		// 		type: 'assttyys_setting',
+		// 		stype: 'text',
+		// 		value: storeSettings.pushplus_token
+		// 	}, {
+		// 		desc: '推送内容前缀',
+		// 		name: 'msgPush_prefix',
+		// 		type: 'assttyys_setting',
+		// 		stype: 'text',
+		// 		value: storeSettings.msgPush_prefix
+		// 	})
+		// }
 
 		if (isDebugPlayerRunning()) {
 			ret.push({

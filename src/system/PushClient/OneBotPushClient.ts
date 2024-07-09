@@ -1,6 +1,6 @@
-import { IPushClient } from './IPushClient';
+import { AbstractPushClient } from './AbstractPushClient';
 
-export class OneBotPushClient implements IPushClient {
+export default class OneBotPushClient extends AbstractPushClient {
 
 	name = 'OneBot';
 	configDefine = [{
