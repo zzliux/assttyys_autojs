@@ -88,7 +88,7 @@ export class Func002 implements IFuncOrigin {
 		desc: '退出结算_取消确认框_未勾',
 		oper: [
 			[center, 1280, 720, 550, 347, 730, 376, 300],
-			[center, 1280, 720, 680, 411, 838, 452, 1000],
+			[center, 1280, 720, 680, 411, 838, 452, 500],
 		],
 		notForCnt: true, // 点击确认不统计退出结算的次数
 	}, {
@@ -228,7 +228,15 @@ export class Func002 implements IFuncOrigin {
 		// 21 邀请好友确认
 		desc: '退出结算_取消确认框',
 		oper: [
-			[center, 1280, 720, 680, 411, 838, 452, 1000],
+			[center, 1280, 720, 680, 411, 838, 452, 500],
+		],
+		notForCnt: true, // 点击确认不统计退出结算的次数
+	}, {
+		// 22 退出结算_再次挑战_取消确认框_未勾
+		desc: '退出结算_再次挑战_取消确认框_未勾',
+		oper: [
+			[center, 1280, 720, 544, 347, 570, 374, 300],
+			[center, 1280, 720, 680, 411, 838, 452, 500],
 		],
 		notForCnt: true, // 点击确认不统计退出结算的次数
 	}];
@@ -294,7 +302,8 @@ export class Func002 implements IFuncOrigin {
 				thisOperator[4],  thisOperator[5],  thisOperator[6],  thisOperator[7],
 				thisOperator[8],  thisOperator[9],  thisOperator[10], thisOperator[11],
 				thisOperator[12], thisOperator[13], thisOperator[14], thisOperator[15],
-				thisOperator[16], thisOperator[17], thisOperator[18], thisOperator[21],
+				thisOperator[16], thisOperator[17], thisOperator[22], thisOperator[18], // 22要放18前面
+				thisOperator[21],
 			]
 		});
 	}

@@ -123,6 +123,21 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 			]
 		]
 	},
+	'退出结算_再次挑战_取消确认框_未勾': {
+		desc: [
+			1280, 720,
+			[
+				[center, 460, 258, 0xcbb59c],
+				[center, 799, 268, 0xcbb59c],
+				[center, 467, 429, 0xdf6851],
+				[center, 700, 431, 0xf3b25e],
+				[center, 641, 429, 0xcbb59c],
+				[center, 560, 356, 0x3f2e10],
+				[center, 541, 278, 0xcbb59c],
+				[center, 744, 280, 0xcbb59c],
+			]
+		]
+	},
 	'退出结算_取消确认框': {
 		desc: [1280, 720,
 			[
@@ -523,8 +538,9 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 				[center, 462, 297, 0xcbb59c],
 				[center, 848, 268, 0xcbb59c],
 				[center, 454, 495, 0x6c4937],
+				[center, 650, 285, 0xcbb59c],
 			]
-		]
+		],
 	},
 	'式神拓展包弹窗': {
 		desc: [
