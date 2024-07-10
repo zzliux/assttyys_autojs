@@ -10,7 +10,7 @@ type ConfigDefineItem = {
 
 type Config = Record<string, boolean | string | number>;
 
-type Message = {
+export type Message = {
 	type: 'text',
 	data: string,
 } | {
@@ -60,5 +60,14 @@ export abstract class AbstractPushClient {
 			}
 			return item;
 		});
+	}
+
+	getKVConfig(): Record<string, string | number | boolean > {
+		const storeSettings = storeCommon.get('settings', {});
+		const ret = {};
+		this.configDefine.forEach(configItem => {
+			ret[configItem.name] = storeSettings[configItem.name];
+		});
+		return ret;
 	}
 }
