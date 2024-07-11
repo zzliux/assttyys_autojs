@@ -1138,6 +1138,9 @@ export const versionList = [{
 }, {
 	version: '20240710_01',
 	desc: '修复：02退出结算结界卡上限与再次挑战的确认框冲突'
+}, {
+	version: '20240711_01',
+	desc: '优化：六道椒图升级增加兼容取点'
 }];
 
 export default versionList[versionList.length - 1].version;
