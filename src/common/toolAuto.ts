@@ -354,8 +354,8 @@ export function doPushBak(thisScript: Script, options: {
 		console.log('推送已关闭，不执行推送');
 		return;
 	}
-	if (storeSettings.push_type === 'OneBot' && !storeSettings.OneBot_URL) {
-		console.error('未配置OneBot_URL');
+	if (storeSettings.push_type === 'oneBot' && !storeSettings.oneBot_url) {
+		console.error('未配置oneBot_url');
 		return;
 	} else if (storeSettings.push_type === 'Gotify' && !storeSettings.gotify_url) {
 		console.error('未配置gotify_url');
@@ -404,10 +404,10 @@ export function doPushBak(thisScript: Script, options: {
 		let res;
 		// 上传
 		console.log('push_type', storeSettings.push_type)
-		if (storeSettings.push_type === 'OneBot') {
+		if (storeSettings.push_type === 'oneBot') {
 			const removeBase64Prefix = (str: string) => str.replace(new RegExp('data:image/\\S+;base64,'), '');
-			const OneBotVersion = storeSettings.OneBot_version || '12';
-			const message = OneBotVersion !== '12' ? data.map(item => {
+			const oneBotVersion = storeSettings.oneBot_version || '12';
+			const message = oneBotVersion !== '12' ? data.map(item => {
 				const { type, data } = item;
 				return type === 'text' ? data : `[CQ:image,file=base64://${removeBase64Prefix(data)}]`
 			}).join('') : data.map(item => {
@@ -419,7 +419,7 @@ export function doPushBak(thisScript: Script, options: {
 					}
 				}
 			});
-			res = oneBotPush(storeSettings.OneBot_URL, message)
+			res = oneBotPush(storeSettings.oneBot_url, message)
 		} else if (storeSettings.push_type === 'Gotify') {
 			res = gotifyPush(`${storeSettings.gotify_url}?token=${storeSettings.gotify_user_token}`, {
 				title: storeSettings.msgPush_prefix,

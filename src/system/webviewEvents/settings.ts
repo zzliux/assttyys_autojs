@@ -10,6 +10,7 @@ import { mlkitOcr } from '@/system/Ocr/MlkitOcr';
 import { yunxiOcr } from '@/system/Ocr/YunxiOcr';
 import { myShell } from '@/system/MyAutomator';
 import pushClients from '@/system/PushClient/index';
+import { AbstractPushClient } from '../PushClient/AbstractPushClient';
 
 
 export default function webviewSettigns() {
@@ -32,9 +33,9 @@ export default function webviewSettigns() {
 		initStoreSettings.floaty_scheme_direct_run = false;
 	}
 
-	if (typeof initStoreSettings.osp_user_token === 'undefined') {
-		initStoreSettings.osp_user_token = '';
-	}
+	// if (typeof initStoreSettings.osp_user_token === 'undefined') {
+	// 	initStoreSettings.osp_user_token = '';
+	// }
 
 	if (typeof initStoreSettings.push_type === 'undefined') {
 		initStoreSettings.push_type = '关闭推送';
@@ -199,7 +200,7 @@ export default function webviewSettigns() {
 			data: ['关闭推送', ...pushClients.map(item => item.name)],
 			value: storeSettings.push_type
 		});
-		pushClients.forEach(clientClass => {
+		pushClients.forEach((clientClass: AbstractPushClient) => {
 			if (clientClass.name === storeSettings.push_type) {
 				ret.push(...clientClass.getSettingsConfig());
 			}

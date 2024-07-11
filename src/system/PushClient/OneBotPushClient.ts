@@ -3,16 +3,16 @@ import { AbstractPushClient, Message } from './AbstractPushClient';
 
 export default class OneBotPushClient extends AbstractPushClient {
 
-	name = 'OneBot';
+	name = 'oneBot';
 	configDefine = [{
 		desc: 'OneBot版本',
-		name: 'OneBot_version',
+		name: 'oneBot_version',
 		type: 'list',
 		data: ['11', '12'],
 		default: '12'
 	}, {
 		desc: '推送地址',
-		name: 'OneBot_URL',
+		name: 'oneBot_url',
 		type: 'text',
 		default: ''
 	}, {
@@ -22,11 +22,11 @@ export default class OneBotPushClient extends AbstractPushClient {
 		default: '[assttyys]'
 	}];
 	push(data: Message[], config: Record<string, string>) {
-		const { OneBot_version, OneBot_URL, msgPush_prefix } = config;
-		if (!OneBot_URL || !OneBot_URL.startsWith('http')) {
+		const { oneBot_version, oneBot_url, msgPush_prefix } = config;
+		if (!oneBot_url || !oneBot_url.startsWith('http')) {
 			throw new Error('OneBot推送地址未配置或配置错误');
 		}
-		const OneBotVersion = OneBot_version || '12';
+		const OneBotVersion = oneBot_version || '12';
 		const msgData = [{
 			type: 'text',
 			data: msgPush_prefix
@@ -51,7 +51,7 @@ export default class OneBotPushClient extends AbstractPushClient {
 				}
 			}
 		});
-		return http.postJson(OneBot_URL, {
+		return http.postJson(oneBot_url, {
 			// @ts-expect-error d.ts文件问题
 			message: message
 		});

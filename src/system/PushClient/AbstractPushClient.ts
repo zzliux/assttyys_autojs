@@ -65,9 +65,17 @@ export abstract class AbstractPushClient {
 	getKVConfig(): Record<string, string | number | boolean > {
 		const storeSettings = storeCommon.get('settings', {});
 		const ret = {};
+		let needSave = false;
 		this.configDefine?.forEach(configItem => {
+			if (typeof storeSettings[configItem.name] === 'undefined') {
+				storeSettings[configItem.name] = configItem.default;
+				needSave = true;
+			}
 			ret[configItem.name] = storeSettings[configItem.name];
 		});
+		if (needSave) {
+			storeCommon.put('settings', storeSettings);
+		}
 		return ret;
 	}
 }
