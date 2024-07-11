@@ -1,4 +1,4 @@
-import { bmpToBase64, scaleBmp } from '@/common/toolAuto';
+import { bmpToBase64, escapeMarkdown, scaleBmp } from '@/common/toolAuto';
 import { AbstractPushClient, Message } from './AbstractPushClient';
 
 export default class GotifyPushClient extends AbstractPushClient {
@@ -37,7 +37,7 @@ export default class GotifyPushClient extends AbstractPushClient {
 				}
 			},
 			message: data.map(item => {
-				if (item.type === 'text') return data;
+				if (item.type === 'text') return escapeMarkdown(item.data);
 				else if (item.type === 'image')
 					return `![](data:image/png;base64,${bmpToBase64(scaleBmp(item.data, 0.3))})`;
 				return '';
