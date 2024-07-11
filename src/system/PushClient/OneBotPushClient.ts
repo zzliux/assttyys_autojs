@@ -38,7 +38,7 @@ export default class OneBotPushClient extends AbstractPushClient {
 				dataStr = bmpToBase64(scaleBmp(data, 0.5));
 			}
 			return type === 'text' ? data : `[CQ:image,file=base64://${dataStr}]`
-		}).join('') : data.map(item => {
+		}).join('') : msgData.map(item => {
 			const { type, data } = item;
 			let dataStr;
 			if (type === 'image') {

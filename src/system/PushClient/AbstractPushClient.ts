@@ -41,7 +41,7 @@ export abstract class AbstractPushClient {
 	 */
 	getSettingsConfig(): any[] {
 		const storeSettings = storeCommon.get('settings', {});
-		return this.configDefine.map(configItem => {
+		return this.configDefine?.map(configItem => {
 			const item: any = {
 				desc: configItem.desc,
 				name: configItem.name,
@@ -65,7 +65,7 @@ export abstract class AbstractPushClient {
 	getKVConfig(): Record<string, string | number | boolean > {
 		const storeSettings = storeCommon.get('settings', {});
 		const ret = {};
-		this.configDefine.forEach(configItem => {
+		this.configDefine?.forEach(configItem => {
 			ret[configItem.name] = storeSettings[configItem.name];
 		});
 		return ret;
