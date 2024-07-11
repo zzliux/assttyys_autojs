@@ -1135,6 +1135,9 @@ export const versionList = [{
 }, {
 	version: '20240707_01',
 	desc: '优化：503返回庭院允许配置可处理的界面，使用了503功能的方案建议重新保存一下'
+}, {
+	version: '20240710_01',
+	desc: '修复：02退出结算结界卡上限与再次挑战的确认框冲突'
 }];
 
 export default versionList[versionList.length - 1].version;
