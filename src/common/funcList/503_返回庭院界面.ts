@@ -158,6 +158,11 @@ export class Func503 implements IFuncOrigin {
 			desc: '31 巅峰斗技主界面_段位保护裂',
 			type: 'switch',
 			default: true,
+		}, {
+			name: 'oper_32',
+			desc: '32 巅峰斗技主界面_名士',
+			type: 'switch',
+			default: true,
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{	// 0 探索地图
@@ -478,6 +483,11 @@ export class Func503 implements IFuncOrigin {
 		]
 	}, { // 31 巅峰斗技返回
 		desc: '巅峰斗技主界面_段位保护裂',
+		oper: [
+			[left, 1280, 720, 22, 4, 67, 49, 500]
+		]
+	}, { // 32 巅峰斗技返回
+		desc: '巅峰斗技主界面_名士',
 		oper: [
 			[left, 1280, 720, 22, 4, 67, 49, 500]
 		]

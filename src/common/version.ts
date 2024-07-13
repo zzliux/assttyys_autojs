@@ -1141,6 +1141,9 @@ export const versionList = [{
 }, {
 	version: '20240711_01',
 	desc: '优化：六道椒图升级增加兼容取点'
+}, {
+	version: '20240713_01',
+	desc: '优化：名士斗技兼容巅峰赛',
 }];
 
 export default versionList[versionList.length - 1].version;
