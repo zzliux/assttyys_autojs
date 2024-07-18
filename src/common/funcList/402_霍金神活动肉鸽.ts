@@ -228,6 +228,6 @@ export class Func402 implements IFuncOrigin {
 			thisScript.stop();
 			return true;
 		}
-		return true;
+		return false;
 	}
 }
