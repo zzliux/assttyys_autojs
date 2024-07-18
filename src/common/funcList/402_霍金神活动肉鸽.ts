@@ -177,23 +177,27 @@ export class Func402 implements IFuncOrigin {
 			operator: [{ desc: thisOperator[0].desc }]
 		})) {
 			const nameAll = ['霍金神_奇遇', '霍金神_精英', '霍金神_战斗', '霍金神_首领', '霍金神_商店'];
+			let toOper = [-1, -1, -1, -1, -1];
+			let shopFlag = false;
 			for (const name of nameAll) {
 				const flagPointAll = thisScript.findMultiColorEx(name); // 历遍关卡选项
 				if (flagPointAll.length > 0) {
-					let toOper = [-1, -1, -1, -1, -1];
 					for (const flagPoint of flagPointAll) { // 历遍关卡位置
-						const oper = [flagPoint.x, flagPoint.y, flagPoint.x + 10, flagPoint.y + 10, 200]
+						const oper = [flagPoint.x, flagPoint.y, flagPoint.x + 10, flagPoint.y + 10, 1000]
 						if (toOper[0] < oper[0]) {
+							if (name == '霍金神_商店' && thisConf.shop) {
+								shopFlag = true;
+							}
 							toOper = oper;
 						}
 					}
-					if (toOper[0] > 0) {
-						thisScript.regionClick([toOper]);
-						if (name == '霍金神_商店' && thisConf.shop) {
-							thisScript.doPush(thisScript, { text: '遇到商店,停止脚本', before() { thisScript.myToast('遇到商店,停止脚本'); } });
-							thisScript.stop();
-						}
-					}
+				}
+			}
+			if (toOper[0] > 0) {
+				thisScript.regionClick([toOper]);
+				if (shopFlag) {
+					thisScript.doPush(thisScript, { text: '遇到商店,停止脚本', before() { thisScript.myToast('遇到商店,停止脚本'); } });
+					thisScript.stop();
 				}
 			}
 			sleep(3000);
