@@ -913,6 +913,11 @@ const SchemeList: IScheme[] = [
 		id: 100,
 		schemeName: '缘结趣游',
 		list: [0, 24, 319],
+	},
+	{
+		id: 101,
+		schemeName: '霍金神肉鸽',
+		list: [0, 402],
 	}
 	// , {
 	// 	id: 102,

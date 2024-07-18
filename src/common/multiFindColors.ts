@@ -3114,5 +3114,107 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		]],
 		similar: 95,
 	},
+	'霍金神_战斗': {
+		region: [center, 1280, 720, 0, 0, 1279, 719],
+		desc: [[
+			1280, 720,
+			[
+				[center, 764, 161, 0x8a1514],
+				[center, 772, 151, 0xd4cdc8],
+				[center, 787, 165, 0x993838],
+				[center, 790, 175, 0xd6d1ce],
+				[center, 762, 182, 0x870e0d],
+				[center, 790, 189, 0x840606],
+				[center, 776, 190, 0xd2c8c1],
+			]
+		]]
+	},
+	'霍金神_奇遇': {
+		region: [center, 1280, 720, 0, 0, 1279, 719],
+		desc: [[
+			1280, 720,
+			[
+				[center, 762, 376, 0x830000],
+				[center, 777, 366, 0x8a0505],
+				[center, 786, 377, 0x830000],
+				[center, 777, 390, 0xa04847],
+				[center, 775, 395, 0x850e0e],
+				[center, 774, 380, 0xd5d0cb],
+			]
+		]]
+	},
+	'霍金神_精英': {
+		region: [center, 1280, 720, 0, 0, 1279, 719],
+		desc: [[
+			1280, 720,
+			[
+				[center, 759, 227, 0x860000],
+				[center, 779, 220, 0x932e2d],
+				[center, 791, 224, 0x8b1918],
+				[center, 787, 236, 0x820000],
+				[center, 761, 247, 0x92302f],
+				[center, 776, 260, 0xd0c7c1],
+				[center, 776, 268, 0x8a1414],
+			]
+		]]
+	},
+	'霍金神_物资': {
+		region: [center, 1280, 720, 0, 0, 1279, 719],
+		desc: [[
+			1280, 720,
+			[
+				[center, 776, 274, 0x6b3636],
+				[center, 685, 151, 0x91282b],
+				[center, 751, 190, 0x621820],
+				[center, 767, 307, 0x6b3636],
+				[center, 804, 291, 0xde0000],
+			]
+		]]
+	},
+	'霍金神_商店': {
+		region: [center, 1280, 720, 0, 0, 1279, 719],
+		desc: [[
+			1280, 720,
+			[
+				[center, 816, 372, 0x850605],
+				[center, 828, 363, 0x952d2c],
+				[center, 850, 374, 0x942e2d],
+				[center, 813, 403, 0x820000],
+				[center, 828, 420, 0x860000],
+				[center, 833, 404, 0xd1cac6],
+				[center, 842, 402, 0xd2cbc7],
+			]
+		]]
+	},
+	'霍金神_首领': {
+		region: [center, 1280, 720, 0, 0, 1279, 719],
+		desc: [[
+			1280, 720,
+			[
+				[right, 1090, 372, 0x8b0a05],
+				[right, 1131, 373, 0x99281f],
+				[right, 1121, 382, 0x8d0e07],
+				[right, 1095, 380, 0x890c06],
+				[right, 1097, 401, 0x992e28],
+				[right, 1120, 394, 0xd5c5bd],
+				[right, 1123, 400, 0x931d16],
+			]
+		]]
+	},
+	'霍金神_密道': {
+		region: [center, 1280, 720, 0, 0, 1279, 719],
+		desc: [[
+			1280, 720,
+			[
+				[center, 744, 192, 0x631921],
+				[center, 885, 129, 0x510403],
+				[center, 902, 151, 0xffbeb3],
+				[center, 912, 150, 0xd00f04],
+				[center, 890, 176, 0x9b0c06],
+				[center, 770, 300, 0xc03d40],
+				[center, 787, 295, 0xb1293c],
+			]
+		]]
+	},
 }
 export default multiFindColors;
