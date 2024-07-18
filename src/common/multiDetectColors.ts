@@ -421,6 +421,19 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 			],
 		],
 	},
+	'斗技主界面_名士': {
+		desc: [
+			1280, 720,
+			[
+				[left, 36, 24, 0xf7eaab],
+				[right, 1228, 621, 0xd6c095],
+				[right, 1203, 602, 0x3b1e0d],
+				[center, 798, 40, 0x593615],
+				[right, 1210, 80, 0x7b654f],
+				[left, 212, 624, 0xe67a59],
+			]
+		]
+	},
 	'巅峰斗技主界面': {
 		desc: [
 			1280, 720,
@@ -462,6 +475,20 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 				[right, 1189, 624, 0x677d8f],
 			]
 		],
+	},
+	'巅峰斗技主界面_名士': {
+		desc: [
+			1280, 720,
+			[
+				[right, 1204, 53, 0xe7cca4],
+				[left, 513, 45, 0xba4c2e],
+				[left, 773, 53, 0x593716],
+				[left, 208, 25, 0x593716],
+				[left, 46, 33, 0xf1db98],
+				[right, 1184, 637, 0x3b1e0d],
+				[right, 1183, 646, 0xe1cc9f],
+			]
+		]
 	},
 	'秘闻挑战开启': {
 		desc: [1280, 720,

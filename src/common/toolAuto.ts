@@ -1,4 +1,6 @@
 import { IScheme } from '@/interface/IScheme';
+import { getPushClient } from '@/system/PushClient';
+import { Message } from '@/system/PushClient/AbstractPushClient';
 import { IhelperBridge } from '@/system/helperBridge';
 import type { Script } from '@/system/script';
 import script from '@/system/script';
@@ -291,12 +293,58 @@ export function pushplusPush(data: any) {
 	return http.post('https://pushplus.plus/send', data)
 }
 
+export function bmpToBase64(bmp: any): string {
+	const baos = new java.io.ByteArrayOutputStream();
+	bmp.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, baos);
+	baos.flush();
+	baos.close();
+	bmp.recycle();
+	const b64str = android.util.Base64.encodeToString(baos.toByteArray(), android.util.Base64.NO_WRAP);
+	return b64str;
+}
+
+export function scaleBmp(bmp: any, scale: number) {
+	const width = bmp.getWidth();
+	const height = bmp.getHeight();
+	const matrix = new android.graphics.Matrix();
+	matrix.postScale(scale, scale);
+	const newBmp = android.graphics.Bitmap.createBitmap(bmp, 0, 0, width, height, matrix, false);
+	bmp.recycle();
+	return newBmp;
+}
+
+export function doPush(thisScript: Script, options: {
+	text: string,
+	before?: () => void,
+	after?: () => void
+}): void {
+	const pushClient = getPushClient();
+	const bmpImage = thisScript.helperBridge.helper.GetBitmap();
+	const data: Message[] = [{
+		type: 'text',
+		data: options && options.text || ''
+	}, {
+		type: 'image',
+		data: bmpImage
+	}]
+	try {
+		const res = pushClient.push(data, pushClient.getKVConfig());
+		bmpImage.recycle();
+		return res;
+	} catch (e) {
+		myToast('推送报错了，请查看日志');
+		console.error($debug.getStackTrace(e));
+		bmpImage.recycle();
+		return null;
+	}
+}
+
 /**
  * 发起消息推送
  * @param {Script} thisScript
  * @param options
  */
-export function doPush(thisScript: Script, options: {
+export function doPushBak(thisScript: Script, options: {
 	text: string,
 	before?: () => void,
 	after?: () => void
@@ -308,9 +356,6 @@ export function doPush(thisScript: Script, options: {
 	}
 	if (storeSettings.push_type === 'oneBot' && !storeSettings.oneBot_url) {
 		console.error('未配置oneBot_url');
-		return;
-	} else if (storeSettings.push_type === 'ospPush' && !storeSettings.osp_user_token) {
-		console.error('未配置ospUserToken');
 		return;
 	} else if (storeSettings.push_type === 'Gotify' && !storeSettings.gotify_url) {
 		console.error('未配置gotify_url');
@@ -375,8 +420,6 @@ export function doPush(thisScript: Script, options: {
 				}
 			});
 			res = oneBotPush(storeSettings.oneBot_url, message)
-		} else if (storeSettings.push_type === 'ospPush') {
-			res = ospPush(storeSettings.osp_user_token, data);
 		} else if (storeSettings.push_type === 'Gotify') {
 			res = gotifyPush(`${storeSettings.gotify_url}?token=${storeSettings.gotify_user_token}`, {
 				title: storeSettings.msgPush_prefix,
@@ -405,15 +448,6 @@ export function doPush(thisScript: Script, options: {
 	}
 }
 
-export function scaleBmp(bmp, scale: number) {
-	const width = bmp.getWidth();
-	const height = bmp.getHeight();
-	const matrix = new android.graphics.Matrix();
-	matrix.postScale(scale, scale);
-	const newBmp = android.graphics.Bitmap.createBitmap(bmp, 0, 0, width, height, matrix, false);
-	bmp.recycle();
-	return newBmp;
-}
 
 
 export const mergeSchemeList = (savedSchemeList: IScheme[], innerSchemeList: IScheme[]) => {
@@ -509,4 +543,9 @@ export function doInitHookConsoleLog(remoteUrl: string) {
 			originalMethods[method].apply(console, args);
 		};
 	});
+}
+
+
+export function escapeMarkdown(str: string) {
+	return str.replace(/[\\`*_{}[\]()#+\-.]/g, '\\$&');
 }
