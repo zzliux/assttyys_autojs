@@ -180,10 +180,15 @@ export class Func402 implements IFuncOrigin {
 			for (const name of nameAll) {
 				const flagPointAll = thisScript.findMultiColorEx(name); // 历遍关卡选项
 				if (flagPointAll.length > 0) {
-					log(flagPointAll.length)
+					let toOper = [-1, -1, -1, -1, -1];
 					for (const flagPoint of flagPointAll) { // 历遍关卡位置
 						const oper = [flagPoint.x, flagPoint.y, flagPoint.x + 10, flagPoint.y + 10, 200]
-						thisScript.regionClick([oper]);
+						if (toOper[0] < oper[0]) {
+							toOper = oper;
+						}
+					}
+					if (toOper[0] > 0) {
+						thisScript.regionClick([toOper]);
 						if (name == '霍金神_商店' && thisConf.shop) {
 							thisScript.doPush(thisScript, { text: '遇到商店,停止脚本', before() { thisScript.myToast('遇到商店,停止脚本'); } });
 							thisScript.stop();
