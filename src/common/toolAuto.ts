@@ -319,6 +319,10 @@ export function doPush(thisScript: Script, options: {
 	after?: () => void
 }): void {
 	const pushClient = getPushClient();
+	if (!pushClient) {
+		console.log('未配置推送类型，不推送');
+		return;
+	}
 	const bmpImage = thisScript.helperBridge.helper.GetBitmap();
 	const data: Message[] = [{
 		type: 'text',
