@@ -1144,6 +1144,8 @@ export const versionList = [{
 }, {
 	version: '20240713_01',
 	desc: '优化：名士斗技兼容巅峰赛',
+}, {
+	version: '20240718_01',
+	desc: '增加:活动肉鸽'
 }];
-
 export default versionList[versionList.length - 1].version;
