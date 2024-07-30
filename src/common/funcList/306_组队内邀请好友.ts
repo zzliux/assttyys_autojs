@@ -35,12 +35,17 @@ export class Func306 implements IFuncOrigin {
 			type: 'list',
 			data: ['好友', '跨区'],
 			default: '好友',
-			value: null,
 		}, {
 			name: 'inviteNameTwo',
 			desc: '第二位好友昵称',
 			type: 'text',
 			default: '第二位昵称'
+		}, {
+			name: 'stringCompareMode',
+			desc: '匹配模式',
+			type: 'list',
+			data: ['包含', '模糊'],
+			default: '包含',
 		}, {
 			name: 'next_scheme',
 			desc: '下一个方案',
@@ -185,6 +190,7 @@ export class Func306 implements IFuncOrigin {
 			operator: [{ desc: thisOperator[1].desc }]
 		}) && thisScript.getOcrDetector()) {
 			const selectArea = thisScript.findText(thisConf.selectArea as string, 0, thisOperator[1].oper[0], '模糊');
+			const stringCompareMode = thisConf.stringCompareMode as string || '包含';
 			if (selectArea.length === 0) {
 				console.log('找不到第一位（好友/跨区）按钮');
 				thisScript.regionClick([thisOperator[3].oper[0]]);
@@ -220,7 +226,7 @@ export class Func306 implements IFuncOrigin {
 					console.log(`昵称历遍:${result[i].label}`)
 				}
 				// 邀请里点击第一位好友
-				const findInvName = thisScript.findTextByOcrResult(thisConf.inviteName as string, result, '包含')
+				const findInvName = thisScript.findTextByOcrResult(thisConf.inviteName as string, result, stringCompareMode)
 				if (findInvName.length) {
 					toClickRegion = [
 						findInvName[0].points[0].x + 20,
@@ -264,7 +270,7 @@ export class Func306 implements IFuncOrigin {
 							result = thisScript.findText('.+', 0, thisOperator[1].oper[1], '包含');
 						}
 					}
-					const findInvNameTwo = thisScript.findTextByOcrResult(thisConf.inviteNameTwo as string, result, '包含')
+					const findInvNameTwo = thisScript.findTextByOcrResult(thisConf.inviteNameTwo as string, result, stringCompareMode)
 					if (findInvNameTwo.length) {
 						toClickRegionTwo = [
 							findInvNameTwo[0].points[0].x + 10,
