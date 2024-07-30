@@ -500,7 +500,6 @@ export class Func518 implements IFuncOrigin {
 			],
 			oper: [
 				[left, 1280, 720, 21, 9, 51, 42, 1800], //  点击 礼包屋返回
-				[left, 1280, 720, 1115, 108, 1149, 136, 1800], //  可能会出现礼包弹窗
 				[left, 1280, 720, 24, 15, 83, 62, 1800], //  点击 热门推荐返回
 				[left, 1280, 720, 26, 37, 72, 81, 1800], //  点击 商店返回
 			],
@@ -635,6 +634,36 @@ export class Func518 implements IFuncOrigin {
 				[center, 1280, 720, 908, 138, 950, 178, 1000],
 				[center, 1280, 720, 660, 626, 697, 664, 1200], //  商店位置，用于跳过动画
 			]
+		}, { // 43 好友窗口_‘最近’切换至‘好友’
+			desc: [
+				1280, 720,
+				[
+					[left, 150, 101, 0x8e644d],
+					[left, 226, 103, 0x946b55],
+					[left, 263, 100, 0xc89976],
+					[center, 340, 100, 0xcea283],
+					[center, 393, 46, 0x3d3b41],
+					[center, 559, 67, 0x5f4836],
+					[right, 1221, 207, 0xc06919],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 145, 96, 240, 136, 1000],
+			]
+		}, { // 44 点到头像_返回
+			desc: [
+				1280, 720,
+				[
+					[center, 331, 55, 0x37291d],
+					[right, 1110, 77, 0x5f2731],
+					[right, 1183, 175, 0xc26a19],
+					[left, 90, 652, 0x674822],
+					[left, 91, 622, 0x283146],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 1083, 81, 1133, 116, 1000],
+			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -725,6 +754,7 @@ export class Func518 implements IFuncOrigin {
 				id: 518,
 				name: '检测_领取奖励弹窗',
 				operator: [
+					thisOperator[43],
 					thisOperator[5],
 					thisOperator[7],
 					thisOperator[8],
@@ -733,6 +763,7 @@ export class Func518 implements IFuncOrigin {
 					thisOperator[11],
 					thisOperator[39],
 					thisOperator[40],
+					thisOperator[44],
 				],
 			})
 		) {

@@ -1147,5 +1147,8 @@ export const versionList = [{
 }, {
 	version: '20240718_01',
 	desc: '增加:活动肉鸽'
+}, {
+	version: '20240727_01',
+	desc: '修复：518增加头像界面返回，518好友能从‘最近’切换至‘好友’'
 }];
 export default versionList[versionList.length - 1].version;
