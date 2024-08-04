@@ -1150,5 +1150,8 @@ export const versionList = [{
 }, {
 	version: '20240727_01',
 	desc: '修复：518增加头像界面返回，518好友能从‘最近’切换至‘好友’'
+}, {
+	version: '20240804_01',
+	desc: '修复：六道椒图卡商店，重新取色'
 }];
 export default versionList[versionList.length - 1].version;
