@@ -1153,5 +1153,8 @@ export const versionList = [{
 }, {
 	version: '20240804_01',
 	desc: '修复：六道椒图卡商店，重新取色'
+}, {
+	version: '20240805_01',
+	desc: '修复：六道椒图卡商店，重新取色'
 }];
 export default versionList[versionList.length - 1].version;
