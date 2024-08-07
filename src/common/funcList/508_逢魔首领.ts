@@ -183,6 +183,19 @@ export class Func508 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 903, 658, 940, 689, 500], // 进入首领极按钮
 			]
+		},
+		{	// 10 检测_是否找到逢魔首领
+			desc: [
+				1280, 720,
+				[
+					[center, 694, 400, 0x810517],
+					[center, 693, 401, 0x830417],
+					[center, 682, 398, 0x8f0814],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 579, 303, 702, 407, 300], //	点击逢魔首领
+			],
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -212,7 +225,7 @@ export class Func508 implements IFuncOrigin {
 			thisScript.oper({
 				id: 508,
 				name: '检测_是否找到逢魔首领',
-				operator: [thisOperator[1]],
+				operator: [thisOperator[1], thisOperator[10]],
 			})
 		) {
 			return true;
