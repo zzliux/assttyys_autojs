@@ -42,6 +42,12 @@ export class Func306 implements IFuncOrigin {
 			type: 'text',
 			default: '第二位昵称'
 		}, {
+			name: 'stringCompareMode',
+			desc: '匹配模式',
+			type: 'list',
+			data: ['包含', '模糊'],
+			default: '包含',
+		}, {
 			name: 'next_scheme',
 			desc: '下一个方案',
 			type: 'scheme',
@@ -225,6 +231,7 @@ export class Func306 implements IFuncOrigin {
 		}) && thisScript.getOcrDetector()) {
 			let toClickRegion = null;
 			let toClickRegionTwo = null;
+			const stringCompareMode = thisConf.stringCompareMode as string || '包含';
 			{ // 判断邀请类型
 				if (thisConf.qilingmod && thisConf.selectArea == '跨区') {
 					thisScript.regionClick(thisOperator[6].oper);
@@ -247,7 +254,7 @@ export class Func306 implements IFuncOrigin {
 				}
 			}
 			thisScript.keepScreen();
-			const result = thisScript.findText('.+', 0, thisOperator[1].oper[0], '包含');
+			const result = thisScript.findText('.+', 0, thisOperator[1].oper[0], stringCompareMode);
 			if (result.length === 0) {
 				console.log('未识别到任何昵称');
 				thisScript.global.team_up_Time++;
@@ -293,7 +300,7 @@ export class Func306 implements IFuncOrigin {
 					}
 				}
 				thisScript.keepScreen();
-				const result = thisScript.findText('.+', 0, thisOperator[1].oper[0], '包含');
+				const result = thisScript.findText('.+', 0, thisOperator[1].oper[0], stringCompareMode);
 				if (result.length === 0) {
 					console.log('未识别到任何昵称');
 					thisScript.global.team_up_Time++;
