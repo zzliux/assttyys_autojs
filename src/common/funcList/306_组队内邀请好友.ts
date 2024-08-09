@@ -225,6 +225,7 @@ export class Func306 implements IFuncOrigin {
 			}
 		}
 		// 邀请界面_开始邀请好友
+		let result = null;
 		if (thisScript.oper({
 			name: '邀请界面',
 			operator: [{ desc: thisOperator[1].desc }]
@@ -254,7 +255,7 @@ export class Func306 implements IFuncOrigin {
 				}
 			}
 			thisScript.keepScreen();
-			const result = thisScript.findText('.+', 0, thisOperator[1].oper[0], stringCompareMode);
+			result = thisScript.findText('.+', 0, thisOperator[1].oper[0], stringCompareMode);
 			if (result.length === 0) {
 				console.log('未识别到任何昵称');
 				thisScript.global.team_up_Time++;
@@ -287,20 +288,22 @@ export class Func306 implements IFuncOrigin {
 			}
 			// 邀请第二位好友
 			if (thisConf.secondPlayer) {
-				{ // 判断邀请类型
-					if (thisScript.oper({
-						name: '组队类型_御魂',
-						operator: [{ desc: thisOperator[7].desc }]
-					})) {
-						if (thisConf.selectAreaTwo == '跨区') {
-							thisScript.regionClick([thisOperator[7].oper[0]]);
-						} else {
-							thisScript.regionClick([thisOperator[7].oper[1]]);
+				{ // 判断邀请类型并是否继续截图
+					if (thisConf.selectArea != thisConf.selectAreaTwo) {
+						if (thisScript.oper({
+							name: '组队类型_御魂',
+							operator: [{ desc: thisOperator[7].desc }]
+						})) {
+							if (thisConf.selectAreaTwo == '跨区') {
+								thisScript.regionClick([thisOperator[7].oper[0]]);
+							} else {
+								thisScript.regionClick([thisOperator[7].oper[1]]);
+							}
 						}
+						thisScript.keepScreen();
+						result = thisScript.findText('.+', 0, thisOperator[1].oper[0], stringCompareMode);
 					}
 				}
-				thisScript.keepScreen();
-				const result = thisScript.findText('.+', 0, thisOperator[1].oper[0], stringCompareMode);
 				if (result.length === 0) {
 					console.log('未识别到任何昵称');
 					thisScript.global.team_up_Time++;
