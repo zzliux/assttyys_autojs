@@ -14,7 +14,7 @@ export class Func004 implements IFuncOrigin {
 		desc: '',
 		config: [{
 			name: 'exit',
-			desc: '对邀请提示不做动作并切换方案（用于当做判断条件）',
+			desc: '对邀请提示不做动作并返回庭院，然后以下切换方案（用于当做判断条件）',
 			type: 'switch',
 			default: false,
 		}, {
@@ -109,7 +109,10 @@ export class Func004 implements IFuncOrigin {
 			name: '邀请切换横幅',
 			operator: [{ desc: thisOperator[0].desc }, { desc: thisOperator[1].desc }]
 		})) {
-			thisScript.rerun(thisConf.next_scheme);
+			const back_scheme = '返回庭院';
+			thisScript.rerun(back_scheme, {
+				next_scheme_name: thisConf.next_scheme,
+			})
 			sleep(3000)
 			return true;
 		}

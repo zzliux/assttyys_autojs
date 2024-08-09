@@ -1150,5 +1150,11 @@ export const versionList = [{
 }, {
 	version: '20240727_01',
 	desc: '修复：518增加头像界面返回，518好友能从‘最近’切换至‘好友’'
+}, {
+	version: '20240727_01',
+	desc: `优化：契灵盘子上限弹窗；
+    组队增加关闭误触好友弹窗；
+    更改了306邀请好友逻辑增加了速度（更多逻辑查看手册）；
+    004功能对邀请提示不做动作增加了稳定性代码（先返回庭院）`
 }];
 export default versionList[versionList.length - 1].version;

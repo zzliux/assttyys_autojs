@@ -131,8 +131,6 @@ export class Func313 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1142, 577, 1243, 676, 1000], // 挑战
 			[center, 1280, 720, 962, 581, 1061, 656, 1000], // 求援
-			[center, 1280, 720, 407, 417, 429, 439, 1000], // 不公开
-			[center, 1280, 720, 537, 495, 744, 536, 1000], // 创建
 		]
 	}, {
 		// 5 结契失败
@@ -253,6 +251,39 @@ export class Func313 implements IFuncOrigin {
 		oper: [
 			[left, 1280, 720, 938, 640, 996, 694, 1000],
 		]
+	}, { // 12 盘子已满提醒
+		desc: [
+			1280, 720,
+			[
+				[center, 413, 223, 0x654435],
+				[center, 868, 223, 0x644434],
+				[center, 492, 272, 0xaa3936],
+				[center, 628, 276, 0xa93331],
+				[center, 559, 352, 0x4b5ee9],
+				[center, 561, 431, 0xdf6851],
+				[center, 712, 430, 0xf3b25e],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 678, 405, 839, 461, 1000],
+		]
+	}, { // 13 组队确认
+		desc: [
+			1280, 720,
+			[
+				[center, 372, 145, 0x684636],
+				[center, 907, 145, 0x674535],
+				[center, 362, 572, 0x5c3d2f],
+				[center, 900, 573, 0x624233],
+				[right, 1006, 651, 0x9d9484],
+				[right, 1186, 634, 0x9b9483],
+				[center, 561, 515, 0xf3b25e],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 407, 417, 429, 439, 1000], // 不公开
+			[center, 1280, 720, 537, 495, 744, 536, 1000], // 创建
+		]
 	}]
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
@@ -359,8 +390,6 @@ export class Func313 implements IFuncOrigin {
 		})) {
 			if (thisConf.team) {
 				thisScript.regionClick([thisOperator[4].oper[1]]);
-				thisScript.regionClick([thisOperator[4].oper[2]]);
-				thisScript.regionClick([thisOperator[4].oper[3]]);
 				thisScript.global.team_up_Frist = true;
 			} else {
 				thisScript.regionClick([thisOperator[4].oper[0]]);
@@ -371,7 +400,7 @@ export class Func313 implements IFuncOrigin {
 			id: 313,
 			name: '契灵杂项',
 			operator: [
-				thisOperator[6], thisOperator[8], thisOperator[11],
+				thisOperator[6], thisOperator[8], thisOperator[11], thisOperator[12], thisOperator[13],
 			]
 		})) {
 			return true;
