@@ -1,4 +1,5 @@
-import { IFuncOrigin, IFuncOperatorOrigin } from '@/interface/IFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, type IFuncOperator } from '@/interface/IFunc';
+import type { Script } from '@/system/script';
 // const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -49,5 +50,32 @@ export class Func113 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1108, 85, 1139, 120, 1000]
 		]
-	}]
+	}];
+
+
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
+		let curCnt = 0;
+		const maxCount = 5;
+		while (thisScript.oper({
+			name: '烟花募集_开始',
+			operator: [thisOperator[0]],
+		})) {
+			curCnt++;
+			thisScript.keepScreen();
+			if (curCnt >= maxCount) {
+				thisScript.myToast(`连续执行${maxCount}次挑战后未开始，脚本自动停止`);
+				thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+				thisScript.stop();
+				sleep(2000);
+				return false;
+			}
+		}
+		if (curCnt) {
+			return true;
+		}
+		return thisScript.oper({
+			name: '烟花募集_其他杂项',
+			operator: [thisOperator[1], thisOperator[2]]
+		});
+	}
 }

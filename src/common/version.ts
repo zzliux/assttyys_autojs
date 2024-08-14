@@ -1162,5 +1162,8 @@ export const versionList = [{
 }, {
 	version: '20240814_01',
 	desc: '新增：答题活动'
+}, {
+	version: '20240814_02',
+	desc: '优化：答题活动多次点击开始未进入则停止脚本'
 }];
 export default versionList[versionList.length - 1].version;
