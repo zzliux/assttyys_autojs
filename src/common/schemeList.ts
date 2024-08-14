@@ -918,11 +918,17 @@ const SchemeList: IScheme[] = [
 		id: 101,
 		schemeName: '霍金神肉鸽',
 		list: [0, 402, 24],
-		star: true,
+		// star: true,
 		commonConfig: {
 			// 通用参数
 			multiColorSimilar: 95,
 		},
+	},
+	{
+		id: 102,
+		schemeName: '烟花募集（答题活动）',
+		list: [0, 113, 114, 24],
+		star: true,
 	}
 	// , {
 	// 	id: 102,

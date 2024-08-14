@@ -1159,5 +1159,8 @@ export const versionList = [{
 }, {
 	version: '20240807_01',
 	desc: '优化：强化适配逢魔首领'
+}, {
+	version: '20240814_01',
+	desc: '新增：答题活动'
 }];
 export default versionList[versionList.length - 1].version;
