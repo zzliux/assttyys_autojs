@@ -1165,5 +1165,8 @@ export const versionList = [{
 }, {
 	version: '20240814_02',
 	desc: '优化：答题活动多次点击开始未进入则停止脚本'
+}, {
+	version: '20240818_01',
+	desc: '优化：答题活动的题库搜索修改为基于字形相似度的编辑距离计算'
 }];
 export default versionList[versionList.length - 1].version;

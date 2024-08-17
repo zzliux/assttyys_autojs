@@ -10,7 +10,30 @@ import { getWidthPixels, getHeightPixels } from '@auto.pro/core';
 
 // importClass(android.graphics.Color);
 // importPackage(android.content);
+import fmmxQuestionList from '@/common/fmmxQuestionList';
 
+export function search(list: Record<string, any>[], prop: string, str: string) {
+	let maxSimilarity = 0;
+	let maxSimilarityIndex = -1;
+	for (let i = 0; i < list.length; i++) {
+		const sim = nlpSimilarity(list[i][prop], str) || 0;
+		if (sim > maxSimilarity) {
+			maxSimilarity = sim;
+			maxSimilarityIndex = i;
+		}
+	}
+	if (-1 === maxSimilarityIndex) {
+		return null;
+	}
+	return {
+		data: list[maxSimilarityIndex],
+		similarity: maxSimilarity
+	}
+}
+
+export function questionSearch(str: string) {
+	return search(fmmxQuestionList, 'question', str);
+}
 export function requestMyScreenCapture(callback: Function, helperBridge: IhelperBridge) {
 	if (device.sdkInt >= 29 && auto.service) {
 		// 安卓10以上，有无障碍服务，通过无障碍服务把申请权限点了
