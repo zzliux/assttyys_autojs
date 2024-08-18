@@ -497,8 +497,8 @@ export const mergeSchemeList = (savedSchemeList: IScheme[], innerSchemeList: ISc
 
 let hanZiSimilarBridge = null;
 export function nlpSimilarity(s1: string, s2: string) {
-	console.log(`s1=${s1}`);
-	console.log(`s2=${s2}`);
+	// console.log(`s1=${s1}`);
+	// console.log(`s2=${s2}`);
 	if (!hanZiSimilarBridge) {
 		// @ts-expect-error dex包
 		hanZiSimilarBridge = new Packages.cn.zzliux.HanZiSimilarBridge();

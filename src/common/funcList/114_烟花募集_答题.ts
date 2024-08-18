@@ -33,38 +33,42 @@ export class Func114 implements IFuncOrigin {
 		// 选项1被选中
 		desc: [1280, 720,
 			[
-				[right, 933, 227, 0x6974ad],
-				[right, 915, 202, 0x5e6399],
-				[right, 1017, 226, 0x6672ab],
+				[right, 1209, 212, 0x61689e],
+				[right, 1209, 204, 0x5d6499],
+				[right, 1197, 226, 0x6872aa],
+				[right, 1179, 226, 0x6772ab],
 			]
-		]
+		],
 	}, {
 		// 选项2被选中
 		desc: [1280, 720,
 			[
-				[right, 943, 337, 0x6872ac],
-				[right, 918, 315, 0x61659b],
-				[right, 967, 337, 0x6872ab],
+				[right, 1186, 335, 0x6771a9],
+				[right, 1209, 319, 0x5d669d],
+				[right, 1159, 335, 0x6771a9],
+				[right, 1163, 325, 0x6169a1],
 			]
 		]
 	}, {
 		// 选项3被选中
 		desc: [1280, 720,
 			[
-				[right, 951, 452, 0x6872ac],
-				[right, 920, 429, 0x5e649a],
-				[right, 980, 452, 0x6872ac],
+				[right, 1169, 451, 0x6772aa],
+				[right, 1214, 434, 0x5e669c],
+				[right, 1145, 438, 0x61689f],
+				[right, 1139, 450, 0x6771a9],
 			]
-		]
+		],
 	}, {
 		// 选项4被选中
 		desc: [1280, 720,
 			[
-				[right, 932, 562, 0x6873ad],
-				[right, 913, 540, 0x5d649a],
-				[right, 946, 562, 0x6772aa],
+				[right, 1152, 560, 0x6671a9],
+				[right, 1219, 541, 0x5d649a],
+				[right, 1181, 548, 0x61689f],
+				[right, 1173, 559, 0x6670a9],
 			]
-		]
+		],
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({

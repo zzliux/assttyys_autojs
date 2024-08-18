@@ -44,7 +44,7 @@ const ScheduleDefaultList: JobOptions[] = [
 		nextDate: null,
 		repeatMode: 3,
 		interval: '0 25 17 * * *',
-		nextOffset: '-10,30',
+		nextOffset: '10,50',
 		level: '10',
 		config: {
 			scheme: '定时任务-启动游戏-每日逢魔',
