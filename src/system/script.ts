@@ -1,4 +1,4 @@
-import { search, questionSearch, merge } from '@/common/tool';
+import { merge } from '@/common/tool';
 import store, { storeCommon } from '@/system/store';
 import funcList from '@/common/funcListIndex';
 import defaultSchemeList from '@/common/schemeList';
@@ -12,7 +12,7 @@ import { setCurrentScheme } from '@/common/tool';
 import { getWidthPixels, getHeightPixels } from '@auto.pro/core';
 import schemeDialog from './schemeDialog';
 import drawFloaty from '@/system/drawFloaty';
-import { myToast, doPush } from '@/common/toolAuto';
+import { myToast, doPush, questionSearch, search } from '@/common/toolAuto';
 import { IFunc, IFuncOrigin } from '@/interface/IFunc';
 import { IScheme } from '@/interface/IScheme';
 import { IMultiDetectColors, IMultiFindColors } from '@/interface/IMultiColor';
@@ -827,8 +827,8 @@ export class Script {
 		return setCurrentScheme(schemeName, store);
 	}
 
-	search(list: Record<string, any>[], prop: string, str: string, filterSimilar?: number) {
-		return search(list, prop, str, filterSimilar)
+	search(list: Record<string, any>[], prop: string, str: string) {
+		return search(list, prop, str)
 	}
 
 	questionSearch(str: string) {
