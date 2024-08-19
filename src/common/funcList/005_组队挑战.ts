@@ -21,7 +21,7 @@ export class Func005 implements IFuncOrigin {
 			value: null,
 		}]
 	}];
-	operator: IFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{ // 组队界面_挑战亮
 		desc: [1280, 720,
 			[
 				[left, 43, 37, 0xf5e6a8],
@@ -34,7 +34,7 @@ export class Func005 implements IFuncOrigin {
 		],
 	}, {
 		desc: [1280, 720,
-			[[center, 643, 254, 0xffffff]]
+			[[center, 643, 269, 0xfffffd]]
 		]
 	}, {
 		desc: [1280, 720,
@@ -70,26 +70,12 @@ export class Func005 implements IFuncOrigin {
 				[left, 55, 402, 0xe3caa3],
 				[left, 51, 502, 0xe4cca3]]
 		]
-	}, { // 误触_点开了队员阴阳师的弹窗
-		desc: [
-			1280, 720,
-			[
-				[center, 677, 338, 0x52413d],
-				[center, 674, 327, 0x3e373c],
-				[center, 682, 321, 0x573d46],
-				[center, 697, 561, 0xa17b66],
-				[center, 858, 561, 0xec7b68],
-			]
-		],
-		oper: [
-			[center, 1280, 720, 862, 105, 977, 174, 1000],
-		]
 	}];
 	// 0-有人就开，1-第一个+号上的点，2-第二个+号上的点，如果1或者2任意一个匹配上了，说明人没满
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: '组队挑战_永生之海_判断',
-			operator: [thisOperator[4], thisOperator[6]]
+			operator: [thisOperator[4]]
 		}, 0)) {
 			return true;
 		}
@@ -99,8 +85,13 @@ export class Func005 implements IFuncOrigin {
 		}, 0)) {
 			const thisconf = thisScript.scheme.config['5']; // 获取配置
 			if (thisconf.type === '有人就开') {
-				thisScript.regionClick(thisOperator[3].oper);
-				return true;
+				if (!thisScript.oper({
+					name: '二号位',
+					operator: [thisOperator[1]]
+				})) {
+					thisScript.regionClick(thisOperator[3].oper);
+					return true;
+				}
 			} else if (thisconf.type === '三人') {
 				if (!thisScript.oper({
 					name: '组队挑战_乘客1无人',

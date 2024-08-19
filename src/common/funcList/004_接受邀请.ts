@@ -112,6 +112,7 @@ export class Func004 implements IFuncOrigin {
 			const back_scheme = '返回庭院';
 			thisScript.rerun(back_scheme, {
 				next_scheme_name: thisConf.next_scheme,
+				untransmit: true
 			})
 			sleep(3000)
 			return true;

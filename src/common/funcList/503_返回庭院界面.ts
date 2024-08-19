@@ -605,6 +605,9 @@ export class Func503 implements IFuncOrigin {
 						return true;
 					}
 				} else {
+					if (thisScript.runtimeParams.untransmit === true) {
+						thisScript.rerun(next_scheme);
+					}
 					sleep(1000);
 					thisScript.rerun(next_scheme, {
 						...thisScript.runtimeParams,

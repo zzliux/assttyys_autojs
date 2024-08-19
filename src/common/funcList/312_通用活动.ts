@@ -4,7 +4,7 @@ import { Script } from '@/system/script';
 // const normal = -1; //定义常量
 const left = 0;
 const center = 1;
-// const right = 2;
+const right = 2;
 
 export class Func312 implements IFuncOrigin {
 	id = 312;
@@ -40,13 +40,28 @@ export class Func312 implements IFuncOrigin {
 			[left, 1280, 720, 22, 19, 52, 47, 500], // 左上角返回
 			[center, 1280, 720, 683, 401, 795, 442, 500], // 确认
 		]
+	}, { // 1 体力不足
+		desc: [
+			1280, 720,
+			[
+				[left, 231, 239, 0x9f5045],
+				[left, 267, 236, 0x9f5045],
+				[center, 572, 239, 0x9f5045],
+				[center, 688, 241, 0x9f5045],
+				[center, 725, 237, 0x9f5045],
+				[right, 1005, 241, 0x9f5045],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 181, 186, 1055, 291, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['312'];
 		let curCnt = 0;
 		const maxCount = 5;
 		while ((thisScript.findMultiColor('活动说明的感叹号') || thisScript.findMultiColor('体力图标') ||
-      thisScript.findMultiColor('右下角锁定阵容'))) {
+			thisScript.findMultiColor('右下角锁定阵容'))) {
 			curCnt++;
 			if (curCnt >= maxCount) {
 				thisScript.myToast(`连续执行${maxCount}次挑战后未开始，脚本自动停止`);
@@ -107,6 +122,16 @@ export class Func312 implements IFuncOrigin {
 
 		if (curCnt) {
 			return true;
+		}
+		if (thisScript.oper({
+			id: 312,
+			name: '体力不足',
+			operator: [thisOperator[1]]
+		})) {
+			thisScript.doPush(thisScript, { text: '体力不足，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+			thisScript.stop();
+			sleep(3000);
+			return;
 		}
 		return false;
 	}

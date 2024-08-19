@@ -47,16 +47,6 @@ export class Func306 implements IFuncOrigin {
 			type: 'list',
 			data: ['包含', '模糊'],
 			default: '包含',
-		}, {
-			name: 'next_scheme',
-			desc: '下一个方案',
-			type: 'scheme',
-			default: '通用准备退出',
-		}, {
-			name: 'qilingmod',
-			desc: '契灵模式',
-			type: 'switch',
-			default: false,
 		}],
 	}];
 	operator: IFuncOperatorOrigin[] = [{ // 0,三号位
@@ -167,16 +157,64 @@ export class Func306 implements IFuncOrigin {
 			[center, 1280, 720, 473, 90, 564, 137, 1000],
 			[center, 1280, 720, 592, 90, 680, 136, 1000],
 		]
+	}, { // 9 队友详细
+		desc: [
+			1280, 720,
+			[
+				[center, 859, 561, 0xea7d67],
+				[center, 688, 566, 0xdd705d],
+				[right, 1059, 622, 0x48322e],
+				[right, 1041, 213, 0x412d25],
+				[right, 1044, 278, 0xc6b4a3],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 347, 544, 471, 612, 1000],
+		]
+	}, { // 10 永生之海
+		desc: [
+			1280, 720,
+			[
+				[center, 327, 153, 0x5a515d],
+				[center, 641, 151, 0xffffff],
+				[right, 1089, 38, 0xb2bbd2],
+				[right, 1171, 206, 0x282a3f],
+				[left, 174, 165, 0xda2e39],
+				[left, 302, 152, 0x534c59],
+			]
+		]
+	}, { // 11 永生之海_P1当队长
+		desc: [
+			1280, 720,
+			[
+				[center, 654, 307, 0xebe3e4],
+				[center, 877, 303, 0xffffff],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 323, 310, 390, 345, 1000],
+		]
+	}, { // 12 永生之海_P2当队长
+		desc: [
+			1280, 720,
+			[
+				[center, 352, 307, 0xffffff],
+				[center, 352, 295, 0xffffff],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 312, 283, 394, 329, 1000],
+		]
 	}]
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['306'];
 		const team_up_Frist = thisScript.global.team_up_Frist;
 		let team_up_lagTime = thisScript.global.team_up_lagTime;
-		const team_up_Time = 5;
+		const team_up_Time = 10;
 		// 非组队界面重置计时
 		if (!team_up_lagTime || !thisScript.oper({
 			name: '非组队界面',
-			operator: [{ desc: thisOperator[2].desc }]
+			operator: [{ desc: thisOperator[2].desc }, { desc: thisOperator[10].desc }]
 		})) {
 			thisScript.global.team_up_lagTime = new Date();
 		}
@@ -186,16 +224,17 @@ export class Func306 implements IFuncOrigin {
 			operator: [{ desc: thisOperator[5].desc }]
 		})) {
 			thisScript.global.team_up_Time = 0;
+			thisScript.global.team_up_Frist = false;
 			return false;
 		}
 		team_up_lagTime = new Date();
 		// 开启后首次进入组队则邀请 或 停留组队界面超过15秒
-		if (team_up_Frist || team_up_lagTime.getTime() - thisScript.global.team_up_lagTime.getTime() > 10000) {
-			// 契灵模式
-			if (thisConf.qilingmod && thisScript.oper({
-				name: '组队挑战契灵模式_判断是否邀请',
-				operator: [{ desc: thisOperator[3].desc }]
-			})) {
+		if (team_up_Frist || team_up_lagTime.getTime() - thisScript.global.team_up_lagTime.getTime() > 15000) {
+			// 判断组队模式
+			if (!thisConf.secondPlayer && thisScript.oper({
+				name: '判断是否邀请',
+				operator: [{ desc: thisOperator[4].desc }]
+			})) { // 二人组队
 				thisScript.regionClick([thisOperator[4].oper[1]]);
 				thisScript.global.team_up_Frist = false;
 				thisScript.global.team_up_lagTime = new Date();
@@ -207,11 +246,33 @@ export class Func306 implements IFuncOrigin {
 					return;
 				}
 				return true;
-			} else if (thisConf.qilingmod == false && thisScript.oper({
-				name: '三号位',
-				operator: [thisOperator[0]]
+			} else if (thisConf.secondPlayer && thisScript.oper({ // 三人组队
+				name: '判断是否邀请',
+				operator: [{ desc: thisOperator[0].desc }]
 			})) {
-				// 普通模式
+				thisScript.regionClick([thisOperator[0].oper[0]]);
+				thisScript.global.team_up_Frist = false;
+				thisScript.global.team_up_lagTime = new Date();
+				thisScript.global.team_up_Time++;
+				if (team_up_Time < thisScript.global.team_up_Time) {
+					thisScript.doPush(thisScript, { text: '多次邀请未响应，或多次未识别到昵称，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+					thisScript.stop();
+					sleep(3000);
+					return;
+				}
+				return true;
+			} else if (!thisConf.secondPlayer && thisScript.oper({ // 魂海组队
+				name: '判断是否邀请',
+				operator: [{ desc: thisOperator[10].desc }]
+			})) {
+				thisScript.oper({ // P1队长
+					name: '判断是否邀请',
+					operator: [thisOperator[11]]
+				});
+				thisScript.oper({ // P2队长
+					name: '判断是否邀请',
+					operator: [thisOperator[12]]
+				});
 				thisScript.global.team_up_Frist = false;
 				thisScript.global.team_up_lagTime = new Date();
 				thisScript.global.team_up_Time++;
@@ -234,14 +295,19 @@ export class Func306 implements IFuncOrigin {
 			let toClickRegionTwo = null;
 			const stringCompareMode = thisConf.stringCompareMode as string || '包含';
 			{ // 判断邀请类型
-				if (thisConf.qilingmod && thisConf.selectArea == '跨区') {
+				if (thisScript.oper({
+					name: '组队类型_契灵',
+					operator: [{ desc: thisOperator[6].desc }]
+				}) && thisConf.selectArea == '跨区') {
 					thisScript.regionClick(thisOperator[6].oper);
+					thisScript.keepScreen();
 				}
 				if (thisScript.oper({
 					name: '组队类型_御魂',
 					operator: [{ desc: thisOperator[7].desc }]
 				}) && thisConf.selectArea == '跨区') {
 					thisScript.regionClick(thisOperator[7].oper);
+					thisScript.keepScreen();
 				}
 				if (thisScript.oper({
 					name: '组队类型_探索',
@@ -252,9 +318,9 @@ export class Func306 implements IFuncOrigin {
 					} else {
 						thisScript.regionClick([thisOperator[8].oper[1]]);
 					}
+					thisScript.keepScreen();
 				}
 			}
-			thisScript.keepScreen();
 			result = thisScript.findText('.+', 0, thisOperator[1].oper[0], stringCompareMode);
 			if (result.length === 0) {
 				console.log('未识别到任何昵称');
@@ -345,36 +411,28 @@ export class Func306 implements IFuncOrigin {
 				});
 			}
 		}
-		// 契灵模式_判断是否挑战
-		if (thisConf.qilingmod && thisScript.oper({
-			name: '组队挑战契灵模式_判断队友是否进入',
-			operator: [{ desc: thisOperator[3].desc }]
-		})) {
-			if (!thisScript.oper({
-				name: '二号位',
-				operator: [{ desc: thisOperator[4].desc }]
-			})) {
-				thisScript.regionClick([thisOperator[4].oper[0]]);
-			}
-			return true;
-		}
-		// 普通模式
 		if (thisScript.oper({
 			name: '组队挑战_判断',
 			operator: [{ desc: thisOperator[3].desc }]
 		})) {
-			if (thisConf && !thisConf.secondPlayer) {
-				thisScript.rerun(thisConf.next_scheme);
-				sleep(3000);
-				return;
+			if (thisConf && !thisConf.secondPlayer && !thisScript.oper({
+				name: '二号位',
+				operator: [{ desc: thisOperator[4].desc }]
+			})) {
+				return false;
 			} else if (thisConf && thisConf.secondPlayer && !thisScript.oper({
 				name: '三号位',
 				operator: [{ desc: thisOperator[0].desc }]
 			})) {
-				thisScript.rerun(thisConf.next_scheme);
-				sleep(3000);
-				return;
+				return false;
 			}
+		}
+		// 误触
+		if (thisScript.oper({
+			name: '组队邀请_误触',
+			operator: [thisOperator[9]]
+		})) {
+			return true;
 		}
 		return false;
 	}
