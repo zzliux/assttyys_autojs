@@ -1168,5 +1168,8 @@ export const versionList = [{
 }, {
 	version: '20240818_01',
 	desc: '优化：答题活动的题库搜索修改为基于字形相似度的编辑距离计算'
+}, {
+	version: '20240822_01',
+	desc: '修复：极逢魔首领挑战界面错误的问题'
 }];
 export default versionList[versionList.length - 1].version;
