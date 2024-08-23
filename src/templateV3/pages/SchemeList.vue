@@ -11,156 +11,92 @@
         </template>
         <template #right>
           <!-- <van-icon name="todo-list-o" size="18" @click="exportAndImportModel = true"/> -->
-          <element-search
-            ref="eleSearch"
-            refSearchAttrName="scheme-list-name"
-            refHighLightAttrName="scheme-list-to-highlit"
-          />
+          <element-search ref="eleSearch" refSearchAttrName="scheme-list-name"
+            refHighLightAttrName="scheme-list-to-highlit" />
           <span size="18" @click="exportAndImportModel = true">更多</span>
         </template>
       </van-nav-bar>
     </div>
-    <div class="rv_inner" :style="'padding-top: '+ (46 + (statusBarHeight || 0)) + 'px; padding-bottom: 6px;'">
+    <div class="rv_inner" :style="'padding-top: ' + (46 + (statusBarHeight || 0)) + 'px; padding-bottom: 6px;'">
       <van-dropdown-menu>
-        <van-dropdown-item
-          v-model="filterGroupName"
-          :options="filterGroupNames"
-          @open="filterGroupNameOpen"
-          @change="filterGroupNameChange"
-        />
+        <van-dropdown-item v-model="filterGroupName" :options="filterGroupNames" @open="filterGroupNameOpen"
+          @change="filterGroupNameChange" />
       </van-dropdown-menu>
       <van-cell-group class="itemBox" title="方案列表" style="background: transparent">
-        <draggable
-          :scroll-sensitivity="100"
-          :force-fallback="true"
-          v-model="schemeList"
-          item-key="schemeName"
-          handle=".handle-area"
-          v-bind="dragOptions"
-          @end="saveSchemeList"
-          style="padding: 0px 5px"
-          class="item-list-container"
-        >
+        <draggable :scroll-sensitivity="100" :force-fallback="true" v-model="schemeList" item-key="schemeName"
+          handle=".handle-area" v-bind="dragOptions" @end="saveSchemeList" style="padding: 0px 5px"
+          class="item-list-container">
           <template #item="{ element, index }">
             <div class="item-container" :scheme-list-name="element.schemeName">
-              <van-swipe-cell
-                class="item-line"
-                center
-                @open="itemOpen"
-                @close="itemClose"
-                :before-close="itemBeforeClose"
-                :stop-propagation="true"
-                :disabled="filterGroupName !== '全部'"
-              >
+              <van-swipe-cell class="item-line" center @open="itemOpen" @close="itemClose" :before-close="itemBeforeClose"
+                :stop-propagation="true" :disabled="filterGroupName !== '全部'">
                 <span>
-                  <div v-if="element.groupName" class="group-color" :style="'background-color: ' + getGroupColor(element.groupName)"></div>
-                  <div
-                    :scheme-list-to-highlit="element.schemeName"
-                    class="item van-cell van-cell--center"
+                  <div v-if="element.groupName" class="group-color"
+                    :style="'background-color: ' + getGroupColor(element.groupName)"></div>
+                  <div :scheme-list-to-highlit="element.schemeName" class="item van-cell van-cell--center"
                     @click="schemeClickEvent($event, element)"
-                    :style="'margin-left: ' + (element.groupName ? '6px' : '0px')"
-                  >
-                    <div class="van-cell__title item-title" :style="'margin-left: ' + (!element.groupName ? '6px' : '0px')">{{ element.schemeName }}</div>
-                    <div class="van-cell__value item-value" :style="'margin-right: ' + (element.groupName ? '6px' : '0px')">
-                      <span v-if="filterGroupName === '全部'" class="handle-area"
-                        ><van-icon class="handle" size="18" name="bars"
-                      /></span>
+                    :style="'margin-left: ' + (element.groupName ? '6px' : '0px')">
+                    <div class="van-cell__title item-title"
+                      :style="'margin-left: ' + (!element.groupName ? '6px' : '0px')">{{ element.schemeName }}</div>
+                    <div class="van-cell__value item-value"
+                      :style="'margin-right: ' + (element.groupName ? '6px' : '0px')">
+                      <span v-if="filterGroupName === '全部'" class="handle-area"><van-icon class="handle" size="18"
+                          name="bars" /></span>
                       <span class="star-area">
-                        <van-icon
-                          class="star"
-                          size="18"
-                          :name="element.star ? 'star' : 'star-o'"
-                          :color="element.star ? '#1989fa' : null"
-                          @click="schemeStarEvent($event, element)"
-                        />
+                        <van-icon class="star" size="18" :name="element.star ? 'star' : 'star-o'"
+                          :color="element.star ? '#1989fa' : null" @click="schemeStarEvent($event, element)" />
                       </span>
                     </div>
                   </div>
                 </span>
-                <template #right
-                  ><van-button
-                    type="danger"
-                    square
-                    text="删除"
-                    v-if="!element.inner || true"
-                    @click="swipeCellCurrentAction = filterGroupName === '全部' ? 'delete' : null ; swipeCellCurrentIndex = index"
-                  /><van-button
-                    type="primary"
-                    square
-                    text="复制"
-                    @click="swipeCellCurrentAction = filterGroupName === '全部' ? 'copy' : null; swipeCellCurrentIndex = index"
-                /><van-button
-                    type="warning"
-                    square
-                    text="修改"
-                    @click="swipeCellCurrentAction = filterGroupName === '全部' ? 'modify' : null; swipeCellCurrentIndex = index"
-                /></template>
+                <template #right>
+                  <van-button type="danger" square text="删除" v-if="!element.inner || true"
+                    @click="swipeCellCurrentAction = filterGroupName === '全部' ? 'delete' : null; swipeCellCurrentIndex = index" />
+                  <van-button type="primary" square text="复制"
+                    @click="swipeCellCurrentAction = filterGroupName === '全部' ? 'copy' : null; swipeCellCurrentIndex = index" />
+                  <van-button type="warning" square text="修改"
+                    @click="swipeCellCurrentAction = filterGroupName === '全部' ? 'modify' : null; swipeCellCurrentIndex = index" />
+                  <van-button type="success" square text="置顶" @click="toTop(element.schemeName); swipeCellCurrentIndex = 0" />
+                </template>
               </van-swipe-cell>
             </div>
           </template>
         </draggable>
-        <div v-if="filterGroupName === '全部'" style="margin:5px 10px 5px 10px; border-radius:5px; overflow: hidden; box-shadow: 1px 1px 1px #eaeaea">
+        <div v-if="filterGroupName === '全部'"
+          style="margin:5px 10px 5px 10px; border-radius:5px; overflow: hidden; box-shadow: 1px 1px 1px #eaeaea">
           <van-cell class="item" center @click="addSchemeClickEvent($event)">
             <div style="text-align: center; height: 24px;">
-              <van-icon
-                name="plus"
-                style="font-weight: bolder; vertical-align: middle"
-              />
+              <van-icon name="plus" style="font-weight: bolder; vertical-align: middle" />
               <span style="position: relative; top: 2px">添加方案</span>
             </div>
           </van-cell>
         </div>
       </van-cell-group>
 
-      <van-dialog 
-        v-model:show="schemeNameInputShow"
-        :before-close="schemeNameInputBeforeClose"
+      <van-dialog v-model:show="schemeNameInputShow" :before-close="schemeNameInputBeforeClose"
         :title="'copy' === schemeNameInputType ? '复制方案' : ('add' === schemeNameInputType ? '新增方案' : '修改方案')"
-        show-cancel-button
-      >
-        <van-field
-          :label="'add' === schemeNameInputType ? '方案名' : '新的方案名'"
-          v-model="newSchemeName"
-          placeholder="请输入..."
-        />
-        <van-field
-          label="分组名"
-          v-model="newGroupName"
-          placeholder="请输入..."
-        >
-            <template #button>
-              <van-button size="small" type="default" @click="newGroupNameSelect">选择</van-button>
-            </template>
+        show-cancel-button>
+        <van-field :label="'add' === schemeNameInputType ? '方案名' : '新的方案名'" v-model="newSchemeName"
+          placeholder="请输入..." />
+        <van-field label="分组名" v-model="newGroupName" placeholder="请输入...">
+          <template #button>
+            <van-button size="small" type="default" @click="newGroupNameSelect">选择</van-button>
+          </template>
         </van-field>
       </van-dialog>
     </div>
     <!-- 分组名选择器 -->
     <van-popup v-model:show="selectNewGroupNameShow" position="bottom">
-      <van-picker
-        show-toolbar
-        :columns="groupNameList"
-        @confirm="selectNewGroupNameConfirm"
-        @cancel="selectNewGroupNameShow = false"
-        :default-index="groupNameIndex"
-      />
+      <van-picker show-toolbar :columns="groupNameList" @confirm="selectNewGroupNameConfirm"
+        @cancel="selectNewGroupNameShow = false" :default-index="groupNameIndex" />
     </van-popup>
-    <export-scheme-dialog
-      v-model:show="exportModel"
-      :schemeList="schemeList"
-    />
-    <import-scheme-dialog
-      v-model:show="importModel"
-      :importCallback="schemeImportCallback"
-    />
+    <export-scheme-dialog v-model:show="exportModel" :schemeList="schemeList" />
+    <import-scheme-dialog v-model:show="importModel" :importCallback="schemeImportCallback" />
     <!-- 啊这个不知道用什么实现比较好了 -->
-    <van-popup
-      v-model:show="exportAndImportModel"
-      :overlay-style="{ backgroundColor: 'rgba(0, 0, 0, 0)' }"
-      style="background-color: rgba(0, 0, 0, 0);"
-      position="top"
-      @click="exportAndImportModel = false"
-    >
-      <div :style="`display: inline-block; border: #ccc 1px solid; float: right; background-color: #fff; font-size: 14px; margin-top: ${statusBarHeight + 46}px;`">
+    <van-popup v-model:show="exportAndImportModel" :overlay-style="{ backgroundColor: 'rgba(0, 0, 0, 0)' }"
+      style="background-color: rgba(0, 0, 0, 0);" position="top" @click="exportAndImportModel = false">
+      <div
+        :style="`display: inline-block; border: #ccc 1px solid; float: right; background-color: #fff; font-size: 14px; margin-top: ${statusBarHeight + 46}px;`">
         <div class="import-export-btn" @click="importModel = true">导入方案</div>
         <div class="import-export-btn" @click="exportModel = true">导出方案</div>
         <div class="import-export-btn" @click="$router.push('/schedule/list')">定时任务</div>
@@ -225,7 +161,7 @@ const dragOptions = computed({
       ghostClass: "ghost",
     };
   },
-  set(val) {}
+  set(val) { }
 });
 
 function saveSchemeList() {
@@ -245,7 +181,7 @@ function schemeClickEvent(e, item) {
   });
 }
 
-function schemeLongClickEvent(e, i) {}
+function schemeLongClickEvent(e, i) { }
 
 async function schemeStarEvent(e, item) {
   const newScheme = await AutoWeb.autoPromise('starScheme', {
@@ -273,6 +209,13 @@ function addScheme(scheme, callback) {
   scheme.star = false;
   scheme.inner = false; // 新增的都是用户方案
   schemeList.value.push(scheme);
+  saveSchemeList();
+}
+
+const toTop = (schemeName) => {
+  const index = schemeList.value.findIndex((item, index) => item.schemeName === schemeName);
+  const scheme = schemeList.value.splice(index, 1)[0];
+  schemeList.value.unshift(scheme);
   saveSchemeList();
 }
 
@@ -304,7 +247,7 @@ function itemBeforeClose(option) {
           saveSchemeList();
           AutoWeb.autoPromise('toast', "已删除");
           swipeCellCurrentAction.value = null;
-        }).catch(()=>{
+        }).catch(() => {
           swipeCellCurrentAction.value = null;
         });
       } else if ('copy' === swipeCellCurrentAction.value) {
@@ -337,7 +280,7 @@ function schemeNameInputBeforeClose(action, done) {
       showNotify({ type: 'warning', message: '请输入方案名。' });
       return false;
     }
-    
+
     if ('copy' === schemeNameInputType.value) {
       for (let i = 0; i < schemeList.value.length; i++) {
         if (schemeList.value[i].schemeName == newSchemeName.value) {
@@ -394,7 +337,7 @@ function newGroupNameSelect() {
   schemeList.value.forEach(s => {
     if (s.groupName) gSet[s.groupName] = 1;
   });
-  groupNameList.value = Object.keys(gSet).map(item => ({text: item, value: item}));
+  groupNameList.value = Object.keys(gSet).map(item => ({ text: item, value: item }));
   selectNewGroupNameShow.value = true;
   if (newGroupName.value) {
     for (let i = 0; i < groupNameList.value.length; i++) {
@@ -437,7 +380,7 @@ async function filterGroupNameChange() {
 
   // 1. 根据groupName过滤
   const filterd = [];
-  for (let i = 0 ; i < left.length; i++) {
+  for (let i = 0; i < left.length; i++) {
     if (left[i].groupName === filterGroupName.value) {
       filterd.push(left[i]);
       left.splice(i, 1);
@@ -474,6 +417,7 @@ async function filterGroupNameChange() {
     flex-basis: 50%;
   }
 }
+
 @media (orientation: portrait) {
   .item-container {
     flex-basis: 100%;
@@ -484,12 +428,14 @@ async function filterGroupNameChange() {
   display: flex;
   flex-wrap: wrap;
 }
+
 .item-line {
-  margin:5px 5px 0px 5px;
-  border-radius:5px;
+  margin: 5px 5px 0px 5px;
+  border-radius: 5px;
   overflow: hidden;
   box-shadow: 1px 1px 1px #eaeaea;
 }
+
 .star-area,
 .handle-area {
   margin-top: 8px;
@@ -497,37 +443,45 @@ async function filterGroupNameChange() {
   position: absolute;
   top: 4px;
 }
+
 .handle-area {
   right: 35px;
 }
+
 .star-area {
   right: 0px;
 }
+
 .item {
   height: 44px;
 }
+
 .item-title {
   display: inline-block;
   height: 44px;
   line-height: 44px;
   flex: 3;
 }
+
 .item-value {
   float: right;
-  height:44px;
+  height: 44px;
 }
+
 .group-color {
   width: 6px;
   height: 100%;
   position: absolute;
   background-color: #ff00ff
 }
+
 .import-export-btn {
   transition: all .1s;
   user-select: none;
   padding: 5px;
   box-shadow: 0px 1px 1px #ccc;
 }
+
 .import-export-btn:hover {
   background: #ccc;
 }

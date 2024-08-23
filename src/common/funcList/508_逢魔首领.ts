@@ -223,16 +223,6 @@ export class Func508 implements IFuncOrigin {
 
 		if (
 			thisScript.oper({
-				id: 508,
-				name: '检测_是否找到逢魔首领',
-				operator: [thisOperator[1], thisOperator[10]],
-			})
-		) {
-			return true;
-		}
-
-		if (
-			thisScript.oper({
 				name: '检测_首领BOSS挑战页',
 				operator: [{
 					desc: thisOperator[2].desc,
@@ -326,6 +316,16 @@ export class Func508 implements IFuncOrigin {
 				}
 			}
 
+			return true;
+		}
+
+		if (
+			thisScript.oper({
+				id: 508,
+				name: '检测_是否找到逢魔首领',
+				operator: [thisOperator[1], thisOperator[10]],
+			})
+		) {
 			return true;
 		}
 
