@@ -231,7 +231,7 @@ export class Func306 implements IFuncOrigin {
 		// 开启后首次进入组队则邀请 或 停留组队界面超过15秒
 		if (team_up_Frist || team_up_lagTime.getTime() - thisScript.global.team_up_lagTime.getTime() > 15000) {
 			// 判断组队模式
-			if (!thisConf.secondPlayer && thisScript.oper({
+			if (thisScript.oper({
 				name: '判断是否邀请',
 				operator: [{ desc: thisOperator[4].desc }]
 			})) { // 二人组队
@@ -246,7 +246,7 @@ export class Func306 implements IFuncOrigin {
 					return;
 				}
 				return true;
-			} else if (thisConf.secondPlayer && thisScript.oper({ // 三人组队
+			} else if (thisScript.oper({ // 三人组队
 				name: '判断是否邀请',
 				operator: [{ desc: thisOperator[0].desc }]
 			})) {
@@ -261,7 +261,7 @@ export class Func306 implements IFuncOrigin {
 					return;
 				}
 				return true;
-			} else if (!thisConf.secondPlayer && thisScript.oper({ // 魂海组队
+			} else if (thisScript.oper({ // 魂海组队
 				name: '判断是否邀请',
 				operator: [{ desc: thisOperator[10].desc }]
 			})) {
@@ -409,22 +409,6 @@ export class Func306 implements IFuncOrigin {
 						oper: [thisOperator[1].oper[1]]
 					}]
 				});
-			}
-		}
-		if (thisScript.oper({
-			name: '组队挑战_判断',
-			operator: [{ desc: thisOperator[3].desc }]
-		})) {
-			if (thisConf && !thisConf.secondPlayer && !thisScript.oper({
-				name: '二号位',
-				operator: [{ desc: thisOperator[4].desc }]
-			})) {
-				return false;
-			} else if (thisConf && thisConf.secondPlayer && !thisScript.oper({
-				name: '三号位',
-				operator: [{ desc: thisOperator[0].desc }]
-			})) {
-				return false;
 			}
 		}
 		// 误触

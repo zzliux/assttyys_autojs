@@ -9,7 +9,7 @@ const right = 2;
 export class Func027 implements IFuncOrigin {
 	id = 27;
 	name = '组队_创建或匹配';
-	desc = '创建指定副本组队或直接匹配(需开启ocr)';
+	desc = '创建指定副本组队或直接匹配';
 	config = [
 		{
 			desc: '选择组队的副本类型层数',
