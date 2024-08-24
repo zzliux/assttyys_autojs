@@ -20,12 +20,18 @@ export default class OneBotPushClient extends AbstractPushClient {
 		name: 'msgPush_prefix',
 		type: 'text',
 		default: '[assttyys]'
+	}, {
+		desc: '推送图片缩放大小，取值范围(0,1]，1为原始大小图片，默认值0.5',
+		name: 'msgPush_imageScale',
+		type: 'text',
+		default: '0.5'
 	}];
 	push(data: Message[], config: Record<string, string>) {
-		const { oneBot_version, oneBot_url, msgPush_prefix } = config;
+		const { oneBot_version, oneBot_url, msgPush_prefix, msgPush_imageScale } = config;
 		if (!oneBot_url || !oneBot_url.startsWith('http')) {
 			throw new Error('OneBot推送地址未配置或配置错误');
 		}
+		console.log()
 		const OneBotVersion = oneBot_version || '12';
 		const msgData = [{
 			type: 'text',
@@ -35,14 +41,14 @@ export default class OneBotPushClient extends AbstractPushClient {
 			const { type, data } = item;
 			let dataStr;
 			if (type === 'image') {
-				dataStr = bmpToBase64(scaleBmp(data, 0.5));
+				dataStr = bmpToBase64(scaleBmp(data, parseFloat(msgPush_imageScale || '0.5')));
 			}
 			return type === 'text' ? data : `[CQ:image,file=base64://${dataStr}]`
 		}).join('') : msgData.map(item => {
 			const { type, data } = item;
 			let dataStr;
 			if (type === 'image') {
-				dataStr = bmpToBase64(scaleBmp(data, 0.5));
+				dataStr = bmpToBase64(scaleBmp(data, parseFloat(msgPush_imageScale || '0.5')));
 			}
 			return {
 				type,

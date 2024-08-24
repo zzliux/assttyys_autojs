@@ -34,7 +34,7 @@ export abstract class AbstractPushClient {
 	 * 推送消息
 	 * @param data 推送数据
 	 */
-	abstract push(data: Message[], config: Config): void;
+	abstract push(data: Message[], config: Config): any;
 
 	/**
 	 * 配置转换成settings中的配置格式，那边代码一坨翔，先用any[]放着

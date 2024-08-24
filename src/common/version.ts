@@ -1171,5 +1171,11 @@ export const versionList = [{
 }, {
 	version: '20240822_01',
 	desc: '修复：极逢魔首领挑战界面错误的问题'
+}, {
+	version: '20240824_01',
+	desc: `优化：016地鬼热门挑战修改为热门收藏挑战，可手动修改为挑战收藏的鬼王；
+修复：设置无法修改关联应用停止模式；
+优化：onebot推送新增参数图片缩放大小；
+`
 }];
 export default versionList[versionList.length - 1].version;
