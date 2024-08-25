@@ -2643,23 +2643,15 @@ const multiFindColors: IMultiFindColorsOrigin = {
 			[
 				1280, 720,
 				[
-					[left, 71, 247, 0x381a12],
-					[left, 71, 267, 0x341d14],
-					[left, 60, 257, 0x3a2416],
-					[left, 113, 218, 0xf9c682],
-					[left, 77, 265, 0xf7d54d],
+					[left, 68, 256, 0xe4b52f],
+					[left, 140, 258, 0x4d2d1e],
+					[left, 109, 205, 0x4e4e4e],
+					[left, 114, 461, 0x454545],
+					[left, 114, 450, 0xf8c67f],
+					[left, 69, 391, 0x6f6054],
+					[left, 163, 390, 0x6f6054],
 				]
 			],
-			[
-				1280, 720,
-				[
-					[center, 713, 247, 0x381911],
-					[center, 713, 267, 0x321b13],
-					[center, 751, 429, 0xf7d78b],
-					[center, 758, 231, 0xf6d388],
-					[center, 719, 265, 0xf7d54d],
-				]
-			]
 		]
 	},
 	'寄养狗粮_空': {
