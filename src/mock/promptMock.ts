@@ -86,6 +86,12 @@ const promptMockData = {
             type: 'assttyys_setting',
             stype: 'text',
             value: '123'
+        }, {
+            desc: '推送图片缩放大小，取值范围(0,1]，1为原始大小图片，默认值0.5',
+            name: 'osp_user_token',
+            type: 'assttyys_setting',
+            stype: 'text',
+            value: '0.5'
         }]
     },
     getToSetDefaultLaunchAppList() {

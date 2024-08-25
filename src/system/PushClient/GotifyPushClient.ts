@@ -27,7 +27,7 @@ export default class GotifyPushClient extends AbstractPushClient {
 		if (!gotify_url) {
 			throw new Error('未配置gotify_url');
 		}
-		http.postJson(`${gotify_url}?token=${gotify_user_token}`, {
+		return http.postJson(`${gotify_url}?token=${gotify_user_token}`, {
 			// @ts-expect-error d.ts文件问题
 			title: msgPush_prefix,
 			priority: 8,    // 消息等级 https://github.com/gotify/android
