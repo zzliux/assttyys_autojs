@@ -1177,5 +1177,8 @@ export const versionList = [{
 修复：设置无法修改关联应用停止模式；
 优化：onebot推送新增参数图片缩放大小；
 `
+}, {
+	version: '20240825_01',
+	desc: '修复：狭间报错Cannot convert undefined to an object.'
 }];
 export default versionList[versionList.length - 1].version;
