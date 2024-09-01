@@ -1180,5 +1180,8 @@ export const versionList = [{
 }, {
 	version: '20240825_01',
 	desc: '修复：狭间报错Cannot convert undefined to an object.'
+}, {
+	version: '20240901_01',
+	desc: '优化：013在探索章节界面从普通切换困难前判断是否为普通，而非原来的无脑切换'
 }];
 export default versionList[versionList.length - 1].version;
