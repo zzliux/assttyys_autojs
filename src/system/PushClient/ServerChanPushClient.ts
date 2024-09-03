@@ -42,6 +42,6 @@ export default class ServerChanPushClient extends AbstractPushClient {
 		};
 		console.log(`正文长度：${bodyJson.desp.length}`);
 		// @ts-expect-error d.ts文件问题
-		http.postJson(`https://sctapi.ftqq.com/${ServerChan_SendKey}.send`, bodyJson);
+		return http.postJson(`https://sctapi.ftqq.com/${ServerChan_SendKey}.send`, bodyJson);
 	}
 }

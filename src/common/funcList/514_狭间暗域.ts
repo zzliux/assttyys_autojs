@@ -141,17 +141,7 @@ export class Func514 implements IFuncOrigin {
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['514'];
-
-		if (
-			thisScript.oper({
-				name: '检测_选择暗域页面未封印',
-				operator: [
-					{
-						desc: thisOperator[0].desc,
-					},
-				],
-			})
-		) {
+		if (!thisScript.global.narrow_state) {
 			if (thisconf && thisconf.boss_order === '从小到大') {
 				thisScript.global.narrow_state = {
 					'0_3': false,
@@ -183,7 +173,18 @@ export class Func514 implements IFuncOrigin {
 					'3_5': false,
 				};
 			}
+		}
 
+		if (
+			thisScript.oper({
+				name: '检测_选择暗域页面未封印',
+				operator: [
+					{
+						desc: thisOperator[0].desc,
+					},
+				],
+			})
+		) {
 			return thisScript.oper({
 				name: '点击_神龙暗域',
 				operator: [

@@ -57,9 +57,9 @@ export default function webviewSettigns() {
 	// 	initStoreSettings.floaty_debugger_draw = false;
 	// }
 
-	// if (typeof initStoreSettings.kill_related_app_mode === 'undefined') {
-	// 	initStoreSettings.kill_related_app_mode = 'root';
-	// }
+	if (typeof initStoreSettings.kill_related_app_mode === 'undefined') {
+		initStoreSettings.kill_related_app_mode = 'root';
+	}
 
 	// if (isDebugPlayerRunning() && initStoreSettings.remote_log_url === 'undefined') {
 	// 	initStoreSettings.remote_log_url = '';
@@ -71,7 +71,7 @@ export default function webviewSettigns() {
 	webview.on('getSettings').subscribe(([_param, done]) => {
 		const storeSettings = storeCommon.get('settings', {});
 
-		let  ret = [];
+		let ret = [];
 		ret.push({
 			desc: '点击/滑动模式',
 			name: 'tapType',
@@ -171,19 +171,19 @@ export default function webviewSettigns() {
 			type: 'assttyys_setting_ocr_extend',
 			enabled: storeSettings.ocrType === 'MlkitOcr' ? mlkitOcr.isInstalled() : yunxiOcr.isInstalled()
 		}, {
-		// 没做好，暂不启用
-		// 	desc: '百鬼夜行模型扩展（实验性功能）',
-		// 	name: 'ncnn_bgyx',
-		// 	type: 'assttyys_setting_ncnn_bgyx_extend',
-		// 	enabled: storeSettings.ncnn_bgyx
-		// }, {
-		// 	desc: '消息推送方式',
-		// 	name: 'push_type',
-		// 	type: 'assttyys_setting',
-		// 	stype: 'list',
-		// 	data: ['关闭推送', 'Gotify', 'pushplus', 'ospPush', 'oneBot'],
-		// 	value: storeSettings.push_type
-		// }, {
+			// 没做好，暂不启用
+			// 	desc: '百鬼夜行模型扩展（实验性功能）',
+			// 	name: 'ncnn_bgyx',
+			// 	type: 'assttyys_setting_ncnn_bgyx_extend',
+			// 	enabled: storeSettings.ncnn_bgyx
+			// }, {
+			// 	desc: '消息推送方式',
+			// 	name: 'push_type',
+			// 	type: 'assttyys_setting',
+			// 	stype: 'list',
+			// 	data: ['关闭推送', 'Gotify', 'pushplus', 'ospPush', 'oneBot'],
+			// 	value: storeSettings.push_type
+			// }, {
 			desc: '关联应用停止模式',
 			name: 'kill_related_app_mode',
 			type: 'assttyys_setting',
@@ -389,9 +389,9 @@ export default function webviewSettigns() {
 			done(true);
 			console.log(storeSettings);
 			toastLog('保存成功');
-		// } else if ('assttyys_setting_floaty_debugger_draw' === item.type) {
-		// 	console.log(drawFloaty);
-		// 	done(true);
+			// } else if ('assttyys_setting_floaty_debugger_draw' === item.type) {
+			// 	console.log(drawFloaty);
+			// 	done(true);
 		} else if ('assttyys_setting_ocr_extend' === item.type) {
 			const storeSettings = storeCommon.get('settings', {});
 			if (item.enabled) {

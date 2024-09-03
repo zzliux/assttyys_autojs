@@ -16,16 +16,14 @@ export class Func013 implements IFuncOrigin {
 			desc: '是否手动选章节',
 			type: 'switch',
 			default: false,
-			value: null,
 		}, {
 			name: 'xy',
 			desc: '文本的坐标中心（区域为左右各增加20）,格式为x,y',
 			type: 'text',
 			default: '1151,348',
-			value: null,
 		}]
 	}];
-	operator: IFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{ // 0 探索地图界面
 		desc: '探索地图界面',
 		oper: [
 			[right, 1280, 720, 1056, 557, 1246, 643, 1000],
@@ -33,7 +31,7 @@ export class Func013 implements IFuncOrigin {
 			[center, 1280, 720, 889, 517, 1002, 559, 1000]
 		],
 		retest: 1000
-	}, { // 章节内_普通_困难
+	}, { // 1 章节内_普通_困难
 		desc: [1280, 720,
 			[
 				[center, 276, 129, 0x493624],
@@ -46,10 +44,17 @@ export class Func013 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1036, 133, 1065, 158, 500]
 		]
-	}, {
+	}, { // 2
 		oper: [
 			[left, 1280, 720, 0, 0, 77, 45, 1000]
 		]
+	}, { // 3 普通按钮亮着的
+		desc: [1280, 720,
+			[
+				[center, 333, 204, 0x4b1d53],
+				[center, 340, 253, 0x670ecb],
+			]
+		],
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config[13];
@@ -81,8 +86,21 @@ export class Func013 implements IFuncOrigin {
 						thisScript.regionClick([thisOperator[0].oper[0]]);
 					}
 					if (thisScript.compareColorLoop(thisOperator[1].desc, 3000)) {
-						thisScript.regionClick([thisOperator[0].oper[1], thisOperator[0].oper[2]]);
-						return true;
+						if (thisScript.oper({
+							id: 13,
+							name: '探索_普通切困难_挑战',
+							operator: [{
+								desc: thisOperator[3].desc,
+								oper: [thisOperator[0].oper[1], thisOperator[0].oper[2]]
+							}]
+						})) {
+							return true;
+						} else {
+							// 困难挑战
+							console.log('探索_困难_挑战');
+							thisScript.regionClick([thisOperator[0].oper[2]]);
+							return true;
+						}
 					}
 				}
 				return false;

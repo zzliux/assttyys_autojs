@@ -22,7 +22,7 @@ export default class PushPlusPushClient extends AbstractPushClient {
 		if (!pushplus_token) {
 			throw new Error('未配置pushplus_token');
 		}
-		http.postJson('https://pushplus.plus/send', {
+		return http.postJson('https://pushplus.plus/send', {
 			// @ts-expect-error d.ts文件问题
 			token: pushplus_token,
 			title: `${msgPush_prefix} ASSTTYYS消息通知`,
