@@ -87,6 +87,7 @@ export type globalRootType = {
 	daoGuan_exit: boolean, // 道馆退出突破
 	daoGuan_again: boolean, // 道馆再次攻打是否攻打第二阵容
 	first_create_team: boolean, // 首次创建队伍
+	open_only_once: boolean, // 首次启动游戏
 }
 
 export const globalRoot: globalRootType = {
@@ -178,4 +179,5 @@ export const globalRoot: globalRootType = {
 	daoGuan_exit: false,
 	daoGuan_again: true,
 	first_create_team: false,
+	open_only_once: false,
 }
