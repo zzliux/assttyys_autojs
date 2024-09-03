@@ -1189,6 +1189,7 @@ export const versionList = [{
     组队增加关闭误触好友弹窗；
     更改了306邀请好友逻辑增加了速度和永生之海，现可把邀请和组队过程整合至一个方案（更多逻辑查看手册）；
     004功能对邀请提示不做动作增加了稳定性代码（先返回庭院）
-    27功能可自选副本`
+    27功能可自选副本
+    993不强制ocr，增加是否切换方案开关`
 }];
 export default versionList[versionList.length - 1].version;
