@@ -434,6 +434,10 @@ export class Func993 implements IFuncOrigin {
 				if (thisScript.global.checked_yard_count >= 10 ||
 					thisScript.global.app_is_open_flag === 0) {
 					thisScript.global.checked_yard_count = 0;
+					// 后面新增的配置，如果未定义的话默认值给true
+					if (typeof thisConf.scheme_switch_enabled === 'undefined') {
+						thisConf.scheme_switch_enabled = true;
+					}
 					if (thisConf.scheme_switch_enabled) {
 						thisScript.rerun(thisConf.next_scheme);
 						sleep(3000);
@@ -474,6 +478,7 @@ export class Func993 implements IFuncOrigin {
 
 			if (
 				thisScript.oper({
+					id: 993,
 					name: '是否为登录页',
 					operator: [{
 						desc: thisOperator[0].desc,
@@ -525,6 +530,7 @@ export class Func993 implements IFuncOrigin {
 			if (
 				thisScript.global.game_area &&
 				thisScript.oper({
+					id: 993,
 					name: '是否为同区多账号',
 					operator: [{
 						desc: thisOperator[18].desc,
@@ -611,6 +617,7 @@ export class Func993 implements IFuncOrigin {
 			if (
 				thisConf.area &&
 				thisScript.oper({
+					id: 993,
 					name: '是否为切换区域页',
 					operator: [{
 						desc: thisOperator[4].desc,

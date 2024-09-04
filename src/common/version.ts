@@ -1191,5 +1191,8 @@ export const versionList = [{
     004功能对邀请提示不做动作增加了稳定性代码（先返回庭院）
     27功能可自选副本
     993不强制ocr，增加是否切换方案开关`
+}, {
+	version: '20240904_01',
+	desc: '适配新的探索地图界面',
 }];
 export default versionList[versionList.length - 1].version;
