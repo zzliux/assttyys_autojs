@@ -1194,5 +1194,8 @@ export const versionList = [{
 }, {
 	version: '20240904_01',
 	desc: '适配新的探索地图界面',
+}, {
+	version: '20240904_02',
+	desc: '002退出结算适配阴阳师/英杰技能升级提示'
 }];
 export default versionList[versionList.length - 1].version;

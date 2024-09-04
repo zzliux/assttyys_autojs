@@ -239,6 +239,22 @@ export class Func002 implements IFuncOrigin {
 			[center, 1280, 720, 680, 411, 838, 452, 500],
 		],
 		notForCnt: true, // 点击确认不统计退出结算的次数
+	}, {
+		// 23 阴阳师/英杰技能升级提示
+		desc: [1280, 720,
+			[
+				[center, 413, 394, 0x8e6a40],
+				[center, 869, 393, 0x8f6b41],
+				[center, 652, 275, 0x483424],
+				[center, 802, 312, 0xcab49b],
+				[center, 421, 262, 0x38291d],
+				[center, 835, 387, 0xaf947c],
+				[center, 397, 299, 0x817976],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 225, 486, 1082, 679, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['2'];
@@ -298,9 +314,9 @@ export class Func002 implements IFuncOrigin {
 			id: 2,
 			name: '退出结算',
 			operator: [
-				thisOperator[0],  thisOperator[1],  thisOperator[2],  thisOperator[3],
-				thisOperator[4],  thisOperator[5],  thisOperator[6],  thisOperator[7],
-				thisOperator[8],  thisOperator[9],  thisOperator[10], thisOperator[11],
+				thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[3],
+				thisOperator[4], thisOperator[5], thisOperator[6], thisOperator[7],
+				thisOperator[8], thisOperator[9], thisOperator[10], thisOperator[11],
 				thisOperator[12], thisOperator[13], thisOperator[14], thisOperator[15],
 				thisOperator[16], thisOperator[17], thisOperator[22], thisOperator[18], // 22要放18前面
 				thisOperator[21],
