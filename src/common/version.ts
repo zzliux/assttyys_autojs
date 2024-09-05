@@ -1200,5 +1200,8 @@ export const versionList = [{
 }, {
 	version: '20240905_01',
 	desc: '修复002退出结算适配阴阳师/英杰技能升级提示'
+}, {
+	version: '20240905_02',
+	desc: '优化：993启动游戏登陆页的取点，屏蔽的无响应弹窗的识别操作'
 }];
 export default versionList[versionList.length - 1].version;

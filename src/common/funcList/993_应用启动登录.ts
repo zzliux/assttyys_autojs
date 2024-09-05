@@ -59,16 +59,20 @@ export class Func993 implements IFuncOrigin {
 	operator: IFuncOperatorOrigin[] = [
 		{
 			// 0 是否为登录页
-			desc: [
-				1280,
-				720,
+			desc: [1280, 720,
 				[
+					// 进入游戏按钮
 					[center, 704, 602, 0xffffff],
 					[center, 713, 611, 0xffffff],
 					[center, 623, 597, 0xfffefe],
 					[center, 630, 601, 0xfdfdfd],
 					[center, 590, 611, 0xffffff],
 					[center, 588, 592, 0xfefdfd],
+					// 右上角用户协议与隐私政策
+					[right, 1163, 29, 0xbdb39c],
+					[right, 1135, 25, 0xbdb39c],
+					[right, 1261, 27, 0xbaaf98],
+					[right, 1096, 25, 0x928168],
 				],
 			],
 			oper: [
@@ -682,7 +686,7 @@ export class Func993 implements IFuncOrigin {
 					name: '登陆后是否有弹窗',
 					operator: [
 						thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[6],
-						thisOperator[9], thisOperator[10], thisOperator[11], thisOperator[12],
+						thisOperator[9], thisOperator[10], thisOperator[11], /* thisOperator[12],*/
 						thisOperator[14], thisOperator[15], thisOperator[17], thisOperator[20],
 						thisOperator[21],
 					],
