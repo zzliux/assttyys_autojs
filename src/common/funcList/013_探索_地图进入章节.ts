@@ -26,7 +26,7 @@ export class Func013 implements IFuncOrigin {
 	operator: IFuncOperatorOrigin[] = [{ // 0 探索地图界面
 		desc: '探索地图界面',
 		oper: [
-			[right, 1280, 720, 1056, 557, 1246, 643, 1000],
+			[right, 1280, 720, 1056, 503, 1246, 581, 1000],
 			[center, 1280, 720, 446, 201, 492, 255, 200],
 			[center, 1280, 720, 889, 517, 1002, 559, 1000]
 		],
