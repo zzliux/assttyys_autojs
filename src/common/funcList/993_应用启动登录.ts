@@ -522,6 +522,8 @@ export class Func993 implements IFuncOrigin {
 						console.log('识别游戏区域失败，识别结果为:', resultArea);
 						return false;
 					}
+				} else {
+					thisScript.global.game_area = 'findMultiColor_皮肤广告关闭按钮';
 				}
 				return thisScript.oper({
 					name: '点击开始游戏',
@@ -696,16 +698,16 @@ export class Func993 implements IFuncOrigin {
 			}
 
 			//	游戏区域状态不为空
-			// if (thisScript.global.game_area) {
-			// 检测是否有皮肤广告	误触太多了，关了
-			const point = thisScript.findMultiColor('皮肤广告关闭按钮');
-			if (point) {
-				console.log('识别广告关闭按钮成功');
-				const oper = [[point.x - 10, point.y - 10, point.x, point.y, 3000]];
-				thisScript.regionClick(oper);
-				return true;
+			if (thisScript.global.game_area) {
+				// 检测是否有皮肤广告	误触太多了，关了
+				const point = thisScript.findMultiColor('皮肤广告关闭按钮');
+				if (point) {
+					console.log('识别广告关闭按钮成功');
+					const oper = [[point.x - 10, point.y - 10, point.x, point.y, 3000]];
+					thisScript.regionClick(oper);
+					return true;
+				}
 			}
-			// }
 
 			return false;
 		}
