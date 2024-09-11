@@ -133,7 +133,7 @@ export class Func519 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 260, 615, 311, 661, 1000],
-			[center, 1280, 720, 762, 414, 881, 457, 1000], // 建立道馆_确认
+			[center, 1280, 720, 762, 414, 881, 457, 5000], // 建立道馆_确认
 			[center, 1280, 720, 1171, 106, 1224, 143, 1000], // 建立道馆_关闭详细
 		]
 	}, { // 8 0次机会
@@ -222,6 +222,9 @@ export class Func519 implements IFuncOrigin {
 					if (point) {
 						temp = thisScript.findText('.+', 0, [point.x - 90, point.y - 54, point.x - 30, point.y - 20], '包含');
 						people[i] = temp[0].label.replace(/[^\d]/g, ' ');
+						if (people[i] > 180) {
+							people[i] = people[i] / 10;
+						}
 						temp = thisScript.findText('.+', 0, [point.x - 90, point.y + 16, point.x - 30, point.y + 48], '包含');
 						defense[i] = temp[0].label.replace(/[^\d]/g, ' ');
 					} else {

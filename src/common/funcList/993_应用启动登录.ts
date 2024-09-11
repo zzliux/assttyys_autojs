@@ -21,13 +21,6 @@ export class Func993 implements IFuncOrigin {
 					value: '',
 				},
 				{
-					name: 'is_shutdown_the_game_before',
-					desc: '启动前是否先关闭游戏',
-					type: 'switch',
-					default: false,
-					value: false,
-				},
-				{
 					name: 'scheme_switch_enabled',
 					desc: '是否切换方案(不切换则只运行一次)',
 					type: 'switch',
@@ -427,16 +420,17 @@ export class Func993 implements IFuncOrigin {
 				return true;
 			}
 
-			if (
-				thisScript.oper({
-					id: 993,
-					name: '是否为庭院',
-					operator: [thisOperator[8], thisOperator[13], thisOperator[16]],
-				})
-			) {
-				// 做延时检测 防止登陆后的弹窗
-				if (thisScript.global.checked_yard_count >= 10 ||
-					thisScript.global.app_is_open_flag === 0) {
+			// 做延时检测 防止登陆后的弹窗
+			let curCnt = 0;
+			const maxCount = 10;
+			while (thisScript.oper({
+				id: 993,
+				name: '是否为庭院',
+				operator: [thisOperator[8], thisOperator[13], thisOperator[16]],
+			})) {
+				curCnt++;
+				thisScript.keepScreen();
+				if (curCnt >= maxCount) {
 					thisScript.global.checked_yard_count = 0;
 					// 后面新增的配置，如果未定义的话默认值给true
 					if (typeof thisConf.scheme_switch_enabled === 'undefined') {
@@ -450,33 +444,21 @@ export class Func993 implements IFuncOrigin {
 						thisScript.global.open_only_once = true;
 						return true;
 					}
-
-				} else {
-					sleep(1500);
-					if (!thisScript.global.checked_yard_count) {
-						thisScript.global.checked_yard_count = 1;
-					} else {
-						thisScript.global.checked_yard_count += 1;
-					}
-					return true;
 				}
+				sleep(500);
 			}
-
 			const { lastFuncDateTime, currentDate, runDate } = thisScript;
 
 			// 10秒钟未执行过任何操作，杀应用重启
 			if (
-				thisScript.global.app_is_open_flag !== 99 &&
+				thisScript.global.app_is_open_flag &&
 				(new Date()).getTime() - Math.max(lastFuncDateTime?.getTime() || 0, currentDate?.getTime() || 0, runDate?.getTime() || 0) > 10000
 			) {
-				if (thisConf.is_shutdown_the_game_before) {
-					// $shell(`am force-stop ${packageName}`, true);
-					thisScript.stopRelatedApp();
-					sleep(5000);
-				}
+				thisScript.stopRelatedApp();
+				sleep(2000);
 				thisScript.launchRelatedApp();
 				thisScript.global.game_area = '';
-				thisScript.global.app_is_open_flag = 99;
+				thisScript.global.app_is_open_flag = false;
 				return true;
 			}
 
@@ -709,6 +691,8 @@ export class Func993 implements IFuncOrigin {
 				}
 			}
 
+			return false;
+		} else {
 			return false;
 		}
 	}

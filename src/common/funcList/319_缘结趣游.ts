@@ -132,20 +132,19 @@ export class Func319 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 380, 625, 431, 667, 1000],
-			[center, 1280, 720, 989, 321, 1165, 393, 1000],
-			[center, 1280, 720, 589, 620, 637, 668, 1000],
-			[center, 1280, 720, 989, 321, 1165, 393, 1000],
-			[center, 1280, 720, 793, 619, 843, 666, 1000],
-			[center, 1280, 720, 989, 321, 1165, 393, 1000],
-			[center, 1280, 720, 925, 624, 983, 672, 1000],
-			[center, 1280, 720, 989, 321, 1165, 393, 1000],
+			// [center, 1280, 720, 380, 625, 431, 667, 1000],
+			// [center, 1280, 720, 989, 321, 1165, 393, 1000],
+			// [center, 1280, 720, 589, 620, 637, 668, 1000],
+			// [center, 1280, 720, 989, 321, 1165, 393, 1000],
+			// [center, 1280, 720, 793, 619, 843, 666, 1000],
+			// [center, 1280, 720, 989, 321, 1165, 393, 1000],
+			// [center, 1280, 720, 925, 624, 983, 672, 1000],
+			// [center, 1280, 720, 989, 321, 1165, 393, 1000],
 		]
 	}, { // 8 购买全部票
 		desc: [
 			1280, 720,
 			[
-				[center, 640, 234, 0xffbd86],
 				[center, 640, 247, 0xde907c],
 				[center, 643, 260, 0x362e3e],
 				[center, 593, 470, 0xf6f1de],
@@ -158,18 +157,39 @@ export class Func319 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 964, 301, 1222, 401, 1000],
-			[center, 1280, 720, 380, 625, 431, 667, 1000],
-			[center, 1280, 720, 989, 321, 1165, 393, 1000],
-			[center, 1280, 720, 589, 620, 637, 668, 1000],
-			[center, 1280, 720, 989, 321, 1165, 393, 1000],
-			[center, 1280, 720, 793, 619, 843, 666, 1000],
-			[center, 1280, 720, 989, 321, 1165, 393, 1000],
-			[center, 1280, 720, 925, 624, 983, 672, 1000],
+			// [center, 1280, 720, 380, 625, 431, 667, 1000],
+			// [center, 1280, 720, 989, 321, 1165, 393, 1000],
+			// [center, 1280, 720, 589, 620, 637, 668, 1000],
+			// [center, 1280, 720, 989, 321, 1165, 393, 1000],
+			// [center, 1280, 720, 793, 619, 843, 666, 1000],
+			// [center, 1280, 720, 989, 321, 1165, 393, 1000],
+			// [center, 1280, 720, 925, 624, 983, 672, 1000],
+			// [center, 1280, 720, 989, 321, 1165, 393, 1000],
+		]
+	}, { // 9 出现铃铛
+		desc: [
+			1280, 720,
+			[
+				[center, 596, 367, 0xebc272],
+				[center, 649, 332, 0xe3ac4b],
+				[center, 630, 375, 0xd99b43],
+				[center, 646, 387, 0x220f06],
+			]
+		],
+		oper: [
+			[center, 1280, 720, -1, -1, -1, -1, 5000],
 			[center, 1280, 720, 989, 321, 1165, 393, 1000],
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['319'];
+		if (thisScript.oper({
+			id: 319,
+			name: '缘结趣游出现铃铛',
+			operator: [thisOperator[9]]
+		})) {
+			return true;
+		}
 		if (thisScript.oper({
 			id: 319,
 			name: '缘结趣游不足十抽',
@@ -243,11 +263,7 @@ export class Func319 implements IFuncOrigin {
 			name: '缘结趣游购买并抽完票',
 			operator: [thisOperator[8]]
 		})) {
-			thisScript.myToast('缘结趣游购买并抽完票，脚本自动停止');
-			thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-			thisScript.stop();
-			sleep(2000);
-			return false;
+			thisScript.global.youjiequyuan_ten = false;
 		}
 		return false;
 	}
