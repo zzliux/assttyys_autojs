@@ -929,6 +929,11 @@ const SchemeList: IScheme[] = [
 		schemeName: '烟花募集（答题活动）',
 		list: [0, 113, 114, 24],
 		star: true,
+	},
+	{
+		id: 103,
+		schemeName: '喜乐雀儿戏',
+		list: [0, 1, 2, 115, 24],
 	}
 	// , {
 	// 	id: 102,

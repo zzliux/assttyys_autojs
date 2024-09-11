@@ -3216,5 +3216,73 @@ const multiFindColors: IMultiFindColorsOrigin = {
 			]
 		]]
 	},
+	'喜乐雀儿戏_吃': {
+		region: [center, 1280, 720, 243, 435, 1211, 541],
+		desc: [[
+			1280, 720,
+			[
+				[right, 1056, 467, 0x397cbb],
+				[right, 1092, 467, 0x458cc0],
+				[right, 1064, 491, 0x5ca9d1],
+				[right, 1054, 479, 0xfff4c1],
+				[right, 1080, 479, 0xfff5c3],
+				[right, 1086, 488, 0xfefbd3],
+			]]
+		]
+	},
+	'喜乐雀儿戏_胡': {
+		region: [center, 1280, 720, 243, 435, 1211, 541],
+		desc: [[
+			1280, 720,
+			[
+				[right, 1047, 476, 0xf49158],
+				[right, 1071, 456, 0xf56949],
+				[right, 1095, 477, 0xfc9b61],
+				[right, 1083, 477, 0xfff1bb],
+				[right, 1061, 475, 0xfdf2b9],
+			]]
+		]
+	},
+	'喜乐雀儿戏_碰': {
+		region: [center, 1280, 720, 243, 435, 1211, 541],
+		desc: [[
+			1280, 720,
+			[
+				[center, 708, 465, 0x377ab9],
+				[center, 726, 458, 0x377bb8],
+				[center, 752, 468, 0x4690c3],
+				[center, 720, 470, 0xffeead],
+				[center, 742, 492, 0xfffddd],
+			]]
+		]
+	},
+	'喜乐雀儿戏_杠': {
+		region: [center, 1280, 720, 243, 435, 1211, 541],
+		desc: [[
+			1280, 720,
+			[
+				[right, 1050, 469, 0x5f6aa5],
+				[right, 1063, 472, 0xfff1b7],
+				[right, 1080, 475, 0xfff2b9],
+				[right, 1063, 489, 0xfffdd8],
+				[right, 1081, 485, 0xfff7ce],
+				[right, 1077, 458, 0x5766a2],
+			]]
+		]
+	},
+	'喜乐雀儿戏_手牌': {
+		similar: 95,
+		region: [center, 1280, 720, 183, 554, 1143, 696],
+		desc: [[
+			1280, 720,
+			[
+				[left, 292, 588, 0xf7f2e1],
+				[center, 357, 588, 0xf6f3e2],
+				[center, 355, 674, 0xf8f4e3],
+				[left, 293, 673, 0xf6f3e1],
+				[center, 322, 575, 0xb2977f],
+			]]
+		]
+	},
 }
 export default multiFindColors;

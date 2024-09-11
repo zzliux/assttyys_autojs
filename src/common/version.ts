@@ -1206,5 +1206,8 @@ export const versionList = [{
 }, {
 	version: '20240906_01',
 	desc: '优化：993启动游戏中关闭弹窗的误识别；\n修复：013点击困28坐标偏移'
+}, {
+	version: '202409012_01',
+	desc: '增加：活动_麻将（一把期望是10局，低效率，能接受再刷）'
 }];
 export default versionList[versionList.length - 1].version;

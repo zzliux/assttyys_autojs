@@ -85,7 +85,7 @@ export class Func304 implements IFuncOrigin {
 				oper: [thisOperator[0].oper[emaki], thisOperator[0].oper[6]]
 			}]
 		})) {
-			// ?? nothing to do
+			return true;
 		}
 		if (thisScript.oper({
 			name: '绘卷进度界面',
