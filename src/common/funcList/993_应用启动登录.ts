@@ -515,16 +515,13 @@ export class Func993 implements IFuncOrigin {
 				});
 			}
 
-			if (
-				thisScript.global.game_area &&
-				thisScript.oper({
-					id: 993,
-					name: '是否为同区多账号',
-					operator: [{
-						desc: thisOperator[18].desc,
-					}],
-				})
-			) {
+			if (thisScript.oper({
+				id: 993,
+				name: '是否为同区多账号',
+				operator: [{
+					desc: thisOperator[18].desc,
+				}],
+			})) {
 				if (thisConf.account_index) {
 					const index = parseInt(thisConf.account_index as string, 10);
 					if (index > 3 || index < 1) {
