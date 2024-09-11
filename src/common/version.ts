@@ -1203,5 +1203,8 @@ export const versionList = [{
 }, {
 	version: '20240905_02',
 	desc: '优化：993启动游戏登陆页的取点，屏蔽的无响应弹窗的识别操作'
+}, {
+	version: '20240906_01',
+	desc: '优化：993启动游戏中关闭弹窗的误识别；\n修复：013点击困28坐标偏移'
 }];
 export default versionList[versionList.length - 1].version;
