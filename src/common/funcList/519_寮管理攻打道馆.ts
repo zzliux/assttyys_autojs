@@ -12,11 +12,6 @@ export class Func519 implements IFuncOrigin {
 	config = [{
 		desc: '',
 		config: [{
-			name: 'defense',
-			desc: '‘防守成功’次数超过X不打',
-			type: 'integer',
-			default: 15,
-		}, {
 			name: 'coefficient',
 			desc: '‘系数’超过X不打',
 			type: 'integer',
@@ -200,9 +195,8 @@ export class Func519 implements IFuncOrigin {
 			if (thisScript.getOcrDetector()) {
 				const glod = [];
 				const people = [];
-				const defense = [];
 				const result = [];
-				// 记录金币 人数 防御次数
+				// 记录金币 人数
 				for (let i = 0; i < 4; i++) {
 					let temp = [];
 					if (thisScript.global.daoGuan_swip) {
@@ -225,26 +219,18 @@ export class Func519 implements IFuncOrigin {
 						if (people[i] > 180) {
 							people[i] = people[i] / 10;
 						}
-						temp = thisScript.findText('.+', 0, [point.x - 90, point.y + 16, point.x - 30, point.y + 48], '包含');
-						defense[i] = temp[0].label.replace(/[^\d]/g, ' ');
 					} else {
 						return false;
 					}
 				}
 				log('金币为:' + glod);
 				log('人数为:' + people);
-				log('防守次数为:' + defense);
 				// 筛选后的结果
 				for (let i = 0; i < 4; i++) {
-					// 防御次数小于参数,否则重置为0值
-					if (Number(defense[i]) <= Number(thisConf.defense)) {
-						// 系数小于参数,否则重置为0值
-						log('第' + (i + 1) + '个寮的系数为:' + Number(glod[i]) / Number(people[i]))
-						if (Number(glod[i]) / Number(people[i]) < Number(thisConf.coefficient)) {
-							result[i] = people[i];
-						} else {
-							result[i] = 0;
-						}
+					// 系数小于参数,否则重置为0值
+					log('第' + (i + 1) + '个寮的系数为:' + Number(glod[i]) / Number(people[i]))
+					if (Number(glod[i]) / Number(people[i]) < Number(thisConf.coefficient)) {
+						result[i] = people[i];
 					} else {
 						result[i] = 0;
 					}
@@ -280,7 +266,7 @@ export class Func519 implements IFuncOrigin {
 					return true;
 
 				} else if (Number(thisScript.global.daoGuan_compare[0]) > Number(thisScript.global.daoGuan_compare[2])) {
-					thisScript.regionSwipe(thisOperator[1].oper[2], thisOperator[1].oper[1], [300, 400], 0, 2000);
+					thisScript.regionSwipe(thisOperator[1].oper[2], thisOperator[1].oper[1], [300, 400], 0, 3500);
 					thisScript.regionClick([thisOperator[4].oper[thisScript.global.daoGuan_compare[1]]]);
 				} else {
 					thisScript.regionClick([thisOperator[6].oper[thisScript.global.daoGuan_compare[3]]]);
