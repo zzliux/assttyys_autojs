@@ -1,6 +1,7 @@
 import { IFuncOrigin } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 
+// This is test
 // Removed unused constants if not needed
 // const normal = -1; //定义常量
 // const left = 0;
