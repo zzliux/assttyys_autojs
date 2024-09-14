@@ -9,7 +9,7 @@ import { Script } from '@/system/script';
 
 export class Func1002 implements IFuncOrigin {
 	id = 1002;
-	name = '自定义点击';
+	name = '自定义点击(配合通用结束切换方案)';
 	desc = '点击config中定义的xy坐标范围';
 	config = [{
 		desc: '',
@@ -19,11 +19,6 @@ export class Func1002 implements IFuncOrigin {
 			type: 'text',
 			default: '1134,590,1225,645',
 			value: null,
-		}, {
-			name: 'next_scheme',
-			desc: '下一个方案',
-			type: 'scheme',
-			default: '通用准备退出',
 		}]
 	}];
 	operatorFunc(thisScript: Script): boolean {
@@ -39,22 +34,15 @@ export class Func1002 implements IFuncOrigin {
 			return false;
 		}
 		const oper = [[inX1, inY1, inX2, inY2, 1000]];
-		for (let i = 0; i < 1; i++) {
-			thisScript.regionClick(oper); // 执行一次点击
-			sleep(1500);
-		}
-		thisScript.keepScreen();
-		// 后面新增的配置，如果未定义的话默认值给true
-		if (typeof thisConf.scheme_switch_enabled === 'undefined') {
-			thisConf.scheme_switch_enabled = true;
-		}
-		if (thisConf.scheme_switch_enabled) {
-			thisScript.rerun(thisConf.next_scheme);
-			sleep(3000);
-			return true;
-		} else {
-			thisScript.global.open_only_once = true;
-			return true;
+		thisScript.regionClick(oper);
+		let curCnt = 0;
+		const maxCount = 1;
+		curCnt++;
+		if (curCnt >= maxCount) {
+			thisScript.myToast(`点击${maxCount}次，脚本自动切换`);
+			thisScript.stop();
+			sleep(2000);
+			return false;
 		}
 	}
 }
