@@ -36,14 +36,8 @@ export class Func1002 implements IFuncOrigin {
 		}
 		const oper = [[inX1, inY1, inX2, inY2, 1000]];
 		thisScript.regionClick(oper);
-		let curCnt = 0;
-		const maxCount = 1;
-		curCnt++;
-		if (curCnt >= maxCount) {
-			thisScript.myToast(`点击${maxCount}次，脚本自动切换`);
-			thisScript.stop();
-			sleep(2000);
-			return false;
-		}
+		thisScript.stop();
+		sleep(2000);
+		return false;
 	}
 }
