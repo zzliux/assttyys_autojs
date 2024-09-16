@@ -1214,6 +1214,7 @@ export const versionList = [{
 	desc: `增加：悬浮窗启动是否伴随着启动应用(设置里开启)；
     定时任务现在会直接启动游戏；
     常驻悬浮窗方案代码，（通用活动和月常活动已常驻悬浮窗按钮内）；
-	993跳过开屏zen的动画；`
+	993跳过开屏zen的动画；
+    修复：304绘卷提醒；`
 }];
 export default versionList[versionList.length - 1].version;

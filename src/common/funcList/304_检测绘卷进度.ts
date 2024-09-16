@@ -44,12 +44,14 @@ export class Func304 implements IFuncOrigin {
 		}]
 	}
 	];
-	operator: IFuncOperatorOrigin[] = [{
-		desc: [1280, 720, [// 0,绘卷界面和卷X坐标
-			[left, 26, 539, 0xd6ae21],
-			[left, 32, 689, 0x42174a],
-			[center, 559, 26, 0x543d33],
-			[center, 676, 34, 0xf8f3e0]]
+	operator: IFuncOperatorOrigin[] = [{ // 0,绘卷界面和卷X坐标
+		desc: [1280, 720,
+			[
+				[left, 26, 539, 0xd6ae21],
+				[left, 32, 689, 0x42174a],
+				[center, 559, 26, 0x543d33],
+				[right, 1129, 23, 0x1e1413],
+			]
 		],
 		oper: [
 			[center, 1280, 720, 127, 124, 446, 350, 1000], // 卷1
