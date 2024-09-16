@@ -10,21 +10,17 @@ export class Func1002 implements IFuncOrigin {
 	name = '庭院进入_爬塔活动';
 	desc = '只适配默认皮肤';
 	config = [{
-		desc: '进入雀儿了乐或999后切换方案',
-		config: [{
-			name: 'next_scheme',
-			desc: '下一个方案',
-			type: 'scheme',
-			default: '通用活动',
-		}]
-	}, {
 		desc: '进入雀儿乐',
 		config: [{
 			name: 'enabled_majiang',
 			desc: '是否启用',
 			type: 'switch',
 			default: false,
-		}]
+		}, {
+			name: 'next_scheme_majiang',
+			desc: '下一个方案',
+			type: 'scheme',
+			default: '喜乐雀儿戏', }]
 	}, {
 		desc: '进入999',
 		config: [{
@@ -32,37 +28,16 @@ export class Func1002 implements IFuncOrigin {
 			desc: '是否启用',
 			type: 'switch',
 			default: false,
-		}]
+		}, {
+			name: 'next_scheme',
+			desc: '下一个方案',
+			type: 'scheme',
+			default: '通用活动', }]
 	}]
-	operator: IFuncOperatorOrigin[] = [{
-		// 0 庭院未展开界面
-		desc: [1280, 720,
-			[
-				[right, 1208, 637, 0xddd2cc],
-				[right, 1189, 668, 0xd9c7c3],
-				[right, 1178, 707, 0x371f16],
-				[right, 1220, 600, 0x331a12],
-				[right, 1188, 645, 0x792413],
-				[center, 440, 183, 0xa0c5c5],
-				[center, 475, 187, 0xedf5f6],
-				[center, 459, 203, 0xbabed9],
-			]
-		],
-		oper: [
-			[center, 1280, 720, 432, 161, 483, 216, 1000], // 庭院点击活动
-		]
-	}, { // 1 庭院展开界面
-		desc: [1280, 720,
-			[
-				[right, 1226, 47, 0xcda47a],
-				[right, 1228, 646, 0xd6c6c3],
-				[center, 366, 56, 0xf9cf9a],
-				[right, 1154, 40, 0xd7b288],
-				[center, 440, 183, 0xa0c5c5],
-				[center, 475, 187, 0xedf5f6],
-				[center, 459, 203, 0xbabed9],
-			]
-		]
+	operator: IFuncOperatorOrigin[] = [{ // 0 庭院
+		desc: '页面是否为庭院_菜单未展开_只支持默认庭院皮肤与默认装饰'
+	}, { // 1 庭院
+		desc: '页面是否为庭院_菜单已展开_只支持默认庭院皮肤与默认装饰'
 	}, { // 2 龙钰活动界面
 		desc: [1280, 720,
 			[
@@ -103,26 +78,30 @@ export class Func1002 implements IFuncOrigin {
 		if (
 			thisScript.oper({
 				id: 1002,
-				name: '页面是否为庭院未展开',
-				operator: [{
-					desc: thisOperator[0].desc,
-					oper: [thisOperator[0].oper[0]],
-				}]
+				name: '庭院内',
+				operator: [thisOperator[0], thisOperator[1]]
 			})
 		) {
-			return true;
-		}
-		if (
-			thisScript.oper({
-				id: 1002,
-				name: '页面是否为庭院展开',
-				operator: [{
-					desc: thisOperator[1].desc,
-					oper: [thisOperator[0].oper[0]],
-				}]
-			})
-		) {
-			return true;
+			let point = null;
+			let cnt = 3;
+			while (cnt-- > 0 && !point) {
+				sleep(80);
+				thisScript.keepScreen(true);
+				point = thisScript.findMultiColor('龙钰活动');
+			}
+			if (point) {
+				console.log('龙钰活动');
+				const oper = [[
+					point.x - 5,
+					point.y - 5,
+					point.x + 5,
+					point.y + 5,
+					200
+				]];
+				thisScript.regionClick(oper);
+				sleep(1400);
+				return true;
+			}
 		}
 		if (
 			thisScript.oper({
@@ -136,33 +115,6 @@ export class Func1002 implements IFuncOrigin {
 			sleep(1000);
 			thisScript.rerun(thisconf.next_scheme);
 		}
-		if (
-			thisScript.oper({
-				id: 1002,
-				name: '是否雀儿乐界面',
-				operator: [{
-					desc: thisOperator[4].desc,
-				}]
-			})
-		) {
-			sleep(1000);
-			thisScript.rerun(thisconf.next_scheme);
-		}
-		if (thisconf.enabled_majiang) {
-			if (
-				thisScript.oper({
-					id: 1002,
-					name: '进入雀儿乐',
-					operator: [{
-						desc: thisOperator[2].desc,
-						oper: [thisOperator[2].oper[0]],
-					}]
-				})
-			) {
-				thisScript.rerun(thisconf.next_scheme);
-				return true;
-			}
-		}
 		if (thisconf.enabled_999) {
 			if (
 				thisScript.oper({
@@ -175,6 +127,33 @@ export class Func1002 implements IFuncOrigin {
 				})
 			) {
 				thisScript.rerun(thisconf.next_scheme);
+				return true;
+			}
+		}
+		if (
+			thisScript.oper({
+				id: 1002,
+				name: '是否雀儿乐界面',
+				operator: [{
+					desc: thisOperator[4].desc,
+				}]
+			})
+		) {
+			sleep(1000);
+			thisScript.rerun(thisconf.next_scheme_majiang);
+		}
+		if (thisconf.enabled_majiang) {
+			if (
+				thisScript.oper({
+					id: 1002,
+					name: '进入雀儿乐',
+					operator: [{
+						desc: thisOperator[2].desc,
+						oper: [thisOperator[2].oper[0]],
+					}]
+				})
+			) {
+				thisScript.rerun(thisconf.next_scheme_majiang);
 				return true;
 			}
 		}
