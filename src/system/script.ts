@@ -806,6 +806,9 @@ export class Script {
 					if (res) {
 						console.log(`desc_sucess：[array] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} id:${id}`);
 					}
+					if (item.desc[0][0] === -1) {
+						res = true;
+					}
 				}
 				if (res) return true;
 			}

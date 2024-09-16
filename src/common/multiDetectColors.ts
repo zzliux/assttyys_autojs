@@ -627,6 +627,17 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 				[center, 877, 590, 0xf3b25e],
 			]
 		]
+	},
+	'常驻悬浮窗方案': {
+		desc: [
+			1280, 720,
+			[
+				[left, -1, -1, 0x000000],
+				[left, -1, -1, 0x000000],
+				[left, -1, -1, 0x000000],
+				[left, -1, -1, 0x000000],
+			]
+		]
 	}
 };
 

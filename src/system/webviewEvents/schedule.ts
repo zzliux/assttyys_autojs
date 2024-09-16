@@ -98,6 +98,7 @@ export default function webviewSchedule() {
 				runningCallback() {
 					updateJobStore(this);
 					setCurrentScheme(job.config.scheme, store);
+					script.launchRelatedApp();
 					script.rerunWithJob(this);
 				}
 			});

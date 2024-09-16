@@ -4,6 +4,7 @@ import FloatButton from '@/system/FloatButton/FloatButton';
 import schemeDialog from '@/system/schemeDialog';
 import script from '@/system/script';
 import { showScheduleDialog } from '@/system/Schedule/scheduleDialog';
+import { storeCommon } from '@/system/store';
 
 /**
  * 悬浮按钮，对大柒的悬浮按钮进行封装
@@ -49,14 +50,18 @@ export class MyFloaty {
 			// 选中样式
 			mUtil.icon2('@drawable/ic_stop_black_48dp').tint2('#FFFFFF').color2('#DC1C2C');
 		})
-		// 设置属性为选中 第一种
-		// .setChecked(true)
+			// 设置属性为选中 第一种
+			// .setChecked(true)
 			.onClick((view, name, state) => {
 				if (self.runEventFlag) {
 					self.runEventFlag = false;
 					return;
 				}
 				if (state) {
+					const storeSettings = storeCommon.get('settings', {});
+					if (storeSettings.floaty_scheme_openApp) {
+						script.launchRelatedApp();
+					}
 					self.thisRun();
 				} else {
 					self.thisStop();
@@ -67,13 +72,13 @@ export class MyFloaty {
 			});
 
 		this.fb.addItem('SchemeListMenu')
-		// 设置图标
+			// 设置图标
 			.setIcon('@drawable/ic_format_indent_increase_black_48dp')
-		// 图标着色
+			// 图标着色
 			.setTint('#FFFFFF')
-		// 背景颜色
+			// 背景颜色
 			.setColor('#bfc1c0')
-		// 点击事件
+			// 点击事件
 			.onClick((_view, _name) => {
 				script.stop();
 				schemeDialog.show(this);
@@ -83,11 +88,11 @@ export class MyFloaty {
 
 		this.fb.addItem('SchemeAutoRun')
 			.setIcon('@drawable/ic_playlist_play_black_48dp')
-		// 图标着色
+			// 图标着色
 			.setTint('#FFFFFF')
-		// 背景颜色
+			// 背景颜色
 			.setColor('#FF9933')
-		// 点击事件
+			// 点击事件
 			.onClick((_view, _name) => {
 				script.stop();
 				self.thisRun('autoRun');
@@ -97,7 +102,7 @@ export class MyFloaty {
 
 		this.fb.addItem('CapScreen')
 			.setIcon('@drawable/ic_landscape_black_48dp')
-		// 图标着色
+			// 图标着色
 			.setTint('#FFFFFF')
 			.setColor('#FF3300')
 			.onClick((_view, _name) => {
@@ -120,7 +125,7 @@ export class MyFloaty {
 		if (isDebugPlayerRunning()) {
 			this.fb.addItem('ViewLogConsole')
 				.setIcon('@drawable/ic_assignment_black_48dp')
-			// 图标着色
+				// 图标着色
 				.setTint('#FFFFFF')
 				.setColor('#FFCCCC')
 				.onClick((_view, _name) => {
@@ -138,7 +143,7 @@ export class MyFloaty {
 		if ($device.sdkInt >= 23) { // android 6
 			this.fb.addItem('ScheduleList')
 				.setIcon('@drawable/ic_list_black_48dp')
-			// 图标着色
+				// 图标着色
 				.setTint('#FFFFFF')
 				.setColor('#FF66CC')
 				.onClick((_view, _name) => {

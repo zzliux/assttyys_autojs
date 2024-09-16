@@ -33,6 +33,10 @@ export default function webviewSettigns() {
 		initStoreSettings.floaty_scheme_direct_run = false;
 	}
 
+	if (typeof initStoreSettings.floaty_scheme_openApp === 'undefined') {
+		initStoreSettings.floaty_scheme_openApp = false;
+	}
+
 	// if (typeof initStoreSettings.osp_user_token === 'undefined') {
 	// 	initStoreSettings.osp_user_token = '';
 	// }
@@ -152,6 +156,11 @@ export default function webviewSettigns() {
 			name: 'floaty_scheme_direct_run',
 			type: 'assttyys_setting',
 			enabled: storeSettings.floaty_scheme_direct_run
+		}, {
+			desc: '悬浮启动脚本是否启动关联应用',
+			name: 'floaty_scheme_openApp',
+			type: 'assttyys_setting',
+			enabled: storeSettings.floaty_scheme_openApp
 		}, {
 			desc: '调试绘制',
 			name: 'floaty_debugger_draw',

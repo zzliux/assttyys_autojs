@@ -93,6 +93,8 @@ export class Func113 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1116, 583, 1215, 656, 1000],
 		]
+	}, { // 6 常驻悬浮窗
+		desc: '常驻悬浮窗方案'
 	}];
 
 

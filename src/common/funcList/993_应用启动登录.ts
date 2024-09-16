@@ -396,6 +396,20 @@ export class Func993 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 844, 144, 872, 173, 1000],
 			]
+		}, { // 23 开屏的zen动画
+			desc: [1280, 720,
+				[
+					[left, 156, 611, 0xfffeff],
+					[right, 1034, 139, 0xfffeff],
+					[right, 1087, 579, 0xfffeff],
+					[right, 783, 332, 0x010001],
+					[right, 696, 335, 0x010001],
+					[right, 641, 350, 0x010001],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 637, 574, 834, 660, 1000],
+			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -669,7 +683,7 @@ export class Func993 implements IFuncOrigin {
 						thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[6],
 						thisOperator[9], thisOperator[10], thisOperator[11], /* thisOperator[12],*/
 						thisOperator[14], thisOperator[15], thisOperator[17], thisOperator[20],
-						thisOperator[21],
+						thisOperator[21], thisOperator[23]
 					],
 				})
 			) {

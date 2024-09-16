@@ -1209,5 +1209,11 @@ export const versionList = [{
 }, {
 	version: '202409012_01',
 	desc: '增加：活动_麻将（一把期望是10局，低效率，能接受再刷）'
+}, {
+	version: '202409012_01',
+	desc: `增加：悬浮窗启动是否伴随着启动应用(设置里开启)；
+    定时任务现在会直接启动游戏；
+    常驻悬浮窗方案代码，（通用活动和月常活动已常驻悬浮窗按钮内）；
+	993跳过开屏zen的动画；`
 }];
 export default versionList[versionList.length - 1].version;
