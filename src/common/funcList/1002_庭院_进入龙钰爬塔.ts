@@ -99,7 +99,7 @@ export class Func1002 implements IFuncOrigin {
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		const thisconf = thisScript.scheme.config['1003'];
+		const thisconf = thisScript.scheme.config['1002'];
 		if (
 			thisScript.oper({
 				id: 1002,
