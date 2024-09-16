@@ -93,7 +93,21 @@ export class Func113 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1116, 583, 1215, 656, 1000],
 		]
-	}, { // 6 常驻悬浮窗
+	}, { // 6 三选一
+		desc: [
+			1280, 720,
+			[
+				[center, 556, 457, 0x6db1b9],
+				[center, 555, 479, 0x87c5cb],
+				[center, 770, 463, 0x68aab1],
+				[center, 767, 484, 0x83c3c8],
+				[center, 659, 470, 0x376169],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 569, 385, 764, 467, 1000],
+		]
+	}, { // 7 常驻悬浮窗
 		desc: '常驻悬浮窗方案'
 	}];
 
@@ -128,7 +142,7 @@ export class Func113 implements IFuncOrigin {
 		}
 		if (thisScript.oper({
 			name: '喜乐雀儿戏_杂项',
-			operator: [thisOperator[0], thisOperator[2], thisOperator[3], thisOperator[5]]
+			operator: [thisOperator[0], thisOperator[2], thisOperator[3], thisOperator[5], thisOperator[6]]
 		})) {
 			return true;
 		}
