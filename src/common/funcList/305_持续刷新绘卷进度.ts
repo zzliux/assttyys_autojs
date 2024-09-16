@@ -26,12 +26,14 @@ export class Func305 implements IFuncOrigin {
 		]
 	}
 	];
-	operator: IFuncOperatorOrigin[] = [{
-		desc: [1280, 720, [// 0,绘卷界面和卷X坐标
-			[left, 26, 539, 0xd6ae21],
-			[left, 32, 689, 0x42174a],
-			[center, 559, 26, 0x543d33],
-			[center, 676, 34, 0xf8f3e0]]
+	operator: IFuncOperatorOrigin[] = [{ // 0,绘卷界面和卷X坐标
+		desc: [1280, 720,
+			[
+				[left, 26, 539, 0xd6ae21],
+				[left, 32, 689, 0x42174a],
+				[center, 559, 26, 0x543d33],
+				[right, 1129, 23, 0x1e1413],
+			]
 		],
 		oper: [
 			[center, 1280, 720, 127, 124, 446, 350, 500], // 卷1
@@ -44,7 +46,8 @@ export class Func305 implements IFuncOrigin {
 		]
 	}, { // 1,绘卷进度界面
 		desc: [1280, 720,
-			[[left, 43, 50, 0x393735],
+			[
+				[left, 43, 50, 0x393735],
 				[center, 637, 64, 0x946d52],
 				[center, 604, 652, 0x946d52],
 				[right, 1161, 67, 0xefcbce]]
