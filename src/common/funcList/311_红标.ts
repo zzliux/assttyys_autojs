@@ -21,7 +21,7 @@ export class Func311 implements IFuncOrigin {
 					name: 'redType',
 					desc: '红标类型',
 					type: 'list',
-					data: ['PVE顶部BOSS血条固定红标', '自定义坐标', '夜溟彼岸花'],
+					data: ['PVE顶部BOSS血条固定红标', '自定义坐标', '神荒'],
 					default: 'PVE顶部BOSS血条固定红标',
 				},
 				{
@@ -29,12 +29,6 @@ export class Func311 implements IFuncOrigin {
 					desc: '红标坐标，仅红标类型为自定义坐标时生效，(格式x(横轴),y(纵轴)左上角为0,0)，实际点击时xy坐标会在±20内随机点击，如625,220',
 					type: 'text',
 					default: '625,220',
-				},
-				{
-					name: 'sleepTime',
-					desc: '选择"夜溟彼岸花"时的延迟点击时间(单位秒),(防止标记夜溟彼岸花太快导致无效输出,蛇拉速度大概为2.35秒)',
-					type: 'integer',
-					default: '2.35',
 				}
 			],
 		},
@@ -82,7 +76,7 @@ export class Func311 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 341, 176, 378, 208, 1000], // 左一
 				[center, 1280, 720, 470, 216, 501, 243, 1000],
-				[center, 1280, 720, 619, 198, 653, 225, 1000],
+				[center, 1280, 720, 626, 217, 662, 246, 1000],
 				[center, 1280, 720, 763, 193, 809, 227, 1000],
 				[center, 1280, 720, 903, 175, 946, 208, 1000], // 右一
 			]
@@ -178,7 +172,7 @@ export class Func311 implements IFuncOrigin {
 					thisScript.global.redFlag = true;
 					return true;
 				}
-			} else if (thisconf.redType === '夜溟彼岸花') {
+			} else if (thisconf.redType === '神荒') {
 				if (thisScript.oper({
 					id: 311,
 					name: '红标-行动条检测',
@@ -187,30 +181,17 @@ export class Func311 implements IFuncOrigin {
 					const point = thisScript.findMultiColor('神荒')
 					if (point) {
 						console.log('开局查找到神荒');
-						if (point.x > 307 && point.x < 428) {
+						if (point.x > 307 && point.x < 440) {
 							thisScript.regionClick([thisOperator[3].oper[0]]);
-						} else if (point.x > 440 && point.x < 561) {
+						} else if (point.x > 440 && point.x < 589) {
 							thisScript.regionClick([thisOperator[3].oper[1]]);
-						} else if (point.x > 589 && point.x < 710) {
+						} else if (point.x > 589 && point.x < 753) {
 							thisScript.regionClick([thisOperator[3].oper[2]]);
-						} else if (point.x > 753 && point.x < 874) {
+						} else if (point.x > 753 && point.x < 892) {
 							thisScript.regionClick([thisOperator[3].oper[3]]);
 						} else if (point.x > 892 && point.x < 1031) {
 							thisScript.regionClick([thisOperator[3].oper[4]]);
 						}
-					}
-					const point1 = thisScript.findMultiColor('夜溟彼岸花')
-					if (point1) {
-						console.log('开局查找到');
-						const oper = [[
-							point1.x + 17,
-							point1.y + 17,
-							point1.x + 64,
-							point1.y + 64,
-							1200
-						]];
-						sleep(Number(thisconf.sleepTime) * 1000);
-						thisScript.regionClick(oper);
 					}
 					thisScript.global.redFlag = true;
 					return true;

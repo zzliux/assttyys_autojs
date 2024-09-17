@@ -3099,8 +3099,16 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		]],
 	},
 	'神荒': {
-		region: [center, 1280, 720, 255, 61, 1027, 269],
-		desc: [[
+		region: [center, 1280, 720, 255, 56, 1027, 269],
+		desc: [[1280, 720,
+			[
+				[center, 402, 84, 0xffffff],
+				[center, 409, 78, 0xffffff],
+				[center, 386, 72, 0x000d25],
+				[center, 403, 91, 0x012251],
+				[center, 391, 72, 0x0b4386],
+			]
+		], [
 			1280, 720,
 			[
 				[right, 971, 93, 0xceedff],
@@ -3109,7 +3117,6 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				[center, 960, 91, 0xffffff],
 				[right, 961, 83, 0xc4e2ff],
 				[right, 981, 83, 0xc1e1ff],
-				[right, 976, 75, 0xfff2e4],
 			]
 		]],
 		similar: 95,

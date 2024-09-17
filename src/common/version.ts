@@ -1216,5 +1216,11 @@ export const versionList = [{
     常驻悬浮窗方案代码，（通用活动和月常活动已常驻悬浮窗按钮内）；
 	993跳过开屏zen的动画；
     修复：304绘卷提醒；`
+}, {
+	version: '202409012_01',
+	desc: `优化：311大花更改为标腐血或神荒单位
+32道馆增加打不过馆主主动放弃
+修复：313进入契灵错误
+993启动游戏关闭太敏感`
 }];
 export default versionList[versionList.length - 1].version;

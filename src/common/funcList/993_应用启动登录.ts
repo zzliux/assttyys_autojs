@@ -463,6 +463,18 @@ export class Func993 implements IFuncOrigin {
 			}
 			const { lastFuncDateTime, currentDate, runDate } = thisScript;
 
+			// 有开屏代表从新启动游戏了
+			if (
+				thisScript.oper({
+					id: 993,
+					name: '开屏的zen动画',
+					operator: [thisOperator[23]],
+				})
+			) {
+				thisScript.global.app_is_open_flag = false;
+				return true;
+			}
+
 			// 10秒钟未执行过任何操作，杀应用重启
 			if (
 				thisScript.global.app_is_open_flag &&
@@ -683,7 +695,7 @@ export class Func993 implements IFuncOrigin {
 						thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[6],
 						thisOperator[9], thisOperator[10], thisOperator[11], /* thisOperator[12],*/
 						thisOperator[14], thisOperator[15], thisOperator[17], thisOperator[20],
-						thisOperator[21], thisOperator[23]
+						thisOperator[21]
 					],
 				})
 			) {

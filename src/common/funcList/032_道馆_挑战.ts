@@ -179,13 +179,28 @@ export class Func032 implements IFuncOrigin {
 				[center, 690, 648, 0xb8b6a7],
 			]
 		]
+	}, { // 10 没次数和背水buff
+		desc: [1280, 720,
+			[
+				[right, 883, 75, 0x9f4c43],
+				[right, 1086, 200, 0x9b2f1c],
+				[right, 1103, 183, 0x9b2f1c],
+				[right, 1145, 595, 0x272420],
+				[right, 1199, 588, 0x272420],
+				[right, 1147, 605, 0xdabf99],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 54, 595, 132, 669, 1000],
+			[center, 1280, 720, 677, 399, 797, 447, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['32'];
 		if (thisScript.global.daoGuan_exit && thisScript.oper({
 			id: 32,
 			name: '检测_放弃突破',
-			operator: [thisOperator[8]]
+			operator: [thisOperator[8], thisOperator[10]]
 		})) {
 			thisScript.global.daoGuan_exit = false;
 			return true;
