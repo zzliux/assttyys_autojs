@@ -26,6 +26,11 @@ export class Func032 implements IFuncOrigin {
 			desc: '第二次打道馆时继续不攻打第二阵容',
 			type: 'switch',
 			default: false,
+		}, {
+			name: 'switch_skill',
+			desc: '第一次战斗切换三号位技能锁三，打馆主时切换回锁二（用于大辉夜打道馆）',
+			type: 'switch',
+			default: false,
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{ // 0 检测_挑战是否可用
@@ -179,20 +184,29 @@ export class Func032 implements IFuncOrigin {
 				[center, 690, 648, 0xb8b6a7],
 			]
 		]
-	}, { // 10 没次数和背水buff
-		desc: [1280, 720,
+	}, { // 10 第一次战斗界面切换三号位技能锁三
+		desc: '战斗界面',
+		oper: [
+			[center, 1280, 720, 893, 645, 956, 686, 1000],
+			[center, 1280, 720, 952, 516, 961, 530, 1000],
+		]
+	}, { // 11  馆主界面切换三号位技能锁二
+		desc: [
+			1280, 720,
 			[
-				[right, 883, 75, 0x9f4c43],
-				[right, 1086, 200, 0x9b2f1c],
-				[right, 1103, 183, 0x9b2f1c],
-				[right, 1145, 595, 0x272420],
-				[right, 1199, 588, 0x272420],
-				[right, 1147, 605, 0xdabf99],
+				[center, 897, 703, 0xbfafa4],
+				[center, 925, 701, 0xd8c6ba],
+				[center, 946, 700, 0xd6c4b7],
+				[center, 947, 709, 0xa5988e],
+				[right, 1125, 220, 0xeee6d3],
+				[right, 1153, 216, 0xa28271],
+				[right, 1194, 226, 0xe7decb],
+				[right, 1269, 700, 0x231917],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 54, 595, 132, 669, 1000],
-			[center, 1280, 720, 677, 399, 797, 447, 1000],
+			[center, 1280, 720, 893, 645, 956, 686, 1000],
+			[center, 1280, 720, 861, 516, 869, 530, 1000],
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -204,6 +218,23 @@ export class Func032 implements IFuncOrigin {
 		})) {
 			thisScript.global.daoGuan_exit = false;
 			return true;
+		}
+		if (thisconf.switch_skill) {
+			if (thisScript.global.fight_switch_skill && thisScript.oper({
+				id: 32,
+				name: '检测_锁三',
+				operator: [thisOperator[10]]
+			})) {
+				thisScript.global.fight_switch_skill = false;
+				return true;
+			}
+			if (!thisScript.global.fight_switch_skill && thisScript.oper({
+				id: 32,
+				name: '检测_锁二',
+				operator: [thisOperator[11]]
+			})) {
+				return true;
+			}
 		}
 		if (thisScript.oper({
 			name: '检测_挑战是否可用',
@@ -220,6 +251,7 @@ export class Func032 implements IFuncOrigin {
 			name: '检测_挑战结束',
 			operator: [thisOperator[1], thisOperator[3], thisOperator[4]]
 		})) {
+			thisScript.global.fight_switch_skill = true;
 			return true;
 		}
 		if (thisconf && thisconf.after_fail_operation && thisScript.oper({

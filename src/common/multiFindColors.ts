@@ -3099,24 +3099,31 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		]],
 	},
 	'神荒': {
-		region: [center, 1280, 720, 255, 56, 1027, 269],
-		desc: [[1280, 720,
+		region: [center, 1280, 720, 255, 56, 1027, 269], // 腐血
+		desc: [[
+			1280, 720,
 			[
-				[center, 402, 84, 0xffffff],
-				[center, 409, 78, 0xffffff],
-				[center, 386, 72, 0x000d25],
-				[center, 403, 91, 0x012251],
-				[center, 391, 72, 0x0b4386],
+				[center, 400, 81, 0xffffff],
+				[center, 408, 74, 0xffffff],
+				[center, 388, 85, 0xffffff],
+				[center, 386, 79, 0x0a4589],
+				[center, 390, 69, 0x0b4386],
+				[center, 400, 70, 0x0b4187],
+				[center, 402, 66, 0x0a3f84],
+				[center, 391, 64, 0x000a1b],
+				[center, 403, 89, 0x012353],
+				[center, 403, 88, 0x012251],
 			]
 		], [
 			1280, 720,
 			[
-				[right, 971, 93, 0xceedff],
-				[center, 960, 72, 0x000c21],
-				[right, 971, 73, 0xfbfeff],
-				[center, 960, 91, 0xffffff],
-				[right, 961, 83, 0xc4e2ff],
-				[right, 981, 83, 0xc1e1ff],
+				[center, 685, 124, 0xffffff],
+				[center, 676, 117, 0x000e2a],
+				[center, 685, 114, 0xfbfeff],
+				[center, 685, 132, 0xfcffff],
+				[center, 677, 124, 0xd5eaff],
+				[center, 674, 133, 0xffffff],
+				[center, 691, 132, 0x00204e],
 			]
 		]],
 		similar: 95,

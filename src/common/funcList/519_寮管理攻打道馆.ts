@@ -77,10 +77,10 @@ export class Func519 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1155, 103, 1193, 135, 1000],
-			[center, 1280, 720, 1155, 249, 1193, 281, 1000],
-			[center, 1280, 720, 1155, 395, 1193, 427, 1000],
-			[center, 1280, 720, 1155, 541, 1193, 573, 1000],
+			[center, 1280, 720, 1155, 103, 1220, 135, 1000],
+			[center, 1280, 720, 1155, 249, 1220, 281, 1000],
+			[center, 1280, 720, 1155, 395, 1220, 427, 1000],
+			[center, 1280, 720, 1155, 541, 1220, 573, 1000],
 		]
 	}, { // 4 前4 寮头像
 		desc: [
@@ -97,10 +97,10 @@ export class Func519 implements IFuncOrigin {
 		]
 	}, { // 5 后4 ocr区域
 		oper: [
-			[center, 1280, 720, 1154, 91, 1193, 123, 1000],
-			[center, 1280, 720, 1154, 238, 1193, 270, 1000],
-			[center, 1280, 720, 1154, 384, 1193, 416, 1000],
-			[center, 1280, 720, 1154, 530, 1193, 562, 1000],
+			[center, 1280, 720, 1154, 91, 1220, 123, 1000],
+			[center, 1280, 720, 1154, 238, 1220, 270, 1000],
+			[center, 1280, 720, 1154, 384, 1220, 416, 1000],
+			[center, 1280, 720, 1154, 530, 1220, 562, 1000],
 		]
 	}, { // 6 后4 寮头像
 		desc: [
@@ -144,6 +144,21 @@ export class Func519 implements IFuncOrigin {
 				[center, 562, 87, 0x07080f],
 			]
 		]
+	}, { // 9 没次数和背水buff
+		desc: [1280, 720,
+			[
+				[right, 883, 75, 0x9f4c43],
+				[right, 1086, 200, 0x9b2f1c],
+				[right, 1103, 183, 0x9b2f1c],
+				[right, 1145, 595, 0x272420],
+				[right, 1199, 588, 0x272420],
+				[right, 1147, 605, 0xdabf99],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 54, 595, 132, 669, 1000],
+			[center, 1280, 720, 677, 399, 797, 447, 1000],
+		]
 	}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -170,7 +185,7 @@ export class Func519 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 519,
 			name: '检测_寮活动神社',
-			operator: [thisOperator[0], thisOperator[7]]
+			operator: [thisOperator[0], thisOperator[7], thisOperator[9]]
 		})) {
 			return true;
 		}
@@ -210,14 +225,22 @@ export class Func519 implements IFuncOrigin {
 						console.log('OCR未识别到字符,将重试一遍');
 						return true;
 					}
-					glod[i] = temp[0].label.replace(/[^\d]/g, ' ');
+					glod[i] = parseInt(temp[0].label.replace(/[^\d]/g, ' '), 10);
+					if (glod[i] > 12000) {
+						glod[i] = Math.floor(glod[i] / 10);
+						log(glod[i])
+					}
+					if (glod[i] > 1200) {
+						glod[i] = Math.floor(glod[i] / 10);
+						log(glod[i])
+					}
 					thisScript.keepScreen();
 					const point = thisScript.findMultiColor('敌方道馆_挑战');
 					if (point) {
 						temp = thisScript.findText('.+', 0, [point.x - 90, point.y - 54, point.x - 30, point.y - 20], '包含');
-						people[i] = temp[0].label.replace(/[^\d]/g, ' ');
+						people[i] = parseInt(temp[0].label.replace(/[^\d]/g, ' '), 10);
 						if (people[i] > 180) {
-							people[i] = people[i] / 10;
+							people[i] = Math.floor(people[i] / 10);
 						}
 					} else {
 						return false;
@@ -228,8 +251,8 @@ export class Func519 implements IFuncOrigin {
 				// 筛选后的结果
 				for (let i = 0; i < 4; i++) {
 					// 系数小于参数,否则重置为0值
-					log('第' + (i + 1) + '个寮的系数为:' + Number(glod[i]) / Number(people[i]))
-					if (Number(glod[i]) / Number(people[i]) < Number(thisConf.coefficient)) {
+					log('第' + (i + 1) + '个寮的系数为:' + glod[i] / people[i])
+					if (glod[i] / people[i] < Number(thisConf.coefficient)) {
 						result[i] = people[i];
 					} else {
 						result[i] = 0;
@@ -245,7 +268,7 @@ export class Func519 implements IFuncOrigin {
 						}
 					}
 					log('前四最大人数为:' + thisScript.global.daoGuan_compare[0] + ';是第' + (thisScript.global.daoGuan_compare[1] + 1) + '个寮')
-					thisScript.regionSwipe(thisOperator[1].oper[1], thisOperator[1].oper[2], [300, 400], 0, 2000);
+					thisScript.regionSwipe(thisOperator[1].oper[1], thisOperator[1].oper[2], [300, 400], 0, 3000);
 					thisScript.global.daoGuan_swip = false;
 					return true;
 				} else {

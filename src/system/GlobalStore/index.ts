@@ -88,6 +88,7 @@ export type globalRootType = {
 	daoGuan_again: boolean, // 道馆再次攻打是否攻打第二阵容
 	first_create_team: boolean, // 首次创建队伍
 	open_only_once: boolean, // 首次启动游戏
+	fight_switch_skill: boolean, // 三号位切换技能
 }
 
 export const globalRoot: globalRootType = {
@@ -180,4 +181,5 @@ export const globalRoot: globalRootType = {
 	daoGuan_again: true,
 	first_create_team: false,
 	open_only_once: false,
+	fight_switch_skill: true,
 }
