@@ -3284,5 +3284,18 @@ const multiFindColors: IMultiFindColorsOrigin = {
 			]]
 		]
 	},
+	'龙钰活动': {
+		similar: 95,
+		region: [center, 1280, 720, 13, 135, 1011, 226],
+		desc: [[
+			1280, 720,
+			[
+				[center, 462, 202, 0xb2bddd],
+				[center, 455, 156, 0x5aaea6],
+				[center, 478, 181, 0x79bfb4],
+				[center, 476, 195, 0xc4d1dc],
+			]]
+		]
+	},
 }
 export default multiFindColors;
