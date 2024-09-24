@@ -220,9 +220,6 @@ export class Func032 implements IFuncOrigin {
 				[center, 552, 684, 0xad6633],
 				[left, 60, 480, 0x1f1018],
 			]
-		],
-		oper: [
-			[center, 1280, 720, 1154, 526, 1220, 558, 1000],
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {

@@ -82,10 +82,10 @@ export class Func519 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1155, 100, 1220, 132, 1000],
-			[center, 1280, 720, 1155, 246, 1220, 278, 1000],
-			[center, 1280, 720, 1155, 392, 1220, 424, 1000],
-			[center, 1280, 720, 1155, 538, 1220, 570, 1000],
+			[center, 1280, 720, 1150, 100, 1220, 132, 1000],
+			[center, 1280, 720, 1150, 246, 1220, 278, 1000],
+			[center, 1280, 720, 1150, 392, 1220, 424, 1000],
+			[center, 1280, 720, 1150, 538, 1220, 570, 1000],
 		]
 	}, { // 4 前4 寮头像
 		desc: [
@@ -102,10 +102,10 @@ export class Func519 implements IFuncOrigin {
 		]
 	}, { // 5 后4 ocr区域
 		oper: [
-			[center, 1280, 720, 1154, 88, 1220, 120, 1000],
-			[center, 1280, 720, 1154, 234, 1220, 266, 1000],
-			[center, 1280, 720, 1154, 380, 1220, 412, 1000],
-			[center, 1280, 720, 1154, 526, 1220, 558, 1000],
+			[center, 1280, 720, 1150, 88, 1220, 120, 1000],
+			[center, 1280, 720, 1150, 234, 1220, 266, 1000],
+			[center, 1280, 720, 1150, 380, 1220, 412, 1000],
+			[center, 1280, 720, 1150, 526, 1220, 558, 1000],
 		]
 	}, { // 6 后4 寮头像
 		desc: [
@@ -250,7 +250,7 @@ export class Func519 implements IFuncOrigin {
 						}
 						temp = thisScript.findText('.+', 0, [point.x - 90, point.y + 16, point.x - 30, point.y + 48], '包含');
 						defense[i] = parseInt(temp[0].label.replace(/[^\d]/g, ' '), 10);
-						if (defense[i] >= 100) {
+						if (defense[i] >= 40) {
 							defense[i] = Math.floor(defense[i] / 10);
 						}
 					} else {
