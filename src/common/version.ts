@@ -1222,5 +1222,8 @@ export const versionList = [{
 519道馆增加打不过馆主主动放弃
 修复：313进入契灵错误
 993启动游戏关闭太敏感`
+}, {
+	version: '202409012_01',
+	desc: '优化：519道馆ocr识别效率'
 }];
 export default versionList[versionList.length - 1].version;
