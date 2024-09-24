@@ -12,6 +12,11 @@ export class Func519 implements IFuncOrigin {
 	config = [{
 		desc: '',
 		config: [{
+			name: 'defense',
+			desc: '‘防守成功’次数超过X不打，设置99为关闭',
+			type: 'integer',
+			default: 99,
+		}, {
 			name: 'coefficient',
 			desc: '‘系数’超过X不打',
 			type: 'integer',
@@ -210,8 +215,9 @@ export class Func519 implements IFuncOrigin {
 			if (thisScript.getOcrDetector()) {
 				const glod = [];
 				const people = [];
+				const defense = [];
 				const result = [];
-				// 记录金币 人数
+				// 记录金币 人数 防御次数
 				for (let i = 0; i < 4; i++) {
 					let temp = [];
 					if (thisScript.global.daoGuan_swip) {
@@ -242,18 +248,36 @@ export class Func519 implements IFuncOrigin {
 						if (people[i] > 180) {
 							people[i] = Math.floor(people[i] / 10);
 						}
+						temp = thisScript.findText('.+', 0, [point.x - 90, point.y + 16, point.x - 30, point.y + 48], '包含');
+						defense[i] = parseInt(temp[0].label.replace(/[^\d]/g, ' '), 10);
+						if (defense[i] >= 100) {
+							defense[i] = Math.floor(defense[i] / 10);
+						}
 					} else {
 						return false;
 					}
 				}
 				log('金币为:' + glod);
 				log('人数为:' + people);
+				log('防守次数为:' + defense);
 				// 筛选后的结果
 				for (let i = 0; i < 4; i++) {
-					// 系数小于参数,否则重置为0值
-					log('第' + (i + 1) + '个寮的系数为:' + glod[i] / people[i])
-					if (glod[i] / people[i] < Number(thisConf.coefficient)) {
-						result[i] = people[i];
+					// 防御次数小于参数,否则重置为0值
+					if (Number(thisConf.defense) === 99) {
+						// 系数小于参数,否则重置为0值
+						log('第' + (i + 1) + '个寮的系数为:' + glod[i] / people[i])
+						if (glod[i] / people[i] < Number(thisConf.coefficient)) {
+							result[i] = people[i];
+						} else {
+							result[i] = 0;
+						}
+					} else if (defense[i] <= Number(thisConf.defense)) {
+						log('第' + (i + 1) + '个寮的系数为:' + glod[i] / people[i])
+						if (glod[i] / people[i] < Number(thisConf.coefficient)) {
+							result[i] = people[i];
+						} else {
+							result[i] = 0;
+						}
 					} else {
 						result[i] = 0;
 					}

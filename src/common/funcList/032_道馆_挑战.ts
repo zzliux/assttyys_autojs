@@ -208,9 +208,31 @@ export class Func032 implements IFuncOrigin {
 			[center, 1280, 720, 893, 645, 956, 686, 1000],
 			[center, 1280, 720, 861, 516, 869, 530, 1000],
 		]
+	}, { // 12 道馆结束
+		desc: [
+			1280, 720,
+			[
+				[center, 564, 17, 0x0f1419],
+				[center, 719, 18, 0x0f1419],
+				[center, 547, 640, 0xa66937],
+				[center, 748, 640, 0xa06436],
+				[center, 744, 684, 0xa56633],
+				[center, 552, 684, 0xad6633],
+				[left, 60, 480, 0x1f1018],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1154, 526, 1220, 558, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['32'];
+		if (thisScript.oper({
+			name: '道馆结束重置个别参数',
+			operator: [thisOperator[12]]
+		})) {
+			thisScript.global.fight_switch_skill = true;
+		}
 		if (thisScript.global.daoGuan_exit && thisScript.oper({
 			id: 32,
 			name: '检测_放弃突破',
