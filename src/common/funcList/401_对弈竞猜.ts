@@ -44,18 +44,18 @@ export class Func401 implements IFuncOrigin {
 			[left, 1280, 720, 25, 9, 74, 55, 2000], // 完了之后返回上一级（庭院）
 		]
 	}, { // 3 竞猜成功
-		desc: [
-			1280, 720,
+		desc: [1280, 720,
 			[
-				[center, 506, 293, 0xe1b368],
-				[center, 554, 284, 0xebcd93],
-				[center, 587, 303, 0xd49b43],
-				[center, 683, 304, 0xd39840],
-				[center, 785, 303, 0xd49b43],
+				[center, 590, 528, 0xf2d4a3],
+				[left, 166, 421, 0xb7895d],
+				[right, 1112, 421, 0xb6865b],
+				[left, 29, 33, 0xf4e3a2],
+				[right, 721, 23, 0x593716],
+				[right, 1197, 659, 0xe1caae],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 671, 510, 713, 555, 1000],
+			[center, 1280, 720, 671, 515, 712, 557, 1000],
 		]
 	}, { // 4 竞猜下一把
 		desc: [

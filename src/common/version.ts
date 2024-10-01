@@ -1228,5 +1228,8 @@ export const versionList = [{
 }, {
 	version: '20241001_01',
 	desc: '401对弈竞猜适配'
+}, {
+	version: '20241001_02',
+	desc: '401对弈竞猜修复失败后不操作的bug'
 }];
 export default versionList[versionList.length - 1].version;
