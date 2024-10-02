@@ -44,6 +44,20 @@ export class Func401 implements IFuncOrigin {
 			[left, 1280, 720, 25, 9, 74, 55, 2000], // 完了之后返回上一级（庭院）
 		]
 	}, { // 3 竞猜成功
+		desc: [
+			1280, 720,
+			[
+				[center, 506, 293, 0xe1b368],
+				[center, 554, 284, 0xebcd93],
+				[center, 587, 303, 0xd49b43],
+				[center, 683, 304, 0xd39840],
+				[center, 785, 303, 0xd49b43],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 671, 510, 713, 555, 1000],
+		]
+	}, { // 4 竞猜下一把
 		desc: [1280, 720,
 			[
 				[center, 590, 528, 0xf2d4a3],
@@ -56,22 +70,6 @@ export class Func401 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 671, 515, 712, 557, 1000],
-		]
-	}, { // 4 竞猜下一把
-		desc: [
-			1280, 720,
-			[
-				[left, 143, 526, 0xe4ba70],
-				[left, 181, 526, 0xddb16c],
-				[left, 155, 557, 0xf8f3e0],
-				[left, 172, 556, 0xf8f3e0],
-				[right, 1101, 526, 0xdeb26f],
-				[right, 1130, 525, 0xebcd9f],
-				[right, 1117, 558, 0xf4efdc],
-			]
-		],
-		oper: [
-			[center, 1280, 720, 1093, 509, 1138, 545, 1000],
 		]
 	}, { // 5 识别数字
 		oper: [
