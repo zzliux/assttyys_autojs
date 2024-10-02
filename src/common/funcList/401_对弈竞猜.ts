@@ -55,7 +55,7 @@ export class Func401 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 671, 510, 713, 555, 1000],
+			[center, 1280, 720, 606, 414, 675, 456, 1000],
 		]
 	}, { // 4 竞猜下一把
 		desc: [1280, 720,
