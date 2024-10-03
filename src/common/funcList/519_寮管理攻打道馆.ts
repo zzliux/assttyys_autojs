@@ -169,7 +169,7 @@ export class Func519 implements IFuncOrigin {
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const now = new Date();
 		const thisConf = thisScript.scheme.config['519'];
-		if (thisConf.day && now.getDay() == 0 && now.getDay() >= 5) {
+		if (thisConf.day && (now.getDay() == 0 || now.getDay() >= 5)) {
 			thisScript.myToast('星期567,关闭方案');
 			thisScript.doPush(thisScript, { text: '星期567,关闭方案', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 			thisScript.stop();
@@ -303,6 +303,7 @@ export class Func519 implements IFuncOrigin {
 							break;
 						}
 					}
+					log('后四最大人数为:' + thisScript.global.daoGuan_compare[2] + ';是第' + (thisScript.global.daoGuan_compare[3] + 1) + '个寮')
 				}
 				// 两次取完值后开始比较最大值
 				if (thisScript.global.daoGuan_compare[0] === 0 && thisScript.global.daoGuan_compare[2] === 0) {
@@ -311,7 +312,6 @@ export class Func519 implements IFuncOrigin {
 					thisScript.stop();
 					sleep(3000);
 					return true;
-
 				} else if (Number(thisScript.global.daoGuan_compare[0]) > Number(thisScript.global.daoGuan_compare[2])) {
 					thisScript.regionSwipe(thisOperator[1].oper[2], thisOperator[1].oper[1], [300, 400], 0, 3500);
 					thisScript.regionClick([thisOperator[4].oper[thisScript.global.daoGuan_compare[1]]]);
