@@ -1237,5 +1237,9 @@ export const versionList = [{
 }, {
 	version: '20241002_02',
 	desc: '401对弈竞猜修复成功后不操作的bug',
+}, {
+	version: '20241003_01',
+	desc: `519日期不生效
+    993点击进入游戏加入了延迟`,
 }];
 export default versionList[versionList.length - 1].version;
