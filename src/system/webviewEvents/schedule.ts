@@ -3,7 +3,6 @@ import script from '@/system/script';
 import store from '@/system/store';
 import ScheduleDefaultList from '@/common/scheduleList';
 import schedule, { Job, JobOptions, mergeOffsetTime } from '@/system/Schedule'
-import { setCurrentScheme } from '@/common/tool';
 import { getNextByCron } from '@/common/toolCron';
 // // import schedule from 'node-schedule';
 
@@ -97,7 +96,7 @@ export default function webviewSchedule() {
 				nextDate: new Date(job.nextDate),
 				runningCallback() {
 					updateJobStore(this);
-					setCurrentScheme(job.config.scheme, store);
+					script.setCurrentScheme(job.config.scheme);
 					script.launchRelatedApp();
 					script.rerunWithJob(this);
 				}

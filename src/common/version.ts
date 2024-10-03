@@ -1240,6 +1240,9 @@ export const versionList = [{
 }, {
 	version: '20241003_01',
 	desc: `519日期不生效
-    993点击进入游戏加入了延迟`,
+	993点击进入游戏加入了延迟`,
+}, {
+	version: '20241003_02',
+	desc: '尝试修复：通过定时任务启动的方案刚启动就被503停止的问题'
 }];
 export default versionList[versionList.length - 1].version;
