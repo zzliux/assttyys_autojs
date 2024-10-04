@@ -72,7 +72,6 @@ export class Func993 implements IFuncOrigin {
 				[center, 1280, 720, 562, 574, 722, 617, 1200], // 点击开始游戏
 				[center, 1280, 720, 425, 456, 686, 575, 1000], // 游戏区区域
 			],
-			retest: 3000,
 		},
 		{
 			// 1 是否为公告页(23年公告)
@@ -539,7 +538,7 @@ export class Func993 implements IFuncOrigin {
 					operator: [{
 						oper: [thisOperator[0].oper[0]],
 					}],
-				});
+				}, 3000);
 			}
 
 			if (thisScript.oper({
