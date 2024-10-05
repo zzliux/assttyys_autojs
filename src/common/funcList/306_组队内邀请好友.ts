@@ -306,7 +306,7 @@ export class Func306 implements IFuncOrigin {
 					name: '组队类型_御魂',
 					operator: [{ desc: thisOperator[7].desc }]
 				}) && thisConf.selectArea == '跨区') {
-					thisScript.regionClick(thisOperator[7].oper);
+					thisScript.regionClick([thisOperator[7].oper[0]]);
 					thisScript.keepScreen();
 				}
 				if (thisScript.oper({

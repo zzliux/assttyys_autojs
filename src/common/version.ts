@@ -1244,5 +1244,8 @@ export const versionList = [{
 }, {
 	version: '20241003_02',
 	desc: '尝试修复：通过定时任务启动的方案刚启动就被503停止的问题'
+}, {
+	version: '20241006_01',
+	desc: '修复：306跨区邀请失败'
 }];
 export default versionList[versionList.length - 1].version;
