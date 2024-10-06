@@ -6,9 +6,10 @@ on:
       - master
       - zz_dev
       - kk_dev
-      - hn_dev
+      - hm_dev
       - v66_dev
       - Kong_dev
+      - ui_refactor
 jobs:
   deploy:
     runs-on: ubuntu-latest
