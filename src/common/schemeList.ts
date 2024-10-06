@@ -72,7 +72,7 @@ const SchemeList: IScheme[] = [
 	{
 		id: 5,
 		schemeName: '个突_9退4_进攻',
-		groupName: '个突9退4',
+		groupNames: ['个突9退4'],
 		star: true,
 		list: [51, 0, 1, 2, 3, 8, 9, 10],
 		config: {
@@ -103,7 +103,7 @@ const SchemeList: IScheme[] = [
 	{
 		id: 5,
 		schemeName: '个突_9退4_退出',
-		groupName: '个突9退4',
+		groupNames: ['个突9退4'],
 		list: [0, 1, 2, 3, 8, 9, 10],
 		config: {
 			'0': {
@@ -205,7 +205,7 @@ const SchemeList: IScheme[] = [
 	},
 	{
 		id: 13,
-		groupName: '切换方案样例',
+		groupNames: ['切换方案样例'],
 		schemeName: '例_个人探索30次_转个人突破',
 		star: true,
 		list: [0, 15, 1, 2, 3, 13, 14],
@@ -220,7 +220,7 @@ const SchemeList: IScheme[] = [
 	},
 	{
 		id: 14,
-		groupName: '切换方案样例',
+		groupNames: ['切换方案样例'],
 		schemeName: '例_个人突破_结束后转寮突破',
 		star: true,
 		list: [0, 1, 2, 3, 7, 10, 8, 9, 11, 25],
@@ -349,7 +349,7 @@ const SchemeList: IScheme[] = [
 		id: 30,
 		schemeName: '式神寄养',
 		star: true,
-		groupName: '式神寄养',
+		groupNames: ['式神寄养'],
 		list: [0, 3, 999, 998, 997, 994, 995],
 		config: {
 			'0': {
@@ -378,7 +378,7 @@ const SchemeList: IScheme[] = [
 		id: 31,
 		schemeName: '定时任务-启动游戏-式神寄养',
 		star: true,
-		groupName: '式神寄养',
+		groupNames: ['式神寄养'],
 		list: [1, 2, 3, 503, 993],
 		config: {
 			'993': {
@@ -399,7 +399,7 @@ const SchemeList: IScheme[] = [
 		id: 32,
 		schemeName: '式神指定寄养',
 		star: true,
-		groupName: '定时任务',
+		groupNames: ['定时任务'],
 		list: [3, 999, 998, 996, 994, 995],
 		config: {
 			'3': {
@@ -457,7 +457,7 @@ const SchemeList: IScheme[] = [
 		id: 36,
 		schemeName: '定时任务-启动游戏-每日寮活动',
 		star: true,
-		groupName: '定时任务',
+		groupNames: ['定时任务'],
 		list: [1, 2, 3, 503, 993],
 		config: {
 			'993': {
@@ -479,7 +479,7 @@ const SchemeList: IScheme[] = [
 		id: 40,
 		schemeName: '定时任务-启动游戏-每日逢魔',
 		star: true,
-		groupName: '定时任务',
+		groupNames: ['定时任务'],
 		list: [1, 2, 3, 503, 993],
 		config: {
 			'993': {
@@ -495,7 +495,7 @@ const SchemeList: IScheme[] = [
 	{
 		id: 41,
 		schemeName: '实例-更换式神预设御魂',
-		groupName: '切换方案样例',
+		groupNames: ['切换方案样例'],
 		list: [509, 510, 511],
 		config: {
 			'510': {
@@ -532,7 +532,7 @@ const SchemeList: IScheme[] = [
 		id: 46,
 		schemeName: '定时任务-启动游戏-喂猫喂狗',
 		star: false,
-		groupName: '定时任务',
+		groupNames: ['定时任务'],
 		list: [1, 2, 3, 503, 993],
 		config: {
 			'993': {
@@ -547,27 +547,27 @@ const SchemeList: IScheme[] = [
 	},
 	{
 		id: 47,
-		groupName: '御魂奉纳',
+		groupNames: ['御魂奉纳'],
 		schemeName: '奉纳御魂_贪食鬼吃经验',
 		list: [0, 301, 303],
 		star: true,
 	},
 	{
 		id: 48,
-		groupName: '御魂奉纳',
+		groupNames: ['御魂奉纳'],
 		schemeName: '奉纳御魂_开始奉纳',
 		list: [0, 2, 302],
 	},
 	{
 		id: 49,
-		groupName: '绘卷进度检测',
+		groupNames: ['绘卷进度检测'],
 		schemeName: '绘卷进度_检测并提醒',
 		list: [0, 304],
 		star: true,
 	},
 	{
 		id: 50,
-		groupName: '绘卷进度检测',
+		groupNames: ['绘卷进度检测'],
 		schemeName: '绘卷进度_持续查询进度',
 		list: [0, 305],
 	},
@@ -575,7 +575,7 @@ const SchemeList: IScheme[] = [
 		id: 51,
 		schemeName: '定时任务-启动游戏-寮突',
 		star: true,
-		groupName: '定时任务',
+		groupNames: ['定时任务'],
 		list: [1, 2, 3, 503, 993],
 		config: {
 			'993': {
@@ -592,7 +592,7 @@ const SchemeList: IScheme[] = [
 		id: 52,
 		schemeName: '定时任务-启动游戏-地鬼',
 		star: true,
-		groupName: '定时任务',
+		groupNames: ['定时任务'],
 		list: [1, 2, 3, 503, 993],
 		config: {
 			'993': {
@@ -641,7 +641,7 @@ const SchemeList: IScheme[] = [
 		id: 55,
 		schemeName: '定时任务-启动游戏-庭院进入寮每日活动(包含阴门)',
 		star: true,
-		groupName: '定时任务',
+		groupNames: ['定时任务'],
 		list: [1, 2, 3, 503, 993],
 		config: {
 			'993': {
@@ -658,7 +658,7 @@ const SchemeList: IScheme[] = [
 		id: 56,
 		schemeName: '定时任务-启动游戏-庭院进入寮每日活动(不包含阴门)',
 		star: true,
-		groupName: '定时任务',
+		groupNames: ['定时任务'],
 		list: [1, 2, 3, 503, 993],
 		config: {
 			'993': {
@@ -673,7 +673,7 @@ const SchemeList: IScheme[] = [
 	},
 	{
 		id: 57,
-		groupName: '组队循环示例',
+		groupNames: ['组队循环示例'],
 		schemeName: '组队队长创建和邀请',
 		list: [0, 27, 306],
 		commonConfig: {
@@ -682,7 +682,7 @@ const SchemeList: IScheme[] = [
 	},
 	{
 		id: 58,
-		groupName: '组队循环示例',
+		groupNames: ['组队循环示例'],
 		schemeName: '组队队员接受邀请',
 		list: [4],
 		config: {
@@ -709,7 +709,7 @@ const SchemeList: IScheme[] = [
 		id: 60,
 		schemeName: '定时任务-启动游戏-悬赏',
 		star: false,
-		groupName: '定时任务',
+		groupNames: ['定时任务'],
 		list: [1, 2, 3, 503, 993],
 		config: {
 			'993': {
@@ -759,7 +759,7 @@ const SchemeList: IScheme[] = [
 		id: 65,
 		schemeName: '定时任务-启动游戏-每日签到与收取邮件',
 		star: true,
-		groupName: '定时任务',
+		groupNames: ['定时任务'],
 		list: [1, 2, 3, 503, 993],
 		config: {
 			'993': {
@@ -800,7 +800,7 @@ const SchemeList: IScheme[] = [
 		id: 68,
 		schemeName: '定时任务-启动游戏-庭院进入寮每日活动(狭间)',
 		star: true,
-		groupName: '定时任务',
+		groupNames: ['定时任务'],
 		list: [1, 2, 3, 503, 993],
 		config: {
 			'993': {
@@ -850,7 +850,7 @@ const SchemeList: IScheme[] = [
 		id: 74,
 		schemeName: '定时任务-启动游戏-金币妖怪',
 		star: true,
-		groupName: '定时任务',
+		groupNames: ['定时任务'],
 		list: [1, 2, 3, 503, 993],
 		config: {
 			'993': {
@@ -867,7 +867,7 @@ const SchemeList: IScheme[] = [
 		id: 75,
 		schemeName: '定时任务-启动游戏-经验妖怪',
 		star: true,
-		groupName: '定时任务',
+		groupNames: ['定时任务'],
 		list: [1, 2, 3, 503, 993],
 		config: {
 			'993': {
@@ -939,7 +939,7 @@ const SchemeList: IScheme[] = [
 	// 	id: 102,
 	// 	schemeName: '定时任务-启动游戏-对弈竞猜',
 	// 	star: true,
-	// 	groupName: '定时任务',
+	// 	groupNames: ['定时任务'],
 	// 	list: [1, 2, 3, 503, 993],
 	// 	config: {
 	// 		'993': {
@@ -1030,3 +1030,8 @@ SchemeList.forEach((item, id) => {
 
 export const schemeNameMap = innerSchemeListName;
 export default SchemeList;
+export type GroupSchemeName = {
+    groupName: string,
+    hidden: boolean,
+    schemeNames: string[]
+}
