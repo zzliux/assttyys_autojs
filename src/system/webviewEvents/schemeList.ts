@@ -13,7 +13,7 @@ import { deepClone } from '@/common/tool';
 
 export default function webviewSchemeList() {
 	// 1. 初始化schemeList
-	let schemeList = store.get('schemeList');
+	let schemeList: IScheme[] = store.get('schemeList');
 	if (!schemeList) {
 		console.log('初始化schemeList', defaultSchemeList);
 		schemeList = deepClone(defaultSchemeList);
@@ -21,10 +21,13 @@ export default function webviewSchemeList() {
 	} else {
 		// 升级版本数据修复
 		let flag = false;
-		for (const scheme of schemeList) {
+		for (const scheme of schemeList as (IScheme & { groupName: string })[]) {
 			if (scheme.groupName) {
 				flag = true;
 				scheme.groupNames = [scheme.groupName];
+				delete scheme.groupName;
+			} else if (scheme.groupName === '') {
+				flag = true;
 				delete scheme.groupName;
 			}
 		}
@@ -38,7 +41,7 @@ export default function webviewSchemeList() {
 	const groupSchemeNames = store.get('groupSchemeNames');
 	if (!groupSchemeNames) {
 		const toSaveMap: Record<string, GroupSchemeName> = {}
-		defaultSchemeList.forEach(scheme => {
+		schemeList.forEach(scheme => {
 			if (!scheme.groupNames || !(scheme.groupNames?.length)) {
 				scheme.groupNames = ['未分组'];
 			}
