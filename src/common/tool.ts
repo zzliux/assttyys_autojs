@@ -1,3 +1,7 @@
+import { IScheme } from '@/interface/IScheme';
+import CommonConfig from './commonConfig';
+import funcList from './funcListIndex';
+
 export function similarity(s1: string, s2: string, filterSimilar?: number) {
 	const len1 = s1.length;
 	const len2 = s2.length;
@@ -35,18 +39,36 @@ export function similarity(s1: string, s2: string, filterSimilar?: number) {
 }
 
 export function setCurrentScheme(schemeName: string, store) {
-	const savedSchemeList = store.get('schemeList', []);
+	const savedSchemeList: IScheme[] = store.get('schemeList', []);
 	for (let i = 0; i < savedSchemeList.length; i++) {
 		if (savedSchemeList[i].schemeName === schemeName) {
+			// 1. commonConfig没有值的赋默认值
+			if (!savedSchemeList[i].commonConfig) {
+				savedSchemeList[i].commonConfig = {}
+			}
+			CommonConfig.forEach(group => {
+				group.config?.forEach(item => {
+					if (typeof savedSchemeList[i].commonConfig[item.name] === 'undefined') {
+						savedSchemeList[i].commonConfig[item.name] = item.default;
+					}
+				});
+			});
+			// 2. config没有值的赋默认值
 			if (!savedSchemeList[i].config) {
 				savedSchemeList[i].config = {};
 			}
-			savedSchemeList[i].list.forEach(funcId => {
-				if (!savedSchemeList[i].config[funcId]) {
-					savedSchemeList[i].config[funcId] = {};
+			funcList.filter(func => savedSchemeList[i].list.includes(func.id)).forEach(func => {
+				if (!savedSchemeList[i].config[func.id]) {
+					savedSchemeList[i].config[func.id] = {}
 				}
+				func.config?.forEach(group => {
+					group.config?.forEach(item => {
+						if (typeof savedSchemeList[i].config[func.id][item.name] === 'undefined') {
+							savedSchemeList[i].config[func.id][item.name] = item.default;
+						}
+					});
+				});
 			});
-			console.log(savedSchemeList[i]);
 			store.put('currentScheme', savedSchemeList[i]);
 			console.log(`设置方案：${savedSchemeList[i].schemeName}`);
 			return;
