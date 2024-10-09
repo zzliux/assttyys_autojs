@@ -22,6 +22,11 @@ export class Func519 implements IFuncOrigin {
 			type: 'integer',
 			default: 5,
 		}, {
+			name: 'people',
+			desc: '‘人数’超过X不打',
+			type: 'integer',
+			default: 200,
+		}, {
 			name: 'day',
 			desc: '星期567不进入',
 			type: 'switch',
@@ -281,6 +286,9 @@ export class Func519 implements IFuncOrigin {
 					} else {
 						result[i] = 0;
 					}
+					if (result[i] > thisConf.people) {
+						result[i] = 0;
+					}
 				}
 				// 比较大小并存储 索引0存储前4寮最大人数,索引1存储前4寮位置,索引2存储后4寮最大人数,索引3存储后4寮位置
 				if (thisScript.global.daoGuan_swip) {
@@ -307,11 +315,13 @@ export class Func519 implements IFuncOrigin {
 				}
 				// 两次取完值后开始比较最大值
 				if (thisScript.global.daoGuan_compare[0] === 0 && thisScript.global.daoGuan_compare[2] === 0) {
-					// 都不符合条件 以后写刷新
-					thisScript.doPush(thisScript, { text: '没有符合条件的寮', before() { thisScript.myToast('没有符合条件的寮'); } });
-					thisScript.stop();
-					sleep(3000);
-					return true;
+					if (thisScript.global.flash_time > 3) {
+						thisScript.doPush(thisScript, { text: '没有符合条件的寮', before() { thisScript.myToast('没有符合条件的寮'); } });
+						thisScript.stop();
+						sleep(3000);
+						return true;
+					}
+
 				} else if (Number(thisScript.global.daoGuan_compare[0]) > Number(thisScript.global.daoGuan_compare[2])) {
 					thisScript.regionSwipe(thisOperator[1].oper[2], thisOperator[1].oper[1], [300, 400], 0, 3500);
 					thisScript.regionClick([thisOperator[4].oper[thisScript.global.daoGuan_compare[1]]]);
