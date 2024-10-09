@@ -107,7 +107,7 @@ class DevServer {
                 } else {
                     console.log('代码已发生变更，请重新加载运行');
                 }
-                if (count === 2) {
+                if (count === 1) {
                     app.listen(2516, () => {
                         const ipList = getLocalIP();
                         console.log('\n\n\nassttyys debug player 加载/日志地址:');
