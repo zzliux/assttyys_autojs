@@ -141,25 +141,25 @@ export function getNextByCron(cronData: string, nowDate = new Date(), _runCount 
 		const _notAllStatueWithQuestion = cronData.split(' ').lastIndexOf('?');
 
 		switch (Math.max(_notAllStatueWithStar, _notAllStatueWithQuestion)) {
-		case 0: {
-			nowDate.setMinutes(nowDate.getMinutes() + 1);
-			break;
-		}
-		case 1: {
-			nowDate.setHours(nowDate.getHours() + 1);
-			break;
-		}
-		case 2: {
-			nowDate.setDate(nowDate.getDate() + 1);
-			break;
-		}
-		case 3: {
-			nowDate.setMonth(nowDate.getMonth() + 1);
-			break;
-		}
-		default: {
-			nowDate.setSeconds(nowDate.getSeconds() + 1);
-		}
+			case 0: {
+				nowDate.setMinutes(nowDate.getMinutes() + 1);
+				break;
+			}
+			case 1: {
+				nowDate.setHours(nowDate.getHours() + 1);
+				break;
+			}
+			case 2: {
+				nowDate.setDate(nowDate.getDate() + 1);
+				break;
+			}
+			case 3: {
+				nowDate.setMonth(nowDate.getMonth() + 1);
+				break;
+			}
+			default: {
+				nowDate.setSeconds(nowDate.getSeconds() + 1);
+			}
 		}
 
 		return getNextByCron(cronData, nowDate, _runCount);

@@ -5,6 +5,7 @@ const AutoProWebpackPlugin = require('@auto.pro/webpack-plugin')
 const ProgressPlugin = require('progress-bar-webpack-plugin')
 const Unpack = require('./devUnpack')
 const ESLintWebpackPlugin = require('eslint-webpack-plugin')
+const DevServer = require('./devServer')
 
 const dictionary = []
 for (let i = 1024; i < 2048; i++) {
@@ -83,6 +84,7 @@ module.exports = (env, argv) => {
             compilePlugin,
             new ProgressPlugin(),
             new Unpack(),
+            new DevServer(),
         ]
         // config.devtool = 'source-map'
     } else {

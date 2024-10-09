@@ -21,7 +21,7 @@ export class Func005 implements IFuncOrigin {
 			value: null,
 		}]
 	}];
-	operator: IFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{ // 组队界面_挑战亮
 		desc: [1280, 720,
 			[
 				[left, 43, 37, 0xf5e6a8],
@@ -34,7 +34,7 @@ export class Func005 implements IFuncOrigin {
 		],
 	}, {
 		desc: [1280, 720,
-			[[center, 643, 254, 0xffffff]]
+			[[center, 643, 269, 0xfffffd]]
 		]
 	}, {
 		desc: [1280, 720,
@@ -64,7 +64,8 @@ export class Func005 implements IFuncOrigin {
 		]
 	}, { // 开始战斗后的场景，提供给方案的自动判断
 		desc: [1280, 720,
-			[[left, 32, 89, 0x5d361c],
+			[
+				[left, 32, 89, 0x5d361c],
 				[left, 32, 190, 0x5a321a],
 				[left, 55, 402, 0xe3caa3],
 				[left, 51, 502, 0xe4cca3]]
@@ -84,8 +85,13 @@ export class Func005 implements IFuncOrigin {
 		}, 0)) {
 			const thisconf = thisScript.scheme.config['5']; // 获取配置
 			if (thisconf.type === '有人就开') {
-				thisScript.regionClick(thisOperator[3].oper);
-				return true;
+				if (!thisScript.oper({
+					name: '二号位',
+					operator: [thisOperator[1]]
+				})) {
+					thisScript.regionClick(thisOperator[3].oper);
+					return true;
+				}
 			} else if (thisconf.type === '三人') {
 				if (!thisScript.oper({
 					name: '组队挑战_乘客1无人',

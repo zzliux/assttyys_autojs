@@ -1,28 +1,3 @@
-import fmmxQuestionList from '@/common/fmmxQuestionList';
-
-export function search(list: Record<string, any>[], prop: string, str: string, filterSimilar?: number) {
-	let maxSimilarity = 0;
-	let maxSimilarityIndex = -1;
-	for (let i = 0; i < list.length; i++) {
-		const sim = similarity(list[i][prop], str, filterSimilar) || 0;
-		if (sim > maxSimilarity) {
-			maxSimilarity = sim;
-			maxSimilarityIndex = i;
-		}
-	}
-	if (-1 === maxSimilarityIndex) {
-		return null;
-	}
-	return {
-		data: list[maxSimilarityIndex],
-		similarity: maxSimilarity
-	}
-}
-
-export function questionSearch(str: string) {
-	return search(fmmxQuestionList, 'question', str, .5);
-}
-
 export function similarity(s1: string, s2: string, filterSimilar?: number) {
 	const len1 = s1.length;
 	const len2 = s2.length;
@@ -63,7 +38,17 @@ export function setCurrentScheme(schemeName: string, store) {
 	const savedSchemeList = store.get('schemeList', []);
 	for (let i = 0; i < savedSchemeList.length; i++) {
 		if (savedSchemeList[i].schemeName === schemeName) {
+			if (!savedSchemeList[i].config) {
+				savedSchemeList[i].config = {};
+			}
+			savedSchemeList[i].list.forEach(funcId => {
+				if (!savedSchemeList[i].config[funcId]) {
+					savedSchemeList[i].config[funcId] = {};
+				}
+			});
+			console.log(savedSchemeList[i]);
 			store.put('currentScheme', savedSchemeList[i]);
+			console.log(`设置方案：${savedSchemeList[i].schemeName}`);
 			return;
 		}
 	}

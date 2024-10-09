@@ -9,7 +9,7 @@ export class Func314 implements IFuncOrigin {
 	id = 314;
 	name = '领取花合战';
 	operator: IFuncOperatorOrigin[] = [{ // 0 庭院未打开菜单
-		desc: '庭院未打开菜单',
+		desc: '页面是否为庭院_菜单未展开_只支持默认庭院皮肤与默认装饰',
 		oper: [
 			[right, 1280, 720, 1168, 592, 1230, 690, 1000]
 		]
@@ -85,12 +85,29 @@ export class Func314 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 24, 20, 60, 55, 1000],
 		]
+	}, { // 6  花合战上新
+		desc: [
+			1280, 720,
+			[
+				[center, 338, 679, 0x2d2f48],
+				[center, 431, 707, 0x424869],
+				[center, 654, 693, 0x585b7e],
+				[center, 780, 691, 0x69648d],
+				[center, 919, 679, 0x7c749f],
+				[right, 1009, 681, 0x918db1],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1044, 560, 1258, 699, 3000],
+			[center, 1280, 720, 509, 631, 945, 710, 1000],
+		],
+		retest: 3000,
 	}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		thisScript.oper({
 			name: '花合战',
-			operator: [thisOperator[0], thisOperator[2],
+			operator: [thisOperator[0], thisOperator[2], thisOperator[6]
 			]
 		});
 

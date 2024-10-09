@@ -28,10 +28,11 @@ export class Func315 implements IFuncOrigin {
 	operator: IFuncOperatorOrigin[] = [{ // 0 准备的预设
 		desc: [1280, 720,
 			[
-				[right, 1124, 698, 0xd0af86],
 				[right, 1240, 702, 0xcead83],
-				[right, 1191, 596, 0xa46149],
 				[right, 1182, 586, 0xf7e6c3],
+				[center, 360, 699, 0x241818],
+				[left, 32, 23, 0xdbb48b],
+				[right, 1122, 698, 0xddbb8f],
 				[center, 40, 678, 0xe08673],
 				[left, 32, 23, 0xdbb48b]
 			]
@@ -46,8 +47,8 @@ export class Func315 implements IFuncOrigin {
 				[left, 70, 226, 0x77522d],
 				[center, 688, 277, 0x5a4536],
 				[center, 580, 254, 0xdfc9b6],
-				[center, 580, 614, 0xdfc9b6],
-				[left, 174, 614, 0x76512c],
+				[center, 609, 256, 0xdfc9b6],
+				[left, 81, 225, 0x241c1a],
 			]
 		]
 	}, { // 2  预设组

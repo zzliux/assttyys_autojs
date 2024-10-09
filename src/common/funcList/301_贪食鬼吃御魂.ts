@@ -2,7 +2,7 @@ import { Script } from '@/system/script';
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 
 // const normal = -1; //定义常量
-// const left = 0;
+const left = 0;
 const center = 1;
 const right = 2;
 
@@ -26,15 +26,17 @@ export class Func301 implements IFuncOrigin {
 	}];
 	operator: IFuncOperatorOrigin[] = [{
 		// 0,右下角贪食鬼
-		desc: [1280, 720,
-			[[right, 1167, 624, 0x69bbbb],
-				[right, 1191, 617, 0xd7c9ba],
-				[right, 1192, 646, 0xd23e4f],
-				[right, 1197, 667, 0x292020]
+		desc: [
+			1280, 720,
+			[
+				[left, 154, 45, 0xaf8c56],
+				[left, 192, 41, 0x593716],
+				[right, 1182, 524, 0xc99b1c],
+				[right, 1188, 648, 0xdf394a],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1164, 621, 1207, 660, 1000]
+			[center, 1280, 720, 1158, 621, 1213, 669, 1000],
 		]
 	}, {  // 1,进食习惯
 		desc: [1280, 720, [

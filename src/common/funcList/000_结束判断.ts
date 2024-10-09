@@ -1,6 +1,5 @@
 import { Script } from '@/system/script';
 import { IFuncOrigin } from '@/interface/IFunc';
-
 export class Func000 implements IFuncOrigin {
 	id = 0;
 	name = '结束判断';

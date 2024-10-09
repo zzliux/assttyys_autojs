@@ -47,8 +47,6 @@ export class Func504 implements IFuncOrigin {
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		// const thisconf = thisScript.scheme.config['504'];
-
 		if (thisScript.oper({
 			name: '庭院判断',
 			operator: [{
@@ -71,17 +69,6 @@ export class Func504 implements IFuncOrigin {
 				return true;
 			}
 		}
-
-		// const point = thisScript.findMultiColor('町中_逢魔之时灯笼');
-		// if (point) {
-		// 	let oper = [
-		// 		[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]
-		// 	];
-		// 	thisScript.regionClick(oper);
-		// 	sleep(2000);
-
-		// 	return false;
-		// }
 
 		if (thisScript.oper({
 			name: '町中_逢魔之时灯笼',

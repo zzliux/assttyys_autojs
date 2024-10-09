@@ -137,7 +137,7 @@ export class Func026 implements IFuncOrigin {
 				sleep(5000);
 				return true;
 			}
-			sleep(5000);
+			sleep(1500);
 			return false;
 		}
 		if (thisScript.oper({

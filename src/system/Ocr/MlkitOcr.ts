@@ -1,4 +1,4 @@
-import { similarity } from '@/common/tool';
+import { nlpSimilarity } from '@/common/toolAuto';
 import drawFloaty from '../drawFloaty';
 import { IOcr, IOcrDetector, OcrResult } from './IOcr';
 
@@ -69,49 +69,15 @@ class MlkitOcr implements IOcr {
 			option.failCallback();
 			return;
 		}
-		dialogs.confirm('提示', '大约消耗11Mb，是否下载OCR扩展？', function (cr) {
+		if (this.isInstalled()) {
+			option.successCallback();
+			return;
+		}
+		dialogs.confirm('提示', '请根据CPU架构自行下载并安装OCR插件', function (cr: boolean) {
 			if (cr) {
-				try {
-					threads.start(function () {
-						try {
-							toastLog('下载中，请稍后...');
-							// const path = context.getExternalFilesDir(null).getAbsolutePath() + '/assttyus_ng/ocr';
-							const path = files.cwd() + '/plugins'
-							const url = 'https://assttyys.zzliux.cn/static/autojspro-mlkit-ocr-plugin-1.1.apk';
-							const r = http.get(url);
-							console.log(`下载路径${path}`);
-							files.ensureDir(path + '/autojspro-mlkit-ocr-plugin-1.1.apk');
-							if (files.exists(path + '/autojspro-mlkit-ocr-plugin-1.1.apk')) {
-								files.remove(path + '/autojspro-mlkit-ocr-plugin-1.1.apk');
-							}
-							// @ts-expect-error d.ts文件问题
-							files.writeBytes(path + '/org.autojs.autojspro.plugin.mlkit.ocr.apk', r.body.bytes());
-							if (mlkitOcr.isInstalled()) {
-								toastLog('安装完成');
-								option.successCallback();
-							} else {
-								toastLog('安装出错');
-								option.failCallback();
-							}
-							// if (isRoot) {
-							//     shell('install -t ' + path + '/autojspro-mlkit-ocr-plugin-1.1.apk', true);
-							// } else {
-							// app.viewFile(path + '/autojspro-mlkit-ocr-plugin-1.1.apk');
-							// }
-						} catch (e) {
-							toast(e);
-							console.error($debug.getStackTrace(e));
-							option.failCallback();
-						}
-					});
-				} catch (e) {
-					toast(e);
-					console.error($debug.getStackTrace(e));
-					option.failCallback();
-				}
-			} else {
-				option.failCallback();
+				$app.openUrl('https://github.com/zzliux/assttyys_autojs/releases');
 			}
+			option.failCallback();
 		});
 	}
 
@@ -150,8 +116,10 @@ class MlkitOcr implements IOcr {
 					})
 				});
 			}
-
-			const res = this.findTextByOcrResult(text, rs, textMatchMode);
+			const [mode, simStr] = (textMatchMode || '').split('|');
+			let sim = 0.7;
+			if (sim) sim = Number(simStr);
+			const res = this.findTextByOcrResult(text, rs, mode, sim);
 
 			if (res.length > 0) {
 				// console.log('识别结果', JSON.stringify(rs));
@@ -175,13 +143,13 @@ class MlkitOcr implements IOcr {
 			}));
 		} else /* if (textMatchMode === '模糊') */{
 			res = ocrResult.filter(item => {
-				item.similar = similarity(item.label, text);
-				return (item.similar as number) >= (similarityRatio || .5)
+				item.similar = nlpSimilarity(item.label, text);
+				return (item.similar as number) >= (similarityRatio || .7)
 			});
 			res.sort((a, b) => (b.similar || 0) - (a.similar || 0));
 			toDraw = ocrResult.map(item => ({
 				region: [item.points[0].x, item.points[0].y, item.points[2].x, item.points[2].y],
-				color: item.similar as number >= (similarityRatio || .5) ? 'green' : 'red',
+				color: item.similar as number >= (similarityRatio || .7) ? 'green' : 'red',
 				text: item.label + ':' + item.confidence
 			}));
 		}

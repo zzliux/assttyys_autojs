@@ -1,4 +1,4 @@
-import { search, questionSearch, merge } from '@/common/tool';
+import { merge } from '@/common/tool';
 import store, { storeCommon } from '@/system/store';
 import funcList from '@/common/funcListIndex';
 import defaultSchemeList from '@/common/schemeList';
@@ -12,13 +12,14 @@ import { setCurrentScheme } from '@/common/tool';
 import { getWidthPixels, getHeightPixels } from '@auto.pro/core';
 import schemeDialog from './schemeDialog';
 import drawFloaty from '@/system/drawFloaty';
-import { myToast, doPush } from '@/common/toolAuto';
+import { myToast, doPush, questionSearch, search } from '@/common/toolAuto';
 import { IFunc, IFuncOrigin } from '@/interface/IFunc';
 import { IScheme } from '@/interface/IScheme';
 import { IMultiDetectColors, IMultiFindColors } from '@/interface/IMultiColor';
 import { globalRoot, globalRootType } from '@/system/GlobalStore/index';
 import schedule, { Job } from '@/system/Schedule';
 import { MyFloaty } from '@/system/MyFloaty';
+import ncnnBgyx from '@/system/ncnn/ncnnBgyx';
 
 /**
  * 脚本对象，一个程序只能有一个
@@ -42,18 +43,19 @@ export class Script {
 	helperBridge: IhelperBridge; // IhelperBridge;
 	job: Job;
 	schedule: typeof schedule;
+	ncnnBgyx = ncnnBgyx;
 
 	/**
-     * 运行次数，下标为funcList中的id，值为这个func成功执行的次数；
-     * 成功执行：多点比色成功或operatorFun返回为true
-     */
+	 * 运行次数，下标为funcList中的id，值为这个func成功执行的次数；
+	 * 成功执行：多点比色成功或operatorFun返回为true
+	 */
 	runTimes: Record<string, number>;
-	lastFunc: any; // 最后执行成功的funcId
-	global: globalRootType;// 每次启动重置为空对象，用于功能里面存变量
+	lastFunc: number; // 最后执行成功的funcId
+	global: globalRootType; // 每次启动重置为空对象，用于功能里面存变量
 
 	/**
-     * @description 方案运行中参数
-     */
+	 * @description 方案运行中参数
+	 */
 	runtimeParams: Record<string, unknown> | null;
 
 	// 设备信息
@@ -61,22 +63,21 @@ export class Script {
 	storeCommon: any;
 
 	/**
-     * 发起消息推送
-     * @param {Script} thisScript
-     * @param options
-     */
+	 * 发起消息推送
+	 * @param {Script} thisScript
+	 * @param options
+	 */
 	doPush: (thisScript: Script, options: {
-        text: string,
-        before?: () => void,
-        after?: () => void
-    }) => void;
+		text: string,
+		before?: () => void,
+		after?: () => void
+	}) => void;
 
 	/**
-     * @description 消息提示
-     * @param {string}str
-     */
+	 * @description 消息提示
+	 * @param {string}str
+	 */
 	myToast: (str: string) => void;
-
 
 	constructor() {
 		this.runThread = null;
@@ -140,9 +141,26 @@ export class Script {
 		}, text, timeout, region, textMatchMode);
 	}
 
+	findNum(timeout: number, region: Array<number>): Array<OcrResult> {
+		this.initOcrIfNeeded();
+		return this.getOcr().findText(function () {
+			script.keepScreen(); // 更新图片
+			return script.helperBridge.helper.GetBitmap(); // 返回bmp
+		}, '\\d+', timeout, region, '包含').filter(item => {
+			item.label = item.label
+				.replace(/[sS]/g, '5')
+				.replace(/[oO]/g, '0')
+				.replace(/[zZ]/g, '2');
+			if (item.label.match(/^\d+$/)) {
+				return true;
+			}
+			return false;
+		});
+	}
+
 	/**
-     * 先比色，再findText
-     */
+	 * 先比色，再findText
+	 */
 	findTextWithCompareColor(text: string, timeout: number, region: Array<number>, textMatchMode: string, currFunc: IFunc): Array<OcrResult> {
 		this.initOcrIfNeeded();
 		const self = this;
@@ -176,11 +194,11 @@ export class Script {
 	}
 
 	/**
-     * 截图，mode为true时表示对红色通过作为下标进行初始化，但执行需要一定时间，
-     * 对截图进行一次初始化后可大幅提高多点找色效率，通常初始化一次红色通道后进行多次多点找色
-     * 仅使用多点比色时mode给false或不传
-     * @param {Boolean} mode
-     */
+	 * 截图，mode为true时表示对红色通过作为下标进行初始化，但执行需要一定时间，
+	 * 对截图进行一次初始化后可大幅提高多点找色效率，通常初始化一次红色通道后进行多次多点找色
+	 * 仅使用多点比色时mode给false或不传
+	 * @param {Boolean} mode
+	 */
 	keepScreen(mode?: boolean) {
 		helperBridge.helper.KeepScreen(mode || false);
 		if (mode) {
@@ -191,8 +209,8 @@ export class Script {
 	}
 
 	/**
-     * 初始化红色通道
-     */
+	 * 初始化红色通道
+	 */
 	initRedList() {
 		if (!this.hasRedList) {
 			helperBridge.helper.GetRedList();
@@ -201,17 +219,17 @@ export class Script {
 	}
 
 	/**
-     * 设置启动后回调
-     * @param {Function} callback
-     */
+	 * 设置启动后回调
+	 * @param {Function} callback
+	 */
 	setRunCallback(callback: Function) {
 		this.runCallback = callback;
 	}
 
 	/**
-     * 设置停止后回调
-     * @param {Function} callback
-     */
+	 * 设置停止后回调
+	 * @param {Function} callback
+	 */
 	setStopCallback(callback: Function) {
 		this.stopCallback = () => {
 			callback();
@@ -219,10 +237,10 @@ export class Script {
 	}
 
 	/**
-     * 根据scheme获取Funclist，Funclist中desc和oper相关坐标根据开发分辨率自动转换成运行分辨率
-     * @param {Scheme} scheme
-     * @returns
-     */
+	 * 根据scheme获取Funclist，Funclist中desc和oper相关坐标根据开发分辨率自动转换成运行分辨率
+	 * @param {Scheme} scheme
+	 * @returns
+	 */
 	getFuncList(scheme: IScheme): IFunc[] {
 		const retFunclist = [];
 		if (!this.funcMap) {
@@ -258,8 +276,8 @@ export class Script {
 	}
 
 	/**
-     * 将funcList中operator里面的desc和oper转换为适用当前正在分辨率的坐标
-     */
+	 * 将funcList中operator里面的desc和oper转换为适用当前正在分辨率的坐标
+	 */
 	initFuncList() {
 		this.scheme = store.get('currentScheme', null);
 		if (null === this.scheme) return;
@@ -284,8 +302,8 @@ export class Script {
 	// };
 
 	/**
-     * 根据 src\common\multiDetectColors.ts 初始化多点比色数组，相关坐标根据开发分辨率自动转换成运行分辨率
-     */
+	 * 根据 src\common\multiDetectColors.ts 初始化多点比色数组，相关坐标根据开发分辨率自动转换成运行分辨率
+	 */
 	initMultiDetectColors() {
 		const thisMultiDetectColor = {};
 		for (const key in multiDetectColors) {
@@ -298,8 +316,8 @@ export class Script {
 	}
 
 	/**
-     * 根据 src\common\multiFindColors.ts 初始化多点找色数组，相关坐标根据开发分辨率自动转换成运行分辨率
-     */
+	 * 根据 src\common\multiFindColors.ts 初始化多点找色数组，相关坐标根据开发分辨率自动转换成运行分辨率
+	 */
 	initMultiFindColors() {
 		const thisMultiFindColor = {};
 		for (const key in multiFindColors) {
@@ -315,17 +333,20 @@ export class Script {
 				const er = this.helperBridge.getHelper(multiFindColors[key].region[1], multiFindColors[key].region[2]).GetPoint(multiFindColors[key].region[5], multiFindColors[key].region[6], multiFindColors[key].region[0]);
 				thisMultiFindColor[key].region = [sr.x, sr.y, er.x, er.y];
 			}
+			if (multiFindColors[key].similar) {
+				thisMultiFindColor[key].similar = multiFindColors[key].similar;
+			}
 		}
 		this.multiFindColors = thisMultiFindColor;
 	}
 
 	/**
-     * 执行多点找色
-     * @param {String} key src\common\multiColors.js的key
-     * @param {Region} inRegion 多点找色区域
-     * @param {Boolean} multiRegion 给true的话表示inRegion为region的数组
-     * @returns
-     */
+	 * 执行多点找色
+	 * @param {String} key src\common\multiColors.js的key
+	 * @param {Region} inRegion 多点找色区域
+	 * @param {Boolean} multiRegion 给true的话表示inRegion为region的数组
+	 * @returns
+	 */
 	findMultiColor(key: string, inRegion?: any, multiRegion?: boolean, noLog?: boolean) {
 		this.initRedList();
 		if (!multiRegion) {
@@ -385,12 +406,12 @@ export class Script {
 	}
 
 	/**
-    * 执行多点找色(返回所有点坐标)
-    * @param {String} key src\common\multiColors.js的key
-    * @param {Region} inRegion 多点找色区域
-    * @returns
-    */
-	findMultiColorEx(key, inRegion?) {
+	* 执行多点找色(返回所有点坐标)
+	* @param {String} key src\common\multiColors.js的key
+	* @param {Region} inRegion 多点找色区域
+	* @returns
+	*/
+	findMultiColorEx(key, inRegion?): Point[] {
 		this.initRedList();
 		const region = inRegion || this.multiFindColors[key].region;
 		const desc = this.multiFindColors[key].desc;
@@ -442,12 +463,12 @@ export class Script {
 
 
 	/**
-     * 执行多点找色，直到成功为止，返回多点找色坐标
-     * @param {String} key src\common\multiColors.js的key
-     * @param {Integer} timeout 超时时间(ms)
-     * @param {inRegion} inRegion 多点找色区域
-     * @returns
-     */
+	 * 执行多点找色，直到成功为止，返回多点找色坐标
+	 * @param {String} key src\common\multiColors.js的key
+	 * @param {Integer} timeout 超时时间(ms)
+	 * @param {inRegion} inRegion 多点找色区域
+	 * @returns
+	 */
 	findMultiColorLoop(key, timeout, inRegion) {
 		let times = Math.round(timeout / +this.scheme.commonConfig.loopDelay);
 		while (times--) {
@@ -462,31 +483,32 @@ export class Script {
 	}
 
 	/**
-     * 多点比色，直到成功为止
-     * @param {Desc} desc
-     * @param {Integer} timeout
-     * @param {Integer} sign
-     * @returns
-     */
+	 * 多点比色，直到成功为止
+	 * @param {Desc} desc
+	 * @param {Integer} timeout
+	 * @param {Integer} sign
+	 * @returns
+	 */
 	compareColorLoop(desc, timeout: number, sign?: number) {
 		/**
-         * 条件循环多点比色
-         *
-         * @param description: 色组描述
-         * @param sim:         相似度
-         * @param offset:      偏移查找
-         * @param timeout:     超时时间
-         * @param timelag:     间隔时间
-         * @param sign:        跳出条件,0为比色成功时返回,1为比色失败时返回
-         */
+		 * 条件循环多点比色
+		 *
+		 * @param description: 色组描述
+		 * @param sim:         相似度
+		 * @param offset:      偏移查找
+		 * @param timeout:     超时时间
+		 * @param timelag:     间隔时间
+		 * @param sign:        跳出条件,0为比色成功时返回,1为比色失败时返回
+		 */
 		return this.helperBridge.helper.CompareColorExLoop(desc, this.scheme.commonConfig.colorSimilar, true, timeout, this.scheme.commonConfig.loopDelay, sign || 0);
 	}
 
 	/**
-     * 运行脚本
-     * @returns
-     */
+	 * 运行脚本
+	 * @returns
+	 */
 	run() {
+		this.setCurrentScheme();
 		return this._run();
 	}
 
@@ -495,9 +517,9 @@ export class Script {
 	}
 
 	/**
-     * 运行脚本，内部接口
-     * @returns
-     */
+	 * 运行脚本，内部接口
+	 * @returns
+	 */
 	_run(job?: Job): void {
 		if (this.runThread) return;
 		this.job = job;
@@ -568,12 +590,12 @@ export class Script {
 	}
 
 	/**
-     * 根据当前界面判断自动运行的脚本
-     * 若只有一个方案存在功能比色成功的话直接运行这个方案
-     * 若有多个方案，可运行的方案通过悬浮列表进行选择
-     * 若没有则提示无法识别当前界面
-     * @param {MyFloaty} myfloaty
-     */
+	 * 根据当前界面判断自动运行的脚本
+	 * 若只有一个方案存在功能比色成功的话直接运行这个方案
+	 * 若有多个方案，可运行的方案通过悬浮列表进行选择
+	 * 若没有则提示无法识别当前界面
+	 * @param {MyFloaty} myfloaty
+	 */
 	autoRun(myfloaty: MyFloaty) {
 		const self = this;
 		self.keepScreen(false);
@@ -618,15 +640,15 @@ export class Script {
 	}
 
 	/**
-     * 停止脚本
-     */
+	 * 停止脚本
+	 */
 	stop() {
 		events.broadcast.emit('SCRIPT_STOP', '');
 	}
 
 	/**
-     * 停止脚本，内部接口
-     */
+	 * 停止脚本，内部接口
+	 */
 	_stop(flag?: boolean) {
 		if (null !== this.runThread) {
 			if (typeof this.stopCallback === 'function') {
@@ -644,8 +666,8 @@ export class Script {
 	}
 
 	/**
-     * 重新运行，一般在运行过程中通过setCurrenScheme切换方案后调用，停止再运行
-     */
+	 * 重新运行，一般在运行过程中通过setCurrenScheme切换方案后调用，停止再运行
+	 */
 	rerun(schemeName?: unknown, params?: Record<string, unknown>) {
 		if ('__停止脚本__' === schemeName) {
 			this.doPush(this, {
@@ -655,6 +677,22 @@ export class Script {
 			this.stop();
 			sleep(3000);
 			return;
+		} else if ('__返回上个方案__' === schemeName) {
+			if (this.schemeHistory.length) {
+				if (this.schemeHistory.length > 1) {
+					const lastSchemeName = this.schemeHistory[this.schemeHistory.length - 2].schemeName
+					this.setCurrentScheme(lastSchemeName as string, params);
+					this.myToast(`返回上个方案为[${schemeName}]`);
+				} else {
+					this.doPush(this, {
+						text: `[${this.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`
+					});
+					myToast('无法查询到上个方案, 可能是此方案为第一个方案');
+					this.stop();
+					sleep(3000);
+					return;
+				}
+			}
 		} else if (schemeName) {
 			this.setCurrentScheme(schemeName as string, params);
 			this.myToast(`切换方案为[${schemeName}]`);
@@ -670,12 +708,12 @@ export class Script {
 	}
 
 	/**
-     * 关键函数，操作函数
-     * 针对func进行多点比色，成功的话按顺序点击oper数组
-     * 若operatorFunc为函数，operator则不执行，调用operatorFunc函数
-     * @param {*} currFunc
-     * @param {*} retest 重试时间
-     */
+	 * 关键函数，操作函数
+	 * 针对func进行多点比色，成功的话按顺序点击oper数组
+	 * 若operatorFunc为函数，operator则不执行，调用operatorFunc函数
+	 * @param {*} currFunc
+	 * @param {*} retest 重试时间
+	 */
 	oper(currFunc: IFunc, retest?: number) {
 		const operator = currFunc.operator; // 需要计算的坐标通过operater传进去使用
 		const operatorFunc = currFunc.operatorFunc;
@@ -733,11 +771,11 @@ export class Script {
 					if (item.operStepRandom) {
 						if (currFunc.id)
 							console.log(`oper_success：[item.operStepRandom] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper}`);
-						helperBridge.regionStepRandomClick(item.operStepRandom, this.scheme.commonConfig.afterClickDelayBase as number, this.scheme.commonConfig.afterClickDelayRandom as number);
+						helperBridge.regionStepRandomClick(item.operStepRandom, Math.floor(this.scheme.commonConfig.afterClickDelayBase as number), Math.floor(this.scheme.commonConfig.afterClickDelayRandom as number));
 					} else if (item.oper) {
 						if (currFunc.id)
 							console.log(`oper_success：[item.oper] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper}`);
-						helperBridge.regionClick(item.oper, this.scheme.commonConfig.afterClickDelayBase as number || 0, this.scheme.commonConfig.afterClickDelayRandom as number);
+						helperBridge.regionClick(item.oper, Math.floor(this.scheme.commonConfig.afterClickDelayBase as number || 0), Math.floor(this.scheme.commonConfig.afterClickDelayRandom as number));
 					} else {
 						if (currFunc.id)
 							console.log(`oper_success: [] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} lastFunc:${this.lastFunc} id:${id} oper:${item.oper}`);
@@ -749,9 +787,9 @@ export class Script {
 	}
 
 	/**
-     * 根据func中的desc进行多点比色
-     * @param {*} currFunc
-     */
+	 * 根据func中的desc进行多点比色
+	 * @param {*} currFunc
+	 */
 	desc(currFunc: IFunc, commonConfig) {
 		const operator = currFunc.operator || []; // 需要计算的坐标通过operater传进去使用
 		for (let id = 0; id < operator.length; id++) {
@@ -760,8 +798,17 @@ export class Script {
 				let res = null;
 				if (typeof item.desc === 'string') {
 					res = helperBridge.helper.CompareColorEx(this.multiDetectColors[item.desc].desc, commonConfig.colorSimilar, false);
+					if (res) {
+						console.log(`desc_sucess：[string] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} id:${id}`);
+					}
 				} else if (item.desc.length > 3) {
 					res = helperBridge.helper.CompareColorEx(item.desc, commonConfig.colorSimilar, false);
+					if (res) {
+						console.log(`desc_sucess：[array] currFunc.name:${currFunc.name} currFunc.id:${currFunc.id} id:${id}`);
+					}
+					if (item.desc[0][0] === -1) {
+						res = true;
+					}
 				}
 				if (res) return true;
 			}
@@ -769,17 +816,22 @@ export class Script {
 		return false;
 	}
 
-	setCurrentScheme(schemeName: string, params?: Record<string, unknown>) {
+	setCurrentScheme(schemeName?: string, params?: Record<string, unknown>) {
 		if (params) {
 			this.runtimeParams = params;
 		} else {
 			this.runtimeParams = null;
 		}
+		if (!schemeName) {
+			const { schemeName: sName } = store.get('currentScheme', {});
+			if (!sName) return;
+			schemeName = sName;
+		}
 		return setCurrentScheme(schemeName, store);
 	}
 
-	search(list: Record<string, any>[], prop: string, str: string, filterSimilar?: number) {
-		return search(list, prop, str, filterSimilar)
+	search(list: Record<string, any>[], prop: string, str: string) {
+		return search(list, prop, str)
 	}
 
 	questionSearch(str: string) {
@@ -800,25 +852,36 @@ export class Script {
 	stopRelatedApp() {
 		const storeSettings = storeCommon.get('settings', {});
 		if (storeSettings.defaultLaunchAppList && storeSettings.defaultLaunchAppList.length) {
+			let am = null;
+			if (storeSettings.kill_related_app_mode === 'android api') {
+				// // 先跳到自己的界面
+				// const i = new android.content.Intent(activity, activity.class);
+				// i.addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK);
+				// i.addFlags(android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP);
+				// context.startActivity(i);
+				// 跳到桌面
+				context.startActivity(app.intent({
+					action: android.content.Intent.ACTION_MAIN,
+					category: android.content.Intent.CATEGORY_HOME,
+					flags: ['ACTIVITY_NEW_TASK']
+				}));
+				sleep(2000);
+				// 目标进程就变成后台了，就可以通过杀后台进程实现杀应用
+				am = context.getSystemService(context.ACTIVITY_SERVICE);
+			}
 
-			// // 先跳到自己的界面
-			// var i = new android.content.Intent(activity, activity.class);
-			// i.addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK);
-			// i.addFlags(android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP);
-			// context.startActivity(i);
-			// sleep(2000);
-
-			// // 目标进程就变成后台了，就可以通过杀后台进程实现杀应用
-			// const am = context.getSystemService(context.ACTIVITY_SERVICE);
 			const ret = [];
-
 			storeSettings.defaultLaunchAppList.forEach(packageName => {
-				// am.killBackgroundProcesses(packageName);
-				$shell(`am force-stop ${packageName}`, true);
+				if (am) {
+					am.killBackgroundProcesses(packageName);
+				} else {
+					$shell(`am force-stop ${packageName}`, true);
+				}
 				myToast(`杀应用${packageName}`);
 				ret.push(packageName);
 				sleep(100);
 			});
+			sleep(500);
 			return ret;
 		} else {
 			myToast('未配置关联应用，不结束');
@@ -826,9 +889,9 @@ export class Script {
 		}
 	}
 
-	regionClick(oper, baseSleep?, randomSleep?) {
-		baseSleep = baseSleep || this.scheme.commonConfig.afterClickDelayBase || 0;
-		randomSleep = randomSleep || this.scheme.commonConfig.afterClickDelayRandom || 0
+	regionClick(oper, baseSleep?: number, randomSleep?: number) {
+		baseSleep = baseSleep || Math.floor(this.scheme.commonConfig.afterClickDelayBase as number || 0);
+		randomSleep = randomSleep || Math.floor(this.scheme.commonConfig.afterClickDelayRandom as number || 0)
 		this.helperBridge.regionClick(oper, baseSleep, randomSleep);
 	}
 

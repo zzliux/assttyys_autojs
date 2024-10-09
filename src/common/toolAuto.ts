@@ -1,4 +1,6 @@
 import { IScheme } from '@/interface/IScheme';
+import { getPushClient } from '@/system/PushClient';
+import { Message } from '@/system/PushClient/AbstractPushClient';
 import { IhelperBridge } from '@/system/helperBridge';
 import type { Script } from '@/system/script';
 import script from '@/system/script';
@@ -8,7 +10,30 @@ import { getWidthPixels, getHeightPixels } from '@auto.pro/core';
 
 // importClass(android.graphics.Color);
 // importPackage(android.content);
+import fmmxQuestionList from '@/common/fmmxQuestionList';
 
+export function search(list: Record<string, any>[], prop: string, str: string) {
+	let maxSimilarity = 0;
+	let maxSimilarityIndex = -1;
+	for (let i = 0; i < list.length; i++) {
+		const sim = nlpSimilarity(list[i][prop], str) || 0;
+		if (sim > maxSimilarity) {
+			maxSimilarity = sim;
+			maxSimilarityIndex = i;
+		}
+	}
+	if (-1 === maxSimilarityIndex) {
+		return null;
+	}
+	return {
+		data: list[maxSimilarityIndex],
+		similarity: maxSimilarity
+	}
+}
+
+export function questionSearch(str: string) {
+	return search(fmmxQuestionList, 'question', str);
+}
 export function requestMyScreenCapture(callback: Function, helperBridge: IhelperBridge) {
 	if (device.sdkInt >= 29 && auto.service) {
 		// 安卓10以上，有无障碍服务，通过无障碍服务把申请权限点了
@@ -25,8 +50,19 @@ export function requestMyScreenCapture(callback: Function, helperBridge: Ihelper
 			}
 		});
 	}
+	const width = getWidthPixels();
+	const height = getHeightPixels();
+
+	const rotation = activity.getWindowManager().getDefaultDisplay().getRotation();
+
+	// 1 rotation=0传width<height
+	// 2 rotation!=0传width>height
+	console.log('rotation', rotation);
+	console.log('width', width);
+	console.log('height', height);
+
 	// @ts-expect-error d.ts文件问题
-	requestScreenCaptureAsync(getWidthPixels() < getHeightPixels()).then(function (success: boolean) {
+	requestScreenCaptureAsync(rotation == 0 ? width < height : width > height).then(function (success: boolean) {
 		if (success) {
 			helperBridge.init();
 			script.initMultiDetectColors(); // 多点比色初始化要在helperbridge后才能进行
@@ -150,6 +186,34 @@ export function getRegionBiasRnd(region, pointBias, influence) {
 }
 
 /**
+ * 生成服从正态分布随机数，均值需尽量传入region的1/4至3/4区间内的值，否则容易出现均值统计概率过高的问题
+ * @param range 范围
+ * @param mean 均值
+ * @returns v
+ */
+export function getNormalRandom(range: [number, number], mean: number): number {
+	if (range[0] == range[1]) return range[0];
+	if (range[0] > range[1]) return getNormalRandom([range[1], range[0]], mean);
+	if (mean >= range[1]) mean = range[1];
+	if (mean <= range[0]) mean = range[0];
+
+	const stdDevMin = (range[1] - range[0]) / ((range[1] - range[0]) * 4 / Math.min(range[1] - mean, mean - range[0]))
+
+	let u = 0, v = 0;
+	while (u === 0) u = Math.random(); // 避免u为0
+	while (v === 0) v = Math.random();
+	const z = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+
+	const num = z * stdDevMin + mean; // 应用标准差和平均值
+
+	if (num < range[0] || num > range[1]) {
+		return getNormalRandom(range, mean);
+	}
+	return Math.floor(num);
+}
+
+
+/**
  * new bing生成的服从二维正态分布的函数，手动调了下根据influence与region生成方差
  * @param region
  * @param pointBias
@@ -252,15 +316,67 @@ export function pushplusPush(data: any) {
 	return http.post('https://pushplus.plus/send', data)
 }
 
+export function bmpToBase64(bmp: any): string {
+	const baos = new java.io.ByteArrayOutputStream();
+	bmp.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, baos);
+	baos.flush();
+	baos.close();
+	bmp.recycle();
+	const b64str = android.util.Base64.encodeToString(baos.toByteArray(), android.util.Base64.NO_WRAP);
+	return b64str;
+}
+
+export function scaleBmp(bmp: any, scale: number) {
+	const width = bmp.getWidth();
+	const height = bmp.getHeight();
+	const matrix = new android.graphics.Matrix();
+	matrix.postScale(scale, scale);
+	const newBmp = android.graphics.Bitmap.createBitmap(bmp, 0, 0, width, height, matrix, false);
+	bmp.recycle();
+	return newBmp;
+}
+
+export function doPush(thisScript: Script, options: {
+	text: string,
+	before?: () => void,
+	after?: () => void
+}): void {
+	const pushClient = getPushClient();
+	if (!pushClient) {
+		console.log('未配置推送类型，不推送');
+		return;
+	}
+	console.log(`尝试使用${pushClient.name}推送`);
+	const bmpImage = thisScript.helperBridge.helper.GetBitmap();
+	const data: Message[] = [{
+		type: 'text',
+		data: options && options.text || ''
+	}, {
+		type: 'image',
+		data: bmpImage
+	}]
+	try {
+		const res = pushClient.push(data, pushClient.getKVConfig());
+		bmpImage.recycle();
+		myToast(`使用${pushClient.name}推送结果：${res.body.string()}`);
+		return res;
+	} catch (e) {
+		myToast(`使用${pushClient.name}推送报错了，请查看日志`);
+		console.error($debug.getStackTrace(e));
+		bmpImage.recycle();
+		return null;
+	}
+}
+
 /**
  * 发起消息推送
  * @param {Script} thisScript
  * @param options
  */
-export function doPush(thisScript: Script, options: {
-    text: string,
-    before?: () => void,
-    after?: () => void
+export function doPushBak(thisScript: Script, options: {
+	text: string,
+	before?: () => void,
+	after?: () => void
 }): void {
 	const storeSettings = storeCommon.get('settings', {});
 	if (storeSettings.push_type === '关闭推送') {
@@ -269,9 +385,6 @@ export function doPush(thisScript: Script, options: {
 	}
 	if (storeSettings.push_type === 'oneBot' && !storeSettings.oneBot_url) {
 		console.error('未配置oneBot_url');
-		return;
-	} else if (storeSettings.push_type === 'ospPush' && !storeSettings.osp_user_token) {
-		console.error('未配置ospUserToken');
 		return;
 	} else if (storeSettings.push_type === 'Gotify' && !storeSettings.gotify_url) {
 		console.error('未配置gotify_url');
@@ -286,14 +399,14 @@ export function doPush(thisScript: Script, options: {
 		let scale = 0.5;
 
 		switch (storeSettings.push_type) {
-		case 'pushplus':
-			scale = 0.05;
-			break;
-		case 'Gotify':
-			scale = 0.3;
-			break;
-		default:
-			scale = 0.5;
+			case 'pushplus':
+				scale = 0.05;
+				break;
+			case 'Gotify':
+				scale = 0.3;
+				break;
+			default:
+				scale = 0.5;
 		}
 		const bmp = scaleBmp(thisScript.helperBridge.helper.GetBitmap(), scale);
 		const baos = new java.io.ByteArrayOutputStream();
@@ -336,8 +449,6 @@ export function doPush(thisScript: Script, options: {
 				}
 			});
 			res = oneBotPush(storeSettings.oneBot_url, message)
-		} else if (storeSettings.push_type === 'ospPush') {
-			res = ospPush(storeSettings.osp_user_token, data);
 		} else if (storeSettings.push_type === 'Gotify') {
 			res = gotifyPush(`${storeSettings.gotify_url}?token=${storeSettings.gotify_user_token}`, {
 				title: storeSettings.msgPush_prefix,
@@ -366,15 +477,6 @@ export function doPush(thisScript: Script, options: {
 	}
 }
 
-export function scaleBmp(bmp, scale: number) {
-	const width = bmp.getWidth();
-	const height = bmp.getHeight();
-	const matrix = new android.graphics.Matrix();
-	matrix.postScale(scale, scale);
-	const newBmp = android.graphics.Bitmap.createBitmap(bmp, 0, 0, width, height, matrix, false);
-	bmp.recycle();
-	return newBmp;
-}
 
 
 export const mergeSchemeList = (savedSchemeList: IScheme[], innerSchemeList: IScheme[]) => {
@@ -393,4 +495,86 @@ export const mergeSchemeList = (savedSchemeList: IScheme[], innerSchemeList: ISc
 		}
 	}
 	return [...savedSchemeList, ...toMerge];
+}
+
+let hanZiSimilarBridge = null;
+export function nlpSimilarity(s1: string, s2: string) {
+	// console.log(`s1=${s1}`);
+	// console.log(`s2=${s2}`);
+	if (!hanZiSimilarBridge) {
+		// @ts-expect-error dex包
+		hanZiSimilarBridge = new Packages.cn.zzliux.HanZiSimilarBridge();
+		hanZiSimilarBridge.init(
+			files.read(files.cwd() + '/assets/lib/nlp/bihuashu.txt'),
+			files.read(files.cwd() + '/assets/lib/nlp/bushou.txt'),
+			files.read(files.cwd() + '/assets/lib/nlp/jiegou.txt'),
+			files.read(files.cwd() + '/assets/lib/nlp/sijiao.txt'),
+			files.read(files.cwd() + '/assets/lib/nlp/userdefine.txt')
+		);
+	}
+	const result = hanZiSimilarBridge.similarity(s1, s2);
+	console.log(`result=${result}`);
+	return result;
+}
+
+export function isDebugPlayerRunning() {
+	return context.packageName.match(/debugplayer/) || context.packageName.match(/^org.autojs.autojs(pro)?$/);
+}
+
+
+// 保存原始console方法
+const originalMethods = {};
+const proxyMethods = ['assert', 'log', 'print', 'debug', 'verbose', 'info', 'warn', 'error'];
+proxyMethods.forEach((method) => {
+	originalMethods[method] = console[method];
+});
+export function doInitHookConsoleLog(remoteUrl: string) {
+	// 初始化时尝试调用远程日志，如果远程日志调用失败，则不做任何处理
+	try {
+		http.postJson(`${remoteUrl}/___dev_log`, {
+			// @ts-expect-error d.ts文件问题
+			t: new Date().getTime(),
+			m: 'I',
+			d: '远程日志初始化成功'
+		}, () => { });
+	} catch (e) {
+		toastLog('远程日志服务调用报错，请检查远程日志服务状态');
+		return;
+	}
+
+
+	const mMap = {
+		'assert': 'A',
+		'log': 'D',
+		'print': 'D',
+		'debug': 'D',
+		'verbose': 'V',
+		'info': 'I',
+		'warn': 'W',
+		'error': 'E',
+	};
+
+	proxyMethods.forEach((method) => {
+		console[method] = (...args: any) => {
+			// 先调用服务器API，忽略远程调用的报错
+			try {
+				http.postJson(`${remoteUrl}/___dev_log`, {
+					// @ts-expect-error d.ts文件问题
+					t: new Date().getTime(),
+					m: mMap[method],
+					d: args.map(arg => (typeof arg === 'object' ? JSON.stringify(arg) : arg)).join(' ')
+				}, () => { });
+			} catch (e) {
+				// nothing
+				toastLog('远程日志服务调用报错，请检查远程日志服务状态');
+			}
+			// 再调用原始的console方法
+			originalMethods[method].apply(console, args);
+		};
+	});
+}
+
+
+export function escapeMarkdown(str: string) {
+	return str.replace(/[\\`*_{}[\]()#+\-.]/g, '\\$&');
 }

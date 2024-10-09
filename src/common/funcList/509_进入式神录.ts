@@ -13,10 +13,11 @@ export class Func509 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[right, 1095, 616, 0xbc172d],
-				[right, 1146, 616, 0xeab24e],
-				[right, 1130, 619, 0xe1d6d3],
-				[right, 1105, 635, 0xdbe6f2],
+				[right, 1217, 620, 0xcca56e],
+				[right, 1222, 641, 0xddcdc7],
+				[right, 1221, 663, 0xdac9c4],
+				[right, 1219, 695, 0xb14c43],
+				[right, 1222, 706, 0x432118],
 			]
 		],
 		oper: [
@@ -141,12 +142,15 @@ export class Func509 implements IFuncOrigin {
 			[right, 1280, 720, 1008, 600, 1081, 671, 1200]	//	点击式神按钮
 		]
 	}, { // 庭院未打开菜单
-		desc: '庭院未打开菜单',
+		desc: '页面是否为庭院_菜单未展开_只支持默认庭院皮肤与默认装饰',
 		oper: [
 			[right, 1280, 720, 1168, 592, 1230, 690, 1000]
 		]
 	}, { // 突破界面
-		desc: '突破界面'
+		desc: '突破界面',
+		oper: [
+			// [right, 1280, 720, 1207, 617, 1245, 649, 1200]	//	点击式神按钮
+		]
 	}, { // 超鬼王界面
 		desc: [
 			1280, 720,
@@ -161,20 +165,36 @@ export class Func509 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1012, 649, 1055, 690, 1000],
 		]
+	}, { // 12 误触_情报界面
+		desc: [
+			1280, 720,
+			[
+				[left, 42, 273, 0x1d0f0f],
+				[left, 40, 150, 0x664834],
+				[left, 44, 49, 0xf0f5fb],
+				[left, 63, 150, 0x6c4d37],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 32, 34, 73, 65, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.global.change_shikigami_flag) {
 			if (thisScript.oper({
 				name: '是否为式神录',
-				operator: [thisOperator[3], thisOperator[10]]
+				operator: [thisOperator[3]]
 			})) {
 				thisScript.global.change_shikigami_flag = false;
 			}
-
 			if (thisScript.oper({
 				name: '庭院进入式神录',
-				operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[4], thisOperator[5], thisOperator[6], thisOperator[7], thisOperator[9], thisOperator[11]]
+				operator: [
+					thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[4],
+					thisOperator[5], thisOperator[6], thisOperator[7], thisOperator[9],
+					thisOperator[11], thisOperator[12]]
 			})) {
+				sleep(1000);
 				return true;
 			}
 		} else {

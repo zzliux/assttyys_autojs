@@ -14,28 +14,29 @@ export class Func318 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[right, 1143, 482, 0x69dbff],
-				[right, 1190, 480, 0x6bffff],
-				[right, 1155, 483, 0xf8f4ed],
-				[right, 1155, 473, 0xfdf8ee],
-				[right, 1174, 497, 0xeae0ce],
+				[right, 1146, 476, 0x231a23],
+				[right, 1162, 471, 0xfffffc],
+				[right, 1174, 472, 0x675f58],
+				[right, 1173, 487, 0xf2eadb],
+				[right, 1163, 495, 0x8a878e],
+				[right, 1189, 480, 0x6bffff],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1190, 633, 1259, 691, 250], // 清明
-		]
+			[center, 1280, 720, 1194, 636, 1252, 695, 0], // 晴明
+		],
+		retest: 500
 	}, { // 1 开始战斗后的场景
 		desc: '战斗界面',
 	}, { // 2 妖术二
 		desc: [
 			1280, 720,
 			[
-				[right, 1247, 674, 0xe0cec1],
-				[right, 1251, 685, 0xdfccbf],
-				[right, 1246, 685, 0xe1cec1],
-				[right, 1241, 685, 0xdbc9bd],
-				[right, 1243, 680, 0x9d9086],
-				[right, 1243, 677, 0x8c8178],
+				[right, 1240, 684, 0xdeccbf],
+				[right, 1245, 684, 0xe0cdc0],
+				[right, 1253, 688, 0xd9c6ba],
+				[right, 1247, 674, 0xe4d1c4],
+				[right, 1242, 677, 0xdbc9bc],
 			]
 		]
 	}, { // 3 技能框
@@ -43,7 +44,6 @@ export class Func318 implements IFuncOrigin {
 			1280, 720,
 			[
 				[center, 940, 479, 0x1f2552],
-				[center, 956, 481, 0x3772b3],
 				[right, 965, 506, 0x1f214e],
 				[center, 928, 514, 0x383a91],
 				[center, 938, 504, 0xf4feff],
@@ -60,20 +60,19 @@ export class Func318 implements IFuncOrigin {
 			1280, 720,
 			[
 				[center, 895, 469, 0xbf9350],
-				[right, 1248, 466, 0xaa733d],
 				[right, 1266, 478, 0xbd8a49],
-				[right, 1265, 577, 0xb88c4e],
 				[center, 895, 569, 0xaa7743],
 				[center, 902, 577, 0xb08043],
 				[right, 1154, 483, 0x473a32],
 				[right, 1165, 462, 0x231a23],
 				[right, 1172, 486, 0x473a30],
+				[right, 1173, 471, 0x2b1d15],
+				[right, 1189, 480, 0x2b3d36],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1009, 487, 1052, 512, 1000], // 2技能
-			[center, 1280, 720, 1099, 482, 1147, 520, 1000], // 3技能
-			[center, 1280, 720, 1099, 482, 1147, 520, 1000], // 3技能
+			[center, 1280, 720, 1011, 481, 1051, 518, 1000], // 2技能
+			[center, 1280, 720, 1099, 482, 1145, 519, 1000], // 3技能
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -93,6 +92,7 @@ export class Func318 implements IFuncOrigin {
 			name: '技能框',
 			operator: [thisOperator[3]]
 		})) {
+			sleep(1000);
 			if (thisScript.oper({
 				id: 318,
 				name: '锁定妖术二中,切换为妖术三',

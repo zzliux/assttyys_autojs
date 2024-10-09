@@ -29,7 +29,7 @@ export class Func511 implements IFuncOrigin {
 	}];
 	operator: IFuncOperatorOrigin[] = [
 		{
-			desc: //  式神录已展开 预设 侧栏
+			desc: // 0 式神录已展开 预设 侧栏
 				[
 					1280, 720,
 					[
@@ -45,7 +45,7 @@ export class Func511 implements IFuncOrigin {
 				[left, 1280, 720, 24, 10, 65, 43, 1200],      //  退出
 			]
 		}, {
-			desc:	// 是否为预设分组列表底部
+			desc: // 1 是否为预设分组列表底部
 				[
 					1280, 720,
 					[
@@ -60,7 +60,7 @@ export class Func511 implements IFuncOrigin {
 				[right, 1280, 720, 1128, 339, 1206, 382, -1],     //  预设分组 滑动结束位置
 			]
 		}, {
-			desc:	// 是否为队伍预设列表底部
+			desc: // 2 是否为队伍预设列表底部
 				[
 					1280, 720,
 					[
@@ -76,6 +76,11 @@ export class Func511 implements IFuncOrigin {
 				[center, 1280, 720, 705, 461, 806, 473, -1],    //  预设分组 滑动开始位置
 				[center, 1280, 720, 727, 274, 837, 290, -1],    //  预设分组 滑动结束位置
 				[right, 1280, 720, 1087, 563, 1245, 626, -1],     //  预设分组最后一项区域
+			]
+		}, { // 3 式神录界面，卡着不让它执行后面的
+			desc: '式神录',
+			oper: [
+				[center, 1280, 720, -1, -1, -1, -1, 1000]
 			]
 		}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -155,6 +160,10 @@ export class Func511 implements IFuncOrigin {
 			}
 			return true;
 		}
-		return false;
+		return thisScript.oper({
+			id: 511,
+			name: '式神录界面判断',
+			operator: [thisOperator[3]]
+		});
 	}
 }

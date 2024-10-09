@@ -19,7 +19,14 @@ export class Func040 implements IFuncOrigin {
 			name: 'next_scheme',
 			desc: '下一个方案',
 			type: 'scheme',
-			default: '寮突破',
+			default: '返回庭院',
+		}, {
+			name: 'afterCountOper',
+			desc: '不开启切换方案	则',
+			type: 'list',
+			data: ['停止脚本', '关闭应用', '不进行任何操作'],
+			default: '停止脚本',
+			value: null,
 		}]
 	}, {
 		desc: '准备界面下关闭buff',
@@ -31,18 +38,8 @@ export class Func040 implements IFuncOrigin {
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{
-		// 0 buff界面
-		desc: [1280, 720,
-			[
-				[center, 352, 526, 0x9c977e],
-				[center, 933, 526, 0x747865],
-				[center, 848, 528, 0xb89e7c],
-				[center, 497, 522, 0x9e9d8c],
-				[center, 363, 120, 0xd4c4bb],
-				[center, 913, 121, 0xd8c7bf],
-				[center, 878, 124, 0xdfd4cb]
-			]
-		],
+		// 0 已适配66 buff界面
+		desc: 'BUFF界面',
 		oper: [
 			[center, 1280, 720, 0, 0, 855 - 782, 431 - 415, 2000],
 			[center, 1280, 720, 110, 120, 338, 549, 500],
@@ -57,11 +54,13 @@ export class Func040 implements IFuncOrigin {
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['40'];
 		if (thisScript.oper({
+			id: 40,
 			name: 'BUFF界面',
 			operator: [{
 				desc: thisOperator[0].desc
 			}]
 		})) {
+			thisScript.global.closed_buff = true;
 			// 金币妖怪_判断挑战次数是否用完
 			const point = thisScript.findMultiColor('开启的BUFF') || null
 			if (point) {
@@ -74,12 +73,17 @@ export class Func040 implements IFuncOrigin {
 				if (thisconf && thisconf.scheme_switch_enabled) {
 					thisScript.rerun(thisconf.next_scheme);
 					sleep(3000);
-				} else {
+				} else if ('停止脚本' === thisconf.afterCountOper || !thisconf.afterCountOper) {
 					thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 					thisScript.stop();
-					sleep(3000);
+				} else if ('关闭应用' === thisconf.afterCountOper) {
+					sleep(1000);
+					const packageNames = thisScript.stopRelatedApp();
+					thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，应用[${packageNames}]已杀，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+					sleep(2000);
+					thisScript.stop();
 				}
-				return false
+				return true;
 			}
 		}
 

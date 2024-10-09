@@ -1,4 +1,4 @@
-import { similarity } from '@/common/tool';
+import { nlpSimilarity } from '@/common/toolAuto';
 import drawFloaty from '../drawFloaty';
 import { IOcr, IOcrDetector, OcrResult } from './IOcr';
 
@@ -72,46 +72,48 @@ export class YunxiOcr implements IOcr {
      * 安装
      */
 	install(option) {
-		const self = this;
-		dialogs.confirm('提示', '大约消耗12Mb，是否下载OCR扩展？', function (cr) {
-			if (cr) {
-				try {
-					threads.start(function () {
-						try {
-							toastLog('下载中，请稍后...');
-							const path = context.getExternalFilesDir(null).getAbsolutePath() + '/assttyus_ng/ocr';
-							let url = 'https://assttyys.zzliux.cn/static/ocr_deps_64.zip';
-							if (!self.is64) {
-								url = 'https://assttyys.zzliux.cn/static/ocr_deps_32.zip';
-							}
-							const r = http.get(url);
-							console.log(`解压路径：${path}`);
-							files.ensureDir(path + '/ocr_deps.zip');
-							// @ts-expect-error d.ts文件问题
-							files.writeBytes(path + '/ocr_deps.zip', r.body.bytes());
-							$zip.unzip(path + '/ocr_deps.zip', path);
-							toastLog('下载完成');
-							files.remove(path + '/ocr_deps.zip');
-							if (self.isInstalled()) {
-								option.successCallback();
-							} else {
-								option.failCallback();
-							}
-						} catch (e) {
-							toast(e);
-							console.error($debug.getStackTrace(e));
-							option.failCallback();
-						}
-					});
-				} catch (e) {
-					toast(e);
-					console.error($debug.getStackTrace(e));
-					option.failCallback();
-				}
-			} else {
-				option.failCallback();
-			}
-		});
+		toastLog('暂不提供该OCR插件');
+		option.failCallback();
+		// const self = this;
+		// dialogs.confirm('提示', '大约消耗12Mb，是否下载OCR扩展？', function (cr) {
+		// 	if (cr) {
+		// 		try {
+		// 			threads.start(function () {
+		// 				try {
+		// 					toastLog('下载中，请稍后...');
+		// 					const path = context.getExternalFilesDir(null).getAbsolutePath() + '/assttyus_ng/ocr';
+		// 					let url = 'https://assttyys.zzliux.cn/static/ocr_deps_64.zip';
+		// 					if (!self.is64) {
+		// 						url = 'https://assttyys.zzliux.cn/static/ocr_deps_32.zip';
+		// 					}
+		// 					const r = http.get(url);
+		// 					console.log(`解压路径：${path}`);
+		// 					files.ensureDir(path + '/ocr_deps.zip');
+		// 					// @ts-expect-error d.ts文件问题
+		// 					files.writeBytes(path + '/ocr_deps.zip', r.body.bytes());
+		// 					$zip.unzip(path + '/ocr_deps.zip', path);
+		// 					toastLog('下载完成');
+		// 					files.remove(path + '/ocr_deps.zip');
+		// 					if (self.isInstalled()) {
+		// 						option.successCallback();
+		// 					} else {
+		// 						option.failCallback();
+		// 					}
+		// 				} catch (e) {
+		// 					toast(e);
+		// 					console.error($debug.getStackTrace(e));
+		// 					option.failCallback();
+		// 				}
+		// 			});
+		// 		} catch (e) {
+		// 			toast(e);
+		// 			console.error($debug.getStackTrace(e));
+		// 			option.failCallback();
+		// 		}
+		// 	} else {
+		// 		option.failCallback();
+		// 	}
+		// });
 	}
 
 	prepare() {
@@ -180,13 +182,13 @@ export class YunxiOcr implements IOcr {
 			}));
 		} else /* if (textMatchMode === '模糊') */{
 			res = ocrResult.filter(item => {
-				item.similar = similarity(item.label, text);
-				return (item.similar as number) >= (similarityRatio || .5)
+				item.similar = nlpSimilarity(item.label, text);
+				return (item.similar as number) >= (similarityRatio || .7)
 			});
 			res.sort((a, b) => (b.similar || 0) - (a.similar || 0));
 			toDraw = ocrResult.map(item => ({
 				region: [item.points[0].x, item.points[0].y, item.points[2].x, item.points[2].y],
-				color: item.similar as number >= (similarityRatio || .5) ? 'green' : 'red',
+				color: item.similar as number >= (similarityRatio || .7) ? 'green' : 'red',
 				text: item.label + ':' + item.confidence
 			}));
 		}

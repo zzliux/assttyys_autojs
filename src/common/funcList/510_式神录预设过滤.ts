@@ -97,6 +97,10 @@ export class Func510 implements IFuncOrigin {
 				[
 					1280, 720,
 					[
+						[center, 550, 360, 0xcbb59c],
+						[center, 570, 360, 0xcbb59c],
+						[center, 550, 373, 0xcbb59c],
+						[center, 570, 373, 0xcbb59c],
 						[center, 456, 249, 0xcbb59e],
 						[center, 835, 257, 0xcbb59e],
 						[center, 853, 420, 0xcbb59e],
@@ -108,17 +112,7 @@ export class Func510 implements IFuncOrigin {
 				[center, 1280, 720, 711, 411, 812, 450, 1200]   //  点击确认
 			]
 		}, {  // 4 式神拓展包弹窗
-			desc:
-				[
-					1280, 720,
-					[
-						[center, 366, 191, 0xc8b29a],
-						[center, 909, 211, 0xcbb59e],
-						[center, 494, 290, 0x46322a],
-						[center, 600, 485, 0xf4b25f],
-						[center, 896, 516, 0xcbb59e],
-					]
-				],
+			desc: '式神拓展包弹窗',
 			oper: [
 				[center, 1280, 720, 417, 413, 439, 436, 1200],    //  30天不提示,
 				[center, 1280, 720, 910, 136, 944, 165, 1200],    //  关闭

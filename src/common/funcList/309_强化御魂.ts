@@ -17,7 +17,7 @@ export class Func309 implements IFuncOrigin {
 				[center, 892, 620, 0xc3c3c3],
 				[right, 1014, 650, 0xb8b8b8],
 				[center, 720, 638, 0x392b1e],
-				[left, 120, 230, 0xe5642b],
+				[left, 121, 218, 0xe4642a],
 				[left, 225, 236, 0xe6662c],
 			]
 		],
@@ -59,11 +59,11 @@ export class Func309 implements IFuncOrigin {
 			1280, 720,
 			[
 				[right, 1189, 398, 0xf75a4e],
-				[right, 1186, 412, 0xfb594f],
 				[right, 1194, 410, 0xff5e50],
-				[right, 1209, 410, 0xfe5d50],
 				[right, 1218, 400, 0xff5e50],
 				[right, 1218, 418, 0xff5c50],
+				[right, 1188, 399, 0xff5d51],
+				[right, 1221, 411, 0xff5e50],
 			]
 		],
 		oper: [
@@ -75,10 +75,10 @@ export class Func309 implements IFuncOrigin {
 			[
 				[right, 1192, 139, 0xc7b79e],
 				[right, 1220, 158, 0xc7b79e],
-				[right, 1188, 606, 0xe3ba82],
 				[right, 1240, 655, 0xe2af74],
 				[right, 1212, 626, 0x271913],
 				[right, 1215, 608, 0xecc38b],
+				[right, 1175, 616, 0xdfb27c],
 			]
 		],
 		oper: [
@@ -121,14 +121,13 @@ export class Func309 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[center, 419, 120, 0xe8e8ea],
-				[center, 419, 128, 0xe6e6e8],
-				[center, 429, 118, 0xc8c4c5],
-				[center, 425, 122, 0xe8e8ea],
-				[center, 431, 127, 0xe5e4e6],
-				[center, 427, 131, 0xd3d1d2],
-				[center, 423, 91, 0x4156d7],
-				[center, 439, 91, 0x4c5ad7],
+				[center, 419, 120, 0xe9e9eb],
+				[center, 419, 128, 0xe3e2e4],
+				[center, 429, 118, 0xa19999],
+				[center, 425, 122, 0xe9e9eb],
+				[center, 427, 131, 0xd2d0d1],
+				[center, 423, 91, 0x415bd4],
+				[center, 439, 91, 0x4b56d2],
 			]
 		],
 		oper: [
@@ -157,8 +156,9 @@ export class Func309 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 309,
 			name: '强化御魂',
-			operator: [thisOperator[7], thisOperator[1], thisOperator[3],
-				thisOperator[4], thisOperator[6]]
+			operator: [thisOperator[7], thisOperator[1], thisOperator[3]
+				, thisOperator[4], thisOperator[6]
+			]
 		})) {
 			thisScript.global.upYuHun = false;
 			return true;

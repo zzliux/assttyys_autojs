@@ -19,6 +19,11 @@ export default function webviewSchemeList() {
 		done(savedSchemeList);
 	});
 
+	webview.on('getDeletedSchemeNames').subscribe(([_param, done]) => {
+		const deletedSchemeNames = store.get('deletedSchemeNames', []);
+		done(deletedSchemeNames);
+	});
+
 	webview.on('getGroupNames').subscribe(([_param, done]) => {
 		const savedSchemeList = store.get('schemeList', defaultSchemeList);
 		const groupNamesMap = {};
@@ -32,6 +37,14 @@ export default function webviewSchemeList() {
 	webview.on('saveSchemeList').subscribe(([schemeList, done]) => {
 		store.put('schemeList', schemeList);
 		console.log('schemeList已保存');
+		// 找到被删除了的内置方案存起来
+		const deletedSchemeNames = Object.keys(schemeNameMap).filter(schemeName => {
+			for (const scheme of schemeList) {
+				if (scheme.schemeName == schemeName) return false;
+			}
+			return true;
+		});
+		store.put('deletedSchemeNames', deletedSchemeNames);
 		done('success');
 	});
 

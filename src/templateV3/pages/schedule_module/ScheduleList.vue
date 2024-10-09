@@ -103,6 +103,13 @@
                     new Date(item.lastStopTime).toLocaleString()
                   }}
                 </div>
+                <div class="item-desc">
+                  下次执行时间:
+                  {{
+                    item.nextDate &&
+                    new Date(item.nextDate).toLocaleString()
+                  }}
+                </div>
               </div>
             </div>
             <template #right>
@@ -171,6 +178,22 @@
                   <input
                     :disabled="item.checked"
                     v-model="item.interval"
+                    @input="intervalInputEvent($event, item)"
+                    class="van-field__control"
+                  />
+                </div>
+              </template>
+            </van-field>
+            <van-field
+              label="下次执行偏移随机数(分钟，用逗号分隔)"
+              label-width="70%"
+              :disabled="item.checked"
+            >
+              <template #input>
+                <div class="van-field__body">
+                  <input
+                    :disabled="item.checked"
+                    v-model="item.nextOffset"
                     @input="intervalInputEvent($event, item)"
                     class="van-field__control"
                   />
@@ -506,6 +529,8 @@ export default defineComponent({
     function nextDateDialogConfirm() {
       curItemItem.value.nextDate = curNextDate.value;
       nextDateDialogshow.value = false;
+      // 手选的时间是多少就是多少
+      // mergeOffsetTime(curItemItem.value);
     }
     function itemOpen() {
       itemOpenList.value.push(0);
@@ -645,6 +670,27 @@ export default defineComponent({
       if (item.repeatMode == 3) {
         item.nextDate = getNextByCron(item.interval);
       }
+      mergeOffsetTime(item);
+    }
+
+    function mergeOffsetTime(item) {
+      if (item && item.nextDate && item.nextOffset) {
+        let offsetTime = 0;
+        const parts = item.nextOffset?.split(',');
+        if (parts.length === 2) {
+          const [ offsetMinuteLow, offsetMinuteHigh ] = parts.map(item => parseInt(item));
+          if (Number.isInteger(offsetMinuteLow) && Number.isInteger(offsetMinuteHigh)) {
+            offsetTime = random(offsetMinuteLow * 60 * 1000, offsetMinuteHigh * 60 * 1000);
+          }
+        }
+        item.nextDate = new Date(item.nextDate.getTime() + offsetTime);
+      }
+    }
+
+    function random(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
     return {

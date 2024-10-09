@@ -13,6 +13,7 @@
       :style="{ width: '100%', maxHeight: '70%' }"
     >
       <div style="padding: 20px">
+        <div class="popup_version_title">本软件完全免费，请勿相信付费内容。</div>
         <div class="popup_version_title">已为你完成更新：</div>
         <div v-for="(item, id) of updateInfoList" :key="id">
           <!-- {{item.version}}....{{id}} -->

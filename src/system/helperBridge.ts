@@ -1,6 +1,6 @@
 import { getWidthPixels, getHeightPixels } from '@auto.pro/core';
 import drawFloaty from '@/system/drawFloaty';
-import { getRegionBiasRnd2, hash, strHashToNum } from '@/common/toolAuto';
+import { getNormalRandom, getRegionBiasRnd2, hash, strHashToNum } from '@/common/toolAuto';
 import { IMyAutomator } from '@/system/MyAutomator';
 
 // const normal = -1; //定义常量
@@ -21,18 +21,18 @@ if (screenWidth < screenHeight) {
 }
 
 export interface IhelperBridge {
-    automator: IMyAutomator | null,
-    helper: any | null,
-    helperPoly: object,
-    getHelper(dw: number, dh: number),
-    init: () => void,
-    regionClickTrans: (oper) => any,
-    setAutomator: (automator: IMyAutomator) => void,
-    regionClick: (transedOper: [number, number, number, number, number][], baseSleep: number, randomSleep: number) => void,
-    regionStepRandomClick: (transedOperStepRandom, baseSleep: number, randomSleep: number) => void,
-    regionSwipe: (transedOperS, transedOperE, duration, baseSleep, randomSleep) => void,
-    swipePath: (paths) => void,
-    regionBezierSwipe: (transedOperS, transedOperE, duration, baseSleep, randomSleep, type?) => void,
+	automator: IMyAutomator | null,
+	helper: any | null,
+	helperPoly: object,
+	getHelper(dw: number, dh: number),
+	init: () => void,
+	regionClickTrans: (oper) => any,
+	setAutomator: (automator: IMyAutomator) => void,
+	regionClick: (transedOper: [number, number, number, number, number][], baseSleep: number, randomSleep: number) => void,
+	regionStepRandomClick: (transedOperStepRandom, baseSleep: number, randomSleep: number) => void,
+	regionSwipe: (transedOperS, transedOperE, duration, baseSleep, randomSleep) => void,
+	swipePath: (paths) => void,
+	regionBezierSwipe: (transedOperS, transedOperE, duration, baseSleep, randomSleep, type?) => void,
 }
 
 export class helperBridge implements IhelperBridge {
@@ -112,7 +112,7 @@ export class helperBridge implements IhelperBridge {
 				// let y = random(item[1], item[3]);
 				const [x, y] = getRegionBiasRnd2(item, [strHashToNum(device.getAndroidId(), item[0], item[2]), strHashToNum(device.getAndroidId(), item[1], item[3])], 1);
 				const pressTimeout = item[5] ? random(item[5], item[5] + 50) : random(10, 60);
-				console.log(`执行点击操作 === x坐标:${x}, y坐标:${y}`);
+				console.log(`执行点击操作 === x坐标:${Math.trunc(x)}, y坐标:${Math.trunc(y)}, oper为[${transedOper[0][0]}, ${transedOper[0][1]}, ${transedOper[0][2]}, ${transedOper[0][3]}, ${transedOper[0][4]}]`);
 				if (drawFloaty.instacne) {
 					const toDraw = [{
 						color: 'orange',
@@ -128,7 +128,10 @@ export class helperBridge implements IhelperBridge {
 			} else {
 				console.log(`传入坐标信息为(${JSON.stringify(item)}), 不执行操作`);
 			}
-			sleep(item[4] + random(baseSleep || 0, randomSleep || 0));
+
+			// sleep(item[4] + random(baseSleep || 0, randomSleep || 0));
+			const sleepRegion: [number, number] = [item[4] + (baseSleep || 0), item[4] + (baseSleep || 0) + (randomSleep || 0)];
+			sleep(getNormalRandom(sleepRegion, strHashToNum(device.getAndroidId(), sleepRegion[0], sleepRegion[1])))
 		});
 	}
 
@@ -167,11 +170,14 @@ export class helperBridge implements IhelperBridge {
 			random(transedOperE[1], transedOperE[3]), // y2
 			time // duration
 		);
-		sleep(baseSleep + time + random(0, randomSleep))
+		// sleep(baseSleep + random(0, randomSleep))
+		const sleepRegion: [number, number] = [baseSleep, baseSleep + randomSleep];
+		sleep(getNormalRandom(sleepRegion, strHashToNum(device.getAndroidId(), sleepRegion[0], sleepRegion[1])))
+		console.log(`执行滑动操作 === ${transedOperS}`);
 	}
 	/**
-     * @paths [{ x: 123, y: 234 }, { delay: 200, x: 111, y: 333}, { delay: 200, x: 111, y: 222 }]
-     */
+	 * @paths [{ x: 123, y: 234 }, { delay: 200, x: 111, y: 333}, { delay: 200, x: 111, y: 222 }]
+	 */
 	swipePath(paths) {
 		// TODO root下需要补点，否则拖不过去
 		// if (needRoot) {
@@ -225,8 +231,10 @@ export class helperBridge implements IhelperBridge {
 			drawFloaty.draw(toDraw, Math.max(duration - 20, 300));
 			sleep(200);
 		}
-		this.automator.gesture(duration, ...points)
-		sleep(random(0, randomSleep || 0));
+		this.automator.gesture(duration, ...points);
+		// sleep(random(0, randomSleep || 0));
+		const sleepRegion: [number, number] = [0, randomSleep || 0];
+		sleep(getNormalRandom(sleepRegion, strHashToNum(device.getAndroidId(), sleepRegion[0], sleepRegion[1])));
 	}
 }
 

@@ -44,12 +44,14 @@ export class Func304 implements IFuncOrigin {
 		}]
 	}
 	];
-	operator: IFuncOperatorOrigin[] = [{
-		desc: [1280, 720, [// 0,绘卷界面和卷X坐标
-			[left, 26, 539, 0xd6ae21],
-			[left, 32, 689, 0x42174a],
-			[center, 559, 26, 0x543d33],
-			[center, 676, 34, 0xf8f3e0]]
+	operator: IFuncOperatorOrigin[] = [{ // 0,绘卷界面和卷X坐标
+		desc: [1280, 720,
+			[
+				[left, 26, 539, 0xd6ae21],
+				[left, 32, 689, 0x42174a],
+				[center, 559, 26, 0x543d33],
+				[right, 1129, 23, 0x1e1413],
+			]
 		],
 		oper: [
 			[center, 1280, 720, 127, 124, 446, 350, 1000], // 卷1
@@ -62,7 +64,8 @@ export class Func304 implements IFuncOrigin {
 		]
 	}, { // 1,绘卷进度
 		desc: [1280, 720,
-			[[left, 43, 50, 0x393735],
+			[
+				[left, 43, 50, 0x393735],
 				[center, 637, 64, 0x946d52],
 				[center, 604, 652, 0x946d52],
 				[right, 1161, 67, 0xefcbce]]
@@ -84,7 +87,7 @@ export class Func304 implements IFuncOrigin {
 				oper: [thisOperator[0].oper[emaki], thisOperator[0].oper[6]]
 			}]
 		})) {
-			// ?? nothing to do
+			return true;
 		}
 		if (thisScript.oper({
 			name: '绘卷进度界面',
@@ -105,7 +108,11 @@ export class Func304 implements IFuncOrigin {
 				let realTimeText = realTimeBmp[0].label;
 				realTimeText = realTimeText.replace('%', '0');
 				realTimeText = realTimeText.replace('-', '.');
-				const realTimeNum = Number(realTimeText.replace('%', '0'));
+				if (realTimeText === '100.CO0') {
+					console.log('ocr识别为：100.CO%，转换为100');
+					realTimeText = '100';
+				}
+				const realTimeNum = Number(realTimeText);
 				console.log(`ocr识别为：[${realTimeNum}]`);
 				if (!isNaN(realTimeNum) && (realTimeNum as number) > (thisconf.progress as number)) {
 					thisScript.doPush(thisScript, { text: '绘卷进度已达到目标进度。', before() { thisScript.myToast('绘卷进度已达到目标进度，正在上传数据'); } });

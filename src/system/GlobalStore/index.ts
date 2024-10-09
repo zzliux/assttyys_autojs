@@ -1,6 +1,6 @@
 export type globalRootType = {
 	currentNotifyDate: null | Date,
-	app_is_open_flag: number,
+	app_is_open_flag: boolean,
 	checked_yard_count: number,
 	currentRunTimes: Record<string, number>,
 	running: boolean,
@@ -72,14 +72,28 @@ export type globalRootType = {
 	d6Loop: number;//     椒图事件点击循环数
 	d6RouFeng: number;//     椒图柔风实时buff数
 	upYuHun: boolean;//      强化御魂记录界面次数
+	bgyxLastCapture: number; // 上次截图的时间戳
 	waitFight: boolean;//      等待分享鬼王被击杀
 	faXian_NumOT: number, // 点击发现鬼王计数
 	youjiequyuan_ten: boolean;//      缘结趣游是否十抽
+	dengluNumOT: number, // 登录账号计数
+	dengluState: boolean, // 登录账号状态
+	yaoqing_close: boolean, // 关闭_接受邀请
+	frist_open: boolean, // 首次开启方案
+	tongXinDui_ZhanDou: 'collect' | 'judge' | 'prestore' | 'juexing' | 'stage' | 'yuhun' | 'back';   // 同心队预存阶段
+	daoGuan_swip: boolean, // 选寮往下滑
+	daoGuan_compare: number[], // 选寮存储记录的值
+	daoGuan_click: boolean, // 选寮点挑战
+	daoGuan_exit: boolean, // 道馆退出突破
+	daoGuan_again: boolean, // 道馆再次攻打是否攻打第二阵容
+	first_create_team: boolean, // 首次创建队伍
+	open_only_once: boolean, // 首次启动游戏
+	fight_switch_skill: boolean, // 三号位切换技能
 }
 
 export const globalRoot: globalRootType = {
 	currentNotifyDate: null,
-	app_is_open_flag: 0,
+	app_is_open_flag: true,
 	checked_yard_count: 0,
 	currentRunTimes: {},
 	running: undefined,
@@ -151,7 +165,21 @@ export const globalRoot: globalRootType = {
 	d6Loop: 0,
 	d6RouFeng: 1,
 	upYuHun: false,
+	bgyxLastCapture: undefined,
 	waitFight: true,
 	faXian_NumOT: 0,
 	youjiequyuan_ten: true,
+	dengluNumOT: 0,
+	dengluState: true,
+	yaoqing_close: false,
+	frist_open: true,
+	tongXinDui_ZhanDou: 'collect',
+	daoGuan_swip: true,
+	daoGuan_compare: [],
+	daoGuan_click: false,
+	daoGuan_exit: false,
+	daoGuan_again: true,
+	first_create_team: false,
+	open_only_once: false,
+	fight_switch_skill: true,
 }

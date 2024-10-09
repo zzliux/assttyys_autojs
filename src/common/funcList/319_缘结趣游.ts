@@ -19,7 +19,7 @@ export class Func319 implements IFuncOrigin {
 			default: false,
 		}, {
 			name: 'over',
-			desc: '抽勾10铃铛后是否继续',
+			desc: '抽够10铃铛后是否继续',
 			type: 'switch',
 			default: false,
 		}]
@@ -43,7 +43,7 @@ export class Func319 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[right, 1070, 670, 0x674326],
+				[right, 1082, 681, 0x824c15],
 				[right, 1074, 681, 0x51350f],
 				[right, 1088, 680, 0x653f12],
 				[right, 1081, 675, 0x623d11],
@@ -81,7 +81,7 @@ export class Func319 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1070, 669, 1091, 689, 1000],
 		]
-	}, { // 4 购买一张门票
+	}, { // 4 购买显示1张门票
 		desc: [
 			1280, 720,
 			[
@@ -99,7 +99,6 @@ export class Func319 implements IFuncOrigin {
 		]
 	}, { // 5 购买门票
 		oper: [
-			[center, 1280, 720, 1193, 31, 1212, 49, 1000],
 			[center, 1280, 720, 760, 449, 799, 486, 1000],
 			[center, 1280, 720, 562, 544, 715, 583, 1000],
 		]
@@ -122,49 +121,63 @@ export class Func319 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[left, 249, 640, 0xd4ac5a],
-				[left, 258, 648, 0xe9e5d6],
-				[left, 258, 657, 0xe9e5d6],
-				[left, 263, 652, 0xece8d9],
-				[left, 271, 653, 0xeeeada],
-				[left, 266, 646, 0xfcf8e8],
-				[left, 270, 658, 0xf5f1e1],
+				[left, 257, 646, 0xf9f5e4],
+				[left, 258, 654, 0xe6e2d3],
+				[left, 264, 653, 0xf9f5e4],
+				[left, 272, 652, 0xeae6d6],
+				[left, 267, 645, 0xfdf9e8],
+				[left, 268, 659, 0xd9d5c7],
+				[left, 54, 652, 0x9c8a9b],
+				[left, 84, 643, 0xde8c31],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 380, 625, 431, 667, 1000],
-			[center, 1280, 720, 989, 321, 1165, 393, 1000],
-			[center, 1280, 720, 589, 620, 637, 668, 1000],
-			[center, 1280, 720, 989, 321, 1165, 393, 1000],
-			[center, 1280, 720, 793, 619, 843, 666, 1000],
-			[center, 1280, 720, 989, 321, 1165, 393, 1000],
-			[center, 1280, 720, 925, 624, 983, 672, 1000],
-			[center, 1280, 720, 989, 321, 1165, 393, 1000],
+			// [center, 1280, 720, 380, 625, 431, 667, 1000],
+			// [center, 1280, 720, 989, 321, 1165, 393, 1000],
+			// [center, 1280, 720, 589, 620, 637, 668, 1000],
+			// [center, 1280, 720, 989, 321, 1165, 393, 1000],
+			// [center, 1280, 720, 793, 619, 843, 666, 1000],
+			// [center, 1280, 720, 989, 321, 1165, 393, 1000],
+			// [center, 1280, 720, 925, 624, 983, 672, 1000],
+			// [center, 1280, 720, 989, 321, 1165, 393, 1000],
 		]
 	}, { // 8 购买全部票
 		desc: [
 			1280, 720,
 			[
-				[center, 640, 234, 0xdf8d7a],
 				[center, 640, 247, 0xde907c],
 				[center, 643, 260, 0x362e3e],
-				[center, 593, 470, 0xf5f0dd],
-				[center, 604, 469, 0xf7f2df],
-				[center, 599, 461, 0xc7beae],
-				[center, 600, 480, 0xc7bdad],
+				[center, 593, 470, 0xf6f1de],
+				[center, 604, 469, 0xf2edda],
+				[center, 599, 461, 0xc1b6a7],
+				[center, 600, 480, 0xb4a89a],
 				[center, 657, 566, 0x272420],
-				[center, 669, 566, 0x3b3226],
+				[center, 669, 566, 0x413628],
 			]
 		],
 		oper: [
 			[center, 1280, 720, 964, 301, 1222, 401, 1000],
-			[center, 1280, 720, 380, 625, 431, 667, 1000],
-			[center, 1280, 720, 989, 321, 1165, 393, 1000],
-			[center, 1280, 720, 589, 620, 637, 668, 1000],
-			[center, 1280, 720, 989, 321, 1165, 393, 1000],
-			[center, 1280, 720, 793, 619, 843, 666, 1000],
-			[center, 1280, 720, 989, 321, 1165, 393, 1000],
-			[center, 1280, 720, 925, 624, 983, 672, 1000],
+			// [center, 1280, 720, 380, 625, 431, 667, 1000],
+			// [center, 1280, 720, 989, 321, 1165, 393, 1000],
+			// [center, 1280, 720, 589, 620, 637, 668, 1000],
+			// [center, 1280, 720, 989, 321, 1165, 393, 1000],
+			// [center, 1280, 720, 793, 619, 843, 666, 1000],
+			// [center, 1280, 720, 989, 321, 1165, 393, 1000],
+			// [center, 1280, 720, 925, 624, 983, 672, 1000],
+			// [center, 1280, 720, 989, 321, 1165, 393, 1000],
+		]
+	}, { // 9 出现铃铛
+		desc: [
+			1280, 720,
+			[
+				[center, 596, 367, 0xebc272],
+				[center, 649, 332, 0xe3ac4b],
+				[center, 630, 375, 0xd99b43],
+				[center, 646, 387, 0x220f06],
+			]
+		],
+		oper: [
+			[center, 1280, 720, -1, -1, -1, -1, 5000],
 			[center, 1280, 720, 989, 321, 1165, 393, 1000],
 		]
 	}];
@@ -172,16 +185,25 @@ export class Func319 implements IFuncOrigin {
 		const thisConf = thisScript.scheme.config['319'];
 		if (thisScript.oper({
 			id: 319,
+			name: '缘结趣游出现铃铛',
+			operator: [thisOperator[9]]
+		})) {
+			return true;
+		}
+		if (thisScript.oper({
+			id: 319,
 			name: '缘结趣游不足十抽',
-			operator: [thisOperator[2]]
+			operator: [{ desc: thisOperator[2].desc }]
 		})) {
 			if (thisConf.buy) {
-				thisScript.oper({
-					id: 319,
-					name: '购买门票',
-					operator: [thisOperator[5]]
-				})
+				if (thisConf.over) {
+					thisScript.regionClick([thisOperator[5].oper[0]]);
+					thisScript.regionClick([thisOperator[5].oper[1]]);
+				} else {
+					thisScript.regionClick([thisOperator[5].oper[1]]);
+				}
 			} else {
+				thisScript.regionClick([thisOperator[2].oper[0]]);
 				thisScript.global.youjiequyuan_ten = false;
 			}
 			return true;
@@ -241,11 +263,7 @@ export class Func319 implements IFuncOrigin {
 			name: '缘结趣游购买并抽完票',
 			operator: [thisOperator[8]]
 		})) {
-			thisScript.myToast('缘结趣游购买并抽完票，脚本自动停止');
-			thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-			thisScript.stop();
-			sleep(2000);
-			return false;
+			thisScript.global.youjiequyuan_ten = false;
 		}
 		return false;
 	}

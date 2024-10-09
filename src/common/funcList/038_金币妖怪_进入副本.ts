@@ -15,9 +15,7 @@ export class Func038 implements IFuncOrigin {
 	operator: IFuncOperatorOrigin[] = [
 		{
 			// 0 是否为组队界面
-			desc: [
-				1280,
-				720,
+			desc: [1280, 720,
 				[
 					[center, 712, 45, 0x10161c],
 					[left, 42, 38, 0xf6e9ab],
@@ -33,9 +31,7 @@ export class Func038 implements IFuncOrigin {
 		},
 		{
 			//	1 三人组队是否没有人
-			desc: [
-				1280,
-				720,
+			desc: [1280, 720,
 				[
 					[right, 1088, 252, 0xffffff],
 					[center, 644, 253, 0xffffff],
@@ -50,9 +46,7 @@ export class Func038 implements IFuncOrigin {
 		},
 		{
 			//	2 两人组队是否没有人
-			desc: [
-				1280,
-				720,
+			desc: [1280, 720,
 				[
 					[center, 728, 48, 0x1a232b],
 					[center, 580, 13, 0x141e24],
@@ -66,9 +60,7 @@ export class Func038 implements IFuncOrigin {
 		},
 		{
 			//	3 五人组队是否没有人
-			desc: [
-				1280,
-				720,
+			desc: [1280, 720,
 				[
 					[center, 728, 48, 0x1a232b],
 					[center, 580, 13, 0x141e24],
