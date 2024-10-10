@@ -199,6 +199,7 @@ export class Func027 implements IFuncOrigin {
 			name: '组队_创建',
 			operator: [thisOperator[7]]
 		})) {
+			thisScript.global.team_up_Frist = true;
 			curCnt++;
 			thisScript.keepScreen();
 			if (curCnt >= maxCount) {
