@@ -409,7 +409,6 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 	'斗技主界面': {
 		desc: [1280, 720,
 			[
-				[right, 1210, 82, 0x725942],
 				[right, 1208, 178, 0x745845],
 				[right, 1202, 574, 0xd8c8a7],
 				[right, 1179, 602, 0x3c1e0c],

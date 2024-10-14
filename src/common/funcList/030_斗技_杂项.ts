@@ -204,19 +204,15 @@ export class Func030 implements IFuncOrigin {
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['30'];
-		if (
-			thisconf &&
-			thisconf.level &&
-			thisScript.oper({
-				id: 30,
-				name: '斗技_杂项',
-				operator: [
-					{
-						desc: thisOperator[5].desc,
-					},
-				],
-			})
-		) {
+		if (thisconf && thisconf.level && thisScript.oper({
+			id: 30,
+			name: '斗技_杂项',
+			operator: [
+				{
+					desc: thisOperator[5].desc,
+				},
+			],
+		})) {
 			switch (thisconf.level) {
 				case '名士':
 					break;
@@ -295,23 +291,16 @@ export class Func030 implements IFuncOrigin {
 			}
 		}
 
-		if (
-			thisScript.oper({
-				id: 30,
-				name: '斗技_杂项',
-				operator: [
-					thisOperator[0],
-					thisOperator[1],
-					thisOperator[2],
-					thisOperator[3],
-					thisOperator[4],
-					thisOperator[10],
-					thisOperator[13], // 巅峰斗技
-					thisOperator[14], // 巅峰斗技_段位保护
-					thisOperator[15], // 巅峰斗技_段位保护裂
-				],
-			})
-		) {
+		if (thisScript.oper({
+			id: 30,
+			name: '斗技_杂项',
+			operator: [
+				thisOperator[0], thisOperator[1], thisOperator[3], thisOperator[4],
+				thisOperator[10], thisOperator[13], // 巅峰斗技
+				thisOperator[14], // 巅峰斗技_段位保护
+				thisOperator[15], // 巅峰斗技_段位保护裂
+			]
+		})) {
 			return true;
 		}
 
