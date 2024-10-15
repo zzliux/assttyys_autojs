@@ -23,9 +23,9 @@ export class Func519 implements IFuncOrigin {
 			default: 5,
 		}, {
 			name: 'people',
-			desc: '‘人数’超过X不打',
+			desc: '忽略低于X的‘人数’',
 			type: 'integer',
-			default: 200,
+			default: 0,
 		}, {
 			name: 'day',
 			desc: '星期567不进入',
@@ -62,6 +62,8 @@ export class Func519 implements IFuncOrigin {
 			[center, 1280, 720, 60, 40, 0, 0, 0], // 找色参数
 			[center, 1280, 720, 1103, 530, 1223, 594, 200], // 滑动开始区域
 			[center, 1280, 720, 1095, 32, 1240, 94, 200], // 滑动结束区域
+			[center, 1280, 720, 1132, 631, 1191, 668, 1000], // 刷新
+			[center, 1280, 720, 684, 400, 798, 444, 1000], // 刷新确认
 		]
 	}, { // 2 道馆内
 		desc: [
@@ -286,7 +288,7 @@ export class Func519 implements IFuncOrigin {
 					} else {
 						result[i] = 0;
 					}
-					if (result[i] > thisConf.people) {
+					if (result[i] < thisConf.people) {
 						result[i] = 0;
 					}
 				}
@@ -315,10 +317,16 @@ export class Func519 implements IFuncOrigin {
 				}
 				// 两次取完值后开始比较最大值
 				if (thisScript.global.daoGuan_compare[0] === 0 && thisScript.global.daoGuan_compare[2] === 0) {
-					if (thisScript.global.flash_time > 3) {
+					if (thisScript.global.flash_time >= 3) {
 						thisScript.doPush(thisScript, { text: '没有符合条件的寮', before() { thisScript.myToast('没有符合条件的寮'); } });
 						thisScript.stop();
 						sleep(3000);
+						return true;
+					} else {
+						thisScript.regionClick([thisOperator[1].oper[3]]);
+						thisScript.regionClick([thisOperator[1].oper[4]]);
+						thisScript.global.daoGuan_swip = true;
+						thisScript.global.flash_time++;
 						return true;
 					}
 
