@@ -55,8 +55,6 @@ export class Func312 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 181, 186, 1055, 291, 1000],
 		]
-	}, { // 2 常驻悬浮窗
-		desc: '常驻悬浮窗方案'
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['312'];
