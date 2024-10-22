@@ -1249,6 +1249,7 @@ export const versionList = [{
 	desc: '修复：306跨区邀请失败'
 }, {
 	version: '20241021_01',
-	desc: '修复：519增加人数选项'
+	desc: `修复：519增加人数选项
+	增加：31可批量合成`
 }];
 export default versionList[versionList.length - 1].version;
