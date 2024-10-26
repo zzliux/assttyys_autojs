@@ -52,6 +52,7 @@ export class Func047 implements IFuncOrigin {
 			1280, 720,
 			[
 				[left, 5, 133, 0x4e3934],
+				[left, 19, 133, 0x49352f],
 				[left, 40, 133, 0x44302a],
 				[left, 71, 133, 0x432e29],
 				[left, 87, 133, 0x432e29],

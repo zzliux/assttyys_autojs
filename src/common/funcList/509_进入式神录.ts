@@ -151,21 +151,7 @@ export class Func509 implements IFuncOrigin {
 		oper: [
 			// [right, 1280, 720, 1207, 617, 1245, 649, 1200]	//	点击式神按钮
 		]
-	}, { // 超鬼王界面
-		desc: [
-			1280, 720,
-			[
-				[right, 1020, 655, 0x694a1b],
-				[right, 1048, 656, 0x654719],
-				[right, 1041, 663, 0xffecc5],
-				[right, 1034, 676, 0xfff1d8],
-				[right, 1024, 681, 0xfff3df],
-			]
-		],
-		oper: [
-			[center, 1280, 720, 1012, 649, 1055, 690, 1000],
-		]
-	}, { // 12 误触_情报界面
+	}, { // 11 误触_情报界面
 		desc: [
 			1280, 720,
 			[
@@ -177,6 +163,11 @@ export class Func509 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 32, 34, 73, 65, 1000],
+		]
+	}, { // 12 探索地图
+		desc: '探索地图界面',
+		oper: [
+			[center, 1280, 720, 32, 34, 76, 81, 1000],
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {

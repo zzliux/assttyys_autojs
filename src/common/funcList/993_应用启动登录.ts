@@ -125,16 +125,16 @@ export class Func993 implements IFuncOrigin {
 		{
 			// 4 是否为选择游戏区域
 			desc: [
-				1280,
-				720,
+				1280, 720,
 				[
 					[left, 162, 149, 0xd9a756],
-					[center, 643, 74, 0xdab883],
-					[right, 1050, 592, 0xffe5be],
-				],
+					[center, 643, 74, 0xe1bf80],
+					[right, 1050, 592, 0xffe1bd],
+				]
 			],
 			oper: [
 				[center, 1280, 720, 706, 507, 770, 539, 1200], // 切换按钮 区域
+				[center, 1280, 720, 539, 656, 691, 701, 1000], // 关闭选择区域
 			],
 		},
 		{
@@ -436,7 +436,7 @@ export class Func993 implements IFuncOrigin {
 
 			// 做延时检测 防止登陆后的弹窗
 			let curCnt = 0;
-			const maxCount = 10;
+			const maxCount = 6;
 			while (thisScript.oper({
 				id: 993,
 				name: '是否为庭院',
@@ -461,6 +461,7 @@ export class Func993 implements IFuncOrigin {
 				}
 				sleep(500);
 			}
+
 			const { lastFuncDateTime, currentDate, runDate } = thisScript;
 
 			// 有开屏代表从新启动游戏了
@@ -520,7 +521,7 @@ export class Func993 implements IFuncOrigin {
 									return thisScript.oper({
 										name: '切换区域',
 										operator: [{
-											oper: thisOperator[4].oper,
+											oper: [thisOperator[4].oper[0]],
 										}],
 									});
 								}
@@ -538,9 +539,15 @@ export class Func993 implements IFuncOrigin {
 					operator: [{
 						oper: [thisOperator[0].oper[0]],
 					}],
-				}, 3000);
+				});
 			}
-
+			if (thisScript.global.game_area == 'findMultiColor_皮肤广告关闭按钮' && thisScript.oper({
+				name: '切换区域',
+				operator: [{ desc: thisOperator[4].desc }],
+			})) {
+				thisScript.regionClick([thisOperator[4].oper[1]]);
+				return true;
+			}
 			if (thisScript.oper({
 				id: 993,
 				name: '是否为同区多账号',

@@ -22,6 +22,11 @@ export class Func519 implements IFuncOrigin {
 			type: 'integer',
 			default: 5,
 		}, {
+			name: 'people',
+			desc: '忽略低于X的‘人数’',
+			type: 'integer',
+			default: 0,
+		}, {
 			name: 'day',
 			desc: '星期567不进入',
 			type: 'switch',
@@ -57,6 +62,8 @@ export class Func519 implements IFuncOrigin {
 			[center, 1280, 720, 60, 40, 0, 0, 0], // 找色参数
 			[center, 1280, 720, 1103, 530, 1223, 594, 200], // 滑动开始区域
 			[center, 1280, 720, 1095, 32, 1240, 94, 200], // 滑动结束区域
+			[center, 1280, 720, 1132, 631, 1191, 668, 1000], // 刷新
+			[center, 1280, 720, 684, 400, 798, 444, 1000], // 刷新确认
 		]
 	}, { // 2 道馆内
 		desc: [
@@ -85,7 +92,7 @@ export class Func519 implements IFuncOrigin {
 			[center, 1280, 720, 1150, 100, 1220, 132, 1000],
 			[center, 1280, 720, 1150, 246, 1220, 278, 1000],
 			[center, 1280, 720, 1150, 392, 1220, 424, 1000],
-			[center, 1280, 720, 1150, 538, 1220, 570, 1000],
+			[center, 1280, 720, 1150, 538, 1220, 571, 1000],
 		]
 	}, { // 4 前4 寮头像
 		desc: [
@@ -281,6 +288,9 @@ export class Func519 implements IFuncOrigin {
 					} else {
 						result[i] = 0;
 					}
+					if (result[i] < thisConf.people) {
+						result[i] = 0;
+					}
 				}
 				// 比较大小并存储 索引0存储前4寮最大人数,索引1存储前4寮位置,索引2存储后4寮最大人数,索引3存储后4寮位置
 				if (thisScript.global.daoGuan_swip) {
@@ -307,11 +317,19 @@ export class Func519 implements IFuncOrigin {
 				}
 				// 两次取完值后开始比较最大值
 				if (thisScript.global.daoGuan_compare[0] === 0 && thisScript.global.daoGuan_compare[2] === 0) {
-					// 都不符合条件 以后写刷新
-					thisScript.doPush(thisScript, { text: '没有符合条件的寮', before() { thisScript.myToast('没有符合条件的寮'); } });
-					thisScript.stop();
-					sleep(3000);
-					return true;
+					if (thisScript.global.flash_time >= 3) {
+						thisScript.doPush(thisScript, { text: '没有符合条件的寮', before() { thisScript.myToast('没有符合条件的寮'); } });
+						thisScript.stop();
+						sleep(3000);
+						return true;
+					} else {
+						thisScript.regionClick([thisOperator[1].oper[3]]);
+						thisScript.regionClick([thisOperator[1].oper[4]]);
+						thisScript.global.daoGuan_swip = true;
+						thisScript.global.flash_time++;
+						return true;
+					}
+
 				} else if (Number(thisScript.global.daoGuan_compare[0]) > Number(thisScript.global.daoGuan_compare[2])) {
 					thisScript.regionSwipe(thisOperator[1].oper[2], thisOperator[1].oper[1], [300, 400], 0, 3500);
 					thisScript.regionClick([thisOperator[4].oper[thisScript.global.daoGuan_compare[1]]]);

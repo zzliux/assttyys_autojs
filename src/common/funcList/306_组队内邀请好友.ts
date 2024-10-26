@@ -76,9 +76,9 @@ export class Func306 implements IFuncOrigin {
 	}, { // 2,组队界面
 		desc: [1280, 720,
 			[
-				[center, 642, 3, 0x101011],
+				[center, 670, 4, 0x12181d],
 				[left, 42, 38, 0xf7e8aa],
-				[center, 641, 52, 0x080c0a],
+				[center, 600, 49, 0x0e1316],
 				[center, 648, 571, 0x422c29]]
 		]
 	}, { // 3,组队挑战按钮
@@ -98,7 +98,7 @@ export class Func306 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[center, 642, 3, 0x101011],
+				[center, 670, 4, 0x12181d],
 				[left, 42, 38, 0xf7e8aa],
 				[center, 642, 266, 0xfffef8],
 				[center, 568, 427, 0x534a55],

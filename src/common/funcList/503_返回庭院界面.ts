@@ -9,7 +9,7 @@ const right = 2;
 export class Func503 implements IFuncOrigin {
 	id = 503;
 	name = '返回庭院界面';
-	desc = '支持从探索地图退出至探索地图庭院界面';
+	desc = '支持从探索地图退出至庭院界面';
 	config = [{
 		desc: '结束后切换方案',
 		config: [{
@@ -510,30 +510,28 @@ export class Func503 implements IFuncOrigin {
 		// })) {
 		// 	return true;
 		// }
-		if (thisScript.global.change_shikigami_flag) {
-			let enabledThisOperator = [];
-			if (typeof thisConf.oper_0 === 'undefined') {
-				// 升级兼容配置为空的情况，这一块代码暂时保留，以后有新增要处理的界面只新增配置，不修改这一块代码
-				enabledThisOperator = [
-					thisOperator[0], thisOperator[1], thisOperator[2],
-					thisOperator[3], thisOperator[5], thisOperator[6],
-					thisOperator[7], thisOperator[10], thisOperator[11],
-					thisOperator[14], thisOperator[15], thisOperator[17],
-					thisOperator[18], thisOperator[19], thisOperator[20],
-					thisOperator[21], thisOperator[22], thisOperator[24],
-					thisOperator[25], thisOperator[27], thisOperator[28],
-					thisOperator[29], thisOperator[30], thisOperator[31],
-				]
-			} else {
-				enabledThisOperator = Object.keys(thisConf).filter(keyName => /oper_\d+/.test(keyName) && thisConf[keyName]).map(keyName => thisOperator[parseInt(keyName.split('_')[1])]);
-			}
-			if (thisScript.oper({
-				id: 503,
-				name: '返回庭院',
-				operator: enabledThisOperator
-			})) {
-				return true;
-			}
+		let enabledThisOperator = [];
+		if (typeof thisConf.oper_0 === 'undefined') {
+			// 升级兼容配置为空的情况，这一块代码暂时保留，以后有新增要处理的界面只新增配置，不修改这一块代码
+			enabledThisOperator = [
+				thisOperator[0], thisOperator[1], thisOperator[2],
+				thisOperator[3], thisOperator[5], thisOperator[6],
+				thisOperator[7], thisOperator[10], thisOperator[11],
+				thisOperator[14], thisOperator[15], thisOperator[17],
+				thisOperator[18], thisOperator[19], thisOperator[20],
+				thisOperator[21], thisOperator[22], thisOperator[24],
+				thisOperator[25], thisOperator[27], thisOperator[28],
+				thisOperator[29], thisOperator[30], thisOperator[31],
+			]
+		} else {
+			enabledThisOperator = Object.keys(thisConf).filter(keyName => /oper_\d+/.test(keyName) && thisConf[keyName]).map(keyName => thisOperator[parseInt(keyName.split('_')[1])]);
+		}
+		if (thisScript.oper({
+			id: 503,
+			name: '返回庭院',
+			operator: enabledThisOperator
+		})) {
+			return true;
 		}
 
 		// 查找返回图标
