@@ -203,14 +203,20 @@ export default function webviewSchemeList() {
 		}
 	});
 
+	let loaded = false;
 	webview.on('webloaded').subscribe(([_param, done]) => {
+		if (loaded) {
+			done(true);
+			return;
+		}
+		loaded = true;
 		// 界面加载完成后申请截图权限
 		requestMyScreenCapture(done, helperBridge);
 
 		// 加载完界面后再注册返回事件
 		fromEvent(ui.emitter, 'back_pressed').subscribe((e: any) => {
 			e.consumed = true;
-			webview.runHtmlFunction('routeBack');
+			webview.runHtmlJS('window.routeBack && window.routeBack()');
 		});
 
 		// 注册返回界面的事件
