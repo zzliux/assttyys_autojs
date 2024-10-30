@@ -1250,6 +1250,7 @@ export const versionList = [{
 }, {
 	version: '20241021_01',
 	desc: `修复：519增加人数选项
-	增加：31可批量合成`
+增加：31可批量合成
+优化：启动游戏加入进度条判定`
 }];
 export default versionList[versionList.length - 1].version;

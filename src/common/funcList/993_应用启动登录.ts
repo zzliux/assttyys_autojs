@@ -410,6 +410,28 @@ export class Func993 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 637, 574, 834, 660, 1000],
 			]
+		}, { // 24 加载进度条
+			desc: [
+				1280, 720,
+				[
+					[left, 57, 655, 0x815930],
+					[left, 73, 654, 0xc0a77a],
+					[left, 86, 654, 0xa68454],
+					[left, 100, 653, 0x7f5b32],
+					[left, 100, 658, 0x835b34],
+				]
+			]
+		}, { // 25 更新进度条
+			desc: [
+				1280, 720,
+				[
+					[left, 84, 712, 0x835b34],
+					[left, 107, 707, 0x835a31],
+					[left, 122, 706, 0xc4ad81],
+					[left, 137, 705, 0xc7a674],
+					[left, 122, 710, 0x885f36],
+				]
+			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -469,7 +491,7 @@ export class Func993 implements IFuncOrigin {
 				thisScript.oper({
 					id: 993,
 					name: '开屏的zen动画',
-					operator: [thisOperator[23]],
+					operator: [thisOperator[23], thisOperator[24], thisOperator[25]],
 				})
 			) {
 				thisScript.global.app_is_open_flag = false;
