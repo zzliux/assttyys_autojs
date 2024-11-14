@@ -255,6 +255,23 @@ export class Func002 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 225, 486, 1082, 679, 1000],
 		]
+	}, {
+		// 24 缓存过多点击确认按钮
+		desc: [1280, 720,
+			[
+				[center, 332, 142, 0x644435],
+				[center, 946, 142, 0x654435],
+				[center, 441, 492, 0xdf6851],
+				[center, 756, 497, 0xf3b25e],
+				[center, 919, 484, 0xcbb59c],
+				[center, 944, 165, 0xcbb59c],
+				[center, 354, 499, 0xcbb59c],
+				[center, 573, 570, 0x6d4a38],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 727, 484, 859, 535, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['2'];
@@ -319,7 +336,7 @@ export class Func002 implements IFuncOrigin {
 				thisOperator[8], thisOperator[9], thisOperator[10], thisOperator[11],
 				thisOperator[12], thisOperator[13], thisOperator[14], thisOperator[15],
 				thisOperator[16], thisOperator[17], thisOperator[22], thisOperator[18], // 22要放18前面
-				thisOperator[21], thisOperator[23],
+				thisOperator[21], thisOperator[23], thisOperator[24],
 			]
 		});
 	}
