@@ -260,11 +260,12 @@ export default function webviewSchemeList() {
 
 	// 获取应用信息，每次进入app都会以弹窗形式出现
 	webview.on('getAppInfo').subscribe(([_param, done]) => {
-		const ret = { msg: '' };
+		const appMsg = '近期将更新重构UI，并增设Github账户登录，为保证后续正常使用，请提前准备好网络环境与Github账号！';
+		const ret = { msg: appMsg };
 		const w = getWidthPixels();
 		const h = getHeightPixels();
 		if (!(w == 1280 && h == 720) && !(w == 720 && h == 1280)) {
-			ret.msg = `当前分辨率为 ${w} * ${h}, 非推荐分辨率 720 * 1280, 不保证正常运行。`;
+			ret.msg = `当前分辨率为 ${w} * ${h}, 非推荐分辨率 720 * 1280, 不保证正常运行。${appMsg}`;
 		}
 		done(ret);
 	});
