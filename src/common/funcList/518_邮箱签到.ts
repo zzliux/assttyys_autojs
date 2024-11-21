@@ -458,18 +458,17 @@ export class Func518 implements IFuncOrigin {
 			desc: [
 				1280, 720,
 				[
-					[right, 1198, 652, 0xd23a3a],
-					[right, 1129, 642, 0x472824],
-					[right, 1027, 662, 0xb646fe],
-					[center, 869, 670, 0x3c7ccf],
-					[center, 775, 671, 0xfffd74],
-					[right, 1243, 294, 0x2a2228],
-					[right, 1157, 291, 0x8e464c],
-					[right, 1094, 404, 0x443829],
+					[left, 95, 674, 0xdccb99],
+					[center, 351, 656, 0x8d232f],
+					[center, 497, 668, 0xaca28f],
+					[center, 641, 666, 0xb88045],
+					[right, 1143, 678, 0x842121],
+					[right, 1166, 681, 0xd03a3a],
+					[right, 1131, 674, 0x653e2f],
 				]
 			],
 			oper: [
-				[right, 1280, 720, 1154, 643, 1200, 675, 1200], //  点击 礼包屋
+				[center, 1280, 720, 1140, 650, 1175, 690, 1000], //  点击 礼包屋
 			],
 		},
 		{
@@ -479,9 +478,9 @@ export class Func518 implements IFuncOrigin {
 				[
 					[left, 30, 26, 0xf4e4a4],
 					[right, 1249, 28, 0xd7c5a2],
-					[right, 1197, 652, 0xd03b3b],
-					[right, 1025, 663, 0xb43af9],
 					[left, 99, 115, 0x2f1e1a],
+					[right, 1159, 644, 0xe6d08e],
+					[right, 1135, 674, 0xdcb65b],
 				]
 			],
 		},
