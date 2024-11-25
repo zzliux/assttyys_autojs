@@ -234,6 +234,7 @@ export class Func000 implements IFuncOrigin {
 				const toSleep = random(min, max);
 				thisScript.myToast(`等待${toSleep}ms`);
 				sleep(toSleep);
+				thisScript.rerun();
 			}
 		}
 
