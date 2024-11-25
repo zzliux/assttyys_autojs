@@ -262,7 +262,7 @@ export default function webviewSchemeList() {
 
 	// 获取应用信息，每次进入app都会以弹窗形式出现
 	webview.on('getAppInfo').subscribe(([_param, done]) => {
-		const appMsg = '近期将更新重构UI，并增设Github账户登录，为保证后续正常使用，请提前准备好网络环境与Github账号！';
+		const appMsg = '';
 		const ret = { msg: appMsg };
 		const w = getWidthPixels();
 		const h = getHeightPixels();
