@@ -34,8 +34,8 @@ let url = 'https://assttyys.zzliux.cn/static/webview/'
 // }
 // aj彻底废了。。
 if (isDebugPlayerRunning()) {
-	// url = 'file://' + files.path('dist/index.html');
-	url = 'https://assttyys.zzliux.cn/new/'
+	url = 'file://' + files.path('dist/index.html');
+	// url = 'https://assttyys.zzliux.cn/new/'
 }
 
 export const webview = run(url, {

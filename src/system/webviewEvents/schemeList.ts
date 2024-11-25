@@ -203,6 +203,14 @@ export default function webviewSchemeList() {
 		}
 	});
 
+	// 注册返回界面的事件
+	fromEvent(ui.emitter, 'resume').subscribe((_e) => {
+		// 登录验证
+		webview.runHtmlJS('window.resumeValidUser && window.resumeValidUser()');
+		// 更新定时任务界面的数据
+		webview.runHtmlJS('window.loadScheduleData && window.loadScheduleData()');
+	})
+
 	let loaded = false;
 	webview.on('webloaded').subscribe(([_param, done]) => {
 		if (loaded) {
@@ -217,12 +225,6 @@ export default function webviewSchemeList() {
 		fromEvent(ui.emitter, 'back_pressed').subscribe((e: any) => {
 			e.consumed = true;
 			webview.runHtmlJS('window.routeBack && window.routeBack()');
-		});
-
-		// 注册返回界面的事件
-		fromEvent(ui.emitter, 'resume').subscribe((_e) => {
-			// 更新定时任务界面的数据
-			webview.runHtmlJS('window.loadScheduleData && window.loadScheduleData()');
 		});
 
 		// 初始化automator
