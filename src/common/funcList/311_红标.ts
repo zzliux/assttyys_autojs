@@ -111,7 +111,6 @@ export class Func311 implements IFuncOrigin {
 
 		if (
 			thisScript.oper({
-				id: 311,
 				name: '红标-战斗界面检测',
 				operator: [
 					{

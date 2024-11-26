@@ -1258,5 +1258,8 @@ export const versionList = [{
 }, {
 	version: '20241125_01',
 	desc: '新增：000增加结束后暂停'
+}, {
+	version: '20241126_01',
+	desc: '优化：51和311不生成个别日志'
 }];
 export default versionList[versionList.length - 1].version;
