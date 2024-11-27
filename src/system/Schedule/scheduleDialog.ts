@@ -109,10 +109,11 @@ function formatDate(date: Date) {
 }
 
 function bueatifyTime(ms: number) {
-	const d = Math.abs(Math.floor(ms / 1000 / 60 / 60 / 24));
-	const h = Math.abs(Math.floor(ms / 1000 / 60 / 60 % 24));
-	const m = Math.abs(Math.floor(ms / 1000 / 60 % 60));
-	const s = Math.abs(Math.floor(ms / 1000 % 60));
+	const absMs = Math.abs(ms);
+	const d = Math.floor(absMs / 1000 / 60 / 60 / 24);
+	const h = Math.floor((absMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+	const m = Math.floor((absMs % (1000 * 60 * 60)) / (1000 * 60));
+	const s = Math.floor((absMs % (1000 * 60)) / 1000);
 	let str = '';
 	if (d) str += `${d}天`;
 	if (h) str += `${h}时`;
@@ -120,7 +121,7 @@ function bueatifyTime(ms: number) {
 	if (s) str += `${s}秒`;
 	if (ms < -180000) {
 		str = '已错过' + str;
-	} else if (ms < 0) {
+	} else if (ms <= 0) {
 		str = '即将执行';
 	} else {
 		str = '将于' + str + '后执行';
