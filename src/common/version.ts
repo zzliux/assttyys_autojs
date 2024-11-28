@@ -1261,5 +1261,8 @@ export const versionList = [{
 }, {
 	version: '20241126_01',
 	desc: '优化：51和311不生成个别日志'
+}, {
+	version: '20241128_01',
+	desc: '优化：斗技界面部分功能项重新取点'
 }];
 export default versionList[versionList.length - 1].version;
