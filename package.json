@@ -5,6 +5,7 @@
     "description": "",
     "scripts": {
         "start": "npx webpack --config config/index.js --watch --mode=development",
+        "dev": "npx webpack --config config/index.js --watch --mode=development",
         "build": "npx webpack --config config/index.js --mode=production && node pack",
         "build2": "npx webpack --config config/index.js --mode=production",
         "startvue": "npx webpack --config config/webpack.vue.config.js --watch --mode=development",
