@@ -2,7 +2,7 @@ import { effect$ } from '@auto.pro/core';
 import myFloaty from '@/system/MyFloaty';
 import webviewEvents from '@/system/webviewEvents';
 import InputHideUtil from '@/system/inputhideutil';
-import { storeCommon } from '@/system/store';
+import { storeCommon } from '@/system/Store/store';
 import drawFloaty from '@/system/drawFloaty';
 import { doInitHookConsoleLog } from './common/toolAuto';
 

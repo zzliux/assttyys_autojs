@@ -1,6 +1,6 @@
 import { webview } from '@/system';
 import { merge, setCurrentScheme } from '@/common/tool';
-import store, { storeCommon } from '@/system/store';
+import store, { storeCommon } from '@/system/Store/store';
 import { getInstalledPackages } from '@/common/toolAuto';
 import defaultSchemeList from '@/common/schemeList';
 import script from '@/system/script';

@@ -4,7 +4,7 @@ import FloatButton from '@/system/FloatButton/FloatButton';
 import schemeDialog from '@/system/schemeDialog';
 import script from '@/system/script';
 import { showScheduleDialog } from '@/system/Schedule/scheduleDialog';
-import { storeCommon } from '@/system/store';
+import { storeCommon } from '@/system/Store/store';
 
 /**
  * 悬浮按钮，对大柒的悬浮按钮进行封装

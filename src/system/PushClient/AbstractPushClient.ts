@@ -1,4 +1,4 @@
-import { storeCommon } from '@/system/store';
+import { storeCommon } from '@/system/Store/store';
 
 type ConfigDefineItem = {
 	desc: string,
@@ -62,7 +62,7 @@ export abstract class AbstractPushClient {
 		});
 	}
 
-	getKVConfig(): Record<string, string | number | boolean > {
+	getKVConfig(): Record<string, string | number | boolean> {
 		const storeSettings = storeCommon.get('settings', {});
 		const ret = {};
 		let needSave = false;
