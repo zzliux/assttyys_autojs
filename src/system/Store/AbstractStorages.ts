@@ -18,6 +18,10 @@ export type Message = {
 	data: any // android.graphics.Bitmap
 }
 
+export interface IStore extends AutoStorage {
+	getAll(): any;
+}
+
 export abstract class AbstractStorages {
 
 	/**
@@ -74,7 +78,7 @@ export abstract class AbstractStorages {
 
 	abstract isAvailable(): boolean;
 
-	abstract create(text: string): AutoStorage;
+	abstract create(text: string): IStore;
 
 	abstract remove(text: string): boolean;
 }

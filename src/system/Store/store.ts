@@ -2,7 +2,7 @@
 // storages.remove('assttyys_ng_common');
 
 import { myToast } from '@/common/toolAuto';
-import { AbstractStorages } from './AbstractStorages';
+import { AbstractStorages, IStore } from './AbstractStorages';
 
 
 // class LocalStorage {
@@ -58,8 +58,8 @@ if (!StoragesList.length) {
 
 
 let selfStorages: AbstractStorages;
-let selfStoreCommon: AutoStorage;
-let selfStore: AutoStorage;
+let selfStoreCommon: IStore;
+let selfStore: IStore;
 
 export const testStorage = (name: string) => {
 	for (const item of StoragesList) {
@@ -125,17 +125,27 @@ export const storeCommon = {
 	put(key: string, value: any): void {
 		selfStoreCommon.put(key, value);
 	},
+
 	get(key: string, defaultValue?: any) {
 		return selfStoreCommon.get(key, defaultValue);
 	},
+
+	getAll() {
+		return selfStoreCommon.getAll();
+	}
 };
 
 const store = {
 	put(key: string, value: any): void {
 		selfStore.put(key, value);
 	},
+
 	get(key: string, defaultValue?: any) {
 		return selfStore.get(key, defaultValue);
 	},
+
+	getAll() {
+		return selfStore.getAll();
+	}
 }
 export default store;

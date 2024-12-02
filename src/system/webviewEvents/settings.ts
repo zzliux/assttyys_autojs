@@ -487,33 +487,25 @@ export default function webviewSettigns() {
 
 			console.log(`storageName: ${storageName}`);
 			if (testStorage(storageName)) {
+				// 切换前先获取下上一次的数据，用于存着进行数据迁移
+				const lastStoreData = store.getAll();
+				const lastStoreCommonData = storeCommon.getAll();
+
 				setStorages(storageName);
 				myToast('存储模式验证成功');
-				dialogs.confirm('提示', '存储模式已成功切换，确认是否迁移数据(若该存储模式及配置下已存在数据，将会覆盖数据)？', (value) => {
+				dialogs.confirm('提示', '存储模式已成功切换，确认是否迁移数据(若该存储模式及配置下已存在数据，将会覆盖数据)？若不迁移数据请后续重新启动本程序。', (value: boolean) => {
 					if (!value) {
 						done(true);
 						return;
 					}
-					// 迁移数据
-					const NAME_PREFIX = 'autojs.localstorage.';
-					['asttyys_ng', 'assttyys_ng_common'].forEach(bucketName => {
-						const map = context.getSharedPreferences(NAME_PREFIX + bucketName, 0).getAll();
-						const iter = map.entrySet().iterator();
-						const obj = {};
-						while (iter.hasNext()) {
-							const entry = iter.next();
-							obj[entry.key] = JSON.parse(entry.value);
-						}
-						for (const key in obj) {
-							if (bucketName === 'asttyys_ng') {
-								console.log(`migrate asttyys_ng: ${key}`);
-								store.put(key, obj[key]);
-							} else if (bucketName === 'assttyys_ng_common') {
-								console.log(`migrate assttyys_ng_common: ${key}`);
-								storeCommon.put(key, obj[key]);
-							}
-						}
-					});
+					for (const key in lastStoreData) {
+						console.log(`migrate asttyys_ng: ${key}`);
+						store.put(key, lastStoreData[key]);
+					}
+					for (const key in lastStoreCommonData) {
+						console.log(`migrate asttyys_common: ${key}`);
+						storeCommon.put(key, lastStoreCommonData[key]);
+					}
 					done(true);
 				});
 			} else {

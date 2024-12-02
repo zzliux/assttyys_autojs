@@ -1,10 +1,10 @@
-import { AbstractStorages } from './AbstractStorages';
+import { AbstractStorages, IStore } from './AbstractStorages';
 
 export default class DefaultStorages extends AbstractStorages {
 	name = '默认存储';
 
 	configDefine = [];
-	create(name: string): AutoStorage {
+	create(name: string): IStore {
 		console.log(`创建存储桶: ${name}`)
 		return new DefaultStore(name, this);
 	}
@@ -17,15 +17,30 @@ export default class DefaultStorages extends AbstractStorages {
 	}
 }
 
-export class DefaultStore implements AutoStorage {
+export class DefaultStore implements IStore {
+
+	bucketName: string;
 
 	bucket: AutoStorage;
 
 	storages: DefaultStorages;
 
 	constructor(bucketName: string, selfStorages: DefaultStorages) {
+		this.bucketName = bucketName;
 		this.bucket = storages.create(bucketName);
 		this.storages = selfStorages;
+	}
+
+	getAll(): any {
+		const NAME_PREFIX = 'autojs.localstorage.';
+		const map = context.getSharedPreferences(NAME_PREFIX + this.bucketName, 0).getAll();
+		const iter = map.entrySet().iterator();
+		const obj = {};
+		while (iter.hasNext()) {
+			const entry = iter.next();
+			obj[entry.key] = JSON.parse(entry.value);
+		}
+		return obj;
 	}
 
 	get(key: string, defaultValue?: any) {
