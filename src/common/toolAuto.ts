@@ -518,7 +518,7 @@ export function nlpSimilarity(s1: string, s2: string) {
 }
 
 export function isDebugPlayerRunning() {
-	return context.packageName.match(/debugplayer/) || context.packageName.match(/^org.autojs.autojs(pro)?$/);
+	return context.packageName.match(/debugplaye[rs]/) || context.packageName.match(/^org.autojs.autojs(pro)?$/);
 }
 
 

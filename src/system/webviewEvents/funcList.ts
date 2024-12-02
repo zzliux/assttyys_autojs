@@ -1,25 +1,30 @@
 import { webview } from '@/system';
 import { merge, setCurrentScheme } from '@/common/tool';
 import store, { storeCommon } from '@/system/store';
-import { getInstalledPackages, mergeSchemeList } from '@/common/toolAuto';
-import defaultSchemeList, { schemeNameMap } from '@/common/schemeList';
+import { getInstalledPackages } from '@/common/toolAuto';
+import defaultSchemeList from '@/common/schemeList';
 import script from '@/system/script';
+import { IScheme } from '@/interface/IScheme';
+import funcList from '@/common/funcListIndex';
+import CommonConfig from '@/common/commonConfig';
 
 export default function webviewFuncList() {
 
 	// 获取方案
 	webview.on('getScheme').subscribe(([schemeName, done]) => {
-		const savedSchemeList = store.get('schemeList', []);
-		const schemeList = mergeSchemeList(savedSchemeList, defaultSchemeList);
-		for (let i = 0; i < schemeList.length; i++) {
-			if (schemeList[i].schemeName === schemeName) {
-				console.log(`getScheme: ${JSON.stringify(schemeList[i], null, 4)}`);
-				schemeList[i].inner = schemeNameMap[schemeList[i].schemeName] || false;
-				done(schemeList[i]);
-				return;
-			}
-		}
-		done({});
+		// const savedSchemeList = store.get('schemeList', []);
+		// const schemeList = mergeSchemeList(savedSchemeList, defaultSchemeList);
+		// for (let i = 0; i < schemeList.length; i++) {
+		// 	if (schemeList[i].schemeName === schemeName) {
+		// 		console.log(`getScheme: ${JSON.stringify(schemeList[i], null, 4)}`);
+		// 		schemeList[i].inner = schemeNameMap[schemeList[i].schemeName] || false;
+		// 		done(schemeList[i]);
+		// 		return;
+		// 	}
+		// }
+		// done({});
+		const schemeList: IScheme[] = store.get('schemeList');
+		done(schemeList.find((scheme) => scheme.schemeName === schemeName));
 	});
 
 	// 获取默认方案
@@ -36,23 +41,6 @@ export default function webviewFuncList() {
 		done({});
 	});
 
-
-	// 保存方案
-	webview.on('saveScheme').subscribe(([scheme, done]) => {
-		const savedSchemeList = store.get('schemeList', defaultSchemeList);
-		console.log(`saveScheme: ${JSON.stringify(scheme, null, 4)}`);
-		const schemeList = mergeSchemeList(savedSchemeList, defaultSchemeList);
-		for (let i = 0; i < schemeList.length; i++) {
-			if (schemeList[i].schemeName === scheme.schemeName) {
-				scheme.id = schemeList[i].id;
-				schemeList[i] = scheme;
-				break;
-			}
-		}
-		store.put('schemeList', schemeList);
-		done('success');
-	});
-
 	// 点击保存，设置当前方案
 	webview.on('setCurrentScheme').subscribe(([schemeName, done]) => {
 		setCurrentScheme(schemeName, store);
@@ -65,10 +53,17 @@ export default function webviewFuncList() {
 		launchPackage(packageName);
 	});
 
-
 	webview.on('startCurrentScheme').subscribe(([_param, done]) => {
 		done(true);
 		script.rerun();
+	});
+
+	webview.on('getFuncList').subscribe(([_param, done]) => {
+		done(funcList);
+	});
+
+	webview.on('getCommonConfig').subscribe(([_param, done]) => {
+		done(CommonConfig);
 	});
 
 	// 点击启动按钮，返回启动信息

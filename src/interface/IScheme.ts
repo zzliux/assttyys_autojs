@@ -3,7 +3,7 @@ import { IFunc } from './IFunc';
 export interface IScheme {
     id: number;
     schemeName: string;
-    groupName?: string;
+    groupNames?: string[];
     inner?: boolean;
     star?: boolean;
 

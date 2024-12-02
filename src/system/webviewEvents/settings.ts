@@ -581,4 +581,13 @@ export default function webviewSettigns() {
 		console.log('storedShapedScreenConfig:' + JSON.stringify(storedShapedScreenConfig));
 		done();
 	});
+
+	webview.on('openURL').subscribe(([url, done]) => {
+		app.openUrl(url);
+		done();
+	});
+
+	webview.on('getDeviceId').subscribe(([_param, done]) => {
+		done(device.getAndroidId());
+	});
 }

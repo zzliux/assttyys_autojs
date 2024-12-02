@@ -10,6 +10,11 @@ export default class ServerChanPushClient extends AbstractPushClient {
 		type: 'text',
 		default: '',
 	}, {
+		desc: '服务url（不填写时使用https://sctapi.ftqq.com/${ServerChan_SendKey}.send , 填写时SendKey作废）',
+		name: 'ServerChan_URL',
+		type: 'text',
+		default: '',
+	}, {
 		desc: '推送内容前缀',
 		name: 'msgPush_prefix',
 		type: 'text',
@@ -21,7 +26,7 @@ export default class ServerChanPushClient extends AbstractPushClient {
 		default: '0.1'
 	}];
 	push(data: Message[], config: Record<string, string>) {
-		const { ServerChan_SendKey, msgPush_prefix, msgPush_scale } = config;
+		const { ServerChan_SendKey, msgPush_prefix, msgPush_scale, ServerChan_URL } = config;
 		const msgData: Message[] = [{ type: 'text', data: msgPush_prefix }, ...data];
 		const short = msgData.map((item) => item.type === 'text' ? item.data : '').join('');
 		const bodyJson = {
@@ -42,6 +47,6 @@ export default class ServerChanPushClient extends AbstractPushClient {
 		};
 		console.log(`正文长度：${bodyJson.desp.length}`);
 		// @ts-expect-error d.ts文件问题
-		return http.postJson(`https://sctapi.ftqq.com/${ServerChan_SendKey}.send`, bodyJson);
+		return http.postJson(ServerChan_URL || `https://sctapi.ftqq.com/${ServerChan_SendKey}.send`, bodyJson);
 	}
 }

@@ -70,17 +70,23 @@ export class Func000 implements IFuncOrigin {
 			default: false,
 		}]
 	}, {
-		desc: '结束当前方案后切换方案',
+		desc: '结束后操作',
 		config: [{
-			name: 'scheme_switch_enabled',
-			desc: '是否启用',
-			type: 'switch',
-			default: false,
+			name: 'after_operation',
+			desc: '结束后的操作',
+			type: 'list',
+			data: ['停止脚本', '切换方案', '随机等待'],
+			default: '停止脚本',
 		}, {
 			name: 'next_scheme',
-			desc: '下一个方案',
+			desc: '下一个方案（切换方案时生效）',
 			type: 'scheme',
 			default: '通用准备退出',
+		}, {
+			name: 'after_operation_sleep',
+			desc: '随机等待时间（x,y 为区间，单位秒，随机等待时生效）',
+			type: 'text',
+			default: '10,20'
 		}]
 	}, {
 		desc: '临时暂停',
@@ -144,7 +150,7 @@ export class Func000 implements IFuncOrigin {
 			}
 			if (thisScript.runTimes['1'] !== thisScript.global.currentRunTimes['1']) {
 				thisScript.global.currentRunTimes['1'] = thisScript.runTimes['1'];
-				thisScript.myToast(`准备功能已执行${thisScript.runTimes['1']}次, 继续执行${+thisconf.jspd_times_1 - thisScript.runTimes['1']}次后将停止脚本`);
+				thisScript.myToast(`准备功能已执行${thisScript.runTimes['1']}次, 继续执行${+thisconf.jspd_times_1 - thisScript.runTimes['1']}次后结束`);
 			}
 		}
 		if (thisconf.jspd_enabled_2) {
@@ -158,7 +164,7 @@ export class Func000 implements IFuncOrigin {
 			}
 			if (thisScript.runTimes['2'] !== thisScript.global.currentRunTimes['2']) {
 				thisScript.global.currentRunTimes['2'] = thisScript.runTimes['2'];
-				thisScript.myToast(`退出结算已执行${thisScript.runTimes['2']}次, 继续执行${+thisconf.jspd_times_2 - thisScript.runTimes['2']}次后将停止脚本`);
+				thisScript.myToast(`退出结算已执行${thisScript.runTimes['2']}次, 继续执行${+thisconf.jspd_times_2 - thisScript.runTimes['2']}次后结束`);
 			}
 		}
 		if (thisconf.pause_enabled) {
@@ -200,9 +206,12 @@ export class Func000 implements IFuncOrigin {
 		}
 
 		function stopOrReRun() {
-			if (thisconf.scheme_switch_enabled) {
+			if (typeof thisconf.scheme_switch_enabled !== 'undefined' && thisconf.scheme_switch_enabled) {
+				thisconf.after_operation = '切换方案';
+			}
+			if (thisconf.after_operation === '切换方案') {
 				thisScript.rerun(thisconf.next_scheme);
-			} else {
+			} else if (thisconf.after_operation === '停止脚本') {
 				thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 				// 停止脚本时关闭应用
 				if (thisconf.stop_with_launched_app_exit) {
@@ -219,6 +228,13 @@ export class Func000 implements IFuncOrigin {
 					thisScript.stopRelatedApp();
 				}
 				thisScript.stop();
+			} else if (thisconf.after_operation === '随机等待') {
+				// 偷个懒，先用sleep暂停
+				const [min, max] = String(thisconf.after_operation_sleep).split(',').map(item => (+item) * 1000);
+				const toSleep = random(min, max);
+				thisScript.myToast(`等待${toSleep}ms`);
+				sleep(toSleep);
+				thisScript.rerun();
 			}
 		}
 

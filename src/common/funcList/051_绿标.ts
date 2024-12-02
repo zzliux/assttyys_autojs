@@ -149,13 +149,12 @@ export class Func051 implements IFuncOrigin {
 			}
 
 			if (thisScript.global.greenPosition && thisScript.oper({
-				id: 51,
 				name: '绿标-战斗界面检测',
 				operator: [{
 					desc: thisOperator[0].desc,
 				}]
 			})) {
-				if (!thisScript.findMultiColor('绿标')) {
+				if (!thisScript.findMultiColor('绿标', undefined, undefined, true)) {
 					thisScript.regionClick([thisScript.global.greenPosition]);
 				}
 				thisScript.global.greenPosition = null;
@@ -164,7 +163,6 @@ export class Func051 implements IFuncOrigin {
 		}
 
 		if (thisScript.oper({
-			id: 51,
 			name: '绿标-战斗界面检测',
 			operator: [{
 				desc: thisOperator[0].desc,
@@ -183,7 +181,7 @@ export class Func051 implements IFuncOrigin {
 			// 当局有多次判断时，连续3秒内都未检测到绿标方可进行点击
 			// 没有找到绿标的开始时间
 			thisScript.global.greenNonDTime = new Date().getTime();
-			if (flag && thisScript.findMultiColor('绿标')) {
+			if (flag && thisScript.findMultiColor('绿标', undefined, undefined, true)) {
 				return false;
 			}
 			// 开启绿标
@@ -247,7 +245,7 @@ export class Func051 implements IFuncOrigin {
 					do {
 						sleep(200);
 						thisScript.keepScreen(true);
-						if (thisScript.findMultiColor('绿标')) {
+						if (thisScript.findMultiColor('绿标', undefined, undefined, true)) {
 							return false;
 						}
 					} while (new Date().getTime() - thisScript.global.greenNonDTime < 3000);
