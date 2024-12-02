@@ -177,8 +177,9 @@ export class Func319 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, -1, -1, -1, -1, 5000],
+			[center, 1280, 720, -1, -1, -1, -1, 2000],
 			[center, 1280, 720, 989, 321, 1165, 393, 1000],
+			[center, 1280, 720, -1, -1, -1, -1, 2000],
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {

@@ -1255,5 +1255,10 @@ export const versionList = [{
 }, {
 	version: '20241121_01',
 	desc: '修复：商店点黑蛋'
+}, {
+	version: '20241203_01',
+	desc: `优化：319增加延时
+519:识别不到寮资金时用399W代替
+增加：app.js文件`
 }];
 export default versionList[versionList.length - 1].version;

@@ -89,10 +89,10 @@ export class Func519 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1150, 100, 1220, 132, 1000],
-			[center, 1280, 720, 1150, 246, 1220, 278, 1000],
-			[center, 1280, 720, 1150, 392, 1220, 424, 1000],
-			[center, 1280, 720, 1150, 538, 1220, 571, 1000],
+			[center, 1280, 720, 1086, 71, 1241, 132, 1000],
+			[center, 1280, 720, 1086, 217, 1241, 281, 1000],
+			[center, 1280, 720, 1086, 363, 1241, 424, 1000],
+			[center, 1280, 720, 1086, 509, 1241, 571, 1000],
 		]
 	}, { // 4 前4 寮头像
 		desc: [
@@ -109,10 +109,10 @@ export class Func519 implements IFuncOrigin {
 		]
 	}, { // 5 后4 ocr区域
 		oper: [
-			[center, 1280, 720, 1150, 88, 1220, 120, 1000],
-			[center, 1280, 720, 1150, 234, 1220, 266, 1000],
-			[center, 1280, 720, 1150, 380, 1220, 412, 1000],
-			[center, 1280, 720, 1150, 526, 1220, 558, 1000],
+			[center, 1280, 720, 1086, 56, 1241, 124, 1000],
+			[center, 1280, 720, 1086, 202, 1241, 270, 1000],
+			[center, 1280, 720, 1086, 348, 1241, 416, 1000],
+			[center, 1280, 720, 1086, 494, 1241, 562, 1000],
 		]
 	}, { // 6 后4 寮头像
 		desc: [
@@ -235,17 +235,18 @@ export class Func519 implements IFuncOrigin {
 						thisScript.regionClick([thisOperator[6].oper[i]]);
 					}
 					if (temp.length <= 0) {
-						console.log('OCR未识别到字符,将重试一遍');
-						return true;
-					}
-					glod[i] = parseInt(temp[0].label.replace(/[^\d]/g, ' '), 10);
-					if (glod[i] > 12000) {
-						glod[i] = Math.floor(glod[i] / 10);
-						log(glod[i])
-					}
-					if (glod[i] > 1200) {
-						glod[i] = Math.floor(glod[i] / 10);
-						log(glod[i])
+						console.log('OCR未识别到字符,默认金币为399W');
+						glod[i] = 399;
+					} else {
+						glod[i] = parseInt(temp[0].label.replace(/[^\d]/g, ' '), 10);
+						if (glod[i] > 12000) {
+							glod[i] = Math.floor(glod[i] / 10);
+							log(glod[i])
+						}
+						if (glod[i] > 1200) {
+							glod[i] = Math.floor(glod[i] / 10);
+							log(glod[i])
+						}
 					}
 					thisScript.keepScreen();
 					const point = thisScript.findMultiColor('敌方道馆_挑战');
@@ -329,9 +330,8 @@ export class Func519 implements IFuncOrigin {
 						thisScript.global.flash_time++;
 						return true;
 					}
-
 				} else if (Number(thisScript.global.daoGuan_compare[0]) > Number(thisScript.global.daoGuan_compare[2])) {
-					thisScript.regionSwipe(thisOperator[1].oper[2], thisOperator[1].oper[1], [300, 400], 0, 3500);
+					thisScript.regionSwipe(thisOperator[1].oper[2], thisOperator[1].oper[1], [300, 400], 3000, 500);
 					thisScript.regionClick([thisOperator[4].oper[thisScript.global.daoGuan_compare[1]]]);
 				} else {
 					thisScript.regionClick([thisOperator[6].oper[thisScript.global.daoGuan_compare[3]]]);
