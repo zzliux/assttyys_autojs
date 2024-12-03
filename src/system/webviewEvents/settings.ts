@@ -1,8 +1,8 @@
 import { webview } from '@/system';
 import drawFloaty from '@/system/drawFloaty';
 import myFloaty from '@/system/MyFloaty';
-import { storeCommon } from '@/system/store';
-import { doInitHookConsoleLog, getInstalledPackages, isDebugPlayerRunning, requestMyScreenCapture } from '@/common/toolAuto';
+import store, { getStorages, getStoragesList, setStorages, storeCommon, storeStore, testStorage } from '@/system/Store/store';
+import { doInitHookConsoleLog, getInstalledPackages, isDebugPlayerRunning, myToast, requestMyScreenCapture } from '@/common/toolAuto';
 import { isRoot } from '@auto.pro/core';
 import ncnnBgyx from '@/system/ncnn/ncnnBgyx';
 import helperBridge from '@/system/helperBridge';
@@ -68,6 +68,7 @@ export default function webviewSettigns() {
 	// if (isDebugPlayerRunning() && initStoreSettings.remote_log_url === 'undefined') {
 	// 	initStoreSettings.remote_log_url = '';
 	// }
+
 
 	storeCommon.put('settings', initStoreSettings);
 
@@ -214,6 +215,17 @@ export default function webviewSettigns() {
 				ret.push(...clientClass.getSettingsConfig());
 			}
 		});
+
+		const storeName = storeStore.get('storage_name', '默认存储');
+		ret.push({
+			desc: '存储模式',
+			name: 'storage_name',
+			type: 'assttyys_store_store',
+			stype: 'list',
+			data: getStoragesList().map(item => item.name),
+			value: getStorages(storeName).name
+		});
+		ret.push(...getStorages(storeName).getSettingsConfig());
 
 		// if (storeSettings.push_type === 'oneBot') {
 		// 	ret.push({
@@ -460,6 +472,44 @@ export default function webviewSettigns() {
 					// @ts-expect-error 依赖的d.ts不全
 					log($work_manager.removeIntentTask(task.id));
 				});
+				done(true);
+			}
+		} else if ('assttyys_store_store' === item.type) { // 存储模式
+			if ('storage_name' === item.name) {
+				storeStore.put('storage_name', item.value);
+			} else {
+				const config = storeStore.get('config', {});
+				config[item.name] = item.value;
+				storeStore.put('config', config);
+			}
+
+			const storageName = storeStore.get('storage_name');
+
+			console.log(`storageName: ${storageName}`);
+			if (testStorage(storageName)) {
+				// 切换前先获取下上一次的数据，用于存着进行数据迁移
+				const lastStoreData = store.getAll();
+				const lastStoreCommonData = storeCommon.getAll();
+
+				setStorages(storageName);
+				myToast('存储模式验证成功');
+				dialogs.confirm('提示', '存储模式已成功切换，确认是否迁移数据(若该存储模式及配置下已存在数据，将会覆盖数据)？若不迁移数据请后续重新启动本程序。', (value: boolean) => {
+					if (!value) {
+						done(true);
+						return;
+					}
+					for (const key in lastStoreData) {
+						console.log(`migrate asttyys_ng: ${key}`);
+						store.put(key, lastStoreData[key]);
+					}
+					for (const key in lastStoreCommonData) {
+						console.log(`migrate asttyys_common: ${key}`);
+						storeCommon.put(key, lastStoreCommonData[key]);
+					}
+					done(true);
+				});
+			} else {
+				myToast('存储模式验证失败，暂未切换，待参数调整完成并验证成功后自动切换')
 				done(true);
 			}
 		}

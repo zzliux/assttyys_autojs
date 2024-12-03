@@ -1,5 +1,5 @@
 import { merge } from '@/common/tool';
-import store, { storeCommon } from '@/system/store';
+import store, { storeCommon } from '@/system/Store/store';
 import funcList from '@/common/funcListIndex';
 import defaultSchemeList from '@/common/schemeList';
 import helperBridge, { IhelperBridge } from '@/system/helperBridge';

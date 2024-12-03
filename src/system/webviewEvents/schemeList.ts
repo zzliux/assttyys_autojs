@@ -1,6 +1,6 @@
 import { fromEvent } from 'rxjs';
 import { webview } from '@/system';
-import store, { storeCommon } from '@/system/store';
+import store, { storeCommon } from '@/system/Store/store';
 import { requestMyScreenCapture } from '@/common/toolAuto';
 import { getWidthPixels, getHeightPixels } from '@auto.pro/core';
 // import _ from 'lodash';
@@ -35,7 +35,6 @@ export default function webviewSchemeList() {
 			store.put('schemeList', schemeList);
 		}
 	}
-	console.log(schemeList);
 
 	// 2. 初始化groupSchemeNames
 	const groupSchemeNames = store.get('groupSchemeNames');

@@ -4,6 +4,9 @@ import { IMultiFindColorsOrigin } from '@/interface/IMultiColor';
 const left = 0;
 const center = 1;
 const right = 2;
+// const top = 3;
+// const middle = 4;
+// const bottom = 5;
 
 const multiFindColors: IMultiFindColorsOrigin = {
 	'结界_进攻': {

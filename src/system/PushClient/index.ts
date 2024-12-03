@@ -1,7 +1,7 @@
-import { storeCommon } from '@/system/store';
+import { storeCommon } from '@/system/Store/store';
 import { AbstractPushClient } from './AbstractPushClient';
 
-// 自动加载funcList目录下所有配置统一导出
+// 自动加载当前目录下所有类统一导出
 const module = require.context('.', false, /\.[jt]s$/);
 
 const pushClientList = [];

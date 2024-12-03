@@ -5,7 +5,7 @@ import { IhelperBridge } from '@/system/helperBridge';
 import type { Script } from '@/system/script';
 import script from '@/system/script';
 
-import { storeCommon } from '@/system/store';
+import { storeCommon } from '@/system/Store/store';
 import { getWidthPixels, getHeightPixels } from '@auto.pro/core';
 
 // importClass(android.graphics.Color);
