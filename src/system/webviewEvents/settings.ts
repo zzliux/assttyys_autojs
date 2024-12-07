@@ -2,7 +2,7 @@ import { webview } from '@/system';
 import drawFloaty from '@/system/drawFloaty';
 import myFloaty from '@/system/MyFloaty';
 import store, { getStorages, getStoragesList, setStorages, storeCommon, storeStore, testStorage } from '@/system/Store/store';
-import { doInitHookConsoleLog, getInstalledPackages, isDebugPlayerRunning, myToast, requestMyScreenCapture } from '@/common/toolAuto';
+import { doInitHookConsoleLog, getDeviceId, getInstalledPackages, isDebugPlayerRunning, myToast, requestMyScreenCapture } from '@/common/toolAuto';
 import { isRoot } from '@auto.pro/core';
 import ncnnBgyx from '@/system/ncnn/ncnnBgyx';
 import helperBridge from '@/system/helperBridge';
@@ -638,6 +638,6 @@ export default function webviewSettigns() {
 	});
 
 	webview.on('getDeviceId').subscribe(([_param, done]) => {
-		done(device.getAndroidId());
+		done(getDeviceId());
 	});
 }
