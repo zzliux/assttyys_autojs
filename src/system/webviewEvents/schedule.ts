@@ -1,6 +1,6 @@
 import { webview } from '@/system';
 import script from '@/system/script';
-import store from '@/system/store';
+import store from '@/system/Store/store';
 import ScheduleDefaultList from '@/common/scheduleList';
 import schedule, { Job, JobOptions, mergeOffsetTime } from '@/system/Schedule'
 import { getNextByCron } from '@/common/toolCron';

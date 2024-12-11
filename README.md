@@ -10,6 +10,7 @@ ASISTTANT YYS NEXT GENERATION<br/>
 脚本开发分辨率为 720 * 1280 该分辨率的横屏或竖屏均能兼容，其他分辨率兼容原理见 <https://gitee.com/yiszza/ScriptLib> 中 README 所提到的锚点比色 与 多点找色，开发分辨率得到的相关坐标点都会在运行分辨率上进行一次缩放与位移，但未测试过其他分辨率，因目前大多真机都是异型屏，阴阳师对异型屏有特殊优化，导致几乎所有异型屏都不支持锚点比色做阴阳师的多分辨率兼容，建议使用配合虚拟机或云手机使用。
 
 # 目录说明
+前端已从本项目分离，见 [zzliux/assttyys_ui](https://github.com/zzliux/assttyys_ui)
 ```
 assttyys_autojs
 ├─assets                                       资源目录，不经过webpack打包，运行时可加载该目录下的文件
@@ -43,8 +44,6 @@ assttyys_autojs
 │  │          003.悬赏协作.ts
 │  │          004_接受邀请.ts
 │  │          ...
-│  ├─mock                                      前端模拟数据
-│  │      promptMock.ts
 │  ├─system                                    aj端目录
 │  │  │  drawFloaty.ts                         悬浮绘制模块
 │  │  │  helperBridge.ts                       操作模块，集成scriptlib以及点击等操作
@@ -60,21 +59,6 @@ assttyys_autojs
 │  │          funcList.ts
 │  │          index.ts
 │  │          ...
-│  └─templateV3
-│     │  App.vue
-│     │  index.html
-│     │  index.js
-│     ├─assets                                  前端静态资源
-│     ├─components                              前端组件
-│     │      AppListLaunchDialog.vue
-│     │      AppListRefDialog.vue
-│     │      FuncConfigBox.vue
-│     │      FuncConfigDialog.vue
-│     └─pages                                   前端页面
-│              About.vue
-│              FuncList.vue
-│              SchemeList.vue
-│              Settings.vue
 ├─test                                          测试目录，里面有乱七八糟的测试用的文件
 |  ...                                          待补充
 ```

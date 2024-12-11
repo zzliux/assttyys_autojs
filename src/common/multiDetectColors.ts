@@ -415,8 +415,9 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 				[right, 1202, 643, 0xe2cfa0],
 				[right, 1180, 624, 0xe2cca1],
 				[right, 1189, 626, 0x3c1e0c],
-				[center, 843, 290, 0x6e3926], // 阵容按钮
-				[center, 842, 288, 0x713a2a], // 阵容按钮
+				[center, 843, 290, 0x6e3926],
+				[center, 842, 288, 0x713a2a],
+				[right, 864, 621, 0x947163],
 			],
 		],
 	},

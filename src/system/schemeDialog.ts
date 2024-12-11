@@ -1,4 +1,4 @@
-import store, { storeCommon } from '@/system/store';
+import store, { storeCommon } from '@/system/Store/store';
 import script from '@/system/script';
 import { MyFloaty } from './MyFloaty';
 import { IScheme } from '@/interface/IScheme';
