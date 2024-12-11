@@ -527,9 +527,9 @@ export class Func518 implements IFuncOrigin {
 					[right, 1226, 130, 0xfcdab2],
 					[right, 1227, 222, 0x967e71],
 					[right, 1227, 312, 0x967d71],
-					[right, 1175, 673, 0xd03a3a],
-					[center, 869, 670, 0x3c7ccf],
-					[center, 775, 671, 0xfffd74],
+					[right, 1134, 687, 0xf0c967],
+					[right, 1148, 665, 0x842121],
+					[right, 1195, 675, 0xd2ab51],
 				]
 			],
 			oper: [

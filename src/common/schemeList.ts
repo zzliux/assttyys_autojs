@@ -546,13 +546,6 @@ const SchemeList: IScheme[] = [
 		},
 	},
 	{
-		id: 47,
-		groupNames: ['御魂奉纳'],
-		schemeName: '奉纳御魂_贪食鬼吃经验',
-		list: [0, 301, 303],
-		star: true,
-	},
-	{
 		id: 48,
 		groupNames: ['御魂奉纳'],
 		schemeName: '奉纳御魂_开始奉纳',
@@ -564,12 +557,6 @@ const SchemeList: IScheme[] = [
 		schemeName: '绘卷进度_检测并提醒',
 		list: [0, 304],
 		star: true,
-	},
-	{
-		id: 50,
-		groupNames: ['绘卷进度检测'],
-		schemeName: '绘卷进度_持续查询进度',
-		list: [0, 305],
 	},
 	{
 		id: 51,
@@ -903,6 +890,10 @@ const SchemeList: IScheme[] = [
 				day: true
 			},
 		},
+	}, {
+		id: 77,
+		schemeName: '宴会筹备',
+		list: [0, 2, 520, 29],
 	},
 	{
 		id: 99,
@@ -913,27 +904,6 @@ const SchemeList: IScheme[] = [
 		id: 100,
 		schemeName: '缘结趣游',
 		list: [0, 24, 319],
-	},
-	{
-		id: 101,
-		schemeName: '霍金神肉鸽',
-		list: [0, 402, 24],
-		// star: true,
-		commonConfig: {
-			// 通用参数
-			multiColorSimilar: 95,
-		},
-	},
-	{
-		id: 102,
-		schemeName: '烟花募集（答题活动）',
-		list: [0, 113, 114, 24],
-		star: true,
-	},
-	{
-		id: 103,
-		schemeName: '喜乐雀儿戏',
-		list: [0, 1, 2, 115, 24],
 	}
 	// , {
 	// 	id: 102,
@@ -1031,7 +1001,7 @@ SchemeList.forEach((item, id) => {
 export const schemeNameMap = innerSchemeListName;
 export default SchemeList;
 export type GroupSchemeName = {
-    groupName: string,
-    hidden: boolean,
-    schemeNames: string[]
+	groupName: string,
+	hidden: boolean,
+	schemeNames: string[]
 }

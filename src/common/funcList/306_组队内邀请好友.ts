@@ -205,6 +205,22 @@ export class Func306 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 312, 283, 394, 329, 1000],
 		]
+	}, { // 13,组队界面_解除锁定阵容
+		desc: [1280, 720,
+			[
+				[center, 670, 4, 0x12181d],
+				[left, 42, 38, 0xf7e8aa],
+				[center, 600, 49, 0x0e1316],
+				[center, 648, 571, 0x422c29],
+				[left, 28, 659, 0xbdb2e9],
+				[left, 57, 659, 0xbdb2f4],
+				[left, 37, 659, 0x90734a],
+				[left, 46, 659, 0x856c49],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 0, 609, 107, 719, 1000],
+		]
 	}]
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['306'];
@@ -230,6 +246,11 @@ export class Func306 implements IFuncOrigin {
 		team_up_lagTime = new Date();
 		// 开启后首次进入组队则邀请 或 停留组队界面超过15秒
 		if (team_up_Frist || team_up_lagTime.getTime() - thisScript.global.team_up_lagTime.getTime() > 15000) {
+			// 解除锁定
+			thisScript.oper({
+				name: '判断是否邀请',
+				operator: [thisOperator[13]]
+			})
 			// 判断组队模式
 			if (thisScript.oper({
 				name: '判断是否邀请',

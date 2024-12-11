@@ -90,6 +90,10 @@ export type globalRootType = {
 	open_only_once: boolean, // 首次启动游戏
 	fight_switch_skill: boolean, // 三号位切换技能
 	flash_time: number, // 519刷新次数
+	HJosp: boolean, // 304 osp状态
+	HJmin: number, // 304 绘卷系统刷新CD
+	HJsec: number, // 304 绘卷系统刷新CD
+	fengNa: boolean, // 302奉纳
 }
 
 export const globalRoot: globalRootType = {
@@ -184,4 +188,8 @@ export const globalRoot: globalRootType = {
 	open_only_once: false,
 	fight_switch_skill: true,
 	flash_time: 0,
+	HJosp: null,
+	HJmin: null,
+	HJsec: null,
+	fengNa: false,
 }

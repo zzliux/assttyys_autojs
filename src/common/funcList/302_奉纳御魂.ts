@@ -123,69 +123,141 @@ export class Func302 implements IFuncOrigin {
 			[center, 1280, 720, 366, 118, 526, 152, 500],
 			[center, 1280, 720, 380, 284, 541, 330, 1500],
 		]
+	}, { // 9,右下角贪食鬼
+		desc: [
+			1280, 720,
+			[
+				[left, 154, 45, 0xaf8c56],
+				[left, 192, 41, 0x593716],
+				[right, 1182, 524, 0xc99b1c],
+				[right, 1188, 648, 0xdf394a],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1158, 621, 1213, 669, 1000],
+		]
+	}, {  // 10,进食习惯
+		desc: [1280, 720, [
+			[center, 363, 294, 0x332725],
+			[center, 949, 230, 0xebdac9],
+			[center, 902, 565, 0xf4b25f],
+			[center, 750, 278, 0x2c3244]
+		]
+		],
+		oper: [
+			[center, 1280, 720, 820, 532, 978, 588, 3000]
+		]
+	}, {  // 11,贪食鬼
+		desc: [1280, 720, [
+			[right, 1012, 491, 0xece3d3],
+			[right, 1016, 537, 0xe3d5c3],
+			[center, 818, 243, 0xb34a1d],
+			[center, 813, 591, 0xf4b25f]]
+		],
+		oper: [
+			[center, 1280, 720, 940, 608, 990, 645, 1000]
+		]
+	}, {  // 12.不再提示
+		desc: [1280, 720, [
+			[center, 519, 422, 0xdf6851],
+			[center, 759, 421, 0xf4b25f],
+			[center, 559, 357, 0x715e4f],
+			[center, 637, 288, 0xA82F2D]
+		]
+		],
+		oper: [
+			[center, 1280, 720, 677, 408, 834, 453, 1000]
+		]
+	}, {  // 13,进食完毕或无进食御魂
+		desc: [1280, 720, [
+			[right, 1018, 497, 0x4b322e],
+			[right, 1012, 539, 0x241a1c],
+			[center, 866, 249, 0xb54f23],
+			[center, 813, 591, 0xf4b25f]]
+		],
+		oper: [
+			[center, 1280, 720, 1038, 299, 1115, 406, 1000],
+			[center, 1280, 720, 939, 217, 960, 243, 1000]
+		]
 	}
 	];
 
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		if (!thisScript.oper({
-			name: '排序方式',
-			operator: [{
-				desc: thisOperator[8].desc,
-			}]
-		}) && thisScript.oper({
-			name: '背景墙，灰奉纳',
-			operator: [{
-				desc: thisOperator[5].desc
-			}]
-		})) {
-			thisScript.oper({
-				name: '切换排序',
-				operator: [{
-					oper: thisOperator[8].oper
-				}]
-			})
-			return true;
-		}
-
-		if (thisScript.oper({
-			name: '奉纳',
-			operator: [thisOperator[0], thisOperator[2], thisOperator[3]
-				, thisOperator[4], thisOperator[7]
+		if (!thisScript.global.fengNa && thisScript.oper({
+			name: '贪食鬼',
+			operator: [thisOperator[9], thisOperator[10], thisOperator[11], thisOperator[12],
 			]
 		})) {
-			sleep(500)
 			return true;
 		}
-
-		if (thisScript.oper({
-			name: '第一排一行御魂',
-			operator: [{
-				desc: thisOperator[1].desc,
-			}]
+		if (!thisScript.global.fengNa && thisScript.oper({
+			name: '进食完毕或无进食御魂',
+			operator: [thisOperator[13]]
 		})) {
-			thisScript.regionClick([[...thisOperator[6].oper[0], 1000]]);
-			return true;
+			thisScript.global.fengNa = true;
+			return true
 		}
+		if (thisScript.global.fengNa) {
+			if (!thisScript.oper({
+				name: '排序方式',
+				operator: [{
+					desc: thisOperator[8].desc,
+				}]
+			}) && thisScript.oper({
+				name: '背景墙，灰奉纳',
+				operator: [{
+					desc: thisOperator[5].desc
+				}]
+			})) {
+				thisScript.oper({
+					name: '切换排序',
+					operator: [{
+						oper: thisOperator[8].oper
+					}]
+				})
+				return true;
+			}
 
-		if (!thisScript.oper({
-			name: '第一排第一个御魂+0',
-			operator: [{
-				desc: thisOperator[1].desc,
-			}]
-		}) && thisScript.oper({
-			name: '背景墙，灰奉纳',
-			operator: [thisOperator[5]]
-		})) {
-			const thisconf = thisScript.scheme.config['302'];
-			if (thisconf && thisconf.scheme_switch_enabled) {
-				thisScript.rerun(thisconf.next_scheme);
-				sleep(3000);
-				return;
-			} else {
-				thisScript.doPush(thisScript, { text: '奉纳结束或未正确使用，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-				thisScript.stop();
-				sleep(3000);
-				return;
+			if (thisScript.oper({
+				name: '奉纳',
+				operator: [thisOperator[0], thisOperator[2], thisOperator[3]
+					, thisOperator[4], thisOperator[7]
+				]
+			})) {
+				sleep(500)
+				return true;
+			}
+
+			if (thisScript.oper({
+				name: '第一排一行御魂',
+				operator: [{
+					desc: thisOperator[1].desc,
+				}]
+			})) {
+				thisScript.regionClick([[...thisOperator[6].oper[0], 1000]]);
+				return true;
+			}
+
+			if (!thisScript.oper({
+				name: '第一排第一个御魂+0',
+				operator: [{
+					desc: thisOperator[1].desc,
+				}]
+			}) && thisScript.oper({
+				name: '背景墙，灰奉纳',
+				operator: [thisOperator[5]]
+			})) {
+				const thisconf = thisScript.scheme.config['302'];
+				if (thisconf && thisconf.scheme_switch_enabled) {
+					thisScript.rerun(thisconf.next_scheme);
+					sleep(3000);
+					return;
+				} else {
+					thisScript.doPush(thisScript, { text: '奉纳结束或未正确使用，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+					thisScript.stop();
+					sleep(3000);
+					return;
+				}
 			}
 		}
 		return false;
