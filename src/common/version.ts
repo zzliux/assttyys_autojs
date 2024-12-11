@@ -1269,5 +1269,13 @@ export const versionList = [{
 	desc: `优化：319增加延时
 519:识别不到寮资金时用399W代替
 增加：app.js文件`
+}, {
+	version: '202412011_01',
+	desc: `整合：301和302，304和305
+增加：304_保持95排名
+306_首次组队取消锁定阵容
+520_宴会筹备
+修复：518_礼包屋推荐`
 }];
+
 export default versionList[versionList.length - 1].version;
