@@ -19,17 +19,20 @@ export default function webviewAbout() {
 			toastLog('未找到邮件类应用，已复制至剪贴板');
 			setClip('zzliux@outlook.com');
 			console.log(e);
+			done();
 		}
 		done();
 	});
 
-	webview.on('copyToClip').subscribe(([str, _done]) => {
+	webview.on('copyToClip').subscribe(([str, done]) => {
 		setClip(str);
 		toastLog('复制成功');
+		done();
 	});
 
-	webview.on('copyPToClip').subscribe(([str, _done]) => {
+	webview.on('copyPToClip').subscribe(([str, done]) => {
 		setClip(str);
 		toastLog('加群链接复制成功');
+		done();
 	});
 }

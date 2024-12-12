@@ -578,3 +578,17 @@ export function doInitHookConsoleLog(remoteUrl: string) {
 export function escapeMarkdown(str: string) {
 	return str.replace(/[\\`*_{}[\]()#+\-.]/g, '\\$&');
 }
+
+
+let webLoaded: boolean = false;
+export const getWebLoaded = () => {
+	return webLoaded
+};
+export const setWebLoaded = (flag: boolean) => {
+	webLoaded = flag;
+};
+
+
+export const getDeviceId = () => {
+	return device.getAndroidId();
+}
