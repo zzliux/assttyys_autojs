@@ -249,14 +249,22 @@ export class Script {
 		}
 		for (let i = 0; i < scheme.list.length; i++) {
 			const thisFuncList = this.funcMap[scheme.list[i]];
+			if (!thisFuncList) continue;
 			const operator = thisFuncList.operator;
 			if (!thisFuncList.transed && operator) {
 				for (let k = 0; k < operator.length; k++) {
 					if (operator[k].desc) {
 						if (typeof operator[k].desc === 'string') {
-							operator[k].desc = this.multiDetectColors[operator[k].desc as string].desc;
+							try {
+								operator[k].desc = this.multiDetectColors[operator[k].desc as string].desc;
+							} catch (e) {
+								console.error(`${operator[k].desc}未在multiDetectColors定义`);
+								throw e;
+							}
 						} else {
+							// if (operator[k]?.desc?.length >= 3) {
 							operator[k].desc = helperBridge.helper.GetCmpColorArray(operator[k].desc[0], operator[k].desc[1], operator[k].desc[2]);
+							// }
 						}
 					}
 					if (operator[k].oper) {
