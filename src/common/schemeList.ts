@@ -147,7 +147,7 @@ const SchemeList: IScheme[] = [
 		id: 7,
 		schemeName: '个人探索',
 		star: true,
-		list: [0, 15, 1, 2, 3, 13, 14, 29],
+		list: [0, 1, 2, 3, 13, 14, 29],
 		config: {
 			'0': {
 				next_scheme: '关闭BUFF',
@@ -158,23 +158,13 @@ const SchemeList: IScheme[] = [
 		id: 8,
 		schemeName: '组队探索_队长',
 		star: false,
-		list: [0, 15, 1, 2, 3, 5, 14],
-		config: {
-			'15': {
-				type: '队长',
-			},
-		},
+		list: [0, 1, 2, 3, 5, 14],
 	},
 	{
 		id: 8,
 		schemeName: '组队探索_打手',
 		star: false,
-		list: [0, 15, 1, 2, 3, 4, 25],
-		config: {
-			'15': {
-				type: '打手',
-			},
-		},
+		list: [0, 1, 2, 3, 4, 25],
 	},
 	{
 		id: 9,
@@ -196,7 +186,7 @@ const SchemeList: IScheme[] = [
 	{
 		id: 11,
 		schemeName: '百鬼夜行',
-		list: [3, 17, 18, 19, 20, 21],
+		list: [3, 17],
 	},
 	{
 		id: 12,
@@ -208,7 +198,7 @@ const SchemeList: IScheme[] = [
 		groupNames: ['切换方案样例'],
 		schemeName: '例_个人探索30次_转个人突破',
 		star: true,
-		list: [0, 15, 1, 2, 3, 13, 14],
+		list: [0, 1, 2, 3, 13, 14],
 		config: {
 			'0': {
 				jspd_enabled_2: true,
