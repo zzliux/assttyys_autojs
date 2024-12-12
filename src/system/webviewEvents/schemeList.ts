@@ -1,10 +1,11 @@
 import { fromEvent } from 'rxjs';
 import { webview } from '@/system';
 import store, { storeCommon } from '@/system/Store/store';
-import { requestMyScreenCapture } from '@/common/toolAuto';
+import { getWebLoaded, requestMyScreenCapture, setWebLoaded } from '@/common/toolAuto';
 import { getWidthPixels, getHeightPixels } from '@auto.pro/core';
 // import _ from 'lodash';
 import version, { versionList } from '@/common/version';
+import myFloaty from '@/system/MyFloaty';
 import defaultSchemeList, { GroupSchemeName, schemeNameMap } from '@/common/schemeList';
 import MyAutomator from '@/system/MyAutomator';
 import helperBridge from '@/system/helperBridge';
@@ -210,13 +211,12 @@ export default function webviewSchemeList() {
 		webview.runHtmlJS('window.loadScheduleData && window.loadScheduleData()');
 	})
 
-	let loaded = false;
 	webview.on('webloaded').subscribe(([_param, done]) => {
-		if (loaded) {
+		if (getWebLoaded()) {
 			done(true);
 			return;
 		}
-		loaded = true;
+		setWebLoaded(true);
 		// 界面加载完成后申请截图权限
 		requestMyScreenCapture(done, helperBridge);
 
@@ -237,6 +237,10 @@ export default function webviewSchemeList() {
 			storeCommon.put('settings', storeSettings);
 		}
 		helperBridge.setAutomator(new MyAutomator(storeSettings.tapType));
+
+		if (floaty.checkPermission()) {
+			myFloaty.init();
+		}
 	});
 
 	// TODO 使用core包的获取状态栏高度

@@ -309,7 +309,7 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 			]
 		]
 	},
-	'地图界探索面': {
+	'探索地图界面': {
 		desc: [1280, 720,
 			[
 				[left, 45, 60, 0xeff5fb],

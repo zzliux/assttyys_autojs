@@ -10,7 +10,7 @@ export class Func520 implements IFuncOrigin {
 	name = '宴会筹备';
 	desc:'进入探索，狸猫饿鬼河童各打三次（需挑战券）'
 	operator: IFuncOperatorOrigin[] = [{
-		desc: '地图界探索面',
+		desc: '探索地图界面',
 		oper: [
 			[center, 1280, 720, 1145, 212, 1163, 227, 1000],
 			[center, 1280, 720, 1144, 500, 1160, 510, 1000],
