@@ -274,12 +274,7 @@ const SchemeList: IScheme[] = [
 		id: 23,
 		schemeName: '悬赏',
 		star: true,
-		list: [0, 1, 2, 3, 52, 29, 41, 42, 43, 44, 45, 46, 47, 48, 49],
-		config: {
-			'52': {
-				scheme_switch_enabled: false,
-			},
-		},
+		list: [0, 1, 2, 3, 18, 29],
 	},
 	{
 		id: 24,
@@ -318,11 +313,6 @@ const SchemeList: IScheme[] = [
 		schemeName: '开启BUFF_打探索',
 		list: [501, 50],
 	},
-	//  {
-	//     id: 28,
-	//     schemeName: '悬赏_庭院打开悬赏界面',
-	//     list: [52],
-	// },
 	{
 		id: 29,
 		schemeName: '返回庭院',
@@ -430,17 +420,6 @@ const SchemeList: IScheme[] = [
 				afterCountOper: '停止脚本',
 				next_scheme: '通用准备退出',
 			},
-		},
-	},
-	{
-		id: 35,
-		schemeName: '六道萤草',
-		list: [0, 1, 2, 3, 24, 201, 202, 203, 207, 204, 205, 206, 208, 209],
-		commonConfig: {
-			loopDelay: 200,
-			afterClickDelayRandom: 200,
-			colorSimilar: 93,
-			multiColorSimilar: 95,
 		},
 	},
 	{
