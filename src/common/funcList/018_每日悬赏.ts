@@ -5,7 +5,7 @@ const left = 0;
 const center = 1;
 const right = 2;
 let swiper = 0
-let allPoint = [];
+let allPoint;
 
 export class Func018 implements IFuncOrigin {
 	id = 18;
@@ -368,6 +368,7 @@ export class Func018 implements IFuncOrigin {
 				}]
 			})) {
 				let point = null;
+				allPoint = []
 				if (thisconf.jinBi) {
 					point = thisScript.findMultiColor('悬赏_金币协作') || null;
 				}
