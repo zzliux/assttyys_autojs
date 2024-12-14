@@ -48,6 +48,7 @@ export type globalRootType = {
 	team_up_lagTime: null | Date,    // 组队延时
 	team_up_Frist: boolean,  // 首次组队
 	xsOpened: boolean, // 是否打开过悬赏
+	xsFilter: Record<number, number>,
 	intensify_lagTime: null | Date, // 强化延时
 	intensify_NumOT: number, // 强化计数
 	create_NumOT: number, // 创建队伍计数
@@ -192,4 +193,5 @@ export const globalRoot: globalRootType = {
 	HJmin: null,
 	HJsec: null,
 	fengNa: false,
+	xsFilter: {}
 }

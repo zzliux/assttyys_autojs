@@ -1153,10 +1153,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
 					[right, 1176, 212, 0x754420],
 					[right, 1169, 270, 0xe0be58],
 					[right, 1180, 427, 0xe7d6b2],
-					// [right, 1103, 556, 0xb1937b],
 					[right, 1105, 611, 0xe1d8c0],
-					// [right, 1088, 620, 0xf48a37],
-					[right, 1153, 79, 0x533b23],
 					[right, 1192, 328, 0xfef2c2]
 				]
 			],
@@ -1174,6 +1171,79 @@ const multiFindColors: IMultiFindColorsOrigin = {
 					[right, 1192, 328, 0xfef2c2]
 				]
 			],
+		]
+	},
+	'悬赏_金币协作': {
+		region: [left, 1280, 720, 100, 75, 1188, 636],
+		desc: [
+			[
+				1280, 720,
+				[
+					[center, 370, 522, 0xa6917d],
+					[left, 148, 374, 0xbc2925],
+					[left, 167, 394, 0xb4302b],
+					[left, 227, 541, 0xf9f2df],
+					[left, 233, 550, 0xf7f3df],
+					[left, 257, 522, 0xf9e8cb],
+					[left, 247, 525, 0xf3dbbd],
+					[left, 308, 544, 0xe3c873],
+					[center, 340, 541, 0xedd7b1],
+				]
+			]
+		]
+	},
+	'悬赏_体力协作': {
+		region: [left, 1280, 720, 100, 75, 1188, 636],
+		desc: [
+			[
+				1280, 720,
+				[
+					[center, 370, 522, 0xa6917d],
+					[left, 148, 374, 0xbc2925],
+					[left, 167, 394, 0xb4302b],
+					[left, 227, 541, 0xf9f2df],
+					[left, 233, 550, 0xf7f3df],
+					[left, 257, 522, 0xf9e8cb],
+					[left, 247, 525, 0xf3dbbd],
+					[left, 311, 553, 0x0b0c0a],
+					[center, 328, 543, 0xff9932],
+				]
+			]
+		]
+	},
+	'悬赏_狗粮协作': {
+		region: [left, 1280, 720, 100, 75, 1188, 636],
+		desc: [
+			[
+				1280, 720,
+				[
+					[center, 370, 522, 0xa6917d],
+					[left, 148, 374, 0xbc2925],
+					[left, 167, 394, 0xb4302b],
+					[left, 308, 544, 0xe3c873],
+					[center, 340, 541, 0xedd7b1],
+					[left, 218, 580, 0xf29530],
+					[left, 229, 580, 0xf29831],
+					[left, 240, 580, 0xf29b33],
+				]
+			]
+		]
+	},
+	'悬赏_勾玉协作': {
+		region: [left, 1280, 720, 100, 75, 1188, 636],
+		desc: [
+			[
+				1280, 720,
+				[
+					[center, 370, 522, 0xa6917d],
+					[left, 145, 374, 0xbc2925],
+					[left, 166, 391, 0xb52e2a],
+					[left, 233, 550, 0xf7f3df],
+					[left, 227, 541, 0xfef5e1],
+					[center, 321, 553, 0xc8a98b],
+					[center, 338, 548, 0xe9361d],
+				]
+			]
 		]
 	},
 	'探索界面_检测左边是否有追踪任务的悬浮列表': {

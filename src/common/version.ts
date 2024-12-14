@@ -1276,6 +1276,11 @@ export const versionList = [{
 306_首次组队取消锁定阵容
 520_宴会筹备
 修复：518_礼包屋推荐`
+}, {
+	version: '202412014_01',
+	desc: `已整合悬赏，只需开启018，并增加取消协作选项（需重进方案内开启）
+	已整合百鬼夜行，只需开启017（需重进方案内开启）
+	删除了六道莹草`
 }];
 
 export default versionList[versionList.length - 1].version;
