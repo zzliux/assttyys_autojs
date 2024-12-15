@@ -196,7 +196,6 @@ export class Func030 implements IFuncOrigin {
 			[center, 1280, 720, 1167, 590, 1243, 659, 1000],
 		]
 	}, { // 16 巅峰斗技
-
 		desc: '巅峰斗技主界面_名士',
 		oper: [
 			[center, 1280, 720, 1167, 590, 1243, 659, 1000],
