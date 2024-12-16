@@ -408,7 +408,7 @@ export class Func018 implements IFuncOrigin {
 		})) {
 			if (allPoint.length > 0) {
 				const oper = [
-					[allPoint[allPoint.length - 1].x, allPoint[allPoint.length - 1].y, allPoint[allPoint.length - 1].x + 20, allPoint[allPoint.length - 1].y + 20, 1000]
+					[allPoint[allPoint.length - 1].x, allPoint[allPoint.length - 1].y, allPoint[allPoint.length - 1].x + 20, allPoint[allPoint.length - 1].y + 20, 1500]
 				];
 				thisScript.regionClick(oper);
 				allPoint.pop();
@@ -562,7 +562,7 @@ export class Func018 implements IFuncOrigin {
 		// 杂项
 		if (thisScript.oper({
 			name: '悬赏_杂项',
-			operator: thisOperator.slice(15)
+			operator: thisOperator.slice(13)
 		})) {
 			swiper = 0;
 			return true
