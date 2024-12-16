@@ -1281,6 +1281,9 @@ export const versionList = [{
 	desc: `已整合悬赏，只需开启018，并增加取消协作选项（需重进方案内开启）
 	已整合百鬼夜行，只需开启017（需重进方案内开启）
 	删除了六道莹草`
+}, {
+	version: '20241216_01',
+	desc: '新增：支持巅峰s2斗技'
 }];
 
 export default versionList[versionList.length - 1].version;

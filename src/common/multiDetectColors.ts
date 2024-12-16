@@ -437,41 +437,39 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 	'巅峰斗技主界面': {
 		desc: [1280, 720,
 			[
-				[right, 1232, 617, 0xc8ad7c],
-				[right, 1189, 627, 0x281106],
-				[right, 1190, 109, 0xce9e68],
-				[left, 38, 25, 0xf2df94],
-				[left, 223, 31, 0x44250c],
-				[right, 714, 19, 0x763117],
-				[right, 743, 38, 0xe7ce87],
+				[right, 1232, 617, 0xd2bb90],
+				[right, 1189, 627, 0x3b1e0d],
+				[right, 1190, 109, 0xd7ae7d],
+				[left, 38, 25, 0xf5e5a6],
+				[left, 223, 31, 0x593716],
+				[right, 714, 19, 0x8a4526],
+				[right, 743, 38, 0xecd79a],
 			]
 		],
 	},
 	'巅峰斗技主界面_段位保护': {
-		desc: [
-			1280, 720,
+		desc: [1280, 720,
 			[
-				[right, 1232, 617, 0xbdbaa4],
+				[right, 1232, 617, 0xbebba3],
 				[right, 1189, 627, 0x55565a],
 				[right, 1190, 109, 0xd7ae7d],
-				[center, 776, 66, 0x593716],
-				[center, 715, 64, 0xf9f3ad],
 				[left, 38, 25, 0xf5e5a6],
 				[left, 223, 31, 0x593716],
+				[right, 714, 19, 0x8a4526],
+				[right, 743, 38, 0xecd79a],
 			]
 		]
 	},
 	'巅峰斗技主界面_段位保护裂': {
-		desc: [
-			1280, 720,
+		desc: [1280, 720,
 			[
-				[right, 1232, 617, 0xadbbb4],
+				[right, 1232, 617, 0xaebcb3],
 				[right, 1190, 109, 0xd7ae7d],
-				[center, 776, 66, 0x593716],
-				[center, 715, 64, 0xf9f3ad],
 				[left, 38, 25, 0xf5e5a6],
 				[left, 223, 31, 0x593716],
 				[right, 1189, 624, 0x677d8f],
+				[right, 714, 19, 0x8a4526],
+				[right, 743, 38, 0xecd79a],
 			]
 		],
 	},
