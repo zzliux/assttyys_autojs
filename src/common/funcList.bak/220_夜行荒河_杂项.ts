@@ -72,21 +72,5 @@ export class Func220 implements IFuncOrigin {
 			[center, 1280, 720, 132, 567, 1138, 682, 1000],
 		]
 	}
-		// , {
-		// 	// 胜
-		// 	desc: [1280, 720,
-		// 		[
-		// 			[center, 484, 285, 0xd1a25d],
-		// 			[center, 616, 228, 0xa82926],
-		// 			[center, 678, 181, 0xc93e3c],
-		// 			[center, 761, 261, 0xa02b28],
-		// 			[center, 803, 249, 0xbb9a61],
-		// 			[center, 491, 238, 0xfdf5e5],
-		// 		]
-		// 	],
-		// 	oper: [
-		// 		[center, 1280, 720, 132, 567, 1138, 682, 1000],
-		// 	]
-		// }
 	];
 }

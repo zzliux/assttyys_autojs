@@ -104,12 +104,12 @@ export class Func309 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[center, 479, 137, 0x110d09],
-				[center, 507, 166, 0x130d09],
-				[center, 520, 134, 0xd6a559],
-				[center, 562, 134, 0xd8a95b],
-				[center, 562, 170, 0xdfb467],
-				[center, 520, 168, 0xc49b53],
+				[center, 569, 135, 0xcaa058],
+				[center, 611, 136, 0xc19854],
+				[center, 611, 169, 0xcaa259],
+				[center, 570, 168, 0xc39a53],
+				[center, 899, 613, 0xf0dca5],
+				[center, 917, 653, 0xedcb96],
 			]
 		],
 		oper: [
@@ -133,7 +133,23 @@ export class Func309 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 28, 18, 71, 56, 500]// 返回
 		]
-	}
+	}, { // 8 +9计算强化
+		desc: [
+			1280, 720,
+			[
+				[center, 520, 136, 0xc39a55],
+				[center, 561, 137, 0xbc9552],
+				[center, 561, 169, 0xcaa259],
+				[center, 521, 168, 0xbf9751],
+				[center, 900, 614, 0xf0dca5],
+				[center, 918, 658, 0xe7b980],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 876, 615, 935, 664, 500], // 计算
+			[center, 1280, 720, 876, 615, 935, 664, 2500], // 强化
+		]
+	},
 	]
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
@@ -148,7 +164,7 @@ export class Func309 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 309,
 			name: '强化御魂_金币不足',
-			operator: [thisOperator[2], thisOperator[5]]
+			operator: [thisOperator[2], thisOperator[5], thisOperator[8]]
 		})) {
 			thisScript.global.upYuHun = true;
 			return true;
@@ -167,7 +183,7 @@ export class Func309 implements IFuncOrigin {
 		if (thisScript.global.upYuHun && thisScript.oper({
 			id: 309,
 			name: '强化御魂_金币不足',
-			operator: [thisOperator[2], thisOperator[5]]
+			operator: [thisOperator[2], thisOperator[5], thisOperator[8]]
 		})) {
 			thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 			thisScript.stop();
