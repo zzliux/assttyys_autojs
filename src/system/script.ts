@@ -7,6 +7,7 @@ import multiFindColors from '@/common/multiFindColors';
 import multiDetectColors from '@/common/multiDetectColors';
 import { IOcr, IOcrDetector, OcrResult } from './Ocr/IOcr';
 import { mlkitOcr } from '@/system/Ocr/MlkitOcr';
+import { mlkitOcr2 } from '@/system/Ocr/MlkitOcr2';
 import { yunxiOcr } from '@/system/Ocr/YunxiOcr';
 import { setCurrentScheme } from '@/common/tool';
 import { getWidthPixels, getHeightPixels } from '@auto.pro/core';
@@ -115,6 +116,9 @@ export class Script {
 			if (storeSettings.ocrType === 'MlkitOcr') {
 				this.ocrDetector = mlkitOcr.prepare();
 				this.ocr = mlkitOcr;
+			} else if (storeSettings.ocrType === 'MlkitOcr2') {
+				this.ocrDetector = mlkitOcr2.prepare();
+				this.ocr = mlkitOcr2;
 			} else if (storeSettings.ocrType === 'YunxiOcr') {
 				this.ocrDetector = yunxiOcr.prepare();
 				this.ocr = yunxiOcr;

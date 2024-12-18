@@ -7,6 +7,7 @@ import { isRoot } from '@auto.pro/core';
 import ncnnBgyx from '@/system/ncnn/ncnnBgyx';
 import helperBridge from '@/system/helperBridge';
 import { mlkitOcr } from '@/system/Ocr/MlkitOcr';
+import { mlkitOcr2 } from '@/system/Ocr/MlkitOcr2';
 import { yunxiOcr } from '@/system/Ocr/YunxiOcr';
 import { myShell } from '@/system/MyAutomator';
 import pushClients from '@/system/PushClient/index';
@@ -173,14 +174,26 @@ export default function webviewSettigns() {
 			name: 'ocrType',
 			type: 'assttyys_setting',
 			stype: 'list',
-			data: ['MlkitOcr', 'YunxiOcr'],
+			data: ['MlkitOcr', 'MlkitOcr2', 'YunxiOcr'],
 			value: storeSettings.ocrType
-		}, {
+		}];
+
+		let ocrExtEnb = false;
+		if (storeSettings.ocrType === 'MlkitOcr') {
+			ocrExtEnb = mlkitOcr.isInstalled();
+		} else if (storeSettings.ocrType === 'MlkitOcr2') {
+			ocrExtEnb = mlkitOcr2.isInstalled();
+		} else if (storeSettings.ocrType === 'YunxiOcr') {
+			ocrExtEnb = yunxiOcr.isInstalled();
+		}
+		ret.push({
 			desc: 'OCR扩展',
 			name: 'ocr_extend',
 			type: 'assttyys_setting_ocr_extend',
-			enabled: storeSettings.ocrType === 'MlkitOcr' ? mlkitOcr.isInstalled() : yunxiOcr.isInstalled()
-		}, {
+			enabled: ocrExtEnb
+		});
+
+		ret = [...ret, {
 			// 没做好，暂不启用
 			// 	desc: '百鬼夜行模型扩展（实验性功能）',
 			// 	name: 'ncnn_bgyx',
