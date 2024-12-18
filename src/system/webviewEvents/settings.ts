@@ -45,6 +45,18 @@ export default function webviewSettigns() {
 	if (typeof initStoreSettings.push_type === 'undefined') {
 		initStoreSettings.push_type = '关闭推送';
 	}
+	if (typeof initStoreSettings.defaultFloat === 'undefined') {
+		initStoreSettings.defaultFloat = [{
+			appName: '截图图标',
+			referred: true
+		}, {
+			appName: '定时图标',
+			referred: true
+		}, {
+			appName: '日志图标',
+			referred: false
+		}]
+	}
 
 	// if (typeof initStoreSettings.oneBot_version === 'undefined') {
 	// 	initStoreSettings.oneBot_version = '12';
@@ -652,5 +664,23 @@ export default function webviewSettigns() {
 
 	webview.on('getDeviceId').subscribe(([_param, done]) => {
 		done(getDeviceId());
+	});
+
+	webview.on('getToFloat').subscribe(([_param, done]) => {
+		const storeSettings = storeCommon.get('settings', {});
+		const defaultFloatList = storeSettings.defaultFloat;
+		done(defaultFloatList);
+	});
+	webview.on('saveToFloat').subscribe(([packageNameList, done]) => {
+		const storeSettings = storeCommon.get('settings', {});
+		storeSettings.defaultFloat.forEach(item => {
+			if (packageNameList.includes(item.appName)) {
+				item.referred = true;
+			} else {
+				item.referred = false;
+			}
+		});
+		storeCommon.put('settings', storeSettings);
+		done(true);
 	});
 }

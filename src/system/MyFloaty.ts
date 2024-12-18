@@ -1,5 +1,4 @@
 // require('@/system/FloatButton/FloatButton');
-import { isDebugPlayerRunning } from '@/common/toolAuto';
 import FloatButton from '@/system/FloatButton/FloatButton';
 import schemeDialog from '@/system/schemeDialog';
 import script from '@/system/script';
@@ -13,12 +12,18 @@ export class MyFloaty {
 	fb: any;
 	runEventFlag: boolean = false;
 	init() {
+		const storeSettings = storeCommon.get('settings', {});
+		const trueCount = storeSettings.defaultFloat.filter(item => item.referred === true).length;
 		if (this.fb) return;
 		const self = this;
 		this.fb = new FloatButton();
 		this.fb.setMenuOpenAngle(180);
 		this.fb.setAllButtonSize(30);
-		this.fb.setMenuRadius(40);
+		if (trueCount > 1) {
+			this.fb.setMenuRadius(40);
+		} else {
+			this.fb.setMenuRadius(34);
+		}
 		this.fb.setIcon('file://' + files.cwd() + '/assets/img/ay.png');
 		this.fb.setColor('#FFFFFF');
 		this.fb.setAutoCloseMenuTime(3000);
@@ -99,30 +104,30 @@ export class MyFloaty {
 				self.runEventFlag = false;
 				return false;
 			});
-
-		this.fb.addItem('CapScreen')
-			.setIcon('@drawable/ic_landscape_black_48dp')
-			// 图标着色
-			.setTint('#FFFFFF')
-			.setColor('#FF3300')
-			.onClick((_view, _name) => {
-				threads.start(function () {
-					sleep(600);
-					script.keepScreen(); // 更新图片
-					const bmp = script.helperBridge.helper.GetBitmap();
-					const img = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(bmp);
-					const path = `/sdcard/assttyys/screenshot/${new Date().getTime()}.png`;
-					files.ensureDir(path);
-					img.saveTo(path);
-					img.recycle();
-					bmp.recycle();
-					media.scanFile(path);
-					script.myToast(`截图已保存至${path}`);
+		if (storeSettings.defaultFloat.find(item => item.appName === '截图图标' && item.referred === true)) {
+			this.fb.addItem('CapScreen')
+				.setIcon('@drawable/ic_landscape_black_48dp')
+				// 图标着色
+				.setTint('#FFFFFF')
+				.setColor('#FF3300')
+				.onClick((_view, _name) => {
+					threads.start(function () {
+						sleep(600);
+						script.keepScreen(); // 更新图片
+						const bmp = script.helperBridge.helper.GetBitmap();
+						const img = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(bmp);
+						const path = `/sdcard/assttyys/screenshot/${new Date().getTime()}.png`;
+						files.ensureDir(path);
+						img.saveTo(path);
+						img.recycle();
+						bmp.recycle();
+						media.scanFile(path);
+						script.myToast(`截图已保存至${path}`);
+					});
+					return false;
 				});
-				return false;
-			});
-
-		if (isDebugPlayerRunning()) {
+		}
+		if (storeSettings.defaultFloat.find(item => item.appName === '日志图标' && item.referred === true)) {
 			this.fb.addItem('ViewLogConsole')
 				.setIcon('@drawable/ic_assignment_black_48dp')
 				// 图标着色
@@ -140,7 +145,7 @@ export class MyFloaty {
 				});
 		}
 
-		if ($device.sdkInt >= 23) { // android 6
+		if ($device.sdkInt >= 23 && storeSettings.defaultFloat.find(item => item.appName === '定时图标' && item.referred === true)) { // android 6
 			this.fb.addItem('ScheduleList')
 				.setIcon('@drawable/ic_list_black_48dp')
 				// 图标着色
@@ -150,8 +155,11 @@ export class MyFloaty {
 					showScheduleDialog();
 				});
 		}
-
-		this.fb.setAllButtonPadding(8);
+		if (trueCount > 1) {
+			this.fb.setAllButtonPadding(8);
+		} else {
+			this.fb.setAllButtonPadding(6);
+		}
 		this.fb.getViewUtil('logo').setPadding(0);
 		this.fb.setColor('#00000000');
 		this.fb.show();
