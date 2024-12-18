@@ -104,7 +104,7 @@ export class MyFloaty {
 				self.runEventFlag = false;
 				return false;
 			});
-		if (storeSettings.defaultFloat.find(item => item.appName === '截图图标' && item.referred === true)) {
+		if (storeSettings.defaultFloat.find(item => item.floatyName === '截图图标' && item.referred === true)) {
 			this.fb.addItem('CapScreen')
 				.setIcon('@drawable/ic_landscape_black_48dp')
 				// 图标着色
@@ -127,7 +127,7 @@ export class MyFloaty {
 					return false;
 				});
 		}
-		if (storeSettings.defaultFloat.find(item => item.appName === '日志图标' && item.referred === true)) {
+		if (storeSettings.defaultFloat.find(item => item.floatyName === '日志图标' && item.referred === true)) {
 			this.fb.addItem('ViewLogConsole')
 				.setIcon('@drawable/ic_assignment_black_48dp')
 				// 图标着色
@@ -145,7 +145,7 @@ export class MyFloaty {
 				});
 		}
 
-		if ($device.sdkInt >= 23 && storeSettings.defaultFloat.find(item => item.appName === '定时图标' && item.referred === true)) { // android 6
+		if ($device.sdkInt >= 23 && storeSettings.defaultFloat.find(item => item.floatyName === '定时图标' && item.referred === true)) { // android 6
 			this.fb.addItem('ScheduleList')
 				.setIcon('@drawable/ic_list_black_48dp')
 				// 图标着色

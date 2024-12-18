@@ -47,13 +47,13 @@ export default function webviewSettigns() {
 	}
 	if (typeof initStoreSettings.defaultFloat === 'undefined') {
 		initStoreSettings.defaultFloat = [{
-			appName: '截图图标',
+			floatyName: '截图图标',
 			referred: true
 		}, {
-			appName: '定时图标',
+			floatyName: '定时图标',
 			referred: true
 		}, {
-			appName: '日志图标',
+			floatyName: '日志图标',
 			referred: false
 		}]
 	}
@@ -674,7 +674,7 @@ export default function webviewSettigns() {
 	webview.on('saveToFloat').subscribe(([packageNameList, done]) => {
 		const storeSettings = storeCommon.get('settings', {});
 		storeSettings.defaultFloat.forEach(item => {
-			if (packageNameList.includes(item.appName)) {
+			if (packageNameList.includes(item.floatyName)) {
 				item.referred = true;
 			} else {
 				item.referred = false;
