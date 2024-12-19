@@ -671,15 +671,16 @@ export default function webviewSettigns() {
 		const defaultFloatList = storeSettings.defaultFloat;
 		done(defaultFloatList);
 	});
-	webview.on('saveToFloat').subscribe(([packageNameList, done]) => {
+	webview.on('saveToFloat').subscribe(([FloatyList, done]) => {
 		const storeSettings = storeCommon.get('settings', {});
 		storeSettings.defaultFloat.forEach(item => {
-			if (packageNameList.includes(item.floatyName)) {
+			if (FloatyList.includes(item.floatyName)) {
 				item.referred = true;
 			} else {
 				item.referred = false;
 			}
 		});
+		log(storeSettings.defaultFloat)
 		storeCommon.put('settings', storeSettings);
 		done(true);
 	});

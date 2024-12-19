@@ -23,7 +23,8 @@ export class Func028 implements IFuncOrigin {
 	operator: IFuncOperatorOrigin[] = [{
 		// 等级提升界面
 		desc: [1280, 720,
-			[[center, 656, 130, 0xcad2de],
+			[
+				[center, 656, 130, 0xcad2de],
 				[center, 1005, 133, 0xc8d1db],
 				[center, 852, 126, 0xe2bd5e],
 				[center, 702, 598, 0xf4b25f],
@@ -36,7 +37,8 @@ export class Func028 implements IFuncOrigin {
 	}, {
 		// 育成选材料界面
 		desc: [1280, 720,
-			[[left, 44, 37, 0xf5e8a9],
+			[
+				[left, 44, 37, 0xf5e8a9],
 				[center, 964, 631, 0xcbb9b2],
 				[center, 919, 642, 0xf4b25f],
 				[right, 1233, 45, 0xd7c5a2],
@@ -46,17 +48,19 @@ export class Func028 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 821, 632, 932, 670, 2500], // 确定
 		]
-	}, {
-		desc: [1280, 720,
-			// 8个+号的中心
-			[[center, 590, 182, 0xd3c3b5],
-				[center, 590, 303, 0xd3c4b7],
-				[center, 590, 428, 0xd2c1b5],
-				[center, 592, 550, 0xcfc1b5],
-				[center, 1048, 184, 0xd2c1b5],
-				[center, 1049, 305, 0xd3c2b6],
-				[center, 1049, 427, 0xd3c2b6],
-				[center, 1049, 550, 0xd3c1b6]]
+	}, { // 8个+号的中心
+		desc: [
+			1280, 720,
+			[
+				[center, 589, 195, 0xcabaaa],
+				[center, 589, 316, 0xcabaaa],
+				[center, 589, 441, 0xcabaaa],
+				[center, 589, 560, 0xcabaaa],
+				[right, 1046, 196, 0xcabaaa],
+				[right, 1046, 319, 0xcabaaa],
+				[right, 1046, 440, 0xcabaaa],
+				[right, 1046, 563, 0xcabaaa],
+			]
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
