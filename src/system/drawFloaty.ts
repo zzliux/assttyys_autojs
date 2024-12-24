@@ -28,6 +28,7 @@ const drawFloaty = {
             </frame>
         `);
 		ui.post(() => {
+			self.instacne.board.getRootView().getLayoutParams().alpha = 0.8; // alpha设置0.8，在安卓12以上实现悬浮窗穿透
 			self.instacne.setTouchable(false);
 			self.instacne.setSize(-1, -1);
 		});
