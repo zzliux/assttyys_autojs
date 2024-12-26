@@ -77,7 +77,7 @@ const SchemeList: IScheme[] = [
 		list: [51, 0, 1, 2, 3, 8, 9, 10],
 		config: {
 			'0': {
-				scheme_switch_enabled: true,
+				after_operation: '切换方案',
 				next_scheme: '个突_9退4_退出',
 			},
 			'3': { type: '关闭' },
@@ -87,7 +87,7 @@ const SchemeList: IScheme[] = [
 				type: '个人突破',
 			},
 			'9': {
-				scheme_switch_enabled: true,
+				after_operation: '切换方案',
 			},
 			'10': { type: '个人突破' },
 			'51': {
@@ -109,7 +109,7 @@ const SchemeList: IScheme[] = [
 			'0': {
 				jspd_enabled_2: true,
 				jspd_times_2: '4',
-				scheme_switch_enabled: true,
+				after_operation: '切换方案',
 				next_scheme: '__返回上个方案__',
 			},
 			'1': { exitBeforeReady: true },
@@ -203,7 +203,7 @@ const SchemeList: IScheme[] = [
 			'0': {
 				jspd_enabled_2: true,
 				jspd_times_2: 30,
-				scheme_switch_enabled: true,
+				after_operation: '切换方案',
 				next_scheme: '例_个人突破_结束后转寮突破',
 			},
 		},
@@ -319,7 +319,7 @@ const SchemeList: IScheme[] = [
 		list: [3, 503],
 		config: {
 			'503': {
-				scheme_switch_enabled: false,
+				after_operation: '停止脚本',
 				next_scheme: '通用准备退出',
 				afterCountOper: '停止脚本',
 			},
