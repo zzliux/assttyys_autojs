@@ -1284,6 +1284,9 @@ export const versionList = [{
 }, {
 	version: '20241216_01',
 	desc: '新增：支持巅峰s2斗技'
+}, {
+	version: '20241227_01',
+	desc: '增加：协同对弈开始和结算'
 }];
 
 export default versionList[versionList.length - 1].version;

@@ -5,7 +5,7 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func220 implements IFuncOrigin {
+export class Func221 implements IFuncOrigin {
 	id = 221;
 	name = '夜行荒河_挑战';
 	operator: IFuncOperatorOrigin[] = [{
