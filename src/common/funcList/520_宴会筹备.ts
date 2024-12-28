@@ -124,5 +124,11 @@ export class Func520 implements IFuncOrigin {
 			thisScript.regionClick(oper);
 			return true;
 		}
+		if (thisScript.oper({
+			name: '偏移返回',
+			operator: [thisOperator[5]]
+		})) {
+			return true;
+		}
 	}
 }
