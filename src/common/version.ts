@@ -1290,6 +1290,9 @@ export const versionList = [{
 }, {
 	version: '20241229_01',
 	desc: '优化：安卓8+下的拟人滑动更拟人'
+}, {
+	version: '20241230_01',
+	desc: '增加:9突破取消锁定,1战斗主题非简约主题会提示更换'
 }];
 
 export default versionList[versionList.length - 1].version;

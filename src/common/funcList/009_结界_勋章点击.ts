@@ -3,8 +3,8 @@ import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFu
 
 // const normal = -1; //定义常量
 const left = 0;
-// const center = 1;
-// const right = 2;
+const center = 1;
+const right = 2;
 
 export class Func009 implements IFuncOrigin {
 	id = 9;
@@ -47,8 +47,46 @@ export class Func009 implements IFuncOrigin {
 			// [left, 1280, 720, 0, 0, 1279, 719, 500]
 			[left, 1280, 720, 147, 146, 465, 265, 500]
 		]
+	}, { // 2 解锁阵容
+		desc: [
+			1280, 720,
+			[
+				[center, 818, 599, 0xbdaef2],
+				[center, 853, 599, 0xbab4f4],
+				[center, 830, 595, 0x886d4a],
+				[center, 830, 601, 0x836847],
+				[center, 852, 601, 0xb6b6ff],
+				[left, 74, 168, 0xd4bb9d],
+				[left, 36, 456, 0x5e606b],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 821, 593, 850, 609, 1000],
+		]
+	}, { // 3 解锁阵容_寮突破
+		desc: [
+			1280, 720,
+			[
+				[left, 198, 617, 0xbfaef2],
+				[left, 233, 616, 0xbdb2e9],
+				[left, 209, 613, 0x886e4b],
+				[left, 210, 621, 0x846947],
+				[left, 233, 618, 0xb6b6ff],
+				[right, 1214, 284, 0x5e3c27],
+				[right, 1211, 405, 0x8b5221],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 202, 608, 227, 628, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
+		if (thisScript.oper({
+			name: '突破界面_判断',
+			operator: [thisOperator[2], thisOperator[3]]
+		})) {
+			return true;
+		}
 		if (thisScript.oper({
 			name: '突破界面_判断',
 			operator: [{ desc: thisOperator[0].desc }]

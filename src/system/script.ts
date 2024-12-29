@@ -78,7 +78,7 @@ export class Script {
 	 * @description 消息提示
 	 * @param {string}str
 	 */
-	myToast: (str: string) => void;
+	myToast: (str: string, duration?: number) => void;
 
 	constructor() {
 		this.runThread = null;

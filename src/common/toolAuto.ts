@@ -79,7 +79,7 @@ export function requestMyScreenCapture(callback: Function, helperBridge: Ihelper
  * }
  * @param {string} str
  */
-function _toast(str: string) {
+function _toast(str: string, duration: number) {
 	const toast = android.widget.Toast.makeText(context.getApplicationContext(), str.toString(), android.widget.Toast.LENGTH_LONG);
 	// let layout = toast.getView();
 	// 设置景
@@ -99,15 +99,15 @@ function _toast(str: string) {
 	toast.show();
 	setTimeout(function () {
 		toast.cancel();
-	}, 1000)
+	}, duration)
 }
 
 /**
  * @description 消息提示
  * @param {string}str
  */
-export function myToast(str: string): void {
-	ui.run(() => _toast(str));
+export function myToast(str: string, duration: number = 1000): void {
+	ui.run(() => _toast(str, duration));
 	console.log(str);
 }
 
