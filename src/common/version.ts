@@ -1287,6 +1287,9 @@ export const versionList = [{
 }, {
 	version: '20241227_01',
 	desc: '增加：协同对弈开始和结算'
+}, {
+	version: '20241229_01',
+	desc: '优化：安卓8+下的拟人滑动更拟人'
 }];
 
 export default versionList[versionList.length - 1].version;
