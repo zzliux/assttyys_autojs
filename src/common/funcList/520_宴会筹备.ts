@@ -102,9 +102,9 @@ export class Func520 implements IFuncOrigin {
 			operator: [thisOperator[6]]
 		})) {
 			thisScript.doPush(thisScript, { text: '宴会筹备失败，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-				thisScript.stop();
-				sleep(3000);
-				return;
+			thisScript.stop();
+			sleep(3000);
+			return;
 		}
 		if (thisScript.oper({
 			name: '探索界面',
