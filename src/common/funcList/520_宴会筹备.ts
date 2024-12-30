@@ -4,7 +4,7 @@ import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFu
 const left = 0;
 const center = 1;
 const right = 2;
-let x = 0;
+
 export class Func520 implements IFuncOrigin {
 	id = 520;
 	name = '宴会筹备';
