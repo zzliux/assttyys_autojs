@@ -1293,6 +1293,9 @@ export const versionList = [{
 }, {
 	version: '20241230_01',
 	desc: '增加:9突破取消锁定,1战斗主题非简约主题会提示更换'
+}, {
+	version: '20241231_01',
+	desc: '增加：经营活动'
 }];
 
 export default versionList[versionList.length - 1].version;

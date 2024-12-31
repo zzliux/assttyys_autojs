@@ -3100,43 +3100,42 @@ const multiFindColors: IMultiFindColorsOrigin = {
 			]
 		]]
 	},
-	'音动小街_挑战_箱子': {
+	'经营_箱子': { // 领箱子
 		region: [center, 1280, 720, 107, 81, 1210, 444],
-		desc: [[ // 领箱子
-			1280, 720,
-			[
-				[center, 633, 361, 0xae2c18],
-				[center, 633, 343, 0x6cafaf],
-				[center, 658, 365, 0x520707],
-				[center, 658, 393, 0xe2d3db],
-				[center, 660, 363, 0x520707],
-			]
-		]]
-	},
-	'音动小街_挑战_加号': {
-		region: [center, 1280, 720, 107, 81, 1210, 444],
-		desc: [[ // 点+号
-			1280, 720,
-			[
-				[center, 187, 222, 0xeef7f7],
-				[center, 171, 207, 0x71b4b4],
-				[center, 171, 231, 0xacc1c7],
-				[center, 205, 202, 0x6aaeae],
-				[center, 205, 203, 0x6dafaf],
-			]
-		]]
-	},
-	'音动小街_挑战_营业中': {
-		region: [center, 1280, 720, 153, 616, 1150, 660],
 		desc: [[
 			1280, 720,
 			[
-				[center, 895, 629, 0x8a3f37],
-				[center, 892, 641, 0x8a3f37],
-				[center, 918, 639, 0x8a3f37],
-				[center, 918, 631, 0x893f37],
-				[center, 930, 639, 0xfcfbe0],
-				[center, 924, 635, 0xfbf9de],
+				[center, 607, 341, 0xe1a928],
+				[center, 600, 337, 0xa82518],
+				[center, 616, 337, 0xb73619],
+				[center, 625, 337, 0x4d0305],
+				[center, 609, 341, 0xf3c436],
+			]
+		]]
+	},
+	'经营_加号': { // 点+号
+		region: [center, 1280, 720, 107, 81, 1210, 444],
+		desc: [[
+			1280, 720,
+			[
+				[left, 182, 204, 0xeef7f7],
+				[left, 168, 182, 0x485a9f],
+				[left, 200, 189, 0x4962a5],
+				[left, 167, 204, 0xeef7f7],
+				[left, 183, 204, 0xeef7f7],
+				[left, 178, 245, 0xd9d1c3],
+			]
+		]]
+	},
+	'经营_选取店长': {
+		region: [center, 1280, 720, 153, 616, 1150, 719],
+		desc: [[
+			1280, 720,
+			[
+				[center, 596, 690, 0xe5ca9f],
+				[center, 617, 690, 0x4e5a7f],
+				[center, 660, 691, 0x535f81],
+				[center, 705, 693, 0x4b526d],
 			]
 		]]
 	},
