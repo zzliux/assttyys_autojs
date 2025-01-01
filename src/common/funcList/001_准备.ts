@@ -52,7 +52,6 @@ export class Func001 implements IFuncOrigin {
 			1280, 720,
 			[
 				[left, 46, 33, 0xd9b589],
-				[left, 92, 32, 0x513e34],
 				[left, 106, 41, 0xd0a77b],
 				[left, 168, 23, 0xd4ae84],
 				[left, 180, 38, 0xcba073],
