@@ -98,6 +98,7 @@ export class Func017 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 468, 233, 624, 550, 500],
 			[center, 1280, 720, 731, 229, 890, 563, 500],
+			[center, 1280, 720, 516, 632, 749, 700, 1000],
 		]
 	}, { // 5
 		desc: [1280, 720,
@@ -134,7 +135,8 @@ export class Func017 implements IFuncOrigin {
 				[center, 1128, 594, 0x402f1f],
 				[center, 1084, 202, 0xe7d4cf],
 				[center, 554, 514, 0x846866],
-				[center, 195, 156, 0xf9edee]]
+				[center, 195, 156, 0xf9edee]
+			]
 		],
 		oper: [
 			[center, 1280, 720, 1084, 576, 1138, 628, 1500]
@@ -144,11 +146,26 @@ export class Func017 implements IFuncOrigin {
 		const thisconf = thisScript.scheme.config['17'];
 		if (thisScript.oper({
 			id: 17,
-			name: '百鬼夜行_杂项',
-			operator: [thisOperator[3], thisOperator[6], {
+			name: '百鬼夜行_杂项_前',
+			operator: [thisOperator[3]]
+		})) {
+			return true
+		}
+		if (thisScript.oper({
+			id: 17,
+			name: '百鬼夜行_邀请好友',
+			operator: [{
 				desc: thisOperator[4].desc,
 				oper: [thisOperator[4].oper[random(0, 1)]]
-			}, thisOperator[7]]
+			}]
+		})) {
+			thisScript.regionClick([thisOperator[4].oper[2]]);
+			thisScript.keepScreen(false);
+		}
+		if (thisScript.oper({
+			id: 17,
+			name: '百鬼夜行_杂项_后',
+			operator: [thisOperator[6], thisOperator[7]]
 		})) {
 			return true
 		}
