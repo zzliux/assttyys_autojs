@@ -43,9 +43,6 @@ export class Func001 implements IFuncOrigin {
 				[center, 438, 701, 0x231917],
 				[right, 1188, 684, 0xa26f4d],
 			]
-		],
-		oper: [
-			[right, 1280, 720, 1137, 542, 1228, 632, 1000], // 准备
 		]
 	}, { // 3 准备界面左上角取点
 		desc: [
@@ -68,9 +65,6 @@ export class Func001 implements IFuncOrigin {
 				[center, 441, 645, 0x573c3c],
 				[right, 1169, 672, 0xd5a86c],
 			]
-		],
-		oper: [
-			[center, 1280, 720, 1110, 529, 1223, 616, 1000],
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -78,11 +72,13 @@ export class Func001 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 1,
 			name: '准备界面识别',
-			operator: [thisOperator[2], thisOperator[4]]
+			operator: [{ desc: thisOperator[2].desc }
+				, { desc: thisOperator[4].desc }]
 		}) && !thisScript.oper({
 			name: '准备界面识别',
 			operator: [thisOperator[3]]
 		})) {
+			thisScript.regionClick([thisOperator[0].oper[1]]);
 			thisScript.myToast('战斗主题非简约主题，部分功能失效，请及时跟换', 10000);
 			return true;
 		}
