@@ -58,8 +58,7 @@ export class Func312 implements IFuncOrigin {
 	}, { // 2 界面识别(测试中)
 		desc: [1280, 720,
 			[
-				[right, 832, 40, 0xd7c4a1],
-				[right, 1028, 40, 0xd7c4a1],
+				[right, 1237, 30, 0xd7c2a1],
 				[right, 1237, 40, 0xd7c4a1],
 				[left, 34, 37, 0xf6e8a9],
 			]
