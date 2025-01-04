@@ -18,10 +18,13 @@ export default {
             </androidx.core.widget.NestedScrollView>`
 		);
 		const title = '选择方案';
+		const schemeDialog = dialogs.build({ title, customView }).show();
 		const screenWidth = getWidthPixels();
 		const screenHeight = getHeightPixels();
-		const schemeDialog = dialogs.build({ title, customView }).show();
-		schemeDialog.getWindow().setLayout(Math.max(screenWidth * 0.6, Math.min(576, screenWidth)), screenHeight * 0.8);
+		if (screenWidth > screenHeight) {
+			schemeDialog.getWindow().setLayout(Math.max(screenWidth * 0.6, Math.min(576, screenWidth)), android.view.WindowManager.LayoutParams.WRAP_CONTENT);
+			// schemeDialog.getWindow().setLayout(android.view.WindowManager.LayoutParams.MATCH_PARENT, android.view.WindowManager.LayoutParams.WRAP_CONTENT);
+		}
 
 		let groupSchemeNames: GroupSchemeName[] = store.get('groupSchemeNames');
 		if (!schemeList) {
@@ -38,8 +41,7 @@ export default {
 		customView.groupList.setDataSource(groupSchemeNames);
 
 		customView.groupList.on('item_bind', function (itemView, _itemHolder) {
-			const schemeListView = ui.inflate(
-				`<list id="groupSchemeList">
+			let itemStr = `<list id="groupSchemeList">
                     <horizontal w="*">
                         <vertical w="0dp" layout_weight="1">
                             <text padding="10 5 10 5" textColor="black" textSize="14" id="leftText" text="{{left}}" layout_gravity="center" />
@@ -48,20 +50,37 @@ export default {
                             <text padding="10 5 10 5" textColor="black" textSize="14" id="rightText" text="{{right}}" layout_gravity="center" />
                         </vertical>
                     </horizontal>
-                </list>`,
-				itemView,
-			);
+                </list>`;
+			if (screenWidth <= screenHeight) {
+				itemStr = `<list id="groupSchemeList">
+                    <horizontal w="*">
+                        <vertical w="*">
+                            <text padding="10 5 10 5" textColor="black" textSize="14" id="leftText" text="{{left}}" layout_gravity="center" />
+                        </vertical>
+                    </horizontal>
+                </list>`;
+			}
+			const schemeListView = ui.inflate(itemStr, itemView);
 			itemView.addView(schemeListView);
 		});
 
 		customView.groupList.on('item_data_bind', function (itemView, itemHolder) {
 
 			const data: { left: string, right?: string }[] = [];
-			for (let i = 0; i < itemHolder.item.schemeNames.length; i+= 2) {
-				data.push({
-					left: itemHolder.item.schemeNames[i],
-					right: i + 1 < itemHolder.item.schemeNames.length ? itemHolder.item.schemeNames[i + 1] : ''
-				});
+			if (screenWidth > screenHeight) {
+				for (let i = 0; i < itemHolder.item.schemeNames.length; i+= 2) {
+					data.push({
+						left: itemHolder.item.schemeNames[i],
+						right: i + 1 < itemHolder.item.schemeNames.length ? itemHolder.item.schemeNames[i + 1] : ''
+					});
+				}
+			} else {
+				for (let i = 0; i < itemHolder.item.schemeNames.length; i++) {
+					data.push({
+						left: itemHolder.item.schemeNames[i],
+						right: ''
+					});
+				}
 			}
 			itemView.groupSchemeList.setDataSource(data);
 			itemView.groupSchemeList.on('item_data_bind', (itemView, itemHolder) => {
@@ -87,10 +106,12 @@ export default {
 				itemView.leftText.click(() => {
 					textClick(itemHolder.item.left);
 				});
-				itemHolder.item.right && itemView.rightText.attr('foreground', '?selectableItemBackground');
-				itemHolder.item.right && itemView.rightText.click(() => {
-					textClick(itemHolder.item.right);
-				});
+				if (screenWidth > screenHeight) {
+					itemHolder.item.right && itemView.rightText.attr('foreground', '?selectableItemBackground');
+					itemHolder.item.right && itemView.rightText.click(() => {
+						textClick(itemHolder.item.right);
+					});
+				}
 			});
 			// itemView.groupSchemeList.on('item_click', function (item, _i, _itemView, _listView) {
 			// 	const schemeName = item;
