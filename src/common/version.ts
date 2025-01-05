@@ -1284,6 +1284,18 @@ export const versionList = [{
 }, {
 	version: '20241216_01',
 	desc: '新增：支持巅峰s2斗技'
+}, {
+	version: '20241227_01',
+	desc: '增加：协同对弈开始和结算'
+}, {
+	version: '20241229_01',
+	desc: '优化：安卓8+下的拟人滑动更拟人'
+}, {
+	version: '20241230_01',
+	desc: '增加:9突破取消锁定,1战斗主题非简约主题会提示更换'
+}, {
+	version: '20241231_01',
+	desc: '增加：经营活动'
 }];
 
 export default versionList[versionList.length - 1].version;

@@ -41,7 +41,6 @@ export class Func028 implements IFuncOrigin {
 				[left, 44, 37, 0xf5e8a9],
 				[center, 964, 631, 0xcbb9b2],
 				[center, 919, 642, 0xf4b25f],
-				[right, 1233, 45, 0xd7c5a2],
 				[right, 1222, 161, 0xfbeddb],
 				[center, 598, 674, 0x2b1f1b]]
 		],

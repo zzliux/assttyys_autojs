@@ -8,7 +8,7 @@ const right = 2;
 export class Func520 implements IFuncOrigin {
 	id = 520;
 	name = '宴会筹备';
-	desc:'进入探索，狸猫饿鬼河童各打三次（需挑战券）'
+	desc: '进入探索，狸猫饿鬼河童各打三次（需挑战券）'
 	operator: IFuncOperatorOrigin[] = [{
 		desc: '探索地图界面',
 		oper: [
@@ -84,8 +84,28 @@ export class Func520 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1030, 125, 1070, 157, 1000],
 		]
+	}, { // 6 第一章
+		desc: [
+			1280, 720,
+			[
+				[right, 1141, 214, 0xf8f3e0],
+				[right, 1159, 213, 0xf8f3e0],
+				[right, 1173, 206, 0xf7f2df],
+				[right, 1115, 225, 0xe7e1cf],
+				[right, 1150, 340, 0xf8f3e0],
+			]
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
+		if (thisScript.oper({
+			name: '第一章',
+			operator: [thisOperator[6]]
+		})) {
+			thisScript.doPush(thisScript, { text: '宴会筹备失败，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+			thisScript.stop();
+			sleep(3000);
+			return;
+		}
 		if (thisScript.oper({
 			name: '探索界面',
 			operator: [{ desc: thisOperator[0].desc }]
@@ -122,6 +142,12 @@ export class Func520 implements IFuncOrigin {
 		if (pointA) {
 			const oper = [[pointA.x, pointA.y, pointA.x + 10, pointA.y + 10, 1000]];
 			thisScript.regionClick(oper);
+			return true;
+		}
+		if (thisScript.oper({
+			name: '偏移返回',
+			operator: [thisOperator[5]]
+		})) {
 			return true;
 		}
 	}

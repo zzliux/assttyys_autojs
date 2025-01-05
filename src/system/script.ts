@@ -21,6 +21,7 @@ import { globalRoot, globalRootType } from '@/system/GlobalStore/index';
 import schedule, { Job } from '@/system/Schedule';
 import { MyFloaty } from '@/system/MyFloaty';
 import ncnnBgyx from '@/system/ncnn/ncnnBgyx';
+import { commonConfigVal } from '@/common/commonConfig';
 
 /**
  * 脚本对象，一个程序只能有一个
@@ -78,7 +79,7 @@ export class Script {
 	 * @description 消息提示
 	 * @param {string}str
 	 */
-	myToast: (str: string) => void;
+	myToast: (str: string, duration?: number) => void;
 
 	constructor() {
 		this.runThread = null;
@@ -627,7 +628,8 @@ export class Script {
 							break;
 						}
 					} else {
-						flag = self.desc(tarFuncList[i], staredSchemeList[j].commonConfig);
+						const cmcfg = Object.assign({}, commonConfigVal, staredSchemeList[j]?.commonConfig || {});
+						flag = self.desc(tarFuncList[i], cmcfg);
 						funcDescCess[tarFuncList[i].id] = flag;
 						if (flag) {
 							break;

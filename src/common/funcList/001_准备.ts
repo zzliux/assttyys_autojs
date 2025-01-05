@@ -32,9 +32,56 @@ export class Func001 implements IFuncOrigin {
 		oper: [
 			[left, 1280, 720, 37, 637, 86, 686, 1000]
 		]
+	}, { // 2 准备界面无左上角取点
+		desc: [
+			1280, 720,
+			[
+				[left, 42, 681, 0xe49780],
+				[left, 49, 682, 0xfff9ef],
+				[left, 124, 682, 0xfef1d8],
+				[left, 150, 682, 0xfbdec5],
+				[center, 438, 701, 0x231917],
+				[right, 1188, 684, 0xa26f4d],
+			]
+		]
+	}, { // 3 准备界面左上角取点
+		desc: [
+			1280, 720,
+			[
+				[left, 46, 33, 0xd9b589],
+				[left, 106, 41, 0xd0a77b],
+				[left, 168, 23, 0xd4ae84],
+				[left, 180, 38, 0xcba073],
+			]
+		]
+	}, { // 4 准备界面经典主题
+		desc: [
+			1280, 720,
+			[
+				[left, 41, 681, 0xdf8471],
+				[left, 49, 680, 0xfff7ec],
+				[left, 36, 567, 0x913157],
+				[left, 122, 686, 0xfdead1],
+				[center, 441, 645, 0x573c3c],
+				[right, 1169, 672, 0xd5a86c],
+			]
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['1'];
+		if (thisScript.oper({
+			id: 1,
+			name: '准备界面识别',
+			operator: [{ desc: thisOperator[2].desc }
+				, { desc: thisOperator[4].desc }]
+		}) && !thisScript.oper({
+			name: '准备界面识别',
+			operator: [thisOperator[3]]
+		})) {
+			thisScript.regionClick([thisOperator[0].oper[1]]);
+			thisScript.myToast('战斗主题非简约主题，部分功能失效，请及时跟换', 10000);
+			return true;
+		}
 		if (thisconf.exitBeforeReady) {
 			return thisScript.oper({
 				id: 1,

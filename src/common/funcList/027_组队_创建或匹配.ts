@@ -145,13 +145,33 @@ export class Func027 implements IFuncOrigin {
 			[center, 1280, 720, 413, 450, 574, 485, 700], // 魂土
 			[center, 1280, 720, 414, 516, 571, 553, 700], // 魂王
 		]
+	}, { // 13 第二栏的全部字样
+		desc: [1280, 720,
+			[
+				[left, 237, 219, 0x2c2924],
+				[left, 230, 229, 0x272420],
+				[left, 238, 229, 0x272420],
+				[left, 275, 228, 0x443f38],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 255, 230, 260, 235, 1000], // 副本上划起始
+			[center, 1280, 720, 255, 155, 260, 160, 1000], // 副本上划结束
+		]
 	}]
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['27'];
 		if (!thisScript.global.first_create_team && thisScript.oper({
 			name: '组队置顶',
-			operator: [{ desc: thisOperator[12].desc }]
+			operator: [{ desc: thisOperator[12].desc }, { desc: thisOperator[13].desc }]
 		})) {
+			if (thisScript.oper({
+				name: '组队置顶',
+				operator: [{ desc: thisOperator[13].desc }]
+			})) {
+				thisScript.regionBezierSwipe(thisOperator[13].oper[0], thisOperator[13].oper[1], [2000, 2050], 500);
+				return true;
+			}
 			switch (thisConf.mission) {
 				case '御魂':
 					thisScript.regionClick([thisOperator[12].oper[0]]);

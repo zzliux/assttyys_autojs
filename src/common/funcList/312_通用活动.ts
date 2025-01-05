@@ -44,17 +44,26 @@ export class Func312 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[left, 231, 239, 0x9f5045],
-				[left, 267, 236, 0x9f5045],
-				[center, 572, 239, 0x9f5045],
-				[center, 688, 241, 0x9f5045],
-				[center, 725, 237, 0x9f5045],
-				[right, 1005, 241, 0x9f5045],
+				[left, 260, 545, 0xeecfa0],
+				[center, 468, 543, 0xedcfa4],
+				[center, 539, 549, 0xe8c894],
+				[center, 713, 546, 0xe6c692],
+				[center, 922, 543, 0xefd1a3],
+				[right, 998, 548, 0xe8c793],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 181, 186, 1055, 291, 1000],
+			[center, 1280, 720, 1065, 252, 1151, 425, 1000],
 		]
+	}, { // 2 界面识别(测试中)
+		desc: [1280, 720,
+			[
+				[right, 832, 40, 0xd7c4a1],
+				[right, 1028, 40, 0xd7c4a1],
+				[right, 1237, 40, 0xd7c4a1],
+				[left, 34, 37, 0xf6e8a9],
+			]
+		],
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['312'];

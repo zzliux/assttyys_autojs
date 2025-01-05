@@ -40,3 +40,8 @@ const CommonConfig = [{
 }];
 
 export default CommonConfig;
+
+export const commonConfigVal = CommonConfig[0].config.reduce((acc, cur) => {
+	acc[cur.name] = cur.default;
+	return acc;
+}, {});
