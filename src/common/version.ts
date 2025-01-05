@@ -1296,6 +1296,11 @@ export const versionList = [{
 }, {
 	version: '20241231_01',
 	desc: '增加：经营活动'
+}, {
+	version: '20240105_01',
+	desc: `修复：悬赏追踪重新取点
+	通用活动放宽悬浮窗黄标识别（测试）
+	方案选择改为两列`
 }];
 
 export default versionList[versionList.length - 1].version;
