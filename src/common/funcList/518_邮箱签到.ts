@@ -39,14 +39,15 @@ export class Func518 implements IFuncOrigin {
 			//  4 检测_是否有邮件
 			desc: [1280, 720,
 				[
-					[left, 253, 521, 0xe0cdac],
-					[left, 275, 530, 0xceb18d],
-					[left, 284, 528, 0xc7a581],
-					[left, 273, 511, 0xe7d5b6],
+					[right, 1152, 39, 0xd7b288],
+					[right, 1173, 26, 0xfe0101],
+					[right, 1140, 46, 0xd2ab7f],
+					[right, 1155, 54, 0xcba072],
+					[right, 1225, 35, 0xd4ae84],
 				],
 			],
 			oper: [
-				[left, 1280, 720, 258, 508, 276, 525, 1200], //  点击邮箱
+				[center, 1280, 720, 1137, 32, 1171, 58, 1000], //  点击邮箱
 			],
 		},
 		{
@@ -663,6 +664,19 @@ export class Func518 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 1083, 81, 1133, 116, 1000],
 			]
+		}, { // 45 拓展包关闭
+			desc: [
+				1280, 720,
+				[
+					[left, 319, 382, 0xd6c8a8],
+					[center, 440, 165, 0x6b4837],
+					[center, 591, 478, 0xf3b25e],
+					[center, 926, 156, 0xe8d4cf],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 905, 142, 945, 173, 1000],
+			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -851,6 +865,7 @@ export class Func518 implements IFuncOrigin {
 					thisOperator[28], //  一键祝福弹窗
 					thisOperator[29], //  无祝福
 					thisOperator[30], //  检测_商店_热门推荐
+					thisOperator[45], //  拓展包关闭
 					thisOperator[31], //  检测_商店主页
 					thisOperator[34], //  检测_好友羁绊
 					thisOperator[35], //  检测_商店_礼包屋_热卖页签
