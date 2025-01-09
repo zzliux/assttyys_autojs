@@ -192,7 +192,7 @@ export class Func306 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 323, 310, 390, 345, 1000],
+			[center, 1280, 720, 856, 310, 909, 348, 1000],
 		]
 	}, { // 12 永生之海_P2当队长
 		desc: [

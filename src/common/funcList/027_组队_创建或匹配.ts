@@ -170,7 +170,6 @@ export class Func027 implements IFuncOrigin {
 				operator: [{ desc: thisOperator[13].desc }]
 			})) {
 				thisScript.regionBezierSwipe(thisOperator[13].oper[0], thisOperator[13].oper[1], [2000, 2050], 500);
-				return true;
 			}
 			switch (thisConf.mission) {
 				case '御魂':
