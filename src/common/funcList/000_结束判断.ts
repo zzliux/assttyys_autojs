@@ -222,9 +222,10 @@ export class Func000 implements IFuncOrigin {
 				thisScript.myToast(`等待${toSleep}ms`);
 				sleep(toSleep);
 				thisScript.rerun();
-			}
-			if (typeof thisconf.scheme_switch_enabled !== 'undefined' && thisconf.scheme_switch_enabled) {
-				thisconf.after_operation = '切换方案';
+			} else if (typeof thisconf.after_operation  === 'undefined') {
+				if (typeof thisconf.scheme_switch_enabled !== 'undefined' && thisconf.scheme_switch_enabled) {
+					thisScript.rerun(thisconf.next_scheme);
+				}
 			}
 		}
 
