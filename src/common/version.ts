@@ -1301,6 +1301,9 @@ export const versionList = [{
 	desc: `修复：悬赏追踪重新取点
 	通用活动放宽悬浮窗黄标识别（测试）
 	方案选择改为两列`
+}, {
+	version: '20240118_01',
+	desc: '因功能0结束判断的参数“结束当前方案后切换方案”变更为“结束后的操作”，如果有存在方案在功能0中设置过切换方案，需手动重新设置下该功能的新参数“结束后的操作”值为“切换方案”'
 }];
 
 export default versionList[versionList.length - 1].version;

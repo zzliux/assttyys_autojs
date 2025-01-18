@@ -206,22 +206,6 @@ export class Func000 implements IFuncOrigin {
 		}
 
 		function stopOrReRun() {
-			// 兼容老逻辑
-			if (typeof thisconf.scheme_switch_enabled !== 'undefined' && thisconf.scheme_switch_enabled) {
-				thisScript.rerun(thisconf.next_scheme);
-				sleep(3000);
-				return;
-			} else if (typeof thisconf.scheme_switch_enabled !== 'undefined' && !thisconf.scheme_switch_enabled) {
-				thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-				// 停止脚本时关闭应用
-				if (thisconf.stop_with_launched_app_exit) {
-					thisScript.stopRelatedApp();
-				}
-				thisScript.stop();
-				sleep(3000);
-				return;
-			}
-
 			// 新逻辑
 			if (thisconf.after_operation === '切换方案') {
 				thisScript.rerun(thisconf.next_scheme);
