@@ -39,14 +39,15 @@ export class Func518 implements IFuncOrigin {
 			//  4 检测_是否有邮件
 			desc: [1280, 720,
 				[
-					[left, 253, 521, 0xe0cdac],
-					[left, 275, 530, 0xceb18d],
-					[left, 284, 528, 0xc7a581],
-					[left, 273, 511, 0xe7d5b6],
+					[right, 1152, 39, 0xd7b288],
+					[right, 1173, 26, 0xfe0101],
+					[right, 1140, 46, 0xd2ab7f],
+					[right, 1155, 54, 0xcba072],
+					[right, 1225, 35, 0xd4ae84],
 				],
 			],
 			oper: [
-				[left, 1280, 720, 258, 508, 276, 525, 1200], //  点击邮箱
+				[center, 1280, 720, 1137, 32, 1171, 58, 1000], //  点击邮箱
 			],
 		},
 		{
@@ -154,17 +155,16 @@ export class Func518 implements IFuncOrigin {
 			//  11 检测_签到解读弹窗
 			desc: [1280, 720,
 				[
-					[center, 785, 203, 0xe9dfdf],
-					[center, 848, 603, 0xe3d7ca],
-					[center, 909, 450, 0xf7e5db],
-					[center, 880, 613, 0xaf4c8e],
-					[center, 468, 543, 0xded3d2],
-					[center, 461, 441, 0xdfd6d6],
-					[center, 773, 641, 0xdecece],
+					[center, 479, 356, 0xa72d03],
+					[center, 506, 356, 0xa82f05],
+					[center, 515, 353, 0xad3c15],
+					[center, 495, 414, 0xe0d7d6],
+					[right, 772, 420, 0xe9e2e3],
+					[center, 500, 507, 0xad3f19],
 				],
 			],
 			oper: [
-				[center, 1280, 720, 858, 96, 888, 118, 1200], //  点击关闭
+				[center, 1280, 720, 854, 108, 893, 124, 1200], //  点击关闭
 			],
 		},
 		{
@@ -180,7 +180,7 @@ export class Func518 implements IFuncOrigin {
 				],
 			],
 			oper: [
-				[center, 1280, 720, 858, 96, 888, 118, 1200], //  点击关闭
+				[center, 1280, 720, 854, 108, 893, 124, 1200], //  点击关闭
 			],
 		},
 		{
@@ -663,6 +663,34 @@ export class Func518 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 1083, 81, 1133, 116, 1000],
 			]
+		}, { // 45 拓展包关闭
+			desc: [
+				1280, 720,
+				[
+					[left, 319, 382, 0xd6c8a8],
+					[center, 440, 165, 0x6b4837],
+					[center, 591, 478, 0xf3b25e],
+					[center, 926, 156, 0xe8d4cf],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 905, 142, 945, 173, 1000],
+			]
+		}, { // 46 礼包屋未打开
+			desc: [
+				1280, 720,
+				[
+					[right, 1133, 675, 0xdeb659],
+					[right, 1149, 667, 0x842121],
+					[right, 1136, 648, 0xa57935],
+					[right, 1177, 647, 0x80b3cc],
+					[left, 160, 158, 0x86474e],
+					[center, 528, 323, 0xff7b23],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 1137, 654, 1184, 696, 1000],
+			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -851,6 +879,7 @@ export class Func518 implements IFuncOrigin {
 					thisOperator[28], //  一键祝福弹窗
 					thisOperator[29], //  无祝福
 					thisOperator[30], //  检测_商店_热门推荐
+					thisOperator[45], //  拓展包关闭
 					thisOperator[31], //  检测_商店主页
 					thisOperator[34], //  检测_好友羁绊
 					thisOperator[35], //  检测_商店_礼包屋_热卖页签
@@ -858,6 +887,7 @@ export class Func518 implements IFuncOrigin {
 					thisOperator[38], //  检测是否为好友弹窗 页签处于最近
 					thisOperator[41], //  检测_商店_热门推荐3
 					thisOperator[42], //  关式神拓展包弹窗并跳过动画
+					thisOperator[46], //  礼包屋未打开
 				],
 			})
 		) {

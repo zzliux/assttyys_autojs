@@ -174,7 +174,6 @@ export class Func018 implements IFuncOrigin {
 			1280, 720,
 			[
 				[left, 280, 77, 0x1f130f],
-				[left, 320, 202, 0xe3dac8],
 				[right, 1008, 180, 0xc3bab1],
 				[right, 1000, 62, 0x1c1b1d],
 				[center, 647, 201, 0xb04a49],
@@ -189,7 +188,6 @@ export class Func018 implements IFuncOrigin {
 			1280, 720,
 			[
 				[left, 280, 77, 0x1f130f],
-				[left, 320, 202, 0xe3dac8],
 				[right, 1008, 180, 0xc3bab1],
 				[right, 1000, 62, 0x1c1b1d],
 				[left, 181, 201, 0x6e5f51],

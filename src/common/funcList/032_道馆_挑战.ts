@@ -224,12 +224,6 @@ export class Func032 implements IFuncOrigin {
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['32'];
-		if (thisScript.oper({
-			name: '道馆结束重置个别参数',
-			operator: [thisOperator[12]]
-		})) {
-			thisScript.global.fight_switch_skill = true;
-		}
 		if (thisScript.global.daoGuan_exit && thisScript.oper({
 			id: 32,
 			name: '检测_放弃突破',
