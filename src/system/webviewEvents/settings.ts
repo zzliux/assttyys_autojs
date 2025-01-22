@@ -9,7 +9,7 @@ import helperBridge from '@/system/helperBridge';
 import { mlkitOcr } from '@/system/Ocr/MlkitOcr';
 import { mlkitOcr2 } from '@/system/Ocr/MlkitOcr2';
 import { yunxiOcr } from '@/system/Ocr/YunxiOcr';
-// import { myShell } from '@/system/MyAutomator';
+import { myShell } from '@/system/MyAutomator';
 import pushClients from '@/system/PushClient/index';
 import { AbstractPushClient } from '../PushClient/AbstractPushClient';
 
@@ -151,19 +151,19 @@ export default function webviewSettigns() {
 			});
 		}
 
-		// if (device.sdkInt >= 31 && isRoot) { // 安卓12，有root
-		// 	// 不受信任触摸事件
-		// 	const unTrunstedTouchStatus = myShell.execAndWaitFor('settings get global block_untrusted_touches');
-		// 	if (typeof unTrunstedTouchStatus !== 'undefined') {
-		// 		console.log('unTrunstedTouchStatus', unTrunstedTouchStatus);
-		// 		ret.push({
-		// 			desc: '允许不受信任触摸的事件穿透',
-		// 			name: 'unTrunstedTouchStatus',
-		// 			type: 'autojs_inner_setting_unTrunstedTouchStatus',
-		// 			enabled: 0 === parseInt(unTrunstedTouchStatus) ? true : false
-		// 		});
-		// 	}
-		// }
+		if (device.sdkInt >= 31 && isRoot) { // 安卓12，有root
+			// 不受信任触摸事件
+			const unTrunstedTouchStatus = myShell.execAndWaitFor('settings get global block_untrusted_touches');
+			if (typeof unTrunstedTouchStatus !== 'undefined') {
+				console.log('unTrunstedTouchStatus', unTrunstedTouchStatus);
+				ret.push({
+					desc: '允许不受信任触摸的事件穿透',
+					name: 'unTrunstedTouchStatus',
+					type: 'autojs_inner_setting_unTrunstedTouchStatus',
+					enabled: 0 === parseInt(unTrunstedTouchStatus) ? true : false
+				});
+			}
+		}
 
 		ret = [...ret, {
 			desc: '悬浮选择方案后是否直接启动脚本',
@@ -402,14 +402,14 @@ export default function webviewSettigns() {
 				//     done(true);
 				// });
 			}
-		// } else if ('autojs_inner_setting_unTrunstedTouchStatus' === item.type) {
-		// 	if (item.enabled) {
-		// 		myShell.execAndWaitFor('settings put global block_untrusted_touches 0');
-		// 		done(true);
-		// 	} else {
-		// 		toastLog('请勿关闭允许不受信任触摸的事件穿透');
-		// 		done(false);
-		// 	}
+		} else if ('autojs_inner_setting_unTrunstedTouchStatus' === item.type) {
+			if (item.enabled) {
+				myShell.execAndWaitFor('settings put global block_untrusted_touches 0');
+				done(true);
+			} else {
+				toastLog('请勿关闭允许不受信任触摸的事件穿透');
+				done(false);
+			}
 		} else if ('assttyys_setting' === item.type) {
 			const storeSettings = storeCommon.get('settings', {});
 			if ((item.stype || 'switch') === 'switch') {

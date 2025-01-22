@@ -264,8 +264,8 @@ global.FloatButton = function () {
         mWindows.logo = floaty.rawWindow("<frame id='content' w='auto' h='auto' />");
         //修复 更新悬浮窗LayoutParams 报错
         ui.run(() => {
-            mWindows.menu.content.getRootView().getLayoutParams().alpha = 0.8; // alpha设置0.8，在安卓12以上实现悬浮窗穿透
-            // mWindows.logo.content.getRootView().getLayoutParams().alpha = 0.8; // alpha设置0.8，在安卓12以上实现悬浮窗穿透
+            mWindows.menu.content.getRootView().getLayoutParams().alpha = 0.8; // alpha设置0.8，在安卓12以上实现悬浮窗穿透（好像失效了）
+            mWindows.logo.content.getRootView().getLayoutParams().alpha = 0.8; // alpha设置0.8，在安卓12以上实现悬浮窗穿透（好像失效了）
             mWindows.logo.setSize(-2, -2);
             mWindows.menu.setSize(-2, -2);
             mWindows.logo.setTouchable(false);
