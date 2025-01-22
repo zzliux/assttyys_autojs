@@ -1304,6 +1304,9 @@ export const versionList = [{
 }, {
 	version: '20240118_01',
 	desc: '因功能0结束判断的参数“结束当前方案后切换方案”变更为“结束后的操作”，如果有存在方案在功能0中设置过切换方案，需手动重新设置下该功能的新参数“结束后的操作”值为“切换方案”'
+},  {
+	version: '20250122_01',
+	desc: '因透明悬浮的穿透因未知情况失效，恢复设置项“允许不受信任触摸的事件穿透”',
 }];
 
 export default versionList[versionList.length - 1].version;
