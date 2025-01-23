@@ -175,7 +175,7 @@ export class Func014 implements IFuncOrigin {
 						'快': [200, 400],
 						'中': [500, 700],
 						'慢': [800, 1200],
-					}[String(thisconf.swipeSpeed) || '慢'], 0, 200);
+					}[String(thisconf.swipeSpeed) || '慢'], 200);
 					sleep(500);
 					thisScript.keepScreen(true);
 				} else {

@@ -86,13 +86,13 @@ export class Func015 implements IFuncOrigin {
 					sleep(1500);
 
 					if ('打手' == thisconf.type) {
-						thisScript.regionSwipe(thisOperator[0].oper[5], thisOperator[0].oper[7], [800, 1200], 0, 200);
-						thisScript.regionSwipe(thisOperator[0].oper[5], thisOperator[0].oper[6], [200, 400], 0, 500);
-						thisScript.regionSwipe(thisOperator[0].oper[6], thisOperator[0].oper[8], [1200, 1500], 0, 200);
+						thisScript.regionSwipe(thisOperator[0].oper[5], thisOperator[0].oper[7], [800, 1200], 200);
+						thisScript.regionSwipe(thisOperator[0].oper[5], thisOperator[0].oper[6], [200, 400], 500);
+						thisScript.regionSwipe(thisOperator[0].oper[6], thisOperator[0].oper[8], [1200, 1500], 200);
 					} else if ('队长' == thisconf.type) {
-						thisScript.regionSwipe(thisOperator[0].oper[5], thisOperator[0].oper[9], [800, 1200], 0, 200);
-						thisScript.regionSwipe(thisOperator[0].oper[5], thisOperator[0].oper[6], [200, 400], 0, 500);
-						thisScript.regionSwipe(thisOperator[0].oper[6], thisOperator[0].oper[10], [1200, 1500], 0, 200);
+						thisScript.regionSwipe(thisOperator[0].oper[5], thisOperator[0].oper[9], [800, 1200], 200);
+						thisScript.regionSwipe(thisOperator[0].oper[5], thisOperator[0].oper[6], [200, 400], 500);
+						thisScript.regionSwipe(thisOperator[0].oper[6], thisOperator[0].oper[10], [1200, 1500], 200);
 					}
 				} else {
 					// N卡
@@ -117,14 +117,14 @@ export class Func015 implements IFuncOrigin {
 							thisOperator[0].oper[13][1],
 							thisOperator[0].oper[13][2] + (thisOperator[0].oper[14][2] - thisOperator[0].oper[13][2]) * handlePos / 100,
 							thisOperator[0].oper[13][3],
-						], [800, 1200], 0, 200);
+						], [800, 1200], 200);
 						sleep(500);
 						thisScript.keepScreen(true);
 					}
 					let point = thisScript.findMultiColor('准备_N卡');
 					let pointCnt = 20;
 					while (!point && --pointCnt) {
-						thisScript.regionSwipe(thisOperator[0].oper[12], thisOperator[0].oper[11], [800, 1200], 0, 200);
+						thisScript.regionSwipe(thisOperator[0].oper[12], thisOperator[0].oper[11], [800, 1200], 200);
 						sleep(1000);
 						point = thisScript.findMultiColor('准备_N卡');
 						thisScript.keepScreen(true);

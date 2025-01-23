@@ -66,15 +66,15 @@ export class Func516 implements IFuncOrigin {
 
 			if (thisScript.global.liao_activity_page_flag % 2 === 1) {
 				//  滑动寮活动神社
-				thisScript.regionBezierSwipe(thisOperator[0].oper[1], thisOperator[0].oper[0], [1200, 1500], 0, 1000);
+				thisScript.regionBezierSwipe(thisOperator[0].oper[1], thisOperator[0].oper[0], [1200, 1500], 1000);
 				sleep(500);
 				return true;
 			} else {
-				// thisScript.regionBezierSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [1200, 1500], 0, 1000);
+				// thisScript.regionBezierSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [1200, 1500], 1000);
 				// 由原来的上下滑动修改为返回上一级
 				const r = random(2000, 10000);
 				thisScript.myToast(`未找到已开启寮活动，等待${Math.round(r / 1000)}秒后再次检测`);
-				thisScript.regionClick([thisOperator[0].oper[2]], 0, 2000);
+				thisScript.regionClick([thisOperator[0].oper[2]], 2000);
 				sleep(r);
 				return true;
 			}

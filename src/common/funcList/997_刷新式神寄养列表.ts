@@ -110,7 +110,7 @@ export class Func997 implements IFuncOrigin {
 						desc: thisOperator[3].desc,
 					}]
 				})) {
-					thisScript.regionBezierSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [1200, 1500], 0, 200);
+					thisScript.regionBezierSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [1200, 1500], 200);
 				}
 
 				thisScript.oper({

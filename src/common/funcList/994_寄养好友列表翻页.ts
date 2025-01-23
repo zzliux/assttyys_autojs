@@ -108,7 +108,7 @@ export class Func994 implements IFuncOrigin {
 			name: '寄养界面_判断',
 			operator: [{ desc: thisOperator[0].desc }]
 		})) {
-			thisScript.regionBezierSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [200, 250], 0, 200);
+			thisScript.regionBezierSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [200, 250], 200);
 			if (!thisScript.global.jy_list_swipe_times) {
 				thisScript.global.jy_list_swipe_times = 0;
 			}

@@ -242,7 +242,7 @@ export class Func510 implements IFuncOrigin {
 				} else {// ocr模式
 					if (thisScript.global.change_shikigami_state === 'flushed') {
 
-						thisScript.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [1200, 1500], 0, 1000);
+						thisScript.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [1200, 1500], 1000);
 
 						const toDetectAreaBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[2].oper[5].slice(0, 4))
 						console.time('ocr.detect.area');

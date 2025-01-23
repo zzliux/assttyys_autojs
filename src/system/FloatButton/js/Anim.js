@@ -234,8 +234,8 @@ function Anim(gd) {
             for (let i in views) {
                 view = views[i];
                 value = Object.keys(views).indexOf(i);
-                arr.push(tx(view, isShow ? [0, data.x[e][value]] : [data.x[e][value], 0]));
-                arr.push(ty(view, isShow ? [0, data.y[e][value]] : [data.y[e][value], 0]));
+                arr.push(tx(view, isShow ? [0, data.x[e][value]] : [data.x[e][value]]));
+                arr.push(ty(view, isShow ? [0, data.y[e][value]] : [data.y[e][value]]));
                 arr.push(sx(view, isShow ? [0, 1] : [1, 0]));
                 arr.push(sy(view, isShow ? [0, 1] : [1, 0]));
             }

@@ -96,7 +96,7 @@ export class Func047 implements IFuncOrigin {
 							return;
 						}
 					}
-					thisScript.regionSwipe(thisOperator[1].oper[0], thisOperator[1].oper[1], [100, 300], 0, 2000);
+					thisScript.regionSwipe(thisOperator[1].oper[0], thisOperator[1].oper[1], [100, 300], 2000);
 					swiper++
 					return true
 				}
