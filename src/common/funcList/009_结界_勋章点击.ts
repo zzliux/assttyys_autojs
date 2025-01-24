@@ -79,8 +79,33 @@ export class Func009 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 202, 608, 227, 628, 1000],
 		]
+	}, { // 4 九退四_第一个结界
+		desc: [
+			1280, 720,
+			[
+				[left, 247, 161, 0xdacdbd],
+				[center, 445, 162, 0xdacdbd],
+				[center, 443, 231, 0xdacdbd],
+				[left, 157, 250, 0xceb9ac],
+				[left, 178, 177, 0x613f21],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 275, 160, 438, 251, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
+		// 九退四_退出时只点击第一个结界保底操作
+		let thisconf_0 = null;
+		if (thisScript.scheme.config['0']) {
+			thisconf_0 = thisScript.scheme.config['0'];
+		}
+		if (thisconf_0 && thisconf_0.jspd_enabled_2 && thisconf_0.jspd_times_2 === '4') {
+			return thisScript.oper({
+				name: '九退四_退出_保底操作',
+				operator: [thisOperator[4]]
+			})
+		}
 		if (thisScript.oper({
 			name: '突破界面_判断',
 			operator: [thisOperator[2], thisOperator[3]]
