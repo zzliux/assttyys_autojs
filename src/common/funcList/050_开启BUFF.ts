@@ -86,8 +86,8 @@ export class Func050 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 737, 516, 783, 533, 1000],
-			[center, 1280, 720, 744, 119, 779, 135, 1000],
+			[center, 1280, 720, 360, 477, 417, 495, 1000],
+			[center, 1280, 720, 360, 163, 412, 179, 1000],
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -96,7 +96,7 @@ export class Func050 implements IFuncOrigin {
 			id: 50,
 			name: '新区超绝加成',
 			operator: [{
-				desc: thisOperator[4].desc
+				desc: thisOperator[0].desc
 			}]
 		})) {
 			thisScript.regionSwipe(thisOperator[4].oper[0], thisOperator[4].oper[1], [1000, 1300], 200);
