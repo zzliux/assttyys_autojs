@@ -74,9 +74,34 @@ export class Func050 implements IFuncOrigin {
 		oper: [
 			[left, 1280, 720, 119, 659, 150, 712, 1000],
 		]
+	}, { // 4 新区超绝加成
+		desc: [
+			1280, 720,
+			[
+				[center, 397, 137, 0xbfdaee],
+				[center, 389, 158, 0xe5cb8a],
+				[center, 422, 169, 0xf88400],
+				[center, 407, 173, 0xf49209],
+				[center, 387, 173, 0xdfbe7d],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 737, 516, 783, 533, 1000],
+			[center, 1280, 720, 744, 119, 779, 135, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['50'];
+		if (thisScript.oper({
+			id: 50,
+			name: '新区超绝加成',
+			operator: [{
+				desc: thisOperator[4].desc
+			}]
+		})) {
+			thisScript.regionSwipe(thisOperator[4].oper[0], thisOperator[4].oper[1], [1000, 1300], 200);
+			return true;
+		}
 		if (thisScript.oper({
 			id: 50,
 			name: 'BUFF界面',
