@@ -96,7 +96,7 @@ export class Func050 implements IFuncOrigin {
 			id: 50,
 			name: '新区超绝加成',
 			operator: [{
-				desc: thisOperator[0].desc
+				desc: thisOperator[4].desc
 			}]
 		})) {
 			thisScript.regionSwipe(thisOperator[4].oper[0], thisOperator[4].oper[1], [1000, 1300], 200);
