@@ -18,18 +18,6 @@ export class Func312 implements IFuncOrigin {
 			type: 'text',
 			default: '1134,590,1225,645',
 			value: null,
-		}, {
-			name: 'exit',
-			desc: '达到时间后退出(需要ocr)',
-			type: 'switch',
-			default: false,
-			value: null,
-		}, {
-			name: 'time',
-			desc: '目标时间（输入数字，逗号分隔）',
-			type: 'text',
-			default: '1,20',
-			value: null,
 		}]
 	}]
 	operator: IFuncOperatorOrigin[] = [{
@@ -100,34 +88,6 @@ export class Func312 implements IFuncOrigin {
 				thisScript.regionClick(oper);
 			}
 			thisScript.keepScreen();
-		}
-
-		if (thisConf.exit && thisScript.oper({
-			name: '当前成绩',
-			operator: [{ desc: thisOperator[0].desc }]
-		}) && thisScript.getOcrDetector()) {
-			const time = String(thisConf.time).split(',');
-			const result = thisScript.findText('.+', 0, thisOperator[0].oper[1], '包含');
-			if (result.length === 0) {
-				console.log('未识别到任何字样');
-				return false;
-			} else {
-				const realTime = String(result[0].label).split(':');
-				if (Number.isNaN(realTime[0]) && Number.isNaN(realTime[1])) {
-					console.log('非数字，等待5秒继续检测');
-					sleep(5000);
-				} else if (Number(realTime[0]) == Number(time[0]) && Number(realTime[1]) <= Number(time[1]) || Number(realTime[0]) < Number(time[0])) {
-					return thisScript.oper({
-						id: 312,
-						name: '退出',
-						operator: [{
-							oper: [thisOperator[0].oper[2], thisOperator[0].oper[3]]
-						}]
-					}, 0)
-				} else {
-					sleep(5000);
-				}
-			}
 		}
 
 		if (curCnt) {

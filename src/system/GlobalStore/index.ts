@@ -95,6 +95,7 @@ export type globalRootType = {
 	HJmin: number, // 304 绘卷系统刷新CD
 	HJsec: number, // 304 绘卷系统刷新CD
 	fengNa: boolean, // 302奉纳
+	finght_time: number, // 320战斗时间
 }
 
 export const globalRoot: globalRootType = {
@@ -193,5 +194,6 @@ export const globalRoot: globalRootType = {
 	HJmin: null,
 	HJsec: null,
 	fengNa: false,
-	xsFilter: {}
+	xsFilter: {},
+	finght_time: null,
 }
