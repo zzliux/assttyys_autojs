@@ -40,7 +40,9 @@ export default function webviewSchedule() {
 			}
 		})
 		if (item.repeatMode === 3 && item.checked) {
-			item.nextDate = mergeOffsetTime(getNextByCron(item.interval), item.nextOffset);
+			const nextDate = getNextByCron(item.interval);
+			if (!nextDate) return; // cron表达式解析失败，跳过该任务
+			item.nextDate = mergeOffsetTime(nextDate, item.nextOffset);
 		}
 		jobToSchedule(item); // autojs端特有，用于将job加入schedule，mock做不到该逻辑，先注释
 	});
