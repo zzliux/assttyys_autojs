@@ -180,23 +180,36 @@ export class Func311 implements IFuncOrigin {
 					const point = thisScript.findMultiColor('神荒')
 					if (point) {
 						console.log('开局查找到神荒');
-						if (point.x > 307 && point.x < 440) {
-							thisScript.regionClick([thisOperator[3].oper[0]]);
-						} else if (point.x > 440 && point.x < 589) {
-							thisScript.regionClick([thisOperator[3].oper[1]]);
-						} else if (point.x > 589 && point.x < 753) {
-							thisScript.regionClick([thisOperator[3].oper[2]]);
-						} else if (point.x > 753 && point.x < 892) {
-							thisScript.regionClick([thisOperator[3].oper[3]]);
-						} else if (point.x > 892 && point.x < 1031) {
-							thisScript.regionClick([thisOperator[3].oper[4]]);
+						// if (point.x > 307 && point.x < 440) {
+						// 	thisScript.regionClick([thisOperator[3].oper[0]]);
+						// } else if (point.x > 440 && point.x < 589) {
+						// 	thisScript.regionClick([thisOperator[3].oper[1]]);
+						// } else if (point.x > 589 && point.x < 753) {
+						// 	thisScript.regionClick([thisOperator[3].oper[2]]);
+						// } else if (point.x > 753 && point.x < 892) {
+						// 	thisScript.regionClick([thisOperator[3].oper[3]]);
+						// } else if (point.x > 892 && point.x < 1031) {
+						// 	thisScript.regionClick([thisOperator[3].oper[4]]);
+						// }
+						const point_blood = thisScript.findMultiColorEx('红标_血条')
+						for (const flagPoint of point_blood) {
+							if (flagPoint.x < point.x + 60 && flagPoint.x > point.x - 60) {
+								const oper = [[
+									point.x - 5,
+									point.y + 60,
+									point.x + 5,
+									point.y + 90,
+									1000]];
+								thisScript.regionClick(oper);
+								break;
+							}
 						}
+						thisScript.global.redFlag = true;
+						return true;
 					}
-					thisScript.global.redFlag = true;
-					return true;
 				}
 			}
+			return false;
 		}
-		return false;
 	}
 }

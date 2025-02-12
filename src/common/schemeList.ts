@@ -850,8 +850,7 @@ const SchemeList: IScheme[] = [
 				preSearch: true
 			},
 			'311': {
-				redType: '夜溟彼岸花',
-				sleepTime: 2.4
+				redType: '神荒',
 			},
 			'519': {
 				defense: 1,
