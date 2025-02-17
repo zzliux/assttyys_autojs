@@ -195,10 +195,10 @@ export class Func311 implements IFuncOrigin {
 						for (const flagPoint of point_blood) {
 							if (flagPoint.x < point.x + 60 && flagPoint.x > point.x - 60) {
 								const oper = [[
-									point.x - 5,
-									point.y + 60,
-									point.x + 5,
-									point.y + 90,
+									flagPoint.x - 5,
+									flagPoint.y + 60,
+									flagPoint.x + 5,
+									flagPoint.y + 90,
 									1000]];
 								thisScript.regionClick(oper);
 								break;
