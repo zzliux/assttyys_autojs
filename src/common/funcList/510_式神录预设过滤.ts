@@ -30,16 +30,28 @@ export class Func510 implements IFuncOrigin {
 			default: false,
 		}, {
 			name: 'groupNum',
-			desc: '目标预设的分组在第N个（输入数字，只支持8个以内）',
+			desc: '第一套目标预设的分组在第N个（输入数字，只支持8个以内）',
 			type: 'text',
 			default: '1',
 			value: '1',
 		}, {
 			name: 'defaultNum',
-			desc: '目标预设在第N个（输入数字，只支持4个以内）',
+			desc: '第一套目标预设在第N个（输入数字，只支持前4个）',
 			type: 'text',
 			default: '1',
 			value: '1',
+		}, {
+			name: 'groupNum2',
+			desc: '第二套目标预设的分组在第N个（输入数字，只支持8个以内）',
+			type: 'text',
+			default: '0',
+			value: '0',
+		}, {
+			name: 'defaultNum2',
+			desc: '第二套目标预设在第N个（输入数字，只支持4个以内）',
+			type: 'text',
+			default: '0',
+			value: '0',
 		}],
 	}];
 	operator: IFuncOperatorOrigin[] = [
@@ -194,8 +206,8 @@ export class Func510 implements IFuncOrigin {
 			})) {
 				if (thisConf && thisConf.fastMode) {
 					if (thisScript.global.change_shikigami_state === 'flushed') {
-						thisScript.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [500, 700], 0, 500);
-						thisScript.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [500, 700], 0, 500);
+						thisScript.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [500, 700], 500, 100);
+						thisScript.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [500, 700], 500, 100);
 						let tureGroupNum = null;
 						if (!thisScript.global.preset_once_groupNum) {
 							tureGroupNum = Number(thisConf.groupNum) - 1
@@ -224,6 +236,32 @@ export class Func510 implements IFuncOrigin {
 						//  需要点击两次
 						if (thisScript.global.change_shikigami_state === 'change_team_default_1') {
 							thisScript.global.change_shikigami_state = 'change_team_default_2';
+						} else if (thisConf.groupNum2 != '0') {
+							thisScript.global.change_shikigami_state = 'second_groud';
+						} else {
+							thisScript.global.change_shikigami_state = 'finish';
+						}
+						thisScript.regionClick([oper]);
+						return true;
+					} else if (thisScript.global.change_shikigami_state === 'second_groud') {
+						const tureGroupNum = Number(thisConf.groupNum2) - 1;
+						const oper = [[
+							thisOperator[7].oper[0][0],
+							thisOperator[7].oper[0][1] + (thisOperator[7].oper[0][4] * tureGroupNum),
+							thisOperator[7].oper[0][2],
+							thisOperator[7].oper[0][3] + (thisOperator[7].oper[0][4] * tureGroupNum),
+							500
+						]];
+						thisScript.regionClick(oper);
+						thisScript.global.change_shikigami_state = 'second_default_1';
+						return true;
+					} else if (thisScript.global.change_shikigami_state.includes('second_default')) {
+						console.log('式神录_当前选中队伍预设');
+						const trueDefaultNum = Number(thisConf.defaultNum2) - 1;
+						const oper = thisOperator[8].oper[trueDefaultNum];
+						//  需要点击两次
+						if (thisScript.global.change_shikigami_state === 'second_default_1') {
+							thisScript.global.change_shikigami_state = 'second_default_2';
 						} else {
 							thisScript.global.change_shikigami_state = 'finish';
 						}
@@ -242,7 +280,7 @@ export class Func510 implements IFuncOrigin {
 				} else {// ocr模式
 					if (thisScript.global.change_shikigami_state === 'flushed') {
 
-						thisScript.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [1200, 1500], 0, 1000);
+						thisScript.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [1200, 1500], 1000);
 
 						const toDetectAreaBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[2].oper[5].slice(0, 4))
 						console.time('ocr.detect.area');

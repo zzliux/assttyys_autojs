@@ -196,7 +196,7 @@ export class Func016 implements IFuncOrigin {
 						point.x + thisOperator[0].oper[5][2],
 						point.y + thisOperator[0].oper[5][3],
 					];
-					thisScript.regionSwipe(beginRegion, thisOperator[0].oper[6], [100, 300], 0, 200);
+					thisScript.regionSwipe(beginRegion, thisOperator[0].oper[6], [100, 300], 200);
 				}
 				thisScript.regionClick([thisOperator[0].oper[7]]);
 				thisScript.myToast(`地鬼_热门挑战_第${thisScript.global.dgCurNum + 1}次`);

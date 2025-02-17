@@ -80,7 +80,7 @@ export class Func020 implements IFuncOrigin {
 			// 		desc: thisOperator[0].desc
 			// 	}]
 			// })) {
-			// 	thisScript.regionSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [100, 300], 0, 200);
+			// 	thisScript.regionSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [100, 300], 200);
 			// 	return true;
 			// }
 			if (thisScript.oper({
@@ -103,7 +103,7 @@ export class Func020 implements IFuncOrigin {
 					desc: thisOperator[0].desc
 				}]
 			})) {
-				thisScript.regionSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [100, 300], 0, 200);
+				thisScript.regionSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [100, 300], 200);
 				return true;
 			}
 			return thisScript.oper({

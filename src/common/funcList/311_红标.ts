@@ -173,30 +173,37 @@ export class Func311 implements IFuncOrigin {
 				}
 			} else if (thisconf.redType === '神荒') {
 				if (thisScript.oper({
-					id: 311,
 					name: '红标-行动条检测',
-					operator: [thisOperator[5]],
+					operator: [thisOperator[4], thisOperator[5]],
 				})) {
 					const point = thisScript.findMultiColor('神荒')
 					if (point) {
 						console.log('开局查找到神荒');
-						if (point.x > 307 && point.x < 440) {
-							thisScript.regionClick([thisOperator[3].oper[0]]);
-						} else if (point.x > 440 && point.x < 589) {
-							thisScript.regionClick([thisOperator[3].oper[1]]);
-						} else if (point.x > 589 && point.x < 753) {
-							thisScript.regionClick([thisOperator[3].oper[2]]);
-						} else if (point.x > 753 && point.x < 892) {
-							thisScript.regionClick([thisOperator[3].oper[3]]);
-						} else if (point.x > 892 && point.x < 1031) {
-							thisScript.regionClick([thisOperator[3].oper[4]]);
+						const point_blood = thisScript.findMultiColorEx('红标_血条')
+						const operList = [];
+						for (const flagPoint of point_blood) {
+							if (flagPoint.x < point.x + 60 && flagPoint.x > point.x - 60) {
+								operList.push(flagPoint);
+							}
 						}
+						operList.sort((a, b) => b.y - a.y);
+						if (operList.length > 0) {
+							const firstFlagPoint = operList[0];
+							const oper = [
+								firstFlagPoint.x - 15,
+								firstFlagPoint.y + 60,
+								firstFlagPoint.x - 5,
+								firstFlagPoint.y + 80,
+								1000
+							];
+							thisScript.regionClick([oper]);
+						}
+						thisScript.global.redFlag = true;
+						return true;
 					}
-					thisScript.global.redFlag = true;
-					return true;
 				}
 			}
+			return false;
 		}
-		return false;
 	}
 }

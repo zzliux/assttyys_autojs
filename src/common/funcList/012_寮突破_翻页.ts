@@ -48,7 +48,7 @@ export class Func012 implements IFuncOrigin {
 			name: '突破界面_判断',
 			operator: [{ desc: thisOperator[0].desc }]
 		})) {
-			thisScript.regionBezierSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [800, 1600], 0, 200);
+			thisScript.regionBezierSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [800, 1600], 200);
 			if (!thisScript.global.tp_swipe_times) {
 				thisScript.global.tp_swipe_times = 0;
 			}

@@ -8,8 +8,8 @@ const center = 1;
 export class Func024 implements IFuncOrigin {
 	id = 24;
 	name = '获得奖励确认';
-	operator: IFuncOperatorOrigin[] = [{
-		desc: [1280, 720, // 奖励只有1排
+	operator: IFuncOperatorOrigin[] = [{ // 奖励只有1排
+		desc: [1280, 720,
 			[
 				[center, 424, 328, 0xbfa88f],
 				[center, 408, 237, 0x382a1c],
@@ -23,45 +23,17 @@ export class Func024 implements IFuncOrigin {
 		oper: [
 			[left, 1280, 720, 69, 171, 170, 452, 500]
 		]
-	}, {
-		desc: [1280, 720, // 奖励有2排
+	}, { // 奖励有2排
+		desc: [1280, 720,
 			[
 				[center, 401, 210, 0x39291d],
 				[center, 828, 208, 0x3c2a20],
-				[center, 602, 172, 0xfbf2cd],
 				[center, 917, 418, 0x8e6a41],
 				[center, 370, 430, 0x8d6940],
 				[center, 619, 254, 0xcbb59e]]
 		],
 		oper: [
 			[left, 1280, 720, 69, 171, 170, 452, 500]
-		]
-	}, {
-		desc: [1280, 720, // 周年活动999的获得奖励1排
-			[
-				[center, 498, 201, 0xf2e5ad],
-				[center, 363, 382, 0x8c673f],
-				[center, 913, 383, 0x8d673e],
-				[center, 836, 257, 0x402f1f],
-				[center, 748, 198, 0xfbf3cf],
-			]
-		],
-		oper: [
-			[left, 1280, 720, 69, 171, 170, 452, 500]
-		]
-	}, { // 鬼王失败
-		desc: [
-			1280, 720,
-			[
-				[center, 461, 105, 0x463e4c],
-				[center, 443, 158, 0x5e5468],
-				[center, 484, 165, 0x5b5265],
-				[center, 719, 170, 0x968c7c],
-				[center, 920, 155, 0xa39a8b],
-			]
-		],
-		oper: [
-			[center, 1280, 720, 919, 310, 1124, 452, 1000],
 		]
 	}]
 }

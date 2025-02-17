@@ -18,7 +18,7 @@ export class Func518 implements IFuncOrigin {
 			// 0 页面是否为庭院(菜单未展开) 只支持默认庭院皮肤与默认装饰
 			desc: '页面是否为庭院_菜单未展开_只支持默认庭院皮肤与默认装饰',
 			oper: [
-				[right, 1280, 720, 1168, 592, 1230, 690, 5000], // 庭院打开菜单
+				[right, 1280, 720, 1168, 592, 1230, 690, 1200], // 庭院打开菜单
 				[center, 1280, 720, 882, 626, 924, 668, 1200], //  庭院点击好友
 				[center, 1280, 720, 660, 626, 697, 664, 1200], //  庭院点击商店
 			],
@@ -155,17 +155,16 @@ export class Func518 implements IFuncOrigin {
 			//  11 检测_签到解读弹窗
 			desc: [1280, 720,
 				[
-					[center, 785, 203, 0xe9dfdf],
-					[center, 848, 603, 0xe3d7ca],
-					[center, 909, 450, 0xf7e5db],
-					[center, 880, 613, 0xaf4c8e],
-					[center, 468, 543, 0xded3d2],
-					[center, 461, 441, 0xdfd6d6],
-					[center, 773, 641, 0xdecece],
+					[center, 479, 356, 0xa72d03],
+					[center, 506, 356, 0xa82f05],
+					[center, 515, 353, 0xad3c15],
+					[center, 495, 414, 0xe0d7d6],
+					[right, 772, 420, 0xe9e2e3],
+					[center, 500, 507, 0xad3f19],
 				],
 			],
 			oper: [
-				[center, 1280, 720, 858, 96, 888, 118, 1200], //  点击关闭
+				[center, 1280, 720, 854, 108, 893, 124, 1200], //  点击关闭
 			],
 		},
 		{
@@ -181,7 +180,7 @@ export class Func518 implements IFuncOrigin {
 				],
 			],
 			oper: [
-				[center, 1280, 720, 858, 96, 888, 118, 1200], //  点击关闭
+				[center, 1280, 720, 854, 108, 893, 124, 1200], //  点击关闭
 			],
 		},
 		{
@@ -677,6 +676,21 @@ export class Func518 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 905, 142, 945, 173, 1000],
 			]
+		}, { // 46 礼包屋未打开
+			desc: [
+				1280, 720,
+				[
+					[right, 1133, 675, 0xdeb659],
+					[right, 1149, 667, 0x842121],
+					[right, 1136, 648, 0xa57935],
+					[right, 1177, 647, 0x80b3cc],
+					[left, 160, 158, 0x86474e],
+					[center, 528, 323, 0xff7b23],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 1137, 654, 1184, 696, 1000],
+			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -873,6 +887,7 @@ export class Func518 implements IFuncOrigin {
 					thisOperator[38], //  检测是否为好友弹窗 页签处于最近
 					thisOperator[41], //  检测_商店_热门推荐3
 					thisOperator[42], //  关式神拓展包弹窗并跳过动画
+					thisOperator[46], //  礼包屋未打开
 				],
 			})
 		) {

@@ -121,7 +121,7 @@ export class Func113 implements IFuncOrigin {
 			if (point) {
 				const oper1 = [point.x + 30, point.y + 40, point.x + 40, point.y + 50, 1000]
 				const oper2 = [point.x + 30, point.y - 200, point.x + 40, point.y - 190, 1000]
-				thisScript.regionSwipe(oper1, oper2, [500, 700], 0, 1000);
+				thisScript.regionSwipe(oper1, oper2, [500, 700], 1000);
 				return true;
 			}
 		}

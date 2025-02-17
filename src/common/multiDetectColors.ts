@@ -38,7 +38,6 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 				[left, 106, 24, 0xcfa375],
 				[right, 1270, 132, 0x48371f],
 				[right, 1270, 700, 0x241919],
-				// [right, 1268, 80, 0x946430],
 				[right, 1266, 545, 0x573f26],
 			]
 		]
@@ -417,7 +416,6 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 				[right, 1189, 626, 0x3c1e0c],
 				[center, 843, 290, 0x6e3926],
 				[center, 842, 288, 0x713a2a],
-				[right, 864, 621, 0x947163],
 			],
 		],
 	},
@@ -426,6 +424,7 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 			1280, 720,
 			[
 				[left, 36, 24, 0xf7eaab],
+				[center, 685, 356, 0x06295c],
 				[right, 1228, 621, 0xd6c095],
 				[right, 1203, 602, 0x3b1e0d],
 				[center, 798, 40, 0x593615],

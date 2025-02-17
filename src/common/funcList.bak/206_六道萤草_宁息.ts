@@ -141,7 +141,7 @@ export class Func206 implements IFuncOrigin {
 				if (!toClick) {
 					// 没找到就执行下一个操作
 					if (typeof thisScript.global.d6NextStation === 'undefined' || thisScript.global.d6NextStation === '翻页') {
-						thisScript.regionBezierSwipe(thisOperator[0].oper[4], thisOperator[0].oper[5], [400, 1000], 0, 200);
+						thisScript.regionBezierSwipe(thisOperator[0].oper[4], thisOperator[0].oper[5], [400, 1000], 200);
 						thisScript.global.d6NextStation = '刷新';
 					} else if (thisScript.global.d6NextStation === '刷新' && coins >= 300) {
 						thisScript.regionClick([thisOperator[0].oper[6]]);
@@ -151,7 +151,7 @@ export class Func206 implements IFuncOrigin {
 						// 	// 刷新弹出确认，没有到上限
 						// 	thisScript.regionClick([thisOperator[0].oper[7]]);
 						// 	// 刷新后再翻回来
-						// 	thisScript.regionBezierSwipe(thisOperator[0].oper[5], thisOperator[0].oper[4], [400, 1000], 0, 200);
+						// 	thisScript.regionBezierSwipe(thisOperator[0].oper[5], thisOperator[0].oper[4], [400, 1000], 200);
 						// } else {
 						// 	// 刷新没退出确认，到上限了，直接退出
 						// 	thisScript.regionClick([thisOperator[0].oper[0], thisOperator[0].oper[1]]);
@@ -167,7 +167,7 @@ export class Func206 implements IFuncOrigin {
 							thisScript.global.d6NxFilter = [];
 							thisScript.global.d6NextStation = '翻页';
 						} else {
-							thisScript.regionBezierSwipe(thisOperator[0].oper[5], thisOperator[0].oper[4], [400, 1000], 0, 200);
+							thisScript.regionBezierSwipe(thisOperator[0].oper[5], thisOperator[0].oper[4], [400, 1000], 200);
 							thisScript.global.d6NxRefreshCnt++;
 						}
 						thisScript.global.d6NxFilter = [];

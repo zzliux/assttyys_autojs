@@ -33,6 +33,12 @@ export class Func993 implements IFuncOrigin {
 					default: '式神寄养',
 				},
 				{
+					name: 'close_game',
+					desc: '长时间未识别也不重启游戏(关闭则会重启)',
+					type: 'switch',
+					default: false,
+				},
+				{
 					name: 'account_index',
 					desc: '账号序号(用于同区多账号，指从上往下数第N个账号，目前指适配三个账号的情况，账号序号优先级大于账号昵称！)',
 					type: 'text',
@@ -176,7 +182,7 @@ export class Func993 implements IFuncOrigin {
 			// 7
 			desc: '页面是否为庭院_菜单未展开_只支持默认庭院皮肤与默认装饰',
 			oper: [
-				[right, 1280, 720, 1168, 592, 1230, 690, 5000], // 在首页打开菜单
+				[right, 1280, 720, 1168, 592, 1230, 690, 1200], // 在首页打开菜单
 			],
 		},
 		{
@@ -436,6 +442,9 @@ export class Func993 implements IFuncOrigin {
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['993'];
+		if (thisConf.close_game) {
+			thisScript.global.app_is_open_flag = false;
+		}
 		if (!thisScript.global.open_only_once) {
 			if (thisScript.oper({
 				id: 993,
@@ -445,13 +454,11 @@ export class Func993 implements IFuncOrigin {
 				return true;
 			}
 
-			if (
-				thisScript.oper({
-					id: 993,
-					name: '是否为庭院(未展开菜单)',
-					operator: [thisOperator[7]],
-				})
-			) {
+			if (thisScript.oper({
+				id: 993,
+				name: '是否为庭院(未展开菜单)',
+				operator: [thisOperator[7]],
+			})) {
 				console.log('展开庭院菜单');
 				return true;
 			}
@@ -487,20 +494,16 @@ export class Func993 implements IFuncOrigin {
 			const { lastFuncDateTime, currentDate, runDate } = thisScript;
 
 			// 有开屏代表从新启动游戏了
-			if (
-				thisScript.oper({
-					id: 993,
-					name: '开屏的zen动画',
-					operator: [thisOperator[23], thisOperator[24], thisOperator[25]],
-				})
-			) {
+			if (thisScript.oper({
+				name: '开屏的zen动画',
+				operator: [thisOperator[23], thisOperator[24], thisOperator[25]],
+			})) {
 				thisScript.global.app_is_open_flag = false;
 				return true;
 			}
 
 			// 10秒钟未执行过任何操作，杀应用重启
-			if (
-				thisScript.global.app_is_open_flag &&
+			if (thisScript.global.app_is_open_flag &&
 				(new Date()).getTime() - Math.max(lastFuncDateTime?.getTime() || 0, currentDate?.getTime() || 0, runDate?.getTime() || 0) > 10000
 			) {
 				thisScript.stopRelatedApp();
@@ -511,15 +514,13 @@ export class Func993 implements IFuncOrigin {
 				return true;
 			}
 
-			if (
-				thisScript.oper({
-					id: 993,
-					name: '是否为登录页',
-					operator: [{
-						desc: thisOperator[0].desc,
-					}],
-				})
-			) {
+			if (thisScript.oper({
+				id: 993,
+				name: '是否为登录页',
+				operator: [{
+					desc: thisOperator[0].desc,
+				}],
+			})) {
 				if (thisConf.area != '') {
 					const toDetectAreaBmp = thisScript.helperBridge.helper.GetBitmap(
 						...thisOperator[0].oper[1].slice(0, 4)
@@ -601,8 +602,7 @@ export class Func993 implements IFuncOrigin {
 					console.timeEnd('ocr.detect.area');
 					toDetectAreaBmp.recycle();
 
-					if (
-						Array.isArray(resultArea) &&
+					if (Array.isArray(resultArea) &&
 						resultArea.length > 0 &&
 						resultArea[0].label
 					) {
@@ -654,16 +654,14 @@ export class Func993 implements IFuncOrigin {
 				}
 			}
 
-			if (
-				thisConf.area &&
+			if (thisConf.area &&
 				thisScript.oper({
 					id: 993,
 					name: '是否为切换区域页',
 					operator: [{
 						desc: thisOperator[4].desc,
 					}],
-				})
-			) {
+				})) {
 				thisScript.oper({
 					name: '点击展开角色区域',
 					operator: [{
@@ -716,18 +714,16 @@ export class Func993 implements IFuncOrigin {
 				}
 			}
 
-			if (
-				thisScript.oper({
-					id: 993,
-					name: '登陆后是否有弹窗',
-					operator: [
-						thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[6],
-						thisOperator[9], thisOperator[10], thisOperator[11], /* thisOperator[12],*/
-						thisOperator[14], thisOperator[15], thisOperator[17], thisOperator[20],
-						thisOperator[21]
-					],
-				})
-			) {
+			if (thisScript.oper({
+				id: 993,
+				name: '登陆后是否有弹窗',
+				operator: [
+					thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[6],
+					thisOperator[9], thisOperator[10], thisOperator[11], /* thisOperator[12],*/
+					thisOperator[14], thisOperator[15], thisOperator[17], thisOperator[20],
+					thisOperator[21]
+				],
+			})) {
 				return true;
 			}
 

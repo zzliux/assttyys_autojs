@@ -115,7 +115,7 @@ function erase(map) {
     }
     for (let i = 0; i < m; i++) {
         for (let j = 0; j < n; j++) {
-            map[i][j] = Math.max(map[i][j], 0);
+            map[i][j] = Math.max(map[i][j]);
         }
     }
 

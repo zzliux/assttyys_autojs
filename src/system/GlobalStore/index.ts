@@ -38,7 +38,7 @@ export type globalRootType = {
 	fm_kiss_boss_flag: boolean, //  逢魔 是否已击杀首领
 	fm_boss_btn_click_cnt: number, // 点击逢魔首领按钮次数
 	change_shikigami_flag: boolean, //  更换式神
-	change_shikigami_state: 'flushed' | 'search_group' | 'search_default' | 'change_team_default_1' | 'change_team_default_2' | 'finish', //  跟换式神预设状态值
+	change_shikigami_state: 'flushed' | 'search_group' | 'search_default' | 'change_team_default_1' | 'change_team_default_2' | 'finish' | 'second_groud' | 'second_default_1' | 'second_default_2', //  跟换式神预设状态值
 	change_shikigami_list_swipe_times: number,
 	change_shikigami_last_group_name: string,   //  式神录预设分组最后一项的名称
 	narrow_state: Record<string, boolean>,   //  狭间暗域状态
@@ -63,6 +63,8 @@ export type globalRootType = {
 	operate_finish_flag: boolean;  // 寄养完成操作flag
 	preset_once_groupNum: number | null;     // 一次性修改的预设分组
 	preset_once_defaultNum: number | null;     // 一次性修改的预设阵容
+	preset_once_team_groupNum: number | null;     // 315预设阵容的预设分组
+	preset_once_team_defaultNum: number | null;     // 315预设阵容的预设阵容
 	qiling_Position: number[] | null;   //  契灵的地图位置
 	qiling_last: number | null;     //  契灵的上次类型
 	opened_buff: boolean; // 是否已执行开启buff
@@ -87,6 +89,7 @@ export type globalRootType = {
 	daoGuan_click: boolean, // 选寮点挑战
 	daoGuan_exit: boolean, // 道馆退出突破
 	daoGuan_again: boolean, // 道馆再次攻打是否攻打第二阵容
+	daoguan_team: boolean, // 道馆是否切换队伍
 	first_create_team: boolean, // 首次创建队伍
 	open_only_once: boolean, // 首次启动游戏
 	fight_switch_skill: boolean, // 三号位切换技能
@@ -95,6 +98,7 @@ export type globalRootType = {
 	HJmin: number, // 304 绘卷系统刷新CD
 	HJsec: number, // 304 绘卷系统刷新CD
 	fengNa: boolean, // 302奉纳
+	finght_time: number, // 320战斗时间
 }
 
 export const globalRoot: globalRootType = {
@@ -161,6 +165,8 @@ export const globalRoot: globalRootType = {
 	operate_finish_flag: false,
 	preset_once_groupNum: null,
 	preset_once_defaultNum: null,
+	preset_once_team_groupNum: null,
+	preset_once_team_defaultNum: null,
 	qiling_Position: null,
 	qiling_last: null,
 	opened_buff: false,
@@ -185,6 +191,7 @@ export const globalRoot: globalRootType = {
 	daoGuan_click: false,
 	daoGuan_exit: false,
 	daoGuan_again: true,
+	daoguan_team: true,
 	first_create_team: false,
 	open_only_once: false,
 	fight_switch_skill: true,
@@ -193,5 +200,6 @@ export const globalRoot: globalRootType = {
 	HJmin: null,
 	HJsec: null,
 	fengNa: false,
-	xsFilter: {}
+	xsFilter: {},
+	finght_time: null,
 }

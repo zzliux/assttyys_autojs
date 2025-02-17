@@ -72,33 +72,37 @@ export class Func315 implements IFuncOrigin {
 	]
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['315'];
-		if (thisScript.global.shangyushe) {
-			if (thisScript.oper({
-				name: '准备的预设',
-				operator: [thisOperator[0]]
-			})) {
-				return true;
+		if (thisScript.global.shangyushe && thisScript.oper({
+			name: '准备的预设',
+			operator: [thisOperator[0]]
+		})) {
+			return true;
+		}
+		if (thisScript.oper({
+			name: '准备预设里界面',
+			operator: [thisOperator[1]]
+		})) {
+			if (!thisScript.global.preset_once_team_groupNum) {
+				thisScript.global.preset_once_team_groupNum = Number(thisConf.groupNum) - 1;
 			}
-			if (thisScript.oper({
-				name: '准备预设里界面',
-				operator: [thisOperator[1]]
-			})) {
-				const tureGroupNum = Number(thisConf.groupNum) - 1
-				const trueDefaultNum = Number(thisConf.defaultNum) - 1;
-				const oper = [[
-					thisOperator[2].oper[0][0],
-					thisOperator[2].oper[0][1] + (thisOperator[2].oper[0][4] * tureGroupNum),
-					thisOperator[2].oper[0][2],
-					thisOperator[2].oper[0][3] + (thisOperator[2].oper[0][4] * tureGroupNum),
-					500
-				]];
-				thisScript.regionClick(oper);
-				const opertwo = thisOperator[3].oper[trueDefaultNum];
-				thisScript.regionClick([opertwo]);
-				thisScript.regionClick(thisOperator[4].oper);
-				thisScript.global.shangyushe = false;
-				return true;
+			if (!thisScript.global.preset_once_team_defaultNum) {
+				thisScript.global.preset_once_team_defaultNum = Number(thisConf.defaultNum) - 1;
 			}
+			const oper = [[
+				thisOperator[2].oper[0][0],
+				thisOperator[2].oper[0][1] + (thisOperator[2].oper[0][4] * thisScript.global.preset_once_team_groupNum),
+				thisOperator[2].oper[0][2],
+				thisOperator[2].oper[0][3] + (thisOperator[2].oper[0][4] * thisScript.global.preset_once_team_groupNum),
+				500
+			]];
+			thisScript.regionClick(oper);
+			const opertwo = thisOperator[3].oper[thisScript.global.preset_once_team_defaultNum];
+			thisScript.regionClick([opertwo]);
+			thisScript.regionClick(thisOperator[4].oper);
+			thisScript.global.shangyushe = false;
+			thisScript.global.preset_once_team_groupNum = null;
+			thisScript.global.preset_once_team_defaultNum = null;
+			return true;
 		}
 		return false;
 	}

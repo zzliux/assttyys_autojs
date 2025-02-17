@@ -40,7 +40,7 @@ export class Func001 implements IFuncOrigin {
 				[left, 49, 682, 0xfff9ef],
 				[left, 124, 682, 0xfef1d8],
 				[left, 150, 682, 0xfbdec5],
-				[center, 438, 701, 0x231917],
+				[center, 322, 699, 0x231917],
 				[right, 1188, 684, 0xa26f4d],
 			]
 		]
@@ -48,7 +48,6 @@ export class Func001 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[left, 46, 33, 0xd9b589],
 				[left, 106, 41, 0xd0a77b],
 				[left, 168, 23, 0xd4ae84],
 				[left, 180, 38, 0xcba073],
@@ -72,13 +71,16 @@ export class Func001 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 1,
 			name: '准备界面识别',
-			operator: [{ desc: thisOperator[2].desc }
-				, { desc: thisOperator[4].desc }]
+			operator: [{ desc: thisOperator[2].desc }]
 		}) && !thisScript.oper({
 			name: '准备界面识别',
 			operator: [thisOperator[3]]
+		}) || thisScript.oper({
+			id: 1,
+			name: '准备界面识别',
+			operator: [{ desc: thisOperator[4].desc }]
 		})) {
-			thisScript.regionClick([thisOperator[0].oper[1]]);
+			thisScript.regionClick([thisOperator[0].oper[0]]);
 			thisScript.myToast('战斗主题非简约主题，部分功能失效，请及时跟换', 10000);
 			return true;
 		}

@@ -139,7 +139,7 @@ export class Func401 implements IFuncOrigin {
 
 			// 该规则目前是面灵气喵的固定规则，其他的up还得再看看怎么搞
 			// 增加关键词，避免拿到体服的
-			const reg = new RegExp(`周年对弈竞猜.*${nextH}:00.+?([左右红蓝]|翻盘)`);
+			const reg = new RegExp(`对弈竞猜.*${nextH}:00.+?([左右红蓝]|翻盘)`);
 			const r = str2.match(reg);
 			if (r) {
 				if (r[1] === '红' || r[1] === '左') { // 押左

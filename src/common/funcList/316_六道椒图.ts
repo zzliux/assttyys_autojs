@@ -416,11 +416,11 @@ export class Func316 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[center, 434, 109, 0x94561e],
-				[center, 814, 104, 0x9c5520],
-				[center, 623, 565, 0xe9371f],
-				[center, 695, 564, 0xf3b25e],
-				[center, 783, 456, 0xffdda4],
+				[center, 430, 111, 0x94561d],
+				[center, 809, 113, 0x91461f],
+				[center, 659, 276, 0xe29701],
+				[center, 666, 276, 0xdf8f01],
+				[center, 577, 560, 0xf3b25e],
 			]
 		],
 		oper: [

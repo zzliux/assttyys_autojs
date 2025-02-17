@@ -526,7 +526,7 @@ export class Func998 implements IFuncOrigin {
 
 				if (shikigamiIndex === 5) {
 					// 需要滑动
-					thisScript.regionBezierSwipe(thisOperator[9].oper[5], thisOperator[9].oper[6], [1200, 1250], 0, 1000);
+					thisScript.regionBezierSwipe(thisOperator[9].oper[5], thisOperator[9].oper[6], [1200, 1250], 1000);
 					sleep(1000);
 					return thisScript.oper({
 						id: 998,

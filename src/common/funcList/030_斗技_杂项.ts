@@ -16,16 +16,15 @@ export class Func030 implements IFuncOrigin {
 	config = [{
 		desc: '',
 		config: [{
-			name: 'level',
-			desc: '达到指定段位停止运行(只支持向上选择,比如:当前段位七段,选择了五段为错误行为)',
-			type: 'list',
-			data: ['名士', '四段', '五段', '九段'],
-			default: '名士',
-		}, {
 			name: 'isKnowledgePvP',
 			desc: '是否名仕局',
 			type: 'switch',
 			default: false,
+		}, {
+			name: 'banList',
+			desc: '式神被ban时退出，输入单字简称，现仅支持“面龙辉犬狐”',
+			type: 'text',
+			default: '',
 		}],
 	}];
 	operator: IFuncOperatorOrigin[] = [{
@@ -92,79 +91,12 @@ export class Func030 implements IFuncOrigin {
 			]
 		],
 		oper: [[left, 1280, 720, 44, 139, 77, 178, 1000]],
-	}, {
-		// 5,斗技界面
-		desc: [1280, 720,
-			[
-				// [left, 36, 28, 0xf5eaab],  // 图裂识别容错
-				[left, 221, 28, 0x583716],
-				[right, 1207, 87, 0x725844],
-				[right, 1204, 185, 0x735943],
-			],
-		],
-	}, {
-		// 6,五段
-		desc: [1280, 720,
-			[
-				[center, 598, 344, 0x201b1c],
-				[center, 635, 366, 0xcfcecb],
-				[center, 675, 344, 0x282121],
-				[center, 614, 427, 0xf9eec9],
-				[center, 611, 452, 0xf9eec9],
-			],
-		],
-	}, {
-		// 7,九段
-		desc: [1280, 720,
-			[
-				[center, 598, 344, 0xcf9432],
-				[center, 638, 354, 0x8e5b9f],
-				[center, 679, 348, 0xd09633],
-				[center, 611, 432, 0xf9eec9],
-				[center, 612, 421, 0x894212],
-			],
-		],
-	}, {
-		// 8,四段
-		desc: [1280, 720,
-			[
-				[center, 599, 342, 0x695649],
-				[center, 639, 366, 0xd1cecb],
-				[center, 673, 346, 0x69544b],
-				[center, 612, 428, 0xf0e0ba],
-				[center, 614, 444, 0x894212],
-			],
-		],
-	}, {
-		// 9,八段
-		desc: [1280, 720,
-			[
-				[center, 601, 345, 0x200204],
-				[center, 638, 370, 0xbd7924],
-				[center, 679, 348, 0x200204],
-				[center, 602, 441, 0xf9eec9],
-				[center, 623, 440, 0xf9eec9],
-			],
-		],
-	}, {
-		// 10 适配支持逐原之争
-		desc: [1280, 720,
-			[
-				[left, 36, 24, 0xf7eaab],
-				[right, 1208, 81, 0x90685c],
-				[right, 1228, 621, 0xd6c095],
-				[right, 1203, 602, 0x3b1e0d],
-				[right, 974, 640, 0xc9a87b],
-				[center, 798, 40, 0x593615],
-			],
-		],
-		oper: [[center, 1280, 720, 1153, 572, 1243, 663, 1000]],
-	}, { // 11 名仕斗技界面
+	}, { // 5 名仕斗技界面
 		desc: '斗技主界面_名士',
 		oper: [
 			[center, 1280, 720, 1145, 575, 1245, 664, 1000],
 		]
-	}, { // 12 禁选界面
+	}, { // 6 禁选界面
 		desc: [
 			1280, 720,
 			[
@@ -180,139 +112,82 @@ export class Func030 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1100, 523, 1241, 653, 1000],
 		]
-	}, { // 13 巅峰斗技
+	}, { // 7 巅峰斗技
 		desc: '巅峰斗技主界面',
 		oper: [
 			[center, 1280, 720, 1167, 590, 1243, 659, 1000],
 		]
-	}, { // 14 巅峰斗技
+	}, { // 8 巅峰斗技
 		desc: '巅峰斗技主界面_段位保护',
 		oper: [
 			[center, 1280, 720, 1167, 590, 1243, 659, 1000],
 		]
-	}, { // 15 巅峰斗技
+	}, { // 9 巅峰斗技
 		desc: '巅峰斗技主界面_段位保护裂',
 		oper: [
 			[center, 1280, 720, 1167, 590, 1243, 659, 1000],
 		]
-	}, { // 16 巅峰斗技
+	}, { // 10 巅峰斗技
 		desc: '巅峰斗技主界面_名士',
 		oper: [
 			[center, 1280, 720, 1167, 590, 1243, 659, 1000],
 		]
+	}, { // 11 退出
+		desc: [
+			1280, 720,
+			[
+				[center, 623, 8, 0x261812],
+				[center, 657, 10, 0x281813],
+				[center, 622, 44, 0xe3c7ab],
+				[center, 654, 48, 0xe3cc9c],
+				[center, 626, 73, 0xb38a67],
+				[center, 656, 78, 0xa57c5b],
+			]
+		],
+		oper: [
+			[left, 1280, 720, 22, 19, 52, 47, 1500], // 左上角返回
+			[center, 1280, 720, 683, 401, 795, 442, 500], // 确认
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['30'];
-		if (thisconf && thisconf.level && thisScript.oper({
-			id: 30,
-			name: '斗技_杂项',
-			operator: [
-				{
-					desc: thisOperator[5].desc,
-				},
-			],
-		})) {
-			switch (thisconf.level) {
-				case '名士':
-					break;
-				case '五段':
-					if (
-						thisScript.oper({
-							id: 30,
-							name: '斗技_五段',
-							operator: [thisOperator[6]],
-						})
-					) {
-						thisScript.doPush(thisScript, {
-							text: '已达到段位，请查看。',
-							before() {
-								thisScript.myToast('脚本即将停止，正在上传数据');
-							},
-						});
-						thisScript.stop();
-						return true;
-					}
-					break;
-				case '九段':
-					if (
-						thisScript.oper({
-							id: 30,
-							name: '斗技_九段',
-							operator: [thisOperator[7]],
-						})
-					) {
-						thisScript.doPush(thisScript, {
-							text: '已达到段位，请查看。',
-							before() {
-								thisScript.myToast('脚本即将停止，正在上传数据');
-							},
-						});
-						thisScript.stop();
-						return true;
-					}
-					break;
-				case '四段':
-					if (
-						thisScript.oper({
-							id: 30,
-							name: '斗技_四段',
-							operator: [thisOperator[8]],
-						})
-					) {
-						thisScript.doPush(thisScript, {
-							text: '已达到段位，请查看。',
-							before() {
-								thisScript.myToast('脚本即将停止，正在上传数据');
-							},
-						});
-						thisScript.stop();
-						return true;
-					}
-					break;
-				case '八段':
-					if (
-						thisScript.oper({
-							id: 30,
-							name: '斗技_八段',
-							operator: [thisOperator[9]],
-						})
-					) {
-						thisScript.doPush(thisScript, {
-							text: '已达到段位，请查看。',
-							before() {
-								thisScript.myToast('脚本即将停止，正在上传数据');
-							},
-						});
-						thisScript.stop();
-						return true;
-					}
-					break;
-			}
-		}
-
 		if (thisScript.oper({
 			id: 30,
 			name: '斗技_杂项',
 			operator: [
 				thisOperator[0], thisOperator[1], thisOperator[3], thisOperator[4],
-				thisOperator[10], thisOperator[13], // 巅峰斗技
-				thisOperator[14], // 巅峰斗技_段位保护
-				thisOperator[15], // 巅峰斗技_段位保护裂
+				thisOperator[6], thisOperator[7], thisOperator[8], thisOperator[9],
 			]
 		})) {
 			return true;
 		}
 
 		if (thisconf.isKnowledgePvP) {
-			return thisScript.oper({
+			if (thisScript.oper({
 				id: 30,
 				name: '斗技_杂项_名仕',
 				operator: [
-					thisOperator[11],
-					thisOperator[12],
-					thisOperator[16],
+					thisOperator[5],
+					thisOperator[6],
+					thisOperator[10],
 				],
-			})
+			})) {
+				return true;
+			}
+			if (thisScript.oper({
+				name: '斗技_杂项_ban位',
+				operator: [{ desc: thisOperator[11].desc }],
+			}) && typeof thisconf.banList === 'string') {
+				for (let i = 0; i < thisconf.banList.length; i++) {
+					if (thisScript.findMultiColor(`斗技ban选_${thisconf.banList[i]}`)) {
+						return thisScript.oper({
+							id: 30,
+							name: '斗技_杂项_禁选',
+							operator: [{ oper: thisOperator[11].oper }],
+						})
+					}
+				}
+			}
 		}
 	}
 }

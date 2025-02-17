@@ -298,7 +298,7 @@ export class Func519 implements IFuncOrigin {
 						}
 					}
 					log('前四最大人数为:' + thisScript.global.daoGuan_compare[0] + ';是第' + (thisScript.global.daoGuan_compare[1] + 1) + '个寮')
-					thisScript.regionSwipe(thisOperator[1].oper[1], thisOperator[1].oper[2], [300, 400], 0, 3000);
+					thisScript.regionSwipe(thisOperator[1].oper[1], thisOperator[1].oper[2], [300, 400], 3000);
 					thisScript.global.daoGuan_swip = false;
 					return true;
 				} else {

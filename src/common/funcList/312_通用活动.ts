@@ -18,18 +18,6 @@ export class Func312 implements IFuncOrigin {
 			type: 'text',
 			default: '1134,590,1225,645',
 			value: null,
-		}, {
-			name: 'exit',
-			desc: '达到时间后退出(需要ocr)',
-			type: 'switch',
-			default: false,
-			value: null,
-		}, {
-			name: 'time',
-			desc: '目标时间（输入数字，逗号分隔）',
-			type: 'text',
-			default: '1,20',
-			value: null,
 		}]
 	}]
 	operator: IFuncOperatorOrigin[] = [{
@@ -56,11 +44,13 @@ export class Func312 implements IFuncOrigin {
 			[center, 1280, 720, 1065, 252, 1151, 425, 1000],
 		]
 	}, { // 2 界面识别(测试中)
-		desc: [1280, 720,
+		desc: [
+			1280, 720,
 			[
-				[right, 1237, 30, 0xd7c2a1],
-				[right, 1237, 40, 0xd7c4a1],
-				[left, 34, 37, 0xf6e8a9],
+				[right, 1245, 22, 0x654339],
+				[right, 1244, 58, 0x5b433a],
+				[right, 1240, 58, 0x6a4b3f],
+				[right, 1240, 22, 0x6a473b],
 			]
 		],
 	}];
@@ -98,34 +88,6 @@ export class Func312 implements IFuncOrigin {
 				thisScript.regionClick(oper);
 			}
 			thisScript.keepScreen();
-		}
-
-		if (thisConf.exit && thisScript.oper({
-			name: '当前成绩',
-			operator: [{ desc: thisOperator[0].desc }]
-		}) && thisScript.getOcrDetector()) {
-			const time = String(thisConf.time).split(',');
-			const result = thisScript.findText('.+', 0, thisOperator[0].oper[1], '包含');
-			if (result.length === 0) {
-				console.log('未识别到任何字样');
-				return false;
-			} else {
-				const realTime = String(result[0].label).split(':');
-				if (Number.isNaN(realTime[0]) && Number.isNaN(realTime[1])) {
-					console.log('非数字，等待5秒继续检测');
-					sleep(5000);
-				} else if (Number(realTime[0]) == Number(time[0]) && Number(realTime[1]) <= Number(time[1]) || Number(realTime[0]) < Number(time[0])) {
-					return thisScript.oper({
-						id: 312,
-						name: '退出',
-						operator: [{
-							oper: [thisOperator[0].oper[2], thisOperator[0].oper[3]]
-						}]
-					}, 0)
-				} else {
-					sleep(5000);
-				}
-			}
 		}
 
 		if (curCnt) {
