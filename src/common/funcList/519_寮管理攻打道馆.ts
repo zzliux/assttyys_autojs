@@ -156,21 +156,6 @@ export class Func519 implements IFuncOrigin {
 				[center, 562, 87, 0x07080f],
 			]
 		]
-	}, { // 9 没次数和背水buff
-		desc: [1280, 720,
-			[
-				[right, 883, 75, 0x9f4c43],
-				[right, 1086, 200, 0x9b2f1c],
-				[right, 1103, 183, 0x9b2f1c],
-				[right, 1145, 595, 0x272420],
-				[right, 1199, 588, 0x272420],
-				[right, 1147, 605, 0xdabf99],
-			]
-		],
-		oper: [
-			[center, 1280, 720, 54, 595, 132, 669, 1000],
-			[center, 1280, 720, 677, 399, 797, 447, 1000],
-		]
 	}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -197,7 +182,7 @@ export class Func519 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 519,
 			name: '检测_寮活动神社',
-			operator: [thisOperator[0], thisOperator[7], thisOperator[9]]
+			operator: [thisOperator[0], thisOperator[7]]
 		})) {
 			return true;
 		}
@@ -252,12 +237,22 @@ export class Func519 implements IFuncOrigin {
 					const point = thisScript.findMultiColor('敌方道馆_挑战');
 					if (point) {
 						temp = thisScript.findText('.+', 0, [point.x - 90, point.y - 54, point.x - 30, point.y - 20], '包含');
-						people[i] = parseInt(temp[0].label.replace(/[^\d]/g, ' '), 10);
+						if (temp.length <= 0) {
+							console.log('OCR未识别到字符,默认人数为1');
+							people[i] = 1;
+						} else {
+							people[i] = parseInt(temp[0].label.replace(/[^\d]/g, ' '), 10);
+						}
 						if (people[i] > 180) {
 							people[i] = Math.floor(people[i] / 10);
 						}
 						temp = thisScript.findText('.+', 0, [point.x - 90, point.y + 16, point.x - 30, point.y + 48], '包含');
-						defense[i] = parseInt(temp[0].label.replace(/[^\d]/g, ' '), 10);
+						if (temp.length <= 0) {
+							console.log('OCR未识别到字符,默认防御为98');
+							defense[i] = 39;
+						} else {
+							defense[i] = parseInt(temp[0].label.replace(/[^\d]/g, ' '), 10);
+						}
 						if (defense[i] >= 40) {
 							defense[i] = Math.floor(defense[i] / 10);
 						}
