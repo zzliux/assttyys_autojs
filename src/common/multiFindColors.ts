@@ -2518,6 +2518,39 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				[right, 1206, 397, 0xf6f4ed],
 			]
 		]]
+	},
+	'超鬼王_低星': {
+		region: [center, 1280, 720, 277, 275, 995, 430],
+		desc: [[ // 2星
+			1280, 720,
+			[
+				[center, 517, 366, 0xed742a],
+				[center, 526, 366, 0xeb7724],
+				[center, 536, 366, 0x958686],
+				[center, 545, 366, 0x958787],
+				[center, 554, 366, 0x968788],
+				[center, 563, 366, 0x968888],
+			]
+		], [ // 3星
+			1280, 720,
+			[
+				[center, 616, 366, 0xee732b],
+				[center, 625, 366, 0xeb7725],
+				[center, 634, 366, 0xe87a1f],
+				[center, 644, 366, 0x958787],
+				[center, 653, 366, 0x968788],
+				[center, 662, 366, 0x968888],
+			]
+		], [ // 4星
+			1280, 720,
+			[
+				[center, 715, 366, 0xee732b],
+				[center, 724, 366, 0xeb7725],
+				[center, 733, 366, 0xe87a1f],
+				[center, 742, 366, 0xe77b1d],
+				[center, 752, 366, 0x968787],
+			]
+		]]
 	}
 }
 export default multiFindColors;
