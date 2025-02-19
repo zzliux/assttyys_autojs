@@ -39,7 +39,8 @@ export class Func315 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 42, 662, 74, 703, 1000],
-		]
+		],
+		retest: 1000
 	}, { // 1  准备预设里界面
 		desc: [
 			1280, 720,

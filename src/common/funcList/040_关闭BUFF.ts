@@ -70,20 +70,33 @@ export class Func040 implements IFuncOrigin {
 				return true
 			} else {
 				thisScript.regionClick([thisOperator[0].oper[1]]);
+				let next_scheme = thisScript.runtimeParams && thisScript.runtimeParams.next_scheme_name;
 				if (thisconf && thisconf.scheme_switch_enabled) {
-					thisScript.rerun(thisconf.next_scheme);
+					next_scheme = thisconf.next_scheme;
 					sleep(3000);
-				} else if ('停止脚本' === thisconf.afterCountOper || !thisconf.afterCountOper) {
-					thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-					thisScript.stop();
-				} else if ('关闭应用' === thisconf.afterCountOper) {
-					sleep(1000);
-					const packageNames = thisScript.stopRelatedApp();
-					thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，应用[${packageNames}]已杀，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-					sleep(2000);
-					thisScript.stop();
 				}
-				return true;
+				if (!next_scheme) {
+					if ('停止脚本' === thisconf.afterCountOper || !thisconf.afterCountOper) {
+						thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+						thisScript.stop();
+					} else if ('关闭应用' === thisconf.afterCountOper) {
+						sleep(1000);
+						const packageNames = thisScript.stopRelatedApp();
+						thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，应用[${packageNames}]已杀，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+						sleep(2000);
+						thisScript.stop();
+					}
+					return true;
+				} else {
+					if (thisScript.runtimeParams?.untransmit === true) {
+						thisScript.rerun(next_scheme);
+					}
+					sleep(1000);
+					thisScript.rerun(next_scheme, {
+						...thisScript.runtimeParams,
+					});
+					return true;
+				}
 			}
 		}
 

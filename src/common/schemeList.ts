@@ -881,6 +881,18 @@ const SchemeList: IScheme[] = [
 				jspd_times_longtime_nodo: '1',
 			}
 		}
+	}, {
+		id: 102,
+		schemeName: '超鬼王_刷票',
+		list: [50, 0, 1, 2, 3, 402],
+		config: {
+			'50': { buff_type: '御魂', ready_once_buff: true }
+		}
+	}
+	, {
+		id: 103,
+		schemeName: '超鬼王_低星',
+		list: [0, 1, 2, 3, 403, 24],
 	}
 	// , {
 	// 	id: 102,

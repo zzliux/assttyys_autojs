@@ -228,12 +228,14 @@ export class Func032 implements IFuncOrigin {
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
+		log(thisScript.global.shangyushe)
 		const thisconf = thisScript.scheme.config['32'];
 		if (thisconf.fail_exit && thisScript.oper({
 			id: 32,
 			name: '检测_挑战结束',
 			operator: [thisOperator[11]]
 		})) {
+			thisScript.global.shangyushe = true;
 			return true;
 		}
 		if (thisScript.global.daoGuan_exit && thisScript.oper({
