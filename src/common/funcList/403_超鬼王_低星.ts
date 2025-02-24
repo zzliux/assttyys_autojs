@@ -64,6 +64,10 @@ export class Func403 implements IFuncOrigin {
 				[left, 187, 178, 0x857255],
 				[left, 178, 209, 0x887356],
 				[left, 90, 169, 0x463824],
+				[right, 1159, 589, 0x222027],
+				[right, 1199, 597, 0x222027],
+				[right, 1169, 631, 0x222027],
+				[right, 1197, 638, 0x222027],
 			]
 		],
 		oper: [
