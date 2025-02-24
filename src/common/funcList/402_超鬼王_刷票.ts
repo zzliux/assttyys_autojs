@@ -1,5 +1,6 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
+import { doPush } from '../toolAuto';
 
 // const normal = -1; //定义常量
 const left = 0;
@@ -73,12 +74,54 @@ export class Func402 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 375, 267, 401, 436, 1000],
 		]
+	}, { // 4 分数结算
+		desc: [
+			1280, 720,
+			[
+				[center, 568, 615, 0xfcdf8c],
+				[center, 566, 643, 0xffebb6],
+				[center, 707, 618, 0xfee290],
+				[center, 704, 639, 0xffeab0],
+				[center, 634, 633, 0xffe6a1],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 560, 609, 719, 649, 1000],
+		]
+	}, { // 5 加成确认
+		desc: [
+			1280, 720,
+			[
+				[center, 420, 224, 0x694737],
+				[center, 855, 223, 0x684636],
+				[center, 454, 418, 0xdf6851],
+				[center, 570, 429, 0xdf6851],
+				[center, 704, 423, 0xf3b25e],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 545, 342, 572, 375, 1000],
+			[center, 1280, 720, 674, 407, 835, 454, 1000],
+		]
+	}, { // 6 解锁阵容
+		desc: [
+			1280, 720,
+			[
+				[center, 793, 664, 0xababff],
+				[center, 804, 662, 0x896c4a],
+				[center, 823, 664, 0xbab6fb],
+				[center, 804, 665, 0x876b47],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 797, 653, 816, 674, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			id: 402,
 			name: '检测_召唤鬼王处',
-			operator: [thisOperator[2], thisOperator[3]]
+			operator: [thisOperator[6], thisOperator[2], thisOperator[3], thisOperator[4], thisOperator[5]]
 		})) {
 			return true;
 		}
@@ -92,6 +135,7 @@ export class Func402 implements IFuncOrigin {
 				name: '检测_50次票收齐',
 				operator: [thisOperator[1]]
 			})) {
+				doPush(thisScript, { text: '已刷够票，切换至刷鬼王。' });
 				thisScript.rerun('关闭BUFF', {
 					next_scheme_name: thisScript.scheme.config['402'].next_scheme,
 					untransmit: true

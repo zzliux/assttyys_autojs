@@ -69,20 +69,20 @@ export class Func403 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1127, 520, 1236, 540, 1000],
 		]
-	}, { // 4 低星鬼王攻打
+	}, { // 4 关闭强力
 		desc: [
 			1280, 720,
 			[
-				[left, 261, 156, 0xfff2c9],
-				[left, 283, 164, 0xf0e0d1],
-				[left, 266, 183, 0xe8d7c1],
-				[left, 266, 168, 0xfdf0c7],
-				[left, 286, 180, 0xfaedc4],
+				[right, 1127, 527, 0xfefefa],
+				[right, 1136, 520, 0xfffefb],
+				[right, 1128, 520, 0x0d84a5],
+				[right, 1135, 530, 0x0d83a3],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1129, 575, 1223, 662, 1000],
+			[center, 1280, 720, 1119, 516, 1137, 532, 1000],
 		]
+
 	}, { // 5 召唤界面
 		desc: [
 			1280, 720,
@@ -108,6 +108,9 @@ export class Func403 implements IFuncOrigin {
 				[left, 260, 178, 0xf1eadd],
 				[left, 277, 176, 0xe4dcce],
 			]
+		],
+		oper: [
+			[center, 1280, 720, -1, -1, -1, -1, 3000],
 		]
 	}, { // 7 从花间进入超鬼王
 		desc: [
@@ -124,6 +127,38 @@ export class Func403 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 16, 19, 59, 58, 1000],
 			[center, 1280, 720, 748, 160, 788, 272, 1000],
+		]
+	}, { // 8 分数结算
+		desc: [
+			1280, 720,
+			[
+				[center, 568, 615, 0xfcdf8c],
+				[center, 566, 643, 0xffebb6],
+				[center, 707, 618, 0xfee290],
+				[center, 704, 639, 0xffeab0],
+				[center, 634, 633, 0xffe6a1],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 560, 609, 719, 649, 1000],
+		]
+	}, { // 9 低星鬼王攻打
+		desc: [
+			1280, 720,
+			[
+				[left, 261, 156, 0xfff2c9],
+				[left, 283, 164, 0xf0e0d1],
+				[left, 266, 183, 0xe8d7c1],
+				[left, 266, 168, 0xfdf0c7],
+				[left, 286, 180, 0xfaedc4],
+				[right, 1148, 618, 0x222027],
+				[right, 1178, 594, 0xe5dac4],
+				[right, 1187, 628, 0x222027],
+				[right, 1129, 525, 0x734713],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1129, 575, 1223, 662, 1000],
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
