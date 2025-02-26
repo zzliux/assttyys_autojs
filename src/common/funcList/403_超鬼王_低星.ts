@@ -150,15 +150,15 @@ export class Func403 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[left, 261, 156, 0xfff2c9],
-				[left, 283, 164, 0xf0e0d1],
-				[left, 266, 183, 0xe8d7c1],
-				[left, 266, 168, 0xfdf0c7],
-				[left, 286, 180, 0xfaedc4],
-				[right, 1148, 618, 0x222027],
-				[right, 1178, 594, 0xe5dac4],
-				[right, 1187, 628, 0x222027],
-				[right, 1129, 525, 0x734713],
+				[left, 261, 164, 0xfff2c9],
+				[left, 269, 170, 0xf7eac1],
+				[left, 266, 190, 0xead9c3],
+				[left, 284, 189, 0xfff2c9],
+				[left, 284, 171, 0xefdece],
+				[center, 323, 187, 0xefd88b],
+				[right, 1149, 619, 0x222027],
+				[right, 1172, 596, 0xe6dbc5],
+				[right, 1204, 632, 0x222027],
 			]
 		],
 		oper: [
