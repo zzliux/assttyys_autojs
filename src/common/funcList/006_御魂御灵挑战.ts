@@ -37,7 +37,8 @@ export class Func006 implements IFuncOrigin {
 		],
 		oper: [
 			[right, 1280, 720, 1104, 595, 1196, 681, 2000]
-		]
+		],
+		retest: 500
 	}, {
 		// 2 觉醒
 		desc: [1280, 720,
