@@ -41,7 +41,6 @@ export class Func320 implements IFuncOrigin {
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['320'];
 		if (!thisScript.global.finght_time && thisScript.oper({
-			id: 320,
 			name: '战斗界面',
 			operator: [{
 				desc: thisOperator[0].desc
@@ -65,7 +64,6 @@ export class Func320 implements IFuncOrigin {
 			}]
 		})) {
 			thisScript.global.finght_time = new Date().getTime() + Number(thisConf.time) * 1000;
-			return true;
 		}
 		return false;
 	}

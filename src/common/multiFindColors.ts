@@ -2551,6 +2551,54 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				[center, 752, 366, 0x968787],
 			]
 		]]
+	},
+	'寻香行头像': {
+		region: [center, 1280, 720, 668, 588, 1177, 717],
+		desc: [[
+			1280, 720,
+			[
+				[center, 908, 643, 0xd9dfdf],
+				[center, 920, 664, 0xf1f1f1],
+				[center, 940, 647, 0x707373],
+				[center, 907, 682, 0xc8ced9],
+				[center, 920, 686, 0x734040],
+				[center, 947, 690, 0xccdada],
+				[center, 940, 676, 0x5b413a],
+			]
+		]]
+	},
+	'寻香行三层': {
+		region: [left, 1280, 720, 0, 0, 1280, 720],
+		desc: [[
+			1280, 720,
+			[
+				[center, 591, 165, 0xffdede],
+				[center, 600, 165, 0x960000],
+				[center, 602, 156, 0xffffff],
+				[center, 595, 148, 0xffffff],
+				[center, 590, 143, 0x190000],
+				[center, 607, 152, 0xffffff],
+				[center, 615, 147, 0x1f0101],
+				[center, 612, 170, 0x550101],
+			]
+		]]
+	},
+	'寻香行五层': {
+		region: [left, 1280, 720, 0, 0, 1280, 720],
+		desc: [[
+			1280, 720,
+			[
+				[center, 833, 189, 0x490000],
+				[center, 839, 187, 0x470000],
+				[center, 847, 184, 0xfefefe],
+				[center, 848, 178, 0xf3e8d5],
+				[center, 851, 178, 0xc9c9bb],
+				[center, 852, 171, 0xc9bdb3],
+				[center, 847, 171, 0xd7c8ab],
+				[center, 836, 170, 0xffffff],
+				[center, 828, 169, 0x1e0000],
+			]
+		]]
 	}
 }
 export default multiFindColors;
