@@ -108,7 +108,7 @@ export class Func018 implements IFuncOrigin {
 				[center, 274, 556, 0x917265],
 				[center, 198, 166, 0x957969],
 				[left, 68, 653, 0x582757],
-				[left, 195, 672, 0x551110],
+				[left, 191, 710, 0x331e14],
 			]
 		],
 		oper: [
