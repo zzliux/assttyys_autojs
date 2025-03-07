@@ -142,7 +142,7 @@ export class Func316 implements IFuncOrigin {
 				[left, 121, 577, 0x636882],
 				[left, 121, 31, 0xf8f3e0],
 				[left, 116, 41, 0xf8f3e0],
-				[left, 111, 52, 0xf8f3e0],
+				[left, 117, 52, 0xf8f3e0],
 				[left, 122, 52, 0xf8f3e0],
 				[center, 748, 253, 0x7b3a3a],
 				[center, 422, 257, 0x222731],
