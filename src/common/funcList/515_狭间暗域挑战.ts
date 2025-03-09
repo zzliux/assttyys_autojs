@@ -126,6 +126,7 @@ export class Func515 implements IFuncOrigin {
 
 			if (currentState) {
 				thisScript.global.narrow_state[currentState] = true;
+				return false;
 			}
 
 			return true;
