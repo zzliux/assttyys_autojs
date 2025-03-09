@@ -42,6 +42,7 @@ export type globalRootType = {
 	change_shikigami_list_swipe_times: number,
 	change_shikigami_last_group_name: string,   //  式神录预设分组最后一项的名称
 	narrow_state: Record<string, boolean>,   //  狭间暗域状态
+	narrow_mode: boolean,
 	liao_activity_page_flag: number,   //  寮活动翻页标记
 	banquet_change_flag: boolean,   //  宴会轮换开关标识
 	gateOfHades_state: boolean,     //  阴门状态
@@ -146,6 +147,7 @@ export const globalRoot: globalRootType = {
 	change_shikigami_list_swipe_times: 0,
 	change_shikigami_last_group_name: undefined,
 	narrow_state: undefined,
+	narrow_mode: false,
 	liao_activity_page_flag: 0,
 	banquet_change_flag: false,
 	gateOfHades_state: false,
