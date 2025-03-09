@@ -18,11 +18,27 @@ export class Func514 implements IFuncOrigin {
 			desc: '',
 			config: [
 				{
+					name: 'boss_type',
+					desc: '挑战类型',
+					type: 'list',
+					data: ['豹子咬', '打满时间'],
+					default: '豹子咬',
+					value: null,
+				},
+				{
 					name: 'boss_order',
 					desc: '挑战顺序',
 					type: 'list',
-					data: ['从大到小', '从小到大'],
-					default: '从大到小',
+					data: ['小到大', '大到小'],
+					default: '小到大',
+					value: null,
+				},
+				{
+					name: 'boss_select',
+					desc: '挑战区域',
+					type: 'list',
+					data: ['神龙孔雀', '神龙狐狸', '神龙豹子', '孔雀狐狸', '孔雀豹子', '狐狸豹子'],
+					default: '神龙孔雀',
 					value: null,
 				},
 			],
@@ -30,7 +46,7 @@ export class Func514 implements IFuncOrigin {
 	];
 	operator: IFuncOperatorOrigin[] = [
 		{
-			//    检测_选择暗域页面未封印未开启
+			//    检测_选择暗域页面未封印未开启=====0
 			desc: [
 				1280,
 				720,
@@ -53,7 +69,7 @@ export class Func514 implements IFuncOrigin {
 			],
 		},
 		{
-			//	检测_暗域第三人称主页
+			//	检测_暗域第三人称主页=====1
 			desc: [
 				1280,
 				720,
@@ -70,7 +86,7 @@ export class Func514 implements IFuncOrigin {
 			],
 		},
 		{
-			//  检测_怪物分布页
+			//  检测_怪物分布页=====2
 			desc: [
 				1280,
 				720,
@@ -85,20 +101,20 @@ export class Func514 implements IFuncOrigin {
 				],
 			],
 			oper: [
-				[center, 1280, 720, 686, 153, 751, 215, 1200], //  首领
+				[center, 1280, 720, 686, 153, 751, 215, 1200], //  首领0
 				[center, 1280, 720, 534, 298, 601, 360, 1200], //  副将1
 				[center, 1280, 720, 846, 303, 917, 361, 1200], //  副将2
-				[center, 1280, 720, 450, 420, 509, 481, 1200], //  精英1
-				[center, 1280, 720, 688, 420, 754, 481, 1200], //  精英2
-				[center, 1280, 720, 934, 420, 999, 481, 1200], //  精英3
-				[left, 1280, 720, 128, 147, 194, 210, 1200], //  神龙暗域
-				[left, 1280, 720, 126, 281, 195, 345, 1200], //  孔雀暗域
-				[left, 1280, 720, 129, 414, 198, 479, 1200], //  白藏主暗域
-				[left, 1280, 720, 128, 553, 200, 612, 1200], //  黑豹暗域
+				[center, 1280, 720, 450, 420, 509, 481, 1200], //  精英3
+				[center, 1280, 720, 688, 420, 754, 481, 1200], //  精英4
+				[center, 1280, 720, 934, 420, 999, 481, 1200], //  精英5
+				[left, 1280, 720, 128, 147, 194, 210, 1200], //  神龙暗域0
+				[left, 1280, 720, 126, 281, 195, 345, 1200], //  孔雀暗域1
+				[left, 1280, 720, 129, 414, 198, 479, 1200], //  白藏主暗域2
+				[left, 1280, 720, 128, 553, 200, 612, 1200], //  黑豹暗域3
 			],
 		},
 		{
-			//  检测_所有暗域已被封印
+			//  检测_所有暗域已被封印=====3
 			desc: [
 				1280,
 				720,
@@ -121,7 +137,7 @@ export class Func514 implements IFuncOrigin {
 			],
 		},
 		{
-			//  获取奖励弹窗
+			//  获取奖励弹窗=====4
 			desc: [
 				1280,
 				720,
@@ -138,41 +154,314 @@ export class Func514 implements IFuncOrigin {
 				[center, 1280, 720, 498, 527, 885, 632, 1200], //  点击_掩盖层
 			],
 		},
+		{
+			//	开始战斗界面，豹子咬退出=====5
+			desc: [
+				1280,
+				720,
+				[
+					[left, 33, 39, 0xcea67b],
+					[left, 171, 179, 0xc69252],
+					[left, 255, 25, 0xd3ad81],
+					[right, 1144, 64, 0xdbd3c3],
+					[right, 1266, 563, 0x594428]
+				]
+			],
+			oper: [
+				[left, 1280, 720, 23, 19, 50, 47, 1000],
+			],
+		},
+		{
+			// 点击退出=====6
+			desc: [
+				1280,
+				720,
+				[
+					[left, 47, 30, 0x594a38],
+					[center, 485, 422, 0xde6952],
+					[center, 569, 438, 0xde6952],
+					[center, 696, 420, 0xf4b25d],
+					[center, 790, 437, 0xf4b35d]
+				]
+			],
+			oper: [
+				[center, 1280, 720, 690, 403, 792, 440, 1000],
+			]
+		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		const thisconf = thisScript.scheme.config['514'];
+		const thisconf = thisScript.scheme.config['438'];//	前面区域，后面小怪
 		if (!thisScript.global.narrow_state) {
-			if (thisconf && thisconf.boss_order === '从小到大') {
-				thisScript.global.narrow_state = {
-					'0_3': false,
-					'0_4': false,
-					'0_5': false,
-					'3_3': false,
-					'3_4': false,
-					'3_5': false,
-					'2_1': false,
-					'2_2': false,
-					'0_1': false,
-					'0_2': false,
-					'1_0': false,
-					'2_0': false,
-				};
-			} else {
-				thisScript.global.narrow_state = {
-					'1_0': false,
-					'2_0': false,
-					'2_1': false,
-					'2_2': false,
-					'0_1': false,
-					'0_2': false,
-					'0_3': false,
-					'0_4': false,
-					'0_5': false,
-					'3_3': false,
-					'3_4': false,
-					'3_5': false,
-				};
+			if (thisconf && thisconf.boss_type  === '豹子咬') {
+				thisScript.global.narrow_mode = true;
 			}
+		}
+		if (!thisScript.global.narrow_state) {//	为空的话，这里会初始化数据
+			if (thisconf && thisconf.boss_order === '小到大') {
+				switch (thisconf.boss_select) {
+					case '神龙孔雀': {
+						thisScript.global.narrow_state = {
+							'0_3': false, //	这里填写攻打顺序
+							'0_4': false,
+							'0_5': false,
+							'1_3': false,
+							'1_4': false,
+							'1_5': false,
+							'1_1': false,
+							'1_2': false,
+							'0_1': false,
+							'0_2': false,
+							'0_0': false,
+							'1_0': false,
+						}
+						break;
+					}
+					case '神龙狐狸': {
+						thisScript.global.narrow_state = {
+							'0_3': false, //	这里填写攻打顺序
+							'0_4': false,
+							'0_5': false,
+							'2_3': false,
+							'2_4': false,
+							'2_5': false,
+							'2_1': false,
+							'2_2': false,
+							'0_1': false,
+							'0_2': false,
+							'0_0': false,
+							'2_0': false,
+						}
+						break;
+					}
+					case '神龙豹子': {
+						thisScript.global.narrow_state = {
+							'0_3': false, //	这里填写攻打顺序
+							'0_4': false,
+							'0_5': false,
+							'3_3': false,
+							'3_4': false,
+							'3_5': false,
+							'3_1': false,
+							'3_2': false,
+							'0_1': false,
+							'0_2': false,
+							'0_0': false,
+							'3_0': false,
+						}
+						break;
+					}
+					case '孔雀狐狸': {
+						thisScript.global.narrow_state = {
+							'1_3': false, //	这里填写攻打顺序
+							'1_4': false,
+							'1_5': false,
+							'2_3': false,
+							'2_4': false,
+							'2_5': false,
+							'2_1': false,
+							'2_2': false,
+							'1_1': false,
+							'1_2': false,
+							'1_0': false,
+							'2_0': false,
+						}
+						break;
+					}
+					case '孔雀豹子': {
+						thisScript.global.narrow_state = {
+							'1_3': false, //	这里填写攻打顺序
+							'1_4': false,
+							'1_5': false,
+							'3_3': false,
+							'3_4': false,
+							'3_5': false,
+							'3_1': false,
+							'3_2': false,
+							'1_1': false,
+							'1_2': false,
+							'1_0': false,
+							'3_0': false,
+						}
+						break;
+					}
+					case '狐狸豹子': {
+						thisScript.global.narrow_state = {
+							'2_3': false, //	这里填写攻打顺序
+							'2_4': false,
+							'2_5': false,
+							'3_3': false,
+							'3_4': false,
+							'3_5': false,
+							'3_1': false,
+							'3_2': false,
+							'2_1': false,
+							'2_2': false,
+							'2_0': false,
+							'3_0': false,
+						}
+						break;
+					}
+				}
+			} else {
+				switch (thisconf.boss_select) {
+					case '神龙孔雀': {
+						thisScript.global.narrow_state = {
+							'0_0': false,
+							'1_0': false,
+							'1_1': false,
+							'1_2': false,
+							'0_1': false,
+							'0_2': false,
+							'0_3': false, //	这里填写攻打顺序
+							'0_4': false,
+							'0_5': false,
+							'1_3': false,
+							'1_4': false,
+							'1_5': false,
+						}
+						break;
+					}
+					case '神龙狐狸': {
+						thisScript.global.narrow_state = {
+							'0_0': false,
+							'2_0': false,
+							'2_1': false,
+							'2_2': false,
+							'0_1': false,
+							'0_2': false,
+							'0_3': false, //	这里填写攻打顺序
+							'0_4': false,
+							'0_5': false,
+							'2_3': false,
+							'2_4': false,
+							'2_5': false,
+						}
+						break;
+					}
+					case '神龙豹子': {
+						thisScript.global.narrow_state = {
+							'0_0': false,
+							'3_0': false,
+							'3_1': false,
+							'3_2': false,
+							'0_1': false,
+							'0_2': false,
+							'0_3': false, //	这里填写攻打顺序
+							'0_4': false,
+							'0_5': false,
+							'3_3': false,
+							'3_4': false,
+							'3_5': false,
+						}
+						break;
+					}
+					case '孔雀狐狸': {
+						thisScript.global.narrow_state = {
+							'1_0': false,
+							'2_0': false,
+							'2_1': false,
+							'2_2': false,
+							'1_1': false,
+							'1_2': false,
+							'1_3': false, //	这里填写攻打顺序
+							'1_4': false,
+							'1_5': false,
+							'2_3': false,
+							'2_4': false,
+							'2_5': false,
+						}
+						break;
+					}
+					case '孔雀豹子': {
+						thisScript.global.narrow_state = {
+							'1_0': false,
+							'3_0': false,
+							'3_1': false,
+							'3_2': false,
+							'1_1': false,
+							'1_2': false,
+							'1_3': false, //	这里填写攻打顺序
+							'1_4': false,
+							'1_5': false,
+							'3_3': false,
+							'3_4': false,
+							'3_5': false,
+						}
+						break;
+					}
+					case '狐狸豹子': {
+						thisScript.global.narrow_state = {
+							'2_0': false,
+							'3_0': false,
+							'3_1': false,
+							'3_2': false,
+							'2_1': false,
+							'2_2': false,
+							'2_3': false, //	这里填写攻打顺序
+							'2_4': false,
+							'2_5': false,
+							'3_3': false,
+							'3_4': false,
+							'3_5': false,
+						}
+						break;
+					}
+				}
+			}
+		}
+		if (thisScript.global.narrow_mode) {
+			if (
+				thisScript.oper({
+					name: '检测_退出战斗',
+					operator: [
+						{
+							desc: thisOperator[5].desc,
+						}
+					]
+				})
+			) {
+				return thisScript.oper({
+					name: '点击_左上角退出战斗',
+					operator: [
+						{
+							oper: thisOperator[5].oper,
+						},
+					],
+				})
+			}
+			if (
+				thisScript.oper({
+					name: '检测_确定退出窗口',
+					operator: [
+						{
+							desc: thisOperator[6].desc,
+						}
+					]
+				})
+			) {
+				const result = thisScript.oper({
+					name: '点击确认退出',
+					operator: [
+						{
+							oper: thisOperator[6].oper,
+						},
+					],
+				})
+				sleep(3000)
+				return result;
+			}
+			/**
+			{
+				return thisScript.oper({
+					name: '点击确认退出',
+					operator: [
+						{
+							oper: thisOperator[6].oper,
+						},
+					],
+				})
+			}
+			*/
 		}
 
 		if (
@@ -276,9 +565,9 @@ export class Func514 implements IFuncOrigin {
 			});
 
 			if (currentState) {
-				console.log('当前狭间状态:', thisScript.global.narrow_state);
+				// console.log('当前狭间状态:', thisScript.global.narrow_state);
 
-				const map = currentState.split('_');
+				const map = currentState.split('_');// 分割文本
 				const area = map[0];
 				const monster = map[1];
 
@@ -291,13 +580,12 @@ export class Func514 implements IFuncOrigin {
 					],
 				});
 
-				sleep(2000);
+				sleep(1500);
 
 				// 点击多次未能挑战，该boss已被挑战
 				if (thisScript.global.checked_yard_count >= 3) {
 					thisScript.global.checked_yard_count = 0;
 					let currentState = '';
-
 					Object.keys(thisScript.global.narrow_state).findIndex((key) => {
 						if (!thisScript.global.narrow_state[key]) {
 							console.log('当前挑战阶段为:', key);
@@ -306,21 +594,14 @@ export class Func514 implements IFuncOrigin {
 						}
 						return false;
 					});
-
 					if (currentState) {
 						thisScript.global.narrow_state[currentState] = true;
 						return false;
 					}
 				} else {
-					sleep(1500);
-					if (!thisScript.global.checked_yard_count) {
-						thisScript.global.checked_yard_count = 1;
-					} else {
-						thisScript.global.checked_yard_count += 1;
-					}
+					thisScript.global.checked_yard_count += 1;
 				}
-
-				return thisScript.oper({
+				thisScript.oper({
 					name: '点击怪物',
 					operator: [
 						{
@@ -328,6 +609,7 @@ export class Func514 implements IFuncOrigin {
 						},
 					],
 				});
+				return true;
 			}
 		}
 
