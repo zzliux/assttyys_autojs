@@ -83,22 +83,22 @@ export class Func017 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 152, 578, 190, 623, 1500]
 		]
-	}, { // 4
+	}, { // 4 邀请好友
 		desc: [1280, 720,
 			[
 				[center, 170, 600, 0xc3b99e],
-				[center, 392, 156, 0xe7bc93],
+				[center, 392, 156, 0xa26b4e],
 				[center, 391, 200, 0xd7bfae],
 				[center, 582, 208, 0xd7bfae],
-				[center, 886, 276, 0xeac9a0],
 				[center, 608, 277, 0xeac9a0],
-				[center, 1084, 202, 0xb1a29e],
-				[center, 1132, 590, 0x322518]]
+				[center, 171, 599, 0xc3ba9d],
+				[center, 1151, 606, 0x2b2116],
+				[center, 1048, 160, 0xffd3b1],
+			]
 		],
 		oper: [
-			[center, 1280, 720, 468, 233, 624, 550, 500],
-			[center, 1280, 720, 731, 229, 890, 563, 500],
-			[center, 1280, 720, 516, 632, 749, 700, 1000],
+			[center, 1280, 720, 178, 234, 415, 536, 1000],
+			[center, 1280, 720, 445, 236, 686, 540, 1000],
 		]
 	}, { // 5
 		desc: [1280, 720,
@@ -159,7 +159,6 @@ export class Func017 implements IFuncOrigin {
 				oper: [thisOperator[4].oper[random(0, 1)]]
 			}]
 		})) {
-			thisScript.regionClick([thisOperator[4].oper[2]]);
 			thisScript.keepScreen(false);
 		}
 		if (thisScript.oper({

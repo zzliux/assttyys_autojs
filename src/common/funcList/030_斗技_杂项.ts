@@ -82,11 +82,11 @@ export class Func030 implements IFuncOrigin {
 				[center, 628, 58, 0xfff1cf],
 				[center, 666, 56, 0x190f0c],
 				[left, 34, 143, 0x826851],
-				[left, 44, 149, 0xffffff],
+				[left, 45, 149, 0xffffff],
 				[left, 60, 158, 0x826851],
 				[left, 69, 512, 0x423141],
 				[right, 1166, 532, 0xd5bb9d],
-				[left, 49, 181, 0xffffff],
+				[left, 49, 180, 0xffffff],
 				[left, 65, 145, 0xffffff],
 			]
 		],

@@ -67,10 +67,13 @@ export class Func993 implements IFuncOrigin {
 					[center, 630, 601, 0xfdfdfd],
 					[center, 590, 611, 0xffffff],
 					[center, 588, 592, 0xfefdfd],
-					// 右上角用户协议与隐私政策
-					[right, 1105, 27, 0xc6bda7],
-					[right, 1177, 27, 0xc4baa4],
-					[right, 1260, 25, 0xc2b8a2],
+					// 左下角适龄提示
+					[left, 40, 574, 0x67c13a],
+					[left, 55, 603, 0x67c13a],
+					[left, 65, 574, 0xffffff],
+					// 左上角阴阳师毛笔字
+					[left, 86, 53, 0xfdfddb],
+					[left, 88, 182, 0xfbdfae],
 				]
 			],
 			oper: [

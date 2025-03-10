@@ -1310,6 +1310,9 @@ export const versionList = [{
 }, {
 	version: '202503069_01',
 	desc: '修复优化：514狭间暗域',
+}, {
+	version: '20250310_01',
+	desc: '17百鬼夜行不邀请好友；30斗技不切换自动上阵；993启动卡登录界面',
 }];
 
 export default versionList[versionList.length - 1].version;
