@@ -148,6 +148,22 @@ export class Func030 implements IFuncOrigin {
 			[left, 1280, 720, 22, 19, 52, 47, 1500], // 左上角返回
 			[center, 1280, 720, 683, 401, 795, 442, 500], // 确认
 		]
+	}, { // 12 自动上阵
+		desc: [
+			1280, 720,
+			[
+				[center, 614, 60, 0x1c100c],
+				[center, 628, 58, 0xfff1cf],
+				[center, 666, 56, 0x190f0c],
+				[left, 34, 143, 0x826851],
+				[left, 44, 149, 0xffffff],
+				[left, 60, 158, 0x826851],
+				[right, 1166, 532, 0xd5bb9d],
+				[left, 49, 181, 0xffffff],
+				[left, 65, 145, 0xffffff],
+			]
+		],
+		oper: [[left, 1280, 720, 44, 139, 77, 178, 1000]],
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['30'];
@@ -157,6 +173,7 @@ export class Func030 implements IFuncOrigin {
 			operator: [
 				thisOperator[0], thisOperator[1], thisOperator[3], thisOperator[4],
 				thisOperator[6], thisOperator[7], thisOperator[8], thisOperator[9],
+				thisOperator[12],
 			]
 		})) {
 			return true;
