@@ -226,6 +226,22 @@ export class Func032 implements IFuncOrigin {
 			[center, 1280, 720, 54, 595, 132, 669, 1000],
 			[center, 1280, 720, 677, 399, 797, 447, 1000],
 		]
+	}, { // 12 放弃突破投票（投票人数需要超一半）
+		desc: [
+			1280,
+			720,
+			[
+				[left, 32, 40, 0xd6c5a4],
+				[left, 107, 38, 0xd6c4a2],
+				[center, 728, 35, 0x938051],
+				[center, 889, 78, 0x9e4942],
+				[right, 1115, 282, 0xe0c875],
+				[right, 1232, 282, 0xe3cc73]
+			]
+		],
+		oper: [
+			[right, 1280, 720, 1055, 235, 1137, 328, 800], // 放弃突破
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		log(thisScript.global.shangyushe)
@@ -277,6 +293,19 @@ export class Func032 implements IFuncOrigin {
 		})) {
 			thisScript.global.fight_switch_skill = true;
 			return true;
+		}
+		if (
+			thisconf.after_fail_operation === '再战道馆' && thisScript.oper({
+				name: '检测_投票放弃', // 管理发起投票放弃时，非管理人员的投票
+				operator: [{ desc: thisOperator[12].desc }],
+			})
+		) {
+			const result = thisScript.oper({
+				name: '点击放弃',
+				operator: [{ oper: thisOperator[12].oper }],
+			});
+			sleep(1500);
+			return result;
 		}
 		if (thisconf && thisconf.after_fail_operation && thisScript.oper({
 			id: 32,

@@ -190,7 +190,7 @@ export class Func514 implements IFuncOrigin {
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		const thisconf = thisScript.scheme.config['438'];//	前面区域，后面小怪
+		const thisconf = thisScript.scheme.config['514'];//	前面区域，后面小怪
 		if (!thisScript.global.narrow_state) {
 			if (thisconf && thisconf.boss_type  === '豹子咬') {
 				thisScript.global.narrow_mode = true;
