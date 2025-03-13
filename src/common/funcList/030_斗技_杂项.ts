@@ -84,7 +84,7 @@ export class Func030 implements IFuncOrigin {
 				[left, 34, 143, 0x826851],
 				[left, 45, 149, 0xffffff],
 				[left, 60, 158, 0x826851],
-				[left, 69, 512, 0x423141],
+				[left, 70, 598, 0x413244],
 				[right, 1166, 532, 0xd5bb9d],
 				[left, 49, 180, 0xffffff],
 				[left, 65, 145, 0xffffff],
