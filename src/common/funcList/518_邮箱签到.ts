@@ -455,16 +455,15 @@ export class Func518 implements IFuncOrigin {
 		},
 		{
 			//  31 检测_商店主页
-			desc: [
-				1280, 720,
+			desc: [1280, 720,
 				[
-					[left, 95, 674, 0xdccb99],
-					[center, 351, 656, 0x8d232f],
-					[center, 497, 668, 0xaca28f],
+					[center, 353, 656, 0x8d232f],
 					[center, 641, 666, 0xb88045],
 					[right, 1143, 678, 0x842121],
 					[right, 1166, 681, 0xd03a3a],
 					[right, 1131, 674, 0x653e2f],
+					[center, 251, 694, 0x56482b],
+					[center, 711, 678, 0x483629],
 				]
 			],
 			oper: [
