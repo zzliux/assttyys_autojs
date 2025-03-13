@@ -1310,6 +1310,9 @@ export const versionList = [{
 }, {
 	version: '202503069_01',
 	desc: '修复优化：514狭间暗域',
+}, {
+	version: '20250313_01',
+	desc: '修复优化：32道馆，投票放弃道馆突破',
 }];
 
 export default versionList[versionList.length - 1].version;
