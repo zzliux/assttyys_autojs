@@ -163,6 +163,11 @@ export class Func503 implements IFuncOrigin {
 			desc: '32 巅峰斗技主界面_名士',
 			type: 'switch',
 			default: true,
+		}, {
+			name: 'oper_33',
+			desc: '33 狭间暗域4个区域',
+			type: 'switch',
+			default: true,
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{	// 0 探索地图
@@ -491,6 +496,23 @@ export class Func503 implements IFuncOrigin {
 		oper: [
 			[left, 1280, 720, 22, 4, 67, 49, 500]
 		]
+	}, { // 33 狭间暗域4个区域通用
+		desc: [
+			1280,
+			720,
+			[
+				[left, 38, 60, 0xeff7f8],
+				[left, 216, 68, 0xd3a578],
+				[center, 737, 31, 0x5a3718],
+				[center, 897, 74, 0xf8dca7],
+				[right, 1209, 305, 0xc5b593],
+				[right, 1226, 395, 0xcdb694],
+				[right, 1218, 486, 0xcebe9c]
+			]
+		],
+		oper: [
+			[left, 1280, 720, 32, 38, 70, 79, 1000]
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['503'];
@@ -522,6 +544,7 @@ export class Func503 implements IFuncOrigin {
 				thisOperator[21], thisOperator[22], thisOperator[24],
 				thisOperator[25], thisOperator[27], thisOperator[28],
 				thisOperator[29], thisOperator[30], thisOperator[31],
+				thisOperator[33],
 			]
 		} else {
 			enabledThisOperator = Object.keys(thisConf).filter(keyName => /oper_\d+/.test(keyName) && thisConf[keyName]).map(keyName => thisOperator[parseInt(keyName.split('_')[1])]);

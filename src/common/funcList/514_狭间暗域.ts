@@ -553,6 +553,33 @@ export class Func514 implements IFuncOrigin {
 				}
 			}
 
+			const allTrue = Object.values(thisScript.global.narrow_state).every(value => value === true);// 所有怪都打完，直接返回庭院
+			if (allTrue) {
+				thisScript.oper({
+					name: '关闭战报弹窗',
+					operator: [
+						{
+							oper: thisOperator[3].oper,
+						},
+					],
+				});
+				if (
+					thisScript.runtimeParams &&
+					thisScript.runtimeParams.liao_activity_state
+				) {
+					thisScript.runtimeParams.liao_activity_state['narrow'] = true;
+					console.log('狭间已经打完，返回庭院');
+					const next_scheme = '返回庭院';
+					thisScript.rerun(next_scheme, {
+						next_scheme_name: '庭院进入寮每日活动',
+						liao_activity_state: thisScript.runtimeParams.liao_activity_state,
+					});
+				} else {
+					const next_scheme = '返回庭院';
+					thisScript.rerun(next_scheme);
+				}
+			}
+
 			let currentState = '';
 
 			Object.keys(thisScript.global.narrow_state).findIndex((key) => {
