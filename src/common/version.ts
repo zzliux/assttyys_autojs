@@ -1313,6 +1313,11 @@ export const versionList = [{
 }, {
 	version: '20250313_01',
 	desc: '修复优化：32道馆，投票放弃道馆突破',
+}, {
+	version: '20250316_01',
+	desc: `修复优化：503返回庭院界面，增加狭间暗域
+	514狭间暗域，打完次数后返回庭院
+	515狭间暗域挑战，前往怪物增加延时，避免卡游戏窗口bug`
 }];
 
 export default versionList[versionList.length - 1].version;
