@@ -91,7 +91,7 @@ export class Func515 implements IFuncOrigin {
 			name: '检测_怪物挑战页弹窗_前进',
 			operator: [thisOperator[0]]
 		})) {
-			sleep(3000);	// 点击前往后，停顿3s，以免卡游戏窗口bug
+			sleep(thisScript.global.narrow_time);	// 点击前往后，等待时间，以免卡游戏窗口bug
 			return true;
 		}
 

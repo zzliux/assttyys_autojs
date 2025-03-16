@@ -40,9 +40,19 @@ export class Func514 implements IFuncOrigin {
 					data: ['神龙孔雀', '神龙狐狸', '神龙豹子', '孔雀狐狸', '孔雀豹子', '狐狸豹子'],
 					default: '神龙孔雀',
 					value: null,
-				},
+				}
 			],
-		},
+		},  {
+			desc: '前往怪物的等待时间，单位为秒，根据自己设备来选择，建议设备卡的设置等待时间久一点',
+			config: [{
+				name: 'boss_time',
+				desc: '前往怪物等待时间',
+				type: 'list',
+				data: ['0', '1', '2', '3', '4', '5', '6', '7', '8'],
+				default: '5',
+				value: null,
+			}]
+		}
 	];
 	operator: IFuncOperatorOrigin[] = [
 		{
@@ -168,8 +178,7 @@ export class Func514 implements IFuncOrigin {
 				]
 			],
 			oper: [
-				[left, 1280, 720, 23, 19, 50, 47, 1000],
-				[center, 1280, 720, 690, 403, 792, 440, 1000], // 点退出后再点确认，一步到位，尝试修复点了退出没有确认的问题
+				[left, 1280, 720, 23, 19, 50, 47, 1000]
 			],
 		},
 		{
@@ -192,6 +201,9 @@ export class Func514 implements IFuncOrigin {
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['514'];//	前面区域，后面小怪
+		if (thisScript.global.narrow_time === 0) {// 用户自定义等待时间
+			thisScript.global.narrow_time = parseInt(thisconf.boss_time as string) * 1000;
+		}
 		if (!thisScript.global.narrow_state) {
 			if (thisconf && thisconf.boss_type  === '豹子咬') {
 				thisScript.global.narrow_mode = true;
@@ -413,28 +425,14 @@ export class Func514 implements IFuncOrigin {
 		if (thisScript.global.narrow_mode) {
 			if (
 				thisScript.oper({
-					id: 514,
-					name: '检测_退出战斗',
-					operator: [
-						{
-							desc: thisOperator[5].desc,
-						}
-					]
+					name: '检测_退出战斗_点击退出',
+					operator: [thisOperator[5]],
 				})
 			) {
-				return thisScript.oper({
-					id: 514,
-					name: '点击_左上角退出战斗',
-					operator: [
-						{
-							oper: thisOperator[5].oper,
-						},
-					],
-				})
+				return true;
 			}
 			if (
 				thisScript.oper({
-					id: 514,
 					name: '检测_确定退出窗口',
 					operator: [
 						{
@@ -444,7 +442,6 @@ export class Func514 implements IFuncOrigin {
 				})
 			) {
 				const result = thisScript.oper({
-					id: 514,
 					name: '点击确认退出',
 					operator: [
 						{
@@ -452,26 +449,13 @@ export class Func514 implements IFuncOrigin {
 						},
 					],
 				})
-				sleep(3000)
+				sleep(4000)// 点击确认后，等待行动条第一个行动完毕
 				return result;
 			}
-			/**
-			{
-				return thisScript.oper({
-					name: '点击确认退出',
-					operator: [
-						{
-							oper: thisOperator[6].oper,
-						},
-					],
-				})
-			}
-			*/
-		}
 
+		}
 		if (
 			thisScript.oper({
-				id: 514,
 				name: '检测_选择暗域页面未封印',
 				operator: [
 					{
@@ -481,7 +465,6 @@ export class Func514 implements IFuncOrigin {
 			})
 		) {
 			return thisScript.oper({
-				id: 514,
 				name: '点击_神龙暗域',
 				operator: [
 					{
@@ -490,16 +473,13 @@ export class Func514 implements IFuncOrigin {
 				],
 			});
 		}
-
 		if (
 			thisScript.oper({
-				id: 514,
 				name: '检测_暗域第三人称主页',
 				operator: [{ desc: thisOperator[1].desc }],
 			})
 		) {
 			return thisScript.oper({
-				id: 514,
 				name: '点击战报',
 				operator: [{ oper: thisOperator[1].oper }],
 			});
@@ -507,7 +487,6 @@ export class Func514 implements IFuncOrigin {
 
 		if (
 			thisScript.oper({
-				id: 514,
 				name: '检测_怪物分布页',
 				operator: [
 					{
@@ -529,7 +508,6 @@ export class Func514 implements IFuncOrigin {
 
 			if (
 				thisScript.oper({
-					id: 514,
 					name: '检测_所有暗域已被封印',
 					operator: [
 						{
@@ -539,7 +517,6 @@ export class Func514 implements IFuncOrigin {
 				})
 			) {
 				thisScript.oper({
-					id: 514,
 					name: '关闭战报弹窗',
 					operator: [
 						{
@@ -611,7 +588,6 @@ export class Func514 implements IFuncOrigin {
 				const monster = map[1];
 
 				thisScript.oper({
-					id: 514,
 					name: '点击暗域',
 					operator: [
 						{
@@ -642,7 +618,6 @@ export class Func514 implements IFuncOrigin {
 					thisScript.global.checked_yard_count += 1;
 				}
 				thisScript.oper({
-					id: 514,
 					name: '点击怪物',
 					operator: [
 						{
@@ -656,7 +631,6 @@ export class Func514 implements IFuncOrigin {
 
 		if (
 			thisScript.oper({
-				id: 514,
 				name: '检测_获得奖励弹窗',
 				operator: [thisOperator[4]],
 			})
