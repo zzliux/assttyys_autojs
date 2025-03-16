@@ -472,13 +472,12 @@ export class Func518 implements IFuncOrigin {
 		},
 		{
 			//  32 检测_商店_礼包屋_推荐页签
-			desc: [
-				1280, 720,
+			desc: [1280, 720,
 				[
 					[left, 30, 26, 0xf4e4a4],
 					[right, 1249, 28, 0xd7c5a2],
 					[left, 99, 115, 0x2f1e1a],
-					[right, 1159, 644, 0xe6d08e],
+					[right, 1178, 666, 0xd13b39],
 					[right, 1135, 674, 0xdcb65b],
 				]
 			],

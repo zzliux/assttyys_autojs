@@ -68,9 +68,9 @@ export class Func993 implements IFuncOrigin {
 					[center, 590, 611, 0xffffff],
 					[center, 588, 592, 0xfefdfd],
 					// 左下角适龄提示
-					[left, 40, 574, 0x67c13a],
-					[left, 55, 603, 0x67c13a],
-					[left, 65, 574, 0xffffff],
+					// [left, 40, 574, 0x67c13a],
+					// [left, 55, 603, 0x67c13a],
+					// [left, 65, 574, 0xffffff],
 					// 左上角阴阳师毛笔字
 					[left, 86, 53, 0xfdfddb],
 					[left, 88, 182, 0xfbdfae],
