@@ -1318,6 +1318,11 @@ export const versionList = [{
 	desc: `修复优化：503返回庭院界面，增加狭间暗域
 	514狭间暗域，打完次数后返回庭院
 	515狭间暗域挑战，前往怪物增加延时，避免卡游戏窗口bug`
+}, {
+	version: '20250316_02',
+	desc: `修复优化：514狭间暗域卡结算页bug
+	514狭间暗域新增3D人物前往怪物自定义等待时间
+	515狭间暗域挑战`
 }];
 
 export default versionList[versionList.length - 1].version;
