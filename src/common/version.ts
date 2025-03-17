@@ -1323,6 +1323,9 @@ export const versionList = [{
 	desc: `修复优化：514狭间暗域卡结算页bug
 	514狭间暗域新增3D人物前往怪物自定义等待时间
 	515狭间暗域挑战`
+}, {
+	version: '20250317_01',
+	desc: '修复优化：311红标，更新神荒、腐血取色',
 }];
 
 export default versionList[versionList.length - 1].version;
