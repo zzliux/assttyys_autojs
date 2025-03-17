@@ -2342,6 +2342,18 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				[center, 741, 223, 0x49a4ed],
 				[center, 735, 219, 0xffffff],
 			]
+		], [
+			1280, 720,
+			[// 新取色,腐血
+				[center, 603, 125, 0xffffff],
+				[center, 615, 126, 0xffffff],
+				[center, 616, 133, 0xffffff],
+				[center, 602, 136, 0xebf5ff],
+				[center, 596, 134, 0xf1ffff],
+				[center, 610, 134, 0x013c6f],
+				[center, 617, 130, 0x021b3c],
+				[center, 600, 129, 0x001f49],
+			]
 		], [ // 星爆图标_正常取色
 			1280, 720,
 			[
@@ -2354,6 +2366,19 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				[center, 740, 217, 0x296db9],
 				[center, 735, 208, 0xfaeee0],
 			]
+		], [
+			1280, 720,
+			[// 新取色,星爆图标_正常取色
+				[right, 996, 70, 0x000b1f],
+				[right, 1005, 71, 0x113a71],
+				[right, 996, 81, 0x012b5f],
+				[right, 1007, 82, 0xffffff],
+				[right, 996, 88, 0x00337a],
+				[right, 1005, 89, 0x1d5fb0],
+				[right, 996, 94, 0x2f72bc],
+				[right, 1012, 88, 0x001f49],
+				[right, 1015, 91, 0x002451],
+			]
 		], [// 星爆图标_下半部分取色
 			1280, 720,
 			[
@@ -2365,6 +2390,18 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				[center, 618, 234, 0x00204e],
 				[center, 608, 232, 0xffffff],
 				[center, 601, 237, 0x619edf],
+			]
+		], [
+			1280, 720,
+			[// 新取色,星爆图标_下半部分取色
+				[right, 995, 87, 0x001c4a],
+				[right, 1005, 86, 0x4181ce],
+				[right, 1009, 87, 0x003473],
+				[right, 1018, 88, 0x001e46],
+				[right, 1012, 92, 0x002452],
+				[right, 1005, 92, 0x004594],
+				[right, 997, 94, 0x5990cb],
+				[right, 1007, 87, 0xf7ffff],
 			]
 		]],
 		similar: 95,
