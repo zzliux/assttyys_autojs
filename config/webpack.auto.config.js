@@ -87,7 +87,7 @@ module.exports = (env, argv) => {
             new ProgressPlugin(),
             new CopyWebpackPlugin({
                 patterns: [
-                    { from: path.resolve(__dirname, '../src/index.html'), to: '.' },
+                    { from: path.resolve(__dirname, '../node_modules/assttyys_ui/dist/index.html'), to: '.' },
                 ]
             }),
             new Unpack(),
@@ -115,7 +115,7 @@ module.exports = (env, argv) => {
             new ProgressPlugin(),
             new CopyWebpackPlugin({
                 patterns: [
-                    { from: path.resolve(__dirname, '../src/index.html'), to: '.' },
+                    { from: path.resolve(__dirname, '../node_modules/assttyys_ui/dist/index.html'), to: '.' },
                 ]
             }),
         ]
