@@ -60,49 +60,47 @@ export class Func313 implements IFuncOrigin {
 		}]
 	}]
 	operator: IFuncOperatorOrigin[] = [{
-		// 0 已适配66 契灵界面
-		desc: [1280, 720,
+		// 0 契灵界面
+		desc: [
+			1280, 720,
 			[
 				[right, 1238, 29, 0xd4ae83],
-				[right, 1209, 461, 0xbae79a],
 				[left, 44, 39, 0xf6e7a7],
 				[left, 98, 39, 0x7a5b39],
 				[left, 170, 39, 0x5c4122],
 				[left, 269, 41, 0x593716],
+				[right, 1189, 463, 0xdaecaf],
 			]
 		],
-	}, {
-		// 1 追踪
+	}, { //  1 追踪
 		desc: [
 			1280, 720,
 			[
-				[right, 1180, 478, 0xa69fcf],
-				[right, 1192, 487, 0x6d6bc1],
-				[right, 1165, 612, 0xfef4e6],
-				[right, 1210, 608, 0xfdf3e5],
-				[right, 1156, 634, 0xfef4e6],
-				[right, 1174, 638, 0xfef4e6],
-				[right, 1192, 631, 0xfdf3e5],
-				[right, 1211, 630, 0xfef4e6],
+				[right, 1174, 462, 0xe9c9b3],
+				[right, 1196, 458, 0x7162c4],
+				[right, 1190, 446, 0xbaa5d8],
+				[right, 1189, 467, 0xf4ddee],
+				[right, 1195, 457, 0x745dc6],
+
+				[right, 1007, 648, 0xe2d6bf],
+				[right, 1046, 670, 0x382015],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1148, 602, 1225, 664, 4000],
-			// [center, 1280, 720, 18, 472, 79, 501, 3000],
+			[center, 1280, 720, 1165, 440, 1216, 486, 1000],
 		]
-	}, {
-		// 2 已适配66 探查
+	}, { // 2 探查
 		desc: [
 			1280, 720,
 			[
-				[right, 1155, 605, 0xfef4e6],
-				[right, 1181, 598, 0xfef4e6],
-				[right, 1197, 613, 0xfef4e6],
-				[right, 1202, 600, 0xfef4e6],
-				[left, 43, 40, 0xf5e5a6],
+				[right, 1155, 605, 0x3c2b26],
+				[right, 1181, 598, 0x74655e],
+				[right, 1197, 613, 0x483832],
+				[right, 1202, 600, 0x3c2b26],
+				[left, 43, 40, 0xf6eaad],
 				[right, 1236, 29, 0xd4ae83],
-				[right, 1042, 597, 0xc3a888],
-				[right, 1204, 627, 0xfef4e6],
+				[right, 1042, 597, 0xc5a989],
+				[right, 1204, 627, 0x83766d],
 			]
 		],
 		oper: [
@@ -152,12 +150,12 @@ export class Func313 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[center, 844, 44, 0x664d29],
-				[center, 862, 46, 0xe5ce89],
-				[center, 872, 45, 0xe5ce89],
-				[center, 892, 51, 0xe4cd88],
-				[center, 898, 52, 0xd9c280],
-				[center, 877, 60, 0xe5ce89],
+				[center, 740, 52, 0x644c27],
+				[center, 817, 59, 0x432b13],
+				[center, 743, 240, 0x644c27],
+				[center, 812, 245, 0x472e14],
+				[center, 740, 385, 0x644c27],
+				[center, 816, 392, 0x452c14],
 			]
 		],
 		oper: [
@@ -197,8 +195,7 @@ export class Func313 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 372, 548, 846, 687, 1000],
 		]
-	}, {
-		// 9 画线
+	}, { // 9 画线
 		desc: [
 			1280, 720,
 			[
@@ -224,29 +221,25 @@ export class Func313 implements IFuncOrigin {
 			[center, 1280, 720, 729, 509, 801, 564, 1000], // 连线右下
 			[center, 1280, 720, 472, 498, 545, 577, 1000], // 连线左下
 		]
-	}, { // 10 石头召唤确认
-		desc: [1280, 720,
+	}, { // 10 石头召唤选契灵确认
+		desc: [
+			1280, 720,
 			[
-				[left, 44, 38, 0xf5e6a5],
-				[left, 65, 41, 0x8f5f33],
-				[center, 568, 637, 0xeed6aa],
-				[right, 716, 641, 0xedd6a8],
-				[center, 613, 638, 0xcdefb3],
-				[center, 500, 562, 0xeacb9a],
-				[right, 699, 573, 0xe9c997],
-				[right, 787, 564, 0xeaca96],
-				[right, 788, 582, 0x372624],
+				[left, 45, 39, 0xf4e5a6],
+				[center, 507, 97, 0xfbe4c3],
+				[center, 775, 98, 0xfce1c3],
+				[center, 488, 561, 0xedcfa0],
+				[center, 605, 634, 0x6f61c3],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 151, 208, 276, 515, 1000],
-			[center, 1280, 720, 403, 215, 533, 515, 1000],
-			[center, 1280, 720, 657, 208, 791, 512, 1000],
-			[center, 1280, 720, 921, 214, 1050, 510, 1000],
-			[center, 1280, 720, 551, 621, 732, 661, 1000],
+			[center, 1280, 720, 214, 348, 281, 400, 1000], // 1 小黑
+			[center, 1280, 720, 442, 332, 512, 390, 1000], // 2 茨球
+			[center, 1280, 720, 712, 321, 785, 399, 1000], // 3 火灵
+			[center, 1280, 720, 932, 335, 1010, 390, 1000], // 4 镇墓兽
+			[center, 1280, 720, 585, 621, 702, 654, 2000], // 5 确认
 		]
-	}, {
-		// 11 探索地图进入契灵之境
+	}, { // 11 探索地图进入契灵之境
 		desc: '探索地图界面',
 		oper: [
 			[left, 1280, 720, 1032, 638, 1093, 676, 1000],
@@ -283,21 +276,6 @@ export class Func313 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 407, 417, 429, 439, 1000], // 不公开
 			[center, 1280, 720, 537, 495, 744, 536, 1000], // 创建
-		]
-	}, { // 14 结算
-		desc: [1280, 720,
-			[
-				[right, 855, 62, 0x3d2813],
-				[right, 859, 255, 0x3b2612],
-				[right, 842, 389, 0x3f2913],
-				[right, 1216, 685, 0x32211c],
-				[left, 24, 649, 0x2a2829],
-				[left, 56, 35, 0x8a6834],
-				[right, 1201, 36, 0x1f1515],
-			]
-		],
-		oper: [
-			[center, 1280, 720, 310, 263, 616, 683, 1000],
 		]
 	}]
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -415,7 +393,7 @@ export class Func313 implements IFuncOrigin {
 			id: 313,
 			name: '契灵杂项',
 			operator: [
-				thisOperator[6], thisOperator[8], thisOperator[11], thisOperator[12], thisOperator[13], thisOperator[14]
+				thisOperator[6], thisOperator[8], thisOperator[11], thisOperator[12], thisOperator[13],
 			]
 		})) {
 			return true;
