@@ -1326,6 +1326,9 @@ export const versionList = [{
 }, {
 	version: '20250317_01',
 	desc: '修复优化：311红标，更新神荒、腐血取色',
+}, {
+	version: '20250323_01',
+	desc: '新增：500进入寮活动，道馆集结取色',
 }];
 
 export default versionList[versionList.length - 1].version;

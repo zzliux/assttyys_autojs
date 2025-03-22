@@ -879,6 +879,21 @@ const SchemeList: IScheme[] = [
 				jspd_times_longtime_nodo: '1',
 			}
 		}
+	}, {
+		// [{"schemeName":"123","star":true,"list":[3,500,505,516],"groupNames":["未分组"],"config":{"500":{"a_ctivity_gateOfHades":true,"a_ctivity_dojo":true,"a_ctivity_hunt":true,"a_ctivity_narrow":true,"a_ctivity_banquet":true,"a_ctivity_huntBoss":true}}}]
+		id: 102,
+		schemeName: '进入寮活动New',
+		list: [3, 500, 505, 516],
+		config: {
+			'500': {
+				a_ctivity_gateOfHades: true,
+				a_ctivity_dojo: true,
+				a_ctivity_hunt: true,
+				a_ctivity_narrow: true,
+				a_ctivity_banquet: true,
+				a_ctivity_huntBoss: true,
+			}
+		}
 	}
 	// , {
 	// 	id: 102,
