@@ -82,7 +82,7 @@ export class Script {
 	myToast: (str: string, duration?: number) => void;
 
 	constructor() {
-		this.runThread = null;
+		globalThis.runThread = null;
 		this.runCallback = null;
 		this.stopCallback = null;
 		this.scheme = null;
@@ -533,8 +533,8 @@ export class Script {
 	 * 运行脚本，内部接口
 	 * @returns
 	 */
-	_run(job?: Job): void {
-		if (this.runThread) return;
+	_run(job?: Job, isPause?: boolean): void {
+		if (globalThis.runThread) return;
 		this.job = job;
 		const self = this;
 		try {
@@ -543,7 +543,9 @@ export class Script {
 			this.runDate = new Date();
 			this.currentDate = new Date();
 			this.runTimes = {};
-			this.global = merge({}, globalRoot);
+			if (!isPause) {
+				this.global = merge({}, globalRoot);
+			}
 			if (null === this.scheme) {
 				if (typeof self.stopCallback === 'function') {
 					self.stopCallback();
@@ -568,10 +570,14 @@ export class Script {
 		// img.saveTo('/sdcard/testimg.png');
 		// img.recycle();
 		// test end
-		myToast(`运行方案[${this.scheme.schemeName}]`);
+		if (isPause) {
+			myToast(`继续方案[${this.scheme.schemeName}]`);
+		} else {
+			myToast(`运行方案[${this.scheme.schemeName}]`);
+		}
 		this.schemeHistory.push(this.scheme);
 		// console.log(`运行方案[${this.scheme.schemeName}]`);
-		this.runThread = threads.start(function () {
+		globalThis.runThread = threads.start(function () {
 			try {
 				// eslint-disable-next-line no-constant-condition
 				while (true) {
@@ -664,7 +670,7 @@ export class Script {
 	 * 停止脚本，内部接口
 	 */
 	_stop(flag?: boolean) {
-		if (null !== this.runThread) {
+		if (null !== globalThis.runThread) {
 			if (typeof this.stopCallback === 'function') {
 				this.stopCallback();
 			}
@@ -674,9 +680,9 @@ export class Script {
 			if (!flag && this.job) {
 				this.job.doDone();
 			}
-			this.runThread.interrupt();
+			globalThis.runThread.interrupt();
 		}
-		this.runThread = null;
+		globalThis.runThread = null;
 	}
 
 	/**

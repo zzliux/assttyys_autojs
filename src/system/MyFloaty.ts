@@ -4,6 +4,7 @@ import schemeDialog from '@/system/schemeDialog';
 import script from '@/system/script';
 import { showScheduleDialog } from '@/system/Schedule/scheduleDialog';
 import { storeCommon } from '@/system/Store/store';
+import { myToast } from '@/common/toolAuto';
 
 /**
  * 悬浮按钮，对大柒的悬浮按钮进行封装
@@ -104,6 +105,21 @@ export class MyFloaty {
 				self.runEventFlag = false;
 				return false;
 			});
+		this.fb.addItem('Pause')
+			.setIcon('@drawable/ic_pause_black_48dp')
+			.setTint('#FFFFFF')
+			.setColor('#FF4800')
+			.onClick((_view, _name) => {
+				if (globalThis.runThread && globalThis.runThread.isAlive()) {
+					self.thisStop();
+					myToast('已暂停方案');
+				} else {
+					self.thisRun(undefined, true);
+				}
+				self.runEventFlag = false;
+				// 返回 true:保持菜单开启 false:关闭菜单
+				return false;
+			});
 		if (storeSettings.defaultFloat.find(item => item.floatyName === '截图图标' && item.referred === true)) {
 			this.fb.addItem('CapScreen')
 				.setIcon('@drawable/ic_landscape_black_48dp')
@@ -191,7 +207,7 @@ export class MyFloaty {
 		});
 	}
 
-	thisRun(type?: string) {
+	thisRun(type?: string, isPause?: boolean) {
 		type = type || 'run';
 		if (app.autojs.versionCode >= 8081200) {
 			// @ts-expect-error d.ts文件问题
