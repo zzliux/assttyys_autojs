@@ -1329,6 +1329,9 @@ export const versionList = [{
 }, {
 	version: '20250323_01',
 	desc: '新增：500进入寮活动，道馆集结取色',
+}, {
+	version: '20250323_02',
+	desc: '修复优化：500增加自选切换方案',
 }];
 
 export default versionList[versionList.length - 1].version;
