@@ -535,7 +535,6 @@ export class Script {
 	 */
 	_run(job?: Job, isPause?: boolean): void {
 		if (globalThis.runThread) return;
-		log(job)
 		this.job = job;
 		const self = this;
 		try {
