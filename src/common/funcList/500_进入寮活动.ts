@@ -19,11 +19,21 @@ export class Func500 implements IFuncOrigin {
 				default: false,
 				value: false,
 			}, {
+				name: 'a_ctivity_gateOfHades_select',
+				desc: '阴门方案',
+				type: 'scheme',
+				default: '阴门挑战',
+			}, {
 				name: 'a_ctivity_dojo',
 				desc: '道馆',
 				type: 'switch',
 				default: false,
 				value: false,
+			}, {
+				name: 'a_ctivity_dojo_select',
+				desc: '道馆方案',
+				type: 'scheme',
+				default: '道馆',
 			}, {
 				name: 'a_ctivity_hunt',
 				desc: '狩猎战',
@@ -31,11 +41,21 @@ export class Func500 implements IFuncOrigin {
 				default: false,
 				value: false,
 			}, {
+				name: 'a_ctivity_hunt_select',
+				desc: '狩猎战方案',
+				type: 'scheme',
+				default: '狩猎战',
+			}, {
 				name: 'a_ctivity_narrow',
 				desc: '狭间',
 				type: 'switch',
 				default: false,
 				value: false,
+			}, {
+				name: 'a_ctivity_narrow_select',
+				desc: '狭间方案',
+				type: 'scheme',
+				default: '狭间暗域',
 			}, {
 				name: 'a_ctivity_banquet',
 				desc: '宴会',
@@ -43,11 +63,21 @@ export class Func500 implements IFuncOrigin {
 				default: false,
 				value: false,
 			}, {
+				name: 'a_ctivity_banquet_select',
+				desc: '宴会方案',
+				type: 'scheme',
+				default: '宴会',
+			}, {
 				name: 'a_ctivity_huntBoss',
 				desc: '首领退治',
 				type: 'switch',
 				default: false,
 				value: false,
+			}, {
+				name: 'a_ctivity_huntBoss_select',
+				desc: '退治方案',
+				type: 'scheme',
+				default: '首领退治',
 			}]
 	}];
 	operator: IFuncOperatorOrigin[] = [
@@ -298,7 +328,7 @@ export class Func500 implements IFuncOrigin {
 					})) {
 						sleep(2000);
 						thisScript.global.liao_activity_page_flag = 0;
-						const next_scheme = '阴门挑战';
+						const next_scheme = thisconf.a_ctivity_gateOfHades_select;
 						thisScript.rerun(next_scheme, {});
 					}
 				} else {
@@ -322,7 +352,7 @@ export class Func500 implements IFuncOrigin {
 					})) {
 						sleep(2000);
 						thisScript.global.liao_activity_page_flag = 0;
-						const next_scheme = '狩猎战';
+						const next_scheme = thisconf.a_ctivity_hunt_select;
 						thisScript.rerun(next_scheme, {});
 					}
 				}
@@ -354,7 +384,7 @@ export class Func500 implements IFuncOrigin {
 				})) {
 					sleep(2000);
 					thisScript.global.liao_activity_page_flag = 0;
-					const next_scheme = '狭间暗域';
+					const next_scheme = thisconf.a_ctivity_narrow_select;
 					thisScript.rerun(next_scheme, {});
 				}
 			} else {
@@ -380,7 +410,7 @@ export class Func500 implements IFuncOrigin {
 			});
 			sleep(2000);
 			thisScript.global.liao_activity_page_flag = 0;
-			const next_scheme = '宴会';
+			const next_scheme = thisconf.a_ctivity_banquet_select;
 			thisScript.rerun(next_scheme, {});
 		}
 		// 周六首领退治活动
@@ -400,7 +430,7 @@ export class Func500 implements IFuncOrigin {
 				})) {
 					sleep(2000);
 					thisScript.global.liao_activity_page_flag = 0;
-					const next_scheme = '首领退治';
+					const next_scheme = thisconf.a_ctivity_huntBoss_select;
 					thisScript.rerun(next_scheme, {});
 					return true;
 				}
@@ -434,7 +464,7 @@ export class Func500 implements IFuncOrigin {
 				}]
 			})) {
 				thisScript.global.liao_activity_page_flag = 0;
-				const next_scheme = '道馆';
+				const next_scheme = thisconf.a_ctivity_dojo_select;
 				thisScript.rerun(next_scheme, {});
 				return true;
 			}
