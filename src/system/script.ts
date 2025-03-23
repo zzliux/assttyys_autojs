@@ -520,9 +520,9 @@ export class Script {
 	 * 运行脚本
 	 * @returns
 	 */
-	run() {
+	run(job?: Job, isPause?: boolean) {
 		this.setCurrentScheme();
-		return this._run();
+		return this._run(job, isPause);
 	}
 
 	runWithJob(job: Job): void {
@@ -535,6 +535,7 @@ export class Script {
 	 */
 	_run(job?: Job, isPause?: boolean): void {
 		if (globalThis.runThread) return;
+		log(job)
 		this.job = job;
 		const self = this;
 		try {

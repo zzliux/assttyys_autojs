@@ -103,6 +103,7 @@ export type globalRootType = {
 	fengNa: boolean, // 302奉纳
 	finght_time: number, // 320战斗时间
 	xxxskill: number, // 寻香行技能
+	tt: number,
 }
 
 export const globalRoot: globalRootType = {
@@ -210,4 +211,5 @@ export const globalRoot: globalRootType = {
 	xsFilter: {},
 	finght_time: null,
 	xxxskill: 0,
+	tt: 0,
 }

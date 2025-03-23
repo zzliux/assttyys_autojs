@@ -214,13 +214,13 @@ export class MyFloaty {
 			const capOpt = images.getScreenCaptureOptions();
 			if (null == capOpt) {
 				// 通过报错来切换图标状态
-				script[type](this);
+				script[type].call(script, undefined, isPause);
 				toastLog('无截图权限');
 			} else {
-				script[type](this);
+				script[type].call(script, undefined, isPause);
 			}
 		} else {
-			script[type](this);
+			script[type].call(script, undefined, isPause);
 		}
 	}
 
