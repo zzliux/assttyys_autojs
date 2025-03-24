@@ -28,6 +28,7 @@ export class MyFloaty {
 		this.fb.setIcon('file://' + files.cwd() + '/assets/img/ay.png');
 		this.fb.setColor('#FFFFFF');
 		this.fb.setAutoCloseMenuTime(3000);
+		let isRunStopChecked = false;
 		// this.fb.addItem('Home')
 		//     //设置图标
 		//     .setIcon('@drawable/ic_home_black_48dp')
@@ -63,6 +64,7 @@ export class MyFloaty {
 					self.runEventFlag = false;
 					return;
 				}
+				isRunStopChecked = state;
 				if (state) {
 					const storeSettings = storeCommon.get('settings', {});
 					if (storeSettings.floaty_scheme_openApp) {
@@ -105,21 +107,24 @@ export class MyFloaty {
 				self.runEventFlag = false;
 				return false;
 			});
-		this.fb.addItem('Pause')
-			.setIcon('@drawable/ic_pause_black_48dp')
-			.setTint('#FFFFFF')
-			.setColor('#FF4800')
-			.onClick((_view, _name) => {
-				if (globalThis.runThread && globalThis.runThread.isAlive()) {
-					self.thisStop();
-					myToast('已暂停方案');
-				} else {
-					self.thisRun(undefined, true);
-				}
-				self.runEventFlag = false;
-				// 返回 true:保持菜单开启 false:关闭菜单
-				return false;
-			});
+		if (storeSettings.defaultFloat.find(item => item.floatyName === '暂停图标' && item.referred === true)) {
+			this.fb.addItem('Pause')
+				.setIcon('@drawable/ic_pause_black_48dp')
+				.setTint('#FFFFFF')
+				.setColor('#FF4800')
+				.onClick((_view, _name) => {
+					if (!isRunStopChecked) {
+						runStopItem.setChecked(isRunStopChecked); // 手动更新 UI
+					}
+					if (globalThis.runThread && globalThis.runThread.isAlive()) {
+						self.thisStop(true);
+						myToast('已暂停方案');
+					} else {
+						self.thisRun(undefined, true);
+					}
+					return false;
+				});
+		}
 		if (storeSettings.defaultFloat.find(item => item.floatyName === '截图图标' && item.referred === true)) {
 			this.fb.addItem('CapScreen')
 				.setIcon('@drawable/ic_landscape_black_48dp')
@@ -224,8 +229,8 @@ export class MyFloaty {
 		}
 	}
 
-	thisStop() {
-		script.stop();
+	thisStop(isPause?: boolean) {
+		script.stop(isPause);
 	}
 }
 

@@ -45,19 +45,22 @@ export default function webviewSettigns() {
 	if (typeof initStoreSettings.push_type === 'undefined') {
 		initStoreSettings.push_type = '关闭推送';
 	}
-	if (typeof initStoreSettings.defaultFloat === 'undefined') {
-		initStoreSettings.defaultFloat = [{
-			floatyName: '截图图标',
-			referred: true
-		}, {
-			floatyName: '定时图标',
-			referred: true
-		}, {
-			floatyName: '日志图标',
-			referred: false
-		}]
-	}
 
+	const defaultFloat = [
+		{ floatyName: '暂停图标', referred: true },
+		{ floatyName: '截图图标', referred: true },
+		{ floatyName: '定时图标', referred: true },
+		{ floatyName: '日志图标', referred: false }
+	];
+	// 确保 initStoreSettings.defaultFloat 存在
+	initStoreSettings.defaultFloat = initStoreSettings.defaultFloat || [];
+	// 先拼接两个数组，再去重（以 floatyName 为基准）
+	initStoreSettings.defaultFloat = [
+		...initStoreSettings.defaultFloat,
+		...defaultFloat.filter(
+			item => !initStoreSettings.defaultFloat.some(existing => existing.floatyName === item.floatyName)
+		)
+	];
 	// if (typeof initStoreSettings.oneBot_version === 'undefined') {
 	// 	initStoreSettings.oneBot_version = '12';
 	// }

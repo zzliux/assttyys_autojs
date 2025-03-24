@@ -576,7 +576,6 @@ export class Script {
 			myToast(`运行方案[${this.scheme.schemeName}]`);
 		}
 		this.schemeHistory.push(this.scheme);
-		// console.log(`运行方案[${this.scheme.schemeName}]`);
 		globalThis.runThread = threads.start(function () {
 			try {
 				// eslint-disable-next-line no-constant-condition
@@ -662,14 +661,14 @@ export class Script {
 	/**
 	 * 停止脚本
 	 */
-	stop() {
-		events.broadcast.emit('SCRIPT_STOP', '');
+	stop(isPause?: boolean) {
+		events.broadcast.emit('SCRIPT_STOP', '', isPause);
 	}
 
 	/**
 	 * 停止脚本，内部接口
 	 */
-	_stop(flag?: boolean) {
+	_stop(flag?: boolean, isPause?: boolean) {
 		if (null !== globalThis.runThread) {
 			if (typeof this.stopCallback === 'function') {
 				this.stopCallback();
@@ -677,7 +676,9 @@ export class Script {
 			if (!flag) {
 				this.schemeHistory = [];
 			}
-			if (!flag && this.job) {
+			log(isPause)
+			log('哈哈' + this.job)
+			if (!flag && this.job && !isPause) {
 				this.job.doDone();
 			}
 			globalThis.runThread.interrupt();
@@ -930,8 +931,8 @@ export class Script {
 
 const script = new Script();
 
-events.broadcast.on('SCRIPT_STOP', () => {
-	script._stop();
+events.broadcast.on('SCRIPT_STOP', (flag, isPause) => {
+	script._stop(flag, isPause);
 });
 
 events.broadcast.on('SCRIPT_RUN', () => {
