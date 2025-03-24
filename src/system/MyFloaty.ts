@@ -113,14 +113,19 @@ export class MyFloaty {
 				.setTint('#FFFFFF')
 				.setColor('#FF4800')
 				.onClick((_view, _name) => {
-					if (!isRunStopChecked) {
-						runStopItem.setChecked(isRunStopChecked); // 手动更新 UI
-					}
+					isRunStopChecked = !isRunStopChecked;
+					runStopItem.setChecked(isRunStopChecked, true); // 手动更新 UI
 					if (globalThis.runThread && globalThis.runThread.isAlive()) {
-						self.thisStop(true);
-						myToast('已暂停方案');
+						self.thisPause();
+						self.thisStop();
+						myToast('已暂停,再按一次继续');
 					} else {
-						self.thisRun(undefined, true);
+						self.thisPause();
+						if (script.job != undefined) {
+							self.thisRun('runWithJob');
+						} else {
+							self.thisRun();
+						}
 					}
 					return false;
 				});
@@ -212,25 +217,29 @@ export class MyFloaty {
 		});
 	}
 
-	thisRun(type?: string, isPause?: boolean) {
+	thisRun(type?: string) {
 		type = type || 'run';
 		if (app.autojs.versionCode >= 8081200) {
 			// @ts-expect-error d.ts文件问题
 			const capOpt = images.getScreenCaptureOptions();
 			if (null == capOpt) {
 				// 通过报错来切换图标状态
-				script[type].call(script, undefined, isPause);
+				script[type](this);
 				toastLog('无截图权限');
 			} else {
-				script[type].call(script, undefined, isPause);
+				script[type](this);
 			}
 		} else {
-			script[type].call(script, undefined, isPause);
+			script[type](this);
 		}
 	}
 
-	thisStop(isPause?: boolean) {
-		script.stop(isPause);
+	thisStop() {
+		script.stop();
+	}
+
+	thisPause() {
+		script.pause();
 	}
 }
 

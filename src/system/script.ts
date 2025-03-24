@@ -46,6 +46,7 @@ export class Script {
 	job: Job;
 	schedule: typeof schedule;
 	ncnnBgyx = ncnnBgyx;
+	isPause: boolean;
 
 	/**
 	 * 运行次数，下标为funcList中的id，值为这个func成功执行的次数；
@@ -82,7 +83,7 @@ export class Script {
 	myToast: (str: string, duration?: number) => void;
 
 	constructor() {
-		globalThis.runThread = null;
+		this.runThread = null;
 		this.runCallback = null;
 		this.stopCallback = null;
 		this.scheme = null;
@@ -520,9 +521,9 @@ export class Script {
 	 * 运行脚本
 	 * @returns
 	 */
-	run(job?: Job, isPause?: boolean) {
+	run() {
 		this.setCurrentScheme();
-		return this._run(job, isPause);
+		return this._run();
 	}
 
 	runWithJob(job: Job): void {
@@ -533,9 +534,8 @@ export class Script {
 	 * 运行脚本，内部接口
 	 * @returns
 	 */
-	_run(job?: Job, isPause?: boolean): void {
-		if (globalThis.runThread) return;
-		this.job = job;
+	_run(job?: Job): void {
+		if (this.runThread) return;
 		const self = this;
 		try {
 			this.initFuncList();
@@ -543,9 +543,16 @@ export class Script {
 			this.runDate = new Date();
 			this.currentDate = new Date();
 			this.runTimes = {};
-			if (!isPause) {
-				this.global = merge({}, globalRoot);
+			if (this.isPause) {
+				myToast(`继续方案[${this.scheme.schemeName}]`);
+			} else {
+				myToast(`运行方案[${this.scheme.schemeName}]`);
 			}
+			if (!this.isPause) {
+				this.global = merge({}, globalRoot);
+				this.job = job;
+			}
+			this.isPause = false;
 			if (null === this.scheme) {
 				if (typeof self.stopCallback === 'function') {
 					self.stopCallback();
@@ -570,11 +577,6 @@ export class Script {
 		// img.saveTo('/sdcard/testimg.png');
 		// img.recycle();
 		// test end
-		if (isPause) {
-			myToast(`继续方案[${this.scheme.schemeName}]`);
-		} else {
-			myToast(`运行方案[${this.scheme.schemeName}]`);
-		}
 		this.schemeHistory.push(this.scheme);
 		globalThis.runThread = threads.start(function () {
 			try {
@@ -661,14 +663,14 @@ export class Script {
 	/**
 	 * 停止脚本
 	 */
-	stop(isPause?: boolean) {
-		events.broadcast.emit('SCRIPT_STOP', '', isPause);
+	stop() {
+		events.broadcast.emit('SCRIPT_STOP', '');
 	}
 
 	/**
 	 * 停止脚本，内部接口
 	 */
-	_stop(flag?: boolean, isPause?: boolean) {
+	_stop(flag?: boolean) {
 		if (null !== globalThis.runThread) {
 			if (typeof this.stopCallback === 'function') {
 				this.stopCallback();
@@ -676,12 +678,14 @@ export class Script {
 			if (!flag) {
 				this.schemeHistory = [];
 			}
-			log(isPause)
-			log('哈哈' + this.job)
-			if (!flag && this.job && !isPause) {
+			log(this.isPause)
+			console.log('job:', this.job);
+			if (!flag && this.job && !this.isPause) {
 				this.job.doDone();
 			}
-			globalThis.runThread.interrupt();
+			this.isPause = false;
+			log(this.isPause)
+			globalThis.runThread && globalThis.runThread.interrupt();
 		}
 		globalThis.runThread = null;
 	}
@@ -728,6 +732,10 @@ export class Script {
 		}, 510);
 	}
 
+	// 暂停
+	pause() {
+		this.isPause = true;
+	}
 	/**
 	 * 关键函数，操作函数
 	 * 针对func进行多点比色，成功的话按顺序点击oper数组
@@ -931,8 +939,8 @@ export class Script {
 
 const script = new Script();
 
-events.broadcast.on('SCRIPT_STOP', (flag, isPause) => {
-	script._stop(flag, isPause);
+events.broadcast.on('SCRIPT_STOP', () => {
+	script._stop();
 });
 
 events.broadcast.on('SCRIPT_RUN', () => {

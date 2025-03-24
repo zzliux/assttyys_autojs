@@ -85,9 +85,16 @@ function CreateRoundButtonView(name, mGlobal) {
         return this;
     }
 
-    this.setChecked = function (value) {
+    this.setChecked = function (value, notTrigger) {
+        if (state != null) {
+            if (mGlobal.state.anim) return;
+            mGlobal.anim.stateChanged(state, items, view);
+            state = !state;
+        }
         if (state == value || state == null) return this;
-        viewPost(() => view.performClick());
+        if (!notTrigger) {
+            viewPost(() => view.performClick());
+        }
         return this;
     }
 
