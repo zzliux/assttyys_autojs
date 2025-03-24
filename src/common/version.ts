@@ -1332,6 +1332,9 @@ export const versionList = [{
 }, {
 	version: '20250323_02',
 	desc: '修复优化：500增加自选切换方案',
+}, {
+	version: '20250325_02',
+	desc: '修复优化：32道馆不打第二次，500道馆切换方案传参',
 }];
 
 export default versionList[versionList.length - 1].version;
