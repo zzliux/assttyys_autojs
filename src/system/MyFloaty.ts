@@ -117,15 +117,9 @@ export class MyFloaty {
 					runStopItem.setChecked(isRunStopChecked, true); // 手动更新 UI
 					if (globalThis.runThread && globalThis.runThread.isAlive()) {
 						self.thisPause();
-						self.thisStop();
 						myToast('已暂停,再按一次继续');
 					} else {
-						self.thisPause();
-						if (script.job != undefined) {
-							self.thisRun('runWithJob');
-						} else {
-							self.thisRun();
-						}
+						self.thisRun();
 					}
 					return false;
 				});

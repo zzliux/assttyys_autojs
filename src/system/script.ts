@@ -679,11 +679,10 @@ export class Script {
 				this.schemeHistory = [];
 			}
 			log(this.isPause)
-			console.log('job:', this.job);
+			console.log('job:' + this.job?.name);
 			if (!flag && this.job && !this.isPause) {
 				this.job.doDone();
 			}
-			this.isPause = false;
 			log(this.isPause)
 			globalThis.runThread && globalThis.runThread.interrupt();
 		}
@@ -735,6 +734,7 @@ export class Script {
 	// 暂停
 	pause() {
 		this.isPause = true;
+		this.stop();
 	}
 	/**
 	 * 关键函数，操作函数
