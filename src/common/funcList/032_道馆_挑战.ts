@@ -272,6 +272,40 @@ export class Func032 implements IFuncOrigin {
 		oper: [
 			[left, 1280, 720, 27, 28, 56, 65, 1200]	//	跑路
 		]
+	}, { //	14 胜利结算寮资金
+		desc: [
+			1280, 720,
+			[
+				[center, 458, 57, 0x6a1410],
+				[center, 444, 99, 0x9a1c12],
+				[center, 486, 98, 0x911c10],
+				[center, 467, 90, 0xcebead],
+				[center, 352, 65, 0xe5d78c],
+				[center, 556, 106, 0xad8e5a],
+				[center, 547, 126, 0x9c9ca5],
+				[center, 816, 75, 0xdecb9c]
+			]
+		],
+		oper: [
+			[left, 1280, 720, 1147, 348, 1238, 614, 1000]
+		]
+	}, { // 15 道馆挑战成功结算排行榜_关闭
+		desc: [
+			1280, 720,
+			[
+				[center, 486, 58, 0x7f1a10],
+				[center, 472, 80, 0x991c10],
+				[center, 503, 80, 0x971c10],
+				[center, 885, 154, 0xe7dfd6],
+				[center, 458, 131, 0xc62c21],
+				[center, 689, 54, 0xf3ebca],
+				[center, 691, 76, 0xc8ad77],
+				[center, 753, 53, 0xf0e7c5]
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1147, 348, 1238, 614, 800],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['32'];
@@ -326,7 +360,7 @@ export class Func032 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 32,
 			name: '检测_挑战结束',
-			operator: [thisOperator[1], thisOperator[3], thisOperator[4]]
+			operator: [thisOperator[1], thisOperator[3], thisOperator[4], thisOperator[14], thisOperator[15]]
 		})) {
 			thisScript.global.fight_switch_skill = true;
 			return true;
@@ -372,11 +406,30 @@ export class Func032 implements IFuncOrigin {
 			return true;
 		}
 		if (thisScript.oper({
+			id: 32,
 			name: '检测_挑战结束',
-			operator: [thisOperator[2], thisOperator[6], thisOperator[9]]
+			operator: [thisOperator[2], thisOperator[6], thisOperator[9], thisOperator[13]] // 13投票后，倒计时结束会返回到小地图（补充：道馆突破成功倒计时会返回到庭院）
 		})) {
 			thisScript.global.daoguan_team = true;
 			thisScript.global.shangyushe = true;
+			if (thisconf.fight_second) {
+				if (thisScript.runtimeParams && thisScript.runtimeParams.liao_activity_state) {
+					if (thisScript.runtimeParams.liao_activity_state['dojo']) { // true表示执行过一次了
+						const next_scheme = '返回庭院';
+						thisScript.rerun(next_scheme);
+					} else {
+						thisScript.runtimeParams.liao_activity_state['dojo'] = true;
+						const next_scheme = thisconf.fight_second_select;
+						thisScript.rerun(next_scheme, { ...thisScript.runtimeParams, });
+					}
+
+				}
+			} else { // 没勾选，直接返回庭院，结束任务
+				const next_scheme = '返回庭院';
+				thisScript.rerun(next_scheme);
+			}
+			return true;
+			/**
 			if (thisScript.runtimeParams && thisScript.runtimeParams.liao_activity_state) {
 				thisScript.runtimeParams.liao_activity_state['dojo'] = true;
 				const next_scheme = '返回庭院';
@@ -387,12 +440,11 @@ export class Func032 implements IFuncOrigin {
 			} else {
 				const next_scheme = '返回庭院';
 				thisScript.rerun(next_scheme);
-			}
-
+			} */
 		}
-		if (thisScript.oper({
+		/** if (thisScript.oper({
 			id: 32,
-			name: '检测_是否选择寮界面', // 投票后，倒计时结束会返回到小地图
+			name: '检测_是否选择寮界面', // 投票后，倒计时结束会返回到小地图（补充：道馆突破成功倒计时会返回到庭院）
 			operator: [thisOperator[13],]
 		})) {
 			if (thisconf.fight_second) {
@@ -412,7 +464,7 @@ export class Func032 implements IFuncOrigin {
 				thisScript.rerun(next_scheme);
 			}
 			return true;
-		}
+		} */
 		return false;
 	}
 }
