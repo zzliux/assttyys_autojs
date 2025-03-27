@@ -1335,6 +1335,9 @@ export const versionList = [{
 }, {
 	version: '20250325_02',
 	desc: '修复优化：32道馆不打第二次，500道馆切换方案传参',
+}, {
+	version: '20250327_01',
+	desc: '修复优化：32道馆挑战成功后返回庭院任然运行中bug',
 }];
 
 export default versionList[versionList.length - 1].version;
