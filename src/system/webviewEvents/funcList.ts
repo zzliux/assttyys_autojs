@@ -43,6 +43,7 @@ export default function webviewFuncList() {
 
 	// 点击保存，设置当前方案
 	webview.on('setCurrentScheme').subscribe(([schemeName, done]) => {
+		script.isPause = false;
 		setCurrentScheme(schemeName, store);
 		done();
 	});

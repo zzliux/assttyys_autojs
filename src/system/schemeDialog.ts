@@ -87,6 +87,8 @@ export default {
 				itemView.groupSchemeList.on('item_data_bind', (itemView, itemHolder) => {
 					const textClick = (schemeName) => {
 						if (!schemeName) return;
+						script.isPause = false;
+						myfloaty.fb.removeItem('Pause');
 						script.setCurrentScheme(schemeName);
 						const storeSettings = storeCommon.get('settings', {});
 						if (storeSettings.floaty_scheme_direct_run) {
