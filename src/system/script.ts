@@ -540,15 +540,15 @@ export class Script {
 		try {
 			this.initFuncList();
 			this.initMultiFindColors();
-			this.runDate = new Date();
 			this.currentDate = new Date();
 			if (this.isPause) {
 				myToast(`继续方案[${this.scheme.schemeName}]`);
-				console.log(`global: ${JSON.stringify(this.global, null, 2)}`)
+				console.log(`global: ${JSON.stringify(this.global, null, 2)}`);
 			} else {
 				this.runTimes = {}; // 全新启动需重置该参数
 				this.global = merge({}, globalRoot); // 全新启动需重置该参数
 				this.job = job;
+				this.runDate = new Date(); // 全新启动需重之运行时间
 				myToast(`运行方案[${this.scheme.schemeName}]`);
 			}
 			this.isPause = false;
