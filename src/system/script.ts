@@ -542,15 +542,14 @@ export class Script {
 			this.initMultiFindColors();
 			this.runDate = new Date();
 			this.currentDate = new Date();
-			this.runTimes = {};
 			if (this.isPause) {
 				myToast(`继续方案[${this.scheme.schemeName}]`);
+				console.log(`global: ${JSON.stringify(this.global, null, 2)}`)
 			} else {
-				myToast(`运行方案[${this.scheme.schemeName}]`);
-			}
-			if (!this.isPause) {
-				this.global = merge({}, globalRoot);
+				this.runTimes = {}; // 全新启动需重置该参数
+				this.global = merge({}, globalRoot); // 全新启动需重置该参数
 				this.job = job;
+				myToast(`运行方案[${this.scheme.schemeName}]`);
 			}
 			this.isPause = false;
 			if (null === this.scheme) {
@@ -678,12 +677,10 @@ export class Script {
 			if (!flag) {
 				this.schemeHistory = [];
 			}
-			log(this.isPause)
 			console.log('job:' + this.job?.name);
 			if (!flag && this.job && !this.isPause) {
 				this.job.doDone();
 			}
-			log(this.isPause)
 			globalThis.runThread && globalThis.runThread.interrupt();
 		}
 		globalThis.runThread = null;

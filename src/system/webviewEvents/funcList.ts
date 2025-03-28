@@ -7,6 +7,7 @@ import script from '@/system/script';
 import { IScheme } from '@/interface/IScheme';
 import funcList from '@/common/funcListIndex';
 import CommonConfig from '@/common/commonConfig';
+import MyFloaty from '../MyFloaty';
 
 export default function webviewFuncList() {
 
@@ -44,6 +45,7 @@ export default function webviewFuncList() {
 	// 点击保存，设置当前方案
 	webview.on('setCurrentScheme').subscribe(([schemeName, done]) => {
 		script.isPause = false;
+		MyFloaty.fb.removeItem('Pause');
 		setCurrentScheme(schemeName, store);
 		done();
 	});
