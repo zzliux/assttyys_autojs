@@ -138,9 +138,32 @@ global.FloatButton = function () {
     }
 
     FloatButton.prototype.addItem = function (name) {
+        // 检查动画状态和菜单状态
+        if (mConfig.state.anim || mConfig.state.menuOpen) {
+            // 如果正在动画或菜单已展开，先保存操作并关闭菜单
+            const performAdd = () => {
+                let viewUtil = new CreateRoundButtonView(name, mConfig);
+                mViewUtils[name] = viewUtil;
+                mMenuViews.push({name, view: viewUtil.getView()});
+                mWindows.menu.content.addView(viewUtil.getView());
+                updateItemCoordinate();
+                updateMenuWindow();
+                mAnim.createAnim(mItemsXY, mMenuViews);
+                return viewUtil;
+            };
+            
+            if (mConfig.state.menuOpen) {
+                // 先关闭菜单，然后在回调中执行添加
+                this.setMenuOpen(false, () => {
+                    postAction(performAdd);
+                });
+                return mViewUtils[name]; // 返回一个未完成的引用
+            }
+        }
+        
         let viewUtil = new CreateRoundButtonView(name, mConfig);
         mViewUtils[name] = viewUtil;
-        mMenuViews.push({name, view: viewUtil.getView()}); // 改为数组存储
+        mMenuViews.push({name, view: viewUtil.getView()});
         postAction(() => {
             mWindows.menu.content.addView(viewUtil.getView());
             updateItemCoordinate();
@@ -151,9 +174,32 @@ global.FloatButton = function () {
     }
 
     FloatButton.prototype.insertItem = function (name, index) {
+        // 检查动画状态和菜单状态
+        if (mConfig.state.anim || mConfig.state.menuOpen) {
+            // 如果正在动画或菜单已展开，先保存操作并关闭菜单
+            const performInsert = () => {
+                let viewUtil = new CreateRoundButtonView(name, mConfig);
+                mViewUtils[name] = viewUtil;
+                mMenuViews.splice(index, 0, {name, view: viewUtil.getView()});
+                mWindows.menu.content.addView(viewUtil.getView(), index);
+                updateItemCoordinate();
+                updateMenuWindow();
+                mAnim.createAnim(mItemsXY, mMenuViews);
+                return viewUtil;
+            };
+            
+            if (mConfig.state.menuOpen) {
+                // 先关闭菜单，然后在回调中执行插入
+                this.setMenuOpen(false, () => {
+                    postAction(performInsert);
+                });
+                return mViewUtils[name]; // 返回一个未完成的引用
+            }
+        }
+        
         let viewUtil = new CreateRoundButtonView(name, mConfig);
         mViewUtils[name] = viewUtil;
-        mMenuViews.splice(index, 0, {name, view: viewUtil.getView()}); // 改为数组插入
+        mMenuViews.splice(index, 0, {name, view: viewUtil.getView()});
         postAction(() => {
             mWindows.menu.content.addView(viewUtil.getView(), index);
             updateItemCoordinate();
@@ -166,6 +212,28 @@ global.FloatButton = function () {
     FloatButton.prototype.removeItem = function (name) {
         let index = mMenuViews.findIndex(item => item.name === name);
         if (index === -1) return;
+        
+        // 检查动画状态和菜单状态
+        if (mConfig.state.anim || mConfig.state.menuOpen) {
+            // 如果正在动画或菜单已展开，先保存操作并关闭菜单
+            const performRemove = () => {
+                mWindows.menu.content.removeView(mMenuViews[index].view);
+                mMenuViews.splice(index, 1);
+                delete mViewUtils[name];
+                updateItemCoordinate();
+                updateMenuWindow();
+                mAnim.createAnim(mItemsXY, mMenuViews);
+            };
+            
+            if (mConfig.state.menuOpen) {
+                // 先关闭菜单，然后在回调中执行删除
+                this.setMenuOpen(false, () => {
+                    postAction(performRemove);
+                });
+                return;
+            }
+        }
+        
         postAction(() => {
             mWindows.menu.content.removeView(mMenuViews[index].view);
             mMenuViews.splice(index, 1);
