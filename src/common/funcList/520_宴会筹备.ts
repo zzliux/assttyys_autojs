@@ -14,6 +14,7 @@ export class Func520 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1145, 212, 1163, 227, 1000],
 			[center, 1280, 720, 1144, 500, 1160, 510, 1000],
+			[center, 1280, 720, 890, 518, 1000, 558, 1000],
 		]
 	}, { // 1 挑战
 		desc: [
@@ -124,7 +125,7 @@ export class Func520 implements IFuncOrigin {
 				return;
 			}
 			if (point) {
-				const oper = [[point.x, point.y, point.x + 10, point.y + 10, 2500]];
+				const oper = [[point.x + 5, point.y + 5, point.x + 10, point.y + 10, 2500]];
 				thisScript.regionClick(oper);
 				return true;
 			} else {
@@ -134,7 +135,7 @@ export class Func520 implements IFuncOrigin {
 		}
 		if (thisScript.oper({
 			name: '打怪确认',
-			operator: [thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[4]]
+			operator: [thisOperator[1]]
 		})) {
 			return true;
 		}
@@ -142,6 +143,7 @@ export class Func520 implements IFuncOrigin {
 		if (pointA) {
 			const oper = [[pointA.x, pointA.y, pointA.x + 10, pointA.y + 10, 1000]];
 			thisScript.regionClick(oper);
+			thisScript.regionClick([thisOperator[0].oper[2]]);
 			return true;
 		}
 		if (thisScript.oper({
