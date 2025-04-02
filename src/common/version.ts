@@ -1338,6 +1338,9 @@ export const versionList = [{
 }, {
 	version: '20250327_01',
 	desc: '修复优化：32道馆挑战成功后返回庭院任然运行中bug',
+}, {
+	version: '20250402_01',
+	desc: '修复优化：32道馆新增寮管理不切换方案',
 }];
 
 export default versionList[versionList.length - 1].version;

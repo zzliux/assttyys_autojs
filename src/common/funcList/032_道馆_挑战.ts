@@ -57,6 +57,14 @@ export class Func032 implements IFuncOrigin {
 			type: 'scheme',
 			default: '返回庭院',
 		}]
+	},  {
+		desc: '寮管理负责开道馆的请勾选，勾选后将不会切换方案（可搭配519使用）',
+		config: [{
+			name: 'manage',
+			desc: '寮管理不切方案',
+			type: 'switch',
+			default: false,
+		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{ // 0 检测_挑战是否可用
 		desc: [1280, 720,
@@ -408,10 +416,19 @@ export class Func032 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 32,
 			name: '检测_挑战结束',
-			operator: [thisOperator[2], thisOperator[6], thisOperator[9], thisOperator[13]] // 13投票后，倒计时结束会返回到小地图（补充：道馆突破成功倒计时会返回到庭院）
+			operator: [thisOperator[2], thisOperator[6], thisOperator[9], { desc: thisOperator[13].desc }] // 13投票后，倒计时结束会返回到小地图（补充：道馆突破成功倒计时会返回到庭院）
 		})) {
 			thisScript.global.daoguan_team = true;
 			thisScript.global.shangyushe = true;
+			if (thisconf.manage && thisScript.oper({ name: '检测_小地图选道馆', operator: [{ desc: thisOperator[13].desc }] })) {// 寮管理不切换方案
+				return true;
+			} else {
+				thisScript.oper({
+					id: 32,
+					name: '检测_挑战结束',
+					operator: [thisOperator[13]] // 13投票后，倒计时结束会返回到小地图（补充：道馆突破成功倒计时会返回到庭院）
+				})
+			}
 			if (thisconf.fight_second) {
 				if (thisScript.runtimeParams && thisScript.runtimeParams.liao_activity_state) {
 					if (thisScript.runtimeParams.liao_activity_state['dojo']) { // true表示执行过一次了
@@ -422,7 +439,6 @@ export class Func032 implements IFuncOrigin {
 						const next_scheme = thisconf.fight_second_select;
 						thisScript.rerun(next_scheme, { ...thisScript.runtimeParams, });
 					}
-
 				}
 			} else { // 没勾选，直接返回庭院，结束任务
 				const next_scheme = '返回庭院';
