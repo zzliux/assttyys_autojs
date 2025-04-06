@@ -465,7 +465,11 @@ export class Func500 implements IFuncOrigin {
 			})) {
 				thisScript.global.liao_activity_page_flag = 0;
 				const next_scheme = thisconf.a_ctivity_dojo_select;
-				thisScript.rerun(next_scheme, {});
+				if (thisScript.runtimeParams && thisScript.runtimeParams.liao_activity_state) {
+					thisScript.rerun(next_scheme, { ...thisScript.runtimeParams, });// 存在寮活动对象则传递参数
+				} else {
+					thisScript.rerun(next_scheme);
+				}
 				return true;
 			}
 			if (thisScript.oper({
