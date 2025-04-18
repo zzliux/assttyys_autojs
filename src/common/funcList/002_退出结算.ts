@@ -286,6 +286,21 @@ export class Func002 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1110, 362, 1222, 493, 1000],
 		]
+	}, { // 26 喂猫狗后的奖励
+		desc: [
+			1280, 720,
+			[
+				[center, 379, 194, 0x38291d],
+				[center, 897, 195, 0x382a1d],
+				[center, 959, 190, 0x5e3d22],
+				[center, 922, 379, 0x88653c],
+				[center, 364, 372, 0x8d693f],
+				[center, 671, 192, 0xeadca5],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1042, 176, 1187, 585, 500],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['2'];
@@ -351,6 +366,7 @@ export class Func002 implements IFuncOrigin {
 				thisOperator[12], thisOperator[13], thisOperator[14], thisOperator[15],
 				thisOperator[16], thisOperator[17], thisOperator[22], thisOperator[18], // 22要放18前面
 				thisOperator[21], thisOperator[23], thisOperator[24], thisOperator[25],
+				thisOperator[26],
 			]
 		});
 	}
