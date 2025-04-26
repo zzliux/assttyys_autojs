@@ -272,6 +272,20 @@ export class Func002 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 727, 484, 859, 535, 1000],
 		]
+	}, { // 25 斗技退出失败
+		desc: [
+			1280, 720,
+			[
+				[center, 470, 77, 0x544e60],
+				[center, 452, 120, 0x595063],
+				[center, 495, 120, 0x575062],
+				[center, 736, 102, 0xc3bdaf],
+				[center, 918, 112, 0xada596],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1110, 362, 1222, 493, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['2'];
@@ -336,7 +350,7 @@ export class Func002 implements IFuncOrigin {
 				thisOperator[8], thisOperator[9], thisOperator[10], thisOperator[11],
 				thisOperator[12], thisOperator[13], thisOperator[14], thisOperator[15],
 				thisOperator[16], thisOperator[17], thisOperator[22], thisOperator[18], // 22要放18前面
-				thisOperator[21], thisOperator[23], thisOperator[24],
+				thisOperator[21], thisOperator[23], thisOperator[24], thisOperator[25],
 			]
 		});
 	}

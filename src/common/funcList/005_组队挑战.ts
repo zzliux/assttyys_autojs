@@ -24,7 +24,7 @@ export class Func005 implements IFuncOrigin {
 	operator: IFuncOperatorOrigin[] = [{ // 组队界面_挑战亮
 		desc: [1280, 720,
 			[
-				[left, 43, 37, 0xf5e6a8],
+				[left, 42, 38, 0xf7eaac],
 				[right, 1177, 667, 0xd8b871],
 				[right, 1187, 679, 0xcda35d],
 				[right, 1188, 609, 0xf1e096],
