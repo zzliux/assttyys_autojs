@@ -440,6 +440,21 @@ export class Func993 implements IFuncOrigin {
 					[left, 122, 710, 0x885f36],
 				]
 			]
+		}, { // 26 登录时灰屏状态卡着，需要点一下
+			desc: [1280, 720,
+				[
+					[left, 98, 93, 0x353435],
+					[left, 103, 325, 0x353435],
+					[left, 110, 544, 0x363537],
+					[right, 1089, 515, 0x353435],
+					[right, 1128, 252, 0x353435],
+					[center, 639, 381, 0x312f31],
+					[right, 1214, 673, 0x353435],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 104, 62, 1241, 635, 1000],
+			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -498,7 +513,7 @@ export class Func993 implements IFuncOrigin {
 			// 有开屏代表从新启动游戏了
 			if (thisScript.oper({
 				name: '开屏的zen动画',
-				operator: [thisOperator[23], thisOperator[24], thisOperator[25]],
+				operator: [thisOperator[23], thisOperator[24], thisOperator[25], thisOperator[26]],
 			})) {
 				thisScript.global.app_is_open_flag = false;
 				return true;
