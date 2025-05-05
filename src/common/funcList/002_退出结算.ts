@@ -286,6 +286,20 @@ export class Func002 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1110, 362, 1222, 493, 1000],
 		]
+	}, { // 26 卑弥呼boss结算
+		desc: [1280, 720,
+			[
+				[center, 1178, 71, 0xe9d3cf],
+				[center, 1186, 65, 0x7d3556],
+				[center, 1197, 89, 0xe8d3ce],
+				[center, 1187, 613, 0xebd993],
+				[center, 1202, 605, 0x1b140f],
+				[center, 1177, 653, 0xdec26f],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1176, 68, 1199, 93, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['2'];
@@ -351,6 +365,7 @@ export class Func002 implements IFuncOrigin {
 				thisOperator[12], thisOperator[13], thisOperator[14], thisOperator[15],
 				thisOperator[16], thisOperator[17], thisOperator[22], thisOperator[18], // 22要放18前面
 				thisOperator[21], thisOperator[23], thisOperator[24], thisOperator[25],
+				thisOperator[26],
 			]
 		});
 	}
