@@ -286,20 +286,19 @@ export class Func002 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1110, 362, 1222, 493, 1000],
 		]
-	}, { // 26 喂猫狗后的奖励
-		desc: [
-			1280, 720,
+	}, { // 26 卑弥呼boss结算
+		desc: [1280, 720,
 			[
-				[center, 379, 194, 0x38291d],
-				[center, 897, 195, 0x382a1d],
-				[center, 959, 190, 0x5e3d22],
-				[center, 922, 379, 0x88653c],
-				[center, 364, 372, 0x8d693f],
-				[center, 671, 192, 0xeadca5],
+				[center, 1178, 71, 0xe9d3cf],
+				[center, 1186, 65, 0x7d3556],
+				[center, 1197, 89, 0xe8d3ce],
+				[center, 1187, 613, 0xebd993],
+				[center, 1202, 605, 0x1b140f],
+				[center, 1177, 653, 0xdec26f],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1042, 176, 1187, 585, 500],
+			[center, 1280, 720, 1176, 68, 1199, 93, 1000],
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
