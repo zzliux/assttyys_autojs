@@ -100,23 +100,24 @@ export class MyFloaty {
 				self.thisRun('autoRun');
 				return false;
 			});
-		// if (storeSettings.defaultFloat.find(item => item.floatyName === '暂停图标' && item.referred === true)) {
-		// 	this.fb.addItem('Pause')
-		// 		.setIcon('@drawable/ic_pause_black_48dp')
-		// 		.setTint('#FFFFFF')
-		// 		.setColor('#FF4800')
-		// 		.onClick((_view, _name) => {
-		// 			isRunStopChecked = !isRunStopChecked;
-		// 			runStopItem.setChecked(isRunStopChecked, true); // 手动更新 UI
-		// 			if (globalThis.runThread && globalThis.runThread.isAlive()) {
-		// 				self.thisPause();
-		// 				myToast('已暂停,再按一次继续');
-		// 			} else {
-		// 				self.thisRun();
-		// 			}
-		// 			return false;
-		// 		});
-		// }
+		let pausebutton = false;
+		if (storeSettings.defaultFloat.find(item => item.floatyName === '暂停图标' && item.referred === true)) {
+			this.fb.addItem('Pause')
+				.setIcon('@drawable/ic_pause_black_48dp')
+				.setTint('#FFFFFF')
+				.setColor('#FF4800')
+				.onClick((_view, _name) => {
+					if (globalThis.runThread && globalThis.runThread.isAlive()) {
+						self.thisPause();
+						script.myToast('已暂停,再按一次继续');
+					} else {
+						self.thisRun();
+					}
+					return false;
+				});
+		} else {
+			pausebutton = true;
+		}
 		if (storeSettings.defaultFloat.find(item => item.floatyName === '截图图标' && item.referred === true)) {
 			this.fb.addItem('CapScreen')
 				.setIcon('@drawable/ic_landscape_black_48dp')
@@ -180,26 +181,28 @@ export class MyFloaty {
 		script.setRunCallback(function () {
 			setTimeout(() => {
 				runStopItem.setChecked(true, true);
-				self.fb.removeItem('Pause'); // 暂停的时候启动可能会还有一个暂停按钮，需提前删除
-				self.fb.insertItem('Pause', 1)
-					.toCheckbox(mUtil => {
-						// 未选中样式
-						mUtil.icon1('@drawable/ic_pause_black_48dp').tint1('#FFFFFF').color1('#FF4800');
-						// 选中样式
-						mUtil.icon2('@drawable/ic_eject_black_48dp').tint2('#FFFFFF').color2('#FF4800').rotation2(90);
-					})
-					.onClick((_view, _name, state) => {
-						if (state) {
-							self.thisPause(); // 暂停也会调用的StopCallBack，下面两行不能执行
-						} else {
-							self.thisRun();
-							// 删除自己，通过RunCallback再添加自己
-							self.fb.removeItem('Pause');
-						}
-						// runStopItem.setChecked(false, true);
-						// self.fb.removeItem('Pause');
-						return false;
-					});
+				if (pausebutton) {
+					self.fb.removeItem('Pause'); // 暂停的时候启动可能会还有一个暂停按钮，需提前删除
+					self.fb.insertItem('Pause', 1)
+						.toCheckbox(mUtil => {
+							// 未选中样式
+							mUtil.icon1('@drawable/ic_pause_black_48dp').tint1('#FFFFFF').color1('#FF4800');
+							// 选中样式
+							mUtil.icon2('@drawable/ic_eject_black_48dp').tint2('#FFFFFF').color2('#FF4800').rotation2(90);
+						})
+						.onClick((_view, _name, state) => {
+							if (state) {
+								self.thisPause(); // 暂停也会调用的StopCallBack，下面两行不能执行
+							} else {
+								self.thisRun();
+								// 删除自己，通过RunCallback再添加自己
+								self.fb.removeItem('Pause');
+							}
+							// runStopItem.setChecked(false, true);
+							// self.fb.removeItem('Pause');
+							return false;
+						});
+				}
 			}, 500);
 			// self.fb.setTint('#ff08bc92');
 			ui.run(function () {
@@ -207,12 +210,13 @@ export class MyFloaty {
 				self.fb.getView('logo').setColorFilter(colors.argb(255, 0x08, 0xbc, 0x92));
 			});
 		});
-
 		script.setStopCallback(function () {
 			setTimeout(() => {
 				runStopItem.setChecked(false, true);
-				// 非暂停状态的停止移除暂停按钮
-				if (!script.isPause) self.fb.removeItem('Pause');
+				if (pausebutton) {
+					// 非暂停状态的停止移除暂停按钮
+					if (!script.isPause) self.fb.removeItem('Pause');
+				}
 			}, 500)
 			// self.fb.setTint('#00000000');
 			ui.run(function () {

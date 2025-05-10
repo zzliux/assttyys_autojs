@@ -267,6 +267,7 @@ export class Func304 implements IFuncOrigin {
 					if (Number(goalrank) >= Number(realrank)) {
 						log('开始捐分');
 						let tap = 1;
+						let fraction = 10;
 						thisScript.regionClick([thisOperator[2].oper[0]]);
 						thisScript.keepScreen();
 						if (thisScript.oper({
@@ -274,11 +275,13 @@ export class Func304 implements IFuncOrigin {
 							operator: [thisOperator[4]]
 						})) {
 							tap = 2;
+							fraction = 20;
 							if (thisScript.oper({
 								name: '中不足',
 								operator: [thisOperator[5]]
 							})) {
 								tap = 3;
+								fraction = 100;
 								if (thisScript.oper({
 									name: '大不足',
 									operator: [thisOperator[6]]
@@ -292,7 +295,14 @@ export class Func304 implements IFuncOrigin {
 								thisScript.doPush(thisScript, { text: '绘卷不足', before() { thisScript.myToast('正在上传数据'); } });
 							}
 						} else {
-							thisScript.regionClick([thisOperator[2].oper[tap]]);
+							log
+							let x = (Number(goalrank) - Number(realrank)) / fraction
+							if (x > 5) {
+								x = 5;
+							}
+							for (let i = 0; i <= x; i++) {
+								thisScript.regionClick([thisOperator[2].oper[tap]]);
+							}
 							thisScript.regionClick([thisOperator[2].oper[4]]);
 							thisScript.regionClick([thisOperator[2].oper[5]]);
 							console.log('已捐赠一次')
