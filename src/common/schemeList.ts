@@ -860,6 +860,18 @@ const SchemeList: IScheme[] = [
 		id: 77,
 		schemeName: '宴会筹备',
 		list: [0, 2, 520, 29],
+	}, {
+		id: 78,
+		schemeName: '每周资源领取',
+		list: [0, 24, 1100, 1101, 1102, 503],
+		config: {
+			0: {
+				jspd_times_longtime_nodo: '1',
+			},
+			'503': {
+				afterCountOper: '不进行任何操作',
+			}
+		}
 	},
 	{
 		id: 99,

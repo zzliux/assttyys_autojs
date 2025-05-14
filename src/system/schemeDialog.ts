@@ -92,9 +92,7 @@ export default {
 						if (!schemeName) return;
 						script.isPause = false;
 						const storeSettings = storeCommon.get('settings', {});
-						if (!storeSettings.defaultFloat.find(item => item.floatyName === '暂停图标' && item.referred === true)) {
-							myfloaty.fb.removeItem('Pause');
-						}
+						myfloaty.fb.removeItem('Pause');
 						script.setCurrentScheme(schemeName);
 						if (storeSettings.floaty_scheme_direct_run) {
 							// myfloaty.fy.start();

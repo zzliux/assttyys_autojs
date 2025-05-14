@@ -714,6 +714,15 @@ export class Script {
 					return;
 				}
 			}
+		} else if ('__关闭应用__' === schemeName) {
+			sleep(1000);
+			const packageNames = this.stopRelatedApp();
+			this.doPush(this, { text: `[${this.schemeHistory.map(item => item.schemeName).join('、')}]已停止，应用[${packageNames}]已杀，请查看。`, before() { this.myToast('脚本即将停止，正在上传数据'); } });
+			sleep(2000);
+			this.stop();
+			return true;
+		} else if ('__不做动作__' === schemeName) {
+			return false;
 		} else if (schemeName) {
 			this.setCurrentScheme(schemeName as string, params);
 			this.myToast(`切换方案为[${schemeName}]`);

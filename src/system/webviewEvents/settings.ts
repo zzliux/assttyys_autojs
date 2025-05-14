@@ -47,7 +47,6 @@ export default function webviewSettigns() {
 	}
 
 	const defaultFloat = [
-		{ floatyName: '暂停图标', referred: true },
 		{ floatyName: '截图图标', referred: true },
 		{ floatyName: '定时图标', referred: true },
 		{ floatyName: '日志图标', referred: false }

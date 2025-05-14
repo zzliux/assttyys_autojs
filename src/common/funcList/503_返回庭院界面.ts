@@ -168,6 +168,31 @@ export class Func503 implements IFuncOrigin {
 			desc: '33 狭间暗域4个区域',
 			type: 'switch',
 			default: true,
+		}, {
+			name: 'oper_34',
+			desc: '34 魂海组队',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_35',
+			desc: '35 六道之门',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_36',
+			desc: '36 商店界面',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_37',
+			desc: '37 杂货铺界面',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_38',
+			desc: '38 图鉴界面',
+			type: 'switch',
+			default: true,
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{	// 0 探索地图
@@ -512,6 +537,74 @@ export class Func503 implements IFuncOrigin {
 		],
 		oper: [
 			[left, 1280, 720, 32, 38, 70, 79, 1000]
+		]
+	}, { // 34 魂海组队
+		desc: [1280, 720,
+			[
+				[left, 64, 33, 0xd6c4a1],
+				[left, 130, 42, 0xd6c4a1],
+				[left, 210, 46, 0xd6c4a1],
+				[right, 1097, 72, 0x2c2d62],
+				[left, 167, 162, 0xda2e39],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 34, 17, 68, 55, 1000],
+		]
+	}, { // 35 六道之门
+		desc: [1280, 720,
+			[
+				[left, 24, 22, 0x454570],
+				[left, 40, 25, 0xd4d6e9],
+				[left, 58, 39, 0x515e7a],
+				[left, 47, 41, 0x727b97],
+				[left, 36, 50, 0xe0e1f2],
+				[left, 23, 41, 0xeff0f9],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 20, 24, 54, 59, 1000],
+		]
+	}, { // 36 商店界面
+		desc: [
+			1280, 720,
+			[
+				[left, 30, 44, 0x2e166e],
+				[left, 50, 46, 0xf0f5fb],
+				[left, 63, 60, 0x2f3b7e],
+				[left, 33, 58, 0xecf3fb],
+				[left, 46, 68, 0xf0f5fb],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 29, 35, 69, 75, 1000],
+		]
+	}, { // 37 商店杂货铺
+		desc: [1280, 720,
+			[
+				[left, 41, 15, 0xefd390],
+				[left, 30, 25, 0xf8ebad],
+				[left, 40, 35, 0xf0d292],
+				[left, 19, 10, 0x2d1d1b],
+				[left, 26, 13, 0x613e29],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 21, 17, 55, 47, 1000],
+		]
+	}, { // 38 图鉴_返回
+		desc: [
+			1280, 720,
+			[
+				[left, 36, 23, 0xb57642],
+				[left, 33, 56, 0xab6f40],
+				[left, 41, 39, 0xf9edb2],
+				[left, 61, 37, 0xbc7a3f],
+				[left, 57, 28, 0xefce8c],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 30, 18, 64, 56, 1000],
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {

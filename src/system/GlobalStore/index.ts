@@ -86,7 +86,6 @@ export type globalRootType = {
 	dengluState: boolean, // 登录账号状态
 	yaoqing_close: boolean, // 关闭_接受邀请
 	frist_open: boolean, // 首次开启方案
-	tongXinDui_ZhanDou: 'collect' | 'judge' | 'prestore' | 'juexing' | 'stage' | 'yuhun' | 'back';   // 同心队预存阶段
 	daoGuan_swip: boolean, // 选寮往下滑
 	daoGuan_compare: number[], // 选寮存储记录的值
 	daoGuan_click: boolean, // 选寮点挑战
@@ -103,7 +102,13 @@ export type globalRootType = {
 	fengNa: boolean, // 302奉纳
 	finght_time: number, // 320战斗时间
 	xxxskill: number, // 寻香行技能
-	tt: number,
+	MT_share: 'start' | 'back' | 'end', // 每周分享
+	MT_liaoShop: 'start' | 'back' | 'end', // 寮商店购买
+	MT_shop: 'zhiBo' | 'jiShouWu' | 'miJuanWu' | 'zaHuoPu_teSu' | 'zaHuoPu_rongYu' | 'zaHuoPu_youQing' | 'zaHuoPu_xunZhang' | 'zaHuoPu_meiLi' | 'done', // 商店购买
+	zhiBoBack: boolean, // 直播间返回
+	shop_find: string[], // 商店购买_查找物品
+	fengZi: boolean, // 风姿
+	zhenLvJu: boolean, // 珍旅居
 }
 
 export const globalRoot: globalRootType = {
@@ -193,7 +198,6 @@ export const globalRoot: globalRootType = {
 	dengluState: true,
 	yaoqing_close: false,
 	frist_open: true,
-	tongXinDui_ZhanDou: 'collect',
 	daoGuan_swip: true,
 	daoGuan_compare: [],
 	daoGuan_click: false,
@@ -211,5 +215,11 @@ export const globalRoot: globalRootType = {
 	xsFilter: {},
 	finght_time: null,
 	xxxskill: 0,
-	tt: 0,
+	MT_share: 'start',
+	MT_liaoShop: 'start',
+	MT_shop: 'zhiBo',
+	zhiBoBack: false,
+	shop_find: null,
+	fengZi: true,
+	zhenLvJu: true,
 }

@@ -101,23 +101,7 @@ export class MyFloaty {
 				return false;
 			});
 		let pausebutton = false;
-		if (storeSettings.defaultFloat.find(item => item.floatyName === '暂停图标' && item.referred === true)) {
-			this.fb.addItem('Pause')
-				.setIcon('@drawable/ic_pause_black_48dp')
-				.setTint('#FFFFFF')
-				.setColor('#FF4800')
-				.onClick((_view, _name) => {
-					if (globalThis.runThread && globalThis.runThread.isAlive()) {
-						self.thisPause();
-						script.myToast('已暂停,再按一次继续');
-					} else {
-						self.thisRun();
-					}
-					return false;
-				});
-		} else {
-			pausebutton = true;
-		}
+		pausebutton = true;
 		if (storeSettings.defaultFloat.find(item => item.floatyName === '截图图标' && item.referred === true)) {
 			this.fb.addItem('CapScreen')
 				.setIcon('@drawable/ic_landscape_black_48dp')

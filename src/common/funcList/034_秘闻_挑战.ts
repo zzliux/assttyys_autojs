@@ -7,7 +7,7 @@ const right = 2;
 export class Func034 implements IFuncOrigin {
 	id = 34;
 	name = '秘闻_挑战';
-	desc = '目前仅支持镰鼬百战、妖刀姬竞速、小鹿男竞速、青行灯竞速，后续百战、竞速将陆续支持';
+	desc = '每周竞速或百战挑战';
 	operator: IFuncOperatorOrigin[] = [{
 		// 镰鼬百战
 		desc: [1280, 720,

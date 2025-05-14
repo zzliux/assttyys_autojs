@@ -2667,6 +2667,126 @@ const multiFindColors: IMultiFindColorsOrigin = {
 			]
 		]],
 		similar: 90,
-	}
+	},
+	'御灵票': {
+		region: [left, 1280, 720, 0, 0, 1280, 720],
+		desc: [[
+			1280, 720,
+			[
+				[center, 912, 447, 0x372a5c],
+				[center, 877, 441, 0xb2dddb],
+				[center, 932, 399, 0x443668],
+				[center, 948, 414, 0x2f254c],
+				[center, 928, 469, 0xa22e2a],
+				[center, 898, 480, 0xe7795c],
+			]
+		]],
+	},
+	'契灵盘': {
+		region: [left, 1280, 720, 0, 0, 1280, 720],
+		desc: [[
+			1280, 720,
+			[
+				[center, 693, 462, 0x996a3b],
+				[center, 662, 466, 0x7b5e3a],
+				[center, 726, 466, 0x7c5f3c],
+				[center, 702, 481, 0xcba26d],
+				[center, 687, 481, 0xcba26d],
+				[center, 693, 453, 0xefd58b],
+			]
+		]],
+	},
+	'rongYu_lanPiao': {
+		region: [left, 1280, 720, 0, 0, 1280, 720],
+		desc: [[
+			1280, 720,
+			[
+				[left, 245, 196, 0x302461],
+				[left, 221, 197, 0x2b205b],
+				[left, 237, 148, 0x85b5ce],
+				[left, 258, 149, 0x8ab9d2],
+				[left, 217, 275, 0x486ad5],
+				[left, 215, 288, 0xcea155],
+			]
+		]],
+	},
+	'rongYu_heiSui': {
+		region: [left, 1280, 720, 0, 0, 1280, 720],
+		desc: [[
+			1280, 720,
+			[
+				[center, 917, 212, 0x222222],
+				[center, 928, 184, 0x323131],
+				[center, 901, 186, 0xffffff],
+				[center, 908, 159, 0x403d3d],
+				[center, 894, 277, 0x3957a0],
+				[center, 890, 290, 0xca964e],
+			]
+		]],
+	},
+	'rongYu_sePi': {
+		region: [left, 1280, 720, 0, 0, 1280, 720],
+		desc: [[
+			1280, 720,
+			[
+				[center, 694, 189, 0x6a5773],
+				[center, 668, 205, 0xaf7734],
+				[center, 720, 187, 0xc5904b],
+				[center, 692, 207, 0xeaca95],
+				[center, 675, 291, 0xb72525],
+				[center, 679, 304, 0xfbf7d5],
+			]
+		]],
+	},
+	'rongYu_fengMo': {
+		region: [left, 1280, 720, 0, 0, 1280, 720],
+		desc: [[
+			1280, 720,
+			[
+				[center, 915, 189, 0xb9762c],
+				[center, 895, 189, 0x230505],
+				[center, 911, 169, 0xbd4221],
+				[center, 931, 191, 0xe18343],
+				[center, 916, 221, 0xb99779],
+				[center, 897, 291, 0xbe2727],
+				[center, 901, 302, 0xfbf7d3],
+			]
+		]],
+	},
+	'rongYu_qingJiGui': {
+		region: [left, 1280, 720, 0, 0, 1280, 720],
+		desc: [[
+			1280, 720,
+			[
+				[left, 247, 442, 0xcddd94],
+				[left, 228, 412, 0xdfbe70],
+				[left, 272, 422, 0xd7b970],
+				[left, 242, 474, 0xf47922],
+				[left, 228, 539, 0xc02a2a],
+				[left, 233, 550, 0xfbf7d3],
+			]
+		]],
+	},
+	'黄色确认按钮': {
+		region: [left, 1280, 720, 0, 0, 1280, 720],
+		desc: [[
+			1280, 720,
+			[
+				[center, 560, 488, 0xf4b35f],
+				[center, 713, 489, 0xf4b15e],
+				[center, 713, 525, 0xf0ae5d],
+				[center, 562, 525, 0xf6b55f],
+			]
+		]],
+	},
+	// '': {
+	// 	region: [left, 1280, 720, 0, 0, 1280, 720],
+	// 	desc: [[
+	// 		1280, 720,
+	// 		[
+	//
+	// 		]
+	// 	]],
+	// },
 }
 export default multiFindColors;
