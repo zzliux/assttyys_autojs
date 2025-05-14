@@ -50,5 +50,17 @@ export class Func024 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1042, 176, 1187, 585, 500],
 		]
+	}, { // 姑姑皮肤碎片弹窗
+		desc: [1280, 720,
+			[[center, 660, 245, 0xfffefb],
+				[center, 644, 290, 0xf7f7f7],
+				[center, 673, 273, 0x222022],
+				[center, 611, 265, 0x26272c],
+				[center, 641, 323, 0x222430],
+				[center, 614, 227, 0xe7e3ef]]
+		],
+		oper: [
+			[center, 1280, 720, 832, 459, 1111, 620, 500],
+		]
 	}]
 }
