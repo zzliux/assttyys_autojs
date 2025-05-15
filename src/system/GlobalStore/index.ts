@@ -72,7 +72,7 @@ export type globalRootType = {
 	qiling_last: number | null;     //  契灵的上次类型
 	opened_buff: boolean; // 是否已执行开启buff
 	closed_buff: boolean; // 是否已执行关闭buff
-	daily_collection: 'friend' | 'store' | 'courtyard';   //  每日奖励领取
+	daily_collection: 'friend' | 'store' | 'card' | 'courtyard';   //  每日奖励领取
 	huahezhan: boolean;//    是否已领取花合战
 	shangyushe: boolean;//    是否已上过预设
 	d6Loop: number;//     椒图事件点击循环数

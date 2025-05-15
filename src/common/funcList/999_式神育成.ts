@@ -18,7 +18,7 @@ export class Func999 implements IFuncOrigin {
 		}, { // 1 点击阴阳寮
 			desc: '页面是否为庭院_菜单已展开_只支持默认庭院皮肤与默认装饰',
 			oper: [
-				[center, 1280, 720, 544, 612, 594, 661, 1200]	// 点击阴阳寮
+				[center, 1280, 720, 544, 612, 594, 661, 2000]	// 点击阴阳寮
 			]
 		}, { // 2 点击阴阳寮，另外一种图标
 			desc: '页面是否为庭院_菜单已展开_另一种图标_御祝图标_只支持默认庭院皮肤与默认装饰',
@@ -84,15 +84,15 @@ export class Func999 implements IFuncOrigin {
 		})) {
 			return true;
 		}
-
-		if (thisScript.oper({
+		let curCnt = 0;
+		const maxCount = 3;
+		while (thisScript.oper({
 			name: '检测_阴阳寮主页',
 			operator: [{
 				desc: thisOperator[3].desc
 			}]
 		})) {
 			const point = thisScript.findMultiColor('阴阳寮_奖励体力');
-
 			if (point) {
 				console.log('查找阴阳寮_奖励体力成功');
 				const oper = [[
@@ -105,9 +105,7 @@ export class Func999 implements IFuncOrigin {
 				thisScript.regionClick(oper);
 				return true;
 			}
-
 			const point1 = thisScript.findMultiColor('阴阳寮_奖励金币');
-
 			if (point1) {
 				console.log('查找阴阳寮_奖励金币成功');
 				const oper = [[
@@ -120,22 +118,13 @@ export class Func999 implements IFuncOrigin {
 				thisScript.regionClick(oper);
 				return true;
 			}
-
-			if (thisScript.global.checked_yard_count > 3) {
-				thisScript.global.checked_yard_count = 0;
+			curCnt++;
+			thisScript.keepScreen(false);
+			if (curCnt >= maxCount) {
 				return thisScript.oper({
-					name: '点击阴阳寮',
-					operator: [{
-						oper: thisOperator[3].oper
-					}]
+					name: '点击结界',
+					operator: [{ oper: thisOperator[3].oper }]
 				});
-			} else {
-				sleep(1500);
-				if (!thisScript.global.checked_yard_count) {
-					thisScript.global.checked_yard_count = 1;
-				} else {
-					thisScript.global.checked_yard_count += 1;
-				}
 			}
 		}
 

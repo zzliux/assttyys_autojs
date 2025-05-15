@@ -21,6 +21,7 @@ export class Func518 implements IFuncOrigin {
 				[right, 1280, 720, 1168, 592, 1230, 690, 1200], // 庭院打开菜单
 				[center, 1280, 720, 882, 626, 924, 668, 1200], //  庭院点击好友
 				[center, 1280, 720, 660, 626, 697, 664, 1200], //  庭院点击商店
+				[center, 1280, 720, 1080, 184, 1133, 234, 1000], //  庭院点击召唤
 			],
 		},
 		{
@@ -689,6 +690,142 @@ export class Func518 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 1137, 654, 1184, 696, 1000],
 			]
+		}, { // 47 召唤
+			desc: [
+				1280, 720,
+				[
+					[left, 58, 21, 0xefd590],
+					[left, 48, 30, 0xf6e6a8],
+					[left, 60, 41, 0xedcf8b],
+					[left, 140, 17, 0xb28956],
+					[left, 150, 38, 0xb28956],
+					[left, 178, 26, 0xb28956],
+					[left, 177, 36, 0xb18956],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 33, 12, 71, 44, 1000],
+			]
+		}, { // 48 集结蓝票
+			desc: [
+				1280, 720,
+				[
+					[left, 286, 451, 0x89b9d2],
+					[left, 290, 452, 0x89b9d0],
+					[left, 279, 471, 0x56add1],
+					[left, 288, 471, 0x57acc2],
+					[left, 308, 448, 0xeee4d7],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 209, 502, 266, 556, 1000],
+			]
+		}, { // 49 跳对话
+			desc: [
+				1280, 720,
+				[
+					[center, 629, 556, 0xd9bf89],
+					[center, 631, 556, 0xd9bf89],
+					[center, 637, 551, 0xd7c18b],
+					[center, 637, 548, 0xe1cba3],
+					[center, 643, 556, 0xdbbe8a],
+					[center, 645, 556, 0xdabc87],
+					[center, 637, 563, 0xdbc18e],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 947, 433, 978, 461, 1000],
+			]
+		}, { // 50 试炼挑战
+			desc: [
+				1280, 720,
+				[
+					[right, 1172, 662, 0x271c1b],
+					[right, 1177, 661, 0x2d2023],
+					[right, 1174, 657, 0x231b1b],
+					[right, 1170, 652, 0x4c2c24],
+					[right, 1095, 581, 0xb83821],
+					[right, 1156, 581, 0xba3e1b],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 1073, 537, 1172, 614, 1000],
+			]
+		}, { // 51 小白提示框
+			desc: [
+				1280, 720,
+				[
+					[center, 385, 272, 0x565352],
+					[center, 483, 200, 0x464342],
+					[center, 748, 185, 0x3e3c3b],
+					[center, 903, 366, 0x705946],
+					[left, 298, 382, 0xcf3448],
+					[center, 418, 355, 0xf6f3e6],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 603, 582, 688, 638, 1000],
+			]
+		}, { // 52 试炼挑战完毕
+			desc: [
+				1280, 720,
+				[
+					[right, 1167, 667, 0xd73022],
+					[right, 1175, 660, 0xe7b889],
+					[right, 1181, 656, 0xd83728],
+					[right, 1178, 650, 0xce2e1b],
+					[right, 1179, 667, 0xd83528],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 28, 17, 68, 56, 1000],
+			]
+		}, { // 53 免费1/1
+			desc: [
+				1280, 720,
+				[
+					[center, 588, 696, 0xe3decd],
+					[center, 592, 698, 0xf4efdc],
+					[center, 612, 696, 0xefead8],
+					[center, 616, 693, 0xe7e2d0],
+					[center, 643, 696, 0xf6f1de],
+					[center, 654, 695, 0xdcd7c6],
+					[center, 664, 696, 0xf5f0dd],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 604, 616, 654, 655, 1000],
+			]
+		}, { // 54 抽卡滑动
+			desc: [
+				1280, 720,
+				[
+					[center, 435, 608, 0x87ccee],
+					[center, 603, 662, 0xcfcdcb],
+					[center, 633, 659, 0xecebeb],
+					[center, 679, 663, 0xdad9d7],
+					[center, 691, 663, 0xc6c3c1],
+					[center, 704, 663, 0xe1e0df],
+					[center, 852, 625, 0x80c3e7],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 458, 431, 505, 474, 1000],
+				[center, 1280, 720, 781, 148, 825, 189, 1000],
+			]
+		}, { // 55 抽卡确认
+			desc: [
+				1280, 720,
+				[
+					[center, 430, 628, 0xf3b25e],
+					[center, 570, 628, 0xf3b25e],
+					[center, 572, 660, 0xf3b25e],
+					[center, 435, 658, 0xf3b25e],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 426, 625, 584, 672, 1000],
+			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -717,7 +854,6 @@ export class Func518 implements IFuncOrigin {
 					}],
 				});
 			}
-
 			if (thisScript.global.daily_collection === 'store') {
 				return thisScript.oper({
 					id: 518,
@@ -727,7 +863,15 @@ export class Func518 implements IFuncOrigin {
 					}],
 				});
 			}
-
+			if (thisScript.global.daily_collection === 'card') {
+				return thisScript.oper({
+					id: 518,
+					name: '点击_商店',
+					operator: [{
+						oper: [thisOperator[0].oper[3]],
+					}],
+				});
+			}
 			if (thisScript.global.checked_yard_count < 3) {
 				if (
 					thisScript.oper({
@@ -754,7 +898,46 @@ export class Func518 implements IFuncOrigin {
 				],
 			});
 		}
-
+		let curCnt = 0;
+		const maxCount = 3;
+		while (thisScript.oper({
+			name: '检测_抽卡界面',
+			operator: [{ desc: thisOperator[47].desc }]
+		})) {
+			if (thisScript.oper({
+				id: 518,
+				name: '检测_是否有集结',
+				operator: [thisOperator[48]],
+			})) {
+				return true;
+			}
+			curCnt++;
+			thisScript.keepScreen(false);
+			if (curCnt >= maxCount) {
+				thisScript.global.daily_collection = 'courtyard';
+				return thisScript.oper({
+					name: '返回庭院',
+					operator: [{ oper: thisOperator[47].oper }]
+				});
+			}
+			sleep(500);
+		}
+		if (thisScript.oper({
+			id: 518,
+			name: '检测_抽卡',
+			operator: [thisOperator[49], thisOperator[50], thisOperator[51], thisOperator[52]
+				, thisOperator[53], thisOperator[55]],
+		})) {
+			return true;
+		}
+		if (thisScript.oper({
+			id: 518,
+			name: '检测_抽卡滑动',
+			operator: [{ desc: thisOperator[54].desc }],
+		})) {
+			thisScript.regionSwipe(thisOperator[54].oper[0], thisOperator[54].oper[1], [1000, 1300], 200);
+			return true;
+		}
 		if (
 			thisScript.oper({
 				id: 518,
@@ -909,7 +1092,7 @@ export class Func518 implements IFuncOrigin {
 				thisScript.global.checked_yard_count >= 3
 			) {
 				thisScript.global.checked_yard_count = 0;
-				thisScript.global.daily_collection = 'courtyard';
+				thisScript.global.daily_collection = 'card';
 				// 已领取后返回庭院
 				thisScript.regionClick(thisOperator[33].oper);
 			}
