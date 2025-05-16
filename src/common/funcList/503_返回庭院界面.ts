@@ -630,9 +630,6 @@ export class Func503 implements IFuncOrigin {
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['503'];
-		log(thisScript.superGlobal.daoguan_lose);
-		thisScript.superGlobal.daoguan_lose = false;
-		log(thisScript.superGlobal.daoguan_lose);
 		let enabledThisOperator = [];
 		if (typeof thisConf.oper_0 === 'undefined') {
 			// 升级兼容配置为空的情况，这一块代码暂时保留，以后有新增要处理的界面只新增配置，不修改这一块代码
@@ -703,7 +700,6 @@ export class Func503 implements IFuncOrigin {
 				if (thisConf.scheme_switch_enabled) {
 					next_scheme = thisConf.next_scheme as string;
 				}
-
 				if (!next_scheme) {
 					if ('停止脚本' === thisConf.afterCountOper || !thisConf.afterCountOper) {
 						thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });

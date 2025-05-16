@@ -80,11 +80,24 @@ export class Func513 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1168, 62, 1198, 88, 1200]  //  点击_关闭按钮
 		]
+	}, { // 寮神社点击狩猎战
+		desc: [1280, 720,
+			[
+				[left, 191, 445, 0xc1ae93],
+				[left, 251, 476, 0xf7ae94],
+				[left, 277, 478, 0xd76364],
+				[left, 289, 499, 0xbe6c78],
+				[left, 233, 522, 0xe4caa1],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 211, 435, 336, 559, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: '检测_阴门挑战弹窗界面',
-			operator: [thisOperator[0], thisOperator[1]]
+			operator: [thisOperator[0], thisOperator[1], thisOperator[4]]
 		})) {
 			return true;
 		}

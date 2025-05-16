@@ -310,8 +310,9 @@ export class Func500 implements IFuncOrigin {
 		const allFalse = Object.values(thisScript.superGlobal.liao_activity_Swith).every(value => value === false);
 		if (allFalse) {
 			thisScript.myToast('未选择任务或任务执行完毕!');
-			const next_scheme = '返回庭院';// 选择为空,返回庭院
-			thisScript.rerun(next_scheme)
+			thisScript.superGlobal.next_scheme_name = null;
+			thisScript.rerun('返回庭院')
+			return true;
 		}
 		// 首次进入寮神社界面返回一次重新进，防止还有原来的缓存在里面
 		if (thisScript.global.liao_activity_page_flag == 0 && thisScript.oper({
@@ -351,17 +352,13 @@ export class Func500 implements IFuncOrigin {
 		// 阴门判断(其他开关为关时)
 		if (Object.entries(thisScript.superGlobal.liao_activity_Swith).every(([key, value]) => key === 'a_ctivity_gateOfHades' ? true : value === false
 		)) {
-			if (nowDay === 0 || nowDay === 5 || nowDay === 6 && nowHour >= 19 && nowHour < 23) {// 判断星期五六七是否在19-23点
-				if (thisScript.oper({
-					name: '检测_是否为阴门页面、',
-					operator: [thisOperator[8]]
-				})) {
-					// 关闭开关 切换到阴门
-					thisScript.superGlobal.liao_activity_Swith['a_ctivity_gateOfHades'] = false;
-					const next_scheme = thisconf.a_ctivity_gateOfHades_select;
-					thisScript.rerun(next_scheme);
-					return true;
-				}
+			log('进入判断')
+			if ((nowDay === 0 || nowDay === 5 || nowDay === 6) && nowHour >= 19 && nowHour < 21) {// 判断星期五六七是否在19-21点
+				// 关闭开关 切换到阴门
+				thisScript.superGlobal.liao_activity_Swith['a_ctivity_gateOfHades'] = false;
+				const next_scheme = thisconf.a_ctivity_gateOfHades_select;
+				thisScript.rerun(next_scheme);
+				return true;
 			} else {
 				// 非阴门活动时间,关闭阴门开关
 				console.log('阴门 不在时间段内');
@@ -383,12 +380,13 @@ export class Func500 implements IFuncOrigin {
 				})) {
 					// 关闭开关 传参 切换到狭间
 					thisScript.superGlobal.liao_activity_Swith['a_ctivity_narrow'] = false;
+					thisScript.superGlobal.liao_activity_Swith['a_ctivity_dojo'] = false;
 					const next_scheme = thisconf.a_ctivity_narrow_select;
 					thisScript.rerun(next_scheme);
 					return true;
 				}
 			} else {
-				console.log('不在狭间时间段');
+				console.log('狭间 不在时间段');
 				// 关闭狭间开关
 				thisScript.superGlobal.liao_activity_Swith['a_ctivity_narrow'] = false;
 			}
@@ -485,7 +483,7 @@ export class Func500 implements IFuncOrigin {
 					return true;
 				}
 			} else {
-				console.log('不在退治时间段');
+				console.log('退治 不在时间段');
 				thisScript.superGlobal.liao_activity_Swith['a_ctivity_huntBoss'] = false;
 			}
 		}
@@ -511,6 +509,7 @@ export class Func500 implements IFuncOrigin {
 			})) {
 				thisScript.superGlobal.liao_activity_Swith['a_ctivity_dojo'] = false;
 				thisScript.superGlobal.liao_activity_Swith['a_ctivity_dojo_again'] = false;
+				thisScript.superGlobal.liao_activity_Swith['a_ctivity_narrow'] = false;
 				const next_scheme = thisconf.a_ctivity_dojo_select;
 				thisScript.rerun(next_scheme);
 				return true;
