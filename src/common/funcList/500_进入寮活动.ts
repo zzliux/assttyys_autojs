@@ -383,7 +383,7 @@ export class Func500 implements IFuncOrigin {
 				})) {
 					// 关闭开关 传参 切换到狭间
 					thisScript.superGlobal.liao_activity_Swith['a_ctivity_narrow'] = false;
-					const next_scheme = thisScript.superGlobal.liao_activity_Swith['a_ctivity_narrow_select'];
+					const next_scheme = thisconf.a_ctivity_narrow_select;
 					thisScript.rerun(next_scheme);
 					return true;
 				}
@@ -456,7 +456,7 @@ export class Func500 implements IFuncOrigin {
 				})) {
 					// 关闭开关 传参 切换到宴会
 					thisScript.superGlobal.liao_activity_Swith['a_ctivity_banquet'] = false;
-					const next_scheme = thisScript.superGlobal.liao_activity_Swith['a_ctivity_banquet_select'];
+					const next_scheme = thisconf.a_ctivity_banquet_select;
 					thisScript.rerun(next_scheme);
 					return true;
 				}
@@ -480,7 +480,7 @@ export class Func500 implements IFuncOrigin {
 				})) {
 					// 关闭开关 传参 切换到退治
 					thisScript.superGlobal.liao_activity_Swith['a_ctivity_huntBoss'] = false;
-					const next_scheme = thisScript.superGlobal.liao_activity_Swith['a_ctivity_huntBoss_select'];
+					const next_scheme = thisconf.a_ctivity_huntBoss_select;
 					thisScript.rerun(next_scheme);
 					return true;
 				}
@@ -511,7 +511,7 @@ export class Func500 implements IFuncOrigin {
 			})) {
 				thisScript.superGlobal.liao_activity_Swith['a_ctivity_dojo'] = false;
 				thisScript.superGlobal.liao_activity_Swith['a_ctivity_dojo_again'] = false;
-				const next_scheme = thisScript.superGlobal.liao_activity_Swith['a_ctivity_dojo_select'];
+				const next_scheme = thisconf.a_ctivity_dojo_select;
 				thisScript.rerun(next_scheme);
 				return true;
 			}
