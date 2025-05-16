@@ -18,6 +18,7 @@ import { IFunc, IFuncOrigin } from '@/interface/IFunc';
 import { IScheme } from '@/interface/IScheme';
 import { IMultiDetectColors, IMultiFindColors } from '@/interface/IMultiColor';
 import { globalRoot, globalRootType } from '@/system/GlobalStore/index';
+import { superGlobalRoot, superGlobalRootType } from '@/system/GlobalStore/index';
 import schedule, { Job } from '@/system/Schedule';
 import { MyFloaty } from '@/system/MyFloaty';
 import ncnnBgyx from '@/system/ncnn/ncnnBgyx';
@@ -55,11 +56,7 @@ export class Script {
 	runTimes: Record<string, number>;
 	lastFunc: number; // 最后执行成功的funcId
 	global: globalRootType; // 每次启动重置为空对象，用于功能里面存变量
-
-	/**
-	 * @description 方案运行中参数
-	 */
-	runtimeParams: Record<string, unknown> | null;
+	superGlobal: superGlobalRootType; // 切换方案不重置功能里面的变量
 
 	// 设备信息
 	device: any;
@@ -96,11 +93,11 @@ export class Script {
 		this.currentDate = null;
 		this.lastFuncDateTime = null;
 		this.ocrDetector = null;
-		this.runtimeParams = null;
 
 		this.runTimes = {};
 		this.lastFunc = null; // 最后执行成功的funcId
 		this.global = merge({}, globalRoot); // 每次启动重置为空对象，用于功能里面存变量
+		this.superGlobal = merge({}, superGlobalRoot);
 		this.device = {
 			width: getWidthPixels(),
 			height: getHeightPixels()
@@ -544,6 +541,7 @@ export class Script {
 			if (this.isPause) {
 				myToast(`继续方案[${this.scheme.schemeName}]`);
 				console.log(`global: ${JSON.stringify(this.global, null, 2)}`);
+				console.log(`superGlobal: ${JSON.stringify(this.superGlobal, null, 2)}`);
 			} else {
 				this.runTimes = {}; // 全新启动需重置该参数
 				this.global = merge({}, globalRoot); // 全新启动需重置该参数
@@ -689,7 +687,7 @@ export class Script {
 	/**
 	 * 重新运行，一般在运行过程中通过setCurrenScheme切换方案后调用，停止再运行
 	 */
-	rerun(schemeName?: unknown, params?: Record<string, unknown>) {
+	rerun(schemeName?: unknown) {
 		if ('__停止脚本__' === schemeName) {
 			this.doPush(this, {
 				text: `[${this.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`,
@@ -702,7 +700,7 @@ export class Script {
 			if (this.schemeHistory.length) {
 				if (this.schemeHistory.length > 1) {
 					const lastSchemeName = this.schemeHistory[this.schemeHistory.length - 2].schemeName
-					this.setCurrentScheme(lastSchemeName as string, params);
+					this.setCurrentScheme(lastSchemeName as string);
 					this.myToast(`返回上个方案为[${schemeName}]`);
 				} else {
 					this.doPush(this, {
@@ -724,7 +722,7 @@ export class Script {
 		} else if ('__不做动作__' === schemeName) {
 			return false;
 		} else if (schemeName) {
-			this.setCurrentScheme(schemeName as string, params);
+			this.setCurrentScheme(schemeName as string);
 			this.myToast(`切换方案为[${schemeName}]`);
 		}
 		events.broadcast.emit('SCRIPT_RERUN', '');
@@ -851,12 +849,7 @@ export class Script {
 		return false;
 	}
 
-	setCurrentScheme(schemeName?: string, params?: Record<string, unknown>) {
-		if (params) {
-			this.runtimeParams = params;
-		} else {
-			this.runtimeParams = null;
-		}
+	setCurrentScheme(schemeName?: string) {
 		if (!schemeName) {
 			const { schemeName: sName } = store.get('currentScheme', {});
 			if (!sName) return;
@@ -946,6 +939,7 @@ export class Script {
 const script = new Script();
 
 events.broadcast.on('SCRIPT_STOP', () => {
+	script.superGlobal = merge({}, superGlobalRoot)
 	script._stop();
 });
 

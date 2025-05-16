@@ -99,29 +99,24 @@ export class Func507 implements IFuncOrigin {
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		// const thisconf = thisScript.scheme.config['507'];
-
 		if (thisScript.oper({
 			name: '检测_是否为挑战奉献榜场景_待开始',
 			operator: [thisOperator[0]]
 		})) {
 			return true;
 		}
-
 		if (thisScript.oper({
 			name: '检测_挑战是否可用',
 			operator: [thisOperator[1]]
 		})) {
 			return true;
 		}
-
 		if (thisScript.oper({
 			name: '狩猎战_鬼王来袭_右下角点击集结中',
 			operator: [thisOperator[5]]
 		})) {
 			return true;
 		}
-
 		if (thisScript.oper({
 			name: '检测_是否有酒瓶',
 			operator: [thisOperator[3]]
@@ -142,31 +137,17 @@ export class Func507 implements IFuncOrigin {
 			}
 			return false;
 		}
-
 		if (thisScript.oper({
 			name: '检测_是否领取酒瓶奖励页',
 			operator: [thisOperator[4]]
 		})) {
 			return true;
 		}
-
 		if (thisScript.oper({
 			name: '检测_挑战奉献榜场景_已结束',
 			operator: [thisOperator[2]]
 		})) {
-
-			if (thisScript.runtimeParams && thisScript.runtimeParams.liao_activity_state) {
-				thisScript.runtimeParams.liao_activity_state['hunt'] = true;
-
-				const next_scheme = '返回庭院';
-				thisScript.rerun(next_scheme as string, {
-					next_scheme_name: '庭院进入寮每日活动',
-					liao_activity_state: thisScript.runtimeParams.liao_activity_state
-				});
-			} else {
-				const next_scheme = '返回庭院';
-				thisScript.rerun(next_scheme);
-			}
+			thisScript.rerun('返回庭院');
 			return true;
 		}
 		return false;

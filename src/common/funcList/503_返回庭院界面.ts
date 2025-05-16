@@ -193,6 +193,11 @@ export class Func503 implements IFuncOrigin {
 			desc: '38 图鉴界面',
 			type: 'switch',
 			default: true,
+		}, {
+			name: 'oper_39',
+			desc: '39 阴界之门界面',
+			type: 'switch',
+			default: true,
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{	// 0 探索地图
@@ -606,25 +611,28 @@ export class Func503 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 30, 18, 64, 56, 1000],
 		]
+	}, { //  39 检测_阴门
+		desc:
+			[
+				1280, 720,
+				[
+					[right, 1106, 632, 0x180a28],
+					[right, 1126, 625, 0x180a28],
+					[right, 1161, 618, 0x84a5bd],
+					[right, 1262, 650, 0x698bad],
+					[left, 72, 62, 0xb9c2da],
+					[center, 713, 25, 0xe3d698],
+				]
+			],
+		oper: [
+			[left, 1280, 720, 58, 42, 102, 79, 1200], //  点击退出
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['503'];
-		// if (thisScript.global.change_shikigami_flag && thisScript.oper({
-		// 	id: 503,
-		// 	name: '返回庭院',
-		// 	operator: [
-		// 		thisOperator[0], thisOperator[1], thisOperator[2],
-		// 		thisOperator[3], thisOperator[5], thisOperator[6],
-		// 		thisOperator[7], thisOperator[10], thisOperator[11],
-		// 		thisOperator[14], thisOperator[15], thisOperator[17],
-		// 		thisOperator[18], thisOperator[19], thisOperator[20],
-		// 		thisOperator[21], thisOperator[22], thisOperator[24],
-		// 		thisOperator[25], thisOperator[27], thisOperator[28],
-		// 		thisOperator[29], thisOperator[30], thisOperator[31],
-		// 	]
-		// })) {
-		// 	return true;
-		// }
+		log(thisScript.superGlobal.daoguan_lose);
+		thisScript.superGlobal.daoguan_lose = false;
+		log(thisScript.superGlobal.daoguan_lose);
 		let enabledThisOperator = [];
 		if (typeof thisConf.oper_0 === 'undefined') {
 			// 升级兼容配置为空的情况，这一块代码暂时保留，以后有新增要处理的界面只新增配置，不修改这一块代码
@@ -689,9 +697,11 @@ export class Func503 implements IFuncOrigin {
 					desc: thisOperator[12].desc
 				}]
 			})) {
-				let next_scheme = thisScript.runtimeParams && thisScript.runtimeParams.next_scheme_name;
+				// 返回方案起始点,并重置起始点?必要性存疑
+				let next_scheme = thisScript.superGlobal.next_scheme_name;
+				thisScript.superGlobal.next_scheme_name = null;
 				if (thisConf.scheme_switch_enabled) {
-					next_scheme = thisConf.next_scheme;
+					next_scheme = thisConf.next_scheme as string;
 				}
 
 				if (!next_scheme) {
@@ -707,13 +717,8 @@ export class Func503 implements IFuncOrigin {
 						return true;
 					}
 				} else {
-					if (thisScript.runtimeParams?.untransmit === true) {
-						thisScript.rerun(next_scheme);
-					}
 					sleep(1000);
-					thisScript.rerun(next_scheme, {
-						...thisScript.runtimeParams,
-					});
+					thisScript.rerun(next_scheme);
 					return true;
 				}
 			}

@@ -166,10 +166,8 @@ export class Func016 implements IFuncOrigin {
 
 			if (thisScript.global.dgCurNum === -1) {
 				thisScript.regionClick([thisOperator[2].oper[1]]);
-				const next_scheme = '返回庭院';
-				thisScript.rerun(next_scheme, {
-					next_scheme_name: thisScript.scheme.config['16'].next_scheme
-				});
+				thisScript.superGlobal.next_scheme_name = thisScript?.scheme?.config['16']?.next_scheme as string;
+				thisScript.rerun('返回庭院');
 				return;
 			}
 			const clickOper = thisOperator[0].oper[2 + thisScript.global.dgCurNum];

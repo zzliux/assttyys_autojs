@@ -42,7 +42,7 @@ export class Func514 implements IFuncOrigin {
 					value: null,
 				}
 			],
-		},  {
+		}, {
 			desc: '前往怪物的等待时间，单位为秒，根据自己设备来选择，建议设备卡的设置等待时间久一点',
 			config: [{
 				name: 'boss_time',
@@ -205,7 +205,7 @@ export class Func514 implements IFuncOrigin {
 			thisScript.global.narrow_time = parseInt(thisconf.boss_time as string) * 1000;
 		}
 		if (!thisScript.global.narrow_state) {
-			if (thisconf && thisconf.boss_type  === '豹子咬') {
+			if (thisconf && thisconf.boss_type === '豹子咬') {
 				thisScript.global.narrow_mode = true;
 			}
 		}
@@ -423,80 +423,49 @@ export class Func514 implements IFuncOrigin {
 			}
 		}
 		if (thisScript.global.narrow_mode) {
-			if (
-				thisScript.oper({
-					name: '检测_退出战斗_点击退出',
-					operator: [thisOperator[5]],
-				})
-			) {
+			if (thisScript.oper({
+				name: '检测_退出战斗_点击退出',
+				operator: [thisOperator[5]],
+			})) {
 				return true;
 			}
-			if (
-				thisScript.oper({
-					name: '检测_确定退出窗口',
-					operator: [
-						{
-							desc: thisOperator[6].desc,
-						}
-					]
-				})
-			) {
+			if (thisScript.oper({
+				name: '检测_确定退出窗口',
+				operator: [{ desc: thisOperator[6].desc, }]
+			})) {
 				const result = thisScript.oper({
 					name: '点击确认退出',
-					operator: [
-						{
-							oper: thisOperator[6].oper,
-						},
-					],
+					operator: [{ oper: thisOperator[6].oper }]
 				})
 				sleep(4000)// 点击确认后，等待行动条第一个行动完毕
 				return result;
 			}
 
 		}
-		if (
-			thisScript.oper({
-				name: '检测_选择暗域页面未封印',
-				operator: [
-					{
-						desc: thisOperator[0].desc,
-					},
-				],
-			})
-		) {
+		if (thisScript.oper({
+			name: '检测_选择暗域页面未封印',
+			operator: [{ desc: thisOperator[0].desc, },],
+		})) {
 			return thisScript.oper({
 				name: '点击_神龙暗域',
-				operator: [
-					{
-						oper: [thisOperator[0].oper[1]],
-					},
-				],
+				operator: [{ oper: [thisOperator[0].oper[1]] }]
 			});
 		}
-		if (
-			thisScript.oper({
-				name: '检测_暗域第三人称主页',
-				operator: [{ desc: thisOperator[1].desc }],
-			})
-		) {
+		if (thisScript.oper({
+			name: '检测_暗域第三人称主页',
+			operator: [{ desc: thisOperator[1].desc }]
+		})) {
 			return thisScript.oper({
 				name: '点击战报',
 				operator: [{ oper: thisOperator[1].oper }],
 			});
 		}
-
-		if (
-			thisScript.oper({
-				name: '检测_怪物分布页',
-				operator: [
-					{
-						desc: thisOperator[2].desc,
-					},
-				],
-			})
-		) {
+		if (thisScript.oper({
+			name: '检测_怪物分布页',
+			operator: [{ desc: thisOperator[2].desc, },
+			],
+		})) {
 			const point = thisScript.findMultiColor('狭间暗域_怪物分布奖励');
-
 			if (point) {
 				console.log('怪物分布奖励获取成功');
 				const oper = [
@@ -505,139 +474,80 @@ export class Func514 implements IFuncOrigin {
 				thisScript.regionClick(oper);
 				return true;
 			}
-
-			if (
-				thisScript.oper({
-					name: '检测_所有暗域已被封印',
-					operator: [
-						{
-							desc: thisOperator[3].desc,
-						},
-					],
-				})
-			) {
+			if (thisScript.oper({
+				name: '检测_所有暗域已被封印',
+				operator: [{ desc: thisOperator[3].desc },],
+			})) {
 				thisScript.oper({
 					name: '关闭战报弹窗',
-					operator: [
-						{
-							oper: thisOperator[3].oper,
-						},
-					],
+					operator: [{ oper: thisOperator[3].oper }]
 				});
-
-				if (
-					thisScript.runtimeParams &&
-					thisScript.runtimeParams.liao_activity_state
-				) {
-					thisScript.runtimeParams.liao_activity_state['narrow'] = true;
-
-					const next_scheme = '返回庭院';
-					thisScript.rerun(next_scheme, {
-						next_scheme_name: '庭院进入寮每日活动',
-						liao_activity_state: thisScript.runtimeParams.liao_activity_state,
-					});
-				} else {
-					const next_scheme = '返回庭院';
-					thisScript.rerun(next_scheme);
-				}
+				thisScript.rerun('返回庭院');
+				return true;
 			}
-
 			const allTrue = Object.values(thisScript.global.narrow_state).every(value => value === true);// 所有怪都打完，直接返回庭院
 			if (allTrue) {
 				thisScript.oper({
 					name: '关闭战报弹窗',
-					operator: [
-						{
-							oper: thisOperator[3].oper,
-						},
-					],
+					operator: [{ oper: thisOperator[3].oper }],
 				});
-				if (
-					thisScript.runtimeParams &&
-					thisScript.runtimeParams.liao_activity_state
-				) {
-					thisScript.runtimeParams.liao_activity_state['narrow'] = true;
-					console.log('狭间已经打完，返回庭院');
-					const next_scheme = '返回庭院';
-					thisScript.rerun(next_scheme, {
-						next_scheme_name: '庭院进入寮每日活动',
-						liao_activity_state: thisScript.runtimeParams.liao_activity_state,
-					});
-				} else {
-					const next_scheme = '返回庭院';
-					thisScript.rerun(next_scheme);
-				}
-			}
-
-			let currentState = '';
-
-			Object.keys(thisScript.global.narrow_state).findIndex((key) => {
-				if (!thisScript.global.narrow_state[key]) {
-					console.log('当前挑战阶段为:', key);
-					currentState = key;
-					return true;
-				}
-				return false;
-			});
-
-			if (currentState) {
-				// console.log('当前狭间状态:', thisScript.global.narrow_state);
-
-				const map = currentState.split('_');// 分割文本
-				const area = map[0];
-				const monster = map[1];
-
-				thisScript.oper({
-					name: '点击暗域',
-					operator: [
-						{
-							oper: [thisOperator[2].oper[Number.parseInt(area, 10) + 6]],
-						},
-					],
-				});
-
-				sleep(1500);
-
-				// 点击多次未能挑战，该boss已被挑战
-				if (thisScript.global.checked_yard_count >= 3) {
-					thisScript.global.checked_yard_count = 0;
-					let currentState = '';
-					Object.keys(thisScript.global.narrow_state).findIndex((key) => {
-						if (!thisScript.global.narrow_state[key]) {
-							console.log('当前挑战阶段为:', key);
-							currentState = key;
-							return true;
-						}
-						return false;
-					});
-					if (currentState) {
-						thisScript.global.narrow_state[currentState] = true;
-						return false;
-					}
-				} else {
-					thisScript.global.checked_yard_count += 1;
-				}
-				thisScript.oper({
-					name: '点击怪物',
-					operator: [
-						{
-							oper: [thisOperator[2].oper[Number.parseInt(monster, 10)]],
-						},
-					],
-				});
-				return true;
+				console.log('狭间已经打完，返回庭院');
+				const next_scheme = '返回庭院';
+				thisScript.rerun(next_scheme);
 			}
 		}
+		let currentState = '';
+		Object.keys(thisScript.global.narrow_state).findIndex((key) => {
+			if (!thisScript.global.narrow_state[key]) {
+				console.log('当前挑战阶段为:', key);
+				currentState = key;
+				return true;
+			}
+			return false;
+		});
 
-		if (
+		if (currentState) {
+			// console.log('当前狭间状态:', thisScript.global.narrow_state);
+			const map = currentState.split('_');// 分割文本
+			const area = map[0];
+			const monster = map[1];
 			thisScript.oper({
-				name: '检测_获得奖励弹窗',
-				operator: [thisOperator[4]],
-			})
-		) {
+				name: '点击暗域',
+				operator: [{ oper: [thisOperator[2].oper[Number.parseInt(area, 10) + 6]] }]
+			});
+			sleep(1500);
+			// 点击多次未能挑战，该boss已被挑战
+			if (thisScript.global.checked_yard_count >= 3) {
+				thisScript.global.checked_yard_count = 0;
+				let currentState = '';
+				Object.keys(thisScript.global.narrow_state).findIndex((key) => {
+					if (!thisScript.global.narrow_state[key]) {
+						console.log('当前挑战阶段为:', key);
+						currentState = key;
+						return true;
+					}
+					return false;
+				});
+				if (currentState) {
+					thisScript.global.narrow_state[currentState] = true;
+					return false;
+				}
+			} else {
+				thisScript.global.checked_yard_count += 1;
+			}
+			thisScript.oper({
+				name: '点击怪物',
+				operator: [{ oper: [thisOperator[2].oper[Number.parseInt(monster, 10)]] }]
+			});
 			return true;
 		}
 
+		if (thisScript.oper({
+			name: '检测_获得奖励弹窗',
+			operator: [thisOperator[4]]
+		})) {
+			return true;
+		}
 		return false;
 	}
 }

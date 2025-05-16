@@ -161,7 +161,7 @@ export class Func1000 implements IFuncOrigin {
 				sleep(1500);
 				if (
 					!thisScript.global.checked_yard_count ||
-          Number.isNaN(thisScript.global.checked_yard_count)
+					Number.isNaN(thisScript.global.checked_yard_count)
 				) {
 					thisScript.global.checked_yard_count = 1;
 				} else {
@@ -181,22 +181,9 @@ export class Func1000 implements IFuncOrigin {
 				],
 			})
 		) {
-			if (
-				thisScript.runtimeParams &&
-        thisScript.runtimeParams.liao_activity_state
-			) {
-				thisScript.runtimeParams.liao_activity_state['banquet'] = true;
-
-				const next_scheme = '返回庭院';
-				thisScript.rerun(next_scheme as string, {
-					next_scheme_name: '庭院进入寮每日活动',
-					liao_activity_state: thisScript.runtimeParams.liao_activity_state,
-				});
-			} else {
-				const next_scheme = '返回庭院';
-				thisScript.rerun(next_scheme);
-			}
-			return false;
+			const next_scheme = '返回庭院';
+			thisScript.rerun(next_scheme);
+			return true;
 		}
 		return false;
 	}

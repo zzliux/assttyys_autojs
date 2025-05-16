@@ -45,7 +45,7 @@ export type globalRootType = {
 	narrow_time: number, // 狭间暗域自定义3D人物走路时等待时间
 	narrow_mode: boolean,
 	liao_activity_page_flag: number,   //  寮活动翻页标记
-	liao_activity_Swith: Record<string, boolean>, // 寮活动记录
+
 	banquet_change_flag: boolean,   //  宴会轮换开关标识
 	gateOfHades_state: boolean,     //  阴门状态
 	team_up_lagTime: null | Date,    // 组队延时
@@ -89,7 +89,7 @@ export type globalRootType = {
 	daoGuan_swip: boolean, // 选寮往下滑
 	daoGuan_compare: number[], // 选寮存储记录的值
 	daoGuan_click: boolean, // 选寮点挑战
-	daoGuan_exit: boolean, // 道馆退出突破
+	daoGuan_exit: boolean, // 道馆开始退出突破
 	daoGuan_again: boolean, // 道馆再次攻打是否攻打第二阵容
 	daoguan_team: boolean, // 道馆是否切换队伍
 	first_create_team: boolean, // 首次创建队伍
@@ -158,7 +158,6 @@ export const globalRoot: globalRootType = {
 	narrow_time: 0,
 	narrow_mode: false,
 	liao_activity_page_flag: 0,
-	liao_activity_Swith: undefined,
 	banquet_change_flag: false,
 	gateOfHades_state: false,
 	team_up_lagTime: null,
@@ -222,4 +221,16 @@ export const globalRoot: globalRootType = {
 	shop_find: null,
 	fengZi: true,
 	zhenLvJu: true,
+}
+
+export type superGlobalRootType = {
+	liao_activity_Swith: Record<string, boolean>, // 寮活动记录
+	next_scheme_name: string, // 中转后的下个方案
+	daoguan_lose: boolean, // 道馆失败后开启第二次道馆
+}
+
+export const superGlobalRoot: superGlobalRootType = {
+	liao_activity_Swith: undefined,
+	next_scheme_name: null,
+	daoguan_lose: true,
 }

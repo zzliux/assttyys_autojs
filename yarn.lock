@@ -2144,9 +2144,9 @@ assert@2.0.0:
     util "^0.12.0"
 
 assttyys_ui@^1.0.0:
-  version "1.0.1"
-  resolved "https://registry.npmmirror.com/assttyys_ui/-/assttyys_ui-1.0.1.tgz"
-  integrity sha512-dlpvCYFt9UCUV70ab9KektJVAveFn3C47ZqNWa5G94MkQsGWYBhObUQiqLDprVqKGcX4MAxH0ftm1bSbOrHY4Q==
+  version "1.0.2"
+  resolved "https://registry.npmmirror.com/assttyys_ui/-/assttyys_ui-1.0.2.tgz"
+  integrity sha512-z2tTSQ0Fj/ZmbUo4kNMfBMSNkNn8gqMFXkid1tXj5pPi+05LuUhy3kgQBChCJrJ4KT24muAZqmriFKpWNgmv/g==
   dependencies:
     "@element-plus/icons-vue" "^2.3.1"
     "@marshallswain/vuedraggable" "^4.2.0"

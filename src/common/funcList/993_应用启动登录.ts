@@ -758,6 +758,14 @@ export class Func993 implements IFuncOrigin {
 
 			return false;
 		} else {
+			if (thisScript.oper({
+				id: 993,
+				name: '被顶号或断开连接',
+				operator: [thisOperator[3]]
+			})) {
+				thisScript.global.open_only_once = false;
+				return true;
+			}
 			return false;
 		}
 	}

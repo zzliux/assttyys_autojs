@@ -108,11 +108,8 @@ export class Func004 implements IFuncOrigin {
 			name: '邀请切换横幅',
 			operator: [{ desc: thisOperator[0].desc }, { desc: thisOperator[1].desc }]
 		})) {
-			const back_scheme = '返回庭院';
-			thisScript.rerun(back_scheme, {
-				next_scheme_name: thisConf.next_scheme,
-				untransmit: true
-			})
+			thisScript.superGlobal.next_scheme_name = thisConf.next_scheme as string;
+			thisScript.rerun('返回庭院')
 			sleep(3000)
 			return true;
 		}

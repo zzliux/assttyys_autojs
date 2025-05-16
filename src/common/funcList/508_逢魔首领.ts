@@ -16,7 +16,7 @@ export class Func508 implements IFuncOrigin {
 	config = [
 		{
 			desc: '是否开启极',
-			config: [ {
+			config: [{
 				name: 'switch_ji_enabled',
 				desc: '是否启用逢魔·极',
 				type: 'switch',
@@ -375,9 +375,8 @@ export class Func508 implements IFuncOrigin {
 			})
 		) {
 			if (thisScript.global.fm_kiss_boss_flag) {
-				thisScript.rerun('返回庭院', {
-					next_scheme_name: thisConf.next_scheme
-				});
+				thisScript.superGlobal.next_scheme_name = thisConf.next_scheme as string;
+				thisScript.rerun('返回庭院');
 			} else {
 				//	检测 是否有开启 逢魔·极
 				if (thisConf && thisConf['switch_ji_enabled']) {

@@ -1,13 +1,13 @@
 import { Script } from '@/system/script';
 export interface IFuncConfigOrigin {
-    desc: string;
-    config: Array<{
-        name: string,
-        desc: string,
-        // TODO 修改为枚举类型
-        type: string, // 'switch' | 'integer' | 'text' | 'scheme' | 'list',
-        default: boolean | string | number
-    }>
+	desc: string;
+	config: Array<{
+		name: string,
+		desc: string,
+		// TODO 修改为枚举类型
+		type: string, // 'switch' | 'integer' | 'text' | 'scheme' | 'list'| 'lists',
+		default: boolean | string | number | string[]
+	}>
 }
 
 export interface IFuncOperatorOrigin {
@@ -21,11 +21,11 @@ export interface IFuncOperatorOrigin {
 }
 
 export interface IFuncOperator {
-    desc?: [number, number, number, number][] | string;
-    oper?: [number, number, number, number, number][];
-    operStepRandom?: [number, number, number, number, number, number, number, number, number][][];
-    retest?: number;
-    notForCnt?: boolean;
+	desc?: [number, number, number, number][] | string;
+	oper?: [number, number, number, number, number][];
+	operStepRandom?: [number, number, number, number, number, number, number, number, number][][];
+	retest?: number;
+	notForCnt?: boolean;
 }
 
 
