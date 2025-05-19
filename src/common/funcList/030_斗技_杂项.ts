@@ -164,6 +164,21 @@ export class Func030 implements IFuncOrigin {
 			]
 		],
 		oper: [[left, 1280, 720, 44, 139, 77, 178, 1000]],
+	}, { // 13 通用段位战斗
+		desc: [
+			1280, 720,
+			[
+				[left, 38, 25, 0xf5e5a5],
+				[left, 48, 14, 0xefd390],
+				[left, 206, 30, 0x593716],
+				[left, 224, 30, 0x593716],
+				[right, 1192, 106, 0x6f533c],
+				[right, 1193, 205, 0x6b5038],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1153, 590, 1244, 644, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['30'];
@@ -173,7 +188,7 @@ export class Func030 implements IFuncOrigin {
 			operator: [
 				thisOperator[0], thisOperator[1], thisOperator[3], thisOperator[4],
 				thisOperator[6], thisOperator[7], thisOperator[8], thisOperator[9],
-				thisOperator[12],
+				thisOperator[12], thisOperator[13],
 			]
 		})) {
 			return true;

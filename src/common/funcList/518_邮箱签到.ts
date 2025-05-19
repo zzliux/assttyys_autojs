@@ -706,7 +706,7 @@ export class Func518 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 33, 12, 71, 44, 1000],
 			]
-		}, { // 48 集结蓝票
+		}, { // 48 星期二集结蓝票
 			desc: [
 				1280, 720,
 				[
@@ -898,6 +898,14 @@ export class Func518 implements IFuncOrigin {
 				],
 			});
 		}
+		if (thisScript.oper({
+			id: 518,
+			name: '检测_抽卡',
+			operator: [thisOperator[49], thisOperator[50], thisOperator[51], thisOperator[52]
+				, thisOperator[53], thisOperator[55]],
+		})) {
+			return true;
+		}
 		let curCnt = 0;
 		const maxCount = 3;
 		while (thisScript.oper({
@@ -920,15 +928,7 @@ export class Func518 implements IFuncOrigin {
 					operator: [{ oper: thisOperator[47].oper }]
 				});
 			}
-			sleep(500);
-		}
-		if (thisScript.oper({
-			id: 518,
-			name: '检测_抽卡',
-			operator: [thisOperator[49], thisOperator[50], thisOperator[51], thisOperator[52]
-				, thisOperator[53], thisOperator[55]],
-		})) {
-			return true;
+			sleep(2000);
 		}
 		if (thisScript.oper({
 			id: 518,
