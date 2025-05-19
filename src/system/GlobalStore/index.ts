@@ -109,6 +109,7 @@ export type globalRootType = {
 	shop_find: string[], // 商店购买_查找物品
 	fengZi: boolean, // 风姿
 	zhenLvJu: boolean, // 珍旅居
+	shenKan: boolean, // 神龛
 }
 
 export const globalRoot: globalRootType = {
@@ -221,6 +222,7 @@ export const globalRoot: globalRootType = {
 	shop_find: null,
 	fengZi: true,
 	zhenLvJu: true,
+	shenKan: true,
 }
 
 export type superGlobalRootType = {
