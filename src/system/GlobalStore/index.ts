@@ -158,7 +158,7 @@ export const globalRoot: globalRootType = {
 	narrow_state: undefined,
 	narrow_time: 0,
 	narrow_mode: false,
-	liao_activity_page_flag: 0,
+	liao_activity_page_flag: -1,
 	banquet_change_flag: false,
 	gateOfHades_state: false,
 	team_up_lagTime: null,
