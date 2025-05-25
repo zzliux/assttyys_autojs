@@ -57,14 +57,6 @@ export class Func032 implements IFuncOrigin {
 			type: 'scheme',
 			default: '返回庭院',
 		}]
-	}, {
-		desc: '寮管理负责开道馆的请勾选，勾选后将不会切换方案（可搭配519使用）',
-		config: [{
-			name: 'manage',
-			desc: '寮管理不切方案',
-			type: 'switch',
-			default: false,
-		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{ // 0 检测_挑战是否可用
 		desc: [1280, 720,
