@@ -377,7 +377,7 @@ export class Func500 implements IFuncOrigin {
 		// 阴门判断(其他开关为关时)
 		if (Object.entries(thisScript.superGlobal.liao_activity_Swith).every(([key, value]) => key === 'a_ctivity_gateOfHades' ? true : value === false
 		)) {
-			if ((nowDay === 0 || nowDay === 5 || nowDay === 6) && nowHour >= 19 && nowHour < 23) {// 判断星期五六七是否在19-23点
+			if (!((nowDay === 0 || nowDay === 5 || nowDay === 6) && nowHour >= 19 && nowHour < 23)) {// 判断星期五六七是否在19-23点
 				// 关闭开关 切换到阴门
 				thisScript.superGlobal.liao_activity_Swith['a_ctivity_gateOfHades'] = false;
 				const next_scheme = thisconf.a_ctivity_gateOfHades_select;
@@ -567,11 +567,16 @@ export class Func500 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 500,
 			name: '寮神社界面',
-			operator: [thisOperator[11]]
+			operator: [{ desc: thisOperator[11].desc }]
 		})) {
 			thisScript.global.liao_activity_page_flag++;
-			const r = random(2800, 3200);
+			const r = random(28000, 32000);
 			if (thisScript.global.liao_activity_page_flag < (thisconf.count as number)) {
+				thisScript.oper({
+					id: 500,
+					name: '寮神社界面返回',
+					operator: [{ oper: thisOperator[11].oper }]
+				})
 				thisScript.myToast(`未开启寮活动,等待${Math.round(r / 1000)}秒后再次检测,剩余${(thisconf.count as number) - thisScript.global.liao_activity_page_flag}次`);
 				sleep(r);
 				return true;
