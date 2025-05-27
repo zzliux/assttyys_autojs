@@ -722,8 +722,17 @@ export class Script {
 		} else if ('__不做动作__' === schemeName) {
 			return false;
 		} else if (schemeName) {
-			this.setCurrentScheme(schemeName as string);
-			this.myToast(`切换方案为[${schemeName}]`);
+			const schemeList = store.get('schemeList');
+			if (!schemeList.some(item => item.schemeName.includes(schemeName))) {
+				sleep(1000);
+				this.myToast(`修改方案失败：请检查是否存在方案[${schemeName}]，已停止`);
+				this.doPush(this, { text: `未找到[${schemeName}]方案,已停止`, before() { this.myToast('脚本即将停止，正在上传数据'); } });
+				this.stop();
+				return true;
+			} else {
+				this.setCurrentScheme(schemeName as string);
+				this.myToast(`切换方案为[${schemeName}]`);
+			}
 		}
 		events.broadcast.emit('SCRIPT_RERUN', '');
 	}

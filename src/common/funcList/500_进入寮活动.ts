@@ -377,7 +377,7 @@ export class Func500 implements IFuncOrigin {
 		// 阴门判断(其他开关为关时)
 		if (Object.entries(thisScript.superGlobal.liao_activity_Swith).every(([key, value]) => key === 'a_ctivity_gateOfHades' ? true : value === false
 		)) {
-			if (!((nowDay === 0 || nowDay === 5 || nowDay === 6) && nowHour >= 19 && nowHour < 23)) {// 判断星期五六七是否在19-23点
+			if ((nowDay === 0 || nowDay === 5 || nowDay === 6) && nowHour >= 19 && nowHour < 23) {// 判断星期五六七是否在19-23点
 				// 关闭开关 切换到阴门
 				thisScript.superGlobal.liao_activity_Swith['a_ctivity_gateOfHades'] = false;
 				const next_scheme = thisconf.a_ctivity_gateOfHades_select;
