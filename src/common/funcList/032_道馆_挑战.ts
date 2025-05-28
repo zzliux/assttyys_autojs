@@ -114,6 +114,9 @@ export class Func032 implements IFuncOrigin {
 				[center, 888, 153, 0xe4ded5],
 				[center, 771, 111, 0x695f51],
 			]
+		],
+		oper: [
+			[center, 1280, 720, 1176, 454, 1255, 578, 1000],
 		]
 	}, { // 5 参与投票
 		desc: [
@@ -288,8 +291,8 @@ export class Func032 implements IFuncOrigin {
 		// 框不点掉来耗掉道馆关闭
 		if (thisScript.oper({
 			id: 32,
-			name: '检测_挑战结束',
-			operator: []
+			name: '检测_挑战失败',
+			operator: [thisOperator[4]]
 		})) {
 			return true;
 		}
@@ -309,6 +312,9 @@ export class Func032 implements IFuncOrigin {
 				thisScript.regionClick([thisOperator[5].oper[0]]);
 			} else if (thisconf.after_fail_operation === '再战道馆') {
 				thisScript.regionClick([thisOperator[5].oper[1]]);
+			}
+			if (!thisScript.scheme.list.includes(519)) {
+				thisScript.rerun('返回庭院');
 			}
 			return true;
 		}
@@ -338,12 +344,14 @@ export class Func032 implements IFuncOrigin {
 			});
 		}
 		// 判断是否是僵尸寮道馆来选择挂机还是退出
-		if (!thisScript.scheme.list.includes(519) && thisScript.oper({
+		if (thisScript.oper({
 			id: 32,
 			name: '检测_挑战结束',
-			operator: [thisOperator[3], thisOperator[4]]
+			operator: [thisOperator[3]]
 		})) {
-			thisScript.rerun('返回庭院');
+			if (!thisScript.scheme.list.includes(519)) {
+				thisScript.rerun('返回庭院');
+			}
 			return true;
 		}
 	}

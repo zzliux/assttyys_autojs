@@ -269,7 +269,6 @@ export class Func500 implements IFuncOrigin {
 				1280, 720,
 				[
 					[left, 42, 31, 0xf4e4a4],
-					[center, 744, 39, 0x593716],
 					[center, 736, 237, 0x403d38],
 					[center, 766, 235, 0xaf3a31],
 					[center, 760, 245, 0xe3e0da],
@@ -569,6 +568,12 @@ export class Func500 implements IFuncOrigin {
 			name: '寮神社界面',
 			operator: [{ desc: thisOperator[11].desc }]
 		})) {
+			const now = new Date().getTime();
+			const ajImg = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(thisScript.helperBridge.helper.GetBitmap());
+			const path = `/sdcard/assttyys/bgyxImg/${now}.png`;
+			files.ensureDir(path);
+			ajImg.saveTo(path);
+			ajImg.recycle();
 			thisScript.global.liao_activity_page_flag++;
 			const r = random(28000, 32000);
 			if (thisScript.global.liao_activity_page_flag < (thisconf.count as number)) {
