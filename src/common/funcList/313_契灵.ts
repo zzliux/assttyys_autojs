@@ -277,6 +277,11 @@ export class Func313 implements IFuncOrigin {
 			[center, 1280, 720, 407, 417, 429, 439, 1000], // 不公开
 			[center, 1280, 720, 537, 495, 744, 536, 1000], // 创建
 		]
+	}, { // 14 探索地图界面_含时空秘境进入契灵之境
+		desc: '探索地图界面_含时空秘境',
+		oper: [
+			[left, 1280, 720, 1132, 641, 1198, 696, 1000],
+		]
 	}]
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
@@ -393,7 +398,7 @@ export class Func313 implements IFuncOrigin {
 			id: 313,
 			name: '契灵杂项',
 			operator: [
-				thisOperator[6], thisOperator[8], thisOperator[11], thisOperator[12], thisOperator[13],
+				thisOperator[6], thisOperator[8], thisOperator[14], thisOperator[11], thisOperator[12], thisOperator[13],
 			]
 		})) {
 			return true;

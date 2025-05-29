@@ -320,6 +320,20 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 			]
 		]
 	},
+	'探索地图界面_含时空秘境': {
+		desc: [1280, 720,
+			[
+				[left, 45, 60, 0xeff5fb],
+				[right, 1168, 146, 0xd5cec1],
+				[right, 1124, 32, 0xd7b18b],
+				[right, 1226, 30, 0xd3af84],
+				[left, 18, 705, 0x794c31],
+				[left, 206, 710, 0x72452f],
+				[left, 251, 674, 0x1d140f],
+				[left, 287, 654, 0xffffff],
+			]
+		],
+	},
 	'探索章节_挑战': {
 		desc: [
 			1280, 720,

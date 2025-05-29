@@ -9,13 +9,19 @@ export class Func308 implements IFuncOrigin {
 	name = '探索地图进入每周挑战秘闻';
 	desc = '从探索地图进入每周挑战秘闻';
 	operator: IFuncOperatorOrigin[] = [{
-		// 0 20230524正式服，探索地图进入秘闻
+		// 0 体服 探索地图界面_含时空秘境
+		desc: '探索地图界面_含时空秘境',
+		oper: [
+			[center, 1280, 720, 641, 638, 706, 694, 1000],
+		]
+	}, {
+		// 1 20230524正式服，探索地图进入秘闻
 		desc: '探索地图界面',
 		oper: [
 			[center, 1280, 720, 544, 636, 602, 701, 1000],
 		]
 	}, {
-		// 1 每周挑战秘闻弹窗，暗
+		// 2 每周挑战秘闻弹窗，暗
 		desc: [
 			1280, 720,
 			[
@@ -30,7 +36,7 @@ export class Func308 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1020, 112, 1230, 371, 1000]
 		]
-	}, { // 2 每周挑战秘闻选择并进入
+	}, { // 3 每周挑战秘闻选择并进入
 		desc: [1280, 720,
 			[
 				[left, 110, 42, 0xe0daca],
@@ -46,7 +52,7 @@ export class Func308 implements IFuncOrigin {
 			[center, 1280, 720, 1142, 598, 1239, 688, 500],
 		]
 	}, {
-		// 3
+		// 4
 		desc: '秘闻挑战开启',
 		oper: [
 			[left, 1280, 720, 452, 605, 870, 683, 2000],

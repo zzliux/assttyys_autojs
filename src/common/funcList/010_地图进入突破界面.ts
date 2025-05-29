@@ -40,6 +40,12 @@ export class Func010 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1036, 133, 1065, 158, 500]
 		]
+	}, {
+		desc: '探索地图界面_含时空秘境',
+		oper: [
+			[left, 1280, 720, 343, 645, 413, 703, 1500],
+			[center, 1280, 720, 1210, 366, 1254, 453, 1500]
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['10']; // 获取配置
@@ -47,6 +53,9 @@ export class Func010 implements IFuncOrigin {
 			return thisScript.oper({
 				name: '地图进入个人突破',
 				operator: [{
+					desc: thisOperator[2].desc,
+					oper: [thisOperator[2].oper[0]]
+				}, {
 					desc: thisOperator[0].desc,
 					oper: [thisOperator[0].oper[0]]
 				}, thisOperator[1]]
@@ -54,7 +63,7 @@ export class Func010 implements IFuncOrigin {
 		} else if ('寮突破' === thisconf.type) {
 			return thisScript.oper({
 				name: '地图进入寮突破',
-				operator: thisOperator
+				operator: [thisOperator[2], thisOperator[0], thisOperator[1]]
 			});
 		}
 		return false;

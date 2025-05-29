@@ -133,6 +133,14 @@ export class Func053 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 993, 149, 1169, 616, 500],
 		]
+	}, {
+		// 7 探索地图界面_含时空秘境
+		desc: '探索地图界面_含时空秘境',
+		oper: [
+			[left, 1280, 720, 155, 640, 211, 694, 1000], // 御魂
+			[left, 1280, 720, 444, 638, 507, 701, 1000], // 御灵
+			[left, 1280, 720, 56, 639, 111, 699, 1000], // 觉醒
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 
@@ -175,6 +183,9 @@ export class Func053 implements IFuncOrigin {
 		// '御灵', '觉醒-火麒麟', '觉醒-风麒麟', '觉醒-水麒麟', '觉醒-雷麒麟'
 		else if ('御灵' === thisconf.challenge_type) {
 			operator = [{
+				desc: thisOperator[7].desc,
+				oper: [thisOperator[7].oper[1]]
+			}, {
 				desc: thisOperator[0].desc,
 				oper: [thisOperator[0].oper[1]]
 			}, thisOperator[3], thisOperator[4], thisOperator[5], thisOperator[6]]
