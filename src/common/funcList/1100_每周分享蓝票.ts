@@ -24,19 +24,17 @@ export class Func1100 implements IFuncOrigin {
 			[center, 1280, 720, 96, 610, 139, 642, 1000],
 		]
 	}, { // 1 图鉴_式神
-		desc: [
-			1280, 720,
+		desc: [1280, 720,
 			[
-				[center, 493, 667, 0x22140e],
-				[center, 520, 649, 0x2e1a14],
-				[center, 551, 671, 0x21130e],
-				[center, 505, 665, 0xefe4cf],
-				[center, 537, 665, 0xefdec6],
-				[center, 511, 687, 0xf3e7cf],
+				[center, 417, 666, 0xefe4cf],
+				[center, 437, 659, 0xdbd2c0],
+				[center, 447, 666, 0xf0e1ca],
+				[center, 441, 687, 0xf6e9d1],
+				[center, 423, 688, 0xf2e6ce],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 503, 650, 537, 696, 1000],
+			[center, 1280, 720, 410, 655, 454, 693, 1000],
 		]
 	}, { // 2 式神_绘卷
 		desc: [
@@ -107,7 +105,7 @@ export class Func1100 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 510, 426, 570, 458, 1000],
+			[center, 1280, 720, 511, 426, 570, 458, 1000],
 		]
 	}, { // 7 微博_返回
 		desc: [
@@ -197,6 +195,19 @@ export class Func1100 implements IFuncOrigin {
 		]
 	}, { // 13 庭院已打开菜单
 		desc: '页面是否为庭院_菜单已展开_只支持默认庭院皮肤与默认装饰'
+	}, { // 14 分享选项界面关闭
+		desc: [1280, 720,
+			[
+				[right, 1165, 64, 0x8e2e48],
+				[right, 1179, 62, 0xead4cf],
+				[right, 1195, 62, 0x862062],
+				[right, 1179, 49, 0x782e4d],
+				[right, 1181, 79, 0x892c56],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1168, 55, 1197, 78, 1000],
+		]
 	}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -242,7 +253,7 @@ export class Func1100 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 1100,
 				name: '每周分享蓝票_返回',
-				operator: [thisOperator[10], thisOperator[11], thisOperator[12]]
+				operator: [thisOperator[10], thisOperator[11], thisOperator[12], thisOperator[14]]
 			})) {
 				return true;
 			}

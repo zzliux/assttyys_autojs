@@ -112,11 +112,11 @@ export class Func520 implements IFuncOrigin {
 			operator: [{ desc: thisOperator[0].desc }]
 		})) {
 			let point;
-			if (thisScript.runTimes['2'] === undefined || thisScript.runTimes['2'] < 3) {
+			if (thisScript.runTimes['2'] === undefined || thisScript.runTimes['2'] < 1) {
 				point = thisScript.findMultiColor('宴会筹备_狸猫');
-			} else if (thisScript.runTimes['2'] < 6) {
+			} else if (thisScript.runTimes['2'] < 2) {
 				point = thisScript.findMultiColor('宴会筹备_饿鬼');
-			} else if (thisScript.runTimes['2'] < 9) {
+			} else if (thisScript.runTimes['2'] < 3) {
 				point = thisScript.findMultiColor('宴会筹备_河童');
 			} else {
 				thisScript.doPush(thisScript, { text: '宴会筹备已完成，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });

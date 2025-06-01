@@ -374,18 +374,24 @@ export class Func500 implements IFuncOrigin {
 
 		}
 		// 阴门判断(其他开关为关时)
-		if (Object.entries(thisScript.superGlobal.liao_activity_Swith).every(([key, value]) => key === 'a_ctivity_gateOfHades' ? true : value === false
-		)) {
-			if ((nowDay === 0 || nowDay === 5 || nowDay === 6) && nowHour >= 19 && nowHour < 23) {// 判断星期五六七是否在19-23点
-				// 关闭开关 切换到阴门
-				thisScript.superGlobal.liao_activity_Swith['a_ctivity_gateOfHades'] = false;
-				const next_scheme = thisconf.a_ctivity_gateOfHades_select;
-				thisScript.rerun(next_scheme);
-				return true;
-			} else {
-				// 非阴门活动时间,关闭阴门开关
-				console.log('阴门 不在时间段内');
-				thisScript.superGlobal.liao_activity_Swith['a_ctivity_gateOfHades'] = false;
+		if (thisScript.oper({
+			id: 500,
+			name: '寮神社界面',
+			operator: [{ desc: thisOperator[11].desc }]
+		})) {
+			if (Object.entries(thisScript.superGlobal.liao_activity_Swith).every(([key, value]) => key === 'a_ctivity_gateOfHades' ? true : value === false
+			)) {
+				if ((nowDay === 0 || nowDay === 5 || nowDay === 6) && nowHour >= 19 && nowHour < 23) {// 判断星期五六七是否在19-23点
+					// 关闭开关 切换到阴门
+					thisScript.superGlobal.liao_activity_Swith['a_ctivity_gateOfHades'] = false;
+					const next_scheme = thisconf.a_ctivity_gateOfHades_select;
+					thisScript.rerun(next_scheme);
+					return true;
+				} else {
+					// 非阴门活动时间,关闭阴门开关
+					console.log('阴门 不在时间段内');
+					thisScript.superGlobal.liao_activity_Swith['a_ctivity_gateOfHades'] = false;
+				}
 			}
 		}
 		// 宴会活动
@@ -568,12 +574,6 @@ export class Func500 implements IFuncOrigin {
 			name: '寮神社界面',
 			operator: [{ desc: thisOperator[11].desc }]
 		})) {
-			const now = new Date().getTime();
-			const ajImg = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(thisScript.helperBridge.helper.GetBitmap());
-			const path = `/sdcard/assttyys/bgyxImg/${now}.png`;
-			files.ensureDir(path);
-			ajImg.saveTo(path);
-			ajImg.recycle();
 			thisScript.global.liao_activity_page_flag++;
 			const r = random(28000, 32000);
 			if (thisScript.global.liao_activity_page_flag < (thisconf.count as number)) {

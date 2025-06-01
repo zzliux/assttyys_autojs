@@ -24,19 +24,17 @@ export class Func1103 implements IFuncOrigin {
 			[center, 1280, 720, 96, 610, 139, 642, 1000],
 		]
 	}, { // 1 风姿
-		desc: [
-			1280, 720,
+		desc: [1280, 720,
 			[
-				[center, 406, 668, 0xae8e51],
-				[center, 409, 662, 0xdfc994],
-				[center, 435, 655, 0xffeeaa],
-				[center, 454, 663, 0xe6c48e],
-				[center, 455, 669, 0x7c5844],
-				[center, 434, 678, 0x3f2d2d],
+				[left, 316, 667, 0xae8e51],
+				[left, 320, 661, 0xdfcc96],
+				[center, 332, 661, 0xe4cfa6],
+				[center, 344, 652, 0xffedaa],
+				[center, 364, 664, 0xdcbe8a],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 401, 650, 454, 688, 1000],
+			[center, 1280, 720, 315, 655, 364, 688, 1000],
 		]
 	}, { // 2 兑换
 		desc: [
