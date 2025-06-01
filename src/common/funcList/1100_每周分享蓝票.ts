@@ -215,6 +215,14 @@ export class Func1100 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 1100,
 				name: '每周分享蓝票_杂项',
+				operator: [thisOperator[9]]
+			})) {
+				thisScript.global.MT_share = 'back';
+				return true;
+			}
+			if (thisScript.oper({
+				id: 1100,
+				name: '每周分享蓝票_杂项',
 				operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[3]]
 			})) {
 				return true;
@@ -244,7 +252,7 @@ export class Func1100 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 1100,
 				name: '每周分享蓝票_杂项',
-				operator: [thisOperator[7], thisOperator[9]]
+				operator: [thisOperator[7]]
 			})) {
 				thisScript.global.MT_share = 'back';
 				return true;
