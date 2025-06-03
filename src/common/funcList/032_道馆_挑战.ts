@@ -292,7 +292,7 @@ export class Func032 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 32,
 			name: '检测_挑战失败',
-			operator: [thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[4], thisOperator[6]]
+			operator: [thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[4]]
 		})) {
 			return true;
 		}
@@ -312,9 +312,6 @@ export class Func032 implements IFuncOrigin {
 				thisScript.regionClick([thisOperator[5].oper[0]]);
 			} else if (thisconf.after_fail_operation === '再战道馆') {
 				thisScript.regionClick([thisOperator[5].oper[1]]);
-			}
-			if (!thisScript.scheme.list.includes(519)) {
-				thisScript.rerun('返回庭院');
 			}
 			return true;
 		}
@@ -343,11 +340,11 @@ export class Func032 implements IFuncOrigin {
 				operator: [{ oper: thisOperator[12].oper }],
 			});
 		}
-		// 判断是否是僵尸寮道馆来选择挂机还是退出
+		// 判断是否是僵尸寮道馆来选择是否切换方案
 		if (thisScript.oper({
 			id: 32,
 			name: '检测_挑战结束',
-			operator: [thisOperator[2]]
+			operator: [thisOperator[2], thisOperator[9]]
 		})) {
 			if (!thisScript.scheme.list.includes(519)) {
 				thisScript.rerun('返回庭院');

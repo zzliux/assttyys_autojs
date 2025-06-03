@@ -156,6 +156,21 @@ export class Func519 implements IFuncOrigin {
 				[center, 562, 87, 0x07080f],
 			]
 		]
+	}, { // 9 选道馆界面:今日挑战成功
+		desc: [
+			1280, 720,
+			[
+				[center, 518, 653, 0xddd9c8],
+				[center, 533, 650, 0xdedac9],
+				[center, 558, 649, 0xe8e4d2],
+				[center, 577, 653, 0xc1beaf],
+				[center, 599, 650, 0xbdbbad],
+				[center, 622, 648, 0xe2decd],
+				[center, 644, 649, 0x9d9c91],
+				[center, 666, 649, 0xbab8aa],
+				[center, 690, 648, 0xb8b6a7],
+			]
+		]
 	}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -171,7 +186,7 @@ export class Func519 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 519,
 			name: '当日机会为0',
-			operator: [thisOperator[8]]
+			operator: [thisOperator[8], thisOperator[9]]
 		})) {
 			thisScript.myToast('两次机会用光');
 			thisScript.doPush(thisScript, { text: '两次机会用光', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
