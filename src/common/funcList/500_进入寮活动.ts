@@ -187,7 +187,6 @@ export class Func500 implements IFuncOrigin {
 			desc: [
 				1280, 720,
 				[
-					[left, 141, 77, 0xcb945a],
 					[left, 33, 52, 0xeff5fb],
 					[left, 245, 50, 0x583716],
 					[left, 203, 650, 0x5b3e2b],
@@ -264,7 +263,6 @@ export class Func500 implements IFuncOrigin {
 				[left, 1280, 720, 25, 10, 75, 54, 1000],     //  寮活动 返回区域
 			]
 		}, {  // 12 检查_道馆是否已开启
-
 			desc: [
 				1280, 720,
 				[
