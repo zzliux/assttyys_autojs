@@ -259,7 +259,7 @@ export class Func032 implements IFuncOrigin {
 				[center, 728, 35, 0x938051],
 				[center, 889, 78, 0x9e4942],
 				[right, 1115, 282, 0xe0c875],
-				[right, 1232, 282, 0xe3cc73]
+				[right, 1232, 282, 0xd7b76a]
 			]
 		],
 		oper: [

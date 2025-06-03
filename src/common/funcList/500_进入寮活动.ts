@@ -173,7 +173,7 @@ export class Func500 implements IFuncOrigin {
 			desc: [
 				1280, 720,
 				[
-					[left, 141, 77, 0xcb945a],
+					[left, 141, 77, 0xd19c6d],
 					[left, 33, 52, 0xeff5fb],
 					[left, 245, 50, 0x583716],
 					[left, 203, 650, 0x5b3e2b],
@@ -250,8 +250,17 @@ export class Func500 implements IFuncOrigin {
 				[left, 1280, 720, 25, 10, 75, 54, 1000],     //  寮活动 返回区域
 			]
 		}, {  // 12 检查_道馆是否已开启
-
-			desc: [
+			desc: [1280, 720,
+				[
+					[left, 42, 31, 0xf4e4a4],
+					[center, 736, 237, 0x403d38],
+					[center, 766, 235, 0xaf3a31],
+					[center, 760, 245, 0xe3e0da],
+					[center, 612, 211, 0x261b15],
+					[center, 595, 193, 0xfff970],
+				]
+			],
+			/** desc: [
 				1280, 720,
 				[
 					[left, 42, 31, 0xf4e4a4],
@@ -264,7 +273,7 @@ export class Func500 implements IFuncOrigin {
 					[center, 595, 193, 0xfff970],
 					[center, 601, 250, 0x462e1c],
 				]
-			],
+			]*/
 			oper: [
 				[center, 1280, 720, 407, 169, 608, 322, 1200]	// 打开道馆
 			]
@@ -312,7 +321,7 @@ export class Func500 implements IFuncOrigin {
 			thisScript.myToast('首次进入寮神社界面，退出重进');
 			return true;
 		}
-		// 狩猎战、阴门活动判断与操作
+		/**  狩猎战、阴门活动判断与操作
 		if (thisconf.a_ctivity_gateOfHades || thisconf.a_ctivity_hunt) {// 有些寮不是周末开饭,所以不加入这里
 			const currentHour = new Date().getHours();
 			if (currentHour >= 19 && currentHour < 21) {// 判断是否在19-21点
@@ -366,6 +375,70 @@ export class Func500 implements IFuncOrigin {
 						thisScript.global.liao_activity_Swith[key] = false;
 					}
 				});
+			}
+		}*/
+		if (thisconf.a_ctivity_gateOfHades || thisconf.a_ctivity_hunt) {// 有些寮不是周末开饭,所以不加入这里
+			const currentHour = new Date().getHours();
+			const nowDateDay = new Date().getDay();
+			let exitLHD = false
+			if (nowDateDay === 0 || nowDateDay === 5 || nowDateDay === 6) {// 判断星期几
+				if (currentHour >= 19 && currentHour < 23) {// 判断是否在19-23点
+					thisconf.a_ctivity_hunt = false;
+					if (thisScript.global.liao_activity_Swith && Object.prototype.hasOwnProperty.call(thisScript.global.liao_activity_Swith, 'a_ctivity_hunt')) {
+						thisScript.global.liao_activity_Swith['a_ctivity_hunt'] = false;
+					}
+					if (thisScript.oper({
+						name: '检测_是否为阴门页面',
+						operator: [thisOperator[8]]
+					})) {
+						sleep(2000);
+						thisScript.global.liao_activity_page_flag = 0;
+						const next_scheme = thisconf.a_ctivity_gateOfHades_select;
+						thisScript.rerun(next_scheme, {});
+					}
+				} else {
+					exitLHD = true
+				}
+			} else {
+				if (currentHour >= 19 && currentHour < 21) {// 判断是否在19-21点
+					thisconf.a_ctivity_narrow = false;
+					thisconf.a_ctivity_gateOfHades = false;
+					const targetKeys = ['a_ctivity_narrow', 'a_ctivity_gateOfHades'];
+					targetKeys.forEach(key => {
+						if (thisScript.global.liao_activity_Swith && Object.prototype.hasOwnProperty.call(thisScript.global.liao_activity_Swith, key)) {
+							thisScript.global.liao_activity_Swith[key] = false;
+						}
+					});
+					if (thisconf.a_ctivity_hunt && thisScript.oper({
+						name: '检测_狩猎战',
+						operator: [thisOperator[3], thisOperator[4]],
+					})) {
+						return true;
+					}
+					if (thisconf.a_ctivity_hunt && thisScript.oper({
+						name: '检测_是否在狩猎战界面',
+						operator: [thisOperator[5]],
+					})) {
+						sleep(2000);
+						thisScript.global.liao_activity_page_flag = 0;
+						const next_scheme = thisconf.a_ctivity_hunt_select;
+						thisScript.rerun(next_scheme, {});
+					}
+				} else {
+					exitLHD = true
+				}
+			}
+			if (exitLHD) {
+				console.log('阴门/狩猎战 不在时间段内');
+				thisconf.a_ctivity_hunt = false;
+				thisconf.a_ctivity_gateOfHades = false;
+				const targetKeys = ['a_ctivity_hunt', 'a_ctivity_gateOfHades'];
+				targetKeys.forEach(key => {
+					if (thisScript.global.liao_activity_Swith && Object.prototype.hasOwnProperty.call(thisScript.global.liao_activity_Swith, key)) {
+						thisScript.global.liao_activity_Swith[key] = false;
+					}
+				});
+
 			}
 		}
 		// 狭间活动判断
