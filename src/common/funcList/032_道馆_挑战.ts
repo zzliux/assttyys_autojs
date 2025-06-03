@@ -61,7 +61,7 @@ export class Func032 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1138, 561, 1218, 641, 1000]
 		]
-	}, { // 1 已适配66 检测_挑战结束结算页_无法对上色组 废弃
+	}, { // 1 胜利_突破排名
 		desc: [1280, 720,
 			[
 				[left, 221, 115, 0xf8f3e0],
@@ -79,7 +79,7 @@ export class Func032 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1146, 82, 1266, 696, 3000],
 		]
-	}, { // 2 检测_挑战结束场景 废弃
+	}, { // 2 挑战结束(无论胜败)
 		desc: [1280, 720,
 			[
 				[center, 698, 44, 0xe4c879],
@@ -135,7 +135,7 @@ export class Func032 implements IFuncOrigin {
 			[right, 1280, 720, 1048, 237, 1144, 328, 800], // 保留赏金
 			[right, 1280, 720, 1166, 235, 1256, 328, 800], // 再战道馆
 		]
-	}, { // 6 道馆页_挑战成功 废弃
+	}, { // 6 道馆页_挑战成功 和 2重复
 		desc: [
 			1280, 720,
 			[
@@ -183,7 +183,7 @@ export class Func032 implements IFuncOrigin {
 			[center, 1280, 720, 54, 595, 132, 669, 1000],
 			[center, 1280, 720, 677, 399, 797, 447, 10000],
 		]
-	}, { // 9 今日挑战成功 废弃
+	}, { // 9 选道馆界面:今日挑战成功
 		desc: [
 			1280, 720,
 			[
@@ -292,7 +292,7 @@ export class Func032 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 32,
 			name: '检测_挑战失败',
-			operator: [thisOperator[4]]
+			operator: [thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[4], thisOperator[6]]
 		})) {
 			return true;
 		}
@@ -347,7 +347,7 @@ export class Func032 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 32,
 			name: '检测_挑战结束',
-			operator: [thisOperator[3]]
+			operator: [thisOperator[2]]
 		})) {
 			if (!thisScript.scheme.list.includes(519)) {
 				thisScript.rerun('返回庭院');
