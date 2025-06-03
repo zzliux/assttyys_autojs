@@ -27,6 +27,11 @@ export class Func519 implements IFuncOrigin {
 			type: 'integer',
 			default: 0,
 		}, {
+			name: 'max_people',
+			desc: '忽略高于X的‘人数’',
+			type: 'integer',
+			default: 999,
+		}, {
 			name: 'day',
 			desc: '星期567不进入',
 			type: 'switch',
@@ -186,7 +191,7 @@ export class Func519 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 519,
 			name: '当日机会为0',
-			operator: [thisOperator[8], thisOperator[9]]
+			operator: [thisOperator[8]]
 		})) {
 			thisScript.myToast('两次机会用光');
 			thisScript.doPush(thisScript, { text: '两次机会用光', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
@@ -300,6 +305,9 @@ export class Func519 implements IFuncOrigin {
 						result[i] = 0;
 					}
 					if (result[i] < thisConf.people) {
+						result[i] = 0;
+					}
+					if (result[i] > thisConf.max_people) {
 						result[i] = 0;
 					}
 				}
