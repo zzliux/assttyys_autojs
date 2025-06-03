@@ -1341,6 +1341,9 @@ export const versionList = [{
 }, {
 	version: '20250402_01',
 	desc: '修复优化：32道馆新增寮管理不切换方案',
+}, {
+	version: '20250603_01',
+	desc: '修复优化：32道馆、500进入寮活-重新取色',
 }];
 
 export default versionList[versionList.length - 1].version;
