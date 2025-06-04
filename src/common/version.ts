@@ -1344,6 +1344,9 @@ export const versionList = [{
 }, {
 	version: '20250603_01',
 	desc: '修复优化：32道馆、500进入寮活-重新取色',
+}, {
+	version: '20250604_01',
+	desc: '修复:寄养更改寄养式神(临时)',
 }];
 
 export default versionList[versionList.length - 1].version;
