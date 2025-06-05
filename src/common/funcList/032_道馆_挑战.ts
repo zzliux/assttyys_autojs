@@ -101,6 +101,9 @@ export class Func032 implements IFuncOrigin {
 				[center, 636, 448, 0xf8f3e0],
 				[center, 461, 485, 0xbe2b1f],
 			]
+		],
+		oper: [
+			[right, 1280, 720, 1146, 82, 1266, 696, 3000],
 		]
 	}, { // 4 失败
 		desc: [
@@ -292,7 +295,7 @@ export class Func032 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 32,
 			name: '检测_挑战失败',
-			operator: [thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[4]]
+			operator: [thisOperator[1], thisOperator[3], thisOperator[4]]
 		})) {
 			return true;
 		}
