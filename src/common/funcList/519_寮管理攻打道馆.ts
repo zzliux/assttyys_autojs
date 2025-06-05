@@ -191,7 +191,7 @@ export class Func519 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 519,
 			name: '当日机会为0',
-			operator: [thisOperator[8]]
+			operator: [thisOperator[8], thisOperator[9]]
 		})) {
 			thisScript.myToast('两次机会用光');
 			thisScript.doPush(thisScript, { text: '两次机会用光', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
