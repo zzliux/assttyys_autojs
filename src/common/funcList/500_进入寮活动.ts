@@ -100,15 +100,12 @@ export class Func500 implements IFuncOrigin {
 				1280, 720,
 				[
 					[left, 42, 31, 0xf4e4a4],
-					[center, 744, 39, 0x593716],
 					[center, 736, 237, 0x403d38],
 					[center, 766, 235, 0xaf3a31],
 					[center, 760, 245, 0xe3e0da],
-					[center, 842, 198, 0xffdd66],
-					[center, 837, 216, 0x3c291d],
-					[center, 857, 232, 0x352117],
-					[center, 851, 197, 0x453022],
-					[center, 854, 193, 0x4c3422],
+					[right, 836, 222, 0x32221b],
+					[right, 850, 223, 0xb78d42],
+					[right, 841, 232, 0x2a1d18],
 				]
 			],
 			oper: [
@@ -119,11 +116,13 @@ export class Func500 implements IFuncOrigin {
 			desc: [
 				1280, 720,
 				[
-					[right, 1099, 212, 0x4a3627],
 					[right, 1036, 265, 0x7e1818],
 					[right, 1043, 291, 0xf6b2b2],
 					[right, 988, 286, 0x93211f],
 					[center, 946, 228, 0x3f2c19],
+					[right, 1084, 211, 0x3e2b1e],
+					[right, 1085, 225, 0x2f211a],
+					[right, 1097, 216, 0xcd9e49],
 				]
 			],
 			oper: [

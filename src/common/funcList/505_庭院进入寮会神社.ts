@@ -16,7 +16,8 @@ export class Func505 implements IFuncOrigin {
 		]
 	}, { // 点击阴阳寮
 		desc: [1280, 720,
-			[[center, 560, 608, 0xbc3433],
+			[
+				[center, 560, 608, 0xbc3433],
 				[center, 542, 639, 0x7b1515],
 				[center, 575, 646, 0xc1b8b0],
 				[center, 590, 638, 0xb07970]]
@@ -48,8 +49,9 @@ export class Func505 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 868, 627, 927, 684, 1200]	// 点击下方神社
-		]
-	},	{ // 判断是否为神社页面
+		],
+		retest: 1000
+	}, { // 判断是否为神社页面
 		desc: [
 			1280, 720,
 			[
