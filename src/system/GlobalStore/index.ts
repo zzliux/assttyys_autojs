@@ -110,6 +110,8 @@ export type globalRootType = {
 	fengZi: boolean, // 风姿
 	zhenLvJu: boolean, // 珍旅居
 	shenKan: boolean, // 神龛
+	zhenShe: number, // 真蛇
+	sneak_level_open: boolean, // 选择层数
 }
 
 export const globalRoot: globalRootType = {
@@ -223,6 +225,8 @@ export const globalRoot: globalRootType = {
 	fengZi: true,
 	zhenLvJu: true,
 	shenKan: true,
+	zhenShe: 2,
+	sneak_level_open: true,
 }
 
 export type superGlobalRootType = {

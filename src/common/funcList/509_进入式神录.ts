@@ -183,6 +183,21 @@ export class Func509 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1209, 461, 1244, 491, 1000],
 		]
+	}, { // 14 真蛇
+		desc: [
+			1280, 720,
+			[
+				[center, 848, 545, 0x381f0f],
+				[center, 856, 536, 0x3f2412],
+				[center, 873, 547, 0xe5d6b2],
+				[center, 893, 547, 0x361e0e],
+				[center, 883, 564, 0xdac298],
+				[center, 858, 563, 0xdabf94],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 843, 534, 894, 570, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.global.change_shikigami_flag) {
@@ -197,7 +212,7 @@ export class Func509 implements IFuncOrigin {
 				operator: [
 					thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[4],
 					thisOperator[5], thisOperator[6], thisOperator[7], thisOperator[9],
-					thisOperator[11], thisOperator[12], thisOperator[13]]
+					thisOperator[11], thisOperator[12], thisOperator[13], thisOperator[14]]
 			})) {
 				sleep(1000);
 				return true;

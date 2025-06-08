@@ -826,6 +826,20 @@ export class Func518 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 426, 625, 584, 672, 1000],
 			]
+		}, { // 56 抽卡头像框弹窗关闭
+			desc: [
+				1280, 720,
+				[
+					[left, 60, 19, 0x625539],
+					[left, 48, 31, 0x665f44],
+					[left, 138, 17, 0x493823],
+					[left, 177, 37, 0x493823],
+					[left, 223, 32, 0x251709],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 311, 12, 397, 57, 1000],
+			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -902,7 +916,7 @@ export class Func518 implements IFuncOrigin {
 			id: 518,
 			name: '检测_抽卡',
 			operator: [thisOperator[49], thisOperator[50], thisOperator[51], thisOperator[52]
-				, thisOperator[53], thisOperator[55]],
+				, thisOperator[53], thisOperator[55], thisOperator[56]],
 		})) {
 			return true;
 		}
