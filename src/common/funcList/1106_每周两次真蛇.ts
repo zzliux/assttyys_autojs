@@ -103,7 +103,8 @@ export class Func1106 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 1113, 551, 1222, 630, 1000],
-		]
+		],
+		retest: 1000,
 	}, { // 5 真蛇出现
 		desc: [
 			1280, 720,
@@ -118,7 +119,7 @@ export class Func1106 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 115, 646, 203, 683, 1000],
 		]
-	}, { // 6 真蛇_最后一次
+	}, { // 6 真蛇_剩余一次
 		desc: [
 			1280, 720,
 			[
@@ -161,7 +162,6 @@ export class Func1106 implements IFuncOrigin {
 				operator: [thisOperator[6]]
 			})) {
 				thisScript.global.zhenShe = 1;
-				return true;
 			}
 			if (thisScript.oper({
 				id: 1106,
