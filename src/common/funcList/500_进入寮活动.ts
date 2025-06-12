@@ -388,6 +388,7 @@ export class Func500 implements IFuncOrigin {
 					// 非阴门活动时间,关闭阴门开关
 					console.log('阴门 不在时间段内');
 					thisScript.superGlobal.liao_activity_Swith['a_ctivity_gateOfHades'] = false;
+					return true;
 				}
 			}
 		}
