@@ -154,6 +154,10 @@ export class Func1106 implements IFuncOrigin {
 				operator: [thisOperator[4]]
 			})) {
 				thisScript.global.zhenShe--;
+				thisScript.global.change_shikigami_flag = true; // 进入式神录
+				thisScript.global.change_shikigami_state = 'flushed';// 再次更换御魂
+				thisScript.global.preset_once_groupNum = null;
+				thisScript.global.preset_once_defaultNum = null;
 				return true;
 			}
 			if (thisScript.oper({

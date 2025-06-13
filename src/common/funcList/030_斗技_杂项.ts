@@ -25,6 +25,11 @@ export class Func030 implements IFuncOrigin {
 			desc: '式神被ban时退出，输入单字简称，现仅支持“面龙辉犬狐”',
 			type: 'text',
 			default: '',
+		}, {
+			name: 'ledgeProPvP',
+			desc: '大名仕停止斗技',
+			type: 'switch',
+			default: false,
 		}],
 	}];
 	operator: IFuncOperatorOrigin[] = [{
@@ -179,9 +184,46 @@ export class Func030 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1153, 590, 1244, 644, 1000],
 		]
+	}, { // 14 大名士_第一种(防止火焰遮挡)
+		desc: [
+			1280, 720,
+			[
+				[center, 640, 365, 0x936493],
+				[center, 643, 378, 0xffec6b],
+				[center, 595, 354, 0x754013],
+				[center, 683, 356, 0x754013],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 26, 8, 59, 44, 1000],
+		]
+	}, { // 15 大名士_第二种(防止火焰遮挡)
+		desc: [1280, 720,
+			[
+				[center, 610, 430, 0xd5a050],
+				[center, 626, 442, 0x9a682e],
+				[right, 660, 448, 0x98692e],
+				[right, 667, 429, 0xcf9b4e],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 26, 8, 59, 44, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['30'];
+		if (thisconf.ledgeProPvP) {
+			if (thisScript.oper({
+				id: 30,
+				name: '斗技_杂项',
+				operator: [thisOperator[14], thisOperator[15]]
+			})) {
+				thisScript.doPush(thisScript, { text: '已大名士，停止斗技。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+				thisScript.stop();
+				sleep(3000);
+				return true;
+			}
+		}
 		if (thisScript.oper({
 			id: 30,
 			name: '斗技_杂项',
