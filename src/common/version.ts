@@ -1347,6 +1347,9 @@ export const versionList = [{
 }, {
 	version: '20250604_01',
 	desc: '修复:寄养更改寄养式神(临时)',
+}, {
+	version: '202506013_01',
+	desc: '修复:斗技增加大名士停止',
 }];
 
 export default versionList[versionList.length - 1].version;
