@@ -1350,6 +1350,9 @@ export const versionList = [{
 }, {
 	version: '202506013_01',
 	desc: '修复:斗技增加大名士停止',
+}, {
+	version: '202506018_01',
+	desc: '修复:32道馆识别地图界面，2退出结算删除27取色',
 }];
 
 export default versionList[versionList.length - 1].version;

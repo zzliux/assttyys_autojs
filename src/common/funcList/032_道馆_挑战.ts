@@ -269,7 +269,7 @@ export class Func032 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[left, 141, 77, 0xcb945a],
+				[left, 141, 77, 0xd19c6d],
 				[left, 33, 52, 0xeff5fb],
 				[left, 245, 50, 0x583716],
 				[left, 203, 650, 0x5b3e2b],
