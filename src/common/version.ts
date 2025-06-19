@@ -1347,6 +1347,9 @@ export const versionList = [{
 }, {
 	version: '20250604_01',
 	desc: '修复:寄养更改寄养式神(临时)',
+}, {
+	version: '20250619_01',
+	desc: '修复:金币妖怪，经验妖怪适配问题，修复商店去色问题',
 }];
 
 export default versionList[versionList.length - 1].version;

@@ -22,7 +22,7 @@ export class Func514 implements IFuncOrigin {
 					desc: '挑战类型',
 					type: 'list',
 					data: ['豹子咬', '打满时间'],
-					default: '豹子咬',
+					default: '打满时间',
 					value: null,
 				},
 				{
