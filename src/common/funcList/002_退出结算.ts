@@ -300,7 +300,8 @@ export class Func002 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1176, 68, 1199, 93, 1000],
 		]
-	}, { // 27  左下统计图标
+	}];
+	/**  { // 27  左下统计图标
 		desc: [1280, 720,
 			[
 				[center, 78, 643, 0x3c2b20],
@@ -312,7 +313,7 @@ export class Func002 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1112, 113, 1238, 595, 1000],
 		]
-	}];
+	} */
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['2'];
 		if (thisconf && thisconf.rechallenge && thisScript.oper({
@@ -377,9 +378,9 @@ export class Func002 implements IFuncOrigin {
 				thisOperator[12], thisOperator[13], thisOperator[14], thisOperator[15],
 				thisOperator[16], thisOperator[17], thisOperator[22], thisOperator[18], // 22要放18前面
 				thisOperator[21], thisOperator[23], thisOperator[24], thisOperator[25],
-				thisOperator[26], thisOperator[27],
+				thisOperator[26],
 			]
-		});
+		}); // thisOperator[27],
 	}
 }
 
