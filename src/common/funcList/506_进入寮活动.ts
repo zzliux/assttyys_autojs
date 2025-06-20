@@ -229,6 +229,22 @@ export class Func506 implements IFuncOrigin {
 			oper: [
 				[left, 1280, 720, 25, 10, 75, 54, 1000],     //  寮活动 返回区域
 			]
+		}, { // 14 检查_阴门是否开启
+			desc: [
+				1280, 720,
+				[
+					[center, 346, 483, 0xc2ac91],
+					[left, 262, 393, 0x331e1d],
+					[left, 169, 425, 0xcdb697],
+					[left, 280, 504, 0xe3c7e8],
+					[left, 220, 492, 0xcb90e4],
+					[left, 256, 466, 0xb5573a],
+					[left, 273, 520, 0xead2ec],
+				]
+			],
+			oper: [
+				[left, 1280, 720, 155, 417, 365, 574, 1000]     //  寮活动 阴门
+			]
 		}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['506'];
@@ -466,6 +482,8 @@ export class Func506 implements IFuncOrigin {
 			name: '检测_狩猎战是否已开启',
 			operator: [{
 				desc: thisOperator[4].desc
+			}, {
+				desc: thisOperator[14].desc
 			}]
 		})) {
 

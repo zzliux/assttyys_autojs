@@ -1356,6 +1356,9 @@ export const versionList = [{
 }, {
 	version: '20250619_01',
 	desc: '修复:金币妖怪，经验妖怪适配问题，修复商店去色问题',
+}, {
+	version: '20250620_01',
+	desc: '修复:阴门适配',
 }];
 
 export default versionList[versionList.length - 1].version;
