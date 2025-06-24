@@ -477,9 +477,9 @@ export class Func518 implements IFuncOrigin {
 				[
 					[left, 30, 26, 0xf4e4a4],
 					[right, 1249, 28, 0xd7c5a2],
-					[left, 99, 115, 0x2f1e1a],
 					[right, 1178, 666, 0xd13b39],
 					[right, 1135, 674, 0xdcb65b],
+					[left, 66, 81, 0x281816],
 				]
 			],
 		},
@@ -840,7 +840,23 @@ export class Func518 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 311, 12, 397, 57, 1000],
 			]
-		}
+		}, { // 57 检测_商店_礼包屋_热卖页签 含纳凉标签，右侧共4个标签
+			desc: [
+				1280, 720,
+				[
+					[left, 30, 26, 0xf4e4a4],
+					[right, 1227, 312, 0x967d71],
+					[right, 1134, 687, 0xf0c967],
+					[right, 1148, 665, 0x842121],
+					[right, 1195, 675, 0xd2ab51],
+					[right, 1227, 122, 0x987e70],
+					[right, 1227, 397, 0x987e71],
+				]
+			],
+			oper: [
+				[right, 1280, 720, 1194, 301, 1228, 326, 1200], //  点击 推荐页签
+			],
+		},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (
@@ -1083,6 +1099,7 @@ export class Func518 implements IFuncOrigin {
 					thisOperator[41], //  检测_商店_热门推荐3
 					thisOperator[42], //  关式神拓展包弹窗并跳过动画
 					thisOperator[46], //  礼包屋未打开
+					thisOperator[57], //  检测_商店_礼包屋_热卖页签 含纳凉标签，右侧共4个标签
 				],
 			})
 		) {
