@@ -224,10 +224,10 @@ export class Func1104 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[center, 511, 467, 0x7daed6],
-				[center, 542, 465, 0x7dadd5],
-				[center, 526, 440, 0xfff5ff],
-				[center, 520, 420, 0x78aad2],
+				[center, 506, 465, 0x76a6d2],
+				[center, 507, 470, 0x70a1d0],
+				[center, 553, 456, 0x36569e],
+				[center, 544, 466, 0x79aad3],
 			]
 		],
 		oper: [

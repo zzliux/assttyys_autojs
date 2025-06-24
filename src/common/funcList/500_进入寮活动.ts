@@ -333,6 +333,7 @@ export class Func500 implements IFuncOrigin {
 			thisScript.myToast('任务执行完毕!');
 			thisScript.superGlobal.next_scheme_name = null;
 			thisScript.rerun('返回庭院')
+			sleep(3000);
 			return true;
 		}
 		// 首次进入寮神社界面返回一次重新进，防止还有原来的缓存在里面

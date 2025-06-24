@@ -124,6 +124,17 @@ export class Func1105 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1052, 126, 1096, 156, 1000],
 		]
+	}, { // 8 已兑换
+		desc: [1280, 720,
+			[
+				[center, 592, 218, 0xfef379],
+				[center, 615, 168, 0xffffff],
+				[center, 637, 168, 0x272523],
+				[center, 623, 202, 0xfbd061],
+				[right, 643, 200, 0xfee673],
+				[right, 657, 202, 0xf6e070],
+			]
+		],
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.global.shenKan) {
@@ -137,7 +148,7 @@ export class Func1105 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 1105,
 				name: '每两周神龛兑换黑蛋_完毕',
-				operator: [thisOperator[6]]
+				operator: [thisOperator[6], thisOperator[8]]
 			})) {
 				thisScript.global.shenKan = false;
 				return true;

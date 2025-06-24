@@ -713,8 +713,8 @@ export class Func503 implements IFuncOrigin {
 						return true;
 					}
 				} else {
-					sleep(1000);
 					thisScript.rerun(next_scheme);
+					sleep(3000);
 					return true;
 				}
 			}
