@@ -18,7 +18,7 @@ export class Func1106 implements IFuncOrigin {
 			default: true,
 		}]
 	}, {
-		desc: '切换御魂(需要打开509+510+511)',
+		desc: '切换御魂(需要打开509+510快速坐标模式)',
 		config: [{
 			name: 'switch_group',
 			desc: '目标预设的分组在第N个（输入数字，只支持8个以内）',
@@ -156,8 +156,8 @@ export class Func1106 implements IFuncOrigin {
 				thisScript.global.zhenShe--;
 				thisScript.global.change_shikigami_flag = true; // 进入式神录
 				thisScript.global.change_shikigami_state = 'flushed';// 再次更换御魂
-				thisScript.global.preset_once_groupNum = null;
-				thisScript.global.preset_once_defaultNum = null;
+				thisScript.global.preset_once_groupNum = thisScript.scheme.config?.['510'].groupNum as number;
+				thisScript.global.preset_once_defaultNum = thisScript.global.preset_once_groupNum = thisScript.scheme.config?.['510'].defaultNum as number;
 				return true;
 			}
 			if (thisScript.oper({

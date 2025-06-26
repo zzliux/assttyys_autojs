@@ -81,7 +81,6 @@ export class Func1000 implements IFuncOrigin {
 					[center, 568, 257, 0xf2d7ab],
 					[center, 806, 257, 0xf2d7a9],
 					[center, 753, 129, 0x301c13],
-					[left, 216, 711, 0x3e2d1c],
 					[right, 1228, 687, 0x381c10],
 					[right, 1170, 559, 0xe8d6ae],
 					[right, 1023, 296, 0xffffff],

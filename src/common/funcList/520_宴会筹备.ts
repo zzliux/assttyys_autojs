@@ -8,7 +8,7 @@ const right = 2;
 export class Func520 implements IFuncOrigin {
 	id = 520;
 	name = '宴会筹备';
-	desc: '进入探索，狸猫饿鬼河童各打三次（需挑战券）'
+	desc: '进入探索，狸猫饿鬼河童各打一次（需挑战券）'
 	operator: IFuncOperatorOrigin[] = [{
 		desc: '探索地图界面',
 		oper: [

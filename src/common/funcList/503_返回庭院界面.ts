@@ -697,6 +697,7 @@ export class Func503 implements IFuncOrigin {
 				// 返回方案起始点,并重置起始点?必要性存疑
 				let next_scheme = thisScript.superGlobal.next_scheme_name;
 				thisScript.superGlobal.next_scheme_name = null;
+				log('503_next_scheme:' + next_scheme);
 				if (thisConf.scheme_switch_enabled) {
 					next_scheme = thisConf.next_scheme as string;
 				}

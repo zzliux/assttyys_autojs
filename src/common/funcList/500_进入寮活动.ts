@@ -332,6 +332,7 @@ export class Func500 implements IFuncOrigin {
 		if (allFalse) {
 			thisScript.myToast('任务执行完毕!');
 			thisScript.superGlobal.next_scheme_name = null;
+			log('500_thisScript.superGlobal.next_scheme_name:' + thisScript.superGlobal.next_scheme_name);
 			thisScript.rerun('返回庭院')
 			sleep(3000);
 			return true;
@@ -582,6 +583,7 @@ export class Func500 implements IFuncOrigin {
 					operator: [{ oper: thisOperator[11].oper }]
 				})
 				thisScript.myToast(`未开启寮活动,等待${Math.round(r / 1000)}秒后再次检测,剩余${(thisconf.count as number) - thisScript.global.liao_activity_page_flag}次`);
+				log(thisScript.superGlobal.liao_activity_Swith);
 				sleep(r);
 				return true;
 			} else {
