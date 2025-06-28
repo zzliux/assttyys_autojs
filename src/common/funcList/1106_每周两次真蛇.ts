@@ -157,7 +157,7 @@ export class Func1106 implements IFuncOrigin {
 				thisScript.global.change_shikigami_flag = true; // 进入式神录
 				thisScript.global.change_shikigami_state = 'flushed';// 再次更换御魂
 				thisScript.global.preset_once_groupNum = thisScript.scheme.config?.['510'].groupNum as number;
-				thisScript.global.preset_once_defaultNum = thisScript.global.preset_once_groupNum = thisScript.scheme.config?.['510'].defaultNum as number;
+				thisScript.global.preset_once_defaultNum = thisScript.scheme.config?.['510'].defaultNum as number;
 				return true;
 			}
 			if (thisScript.oper({
