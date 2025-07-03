@@ -169,18 +169,34 @@ export class Func509 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 32, 34, 76, 81, 1000],
 		]
-	}, { // 13 超鬼王
-		desc: [
-			1280, 720,
+	}, { // 13 秘闻
+		desc: [1280, 720,
 			[
-				[right, 1035, 652, 0x876133],
-				[right, 1050, 640, 0xfcf7e1],
-				[right, 1065, 640, 0xfcf6e5],
-				[right, 1079, 644, 0x725129],
+				[right, 1210, 460, 0x3f2412],
+				[right, 1226, 470, 0xe4d5b0],
+				[right, 1240, 461, 0x40200f],
+				[right, 1211, 487, 0xdabf94],
+				[right, 1238, 486, 0xdec79e],
+				[right, 1225, 457, 0x3f2312],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1036, 626, 1068, 663, 1000],
+			[center, 1280, 720, 1209, 461, 1244, 491, 1000],
+		]
+	}, { // 14 真蛇
+		desc: [
+			1280, 720,
+			[
+				[center, 848, 545, 0x381f0f],
+				[center, 856, 536, 0x3f2412],
+				[center, 873, 547, 0xe5d6b2],
+				[center, 893, 547, 0x361e0e],
+				[center, 883, 564, 0xdac298],
+				[center, 858, 563, 0xdabf94],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 843, 534, 894, 570, 1000],
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -196,7 +212,7 @@ export class Func509 implements IFuncOrigin {
 				operator: [
 					thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[4],
 					thisOperator[5], thisOperator[6], thisOperator[7], thisOperator[9],
-					thisOperator[11], thisOperator[12], thisOperator[13]]
+					thisOperator[11], thisOperator[12], thisOperator[13], thisOperator[14]]
 			})) {
 				sleep(1000);
 				return true;
