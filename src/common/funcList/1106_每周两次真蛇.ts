@@ -122,6 +122,20 @@ export class Func1106 implements IFuncOrigin {
 				[center, 490, 406, 0x433f3b],
 			]
 		]
+	}, { // 7 自动准备
+		desc: [
+			1280, 720,
+			[
+				[right, 1119, 473, 0x3f2c0c],
+				[right, 1138, 474, 0x3a280b],
+				[right, 1136, 486, 0x3e2b0c],
+				[right, 1118, 485, 0x39280b],
+				[right, 1127, 478, 0x7f4914],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1116, 467, 1140, 492, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['1106'];
@@ -162,7 +176,7 @@ export class Func1106 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 1106,
 				name: '每周两次真蛇',
-				operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[3]]
+				operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[7]]
 			})) {
 				return true;
 			}
