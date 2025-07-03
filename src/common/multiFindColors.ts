@@ -2404,7 +2404,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				[right, 1007, 87, 0xf7ffff],
 			]
 		]],
-		similar: 95,
+		similar: 93,
 	},
 	'宴会筹备': {
 		region: [center, 1280, 720, 239, 158, 1264, 646],
