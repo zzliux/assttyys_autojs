@@ -104,6 +104,7 @@ export type globalRootType = {
 	finght_time: number, // 320战斗时间
 	xxxskill: number, // 寻香行技能
 	zhenShe: number, // 真蛇
+	day_chouKa: boolean, // 是否开启每日抽卡
 }
 
 export const globalRoot: globalRootType = {
@@ -212,4 +213,5 @@ export const globalRoot: globalRootType = {
 	finght_time: null,
 	xxxskill: 0,
 	zhenShe: 2,
+	day_chouKa: true,
 }
