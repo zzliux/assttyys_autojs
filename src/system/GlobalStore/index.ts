@@ -112,6 +112,7 @@ export type globalRootType = {
 	shenKan: boolean, // 神龛
 	zhenShe: number, // 真蛇
 	sneak_level_open: boolean, // 选择层数
+	day_chouKa: boolean, // 每日抽卡
 }
 
 export const globalRoot: globalRootType = {
@@ -227,6 +228,7 @@ export const globalRoot: globalRootType = {
 	shenKan: true,
 	zhenShe: 2,
 	sneak_level_open: true,
+	day_chouKa: true,
 }
 
 export type superGlobalRootType = {
