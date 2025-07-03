@@ -10,14 +10,6 @@ export class Func1106 implements IFuncOrigin {
 	name = '每周两次真蛇';
 	desc: '';
 	config = [{
-		desc: '',
-		config: [{
-			name: 'fight',
-			desc: '攻打魂十刷出真蛇副本',
-			type: 'switch',
-			default: true,
-		}]
-	}, {
 		desc: '切换御魂(需要打开509+510快速坐标模式)',
 		config: [{
 			name: 'switch_group',
