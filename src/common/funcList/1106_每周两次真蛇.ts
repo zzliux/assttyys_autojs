@@ -152,7 +152,6 @@ export class Func1106 implements IFuncOrigin {
 			if (thisScript.global.preset_once_groupNum > 0 && thisScript.global.preset_once_defaultNum > 0) {
 				thisScript.global.change_shikigami_flag = true; // 进入式神录
 				thisScript.global.change_shikigami_state = 'flushed';// 再次更换御魂
-				return true;
 			}
 			if (thisScript.oper({
 				id: 1106,
@@ -175,7 +174,7 @@ export class Func1106 implements IFuncOrigin {
 			}
 			if (thisScript.oper({
 				id: 1106,
-				name: '每周两次真蛇',
+				name: '每周两次真蛇_杂项',
 				operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[7]]
 			})) {
 				return true;
