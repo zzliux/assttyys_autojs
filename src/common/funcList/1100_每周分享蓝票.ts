@@ -8,7 +8,7 @@ const right = 2;
 export class Func1100 implements IFuncOrigin {
 	id = 1100;
 	name = '每周分享蓝票';
-	desc: '进入式神图鉴分享领取蓝票';
+	desc: '进入式神图鉴分享领取蓝票(雷电模拟器用微博分享,需打开强制锁定横屏)';
 	operator: IFuncOperatorOrigin[] = [{ // 0 图鉴
 		desc: [
 			1280, 720,
@@ -208,6 +208,18 @@ export class Func1100 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1168, 55, 1197, 78, 1000],
 		]
+	}, { // 15 微博通知权限窗口
+		desc: [1280, 720,
+			[
+				[left, 149, 635, 0xf6f6f6],
+				[center, 462, 638, 0xf6f6f6],
+				[right, 1183, 637, 0xffb52d],
+				[right, 777, 635, 0xff8f0b],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 93, 617, 590, 654, 1000],
+		]
 	}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -240,11 +252,11 @@ export class Func1100 implements IFuncOrigin {
 				if (thisScript.oper({
 					id: 1100,
 					name: '每周分享蓝票_图鉴_雷电',
-					operator: [thisOperator[4], thisOperator[5], thisOperator[6]]
+					operator: [thisOperator[4], thisOperator[5], thisOperator[6], thisOperator[15]]
 				})) {
 					return true;
 				}
-				if (currentActivity() === '微博') {
+				if (currentActivity() === 'com.sina.weibo.MainTabActivity') {
 					back();
 					return true;
 				}
