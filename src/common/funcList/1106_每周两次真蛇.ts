@@ -10,14 +10,6 @@ export class Func1106 implements IFuncOrigin {
 	name = '每周两次真蛇';
 	desc: '';
 	config = [{
-		desc: '',
-		config: [{
-			name: 'fight',
-			desc: '攻打魂十刷出真蛇副本',
-			type: 'switch',
-			default: true,
-		}]
-	}, {
 		desc: '切换御魂(需要打开509+510快速坐标模式)',
 		config: [{
 			name: 'switch_group',
@@ -130,6 +122,20 @@ export class Func1106 implements IFuncOrigin {
 				[center, 490, 406, 0x433f3b],
 			]
 		]
+	}, { // 7 自动准备
+		desc: [
+			1280, 720,
+			[
+				[right, 1119, 473, 0x3f2c0c],
+				[right, 1138, 474, 0x3a280b],
+				[right, 1136, 486, 0x3e2b0c],
+				[right, 1118, 485, 0x39280b],
+				[right, 1127, 478, 0x7f4914],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1116, 467, 1140, 492, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['1106'];
@@ -146,7 +152,6 @@ export class Func1106 implements IFuncOrigin {
 			if (thisScript.global.preset_once_groupNum > 0 && thisScript.global.preset_once_defaultNum > 0) {
 				thisScript.global.change_shikigami_flag = true; // 进入式神录
 				thisScript.global.change_shikigami_state = 'flushed';// 再次更换御魂
-				return true;
 			}
 			if (thisScript.oper({
 				id: 1106,
@@ -169,8 +174,8 @@ export class Func1106 implements IFuncOrigin {
 			}
 			if (thisScript.oper({
 				id: 1106,
-				name: '每周两次真蛇',
-				operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[3]]
+				name: '每周两次真蛇_杂项',
+				operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[7]]
 			})) {
 				return true;
 			}
