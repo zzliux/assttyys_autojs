@@ -247,6 +247,57 @@ export class Func032 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1055, 235, 1137, 328, 800], // 放弃突破
 		]
+	}, { //	13 检测_是否为道馆突破选择道馆页面
+		desc: [
+			1280, 720,
+			[
+				[left, 141, 77, 0xd19c6d],
+				[left, 33, 52, 0xeff5fb],
+				[left, 245, 50, 0x583716],
+				[left, 203, 650, 0x5b3e2b],
+				[left, 89, 618, 0xc1b9a9],
+				[right, 1113, 650, 0xdfdbcf],
+				[right, 1103, 62, 0xddd3c0],
+				[right, 1251, 125, 0xc4b4a0],
+			]
+		],
+		oper: [
+			[left, 1280, 720, 27, 28, 56, 65, 1200]	//	跑路
+		]
+	}, { //	14 胜利结算寮资金
+		desc: [
+			1280, 720,
+			[
+				[center, 458, 57, 0x6a1410],
+				[center, 444, 99, 0x9a1c12],
+				[center, 486, 98, 0x911c10],
+				[center, 467, 90, 0xcebead],
+				[center, 352, 65, 0xe5d78c],
+				[center, 556, 106, 0xad8e5a],
+				[center, 547, 126, 0x9c9ca5],
+				[center, 816, 75, 0xdecb9c]
+			]
+		],
+		oper: [
+			[left, 1280, 720, 1147, 348, 1238, 614, 1000]
+		]
+	}, { // 15 道馆挑战成功结算排行榜_关闭
+		desc: [
+			1280, 720,
+			[
+				[center, 486, 58, 0x7f1a10],
+				[center, 472, 80, 0x991c10],
+				[center, 503, 80, 0x971c10],
+				[center, 885, 154, 0xe7dfd6],
+				[center, 458, 131, 0xc62c21],
+				[center, 689, 54, 0xf3ebca],
+				[center, 691, 76, 0xc8ad77],
+				[center, 753, 53, 0xf0e7c5]
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1147, 348, 1238, 614, 800],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['32'];
