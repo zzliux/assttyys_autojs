@@ -168,6 +168,36 @@ export class Func503 implements IFuncOrigin {
 			desc: '33 狭间暗域4个区域',
 			type: 'switch',
 			default: true,
+		}, {
+			name: 'oper_34',
+			desc: '34 魂海组队',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_35',
+			desc: '35 六道之门',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_36',
+			desc: '36 商店界面',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_37',
+			desc: '37 杂货铺界面',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_38',
+			desc: '38 图鉴界面',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_39',
+			desc: '39 阴界之门界面',
+			type: 'switch',
+			default: true,
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{	// 0 探索地图
@@ -513,25 +543,93 @@ export class Func503 implements IFuncOrigin {
 		oper: [
 			[left, 1280, 720, 32, 38, 70, 79, 1000]
 		]
+	}, { // 34 魂海组队
+		desc: [1280, 720,
+			[
+				[left, 64, 33, 0xd6c4a1],
+				[left, 130, 42, 0xd6c4a1],
+				[left, 210, 46, 0xd6c4a1],
+				[right, 1097, 72, 0x2c2d62],
+				[left, 167, 162, 0xda2e39],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 34, 17, 68, 55, 1000],
+		]
+	}, { // 35 六道之门
+		desc: [1280, 720,
+			[
+				[left, 24, 22, 0x454570],
+				[left, 40, 25, 0xd4d6e9],
+				[left, 58, 39, 0x515e7a],
+				[left, 47, 41, 0x727b97],
+				[left, 36, 50, 0xe0e1f2],
+				[left, 23, 41, 0xeff0f9],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 20, 24, 54, 59, 1000],
+		]
+	}, { // 36 商店界面
+		desc: [
+			1280, 720,
+			[
+				[left, 30, 44, 0x2e166e],
+				[left, 50, 46, 0xf0f5fb],
+				[left, 63, 60, 0x2f3b7e],
+				[left, 33, 58, 0xecf3fb],
+				[left, 46, 68, 0xf0f5fb],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 29, 35, 69, 75, 1000],
+		]
+	}, { // 37 商店杂货铺
+		desc: [1280, 720,
+			[
+				[left, 41, 15, 0xefd390],
+				[left, 30, 25, 0xf8ebad],
+				[left, 40, 35, 0xf0d292],
+				[left, 19, 10, 0x2d1d1b],
+				[left, 26, 13, 0x613e29],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 21, 17, 55, 47, 1000],
+		]
+	}, { // 38 图鉴_返回
+		desc: [
+			1280, 720,
+			[
+				[left, 36, 23, 0xb2753b],
+				[left, 33, 56, 0x976339],
+				[left, 41, 39, 0xf6e6a7],
+				[left, 61, 37, 0xa16638],
+				[left, 57, 28, 0xab713d],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 30, 18, 64, 56, 1000],
+		]
+	}, { //  39 检测_阴门
+		desc:
+			[
+				1280, 720,
+				[
+					[right, 1106, 632, 0x180a28],
+					[right, 1126, 625, 0x180a28],
+					[right, 1161, 618, 0x84a5bd],
+					[right, 1262, 650, 0x698bad],
+					[left, 72, 62, 0xb9c2da],
+					[center, 713, 25, 0xe3d698],
+				]
+			],
+		oper: [
+			[left, 1280, 720, 58, 42, 102, 79, 1200], //  点击退出
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['503'];
-		// if (thisScript.global.change_shikigami_flag && thisScript.oper({
-		// 	id: 503,
-		// 	name: '返回庭院',
-		// 	operator: [
-		// 		thisOperator[0], thisOperator[1], thisOperator[2],
-		// 		thisOperator[3], thisOperator[5], thisOperator[6],
-		// 		thisOperator[7], thisOperator[10], thisOperator[11],
-		// 		thisOperator[14], thisOperator[15], thisOperator[17],
-		// 		thisOperator[18], thisOperator[19], thisOperator[20],
-		// 		thisOperator[21], thisOperator[22], thisOperator[24],
-		// 		thisOperator[25], thisOperator[27], thisOperator[28],
-		// 		thisOperator[29], thisOperator[30], thisOperator[31],
-		// 	]
-		// })) {
-		// 	return true;
-		// }
 		let enabledThisOperator = [];
 		if (typeof thisConf.oper_0 === 'undefined') {
 			// 升级兼容配置为空的情况，这一块代码暂时保留，以后有新增要处理的界面只新增配置，不修改这一块代码
@@ -596,11 +694,11 @@ export class Func503 implements IFuncOrigin {
 					desc: thisOperator[12].desc
 				}]
 			})) {
+				// 返回方案起始点,并重置起始点?必要性存疑
 				let next_scheme = thisScript.runtimeParams && thisScript.runtimeParams.next_scheme_name;
 				if (thisConf.scheme_switch_enabled) {
-					next_scheme = thisConf.next_scheme;
+					next_scheme = thisConf.next_scheme as string;
 				}
-
 				if (!next_scheme) {
 					if ('停止脚本' === thisConf.afterCountOper || !thisConf.afterCountOper) {
 						thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
@@ -614,13 +712,8 @@ export class Func503 implements IFuncOrigin {
 						return true;
 					}
 				} else {
-					if (thisScript.runtimeParams?.untransmit === true) {
-						thisScript.rerun(next_scheme);
-					}
-					sleep(1000);
-					thisScript.rerun(next_scheme, {
-						...thisScript.runtimeParams,
-					});
+					thisScript.rerun(next_scheme);
+					sleep(3000);
 					return true;
 				}
 			}
