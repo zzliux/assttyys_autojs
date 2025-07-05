@@ -70,6 +70,7 @@ export type globalRootType = {
 	preset_once_team_defaultNum: number | null;     // 315预设阵容的预设阵容
 	qiling_Position: number[] | null;   //  契灵的地图位置
 	qiling_last: number | null;     //  契灵的上次类型
+	qiling_shop: boolean; // 契灵商店购买
 	opened_buff: boolean; // 是否已执行开启buff
 	closed_buff: boolean; // 是否已执行关闭buff
 	daily_collection: 'friend' | 'store'| 'courtyard';   //  每日奖励领取
@@ -113,6 +114,7 @@ export type globalRootType = {
 	zhenShe: number, // 真蛇
 	sneak_level_open: boolean, // 选择层数
 	day_chouKa: boolean, // 每日抽卡
+
 }
 
 export const globalRoot: globalRootType = {
@@ -229,6 +231,7 @@ export const globalRoot: globalRootType = {
 	zhenShe: 2,
 	sneak_level_open: true,
 	day_chouKa: true,
+	qiling_shop: false,
 }
 
 export type superGlobalRootType = {
