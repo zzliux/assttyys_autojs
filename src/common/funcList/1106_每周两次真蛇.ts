@@ -180,11 +180,12 @@ export class Func1106 implements IFuncOrigin {
 				return true;
 			}
 			return false;
-		} else {
+		} else if (thisScript.global.zhenShe == 0) {
 			thisScript.doPush(thisScript, { text: '已完成两次真蛇，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-			thisScript.rerun('返回庭院');
-			sleep(3000);
-			return;
+			thisScript.global.zhenShe = -1; // 已完成
+			return true
+		} else {
+			return false;
 		}
 	}
 }
