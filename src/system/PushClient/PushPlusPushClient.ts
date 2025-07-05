@@ -22,10 +22,11 @@ export default class PushPlusPushClient extends AbstractPushClient {
 		if (!pushplus_token) {
 			throw new Error('未配置pushplus_token');
 		}
+		const firstText = data.find(item => item.type === 'text')?.data || 'ASSTTYYS消息通知';
 		return http.postJson('https://pushplus.plus/send', {
 			// @ts-expect-error d.ts文件问题
 			token: pushplus_token,
-			title: `${msgPush_prefix} ASSTTYYS消息通知`,
+			title: `${msgPush_prefix} ${firstText}`,
 			content: data.map(item => {
 				if (item.type === 'text') return `<p>${item.data}</p>`;
 				else if (item.type === 'image')
