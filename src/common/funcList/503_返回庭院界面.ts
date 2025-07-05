@@ -134,6 +134,11 @@ export class Func503 implements IFuncOrigin {
 			type: 'switch',
 			default: true,
 		}, {
+			name: 'oper_26',
+			desc: '26 组队界面',
+			type: 'switch',
+			default: true,
+		}, {
 			name: 'oper_27',
 			desc: '27 探索里面',
 			type: 'switch',
@@ -196,6 +201,11 @@ export class Func503 implements IFuncOrigin {
 		}, {
 			name: 'oper_39',
 			desc: '39 阴界之门界面',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_40',
+			desc: '39 契灵界面',
 			type: 'switch',
 			default: true,
 		}]
@@ -471,7 +481,6 @@ export class Func503 implements IFuncOrigin {
 				[left, 43, 37, 0xf5e6a8],
 				[left, 60, 39, 0x84582f],
 				[left, 19, 47, 0x281717],
-				[left, 57, 565, 0xf9f9f1],
 				[center, 830, 58, 0xfee0c8],
 			]
 		],
@@ -626,6 +635,22 @@ export class Func503 implements IFuncOrigin {
 			],
 		oper: [
 			[left, 1280, 720, 58, 42, 102, 79, 1200], //  点击退出
+		]
+	}, { // 40 检测_契灵
+		desc: [
+			1280, 720,
+			[
+				[left, 55, 28, 0xefd28c],
+				[left, 43, 40, 0xf6eaad],
+				[left, 56, 49, 0xefd491],
+				[left, 121, 35, 0xf4efdd],
+				[left, 167, 55, 0xf6f2e1],
+				[left, 196, 34, 0xf6f2e1],
+				[left, 231, 34, 0xf6f2e1],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 28, 21, 56, 45, 1000],
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {

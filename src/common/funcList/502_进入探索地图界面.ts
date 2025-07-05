@@ -95,20 +95,6 @@ export class Func502 implements IFuncOrigin {
 			[center, 1280, 720, 700, 386, 850, 418, 3000]
 		]
 	}, {
-		// 组队界面
-		desc: [1280, 720,
-			[
-				[left, 43, 37, 0xf5e6a8],
-				[left, 60, 39, 0x84582f],
-				[left, 19, 47, 0x281717],
-				[left, 57, 565, 0xf9f9f1],
-				[center, 830, 58, 0xfee0c8],
-			]
-		],
-		oper: [
-			[left, 1280, 720, 31, 20, 70, 59, 1000],
-		]
-	}, {
 		// 永生之海组队
 		desc: [1280, 720,
 			[
