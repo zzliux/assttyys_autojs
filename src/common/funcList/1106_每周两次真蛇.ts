@@ -136,6 +136,20 @@ export class Func1106 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1116, 467, 1140, 492, 1000],
 		]
+	}, { // 8 真蛇_框转换勾玉
+		desc: [1280, 720,
+			[
+				[center, 468, 187, 0xbf5340],
+				[right, 803, 186, 0xb64f3c],
+				[center, 453, 531, 0xb04c39],
+				[right, 823, 532, 0xb24d3a],
+				[center, 599, 459, 0xf3b25e],
+				[right, 678, 490, 0xf3b25e],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 584, 454, 694, 493, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['1106'];
@@ -175,7 +189,8 @@ export class Func1106 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 1106,
 				name: '每周两次真蛇_杂项',
-				operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[7]]
+				operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[3]
+					, thisOperator[7], thisOperator[8]]
 			})) {
 				return true;
 			}

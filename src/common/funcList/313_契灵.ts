@@ -249,8 +249,6 @@ export class Func313 implements IFuncOrigin {
 			[
 				[center, 413, 223, 0x654435],
 				[center, 868, 223, 0x644434],
-				[center, 492, 272, 0xaa3936],
-				[center, 628, 276, 0xa93331],
 				[center, 559, 352, 0x4b5ee9],
 				[center, 561, 431, 0xdf6851],
 				[center, 712, 430, 0xf3b25e],
