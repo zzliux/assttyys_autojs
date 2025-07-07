@@ -1359,6 +1359,9 @@ export const versionList = [{
 }, {
 	version: '20250620_01',
 	desc: '修复:阴门适配',
+}, {
+	version: '20250708_01',
+	desc: 'fix: 优化签到解读 道馆 首领适配',
 }];
 
 export default versionList[versionList.length - 1].version;
