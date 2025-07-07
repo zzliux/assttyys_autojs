@@ -29,19 +29,16 @@ export class Func506 implements IFuncOrigin {
 	}];
 	operator: IFuncOperatorOrigin[] = [
 		{  // 0 已适配66 检查_道馆是否已开启
-
 			desc: [
 				1280, 720,
 				[
 					[left, 42, 31, 0xf4e4a4],
-					[center, 744, 39, 0x593716],
 					[center, 736, 237, 0x403d38],
 					[center, 766, 235, 0xaf3a31],
 					[center, 760, 245, 0xe3e0da],
-					[center, 591, 187, 0x593e25],
 					[center, 612, 211, 0x261b15],
-					[center, 595, 193, 0xfff970],
-					[center, 601, 250, 0x462e1c],
+					[center, 588, 224, 0x34231c],
+					[center, 600, 257, 0x271818],
 				]
 			],
 			oper: [
@@ -52,7 +49,6 @@ export class Func506 implements IFuncOrigin {
 				1280, 720,
 				[
 					[left, 42, 31, 0xf4e4a4],
-					[center, 744, 39, 0x593716],
 					[center, 736, 237, 0x403d38],
 					[center, 766, 235, 0xaf3a31],
 					[center, 760, 245, 0xe3e0da],
@@ -129,7 +125,6 @@ export class Func506 implements IFuncOrigin {
 				[
 					1280, 720,
 					[
-						[right, 1021, 633, 0xceddf4],
 						[center, 879, 611, 0xc7414e],
 						[center, 913, 644, 0x493a38],
 						[center, 609, 651, 0x583a28],
@@ -137,6 +132,7 @@ export class Func506 implements IFuncOrigin {
 						[left, 48, 26, 0xd7c5a2],
 						[left, 109, 23, 0xd7c5a2],
 						[left, 175, 22, 0xd4c4a3],
+						[right, 1024, 618, 0xe0d3ce],
 					]
 				],
 		}, { // 7 检测_是否为挑战奉献榜场景_待开始
