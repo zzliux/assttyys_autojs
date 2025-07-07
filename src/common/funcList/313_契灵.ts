@@ -119,7 +119,6 @@ export class Func313 implements IFuncOrigin {
 			1280, 720,
 			[
 				[left, 42, 39, 0xf6e8a9],
-				[left, 337, 33, 0x352e23],
 				[right, 1193, 583, 0xddd0ba],
 				[right, 1007, 648, 0xe2d6bf],
 				[right, 1046, 670, 0x382015],
@@ -250,15 +249,15 @@ export class Func313 implements IFuncOrigin {
 			[
 				[center, 413, 223, 0x654435],
 				[center, 868, 223, 0x644434],
-				[center, 492, 272, 0xaa3936],
-				[center, 628, 276, 0xa93331],
 				[center, 559, 352, 0x4b5ee9],
 				[center, 561, 431, 0xdf6851],
 				[center, 712, 430, 0xf3b25e],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 678, 405, 839, 461, 1000],
+			[center, 1280, 720, 678, 405, 839, 461, 1000], // 确认
+			[center, 1280, 720, 415, 240, 869, 341, 1000], // 弹窗区域ocr
+			[center, 1280, 720, 446, 412, 598, 453, 1000], // 取消
 		]
 	}, { // 13 组队确认
 		desc: [
@@ -268,7 +267,6 @@ export class Func313 implements IFuncOrigin {
 				[center, 907, 145, 0x674535],
 				[center, 362, 572, 0x5c3d2f],
 				[center, 900, 573, 0x624233],
-				[right, 1006, 651, 0x9d9484],
 				[right, 1186, 634, 0x9b9483],
 				[center, 561, 515, 0xf3b25e],
 			]
@@ -282,8 +280,159 @@ export class Func313 implements IFuncOrigin {
 		oper: [
 			[left, 1280, 720, 1132, 641, 1198, 696, 1000],
 		]
+	}, { // 15 契灵_返回
+		desc: [
+			1280, 720,
+			[
+				[left, 93, 628, 0xebdfb6],
+				[left, 192, 652, 0xf7efce],
+				[left, 219, 657, 0xf4e9bd],
+				[left, 57, 27, 0xeed28c],
+				[left, 43, 40, 0xf6eaad],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 28, 21, 56, 45, 1000],
+		]
+	}, { // 16 契灵_商店
+		desc: [
+			1280, 720,
+			[
+				[left, 265, 656, 0x5d4532],
+				[left, 269, 656, 0xf5e2da],
+				[left, 279, 656, 0xf9e6e2],
+				[left, 308, 660, 0xfce6e4],
+				[left, 316, 655, 0xf7dfdd],
+				[left, 286, 641, 0xf3f3d6],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 268, 631, 316, 674, 1000],
+		]
+	}, { // 17 商店御魂
+		desc: [
+			1280, 720,
+			[
+				[left, 108, 432, 0x9b3b1e],
+				[left, 134, 433, 0xf6f1de],
+				[left, 154, 434, 0xf7f2df],
+				[left, 177, 432, 0xf3eedc],
+				[left, 198, 432, 0xf3eedb],
+				[left, 217, 432, 0xa74221],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 207, 482, 280, 504, 1000],
+		]
+	}, { // 18 商店御魂已全部兑换_第四位
+		desc: [
+			1280, 720,
+			[
+				[right, 980, 437, 0x35140d],
+				[right, 1015, 435, 0x625f57],
+				[right, 1036, 435, 0x928f84],
+				[right, 1059, 436, 0x8f8c81],
+				[right, 1080, 435, 0x89867b],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 207, 482, 280, 504, 1000],
+		]
+	}, { // 19 购买确认_二行字
+		desc: [
+			1280, 720,
+			[
+				[center, 560, 546, 0xf4b35f],
+				[center, 562, 581, 0xf3b25e],
+				[center, 713, 582, 0xf1af5d],
+				[center, 712, 545, 0xf4b35e],
+				[center, 772, 467, 0x462b22],
+				[center, 795, 475, 0x422d29],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 763, 448, 799, 488, 1000],
+			[center, 1280, 720, 561, 543, 714, 584, 1000],
+		]
+	}, { // 20 商店御魂已全部兑换_第一位
+		desc: [1280, 720,
+			[
+				[left, 108, 434, 0x32130a],
+				[left, 134, 432, 0x928f85],
+				[left, 144, 429, 0x949186],
+				[left, 177, 432, 0x918e84],
+				[left, 198, 432, 0x918e83],
+				[left, 215, 433, 0x38160b],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 207, 482, 280, 504, 1000],
+		]
+	}, { // 21 商店御魂已全部兑换_第三位
+		desc: [1280, 720,
+			[
+				[right, 689, 439, 0x35150d],
+				[right, 715, 436, 0x8e8b81],
+				[right, 724, 431, 0x949186],
+				[right, 757, 434, 0x928f84],
+				[right, 778, 435, 0x8e8b80],
+				[right, 810, 441, 0x34130d],
+			]
+		],
+	}, { // 22 组队界面
+		desc: [1280, 720,
+			[
+				[left, 43, 37, 0xf5e6a8],
+				[left, 60, 39, 0x84582f],
+				[left, 19, 47, 0x281717],
+				[center, 830, 58, 0xfee0c8],
+			]
+		],
+		oper: [
+			[left, 1280, 720, 31, 20, 70, 59, 1000],
+		]
 	}]
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
+		log(thisScript.global.qiling_shop)
+		if (thisScript.global.qiling_shop) {
+			if (thisScript.oper({
+				id: 313,
+				name: '契灵兑换',
+				operator: [thisOperator[15], thisOperator[16], thisOperator[17], thisOperator[22]]
+			})) {
+				return true;
+			}
+			if (thisScript.oper({
+				id: 313,
+				name: '契灵兑换完成',
+				operator: [thisOperator[18], thisOperator[20], thisOperator[21]]
+			})) {
+				thisScript.regionClick([thisOperator[15].oper[0]]);
+				thisScript.doPush(thisScript, { text: '兑换完毕', before() { thisScript.myToast('兑换完毕'); } });
+				thisScript.rerun('返回庭院');
+				sleep(3000);
+				return true;
+			}
+
+			let curCnt = 0;
+			const maxCount = 4;
+			while (thisScript.oper({
+				id: 313,
+				name: '契灵兑换完成',
+				operator: [thisOperator[19]]
+			})) {
+				curCnt++;
+				thisScript.keepScreen(false);
+				if (curCnt >= maxCount) {
+					thisScript.regionClick([thisOperator[15].oper[0]]);
+					thisScript.doPush(thisScript, { text: '兑换完毕', before() { thisScript.myToast('兑换完毕'); } });
+					thisScript.rerun('返回庭院');
+					sleep(3000);
+					return true;
+				}
+				sleep(1000);
+			}
+		}
 		if (thisScript.oper({
 			name: '契灵界面',
 			operator: [thisOperator[0]]
@@ -294,7 +443,6 @@ export class Func313 implements IFuncOrigin {
 		})) {
 			return true;
 		}
-
 		const thisConf = thisScript.scheme.config['313'];
 		if (thisScript.oper({
 			name: '契灵界面',
@@ -380,7 +528,6 @@ export class Func313 implements IFuncOrigin {
 			}
 			return true;
 		}
-
 		if (thisScript.oper({
 			id: 313,
 			name: '契灵组队队长',
@@ -396,9 +543,38 @@ export class Func313 implements IFuncOrigin {
 		}
 		if (thisScript.oper({
 			id: 313,
+			name: '契灵弹窗判断契忆',
+			operator: [{ desc: thisOperator[12].desc }]
+		})) {
+			const temp = thisScript.findText('契', 0, thisOperator[12].oper[1], '包含');
+			if (temp.length > 0) {
+				thisScript.global.qiling_shop = true;
+				return true;
+			}
+			return true;
+		}
+		let curCnt = 0;
+		const maxCount = 4;
+		while (thisScript.oper({
+			id: 313,
+			name: '契灵无盘子',
+			operator: [{ desc: thisOperator[7].desc }]
+		})) {
+			curCnt++;
+			thisScript.keepScreen(false);
+			if (curCnt >= maxCount) {
+				thisScript.regionClick([thisOperator[7].oper[1]]);
+				thisScript.doPush(thisScript, { text: '无盘子', before() { thisScript.myToast('无盘子'); } });
+				thisScript.global.qiling_shop = true;
+				return true;
+			}
+			sleep(1000);
+		}
+		if (thisScript.oper({
+			id: 313,
 			name: '契灵杂项',
 			operator: [
-				thisOperator[6], thisOperator[8], thisOperator[14], thisOperator[11], thisOperator[12], thisOperator[13],
+				thisOperator[6], thisOperator[8], thisOperator[14], thisOperator[11], thisOperator[13],
 			]
 		})) {
 			return true;

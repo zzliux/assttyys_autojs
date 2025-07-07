@@ -18,9 +18,14 @@ export class Func316 implements IFuncOrigin {
 			default: false,
 		}, {
 			name: 'overTimes',
-			desc: '挂机局数，完成后自动停止脚本，0表示一直刷',
+			desc: '挂机局数，完成后自动切换方案，0表示一直刷',
 			type: 'integer',
 			default: '0'
+		}, {
+			name: 'next_scheme',
+			desc: '下一个方案',
+			type: 'scheme',
+			default: '返回庭院',
 		}],
 	}];
 	operator: IFuncOperatorOrigin[] = [{ // 0 事件 唤息亮
@@ -475,6 +480,34 @@ export class Func316 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 680, 397, 802, 448, 1000],
 		]
+	}, { // 30 进入月之海
+		desc: [1280, 720,
+			[
+				[left, 74, 136, 0x0e1223],
+				[right, 1119, 617, 0x191f34],
+				[right, 1117, 593, 0x191f35],
+				[right, 1166, 114, 0x0f1123],
+				[left, 26, 40, 0xf0f1fa],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 141, 640, 141, 641, 1000],
+			[center, 1280, 720, 1130, 610, 1130, 611, 1000],
+			[center, 1280, 720, 354, 173, 371, 256, 1000],
+		]
+	}, { // 31 进入六道之门
+		desc: [1280, 720,
+			[
+				[right, 949, 642, 0x9bc0ee],
+				[right, 986, 637, 0x808986],
+				[right, 982, 666, 0x444e69],
+				[right, 946, 662, 0x57668e],
+				[right, 988, 678, 0xa9975b],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 943, 641, 986, 685, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 
@@ -578,7 +611,6 @@ export class Func316 implements IFuncOrigin {
 			}
 		}
 
-
 		if (thisScript.oper({
 			id: 316,
 			name: '六道椒图_神秘仿造',
@@ -599,7 +631,7 @@ export class Func316 implements IFuncOrigin {
 				thisOperator[9], thisOperator[10], thisOperator[12], thisOperator[13],
 				thisOperator[14], thisOperator[19], thisOperator[20], thisOperator[21],
 				thisOperator[22], thisOperator[26], thisOperator[27], thisOperator[28],
-				thisOperator[29],
+				thisOperator[29], thisOperator[30], thisOperator[31],
 			]
 		})) {
 			return true;
@@ -627,9 +659,7 @@ export class Func316 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 316,
 			name: '六道椒图_结束',
-			operator: [{
-				desc: thisOperator[16].desc
-			}]
+			operator: [thisOperator[16]]
 		})) {
 			const thisconf = thisScript.scheme.config['316'];
 			thisconf.overTimes = Math.floor(Number(thisconf.overTimes) || 0);
@@ -641,10 +671,9 @@ export class Func316 implements IFuncOrigin {
 			const bufLog = `本局柔风buff：${thisScript.global.d6RouFeng}`;
 			let toLog = `${bufLog}。通关次数: ${thisScript.global.times || 0}次, 本次通关时间: ${currentCost}秒, 平均通关时间: ${costAvg}秒, 总通关时间: ${cost}分`;
 			if (thisconf.overTimes && thisScript.global.times >= thisconf.overTimes) {
-				toLog = `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。` + toLog;
+				toLog = `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已够次数，请查看。` + toLog;
 			}
 			thisScript.myToast(toLog);
-
 			if (thisconf.pushResult) {
 				thisScript.doPush(thisScript, {
 					text: toLog,
@@ -654,13 +683,11 @@ export class Func316 implements IFuncOrigin {
 				});
 				sleep(2000);
 			}
-
 			if (thisconf.overTimes && thisScript.global.times >= thisconf.overTimes) {
-				toLog = `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。` + toLog;
-				thisScript.stop();
+				thisScript.rerun(thisconf.next_scheme);
+				sleep(3000);
+				return;
 			}
-
-			thisScript.regionClick(thisOperator[16].oper);
 			return true;
 		}
 

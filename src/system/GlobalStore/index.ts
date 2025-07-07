@@ -70,6 +70,7 @@ export type globalRootType = {
 	preset_once_team_defaultNum: number | null;     // 315预设阵容的预设阵容
 	qiling_Position: number[] | null;   //  契灵的地图位置
 	qiling_last: number | null;     //  契灵的上次类型
+	qiling_shop: boolean; // 契灵商店购买
 	opened_buff: boolean; // 是否已执行开启buff
 	closed_buff: boolean; // 是否已执行关闭buff
 	daily_collection: 'friend' | 'store' | 'courtyard';   //  每日奖励领取
@@ -103,6 +104,18 @@ export type globalRootType = {
 	fengNa: boolean, // 302奉纳
 	finght_time: number, // 320战斗时间
 	xxxskill: number, // 寻香行技能
+	MT_share: 'start' | 'back' | 'end', // 每周分享
+	MT_liaoShop: 'start' | 'back' | 'end', // 寮商店购买
+	MT_shop: 'zhiBo' | 'jiShouWu' | 'miJuanWu' | 'zaHuoPu_teSu' | 'zaHuoPu_rongYu' | 'zaHuoPu_youQing' | 'zaHuoPu_xunZhang' | 'zaHuoPu_meiLi' | 'done', // 商店购买
+	zhiBoBack: boolean, // 直播间返回
+	shop_find: string[], // 商店购买_查找物品
+	fengZi: boolean, // 风姿
+	zhenLvJu: boolean, // 珍旅居
+	shenKan: boolean, // 神龛
+	zhenShe: number, // 真蛇
+	sneak_level_open: boolean, // 选择层数
+	day_chouKa: boolean, // 每日抽卡
+
 }
 
 export const globalRoot: globalRootType = {
@@ -210,4 +223,16 @@ export const globalRoot: globalRootType = {
 	xsFilter: {},
 	finght_time: null,
 	xxxskill: 0,
+	MT_share: 'start',
+	MT_liaoShop: 'start',
+	MT_shop: 'zhiBo',
+	zhiBoBack: false,
+	shop_find: null,
+	fengZi: true,
+	zhenLvJu: true,
+	shenKan: true,
+	zhenShe: 2,
+	sneak_level_open: true,
+	day_chouKa: true,
+	qiling_shop: false,
 }
