@@ -153,15 +153,17 @@ export class Func518 implements IFuncOrigin {
 		},
 		{
 			//  11 检测_签到解读弹窗
-			desc: [1280, 720,
+			desc: [
+				1280, 720,
 				[
 					[center, 479, 356, 0xa72d03],
 					[center, 506, 356, 0xa82f05],
-					[center, 515, 353, 0xad3c15],
-					[center, 495, 414, 0xe0d7d6],
-					[right, 772, 420, 0xe9e2e3],
-					[center, 500, 507, 0xad3f19],
-				],
+					[center, 884, 543, 0xeeece2],
+					[center, 904, 448, 0xf8e5db],
+					[center, 878, 606, 0xb15090],
+					[center, 875, 637, 0xeceae1],
+					[center, 845, 609, 0xe3d9cb],
+				]
 			],
 			oper: [
 				[center, 1280, 720, 854, 108, 893, 124, 1200], //  点击关闭
