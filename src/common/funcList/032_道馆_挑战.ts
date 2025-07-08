@@ -306,7 +306,9 @@ export class Func032 implements IFuncOrigin {
 			thisScript.global.daoguan_team = true;
 			thisScript.global.shangyushe = true;
 			if (thisScript.superGlobal.daoguan_lose) {
-				thisScript.superGlobal.liao_activity_Swith['a_ctivity_dojo_again'] = true;
+				if (thisScript.superGlobal.liao_activity_Swith) {
+					thisScript.superGlobal.liao_activity_Swith['a_ctivity_dojo_again'] = true;
+				}
 				thisScript.superGlobal.daoguan_lose = false;
 			}
 			if (thisconf.after_fail_operation === '保留赏金') {

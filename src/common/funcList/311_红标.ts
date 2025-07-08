@@ -175,7 +175,7 @@ export class Func311 implements IFuncOrigin {
 					name: '红标-行动条检测',
 					operator: [thisOperator[4], thisOperator[5]],
 				})) {
-					const point = thisScript.findMultiColor('神荒', null, false)
+					const point = thisScript.findMultiColor('神荒', null, false, false)
 					if (point) {
 						console.log('开局查找到神荒');
 						const point_blood = thisScript.findMultiColorEx('红标_血条')
@@ -186,20 +186,39 @@ export class Func311 implements IFuncOrigin {
 							}
 						}
 						operList.sort((a, b) => b.y - a.y);
-						if (operList.length > 0) {
-							const firstFlagPoint = operList[0];
+						if (operList.length > 1 && point.y < operList[1].y) {
+							// 点击阴阳师位置
 							const oper = [
-								firstFlagPoint.x + 35,
-								firstFlagPoint.y + 60,
-								firstFlagPoint.x + 40,
-								firstFlagPoint.y + 80,
+								operList[1].x + 35,
+								operList[1].y + 38,
+								operList[1].x + 40,
+								operList[1].y + 45,
 								1000
 							];
-							log(oper)
+							log('点击阴阳师位置')
 							thisScript.regionClick([oper]);
+							thisScript.global.redFlag = true;
+						} else if (operList.length > 0) {
+							const oper = [
+								operList[0].x + 35,
+								operList[0].y + 60,
+								operList[0].x + 40,
+								operList[0].y + 80,
+								1000
+							];
+							log('点击式神位置')
+							thisScript.regionClick([oper]);
+							thisScript.global.redFlag = true;
 						}
-						thisScript.global.redFlag = true;
 						return true;
+					} else if (thisScript.global.jietu) {
+						const now = new Date().getTime();
+						const ajImg = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(thisScript.helperBridge.helper.GetBitmap());
+						const path = `/sdcard//Pictures/批量截图/${now}.png`;
+						files.ensureDir(path);
+						ajImg.saveTo(path);
+						ajImg.recycle();
+						thisScript.global.jietu = false;
 					}
 				}
 			}

@@ -358,7 +358,7 @@ export class Script {
 	 * @param {Boolean} multiRegion 给true的话表示inRegion为region的数组
 	 * @returns
 	 */
-	findMultiColor(key: string, inRegion?: any, openmisalignedMatch?: boolean, multiRegion?: boolean, noLog?: boolean) {
+	findMultiColor(key: string, inRegion?: any, multiRegion?: boolean, openmisalignedMatch?: boolean, noLog?: boolean) {
 		this.initRedList();
 		if (!multiRegion) {
 			const region = inRegion || this.multiFindColors[key].region;

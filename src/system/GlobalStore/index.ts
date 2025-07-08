@@ -73,7 +73,7 @@ export type globalRootType = {
 	qiling_shop: boolean; // 契灵商店购买
 	opened_buff: boolean; // 是否已执行开启buff
 	closed_buff: boolean; // 是否已执行关闭buff
-	daily_collection: 'friend' | 'store'| 'courtyard';   //  每日奖励领取
+	daily_collection: 'friend' | 'store' | 'courtyard';   //  每日奖励领取
 	huahezhan: boolean;//    是否已领取花合战
 	shangyushe: boolean;//    是否已上过预设
 	d6Loop: number;//     椒图事件点击循环数
@@ -114,6 +114,7 @@ export type globalRootType = {
 	zhenShe: number, // 真蛇
 	sneak_level_open: boolean, // 选择层数
 	day_chouKa: boolean, // 每日抽卡
+	jietu: boolean, // 截图
 
 }
 
@@ -232,12 +233,13 @@ export const globalRoot: globalRootType = {
 	sneak_level_open: true,
 	day_chouKa: true,
 	qiling_shop: false,
+	jietu: true, // 截图开关
 }
 
 export type superGlobalRootType = {
 	liao_activity_Swith: Record<string, boolean>, // 寮活动记录
 	next_scheme_name: string, // 中转后的下个方案
-	daoguan_lose: boolean, // 道馆失败后开启第二次道馆
+	daoguan_lose: boolean, // 记录道馆第一次失败
 }
 
 export const superGlobalRoot: superGlobalRootType = {

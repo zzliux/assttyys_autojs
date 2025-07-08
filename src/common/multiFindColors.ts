@@ -2330,100 +2330,16 @@ const multiFindColors: IMultiFindColorsOrigin = {
 	},
 	'神荒': {
 		region: [center, 1280, 720, 0, 0, 1279, 719],
-		// desc: [[ // 腐血
-		// 	1280, 720,
-		// 	[
-		// 		[center, 719, 203, 0x094084],
-		// 		[center, 740, 209, 0x1466ad],
-		// 		[center, 735, 215, 0x1374d2],
-		// 		[center, 730, 217, 0x1580ea],
-		// 		[center, 721, 221, 0x1867b3],
-		// 		[center, 726, 226, 0x157ddb],
-		// 		[center, 741, 223, 0x49a4ed],
-		// 		[center, 735, 219, 0xffffff],
-		// 	]
-		// ], [
-		// 	1280, 720,
-		// 	[// 新取色,腐血
-		// 		[center, 603, 125, 0xffffff],
-		// 		[center, 615, 126, 0xffffff],
-		// 		[center, 616, 133, 0xffffff],
-		// 		[center, 602, 136, 0xebf5ff],
-		// 		[center, 596, 134, 0xf1ffff],
-		// 		[center, 610, 134, 0x013c6f],
-		// 		[center, 617, 130, 0x021b3c],
-		// 		[center, 600, 129, 0x001f49],
-		// 	]
-		// ], [ // 星爆图标_正常取色
-		// 	1280, 720,
-		// 	[
-		// 		[center, 719, 204, 0x000b1f],
-		// 		[center, 729, 205, 0x7cb1e0],
-		// 		[center, 719, 215, 0x3a90d9],
-		// 		[center, 720, 221, 0x1361c0],
-		// 		[center, 721, 224, 0x0976ff],
-		// 		[center, 731, 225, 0x217cd3],
-		// 		[center, 740, 217, 0x296db9],
-		// 		[center, 735, 208, 0xfaeee0],
-		// 	]
-		// ], [
-		// 	1280, 720,
-		// 	[// 新取色,星爆图标_正常取色
-		// 		[right, 996, 70, 0x000b1f],
-		// 		[right, 1005, 71, 0x113a71],
-		// 		[right, 996, 81, 0x012b5f],
-		// 		[right, 1007, 82, 0xffffff],
-		// 		[right, 996, 88, 0x00337a],
-		// 		[right, 1005, 89, 0x1d5fb0],
-		// 		[right, 996, 94, 0x2f72bc],
-		// 		[right, 1012, 88, 0x001f49],
-		// 		[right, 1015, 91, 0x002451],
-		// 	]
-		// ], [// 星爆图标_下半部分取色
-		// 	1280, 720,
-		// 	[
-		// 		[center, 594, 229, 0x00143d],
-		// 		[center, 596, 232, 0x0a529d],
-		// 		[center, 599, 234, 0x107aff],
-		// 		[center, 606, 234, 0x01408b],
-		// 		[center, 610, 234, 0x003373],
-		// 		[center, 618, 234, 0x00204e],
-		// 		[center, 608, 232, 0xffffff],
-		// 		[center, 601, 237, 0x619edf],
-		// 	]
-		// ], [
-		// 	1280, 720,
-		// 	[// 新取色,星爆图标_下半部分取色
-		// 		[right, 995, 87, 0x001c4a],
-		// 		[right, 1005, 86, 0x4181ce],
-		// 		[right, 1009, 87, 0x003473],
-		// 		[right, 1018, 88, 0x001e46],
-		// 		[right, 1012, 92, 0x002452],
-		// 		[right, 1005, 92, 0x004594],
-		// 		[right, 997, 94, 0x5990cb],
-		// 		[right, 1007, 87, 0xf7ffff],
-		// 	]
-		// ]],
 		desc: [
-			// [
-			// 	1280, 720, // 神荒
-			// 	[
-			// 		[center, 0, 0, 0x031f4a], [center, 1, 0, 0x02255d], [center, 2, 0, 0x1866b3], [center, 3, 0, 0x93c9f0], [center, 4, 0, 0xd5eafa], [center, 5, 0, 0xe6f3fd], [center, 6, 0, 0xffffff], [center, 7, 0, 0x59a6ee], [center, 0, 1, 0x031a41], [center, 1, 1, 0x01235a], [center, 2, 1, 0x05347a], [center, 3, 1, 0x205da8], [center, 4, 1, 0x2f75c0], [center, 5, 1, 0x58a9eb], [center, 6, 1, 0xb5dcfa], [center, 7, 1, 0xecf6fe]
-			// 	],
-			// ],
-			// [
-			// 	1280, 720, // 神荒_第二种
-			// 	[
-			// 		[center, 0, 0, 0x011f4e], [center, 1, 0, 0x043476]
-			// 		, [center, 2, 0, 0x68b3ed], [center, 3, 0, 0xfbfdff]
-			// 	]
-			// ],
-			[1280, 720, // 神荒_直接取色
+			[1280, 720, // 腐血
 				[
-					[right, 747, 80, 0x011f4e], [right, 748, 80, 0x043476]
-					, [right, 749, 80, 0x68b3ed], [right, 750, 80, 0xfbfdff],
-				]
-			]
+					[center, 0, 0, 0x012959], [center, 1, 0, 0x02376f], [center, 2, 0, 0x05498d], [center, 3, 0, 0x0d5ca8], [center, 4, 0, 0x1672c7], [center, 5, 0, 0x1b89e5], [center, 6, 0, 0x2898f3], [center, 7, 0, 0x73c0fb], [center, 0, 1, 0x001f4a], [center, 1, 1, 0x012553], [center, 2, 1, 0x012757], [center, 3, 1, 0x002458], [center, 4, 1, 0x01255e], [center, 5, 1, 0x022b65], [center, 6, 1, 0x073d7f], [center, 7, 1, 0x0c549c]],
+			],
+			[1280, 720, // 神荒
+				[
+					[center, 0, 0, 0x031f4a], [center, 1, 0, 0x02255d], [center, 2, 0, 0x1866b3], [center, 3, 0, 0x93c9f0], [center, 4, 0, 0xd5eafa], [center, 5, 0, 0xe6f3fd], [center, 6, 0, 0xffffff], [center, 7, 0, 0x59a6ee], [center, 0, 1, 0x031a41], [center, 1, 1, 0x01235a], [center, 2, 1, 0x05347a], [center, 3, 1, 0x205da8], [center, 4, 1, 0x2f75c0], [center, 5, 1, 0x58a9eb], [center, 6, 1, 0xb5dcfa], [center, 7, 1, 0xecf6fe]
+				],
+			],
 		],
 		similar: 95,
 	},
