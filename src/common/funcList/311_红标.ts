@@ -108,7 +108,6 @@ export class Func311 implements IFuncOrigin {
 		if (thisScript.global.redFlag) {
 			return false;
 		}
-
 		if (
 			thisScript.oper({
 				name: '红标-战斗界面检测',
@@ -176,13 +175,13 @@ export class Func311 implements IFuncOrigin {
 					name: '红标-行动条检测',
 					operator: [thisOperator[4], thisOperator[5]],
 				})) {
-					const point = thisScript.findMultiColor('神荒')
+					const point = thisScript.findMultiColor('神荒', null, false)
 					if (point) {
 						console.log('开局查找到神荒');
 						const point_blood = thisScript.findMultiColorEx('红标_血条')
 						const operList = [];
 						for (const flagPoint of point_blood) {
-							if (flagPoint.x < point.x + 60 && flagPoint.x > point.x - 60) {
+							if (flagPoint.x < point.x + 7 && flagPoint.x > point.x - 105) {
 								operList.push(flagPoint);
 							}
 						}
@@ -190,12 +189,13 @@ export class Func311 implements IFuncOrigin {
 						if (operList.length > 0) {
 							const firstFlagPoint = operList[0];
 							const oper = [
-								firstFlagPoint.x - 15,
+								firstFlagPoint.x + 35,
 								firstFlagPoint.y + 60,
-								firstFlagPoint.x - 5,
+								firstFlagPoint.x + 40,
 								firstFlagPoint.y + 80,
 								1000
 							];
+							log(oper)
 							thisScript.regionClick([oper]);
 						}
 						thisScript.global.redFlag = true;

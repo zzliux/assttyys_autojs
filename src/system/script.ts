@@ -358,15 +358,16 @@ export class Script {
 	 * @param {Boolean} multiRegion 给true的话表示inRegion为region的数组
 	 * @returns
 	 */
-	findMultiColor(key: string, inRegion?: any, multiRegion?: boolean, noLog?: boolean) {
+	findMultiColor(key: string, inRegion?: any, openmisalignedMatch?: boolean, multiRegion?: boolean, noLog?: boolean) {
 		this.initRedList();
 		if (!multiRegion) {
 			const region = inRegion || this.multiFindColors[key].region;
 			const desc = this.multiFindColors[key].desc;
 			const similar = this.multiFindColors[key].similar || this.scheme.commonConfig.multiColorSimilar
+			const misalignedMatch = openmisalignedMatch !== undefined ? openmisalignedMatch : true;
 			for (let i = 0; i < desc.length; i++) {
 				const item = desc[i];
-				const point = this.helperBridge.helper.FindMultiColor(region[0], region[1], region[2], region[3], item, similar, true);
+				const point = this.helperBridge.helper.FindMultiColor(region[0], region[1], region[2], region[3], item, similar, misalignedMatch);
 				if (point.x !== -1) {
 					if (!noLog) {
 						console.log(`[${key}]第${i}个查找成功， 坐标为：(${point.x}, ${point.y})`);
@@ -422,7 +423,7 @@ export class Script {
 	* @param {Region} inRegion 多点找色区域
 	* @returns
 	*/
-	findMultiColorEx(key, inRegion?): Point[] {
+	findMultiColorEx(key, inRegion?,): Point[] {
 		this.initRedList();
 		const region = inRegion || this.multiFindColors[key].region;
 		const desc = this.multiFindColors[key].desc;
