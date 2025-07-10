@@ -2335,10 +2335,14 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				[
 					[center, 0, 0, 0x012959], [center, 1, 0, 0x02376f], [center, 2, 0, 0x05498d], [center, 3, 0, 0x0d5ca8], [center, 4, 0, 0x1672c7], [center, 5, 0, 0x1b89e5], [center, 6, 0, 0x2898f3], [center, 7, 0, 0x73c0fb], [center, 0, 1, 0x001f4a], [center, 1, 1, 0x012553], [center, 2, 1, 0x012757], [center, 3, 1, 0x002458], [center, 4, 1, 0x01255e], [center, 5, 1, 0x022b65], [center, 6, 1, 0x073d7f], [center, 7, 1, 0x0c549c]],
 			],
-			[1280, 720, // 神荒
+			[1280, 720, // 神荒_边框虚化的状态(黑边有两条)
 				[
 					[center, 0, 0, 0x031f4a], [center, 1, 0, 0x02255d], [center, 2, 0, 0x1866b3], [center, 3, 0, 0x93c9f0], [center, 4, 0, 0xd5eafa], [center, 5, 0, 0xe6f3fd], [center, 6, 0, 0xffffff], [center, 7, 0, 0x59a6ee], [center, 0, 1, 0x031a41], [center, 1, 1, 0x01235a], [center, 2, 1, 0x05347a], [center, 3, 1, 0x205da8], [center, 4, 1, 0x2f75c0], [center, 5, 1, 0x58a9eb], [center, 6, 1, 0xb5dcfa], [center, 7, 1, 0xecf6fe]
 				],
+			],
+			[1280, 720, // 神荒2_边框无虚化的状态(黑边有一条)
+				[
+					[center, 0, 0, 0x001f3d], [center, 1, 0, 0x083b6e], [center, 2, 0, 0x286bae], [center, 3, 0, 0x9fbdda], [center, 4, 0, 0xcbe2f9], [center, 5, 0, 0xe0edfb], [center, 6, 0, 0xfdfeff], [center, 7, 0, 0x599de5], [center, 0, 1, 0x002449], [center, 1, 1, 0x002244], [center, 2, 1, 0x073a6d], [center, 3, 1, 0x0f57a0], [center, 4, 1, 0x1871cc], [center, 5, 1, 0x4997e5], [center, 6, 1, 0xb5d5f4], [center, 7, 1, 0xf2f7fd]],
 			],
 		],
 		similar: 95,
