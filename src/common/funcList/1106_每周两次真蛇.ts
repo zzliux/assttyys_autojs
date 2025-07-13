@@ -8,7 +8,7 @@ const right = 2;
 export class Func1106 implements IFuncOrigin {
 	id = 1106;
 	name = '每周两次真蛇';
-	desc: '';
+	desc: '需排序在"001准备"之前';
 	config = [{
 		desc: '切换御魂(需要打开509+510快速坐标模式)',
 		config: [{
@@ -200,7 +200,7 @@ export class Func1106 implements IFuncOrigin {
 			thisScript.global.zhenShe = -1; // 已完成
 			return true
 		} else {
-			return false;
+			return thisScript.rerun(thisConf.next_scheme);
 		}
 	}
 }

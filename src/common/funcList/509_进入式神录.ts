@@ -131,7 +131,6 @@ export class Func509 implements IFuncOrigin {
 					[left, 182, 37, 0xd5c4a3],
 					[left, 108, 26, 0xd7c5a2],
 					[left, 47, 28, 0xd7c5a2],
-					[left, 232, 139, 0x583716],
 					[left, 76, 550, 0x322219],
 					[right, 1039, 648, 0xd3c3bd],
 					[center, 872, 606, 0x493a38],
