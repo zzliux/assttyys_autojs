@@ -2636,6 +2636,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				[center, 693, 453, 0xefd58b],
 			]
 		]],
+		similar: 95
 	},
 	'rongYu_lanPiao': {
 		region: [left, 1280, 720, 0, 0, 1280, 720],

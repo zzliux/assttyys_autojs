@@ -921,11 +921,11 @@ export class Func1102 implements IFuncOrigin {
 					return true;
 				}
 				curCnt++;
-				thisScript.regionSwipe(thisOperator[11].oper[0], thisOperator[11].oper[1], [1500, 1550]);
-				if (curCnt >= maxCount) {
+				if (curCnt > maxCount) {
 					thisScript.global.MT_shop = 'zaHuoPu_rongYu';
 					break;
 				}
+				thisScript.regionSwipe(thisOperator[11].oper[0], thisOperator[11].oper[1], [1500, 1550], 500);
 				thisScript.keepScreen(false);
 				sleep(500);
 			}
