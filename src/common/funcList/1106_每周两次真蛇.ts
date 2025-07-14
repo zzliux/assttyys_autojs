@@ -23,6 +23,11 @@ export class Func1106 implements IFuncOrigin {
 			type: 'integer',
 			default: '0',
 			value: '0',
+		}, {
+			name: 'next_scheme',
+			desc: '下一个方案',
+			type: 'scheme',
+			default: '返回庭院',
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{ // 0 探索_真蛇
