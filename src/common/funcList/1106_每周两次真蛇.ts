@@ -8,7 +8,7 @@ const right = 2;
 export class Func1106 implements IFuncOrigin {
 	id = 1106;
 	name = '每周两次真蛇';
-	desc: '';
+	desc: '需排序在"001准备"之前';
 	config = [{
 		desc: '切换御魂(需要打开509+510快速坐标模式)',
 		config: [{
@@ -23,6 +23,11 @@ export class Func1106 implements IFuncOrigin {
 			type: 'integer',
 			default: '0',
 			value: '0',
+		}, {
+			name: 'next_scheme',
+			desc: '下一个方案',
+			type: 'scheme',
+			default: '返回庭院',
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{ // 0 探索_真蛇
@@ -156,16 +161,16 @@ export class Func1106 implements IFuncOrigin {
 		if (thisScript.global.zhenShe > 0) { // 未完成
 			if (thisScript.oper({
 				id: 1106,
-				name: '每周两次真蛇',
+				name: '每周两次真蛇_换预设',
 				operator: [thisOperator[0], thisOperator[5]]
 			})) {
 				thisScript.global.preset_once_groupNum = thisConf.switch_group as number
 				thisScript.global.preset_once_defaultNum = thisConf.switch_default as number
+				if (thisScript.global.preset_once_groupNum > 0 && thisScript.global.preset_once_defaultNum > 0) {
+					thisScript.global.change_shikigami_flag = true; // 进入式神录
+					thisScript.global.change_shikigami_state = 'flushed';// 再次更换御魂
+				}
 				return true;
-			}
-			if (thisScript.global.preset_once_groupNum > 0 && thisScript.global.preset_once_defaultNum > 0) {
-				thisScript.global.change_shikigami_flag = true; // 进入式神录
-				thisScript.global.change_shikigami_state = 'flushed';// 再次更换御魂
 			}
 			if (thisScript.oper({
 				id: 1106,
@@ -189,7 +194,7 @@ export class Func1106 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 1106,
 				name: '每周两次真蛇_杂项',
-				operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[3]
+				operator: [thisOperator[1], thisOperator[2], thisOperator[3]
 					, thisOperator[7], thisOperator[8]]
 			})) {
 				return true;
@@ -200,7 +205,7 @@ export class Func1106 implements IFuncOrigin {
 			thisScript.global.zhenShe = -1; // 已完成
 			return true
 		} else {
-			return false;
+			return thisScript.rerun(thisConf.next_scheme);
 		}
 	}
 }
