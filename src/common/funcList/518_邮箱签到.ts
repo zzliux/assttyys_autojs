@@ -156,13 +156,11 @@ export class Func518 implements IFuncOrigin {
 			desc: [
 				1280, 720,
 				[
-					[center, 479, 356, 0xa72d03],
-					[center, 506, 356, 0xa82f05],
-					[center, 884, 543, 0xeeece2],
-					[center, 904, 448, 0xf8e5db],
-					[center, 878, 606, 0xb15090],
-					[center, 875, 637, 0xeceae1],
-					[center, 845, 609, 0xe3d9cb],
+					[right, 860, 98, 0xeecccc],
+					[right, 882, 98, 0xeecccc],
+					[right, 868, 107, 0xe8d4d0],
+					[right, 875, 105, 0xe7d6ce],
+					[right, 867, 113, 0xe8d5cf],
 				]
 			],
 			oper: [
