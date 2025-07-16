@@ -682,7 +682,7 @@ export class Script {
 	/**
 	 * 重新运行，一般在运行过程中通过setCurrenScheme切换方案后调用，停止再运行
 	 */
-	rerun(schemeName?: unknown, params?: Record<string, unknown>) {
+	rerun(schemeName?: unknown) {
 		if ('__停止脚本__' === schemeName) {
 			this.doPush(this, {
 				text: `[${this.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`,
@@ -695,7 +695,7 @@ export class Script {
 			if (this.schemeHistory.length) {
 				if (this.schemeHistory.length > 1) {
 					const lastSchemeName = this.schemeHistory[this.schemeHistory.length - 2].schemeName
-					this.setCurrentScheme(lastSchemeName as string, params);
+					this.setCurrentScheme(lastSchemeName as string);
 					this.myToast(`返回上个方案为[${schemeName}]`);
 				} else {
 					this.doPush(this, {
@@ -707,9 +707,27 @@ export class Script {
 					return;
 				}
 			}
+		} else if ('__关闭应用__' === schemeName) {
+			sleep(1000);
+			const packageNames = this.stopRelatedApp();
+			this.doPush(this, { text: `[${this.schemeHistory.map(item => item.schemeName).join('、')}]已停止，应用[${packageNames}]已杀，请查看。`, before() { this.myToast('脚本即将停止，正在上传数据'); } });
+			sleep(2000);
+			this.stop();
+			return true;
+		} else if ('__不做动作__' === schemeName) {
+			return false;
 		} else if (schemeName) {
-			this.setCurrentScheme(schemeName as string, params);
-			this.myToast(`切换方案为[${schemeName}]`);
+			const schemeList = store.get('schemeList');
+			if (!schemeList.some(item => item.schemeName.includes(schemeName))) {
+				sleep(1000);
+				this.myToast(`修改方案失败：请检查是否存在方案[${schemeName}]，已停止`);
+				this.doPush(this, { text: `未找到[${schemeName}]方案,已停止`, before() { this.myToast('脚本即将停止，正在上传数据'); } });
+				this.stop();
+				return true;
+			} else {
+				this.setCurrentScheme(schemeName as string);
+				this.myToast(`切换方案为[${schemeName}]`);
+			}
 		}
 		events.broadcast.emit('SCRIPT_RERUN', '');
 	}
