@@ -545,6 +545,7 @@ export class Func518 implements IFuncOrigin {
 			],
 			oper: [
 				[center, 1280, 720, 220, 204, 285, 276, 1000],
+				[center, 1280, 720, 619, 552, 691, 596, 1000],
 			]
 		}, {
 			//  37 检测_商店_热门推荐_另一种适配
