@@ -498,7 +498,6 @@ export class Func518 implements IFuncOrigin {
 			],
 			oper: [
 				[left, 1280, 720, 21, 9, 51, 42, 1800], //  点击 礼包屋返回
-				[left, 1280, 720, 24, 15, 83, 62, 1800], //  点击 热门推荐返回
 				[left, 1280, 720, 26, 37, 72, 81, 1800], //  点击 商店返回
 			],
 		},
@@ -534,27 +533,20 @@ export class Func518 implements IFuncOrigin {
 			oper: [
 				[right, 1280, 720, 1186, 194, 1237, 247, 1200], //  点击 推荐页签
 			],
-		},
-		{
-			//  36 检测_商店_推荐页签_每日领取
-			desc: [
-				1280, 720,
+		}, {	//  36 检测_商店_推荐页签_每日领取
+			desc: [1280, 720,
 				[
-					[left, 285, 196, 0xececeb],
-					[left, 285, 323, 0xdfa555],
-					[center, 478, 326, 0xdba155],
-					[left, 273, 186, 0x1a1a1a],
-					[left, 313, 192, 0x282524],
-					[center, 431, 283, 0x2e1e2b],
-					[center, 446, 251, 0xde2110],
-					[left, 211, 272, 0xebded4],
+					[left, 207, 184, 0xe4ca8b],
+					[left, 307, 186, 0xe1c784],
+					[center, 329, 146, 0xf90000],
+					[left, 270, 273, 0x242221],
+					[left, 234, 273, 0x222222],
 				]
 			],
 			oper: [
-				[left, 1280, 720, 218, 223, 284, 282, 2200], //  点击 每日领取
-			],
-		},
-		{
+				[center, 1280, 720, 220, 204, 285, 276, 1000],
+			]
+		}, {
 			//  37 检测_商店_热门推荐_另一种适配
 			desc: [1280, 720,
 				[
@@ -691,24 +683,21 @@ export class Func518 implements IFuncOrigin {
 				[center, 1280, 720, 1137, 654, 1184, 696, 1000],
 			]
 		},
-		{
-			//  47 检测_商店_礼包屋_热卖页签 含纳凉标签，右侧共4个标签
-			desc: [
-				1280, 720,
+		{  // 47 商店_礼包屋_关闭限时,打开日常
+			desc: [1280, 720,
 				[
-					[left, 30, 26, 0xf4e4a4],
-					[right, 1227, 312, 0x967d71],
-					[right, 1134, 687, 0xf0c967],
-					[right, 1148, 665, 0x842121],
-					[right, 1195, 675, 0xd2ab51],
-					[right, 1227, 122, 0x987e70],
-					[right, 1227, 397, 0x987e71],
+					[right, 1187, 114, 0xfff4cf],
+					[right, 1190, 153, 0xffd2a8],
+					[right, 1227, 105, 0xfbe2c7],
+					[right, 1229, 153, 0xffd4a7],
+					[right, 1205, 132, 0xffe8bc],
 				]
 			],
 			oper: [
-				[right, 1280, 720, 1194, 301, 1228, 326, 1200], //  点击 推荐页签
-			],
-		},
+				[center, 1280, 720, 1187, 103, 1232, 153, 1000],
+				[center, 1280, 720, 1189, 208, 1232, 253, 1000],
+			]
+		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (
@@ -742,7 +731,7 @@ export class Func518 implements IFuncOrigin {
 					id: 518,
 					name: '点击_商店',
 					operator: [{
-						oper: [thisOperator[0].oper[2], thisOperator[0].oper[2]], // 点两次跳过推荐
+						oper: [thisOperator[0].oper[2]], // 点两次跳过推荐
 					}],
 				});
 			}
@@ -905,7 +894,7 @@ export class Func518 implements IFuncOrigin {
 					thisOperator[41], //  检测_商店_热门推荐3
 					thisOperator[42], //  关式神拓展包弹窗并跳过动画
 					thisOperator[46], //  礼包屋未打开
-					thisOperator[47], //  检测_商店_礼包屋_热卖页签 含纳凉标签，右侧共4个标签
+					thisOperator[47], //  礼包屋打开日常
 				],
 			})
 		) {
@@ -919,6 +908,7 @@ export class Func518 implements IFuncOrigin {
 				operator: [thisOperator[32]],
 			})
 		) {
+
 			//  若3次找不到每日领取，直接视为已领取
 			if (
 				thisScript.oper({
