@@ -333,7 +333,6 @@ export class Func1102 implements IFuncOrigin {
 				[right, 1190, 235, 0xf8cca3],
 				[right, 1226, 198, 0xebd4c8],
 				[right, 1227, 221, 0xfbddb8],
-				[right, 1205, 217, 0xfee2bd],
 			]
 		],
 		oper: [
@@ -392,11 +391,10 @@ export class Func1102 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[right, 1189, 295, 0xa18578],
-				[right, 1185, 331, 0x7c6459],
-				[right, 1227, 290, 0xa88a7d],
-				[right, 1230, 326, 0x957c6f],
-				[right, 1207, 308, 0x987e70],
+				[right, 1185, 314, 0x9b8174],
+				[right, 1190, 347, 0x8f776b],
+				[right, 1230, 309, 0xa5887b],
+				[right, 1234, 350, 0x7c6458],
 			]
 		],
 		oper: [
@@ -445,11 +443,10 @@ export class Func1102 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[right, 1188, 387, 0xa3877a],
-				[right, 1192, 420, 0x8e776b],
-				[right, 1227, 388, 0x9f8477],
-				[right, 1227, 416, 0x8f776b],
-				[right, 1207, 400, 0x987e70],
+				[right, 1190, 413, 0x9c8274],
+				[right, 1192, 451, 0x856e63],
+				[right, 1232, 406, 0xa98a7e],
+				[right, 1234, 457, 0x836c5f],
 			]
 		],
 		oper: [
@@ -459,11 +456,10 @@ export class Func1102 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[right, 1192, 387, 0xf4d8bc],
-				[right, 1191, 425, 0xf7cea8],
-				[right, 1228, 388, 0xf3d7bc],
-				[right, 1228, 423, 0xf9d2ad],
-				[right, 1206, 401, 0xfddeb6],
+				[right, 1189, 415, 0xf7dcbc],
+				[right, 1191, 457, 0xf6c49c],
+				[right, 1231, 404, 0xe9d0c4],
+				[right, 1230, 459, 0xf5c29a],
 			]
 		]
 	}, { // 25 勋章_蓝票
@@ -582,11 +578,10 @@ export class Func1102 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[right, 1190, 476, 0xa5887a],
-				[right, 1194, 502, 0x957d70],
-				[right, 1225, 508, 0x8e776b],
-				[right, 1226, 473, 0xab8c7f],
-				[right, 1201, 495, 0x987e70],
+				[right, 1188, 511, 0xa28679],
+				[right, 1193, 558, 0x836d61],
+				[right, 1231, 512, 0xa6897b],
+				[right, 1231, 560, 0x7d655a],
 			]
 		],
 		oper: [
@@ -623,11 +618,10 @@ export class Func1102 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[right, 1190, 489, 0xfae0bb],
-				[right, 1193, 508, 0xfcdbb3],
-				[right, 1226, 514, 0xf8cca3],
-				[right, 1227, 485, 0xfae1c0],
-				[right, 1203, 496, 0xffe7c8],
+				[right, 1188, 515, 0xf4d6b8],
+				[right, 1193, 556, 0xf7caa4],
+				[right, 1229, 513, 0xf6d6b7],
+				[right, 1231, 555, 0xf8d0a7],
 			]
 		]
 	}, { // 37 魅力_蓝票购买确认
