@@ -315,11 +315,11 @@ export class Func1102 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[right, 1192, 207, 0x987e71],
-				[right, 1192, 228, 0x8e776b],
-				[right, 1224, 200, 0xa6887b],
-				[right, 1225, 218, 0x977e70],
-				[right, 1206, 218, 0x987e70],
+				[right, 1189, 246, 0x8e766a],
+				[right, 1227, 199, 0xb39385],
+				[right, 1229, 233, 0x977e70],
+				[right, 1205, 232, 0x977e70],
+				[right, 1198, 262, 0x7c6559],
 			]
 		],
 		oper: [

@@ -719,7 +719,7 @@ export class Script {
 			this.doPush(this, { text: `[${this.schemeHistory.map(item => item.schemeName).join('、')}]已停止，应用[${packageNames}]已杀，请查看。`, before() { this.myToast('脚本即将停止，正在上传数据'); } });
 			sleep(2000);
 			this.stop();
-			return true;
+			return;
 		} else if ('__不做动作__' === schemeName) {
 			return false;
 		} else if (schemeName) {
