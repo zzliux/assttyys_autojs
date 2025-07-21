@@ -181,11 +181,11 @@ export class Func311 implements IFuncOrigin {
 						const point_blood = thisScript.findMultiColorEx('红标_血条')
 						const operList = [];
 						for (const flagPoint of point_blood) {
-							if (flagPoint.x < point.x + 7 && flagPoint.x > point.x - 105) {
+							if (point.x > flagPoint.x + 5 && point.x < flagPoint.x + 115) {
 								operList.push(flagPoint);
 							}
 						}
-						operList.sort((a, b) => b.y - a.y);
+						operList.sort((a, b) => b.y - a.y); // 从大到小排序
 						if (operList.length > 1 && point.y < operList[1].y) {
 							// 点击阴阳师位置
 							const oper = [
@@ -212,13 +212,13 @@ export class Func311 implements IFuncOrigin {
 						}
 						return true;
 					} else if (thisScript.global.jietu) {
-						const now = new Date().getTime();
-						const ajImg = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(thisScript.helperBridge.helper.GetBitmap());
-						const path = `/sdcard//Pictures/批量截图/${now}.png`;
-						files.ensureDir(path);
-						ajImg.saveTo(path);
-						ajImg.recycle();
-						thisScript.global.jietu = false;
+						// const now = new Date().getTime();
+						// const ajImg = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(thisScript.helperBridge.helper.GetBitmap());
+						// const path = `/sdcard//Pictures/批量截图/${now}.png`;
+						// files.ensureDir(path);
+						// ajImg.saveTo(path);
+						// ajImg.recycle();
+						// thisScript.global.jietu = false;
 					}
 				}
 			}
