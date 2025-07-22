@@ -190,7 +190,7 @@ export class Func311 implements IFuncOrigin {
 							// 点击阴阳师位置
 							const oper = [
 								operList[1].x + 35,
-								operList[1].y + 38,
+								operList[1].y + 42,
 								operList[1].x + 40,
 								operList[1].y + 45,
 								1000
