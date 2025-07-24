@@ -1362,6 +1362,9 @@ export const versionList = [{
 }, {
 	version: '20250708_01',
 	desc: 'fix: 优化签到解读 道馆 首领适配',
+}, {
+	version: '20250724_01',
+	desc: 'fix: onebot11中url参数同步到post body中以解决部分onebot11实现不支持通过querystring读取参数的问题'
 }];
 
 export default versionList[versionList.length - 1].version;

@@ -58,8 +58,28 @@ export default class OneBotPushClient extends AbstractPushClient {
 			}
 		});
 		return http.postJson(oneBot_url, {
+			...getAllParamsFromUrl(oneBot_url),
+			// group_id: getParamFromURL('group_id', oneBot_url),
 			// @ts-expect-error d.ts文件问题
 			message: message
 		});
 	}
 }
+
+function getAllParamsFromUrl(url: string): Record<string, string> {
+	const ret: Record<string, string> = {};
+	let queryString = url;
+	if (url.indexOf('?')) {
+		queryString = url.split('?')[1];
+	}
+	const parts = queryString.split('&');
+	for (const part of parts) {
+		const [k, v] = part.split('=').map(str => decodeURIComponent(str));
+		ret[k] = v;
+	}
+	return ret;
+}
+
+// function getParamFromURL(key: string, url: string): string {
+// 	return getAllParamsFromUrl(url)[key];
+// }
