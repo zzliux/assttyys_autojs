@@ -2328,7 +2328,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
 			]]
 		]
 	},
-	'神荒': {
+	'腐血': {
 		region: [center, 1280, 720, 0, 0, 1279, 719],
 		desc: [
 			[1280, 720, // 腐血
@@ -2338,8 +2338,14 @@ const multiFindColors: IMultiFindColorsOrigin = {
 					[center, 604, 102, 0x02315e], [center, 605, 102, 0x02315f],
 					[center, 606, 102, 0x053164], [center, 607, 102, 0x052c59]
 				]
-			],
-			[1280, 720,
+			]
+		],
+		similar: 95,
+	},
+	'神荒': {
+		region: [center, 1280, 720, 0, 0, 1279, 719],
+		desc: [
+			[1280, 720, // 神荒
 				[
 					[center, 0, 0, 0x002050], [center, 1, 0, 0x002153],
 					[center, 2, 0, 0x003f86], [center, 3, 0, 0x6aaae4],

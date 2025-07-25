@@ -92,8 +92,8 @@ export class Func309 implements IFuncOrigin {
 				[center, 680, 65, 0xe9af66],
 				[center, 474, 134, 0xd5a659],
 				[center, 515, 134, 0xd4a55a],
-				[center, 516, 168, 0xc19c55],
-				[center, 474, 168, 0xc49a53],
+				[center, 516, 170, 0xe2b367],
+				[center, 477, 170, 0xe2b467],
 			]
 		],
 		oper: [
