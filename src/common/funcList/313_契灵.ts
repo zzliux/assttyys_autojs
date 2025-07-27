@@ -549,8 +549,10 @@ export class Func313 implements IFuncOrigin {
 			const temp = thisScript.findText('契', 0, thisOperator[12].oper[1], '包含');
 			if (temp.length > 0) {
 				thisScript.global.qiling_shop = true;
+				thisScript.regionClick([thisOperator[12].oper[2]]);
 				return true;
 			}
+			thisScript.regionClick([thisOperator[12].oper[0]]);
 			return true;
 		}
 		let curCnt = 0;
