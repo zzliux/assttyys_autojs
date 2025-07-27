@@ -76,10 +76,6 @@ const SchemeList: IScheme[] = [
 		star: true,
 		list: [51, 0, 1, 2, 3, 8, 9, 10],
 		config: {
-			'0': {
-				after_operation: '切换方案',
-				next_scheme: '个突_9退4_退出',
-			},
 			'3': { type: '关闭' },
 			'8': {
 				count: '2',
@@ -87,7 +83,7 @@ const SchemeList: IScheme[] = [
 				type: '个人突破',
 			},
 			'9': {
-				after_operation: '切换方案',
+				scheme_switch_enabled: true,
 			},
 			'10': { type: '个人突破' },
 			'51': {
