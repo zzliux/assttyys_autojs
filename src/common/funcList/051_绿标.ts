@@ -91,7 +91,7 @@ export class Func051 implements IFuncOrigin {
 						thisconf.greenText as string,
 						3000,
 						thisOperator[0].oper[3],
-						thisconf.greenTextMatchMod as string,
+						thisconf.greenTextMatchMode as string,
 						{
 							id: 51,
 							name: '准备界面检测',
