@@ -245,6 +245,18 @@ export class Func032 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1055, 235, 1137, 328, 800], // 放弃突破
 		]
+	}, { // 13 选道馆界面:今日挑战0次机会
+		desc: [1280, 720,
+			[
+				[center, 507, 642, 0xcbc7b6],
+				[center, 536, 649, 0xe8e3d1],
+				[center, 558, 650, 0xefead8],
+				[center, 601, 647, 0xebe7d5],
+				[right, 664, 649, 0xed8902],
+				[right, 673, 649, 0xe88603],
+				[right, 689, 651, 0xec8902],
+			]
+		],
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['32'];
@@ -347,7 +359,7 @@ export class Func032 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 32,
 			name: '检测_挑战结束',
-			operator: [thisOperator[2], thisOperator[9]]
+			operator: [thisOperator[2], thisOperator[9], thisOperator[13]]
 		})) {
 			if (!thisScript.scheme.list.includes(519)) {
 				thisScript.rerun('返回庭院');
