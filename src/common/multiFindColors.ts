@@ -2439,7 +2439,8 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				[center, 927, 247, 0xc73834],
 				[center, 927, 248, 0xec3b38],
 			]
-		]]
+		]],
+		similar: 95,
 	},
 	'斗技ban选_面': {
 		region: [center, 1280, 720, 1145, 352, 1246, 447],
