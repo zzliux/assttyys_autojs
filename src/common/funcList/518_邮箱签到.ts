@@ -683,21 +683,17 @@ export class Func518 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 1137, 654, 1184, 696, 1000],
 			]
-		},
-		{  // 47 商店_礼包屋_关闭限时,打开日常
+		}, { // 47 礼包屋已打开
 			desc: [1280, 720,
 				[
-					[right, 1187, 114, 0xfff4cf],
-					[right, 1190, 153, 0xffd2a8],
-					[right, 1227, 105, 0xfbe2c7],
-					[right, 1229, 153, 0xffd4a7],
-					[right, 1205, 132, 0xffe8bc],
+					[right, 1129, 689, 0xe5b85a],
+					[right, 1131, 671, 0xd5aa50],
+					[right, 1198, 671, 0xc19844],
+					[right, 1197, 694, 0xf1c965],
+					[right, 1166, 682, 0xd03a3a],
+					[right, 1160, 681, 0x831f1f],
 				]
 			],
-			oper: [
-				[center, 1280, 720, 1187, 103, 1232, 153, 1000],
-				[center, 1280, 720, 1189, 208, 1232, 253, 1000],
-			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -895,13 +891,22 @@ export class Func518 implements IFuncOrigin {
 					thisOperator[41], //  检测_商店_热门推荐3
 					thisOperator[42], //  关式神拓展包弹窗并跳过动画
 					thisOperator[46], //  礼包屋未打开
-					thisOperator[47], //  礼包屋打开日常
 				],
 			})
 		) {
 			return true;
 		}
-
+		if (thisScript.oper({
+			id: 518,
+			name: '检测_商店',
+			operator: [thisOperator[47]],
+		})) {
+			const point = thisScript.findMultiColor('商店_日常')
+			if (point) {
+				const oper = [[point.x + 5, point.y + 5, point.x + 10, point.y + 10, 1000]];
+				thisScript.regionClick(oper);
+			}
+		}
 		if (
 			thisScript.oper({
 				id: 518,
