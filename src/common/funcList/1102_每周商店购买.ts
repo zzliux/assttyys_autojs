@@ -773,6 +773,20 @@ export class Func1102 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 25, 16, 60, 45, 1000],
 		]
+	}, { // 48 直播卡加载
+		desc: [1280, 720,
+			[
+				[left, 22, 19, 0x251612],
+				[left, 83, 19, 0x271813],
+				[left, 41, 34, 0x5f5449],
+				[left, 53, 33, 0x5e5347],
+				[left, 67, 34, 0x5c4d44],
+				[left, 76, 58, 0x261712],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 28, 19, 80, 55, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['1102'];
@@ -810,6 +824,23 @@ export class Func1102 implements IFuncOrigin {
 			})) {
 				thisScript.global.MT_shop = 'jiShouWu';
 				return true;
+			}
+			let curCnt_min = 0;
+			const maxCount_max = 5;
+			while (thisScript.oper({
+				id: 1102,
+				name: '直播卡加载',
+				operator: [{ desc: thisOperator[48].desc }]
+			})) {
+				curCnt_min++;
+				thisScript.keepScreen();
+				if (curCnt_min >= maxCount_max) {
+					thisScript.myToast('直播加载失败，已跳过');
+					thisScript.regionClick(thisOperator[48].oper);
+					thisScript.global.MT_shop = 'jiShouWu';
+					return false;
+				}
+				sleep(1000);
 			}
 		}
 		if (thisScript.global.MT_shop === 'jiShouWu') { // 寄售屋买票

@@ -528,7 +528,9 @@ export class Func313 implements IFuncOrigin {
 			}
 			return true;
 		}
-		if (thisScript.oper({
+		let curCnt_min = 0;
+		const maxCount_max = 5;
+		while (thisScript.oper({
 			id: 313,
 			name: '契灵组队队长',
 			operator: [{ desc: thisOperator[4].desc }]
@@ -539,7 +541,15 @@ export class Func313 implements IFuncOrigin {
 			} else {
 				thisScript.regionClick([thisOperator[4].oper[0]]);
 			}
-			return true;
+			curCnt_min++;
+			thisScript.keepScreen();
+			if (curCnt_min >= maxCount_max) {
+				thisScript.myToast(`连续执行${maxCount_max}次挑战后未开始，脚本自动停止`);
+				thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+				thisScript.stop();
+				sleep(2000);
+				return false;
+			}
 		}
 		if (thisScript.oper({
 			id: 313,

@@ -193,20 +193,14 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		desc: [
 			[1280, 720,
 				[
-					[center, 904, 418, 0x49793a],
-					[center, 904, 417, 0x739530],
-					[center, 1117, 530, 0x3c5833],
-					[center, 862, 450, 0x946b2c],
-					[center, 1002, 504, 0x8f8a85]
-				]
-			],
-			[1280, 720,
-				[
-					[center, 907, 418, 0x477a36],
-					[center, 907, 417, 0x608e3f],
-					[center, 1117, 530, 0x3c5631],
-					[center, 862, 450, 0x966330],
-					[center, 1002, 504, 0x918c87]
+					[left, 231, 418, 0x41743a],
+					[left, 231, 417, 0x749533],
+					[center, 421, 418, 0x41743a],
+					[center, 421, 417, 0x749533],
+					[left, 161, 522, 0xb0aa91],
+					[left, 193, 513, 0xb4b49b],
+					[center, 439, 461, 0xc0c0b4],
+					[center, 396, 447, 0xd4d1c3],
 				]
 			]
 		]
@@ -2729,6 +2723,20 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				[center, 713, 489, 0xf4b15e],
 				[center, 713, 525, 0xf0ae5d],
 				[center, 562, 525, 0xf6b55f],
+			]
+		]],
+	},
+	'商店_日常': {
+		region: [left, 1280, 720, 1154, 167, 1258, 607],
+		desc: [[
+			1280, 720,
+			[
+				[right, 1190, 452, 0xc4a28f],
+				[right, 1224, 458, 0xaf9181],
+				[right, 1201, 466, 0x412c27],
+				[right, 1215, 465, 0x3d2925],
+				[right, 1207, 489, 0x3d2825],
+				[right, 1206, 476, 0x3e2926],
 			]
 		]],
 	},
