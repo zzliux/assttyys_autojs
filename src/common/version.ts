@@ -1365,6 +1365,9 @@ export const versionList = [{
 }, {
 	version: '20250724_01',
 	desc: 'fix: onebot11中url参数同步到post body中以解决部分onebot11实现不支持通过querystring读取参数的问题'
+}, {
+	version: '20250819_01',
+	desc: 'fix: 增加999 点击寮体力，金币容错机制'
 }];
 
 export default versionList[versionList.length - 1].version;
