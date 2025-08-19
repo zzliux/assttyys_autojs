@@ -13,7 +13,7 @@ import { setCurrentScheme } from '@/common/tool';
 import { getWidthPixels, getHeightPixels } from '@auto.pro/core';
 import schemeDialog from './schemeDialog';
 import drawFloaty from '@/system/drawFloaty';
-import { myToast, doPush, questionSearch, search } from '@/common/toolAuto';
+import { myToast, doPush, questionSearch, search, myNotification } from '@/common/toolAuto';
 import { IFunc, IFuncOrigin } from '@/interface/IFunc';
 import { IScheme } from '@/interface/IScheme';
 import { IMultiDetectColors, IMultiFindColors } from '@/interface/IMultiColor';
@@ -79,6 +79,17 @@ export class Script {
 	 */
 	myToast: (str: string, duration?: number) => void;
 
+	/**
+		 * @description 通知弹窗
+		 * @param {string}str
+		 */
+	myNotification: (
+		title: string,
+		text: string,
+		onClick?: () => void,
+		onLongClick?: () => void
+	) => void;
+
 	constructor() {
 		this.runThread = null;
 		this.runCallback = null;
@@ -106,6 +117,7 @@ export class Script {
 		this.storeCommon = storeCommon;
 		this.doPush = doPush;
 		this.myToast = myToast;
+		this.myNotification = myNotification;
 		this.schedule = schedule;
 	}
 

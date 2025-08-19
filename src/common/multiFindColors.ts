@@ -1288,7 +1288,8 @@ const multiFindColors: IMultiFindColorsOrigin = {
 					[left, 282, 271, 0xf7e6c4]
 				]
 			],
-		]
+		],
+		similar: 95
 	},
 	'金币妖怪_金币妖怪字样': {
 		region: [left, 1280, 720, 128, 103, 371, 682],

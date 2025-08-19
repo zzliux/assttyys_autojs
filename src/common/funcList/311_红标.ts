@@ -264,6 +264,7 @@ export class Func311 implements IFuncOrigin {
 						}
 						return true;
 					}
+					thisScript.global.redFlag = true;
 				}
 			}
 			return false;
