@@ -94,6 +94,7 @@ export class Func999 implements IFuncOrigin {
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (
 			thisScript.oper({
+				id: 999,
 				name: '进入式神寄养结界',
 				operator: [
 					thisOperator[0],
@@ -108,27 +109,30 @@ export class Func999 implements IFuncOrigin {
 			return true;
 		}
 		// 点击10都点不中就直接跳过不点了
-		if (thisScript.global.checked_yard_count > 10) {
-			thisScript.global.checked_yard_count = 0;
+		if (thisScript.global.checked_yard_count_999 > 10) {
+			thisScript.global.checked_yard_count_999 = 0;
 			return thisScript.oper({
+				id: 999,
 				name: '点击阴阳寮',
 				operator: [
 					{
+						desc: thisOperator[3].desc,
 						oper: thisOperator[3].oper,
 					},
 				],
 			});
 		} else {
 			sleep(1500);
-			if (!thisScript.global.checked_yard_count) {
-				thisScript.global.checked_yard_count = 1;
+			if (!thisScript.global.checked_yard_count_999) {
+				thisScript.global.checked_yard_count_999 = 1;
 			} else {
-				thisScript.global.checked_yard_count += 1;
+				thisScript.global.checked_yard_count_999 += 1;
 			}
 		}
 
 		if (
 			thisScript.oper({
+				id: 999,
 				name: '检测_阴阳寮主页',
 				operator: [
 					{

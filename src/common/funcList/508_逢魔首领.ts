@@ -257,56 +257,6 @@ export class Func508 implements IFuncOrigin {
 				});
 
 				sleep(150);
-
-				if (thisConf && thisConf['switch_ji_enabled']) {
-					if (
-						thisScript.oper({
-							id: 508,
-							name: '检测_是否有寻找 逢魔·极 按钮',
-							operator: [thisOperator[9]],
-						})
-					) {
-						if (!thisScript.global.fm_boss_btn_click_cnt) {
-							thisScript.global.fm_boss_btn_click_cnt = 0;
-						}
-						if (++thisScript.global.fm_boss_btn_click_cnt >= (parseInt(thisConf.times_for_search_boss as string) || 20)) {
-							thisScript.global.fm_kiss_boss_flag = true;
-							thisScript.myToast(
-								`第${thisScript.global.fm_boss_btn_click_cnt}次点击查找逢魔·极首领按钮未成功进入首领挑战，标记挑战成功a`
-							);
-						} else {
-							thisScript.myToast(
-								`第${thisScript.global.fm_boss_btn_click_cnt}次点击查找逢魔·极首领按钮a`
-							);
-						}
-						return true;
-					}
-				}
-
-				if (
-					thisScript.oper({
-						id: 508,
-						name: '检测_点击寻找首领按钮',
-						operator: [{
-							oper: thisOperator[0].oper,
-						}],
-					})
-				) {
-					if (!thisScript.global.fm_boss_btn_click_cnt) {
-						thisScript.global.fm_boss_btn_click_cnt = 0;
-					}
-					if (++thisScript.global.fm_boss_btn_click_cnt >= (parseInt(thisConf.times_for_search_boss as string) || 20)) {
-						thisScript.global.fm_kiss_boss_flag = true;
-						thisScript.myToast(
-							`第${thisScript.global.fm_boss_btn_click_cnt}次点击查找逢魔首领按钮未成功进入首领挑战，标记挑战成功a`
-						);
-					} else {
-						thisScript.myToast(
-							`第${thisScript.global.fm_boss_btn_click_cnt}次点击查找逢魔首领按钮a`
-						);
-					}
-					return true;
-				}
 			} else {
 				sleep(150);
 				if (!thisScript.global.checked_yard_count) {
@@ -402,32 +352,33 @@ export class Func508 implements IFuncOrigin {
 						}
 						return true;
 					}
+				} else {
+					if (
+						thisScript.oper({
+							id: 508,
+							name: '检测_点击寻找首领按钮',
+							operator: [{
+								oper: thisOperator[0].oper,
+							}],
+						})
+					) {
+						if (!thisScript.global.fm_boss_btn_click_cnt) {
+							thisScript.global.fm_boss_btn_click_cnt = 0;
+						}
+						if (++thisScript.global.fm_boss_btn_click_cnt >= (parseInt(thisConf.times_for_search_boss as string) || 20)) {
+							thisScript.global.fm_kiss_boss_flag = true;
+							thisScript.myToast(
+								`第${thisScript.global.fm_boss_btn_click_cnt}次点击查找逢魔首领按钮未成功进入首领挑战，标记挑战成功e`
+							);
+						} else {
+							thisScript.myToast(
+								`第${thisScript.global.fm_boss_btn_click_cnt}次点击查找逢魔首领按钮e`
+							);
+						}
+						return true;
+					}
 				}
 
-				if (
-					thisScript.oper({
-						id: 508,
-						name: '检测_点击寻找首领按钮',
-						operator: [{
-							oper: thisOperator[0].oper,
-						}],
-					})
-				) {
-					if (!thisScript.global.fm_boss_btn_click_cnt) {
-						thisScript.global.fm_boss_btn_click_cnt = 0;
-					}
-					if (++thisScript.global.fm_boss_btn_click_cnt >= (parseInt(thisConf.times_for_search_boss as string) || 20)) {
-						thisScript.global.fm_kiss_boss_flag = true;
-						thisScript.myToast(
-							`第${thisScript.global.fm_boss_btn_click_cnt}次点击查找逢魔首领按钮未成功进入首领挑战，标记挑战成功e`
-						);
-					} else {
-						thisScript.myToast(
-							`第${thisScript.global.fm_boss_btn_click_cnt}次点击查找逢魔首领按钮e`
-						);
-					}
-					return true;
-				}
 			}
 		}
 

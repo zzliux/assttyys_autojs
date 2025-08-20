@@ -212,15 +212,22 @@ export class Func998 implements IFuncOrigin {
 		{
 			//	10 判断_是否为己方结界
 			desc: [
-				1280,
-				720,
+				1280, 720,
 				[
-					[center, 611, 300, 0x0c0804],
-					[center, 913, 305, 0x0c0804],
-					[left, 318, 305, 0x0c0804],
-					[center, 613, 294, 0xe1cf6b],
-					[left, 202, 462, 0x10100c],
-				],
+					[center, 326, 306, 0xe2cfc4],
+					[left, 307, 336, 0xd9c1b3],
+					[center, 602, 303, 0xe4cfc3],
+					[center, 623, 303, 0xe4cec3],
+					[center, 899, 303, 0xe4cfc3],
+					[center, 920, 303, 0xe4cfc3],
+					[center, 910, 296, 0xe0c065],
+					[left, 614, 294, 0xe3c366],
+					[left, 629, 293, 0xcaa454],
+					[right, 595, 344, 0xb9833b],
+					[center, 626, 437, 0x6f4d24],
+					[left, 206, 461, 0x12100c],
+					[left, 207, 514, 0x12100c],
+				]
 			],
 			oper: [
 				[center, 1280, 720, 582, 270, 638, 400, 600], //  点击 式神养成
@@ -554,6 +561,7 @@ export class Func998 implements IFuncOrigin {
 				return true;
 			} else {
 				console.log('没有空位了');
+				console.log('状态为：获取奖励');
 				thisScript.global.jy_change_shikigami = 'get_reward';
 			}
 		}
@@ -641,8 +649,10 @@ export class Func998 implements IFuncOrigin {
 					// 获取寄养奖励是获取奖励的最后一步，获取成功后则开始更换结界卡逻辑
 					if (thisconf && thisconf.change_enchantment_switch) {
 						thisScript.global.jy_change_shikigami = 'change_enchantment';
+						console.log('状态为：更换结界卡');
 					} else {
 						thisScript.global.jy_change_shikigami = 'jy_flag';
+						console.log('状态为：开始寄养');
 					}
 
 					return true;
