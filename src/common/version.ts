@@ -1368,6 +1368,9 @@ export const versionList = [{
 }, {
 	version: '20250819_01',
 	desc: 'fix: 增加999 点击寮体力，金币容错机制'
+}, {
+	version: '20250820_01',
+	desc: 'fix: 修复998 寄养结界适配，优化508 逢魔首领逻辑'
 }];
 
 export default versionList[versionList.length - 1].version;
