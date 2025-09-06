@@ -3,7 +3,7 @@ ASISTTANT YYS NEXT GENERATION<br/>
 仅作学习用途，请勿用于其他非法途径！<br/>
 欢迎在issue中提出bug与建议，也欢迎有能力的同学加入开发与维护的队列中来<br/>
 ![GitHub](https://img.shields.io/github/license/zzliux/assttyys_autojs)
-[![group:864842180](https://img.shields.io/badge/group-864842180-blue)](https://qm.qq.com/q/H852T6N0OG)
+[![Q群:点击入群](https://img.shields.io/badge/Q群-点击入群-blue)](https://qm.qq.com/q/cAbNMI25UI)
 
 
 # 分辨率支持情况
@@ -66,7 +66,7 @@ assttyys_autojs
 # 特别鸣谢
 感谢下面几位dalao的顶力支持，在本项目的开发过程中提出的需求均能快速响应与采纳！
 - [yiszza](https://gitee.com/yiszza)
-  - [ScriptLib](https://gitee.com/yiszza/ScriptLib)：基于Auto.ts的高性能比色找色库，本项目的所有多点比色和多点找色均基于AnchorGraphicHelper完成
+  - [ScriptLib](https://gitee.com/yiszza/ScriptLib)：基于Auto.js的高性能比色找色库，本项目的所有多点比色和多点找色均基于AnchorGraphicHelper完成
   - [综合图色助手](https://gitee.com/yiszza/ScriptGraphicHelper)：一款简单好用的图色助手, 快速生成多种脚本开发工具的图色格式代码
 - [molysama](https://github.com/molysama)
   - [@auto.pro](https://github.com/molysama/auto.pro)的提供者，本项目基于该框架完成
