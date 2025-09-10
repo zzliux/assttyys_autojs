@@ -241,6 +241,17 @@ export class Func506 implements IFuncOrigin {
 			oper: [
 				[left, 1280, 720, 155, 417, 365, 574, 1000]     //  寮活动 阴门
 			]
+		}, { // 15 检测_2025年版本狩猎战
+			desc: [
+				1280, 720,
+				[
+					[right, 1060, 650, 0xfff3f3],
+					[center, 885, 661, 0xfff4f5],
+					[left, 259, 35, 0x573515],
+					[left, 175, 589, 0x684b2c],
+					[left, 33, 592, 0x8a6137],
+				]
+			],
 		}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['506'];
@@ -533,6 +544,21 @@ export class Func506 implements IFuncOrigin {
 			name: '检测_是否为挑战奉献榜场景_待开始',
 			operator: [{
 				desc: thisOperator[7].desc,
+			}]
+		})) {
+
+			sleep(2000);
+			thisScript.global.liao_activity_page_flag = 0;
+			const next_scheme = '狩猎战';
+			thisScript.rerun(next_scheme, {
+				liao_activity_state: _liao_activity_state
+			});
+		}
+
+		if (thisScript.oper({
+			name: '检测_2025年版本狩猎战',
+			operator: [{
+				desc: thisOperator[15].desc,
 			}]
 		})) {
 

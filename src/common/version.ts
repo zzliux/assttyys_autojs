@@ -1371,6 +1371,9 @@ export const versionList = [{
 }, {
 	version: '20250820_01',
 	desc: 'fix: 修复998 寄养结界适配，优化508 逢魔首领逻辑'
+}, {
+	version: '20250911_01',
+	desc: 'fix: 修复组队场景，修复狩猎战'
 }];
 
 export default versionList[versionList.length - 1].version;
