@@ -220,7 +220,7 @@ export class Func998 implements IFuncOrigin {
 					[center, 623, 303, 0xe4cec3],
 					[center, 899, 303, 0xe4cfc3],
 					[center, 920, 303, 0xe4cfc3],
-					[center, 910, 296, 0xe0c065],
+					// [center, 910, 296, 0xe0c065],
 					[left, 614, 294, 0xe3c366],
 					[left, 629, 293, 0xcaa454],
 					[right, 595, 344, 0xb9833b],
