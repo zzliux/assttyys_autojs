@@ -9,21 +9,23 @@ export class Func995 implements IFuncOrigin {
 	id = 995;
 	name = '结界卡更换';
 	desc = '';
-	config = [
-		{
-			desc: '',
-			config: [
-				{
-					name: 'change_enchantment_type',
-					desc: '更换结界卡的所属类型',
-					type: 'list',
-					data: ['太鼓', '斗鱼'],
-					default: '太鼓',
-					value: '太鼓',
-				},
-			],
-		},
-	];
+	config = [{
+		desc: '',
+		config: [{
+			name: 'change_enchantment_type',
+			desc: '更换结界卡的所属类型',
+			type: 'list',
+			data: ['太鼓', '斗鱼'],
+			default: '太鼓',
+			value: '太鼓',
+		}, {
+			name: 'next_scheme',
+			desc: '执行完成后的操作',
+			type: 'scheme',
+			default: '返回庭院',
+			value: '返回庭院',
+		}]
+	}];
 	operator: IFuncOperatorOrigin[] = [
 		{ //	0 判断_是否为己方结界
 			desc: [1280, 720,
@@ -335,7 +337,7 @@ export class Func995 implements IFuncOrigin {
 				console.log('更换完毕');
 				thisScript.regionClick([thisOperator[3].oper[0]]); // 关闭
 				thisScript.doPush(thisScript, { text: '更换完毕，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-				thisScript.stop();
+				thisScript.rerun(thisconf.next_scheme);
 				sleep(3000);
 				return true;
 			}

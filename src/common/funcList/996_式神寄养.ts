@@ -25,7 +25,7 @@ export class Func996 implements IFuncOrigin {
 			type: 'scheme',
 			default: '返回庭院',
 			value: '返回庭院',
-		},]
+		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [
 		{ //	0 判断_是否为己方结界
@@ -172,7 +172,6 @@ export class Func996 implements IFuncOrigin {
 					[right, 1174, 564, 0x5f5847],
 					[center, 689, 544, 0xf4b25f],
 					[center, 583, 546, 0xdf6851],
-					[left, 64, 637, 0x18173d],
 					[left, 35, 46, 0x616467],
 				],
 			],
