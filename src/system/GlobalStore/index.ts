@@ -114,8 +114,6 @@ export type globalRootType = {
 	zhenShe: number, // 真蛇
 	sneak_level_open: boolean, // 选择层数
 	day_chouKa: boolean, // 每日抽卡
-	jietu: boolean, // 截图
-
 }
 
 export const globalRoot: globalRootType = {
@@ -233,17 +231,18 @@ export const globalRoot: globalRootType = {
 	sneak_level_open: true,
 	day_chouKa: true,
 	qiling_shop: false,
-	jietu: true, // 截图开关
 }
 
 export type superGlobalRootType = {
 	liao_activity_Swith: Record<string, boolean>, // 寮活动记录
 	next_scheme_name: string, // 中转后的下个方案
 	daoguan_lose: boolean, // 记录道馆第一次失败
+	runTime: number, // 记录结界卡时间
 }
 
 export const superGlobalRoot: superGlobalRootType = {
 	liao_activity_Swith: undefined,
 	next_scheme_name: null,
 	daoguan_lose: true,
+	runTime: 0,
 }

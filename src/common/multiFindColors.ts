@@ -1289,7 +1289,6 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				]
 			],
 		],
-		similar: 95
 	},
 	'金币妖怪_金币妖怪字样': {
 		region: [left, 1280, 720, 128, 103, 371, 682],
@@ -1957,18 +1956,17 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		]
 	},
 	'寄养狗粮_满级标识': {
-		region: [left, 1280, 720, 38, 226, 1251, 289],
+		region: [left, 1280, 720, 0, 0, 1280, 720],
 		desc: [
 			[
 				1280, 720,
 				[
-					[left, 68, 256, 0xe4b52f],
-					[left, 140, 258, 0x4d2d1e],
-					[left, 109, 205, 0x4e4e4e],
-					[left, 114, 461, 0x454545],
-					[left, 114, 450, 0xf8c67f],
-					[left, 69, 391, 0x6f6054],
-					[left, 163, 390, 0x6f6054],
+					[left, 282, 243, 0x382314],
+					[left, 272, 255, 0x2c160b],
+					[left, 283, 264, 0x351f13],
+					[left, 286, 252, 0xfaba18],
+					[left, 282, 256, 0xe7b42b],
+					[left, 282, 249, 0xe9ab14],
 				]
 			],
 		]
@@ -2738,6 +2736,29 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				[right, 1215, 465, 0x3d2925],
 				[right, 1207, 489, 0x3d2825],
 				[right, 1206, 476, 0x3e2926],
+			]
+		]],
+	},
+	'结界卡_无': {
+		region: [left, 1280, 720, 204, 163, 632, 608],
+		desc: [[
+			1280, 720,
+			[
+				[left, 242, 397, 0xd8c38d],
+				[left, 241, 401, 0x5f3d1f],
+				[left, 242, 423, 0x5e3a1f],
+				[center, 575, 427, 0xd6c9b9],
+				[center, 575, 449, 0xd6c9b9],
+			]
+		],
+		[
+			1280, 720,
+			[
+				[left, 242, 397, 0xd8c38d],
+				[left, 241, 401, 0x5f3d1f],
+				[left, 242, 423, 0x5e3a1f],
+				[center, 575, 427, 0xad9a82],
+				[center, 575, 449, 0xad9a82],
 			]
 		]],
 	},

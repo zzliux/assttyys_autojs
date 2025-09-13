@@ -406,7 +406,7 @@ export function doPush(thisScript: Script, options: {
 	const pushClient = getPushClient();
 	if (!pushClient) {
 		console.log('未配置推送类型，不推送');
-		thisScript.myNotification('未配置推送类型', '请在设置中配置推送类型');
+		thisScript.myNotification('Assttyys通知', options.text);
 		return;
 	}
 	console.log(`尝试使用${pushClient.name}推送`);

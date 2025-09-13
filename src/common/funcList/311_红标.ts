@@ -208,14 +208,6 @@ export class Func311 implements IFuncOrigin {
 							log('点击式神位置')
 							thisScript.regionClick([oper]);
 							thisScript.global.redFlag = true;
-						} else if (thisScript.global.jietu) {
-							const now = new Date().getTime();
-							const ajImg = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(thisScript.helperBridge.helper.GetBitmap());
-							const path = `/sdcard//Pictures/批量截图/${now}.png`;
-							files.ensureDir(path);
-							ajImg.saveTo(path);
-							ajImg.recycle();
-							thisScript.global.jietu = false;
 						}
 						return true;
 					}
@@ -253,14 +245,6 @@ export class Func311 implements IFuncOrigin {
 							log('点击式神位置')
 							thisScript.regionClick([oper]);
 							thisScript.global.redFlag = true;
-						} else if (thisScript.global.jietu) {
-							const now = new Date().getTime();
-							const ajImg = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(thisScript.helperBridge.helper.GetBitmap());
-							const path = `/sdcard//Pictures/批量截图/${now}.png`;
-							files.ensureDir(path);
-							ajImg.saveTo(path);
-							ajImg.recycle();
-							thisScript.global.jietu = false;
 						}
 						return true;
 					}

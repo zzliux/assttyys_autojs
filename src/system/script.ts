@@ -19,6 +19,7 @@ import { IScheme } from '@/interface/IScheme';
 import { IMultiDetectColors, IMultiFindColors } from '@/interface/IMultiColor';
 import { globalRoot, globalRootType } from '@/system/GlobalStore/index';
 import { superGlobalRoot, superGlobalRootType } from '@/system/GlobalStore/index';
+import { sharedData } from '@/system/Schedule/index';
 import schedule, { Job } from '@/system/Schedule';
 import { MyFloaty } from '@/system/MyFloaty';
 import ncnnBgyx from '@/system/ncnn/ncnnBgyx';
@@ -166,10 +167,7 @@ export class Script {
 				.replace(/[sS]/g, '5')
 				.replace(/[oO]/g, '0')
 				.replace(/[zZ]/g, '2');
-			if (item.label.match(/^\d+$/)) {
-				return true;
-			}
-			return false;
+			return item
 		});
 	}
 
@@ -958,9 +956,10 @@ export class Script {
 	}
 }
 
-const script = new Script();
+export const script = new Script();
 
 events.broadcast.on('SCRIPT_STOP', () => {
+	sharedData.runTime = script.superGlobal.runTime;
 	script.superGlobal = merge({}, superGlobalRoot)
 	script._stop();
 });
