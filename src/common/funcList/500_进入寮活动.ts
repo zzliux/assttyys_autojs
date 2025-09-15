@@ -144,35 +144,32 @@ export class Func500 implements IFuncOrigin {
 			/** oper: [ // 识别到还是别点击了
 				[left, 1280, 720, 17, 140, 1244, 583, -1],  // 道馆出现方位
 			]*/
-		}, { // 3 检查_狩猎战是否开启
+		}, { // 3 进入_狩猎战
 			desc: [1280, 720,
 				[
-					[left, 244, 469, 0xc47f7e],
-					[left, 273, 485, 0xc95757],
-					[left, 260, 519, 0x735162],
-					[center, 362, 420, 0xfc0c0c],
-					[center, 355, 419, 0xfe1515],
-					[center, 346, 483, 0xc2ac91]
+					[left, 232, 477, 0xfdfdfb],
+					[left, 261, 474, 0xf7a897],
+					[left, 277, 478, 0xd66363],
+					[left, 288, 500, 0xbe6b76],
+					[left, 236, 502, 0xcb808b],
+					[left, 260, 516, 0xaa909c],
 				]
 			],
 			oper: [
-				[left, 1280, 720, 155, 417, 365, 574, 1000]
+				[center, 1280, 720, 182, 433, 346, 546, 1000],
 			]
-		}, { // 4 检测_狩猎战鬼王集结点
-			desc: [
-				1280, 720,
+		}, { // 4 检测_狩猎战内
+			desc: [1280, 720,
 				[
-					[center, 590, 40, 0x5c6887],
-					[right, 1155, 622, 0x2c160e],
-					[center, 720, 24, 0xebd798],
-					[center, 761, 20, 0xe4ce8a],
-					[left, 68, 61, 0xc5cce1],
+					[left, 35, 592, 0x8a6138],
+					[left, 112, 594, 0x664b30],
+					[left, 139, 590, 0x5b452c],
+					[left, 175, 603, 0x966f47],
+					[right, 1172, 457, 0xf2d7b7],
+					[right, 1199, 476, 0xffeed7],
 				]
 			],
-			oper: [
-				[right, 1280, 720, 1068, 602, 1268, 680, 1200]  // 点击鬼王集结点，固定地图右下角
-			]
-		}, { // 5 检测_是否为狩猎战挑战奉献榜场景_待开始
+		}, { // 5 检测_是否为狩猎战挑战奉献榜场景_待开始（弃用）
 			desc: [1280, 720,
 				[
 					[right, 1104, 568, 0xd7bfa5],
@@ -346,30 +343,38 @@ export class Func500 implements IFuncOrigin {
 			thisScript.myToast('首次进入寮神社界面，退出重进');
 			return true;
 		}
-		// 狩猎战判断
-		if (thisScript.superGlobal.liao_activity_Swith['a_ctivity_hunt']) {
-			if ([1, 2, 3, 4].includes(nowDay) && nowHour >= 18 && nowHour < 21) { // 判断星期一二三四,是否在18-21点(18时为误差,有人18:55开启定时)
-				if (thisScript.oper({
-					name: '检测_狩猎战',
-					operator: [thisOperator[3], thisOperator[4]],
-				})) {
-					return true;
-				}
-				if (thisScript.oper({
-					name: '检测_是否在狩猎战界面',
-					operator: [thisOperator[5]],
-				})) {
-					const next_scheme = thisconf.a_ctivity_hunt_select;
-					// 关闭开关 传参 切换到狩猎战
+		// 狩猎战判断(其他开关为关时)
+		if (thisScript.oper({
+			id: 500,
+			name: '寮神社界面',
+			operator: [{ desc: thisOperator[11].desc }]
+		})) {
+			if (thisScript.superGlobal.liao_activity_Swith['a_ctivity_hunt'] && Object.entries(thisScript.superGlobal.liao_activity_Swith).every(
+				([key, value]) => ['a_ctivity_gateOfHades', 'a_ctivity_hunt'].includes(key) || value === false
+			)) {
+				if ([1, 2, 3, 4].includes(nowDay) && nowHour >= 5 && nowHour < 23) { // 判断星期一二三四,是否在5-23点(5时为误差,有人5:55开启定时)
+					if (thisScript.oper({
+						name: '检测_狩猎战',
+						operator: [thisOperator[3]],
+					})) {
+						return true;
+					}
+					if (thisScript.oper({
+						name: '检测_是否在狩猎战界面',
+						operator: [thisOperator[4]],
+					})) {
+						const next_scheme = thisconf.a_ctivity_hunt_select;
+						// 关闭开关 传参 切换到狩猎战
+						thisScript.superGlobal.liao_activity_Swith['a_ctivity_hunt'] = false;
+						thisScript.rerun(next_scheme);
+						return true;
+					}
+				} else {
+					console.log('狩猎战 不在时间段内');
 					thisScript.superGlobal.liao_activity_Swith['a_ctivity_hunt'] = false;
-					thisScript.rerun(next_scheme);
-					return true;
 				}
-			} else {
-				console.log('狩猎战 不在时间段内');
-				thisScript.superGlobal.liao_activity_Swith['a_ctivity_hunt'] = false;
-			}
 
+			}
 		}
 		// 阴门判断(其他开关为关时)
 		if (thisScript.oper({
@@ -377,8 +382,10 @@ export class Func500 implements IFuncOrigin {
 			name: '寮神社界面',
 			operator: [{ desc: thisOperator[11].desc }]
 		})) {
-			if (Object.entries(thisScript.superGlobal.liao_activity_Swith).every(([key, value]) => key === 'a_ctivity_gateOfHades' ? true : value === false
-			)) {
+			if (thisScript.superGlobal.liao_activity_Swith['a_ctivity_gateOfHades'] &&
+				Object.entries(thisScript.superGlobal.liao_activity_Swith).every(
+					([key, value]) => key === 'a_ctivity_gateOfHades' || value === false
+				)) {
 				if ((nowDay === 0 || nowDay === 5 || nowDay === 6) && nowHour >= 19 && nowHour < 23) {// 判断星期五六七是否在19-23点
 					// 关闭开关 切换到阴门
 					thisScript.superGlobal.liao_activity_Swith['a_ctivity_gateOfHades'] = false;
@@ -586,12 +593,11 @@ export class Func500 implements IFuncOrigin {
 				sleep(r);
 				return true;
 			} else {
-				thisScript.myToast('执行次数完毕,检查阴界之门')
+				thisScript.myToast('执行次数完毕,检查狩猎战或阴界之门')
 				thisScript.superGlobal.liao_activity_Swith = {
 					...thisScript.superGlobal.liao_activity_Swith,
 					'a_ctivity_dojo': false,
 					'a_ctivity_dojo_again': false,
-					'a_ctivity_hunt': false,
 					'a_ctivity_narrow': false,
 					'a_ctivity_banquet': false,
 					'a_ctivity_huntBoss': false,

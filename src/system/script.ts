@@ -683,7 +683,7 @@ export class Script {
 			if (typeof this.stopCallback === 'function') {
 				this.stopCallback();
 			}
-			if (!flag) {
+			if (!flag && !script.isPause) {
 				this.schemeHistory = [];
 			}
 			console.log('job:' + this.job?.name);
@@ -960,7 +960,9 @@ export const script = new Script();
 
 events.broadcast.on('SCRIPT_STOP', () => {
 	sharedData.runTime = script.superGlobal.runTime;
-	script.superGlobal = merge({}, superGlobalRoot)
+	if (!script.isPause) {
+		script.superGlobal = merge({}, superGlobalRoot)
+	}
 	script._stop();
 });
 

@@ -1288,6 +1288,15 @@ const multiFindColors: IMultiFindColorsOrigin = {
 					[left, 282, 271, 0xf7e6c4]
 				]
 			],
+			[1280, 720,
+				[
+					[left, 253, 349, 0xf3deab],
+					[left, 257, 355, 0xe1c383],
+					[left, 264, 353, 0xf4dead],
+					[left, 255, 368, 0xdfc484],
+					[left, 276, 351, 0xf8e3ae],
+				]
+			],
 		],
 	},
 	'金币妖怪_金币妖怪字样': {
