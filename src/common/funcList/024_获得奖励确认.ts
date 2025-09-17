@@ -49,18 +49,17 @@ export class Func024 implements IFuncOrigin {
 			[center, 1280, 720, 1042, 176, 1187, 585, 500],
 		]
 	}, { // 雪御前boss
-	desc: [1280, 720,
-		[
-			[center, 1220, 38, 0xe8d3d0],
-			[center, 1212, 31, 0xe9d4d1],
-			[center, 1229, 33, 0xe7d3ce],
-			[center, 1221, 26, 0xa66090],
-			[center, 1222, 54, 0xad5796],
+		desc: [1280, 720,
+			[
+				[center, 1220, 38, 0xe8d3d0],
+				[center, 1212, 31, 0xe9d4d1],
+				[center, 1229, 33, 0xe7d3ce],
+				[center, 1221, 26, 0xa66090],
+				[center, 1222, 54, 0xad5796],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1215, 32, 1230, 50, 1000],
 		]
-	],
-	oper: [
-		[center, 1280, 720, 1215, 32, 1230, 50, 1000],
-	]
-}]
-
+	}]
 }
