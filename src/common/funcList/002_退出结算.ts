@@ -290,19 +290,18 @@ export class Func002 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1110, 362, 1222, 493, 1000],
 		]
-	}, { // 26 卑弥呼boss结算
+	}, { // 26 活动boss结算
 		desc: [1280, 720,
 			[
-				[center, 1178, 71, 0xe9d3cf],
-				[center, 1186, 65, 0x7d3556],
-				[center, 1197, 89, 0xe8d3ce],
-				[center, 1187, 613, 0xebd993],
-				[center, 1202, 605, 0x1b140f],
-				[center, 1177, 653, 0xdec26f],
+				[right, 1207, 39, 0xa84c79],
+				[right, 1219, 38, 0xe9d4d0],
+				[right, 1220, 24, 0xa46695],
+				[right, 1228, 33, 0xe9d4cf],
+				[right, 1234, 40, 0xa955b3],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1176, 68, 1199, 93, 1000],
+			[center, 1280, 720, 1203, 26, 1241, 55, 1000],
 		]
 	}, { // 27  左下统计图标
 		desc: [1280, 720,
