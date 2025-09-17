@@ -311,13 +311,9 @@ export class Func304 implements IFuncOrigin {
 				}
 				thisScript.myToast(`绘卷刷新CD, ${(cd / 1000)}秒后再次检测`);
 				sleep(cd);
+				thisScript.regionClick([thisOperator[1].oper[0]]);
+				return true;
 			}
-			thisScript.oper({
-				name: '绘卷进度界面关闭',
-				operator: [{
-					oper: [thisOperator[1].oper[0]]
-				}]
-			})
 		}
 		if (thisScript.oper({
 			name: '绘卷进度界面',
