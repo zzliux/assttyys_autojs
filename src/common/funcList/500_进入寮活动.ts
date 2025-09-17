@@ -165,8 +165,8 @@ export class Func500 implements IFuncOrigin {
 					[left, 112, 594, 0x664b30],
 					[left, 139, 590, 0x5b452c],
 					[left, 175, 603, 0x966f47],
-					[right, 1172, 457, 0xf2d7b7],
-					[right, 1199, 476, 0xffeed7],
+					[right, 884, 661, 0xfff3f6],
+					[right, 1061, 650, 0xfff2f2],
 				]
 			],
 		}, { // 5 检测_是否为狩猎战挑战奉献榜场景_待开始（弃用）
@@ -344,37 +344,31 @@ export class Func500 implements IFuncOrigin {
 			return true;
 		}
 		// 狩猎战判断(其他开关为关时)
-		if (thisScript.oper({
-			id: 500,
-			name: '寮神社界面',
-			operator: [{ desc: thisOperator[11].desc }]
-		})) {
-			if (thisScript.superGlobal.liao_activity_Swith['a_ctivity_hunt'] && Object.entries(thisScript.superGlobal.liao_activity_Swith).every(
-				([key, value]) => ['a_ctivity_gateOfHades', 'a_ctivity_hunt'].includes(key) || value === false
-			)) {
-				if ([1, 2, 3, 4].includes(nowDay) && nowHour >= 5 && nowHour < 23) { // 判断星期一二三四,是否在5-23点(5时为误差,有人5:55开启定时)
-					if (thisScript.oper({
-						name: '检测_狩猎战',
-						operator: [thisOperator[3]],
-					})) {
-						return true;
-					}
-					if (thisScript.oper({
-						name: '检测_是否在狩猎战界面',
-						operator: [thisOperator[4]],
-					})) {
-						const next_scheme = thisconf.a_ctivity_hunt_select;
-						// 关闭开关 传参 切换到狩猎战
-						thisScript.superGlobal.liao_activity_Swith['a_ctivity_hunt'] = false;
-						thisScript.rerun(next_scheme);
-						return true;
-					}
-				} else {
-					console.log('狩猎战 不在时间段内');
-					thisScript.superGlobal.liao_activity_Swith['a_ctivity_hunt'] = false;
+		if (thisScript.superGlobal.liao_activity_Swith['a_ctivity_hunt'] && Object.entries(thisScript.superGlobal.liao_activity_Swith).every(
+			([key, value]) => ['a_ctivity_gateOfHades', 'a_ctivity_hunt'].includes(key) || value === false
+		)) {
+			if ([1, 2, 3, 4].includes(nowDay) && nowHour >= 5 && nowHour < 23) { // 判断星期一二三四,是否在5-23点(5时为误差,有人5:55开启定时)
+				if (thisScript.oper({
+					name: '检测_狩猎战',
+					operator: [thisOperator[3]],
+				})) {
+					return true;
 				}
-
+				if (thisScript.oper({
+					name: '检测_是否在狩猎战界面',
+					operator: [thisOperator[4]],
+				})) {
+					const next_scheme = thisconf.a_ctivity_hunt_select;
+					// 关闭开关 传参 切换到狩猎战
+					thisScript.superGlobal.liao_activity_Swith['a_ctivity_hunt'] = false;
+					thisScript.rerun(next_scheme);
+					return true;
+				}
+			} else {
+				console.log('狩猎战 不在时间段内');
+				thisScript.superGlobal.liao_activity_Swith['a_ctivity_hunt'] = false;
 			}
+
 		}
 		// 阴门判断(其他开关为关时)
 		if (thisScript.oper({

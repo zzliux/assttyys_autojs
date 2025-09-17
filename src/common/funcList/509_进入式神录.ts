@@ -71,20 +71,18 @@ export class Func509 implements IFuncOrigin {
 		]
 	},
 	{
-		desc: //	狩猎
+		desc: [1280, 720,
 			[
-				1280, 720,
-				[
-					[left, 47, 31, 0xd7c5a2],
-					[left, 108, 24, 0xd7c5a2],
-					[left, 181, 23, 0xd6c5a4],
-					[center, 930, 659, 0xe3d8d8],
-					[center, 940, 679, 0x493a38],
-					[right, 984, 621, 0xebb552],
-				]
-			],
+				[right, 1034, 658, 0x534742],
+				[right, 1046, 649, 0xfcecec],
+				[right, 1061, 649, 0xfff0ef],
+				[right, 1047, 667, 0xfff5f5],
+				[right, 1062, 667, 0xfff4f4],
+				[right, 1050, 676, 0x765e45],
+			]
+		],
 		oper: [
-			[center, 1280, 720, 922, 628, 993, 681, 1200]	//	点击_式神
+			[center, 1280, 720, 1034, 638, 1066, 669, 1000],
 		]
 	},
 	{
