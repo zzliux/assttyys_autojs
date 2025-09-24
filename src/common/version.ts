@@ -1374,6 +1374,9 @@ export const versionList = [{
 }, {
 	version: '20250911_01',
 	desc: 'fix: 修复组队场景，修复狩猎战'
+}, {
+	version: '20250924_01',
+	desc: 'fix: 修复组队识别三人'
 }];
 
 export default versionList[versionList.length - 1].version;
