@@ -524,11 +524,11 @@ export class Func500 implements IFuncOrigin {
 			})) {
 				const point = thisScript.findMultiColor('道馆集结')
 				if (point) {
-					const oper = [ // 175,414--176,273--318,405
-						point.x, // 175
-						point.y - 150, // 264
-						point.x + 150, // 325
-						point.y - 10, // 404
+					const oper = [
+						point.x + 70,
+						point.y - 110,
+						point.x + 120,
+						point.y - 80,
 						1000
 					];
 					thisScript.regionClick([oper]);
