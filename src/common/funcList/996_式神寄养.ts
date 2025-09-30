@@ -169,7 +169,6 @@ export class Func996 implements IFuncOrigin {
 				[
 					[center, 527, 279, 0xcbb59e],
 					[center, 489, 159, 0x9e866e],
-					[right, 1174, 564, 0x5f5847],
 					[center, 689, 544, 0xf4b25f],
 					[center, 583, 546, 0xdf6851],
 					[left, 35, 46, 0x616467],
@@ -200,7 +199,6 @@ export class Func996 implements IFuncOrigin {
 					[center, 502, 658, 0x5c4041],
 					[right, 728, 659, 0x583d3b],
 					[right, 930, 656, 0x3a2725],
-					[right, 1169, 563, 0xe9d7b2],
 					[left, 33, 48, 0xf0f5fc],
 				]
 			],
@@ -220,13 +218,12 @@ export class Func996 implements IFuncOrigin {
 			return true;
 		}
 		if (!thisScript.global.jy_enchantment_index) {
-			console.log('刷新式神寄养列表');
 			if (thisScript.oper({
 				id: 996,
 				name: '当前为列表顶部,拖拽至列表最底部',
 				operator: [{ desc: thisOperator[3].desc }]
 			})) {
-				thisScript.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [700, 800], 200);
+				thisScript.regionSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [700, 800], 200);
 				return true;
 			}
 			if (thisScript.oper({
@@ -243,8 +240,8 @@ export class Func996 implements IFuncOrigin {
 			})) {
 				thisScript.global.jy_enchantment_index = 1;
 				sleep(1000);
+				return true;
 			}
-			return true;
 		}
 		if (thisScript.oper({
 			id: 996,
@@ -334,7 +331,7 @@ export class Func996 implements IFuncOrigin {
 						return true;
 					}
 				} else {
-					thisScript.regionBezierSwipe(thisOperator[2].oper[2], thisOperator[2].oper[3], [1000, 1100], 1000);
+					thisScript.regionSwipe(thisOperator[2].oper[2], thisOperator[2].oper[3], [1000, 1100], 1000);
 					return true;
 				}
 			}
