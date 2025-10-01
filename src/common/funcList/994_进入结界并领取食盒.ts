@@ -82,7 +82,6 @@ export class Func994 implements IFuncOrigin {
 					[right, 1084, 83, 0xa7371d],
 					[right, 1184, 203, 0x525252],
 					[right, 968, 204, 0x505150],
-					[right, 1171, 564, 0xe5d4ab],
 					[right, 1127, 715, 0x3e2d1c],
 					[right, 1185, 152, 0x414141],
 				],
@@ -249,15 +248,15 @@ export class Func994 implements IFuncOrigin {
 			})) {
 				return true;
 			}
-			if (thisScript.oper({
+			if (thisScript.global.shiHe_jingYan) {
+				log('食盒经验已达上限，不再领取');
+				return false;
+			} else if (thisScript.oper({
 				id: 994,
 				name: '获取经验奖励',
 				operator: [thisOperator[9]]
 			})) {
-				if (thisScript.global.shiHe_jingYan) {
-					log('食盒经验已达上限，不再领取');
-					return false;
-				}
+
 				change();
 				return true;
 			}

@@ -137,7 +137,6 @@ export class Func995 implements IFuncOrigin {
 					[right, 1084, 83, 0xa7371d],
 					[right, 1184, 203, 0x525252],
 					[right, 968, 204, 0x505150],
-					[right, 1171, 564, 0xe5d4ab],
 					[right, 1127, 715, 0x3e2d1c],
 					[right, 1185, 152, 0x414141],
 				],
@@ -359,7 +358,7 @@ export class Func995 implements IFuncOrigin {
 				}
 				if (thisScript.oper({
 					id: 995,
-					name: '判断_是否为己方结界_点击式神育成',
+					name: '判断_是否为己方结界',
 					operator: [
 						{ desc: thisOperator[7].desc },
 					],
