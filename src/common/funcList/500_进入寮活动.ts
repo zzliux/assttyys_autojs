@@ -147,16 +147,15 @@ export class Func500 implements IFuncOrigin {
 		}, { // 3 进入_狩猎战
 			desc: [1280, 720,
 				[
-					[left, 232, 477, 0xfdfdfb],
-					[left, 261, 474, 0xf7a897],
-					[left, 277, 478, 0xd66363],
-					[left, 288, 500, 0xbe6b76],
-					[left, 236, 502, 0xcb808b],
-					[left, 260, 516, 0xaa909c],
+					[left, 242, 487, 0xf99184],
+					[left, 262, 487, 0xf9ad9b],
+					[left, 287, 486, 0xfcfaf7],
+					[left, 288, 510, 0xbe6c77],
+					[left, 237, 515, 0xcf838e],
 				]
 			],
 			oper: [
-				[center, 1280, 720, 182, 433, 346, 546, 1000],
+				[center, 1280, 720, 203, 449, 343, 554, 1000],
 			]
 		}, { // 4 检测_狩猎战内
 			desc: [1280, 720,
