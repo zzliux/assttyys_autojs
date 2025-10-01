@@ -1380,6 +1380,9 @@ export const versionList = [{
 }, {
 	version: '20251001_01',
 	desc: 'fix: 修复道馆 狩猎 寄养'
+}, {
+	version: '20251002_01',
+	desc: 'fix: 修复寮突破；优化511 式神录预设_翻页，检索预设时会多次返回顶部；优化508逢魔首领boss检索逻辑'
 }];
 
 export default versionList[versionList.length - 1].version;

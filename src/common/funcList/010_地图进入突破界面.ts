@@ -24,7 +24,7 @@ export class Func010 implements IFuncOrigin {
 		desc: '探索地图界面',
 		oper: [
 			[left, 1280, 720, 244, 641, 310, 704, 1500],
-			[center, 1280, 720, 1210, 366, 1254, 453, 1500]
+			[center, 1280, 720, 1210, 405, 1254, 509, 1500]
 		]
 	}, {
 		desc: [1280, 720,

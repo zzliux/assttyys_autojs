@@ -16,7 +16,7 @@ export class Func508 implements IFuncOrigin {
 	config = [
 		{
 			desc: '是否开启极',
-			config: [ {
+			config: [{
 				name: 'switch_ji_enabled',
 				desc: '是否启用逢魔·极',
 				type: 'switch',
@@ -223,6 +223,16 @@ export class Func508 implements IFuncOrigin {
 
 		if (
 			thisScript.oper({
+				id: 508,
+				name: '检测_是否找到逢魔首领',
+				operator: [thisOperator[1], thisOperator[10]],
+			})
+		) {
+			return true;
+		}
+
+		if (
+			thisScript.oper({
 				name: '检测_首领BOSS挑战页',
 				operator: [{
 					desc: thisOperator[2].desc,
@@ -256,9 +266,9 @@ export class Func508 implements IFuncOrigin {
 					}],
 				});
 
-				sleep(150);
+				sleep(1000);
 			} else {
-				sleep(150);
+				sleep(1000);
 				if (!thisScript.global.checked_yard_count) {
 					thisScript.global.checked_yard_count = 1;
 				} else {
@@ -269,15 +279,6 @@ export class Func508 implements IFuncOrigin {
 			return true;
 		}
 
-		if (
-			thisScript.oper({
-				id: 508,
-				name: '检测_是否找到逢魔首领',
-				operator: [thisOperator[1], thisOperator[10]],
-			})
-		) {
-			return true;
-		}
 
 		if (
 			thisScript.oper({
