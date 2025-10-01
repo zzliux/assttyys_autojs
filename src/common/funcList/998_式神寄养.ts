@@ -165,9 +165,9 @@ export class Func998 implements IFuncOrigin {
 					[right, 1084, 83, 0xa7371d],
 					[right, 1184, 203, 0x525252],
 					[right, 968, 204, 0x505150],
-					[right, 1171, 564, 0xe5d4ab],
 					[right, 1127, 715, 0x3e2d1c],
 					[right, 1185, 152, 0x414141],
+					[right, 1171, 607, 0xe7d4af],
 				],
 			],
 			oper: [

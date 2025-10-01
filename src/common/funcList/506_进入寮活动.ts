@@ -29,16 +29,15 @@ export class Func506 implements IFuncOrigin {
 	}];
 	operator: IFuncOperatorOrigin[] = [
 		{  // 0 已适配66 检查_道馆是否已开启
-			desc: [
-				1280, 720,
+			desc: [1280, 720,
 				[
 					[left, 42, 31, 0xf4e4a4],
-					[center, 736, 237, 0x403d38],
-					[center, 766, 235, 0xaf3a31],
-					[center, 760, 245, 0xe3e0da],
-					[center, 612, 211, 0x261b15],
-					[center, 588, 224, 0x34231c],
-					[center, 600, 257, 0x271818],
+					[center, 588, 224, 0x412b1e],
+					[left, 8, 225, 0x40332f],
+					[center, 605, 332, 0xb29e83],
+					[center, 532, 268, 0xd6d0bc],
+					[center, 508, 292, 0xa87d41],
+					[center, 610, 227, 0x251b14],
 				]
 			],
 			oper: [
@@ -95,12 +94,12 @@ export class Func506 implements IFuncOrigin {
 		}, { // 4 检查_狩猎战是否开启
 			desc: [1280, 720,
 				[
-					[left, 244, 469, 0xc47f7e],
-					[left, 273, 485, 0xc95757],
-					[left, 260, 519, 0x735162],
-					[center, 362, 420, 0xfc0c0c],
-					[center, 355, 419, 0xfe1515],
-					[center, 346, 483, 0xc2ac91]
+					[left, 244, 469, 0xbda88d],
+					[center, 346, 483, 0xbeab91],
+					[center, 360, 435, 0xe80000],
+					[left, 260, 491, 0xffbda6],
+					[left, 232, 511, 0xca808b],
+					[left, 267, 581, 0xb3a085],
 				]
 			],
 			oper: [
