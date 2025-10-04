@@ -140,17 +140,15 @@ export class Func998 implements IFuncOrigin {
 		},
 		{
 			//	6 检测_寄养的式神是否已经寄养结束
-			desc: [
-				1280,
-				720,
+			desc: [1280, 720,
 				[
 					[left, 40, 35, 0xeff5fb],
-					[right, 1175, 564, 0xecdbb2],
 					[left, 151, 695, 0x4d2f20],
-					[right, 1075, 86, 0xaa3620],
-					[right, 1166, 137, 0xd0a76d],
-					[right, 1197, 128, 0xf3d793],
-				],
+					[right, 1166, 137, 0xd4aa71],
+					[right, 1197, 128, 0xf3d48e],
+					[right, 1172, 601, 0xe5d2ae],
+					[right, 1074, 84, 0xa7371f],
+				]
 			],
 			oper: [
 				[right, 1280, 720, 1147, 49, 1222, 132, 1200], // 点击寄养的式神

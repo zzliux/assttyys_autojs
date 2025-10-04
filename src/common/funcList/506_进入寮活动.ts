@@ -44,32 +44,29 @@ export class Func506 implements IFuncOrigin {
 				[center, 1280, 720, 407, 169, 608, 322, 1200]	// 打开道馆
 			]
 		}, { // 1 已适配66 检查_首领退治是否已开启
-			desc: [
-				1280, 720,
+			desc: [1280, 720,
 				[
 					[left, 42, 31, 0xf4e4a4],
-					[center, 736, 237, 0x403d38],
-					[center, 766, 235, 0xaf3a31],
-					[center, 760, 245, 0xe3e0da],
-					[center, 842, 198, 0xffdd66],
-					[center, 837, 216, 0x3c291d],
-					[center, 857, 232, 0x352117],
-					[center, 851, 197, 0x453022],
-					[center, 854, 193, 0x4c3422],
+					[right, 760, 255, 0xe2dfda],
+					[right, 820, 276, 0xdebce4],
+					[right, 702, 265, 0xe0bfe5],
+					[right, 755, 285, 0x4c4943],
+					[right, 857, 237, 0x2b1d15],
+					[right, 836, 240, 0x30221b],
+					[right, 767, 246, 0xb03a32],
 				]
 			],
 			oper: [
 				[center, 1280, 720, 656, 177, 855, 322, 1200]	// 打开首领退治
 			]
 		}, { // 2 检查_宴会是否已开启
-			desc: [
-				1280, 720,
+			desc: [1280, 720,
 				[
 					[right, 1099, 212, 0x4a3627],
-					[right, 1036, 265, 0x7e1818],
-					[right, 1043, 291, 0xf6b2b2],
-					[right, 988, 286, 0x93211f],
-					[center, 946, 228, 0x3f2c19],
+					[right, 935, 231, 0x96ac94],
+					[right, 996, 280, 0xb23736],
+					[right, 1035, 293, 0xfda7a7],
+					[right, 1071, 248, 0x8e2020],
 				]
 			],
 			oper: [
@@ -189,17 +186,17 @@ export class Func506 implements IFuncOrigin {
 						[center, 713, 25, 0xe3d698],
 					]
 				]
-		}, { //	11 检测_狭间暗域
+		}, { //	11 检测_狭间暗域是否已开启
 			desc:
-				[
-					1280, 720,
+				[1280, 720,
 					[
-						[center, 848, 535, 0x422d1e],
-						[center, 826, 496, 0xcbb497],
-						[center, 687, 505, 0xcab596],
-						[center, 778, 560, 0x442f47],
-						[center, 684, 615, 0xb9a489],
-						[center, 866, 573, 0x734e25],
+						[right, 847, 537, 0x32231c],
+						[right, 870, 525, 0x271b15],
+						[right, 760, 555, 0x473049],
+						[right, 741, 553, 0x31282c],
+						[right, 684, 501, 0xc7b396],
+						[right, 859, 613, 0xb4a085],
+						[right, 715, 556, 0xbd727b],
 					]
 				],
 			oper: [
@@ -225,16 +222,16 @@ export class Func506 implements IFuncOrigin {
 				[left, 1280, 720, 25, 10, 75, 54, 1000],     //  寮活动 返回区域
 			]
 		}, { // 14 检查_阴门是否开启
-			desc: [
-				1280, 720,
+			desc: [1280, 720,
 				[
-					[center, 346, 483, 0xc2ac91],
-					[left, 262, 393, 0x331e1d],
-					[left, 169, 425, 0xcdb697],
-					[left, 280, 504, 0xe3c7e8],
-					[left, 220, 492, 0xcb90e4],
-					[left, 256, 466, 0xb5573a],
-					[left, 273, 520, 0xead2ec],
+					[left, 171, 549, 0xb5a186],
+					[left, 242, 414, 0xc9b18f],
+					[center, 346, 555, 0xb29e83],
+					[left, 241, 510, 0xe0c4e5],
+					[left, 254, 477, 0xb8583c],
+					[left, 282, 516, 0xe0c5e6],
+					[left, 262, 544, 0xe788c6],
+					[left, 232, 475, 0x841212],
 				]
 			],
 			oper: [
