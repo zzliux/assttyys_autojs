@@ -423,7 +423,7 @@ export class Func032 implements IFuncOrigin {
 			thisScript.global.daoguan_team = true;
 			thisScript.global.shangyushe = true;
 			if (thisconf.manage && thisScript.oper({ name: '检测_小地图选道馆', operator: [{ desc: thisOperator[13].desc }] })) {// 寮管理不切换方案
-				return true;
+				return false;
 			} else {
 				thisScript.oper({
 					id: 32,
