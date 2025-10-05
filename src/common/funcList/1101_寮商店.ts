@@ -85,8 +85,8 @@ export class Func1101 implements IFuncOrigin {
 			[
 				[right, 1181, 411, 0xc78350],
 				[right, 1207, 413, 0xd17b47],
-				[center, 698, 522, 0x7e5e97],
-				[center, 760, 498, 0xb73a2e],
+				[right, 713, 530, 0x644979],
+				[right, 755, 512, 0xbe4032],
 			]
 		],
 		oper: [
