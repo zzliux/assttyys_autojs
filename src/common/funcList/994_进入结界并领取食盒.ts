@@ -82,7 +82,6 @@ export class Func994 implements IFuncOrigin {
 					[right, 1084, 83, 0xa7371d],
 					[right, 1184, 203, 0x525252],
 					[right, 968, 204, 0x505150],
-					[right, 1171, 564, 0xe5d4ab],
 					[right, 1127, 715, 0x3e2d1c],
 					[right, 1185, 152, 0x414141],
 				],
@@ -171,6 +170,19 @@ export class Func994 implements IFuncOrigin {
 				[center, 1280, 720, 40, 636, 90, 670, 700],
 				[center, 1280, 720, 39, 292, 86, 329, 1000],
 			]
+		}, { // 14 经验已满
+			desc: [1280, 720,
+				[
+					[center, 590, 478, 0xbce1f4],
+					[right, 692, 480, 0xbee2f4],
+					[left, 307, 494, 0xf9f9f1],
+					[center, 507, 465, 0xeddccb],
+					[center, 605, 390, 0xac380f],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 951, 144, 993, 185, 1000],
+			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -217,7 +229,6 @@ export class Func994 implements IFuncOrigin {
 			curCnt++;
 			thisScript.keepScreen(false);
 			if (curCnt >= maxCount) {
-				thisScript.global.jy_change_shikigami = 'change';
 				return thisScript.oper({
 					name: '点击结界',
 					operator: [{ oper: thisOperator[3].oper }]
@@ -237,11 +248,15 @@ export class Func994 implements IFuncOrigin {
 			})) {
 				return true;
 			}
-			if (thisScript.oper({
+			if (thisScript.global.shiHe_jingYan) {
+				log('食盒经验已达上限，不再领取');
+				return false;
+			} else if (thisScript.oper({
 				id: 994,
 				name: '获取经验奖励',
 				operator: [thisOperator[9]]
 			})) {
+
 				change();
 				return true;
 			}
@@ -315,6 +330,14 @@ export class Func994 implements IFuncOrigin {
 						thisScript.regionClick([thisOperator[7].oper[3]]);
 						break;
 					}
+				}
+				if (thisScript.oper({
+					id: 994,
+					name: '经验已满',
+					operator: [thisOperator[14]]
+				})) {
+					thisScript.global.shiHe_jingYan = true;
+					break;
 				}
 				curCnt++;
 				if (curCnt >= maxCount) {

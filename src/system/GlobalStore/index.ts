@@ -27,14 +27,7 @@ export type globalRootType = {
 	d6NextStation: string,
 	d6NxRefreshCnt: number,
 	d6NextEvent: string[],
-	jy_list_swipe_times: number,
-	jy_list_getTime_fault_count: number,
-	jy_friends_enchantment_waitingtime: number,
 	jy_enchantment_index: number,
-	jy_change_shikigami: 'change' | 'get_reward' | 'change_enchantment' | 'jy_flag',   //  寄养_是否更换养成式神(狗粮)  更换式神 | 获取奖励 | 更换结界卡 | 寄养
-	jy_experience_wine_pot_count: number,   //  寄养获取经验酒壶次数
-	jy_enchantment_experience_count: number,   //  寄养获取结界卡奖励次数
-	back_courtyard_to_next_scheme: string,
 	fm_kiss_boss_flag: boolean, //  逢魔 是否已击杀首领
 	fm_boss_btn_click_cnt: number, // 点击逢魔首领按钮次数
 	change_shikigami_flag: boolean, //  更换式神
@@ -63,7 +56,6 @@ export type globalRootType = {
 	buff_enable_page_flag: boolean; // 开启buff是否完成翻页
 	team_up_Time: number;   // 被邀请的次数
 	game_area: string;  //  游戏区域
-	operate_finish_flag: boolean;  // 寄养完成操作flag
 	preset_once_groupNum: number | null;     // 一次性修改的预设分组
 	preset_once_defaultNum: number | null;     // 一次性修改的预设阵容
 	preset_once_team_groupNum: number | null;     // 315预设阵容的预设分组
@@ -114,6 +106,7 @@ export type globalRootType = {
 	zhenShe: number, // 真蛇
 	sneak_level_open: boolean, // 选择层数
 	day_chouKa: boolean, // 每日抽卡
+	shiHe_jingYan: boolean, // 食盒经验领取上限
 }
 
 export const globalRoot: globalRootType = {
@@ -145,14 +138,7 @@ export const globalRoot: globalRootType = {
 	d6NextStation: undefined,
 	d6NxRefreshCnt: undefined,
 	d6NextEvent: undefined,
-	jy_list_swipe_times: 0,
-	jy_list_getTime_fault_count: 0,
-	jy_friends_enchantment_waitingtime: undefined,
 	jy_enchantment_index: 0,
-	jy_change_shikigami: 'change',
-	jy_experience_wine_pot_count: 0,
-	jy_enchantment_experience_count: 0,
-	back_courtyard_to_next_scheme: '',
 	fm_kiss_boss_flag: false,
 	fm_boss_btn_click_cnt: 0,
 	change_shikigami_flag: true,
@@ -179,7 +165,6 @@ export const globalRoot: globalRootType = {
 	buff_enable_page_flag: false,
 	team_up_Time: 0,
 	game_area: '',
-	operate_finish_flag: false,
 	preset_once_groupNum: null,
 	preset_once_defaultNum: null,
 	preset_once_team_groupNum: null,
@@ -231,6 +216,7 @@ export const globalRoot: globalRootType = {
 	sneak_level_open: true,
 	day_chouKa: true,
 	qiling_shop: false,
+	shiHe_jingYan: false,
 }
 
 export type superGlobalRootType = {

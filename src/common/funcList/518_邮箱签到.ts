@@ -922,7 +922,7 @@ export class Func518 implements IFuncOrigin {
 					name: '检测_商店_推荐页签_每日领取',
 					operator: [thisOperator[36]],
 				}) ||
-				thisScript.global.checked_yard_count >= 3
+				thisScript.global.checked_yard_count >= 7
 			) {
 				thisScript.global.checked_yard_count = 0;
 				thisScript.global.daily_collection = 'courtyard';

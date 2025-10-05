@@ -100,9 +100,9 @@ export class Func500 implements IFuncOrigin {
 				1280, 720,
 				[
 					[left, 42, 31, 0xf4e4a4],
-					[center, 736, 237, 0x403d38],
-					[center, 766, 235, 0xaf3a31],
-					[center, 760, 245, 0xe3e0da],
+					[center, 736, 237, 0x8a7c67],
+					[center, 766, 235, 0xc24137],
+					[center, 760, 245, 0x653f37],
 					[right, 836, 222, 0x32221b],
 					[right, 850, 223, 0xb78d42],
 					[right, 841, 232, 0x2a1d18],
@@ -147,16 +147,15 @@ export class Func500 implements IFuncOrigin {
 		}, { // 3 进入_狩猎战
 			desc: [1280, 720,
 				[
-					[left, 232, 477, 0xfdfdfb],
-					[left, 261, 474, 0xf7a897],
-					[left, 277, 478, 0xd66363],
-					[left, 288, 500, 0xbe6b76],
-					[left, 236, 502, 0xcb808b],
-					[left, 260, 516, 0xaa909c],
+					[left, 242, 487, 0xf99184],
+					[left, 262, 487, 0xf9ad9b],
+					[left, 287, 486, 0xfcfaf7],
+					[left, 288, 510, 0xbe6c77],
+					[left, 237, 515, 0xcf838e],
 				]
 			],
 			oper: [
-				[center, 1280, 720, 182, 433, 346, 546, 1000],
+				[center, 1280, 720, 203, 449, 343, 554, 1000],
 			]
 		}, { // 4 检测_狩猎战内
 			desc: [1280, 720,
@@ -262,9 +261,9 @@ export class Func500 implements IFuncOrigin {
 				1280, 720,
 				[
 					[left, 42, 31, 0xf4e4a4],
-					[center, 736, 237, 0x403d38],
-					[center, 766, 235, 0xaf3a31],
-					[center, 760, 245, 0xe3e0da],
+					[center, 736, 237, 0x8a7c67],
+					[center, 766, 235, 0xc24137],
+					[center, 760, 245, 0x653f37],
 					[center, 612, 211, 0x261b15],
 					[center, 590, 229, 0x2e2019],
 					[center, 602, 219, 0xce9f49],
@@ -524,11 +523,11 @@ export class Func500 implements IFuncOrigin {
 			})) {
 				const point = thisScript.findMultiColor('道馆集结')
 				if (point) {
-					const oper = [ // 175,414--176,273--318,405
-						point.x, // 175
-						point.y - 150, // 264
-						point.x + 150, // 325
-						point.y - 10, // 404
+					const oper = [
+						point.x + 70,
+						point.y - 110,
+						point.x + 120,
+						point.y - 80,
 						1000
 					];
 					thisScript.regionClick([oper]);

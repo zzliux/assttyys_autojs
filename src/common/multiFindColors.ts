@@ -2592,34 +2592,18 @@ const multiFindColors: IMultiFindColorsOrigin = {
 	},
 	'道馆集结': { // 地图里面的集结
 		region: [left, 1280, 720, 0, 0, 1280, 720],
-		desc: [[
-			1280, 720,
+		desc: [[1280, 720,
 			[
-				[center, 762, 441, 0xe8ba8b],
-				[center, 769, 459, 0xe4b388],
-				[center, 747, 457, 0xffffba],
-				[center, 753, 472, 0xffe88b],
-				[center, 767, 484, 0xe9d94d],
-				[center, 776, 493, 0xe9dd51],
-				[center, 780, 480, 0xffda6d],
-				[center, 773, 472, 0xe1b17b],
-				[center, 805, 415, 0x8b3f16],
-				[center, 804, 427, 0xae6c3b],
+				[center, 512, 353, 0xffffb6],
+				[center, 522, 353, 0xffffbc],
+				[center, 536, 356, 0xe4b388],
+				[center, 538, 362, 0xb33b19],
+				[center, 533, 385, 0xfcf947],
+				[center, 525, 381, 0xe1ae7f],
+				[center, 570, 381, 0x5d0916],
+				[right, 669, 381, 0x910617],
 			]
-		], [
-			1280, 720,
-			[
-				[center, 746, 457, 0xffffb6],
-				[center, 756, 465, 0xf4e89a],
-				[center, 762, 477, 0xffff6d],
-				[center, 769, 486, 0xfbf457],
-				[center, 783, 495, 0xffe85c],
-				[center, 760, 484, 0xe1af7f],
-				[center, 770, 460, 0xe4b388],
-				[center, 743, 474, 0xf4ed98],
-			]
-		]],
-		similar: 90,
+		]]
 	},
 	'御灵票': {
 		region: [left, 1280, 720, 0, 0, 1280, 720],
