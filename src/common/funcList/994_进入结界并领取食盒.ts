@@ -88,7 +88,7 @@ export class Func994 implements IFuncOrigin {
 			],
 			oper: [
 				[center, 1280, 720, 40, 636, 90, 670, 700],
-				[center, 1280, 720, 146, 312, 189, 350, 700],
+				[center, 1280, 720, 146, 312, 189, 350, 3000],
 				[center, 1280, 720, 1034, 548, 1056, 576, 700],
 				[left, 1280, 720, 23, 24, 60, 63, 1200], //	点击 退出
 				[center, 1280, 720, 599, 301, 626, 389, 1000], //  点击 式神育成
@@ -291,6 +291,14 @@ export class Func994 implements IFuncOrigin {
 							thisScript.regionClick([thisOperator[7].oper[0]]);
 							thisScript.regionClick([thisOperator[7].oper[1]]);
 						}
+						thisScript.keepScreen();
+						const fullLevelPoint = thisScript.findMultiColorEx('寄养狗粮_满级标识');
+						if (fullLevelPoint && fullLevelPoint.length > 0) {
+							thisScript.regionClick(thisOperator[13].oper);
+							thisScript.doPush(thisScript, { text: '全部N卡已满级' });
+							curCnt = 0;
+							continue;
+						}
 						for (let i = 0; i < emptyCount; i++) {
 							thisScript.regionClick([thisOperator[7].oper[2]]);
 						}
@@ -302,14 +310,7 @@ export class Func994 implements IFuncOrigin {
 					const fullLevelPoint = thisScript.findMultiColorEx('寄养狗粮_满级标识');
 					if (fullLevelPoint && fullLevelPoint.length > 0) {
 						console.log('有狗粮满级了,清空狗粮');
-						fullLevelPoint.sort((a, b) => a.y - b.y);
-						for (let i = 0; i < fullLevelPoint.length; i++) {
-							if (fullLevelPoint[i].y > 350) {
-								thisScript.regionClick(thisOperator[13].oper);
-								thisScript.doPush(thisScript, { text: '全部N卡已满级' });
-								curCnt = 0;
-								continue;
-							}
+						for (let i = 0; i < fullLevelPoint.length && fullLevelPoint[i].y < 350; i++) {
 							const oper = [
 								[
 									fullLevelPoint[i].x,
