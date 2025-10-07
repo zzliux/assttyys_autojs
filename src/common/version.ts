@@ -1386,6 +1386,9 @@ export const versionList = [{
 }, {
 	version: '20251005_01',
 	desc: 'fix: 修复寮活动，修复寄养'
+}, {
+	version: '20251007_01',
+	desc: 'fix: 修复508 逢魔首领boss检索逻辑'
 }];
 
 export default versionList[versionList.length - 1].version;
