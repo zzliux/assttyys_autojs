@@ -1389,6 +1389,9 @@ export const versionList = [{
 }, {
 	version: '20251007_01',
 	desc: 'fix: 修复508 逢魔首领boss检索逻辑'
+}, {
+	version: '20251008_01',
+	desc: 'fix: 修复313,002结契失败点击放弃结契'
 }];
 
 export default versionList[versionList.length - 1].version;
