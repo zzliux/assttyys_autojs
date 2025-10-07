@@ -31,6 +31,11 @@ export class Func508 implements IFuncOrigin {
 				desc: '查找多少次首领都没进去就不打了',
 				type: 'number',
 				default: 20,
+			}, {
+				name: 'switch_skip_search_boss',
+				desc: '是否直接点击boss，不使用比色寻找boss',
+				type: 'switch',
+				default: false,
 			}],
 		},
 	];
@@ -265,8 +270,6 @@ export class Func508 implements IFuncOrigin {
 						],
 					}],
 				});
-
-				sleep(1000);
 			} else {
 				sleep(1000);
 				if (!thisScript.global.checked_yard_count) {
@@ -330,56 +333,37 @@ export class Func508 implements IFuncOrigin {
 					next_scheme_name: thisConf.next_scheme
 				});
 			} else {
-				//	检测 是否有开启 逢魔·极
-				if (thisConf && thisConf['switch_ji_enabled']) {
-					if (
-						thisScript.oper({
-							name: '检测_是否有寻找 逢魔·极 按钮',
-							operator: [thisOperator[9]],
-						})
-					) {
-						if (!thisScript.global.fm_boss_btn_click_cnt) {
-							thisScript.global.fm_boss_btn_click_cnt = 0;
-						}
-						if (++thisScript.global.fm_boss_btn_click_cnt >= (parseInt(thisConf.times_for_search_boss as string) || 20)) {
-							thisScript.global.fm_kiss_boss_flag = true;
-							thisScript.myToast(
-								`第${thisScript.global.fm_boss_btn_click_cnt}次点击查找逢魔·极首领按钮未成功进入首领挑战，标记挑战成功e`
-							);
-						} else {
-							thisScript.myToast(
-								`第${thisScript.global.fm_boss_btn_click_cnt}次点击查找逢魔·极首领按钮e`
-							);
-						}
-						return true;
+				if (
+					thisScript.oper({
+						name: '检测_是否有寻找 逢魔·普通/极 按钮',
+						operator: [thisOperator[thisConf && thisConf['switch_ji_enabled'] ? 9 : 0]], //	检测 是否有开启 逢魔·极
+					})
+				) {
+					if (!thisScript.global.fm_boss_btn_click_cnt) {
+						thisScript.global.fm_boss_btn_click_cnt = 0;
 					}
-				} else {
-					if (
-						thisScript.oper({
+					if (++thisScript.global.fm_boss_btn_click_cnt >= (parseInt(thisConf.times_for_search_boss as string) || 20)) {
+						thisScript.global.fm_kiss_boss_flag = true;
+						thisScript.myToast(
+							`第${thisScript.global.fm_boss_btn_click_cnt}次点击查找逢魔·普通/极首领按钮未成功进入首领挑战，标记挑战成功e`
+						);
+					} else {
+						thisScript.myToast(
+							`第${thisScript.global.fm_boss_btn_click_cnt}次点击查找逢魔·普通/极首领按钮e`
+						);
+					}
+					if (thisConf && thisConf['switch_skip_search_boss']) {
+						return thisScript.oper({
 							id: 508,
-							name: '检测_点击寻找首领按钮',
+							name: '跳过比色boss直接点击中心',
 							operator: [{
-								oper: thisOperator[0].oper,
+								oper: thisOperator[10].oper
 							}],
 						})
-					) {
-						if (!thisScript.global.fm_boss_btn_click_cnt) {
-							thisScript.global.fm_boss_btn_click_cnt = 0;
-						}
-						if (++thisScript.global.fm_boss_btn_click_cnt >= (parseInt(thisConf.times_for_search_boss as string) || 20)) {
-							thisScript.global.fm_kiss_boss_flag = true;
-							thisScript.myToast(
-								`第${thisScript.global.fm_boss_btn_click_cnt}次点击查找逢魔首领按钮未成功进入首领挑战，标记挑战成功e`
-							);
-						} else {
-							thisScript.myToast(
-								`第${thisScript.global.fm_boss_btn_click_cnt}次点击查找逢魔首领按钮e`
-							);
-						}
-						return true;
 					}
+					sleep(2000);
+					return true;
 				}
-
 			}
 		}
 
