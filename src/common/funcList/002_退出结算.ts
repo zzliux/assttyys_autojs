@@ -193,7 +193,7 @@ export class Func002 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 444, 552, 814, 701, 1000],
+			[center, 1280, 720, 409, 608, 569, 645, 1000],
 		]
 	}, { // 17 自选120关闭
 		desc: [
@@ -290,20 +290,7 @@ export class Func002 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1110, 362, 1222, 493, 1000],
 		]
-	}, { // 26 活动boss结算
-		desc: [1280, 720,
-			[
-				[right, 1207, 39, 0xa84c79],
-				[right, 1219, 38, 0xe9d4d0],
-				[right, 1220, 24, 0xa46695],
-				[right, 1228, 33, 0xe9d4cf],
-				[right, 1234, 40, 0xa955b3],
-			]
-		],
-		oper: [
-			[center, 1280, 720, 1203, 26, 1241, 55, 1000],
-		]
-	}, { // 27  左下统计图标
+	}, { // 26  左下统计图标
 		desc: [1280, 720,
 			[
 				[center, 78, 643, 0x3c2b20],
@@ -314,6 +301,46 @@ export class Func002 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 1112, 113, 1238, 595, 1000],
+		]
+	}, { // 27 奖励只有1排
+		desc: [1280, 720,
+			[
+				[center, 424, 328, 0xbfa88f],
+				[center, 408, 237, 0x382a1c],
+				[center, 869, 327, 0xb79e86],
+				[center, 926, 386, 0x825e34],
+				[center, 371, 395, 0x8b673e]
+			]
+		],
+		oper: [
+			[left, 1280, 720, 69, 171, 170, 452, 500]
+		]
+	}, { // 28 奖励有2排
+		desc: [1280, 720,
+			[
+				[center, 401, 210, 0x39291d],
+				[center, 828, 208, 0x3c2a20],
+				[center, 917, 418, 0x8e6a41],
+				[center, 370, 430, 0x8d6940],
+				[center, 619, 254, 0xcbb59e]]
+		],
+		oper: [
+			[left, 1280, 720, 69, 171, 170, 452, 500]
+		]
+	}, { // 29 奖励一排且只有5个的时候
+		desc: [1280, 720,
+			[
+				[center, 379, 241, 0x38291d],
+				[center, 897, 242, 0x382a1d],
+				[center, 959, 237, 0x5e3d22],
+				[center, 922, 426, 0x88653c],
+				[center, 364, 419, 0x8d693f],
+				[center, 671, 239, 0xeadca5],
+				[center, 863, 435, 0xbaa289],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1042, 176, 1187, 585, 500],
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -361,7 +388,7 @@ export class Func002 implements IFuncOrigin {
 				thisOperator[12], thisOperator[13], thisOperator[14], thisOperator[15],
 				thisOperator[16], thisOperator[17], thisOperator[22], thisOperator[18], // 22要放18前面
 				thisOperator[21], thisOperator[23], thisOperator[24], thisOperator[25],
-				thisOperator[26], thisOperator[27],
+				thisOperator[26], thisOperator[27], thisOperator[28], thisOperator[29],
 			]
 		});
 	}

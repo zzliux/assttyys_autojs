@@ -56,7 +56,8 @@ export class Func306 implements IFuncOrigin {
 				[left, 42, 38, 0xf7e8aa],
 				[center, 641, 52, 0x080c0a],
 				[center, 648, 571, 0x422c29],
-				[right, 1088, 254, 0xffffff]]
+				[right, 1064, 270, 0xfefefe]
+			]
 		],
 		oper: [
 			[center, 1280, 720, 1025, 194, 1145, 306, 500]
@@ -100,10 +101,9 @@ export class Func306 implements IFuncOrigin {
 			[
 				[center, 670, 4, 0x12181d],
 				[left, 42, 38, 0xf7e8aa],
-				[center, 642, 266, 0xfffef8],
 				[center, 568, 427, 0x534a55],
 				[center, 722, 432, 0x554d56],
-				[center, 642, 302, 0xdccab3],
+				[right, 646, 274, 0xfefefc],
 			]
 		],
 		oper: [
@@ -348,7 +348,7 @@ export class Func306 implements IFuncOrigin {
 				thisScript.global.team_up_Time++;
 				thisScript.regionClick([thisOperator[4].oper[0]]);
 				thisScript.global.team_up_lagTime = new Date(2000);
-				return false;
+				return true;
 			} else {
 				for (const i in result) {
 					console.log(`昵称历遍:${result[i].label}`)
@@ -369,7 +369,7 @@ export class Func306 implements IFuncOrigin {
 					thisScript.global.team_up_Time++;
 					thisScript.regionClick([thisOperator[4].oper[0]]);
 					thisScript.global.team_up_lagTime = new Date(2000);
-					return false;
+					return true;
 				}
 				toClickRegion && thisScript.regionClick([toClickRegion]);
 			}
@@ -396,7 +396,7 @@ export class Func306 implements IFuncOrigin {
 					thisScript.global.team_up_Time++;
 					thisScript.regionClick([thisOperator[4].oper[0]]);
 					thisScript.global.team_up_lagTime = new Date(2000);
-					return false;
+					return true;
 				} else {
 					for (const i in result) {
 						console.log(`昵称历遍:${result[i].label}`)
@@ -417,7 +417,7 @@ export class Func306 implements IFuncOrigin {
 						thisScript.global.team_up_Time++;
 						thisScript.regionClick([thisOperator[4].oper[0]]);
 						thisScript.global.team_up_lagTime = new Date(2000);
-						return false;
+						return true;
 					}
 					toClickRegionTwo && thisScript.regionClick([toClickRegionTwo]);
 				}

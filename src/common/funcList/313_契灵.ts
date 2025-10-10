@@ -142,7 +142,7 @@ export class Func313 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 444, 552, 814, 701, 1000],
+			[center, 1280, 720, 409, 608, 569, 645, 1000],
 		]
 	}, {
 		// 6 结契成功

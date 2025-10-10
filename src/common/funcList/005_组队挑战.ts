@@ -34,7 +34,7 @@ export class Func005 implements IFuncOrigin {
 		],
 	}, {
 		desc: [1280, 720,
-			[[center, 642, 264, 0xfffef8]]
+			[[right, 644, 267, 0xfffdf5]]
 		]
 	}, {
 		desc: [1280, 720,
