@@ -1965,7 +1965,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		]
 	},
 	'寄养狗粮_满级标识': {
-		region: [left, 1280, 720, 0, 0, 1280, 720],
+		region: [left, 1280, 720, 28, 214, 1254, 626],
 		desc: [
 			[
 				1280, 720,
@@ -1977,8 +1977,17 @@ const multiFindColors: IMultiFindColorsOrigin = {
 					[left, 282, 256, 0xe7b42b],
 					[left, 282, 249, 0xe9ab14],
 				]
+			], [1280, 720,
+				[
+					[right, 981, 489, 0x392315],
+					[right, 982, 510, 0x362015],
+					[right, 970, 500, 0x2c1609],
+					[right, 992, 499, 0x311d12],
+					[right, 983, 495, 0xe9ad15],
+				]
 			],
-		]
+		],
+		similar: 95
 	},
 	'寄养狗粮_空': {
 		region: [left, 1280, 720, 19, 183, 1269, 481],

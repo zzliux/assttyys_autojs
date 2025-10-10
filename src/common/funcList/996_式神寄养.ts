@@ -20,6 +20,11 @@ export class Func996 implements IFuncOrigin {
 			default: '太鼓6->太鼓5->太鼓4->太鼓3->斗鱼6->斗鱼5->斗鱼4',
 			value: null,
 		}, {
+			name: 'claimReward',
+			desc: '领取寄养奖励',
+			type: 'switch',
+			default: false,
+		}, {
 			name: 'next_scheme',
 			desc: '执行完成后的操作',
 			type: 'scheme',
@@ -206,10 +211,30 @@ export class Func996 implements IFuncOrigin {
 				[center, 1280, 720, 24, 31, 59, 60, 1000],
 				[center, 1280, 720, 24, 31, 59, 60, 1000],
 			]
+		}, { // 13 领取寄养奖励
+			desc: [1280, 720,
+				[
+					[center, 612, 139, 0x12100c],
+					[center, 591, 167, 0xfecb0d],
+					[center, 610, 169, 0xffd607],
+					[center, 627, 168, 0xffd109],
+					[center, 613, 193, 0x12100c],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 593, 146, 637, 188, 1000],
+			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['996'];
+		if (thisconf.claimReward && thisScript.oper({
+			id: 996,
+			name: '领取寄养奖励',
+			operator: [thisOperator[13]],
+		})) {
+			return true;
+		}
 		if (thisScript.oper({
 			id: 996,
 			name: '检测是否为式神寄养列表',

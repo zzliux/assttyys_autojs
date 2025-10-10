@@ -291,6 +291,15 @@ export class Func994 implements IFuncOrigin {
 							thisScript.regionClick([thisOperator[7].oper[0]]);
 							thisScript.regionClick([thisOperator[7].oper[1]]);
 						}
+						thisScript.keepScreen();
+						const region = [910, 473, 1138, 568];
+						const fullLevelPoint = thisScript.findMultiColorEx('寄养狗粮_满级标识', region);
+						if (fullLevelPoint && fullLevelPoint.length > 0) {
+							thisScript.regionClick(thisOperator[13].oper);
+							thisScript.doPush(thisScript, { text: '全部N卡已满级' });
+							curCnt = 0;
+							continue;
+						}
 						for (let i = 0; i < emptyCount; i++) {
 							thisScript.regionClick([thisOperator[7].oper[2]]);
 						}
@@ -302,14 +311,7 @@ export class Func994 implements IFuncOrigin {
 					const fullLevelPoint = thisScript.findMultiColorEx('寄养狗粮_满级标识');
 					if (fullLevelPoint && fullLevelPoint.length > 0) {
 						console.log('有狗粮满级了,清空狗粮');
-						fullLevelPoint.sort((a, b) => a.y - b.y);
-						for (let i = 0; i < fullLevelPoint.length; i++) {
-							if (fullLevelPoint[i].y > 350) {
-								thisScript.regionClick(thisOperator[13].oper);
-								thisScript.doPush(thisScript, { text: '全部N卡已满级' });
-								curCnt = 0;
-								continue;
-							}
+						for (let i = 0; i < fullLevelPoint.length && fullLevelPoint[i].y < 350; i++) {
 							const oper = [
 								[
 									fullLevelPoint[i].x,

@@ -248,7 +248,6 @@ export class Func995 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 40, 636, 90, 670, 700],
 				[center, 1280, 720, 39, 292, 86, 329, 1000],
-				[center, 1280, 720, 198, 556, 229, 588, 1000], // 点击排位第一的白蛋
 			]
 		}
 	];
@@ -346,7 +345,7 @@ export class Func995 implements IFuncOrigin {
 			log('开始更换满级式神');
 			let curCnt = 0;
 			const maxCount = 10;
-			outerLoop: for (; ;) {
+			for (; ;) {
 				thisScript.keepScreen();
 				if (thisScript.oper({
 					id: 995,
@@ -358,10 +357,8 @@ export class Func995 implements IFuncOrigin {
 				}
 				if (thisScript.oper({
 					id: 995,
-					name: '判断_是否为己方结界',
-					operator: [
-						{ desc: thisOperator[7].desc },
-					],
+					name: '判断_是否为己方结界_点击式神育成',
+					operator: [{ desc: thisOperator[7].desc }],
 				})) {
 					const emptyPoint = thisScript.findMultiColorEx('寄养狗粮_空');
 					if (emptyPoint && emptyPoint.length > 0) {
@@ -374,7 +371,15 @@ export class Func995 implements IFuncOrigin {
 							thisScript.regionClick([thisOperator[7].oper[0]]);
 							thisScript.regionClick([thisOperator[7].oper[1]]);
 						}
-						for (let i = 0; i < emptyCount - 1; i++) {
+						thisScript.keepScreen();
+						const fullLevelPoint = thisScript.findMultiColorEx('寄养狗粮_满级标识');
+						if (fullLevelPoint && fullLevelPoint.length > 0) {
+							thisScript.regionClick(thisOperator[15].oper);
+							thisScript.doPush(thisScript, { text: '全部N卡已满级' });
+							curCnt = 0;
+							continue;
+						}
+						for (let i = 0; i < emptyCount; i++) {
 							thisScript.regionClick([thisOperator[7].oper[2]]);
 						}
 						curCnt = 0;
@@ -385,12 +390,7 @@ export class Func995 implements IFuncOrigin {
 					const fullLevelPoint = thisScript.findMultiColorEx('寄养狗粮_满级标识');
 					if (fullLevelPoint && fullLevelPoint.length > 0) {
 						console.log('有狗粮满级了,清空狗粮');
-						for (let i = 0; i < fullLevelPoint.length; i++) {
-							if (fullLevelPoint[i].y > 350) {
-								thisScript.regionClick(thisOperator[15].oper);
-								thisScript.doPush(thisScript, { text: '全部N卡已满级' });
-								break outerLoop;
-							}
+						for (let i = 0; i < fullLevelPoint.length && fullLevelPoint[i].y < 350; i++) {
 							const oper = [
 								[
 									fullLevelPoint[i].x,
