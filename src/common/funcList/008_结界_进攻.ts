@@ -23,7 +23,7 @@ export class Func008 implements IFuncOrigin {
 			name: 'afterCountOper',
 			desc: '执行完成的操作',
 			type: 'list',
-			data: ['停止脚本', '关闭界面', '切换方案', '九退四_切换方案'],
+			data: ['停止脚本', '关闭界面', '切换方案', '九退四_切换方案', '指定方案'],
 			default: '停止脚本',
 			value: null,
 		}, {
@@ -31,6 +31,11 @@ export class Func008 implements IFuncOrigin {
 			desc: '下一个方案',
 			type: 'scheme',
 			default: '通用准备退出',
+		}, {
+			name: 'designated_scheme',
+			desc: '所指定的方案(在历史运行方案中匹配所输入的字并切换过去,可用","隔断多个关键字)',
+			type: 'text',
+			default: ',',
 		}, {
 			name: 'type',
 			desc: '突破类型',
@@ -143,7 +148,29 @@ export class Func008 implements IFuncOrigin {
 					thisScript.regionClick([oper, oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
 					thisScript.rerun(thisConf.next_scheme);
 				} else if ('九退四_切换方案' === thisConf.afterCountOper) {
+					// 此选项需在"个突_9退4_退出"里的008选择,因为"个突_9退4"视为一个整体,只需在"个突_9退4_进攻"里选择需要切换的方案即可,
+					// 无需在"个突_9退4_退出"再次设置需要切换的方案,否者会在"退出"时跳出循环或卡主
 					thisScript.rerun(thisConf.next_scheme);
+					return true;
+				} else if ('指定方案' === thisConf.afterCountOper) {
+					const oper = thisOperator[0].oper[1];
+					thisScript.regionClick([oper, oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
+					const designated_scheme = String(thisConf.designated_scheme).split(',').map(s => s.trim()).filter(Boolean);
+					if (designated_scheme.length < 1) {
+						thisScript.myToast('格式定义错误，请检查');
+						thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+						thisScript.stop();
+					} else {
+						const filtered = thisScript.schemeHistory.filter(item => designated_scheme.some(word => item.schemeName.includes(word)));
+						if (filtered.length < 1) {
+							thisScript.myToast('未找到指定方案，已停止');
+							thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+							thisScript.stop();
+						} else {
+							log(filtered)
+							thisScript.rerun(filtered[filtered.length - 1].schemeName);
+						}
+					}
 					return true;
 				}
 				break;
