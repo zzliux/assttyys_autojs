@@ -248,7 +248,7 @@ export class Func996 implements IFuncOrigin {
 				name: '当前为列表顶部,拖拽至列表最底部',
 				operator: [{ desc: thisOperator[3].desc }]
 			})) {
-				thisScript.regionSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [700, 800], 200);
+				thisScript.regionSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [700, 800], 1000);
 				return true;
 			}
 			if (thisScript.oper({

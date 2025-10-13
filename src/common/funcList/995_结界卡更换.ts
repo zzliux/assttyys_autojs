@@ -372,7 +372,8 @@ export class Func995 implements IFuncOrigin {
 							thisScript.regionClick([thisOperator[7].oper[1]]);
 						}
 						thisScript.keepScreen();
-						const fullLevelPoint = thisScript.findMultiColorEx('寄养狗粮_满级标识');
+						const region = [910, 473, 1138, 568];
+						const fullLevelPoint = thisScript.findMultiColorEx('寄养狗粮_满级标识', region);
 						if (fullLevelPoint && fullLevelPoint.length > 0) {
 							thisScript.regionClick(thisOperator[15].oper);
 							thisScript.doPush(thisScript, { text: '全部N卡已满级' });
