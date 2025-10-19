@@ -1392,6 +1392,9 @@ export const versionList = [{
 }, {
 	version: '20251008_01',
 	desc: 'fix: 修复313,002结契失败点击放弃结契'
+}, {
+	version: '20251019_01',
+	desc: 'fix: 修复六道椒图事件选择buff会选到非柔风buff'
 }];
 
 export default versionList[versionList.length - 1].version;
