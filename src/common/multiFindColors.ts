@@ -2097,7 +2097,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		desc: [
 			[
 				1280, 720,
-				[   //第三个柔风
+				[   // 第三个柔风
 					[center, 754, 164, 0xfff3db],
 					[center, 770, 204, 0xeca905],
 					[center, 751, 220, 0xbc9121],
@@ -2105,10 +2105,9 @@ const multiFindColors: IMultiFindColorsOrigin = {
 					[center, 784, 205, 0x031e88],
 					[center, 765, 220, 0xffffff]
 				]
-			], 
-			[
+			], [
 				1280, 720,
-				[	//第一个柔风
+				[	// 第一个柔风
 					[left, 208, 166, 0xffeabd],
 					[left, 224, 203, 0xe1a108],
 					[left, 204, 220, 0xe4ae04],
@@ -2116,10 +2115,9 @@ const multiFindColors: IMultiFindColorsOrigin = {
 					[left, 236, 221, 0x2ed7ea],
 					[left, 248, 216, 0x26d0e7]
 				]
-			], 
-			[
+			], [
 				1280, 720,
-				[	//第二个柔风
+				[	// 第二个柔风
 					[center, 481, 165, 0xfff1d3],
 					[center, 497, 203, 0xd2970c],
 					[center, 477, 220, 0xe0ac07],
@@ -2127,7 +2125,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
 					[center, 497, 233, 0x2ae2e8],
 					[center, 512, 223, 0x33e5e6]
 				]
-		]
+			]
 		],
 	},
 	'六道椒图_购买buff': {
