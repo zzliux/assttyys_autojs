@@ -2097,21 +2097,37 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		desc: [
 			[
 				1280, 720,
-				[
-					[center, 479, 166, 0xffe4af],
-					[center, 483, 166, 0xffe8b8],
-					[center, 483, 169, 0xffe1a2],
-					[center, 481, 170, 0xffdd94],
+				[   //第三个柔风
+					[center, 754, 164, 0xfff3db],
+					[center, 770, 204, 0xeca905],
+					[center, 751, 220, 0xbc9121],
+					[center, 773, 234, 0x2fe0e1],
+					[center, 784, 205, 0x031e88],
+					[center, 765, 220, 0xffffff]
 				]
-			], [
+			], 
+			[
 				1280, 720,
-				[
-					[center, 207, 166, 0xffebc1],
-					[center, 208, 168, 0xffe4a6],
-					[center, 208, 170, 0xffdf9b],
-					[center, 210, 166, 0xf4e6b2],
+				[	//第一个柔风
+					[left, 208, 166, 0xffeabd],
+					[left, 224, 203, 0xe1a108],
+					[left, 204, 220, 0xe4ae04],
+					[left, 226, 236, 0x31e2e1],
+					[left, 236, 221, 0x2ed7ea],
+					[left, 248, 216, 0x26d0e7]
 				]
-			]
+			], 
+			[
+				1280, 720,
+				[	//第二个柔风
+					[center, 481, 165, 0xfff1d3],
+					[center, 497, 203, 0xd2970c],
+					[center, 477, 220, 0xe0ac07],
+					[center, 485, 241, 0x3fdfef],
+					[center, 497, 233, 0x2ae2e8],
+					[center, 512, 223, 0x33e5e6]
+				]
+		]
 		],
 	},
 	'六道椒图_购买buff': {
