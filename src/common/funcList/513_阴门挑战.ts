@@ -83,31 +83,28 @@ export class Func513 implements IFuncOrigin {
 	}, { // 阴界之门_寮神社未下滑位置
 		desc: [1280, 720,
 			[
-				[left, 185, 439, 0xc1ac90],
-				[left, 219, 491, 0xce96e6],
-				[left, 244, 500, 0xdfc4e5],
-				[left, 265, 511, 0xe9d5e9],
-				[left, 239, 538, 0x99589b],
-				[left, 298, 531, 0xa059a0],
+				[left, 191, 450, 0xc2ae92],
+				[left, 222, 501, 0xcc93e4],
+				[left, 245, 510, 0xe0c5e6],
+				[left, 282, 514, 0xdfc5e6],
+				[left, 260, 545, 0xe78ac6],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 281, 504, 281, 504, 1000],
-			[center, 1280, 720, 212, 466, 311, 543, 1000],
+			[center, 1280, 720, 176, 441, 351, 553, 1000],
 		]
 	}, { // 阴界之门_寮神社已下滑位置
 		desc: [1280, 720,
 			[
-				[left, 185, 291, 0xc0ac91],
-				[left, 222, 320, 0xcb92e5],
-				[left, 244, 324, 0xdfc4e5],
-				[left, 281, 332, 0xdfc4e5],
-				[left, 241, 365, 0x9a589d],
-				[left, 295, 360, 0x945296],
+				[left, 220, 307, 0xcd94e5],
+				[left, 245, 315, 0xe0c5e6],
+				[left, 281, 321, 0xdfc4e5],
+				[left, 238, 355, 0x99599b],
+				[left, 272, 334, 0xedd4ef],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 212, 276, 306, 369, 1000],
+			[center, 1280, 720, 187, 244, 330, 358, 1000],
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
