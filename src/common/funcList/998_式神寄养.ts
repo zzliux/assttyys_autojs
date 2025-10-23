@@ -130,10 +130,9 @@ export class Func998 implements IFuncOrigin {
 				720,
 				[
 					[right, 1186, 74, 0xd4ccbb],
-					[right, 1186, 95, 0x282420],
+					[right, 1185, 93, 0x272420],
 					[right, 1186, 136, 0xc19b6d],
-					[right, 1200, 106, 0xbab19c],
-					[center, 756, 186, 0xac9b79],
+					[right, 1072, 52, 0xa7371e],
 				],
 			],
 			oper: [[right, 1280, 720, 1142, 50, 1226, 129, 1200]], //  点击 空式神寄养
@@ -429,6 +428,21 @@ export class Func998 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 392, 590, 872, 666, 1200] //  点击空白处_退出
 			]
+		},
+		{
+			//  22  检测_是否前往结界卡已达储存上限弹窗
+			desc: [1280, 720,
+				[
+					[center, 456, 426, 0xdf6851],
+					[right, 686, 420, 0xf3b25e],
+					[center, 417, 257, 0xcbb59c],
+					[right, 858, 473, 0xcab49b],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 536, 341, 575, 375, 1000],	//	点击 不在提醒
+				[center, 1280, 720, 448, 412, 599, 453, 1000],	//	点击 取消
+			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -442,7 +456,7 @@ export class Func998 implements IFuncOrigin {
 					{
 						desc: thisOperator[4].desc,
 					},
-					thisOperator[21]
+					thisOperator[21], thisOperator[22]
 				],
 			})
 		) {
