@@ -87,11 +87,11 @@ export class Func995 implements IFuncOrigin {
 			// 2 检测_第一个坑位是否可用且被占用
 			desc: [1280, 720,
 				[
-					[right, 1144, 88, 0xf4e9b6],
-					[right, 1228, 93, 0xf1e4ad],
-					[right, 1170, 574, 0xedcba9],
-					[right, 1224, 123, 0xd7b674],
-				],
+					[right, 1144, 88, 0xf2e5b2],
+					[right, 1228, 93, 0xf0e2ab],
+					[right, 1224, 123, 0xdcb576],
+					[right, 1172, 604, 0xe6d3af],
+				]
 			],
 			oper: [
 				[right, 1280, 720, 962, 120, 1231, 146, 600], // 寄养位置的所剩时间方位，用于检测所剩时间
