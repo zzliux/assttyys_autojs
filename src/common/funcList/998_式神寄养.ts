@@ -804,7 +804,6 @@ export class Func998 implements IFuncOrigin {
 			}
 		}
 
-		
 		if (
 			thisScript.oper({
 				id: 998,
