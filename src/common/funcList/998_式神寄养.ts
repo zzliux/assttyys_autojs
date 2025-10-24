@@ -437,6 +437,7 @@ export class Func998 implements IFuncOrigin {
 					[right, 686, 420, 0xf3b25e],
 					[center, 417, 257, 0xcbb59c],
 					[right, 858, 473, 0xcab49b],
+					[center, 558, 361, 0x402f11],
 				]
 			],
 			oper: [
@@ -456,7 +457,7 @@ export class Func998 implements IFuncOrigin {
 					{
 						desc: thisOperator[4].desc,
 					},
-					thisOperator[21], thisOperator[22]
+					thisOperator[21]
 				],
 			})
 		) {
@@ -801,6 +802,17 @@ export class Func998 implements IFuncOrigin {
 			) {
 				return true;
 			}
+		}
+
+		
+		if (
+			thisScript.oper({
+				id: 998,
+				name: '检测_是否结界卡已达储存上限',
+				operator: [thisOperator[22]],
+			})
+		) {
+			return true;
 		}
 
 		return false;

@@ -1398,6 +1398,9 @@ export const versionList = [{
 }, {
 	version: '20251023_01',
 	desc: 'fix: 优化寄养适配，修复518 商店 推荐页签 每日领取，修复邮箱奖励领取，添加结界卡储存上限弹窗适配'
+}, {
+	version: '20251024_01',
+	desc: 'fix: 修复结界卡储存上限弹窗适配'
 }];
 
 export default versionList[versionList.length - 1].version;
