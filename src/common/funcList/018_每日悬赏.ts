@@ -204,7 +204,11 @@ export class Func018 implements IFuncOrigin {
 				[center, 500, 715, 0x000000],
 				[center, 612, 715, 0x000000],
 				[center, 773, 715, 0x000000],
-				[center, 830, 716, 0x000000]
+				[center, 830, 716, 0x000000],
+				[center, 621, 122, 0x87776f],
+				[right, 755, 84, 0x37281d],
+				[center, 530, 80, 0x3a2a1f],
+				[right, 1180, 138, 0x4d2128],
 			]
 		],
 		oper: [

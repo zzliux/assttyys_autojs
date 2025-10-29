@@ -1401,6 +1401,9 @@ export const versionList = [{
 }, {
 	version: '20251024_01',
 	desc: 'fix: 修复结界卡储存上限弹窗适配'
+}, {
+	version: '20251030_01',
+	desc: 'fix: 优化518 商店日常礼包，点击后等待1秒再点击确认；优化18 秘闻对话点击比色'
 }];
 
 export default versionList[versionList.length - 1].version;
