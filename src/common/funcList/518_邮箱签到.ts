@@ -542,8 +542,8 @@ export class Func518 implements IFuncOrigin {
 				]
 			],
 			oper: [
-				[center, 1280, 720, 220, 204, 285, 276, 1000],
-				[center, 1280, 720, 619, 552, 691, 596, 1000],
+				[center, 1280, 720, 220, 204, 285, 276, 2000],
+				[center, 1280, 720, 619, 552, 691, 596, 2000],
 			]
 		}, {
 			//  37 检测_商店_热门推荐_另一种适配
@@ -556,7 +556,7 @@ export class Func518 implements IFuncOrigin {
 					[center, 571, 587, 0x6c4741],
 				],
 			],
-			oper: [[right, 1280, 720, 1115, 108, 1149, 136, 1200]],
+			oper: [[right, 1280, 720, 1115, 108, 1149, 136, 2000]],
 		},
 		{
 			// 38 检测是否为好友弹窗 页签处于最近
@@ -615,7 +615,7 @@ export class Func518 implements IFuncOrigin {
 				]
 			],
 			oper: [
-				[center, 1280, 720, 1146, 631, 1196, 691, 1000],
+				[center, 1280, 720, 1146, 631, 1196, 691, 2000],
 			]
 		}, { // 42 式神拓展包弹窗
 			desc: '式神拓展包弹窗',
@@ -901,7 +901,7 @@ export class Func518 implements IFuncOrigin {
 		})) {
 			const point = thisScript.findMultiColor('商店_日常')
 			if (point) {
-				const oper = [[point.x + 5, point.y + 5, point.x + 10, point.y + 10, 1000]];
+				const oper = [[point.x + 5, point.y + 5, point.x + 10, point.y + 10, 2000]];
 				thisScript.regionClick(oper);
 			}
 		}
