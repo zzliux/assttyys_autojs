@@ -232,20 +232,20 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 	},
 	'退出结算_御魂溢出确认': {
 		desc: [1280, 720,
-			[
+		   [
 				[center, 448, 221, 0x684736],
 				[center, 829, 222, 0x654434],
-				[center, 705, 248, 0xcbb59e],
-				[center, 504, 408, 0xcbb59e],
-				[center, 762, 415, 0xcbb59e],
-				[center, 771, 352, 0xcbb59e],
-				[center, 519, 340, 0xcbb59e],
-				[center, 604, 411, 0xf4b25f],
-				[center, 684, 438, 0xf4b25f],
-				[center, 698, 446, 0x923d2c],
-				[center, 596, 493, 0x6d4c3b]
-			]
-		]
+				[center, 705, 248, 0xcbb59c],
+				[center, 504, 408, 0xdf6851],
+				[center, 762, 415, 0xf3b25e],
+				[center, 771, 352, 0xcbb59c],
+				[center, 519, 340, 0xcbb59c],
+				[center, 604, 411, 0xcbb59c],
+				[center, 684, 438, 0xf7bc63],
+				[center, 698, 446, 0xf1b562],
+				[center, 596, 493, 0x6c4a38],
+		   ]
+			  ]
 	},
 	'退出结算_经验金币buff_第一个掉落': {
 		desc: [1280, 720,
