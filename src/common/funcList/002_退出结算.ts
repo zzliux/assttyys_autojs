@@ -158,7 +158,7 @@ export class Func002 implements IFuncOrigin {
 		// 13 御魂溢出点确认
 		desc: '退出结算_御魂溢出确认',
 		oper: [
-			[center, 1280, 720, 585, 398, 694, 446, 300]
+			[center, 1280, 720, 686, 398, 799, 445, 300],
 		],
 		notForCnt: true,
 	}, {
