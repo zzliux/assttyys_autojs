@@ -88,7 +88,7 @@ export class Func508 implements IFuncOrigin {
 			],
 			oper: [
 				[right, 1280, 720, 1120, 550, 1160, 587, 800], //	点击挑战
-				[right, 1280, 720, 1141, 68, 1160, 89, 1000], //	点击关闭
+				[right, 1280, 720, 1141, 68, 1160, 89, 2000], //	点击关闭
 			],
 		},
 		{
@@ -270,6 +270,11 @@ export class Func508 implements IFuncOrigin {
 						],
 					}],
 				});
+
+				thisScript.oper({
+					name: '无法点击首领BOSS集结挑战，换一个首领_是否有寻找 逢魔·普通/极 按钮',
+					operator: [thisOperator[thisConf && thisConf['switch_ji_enabled'] ? 9 : 0]], //	检测 是否有开启 逢魔·极
+				})
 			} else {
 				sleep(1000);
 				if (!thisScript.global.checked_yard_count) {

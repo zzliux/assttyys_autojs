@@ -1404,6 +1404,9 @@ export const versionList = [{
 }, {
 	version: '20251030_01',
 	desc: 'fix: 优化518 商店日常礼包，点击后等待1秒再点击确认；优化18 秘闻对话点击比色'
+}, {
+	version: '20251139_01',
+	desc: 'fix: 优化508 逢魔首领boss检索逻辑,修复518邮箱取色'
 }];
 
 export default versionList[versionList.length - 1].version;
