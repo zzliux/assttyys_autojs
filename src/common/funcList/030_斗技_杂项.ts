@@ -78,24 +78,22 @@ export class Func030 implements IFuncOrigin {
 			],
 		],
 		oper: [[right, 1280, 720, 1166, 580, 1232, 638, 1000]],
-	}, {
-		// 4 自动上阵
-		desc: [
-			1280, 720,
+	}, {	// 4 自动上阵
+		desc: [1280, 720,
 			[
-				[center, 614, 60, 0x1c100c],
-				[center, 628, 58, 0xfff1cf],
-				[center, 666, 56, 0x190f0c],
-				[left, 34, 143, 0x826851],
-				[left, 45, 149, 0xffffff],
-				[left, 60, 158, 0x826851],
-				[left, 70, 598, 0x413244],
-				[right, 1166, 532, 0xd5bb9d],
-				[left, 49, 180, 0xffffff],
-				[left, 65, 145, 0xffffff],
+				[center, 480, 43, 0x1f2e5c],
+				[right, 810, 55, 0x511415],
+				[right, 645, 59, 0xfdf3d4],
+				[right, 837, 709, 0x4a3522],
+				[left, 255, 702, 0x4b2f21],
+				[left, 66, 528, 0x413530],
+				[left, 48, 31, 0xd6c4a1],
+				[right, 1012, 701, 0x391c12],
 			]
 		],
-		oper: [[left, 1280, 720, 44, 139, 77, 178, 1000]],
+		oper: [
+			[center, 1280, 720, 12, 109, 89, 177, 1000],
+		]
 	}, { // 5 名仕斗技界面
 		desc: '斗技主界面_名士',
 		oper: [
