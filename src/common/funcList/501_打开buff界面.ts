@@ -17,16 +17,22 @@ export class Func501 implements IFuncOrigin {
 			desc: '开关过buff后不再打开buff界面',
 			type: 'switch',
 			default: false
+		}, {
+			name: 'chaoguiwang20251120_flag',
+			desc: '202511月超鬼王适配模式，buff按钮偏移',
+			type: 'switch',
+			default: false
 		}],
 	}];
 	operator: IFuncOperatorOrigin[] = [{
-		// 探索地图打开buff界面
+		// 0 探索地图打开buff界面
 		desc: '探索地图界面',
 		oper: [
-			[center, 1280, 720, 428, 24, 453, 65, 1500],
+			[center, 1280, 720, 428, 24, 453, 65, 1500],	// 探索地图打开buff界面
+			[center, 1280, 720, 225, 11, 261, 68, 1500],	// 202511月超鬼王适配，探索地图打开buff界面
 		]
 	}, {
-		// 庭院
+		// 1 庭院
 		desc: [1280, 720,
 			[
 				[left, 327, 45, 0x7a5825],
@@ -40,7 +46,7 @@ export class Func501 implements IFuncOrigin {
 			[center, 1280, 720, 359, 45, 396, 74, 1500]
 		]
 	}, {
-		// 组队界面
+		// 2 组队界面
 		desc: [1280, 720,
 			[
 				[center, 642, 3, 0x101011],
@@ -53,7 +59,7 @@ export class Func501 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 799, 38, 828, 76, 1500]
 		]
-	}, { // 超鬼王 时效性
+	}, { // 3 超鬼王 时效性
 		desc: [
 			1280, 720,
 			[
@@ -73,9 +79,17 @@ export class Func501 implements IFuncOrigin {
 		if (thisconf?.once && (thisScript.runTimes['40'] > 0 || thisScript.runTimes['50'] > 0)) {
 			return false;
 		} else {
+			// 需要根据开关进行配置
+			const tempOperator00 = {
+				desc: thisOperator[0].desc,
+				oper: [thisOperator[0].oper[ thisconf && thisconf?.chaoguiwang20251120_flag ? 1 : 0]]
+			};
+
+			console.log(thisOperator[0].oper);
 			if (thisScript.oper({
+				id: 501,
 				name: '打开buff界面',
-				operator: thisOperator.slice(0)
+				operator: [tempOperator00, thisOperator[1], thisOperator[2], thisOperator[3]]
 			})) {
 				return true;
 			}
