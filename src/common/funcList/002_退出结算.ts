@@ -286,19 +286,18 @@ export class Func002 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1110, 362, 1222, 493, 1000],
 		]
-	}, { // 26 卑弥呼boss结算
+	}, { // 26 2025 sp蝴蝶精 超鬼王结算
 		desc: [1280, 720,
 			[
-				[center, 1178, 71, 0xe9d3cf],
-				[center, 1186, 65, 0x7d3556],
-				[center, 1197, 89, 0xe8d3ce],
-				[center, 1187, 613, 0xebd993],
-				[center, 1202, 605, 0x1b140f],
-				[center, 1177, 653, 0xdec26f],
+				[right, 646, 269, 0xf7edd1],
+				[right, 684, 277, 0x311c18],
+				[right, 640, 231, 0x422823],
+				[center, 599, 274, 0x341e19],
+				[right, 640, 319, 0x1c0c09],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1176, 68, 1199, 93, 1000],
+			[center, 1280, 720, 401, 510, 915, 573, 1000],
 		]
 	}, { // 27  左下统计图标
 		desc: [1280, 720,

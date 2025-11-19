@@ -1407,6 +1407,9 @@ export const versionList = [{
 }, {
 	version: '20251139_01',
 	desc: 'fix: 优化508 逢魔首领boss检索逻辑,修复518邮箱取色'
+}, {
+	version: '20251119_01',
+	desc: 'fix: 添加超鬼王结算，优化斗技界面'
 }];
 
 export default versionList[versionList.length - 1].version;
