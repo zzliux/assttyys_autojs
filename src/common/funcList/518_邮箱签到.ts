@@ -40,10 +40,10 @@ export class Func518 implements IFuncOrigin {
 			desc: [1280, 720,
 				[
 					[right, 1152, 39, 0xd7b288],
-					[right, 1173, 26, 0xfe0101],
 					[right, 1140, 46, 0xd2ab7f],
 					[right, 1155, 54, 0xcba072],
 					[right, 1225, 35, 0xd4ae84],
+					[right, 1174, 23, 0xfd3e3e],
 				],
 			],
 			oper: [
@@ -537,7 +537,7 @@ export class Func518 implements IFuncOrigin {
 		}, {	//  36 检测_商店_推荐页签_每日领取
 			desc: [1280, 720,
 				[
-					[center, 323, 141, 0xe90000],
+					[center, 323, 141, 0xe41010],
 					[left, 292, 310, 0xc38646],
 					[left, 236, 218, 0xe1e1e1],
 					[left, 254, 217, 0x242221],
