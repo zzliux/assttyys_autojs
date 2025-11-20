@@ -1413,6 +1413,9 @@ export const versionList = [{
 }, {
 	version: '20251120_01',
 	desc: 'fix: 修复518 邮箱取色, 修复518 商店 推荐页签 每日领取, 修复501 打开buff界面 增加超鬼王适配按钮，默认关闭'
+}, {
+	version: '20251120_02',
+	desc: 'fix: 修复斗技 不断点击自动上阵按钮'
 }];
 
 export default versionList[versionList.length - 1].version;
