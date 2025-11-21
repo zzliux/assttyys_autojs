@@ -1416,6 +1416,9 @@ export const versionList = [{
 }, {
 	version: '20251120_02',
 	desc: 'fix: 修复斗技 不断点击自动上阵按钮'
+}, {
+	version: '20251121_01',
+	desc: 'fix: 添加超鬼王1-4星方案'
 }];
 
 export default versionList[versionList.length - 1].version;
