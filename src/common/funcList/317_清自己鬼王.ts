@@ -99,7 +99,6 @@ export class Func317 implements IFuncOrigin {
 				[right, 1197, 653, 0x222027],
 				[right, 1066, 642, 0xdee6ff],
 				[left, 258, 34, 0x573515],
-				[right, 1231, 344, 0xedeeff],
 				[right, 1227, 137, 0xe2eafe],
 			]
 		],
@@ -190,6 +189,18 @@ export class Func317 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 909, 168, 969, 224, 1000],	// 关闭
 		]
+	}, {	//	13 1星
+		desc: [
+			1280, 720,
+			[
+				[right, 1105, 535, 0x918686],
+				[right, 1097, 535, 0x918686],
+				[right, 1090, 535, 0x918686],
+				[right, 1083, 535, 0x918686],
+				[right, 1074, 535, 0x918686],
+				[right, 1066, 535, 0xf1631c],
+			]
+		]
 	}];
 
 
@@ -202,7 +213,7 @@ export class Func317 implements IFuncOrigin {
 				desc: thisOperator[6].desc,
 			}]
 		})) {
-			const checkStarArray = [thisOperator[1], thisOperator[2]];
+			const checkStarArray = [thisOperator[1], thisOperator[2], thisOperator[13]];
 
 			if (thisConf && thisConf.fight_level_four) {
 				checkStarArray.push(thisOperator[3]);
