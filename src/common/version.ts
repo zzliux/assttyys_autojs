@@ -1419,6 +1419,9 @@ export const versionList = [{
 }, {
 	version: '20251121_01',
 	desc: 'fix: 添加超鬼王1-4星方案'
+}, {
+	version: '20251122_01',
+	desc: 'fix: 优化超鬼王，添加1星挑战'
 }];
 
 export default versionList[versionList.length - 1].version;
