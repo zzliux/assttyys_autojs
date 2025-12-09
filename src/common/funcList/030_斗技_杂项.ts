@@ -69,12 +69,11 @@ export class Func030 implements IFuncOrigin {
 		// 3 段位上升
 		desc: [1280, 720,
 			[
-				[center, 424, 329, 0xaa8957],
-				[center, 579, 298, 0xe6d8a9],
-				[center, 738, 382, 0xb6261c],
-				[center, 774, 293, 0xf3e5ba],
-				[center, 774, 332, 0x967742],
-				[center, 869, 325, 0x9d824c],
+				[center, 496, 62, 0x9f462a],
+				[right, 806, 78, 0x8b2e1d],
+				[center, 518, 57, 0xf5d5aa],
+				[right, 760, 39, 0xf9d8ac],
+				[center, 470, 570, 0x31281d],
 			],
 		],
 		oper: [[right, 1280, 720, 1166, 580, 1232, 638, 1000]],

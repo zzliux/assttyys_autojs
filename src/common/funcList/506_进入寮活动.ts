@@ -118,17 +118,16 @@ export class Func506 implements IFuncOrigin {
 			]
 		}, { // 6 检测_是否为道馆页
 			desc:
-				[
-					1280, 720,
+				[1280, 720,
 					[
-						[center, 879, 611, 0xc7414e],
-						[center, 913, 644, 0x493a38],
-						[center, 609, 651, 0x583a28],
-						[left, 62, 532, 0x882349],
-						[left, 48, 26, 0xd7c5a2],
-						[left, 109, 23, 0xd7c5a2],
-						[left, 175, 22, 0xd4c4a3],
-						[right, 1024, 618, 0xe0d3ce],
+						[left, 44, 25, 0xd6c4a1],
+						[left, 109, 28, 0xd6c4a1],
+						[left, 187, 25, 0xd6c4a1],
+						[center, 552, 629, 0xebe8e5],
+						[right, 706, 649, 0x573a28],
+						[right, 929, 621, 0xcf4a55],
+						[right, 1014, 607, 0x473a39],
+						[left, 163, 109, 0xd2c7b9],
 					]
 				],
 		}, { // 7 检测_是否为挑战奉献榜场景_待开始
