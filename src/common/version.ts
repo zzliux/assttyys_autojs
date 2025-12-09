@@ -1422,6 +1422,9 @@ export const versionList = [{
 }, {
 	version: '20251122_01',
 	desc: 'fix: 优化超鬼王，添加1星挑战'
+}, {
+	version: '20251209_01',
+	desc: 'fix: 优化 花合战领取，修复斗技识别问题（升段，失败结算），修复道馆识别问题，修复神社适配问题'
 }];
 
 export default versionList[versionList.length - 1].version;
