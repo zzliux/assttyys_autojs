@@ -301,7 +301,6 @@ export class Func032 implements IFuncOrigin {
 		})) {
 			return true;
 		}
-		// 框不点掉来耗掉道馆关闭
 		if (thisScript.oper({
 			id: 32,
 			name: '检测_挑战失败',
@@ -359,11 +358,19 @@ export class Func032 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 32,
 			name: '检测_挑战结束',
-			operator: [thisOperator[2], thisOperator[9], thisOperator[13]]
+			operator: [thisOperator[2]]
 		})) {
 			if (!thisScript.scheme.list.includes(519)) {
 				thisScript.rerun('返回庭院');
+				return true;
 			}
+		}
+		if (thisScript.oper({
+			id: 32,
+			name: '检测_挑战结束',
+			operator: [thisOperator[9], thisOperator[13]]
+		})) {
+			thisScript.rerun('返回庭院');
 			return true;
 		}
 	}

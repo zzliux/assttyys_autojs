@@ -6,7 +6,7 @@ const center = 1;
 
 export class Func321 implements IFuncOrigin {
 	id = 321;
-	name = '寻香行五层后切二技能';
+	name = '寻香行五层后切二技能(待重做)';
 	desc: '';
 	operator: IFuncOperatorOrigin[] = [{
 		desc: '战斗界面',
@@ -56,7 +56,7 @@ export class Func321 implements IFuncOrigin {
 					if (point) {
 						thisScript.global.xxxskill = 2;
 						thisScript.regionClick([[point.x, point.y, point.x + 15, point.y + 15, 500]]);
-						thisScript.regionClick([[point.x - 30, point.y - 130, point.x - 30 + 15, point.y - 130 + 15, 200]]);
+						thisScript.regionClick([[point.x - 90, point.y - 128, point.x - 90 + 15, point.y - 128 + 15, 200]]);
 						return true;
 					}
 				}

@@ -148,34 +148,6 @@ export class Func519 implements IFuncOrigin {
 			[center, 1280, 720, 762, 414, 881, 457, 5000], // 建立道馆_确认
 			[center, 1280, 720, 1171, 106, 1224, 143, 1000], // 建立道馆_关闭详细
 		]
-	}, { // 8 0次机会
-		desc: [
-			1280, 720,
-			[
-				[center, 550, 653, 0xddd9c8],
-				[center, 645, 666, 0xe2ddcc],
-				[center, 687, 664, 0xa8a598],
-				[center, 707, 662, 0xde8001],
-				[center, 716, 661, 0xe18201],
-				[center, 732, 662, 0xe88501],
-				[center, 562, 87, 0x07080f],
-			]
-		]
-	}, { // 9 选道馆界面:今日挑战成功
-		desc: [
-			1280, 720,
-			[
-				[center, 518, 653, 0xddd9c8],
-				[center, 533, 650, 0xdedac9],
-				[center, 558, 649, 0xe8e4d2],
-				[center, 577, 653, 0xc1beaf],
-				[center, 599, 650, 0xbdbbad],
-				[center, 622, 648, 0xe2decd],
-				[center, 644, 649, 0x9d9c91],
-				[center, 666, 649, 0xbab8aa],
-				[center, 690, 648, 0xb8b6a7],
-			]
-		]
 	}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -184,17 +156,6 @@ export class Func519 implements IFuncOrigin {
 		if (thisConf.day && (now.getDay() == 0 || now.getDay() >= 5)) {
 			thisScript.myToast('星期567,关闭方案');
 			thisScript.doPush(thisScript, { text: '星期567,关闭方案', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-			thisScript.stop();
-			sleep(2000);
-			return true;
-		}
-		if (thisScript.oper({
-			id: 519,
-			name: '当日机会为0',
-			operator: [thisOperator[8], thisOperator[9]]
-		})) {
-			thisScript.myToast('两次机会用光');
-			thisScript.doPush(thisScript, { text: '两次机会用光', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 			thisScript.stop();
 			sleep(2000);
 			return true;

@@ -2372,31 +2372,33 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		desc: [[
 			1280, 720, // 狸猫
 			[
-				[left, 286, 290, 0x774f32],
-				[left, 289, 311, 0x302116],
-				[left, 308, 305, 0xf7dca1],
-				[left, 300, 284, 0xbebb3c],
-				[left, 308, 317, 0xcf722f],
+				[left, 282, 280, 0x3f4247],
+				[left, 297, 301, 0xe9b578],
+				[left, 311, 300, 0xfcf4de],
+				[left, 312, 313, 0xaea41e],
+				[left, 280, 326, 0x94613b],
 			]
 		], [
 			1280, 720, // 饿鬼
 			[
-				[left, 290, 285, 0xf8dc66],
-				[left, 286, 288, 0xf7d748],
+				[left, 281, 281, 0x3f4247],
 				[left, 300, 290, 0x6f6565],
-				[left, 306, 320, 0x446693],
-				[left, 312, 310, 0x3b547c],
+				[left, 315, 298, 0x494143],
+				[left, 307, 304, 0xf8f8f8],
+				[left, 281, 327, 0x3f4349],
+				[left, 285, 288, 0xfbe391],
 			]
 		], [
 			1280, 720, // 河童
 			[
-				[left, 290, 384, 0x5ba29f],
-				[left, 306, 380, 0x296e64],
-				[left, 319, 384, 0x549292],
-				[left, 319, 417, 0x5368df],
-				[left, 292, 421, 0x1c1c32],
+				[left, 283, 375, 0x404349],
+				[left, 293, 385, 0x5eaca4],
+				[left, 318, 386, 0x5caba8],
+				[left, 317, 406, 0x463243],
+				[left, 282, 420, 0x5763ba],
+				[center, 329, 419, 0x72cbce],
 			]
-		]]
+		]],
 	},
 	'宴会筹备_狸猫': {
 		region: [center, 1280, 720, 1038, 187, 1248, 618],
@@ -2409,11 +2411,11 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				[right, 1183, 389, 0xe7b26e],
 				[right, 1177, 383, 0xb9b73b],
 			]
-		]]
+		]],
+		similar: 93,
 	},
 	'宴会筹备_饿鬼': {
 		region: [center, 1280, 720, 1038, 187, 1248, 618],
-		similar: 90,
 		desc: [[
 			1280, 720,
 			[
@@ -2423,7 +2425,8 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				[right, 1182, 407, 0xfcfcfc],
 				[right, 1180, 418, 0x4d72a3],
 			]
-		]]
+		]],
+		similar: 93,
 	},
 	'宴会筹备_河童': {
 		region: [center, 1280, 720, 1038, 187, 1248, 618],
@@ -2436,7 +2439,8 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				[right, 1228, 400, 0x73d4d3],
 				[right, 1211, 385, 0x8b6d73],
 			]
-		]]
+		]],
+		similar: 93,
 	},
 	'红标_血条': {
 		region: [center, 1280, 720, 0, 0, 1279, 719],

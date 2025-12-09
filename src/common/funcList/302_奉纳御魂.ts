@@ -45,18 +45,16 @@ export class Func302 implements IFuncOrigin {
 				[left, 117, 251, 0xe1dbc9],
 				[left, 112, 245, 0xf7f2df],
 			]
-		],
-		oper: [
-			[center, 1280, 720, 820, 644, 922, 688, 1000]
 		]
 	}, {  // 2,开始奉纳
 		desc: [
 			1280, 720,
 			[
-				[left, 49, 134, 0x9e7449],
-				[left, 173, 252, 0x0685aa],
-				[left, 100, 252, 0xa9dee6],
-				[left, 117, 252, 0xa0d8e1],
+				[left, 63, 120, 0xbc8345],
+				[left, 174, 251, 0x0082a8],
+				[left, 183, 257, 0xfffcf5],
+				[left, 173, 265, 0xfffbf7],
+				[left, 168, 260, 0xfffef2],
 			]
 		],
 		oper: [
@@ -179,6 +177,17 @@ export class Func302 implements IFuncOrigin {
 			[center, 1280, 720, 1038, 299, 1115, 406, 1000],
 			[center, 1280, 720, 939, 217, 960, 243, 1000]
 		]
+	}, {  // 14 折叠的五星御魂
+		desc: [1280, 720,
+			[
+				[left, 87, 239, 0xe5602c],
+				[left, 87, 350, 0xe85c2e],
+				[left, 192, 350, 0xe7602c],
+				[left, 110, 294, 0xfca037],
+				[left, 170, 294, 0xffa45b],
+				[left, 139, 263, 0xfda637],
+			]
+		],
 	}
 	];
 
@@ -230,9 +239,7 @@ export class Func302 implements IFuncOrigin {
 
 			if (thisScript.oper({
 				name: '第一排一行御魂',
-				operator: [{
-					desc: thisOperator[1].desc,
-				}]
+				operator: [thisOperator[1], thisOperator[14]]
 			})) {
 				thisScript.regionClick([[...thisOperator[6].oper[0], 1000]]);
 				return true;
@@ -240,9 +247,7 @@ export class Func302 implements IFuncOrigin {
 
 			if (!thisScript.oper({
 				name: '第一排第一个御魂+0',
-				operator: [{
-					desc: thisOperator[1].desc,
-				}]
+				operator: [thisOperator[1], thisOperator[14]]
 			}) && thisScript.oper({
 				name: '背景墙，灰奉纳',
 				operator: [thisOperator[5]]

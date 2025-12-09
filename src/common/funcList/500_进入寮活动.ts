@@ -16,6 +16,11 @@ export class Func500 implements IFuncOrigin {
 			desc: '超时次数(每30秒检查一次寮活动状态)',
 			type: 'integer',
 			default: 10,
+		}, {
+			name: 'admin',
+			desc: '寮管理主动开启寮活动',
+			type: 'switch',
+			default: false,
 		}]
 	}, {
 		desc: '识别到后的操作(切换方案)',
@@ -276,9 +281,10 @@ export class Func500 implements IFuncOrigin {
 				[
 					1280, 720,
 					[
-						[center, 879, 611, 0xc7414e],
-						[center, 913, 644, 0x493a38],
-						[center, 609, 651, 0x583a28],
+						[center, 549, 633, 0xe1dfdd],
+						[right, 699, 627, 0x72737b],
+						[right, 914, 614, 0xc63a49],
+						[right, 1033, 619, 0xdacdc8],
 						[left, 62, 532, 0x882349],
 						[left, 48, 26, 0xd7c5a2],
 						[left, 109, 23, 0xd7c5a2],
@@ -392,78 +398,6 @@ export class Func500 implements IFuncOrigin {
 				}
 			}
 		}
-		// 宴会活动
-		if (thisScript.superGlobal.liao_activity_Swith['a_ctivity_banquet']) {
-			let a_ctivity_banquet_time_one;// 判断星期几
-			let a_ctivity_banquet_time_two;// 判断星期几
-			switch (thisconf.a_ctivity_banquet_time[0]) {
-				case '星期一':
-					a_ctivity_banquet_time_one = 1;
-					break;
-				case '星期二':
-					a_ctivity_banquet_time_one = 2;
-					break;
-				case '星期三':
-					a_ctivity_banquet_time_one = 3;
-					break;
-				case '星期四':
-					a_ctivity_banquet_time_one = 4;
-					break;
-				case '星期五':
-					a_ctivity_banquet_time_one = 5;
-					break;
-				case '星期六':
-					a_ctivity_banquet_time_one = 6;
-					break;
-				case '星期日':
-					a_ctivity_banquet_time_one = 0;
-					break;
-				default:
-					console.log('宴会时间设置错误');
-					break;
-			}
-			switch (thisconf.a_ctivity_banquet_time[1]) {
-				case '星期一':
-					a_ctivity_banquet_time_two = 1;
-					break;
-				case '星期二':
-					a_ctivity_banquet_time_two = 2;
-					break;
-				case '星期三':
-					a_ctivity_banquet_time_two = 3;
-					break;
-				case '星期四':
-					a_ctivity_banquet_time_two = 4;
-					break;
-				case '星期五':
-					a_ctivity_banquet_time_two = 5;
-					break;
-				case '星期六':
-					a_ctivity_banquet_time_two = 6;
-					break;
-				case '星期日':
-					a_ctivity_banquet_time_two = 0;
-					break;
-				default:
-					console.log('宴会时间设置错误');
-					break;
-			}
-			if (a_ctivity_banquet_time_one === nowDay || a_ctivity_banquet_time_two === nowDay) {// 判断是否符合
-				if (thisScript.oper({
-					name: '检查_宴会是否已开启',
-					operator: [thisOperator[1]]
-				})) {
-					// 关闭开关 传参 切换到宴会
-					thisScript.superGlobal.liao_activity_Swith['a_ctivity_banquet'] = false;
-					const next_scheme = thisconf.a_ctivity_banquet_select;
-					thisScript.rerun(next_scheme);
-					return true;
-				}
-			} else {
-				console.log('宴会 不在时间段内');
-				thisScript.superGlobal.liao_activity_Swith['a_ctivity_banquet'] = false;
-			}
-		}
 		// 周六首领退治活动
 		if (thisScript.superGlobal.liao_activity_Swith['a_ctivity_huntBoss']) {
 			if (nowHour >= 10 && nowHour < 23 && nowDay === 6) {// 判断是否在周六10-23点
@@ -490,6 +424,14 @@ export class Func500 implements IFuncOrigin {
 		}
 		// 道馆活动
 		if (thisScript.superGlobal.liao_activity_Swith['a_ctivity_dojo'] || thisScript.superGlobal.liao_activity_Swith['a_ctivity_dojo_again']) {
+			if (thisconf.admin) {
+				thisScript.superGlobal.liao_activity_Swith['a_ctivity_dojo'] = false;
+				thisScript.superGlobal.liao_activity_Swith['a_ctivity_dojo_again'] = false;
+				thisScript.superGlobal.liao_activity_Swith['a_ctivity_narrow'] = false;
+				const next_scheme = thisconf.a_ctivity_dojo_select;
+				thisScript.rerun(next_scheme);
+				return true;
+			}
 			if (thisScript.oper({
 				name: '检测_寮界面道馆是否已开启',
 				operator: [thisOperator[12]]
@@ -595,6 +537,83 @@ export class Func500 implements IFuncOrigin {
 					'a_ctivity_huntBoss': false,
 				};
 				return true;
+			}
+		}
+		// 宴会活动
+		if (thisScript.superGlobal.liao_activity_Swith['a_ctivity_banquet']) {
+			let a_ctivity_banquet_time_one;// 判断星期几
+			let a_ctivity_banquet_time_two;// 判断星期几
+			switch (thisconf.a_ctivity_banquet_time[0]) {
+				case '星期一':
+					a_ctivity_banquet_time_one = 1;
+					break;
+				case '星期二':
+					a_ctivity_banquet_time_one = 2;
+					break;
+				case '星期三':
+					a_ctivity_banquet_time_one = 3;
+					break;
+				case '星期四':
+					a_ctivity_banquet_time_one = 4;
+					break;
+				case '星期五':
+					a_ctivity_banquet_time_one = 5;
+					break;
+				case '星期六':
+					a_ctivity_banquet_time_one = 6;
+					break;
+				case '星期日':
+					a_ctivity_banquet_time_one = 0;
+					break;
+				default:
+					console.log('宴会时间设置错误');
+					break;
+			}
+			switch (thisconf.a_ctivity_banquet_time[1]) {
+				case '星期一':
+					a_ctivity_banquet_time_two = 1;
+					break;
+				case '星期二':
+					a_ctivity_banquet_time_two = 2;
+					break;
+				case '星期三':
+					a_ctivity_banquet_time_two = 3;
+					break;
+				case '星期四':
+					a_ctivity_banquet_time_two = 4;
+					break;
+				case '星期五':
+					a_ctivity_banquet_time_two = 5;
+					break;
+				case '星期六':
+					a_ctivity_banquet_time_two = 6;
+					break;
+				case '星期日':
+					a_ctivity_banquet_time_two = 0;
+					break;
+				default:
+					console.log('宴会时间设置错误');
+					break;
+			}
+			if (a_ctivity_banquet_time_one === nowDay || a_ctivity_banquet_time_two === nowDay) {// 判断是否符合
+				if (thisconf.admin) {
+					thisScript.superGlobal.liao_activity_Swith['a_ctivity_banquet'] = false;
+					const next_scheme = thisconf.a_ctivity_banquet_select;
+					thisScript.rerun(next_scheme);
+				}
+				if (thisScript.oper({
+					name: '检查_宴会是否已开启',
+					operator: [thisOperator[1]]
+				})) {
+					// 关闭开关 传参 切换到宴会
+					thisScript.superGlobal.liao_activity_Swith['a_ctivity_banquet'] = false;
+					const next_scheme = thisconf.a_ctivity_banquet_select;
+					thisScript.rerun(next_scheme);
+					return true;
+				}
+			} else {
+				console.log('宴会 不在时间段内');
+				thisScript.superGlobal.liao_activity_Swith['a_ctivity_banquet'] = false;
 			}
 		}
 		return false;

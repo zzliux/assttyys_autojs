@@ -38,7 +38,8 @@ export type globalRootType = {
 	narrow_time: number, // 狭间暗域自定义3D人物走路时等待时间
 	narrow_mode: boolean,
 	liao_activity_page_flag: number,   //  寮活动翻页标记
-
+	liao_banquet_collect: boolean,   //  宴会筹备状态
+	liao_banquet_onGoing: boolean,   //  宴会进行状态
 	banquet_change_flag: boolean,   //  宴会轮换开关标识
 	gateOfHades_state: boolean,     //  阴门状态
 	team_up_lagTime: null | Date,    // 组队延时
@@ -97,6 +98,7 @@ export type globalRootType = {
 	xxxskill: number, // 寻香行技能
 	MT_share: 'start' | 'back' | 'end', // 每周分享
 	MT_liaoShop: 'start' | 'back' | 'end', // 寮商店购买
+	MT_liaoShopList: string[], // 寮商店购买_未购买列表
 	MT_shop: 'zhiBo' | 'jiShouWu' | 'miJuanWu' | 'zaHuoPu_teSu' | 'zaHuoPu_rongYu' | 'zaHuoPu_youQing' | 'zaHuoPu_xunZhang' | 'zaHuoPu_meiLi' | 'done', // 商店购买
 	zhiBoBack: boolean, // 直播间返回
 	shop_find: string[], // 商店购买_查找物品
@@ -206,6 +208,7 @@ export const globalRoot: globalRootType = {
 	xxxskill: 0,
 	MT_share: 'start',
 	MT_liaoShop: 'start',
+	MT_liaoShopList: null,
 	MT_shop: 'zhiBo',
 	zhiBoBack: false,
 	shop_find: null,
@@ -217,8 +220,9 @@ export const globalRoot: globalRootType = {
 	day_chouKa: true,
 	qiling_shop: false,
 	shiHe_jingYan: false,
+	liao_banquet_collect: true,
+	liao_banquet_onGoing: true,
 }
-
 export type superGlobalRootType = {
 	liao_activity_Swith: Record<string, boolean>, // 寮活动记录
 	next_scheme_name: string, // 中转后的下个方案

@@ -103,14 +103,12 @@ export class Func1000 implements IFuncOrigin {
 			})
 		) {
 			const point1 = thisScript.findMultiColor('宴会_举高高');
-
 			if (point1) {
 				console.log('查找举高高成功');
 				const oper = [[point1.x, point1.y, point1.x, point1.y, 120]];
 				thisScript.regionClick(oper);
 				return true;
 			}
-
 			if (!thisScript.global.banquet_change_flag) {
 				return thisScript.oper({
 					name: '宴会_式神轮换',

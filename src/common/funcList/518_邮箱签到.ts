@@ -40,7 +40,7 @@ export class Func518 implements IFuncOrigin {
 			desc: [1280, 720,
 				[
 					[right, 1152, 39, 0xd7b288],
-					[right, 1173, 26, 0xfe0101],
+					[right, 1173, 26, 0xf21b1b],
 					[right, 1140, 46, 0xd2ab7f],
 					[right, 1155, 54, 0xcba072],
 					[right, 1225, 35, 0xd4ae84],
@@ -54,12 +54,12 @@ export class Func518 implements IFuncOrigin {
 			//  5 检测_邮件弹窗_无全部领取
 			desc: [1280, 720,
 				[
-					[left, 129, 599, 0x504031],
-					[left, 129, 618, 0x504031],
-					[left, 127, 645, 0x625247],
-					[left, 182, 623, 0xd5c3ae],
-					[left, 295, 626, 0xd5c3ae],
-					[center, 373, 627, 0xd5c3ae],
+					[left, 112, 610, 0x615146],
+					[left, 191, 623, 0xd5c3ae],
+					[left, 297, 622, 0xd7c3ae],
+					[center, 351, 622, 0xd5c3ae],
+					[left, 115, 680, 0x2c1c19],
+					[left, 107, 673, 0x402a25],
 				]
 			],
 			oper: [
@@ -71,12 +71,11 @@ export class Func518 implements IFuncOrigin {
 			//  6 检测_邮件弹窗_一键领取
 			desc: [1280, 720,
 				[
-					[left, 54, 623, 0xeee9d5],
-					[left, 80, 601, 0xc5915e],
-					[left, 127, 616, 0xd2a882],
-					[left, 100, 606, 0xc49363],
-					[left, 68, 661, 0xdfd3c5],
-					[left, 99, 658, 0xc79261],
+					[left, 43, 622, 0xefe9d4],
+					[left, 84, 599, 0xcb9863],
+					[left, 140, 610, 0xd0a57f],
+					[left, 101, 677, 0xc79768],
+					[left, 65, 662, 0xe1d5c5],
 				]
 			],
 			oper: [
@@ -540,7 +539,6 @@ export class Func518 implements IFuncOrigin {
 					[left, 262, 243, 0x484646],
 					[left, 230, 262, 0x282524],
 					[left, 261, 260, 0x232120],
-					[left, 320, 137, 0xfe1212],
 				]
 			],
 			oper: [

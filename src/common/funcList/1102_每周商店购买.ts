@@ -229,8 +229,8 @@ export class Func1102 implements IFuncOrigin {
 				[left, 68, 217, 0x9b2d27],
 				[left, 50, 356, 0x9b2d27],
 				[left, 69, 354, 0x9b2d27],
-				[left, 124, 273, 0x9f7615],
-				[left, 174, 304, 0xfeeeb7],
+				[left, 124, 273, 0xac811a],
+				[left, 174, 304, 0xd6ab27],
 			]
 		],
 		oper: [
