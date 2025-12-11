@@ -13,19 +13,18 @@ export class Func314 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1168, 592, 1230, 690, 1000]
 		]
-	}, { // 1 花合战500天
+	}, { // 1 庭院菜单花合战500天_是否有红点
 		desc: [
 			1280, 720,
 			[
-				[center, 790, 617, 0xd6beb3],
-				[center, 822, 606, 0xfc0101],
-				[center, 802, 626, 0xba4343],
-				[center, 823, 642, 0xf8e5b8],
-				[center, 789, 648, 0xa8928d],
+				[center, 823, 642, 0xf9e3b5],
+				[center, 789, 648, 0xab938e],
+				[right, 776, 629, 0xfaf3e4],
+				[right, 823, 602, 0xfc3c3c],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 769, 622, 820, 660, 1000],
+			[center, 1280, 720, 769, 622, 820, 660, 1000],	//	点击花合战
 		]
 	}, { // 2  花合战首页-奖励页签
 		desc: [
