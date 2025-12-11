@@ -40,13 +40,10 @@ export class Func030 implements IFuncOrigin {
 		// 1 有段位保护
 		desc: [1280, 720,
 			[
-				// [left, 37, 25, 0xf6e6a7],  // 图裂识别容错
-				[left, 207, 26, 0x583716],
-				[right, 1206, 74, 0x745a45],
-				[right, 1206, 178, 0x745a44],
 				[right, 1179, 594, 0x585a5d],
 				[right, 1203, 601, 0x565358],
 				[right, 1179, 624, 0xc6cbb9],
+				[left, 34, 36, 0xf7e9ab],
 			],
 		],
 		oper: [[right, 1280, 720, 1166, 580, 1232, 638, 1000]],
@@ -54,14 +51,11 @@ export class Func030 implements IFuncOrigin {
 		// 2 有裂痕的段位保护
 		desc: [1280, 720,
 			[
-				// [left, 37, 25, 0xf6e6a7],  // 图裂识别容错
-				[left, 207, 26, 0x583716],
-				[right, 1206, 74, 0x745a45],
-				[right, 1206, 178, 0x745a44],
 				[right, 1182, 574, 0xaeccda],
 				[right, 1162, 600, 0xaec8cd],
 				[right, 1179, 601, 0x657e90],
 				[right, 1180, 625, 0xb4cbcf],
+				[left, 34, 36, 0xf7e9ab],
 			],
 		],
 		oper: [[right, 1280, 720, 1166, 580, 1232, 638, 1000]],

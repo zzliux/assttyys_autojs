@@ -1428,6 +1428,9 @@ export const versionList = [{
 }, {
 	version: '20251211_01',
 	desc: 'fix: 优化 花合战红点识别'
+}, {
+	version: '20251211_02',
+	desc: 'fix: 修复斗技保护段位识别问题'
 }];
 
 export default versionList[versionList.length - 1].version;
