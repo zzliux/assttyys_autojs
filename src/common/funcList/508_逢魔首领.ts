@@ -67,6 +67,10 @@ export class Func508 implements IFuncOrigin {
 					[center, 694, 400, 0x810517],
 					[center, 615, 399, 0x500c19],
 					[center, 693, 401, 0x830417],
+					[left, 41, 48, 0xc4cce1],
+					[right, 771, 39, 0x593716],
+					[center, 564, 17, 0xe5e5e5],
+					[left, 44, 677, 0xc89a7e],
 				]
 			],
 			oper: [
@@ -196,6 +200,10 @@ export class Func508 implements IFuncOrigin {
 					[center, 694, 400, 0x810517],
 					[center, 693, 401, 0x830417],
 					[center, 682, 398, 0x8f0814],
+					[left, 41, 48, 0xc4cce1],
+					[right, 771, 39, 0x593716],
+					[center, 564, 17, 0xe5e5e5],
+					[left, 44, 677, 0xc89a7e],
 				]
 			],
 			oper: [
