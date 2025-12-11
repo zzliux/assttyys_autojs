@@ -1434,6 +1434,9 @@ export const versionList = [{
 }, {
 	version: '20251211_03',
 	desc: 'fix: 修复斗技段位提升关闭按钮操作'
+}, {
+	version: '20251211_04',
+	desc: 'fix: 修复逢魔boss识别问题'
 }];
 
 export default versionList[versionList.length - 1].version;
