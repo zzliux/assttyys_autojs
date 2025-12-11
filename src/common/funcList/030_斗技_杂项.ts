@@ -70,7 +70,7 @@ export class Func030 implements IFuncOrigin {
 				[center, 470, 570, 0x31281d],
 			],
 		],
-		oper: [[right, 1280, 720, 1166, 580, 1232, 638, 1000]],
+		oper: [[right, 1280, 720, 1178, 32, 1227, 77, 1000]],
 	}, {	// 4 自动上阵
 		desc: [1280, 720,
 			[
