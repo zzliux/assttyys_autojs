@@ -68,30 +68,26 @@ export class Func001 implements IFuncOrigin {
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['1'];
-		if (thisScript.oper({
-			id: 1,
-			name: '准备界面识别',
-			operator: [{ desc: thisOperator[2].desc }]
-		}) && !thisScript.oper({
-			name: '准备界面识别',
-			operator: [thisOperator[3]]
-		}) || thisScript.oper({
-			id: 1,
-			name: '准备界面识别',
-			operator: [{ desc: thisOperator[4].desc }]
-		})) {
-			thisScript.regionClick([thisOperator[0].oper[0]]);
-			thisScript.myToast('战斗主题非简约主题，部分功能失效，请及时跟换', 10000);
-			return true;
-		}
 		if (thisconf.exitBeforeReady) {
+			const exitOper = [thisOperator[0].oper[1], thisOperator[0].oper[2]];
+			const exitThemeDescList = [
+				'准备界面_未准备_凛霜寒雪',
+				'准备界面_未准备_春缕含青',
+				'准备界面_未准备_蝶寻花踪',
+				'准备界面_未准备_雅乐之邦',
+				'准备界面_未准备_莲华圣域',
+				'准备界面_未准备_笼梦之境',
+				'准备界面_未准备_辰烁奇夜',
+				'准备界面_未准备_流焰蝶舞',
+				'准备界面_未准备',
+			];
 			return thisScript.oper({
 				id: 1,
 				name: '准备界面_退出',
-				operator: [{
-					desc: '准备界面_未准备',
-					oper: [thisOperator[0].oper[1], thisOperator[0].oper[2]]
-				}]
+				operator: exitThemeDescList.map(desc => ({
+					desc,
+					oper: exitOper
+				}))
 			}, 0)
 		} else {
 			if (thisScript.oper({

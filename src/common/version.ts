@@ -1437,6 +1437,9 @@ export const versionList = [{
 }, {
 	version: '20251211_04',
 	desc: 'fix: 修复逢魔boss识别问题'
+}, {
+	version: '20251213_01',
+	desc: '准备功能适配战斗主题【凛霜寒雪、春缕含青、蝶寻花踪、雅乐之邦、莲华圣域、笼梦之境、辰烁奇夜、流焰蝶舞】'
 }];
 
 export default versionList[versionList.length - 1].version;
