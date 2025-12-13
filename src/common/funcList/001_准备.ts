@@ -68,24 +68,24 @@ export class Func001 implements IFuncOrigin {
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['1'];
+		const exitOper = [thisOperator[0].oper[1], thisOperator[0].oper[2]];
+		const themeDescList = [
+			'凛霜寒雪',
+			'春缕含青',
+			'蝶寻花踪',
+			'雅乐之邦',
+			'莲华圣域',
+			'笼梦之境',
+			'辰烁奇夜',
+			'流焰蝶舞',
+			'简约',
+		];
 		if (thisconf.exitBeforeReady) {
-			const exitOper = [thisOperator[0].oper[1], thisOperator[0].oper[2]];
-			const exitThemeDescList = [
-				'准备界面_未准备_凛霜寒雪',
-				'准备界面_未准备_春缕含青',
-				'准备界面_未准备_蝶寻花踪',
-				'准备界面_未准备_雅乐之邦',
-				'准备界面_未准备_莲华圣域',
-				'准备界面_未准备_笼梦之境',
-				'准备界面_未准备_辰烁奇夜',
-				'准备界面_未准备_流焰蝶舞',
-				'准备界面_未准备',
-			];
 			return thisScript.oper({
 				id: 1,
 				name: '准备界面_退出',
-				operator: exitThemeDescList.map(desc => ({
-					desc,
+				operator: themeDescList.map(desc => ({
+					desc: '准备界面_未准备_' + desc,
 					oper: exitOper
 				}))
 			}, 0)
@@ -93,14 +93,17 @@ export class Func001 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 1,
 				name: '准备',
-				operator: [{
-					desc: '准备界面_未准备',
+				operator: themeDescList.map(desc => ({
+					desc: '准备界面_未准备_' + desc,
 					oper: [thisOperator[0].oper[0]]
-				}]
+				}))
 			}, 0) || thisScript.oper({
 				id: 1,
 				name: '手动修正自动',
-				operator: [thisOperator[1]]
+				operator: themeDescList.map(desc => ({
+					desc: '战斗界面_手动状态_' + desc,
+					oper: [thisOperator[1].oper[0]]
+				}))
 			}, 1000)) {
 
 				// 每点一次准备 重置一次红标状态
