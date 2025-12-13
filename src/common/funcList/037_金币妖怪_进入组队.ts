@@ -53,14 +53,13 @@ export class Func037 implements IFuncOrigin {
 			desc: [
 				1280, 720,
 				[
-					[left, 52, 28, 0xf0d08d],
 					[left, 169, 40, 0x09090a],
 					[right, 1221, 87, 0x754824],
 					[right, 1224, 621, 0x381f1c],
-					[right, 1212, 244, 0xdeba52],
 					[left, 100, 513, 0x372422],
 					[center, 1226, 699, 0x3f2822],
 					[center, 617, 657, 0xd2c2b4],
+					[left, 43, 39, 0xf5e4a5],
 				]
 			],
 			oper: [

@@ -204,7 +204,11 @@ export class Func018 implements IFuncOrigin {
 				[center, 500, 715, 0x000000],
 				[center, 612, 715, 0x000000],
 				[center, 773, 715, 0x000000],
-				[center, 830, 716, 0x000000]
+				[center, 830, 716, 0x000000],
+				[center, 621, 122, 0x87776f],
+				[right, 755, 84, 0x37281d],
+				[center, 530, 80, 0x3a2a1f],
+				[right, 1180, 138, 0x4d2128],
 			]
 		],
 		oper: [
@@ -240,13 +244,13 @@ export class Func018 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[left, 39, 49, 0xc3cce1],
-				[left, 49, 37, 0xc2cbe0],
-				[left, 159, 64, 0x000000],
-				[left, 253, 48, 0x593716],
-				[left, 261, 40, 0xe1be54],
+				[left, 45, 48, 0xf5e5a5],
+				[left, 38, 34, 0x95653c],
+				[left, 159, 64, 0x333141],
+				[left, 228, 65, 0x323040],
+				[left, 317, 46, 0x1e1d25],
 				[right, 1190, 607, 0xe4dac3],
-				[left, 199, 34, 0x060506],
+				[left, 228, 28, 0x282534],
 				[right, 1186, 609, 0xe4dac4],
 				[right, 1205, 664, 0xe2d7c1],
 			]

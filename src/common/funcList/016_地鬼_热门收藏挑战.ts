@@ -28,15 +28,15 @@ export class Func016 implements IFuncOrigin {
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{
-		// 0
+		// 0 地鬼首页
 		desc: [1280, 720,
 			[
-				[left, 60, 58, 0xc2cbe3],
 				[left, 69, 670, 0xaf544c],
 				[right, 1157, 49, 0xfbf5e5],
 				[right, 1137, 39, 0xce737b],
 				[right, 1206, 42, 0xc55149],
-				[right, 1197, 532, 0xf4f4f4]
+				[right, 1197, 532, 0xf4f4f4],
+				[left, 44, 36, 0xf7eaad],
 			]
 		],
 		oper: [
@@ -57,6 +57,7 @@ export class Func016 implements IFuncOrigin {
 				[left, 137, 216, 0xddd6ce],
 				[left, 181, 631, 0xd7cdc6],
 				[right, 1209, 43, 0xeecccc],
+				[right, 1204, 520, 0xe8d5b0],
 				[right, 1087, 624, 0xebe5ce],
 				[right, 1205, 437, 0xa05437],
 			]
@@ -121,7 +122,7 @@ export class Func016 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 737, 639, 801, 697, 1000],
 		]
-	}];
+	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			id: 16,

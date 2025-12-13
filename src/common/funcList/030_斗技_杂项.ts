@@ -40,13 +40,10 @@ export class Func030 implements IFuncOrigin {
 		// 1 有段位保护
 		desc: [1280, 720,
 			[
-				// [left, 37, 25, 0xf6e6a7],  // 图裂识别容错
-				[left, 207, 26, 0x583716],
-				[right, 1206, 74, 0x745a45],
-				[right, 1206, 178, 0x745a44],
 				[right, 1179, 594, 0x585a5d],
 				[right, 1203, 601, 0x565358],
 				[right, 1179, 624, 0xc6cbb9],
+				[left, 34, 36, 0xf7e9ab],
 			],
 		],
 		oper: [[right, 1280, 720, 1166, 580, 1232, 638, 1000]],
@@ -54,14 +51,11 @@ export class Func030 implements IFuncOrigin {
 		// 2 有裂痕的段位保护
 		desc: [1280, 720,
 			[
-				// [left, 37, 25, 0xf6e6a7],  // 图裂识别容错
-				[left, 207, 26, 0x583716],
-				[right, 1206, 74, 0x745a45],
-				[right, 1206, 178, 0x745a44],
 				[right, 1182, 574, 0xaeccda],
 				[right, 1162, 600, 0xaec8cd],
 				[right, 1179, 601, 0x657e90],
 				[right, 1180, 625, 0xb4cbcf],
+				[left, 34, 36, 0xf7e9ab],
 			],
 		],
 		oper: [[right, 1280, 720, 1166, 580, 1232, 638, 1000]],
@@ -69,28 +63,30 @@ export class Func030 implements IFuncOrigin {
 		// 3 段位上升
 		desc: [1280, 720,
 			[
-				[center, 424, 329, 0xaa8957],
-				[center, 579, 298, 0xe6d8a9],
-				[center, 738, 382, 0xb6261c],
-				[center, 774, 293, 0xf3e5ba],
-				[center, 774, 332, 0x967742],
-				[center, 869, 325, 0x9d824c],
+				[center, 496, 62, 0x9f462a],
+				[right, 806, 78, 0x8b2e1d],
+				[center, 518, 57, 0xf5d5aa],
+				[right, 760, 39, 0xf9d8ac],
+				[center, 470, 570, 0x31281d],
 			],
 		],
-		oper: [[right, 1280, 720, 1166, 580, 1232, 638, 1000]],
-	}, { // 4 自动上阵
+		oper: [[right, 1280, 720, 1178, 32, 1227, 77, 1000]],
+	}, {	// 4 自动上阵
 		desc: [1280, 720,
 			[
-				[left, 24, 142, 0xb29765],
-				[left, 43, 132, 0xefedeb],
-				[left, 69, 128, 0xeeecea],
-				[left, 38, 158, 0xefedeb],
-				[left, 79, 144, 0xb79c66],
-				[left, 50, 144, 0xc4a76b],
+				[center, 480, 43, 0x1f2e5c],
+				[right, 810, 55, 0x511415],
+				[right, 645, 59, 0xfdf3d4],
+				[right, 837, 709, 0x4a3522],
+				[left, 255, 702, 0x4b2f21],
+				[left, 66, 528, 0x413530],
+				[left, 48, 31, 0xd6c4a1],
+				[right, 1012, 701, 0x391c12],
+				[right, 1216, 607, 0xd6bf8f],	//	根据右下角判断是否自动上阵
 			]
 		],
 		oper: [
-			[center, 1280, 720, 28, 126, 72, 164, 1000],
+			[center, 1280, 720, 12, 109, 89, 177, 1000],
 		]
 	}, { // 5 名仕斗技界面
 		desc: '斗技主界面_名士',
@@ -224,7 +220,7 @@ export class Func030 implements IFuncOrigin {
 			id: 30,
 			name: '斗技_杂项',
 			operator: [
-				thisOperator[0], thisOperator[1], thisOperator[3], thisOperator[4],
+				thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[4],
 				thisOperator[6], thisOperator[7], thisOperator[8], thisOperator[9],
 				thisOperator[12], thisOperator[13],
 			]

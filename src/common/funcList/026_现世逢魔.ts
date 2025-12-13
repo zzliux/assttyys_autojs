@@ -107,7 +107,7 @@ export class Func026 implements IFuncOrigin {
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-
+		// 比色"封"字,非封则点击并计数,用计数控制点击位置
 		if (thisScript.oper({
 			name: '现世逢魔_界面判断',
 			operator: [{ desc: thisOperator[0].desc }]
