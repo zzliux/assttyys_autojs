@@ -1440,6 +1440,9 @@ export const versionList = [{
 }, {
 	version: '20251213_01',
 	desc: '准备功能适配战斗主题【凛霜寒雪、春缕含青、蝶寻花踪、雅乐之邦、莲华圣域、笼梦之境、辰烁奇夜、流焰蝶舞】'
+}, {
+	version: '20251213_01',
+	desc: 'fix: 修复准备功能使用战斗主题时点击准备和切换手动状态失效'
 }];
 
 export default versionList[versionList.length - 1].version;
