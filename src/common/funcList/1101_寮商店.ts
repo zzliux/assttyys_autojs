@@ -352,28 +352,19 @@ export class Func1101 implements IFuncOrigin {
 				name: '寮商店_功勋商店',
 				operator: [{ desc: thisOperator[4].desc }, thisOperator[20]]
 			})) {
-				if (thisScript.oper({
-					id: 1101,
-					name: '寮商店_购买',
-					operator: [thisOperator[15], thisOperator[16], thisOperator[17], thisOperator[18]]
-				})) {
-					curCnt -= 0.5;
-					thisScript.keepScreen(false);
-					continue;
-				}
 				const result = thisScript.findText('.+', 0, thisOperator[14].oper[2], '包含');
 				if (result.length === 0) {
 					console.log('未识别到任何字体');
 					return true;
 				} else {
 					for (const r of thisScript.global.MT_liaoShopList) {
-						const findInvName = thisScript.findTextByOcrResult(r, result, '包含');
-						if (findInvName.length) {
+						const findList = thisScript.findTextByOcrResult(r, result, '包含');
+						if (findList.length) {
 							const toClickRegion = [
-								findInvName[0].points[0].x,
-								findInvName[0].points[0].y,
-								findInvName[0].points[0].x + 20,
-								findInvName[0].points[0].y + 20,
+								findList[0].points[0].x,
+								findList[0].points[0].y,
+								findList[0].points[0].x + 20,
+								findList[0].points[0].y + 20,
 								1000,
 							]
 							thisScript.regionClick([toClickRegion]);
@@ -384,9 +375,19 @@ export class Func1101 implements IFuncOrigin {
 								thisScript.global.MT_liaoShop = 'back';
 								break outer;
 							}
+							thisScript.keepScreen(false);
 							break;
 						}
 					}
+				}
+				if (thisScript.oper({
+					id: 1101,
+					name: '寮商店_购买',
+					operator: [thisOperator[15], thisOperator[16], thisOperator[17], thisOperator[18]]
+				})) {
+					curCnt -= 0.5;
+					thisScript.keepScreen(false);
+					continue;
 				}
 				curCnt++;
 				if (thisScript.oper({

@@ -63,7 +63,8 @@ export class Func518 implements IFuncOrigin {
 				]
 			],
 			oper: [
-				[center, 1280, 720, 173, 614, 307, 637, 1000], //  一键已读
+				[center, 1280, 720, 200, 136, 435, 198, 1000], //  点击第一封邮件
+				[center, 1280, 720, 192, 613, 300, 635, 1000], //  一键已读
 				[right, 1280, 720, 1159, 94, 1199, 131, 1200], //  点击关闭
 			],
 		},
@@ -692,6 +693,20 @@ export class Func518 implements IFuncOrigin {
 					[right, 1160, 681, 0x831f1f],
 				]
 			],
+		}, { // 48 结界卡邮件提醒
+			desc: [1280, 720,
+				[
+					[left, 206, 185, 0xf9dec0],
+					[left, 216, 185, 0xeaccac],
+					[left, 202, 165, 0xf28957],
+					[left, 178, 151, 0xf4eae0],
+					[left, 200, 149, 0xf7ede2],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 176, 138, 454, 200, 1000],
+				[center, 1280, 720, 1008, 596, 1134, 630, 1000],
+			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -783,6 +798,7 @@ export class Func518 implements IFuncOrigin {
 				name: '检测_领取奖励弹窗',
 				operator: [
 					thisOperator[43],
+					thisOperator[48],
 					thisOperator[5],
 					thisOperator[7],
 					thisOperator[8],

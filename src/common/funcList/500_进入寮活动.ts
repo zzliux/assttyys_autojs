@@ -424,13 +424,17 @@ export class Func500 implements IFuncOrigin {
 		}
 		// 道馆活动
 		if (thisScript.superGlobal.liao_activity_Swith['a_ctivity_dojo'] || thisScript.superGlobal.liao_activity_Swith['a_ctivity_dojo_again']) {
-			if (thisconf.admin) {
-				thisScript.superGlobal.liao_activity_Swith['a_ctivity_dojo'] = false;
-				thisScript.superGlobal.liao_activity_Swith['a_ctivity_dojo_again'] = false;
-				thisScript.superGlobal.liao_activity_Swith['a_ctivity_narrow'] = false;
-				const next_scheme = thisconf.a_ctivity_dojo_select;
-				thisScript.rerun(next_scheme);
-				return true;
+			if ((nowDay >= 1 && nowDay <= 4) ||
+				((nowDay === 5 || nowDay === 6 || nowDay === 0) && !thisconf.a_ctivity_narrow)
+			) {
+				if (thisconf.admin) {
+					thisScript.superGlobal.liao_activity_Swith['a_ctivity_dojo'] = false;
+					thisScript.superGlobal.liao_activity_Swith['a_ctivity_dojo_again'] = false;
+					thisScript.superGlobal.liao_activity_Swith['a_ctivity_narrow'] = false;
+					const next_scheme = thisconf.a_ctivity_dojo_select;
+					thisScript.rerun(next_scheme);
+					return true;
+				}
 			}
 			if (thisScript.oper({
 				name: '检测_寮界面道馆是否已开启',

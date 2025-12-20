@@ -130,7 +130,6 @@ export class Func522 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 707, 416, 813, 438, 1000],
 			[center, 1280, 720, 1083, 422, 1117, 456, 1000],
-			[center, 1280, 720, 1013, 294, 1035, 312, 1000],
 		]
 	}, { // 8 点击阴阳寮
 		desc: '页面是否为庭院_菜单已展开_另一种图标_御祝图标_只支持默认庭院皮肤与默认装饰',
@@ -181,7 +180,7 @@ export class Func522 implements IFuncOrigin {
 			if (thisconfig.admin) {
 				if (thisScript.oper({
 					name: '宴会__寮管理开启',
-					operator: [thisOperator[4]],
+					operator: [thisOperator[4], thisOperator[9]],
 				})) {
 					return true;
 				}
@@ -203,7 +202,7 @@ export class Func522 implements IFuncOrigin {
 			}
 			if (thisScript.oper({
 				name: '进入寮神社',
-				operator: [thisOperator[8], thisOperator[9]]
+				operator: [thisOperator[8]]
 			})) {
 				return true;
 			}
