@@ -25,7 +25,7 @@ export class Func027 implements IFuncOrigin {
 					name: 'level',
 					desc: '选择御魂层数',
 					type: 'list',
-					data: ['魂十', '魂土', '魂王'],
+					data: ['魂十', '魂土', '魂王', '虚无大蛇'],
 					default: '魂土',
 				}
 			],
@@ -141,9 +141,10 @@ export class Func027 implements IFuncOrigin {
 			[center, 1280, 720, 185, 648, 343, 663, 700], // 日轮
 			[center, 1280, 720, 429, 402, 551, 441, 700], // 日轮三层
 			[center, 1280, 720, 425, 468, 551, 508, 700], // 永生四层
-			[center, 1280, 720, 407, 376, 569, 419, 700], // 魂十
-			[center, 1280, 720, 413, 450, 574, 485, 700], // 魂土
-			[center, 1280, 720, 414, 516, 571, 553, 700], // 魂王
+			[center, 1280, 720, 410, 310, 569, 352, 700], // 魂十
+			[center, 1280, 720, 416, 376, 570, 419, 700], // 魂土
+			[center, 1280, 720, 422, 442, 563, 489, 700], // 魂王
+			[center, 1280, 720, 427, 511, 563, 554, 700], // 虚无大蛇
 		]
 	}, { // 13 第二栏的全部字样
 		desc: [1280, 720,
@@ -184,6 +185,9 @@ export class Func027 implements IFuncOrigin {
 							break;
 						case '魂王':
 							thisScript.regionClick([thisOperator[12].oper[7]]);
+							break;
+						case '虚无大蛇':
+							thisScript.regionClick([thisOperator[12].oper[8]]);
 							break;
 					}
 					break;
