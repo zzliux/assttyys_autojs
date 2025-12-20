@@ -157,11 +157,11 @@ export class Func996 implements IFuncOrigin {
 		}, { // 9 好友寄养字样_两个坑位
 			desc: [1280, 720,
 				[
-					[right, 904, 51, 0x9e3c1f],
-					[right, 917, 51, 0xb03317],
-					[right, 917, 33, 0xf8ffff],
 					[right, 913, 74, 0xfff6f7],
 					[right, 910, 63, 0xfffbfd],
+					[right, 908, 117, 0xa6371f],
+					[right, 916, 108, 0xc9c6c4],
+					[right, 913, 142, 0xdad9d7],
 				]
 			],
 			oper: [
