@@ -61,22 +61,21 @@ export class Func1103 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1163, 123, 1219, 165, 1000],
+			[center, 1280, 720, 1173, 131, 1221, 165, 1000],
 			[center, 1280, 720, 1180, 676, 1220, 708, 1000],
 		]
 	}, { // 4 皮肤券_购买
-		desc: [
-			1280, 720,
+		desc: [1280, 720,
 			[
-				[center, 603, 115, 0xd6ab6e],
-				[center, 645, 113, 0xd2a76b],
-				[center, 607, 175, 0xd2d2d3],
-				[center, 627, 150, 0x4a244e],
-				[center, 624, 180, 0x46224a],
+				[center, 604, 134, 0xd8ac6f],
+				[center, 628, 129, 0xdbae6f],
+				[right, 652, 129, 0xd7ac6e],
+				[center, 619, 189, 0x44234a],
+				[center, 627, 161, 0x4a264f],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 591, 143, 652, 195, 1000],
+			[center, 1280, 720, 596, 156, 658, 212, 1000],
 		]
 	}, { // 5 购买确认_二行字
 		desc: [
@@ -95,43 +94,45 @@ export class Func1103 implements IFuncOrigin {
 			[center, 1280, 720, 561, 543, 714, 584, 1000],
 		]
 	}, { // 6 皮肤券_购买完毕_下一组
-		desc: [
-			1280, 720,
+		desc: [1280, 720,
 			[
-				[center, 609, 176, 0x6e6d6d],
-				[center, 627, 150, 0x2d192c],
-				[center, 636, 152, 0x311c2e],
-				[center, 623, 183, 0x2b182a],
-				[center, 617, 188, 0x636264],
+				[center, 604, 134, 0x725c3b],
+				[center, 628, 129, 0x725d3b],
+				[right, 652, 129, 0x715c3b],
+				[center, 619, 189, 0x291929],
+				[center, 627, 161, 0x2c1b2c],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1171, 209, 1222, 256, 1000],
+			[center, 1280, 720, 1174, 226, 1220, 265, 1000],
 		]
 	}, { // 7 金达摩
 		desc: [
 			1280, 720,
 			[
-				[center, 592, 111, 0xd9ad6f],
-				[center, 639, 112, 0xd9ad6f],
-				[center, 664, 113, 0xd4a96c],
-				[center, 661, 197, 0xee6930],
-				[center, 623, 193, 0x9d621c],
+				[center, 604, 134, 0x725c3b],
+				[center, 628, 129, 0x725d3b],
+				[right, 652, 129, 0x715c3b],
+				[center, 619, 189, 0x291929],
+				[center, 627, 161, 0x2c1b2c],
+				[right, 822, 204, 0x9a621b],
+				[right, 832, 204, 0x8f5113],
+				[right, 844, 181, 0x8c5215],
 			]
 		],
 		oper: [
 			[center, 1280, 720, 22, 11, 58, 46, 1000],
 			[center, 1280, 720, 22, 11, 58, 46, 1000],
 		]
-	}, { // 8 皮肤券_暗色+金达摩_暗色
+	}, { // 8 SP皮肤券
 		desc: [
 			1280, 720,
 			[
-				[center, 801, 178, 0x74622a],
-				[center, 823, 158, 0x7e7132],
-				[center, 845, 173, 0x4d2d10],
-				[center, 831, 192, 0x4f3011],
-				[center, 820, 183, 0x786830],
+				[right, 812, 134, 0xd7ac6e],
+				[right, 836, 129, 0xdaad6f],
+				[right, 855, 121, 0xd8ad6f],
+				[right, 842, 203, 0xf56f2f],
+				[right, 834, 207, 0xf76931],
 			]
 		],
 		oper: [
@@ -141,6 +142,14 @@ export class Func1103 implements IFuncOrigin {
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.global.fengZi) {
+			if (thisScript.oper({
+				id: 1103,
+				name: '风姿皮肤券_杂项',
+				operator: [thisOperator[7]]
+			})) {
+				thisScript.global.fengZi = false;
+				return true;
+			}
 			if (thisScript.oper({
 				id: 1103,
 				name: '风姿皮肤券_杂项',
@@ -162,19 +171,12 @@ export class Func1103 implements IFuncOrigin {
 				name: '风姿皮肤券_杂项',
 				operator: [thisOperator[6]]
 			})) {
-				if (thisScript.oper({
-					id: 1103,
-					name: '风姿皮肤券_杂项',
-					operator: [thisOperator[8]]
-				})) {
-					thisScript.global.fengZi = false;
-					return true;
-				}
+				return true;
 			}
 			if (thisScript.oper({
 				id: 1103,
 				name: '风姿皮肤券_杂项',
-				operator: [thisOperator[7]]
+				operator: [thisOperator[8]]
 			})) {
 				thisScript.global.fengZi = false;
 				return true;

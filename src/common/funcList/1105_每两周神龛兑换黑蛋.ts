@@ -70,7 +70,6 @@ export class Func1105 implements IFuncOrigin {
 				[center, 616, 167, 0xffffff],
 				[center, 637, 168, 0x272523],
 				[center, 604, 202, 0x454240],
-				[center, 624, 200, 0xd8a95d],
 				[center, 642, 196, 0x5b5a59],
 				[center, 600, 220, 0x292520],
 				[center, 646, 222, 0x322c24],

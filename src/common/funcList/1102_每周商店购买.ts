@@ -954,7 +954,6 @@ export class Func1102 implements IFuncOrigin {
 				thisScript.keepScreen(false);
 				sleep(500);
 			}
-			return true;
 		}
 		if (thisScript.global.MT_shop === 'zaHuoPu_rongYu') { // 杂货铺买荣誉
 			if (thisScript.global.shop_find === null) {
@@ -1075,7 +1074,6 @@ export class Func1102 implements IFuncOrigin {
 				thisScript.keepScreen(false);
 				sleep(500);
 			}
-
 		}
 		if (thisScript.global.MT_shop === 'zaHuoPu_meiLi') { // 杂货铺买魅力
 			if (!thisConf.meiLi_lanPiao && !thisConf.meiLi_heiSui) {
@@ -1118,7 +1116,7 @@ export class Func1102 implements IFuncOrigin {
 				thisScript.keepScreen(false);
 				sleep(500);
 			}
-			return true;
 		}
+		return false;
 	}
 }
