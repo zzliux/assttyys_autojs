@@ -40,7 +40,6 @@ export class Func1100 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[right, 1128, 642, 0xdaccb0],
 				[right, 1154, 647, 0xd6cab8],
 				[right, 1163, 637, 0xc6925d],
 				[right, 1182, 622, 0xbf544f],

@@ -398,7 +398,7 @@ export class Func1102 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1192, 287, 1225, 340, 1000],
+			[center, 1280, 720, 1194, 309, 1224, 353, 1000],
 		]
 	}, { // 20 友情内_白蛋
 		desc: [
@@ -450,7 +450,7 @@ export class Func1102 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1186, 377, 1226, 430, 1000],
+			[center, 1280, 720, 1192, 408, 1230, 455, 1000],
 		]
 	}, { // 24 杂货铺_勋章内
 		desc: [
@@ -585,7 +585,7 @@ export class Func1102 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1187, 471, 1228, 524, 1000],
+			[center, 1280, 720, 1191, 510, 1230, 556, 1000],
 		]
 	}, { // 34 杂货铺_蓝票
 		desc: [

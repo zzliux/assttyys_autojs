@@ -408,6 +408,13 @@ export class Func1101 implements IFuncOrigin {
 		} else if (thisScript.global.MT_liaoShop === 'back') { // 完成
 			if (thisScript.oper({
 				id: 1101,
+				name: '寮商店_购买',
+				operator: [thisOperator[15], thisOperator[16], thisOperator[17], thisOperator[18]]
+			})) {
+				return true;
+			}
+			if (thisScript.oper({
+				id: 1101,
 				name: '寮商店_返回',
 				operator: [thisOperator[4]]
 			})) {
