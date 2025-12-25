@@ -68,43 +68,42 @@ export class Func001 implements IFuncOrigin {
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['1'];
-		if (thisScript.oper({
-			id: 1,
-			name: '准备界面识别',
-			operator: [{ desc: thisOperator[2].desc }]
-		}) && !thisScript.oper({
-			name: '准备界面识别',
-			operator: [thisOperator[3]]
-		}) || thisScript.oper({
-			id: 1,
-			name: '准备界面识别',
-			operator: [{ desc: thisOperator[4].desc }]
-		})) {
-			thisScript.regionClick([thisOperator[0].oper[0]]);
-			thisScript.myToast('战斗主题非简约主题，部分功能失效，请及时跟换', 10000);
-			return true;
-		}
+		const exitOper = [thisOperator[0].oper[1], thisOperator[0].oper[2]];
+		const themeDescList = [
+			'凛霜寒雪',
+			'春缕含青',
+			'蝶寻花踪',
+			'雅乐之邦',
+			'莲华圣域',
+			'笼梦之境',
+			'辰烁奇夜',
+			'流焰蝶舞',
+			'简约',
+		];
 		if (thisconf.exitBeforeReady) {
 			return thisScript.oper({
 				id: 1,
 				name: '准备界面_退出',
-				operator: [{
-					desc: '准备界面_未准备',
-					oper: [thisOperator[0].oper[1], thisOperator[0].oper[2]]
-				}]
+				operator: themeDescList.map(desc => ({
+					desc: '准备界面_未准备_' + desc,
+					oper: exitOper
+				}))
 			}, 0)
 		} else {
 			if (thisScript.oper({
 				id: 1,
 				name: '准备',
-				operator: [{
-					desc: '准备界面_未准备',
+				operator: themeDescList.map(desc => ({
+					desc: '准备界面_未准备_' + desc,
 					oper: [thisOperator[0].oper[0]]
-				}]
+				}))
 			}, 0) || thisScript.oper({
 				id: 1,
 				name: '手动修正自动',
-				operator: [thisOperator[1]]
+				operator: themeDescList.map(desc => ({
+					desc: '战斗界面_手动状态_' + desc,
+					oper: [thisOperator[1].oper[0]]
+				}))
 			}, 1000)) {
 
 				// 每点一次准备 重置一次红标状态

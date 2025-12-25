@@ -160,8 +160,6 @@ export class Func519 implements IFuncOrigin {
 		desc: [1280, 720,
 			[
 				[center, 512, 653, 0xf0ebd9],
-				[center, 570, 627, 0xd19e71],
-				[center, 593, 671, 0xd1a175],
 				[right, 664, 649, 0xed8901],
 				[right, 673, 649, 0xe78501],
 				[center, 622, 648, 0xebe7d5],
