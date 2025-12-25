@@ -1443,6 +1443,9 @@ export const versionList = [{
 }, {
 	version: '20251213_01',
 	desc: 'fix: 修复准备功能使用战斗主题时点击准备和切换手动状态失效'
+}, {
+	version: '20251225_01',
+	desc: 'fix: 506添加首领退治开关，适配会长副会长场景'
 }];
 
 export default versionList[versionList.length - 1].version;

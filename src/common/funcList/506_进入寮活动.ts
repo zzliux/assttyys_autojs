@@ -25,6 +25,13 @@ export class Func506 implements IFuncOrigin {
 				type: 'switch',
 				default: false,
 				value: false,
+			},
+			{
+				name: 'huntBoss_switch',
+				desc: '是否进入首领退治(用于会长副会长问题)',
+				type: 'switch',
+				default: true,
+				value: true,
 			}]
 	}];
 	operator: IFuncOperatorOrigin[] = [
@@ -394,21 +401,23 @@ export class Func506 implements IFuncOrigin {
 			return true;
 		}
 
-		if (thisScript.oper({
-			name: '检测_首领退治是否已开启',
-			operator: [{
-				desc: thisOperator[1].desc
-			}]
-		})) {
-			if (_liao_activity_state && _liao_activity_state.huntBoss) {
-				return true;
-			} else {
-				return thisScript.oper({
-					name: '检测_首领退治是否已开启',
-					operator: [{
-						oper: thisOperator[1].oper
-					}]
-				});
+		if (thisConf && thisConf.huntBoss_switch === true) {
+			if (thisScript.oper({
+				name: '检测_首领退治是否已开启',
+				operator: [{
+					desc: thisOperator[1].desc
+				}]
+			})) {
+				if (_liao_activity_state && _liao_activity_state.huntBoss) {
+					return true;
+				} else {
+					return thisScript.oper({
+						name: '检测_首领退治是否已开启',
+						operator: [{
+							oper: thisOperator[1].oper
+						}]
+					});
+				}
 			}
 		}
 
@@ -489,7 +498,7 @@ export class Func506 implements IFuncOrigin {
 			}]
 		})) {
 
-			if (thisConf.gateOfHades_switch) {
+			if (thisConf && thisConf.gateOfHades_switch) {
 				if (_liao_activity_state) {
 					const nowDateDay = new Date().getDay();
 					console.log('今天是周', nowDateDay);

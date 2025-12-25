@@ -563,6 +563,7 @@ const SchemeList: IScheme[] = [
 			'506': {
 				auto_switch_enabled: false,
 				gateOfHades_switch: true,
+				huntBoss_switch: false,
 			},
 			'516': {
 				count: '10',
@@ -579,6 +580,7 @@ const SchemeList: IScheme[] = [
 			'506': {
 				auto_switch_enabled: false,
 				gateOfHades_switch: false,
+				huntBoss_switch: true,
 			},
 			'516': {
 				count: '10',
@@ -739,6 +741,7 @@ const SchemeList: IScheme[] = [
 		config: {
 			'506': {
 				gateOfHades_switch: false,
+				huntBoss_switch: false,
 			},
 			'516': {
 				count: '2',
