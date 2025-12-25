@@ -1437,6 +1437,9 @@ export const versionList = [{
 }, {
 	version: '20251211_04',
 	desc: 'fix: 修复逢魔boss识别问题'
+}, {
+	version: '20251225_01',
+	desc: 'fix: 506添加首领退治开关，适配会长副会长场景'
 }];
 
 export default versionList[versionList.length - 1].version;
