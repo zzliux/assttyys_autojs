@@ -48,6 +48,8 @@ export function getNextByCron(cronData: string, nowDate = new Date(), _runCount 
 		return null;
 	}
 
+	if (!cronData) return null;
+
 	cronData = cronData.trim();
 	const _cronArray = cronData.split(/\s+/);
 
