@@ -1446,6 +1446,9 @@ export const versionList = [{
 }, {
 	version: '20251225_01',
 	desc: 'fix: 506添加首领退治开关，适配会长副会长场景'
+}, {
+	version: '20251229_01',
+	desc: 'fix: 适配新巅峰赛斗技界面，修复逢魔 极逻辑'
 }];
 
 export default versionList[versionList.length - 1].version;
