@@ -401,7 +401,8 @@ export class Func506 implements IFuncOrigin {
 			return true;
 		}
 
-		if (thisConf && thisConf.huntBoss_switch === true) {
+		// 兼容没设置该按钮的逻辑 undefined 当true处理
+		if (thisConf && thisConf.huntBoss_switch !== false) {
 			if (thisScript.oper({
 				name: '检测_首领退治是否已开启',
 				operator: [{
