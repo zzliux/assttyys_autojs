@@ -121,7 +121,7 @@ export class Func520 implements IFuncOrigin {
 			[center, 1280, 720, 758, 587, 803, 618, 1000],
 			[center, 1280, 720, 751, 27, 799, 56, 1000],
 		]
-	}, { // 10 点击荒川秘闻
+	}, { // 10 点击荒川秘闻(左)
 		desc: [1280, 720,
 			[
 				[left, 139, 278, 0x717c8d],
@@ -181,8 +181,25 @@ export class Func520 implements IFuncOrigin {
 			[center, 1280, 720, 198, 395, 289, 450, 1000],
 			[center, 1280, 720, 1056, 575, 1149, 643, 1000],
 		]
+	}, { // 14 点击荒川秘闻(右)
+		desc: [1280, 720,
+			[
+				[center, 489, 282, 0x738294],
+				[center, 488, 350, 0x6b7888],
+				[center, 556, 294, 0xe4e1e6],
+				[center, 560, 319, 0xd6d7de],
+				[center, 579, 361, 0xe6e7ee],
+				[center, 639, 295, 0xd6cfc6],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 181, 297, 428, 346, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
+		if (!thisScript.scheme.list.includes(522)) {
+			thisScript.global.liao_banquet_collect = true;
+		}
 		if (thisScript.global.liao_banquet_collect) {
 			if (thisScript.oper({
 				name: '第一章',
@@ -227,6 +244,12 @@ export class Func520 implements IFuncOrigin {
 			})) {
 				return true;
 			}
+			if (thisScript.oper({
+				name: '偏移返回',
+				operator: [thisOperator[5]]
+			})) {
+				return true;
+			}
 			const pointA = thisScript.findMultiColor('宴会筹备');
 			if (pointA) {
 				const oper = [[pointA.x, pointA.y, pointA.x + 10, pointA.y + 10, 1000]];
@@ -235,14 +258,8 @@ export class Func520 implements IFuncOrigin {
 				return true;
 			}
 			if (thisScript.oper({
-				name: '偏移返回',
-				operator: [thisOperator[5]]
-			})) {
-				return true;
-			}
-			if (thisScript.oper({
 				name: '进入荒川秘闻',
-				operator: [thisOperator[10], thisOperator[11]]
+				operator: [thisOperator[10], thisOperator[11], thisOperator[14]]
 			})) {
 				return true;
 			}
@@ -260,16 +277,14 @@ export class Func520 implements IFuncOrigin {
 				name: '荒川秘闻往下滑动',
 				operator: [{ desc: thisOperator[12].desc }]
 			})) {
-				thisScript.regionSwipe(thisOperator[12].oper[0], thisOperator[12].oper[1], [400, 510], 200);
-				thisScript.regionSwipe(thisOperator[12].oper[0], thisOperator[12].oper[1], [400, 510], 200);
+				thisScript.regionSwipe(thisOperator[12].oper[0], thisOperator[12].oper[1], [400, 510], 1000);
 				return true;
 			}
 			if (thisScript.oper({
 				name: '秘闻往下滑动',
 				operator: [{ desc: thisOperator[9].desc }]
 			})) {
-				thisScript.regionSwipe(thisOperator[9].oper[0], thisOperator[9].oper[1], [400, 510], 200);
-				thisScript.regionSwipe(thisOperator[9].oper[0], thisOperator[9].oper[1], [400, 510], 200);
+				thisScript.regionSwipe(thisOperator[9].oper[0], thisOperator[9].oper[1], [400, 510], 1000);
 				return true;
 			}
 		}

@@ -252,12 +252,12 @@ export class Func1101 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[center, 562, 533, 0xf3b25e],
-				[center, 562, 570, 0xf2b05d],
-				[center, 712, 567, 0xf3b25e],
-				[center, 712, 533, 0xf3b25e],
-				[center, 771, 454, 0x412b24],
-				[center, 795, 461, 0x422d2a],
+				[center, 566, 535, 0xf3b25e],
+				[center, 570, 566, 0xf3b25e],
+				[right, 708, 533, 0xf3b25e],
+				[right, 710, 566, 0xf3b25e],
+				[right, 785, 443, 0xfedca3],
+				[right, 797, 439, 0x3f2d2b],
 			]
 		],
 		oper: [
@@ -269,12 +269,12 @@ export class Func1101 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[center, 560, 546, 0xf4b35f],
+				[center, 566, 550, 0xf3b25e],
 				[center, 562, 581, 0xf3b25e],
 				[center, 713, 582, 0xf1af5d],
 				[center, 712, 545, 0xf4b35e],
 				[center, 772, 467, 0x462b22],
-				[center, 795, 475, 0x422d29],
+				[right, 795, 453, 0x3e2c2a],
 			]
 		],
 		oper: [
@@ -286,12 +286,12 @@ export class Func1101 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[center, 561, 558, 0xf6b660],
-				[center, 561, 597, 0xf2b05d],
-				[center, 713, 597, 0xf0af5d],
-				[center, 713, 559, 0xf4b15e],
-				[center, 770, 481, 0x422b24],
-				[center, 795, 488, 0x422d2a],
+				[center, 570, 562, 0xf3b25e],
+				[center, 571, 590, 0xf3b25e],
+				[right, 708, 564, 0xf3b25e],
+				[right, 709, 588, 0xf3b25e],
+				[right, 784, 469, 0xfddba2],
+				[right, 800, 467, 0x402e2c],
 			]
 		],
 		oper: [
@@ -303,8 +303,8 @@ export class Func1101 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[center, 560, 501, 0xf5b55f],
-				[center, 560, 538, 0xf6b65f],
+				[center, 566, 503, 0xf3b25e],
+				[center, 566, 532, 0xf3b25e],
 				[center, 713, 502, 0xf4b15e],
 				[center, 713, 537, 0xf4b25d],
 				[center, 602, 523, 0xa06e60],
@@ -352,6 +352,15 @@ export class Func1101 implements IFuncOrigin {
 				name: '寮商店_功勋商店',
 				operator: [{ desc: thisOperator[4].desc }, thisOperator[20]]
 			})) {
+				if (thisScript.oper({
+					id: 1101,
+					name: '寮商店_购买',
+					operator: [thisOperator[15], thisOperator[16], thisOperator[17], thisOperator[18]]
+				})) {
+					curCnt -= 0.5;
+					thisScript.keepScreen(false);
+					continue;
+				}
 				const result = thisScript.findText('.+', 0, thisOperator[14].oper[2], '包含');
 				if (result.length === 0) {
 					console.log('未识别到任何字体');
@@ -380,6 +389,8 @@ export class Func1101 implements IFuncOrigin {
 						}
 					}
 				}
+				sleep(500);
+				thisScript.keepScreen(false);
 				if (thisScript.oper({
 					id: 1101,
 					name: '寮商店_购买',

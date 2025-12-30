@@ -220,7 +220,7 @@ export const globalRoot: globalRootType = {
 	day_chouKa: true,
 	qiling_shop: false,
 	shiHe_jingYan: false,
-	liao_banquet_collect: true,
+	liao_banquet_collect: false,
 	liao_banquet_onGoing: true,
 }
 export type superGlobalRootType = {

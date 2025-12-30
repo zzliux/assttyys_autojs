@@ -81,17 +81,18 @@ export class Func1103 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[center, 560, 546, 0xf4b35f],
+				[center, 566, 550, 0xf3b25e],
 				[center, 562, 581, 0xf3b25e],
 				[center, 713, 582, 0xf1af5d],
 				[center, 712, 545, 0xf4b35e],
 				[center, 772, 467, 0x462b22],
-				[center, 795, 475, 0x422d29],
+				[right, 795, 453, 0x3e2c2a],
 			]
 		],
 		oper: [
 			[center, 1280, 720, 763, 448, 799, 488, 1000],
 			[center, 1280, 720, 561, 543, 714, 584, 1000],
+			[center, 1280, 720, 1042, 176, 1187, 585, 500],
 		]
 	}, { // 6 皮肤券_购买完毕_下一组
 		desc: [1280, 720,

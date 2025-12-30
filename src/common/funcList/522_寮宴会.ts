@@ -178,7 +178,10 @@ export class Func522 implements IFuncOrigin {
 				return true;
 			}
 			if (thisconfig.admin) {
-				if (thisScript.oper({
+				if (!thisScript.oper({
+					name: '宴会_吃饭界面',
+					operator: [{ desc: thisOperator[0].desc }],
+				}) && thisScript.oper({
 					name: '宴会__寮管理开启',
 					operator: [thisOperator[4], thisOperator[9]],
 				})) {
@@ -208,7 +211,7 @@ export class Func522 implements IFuncOrigin {
 			}
 			if (thisScript.oper({
 				name: '宴会_吃饭界面',
-				operator: [{ desc: thisOperator[0].desc, },],
+				operator: [{ desc: thisOperator[0].desc }],
 			})) {
 				const point1 = thisScript.findMultiColor('宴会_举高高');
 				if (point1) {

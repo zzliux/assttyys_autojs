@@ -332,14 +332,13 @@ export class Func518 implements IFuncOrigin {
 					[center, 832, 249, 0xcbb59e],
 					[center, 831, 464, 0xcbb59e],
 					[center, 685, 415, 0xf4b25f],
-					[center, 595, 430, 0xf4b25f],
 					[center, 455, 464, 0xcbb59e],
 					[left, 133, 662, 0x655743],
 					[left, 277, 154, 0x59534d],
 				],
 			],
 			oper: [
-				[center, 1280, 720, 594, 405, 685, 435, 1200], // 点击 确认
+				[center, 1280, 720, 688, 403, 800, 440, 1000], // 点击 确认
 			],
 		},
 		{
@@ -791,7 +790,40 @@ export class Func518 implements IFuncOrigin {
 				}],
 			});
 		}
+		if (
+			thisScript.oper({
+				id: 518,
+				name: '检测_领取全部奖励弹窗',
+				operator: [{
+					desc: thisOperator[6].desc,
+				}],
+			})
+		) {
+			//	超过3次领取失败 判断为御魂满了
+			if (thisScript.global.checked_yard_count > 3) {
+				return thisScript.oper({
+					id: 518,
+					name: '关闭弹窗',
+					operator: [{
+						oper: [thisOperator[5].oper[1]],
+					}],
+				});
+			} else {
+				if (!thisScript.global.checked_yard_count) {
+					thisScript.global.checked_yard_count = 1;
+				} else {
+					thisScript.global.checked_yard_count += 1;
+				}
 
+				return thisScript.oper({
+					id: 518,
+					name: '检测_领取全部奖励弹窗',
+					operator: [{
+						oper: thisOperator[6].oper,
+					}],
+				});
+			}
+		}
 		if (
 			thisScript.oper({
 				id: 518,
