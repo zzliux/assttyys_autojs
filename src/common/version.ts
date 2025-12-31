@@ -1457,7 +1457,7 @@ export const versionList = [{
 	desc: 'fix: 修复现世逢魔，阴阳寮神社页面'
 }, {
 	version: '20251231_03',
-	desc: 'fix: 018每日悬赏不返回的问题',
+	desc: 'fix: 018每日悬赏界面不返回的问题',
 }];
 
 export default versionList[versionList.length - 1].version;
