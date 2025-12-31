@@ -10,14 +10,14 @@ export class Func026 implements IFuncOrigin {
 	name = '现世逢魔';
 	desc = '逢魔界面点击右下角的图标后点击右侧相关事件图标';
 	operator: IFuncOperatorOrigin[] = [{
+		// 现世逢魔首页
 		desc: [1280, 720,
 			[
 				[left, 19, 700, 0x3c3841],
-				[left, 42, 46, 0xc3cbdf],
 				[center, 754, 39, 0x583716],
 				[center, 1181, 650, 0xffffff],
-				[left, 43, 680, 0xc7957c],
-				[left, 54, 676, 0x433b42]
+				[left, 54, 676, 0x433b42],
+				[left, 45, 48, 0xf5e5a5],
 			]
 		],
 		oper: [

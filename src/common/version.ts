@@ -1452,6 +1452,9 @@ export const versionList = [{
 }, {
 	version: '20251231_01',
 	desc: 'fix: 适配UI调整(或许还有页面没调整,道馆狭间等等,有问题群里反馈)，优化六道椒图，柔风'
+}, {
+	version: '20251231_02',
+	desc: 'fix: 修复现世逢魔，阴阳寮神社页面'
 }];
 
 export default versionList[versionList.length - 1].version;

@@ -215,14 +215,16 @@ export class Func503 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 32, 34, 76, 81, 1000],
 		]
-	}, { 	// 1 阴阳寮神设首页
+	}, { 	// 1 阴阳寮神社首页
 		desc: [1280, 720,
 			[
-				[left, 44, 28, 0xf1e0ad],
-				[left, 74, 32, 0xaa885f],
-				[left, 53, 42, 0xedd28f],
-				[right, 1199, 89, 0x761021],
-				[right, 1189, 628, 0x8c6a44]
+				[left, 43, 29, 0xf4e3a4],
+				[right, 1042, 60, 0x2f1e36],
+				[left, 258, 60, 0x392741],
+				[left, 77, 367, 0x341f2c],
+				[right, 1185, 602, 0x2c1a1a],
+				[right, 1203, 665, 0x802523],
+				[center, 621, 711, 0x7d5f2d],
 			]
 		],
 		oper: [
