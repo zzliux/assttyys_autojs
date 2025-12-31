@@ -43,15 +43,10 @@ export class Func508 implements IFuncOrigin {
 		{ // 0 已适配66 检测_现世逢魔奖励是否已领取
 			desc: [1280, 720,
 				[
-					// 逢魔场景
 					[left, 19, 700, 0x3c3841],
-					[left, 42, 46, 0xc3cbdf],
 					[center, 754, 39, 0x583716],
 					[center, 1181, 650, 0xffffff],
 					[left, 45, 680, 0xc99c7e],
-					[left, 54, 676, 0x433b42],
-					// 4次完成后的灰达摩
-					[right, 1242, 248, 0x494949],
 					[right, 1228, 209, 0x767676],
 					[right, 1243, 252, 0x333333],
 				],
