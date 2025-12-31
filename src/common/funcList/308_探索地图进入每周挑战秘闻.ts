@@ -39,12 +39,11 @@ export class Func308 implements IFuncOrigin {
 	}, { // 3 每周挑战秘闻选择并进入
 		desc: [1280, 720,
 			[
-				[left, 110, 42, 0xe0daca],
-				[left, 211, 38, 0xe2dccc],
 				[left, 50, 598, 0x2c2e3c],
 				[left, 26, 149, 0x101014],
 				[center, 465, 641, 0x857d6c],
-				[right, 1258, 576, 0x3c2830]
+				[right, 1258, 576, 0x3c2830],
+				[left, 45, 47, 0xf6e6a7],
 			]
 		],
 		oper: [

@@ -2094,36 +2094,16 @@ const multiFindColors: IMultiFindColorsOrigin = {
 	},
 	'六道椒图_升级buff': {
 		region: [center, 1280, 720, 160, 149, 827, 200],
+		// 柔风buff
 		desc: [
 			[
 				1280, 720,
-				[   // 第三个柔风
-					[center, 754, 164, 0xfff3db],
-					[center, 770, 204, 0xeca905],
-					[center, 751, 220, 0xbc9121],
-					[center, 773, 234, 0x2fe0e1],
-					[center, 784, 205, 0x031e88],
-					[center, 765, 220, 0xffffff]
-				]
-			], [
-				1280, 720,
-				[	// 第一个柔风
-					[left, 208, 166, 0xffeabd],
-					[left, 224, 203, 0xe1a108],
-					[left, 204, 220, 0xe4ae04],
-					[left, 226, 236, 0x31e2e1],
-					[left, 236, 221, 0x2ed7ea],
-					[left, 248, 216, 0x26d0e7]
-				]
-			], [
-				1280, 720,
-				[	// 第二个柔风
-					[center, 481, 165, 0xfff1d3],
-					[center, 497, 203, 0xd2970c],
-					[center, 477, 220, 0xe0ac07],
-					[center, 485, 241, 0x3fdfef],
-					[center, 497, 233, 0x2ae2e8],
-					[center, 512, 223, 0x33e5e6]
+				[
+					[left, 222, 232, 0x2adcef],
+					[left, 238, 223, 0x34e3e5],
+					[left, 187, 223, 0x103a66],
+					[left, 205, 208, 0xffffff],
+					[left, 201, 268, 0xa14f84],
 				]
 			]
 		],

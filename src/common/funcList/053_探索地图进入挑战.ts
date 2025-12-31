@@ -31,12 +31,12 @@ export class Func053 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[left, 20, 45, 0xc3cbe2],
 				[right, 1232, 43, 0xcaa274],
 				[left, 182, 141, 0x323045],
 				[center, 547, 133, 0x5b3232],
 				[right, 889, 147, 0x555534],
 				[right, 1240, 181, 0x344158],
+				[left, 46, 36, 0xf5e2a3],
 			]
 		],
 		oper: [

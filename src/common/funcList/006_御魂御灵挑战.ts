@@ -13,11 +13,11 @@ export class Func006 implements IFuncOrigin {
 		// 0 三类御魂
 		desc: [1280, 720,
 			[
-				[left, 44, 43, 0xc2cbe3],
 				[right, 1124, 47, 0xd8b188],
 				[right, 1237, 47, 0xd3af84],
 				[right, 1161, 608, 0xded2bb],
-				[right, 1207, 671, 0x372015]
+				[right, 1207, 671, 0x372015],
+				[left, 45, 37, 0xf5e5a5],
 			]
 		],
 		oper: [
@@ -27,7 +27,7 @@ export class Func006 implements IFuncOrigin {
 		// 1 御灵
 		desc: [1280, 720,
 			[
-				[left, 37, 37, 0xc3cce1],
+				[left, 45, 37, 0xf5e5a5],
 				[right, 1121, 47, 0xd7b389],
 				[right, 1230, 46, 0xd3ae83],
 				[right, 1106, 628, 0xe5d9c3],
@@ -43,7 +43,7 @@ export class Func006 implements IFuncOrigin {
 		// 2 觉醒
 		desc: [1280, 720,
 			[
-				[left, 45, 45, 0xc2cbe3],
+				[left, 45, 37, 0xf5e5a5],
 				[left, 250, 44, 0x583716],
 				[right, 1230, 41, 0xd3ae84],
 				[right, 1163, 602, 0xddd2b9],

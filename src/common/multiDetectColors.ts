@@ -528,19 +528,19 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 	'探索地图界面': {
 		desc: [1280, 720,
 			[
-				[left, 45, 60, 0xeff5fb],
 				[right, 1168, 146, 0xd5cec1],
 				[right, 1124, 32, 0xd7b18b],
 				[right, 1226, 30, 0xd3af84],
 				[left, 18, 705, 0x754830],
 				[left, 210, 711, 0x72452f],
+				[left, 45, 36, 0xf5e5a6],
 			]
 		]
 	},
 	'探索地图界面_含时空秘境': {
 		desc: [1280, 720,
 			[
-				[left, 45, 60, 0xeff5fb],
+				[left, 45, 36, 0xf5e5a6],
 				[right, 1168, 146, 0xd5cec1],
 				[right, 1124, 32, 0xd7b18b],
 				[right, 1226, 30, 0xd3af84],
@@ -670,7 +670,6 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 				[right, 1232, 617, 0xd2bb90],
 				[right, 1189, 627, 0x3b1e0d],
 				[right, 714, 19, 0x6b3121],
-				[right, 743, 38, 0xecd79a],
 				[left, 36, 37, 0xf5e2a3],
 				[right, 1204, 66, 0xe3c298],
 			]
@@ -680,7 +679,6 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 		desc: [1280, 720,
 			[
 				[right, 714, 19, 0x6b3121],
-				[right, 743, 38, 0xecd79a],
 				[left, 36, 37, 0xf5e2a3],
 				[right, 1204, 66, 0xe3c298],
 				[right, 1179, 594, 0x585a5d],
@@ -694,7 +692,6 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 		desc: [1280, 720,
 			[
 				[right, 714, 19, 0x6b3121],
-				[right, 743, 38, 0xecd79a],
 				[left, 36, 37, 0xf5e2a3],
 				[right, 1204, 66, 0xe3c298],
 				[right, 1182, 574, 0xaeccda],

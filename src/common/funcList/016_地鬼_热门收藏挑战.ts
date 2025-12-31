@@ -28,15 +28,15 @@ export class Func016 implements IFuncOrigin {
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{
-		// 0
+		// 0 地鬼首页
 		desc: [1280, 720,
 			[
-				[left, 60, 58, 0xc2cbe3],
 				[left, 69, 670, 0xaf544c],
 				[right, 1157, 49, 0xfbf5e5],
 				[right, 1137, 39, 0xce737b],
 				[right, 1206, 42, 0xc55149],
-				[right, 1197, 532, 0xf4f4f4]
+				[right, 1197, 532, 0xf4f4f4],
+				[left, 44, 36, 0xf7eaad],
 			]
 		],
 		oper: [
