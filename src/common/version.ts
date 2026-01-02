@@ -1458,6 +1458,9 @@ export const versionList = [{
 }, {
 	version: '20251231_03',
 	desc: 'fix: 018每日悬赏界面不返回的问题',
+}, {
+	version: '20260102_01',
+	desc: 'fix: 508逢魔不点击首领的问题',
 }];
 
 export default versionList[versionList.length - 1].version;
