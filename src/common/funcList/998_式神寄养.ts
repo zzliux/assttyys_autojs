@@ -131,7 +131,7 @@ export class Func998 implements IFuncOrigin {
 				[
 					[right, 1186, 74, 0xd4ccbb],
 					[right, 1185, 93, 0x272420],
-					[right, 1186, 136, 0xc19b6d],
+					[right, 1186, 140, 0xc49665],
 					[right, 1072, 52, 0xa7371e],
 				],
 			],
