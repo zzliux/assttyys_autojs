@@ -1,3 +1,7 @@
+// TODO
+// 自现世逢魔点一下能全开后，该功能关键逻辑已不适用
+// 需修改为记录当前是第几次任务（0~4)，然后点击对应的任务图标
+
 import { Script } from '@/system/script';
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 // const normal = -1; //定义常量
@@ -48,7 +52,7 @@ export class Func026 implements IFuncOrigin {
 		]
 	}, { // 花钱的宝箱都不领
 		desc: [1280, 720,
-			[[left, 43, 51, 0x4f525c],
+			[[left, 45, 48, 0x655e44],
 				[center, 436, 338, 0xcbb59e],
 				[center, 803, 342, 0xcbb59e],
 				[center, 578, 444, 0xf4b25f],
@@ -61,9 +65,9 @@ export class Func026 implements IFuncOrigin {
 	}, {
 		// 神秘任务_不做
 		desc: [1280, 720,
-			[[left, 37, 50, 0x3c3e44],
+			[[left, 45, 48, 0x655e44],
 				[center, 650, 140, 0xcaa85d],
-				[center, 846, 131, 0xeecccc],
+				[center, 846, 132, 0xe8d4cf],
 				[center, 564, 339, 0x86201f],
 				[center, 566, 234, 0x852221]]
 		],
