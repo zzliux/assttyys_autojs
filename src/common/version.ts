@@ -1461,6 +1461,9 @@ export const versionList = [{
 }, {
 	version: '20260102_01',
 	desc: 'fix: 508逢魔不点击首领的问题',
+}, {
+	version: '20260104_01',
+	desc: 'fix: 修复道馆，狭间适配功能，优化御魂宠物喂食功能',
 }];
 
 export default versionList[versionList.length - 1].version;
