@@ -83,13 +83,10 @@ export class Func506 implements IFuncOrigin {
 			desc: [
 				1280, 720,
 				[
-					[left, 38, 53, 0xeef4fb],
-					[left, 247, 53, 0x593716],
 					[left, 91, 614, 0xc1b8aa],
-					[left, 255, 60, 0xd39c37],
-					[left, 118, 66, 0xf8f3e0],
-					[left, 175, 54, 0xf8f3e0],
 					[left, 205, 651, 0x573b28],
+					[left, 45, 35, 0xf7e9aa],
+					[left, 276, 633, 0xe7e6e3],
 				]
 			],
 			oper: [
@@ -188,8 +185,8 @@ export class Func506 implements IFuncOrigin {
 						[right, 1126, 625, 0x180a28],
 						[right, 1161, 618, 0x84a5bd],
 						[right, 1262, 650, 0x698bad],
-						[left, 72, 62, 0xb9c2da],
 						[center, 713, 25, 0xe3d698],
+						[left, 47, 35, 0xf5e2a3],
 					]
 				]
 		}, { //	11 检测_狭间暗域是否已开启
