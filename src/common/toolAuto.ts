@@ -513,7 +513,6 @@ export function nlpSimilarity(s1: string, s2: string) {
 		);
 	}
 	const result = hanZiSimilarBridge.similarity(s1, s2);
-	console.log(`result=${result}`);
 	return result;
 }
 
