@@ -2093,38 +2093,38 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		],
 	},
 	'六道椒图_升级buff': {
-        region: [center, 1280, 720, 160, 149, 827, 200],
-        desc: [
-            [
-                1280, 720,
-                [   // 第三个柔风
-                    [right, 752, 208, 0xffffff],
-                    [right, 748, 268, 0xa14f84],
-                    [right, 771, 232, 0x29deec],
-                    [right, 778, 193, 0x38cae5],
-                    [right, 754, 167, 0xffe4a8],
-                ]
-            ], [
-                1280, 720,
-                [    // 第一个柔风
-                    [left, 208, 168, 0xffe4a6],
-                    [left, 204, 207, 0xffffff],
-                    [left, 226, 233, 0x2bdce3],
-                    [left, 200, 268, 0xa14f84],
-                    [left, 237, 224, 0x31e2e5]
-                ]
-            ], [
-                1280, 720,
-                [    // 第二个柔风
-                    [center, 482, 167, 0xffe6af],
-                    [center, 477, 208, 0xffffff],
-                    [center, 500, 234, 0x30dde2],
-                    [center, 475, 268, 0xa14f84],
-                    [center, 513, 223, 0x33e2e4]
-                ]
-            ]
-        ],
-    },
+		region: [center, 1280, 720, 160, 149, 827, 200],
+		desc: [
+			[
+				1280, 720,
+				[   // 第三个柔风
+					[right, 752, 208, 0xffffff],
+					[right, 748, 268, 0xa14f84],
+					[right, 771, 232, 0x29deec],
+					[right, 778, 193, 0x38cae5],
+					[right, 754, 167, 0xffe4a8],
+				]
+			], [
+				1280, 720,
+				[	// 第一个柔风
+					[left, 208, 168, 0xffe4a6],
+					[left, 204, 207, 0xffffff],
+					[left, 226, 233, 0x2bdce3],
+					[left, 200, 268, 0xa14f84],
+					[left, 237, 224, 0x31e2e5]
+				]
+			], [
+				1280, 720,
+				[	// 第二个柔风
+					[center, 482, 167, 0xffe6af],
+					[center, 477, 208, 0xffffff],
+					[center, 500, 234, 0x30dde2],
+					[center, 475, 268, 0xa14f84],
+					[center, 513, 223, 0x33e2e4]
+				]
+			]
+		],
+	},
 	'六道椒图_购买buff': {
 		region: [center, 1280, 720, 0, 0, 1279, 719],
 		desc: [
