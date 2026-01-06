@@ -318,7 +318,8 @@ export class Func506 implements IFuncOrigin {
 		}
 
 		if (thisScript.oper({
-			name: '检测_道馆是否已开启',
+			id: 506,
+			name: '检测_道馆是否已开启_a',
 			operator: [{
 				desc: thisOperator[0].desc,
 			}]
@@ -327,7 +328,8 @@ export class Func506 implements IFuncOrigin {
 				return true;
 			} else {
 				return thisScript.oper({
-					name: '检测_道馆是否已开启',
+					id: 506,
+					name: '操作_道馆是否已开启_b',
 					operator: [{
 						oper: thisOperator[0].oper
 					}]
@@ -336,6 +338,7 @@ export class Func506 implements IFuncOrigin {
 		}
 
 		if (thisScript.oper({
+			id: 506,
 			name: '检测_是否为道馆突破选择道馆页面',
 			operator: [{
 				desc: thisOperator[8].desc
@@ -346,6 +349,7 @@ export class Func506 implements IFuncOrigin {
 		}
 
 		if (thisScript.oper({
+			id: 506,
 			name: '检测_道馆地图场景',
 			operator: [{
 				desc: thisOperator[3].desc
