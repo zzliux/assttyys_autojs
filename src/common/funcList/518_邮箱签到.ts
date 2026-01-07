@@ -522,19 +522,19 @@ export class Func518 implements IFuncOrigin {
 			desc: [
 				1280, 720,
 				[
-					[left, 30, 26, 0xf4e4a4],
-					[right, 1226, 130, 0xfcdab2],
-					[right, 1227, 222, 0x967e71],
-					[right, 1227, 312, 0x967d71],
-					[right, 1134, 687, 0xf0c967],
+					[left, 30, 26, 0xf6e9ab],
+					[right, 1226, 130, 0xffe3b6],
+					[right, 1224, 212, 0xfff5d2],
+					[right, 1227, 312, 0xae927d],
+					[right, 1131, 687, 0xe9c160],
 					[right, 1148, 665, 0x842121],
 					[right, 1195, 675, 0xd2ab51],
 				]
 			],
 			oper: [
-				[right, 1280, 720, 1186, 194, 1237, 247, 1200], //  点击 推荐页签
+				[right, 1280, 720, 1184, 285, 1231, 350, 1200], //  点击 日常页签
 			],
-		}, {	//  36 检测_商店_推荐页签_每日领取
+		}, {	//  36 检测_商店_礼包屋_日常页签_每日领取
 			desc: [1280, 720,
 				[
 					[center, 323, 141, 0xe41010],
@@ -920,7 +920,7 @@ export class Func518 implements IFuncOrigin {
 			if (
 				thisScript.oper({
 					id: 518,
-					name: '检测_商店_推荐页签_每日领取',
+					name: '检测_商店_礼包屋_日常页签_每日领取',
 					operator: [thisOperator[36]],
 				}) ||
 				thisScript.global.checked_yard_count >= 3
