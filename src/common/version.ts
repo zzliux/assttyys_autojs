@@ -1464,6 +1464,9 @@ export const versionList = [{
 }, {
 	version: '20260104_01',
 	desc: 'fix: 修复道馆，狭间适配功能，优化御魂宠物喂食功能',
+}, {
+	version: '20260108_01',
+	desc: 'fix: 修复道馆',
 }];
 
 export default versionList[versionList.length - 1].version;
