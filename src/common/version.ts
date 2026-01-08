@@ -1467,6 +1467,12 @@ export const versionList = [{
 }, {
 	version: '20260108_01',
 	desc: 'fix: 修复道馆',
+}, {
+	version: '20260104_02',
+	desc: '优化：式神寄养优化取色'
+}, {
+	version: '20260104_03',
+	desc: 'fix: 逢魔卡勾玉宝箱与神秘任务界面'
 }];
 
 export default versionList[versionList.length - 1].version;
