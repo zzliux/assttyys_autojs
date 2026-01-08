@@ -39,8 +39,8 @@ export class Func506 implements IFuncOrigin {
 			desc: [1280, 720,
 				[
 					[left, 42, 31, 0xf4e4a4],
-					[center, 588, 224, 0x412b1e],
-					[left, 8, 225, 0x40332f],
+					[center, 588, 224, 0x3b291d],
+					[left, 8, 225, 0x2d1d2c],
 					[center, 605, 332, 0xb29e83],
 					[center, 532, 268, 0xd6d0bc],
 					[center, 508, 292, 0xa87d41],
@@ -48,7 +48,7 @@ export class Func506 implements IFuncOrigin {
 				]
 			],
 			oper: [
-				[center, 1280, 720, 407, 169, 608, 322, 1200]	// 打开道馆
+				[center, 1280, 720, 411, 192, 609, 339, 1200]	// 打开道馆
 			]
 		}, { // 1 已适配66 检查_首领退治是否已开启
 			desc: [1280, 720,
