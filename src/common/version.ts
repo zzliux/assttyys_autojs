@@ -1476,6 +1476,9 @@ export const versionList = [{
 }, {
 	version: '20260109_01',
 	desc: 'fix: 修复进入式神录取色点问题',
+}, {
+	version: '20260109_02',
+	desc: 'fix: 513阴界之门地图取点问题'
 }];
 
 export default versionList[versionList.length - 1].version;
