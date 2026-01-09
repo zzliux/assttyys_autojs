@@ -57,13 +57,11 @@ export class Func509 implements IFuncOrigin {
 			[
 				1280, 720,
 				[
-					[right, 1024, 620, 0xe0d0d0],
-					[right, 1000, 650, 0xd5c3c0],
-					[right, 1004, 664, 0x493a38],
-					[left, 182, 37, 0xd5c4a3],
-					[left, 109, 24, 0xd7c5a2],
-					[left, 47, 25, 0xd7c5a2],
-					[right, 1043, 616, 0xebb555],
+					[right, 997, 626, 0xd4c4bf],
+					[right, 1031, 619, 0xe0d8d4],
+					[right, 1048, 618, 0xebb454],
+					[left, 46, 34, 0xd6c4a1],
+					[left, 175, 25, 0xd6c4a1],
 				]
 			],
 		oper: [
@@ -75,16 +73,15 @@ export class Func509 implements IFuncOrigin {
 			[
 				1280, 720,
 				[
-					[left, 47, 31, 0xd7c5a2],
-					[left, 108, 24, 0xd7c5a2],
-					[left, 181, 23, 0xd6c5a4],
-					[center, 930, 659, 0xe3d8d8],
-					[center, 940, 679, 0x493a38],
-					[right, 984, 621, 0xebb552],
+					[right, 1060, 650, 0xfff3f3],
+					[center, 885, 661, 0xfff4f5],
+					[left, 259, 35, 0x2a2937],
+					[left, 175, 589, 0x684b2c],
+					[left, 33, 592, 0x8a6137],
 				]
 			],
 		oper: [
-			[center, 1280, 720, 922, 628, 993, 681, 1200]	//	点击_式神
+			[center, 1280, 720, 1031, 633, 1080, 685, 1000],	//	点击_式神
 		]
 	},
 	{
@@ -128,14 +125,13 @@ export class Func509 implements IFuncOrigin {
 			[
 				1280, 720,
 				[
-					[left, 182, 37, 0xd5c4a3],
-					[left, 108, 26, 0xd7c5a2],
-					[left, 47, 28, 0xd7c5a2],
-					[left, 232, 139, 0x583716],
-					[left, 76, 550, 0x322219],
-					[right, 1039, 648, 0xd3c3bd],
-					[center, 872, 606, 0x493a38],
+					[center, 872, 606, 0x473a39],
 					[center, 727, 611, 0xdfc7ac],
+					[left, 32, 41, 0xd6c5a1],
+					[right, 1022, 609, 0xf2f1f1],
+					[right, 1031, 646, 0xe9e7e5],
+					[right, 1064, 612, 0xebb454],
+					[right, 752, 588, 0x170b2a],
 				]
 			],
 		oper: [
