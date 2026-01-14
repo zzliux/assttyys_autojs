@@ -40,7 +40,7 @@ export class Func506 implements IFuncOrigin {
 				[
 					[left, 42, 31, 0xf4e4a4],
 					[center, 588, 224, 0x3b291d],
-					[left, 8, 225, 0x2d1d2c],
+					[right, 1098, 646, 0x2d170b],
 					[center, 605, 332, 0xb29e83],
 					[center, 532, 268, 0xd6d0bc],
 					[center, 508, 292, 0xa87d41],
