@@ -1479,6 +1479,9 @@ export const versionList = [{
 }, {
 	version: '20260109_02',
 	desc: 'fix: 513阴界之门地图取点问题'
+}, {
+	version: '202601015_01',
+	desc: 'fix: 优化道馆适配适配',
 }];
 
 export default versionList[versionList.length - 1].version;
