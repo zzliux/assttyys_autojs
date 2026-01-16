@@ -1844,7 +1844,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		]
 	},
 	'阴阳寮_奖励金币': {
-		region: [left, 1280, 720, 219, 301, 592, 407],
+		region: [left, 1280, 720, 239, 301, 593, 408],
 		desc: [
 			[
 				1280, 720,
