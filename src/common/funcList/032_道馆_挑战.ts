@@ -166,7 +166,7 @@ export class Func032 implements IFuncOrigin {
 				[center, 718, 666, 0xe9e4d2],
 				[center, 743, 669, 0xece7d5],
 				[center, 584, 663, 0xf4efdd],
-				[center, 641, 639, 0xd79e70],
+				[center, 641, 639, 0xc4a180],
 				[center, 645, 684, 0xb87237],
 			]
 		]

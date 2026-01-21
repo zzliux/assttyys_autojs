@@ -33,6 +33,11 @@ export class Func503 implements IFuncOrigin {
 
 		desc: '选择需要执行操作的界面',
 		config: [{
+			name: 'oper_find_-1',
+			desc: '-1 左上角返回庭院图标，最低优先级',
+			type: 'switch',
+			default: true,
+		}, {
 			name: 'oper_0',
 			desc: '0 探索地图界面',
 			type: 'switch',
@@ -205,7 +210,7 @@ export class Func503 implements IFuncOrigin {
 			default: true,
 		}, {
 			name: 'oper_40',
-			desc: '39 契灵界面',
+			desc: '40 契灵界面',
 			type: 'switch',
 			default: true,
 		}]
@@ -679,6 +684,16 @@ export class Func503 implements IFuncOrigin {
 			operator: enabledThisOperator
 		})) {
 			return true;
+		}
+
+		// 作为保底，最低优先级
+		if (thisConf['oper_find_-1']) {
+			const backHomePoint = thisScript.findMultiColor('左上_返回庭院');
+			if (backHomePoint) {
+				thisScript.regionClick([[backHomePoint.x, backHomePoint.y, backHomePoint.x + 15, backHomePoint.y + 15, 1200]]);
+				thisScript.myToast('点击左上角返回庭院图标');
+				return true;
+			}
 		}
 
 		// 查找返回图标
