@@ -238,3 +238,16 @@ export const globalRoot: globalRootType = {
 	day_chouKa: true,
 	qiling_shop: false,
 }
+export type superGlobalRootType = {
+	liao_activity_Swith: Record<string, boolean>, // 寮活动记录
+	next_scheme_name: string, // 中转后的下个方案
+	daoguan_lose: boolean, // 记录道馆第一次失败
+	runTime: number, // 记录结界卡时间
+}
+
+export const superGlobalRoot: superGlobalRootType = {
+	liao_activity_Swith: undefined,
+	next_scheme_name: null,
+	daoguan_lose: true,
+	runTime: 0,
+}

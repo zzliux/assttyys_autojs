@@ -15,7 +15,7 @@ global.FloatButton = function () {
     let Anim = require('./js/Anim');
     let mAnim;
     let mWindows = { logo: null, menu: null };
-    let mMenuViews = {};
+    let mMenuViews = [];
     let mViewUtils = {};
     let mItemsXY = [];
     let mActions = new Array();
@@ -138,16 +138,110 @@ global.FloatButton = function () {
     }
 
     FloatButton.prototype.addItem = function (name) {
-        let viewUtil = new CreateRoundButtonView(name, mConfig);//创建视图
-        mViewUtils[name] = viewUtil;//将工具类保存到集合
-        mMenuViews[name] = viewUtil.getView();//将视图信息保存到集合
+        // 检查动画状态和菜单状态
+        if (mConfig.state.anim || mConfig.state.menuOpen) {
+            // 如果正在动画或菜单已展开，先保存操作并关闭菜单
+            const performAdd = () => {
+                let viewUtil = new CreateRoundButtonView(name, mConfig);
+                mViewUtils[name] = viewUtil;
+                mMenuViews.push({name, view: viewUtil.getView()});
+                mWindows.menu.content.addView(viewUtil.getView());
+                updateItemCoordinate();
+                updateMenuWindow();
+                mAnim.createAnim(mItemsXY, mMenuViews);
+                return viewUtil;
+            };
+            
+            if (mConfig.state.menuOpen) {
+                // 先关闭菜单，然后在回调中执行添加
+                this.setMenuOpen(false, () => {
+                    postAction(performAdd);
+                });
+                return mViewUtils[name]; // 返回一个未完成的引用
+            }
+        }
+        
+        let viewUtil = new CreateRoundButtonView(name, mConfig);
+        mViewUtils[name] = viewUtil;
+        mMenuViews.push({name, view: viewUtil.getView()});
         postAction(() => {
-            mWindows.menu.content.addView(mMenuViews[name]);//添加视图
-            updateItemCoordinate();//更新坐标
-            updateMenuWindow();//更新悬浮窗
-            mAnim.createAnim(mItemsXY, mMenuViews);//创建动画
+            mWindows.menu.content.addView(viewUtil.getView());
+            updateItemCoordinate();
+            updateMenuWindow();
+            mAnim.createAnim(mItemsXY, mMenuViews);
         });
         return viewUtil;
+    }
+
+    FloatButton.prototype.insertItem = function (name, index) {
+        // 检查动画状态和菜单状态
+        if (mConfig.state.anim || mConfig.state.menuOpen) {
+            // 如果正在动画或菜单已展开，先保存操作并关闭菜单
+            const performInsert = () => {
+                let viewUtil = new CreateRoundButtonView(name, mConfig);
+                mViewUtils[name] = viewUtil;
+                mMenuViews.splice(index, 0, {name, view: viewUtil.getView()});
+                mWindows.menu.content.addView(viewUtil.getView(), index);
+                updateItemCoordinate();
+                updateMenuWindow();
+                mAnim.createAnim(mItemsXY, mMenuViews);
+                return viewUtil;
+            };
+            
+            if (mConfig.state.menuOpen) {
+                // 先关闭菜单，然后在回调中执行插入
+                this.setMenuOpen(false, () => {
+                    postAction(performInsert);
+                });
+                return mViewUtils[name]; // 返回一个未完成的引用
+            }
+        }
+        
+        let viewUtil = new CreateRoundButtonView(name, mConfig);
+        mViewUtils[name] = viewUtil;
+        mMenuViews.splice(index, 0, {name, view: viewUtil.getView()});
+        postAction(() => {
+            mWindows.menu.content.addView(viewUtil.getView(), index);
+            updateItemCoordinate();
+            updateMenuWindow();
+            mAnim.createAnim(mItemsXY, mMenuViews);
+        });
+        return viewUtil;
+    }
+
+    FloatButton.prototype.removeItem = function (name) {
+        let index = mMenuViews.findIndex(item => item.name === name);
+        if (index === -1) return;
+        
+        // 检查动画状态和菜单状态
+        if (mConfig.state.anim || mConfig.state.menuOpen) {
+            // 如果正在动画或菜单已展开，先保存操作并关闭菜单
+            const performRemove = () => {
+                mWindows.menu.content.removeView(mMenuViews[index].view);
+                mMenuViews.splice(index, 1);
+                delete mViewUtils[name];
+                updateItemCoordinate();
+                updateMenuWindow();
+                mAnim.createAnim(mItemsXY, mMenuViews);
+            };
+            
+            if (mConfig.state.menuOpen) {
+                // 先关闭菜单，然后在回调中执行删除
+                this.setMenuOpen(false, () => {
+                    postAction(performRemove);
+                });
+                return;
+            }
+        }
+        
+        postAction(() => {
+            mWindows.menu.content.removeView(mMenuViews[index].view);
+            mMenuViews.splice(index, 1);
+            delete mViewUtils[name];
+            updateItemCoordinate();
+            updateMenuWindow();
+            mAnim.createAnim(mItemsXY, mMenuViews);
+        });
     }
 
     FloatButton.prototype.on = function (eventType, eventAction) {
@@ -308,8 +402,8 @@ global.FloatButton = function () {
         let mGravity = 'center_vertical' + (mConfig.state.direction ? '|right' : '');
         ui.run(() => {
             let view;
-            for (let i in mMenuViews) {
-                view = mMenuViews[i];
+            for (let item of mMenuViews) { // 改为遍历数组
+                view = item.view;
                 view.attr('layout_gravity', mGravity)
             }
         });
@@ -320,8 +414,7 @@ global.FloatButton = function () {
     function updateItemCoordinate() {
         mItemsXY = [];
         let arr = { x: [], y: [] };
-        let len = Object.keys(mMenuViews).length
-        // let angle = 360 / (len * 2 - 2);
+        let len = mMenuViews.length; // 改为获取数组长度
         let angle = mConfig.angle / (len - 1);
         let firstAngle = 90 - mConfig.angle / 2;
         let degree, value, x, y;
@@ -331,12 +424,6 @@ global.FloatButton = function () {
             arr.x[i] = [];
             arr.y[i] = [];
             for (let e = 0; e < len; e++) {
-                // value = Math.PI * 2 / 360 * (degree - 90);
-                // x = parseInt(0 + Math.cos(value) * mr);
-                // y = parseInt(0 + Math.sin(value) * mr);
-                // arr.x[i][e] = (Math.abs(x) < 10 ? 0 : x);
-                // arr.y[i][e] = (Math.abs(y) < 10 ? 0 : y);
-                // i ? degree += angle : degree -= angle;
                 value = degree * Math.PI / 180;
                 x = parseInt(mr * Math.sin(value));
                 y = -parseInt(mr * Math.cos(value));

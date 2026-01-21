@@ -216,6 +216,9 @@ function Anim(gd) {
             anims.start();
             setTimeout(() => {
                 view.attr('src', datas['icon' + e[1]]);
+                if (datas[`rotation${e[1]}`]) {
+                    view.setRotation(datas[`rotation${e[1]}`]);
+                }
             }, time / 2);
         });
 
@@ -231,9 +234,9 @@ function Anim(gd) {
         function getAnim(e, isShow) {
             let arr = [];
             let value, view;
-            for (let i in views) {
-                view = views[i];
-                value = Object.keys(views).indexOf(i);
+            for (let i = 0; i < views.length; i++) { // 改为遍历数组
+                view = views[i].view; // 获取view对象
+                value = i; // 直接使用数组索引
                 arr.push(tx(view, isShow ? [0, data.x[e][value]] : [data.x[e][value]]));
                 arr.push(ty(view, isShow ? [0, data.y[e][value]] : [data.y[e][value]]));
                 arr.push(sx(view, isShow ? [0, 1] : [1, 0]));

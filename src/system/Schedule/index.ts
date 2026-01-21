@@ -78,13 +78,15 @@ export class JobOptions {
 	 */
 	isPaused?: boolean;
 }
-
+export const sharedData = {
+	runTime: 0
+};
 export const mergeOffsetTime = function (date: Date, offsetStr: string) {
 	let offsetTime = 0;
 	if (date && offsetStr) {
 		const parts = offsetStr?.split(',');
 		if (parts.length === 2) {
-			const [ offsetMinuteLow, offsetMinuteHigh ] = parts.map(item => parseInt(item));
+			const [offsetMinuteLow, offsetMinuteHigh] = parts.map(item => parseInt(item));
 			if (Number.isInteger(offsetMinuteLow) && Number.isInteger(offsetMinuteHigh)) {
 				offsetTime = random(offsetMinuteLow * 60 * 1000, offsetMinuteHigh * 60 * 1000);
 			}
@@ -100,6 +102,7 @@ export class Job extends JobOptions {
 	status: StatusType = 'waiting';
 	level: string = '1';
 	isPaused: boolean = false;
+	nextDateCN: string;
 
 	constructor(options: JobOptions) {
 		super();
@@ -143,7 +146,12 @@ export class Job extends JobOptions {
 			this.doneCallback && this.doneCallback.apply(this);
 			return;
 		} else if (this.repeatMode === 2) {
-			this.nextDate = this.mergeOffsetTime(new Date(Date.now() + Number.parseInt(this.interval, 10) * 60 * 1000));
+			if (sharedData.runTime > 0) {
+				this.nextDate = this.mergeOffsetTime(new Date(Date.now() + sharedData.runTime * 1000));
+				sharedData.runTime = 0;
+			} else {
+				this.nextDate = this.mergeOffsetTime(new Date(Date.now() + Number.parseInt(this.interval, 10) * 60 * 1000));
+			}
 			this.doneCallback && this.doneCallback.apply(this);
 			this.status = 'waiting';
 			return;
@@ -163,8 +171,6 @@ export class Job extends JobOptions {
 		this.doneCallback = doneCallback;
 	}
 }
-
-
 class Schedule {
 
 	timer: NodeJS.Timeout;
@@ -310,7 +316,19 @@ class Schedule {
 		if (this.currentRunningJob) {
 			if (this.currentRunningJob.status !== 'running') {
 				// 当前已执行完成
-				console.log(`[scheduler]任务执行完成：${JSON.stringify(this.currentRunningJob, null, 4)}`);
+				// 克隆一份当前任务对象，避免修改原始对象
+				const jobForLog = { ...this.currentRunningJob };
+				const nextDate = new Date(jobForLog.nextDate);
+				// 直接计算北京时间（UTC+8）
+				const beijingTime = new Date(nextDate.getTime() + 8 * 3600 * 1000);
+				jobForLog.nextDateCN =
+					beijingTime.getUTCFullYear() + '-' +
+					String(beijingTime.getUTCMonth() + 1).padStart(2, '0') + '-' +
+					String(beijingTime.getUTCDate()).padStart(2, '0') + ' ' +
+					String(beijingTime.getUTCHours()).padStart(2, '0') + ':' +
+					String(beijingTime.getUTCMinutes()).padStart(2, '0') + ':' +
+					String(beijingTime.getUTCSeconds()).padStart(2, '0');
+				console.log(`[scheduler]任务执行完成：${JSON.stringify(jobForLog, null, 4)}`);
 				this.currentRunningJob = null;
 			} else {
 				if (parseInt(this.currentRunningJob.level, 10) < parseInt(this.jobQueue[0]?.level, 10)) {
