@@ -1480,8 +1480,11 @@ export const versionList = [{
 	version: '20260109_02',
 	desc: 'fix: 513阴界之门地图取点问题'
 }, {
-	version: '202601015_01',
+	version: '20260115_01',
 	desc: 'fix: 优化道馆适配适配',
+}, {
+	version: '20260122_01',
+	desc: 'fix: 优化道馆适配适配（适配会长），优化领取勾玉卡体力适配问题',
 }];
 
 export default versionList[versionList.length - 1].version;
