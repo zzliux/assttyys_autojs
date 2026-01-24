@@ -519,14 +519,14 @@ export class Func518 implements IFuncOrigin {
 			],
 		},
 		{
-			//  35 检测_商店_礼包屋_热卖页签
+			//  35 检测_商店_礼包屋_限时页签（忽略是“版本”还是“热卖”）
 			desc: [
 				1280, 720,
 				[
 					[left, 30, 26, 0xf6e9ab],
 					[right, 1226, 130, 0xffe3b6],
-					[right, 1224, 212, 0xfff5d2],
-					[right, 1227, 312, 0xae927d],
+					// [right, 1224, 212, 0xfff5d2],
+					// [right, 1227, 312, 0xae927d],
 					[right, 1131, 687, 0xe9c160],
 					[right, 1148, 665, 0x842121],
 					[right, 1195, 675, 0xd2ab51],
