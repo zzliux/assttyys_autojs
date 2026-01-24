@@ -36,10 +36,8 @@ export class Func999 implements IFuncOrigin {
 			],
 		},
 		{
-			// 3 点击结界
-			desc: [
-				1280,
-				720,
+			// 3 阴阳寮主界面_点击结界
+			desc: [1280, 720,
 				[
 					[right, 1096, 630, 0xb1251f],
 					[right, 1105, 662, 0xdbe3f1],
@@ -89,7 +87,25 @@ export class Func999 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 586, 442, 692, 470, 600], // 点击确认
 			],
-		},
+		}, {
+			// 7 阴阳寮主界面_植树活动 关闭
+			desc: [1280, 720,
+				[
+					[right, 1096, 630, 0x350b09],
+					[right, 1105, 662, 0x424448],
+					[left, 45, 39, 0x494431],
+					[center, 886, 644, 0x433d33],
+					[center, 460, 118, 0xefdacb],
+					[center, 781, 109, 0x8e684a],
+					[center, 794, 108, 0xe5cc92],
+					[center, 794, 472, 0xf3e3d8],
+					[center, 512, 581, 0xefd9c6],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 782, 89, 812, 126, 1000],
+			]
+		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (
@@ -103,6 +119,7 @@ export class Func999 implements IFuncOrigin {
 					thisOperator[4],
 					thisOperator[5],
 					thisOperator[6],
+					thisOperator[7],
 				],
 			})
 		) {
