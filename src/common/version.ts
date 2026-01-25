@@ -1485,6 +1485,8 @@ export const versionList = [{
 }, {
 	version: '20260122_01',
 	desc: 'fix: 优化道馆适配适配（适配会长），优化领取勾玉卡体力适配问题',
+}, {
+	version: '20260126_01',
+	desc: '修复:1100-1105每周系列,暂无法测试寮商店能否成功,已知无直播捐赠魅力值问题',
 }];
-
 export default versionList[versionList.length - 1].version;

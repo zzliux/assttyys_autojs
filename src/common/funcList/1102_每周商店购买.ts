@@ -229,8 +229,8 @@ export class Func1102 implements IFuncOrigin {
 				[left, 68, 217, 0x9b2d27],
 				[left, 50, 356, 0x9b2d27],
 				[left, 69, 354, 0x9b2d27],
-				[left, 124, 273, 0x9f7615],
-				[left, 174, 304, 0xfeeeb7],
+				[left, 124, 273, 0xac811a],
+				[left, 174, 304, 0xd6ab27],
 			]
 		],
 		oper: [
@@ -343,49 +343,52 @@ export class Func1102 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[center, 562, 533, 0xf3b25e],
-				[center, 562, 570, 0xf2b05d],
-				[center, 712, 567, 0xf3b25e],
-				[center, 712, 533, 0xf3b25e],
-				[center, 771, 454, 0x412b24],
-				[center, 795, 461, 0x422d2a],
+				[center, 566, 535, 0xf3b25e],
+				[center, 570, 566, 0xf3b25e],
+				[right, 708, 533, 0xf3b25e],
+				[right, 710, 566, 0xf3b25e],
+				[right, 785, 443, 0xfedca3],
+				[right, 797, 439, 0x3f2d2b],
 			]
 		],
 		oper: [
 			[center, 1280, 720, 762, 438, 803, 473, 1000],
 			[center, 1280, 720, 560, 528, 717, 573, 1000],
+			[center, 1280, 720, 1042, 176, 1187, 585, 500],
 		]
 	}, { // 17 购买确认_二行字
 		desc: [
 			1280, 720,
 			[
-				[center, 560, 546, 0xf4b35f],
+				[center, 566, 550, 0xf3b25e],
 				[center, 562, 581, 0xf3b25e],
 				[center, 713, 582, 0xf1af5d],
 				[center, 712, 545, 0xf4b35e],
 				[center, 772, 467, 0x462b22],
-				[center, 795, 475, 0x422d29],
+				[right, 795, 453, 0x3e2c2a],
 			]
 		],
 		oper: [
 			[center, 1280, 720, 763, 448, 799, 488, 1000],
 			[center, 1280, 720, 561, 543, 714, 584, 1000],
+			[center, 1280, 720, 1042, 176, 1187, 585, 500],
 		]
 	}, { // 18 购买确认_三行字
 		desc: [
 			1280, 720,
 			[
-				[center, 561, 558, 0xf6b660],
-				[center, 561, 597, 0xf2b05d],
-				[center, 713, 597, 0xf0af5d],
-				[center, 713, 559, 0xf4b15e],
-				[center, 770, 481, 0x422b24],
-				[center, 795, 488, 0x422d2a],
+				[center, 570, 562, 0xf3b25e],
+				[center, 571, 590, 0xf3b25e],
+				[right, 708, 564, 0xf3b25e],
+				[right, 709, 588, 0xf3b25e],
+				[right, 784, 469, 0xfddba2],
+				[right, 800, 467, 0x402e2c],
 			]
 		],
 		oper: [
 			[center, 1280, 720, 761, 462, 800, 498, 1000],
 			[center, 1280, 720, 560, 556, 715, 598, 1000],
+			[center, 1280, 720, 1042, 176, 1187, 585, 500],
 		]
 	}, { // 19 杂货铺_友情
 		desc: [
@@ -398,7 +401,7 @@ export class Func1102 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1192, 287, 1225, 340, 1000],
+			[center, 1280, 720, 1194, 309, 1224, 353, 1000],
 		]
 	}, { // 20 友情内_白蛋
 		desc: [
@@ -422,7 +425,7 @@ export class Func1102 implements IFuncOrigin {
 				[center, 813, 141, 0x263054],
 				[center, 567, 516, 0xf3b25e],
 				[center, 711, 526, 0xf3b25e],
-				[center, 604, 549, 0xe2eceb],
+				[center, 607, 547, 0xe3f0eb],
 			]
 		],
 		oper: [
@@ -450,7 +453,7 @@ export class Func1102 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1186, 377, 1226, 430, 1000],
+			[center, 1280, 720, 1192, 408, 1230, 455, 1000],
 		]
 	}, { // 24 杂货铺_勋章内
 		desc: [
@@ -585,7 +588,7 @@ export class Func1102 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1187, 471, 1228, 524, 1000],
+			[center, 1280, 720, 1191, 510, 1230, 556, 1000],
 		]
 	}, { // 34 杂货铺_蓝票
 		desc: [
@@ -793,6 +796,7 @@ export class Func1102 implements IFuncOrigin {
 		if (thisScript.global.MT_shop === 'zhiBo') { // 直播魅力值
 			if (!thisConf.meiLi_lanPiao && !thisConf.meiLi_heiSui) {
 				thisScript.global.MT_shop = 'jiShouWu';
+				return true;
 			}
 			if (!thisScript.global.zhiBoBack && thisScript.oper({
 				id: 1102,
@@ -954,7 +958,6 @@ export class Func1102 implements IFuncOrigin {
 				thisScript.keepScreen(false);
 				sleep(500);
 			}
-			return true;
 		}
 		if (thisScript.global.MT_shop === 'zaHuoPu_rongYu') { // 杂货铺买荣誉
 			if (thisScript.global.shop_find === null) {
@@ -1075,7 +1078,6 @@ export class Func1102 implements IFuncOrigin {
 				thisScript.keepScreen(false);
 				sleep(500);
 			}
-
 		}
 		if (thisScript.global.MT_shop === 'zaHuoPu_meiLi') { // 杂货铺买魅力
 			if (!thisConf.meiLi_lanPiao && !thisConf.meiLi_heiSui) {
@@ -1118,7 +1120,7 @@ export class Func1102 implements IFuncOrigin {
 				thisScript.keepScreen(false);
 				sleep(500);
 			}
-			return true;
 		}
+		return false;
 	}
 }
