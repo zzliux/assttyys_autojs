@@ -425,7 +425,7 @@ export class Func1102 implements IFuncOrigin {
 				[center, 813, 141, 0x263054],
 				[center, 567, 516, 0xf3b25e],
 				[center, 711, 526, 0xf3b25e],
-				[center, 604, 549, 0xe2eceb],
+				[center, 607, 547, 0xe3f0eb],
 			]
 		],
 		oper: [
