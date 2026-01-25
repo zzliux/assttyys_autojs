@@ -105,6 +105,23 @@ export class Func999 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 782, 89, 812, 126, 1000],
 			]
+		}, { // 8 阴阳寮主界面_植树活动_合影弹窗 关闭
+			desc: [1280, 720,
+				[
+					[right, 1096, 630, 0x350b09],
+					[right, 1105, 662, 0x424448],
+					[left, 45, 39, 0x494431],
+					[center, 886, 644, 0x433d33],
+					[right, 951, 210, 0x92674a],
+					[right, 983, 212, 0x825841],
+					[right, 948, 469, 0xe1d5c8],
+					[center, 424, 536, 0xf5e3d9],
+					[right, 869, 526, 0xffd97c],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 949, 193, 986, 230, 1000],
+			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -120,6 +137,7 @@ export class Func999 implements IFuncOrigin {
 					thisOperator[5],
 					thisOperator[6],
 					thisOperator[7],
+					thisOperator[8],
 				],
 			})
 		) {
