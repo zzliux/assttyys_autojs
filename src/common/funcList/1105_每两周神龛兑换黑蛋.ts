@@ -22,10 +22,10 @@ export class Func1105 implements IFuncOrigin {
 				[left, 58, 21, 0xefd590],
 				[left, 48, 30, 0xf6e6a8],
 				[left, 60, 41, 0xedcf8b],
-				[left, 140, 17, 0xb28956],
-				[left, 150, 38, 0xb28956],
-				[left, 178, 26, 0xb28956],
-				[left, 177, 36, 0xb18956],
+				[left, 179, 18, 0xb28956],
+				[left, 186, 46, 0xb28956],
+				[left, 212, 26, 0xb28956],
+				[left, 224, 36, 0xb28956],
 			]
 		],
 		oper: [
@@ -53,10 +53,10 @@ export class Func1105 implements IFuncOrigin {
 				[left, 58, 21, 0xefd590],
 				[left, 48, 30, 0xf6e6a8],
 				[left, 60, 41, 0xedcf8b],
-				[left, 140, 17, 0xb28956],
-				[left, 150, 38, 0xb28956],
-				[left, 178, 26, 0xb28956],
-				[left, 177, 36, 0xb18956],
+				[left, 179, 18, 0xb28956],
+				[left, 186, 46, 0xb28956],
+				[left, 212, 26, 0xb28956],
+				[left, 224, 36, 0xb28956],
 			]
 		],
 		oper: [
@@ -70,7 +70,6 @@ export class Func1105 implements IFuncOrigin {
 				[center, 616, 167, 0xffffff],
 				[center, 637, 168, 0x272523],
 				[center, 604, 202, 0x454240],
-				[center, 624, 200, 0xd8a95d],
 				[center, 642, 196, 0x5b5a59],
 				[center, 600, 220, 0x292520],
 				[center, 646, 222, 0x322c24],

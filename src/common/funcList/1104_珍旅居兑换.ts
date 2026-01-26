@@ -267,49 +267,52 @@ export class Func1104 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[center, 562, 533, 0xf3b25e],
-				[center, 562, 570, 0xf2b05d],
-				[center, 712, 567, 0xf3b25e],
-				[center, 712, 533, 0xf3b25e],
-				[center, 771, 454, 0x412b24],
-				[center, 795, 461, 0x422d2a],
+				[center, 566, 535, 0xf3b25e],
+				[center, 570, 566, 0xf3b25e],
+				[right, 708, 533, 0xf3b25e],
+				[right, 710, 566, 0xf3b25e],
+				[right, 785, 443, 0xfedca3],
+				[right, 797, 439, 0x3f2d2b],
 			]
 		],
 		oper: [
 			[center, 1280, 720, 762, 438, 803, 473, 1000],
 			[center, 1280, 720, 560, 528, 717, 573, 1000],
+			[center, 1280, 720, 1042, 176, 1187, 585, 500],
 		]
 	}, { // 15 购买确认_二行字
 		desc: [
 			1280, 720,
 			[
-				[center, 560, 546, 0xf4b35f],
+				[center, 566, 550, 0xf3b25e],
 				[center, 562, 581, 0xf3b25e],
 				[center, 713, 582, 0xf1af5d],
 				[center, 712, 545, 0xf4b35e],
 				[center, 772, 467, 0x462b22],
-				[center, 795, 475, 0x422d29],
+				[right, 795, 453, 0x3e2c2a],
 			]
 		],
 		oper: [
 			[center, 1280, 720, 763, 448, 799, 488, 1000],
 			[center, 1280, 720, 561, 543, 714, 584, 1000],
+			[center, 1280, 720, 1042, 176, 1187, 585, 500],
 		]
 	}, { // 16 购买确认_三行字
 		desc: [
 			1280, 720,
 			[
-				[center, 561, 558, 0xf6b660],
-				[center, 561, 597, 0xf2b05d],
-				[center, 713, 597, 0xf0af5d],
-				[center, 713, 559, 0xf4b15e],
-				[center, 770, 481, 0x422b24],
-				[center, 795, 488, 0x422d2a],
+				[center, 570, 562, 0xf3b25e],
+				[center, 571, 590, 0xf3b25e],
+				[right, 708, 564, 0xf3b25e],
+				[right, 709, 588, 0xf3b25e],
+				[right, 784, 469, 0xfddba2],
+				[right, 800, 467, 0x402e2c],
 			]
 		],
 		oper: [
 			[center, 1280, 720, 761, 462, 800, 498, 1000],
 			[center, 1280, 720, 560, 556, 715, 598, 1000],
+			[center, 1280, 720, 1042, 176, 1187, 585, 500],
 		]
 	}, { // 17 结束关闭
 		oper: [

@@ -12,37 +12,37 @@ export class Func1101 implements IFuncOrigin {
 	config = [{
 		desc: '选择需要购买的物品',
 		config: [{
-			name: 'oper_5',
+			name: 'oper_功',
 			desc: '功勋礼包',
 			type: 'switch',
 			default: false,
 		}, {
-			name: 'oper_7',
+			name: 'oper_风',
 			desc: '风铃',
 			type: 'switch',
 			default: false,
 		}, {
-			name: 'oper_8',
+			name: 'oper_经',
 			desc: '经验手扎',
 			type: 'switch',
 			default: false,
 		}, {
-			name: 'oper_9',
+			name: 'oper_为',
 			desc: '三星白蛋',
 			type: 'switch',
 			default: false,
 		}, {
-			name: 'oper_10',
+			name: 'oper_六',
 			desc: '六星御魂',
 			type: 'switch',
 			default: false,
 		}, {
-			name: 'oper_11',
+			name: 'oper_神',
 			desc: '蓝票',
 			type: 'switch',
 			default: true,
 		}, {
-			name: 'oper_12',
+			name: 'oper_片',
 			desc: '黑碎',
 			type: 'switch',
 			default: true,
@@ -85,8 +85,8 @@ export class Func1101 implements IFuncOrigin {
 			[
 				[right, 1181, 411, 0xc78350],
 				[right, 1207, 413, 0xd17b47],
-				[center, 698, 522, 0x7e5e97],
-				[center, 760, 498, 0xb73a2e],
+				[right, 713, 530, 0x644979],
+				[right, 755, 512, 0xbe4032],
 			]
 		],
 		oper: [
@@ -242,65 +242,69 @@ export class Func1101 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 548, 424, 669, 536, 1000],
 		]
-	}, { // 14 功勋商店_滑动
+	}, { // 14 功勋商店_滑动和OCR区域
 		oper: [
 			[center, 1280, 720, 977, 578, 1010, 610, 1000],
-			[center, 1280, 720, 966, 16, 998, 47, 1000],
+			[center, 1280, 720, 980, 168, 1012, 200, 1000],
+			[center, 1280, 720, 200, 114, 986, 606, 1000], // OCR区域
 		]
 	}, { // 15 购买确认_一行字
 		desc: [
 			1280, 720,
 			[
-				[center, 562, 533, 0xf3b25e],
-				[center, 562, 570, 0xf2b05d],
-				[center, 712, 567, 0xf3b25e],
-				[center, 712, 533, 0xf3b25e],
-				[center, 771, 454, 0x412b24],
-				[center, 795, 461, 0x422d2a],
+				[center, 566, 535, 0xf3b25e],
+				[center, 570, 566, 0xf3b25e],
+				[right, 708, 533, 0xf3b25e],
+				[right, 710, 566, 0xf3b25e],
+				[right, 785, 443, 0xfedca3],
+				[right, 797, 439, 0x3f2d2b],
 			]
 		],
 		oper: [
 			[center, 1280, 720, 762, 438, 803, 473, 1000],
 			[center, 1280, 720, 560, 528, 717, 573, 1000],
+			[center, 1280, 720, 1042, 176, 1187, 585, 500],
 		]
 	}, { // 16 购买确认_二行字
 		desc: [
 			1280, 720,
 			[
-				[center, 560, 546, 0xf4b35f],
+				[center, 566, 550, 0xf3b25e],
 				[center, 562, 581, 0xf3b25e],
 				[center, 713, 582, 0xf1af5d],
 				[center, 712, 545, 0xf4b35e],
 				[center, 772, 467, 0x462b22],
-				[center, 795, 475, 0x422d29],
+				[right, 795, 453, 0x3e2c2a],
 			]
 		],
 		oper: [
 			[center, 1280, 720, 763, 448, 799, 488, 1000],
 			[center, 1280, 720, 561, 543, 714, 584, 1000],
+			[center, 1280, 720, 1042, 176, 1187, 585, 500],
 		]
 	}, { // 17 购买确认_三行字
 		desc: [
 			1280, 720,
 			[
-				[center, 561, 558, 0xf6b660],
-				[center, 561, 597, 0xf2b05d],
-				[center, 713, 597, 0xf0af5d],
-				[center, 713, 559, 0xf4b15e],
-				[center, 770, 481, 0x422b24],
-				[center, 795, 488, 0x422d2a],
+				[center, 570, 562, 0xf3b25e],
+				[center, 571, 590, 0xf3b25e],
+				[right, 708, 564, 0xf3b25e],
+				[right, 709, 588, 0xf3b25e],
+				[right, 784, 469, 0xfddba2],
+				[right, 800, 467, 0x402e2c],
 			]
 		],
 		oper: [
 			[center, 1280, 720, 761, 462, 800, 498, 1000],
 			[center, 1280, 720, 560, 556, 715, 598, 1000],
+			[center, 1280, 720, 1042, 176, 1187, 585, 500],
 		]
 	}, { // 18 购买确认_黑碎
 		desc: [
 			1280, 720,
 			[
-				[center, 560, 501, 0xf5b55f],
-				[center, 560, 538, 0xf6b65f],
+				[center, 566, 503, 0xf3b25e],
+				[center, 566, 532, 0xf3b25e],
 				[center, 713, 502, 0xf4b15e],
 				[center, 713, 537, 0xf4b25d],
 				[center, 602, 523, 0xa06e60],
@@ -308,9 +312,20 @@ export class Func1101 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 561, 501, 715, 537, 1000],
+			[center, 1280, 720, 1042, 176, 1187, 585, 500],
 		]
 	}, { // 19 庭院已打开菜单
 		desc: '页面是否为庭院_菜单已展开_只支持默认庭院皮肤与默认装饰'
+	}, { // 20 功勋商店_购买界面
+		desc: [1280, 720,
+			[
+				[left, 185, 83, 0x1c140d],
+				[center, 488, 74, 0x27190d],
+				[right, 650, 79, 0x4c3913],
+				[right, 754, 76, 0x251709],
+				[right, 811, 70, 0x26170c],
+			]
+		],
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['1101'];
@@ -322,32 +337,86 @@ export class Func1101 implements IFuncOrigin {
 			})) {
 				return true;
 			}
+			if (thisScript.global.MT_liaoShopList === null) {
+				thisScript.global.MT_liaoShopList = Object.keys(thisConf).filter(keyName => /^oper_.+/.test(keyName) && thisConf[keyName]).map(keyName => keyName.split('_')[1]);
+				log(`寮商店购买-初始化未购买列表：${thisScript.global.MT_liaoShopList.join(',')}`);
+			}
+			if (thisScript.global.MT_liaoShopList.length === 0) {
+				thisScript.global.MT_liaoShop = 'back';
+			}
 			let curCnt = 0;
-			let maxCount = 5;
-			while (thisScript.oper({
+			const maxCount = 3;
+			let swipCount = 0;
+			outer: while (thisScript.oper({
 				id: 1101,
 				name: '寮商店_功勋商店',
-				operator: [{ desc: thisOperator[4].desc }]
+				operator: [{ desc: thisOperator[4].desc }, thisOperator[20]]
 			})) {
-				const enabledThisOperator = Object.keys(thisConf).filter(keyName => /oper_\d+/.test(keyName) && thisConf[keyName]).map(keyName => thisOperator[parseInt(keyName.split('_')[1])]);
 				if (thisScript.oper({
 					id: 1101,
-					name: '寮商店购买',
-					operator: enabledThisOperator
+					name: '寮商店_购买',
+					operator: [thisOperator[15], thisOperator[16], thisOperator[17], thisOperator[18]]
 				})) {
+					curCnt -= 0.5;
+					thisScript.keepScreen(false);
+					continue;
+				}
+				const result = thisScript.findText('.+', 0, thisOperator[14].oper[2], '包含');
+				if (result.length === 0) {
+					console.log('未识别到任何字体');
 					return true;
+				} else {
+					for (const r of thisScript.global.MT_liaoShopList) {
+						const findList = thisScript.findTextByOcrResult(r, result, '包含');
+						if (findList.length) {
+							const toClickRegion = [
+								findList[0].points[0].x,
+								findList[0].points[0].y,
+								findList[0].points[0].x + 20,
+								findList[0].points[0].y + 20,
+								1000,
+							]
+							thisScript.regionClick([toClickRegion]);
+							log(`寮商店购买-准备购买物品：${r}`);
+							thisScript.global.MT_liaoShopList = thisScript.global.MT_liaoShopList.filter(item => item !== r);
+							log(`寮商店购买-未购买列表：${thisScript.global.MT_liaoShopList.join(',')}`);
+							if (thisScript.global.MT_liaoShopList.length === 0) {
+								thisScript.global.MT_liaoShop = 'back';
+								break outer;
+							}
+							thisScript.keepScreen(false);
+							break;
+						}
+					}
+				}
+				sleep(500);
+				thisScript.keepScreen(false);
+				if (thisScript.oper({
+					id: 1101,
+					name: '寮商店_购买',
+					operator: [thisOperator[15], thisOperator[16], thisOperator[17], thisOperator[18]]
+				})) {
+					curCnt -= 0.5;
+					thisScript.keepScreen(false);
+					continue;
 				}
 				curCnt++;
-				if (maxCount === 5 && curCnt >= maxCount) {
-					thisScript.regionSwipe(thisOperator[14].oper[0], thisOperator[14].oper[1], [400, 450]);
-					maxCount = 10;
-				} else if (maxCount === 10 && curCnt >= maxCount) {
+				if (thisScript.oper({
+					name: '寮商店_购买',
+					operator: [{ desc: thisOperator[4].desc }]
+				}) && curCnt >= maxCount) {
+					thisScript.regionSwipe(thisOperator[14].oper[0], thisOperator[14].oper[1], [1000, 1150]);
+					swipCount++;
+					curCnt = 0;
+				}
+				if (swipCount >= 3) {
 					thisScript.global.MT_liaoShop = 'back';
 					break;
 				}
-				sleep(1000);
+				sleep(500);
 				thisScript.keepScreen(false);
 			}
+		} else if (thisScript.global.MT_liaoShop === 'back') { // 完成
 			if (thisScript.oper({
 				id: 1101,
 				name: '寮商店_购买',
@@ -355,7 +424,6 @@ export class Func1101 implements IFuncOrigin {
 			})) {
 				return true;
 			}
-		} else if (thisScript.global.MT_liaoShop === 'back') { // 完成
 			if (thisScript.oper({
 				id: 1101,
 				name: '寮商店_返回',
