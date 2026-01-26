@@ -8,7 +8,7 @@ const right = 2;
 export class Func1106 implements IFuncOrigin {
 	id = 1106;
 	name = '每周两次真蛇';
-	desc: '需排序在"001准备"之前';
+	desc = '需排序在"001准备"之前';
 	config = [{
 		desc: '切换御魂(需要打开509+510快速坐标模式)',
 		config: [{
@@ -155,6 +155,8 @@ export class Func1106 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 584, 454, 694, 493, 1000],
 		]
+	}, { // 9 探索地图界面
+		desc: '探索地图界面',
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['1106'];
@@ -201,10 +203,23 @@ export class Func1106 implements IFuncOrigin {
 			}
 			return false;
 		} else if (thisScript.global.zhenShe == 0) {
-			thisScript.doPush(thisScript, { text: '已完成两次真蛇，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-			thisScript.global.zhenShe = -1; // 已完成
-			return true
-		} else {
+			if (thisScript.oper({
+				id: 1106,
+				name: '每周两次真蛇_最后一次',
+				operator: [thisOperator[7], thisOperator[8]]
+			})) {
+				return true;
+			}
+			if (thisScript.oper({
+				id: 1106,
+				name: '每周两次真蛇_探索界面',
+				operator: [thisOperator[9]]
+			})) {
+				thisScript.doPush(thisScript, { text: '已完成两次真蛇，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+				thisScript.global.zhenShe = -1; // 已完成
+				return true
+			}
+		} else if (thisScript.global.zhenShe == -1) {
 			return thisScript.rerun(thisConf.next_scheme);
 		}
 	}

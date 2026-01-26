@@ -20,7 +20,7 @@ export class Func053 implements IFuncOrigin {
 			name: 'sneak_level',
 			desc: '御魂层数',
 			type: 'list',
-			data: ['魂十', '魂土', '魂王'],
+			data: ['魂十', '魂土', '魂王', '魂十三'],
 			default: '魂十',
 		}]
 	}];
@@ -37,7 +37,7 @@ export class Func053 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[left, 20, 45, 0xc3cbe2],
+				[left, 45, 37, 0xf5e5a5],
 				[right, 1232, 43, 0xcaa274],
 				[left, 182, 141, 0x323045],
 				[center, 547, 133, 0x5b3232],
@@ -56,7 +56,7 @@ export class Func053 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[left, 46, 46, 0xc2cbe2],
+				[left, 44, 36, 0xf7eaac],
 				[left, 250, 42, 0x583716],
 				[right, 1178, 44, 0xd7b38a],
 				[right, 1240, 42, 0xd3af83],
@@ -77,7 +77,7 @@ export class Func053 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[left, 19, 40, 0xc6cde2],
+				[left, 44, 36, 0xf7eaac],
 				[right, 1240, 40, 0xd3af84],
 				[right, 1174, 41, 0xd7b389],
 				[left, 136, 179, 0x2b2b44],
@@ -93,7 +93,7 @@ export class Func053 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[left, 19, 40, 0xc6cde2],
+				[left, 44, 36, 0xf7eaac],
 				[right, 1240, 40, 0xd3af84],
 				[right, 1174, 41, 0xd7b389],
 				[center, 439, 147, 0x47252e],
@@ -110,7 +110,7 @@ export class Func053 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[left, 19, 40, 0xc6cde2],
+				[left, 44, 36, 0xf7eaac],
 				[right, 1240, 40, 0xd3af84],
 				[right, 1174, 41, 0xd7b389],
 				[center, 802, 168, 0x23232b],
@@ -127,7 +127,7 @@ export class Func053 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[left, 19, 40, 0xc6cde2],
+				[left, 44, 36, 0xf7eaac],
 				[right, 1240, 40, 0xd3af84],
 				[right, 1174, 41, 0xd7b389],
 				[center, 1121, 254, 0x50a3b2],
@@ -151,9 +151,9 @@ export class Func053 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[left, 57, 31, 0xc4cce1],
-				[left, 43, 42, 0xc4cce1],
-				[left, 60, 56, 0x9fb0d1],
+				[left, 44, 38, 0xf6e8a9],
+				[left, 125, 28, 0xf9eeb7],
+				[left, 58, 50, 0xf1d793],
 				[left, 95, 187, 0x8c7ba8],
 				[left, 67, 194, 0x8d7da8],
 			]
@@ -161,9 +161,10 @@ export class Func053 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 396, 531, 430, 561, 1000], // 滑动_开启点
 			[center, 1280, 720, 373, 25, 405, 59, 1000], // 滑动_结束点
-			[center, 1280, 720, 298, 560, 350, 587, 1000], // 魂王
-			[center, 1280, 720, 303, 448, 354, 483, 1000], // 魂土
-			[center, 1280, 720, 302, 340, 361, 383, 1000], // 魂十
+			[center, 1280, 720, 303, 448, 354, 483, 1000], // 魂王
+			[center, 1280, 720, 189, 331, 453, 381, 1000], // 魂土
+			[center, 1280, 720, 185, 225, 455, 278, 1000], // 魂十
+			[center, 1280, 720, 298, 560, 350, 587, 1000], // 魂十三
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -193,6 +194,9 @@ export class Func053 implements IFuncOrigin {
 						break;
 					case '魂十':
 						thisScript.regionClick([thisOperator[8].oper[4]]);
+						break;
+					case '魂十三':
+						thisScript.regionClick([thisOperator[8].oper[5]]);
 						break;
 				}
 				thisScript.global.sneak_level_open = false;

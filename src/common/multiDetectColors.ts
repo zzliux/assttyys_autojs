@@ -18,6 +18,114 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 			]
 		]
 	},
+	'准备界面_未准备_简约': {
+		desc: [
+			1280, 720,
+			[
+				[right, 1240, 702, 0xcead83],
+				[right, 1182, 586, 0xf7e6c3],
+				[center, 360, 699, 0x241818],
+				[left, 32, 23, 0xdbb48b],
+				[right, 1122, 698, 0xddbb8f],
+			]
+		]
+	},
+	'准备界面_未准备_凛霜寒雪': {
+		desc: [
+			1280, 720,
+			[
+				[right, 1240, 702, 0xcead83],
+				[right, 1182, 586, 0xf7e6c3],
+				[center, 360, 699, 0x241818],
+				[left, 32, 23, 0xb8def6],
+				[right, 1122, 698, 0xddbb8f],
+			]
+		]
+	},
+	'准备界面_未准备_春缕含青': {
+		desc: [
+			1280, 720,
+			[
+				[right, 1240, 702, 0xcead83],
+				[right, 1182, 586, 0xf7e6c3],
+				[center, 360, 699, 0x241818],
+				[left, 32, 23, 0xffe4ac],
+				[right, 1122, 698, 0xddbb8f],
+			]
+		]
+	},
+	'准备界面_未准备_蝶寻花踪': {
+		desc: [
+			1280, 720,
+			[
+				[right, 1240, 702, 0xcead83],
+				[right, 1182, 586, 0xf7e6c3],
+				[center, 360, 699, 0x241818],
+				[left, 32, 23, 0xf3e0bb],
+				[right, 1122, 698, 0xddbb8f],
+			]
+		]
+	},
+	'准备界面_未准备_雅乐之邦': {
+		desc: [
+			1280, 720,
+			[
+				[right, 1240, 702, 0xcead83],
+				[right, 1182, 586, 0xf7e6c3],
+				[center, 360, 699, 0x241818],
+				[left, 32, 23, 0xdcca90],
+				[right, 1122, 698, 0xddbb8f],
+			]
+		]
+	},
+	'准备界面_未准备_莲华圣域': {
+		desc: [
+			1280, 720,
+			[
+				[right, 1240, 702, 0xcead83],
+				[right, 1182, 586, 0xf7e6c3],
+				[center, 360, 699, 0x241818],
+				[left, 32, 23, 0x928865],
+				[right, 1122, 698, 0xddbb8f],
+			]
+		]
+	},
+	'准备界面_未准备_笼梦之境': {
+		desc: [
+			1280, 720,
+			[
+				[right, 1240, 702, 0xcead83],
+				[right, 1182, 586, 0xf7e6c3],
+				[center, 360, 699, 0x241818],
+				[left, 32, 23, 0x8fcdff],
+				[right, 1122, 698, 0xddbb8f],
+			]
+		]
+	},
+	'准备界面_未准备_辰烁奇夜': {
+		desc: [
+			1280, 720,
+			[
+				[right, 1240, 702, 0xcead83],
+				[right, 1182, 586, 0xf7e6c3],
+				[center, 360, 699, 0x241818],
+				[left, 32, 23, 0xe1d591],
+				[right, 1122, 698, 0xddbb8f],
+			]
+		]
+	},
+	'准备界面_未准备_流焰蝶舞': {
+		desc: [
+			1280, 720,
+			[
+				[right, 1240, 702, 0xcead83],
+				[right, 1182, 586, 0xf7e6c3],
+				[center, 360, 699, 0x241818],
+				[left, 32, 23, 0xf9ad9b],
+				[right, 1122, 698, 0xddbb8f],
+			]
+		]
+	},
 	'准备界面_已准备': {
 		desc: [1280, 720,
 			[
@@ -26,6 +134,7 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 				[right, 1181, 620, 0xf0deb6],
 				[right, 1147, 599, 0x3b3333],
 				[left, 34, 41, 0xcea274],
+				[left, 178, 52, 0x352824],
 				[center, 373, 700, 0x241818],
 			]
 		]
@@ -51,6 +160,115 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 				[left, 48, 670, 0xeec8ab],
 				[left, 82, 669, 0xf0caac],
 				[left, 48, 661, 0xf0caac],
+			]
+		],
+	},
+	'战斗界面_手动状态_简约': {
+		desc: [1280, 720,
+			[
+				[left, 34, 23, 0xdbb48b],
+				[left, 106, 24, 0xcfa375],
+				[right, 1270, 700, 0x241919],
+				[right, 1270, 130, 0x422f1d],
+				[left, 48, 670, 0xeec8ab],
+				[left, 82, 669, 0xf0caac],
+				[left, 48, 661, 0xf0caac],
+			]
+		],
+	},
+	'战斗界面_手动状态_凛霜寒雪': {
+		desc: [1280, 720,
+			[
+				[left, 34, 23, 0xb9def6],
+				[left, 106, 24, 0xa6d2f2],
+				[right, 1270, 700, 0x769bc2],
+				[left, 48, 670, 0x2e639a],
+				[left, 82, 669, 0x4977a7],
+				[left, 48, 661, 0xbfd0e0],
+			]
+		],
+	},
+	'战斗界面_手动状态_春缕含青': {
+		desc: [1280, 720,
+			[
+				[left, 34, 23, 0xffe4ad],
+				[left, 106, 24, 0xffe8b9],
+				[right, 1270, 700, 0x5a4734],
+				[left, 48, 670, 0x655542],
+				[left, 82, 683, 0xc3b97d],
+				[left, 117, 614, 0xf8f4dc],
+			]
+		],
+	},
+	'战斗界面_手动状态_蝶寻花踪': {
+		desc: [1280, 720,
+			[
+				[left, 46, 671, 0xfde9e0],
+				[left, 117, 614, 0xfbe6dd],
+				[left, 78, 651, 0xf9e3da],
+				[left, 33, 25, 0xfff0c2],
+				[left, 106, 23, 0xfdf2cd],
+				[left, 92, 707, 0x306465],
+			]
+		],
+	},
+	'战斗界面_手动状态_雅乐之邦': {
+		desc: [1280, 720,
+			[
+				[left, 34, 25, 0xecd89c],
+				[left, 107, 25, 0xefdaa0],
+				[left, 46, 670, 0xfce8de],
+				[left, 25, 703, 0x426559],
+				[left, 117, 614, 0xfbe6dd],
+				[left, 63, 684, 0xcccca8],
+			]
+		],
+	},
+	'战斗界面_手动状态_莲华圣域': {
+		desc: [1280, 720,
+			[
+				[left, 37, 26, 0xd8b877],
+				[left, 108, 25, 0xdcbe83],
+				[left, 46, 670, 0xfbf2ce],
+				[left, 117, 614, 0xf9f1cd],
+				[left, 142, 710, 0x29364b],
+				[left, 81, 665, 0xf6edc9],
+			]
+		],
+	},
+	'战斗界面_手动状态_笼梦之境': {
+		desc: [1280, 720,
+			[
+				[left, 36, 24, 0x93ccff],
+				[left, 107, 24, 0x98cfff],
+				[left, 47, 661, 0xd5ebf6],
+				[left, 77, 657, 0xd9eff9],
+				[left, 117, 614, 0xd9eef9],
+				[left, 16, 701, 0x3f6984],
+			]
+		],
+	},
+	'战斗界面_手动状态_辰烁奇夜': {
+		desc: [1280, 720,
+			[
+				[left, 34, 25, 0xeadc98],
+				[left, 106, 25, 0xefdf9b],
+				[left, 47, 656, 0xfcf9e0],
+				[left, 78, 657, 0xfaf7df],
+				[left, 117, 614, 0xf7f3dd],
+				[left, 24, 705, 0x282b1f],
+			]
+		],
+	},
+	'战斗界面_手动状态_流焰蝶舞': {
+		desc: [1280, 720,
+			[
+				[left, 47, 656, 0xfcf9e0],
+				[left, 78, 657, 0xfaf7df],
+				[left, 117, 614, 0xf7f3dd],
+				[left, 36, 25, 0xf8a997],
+				[left, 107, 24, 0xf9ac9b],
+				[left, 24, 700, 0x8e594d],
 			]
 		],
 	},
@@ -234,15 +452,15 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 			[
 				[center, 448, 221, 0x684736],
 				[center, 829, 222, 0x654434],
-				[center, 705, 248, 0xcbb59e],
-				[center, 504, 408, 0xcbb59e],
-				[center, 762, 415, 0xcbb59e],
-				[center, 771, 352, 0xcbb59e],
-				[center, 519, 340, 0xcbb59e],
-				[center, 604, 411, 0xf4b25f],
-				[center, 684, 438, 0xf4b25f],
-				[center, 698, 446, 0x923d2c],
-				[center, 596, 493, 0x6d4c3b]
+				[center, 705, 248, 0xcbb59c],
+				[center, 504, 408, 0xdf6851],
+				[center, 762, 415, 0xf3b25e],
+				[center, 771, 352, 0xcbb59c],
+				[center, 519, 340, 0xcbb59c],
+				[center, 604, 411, 0xcbb59c],
+				[center, 684, 438, 0xf7bc63],
+				[center, 698, 446, 0xf1b562],
+				[center, 596, 493, 0x6c4a38],
 			]
 		]
 	},
@@ -310,19 +528,19 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 	'探索地图界面': {
 		desc: [1280, 720,
 			[
-				[left, 45, 60, 0xeff5fb],
 				[right, 1168, 146, 0xd5cec1],
 				[right, 1124, 32, 0xd7b18b],
 				[right, 1226, 30, 0xd3af84],
 				[left, 18, 705, 0x754830],
 				[left, 210, 711, 0x72452f],
+				[left, 45, 36, 0xf5e5a6],
 			]
 		]
 	},
 	'探索地图界面_含时空秘境': {
 		desc: [1280, 720,
 			[
-				[left, 45, 60, 0xeff5fb],
+				[left, 45, 36, 0xf5e5a6],
 				[right, 1168, 146, 0xd5cec1],
 				[right, 1124, 32, 0xd7b18b],
 				[right, 1226, 30, 0xd3af84],
@@ -451,37 +669,36 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 			[
 				[right, 1232, 617, 0xd2bb90],
 				[right, 1189, 627, 0x3b1e0d],
-				[right, 1190, 109, 0xd7ae7d],
-				[left, 38, 25, 0xf5e5a6],
-				[left, 223, 31, 0x593716],
-				[right, 714, 19, 0x8a4526],
-				[right, 743, 38, 0xecd79a],
+				[right, 714, 19, 0x6b3121],
+				[left, 36, 37, 0xf5e2a3],
+				[right, 1204, 66, 0xe3c298],
 			]
 		],
 	},
 	'巅峰斗技主界面_段位保护': {
 		desc: [1280, 720,
 			[
-				[right, 1232, 617, 0xbebba3],
-				[right, 1189, 627, 0x55565a],
-				[right, 1190, 109, 0xd7ae7d],
-				[left, 38, 25, 0xf5e5a6],
-				[left, 223, 31, 0x593716],
-				[right, 714, 19, 0x8a4526],
-				[right, 743, 38, 0xecd79a],
+				[right, 714, 19, 0x6b3121],
+				[left, 36, 37, 0xf5e2a3],
+				[right, 1204, 66, 0xe3c298],
+				[right, 1179, 594, 0x585a5d],
+				[right, 1203, 601, 0x565358],
+				[right, 1179, 624, 0xc6cbb9],
+				[left, 34, 36, 0xf7e9ab],
 			]
 		]
 	},
 	'巅峰斗技主界面_段位保护裂': {
 		desc: [1280, 720,
 			[
-				[right, 1232, 617, 0xaebcb3],
-				[right, 1190, 109, 0xd7ae7d],
-				[left, 38, 25, 0xf5e5a6],
-				[left, 223, 31, 0x593716],
-				[right, 1189, 624, 0x677d8f],
-				[right, 714, 19, 0x8a4526],
-				[right, 743, 38, 0xecd79a],
+				[right, 714, 19, 0x6b3121],
+				[left, 36, 37, 0xf5e2a3],
+				[right, 1204, 66, 0xe3c298],
+				[right, 1182, 574, 0xaeccda],
+				[right, 1162, 600, 0xaec8cd],
+				[right, 1179, 601, 0x657e90],
+				[right, 1180, 625, 0xb4cbcf],
+				[left, 34, 36, 0xf7e9ab],
 			]
 		],
 	},
@@ -541,7 +758,6 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 				[right, 1218, 279, 0x81533d],
 				[right, 1213, 415, 0x744a36],
 				[right, 1216, 536, 0x764b37],
-				[center, 130, 637, 0xb2a390],
 				[center, 979, 663, 0x29140e],
 				[center, 1090, 663, 0xbbb190],
 			]
