@@ -34,11 +34,11 @@ export class Func005 implements IFuncOrigin {
 		],
 	}, {
 		desc: [1280, 720,
-			[[right, 644, 267, 0xfffdf5]]
+			[[center, 645, 254, 0xfffffe]]
 		]
 	}, {
 		desc: [1280, 720,
-			[[center, 1088, 253, 0xffffff]]
+			[[right, 1064, 252, 0xfffffe]]
 		]
 	}, {
 		oper: [
@@ -61,6 +61,14 @@ export class Func005 implements IFuncOrigin {
 		],
 		oper: [
 			[right, 1280, 720, 1168, 598, 1250, 678, 2000]
+		]
+	}, { // 开始战斗后的场景，提供给方案的自动判断
+		desc: [1280, 720,
+			[
+				[left, 32, 89, 0x5d361c],
+				[left, 32, 190, 0x5a321a],
+				[left, 55, 402, 0xe3caa3],
+				[left, 51, 502, 0xe4cca3]]
 		]
 	}];
 	// 0-有人就开，1-第一个+号上的点，2-第二个+号上的点，如果1或者2任意一个匹配上了，说明人没满
