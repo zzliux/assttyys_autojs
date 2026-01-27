@@ -16,7 +16,7 @@ export class Func005 implements IFuncOrigin {
 			name: 'type',
 			desc: '组队挑战',
 			type: 'list',
-			data: ['有人就开', '三人'],
+			data: ['有人就开', '三人', '金币/经验妖怪有人再开'],
 			default: '有人就开',
 			value: null,
 		}]
@@ -70,6 +70,24 @@ export class Func005 implements IFuncOrigin {
 				[left, 55, 402, 0xe3caa3],
 				[left, 51, 502, 0xe4cca3]]
 		]
+	}, { // 6 金币/经验妖怪界面_有人进入
+		desc: [1280, 720,
+			[
+				[center, 421, 294, 0xfffffe],
+			]
+		],
+	}, { // 7 金币/经验妖怪界面_10秒无人进入_退出
+		desc: [1280, 720,
+			[
+				[center, 544, 29, 0xb38e57],
+				[center, 556, 29, 0xcc9e5b],
+				[center, 597, 29, 0xd2a25c],
+				[center, 590, 29, 0xa6824c],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 35, 24, 66, 53, 1000],
+		]
 	}];
 	// 0-有人就开，1-第一个+号上的点，2-第二个+号上的点，如果1或者2任意一个匹配上了，说明人没满
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -101,6 +119,20 @@ export class Func005 implements IFuncOrigin {
 					operator: [thisOperator[2]]
 				}, 0)) {
 					thisScript.regionClick(thisOperator[3].oper);
+					return true;
+				}
+			} else if (thisconf.type === '金币/经验妖怪有人再开') {
+				if (!thisScript.oper({
+					name: '金币/经验妖怪有人再开',
+					operator: [thisOperator[6]]
+				})) {
+					thisScript.regionClick(thisOperator[3].oper);
+					return true;
+				}
+				if (thisScript.oper({
+					name: '10秒无人进入_退出',
+					operator: [thisOperator[7]]
+				})) {
 					return true;
 				}
 			}

@@ -3,7 +3,7 @@ import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFu
 
 // const normal = -1; //定义常量
 const left = 0;
-// const center = 1;
+const center = 1;
 const right = 2;
 
 export class Func004 implements IFuncOrigin {
@@ -18,10 +18,10 @@ export class Func004 implements IFuncOrigin {
 			type: 'switch',
 			default: false,
 		}, {
-			name: 'next_scheme',
-			desc: '下一个方案',
-			type: 'scheme',
-			default: '通用准备退出',
+			name: 'designated_scheme',
+			desc: '所指定的方案(在历史运行方案中匹配所输入的字并切换过去,可用","隔断多个关键字)',
+			type: 'text',
+			default: ',',
 		}, {
 			name: 'teammate_exit',
 			desc: '队长退出后切换方案',
@@ -61,7 +61,10 @@ export class Func004 implements IFuncOrigin {
 				[left, 45, 257, 0xdd6a59],
 				[left, 79, 222, 0xe3d3c2],
 				[left, 14, 299, 0xf1be36],
-				[left, 176, 291, 0xefe5d6]]
+				[left, 176, 291, 0xefe5d6],
+				[center, 454, 207, 0xf79a6b],
+				[center, 515, 220, 0x9e3925]
+			]
 		],
 		oper: [
 			[left, 1280, 720, 120, 239, 159, 273, 600]
@@ -108,12 +111,22 @@ export class Func004 implements IFuncOrigin {
 			name: '邀请切换横幅',
 			operator: [{ desc: thisOperator[0].desc }, { desc: thisOperator[1].desc }]
 		})) {
-			const back_scheme = '返回庭院';
-			thisScript.rerun(back_scheme, {
-				next_scheme_name: thisConf.next_scheme,
-				untransmit: true
-			})
-			sleep(3000)
+			const designated_scheme = String(thisConf.designated_scheme).split(',').map(s => s.trim()).filter(Boolean);
+			if (designated_scheme.length < 1) {
+				thisScript.myToast('格式定义错误，请检查');
+				thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+				thisScript.stop();
+			} else {
+				const filtered = thisScript.schemeHistory.filter(item => designated_scheme.some(word => item.schemeName.includes(word)));
+				if (filtered.length < 1) {
+					thisScript.myToast('未找到指定方案，已停止');
+					thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+					thisScript.stop();
+				} else {
+					log(filtered)
+					thisScript.rerun(filtered[filtered.length - 1].schemeName);
+				}
+			}
 			return true;
 		}
 		if (thisConf && thisConf.auto_team && thisScript.global.yaoqing_close) {

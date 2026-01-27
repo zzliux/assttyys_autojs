@@ -28,11 +28,6 @@ export class Func002 implements IFuncOrigin {
 			type: 'scheme',
 			default: '关闭BUFF',
 		}, {
-			name: 'mini_area_click',
-			desc: '是否缩小区域点击，解决部分掉落过多时点击错误的问题',
-			type: 'switch',
-			default: false,
-		}, {
 			name: 'fail',
 			desc: '失败后停止脚本',
 			type: 'switch',
@@ -43,24 +38,31 @@ export class Func002 implements IFuncOrigin {
 		// 调整优先级，提高识别贪吃鬼的级别
 		// 0 左上角的贪吃鬼图标
 		desc: '退出结算_左上角贪吃鬼',
-		oper: [
-			[right, 1280, 720, 1201, 102, 1278, 621, 400],
+		operStepRandom: [
+			[
+				[center, 1280, 720, 15, 139, 83, 309, 1000, 25], // 最后一个参数，表示执行这个的概率(已废弃)
+				[center, 1280, 720, 12, 391, 93, 548, 1000, 25],
+				[center, 1280, 720, 1202, 140, 1267, 630, 1000, 50],
+			]
 		],
 	}, {
 		// 1 左上角贪吃鬼，mumu截图
 		desc: '退出结算_左上角贪吃鬼_mumu',
-		oper: [
-			[right, 1280, 720, 1201, 102, 1278, 621, 400],
+		operStepRandom: [
+			[
+				[center, 1280, 720, 15, 139, 83, 309, 1000, 25], // 最后一个参数，表示执行这个的概率(已废弃)
+				[center, 1280, 720, 12, 391, 93, 548, 1000, 25],
+				[center, 1280, 720, 1202, 140, 1267, 630, 1000, 50],
+			]
 		],
 	}, {
 		// 2 已打开的达摩，取点比较高
 		desc: '退出结算_已打开的达摩_1',
 		operStepRandom: [
 			[
-				[center, 1280, 720, 537, 401, 1244, 612, 300, 5],
-				[center, 1280, 720, 1063, 56, 1226, 685, 300, 5],
-				[center, 1280, 720, 24, 515, 537, 616, 300, 5],
-				[center, 1280, 720, 94, 136, 219, 606, 300, 5],
+				[center, 1280, 720, 15, 139, 83, 309, 1000, 25], // 最后一个参数，表示执行这个的概率(已废弃)
+				[center, 1280, 720, 12, 391, 93, 548, 1000, 25],
+				[center, 1280, 720, 1202, 140, 1267, 630, 1000, 50],
 			]
 		],
 		retest: 300
@@ -68,8 +70,9 @@ export class Func002 implements IFuncOrigin {
 		desc: '退出结算_已打开的达摩_2',
 		operStepRandom: [
 			[
-				[left, 1280, 720, 69, 171, 170, 452, 300, 2], // 最后一个参数，表示执行这个的概率
-				[right, 1280, 720, 1104, 72, 1200, 528, 300, 5],
+				[center, 1280, 720, 15, 139, 83, 309, 1000, 25], // 最后一个参数，表示执行这个的概率(已废弃)
+				[center, 1280, 720, 12, 391, 93, 548, 1000, 25],
+				[center, 1280, 720, 1202, 140, 1267, 630, 1000, 50],
 			]
 		],
 		retest: 300
@@ -78,8 +81,9 @@ export class Func002 implements IFuncOrigin {
 		desc: '退出结算_已打开的达摩_3',
 		operStepRandom: [
 			[
-				[left, 1280, 720, 69, 171, 170, 452, 300, 2], // 最后一个参数，表示执行这个的概率
-				[right, 1280, 720, 1104, 72, 1200, 528, 300, 5],
+				[center, 1280, 720, 15, 139, 83, 309, 1000, 25], // 最后一个参数，表示执行这个的概率(已废弃)
+				[center, 1280, 720, 12, 391, 93, 548, 1000, 25],
+				[center, 1280, 720, 1202, 140, 1267, 630, 1000, 50],
 			]
 		],
 		retest: 300
@@ -336,25 +340,6 @@ export class Func002 implements IFuncOrigin {
 				sleep(3000);
 				return;
 			}
-		}
-		if (thisconf && thisconf.mini_area_click && thisScript.oper({
-			id: 2,
-			name: '退出结算_小区域点击',
-			operator: [{
-				desc: '退出结算_已打开的达摩_1',
-				oper: thisOperator[0].oper
-			}, {
-				desc: '退出结算_已打开的达摩_2',
-				oper: thisOperator[0].oper
-			}, {
-				desc: '退出结算_已打开的达摩_3',
-				oper: thisOperator[0].oper
-			}, {
-				desc: '退出结算_单人_胜利太鼓',
-				oper: thisOperator[0].oper
-			}]
-		})) {
-			return true
 		}
 		if (thisconf && thisconf.fail && thisScript.oper({
 			id: 2,
