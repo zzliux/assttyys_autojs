@@ -85,7 +85,7 @@ export const mergeOffsetTime = function (date: Date, offsetStr: string) {
 	if (date && offsetStr) {
 		const parts = offsetStr?.split(',');
 		if (parts.length === 2) {
-			const [offsetMinuteLow, offsetMinuteHigh] = parts.map(item => parseInt(item));
+			const [ offsetMinuteLow, offsetMinuteHigh ] = parts.map(item => parseInt(item));
 			if (Number.isInteger(offsetMinuteLow) && Number.isInteger(offsetMinuteHigh)) {
 				offsetTime = random(offsetMinuteLow * 60 * 1000, offsetMinuteHigh * 60 * 1000);
 			}

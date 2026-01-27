@@ -17,9 +17,10 @@ export class Func521 implements IFuncOrigin {
 				[left, 58, 21, 0xefd590],
 				[left, 48, 30, 0xf6e6a8],
 				[left, 60, 41, 0xedcf8b],
-				[left, 140, 17, 0xb28956],
-				[left, 150, 38, 0xb28956],
-				[left, 178, 26, 0xb28956],
+				[left, 177, 36, 0xb18956],
+				[left, 200, 17, 0x2a2534],
+				[left, 265, 31, 0x593716],
+				[left, 179, 17, 0xb28956],
 				[left, 177, 36, 0xb18956],
 			]
 		],

@@ -1853,7 +1853,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		]
 	},
 	'阴阳寮_奖励金币': {
-		region: [left, 1280, 720, 219, 301, 592, 407],
+		region: [left, 1280, 720, 239, 301, 593, 408],
 		desc: [
 			[
 				1280, 720,
@@ -2114,19 +2114,30 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		desc: [
 			[
 				1280, 720,
-				[
-					[center, 479, 166, 0xffe4af],
-					[center, 483, 166, 0xffe8b8],
-					[center, 483, 169, 0xffe1a2],
-					[center, 481, 170, 0xffdd94],
+				[   // 第三个柔风
+					[right, 752, 208, 0xffffff],
+					[right, 748, 268, 0xa14f84],
+					[right, 771, 232, 0x29deec],
+					[right, 778, 193, 0x38cae5],
+					[right, 754, 167, 0xffe4a8],
 				]
 			], [
 				1280, 720,
-				[
-					[center, 207, 166, 0xffebc1],
-					[center, 208, 168, 0xffe4a6],
-					[center, 208, 170, 0xffdf9b],
-					[center, 210, 166, 0xf4e6b2],
+				[	// 第一个柔风
+					[left, 208, 168, 0xffe4a6],
+					[left, 204, 207, 0xffffff],
+					[left, 226, 233, 0x2bdce3],
+					[left, 200, 268, 0xa14f84],
+					[left, 237, 224, 0x31e2e5]
+				]
+			], [
+				1280, 720,
+				[	// 第二个柔风
+					[center, 482, 167, 0xffe6af],
+					[center, 477, 208, 0xffffff],
+					[center, 500, 234, 0x30dde2],
+					[center, 475, 268, 0xa14f84],
+					[center, 513, 223, 0x33e2e4]
 				]
 			]
 		],

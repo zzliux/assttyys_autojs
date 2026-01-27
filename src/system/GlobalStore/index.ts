@@ -2,6 +2,7 @@ export type globalRootType = {
 	currentNotifyDate: null | Date,
 	app_is_open_flag: boolean,
 	checked_yard_count: number,
+	checked_yard_count_999: number,
 	currentRunTimes: Record<string, number>,
 	running: boolean,
 	define_run_time: number,
@@ -27,7 +28,14 @@ export type globalRootType = {
 	d6NextStation: string,
 	d6NxRefreshCnt: number,
 	d6NextEvent: string[],
+	jy_list_swipe_times: number,
+	jy_list_getTime_fault_count: number,
+	jy_friends_enchantment_waitingtime: number,
 	jy_enchantment_index: number,
+	jy_change_shikigami: 'change' | 'get_reward' | 'change_enchantment' | 'jy_flag',   //  寄养_是否更换养成式神(狗粮)  更换式神 | 获取奖励 | 更换结界卡 | 寄养
+	jy_experience_wine_pot_count: number,   //  寄养获取经验酒壶次数
+	jy_enchantment_experience_count: number,   //  寄养获取结界卡奖励次数
+	back_courtyard_to_next_scheme: string,
 	fm_kiss_boss_flag: boolean, //  逢魔 是否已击杀首领
 	fm_boss_btn_click_cnt: number, // 点击逢魔首领按钮次数
 	change_shikigami_flag: boolean, //  更换式神
@@ -38,6 +46,7 @@ export type globalRootType = {
 	narrow_time: number, // 狭间暗域自定义3D人物走路时等待时间
 	narrow_mode: boolean,
 	liao_activity_page_flag: number,   //  寮活动翻页标记
+	liao_activity_Swith: Record<string, boolean>, // 寮活动记录
 	liao_banquet_collect: boolean,   //  宴会筹备状态
 	liao_banquet_onGoing: boolean,   //  宴会进行状态
 	banquet_change_flag: boolean,   //  宴会轮换开关标识
@@ -57,6 +66,7 @@ export type globalRootType = {
 	buff_enable_page_flag: boolean; // 开启buff是否完成翻页
 	team_up_Time: number;   // 被邀请的次数
 	game_area: string;  //  游戏区域
+	operate_finish_flag: boolean;  // 寄养完成操作flag
 	preset_once_groupNum: number | null;     // 一次性修改的预设分组
 	preset_once_defaultNum: number | null;     // 一次性修改的预设阵容
 	preset_once_team_groupNum: number | null;     // 315预设阵容的预设分组
@@ -80,10 +90,11 @@ export type globalRootType = {
 	dengluState: boolean, // 登录账号状态
 	yaoqing_close: boolean, // 关闭_接受邀请
 	frist_open: boolean, // 首次开启方案
+	tongXinDui_ZhanDou: 'collect' | 'judge' | 'prestore' | 'juexing' | 'stage' | 'yuhun' | 'back';   // 同心队预存阶段
 	daoGuan_swip: boolean, // 选寮往下滑
 	daoGuan_compare: number[], // 选寮存储记录的值
 	daoGuan_click: boolean, // 选寮点挑战
-	daoGuan_exit: boolean, // 道馆开始退出突破
+	daoGuan_exit: boolean, // 道馆退出突破
 	daoGuan_again: boolean, // 道馆再次攻打是否攻打第二阵容
 	daoguan_team: boolean, // 道馆是否切换队伍
 	first_create_team: boolean, // 首次创建队伍
@@ -115,6 +126,7 @@ export const globalRoot: globalRootType = {
 	currentNotifyDate: null,
 	app_is_open_flag: true,
 	checked_yard_count: 0,
+	checked_yard_count_999: 0,
 	currentRunTimes: {},
 	running: undefined,
 	define_run_time: 0,
@@ -140,7 +152,14 @@ export const globalRoot: globalRootType = {
 	d6NextStation: undefined,
 	d6NxRefreshCnt: undefined,
 	d6NextEvent: undefined,
+	jy_list_swipe_times: 0,
+	jy_list_getTime_fault_count: 0,
+	jy_friends_enchantment_waitingtime: undefined,
 	jy_enchantment_index: 0,
+	jy_change_shikigami: 'change',
+	jy_experience_wine_pot_count: 0,
+	jy_enchantment_experience_count: 0,
+	back_courtyard_to_next_scheme: '',
 	fm_kiss_boss_flag: false,
 	fm_boss_btn_click_cnt: 0,
 	change_shikigami_flag: true,
@@ -150,7 +169,8 @@ export const globalRoot: globalRootType = {
 	narrow_state: undefined,
 	narrow_time: 0,
 	narrow_mode: false,
-	liao_activity_page_flag: -1,
+	liao_activity_page_flag: 0,
+	liao_activity_Swith: undefined,
 	banquet_change_flag: false,
 	gateOfHades_state: false,
 	team_up_lagTime: null,
@@ -167,6 +187,7 @@ export const globalRoot: globalRootType = {
 	buff_enable_page_flag: false,
 	team_up_Time: 0,
 	game_area: '',
+	operate_finish_flag: false,
 	preset_once_groupNum: null,
 	preset_once_defaultNum: null,
 	preset_once_team_groupNum: null,
@@ -189,6 +210,7 @@ export const globalRoot: globalRootType = {
 	dengluState: true,
 	yaoqing_close: false,
 	frist_open: true,
+	tongXinDui_ZhanDou: 'collect',
 	daoGuan_swip: true,
 	daoGuan_compare: [],
 	daoGuan_click: false,
