@@ -1494,5 +1494,8 @@ export const versionList = [{
 053_探索地图进入挑战: 新增进入御魂层数选择, 完善UI改变,
 1106_每周两次真蛇: 优化退出逻辑,
 内置方案修复: "每周真蛇", 要用请删除旧方案后重新添加`,
+}, {
+	version: '20260127_01',
+	desc: '新增：522寮招募',
 }];
 export default versionList[versionList.length - 1].version;
