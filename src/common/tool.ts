@@ -74,7 +74,6 @@ export function setCurrentScheme(schemeName: string, store) {
 			return;
 		}
 	}
-	toastLog(`修改方案失败：请检查是否存在方案[${schemeName}]`);
 }
 
 const getRawType = (val) => {

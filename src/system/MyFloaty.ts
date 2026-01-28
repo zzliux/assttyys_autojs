@@ -4,13 +4,13 @@ import schemeDialog from '@/system/schemeDialog';
 import script from '@/system/script';
 import { showScheduleDialog } from '@/system/Schedule/scheduleDialog';
 import { storeCommon } from '@/system/Store/store';
+// import { myToast } from '@/common/toolAuto';
 
 /**
  * 悬浮按钮，对大柒的悬浮按钮进行封装
  */
 export class MyFloaty {
 	fb: any;
-	runEventFlag: boolean = false;
 	init() {
 		const storeSettings = storeCommon.get('settings', {});
 		const trueCount = storeSettings.defaultFloat.filter(item => item.referred === true).length;
@@ -36,7 +36,6 @@ export class MyFloaty {
 		//     .setColor('#0099FF')
 		//     //点击事件
 		//     .onClick((_view, _name) => {
-		//         self.runEventFlag = false;
 		//         script.stop();
 		//         var i = new android.content.Intent(activity, activity.class);
 		//         i.addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -56,22 +55,21 @@ export class MyFloaty {
 			mUtil.icon2('@drawable/ic_stop_black_48dp').tint2('#FFFFFF').color2('#DC1C2C');
 		})
 			// 设置属性为选中 第一种
-			// .setChecked(true)
-			.onClick((view, name, state) => {
-				if (self.runEventFlag) {
-					self.runEventFlag = false;
-					return;
-				}
+			// .setChecked(true, true)
+			.onClick((_view, _name, state) => {
 				if (state) {
 					const storeSettings = storeCommon.get('settings', {});
 					if (storeSettings.floaty_scheme_openApp) {
 						script.launchRelatedApp();
 					}
+					script.isPause = false; // 全新启动
+					if (script.job?.status === 'running') { // 通过定时任务启动的然后又暂停了，再全新启动的话，需要把job事件完成
+						script.job.doDone();
+					}
 					self.thisRun();
 				} else {
 					self.thisStop();
 				}
-				self.runEventFlag = false;
 				// 返回 true:保持菜单开启 false:关闭菜单
 				return false;
 			});
@@ -87,7 +85,6 @@ export class MyFloaty {
 			.onClick((_view, _name) => {
 				script.stop();
 				schemeDialog.show(this);
-				self.runEventFlag = false;
 				return false;
 			});
 
@@ -101,9 +98,10 @@ export class MyFloaty {
 			.onClick((_view, _name) => {
 				script.stop();
 				self.thisRun('autoRun');
-				self.runEventFlag = false;
 				return false;
 			});
+		let pausebutton = false;
+		pausebutton = true;
 		if (storeSettings.defaultFloat.find(item => item.floatyName === '截图图标' && item.referred === true)) {
 			this.fb.addItem('CapScreen')
 				.setIcon('@drawable/ic_landscape_black_48dp')
@@ -165,24 +163,45 @@ export class MyFloaty {
 		this.fb.show();
 
 		script.setRunCallback(function () {
-			self.runEventFlag = true;
 			setTimeout(() => {
-				self.runEventFlag = false;
+				runStopItem.setChecked(true, true);
+				if (pausebutton) {
+					self.fb.removeItem('Pause'); // 暂停的时候启动可能会还有一个暂停按钮，需提前删除
+					self.fb.insertItem('Pause', 1)
+						.toCheckbox(mUtil => {
+							// 未选中样式
+							mUtil.icon1('@drawable/ic_pause_black_48dp').tint1('#FFFFFF').color1('#FF4800');
+							// 选中样式
+							mUtil.icon2('@drawable/ic_eject_black_48dp').tint2('#FFFFFF').color2('#FF4800').rotation2(90);
+						})
+						.onClick((_view, _name, state) => {
+							if (state) {
+								self.thisPause(); // 暂停也会调用的StopCallBack，下面两行不能执行
+							} else {
+								self.thisRun();
+								// 删除自己，通过RunCallback再添加自己
+								self.fb.removeItem('Pause');
+							}
+							// runStopItem.setChecked(false, true);
+							// self.fb.removeItem('Pause');
+							return false;
+						});
+				}
 			}, 500);
-			runStopItem.setChecked(true);
 			// self.fb.setTint('#ff08bc92');
 			ui.run(function () {
 				// @ts-expect-error d.ts文件问题
 				self.fb.getView('logo').setColorFilter(colors.argb(255, 0x08, 0xbc, 0x92));
 			});
 		});
-
 		script.setStopCallback(function () {
-			self.runEventFlag = true;
 			setTimeout(() => {
-				self.runEventFlag = false;
-			}, 500);
-			runStopItem.setChecked(false);
+				runStopItem.setChecked(false, true);
+				if (pausebutton) {
+					// 非暂停状态的停止移除暂停按钮
+					if (!script.isPause) self.fb.removeItem('Pause');
+				}
+			}, 500)
 			// self.fb.setTint('#00000000');
 			ui.run(function () {
 				// @ts-expect-error d.ts文件问题
@@ -210,6 +229,10 @@ export class MyFloaty {
 
 	thisStop() {
 		script.stop();
+	}
+
+	thisPause() {
+		script.pause();
 	}
 }
 

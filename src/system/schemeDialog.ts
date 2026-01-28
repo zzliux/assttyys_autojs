@@ -23,7 +23,7 @@ export default {
 			const screenWidth = getWidthPixels();
 			const screenHeight = getHeightPixels();
 			if (screenWidth > screenHeight) {
-				schemeDialog.getWindow().setLayout(Math.max(screenWidth * 0.6, Math.min(576, screenWidth)), android.view.WindowManager.LayoutParams.WRAP_CONTENT);
+				schemeDialog.getWindow().setLayout(Math.max(screenWidth * 0.9, Math.min(576, screenWidth)), android.view.WindowManager.LayoutParams.WRAP_CONTENT);
 				// schemeDialog.getWindow().setLayout(android.view.WindowManager.LayoutParams.MATCH_PARENT, android.view.WindowManager.LayoutParams.WRAP_CONTENT);
 			}
 
@@ -48,7 +48,10 @@ export default {
 								<text padding="10 5 10 5" textColor="black" textSize="14" id="leftText" text="{{left}}" layout_gravity="center" />
 							</vertical>
 							<vertical w="0dp" layout_weight="1">
-								<text padding="10 5 10 5" textColor="black" textSize="14" id="rightText" text="{{right}}" layout_gravity="center" />
+								<text padding="10 5 10 5" textColor="black" textSize="14" id="centerText" text="{{center}}" layout_gravity="center" />
+							</vertical>
+							<vertical w="0dp" layout_weight="1">
+								<text padding="10 5 10 5" textColor="black" textSize="14" id="rightText" text="{{right}}" layout_gravity="center_horizontal" />
 							</vertical>
 						</horizontal>
 					</list>`;
@@ -66,13 +69,13 @@ export default {
 			});
 
 			customView.groupList.on('item_data_bind', function (itemView, itemHolder) {
-
-				const data: { left: string, right?: string }[] = [];
+				const data: { left: string, center?: string, right?: string }[] = [];
 				if (screenWidth > screenHeight) {
-					for (let i = 0; i < itemHolder.item.schemeNames.length; i+= 2) {
+					for (let i = 0; i < itemHolder.item.schemeNames.length; i += 3) {
 						data.push({
 							left: itemHolder.item.schemeNames[i],
-							right: i + 1 < itemHolder.item.schemeNames.length ? itemHolder.item.schemeNames[i + 1] : ''
+							center: i + 1 < itemHolder.item.schemeNames.length ? itemHolder.item.schemeNames[i + 1] : '',
+							right: i + 2 < itemHolder.item.schemeNames.length ? itemHolder.item.schemeNames[i + 2] : ''
 						});
 					}
 				} else {
@@ -87,8 +90,10 @@ export default {
 				itemView.groupSchemeList.on('item_data_bind', (itemView, itemHolder) => {
 					const textClick = (schemeName) => {
 						if (!schemeName) return;
-						script.setCurrentScheme(schemeName);
+						script.isPause = false;
 						const storeSettings = storeCommon.get('settings', {});
+						myfloaty.fb.removeItem('Pause');
+						script.setCurrentScheme(schemeName);
 						if (storeSettings.floaty_scheme_direct_run) {
 							// myfloaty.fy.start();
 							setTimeout(() => {
@@ -108,6 +113,10 @@ export default {
 						textClick(itemHolder.item.left);
 					});
 					if (screenWidth > screenHeight) {
+						itemHolder.item.center && itemView.centerText.attr('foreground', '?selectableItemBackground');
+						itemHolder.item.center && itemView.centerText.click(() => {
+							textClick(itemHolder.item.center);
+						});
 						itemHolder.item.right && itemView.rightText.attr('foreground', '?selectableItemBackground');
 						itemHolder.item.right && itemView.rightText.click(() => {
 							textClick(itemHolder.item.right);

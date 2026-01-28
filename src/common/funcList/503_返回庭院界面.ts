@@ -213,6 +213,26 @@ export class Func503 implements IFuncOrigin {
 			desc: '40 契灵界面',
 			type: 'switch',
 			default: true,
+		}, {
+			name: 'oper_41',
+			desc: '41 秘闻_刷新记录',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_42',
+			desc: '42 秘闻_红叉退出',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_43',
+			desc: '43 秘闻_蓝箭头退出',
+			type: 'switch',
+			default: true,
+		}, {
+			name: 'oper_44',
+			desc: '44 宴会_料理筹备界面',
+			type: 'switch',
+			default: true,
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{	// 0 探索地图
@@ -658,6 +678,62 @@ export class Func503 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 28, 21, 56, 45, 1000],
 		]
+	}, { // 41 秘闻_刷新记录
+		desc: [1280, 720,
+			[
+				[center, 528, 326, 0xe4d5ab],
+				[center, 590, 335, 0xd9c998],
+				[center, 626, 332, 0xdecd9e],
+				[right, 747, 328, 0xe4d3a6],
+				[right, 861, 349, 0xe7d38a],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 599, 650, 742, 694, 1000],
+		]
+	}, { // 42 秘闻_红叉退出
+		desc: [1280, 720,
+			[
+				[left, 106, 64, 0x414046],
+				[center, 432, 65, 0x3c3a3f],
+				[right, 844, 60, 0x403f45],
+				[right, 1141, 66, 0x3c3a40],
+				[center, 527, 79, 0x503a28],
+				[right, 1177, 105, 0x66333b],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1153, 98, 1197, 137, 1000],
+		]
+	}, { // 43 秘闻_蓝箭头退出
+		desc: [1280, 720,
+			[
+				[left, 50, 35, 0xc2cbe1],
+				[left, 41, 48, 0xc2cbe0],
+				[left, 56, 61, 0x9fafd1],
+				[left, 62, 47, 0x3e4a92],
+				[left, 254, 46, 0x593716],
+				[left, 271, 46, 0x593716],
+				[left, 111, 42, 0xdfd9ca],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 38, 30, 70, 65, 1000],
+		]
+	}, { //	44 宴会_料理筹备界面
+		desc: [1280, 720,
+			[
+				[left, 157, 96, 0x43312f],
+				[left, 157, 144, 0x1e1311],
+				[center, 418, 80, 0x32231f],
+				[center, 434, 122, 0x241815],
+				[left, 188, 112, 0xeab35a],
+				[center, 365, 111, 0xeab85d],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 30, 41, 63, 71, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['503'];
@@ -737,6 +813,11 @@ export class Func503 implements IFuncOrigin {
 			})) {
 				// 返回方案起始点,并重置起始点?必要性存疑
 				let next_scheme = thisScript.runtimeParams && thisScript.runtimeParams.next_scheme_name;
+				if (!next_scheme) {
+					next_scheme = thisScript.superGlobal.next_scheme_name;
+					thisScript.superGlobal.next_scheme_name = null;
+				}
+				log('503_next_scheme:' + next_scheme);
 				if (thisConf.scheme_switch_enabled) {
 					next_scheme = thisConf.next_scheme as string;
 				}

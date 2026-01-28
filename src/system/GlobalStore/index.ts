@@ -47,6 +47,8 @@ export type globalRootType = {
 	narrow_mode: boolean,
 	liao_activity_page_flag: number,   //  寮活动翻页标记
 	liao_activity_Swith: Record<string, boolean>, // 寮活动记录
+	liao_banquet_collect: boolean,   //  宴会筹备状态
+	liao_banquet_onGoing: boolean,   //  宴会进行状态
 	banquet_change_flag: boolean,   //  宴会轮换开关标识
 	gateOfHades_state: boolean,     //  阴门状态
 	team_up_lagTime: null | Date,    // 组队延时
@@ -117,7 +119,7 @@ export type globalRootType = {
 	zhenShe: number, // 真蛇
 	sneak_level_open: boolean, // 选择层数
 	day_chouKa: boolean, // 每日抽卡
-
+	shiHe_jingYan: boolean, // 食盒经验领取上限
 }
 
 export const globalRoot: globalRootType = {
@@ -239,4 +241,20 @@ export const globalRoot: globalRootType = {
 	sneak_level_open: true,
 	day_chouKa: true,
 	qiling_shop: false,
+	shiHe_jingYan: false,
+	liao_banquet_collect: false,
+	liao_banquet_onGoing: true,
+}
+export type superGlobalRootType = {
+	liao_activity_Swith: Record<string, boolean>, // 寮活动记录
+	next_scheme_name: string, // 中转后的下个方案
+	daoguan_lose: boolean, // 记录道馆第一次失败
+	runTime: number, // 记录结界卡时间
+}
+
+export const superGlobalRoot: superGlobalRootType = {
+	liao_activity_Swith: undefined,
+	next_scheme_name: null,
+	daoguan_lose: true,
+	runTime: 0,
 }
