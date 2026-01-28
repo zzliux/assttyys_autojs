@@ -65,7 +65,7 @@ export class Func026 implements IFuncOrigin {
 	}, { // 4 神秘任务_不做
 		desc: [1280, 720,
 			[
-				[left, 45, 48, 0x655e44],
+				[left, 45, 48, 0x4a4532],
 				[center, 650, 140, 0xcaa85d],
 				[center, 846, 132, 0xe8d4cf],
 				[center, 564, 339, 0x86201f],
