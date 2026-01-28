@@ -6,8 +6,8 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func513 implements IFuncOrigin {
-	id = 513;
+export class Func607 implements IFuncOrigin {
+	id = 607;
 	name = '阴门_挑战';
 	operator: IFuncOperatorOrigin[] = [{	// 检测_是否为首领退治集结页
 		desc: //  检测_阴门
@@ -81,65 +81,37 @@ export class Func513 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1168, 62, 1198, 88, 1200]  //  点击_关闭按钮
 		]
+	}, { // 阴界之门_寮神社未下滑位置
+		desc: [1280, 720,
+			[
+				[left, 191, 450, 0xc2ae92],
+				[left, 222, 501, 0xcc93e4],
+				[left, 245, 510, 0xe0c5e6],
+				[left, 282, 514, 0xdfc5e6],
+				[left, 260, 545, 0xe78ac6],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 176, 441, 351, 553, 1000],
+		]
+	}, { // 阴界之门_寮神社已下滑位置
+		desc: [1280, 720,
+			[
+				[left, 220, 307, 0xcd94e5],
+				[left, 245, 315, 0xe0c5e6],
+				[left, 281, 321, 0xdfc4e5],
+				[left, 238, 355, 0x99599b],
+				[left, 272, 334, 0xedd4ef],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 187, 244, 330, 358, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		// const thisconf = thisScript.scheme.config['513'];
-
-		if (thisScript.oper({
-			name: '检测_阴门',
-			operator: [{
-				desc: thisOperator[0].desc
-			}]
-		})) {
-			if (thisScript.runtimeParams && thisScript.runtimeParams.liao_activity_state) {
-				if (thisScript.runtimeParams.liao_activity_state['gateOfHades']) {
-					thisScript.oper({
-						name: '检测_退出阴门',
-						operator: [{
-							oper: [thisOperator[0].oper[1]]
-						}]
-					});
-					sleep(1200);
-					const next_scheme = '返回庭院';
-					thisScript.rerun(next_scheme, {
-						next_scheme_name: '庭院进入寮每日活动',
-						liao_activity_state: thisScript.runtimeParams.liao_activity_state
-					});
-				} else {
-					return thisScript.oper({
-						name: '检测_进入阴门挑战',
-						operator: [{
-							oper: [thisOperator[0].oper[0]]
-						}]
-					});
-				}
-			} else {
-				if (thisScript.global.gateOfHades_state) {
-					thisScript.oper({
-						name: '检测_退出阴门',
-						operator: [{
-							oper: [thisOperator[0].oper[1]]
-						}]
-					});
-					sleep(1200);
-					const next_scheme = '返回庭院';
-					thisScript.rerun(next_scheme);
-				} else {
-					return thisScript.oper({
-						name: '检测_进入阴门挑战',
-						operator: [{
-							oper: [thisOperator[0].oper[0]]
-						}]
-					});
-				}
-			}
-
-			return false;
-		}
-
 		if (thisScript.oper({
 			name: '检测_阴门挑战弹窗界面',
-			operator: [thisOperator[1]]
+			operator: [thisOperator[0], thisOperator[1], thisOperator[4], thisOperator[5]]
 		})) {
 			return true;
 		}
@@ -155,10 +127,8 @@ export class Func513 implements IFuncOrigin {
 			name: '检测_已完成挑战弹窗',
 			operator: [thisOperator[3]]
 		})) {
-			if (thisScript.runtimeParams && thisScript.runtimeParams.liao_activity_state) {
-				thisScript.runtimeParams.liao_activity_state['gateOfHades'] = true;
-			}
-			thisScript.global.gateOfHades_state = true;
+			thisScript.rerun('返回庭院');
+			return true;
 		}
 		return false;
 	}

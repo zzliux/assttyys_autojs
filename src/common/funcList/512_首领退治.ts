@@ -23,6 +23,7 @@ export class Func512 implements IFuncOrigin {
 					[left, 182, 37, 0xd5c4a3],
 					[left, 108, 26, 0xd7c5a2],
 					[left, 47, 28, 0xd7c5a2],
+					[left, 232, 139, 0x583716],
 					[left, 76, 550, 0x322219],
 					[right, 1039, 648, 0xd3c3bd],
 					[center, 872, 606, 0x493a38],
@@ -126,8 +127,7 @@ export class Func512 implements IFuncOrigin {
 		},
 		{ // 6 检查_首领退治是否已开启
 			desc: [1280, 720,
-				[
-					[center, 765, 235, 0xb63b32],
+				[[center, 765, 235, 0xb63b32],
 					[center, 815, 265, 0xdebae3],
 					[center, 840, 242, 0x241212],
 					[center, 846, 185, 0x802318],
@@ -140,10 +140,14 @@ export class Func512 implements IFuncOrigin {
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		if (thisScript.oper({
-			name: '检测_首领退治开启后弹框',
-			operator: [thisOperator[5]],
-		})) {
+		// const thisconf = thisScript.scheme.config['512'];
+
+		if (
+			thisScript.oper({
+				name: '检测_首领退治开启后弹框',
+				operator: [thisOperator[5]],
+			})
+		) {
 			// 做延时检测 防止登陆后的弹窗
 			if (!thisScript.global.checked_yard_count) {
 				thisScript.global.checked_yard_count = 1;
@@ -151,39 +155,71 @@ export class Func512 implements IFuncOrigin {
 				thisScript.global.checked_yard_count += 1;
 				sleep(1000);
 			}
+
 			return true;
 		}
 
-		if (thisScript.oper({
-			name: '检测_是否为首领退治开启页',
-			operator: [{ desc: thisOperator[4].desc, }]
-		})) {
+		if (
+			thisScript.oper({
+				name: '检测_是否为首领退治开启页',
+				operator: [
+					{
+						desc: thisOperator[4].desc,
+					},
+				],
+			})
+		) {
 			if (thisScript.global.checked_yard_count === 3) {
 				return thisScript.oper({
 					name: '检测_是否为首领退治已开启，返回寮活动界面',
-					operator: [{ oper: [thisOperator[4].oper[1]] }],
+					operator: [
+						{
+							oper: [thisOperator[4].oper[1]],
+						},
+					],
 				});
 			} else {
 				return thisScript.oper({
 					name: '检测_点击首领退治开启',
-					operator: [{ oper: [thisOperator[4].oper[0]] }]
+					operator: [
+						{
+							oper: [thisOperator[4].oper[0]],
+						},
+					],
 				});
 			}
 		}
 
-		if (thisScript.oper({
-			name: '检测_是否为首领退治集结页',
-			operator: [thisOperator[0], thisOperator[6]]
-		})) {
+		if (
+			thisScript.oper({
+				name: '检测_是否为首领退治集结页',
+				operator: [thisOperator[0], thisOperator[6]],
+			})
+		) {
 			return true;
 		}
 
-		if (thisScript.oper({
-			name: '检测_首领结束页',
-			operator: [thisOperator[1], thisOperator[2], thisOperator[3]]
-		})) {
-			const next_scheme = '返回庭院';
-			thisScript.rerun(next_scheme);
+		if (
+			thisScript.oper({
+				name: '检测_首领结束页',
+				operator: [thisOperator[1], thisOperator[2], thisOperator[3]],
+			})
+		) {
+			if (
+				thisScript.runtimeParams &&
+        thisScript.runtimeParams.liao_activity_state
+			) {
+				thisScript.runtimeParams.liao_activity_state['huntBoss'] = true;
+
+				const next_scheme = '返回庭院';
+				thisScript.rerun(next_scheme, {
+					next_scheme_name: '庭院进入寮每日活动',
+					liao_activity_state: thisScript.runtimeParams.liao_activity_state,
+				});
+			} else {
+				const next_scheme = '返回庭院';
+				thisScript.rerun(next_scheme);
+			}
 		}
 		return false;
 	}

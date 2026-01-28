@@ -81,6 +81,7 @@ export class Func1000 implements IFuncOrigin {
 					[center, 568, 257, 0xf2d7ab],
 					[center, 806, 257, 0xf2d7a9],
 					[center, 753, 129, 0x301c13],
+					[left, 216, 711, 0x3e2d1c],
 					[right, 1228, 687, 0x381c10],
 					[right, 1170, 559, 0xe8d6ae],
 					[right, 1023, 296, 0xffffff],
@@ -103,12 +104,14 @@ export class Func1000 implements IFuncOrigin {
 			})
 		) {
 			const point1 = thisScript.findMultiColor('宴会_举高高');
+
 			if (point1) {
 				console.log('查找举高高成功');
 				const oper = [[point1.x, point1.y, point1.x, point1.y, 120]];
 				thisScript.regionClick(oper);
 				return true;
 			}
+
 			if (!thisScript.global.banquet_change_flag) {
 				return thisScript.oper({
 					name: '宴会_式神轮换',
@@ -158,7 +161,7 @@ export class Func1000 implements IFuncOrigin {
 				sleep(1500);
 				if (
 					!thisScript.global.checked_yard_count ||
-					Number.isNaN(thisScript.global.checked_yard_count)
+          Number.isNaN(thisScript.global.checked_yard_count)
 				) {
 					thisScript.global.checked_yard_count = 1;
 				} else {
@@ -178,9 +181,22 @@ export class Func1000 implements IFuncOrigin {
 				],
 			})
 		) {
-			const next_scheme = '返回庭院';
-			thisScript.rerun(next_scheme);
-			return true;
+			if (
+				thisScript.runtimeParams &&
+        thisScript.runtimeParams.liao_activity_state
+			) {
+				thisScript.runtimeParams.liao_activity_state['banquet'] = true;
+
+				const next_scheme = '返回庭院';
+				thisScript.rerun(next_scheme as string, {
+					next_scheme_name: '庭院进入寮每日活动',
+					liao_activity_state: thisScript.runtimeParams.liao_activity_state,
+				});
+			} else {
+				const next_scheme = '返回庭院';
+				thisScript.rerun(next_scheme);
+			}
+			return false;
 		}
 		return false;
 	}

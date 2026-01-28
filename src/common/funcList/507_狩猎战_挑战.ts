@@ -12,17 +12,15 @@ export class Func507 implements IFuncOrigin {
 	operator: IFuncOperatorOrigin[] = [{ // 0 检测_是否为挑战奉献榜场景_待开始
 		desc: [1280, 720,
 			[
-				[left, 35, 592, 0x8a6138],
-				[left, 112, 594, 0x664b30],
-				[left, 139, 590, 0x5b452c],
-				[left, 175, 603, 0x966f47],
-				[right, 1178, 593, 0xe5dac3],
-				[right, 1178, 657, 0xe0d5be],
-				[right, 1187, 626, 0x482d20],
+				[right, 1104, 568, 0xd7bfa5],
+				[right, 1175, 600, 0xdfc29d],
+				[right, 1122, 697, 0x5b0d07],
+				[right, 1086, 615, 0x272420],
+				[right, 1068, 593, 0xdec7aa]
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1139, 584, 1228, 666, 1000],
+			[right, 1280, 720, 1073, 568, 1171, 646, 1000]  // 进入鬼王挑战页
 		]
 	}, {	// 1 检测_挑战是否可用
 		desc: [
@@ -112,14 +110,17 @@ export class Func507 implements IFuncOrigin {
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
+		// const thisconf = thisScript.scheme.config['507'];
+
 		if (thisScript.oper({
-			name: '麒麟界面_未挑战',
+			name: '检测_是否为挑战奉献榜场景_待开始',
 			operator: [thisOperator[0]]
 		})) {
 			return true;
 		}
+
 		if (thisScript.oper({
-			name: '狩猎战_已挑战',
+			name: '检测_挑战是否可用',
 			operator: [thisOperator[1]]
 		})) {
 			return true;

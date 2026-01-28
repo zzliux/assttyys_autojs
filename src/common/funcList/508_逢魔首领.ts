@@ -338,8 +338,9 @@ export class Func508 implements IFuncOrigin {
 			})
 		) {
 			if (thisScript.global.fm_kiss_boss_flag) {
-				thisScript.superGlobal.next_scheme_name = thisConf.next_scheme as string;
-				thisScript.rerun('返回庭院');
+				thisScript.rerun('返回庭院', {
+					next_scheme_name: thisConf.next_scheme
+				});
 			} else {
 				let operatorIndex = thisConf && thisConf['switch_ji_enabled'] ? 9 : 0
 
