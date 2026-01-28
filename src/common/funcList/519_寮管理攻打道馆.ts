@@ -148,6 +148,29 @@ export class Func519 implements IFuncOrigin {
 			[center, 1280, 720, 762, 414, 881, 457, 5000], // 建立道馆_确认
 			[center, 1280, 720, 1171, 106, 1224, 143, 1000], // 建立道馆_关闭详细
 		]
+	}, { // 8 道馆中的0次机会
+		desc: [
+			1280, 720,
+			[
+				[center, 550, 653, 0xddd9c8],
+				[center, 645, 666, 0xe2ddcc],
+				[center, 687, 664, 0xa8a598],
+				[center, 707, 662, 0xde8001],
+				[center, 716, 661, 0xe18201],
+				[center, 732, 662, 0xe88501],
+				[center, 562, 87, 0x07080f],
+			]
+		]
+	}, { // 9 道馆外的0次机会
+		desc: [1280, 720,
+			[
+				[center, 512, 653, 0xf0ebd9],
+				[right, 664, 649, 0xed8901],
+				[right, 673, 649, 0xe78501],
+				[center, 622, 648, 0xebe7d5],
+				[right, 689, 651, 0xeb8701],
+			]
+		],
 	}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -156,6 +179,17 @@ export class Func519 implements IFuncOrigin {
 		if (thisConf.day && (now.getDay() == 0 || now.getDay() >= 5)) {
 			thisScript.myToast('星期567,关闭方案');
 			thisScript.doPush(thisScript, { text: '星期567,关闭方案', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+			thisScript.stop();
+			sleep(2000);
+			return true;
+		}
+		if (thisScript.oper({
+			id: 519,
+			name: '当日机会为0',
+			operator: [thisOperator[8], thisOperator[9]]
+		})) {
+			thisScript.myToast('两次机会用光');
+			thisScript.doPush(thisScript, { text: '两次机会用光', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 			thisScript.stop();
 			sleep(2000);
 			return true;

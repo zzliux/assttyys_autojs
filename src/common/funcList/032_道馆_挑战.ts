@@ -149,7 +149,7 @@ export class Func032 implements IFuncOrigin {
 				[center, 718, 666, 0xe9e4d2],
 				[center, 743, 669, 0xece7d5],
 				[center, 584, 663, 0xf4efdd],
-				[center, 641, 639, 0xd79e70],
+				[center, 641, 639, 0xc4a180],
 				[center, 645, 684, 0xb87237],
 			]
 		]
@@ -248,13 +248,14 @@ export class Func032 implements IFuncOrigin {
 	}, { // 13 选道馆界面:今日挑战0次机会
 		desc: [1280, 720,
 			[
-				[center, 507, 642, 0xcbc7b6],
-				[center, 536, 649, 0xe8e3d1],
-				[center, 558, 650, 0xefead8],
-				[center, 601, 647, 0xebe7d5],
-				[right, 664, 649, 0xed8902],
-				[right, 673, 649, 0xe88603],
-				[right, 689, 651, 0xec8902],
+				[left, 141, 77, 0xc8a98c],
+				[left, 33, 52, 0xeff5fb],
+				[left, 245, 50, 0x583716],
+				[left, 203, 650, 0x5b3e2b],
+				[left, 89, 618, 0xc1b9a9],
+				[right, 1113, 650, 0xdfdbcf],
+				[right, 1103, 62, 0xddd3c0],
+				[right, 1251, 125, 0xc4b4a0],
 			]
 		],
 	}];
@@ -360,9 +361,16 @@ export class Func032 implements IFuncOrigin {
 			name: '检测_挑战结束',
 			operator: [thisOperator[2]]
 		})) {
-			if (!thisScript.scheme.list.includes(519)) {
-				thisScript.rerun('返回庭院');
-				return true;
+			thisScript.global.daoguan_team = true;
+			thisScript.global.shangyushe = true;
+			if (thisconf.manage && thisScript.oper({ name: '检测_小地图选道馆', operator: [{ desc: thisOperator[13].desc }] })) {// 寮管理不切换方案
+				return false;
+			} else {
+				thisScript.oper({
+					id: 32,
+					name: '检测_挑战结束',
+					operator: [thisOperator[13]] // 13投票后，倒计时结束会返回到小地图（补充：道馆突破成功倒计时会返回到庭院）
+				})
 			}
 		}
 		if (thisScript.oper({

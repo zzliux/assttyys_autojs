@@ -699,7 +699,7 @@ const SchemeList: IScheme[] = [
 	{
 		id: 64,
 		schemeName: '每日签到与收取邮件',
-		list: [0, 2, 3, 518],
+		list: [0, 2, 3, 518, 521],
 		config: {
 			'0': {
 				jspd_enabled_longtime_nodo: true,
@@ -871,6 +871,11 @@ const SchemeList: IScheme[] = [
 				afterCountOper: '不进行任何操作',
 			}
 		}
+	},
+	{
+		id: 78,
+		schemeName: '清自己1-4星鬼王',
+		list: [0, 1, 2, 3, 24, 317],
 	},
 	{
 		id: 99,
