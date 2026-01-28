@@ -16,6 +16,12 @@ export class Func053 implements IFuncOrigin {
 			type: 'list',
 			data: ['御魂-八岐大蛇', '御魂-业原火', '御魂-日轮之陨', '御魂-永生之海', '御灵', '觉醒-火麒麟', '觉醒-风麒麟', '觉醒-水麒麟', '觉醒-雷麒麟'],
 			default: '御魂-八岐大蛇',
+		}, {
+			name: 'sneak_level',
+			desc: '御魂层数',
+			type: 'list',
+			data: ['魂十', '魂土', '魂王', '魂十三'],
+			default: '魂十',
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{
@@ -31,12 +37,12 @@ export class Func053 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
+				[left, 45, 37, 0xf5e5a5],
 				[right, 1232, 43, 0xcaa274],
 				[left, 182, 141, 0x323045],
 				[center, 547, 133, 0x5b3232],
 				[right, 889, 147, 0x555534],
 				[right, 1240, 181, 0x344158],
-				[left, 46, 36, 0xf5e2a3],
 			]
 		],
 		oper: [
@@ -50,7 +56,7 @@ export class Func053 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[left, 46, 46, 0xc2cbe2],
+				[left, 44, 36, 0xf7eaac],
 				[left, 250, 42, 0x583716],
 				[right, 1178, 44, 0xd7b38a],
 				[right, 1240, 42, 0xd3af83],
@@ -71,7 +77,7 @@ export class Func053 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[left, 19, 40, 0xc6cde2],
+				[left, 44, 36, 0xf7eaac],
 				[right, 1240, 40, 0xd3af84],
 				[right, 1174, 41, 0xd7b389],
 				[left, 136, 179, 0x2b2b44],
@@ -87,7 +93,7 @@ export class Func053 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[left, 19, 40, 0xc6cde2],
+				[left, 44, 36, 0xf7eaac],
 				[right, 1240, 40, 0xd3af84],
 				[right, 1174, 41, 0xd7b389],
 				[center, 439, 147, 0x47252e],
@@ -104,7 +110,7 @@ export class Func053 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[left, 19, 40, 0xc6cde2],
+				[left, 44, 36, 0xf7eaac],
 				[right, 1240, 40, 0xd3af84],
 				[right, 1174, 41, 0xd7b389],
 				[center, 802, 168, 0x23232b],
@@ -121,7 +127,7 @@ export class Func053 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[left, 19, 40, 0xc6cde2],
+				[left, 44, 36, 0xf7eaac],
 				[right, 1240, 40, 0xd3af84],
 				[right, 1174, 41, 0xd7b389],
 				[center, 1121, 254, 0x50a3b2],
@@ -141,9 +147,27 @@ export class Func053 implements IFuncOrigin {
 			[left, 1280, 720, 444, 638, 507, 701, 1000], // 御灵
 			[left, 1280, 720, 56, 639, 111, 699, 1000], // 觉醒
 		]
+	}, { // 8 御魂层数滑动
+		desc: [
+			1280, 720,
+			[
+				[left, 44, 38, 0xf6e8a9],
+				[left, 125, 28, 0xf9eeb7],
+				[left, 58, 50, 0xf1d793],
+				[left, 95, 187, 0x8c7ba8],
+				[left, 67, 194, 0x8d7da8],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 396, 531, 430, 561, 1000], // 滑动_开启点
+			[center, 1280, 720, 373, 25, 405, 59, 1000], // 滑动_结束点
+			[center, 1280, 720, 303, 448, 354, 483, 1000], // 魂王
+			[center, 1280, 720, 189, 331, 453, 381, 1000], // 魂土
+			[center, 1280, 720, 185, 225, 455, 278, 1000], // 魂十
+			[center, 1280, 720, 298, 560, 350, 587, 1000], // 魂十三
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-
 		const thisconf = thisScript.scheme.config['53'];
 		// '御魂-八岐大蛇', '御魂-业原火', '御魂-日轮之陨', '御魂-永生之海'
 		let operator: IFuncOperator[];
@@ -155,6 +179,29 @@ export class Func053 implements IFuncOrigin {
 				desc: thisOperator[1].desc,
 				oper: [thisOperator[1].oper[0]]
 			}]
+			if (thisScript.global.sneak_level_open && thisScript.oper({
+				id: 52,
+				name: '八岐大蛇_滑动',
+				operator: [{ desc: thisOperator[8].desc }]
+			})) {
+				thisScript.regionBezierSwipe(thisOperator[8].oper[0], thisOperator[8].oper[1], [400, 500], 1500);
+				switch (thisconf.sneak_level) {
+					case '魂王':
+						thisScript.regionClick([thisOperator[8].oper[2]]);
+						break;
+					case '魂土':
+						thisScript.regionClick([thisOperator[8].oper[3]]);
+						break;
+					case '魂十':
+						thisScript.regionClick([thisOperator[8].oper[4]]);
+						break;
+					case '魂十三':
+						thisScript.regionClick([thisOperator[8].oper[5]]);
+						break;
+				}
+				thisScript.global.sneak_level_open = false;
+				return true;
+			}
 		} else if ('御魂-业原火' === thisconf.challenge_type) {
 			operator = [{
 				desc: thisOperator[0].desc,

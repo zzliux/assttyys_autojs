@@ -901,13 +901,12 @@ const SchemeList: IScheme[] = [
 	}, {
 		id: 102,
 		schemeName: '每周真蛇',
-		list: [993, 509, 510, 0, 1, 2, 3, 1106, 53, 6, 503, 29],
+		list: [993, 509, 510, 1106, 0, 1, 2, 3, 53, 6, 503, 29],
 		config: {
-			'2': { mini_area_click: false },
 			'503': { afterCountOper: '不进行任何操作' },
 			'510': { fastMode: true },
 			'993': { scheme_switch_enabled: false },
-			'1106': { switch_group: '2', switch_default: '4' }
+			'1106': { switch_group: '1', switch_default: '1' }
 		}
 	}
 	// , {
