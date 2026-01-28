@@ -6,9 +6,9 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func513 implements IFuncOrigin {
-	id = 513;
-	name = '阴门_挑战';
+export class Func607 implements IFuncOrigin {
+	id = 607;
+	name = '阴界之门';
 	operator: IFuncOperatorOrigin[] = [{
 		desc: //  检测_阴门
 			[
@@ -18,7 +18,7 @@ export class Func513 implements IFuncOrigin {
 					[right, 1126, 625, 0x180a28],
 					[right, 1161, 618, 0x84a5bd],
 					[right, 1262, 650, 0x698bad],
-					[left, 72, 62, 0xb9c2da],
+					[left, 67, 38, 0xb1824d],
 					[center, 713, 25, 0xe3d698],
 				]
 			],

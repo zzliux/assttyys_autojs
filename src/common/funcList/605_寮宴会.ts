@@ -5,10 +5,10 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func522 implements IFuncOrigin {
-	id = 522;
+export class Func605 implements IFuncOrigin {
+	id = 605;
 	name = '宴会';
-	desc = '宴会_摆烂';
+	desc = '宴会';
 	config = [{
 		desc: '',
 		config: [{
@@ -168,7 +168,7 @@ export class Func522 implements IFuncOrigin {
 	}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		const thisconfig = thisScript.scheme.config['522'];
+		const thisconfig = thisScript.scheme.config['605'];
 		if (thisScript.global.liao_banquet_onGoing) {
 			if (thisScript.oper({
 				name: '宴会_结束',

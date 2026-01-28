@@ -5,8 +5,8 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func520 implements IFuncOrigin {
-	id = 520;
+export class Func606 implements IFuncOrigin {
+	id = 606;
 	name = '宴会筹备';
 	desc: '进入探索，狸猫饿鬼河童各打一次（需挑战券）'
 	operator: IFuncOperatorOrigin[] = [{
