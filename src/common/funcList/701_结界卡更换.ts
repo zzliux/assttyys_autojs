@@ -5,8 +5,8 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func995 implements IFuncOrigin {
-	id = 995;
+export class Func701 implements IFuncOrigin {
+	id = 701;
 	name = '结界卡更换';
 	desc = '';
 	config = [{
@@ -252,9 +252,9 @@ export class Func995 implements IFuncOrigin {
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		const thisconf = thisScript.scheme.config['995'];
+		const thisconf = thisScript.scheme.config['701'];
 		if (thisScript.oper({
-			id: 995,
+			id: 701,
 			name: '还剩余几分钟到期',
 			operator: [thisOperator[10]]
 		})) {
@@ -263,12 +263,12 @@ export class Func995 implements IFuncOrigin {
 			return true;
 		}
 		if (thisScript.oper({
-			id: 995,
+			id: 701,
 			name: '结界界面',
 			operator: [{ desc: thisOperator[0].desc }],
 		})) {
 			if (thisScript.oper({
-				id: 995,
+				id: 701,
 				name: '领取结界卡奖励',
 				operator: [thisOperator[1]]
 			})) {
@@ -278,12 +278,12 @@ export class Func995 implements IFuncOrigin {
 			return true;
 		}
 		if (thisScript.oper({
-			id: 995,
+			id: 701,
 			name: '检测_是否为结界卡界面',
 			operator: [{ desc: thisOperator[3].desc, }]
 		})) {
 			if (thisScript.oper({
-				id: 995,
+				id: 701,
 				name: '检测_结界卡界面_结界卡为空_下拉框已打开',
 				operator: [{ desc: thisOperator[5].desc }],
 			})) {
@@ -292,7 +292,7 @@ export class Func995 implements IFuncOrigin {
 						? 1
 						: 0 || 0;
 				return thisScript.oper({
-					id: 995,
+					id: 701,
 					name: '点击 结界卡分类',
 					operator: [{
 						oper: [
@@ -303,14 +303,14 @@ export class Func995 implements IFuncOrigin {
 				});
 			}
 			if (thisScript.oper({ // [2]需要测试别处是否能点击到
-				id: 995,
+				id: 701,
 				name: '更换结界操作_杂项',
 				operator: [thisOperator[2], thisOperator[4], thisOperator[6]],
 			})) {
 				return true;
 			}
 			if (thisScript.oper({
-				id: 995,
+				id: 701,
 				name: '检测_结界卡已激活',
 				operator: [
 					{ desc: thisOperator[8].desc },
@@ -348,7 +348,7 @@ export class Func995 implements IFuncOrigin {
 			for (; ;) {
 				thisScript.keepScreen();
 				if (thisScript.oper({
-					id: 995,
+					id: 701,
 					name: '进入式神育成',
 					operator: [thisOperator[12], thisOperator[13], thisOperator[14]]
 				})) {
@@ -356,7 +356,7 @@ export class Func995 implements IFuncOrigin {
 					continue;
 				}
 				if (thisScript.oper({
-					id: 995,
+					id: 701,
 					name: '判断_是否为己方结界_点击式神育成',
 					operator: [{ desc: thisOperator[7].desc }],
 				})) {
@@ -364,7 +364,7 @@ export class Func995 implements IFuncOrigin {
 					if (emptyPoint && emptyPoint.length > 0) {
 						const emptyCount = emptyPoint.length;
 						if (thisScript.oper({
-							id: 995,
+							id: 701,
 							name: '式神育成_全部',
 							operator: [{ desc: thisOperator[15].desc }]
 						})) {

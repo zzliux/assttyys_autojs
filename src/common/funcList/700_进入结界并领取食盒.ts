@@ -5,8 +5,8 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func994 implements IFuncOrigin {
-	id = 994;
+export class Func700 implements IFuncOrigin {
+	id = 700;
 	name = '进入结界并领取食盒';
 	desc = '';
 	operator: IFuncOperatorOrigin[] = [
@@ -237,12 +237,12 @@ export class Func994 implements IFuncOrigin {
 			sleep(500);
 		}
 		if (thisScript.oper({
-			id: 994,
+			id: 700,
 			name: '是否为己方结界',
 			operator: [{ desc: thisOperator[10].desc }],
 		})) {
 			if (thisScript.oper({
-				id: 994,
+				id: 700,
 				name: '获取体力奖励',
 				operator: [thisOperator[8]]
 			})) {
@@ -252,7 +252,7 @@ export class Func994 implements IFuncOrigin {
 				log('食盒经验已达上限，不再领取');
 				return false;
 			} else if (thisScript.oper({
-				id: 994,
+				id: 700,
 				name: '获取经验奖励',
 				operator: [thisOperator[9]]
 			})) {
@@ -268,7 +268,7 @@ export class Func994 implements IFuncOrigin {
 			for (; ;) {
 				thisScript.keepScreen();
 				if (thisScript.oper({
-					id: 994,
+					id: 700,
 					name: '进入式神育成',
 					operator: [thisOperator[10], thisOperator[11], thisOperator[12]]
 				})) {
@@ -276,7 +276,7 @@ export class Func994 implements IFuncOrigin {
 					continue;
 				}
 				if (thisScript.oper({
-					id: 994,
+					id: 700,
 					name: '判断_是否为己方结界_点击式神育成',
 					operator: [{ desc: thisOperator[7].desc }]
 				})) {
@@ -284,7 +284,7 @@ export class Func994 implements IFuncOrigin {
 					if (emptyPoint && emptyPoint.length > 0) {
 						const emptyCount = emptyPoint.length;
 						if (thisScript.oper({
-							id: 994,
+							id: 700,
 							name: '式神育成_全部',
 							operator: [{ desc: thisOperator[13].desc }]
 						})) {
@@ -336,7 +336,7 @@ export class Func994 implements IFuncOrigin {
 					}
 				}
 				if (thisScript.oper({
-					id: 994,
+					id: 700,
 					name: '经验已满',
 					operator: [thisOperator[14]]
 				})) {

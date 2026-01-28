@@ -6,8 +6,8 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func996 implements IFuncOrigin {
-	id = 996;
+export class Func702 implements IFuncOrigin {
+	id = 702;
 	name = '式神寄养';
 	desc = '';
 	config = [{
@@ -227,16 +227,16 @@ export class Func996 implements IFuncOrigin {
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		const thisconf = thisScript.scheme.config['996'];
+		const thisconf = thisScript.scheme.config['702'];
 		if (thisconf.claimReward && thisScript.oper({
-			id: 996,
+			id: 702,
 			name: '领取寄养奖励',
 			operator: [thisOperator[13]],
 		})) {
 			return true;
 		}
 		if (thisScript.oper({
-			id: 996,
+			id: 702,
 			name: '检测是否为式神寄养列表',
 			operator: [thisOperator[0], thisOperator[1]],
 		})) {
@@ -244,7 +244,7 @@ export class Func996 implements IFuncOrigin {
 		}
 		if (!thisScript.global.jy_enchantment_index) {
 			if (thisScript.oper({
-				id: 996,
+				id: 702,
 				name: '当前为列表顶部,拖拽至列表最底部',
 				operator: [{ desc: thisOperator[3].desc }]
 			})) {
@@ -252,14 +252,14 @@ export class Func996 implements IFuncOrigin {
 				return true;
 			}
 			if (thisScript.oper({
-				id: 996,
+				id: 702,
 				name: '当前为好友列表底部,切换至跨区列表',
 				operator: [thisOperator[4]]
 			})) {
 				return true;
 			}
 			if (thisScript.oper({
-				id: 996,
+				id: 702,
 				name: '当前为跨区列表底部,切换至好友列表,结束刷新操作',
 				operator: [thisOperator[5]]
 			})) {
@@ -269,7 +269,7 @@ export class Func996 implements IFuncOrigin {
 			}
 		}
 		if (thisScript.oper({
-			id: 996,
+			id: 702,
 			name: '完成退出',
 			operator: [thisOperator[12]],
 		})) {
@@ -280,7 +280,7 @@ export class Func996 implements IFuncOrigin {
 			return true;
 		}
 		if (thisScript.oper({
-			id: 996,
+			id: 702,
 			name: 'N卡已满级',
 			operator: [thisOperator[11]],
 		})) {
@@ -288,14 +288,14 @@ export class Func996 implements IFuncOrigin {
 			return true;
 		}
 		if (thisScript.oper({
-			id: 996,
+			id: 702,
 			name: '寄养N卡',
 			operator: [thisOperator[8], thisOperator[9], thisOperator[10]],
 		})) {
 			return true;
 		}
 		if (thisScript.oper({
-			id: 996,
+			id: 702,
 			name: '筛选结界卡',
 			operator: [{ desc: thisOperator[2].desc }]
 		})) {
@@ -324,7 +324,7 @@ export class Func996 implements IFuncOrigin {
 				]];
 				thisScript.regionClick(oper);
 				return thisScript.oper({
-					id: 996,
+					id: 702,
 					name: '点击进入结界按钮',
 					operator: [{
 						desc: thisOperator[2].desc,
@@ -336,7 +336,7 @@ export class Func996 implements IFuncOrigin {
 				const card_empty = thisScript.findMultiColor('结界卡_无');
 				if (card_empty) {
 					if (thisScript.oper({
-						id: 996,
+						id: 702,
 						name: '切换到跨区列表',
 						operator: [{
 							desc: thisOperator[6].desc,
@@ -345,7 +345,7 @@ export class Func996 implements IFuncOrigin {
 					})) {
 						return true;
 					} else if (thisScript.oper({
-						id: 996,
+						id: 702,
 						name: '切换到好友列表',
 						operator: [{
 							desc: thisOperator[7].desc,
