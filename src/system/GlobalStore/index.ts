@@ -120,6 +120,7 @@ export type globalRootType = {
 	sneak_level_open: boolean, // 选择层数
 	day_chouKa: boolean, // 每日抽卡
 	shiHe_jingYan: boolean, // 食盒经验领取上限
+	xianShiFengMo: number,
 }
 
 export const globalRoot: globalRootType = {
@@ -244,6 +245,7 @@ export const globalRoot: globalRootType = {
 	shiHe_jingYan: false,
 	liao_banquet_collect: false,
 	liao_banquet_onGoing: true,
+	xianShiFengMo: 0,
 }
 export type superGlobalRootType = {
 	liao_activity_Swith: Record<string, boolean>, // 寮活动记录
