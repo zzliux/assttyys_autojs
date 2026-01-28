@@ -206,8 +206,8 @@ export class Func510 implements IFuncOrigin {
 			})) {
 				if (thisConf && thisConf.fastMode) {
 					if (thisScript.global.change_shikigami_state === 'flushed') {
-						thisScript.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [500, 700], 500, 100);
-						thisScript.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [500, 700], 500, 100);
+						thisScript.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [500, 700], 800, 100);
+						thisScript.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [500, 700], 800, 100);
 						let tureGroupNum = null;
 						if (!thisScript.global.preset_once_groupNum) {
 							tureGroupNum = Number(thisConf.groupNum) - 1

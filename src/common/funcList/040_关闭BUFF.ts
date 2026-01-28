@@ -70,10 +70,17 @@ export class Func040 implements IFuncOrigin {
 				return true
 			} else {
 				thisScript.regionClick([thisOperator[0].oper[1]]);
-				let next_scheme = thisScript.superGlobal.next_scheme_name;
-				thisScript.superGlobal.next_scheme_name = null;
+				let next_scheme = thisScript.runtimeParams && thisScript.runtimeParams.next_scheme_name;
+				if (!next_scheme) {
+					next_scheme = thisScript.superGlobal.next_scheme_name;
+					thisScript.superGlobal.next_scheme_name = null;
+				}
 				if (thisconf && thisconf.scheme_switch_enabled) {
 					next_scheme = thisconf.next_scheme as string;
+					sleep(3000);
+				}
+				if (thisconf && thisconf.scheme_switch_enabled) {
+					next_scheme = thisconf.next_scheme;
 					sleep(3000);
 				}
 				if (!next_scheme) {
@@ -90,7 +97,9 @@ export class Func040 implements IFuncOrigin {
 					return true;
 				} else {
 					sleep(1000);
-					thisScript.rerun(next_scheme);
+					thisScript.rerun(next_scheme, {
+						...thisScript.runtimeParams,
+					});
 					return true;
 				}
 			}

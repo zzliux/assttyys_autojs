@@ -40,10 +40,10 @@ export class Func518 implements IFuncOrigin {
 			desc: [1280, 720,
 				[
 					[right, 1152, 39, 0xd7b288],
-					[right, 1173, 26, 0xf21b1b],
 					[right, 1140, 46, 0xd2ab7f],
 					[right, 1155, 54, 0xcba072],
 					[right, 1225, 35, 0xd4ae84],
+					[right, 1174, 23, 0xfd3e3e],
 				],
 			],
 			oper: [
@@ -54,34 +54,37 @@ export class Func518 implements IFuncOrigin {
 			//  5 检测_邮件弹窗_无全部领取
 			desc: [1280, 720,
 				[
-					[left, 112, 610, 0x615146],
-					[left, 191, 623, 0xd5c3ae],
-					[left, 297, 622, 0xd7c3ae],
-					[center, 351, 622, 0xd5c3ae],
-					[left, 115, 680, 0x2c1c19],
-					[left, 107, 673, 0x402a25],
+					[center, 577, 83, 0x765139],
+					[center, 603, 25, 0x494264],
+					[center, 575, 85, 0x78533b],
+					[center, 497, 642, 0xd5c8b7],
+					[right, 1138, 66, 0x383347],
+					[left, 111, 602, 0x625247],
 				]
 			],
 			oper: [
-				[center, 1280, 720, 200, 136, 435, 198, 1000], //  点击第一封邮件
-				[center, 1280, 720, 192, 613, 300, 635, 1000], //  一键已读
+				[left, 1280, 720, 186, 608, 303, 637, 1200], //  点击全部已读
 				[right, 1280, 720, 1159, 94, 1199, 131, 1200], //  点击关闭
 			],
 		},
 		{
-			//  6 检测_邮件弹窗_一键领取
+			//  6 检测_邮件弹窗_领取全部
 			desc: [1280, 720,
 				[
-					[left, 43, 622, 0xefe9d4],
-					[left, 84, 599, 0xcb9863],
-					[left, 140, 610, 0xd0a57f],
-					[left, 101, 677, 0xc79768],
-					[left, 65, 662, 0xe1d5c5],
+					[center, 577, 83, 0x765139],
+					[center, 603, 25, 0x494264],
+					[center, 575, 85, 0x78533b],
+					[center, 497, 642, 0xd5c8b7],
+					[right, 1138, 66, 0x383347],
+					[left, 47, 622, 0xeee8d4],
+					[left, 138, 617, 0xca9c73],
+					[left, 69, 667, 0xdfd2c2],
+					[left, 102, 673, 0xc59463],
 				]
 			],
 			oper: [
-				[center, 1280, 720, 58, 617, 111, 645, 1000],
-			]
+				[left, 1280, 720, 71, 597, 129, 638, 600], //  点击_全部领取
+			],
 		},
 		{
 			//  7 检测_全部领取弹窗
@@ -289,27 +292,28 @@ export class Func518 implements IFuncOrigin {
 			//  20 检测_勾玉卡奖励
 			desc: [1280, 720,
 				[
-					[center, 745, 515, 0xc6a98c],
-					[center, 760, 507, 0xe92b12],
-					[center, 739, 494, 0xb80e0e],
+					[right, 806, 505, 0xea371f],
+					[right, 793, 516, 0xc2a887],
+					[right, 786, 480, 0xeee1d1],
+					[right, 798, 530, 0xdccdc4],
 				],
 			],
 			oper: [
-				[center, 1280, 720, 739, 502, 756, 516, 1200], //  点击勾玉卡
+				[center, 1280, 720, 778, 483, 815, 541, 1000], //  点击勾玉卡
 			],
 		},
 		{
 			//  21 检测_体力奖励
 			desc: [1280, 720,
 				[
-					[center, 760, 518, 0x1e241c],
-					[center, 737, 510, 0x0e100c],
-					[center, 757, 507, 0xfc5825],
-					[center, 736, 493, 0xe05424],
+					[right, 801, 478, 0xede1d1],
+					[right, 792, 516, 0x11130f],
+					[right, 801, 531, 0xddcec5],
+					[right, 803, 497, 0xfd782a],
 				],
 			],
 			oper: [
-				[center, 1280, 720, 739, 502, 756, 516, 1200], //  点击体力
+				[center, 1280, 720, 781, 479, 822, 538, 1000], //  点击体力
 			],
 		},
 		{
@@ -332,13 +336,14 @@ export class Func518 implements IFuncOrigin {
 					[center, 832, 249, 0xcbb59e],
 					[center, 831, 464, 0xcbb59e],
 					[center, 685, 415, 0xf4b25f],
+					[center, 595, 430, 0xf4b25f],
 					[center, 455, 464, 0xcbb59e],
 					[left, 133, 662, 0x655743],
 					[left, 277, 154, 0x59534d],
 				],
 			],
 			oper: [
-				[center, 1280, 720, 688, 403, 800, 440, 1000], // 点击 确认
+				[center, 1280, 720, 594, 405, 685, 435, 1200], // 点击 确认
 			],
 		},
 		{
@@ -485,12 +490,12 @@ export class Func518 implements IFuncOrigin {
 			desc: [
 				1280, 720,
 				[
-					[left, 29, 26, 0xf5e7a7],
-					[right, 1249, 28, 0xd7c4a1],
-					[right, 1195, 652, 0xd03a3a],
-					[right, 1204, 60, 0x130a08],
-					[center, 866, 660, 0x3973c6],
-					[left, 20, 558, 0x645241],
+					[left, 30, 26, 0xf6e9ab],
+					[right, 1237, 29, 0xd7c3a2],
+					[right, 1178, 665, 0xd03a3a],
+					[right, 1199, 63, 0x140a08],
+					[right, 882, 672, 0x3d7ccf],
+					[left, 20, 565, 0x4e271b],
 				]
 			],
 			oper: [
@@ -514,36 +519,35 @@ export class Func518 implements IFuncOrigin {
 			],
 		},
 		{
-			//  35 检测_商店_礼包屋_热卖页签
+			//  35 检测_商店_礼包屋_限时页签（忽略是“版本”还是“热卖”）
 			desc: [
 				1280, 720,
 				[
-					[left, 30, 26, 0xf4e4a4],
-					[right, 1226, 130, 0xfcdab2],
-					[right, 1227, 222, 0x967e71],
-					[right, 1227, 312, 0x967d71],
-					[right, 1134, 687, 0xf0c967],
+					[left, 30, 26, 0xf6e9ab],
+					[right, 1226, 130, 0xffe3b6],
+					// [right, 1224, 212, 0xfff5d2],
+					// [right, 1227, 312, 0xae927d],
+					[right, 1131, 687, 0xe9c160],
 					[right, 1148, 665, 0x842121],
 					[right, 1195, 675, 0xd2ab51],
 				]
 			],
 			oper: [
-				[right, 1280, 720, 1186, 194, 1237, 247, 1200], //  点击 推荐页签
+				[right, 1280, 720, 1182, 366, 1233, 435, 1200], //  点击 日常页签
 			],
-		}, {	//  36 检测_商店_推荐页签_每日领取
+		}, {	//  36 检测_商店_礼包屋_日常页签_每日领取
 			desc: [1280, 720,
 				[
-					[left, 195, 178, 0xd9ad73],
-					[left, 307, 179, 0xd7ad75],
-					[left, 228, 242, 0x444343],
-					[left, 262, 243, 0x484646],
-					[left, 230, 262, 0x282524],
-					[left, 261, 260, 0x232120],
+					[center, 323, 141, 0xe41010],
+					[left, 292, 310, 0xc38646],
+					[left, 236, 218, 0xe1e1e1],
+					[left, 254, 217, 0x242221],
+					[left, 182, 168, 0xc19561],
 				]
 			],
 			oper: [
-				[center, 1280, 720, 220, 204, 285, 276, 1000],
-				[center, 1280, 720, 619, 552, 691, 596, 1000],
+				[center, 1280, 720, 220, 204, 285, 276, 2000],
+				[center, 1280, 720, 619, 552, 691, 596, 2000],
 			]
 		}, {
 			//  37 检测_商店_热门推荐_另一种适配
@@ -556,7 +560,7 @@ export class Func518 implements IFuncOrigin {
 					[center, 571, 587, 0x6c4741],
 				],
 			],
-			oper: [[right, 1280, 720, 1115, 108, 1149, 136, 1200]],
+			oper: [[right, 1280, 720, 1115, 108, 1149, 136, 2000]],
 		},
 		{
 			// 38 检测是否为好友弹窗 页签处于最近
@@ -615,7 +619,7 @@ export class Func518 implements IFuncOrigin {
 				]
 			],
 			oper: [
-				[center, 1280, 720, 1146, 631, 1196, 691, 1000],
+				[center, 1280, 720, 1146, 631, 1196, 691, 2000],
 			]
 		}, { // 42 式神拓展包弹窗
 			desc: '式神拓展包弹窗',
@@ -692,20 +696,6 @@ export class Func518 implements IFuncOrigin {
 					[right, 1160, 681, 0x831f1f],
 				]
 			],
-		}, { // 48 结界卡邮件提醒
-			desc: [1280, 720,
-				[
-					[left, 206, 185, 0xf9dec0],
-					[left, 216, 185, 0xeaccac],
-					[left, 202, 165, 0xf28957],
-					[left, 178, 151, 0xf4eae0],
-					[left, 200, 149, 0xf7ede2],
-				]
-			],
-			oper: [
-				[center, 1280, 720, 176, 138, 454, 200, 1000],
-				[center, 1280, 720, 1008, 596, 1134, 630, 1000],
-			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -790,47 +780,13 @@ export class Func518 implements IFuncOrigin {
 				}],
 			});
 		}
-		if (
-			thisScript.oper({
-				id: 518,
-				name: '检测_领取全部奖励弹窗',
-				operator: [{
-					desc: thisOperator[6].desc,
-				}],
-			})
-		) {
-			//	超过3次领取失败 判断为御魂满了
-			if (thisScript.global.checked_yard_count > 3) {
-				return thisScript.oper({
-					id: 518,
-					name: '关闭弹窗',
-					operator: [{
-						oper: [thisOperator[5].oper[1]],
-					}],
-				});
-			} else {
-				if (!thisScript.global.checked_yard_count) {
-					thisScript.global.checked_yard_count = 1;
-				} else {
-					thisScript.global.checked_yard_count += 1;
-				}
 
-				return thisScript.oper({
-					id: 518,
-					name: '检测_领取全部奖励弹窗',
-					operator: [{
-						oper: thisOperator[6].oper,
-					}],
-				});
-			}
-		}
 		if (
 			thisScript.oper({
 				id: 518,
 				name: '检测_领取奖励弹窗',
 				operator: [
 					thisOperator[43],
-					thisOperator[48],
 					thisOperator[5],
 					thisOperator[7],
 					thisOperator[8],
@@ -949,7 +905,7 @@ export class Func518 implements IFuncOrigin {
 		})) {
 			const point = thisScript.findMultiColor('商店_日常')
 			if (point) {
-				const oper = [[point.x + 5, point.y + 5, point.x + 10, point.y + 10, 1000]];
+				const oper = [[point.x + 5, point.y + 5, point.x + 10, point.y + 10, 2000]];
 				thisScript.regionClick(oper);
 			}
 		}
@@ -965,10 +921,10 @@ export class Func518 implements IFuncOrigin {
 			if (
 				thisScript.oper({
 					id: 518,
-					name: '检测_商店_推荐页签_每日领取',
+					name: '检测_商店_礼包屋_日常页签_每日领取',
 					operator: [thisOperator[36]],
 				}) ||
-				thisScript.global.checked_yard_count >= 7
+				thisScript.global.checked_yard_count >= 3
 			) {
 				thisScript.global.checked_yard_count = 0;
 				thisScript.global.daily_collection = 'courtyard';

@@ -122,7 +122,7 @@ export class Func016 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 737, 639, 801, 697, 1000],
 		]
-	},];
+	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			id: 16,

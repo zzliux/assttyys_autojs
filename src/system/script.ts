@@ -13,7 +13,7 @@ import { setCurrentScheme } from '@/common/tool';
 import { getWidthPixels, getHeightPixels } from '@auto.pro/core';
 import schemeDialog from './schemeDialog';
 import drawFloaty from '@/system/drawFloaty';
-import { myToast, doPush, questionSearch, search, myNotification } from '@/common/toolAuto';
+import { myToast, doPush, questionSearch, search } from '@/common/toolAuto';
 import { IFunc, IFuncOrigin } from '@/interface/IFunc';
 import { IScheme } from '@/interface/IScheme';
 import { IMultiDetectColors, IMultiFindColors } from '@/interface/IMultiColor';
@@ -58,6 +58,11 @@ export class Script {
 	lastFunc: number; // 最后执行成功的funcId
 	global: globalRootType; // 每次启动重置为空对象，用于功能里面存变量
 	superGlobal: superGlobalRootType; // 切换方案不重置功能里面的变量
+	/**
+	 * @description 方案运行中参数
+	 */
+	runtimeParams: Record<string, unknown> | null;
+
 
 	// 设备信息
 	device: any;
@@ -80,17 +85,6 @@ export class Script {
 	 */
 	myToast: (str: string, duration?: number) => void;
 
-	/**
-		 * @description 通知弹窗
-		 * @param {string}str
-		 */
-	myNotification: (
-		title: string,
-		text: string,
-		onClick?: () => void,
-		onLongClick?: () => void
-	) => void;
-
 	constructor() {
 		this.runThread = null;
 		this.runCallback = null;
@@ -105,6 +99,7 @@ export class Script {
 		this.currentDate = null;
 		this.lastFuncDateTime = null;
 		this.ocrDetector = null;
+		this.runtimeParams = null;
 
 		this.runTimes = {};
 		this.lastFunc = null; // 最后执行成功的funcId
@@ -118,7 +113,6 @@ export class Script {
 		this.storeCommon = storeCommon;
 		this.doPush = doPush;
 		this.myToast = myToast;
-		this.myNotification = myNotification;
 		this.schedule = schedule;
 	}
 
@@ -368,16 +362,15 @@ export class Script {
 	 * @param {Boolean} multiRegion 给true的话表示inRegion为region的数组
 	 * @returns
 	 */
-	findMultiColor(key: string, inRegion?: any, multiRegion?: boolean, openmisalignedMatch?: boolean, noLog?: boolean) {
+	findMultiColor(key: string, inRegion?: any, multiRegion?: boolean, noLog?: boolean) {
 		this.initRedList();
 		if (!multiRegion) {
 			const region = inRegion || this.multiFindColors[key].region;
 			const desc = this.multiFindColors[key].desc;
 			const similar = this.multiFindColors[key].similar || this.scheme.commonConfig.multiColorSimilar
-			const misalignedMatch = openmisalignedMatch !== undefined ? openmisalignedMatch : true;
 			for (let i = 0; i < desc.length; i++) {
 				const item = desc[i];
-				const point = this.helperBridge.helper.FindMultiColor(region[0], region[1], region[2], region[3], item, similar, misalignedMatch);
+				const point = this.helperBridge.helper.FindMultiColor(region[0], region[1], region[2], region[3], item, similar, true);
 				if (point.x !== -1) {
 					if (!noLog) {
 						console.log(`[${key}]第${i}个查找成功， 坐标为：(${point.x}, ${point.y})`);
@@ -433,7 +426,7 @@ export class Script {
 	* @param {Region} inRegion 多点找色区域
 	* @returns
 	*/
-	findMultiColorEx(key, inRegion?,): Point[] {
+	findMultiColorEx(key, inRegion?): Point[] {
 		this.initRedList();
 		const region = inRegion || this.multiFindColors[key].region;
 		const desc = this.multiFindColors[key].desc;
@@ -544,11 +537,14 @@ export class Script {
 	 */
 	_run(job?: Job): void {
 		if (this.runThread) return;
+		this.job = job;
 		const self = this;
 		try {
 			this.initFuncList();
 			this.initMultiFindColors();
+			this.runDate = new Date();
 			this.currentDate = new Date();
+			this.runTimes = {};
 			if (this.isPause) {
 				myToast(`继续方案[${this.scheme.schemeName}]`);
 				console.log(`global: ${JSON.stringify(this.global, null, 2)}`);
@@ -585,6 +581,7 @@ export class Script {
 		// img.saveTo('/sdcard/testimg.png');
 		// img.recycle();
 		// test end
+		myToast(`运行方案[${this.scheme.schemeName}]`);
 		this.schemeHistory.push(this.scheme);
 		globalThis.runThread = threads.start(function () {
 			try {
@@ -698,7 +695,7 @@ export class Script {
 	/**
 	 * 重新运行，一般在运行过程中通过setCurrenScheme切换方案后调用，停止再运行
 	 */
-	rerun(schemeName?: unknown) {
+	rerun(schemeName?: unknown, params?: Record<string, unknown>) {
 		if ('__停止脚本__' === schemeName) {
 			this.doPush(this, {
 				text: `[${this.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`,
@@ -711,7 +708,7 @@ export class Script {
 			if (this.schemeHistory.length) {
 				if (this.schemeHistory.length > 1) {
 					const lastSchemeName = this.schemeHistory[this.schemeHistory.length - 2].schemeName
-					this.setCurrentScheme(lastSchemeName as string);
+					this.setCurrentScheme(lastSchemeName as string, params);
 					this.myToast(`返回上个方案为[${schemeName}]`);
 				} else {
 					this.doPush(this, {
@@ -741,7 +738,7 @@ export class Script {
 				this.stop();
 				return true;
 			} else {
-				this.setCurrentScheme(schemeName as string);
+				this.setCurrentScheme(schemeName as string, params);
 				this.myToast(`切换方案为[${schemeName}]`);
 			}
 		}
@@ -869,7 +866,12 @@ export class Script {
 		return false;
 	}
 
-	setCurrentScheme(schemeName?: string) {
+	setCurrentScheme(schemeName?: string, params?: Record<string, unknown>) {
+		if (params) {
+			this.runtimeParams = params;
+		} else {
+			this.runtimeParams = null;
+		}
 		if (!schemeName) {
 			const { schemeName: sName } = store.get('currentScheme', {});
 			if (!sName) return;

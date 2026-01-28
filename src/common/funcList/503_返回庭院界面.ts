@@ -33,6 +33,11 @@ export class Func503 implements IFuncOrigin {
 
 		desc: '选择需要执行操作的界面',
 		config: [{
+			name: 'oper_find_-1',
+			desc: '-1 左上角返回庭院图标，最低优先级',
+			type: 'switch',
+			default: true,
+		}, {
 			name: 'oper_0',
 			desc: '0 探索地图界面',
 			type: 'switch',
@@ -235,18 +240,20 @@ export class Func503 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 32, 34, 76, 81, 1000],
 		]
-	}, { 	// 1 阴阳寮神设首页
+	}, { 	// 1 阴阳寮神社首页
 		desc: [1280, 720,
 			[
-				[left, 44, 28, 0xf1e0ad],
-				[left, 74, 32, 0xaa885f],
-				[left, 53, 42, 0xedd28f],
-				[right, 1199, 89, 0x761021],
-				[right, 1189, 628, 0x8c6a44]
+				[left, 43, 29, 0xf4e3a4],
+				[right, 1042, 60, 0x2f1e36],
+				[left, 258, 60, 0x392741],
+				[left, 77, 367, 0x341f2c],
+				[right, 1185, 602, 0x2c1a1a],
+				[right, 1203, 665, 0x802523],
+				[center, 621, 711, 0x7d5f2d],
 			]
 		],
 		oper: [
-			[left, 1280, 720, 25, 9, 74, 55, 2000]
+			[left, 1280, 720, 110, 15, 152, 57, 2000] // 修改为返回庭院按钮
 		]
 	}, { 	// 2 斗技界面
 		desc: [1280, 720,
@@ -291,15 +298,14 @@ export class Func503 implements IFuncOrigin {
 		desc: [1280, 720,
 			[
 				[left, 19, 700, 0x3c3841],
-				[left, 42, 46, 0xc3cbdf],
 				[center, 754, 39, 0x583716],
 				[center, 1181, 650, 0xffffff],
-				[left, 43, 680, 0xc7957c],
-				[left, 54, 676, 0x433b42]
+				[left, 54, 676, 0x433b42],
+				[left, 45, 48, 0xf5e5a5],
 			]
 		],
 		oper: [
-			[left, 1280, 720, 27, 25, 72, 73, 1000],
+			[left, 1280, 720, 110, 15, 152, 57, 2000] // 修改为返回庭院按钮
 		]
 	}, {	// 6 宠物后院(管他有没有人用)
 		desc: [1280, 720,
@@ -346,7 +352,7 @@ export class Func503 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[left, 1280, 720, 23, 10, 71, 56, 2000],   // 返回按钮
+			[left, 1280, 720, 110, 15, 152, 57, 2000] // 修改为返回庭院按钮
 		]
 	}, { 	// 11 阴阳寮_寄养_己方结界
 		desc: [1280, 720,
@@ -359,7 +365,7 @@ export class Func503 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[left, 1280, 720, 23, 10, 71, 56, 2000],   // 返回按钮
+			[left, 1280, 720, 110, 15, 152, 57, 2000] // 修改为返回庭院按钮
 		]
 	}, {	// 12 判断_是否为庭院中的'町中'立牌
 		desc: [
@@ -445,7 +451,7 @@ export class Func503 implements IFuncOrigin {
 			1280, 720,
 			[
 				[right, 1240, 659, 0xdfdbcf],
-				[left, 33, 52, 0xeff5fb],
+				[left, 38, 50, 0x8a5f3b],
 				[left, 87, 617, 0xc2baaa],
 				[right, 953, 45, 0x25150c],
 				[right, 1228, 80, 0xddd3c1],
@@ -453,7 +459,7 @@ export class Func503 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 17, 25, 74, 79, 1000],
+			[left, 1280, 720, 110, 15, 152, 57, 2000] // 修改为返回庭院按钮
 		]
 	}, { // 21 点开勋章后的突破界面
 		desc: [
@@ -538,22 +544,22 @@ export class Func503 implements IFuncOrigin {
 	}, { // 29 巅峰斗技返回
 		desc: '巅峰斗技主界面',
 		oper: [
-			[left, 1280, 720, 22, 4, 67, 49, 500]
+			[left, 1280, 720, 110, 15, 152, 57, 2000] // 修改为返回庭院按钮
 		]
 	}, { // 30 巅峰斗技返回
 		desc: '巅峰斗技主界面_段位保护',
 		oper: [
-			[left, 1280, 720, 22, 4, 67, 49, 500]
+			[left, 1280, 720, 110, 15, 152, 57, 2000] // 修改为返回庭院按钮
 		]
 	}, { // 31 巅峰斗技返回
 		desc: '巅峰斗技主界面_段位保护裂',
 		oper: [
-			[left, 1280, 720, 22, 4, 67, 49, 500]
+			[left, 1280, 720, 110, 15, 152, 57, 2000] // 修改为返回庭院按钮
 		]
 	}, { // 32 巅峰斗技返回
 		desc: '巅峰斗技主界面_名士',
 		oper: [
-			[left, 1280, 720, 22, 4, 67, 49, 500]
+			[left, 1280, 720, 110, 15, 152, 57, 2000] // 修改为返回庭院按钮
 		]
 	}, { // 33 狭间暗域4个区域通用
 		desc: [
@@ -756,6 +762,16 @@ export class Func503 implements IFuncOrigin {
 			return true;
 		}
 
+		// 作为保底，最低优先级
+		if (thisConf['oper_find_-1']) {
+			const backHomePoint = thisScript.findMultiColor('左上_返回庭院');
+			if (backHomePoint) {
+				thisScript.regionClick([[backHomePoint.x, backHomePoint.y, backHomePoint.x + 15, backHomePoint.y + 15, 1200]]);
+				thisScript.myToast('点击左上角返回庭院图标');
+				return true;
+			}
+		}
+
 		// 查找返回图标
 		// const backPoint = thisScript.findMultiColor('返回图标');
 		// if (backPoint) {
@@ -796,8 +812,11 @@ export class Func503 implements IFuncOrigin {
 				}]
 			})) {
 				// 返回方案起始点,并重置起始点?必要性存疑
-				let next_scheme = thisScript.superGlobal.next_scheme_name;
-				thisScript.superGlobal.next_scheme_name = null;
+				let next_scheme = thisScript.runtimeParams && thisScript.runtimeParams.next_scheme_name;
+				if (!next_scheme) {
+					next_scheme = thisScript.superGlobal.next_scheme_name;
+					thisScript.superGlobal.next_scheme_name = null;
+				}
 				log('503_next_scheme:' + next_scheme);
 				if (thisConf.scheme_switch_enabled) {
 					next_scheme = thisConf.next_scheme as string;
@@ -815,7 +834,9 @@ export class Func503 implements IFuncOrigin {
 						return true;
 					}
 				} else {
-					return thisScript.rerun(next_scheme);
+					thisScript.rerun(next_scheme);
+					sleep(3000);
+					return true;
 				}
 			}
 		}

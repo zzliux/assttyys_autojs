@@ -20,13 +20,13 @@ export class Func501 implements IFuncOrigin {
 		}],
 	}];
 	operator: IFuncOperatorOrigin[] = [{
-		// 探索地图打开buff界面
+		// 0 探索地图打开buff界面
 		desc: '探索地图界面',
 		oper: [
 			[center, 1280, 720, 428, 24, 453, 65, 1500],
 		]
 	}, {
-		// 庭院
+		// 1 庭院
 		desc: [1280, 720,
 			[
 				[left, 327, 45, 0x7a5825],
@@ -40,7 +40,7 @@ export class Func501 implements IFuncOrigin {
 			[center, 1280, 720, 359, 45, 396, 74, 1500]
 		]
 	}, {
-		// 组队界面
+		// 2 组队界面
 		desc: [1280, 720,
 			[
 				[center, 642, 3, 0x101011],
@@ -52,20 +52,6 @@ export class Func501 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 799, 38, 828, 76, 1500]
-		]
-	}, { // 超鬼王 时效性
-		desc: [
-			1280, 720,
-			[
-				[center, 811, 50, 0xfadcc1],
-				[center, 819, 56, 0xfff9e2],
-				[center, 830, 53, 0xfefbe4],
-				[center, 843, 52, 0xf9dabf],
-				[center, 826, 60, 0x232323],
-			]
-		],
-		oper: [
-			[center, 1280, 720, 811, 36, 841, 70, 1000],
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {

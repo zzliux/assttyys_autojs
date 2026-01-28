@@ -69,13 +69,14 @@ export class Func511 implements IFuncOrigin {
 						[center, 861, 105, 0x583716],
 						[left, 260, 80, 0x614c45],
 						[center, 432, 85, 0x5d4741],
-						[right, 1077, 368, 0x724e2d],
 					]
 				],
 			oper: [
 				[center, 1280, 720, 705, 461, 806, 473, -1],    //  预设分组 滑动开始位置
 				[center, 1280, 720, 727, 274, 837, 290, -1],    //  预设分组 滑动结束位置
 				[right, 1280, 720, 1087, 563, 1245, 626, -1],     //  预设分组最后一项区域
+				[center, 1280, 720, 1033, 603, 1058, 624, -1],	//	预设分组回到顶部 滑动开始位置
+				[center, 1280, 720, 1032, 127, 1053, 149, -1],	//	预设分组回到顶部 滑动结束位置
 			]
 		}, { // 3 式神录界面，卡着不让它执行后面的
 			desc: '式神录',
@@ -140,6 +141,7 @@ export class Func511 implements IFuncOrigin {
 				})) {
 					thisScript.global.change_shikigami_list_swipe_times++;
 					console.log('找不到指定队伍预设');
+					thisScript.regionBezierSwipe(thisOperator[2].oper[3], thisOperator[2].oper[4], [1200, 1500], 1000);
 					sleep(600);
 				}
 			}
