@@ -121,6 +121,9 @@ export type globalRootType = {
 	day_chouKa: boolean, // 每日抽卡
 	shiHe_jingYan: boolean, // 食盒经验领取上限
 	xianShiFengMo: number,
+	account_num: number, // 账号计数
+	account_state: 'login' | 'function' | 'logout',
+	function_Swith: Record<string, boolean>, // 小号功能记录
 }
 
 export const globalRoot: globalRootType = {
@@ -246,6 +249,9 @@ export const globalRoot: globalRootType = {
 	liao_banquet_collect: false,
 	liao_banquet_onGoing: true,
 	xianShiFengMo: 0,
+	account_num: 0,
+	account_state: 'login',
+	function_Swith: null,
 }
 export type superGlobalRootType = {
 	liao_activity_Swith: Record<string, boolean>, // 寮活动记录
