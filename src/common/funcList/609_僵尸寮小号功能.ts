@@ -202,7 +202,116 @@ export class Func609 implements IFuncOrigin {
 				[right, 1032, 440, 0xa0998a],
 			]
 		],
-	},];
+	}, { // 14 庭院组队
+		desc: [1280, 720,
+			[
+				[center, 436, 631, 0xe3e0de],
+				[center, 458, 628, 0xebe9e8],
+				[center, 473, 629, 0xd6cdca],
+				[center, 468, 656, 0x7a6c6f],
+				[center, 439, 652, 0xc1b7b2],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 437, 627, 471, 665, 1000],
+		]
+	}, { // 15 组队里_首次进入有大拇指
+		desc: [1280, 720,
+			[
+				[left, 86, 635, 0xeda7a1],
+				[left, 118, 693, 0x881a28],
+				[left, 127, 682, 0x8e1c2a],
+				[left, 137, 678, 0x8d1b29],
+				[left, 48, 628, 0xfffee0],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 36, 595, 117, 651, 1000],
+		]
+	}, { // 16 进入同心队
+		desc: [1280, 720,
+			[
+				[left, 45, 596, 0xae3838],
+				[left, 108, 599, 0xa0a0ae],
+				[left, 88, 618, 0xf4d9c5],
+				[left, 46, 628, 0xfdead5],
+				[left, 86, 647, 0xffdbaf],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 43, 589, 104, 642, 1000],
+		]
+	}, { // 17 同心队界面
+		desc: [1280, 720,
+			[
+				[left, 83, 244, 0xf9e9bb],
+				[left, 83, 287, 0xdabe8d],
+				[left, 82, 387, 0xd4bbb8],
+				[left, 112, 437, 0xc3a09c],
+				[left, 112, 385, 0xd0b5b1],
+				[right, 1129, 214, 0x6e342c],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 509, 360, 761, 553, 1000], // ocr区域
+			[center, 1280, 720, 1094, 622, 1177, 682, 1000], // 集结
+
+		]
+	}, { // 18 勾选队友一
+		desc: [1280, 720,
+			[
+				[center, 423, 91, 0xa22927],
+				[right, 886, 621, 0xa5312d],
+				[center, 608, 263, 0x3b2b10],
+				[center, 615, 262, 0x402f11],
+				[center, 491, 345, 0x936e4a],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 608, 258, 616, 267, 1000],
+		]
+	}, { // 19 勾选队友二
+		desc: [1280, 720,
+			[
+				[center, 423, 91, 0xa22927],
+				[right, 886, 621, 0xa5312d],
+				[center, 491, 345, 0x936e4a],
+				[right, 703, 263, 0x3c2c10],
+				[right, 710, 263, 0x3e2e10],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 702, 259, 711, 267, 1000],
+		]
+	}, { // 20 已勾选两名队友
+		desc: [1280, 720,
+			[
+				[center, 610, 261, 0x4b5ee9],
+				[center, 616, 267, 0x4555d0],
+				[right, 704, 259, 0x485be3],
+				[right, 710, 267, 0x4656d3],
+				[center, 416, 91, 0xa22927],
+				[right, 882, 619, 0xa83732],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 518, 319, 757, 366, 1000],
+		]
+	}, { // 21 集结完毕
+		desc: [1280, 720,
+			[
+				[left, 82, 237, 0xd3bab7],
+				[left, 114, 276, 0xc3a09c],
+				[left, 80, 381, 0xf3e2b6],
+				[left, 112, 436, 0xe7c799],
+				[left, 297, 301, 0x5f697f],
+				[right, 860, 302, 0x616a7d],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 970, 646, 1021, 690, 1000],
+		]
+	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['609'];
 		if (thisScript.global.account_state === 'login') {
@@ -254,6 +363,7 @@ export class Func609 implements IFuncOrigin {
 				thisScript.global.function_Swith = {
 					'juanGouYu': thisconf.juanGouYu as boolean,
 					'liaoSanshi': thisconf.liaoSanshi as boolean,
+					'liaoSanshi_tongXinDui_rally': false,
 					'liaoSanshi_tongXinDui_fight': false,
 					'liaoSanshi_tongXinDui_yuCun': false,
 				};
@@ -293,15 +403,8 @@ export class Func609 implements IFuncOrigin {
 			if (thisScript.global.function_Swith.liaoSanshi) {
 				if (thisScript.oper({
 					id: 609,
-					name: '进入阴阳寮信息',
-					operator: [thisOperator[7], thisOperator[8]]
-				})) {
-					return true;
-				}
-				if (thisScript.oper({
-					id: 609,
-					name: '进入集体任务',
-					operator: [thisOperator[11]]
+					name: '进入集体任务界面',
+					operator: [thisOperator[7], thisOperator[8], thisOperator[11]]
 				})) {
 					return true;
 				}
@@ -313,17 +416,76 @@ export class Func609 implements IFuncOrigin {
 					// 如果已完成二十次同心队,则预存体力,否则开始同心队战斗(战斗完成后再跳转至预存体力)
 					if (thisScript.oper({
 						id: 609,
-						name: '任务完成次数',
+						name: '任务完成二十次',
 						operator: [{ desc: thisOperator[13].desc }]
 					})) {
-						thisScript.global.function_Swith.liaoSanshi_tongXinDui_fight = false;
 						thisScript.global.function_Swith.liaoSanshi_tongXinDui_yuCun = true;
 					} else {
-						thisScript.global.function_Swith.liaoSanshi_tongXinDui_fight = true;
-						thisScript.global.function_Swith.liaoSanshi_tongXinDui_yuCun = false;
+						thisScript.global.function_Swith.liaoSanshi_tongXinDui_rally = true;
 					}
 					return true;
 				}
+				if (thisScript.global.function_Swith.liaoSanshi_tongXinDui_rally) {
+					if (thisScript.oper({
+						id: 609,
+						name: '进入同心队',
+						operator: [thisOperator[14], thisOperator[15], thisOperator[16]]
+					})) {
+						return true;
+					}
+					if (thisScript.oper({
+						id: 609,
+						name: '进入同心队',
+						operator: [{ desc: thisOperator[17].desc }]
+					})) {
+						if (thisScript.getOcrDetector()) {
+							const Str_ocr = thisScript.findNum(0, thisOperator[17].oper[0]);
+							if (Array.isArray(Str_ocr) && Str_ocr.length > 0) {
+								for (const item of Str_ocr) {
+									const num = Number(item?.label);
+									if (Number.isNaN(num) || num < 120) {
+										console.log('队友体力小于120,跳过');
+										thisScript.global.function_Swith.liaoSanshi_tongXinDui_rally = false;
+										thisScript.global.function_Swith.liaoSanshi_tongXinDui_yuCun = true;
+										return true;
+									}
+								}
+								console.log('队友体力大于120,开始战斗');
+								thisScript.regionClick([thisOperator[17].oper[1]]);
+								return true;
+							} else {
+								console.log('OCR 没识别到字符,跳过');
+								thisScript.global.function_Swith.liaoSanshi_tongXinDui_rally = false;
+								thisScript.global.function_Swith.liaoSanshi_tongXinDui_yuCun = true;
+								return true;
+							}
+						} else {
+							thisScript.myToast('未安装OCR，无法进行ocr识别');
+							thisScript.doPush(thisScript, { text: '未安装OCR，无法进行ocr识别' });
+							thisScript.stop();
+							sleep(3000);
+						}
+						return true;
+					}
+					if (thisScript.oper({
+						id: 609,
+						name: '进入组队',
+						operator: [thisOperator[18], thisOperator[19], thisOperator[20]]
+					})) {
+						return true;
+					}
+					if (thisScript.oper({
+						id: 609,
+						name: '进入组队',
+						operator: [thisOperator[21]]
+					})) {
+						thisScript.global.function_Swith.liaoSanshi_tongXinDui_rally = false;
+						thisScript.global.function_Swith.liaoSanshi_tongXinDui_fight = true;
+						return true;
+					}
+				}
+				// if (thisScript.global.function_Swith.liaoSanshi_tongXinDui_fight) {
+				// }
 			}
 		}
 		if (thisScript.global.account_state === 'logout') {
