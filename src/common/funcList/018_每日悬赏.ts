@@ -27,6 +27,11 @@ export class Func018 implements IFuncOrigin {
 			desc: '取消勾选狗粮协作',
 			type: 'switch',
 			default: true,
+		}, {
+			name: 'ranLiao',
+			desc: '取消勾选燃料协作',
+			type: 'switch',
+			default: true,
 		}]
 	}, {
 		desc: '结束后切换方案',
@@ -197,8 +202,7 @@ export class Func018 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 557, 605, 679, 690, 1000],
 		]
-	}, {
-		// 秘闻对话点击
+	}, { // 15 秘闻对话点击
 		desc: [1280, 720,
 			[
 				[center, 500, 715, 0x000000],
@@ -214,14 +218,12 @@ export class Func018 implements IFuncOrigin {
 		oper: [
 			[left, 1280, 720, 529, 688, 744, 706, 2000],
 		]
-	}, {
-		// 秘闻挑战开启
+	}, { // 16 秘闻挑战开启
 		desc: '秘闻挑战开启',
 		oper: [
 			[left, 1280, 720, 452, 605, 870, 683, 2000],
 		]
-	}, {
-		// 已适配66 处于秘闻挑战时点击返回按钮
+	}, { // 17 处于秘闻挑战时点击返回按钮
 		desc: [
 			1280, 720,
 			[
@@ -239,8 +241,7 @@ export class Func018 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 24, 19, 86, 76, 1000],
 		]
-	}, {
-		// 已适配66 处于秘闻副本列表时点击返回按钮
+	}, { // 18 处于秘闻副本列表时点击返回按钮
 		desc: [
 			1280, 720,
 			[
@@ -258,8 +259,7 @@ export class Func018 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 24, 19, 86, 76, 1000],
 		]
-	}, {
-		// 关闭宝箱奖励弹窗
+	}, { // 19 关闭宝箱奖励弹窗
 		desc: [1280, 720,
 			[
 				[center, 323, 235, 0x604023],
@@ -278,8 +278,7 @@ export class Func018 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 443, 494, 788, 632, 1000]
 		]
-	}, {
-		// 关闭宝箱奖励弹窗 旧
+	}, { // 20 关闭宝箱奖励弹窗 旧
 		desc: [1280, 720,
 			[
 				[center, 496, 199, 0xf4e4af],
@@ -304,8 +303,7 @@ export class Func018 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 443, 494, 788, 632, 1000]
 		]
-	}, {
-		// 关闭秘闻刷新记录提示
+	}, { // 21 关闭秘闻刷新记录提示
 		desc: [1280, 720,
 			[
 				[center, 526, 311, 0xeeeecc],
@@ -327,7 +325,7 @@ export class Func018 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 326, 509, 1169, 692, 1000]
 		]
-	}, {
+	}, { // 22
 		desc: [1280, 720,
 			[
 				[center, 440, 613, 0x4387cb],
@@ -342,7 +340,7 @@ export class Func018 implements IFuncOrigin {
 		oper: [
 			[left, 1280, 720, 685, 492, 1038, 686, 3000],
 		]
-	}, {
+	}, { // 23
 		desc: [1280, 720,
 			[
 				[center, 355, 353, 0xcdc7b6],
@@ -385,6 +383,12 @@ export class Func018 implements IFuncOrigin {
 				}
 				if (thisconf.tiLi) {
 					point = thisScript.findMultiColor('悬赏_体力协作') || null;
+				}
+				if (point !== null) {
+					allPoint.push(point);
+				}
+				if (thisconf.ranLiao) {
+					point = thisScript.findMultiColor('悬赏_胧车燃料') || null;
 				}
 				if (point !== null) {
 					allPoint.push(point);
