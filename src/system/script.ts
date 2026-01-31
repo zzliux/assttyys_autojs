@@ -893,6 +893,7 @@ export class Script {
 		if (storeSettings.defaultLaunchAppList && storeSettings.defaultLaunchAppList.length) {
 			const packageName = storeSettings.defaultLaunchAppList[0]
 			console.log(`正在启动应用${packageName}`);
+			device.wakeUpIfNeeded()
 			app.launchPackage(packageName);
 		} else {
 			myToast('未配置关联应用，不启动');

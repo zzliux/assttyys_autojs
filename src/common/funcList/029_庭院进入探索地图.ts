@@ -1,9 +1,9 @@
 import { Script } from '@/system/script';
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 // const normal = -1; //定义常量
-const left = 0;
+// const left = 0;
 // const center = 1;
-// const right = 2;
+const right = 2;
 
 export class Func029 implements IFuncOrigin {
 	id = 29;
@@ -13,7 +13,7 @@ export class Func029 implements IFuncOrigin {
 		// 庭院未打开菜单
 		desc: '页面是否为庭院_菜单未展开_只支持默认庭院皮肤与默认装饰',
 		oper: [
-			[left, 1280, 720, 0, 0, 32, 63, 1000]
+			[right, 1280, 720, 1168, 592, 1230, 690, 1200]
 		]
 	}, { // 庭院已打开菜单
 		desc: '页面是否为庭院_菜单已展开_只支持默认庭院皮肤与默认装饰'
