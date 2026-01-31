@@ -36,7 +36,7 @@ export class Func700 implements IFuncOrigin {
 				]
 			],
 			oper: [
-				[center, 1280, 720, 1067, 624, 1129, 689, 1200]
+				[center, 1280, 720, 1067, 624, 1129, 689, 2500]
 			]
 		}, {
 			// 4 庭院已打开菜单，另另外一种图标
