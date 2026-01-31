@@ -137,7 +137,7 @@ export class Func609 implements IFuncOrigin {
 	}, { // 7 进入阴阳寮
 		desc: '页面是否为庭院_菜单已展开_只支持默认庭院皮肤与默认装饰',
 		oper: [
-			[center, 1280, 720, 544, 627, 584, 653, 1000], // 点击阴阳寮
+			[center, 1280, 720, 544, 627, 584, 653, 3000], // 点击阴阳寮
 		]
 	}, { // 8 阴阳寮界面
 		desc: [1280, 720,
@@ -775,18 +775,6 @@ export class Func609 implements IFuncOrigin {
 			}
 			if (thisScript.oper({
 				id: 609,
-				name: '第一个号直接登录.否者打开账号选择框(带有鸿蒙入口)',
-				operator: [{ desc: thisOperator[53].desc }]
-			})) {
-				if (thisScript.global.account_num === 0 || thisScript.global.account_num % 2 === 1) {
-					thisScript.regionClick([thisOperator[53].oper[0]]);
-				} else {
-					thisScript.regionClick([thisOperator[53].oper[1]]);
-				}
-				return true;
-			}
-			if (thisScript.oper({
-				id: 609,
 				name: '选取最后一个账号',
 				operator: [{ desc: thisOperator[3].desc }]
 			})) {
@@ -801,6 +789,15 @@ export class Func609 implements IFuncOrigin {
 				operator: [{ desc: thisOperator[4].desc }]
 			})) {
 				thisScript.regionClick([thisOperator[4].oper[thisScript.global.account_num % 2]]);
+				thisScript.global.account_state = 'function';
+				return true;
+			}
+			if (thisScript.oper({
+				id: 609,
+				name: '选择平台(带有鸿蒙入口)',
+				operator: [{ desc: thisOperator[53].desc }]
+			})) {
+				thisScript.regionClick([thisOperator[53].oper[thisScript.global.account_num % 2]]);
 				thisScript.global.account_state = 'function';
 				return true;
 			}
@@ -822,12 +819,20 @@ export class Func609 implements IFuncOrigin {
 				thisScript.regionClick([thisOperator[4].oper[thisScript.global.account_num % 2]]);
 				return true;
 			}
+			if (thisScript.oper({
+				id: 609,
+				name: '选择平台(带有鸿蒙入口)',
+				operator: [{ desc: thisOperator[53].desc }]
+			})) {
+				thisScript.regionClick([thisOperator[53].oper[thisScript.global.account_num % 2]]);
+				thisScript.global.account_state = 'function';
+				return true;
+			}
 			if (!thisScript.global.function_Swith) {// 首次执行,读取按钮状况
 				thisScript.global.function_Swith = {
 					'juanGouYu': thisconf.juanGouYu as boolean,
 					'liaoSanshi': thisconf.liaoSanshi as boolean,
-					'liaoSanshi_tongXinDui_qiLin': true,
-					'liaoSanshi_tongXinDui_check': false,
+					'liaoSanshi_tongXinDui_check': true,
 					'liaoSanshi_tongXinDui_fight': false,
 					'liaoSanshi_tongXinDui_yuCun': false,
 					'liaoSanshi_tongXinDui_back': false,
@@ -846,7 +851,7 @@ export class Func609 implements IFuncOrigin {
 					return true;
 				}
 				let curCnt = 0;
-				const maxCount = 3;
+				const maxCount = 2;
 				while (thisScript.oper({
 					id: 609,
 					name: '点击捐赠勾玉',
