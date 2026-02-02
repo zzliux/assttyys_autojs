@@ -115,16 +115,32 @@ export class Func026 implements IFuncOrigin {
 			[center, 1280, 720, 1240, 363, 1259, 384, 1000],
 			[center, 1280, 720, 1217, 304, 1241, 325, 1000],
 		]
+	}, { // 8 现世逢魔_发现
+		desc: [1280, 720,
+			[
+				[right, 1223, 303, 0x8db7f1],
+				[right, 1228, 299, 0x96bdf2],
+				[right, 1235, 307, 0xc7ddfd],
+				[right, 1226, 313, 0x8bbff0],
+				[right, 1227, 318, 0x88d0ed],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1165, 628, 1202, 670, 3000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
+		if (thisScript.oper({
+			name: '发现',
+			operator: [thisOperator[8]]
+		})) {
+			return true;
+		}
 		if (thisScript.oper({
 			name: '现世逢魔_界面判断',
 			operator: [{ desc: thisOperator[0].desc }]
 		})) {
 			if (thisScript.global.xianShiFengMo < 4) {
-				if (thisScript.global.xianShiFengMo === 0) {
-					thisScript.regionClick([thisOperator[0].oper[0]]);
-				}
 				thisScript.regionClick([thisOperator[7].oper[thisScript.global.xianShiFengMo]]);
 				thisScript.global.xianShiFengMo++;
 				return true;
