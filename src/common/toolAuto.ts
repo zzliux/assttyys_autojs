@@ -343,6 +343,14 @@ export function doPush(thisScript: Script, options: {
 }): void {
 	const pushClient = getPushClient();
 	if (!pushClient) {
+		const uri = android.media.RingtoneManager.getDefaultUri(
+			android.media.RingtoneManager.TYPE_NOTIFICATION
+		);
+
+		if (uri) {
+			const ringtone = android.media.RingtoneManager.getRingtone(context, uri);
+			ringtone.play();
+		}
 		console.log('未配置推送类型，不推送');
 		return;
 	}

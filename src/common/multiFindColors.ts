@@ -1010,7 +1010,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		]
 	},
 	'悬赏_金币协作': {
-		region: [left, 1280, 720, 100, 75, 1188, 636],
+		region: [center, 1280, 720, 144, 398, 1155, 599],
 		desc: [
 			[
 				1280, 720,
@@ -1029,7 +1029,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		]
 	},
 	'悬赏_体力协作': {
-		region: [left, 1280, 720, 100, 75, 1188, 636],
+		region: [center, 1280, 720, 144, 398, 1155, 599],
 		desc: [
 			[
 				1280, 720,
@@ -1048,7 +1048,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		]
 	},
 	'悬赏_狗粮协作': {
-		region: [left, 1280, 720, 100, 75, 1188, 636],
+		region: [center, 1280, 720, 144, 398, 1155, 599],
 		desc: [
 			[
 				1280, 720,
@@ -1066,7 +1066,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		]
 	},
 	'悬赏_勾玉协作': {
-		region: [left, 1280, 720, 100, 75, 1188, 636],
+		region: [center, 1280, 720, 144, 398, 1155, 599],
 		desc: [
 			[
 				1280, 720,
@@ -1078,6 +1078,24 @@ const multiFindColors: IMultiFindColorsOrigin = {
 					[left, 227, 541, 0xfef5e1],
 					[center, 321, 553, 0xc8a98b],
 					[center, 338, 548, 0xe9361d],
+				]
+			]
+		]
+	},
+	'悬赏_胧车燃料': {
+		region: [center, 1280, 720, 144, 398, 1155, 599],
+		desc: [
+			[
+				1280, 720,
+				[
+					[left, 184, 491, 0xa8937e],
+					[left, 264, 537, 0x78b0a3],
+					[left, 275, 531, 0x6d969f],
+					[left, 286, 544, 0x89beb0],
+					[left, 261, 565, 0xffffe7],
+					[left, 296, 561, 0x6ba7a1],
+					[left, 308, 520, 0x715939],
+					[left, 252, 518, 0x6d5439],
 				]
 			]
 		]

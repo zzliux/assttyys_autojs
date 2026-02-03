@@ -123,7 +123,7 @@ export type globalRootType = {
 	xianShiFengMo: number,
 	account_num: number, // 账号计数
 	account_state: 'login' | 'function' | 'logout',
-	function_Swith: Record<string, boolean>, // 小号功能记录
+	function_Swith: Record<string, boolean | number>, // 小号功能记录
 }
 
 export const globalRoot: globalRootType = {
