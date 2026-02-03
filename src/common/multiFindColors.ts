@@ -2373,10 +2373,11 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		desc: [
 			[1280, 720, // 腐血
 				[
-					[center, 604, 101, 0x157ddb], [center, 605, 101, 0x157dda],
-					[center, 606, 101, 0x127cd5], [center, 607, 101, 0x0e6ac1],
-					[center, 604, 102, 0x02315e], [center, 605, 102, 0x02315f],
-					[center, 606, 102, 0x053164], [center, 607, 102, 0x052c59]
+					[right, 751, 115, 0xffffff], [right, 755, 113, 0xffffff],
+					[right, 759, 112, 0xffffff], [right, 761, 110, 0xffffff],
+					[right, 763, 108, 0xffffff], [right, 763, 104, 0xaddeed],
+					[right, 763, 102, 0x56a1cb], [right, 759, 101, 0x1b4272],
+					[right, 758, 104, 0x153f74], [right, 753, 105, 0x1d4976],
 				]
 			]
 		],
@@ -2387,10 +2388,10 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		desc: [
 			[1280, 720, // 神荒
 				[
-					[center, 0, 0, 0x002050], [center, 1, 0, 0x002153],
-					[center, 2, 0, 0x003f86], [center, 3, 0, 0x6aaae4],
-					[center, 0, 1, 0x002050], [center, 1, 1, 0x002153],
-					[center, 2, 1, 0x003d82], [center, 3, 1, 0x5fa1dc]
+					[center, 600, 131, 0xffffff], [center, 600, 124, 0xbad3e2],
+					[center, 600, 138, 0x91c1e0], [center, 593, 137, 0xffffff],
+					[center, 593, 131, 0xa5e1fc], [center, 609, 131, 0x80c3ea],
+					[center, 600, 140, 0x5ea2dd], [center, 597, 133, 0x77a8ce],
 				],
 			]
 		],
