@@ -86,20 +86,20 @@ export class Func016 implements IFuncOrigin {
 		]
 	}, {
 		// 4 地鬼_挑战页面_极
-		desc: [
-			1280, 720,
+		desc: [1280, 720,
 			[
-				[center, 447, 138, 0x9a4e50],
-				[center, 475, 94, 0xdad1ca],
-				[right, 1208, 400, 0xbe643b],
-				[right, 1155, 581, 0xf1d8af],
-				[right, 1140, 621, 0x581819],
-				[left, 191, 612, 0xdcd6cf],
-				[center, 532, 82, 0x576891],
+				[center, 447, 138, 0x994a4e],
+				[center, 475, 94, 0xd9d1c9],
+				[right, 1208, 400, 0xc86a42],
+				[right, 1155, 581, 0xefd2a2],
+				[left, 191, 612, 0xdcd5cd],
+				[right, 1209, 44, 0xe8d4cf],
+				[center, 363, 86, 0xd6cdc5],
+				[left, 298, 117, 0x3b425e],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 522, 52, 557, 81, 1200]		//	极转为普通
+			[center, 1280, 720, 279, 121, 308, 153, 1000], //	极转为普通
 		]
 	}, {
 		// 5
