@@ -7,8 +7,8 @@ const right = 2;
 
 export class Func605 implements IFuncOrigin {
 	id = 605;
-	name = '宴会';
-	desc = '宴会';
+	name = '寮宴会';
+	desc = '';
 	config = [{
 		desc: '',
 		config: [{

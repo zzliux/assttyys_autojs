@@ -45,6 +45,10 @@ export type globalRootType = {
 	narrow_state: Record<string, boolean>,   //  狭间暗域状态
 	narrow_time: number, // 狭间暗域自定义3D人物走路时等待时间
 	narrow_mode: boolean,
+	recruitCount?: number, // 招募点击计数
+	recruitClickedY?: number[], // 招募已点击的Y坐标
+	lastRecruitFinishTime?: number | null, // 招募完成点击的时间戳
+	recruitHasScrolled?: boolean, // 是否已翻页
 	liao_activity_page_flag: number,   //  寮活动翻页标记
 	liao_activity_Swith: Record<string, boolean>, // 寮活动记录
 	liao_banquet_collect: boolean,   //  宴会筹备状态
@@ -173,6 +177,10 @@ export const globalRoot: globalRootType = {
 	narrow_state: undefined,
 	narrow_time: 0,
 	narrow_mode: false,
+	recruitCount: 0,
+	recruitClickedY: [],
+	lastRecruitFinishTime: null,
+	recruitHasScrolled: false,
 	liao_activity_page_flag: 0,
 	liao_activity_Swith: undefined,
 	banquet_change_flag: false,
