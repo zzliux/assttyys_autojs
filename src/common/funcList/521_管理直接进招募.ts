@@ -10,6 +10,7 @@ export class Func521 implements IFuncOrigin {
 	id = 521;
 	name = '庭院进入寮信息与招募';
 	desc = '庭院进入寮信息判断与自动招募功能';
+
 	config = [{
 		desc: '配置',
 		config: [{
@@ -17,10 +18,14 @@ export class Func521 implements IFuncOrigin {
 			desc: '招募结束后推送通知',
 			type: 'switch',
 			default: false,
+		}, {
+			name: 'maxRecruitTimes',
+			desc: '最大招募次数（默认50次）',
+			type: 'text',
+			default: '50',
 		}]
 	}];
 
-	// 移除招募计数器
 	operator: IFuncOperatorOrigin[] = [{
 		// 0: 在庭院打开菜单
 		desc: '页面是否为庭院_菜单未展开_只支持默认庭院皮肤与默认装饰',
@@ -31,6 +36,7 @@ export class Func521 implements IFuncOrigin {
 		// 1: 点击阴阳寮
 		desc: [1280, 720,
 			[[center, 560, 608, 0xbc3433],
+				[center, 560, 608, 0x8b0e0e],
 				[center, 542, 639, 0x7b1515],
 				[center, 575, 646, 0xc1b8b0],
 				[center, 590, 638, 0xb07970]]
@@ -124,6 +130,7 @@ export class Func521 implements IFuncOrigin {
 				[center, 424, 649, 0xe8e6e4]
 			]
 		],
+		oper: [] // 添加空操作数组避免类型错误
 	}, {
 		// 9: 招募区域1
 		desc: [
@@ -242,6 +249,39 @@ export class Func521 implements IFuncOrigin {
 
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['521'];
+		const maxRecruitTimes = parseInt(String(thisconf?.maxRecruitTimes || '50'));
+
+		// 初始化全局计数状态
+		const globalAny = thisScript.global as any;
+		
+		if (!globalAny.recruitData) {
+			globalAny.recruitData = {
+				totalRecruitCount: 0, // 总招募次数
+				recruitRounds: 0     // 招募轮次（用于统计）
+			};
+		}
+		
+		const recruitData = globalAny.recruitData;
+
+		// 检查是否已达到最大招募次数
+		if (recruitData.totalRecruitCount >= maxRecruitTimes) {
+			const toLog = `寮招募完成。总招募次数: ${recruitData.totalRecruitCount}次，已达到最大次数限制(${maxRecruitTimes}次)，停止脚本`;
+			
+			thisScript.myToast(toLog);
+			if (thisconf.pushAfterRecruit) {
+				thisScript.doPush(thisScript, {
+					text: toLog,
+					before() {
+						thisScript.myToast('正在上传招募数据');
+					}
+				});
+				sleep(2000);
+			}
+			
+			console.log(toLog);
+			thisScript.stop();
+			return false;
+		}
 
 		// 首先检查是否在招募界面
 		if (thisScript.oper({
@@ -254,6 +294,11 @@ export class Func521 implements IFuncOrigin {
 			// 执行5个招募区域的操作
 			let successfulRecruits = 0;
 			for (let i = 9; i <= 13; i++) {
+				// 每次操作前检查是否达到上限
+				if (recruitData.totalRecruitCount >= maxRecruitTimes) {
+					break;
+				}
+
 				if (thisScript.oper({
 					id: 521,
 					name: `执行招募操作-区域${i - 8}`,
@@ -261,8 +306,32 @@ export class Func521 implements IFuncOrigin {
 				})) {
 					console.log(`招募区域${i - 8}操作完成`);
 					successfulRecruits++;
-					// 每个招募操作后稍作延迟
-					sleep(1000);
+					
+					// 更新计数（使用全局状态）
+					recruitData.totalRecruitCount++;
+					
+					console.log(`当前轮次招募次数: ${successfulRecruits}，总招募次数: ${recruitData.totalRecruitCount}`);
+
+					// 检查是否达到最大招募次数
+					if (recruitData.totalRecruitCount >= maxRecruitTimes) {
+						const toLog = `寮招募完成。总招募次数: ${recruitData.totalRecruitCount}次，已达到最大次数限制(${maxRecruitTimes}次)，停止脚本`;
+						
+						thisScript.myToast(toLog);
+						if (thisconf.pushAfterRecruit) {
+							thisScript.doPush(thisScript, {
+								text: toLog,
+								before() {
+									thisScript.myToast('正在上传招募数据');
+								}
+							});
+							sleep(2000);
+						}
+						
+						thisScript.stop();
+						return false;
+					}
+
+					sleep(300);
 				}
 			}
 
@@ -272,17 +341,26 @@ export class Func521 implements IFuncOrigin {
 				name: '执行换一批操作',
 				operator: [thisOperator[14]]
 			})) {
-				console.log(`换一批操作完成，本轮成功招募: ${successfulRecruits}个`);
+				recruitData.recruitRounds++;
+				console.log(`换一批操作完成，本轮成功招募: ${successfulRecruits}个，总招募次数: ${recruitData.totalRecruitCount}，总轮次: ${recruitData.recruitRounds}轮`);
 
-				// 简化推送逻辑：只有当用户启用推送时才发送通知，不限制次数
-				if (thisconf && thisconf.pushAfterRecruit) {
-					thisScript.doPush(thisScript, {
-						text: `寮招募已完成一轮操作，成功招募${successfulRecruits}个，脚本继续运行中。`,
-						before() {
-							thisScript.myToast('脚本运行状态通知');
-						}
-					});
-					console.log('推送通知已发送');
+				// 检查是否达到最大招募次数
+				if (recruitData.totalRecruitCount >= maxRecruitTimes) {
+					const toLog = `寮招募完成。总招募次数: ${recruitData.totalRecruitCount}次，已达到最大次数限制(${maxRecruitTimes}次)，停止脚本`;
+					
+					thisScript.myToast(toLog);
+					if (thisconf.pushAfterRecruit) {
+						thisScript.doPush(thisScript, {
+							text: toLog,
+							before() {
+								thisScript.myToast('正在上传招募数据');
+							}
+						});
+						sleep(2000);
+					}
+					
+					thisScript.stop();
+					return false;
 				}
 
 				return true;
