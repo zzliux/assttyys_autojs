@@ -253,20 +253,20 @@ export class Func521 implements IFuncOrigin {
 
 		// 初始化全局计数状态
 		const globalAny = thisScript.global as any;
-		
+
 		if (!globalAny.recruitData) {
 			globalAny.recruitData = {
 				totalRecruitCount: 0, // 总招募次数
 				recruitRounds: 0     // 招募轮次（用于统计）
 			};
 		}
-		
+
 		const recruitData = globalAny.recruitData;
 
 		// 检查是否已达到最大招募次数
 		if (recruitData.totalRecruitCount >= maxRecruitTimes) {
 			const toLog = `寮招募完成。总招募次数: ${recruitData.totalRecruitCount}次，已达到最大次数限制(${maxRecruitTimes}次)，停止脚本`;
-			
+
 			thisScript.myToast(toLog);
 			if (thisconf.pushAfterRecruit) {
 				thisScript.doPush(thisScript, {
@@ -277,7 +277,7 @@ export class Func521 implements IFuncOrigin {
 				});
 				sleep(2000);
 			}
-			
+
 			console.log(toLog);
 			thisScript.stop();
 			return false;
@@ -306,16 +306,16 @@ export class Func521 implements IFuncOrigin {
 				})) {
 					console.log(`招募区域${i - 8}操作完成`);
 					successfulRecruits++;
-					
+
 					// 更新计数（使用全局状态）
 					recruitData.totalRecruitCount++;
-					
+
 					console.log(`当前轮次招募次数: ${successfulRecruits}，总招募次数: ${recruitData.totalRecruitCount}`);
 
 					// 检查是否达到最大招募次数
 					if (recruitData.totalRecruitCount >= maxRecruitTimes) {
 						const toLog = `寮招募完成。总招募次数: ${recruitData.totalRecruitCount}次，已达到最大次数限制(${maxRecruitTimes}次)，停止脚本`;
-						
+
 						thisScript.myToast(toLog);
 						if (thisconf.pushAfterRecruit) {
 							thisScript.doPush(thisScript, {
@@ -326,7 +326,7 @@ export class Func521 implements IFuncOrigin {
 							});
 							sleep(2000);
 						}
-						
+
 						thisScript.stop();
 						return false;
 					}
@@ -347,7 +347,7 @@ export class Func521 implements IFuncOrigin {
 				// 检查是否达到最大招募次数
 				if (recruitData.totalRecruitCount >= maxRecruitTimes) {
 					const toLog = `寮招募完成。总招募次数: ${recruitData.totalRecruitCount}次，已达到最大次数限制(${maxRecruitTimes}次)，停止脚本`;
-					
+
 					thisScript.myToast(toLog);
 					if (thisconf.pushAfterRecruit) {
 						thisScript.doPush(thisScript, {
@@ -358,7 +358,7 @@ export class Func521 implements IFuncOrigin {
 						});
 						sleep(2000);
 					}
-					
+
 					thisScript.stop();
 					return false;
 				}
