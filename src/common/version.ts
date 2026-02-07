@@ -1508,5 +1508,12 @@ export const versionList = [{
 099只玩奖励次数
 302适配五星折叠
 304修复逻辑错误)`,
+}, {
+	version: '20260208_01',
+	desc: `优化006御魂挑战适配御灵问题
+优化002每日御魂结算喂猫喂狗奖励确认
+优化521寮招募(添加结束后操作)
+优化503返回庭院(添加招人适配)
+522暂时不可用，等大佬开发`
 }];
 export default versionList[versionList.length - 1].version;

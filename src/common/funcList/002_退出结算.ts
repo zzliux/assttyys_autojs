@@ -6,365 +6,439 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func002 implements IFuncOrigin {
-	id = 2;
-	name = '退出结算';
-	desc = '';
+export class Func521 implements IFuncOrigin {
+	id = 521;
+	name = '庭院进入寮信息与招募';
+	desc = '庭院进入寮信息判断与自动招募功能';
+
 	config = [{
 		desc: '配置',
 		config: [{
-			name: 'rechallenge',
-			desc: '失败点击重新挑战',
-			type: 'switch',
-			default: false,
+			name: 'maxRecruitTimes',
+			desc: '最大招募次数（默认100次）',
+			type: 'text',
+			default: '100',
 		}, {
-			name: 'no_sushi_switch_enabled',
-			desc: '当体力不足时切换方案',
+			name: 'scheme_switch_enabled',
+			desc: '招募结束后切换方案',
 			type: 'switch',
 			default: false,
 		}, {
 			name: 'next_scheme',
 			desc: '下一个方案',
 			type: 'scheme',
-			default: '关闭BUFF',
-		}, {
-			name: 'fail',
-			desc: '失败后停止脚本',
-			type: 'switch',
-			default: false,
+			default: '通用准备退出',
 		}]
 	}];
+
 	operator: IFuncOperatorOrigin[] = [{
-		// 调整优先级，提高识别贪吃鬼的级别
-		// 0 左上角的贪吃鬼图标
-		desc: '退出结算_左上角贪吃鬼',
-		operStepRandom: [
-			[
-				[center, 1280, 720, 15, 139, 83, 309, 1000, 25], // 最后一个参数，表示执行这个的概率(已废弃)
-				[center, 1280, 720, 12, 391, 93, 548, 1000, 25],
-				[center, 1280, 720, 1202, 140, 1267, 630, 1000, 50],
-			]
-		],
-	}, {
-		// 1 左上角贪吃鬼，mumu截图
-		desc: '退出结算_左上角贪吃鬼_mumu',
-		operStepRandom: [
-			[
-				[center, 1280, 720, 15, 139, 83, 309, 1000, 25], // 最后一个参数，表示执行这个的概率(已废弃)
-				[center, 1280, 720, 12, 391, 93, 548, 1000, 25],
-				[center, 1280, 720, 1202, 140, 1267, 630, 1000, 50],
-			]
-		],
-	}, {
-		// 2 已打开的达摩，取点比较高
-		desc: '退出结算_已打开的达摩_1',
-		operStepRandom: [
-			[
-				[center, 1280, 720, 15, 139, 83, 309, 1000, 25], // 最后一个参数，表示执行这个的概率(已废弃)
-				[center, 1280, 720, 12, 391, 93, 548, 1000, 25],
-				[center, 1280, 720, 1202, 140, 1267, 630, 1000, 50],
-			]
-		],
-		retest: 300
-	}, { // 3 已打开的达摩, 优先级最高
-		desc: '退出结算_已打开的达摩_2',
-		operStepRandom: [
-			[
-				[center, 1280, 720, 15, 139, 83, 309, 1000, 25], // 最后一个参数，表示执行这个的概率(已废弃)
-				[center, 1280, 720, 12, 391, 93, 548, 1000, 25],
-				[center, 1280, 720, 1202, 140, 1267, 630, 1000, 50],
-			]
-		],
-		retest: 300
-	}, {
-		// 4 已打开的达摩 体服更新后的UI
-		desc: '退出结算_已打开的达摩_3',
-		operStepRandom: [
-			[
-				[center, 1280, 720, 15, 139, 83, 309, 1000, 25], // 最后一个参数，表示执行这个的概率(已废弃)
-				[center, 1280, 720, 12, 391, 93, 548, 1000, 25],
-				[center, 1280, 720, 1202, 140, 1267, 630, 1000, 50],
-			]
-		],
-		retest: 300
-	}, {
-		// 5 邀请好友确认
-		desc: '退出结算_取消确认框_未勾',
+		// 0: 在庭院打开菜单
+		desc: '页面是否为庭院_菜单未展开_只支持默认庭院皮肤与默认装饰',
 		oper: [
-			[center, 1280, 720, 550, 347, 730, 376, 300],
-			[center, 1280, 720, 680, 411, 838, 452, 500],
-		],
-		notForCnt: true, // 点击确认不统计退出结算的次数
-	}, {
-		// 6 单人-胜利太鼓
-		desc: '退出结算_单人_胜利太鼓',
-		operStepRandom: [
-			[
-				[center, 1280, 720, 165, 60, 1070, 604, 400, 1],
-				[center, 1280, 720, 165, 60, 1263, 530, 400, 1],
-			]
-		],
-		notForCnt: true,
-	}, {
-		// 7 组队-胜利太鼓,斗技-胜利太鼓 - 适配
-		desc: '退出结算_斗技_胜利太鼓',
-		oper: [
-			[center, 1280, 720, 705, 601, 1026, 700, 400],
-		],
-		notForCnt: true,
-	}, {
-		// 8 组队-胜利太鼓,斗技-胜利太鼓
-		desc: '退出结算_组队_胜利太鼓',
-		operStepRandom: [
-			[
-				[center, 1280, 720, 124, 60, 1188, 363, 400, 5],
-				[center, 1280, 720, 90, 380, 380, 580, 400, 5],
-				[center, 1280, 720, 888, 359, 1204, 492, 400, 5],
-			]
-		],
-		notForCnt: true,
-	}, {
-		// 9 单人-失败太鼓
-		desc: '退出结算_单人_失败太鼓',
-		operStepRandom: [
-			[
-				[left, 1280, 720, 69, 171, 170, 452, 2000, 2],
-				[right, 1280, 720, 1104, 72, 1200, 528, 2000, 5],
-			]
-		],
-	}, {
-		// 10 组队-失败太鼓
-		desc: '退出结算_组队_失败太鼓',
-		operStepRandom: [
-			[
-				[left, 1280, 720, 69, 171, 170, 452, 2000, 2],
-				[right, 1280, 720, 1104, 72, 1200, 528, 2000, 5],
-			]
-		],
-	}, {
-		// 11 左上角的统计图标
-		desc: '退出结算_左上角统计图标',
-		operStepRandom: [
-			[
-				[right, 1280, 720, 1217, 106, 1272, 700, 400, 5],
-				[left, 1280, 720, 600, 672, 1216, 712, 400, 5],
-			]
-		],
-		notForCnt: true,
-	}, {
-		// 12 秘闻的胜利，太鼓位置很高
-		desc: '退出结算_秘闻_胜利太鼓',
-		oper: [
-			[center, 1280, 720, 96, 53, 1177, 210, 1000],
-		],
-		retest: 300,
-	}, {
-		// 13 御魂溢出点确认
-		desc: '退出结算_御魂溢出确认',
-		oper: [
-			[center, 1280, 720, 686, 398, 799, 445, 300],
-		],
-		notForCnt: true,
-	}, {
-		// 14 打开后的达摩，所有点都被结算挡住了，使用经验，金币buff，和第一个奖励的xx作为特征
-		desc: '退出结算_经验金币buff_第一个掉落',
-		operStepRandom: [
-			[
-				[left, 1280, 720, 69, 171, 170, 452, 2000, 2],
-				[right, 1280, 720, 1104, 72, 1200, 528, 2000, 5],
-			]
-		],
-	}, {
-		// 15 经验金币妖怪，胜利太鼓
-		desc: '退出结算_经验金币妖怪_胜利太鼓',
-		oper: [
-			[center, 1280, 720, 535, 674, 743, 709, 1000],
+			[right, 1280, 720, 1168, 592, 1230, 690, 1200]    // 在首页打开菜单
 		]
-	}, { // 16 契灵结契失败
+	}, {
+		// 1: 点击阴阳寮
+		desc: [1280, 720,
+			[[center, 560, 608, 0xbc3433],
+				[center, 560, 608, 0x8b0e0e],
+				[center, 542, 639, 0x7b1515],
+				[center, 575, 646, 0xc1b8b0],
+				[center, 590, 638, 0xb07970]]
+		],
+		oper: [
+			[center, 1280, 720, 544, 612, 594, 661, 1200]    // 点击阴阳寮
+		]
+	}, {
+		// 2: 点击阴阳寮，另外一种图标
+		desc: '页面是否为庭院_菜单已展开_另一种图标_御祝图标_只支持默认庭院皮肤与默认装饰',
+		oper: [
+			[center, 1280, 720, 544, 612, 594, 661, 1200]    // 点击阴阳寮
+		]
+	}, {
+		// 3: 庭院已打开菜单，另另外一种图标
+		desc: '庭院已打开菜单_另另外一种图标',
+		oper: [
+			[center, 1280, 720, 544, 612, 594, 661, 1200]    // 点击阴阳寮
+		]
+	}, {
+		// 4: 判断是否为寮首页
 		desc: [
 			1280, 720,
 			[
-				[center, 512, 297, 0xbbbbbb],
-				[center, 610, 277, 0xbbbbbb],
-				[center, 684, 295, 0xb0b0b0],
-				[center, 785, 296, 0xc0c0c0],
-				[center, 520, 339, 0x9f9f9f],
-				[center, 797, 328, 0xc1c1c1],
+				[right, 1193, 615, 0x4f414a],
+				[right, 1175, 623, 0xc39273],
+				[left, 45, 39, 0xf4e4a3],
+				[right, 1227, 668, 0xdfd0cb],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 404, 609, 578, 644, 1000]	//	放弃结契 总不能有人想选再次结契吧
-		]
-	}, { // 17 自选120关闭
+			[right, 1280, 720, 1172, 613, 1227, 668, 1200]    // 点击下方寮信息
+		],
+		retest: 1000
+	}, {
+		// 5: 判断是否为寮信息页面
 		desc: [
 			1280, 720,
 			[
-				[center, 508, 124, 0xf4d38b],
-				[center, 664, 127, 0xf7e4b3],
-				[center, 753, 135, 0xf4e1b8],
-				[center, 853, 106, 0xeece86],
-				[right, 1001, 494, 0x433325],
+				[left, 45, 39, 0xf4e4a3],
+				[left, 317, 492, 0xc1babd],
+				[left, 315, 521, 0xd62d29],
+				[center, 348, 510, 0x761d1c]
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1045, 125, 1078, 154, 1000],
-		]
-	}, {
-		// 18 结界卡超上限提示
-		desc: '结界卡超上限提示',
-		oper: [
-			[center, 1280, 720, 544, 348, 570, 373, 500],
-			[center, 1280, 720, 436, 405, 606, 459, 200],
-		]
-	}, { // 19 体力不足
-		desc: '退出结算_体力不足',
-		oper: [
-			[center, 1280, 720, 916, 179, 951, 211, 2000]
-		]
-	}, {
-		// 20 单人-失败太鼓,重新挑战
-		desc: '退出结算_单人_失败太鼓',
-		oper: [
-			[center, 1280, 720, 813, 465, 909, 570, 500],
+			[left, 1280, 720, 251, 75, 335, 133, 1200]    // 点击上方寮信息
 		],
-		retest: 800,
+		retest: 1000
 	}, {
-		// 21 邀请好友确认
-		desc: '退出结算_取消确认框',
-		oper: [
-			[center, 1280, 720, 680, 411, 838, 452, 500],
-		],
-		notForCnt: true, // 点击确认不统计退出结算的次数
-	}, {
-		// 22 退出结算_再次挑战_取消确认框_未勾
-		desc: '退出结算_再次挑战_取消确认框_未勾',
-		oper: [
-			[center, 1280, 720, 544, 347, 570, 374, 300],
-			[center, 1280, 720, 680, 411, 838, 452, 500],
-		],
-		notForCnt: true, // 点击确认不统计退出结算的次数
-	}, {
-		// 23 阴阳师/英杰技能升级提示
-		desc: [1280, 720,
-			[
-				[center, 413, 394, 0x8e6a40],
-				[center, 869, 393, 0x8f6b41],
-				[center, 652, 275, 0x483424],
-				[center, 802, 312, 0xcab49b],
-				[center, 421, 262, 0x38291d],
-				[center, 835, 387, 0xaf947c],
-				[center, 397, 299, 0x817976],
-			]
-		],
-		oper: [
-			[center, 1280, 720, 225, 486, 1082, 679, 1000],
-		]
-	}, {
-		// 24 缓存过多点击确认按钮
-		desc: [1280, 720,
-			[
-				[center, 332, 142, 0x644435],
-				[center, 946, 142, 0x654435],
-				[center, 441, 492, 0xdf6851],
-				[center, 756, 497, 0xf3b25e],
-				[center, 919, 484, 0xcbb59c],
-				[center, 944, 165, 0xcbb59c],
-				[center, 354, 499, 0xcbb59c],
-				[center, 573, 570, 0x6d4a38],
-			]
-		],
-		oper: [
-			[center, 1280, 720, 727, 484, 859, 535, 1000],
-		]
-	}, { // 25 斗技退出失败
+		// 6: 判断是否可点击管理
 		desc: [
 			1280, 720,
 			[
-				[center, 470, 77, 0x544e60],
-				[center, 452, 120, 0x595063],
-				[center, 495, 120, 0x575062],
-				[center, 736, 102, 0xc3bdaf],
-				[center, 918, 112, 0xada596],
+				[left, 166, 522, 0x4b3825],
+				[left, 285, 526, 0xc09531],
+				[left, 320, 526, 0xfddfe2],
+				[left, 296, 228, 0x3e2f28]
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1110, 362, 1222, 493, 1000],
+			[left, 1280, 720, 353, 612, 423, 649, 1200]    // 点击管理招募
 		]
-	}, { // 26 斗技退出失败 阴阳师皮肤遮挡
-		desc: [1280, 720,
+	}, {
+		// 7: 判断是否可进入招募
+		desc: [
+			1280, 720,
 			[
-				[center, 470, 77, 0x544e60],
-				[center, 452, 120, 0x595063],
-				[center, 495, 120, 0x575062],
-				[center, 570, 29, 0x91846b],
-				[center, 371, 15, 0x5e4935],
+				[left, 304, 443, 0x96392d],
+				[left, 309, 443, 0xeaa65a],
+				[center, 344, 468, 0x2d2822],
+				[center, 387, 464, 0x312b23]
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1110, 362, 1222, 493, 1000],
+			[left, 1280, 720, 328, 371, 465, 411, 1200]    // 点击进入招募
 		]
-	}, { // 27  左下统计图标
-		desc: [1280, 720,
+	}, {
+		// 8: 判断是否为招募界面
+		desc: [
+			1280, 720,
 			[
-				[center, 78, 643, 0x3c2b20],
-				[center, 72, 655, 0xae8b5f],
-				[center, 89, 652, 0xb69363],
-				[center, 78, 675, 0x36261a],
+				[center, 564, 33, 0xf7f2df],
+				[center, 564, 33, 0xf7f2df],
+				[right, 595, 35, 0x23180f],
+				[right, 720, 39, 0x583716],
+				[right, 729, 37, 0xc99e42],
+				[center, 401, 619, 0xcaa97f],
+				[center, 405, 639, 0xbc9972],
+				[center, 417, 609, 0x4c403b],
+				[center, 424, 649, 0xe8e6e4]
+			]
+		],
+		oper: [] // 添加空操作数组避免类型错误
+	}, {
+		// 9: 招募区域1
+		desc: [
+			1280, 720,
+			[
+				[center, 564, 33, 0xf7f2df],
+				[center, 564, 33, 0xf7f2df],
+				[right, 595, 35, 0x23180f],
+				[right, 720, 39, 0x583716],
+				[right, 729, 37, 0xc99e42],
+				[center, 401, 619, 0xcaa97f],
+				[center, 405, 639, 0xbc9972],
+				[center, 417, 609, 0x4c403b],
+				[center, 424, 649, 0xe8e6e4],
+				[right, 1119, 173, 0xe1c197]
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1112, 113, 1238, 595, 1000],
+			[right, 1280, 720, 1104, 160, 1135, 189, 1000] // 点击第一个招募区域
+		]
+	}, {
+		// 10: 招募区域2
+		desc: [
+			1280, 720,
+			[
+				[center, 564, 33, 0xf7f2df],
+				[center, 564, 33, 0xf7f2df],
+				[right, 595, 35, 0x23180f],
+				[right, 720, 39, 0x583716],
+				[right, 729, 37, 0xc99e42],
+				[center, 401, 619, 0xcaa97f],
+				[center, 405, 639, 0xbc9972],
+				[center, 417, 609, 0x4c403b],
+				[center, 424, 649, 0xe8e6e4],
+				[right, 1120, 255, 0xe1c197]
+			]
+		],
+		oper: [
+			[right, 1280, 720, 1105, 237, 1136, 271, 1000] // 点击第二个招募区域
+		]
+	}, {
+		// 11: 招募区域3
+		desc: [
+			1280, 720,
+			[
+				[center, 564, 33, 0xf7f2df],
+				[center, 564, 33, 0xf7f2df],
+				[right, 595, 35, 0x23180f],
+				[right, 720, 39, 0x583716],
+				[right, 729, 37, 0xc99e42],
+				[center, 401, 619, 0xcaa97f],
+				[center, 405, 639, 0xbc9972],
+				[center, 417, 609, 0x4c403b],
+				[center, 424, 649, 0xe8e6e4],
+				[right, 1119, 335, 0xe1c197]
+			]
+		],
+		oper: [
+			[right, 1280, 720, 1103, 320, 1136, 353, 1000] // 点击第三个招募区域
+		]
+	}, {
+		// 12: 招募区域4
+		desc: [
+			1280, 720,
+			[
+				[center, 564, 33, 0xf7f2df],
+				[center, 564, 33, 0xf7f2df],
+				[right, 595, 35, 0x23180f],
+				[right, 720, 39, 0x583716],
+				[right, 729, 37, 0xc99e42],
+				[center, 401, 619, 0xcaa97f],
+				[center, 405, 639, 0xbc9972],
+				[center, 417, 609, 0x4c403b],
+				[center, 424, 649, 0xe8e6e4],
+				[right, 1119, 415, 0xe1c197]
+			]
+		],
+		oper: [
+			[right, 1280, 720, 1103, 404, 1132, 433, 1000] // 点击第四个招募区域
+		]
+	}, {
+		// 13: 招募区域5
+		desc: [
+			1280, 720,
+			[
+				[center, 564, 33, 0xf7f2df],
+				[center, 564, 33, 0xf7f2df],
+				[right, 595, 35, 0x23180f],
+				[right, 720, 39, 0x583716],
+				[right, 729, 37, 0xc99e42],
+				[center, 401, 619, 0xcaa97f],
+				[center, 405, 639, 0xbc9972],
+				[center, 417, 609, 0x4c403b],
+				[center, 424, 649, 0xe8e6e4],
+				[right, 1117, 495, 0xe1c197]
+			]
+		],
+		oper: [
+			[right, 1280, 720, 1101, 485, 1132, 516, 1000] // 点击第五个招募区域
+		]
+	}, {
+		// 14: 换一批功能
+		desc: [
+			1280, 720,
+			[
+				[right, 1110, 170, 0x5eb969],
+				[right, 1120, 183, 0x5ab465],
+				[right, 1136, 164, 0x62b86c],
+				[right, 1139, 171, 0x284122],
+			]
+		],
+		oper: [
+			[right, 1280, 720, 999, 615, 1104, 650, 8000] // 点击换一批区域，等待8秒
 		]
 	}];
+
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		const thisconf = thisScript.scheme.config['2'];
-		if (thisconf && thisconf.rechallenge && thisScript.oper({
-			id: 2,
-			name: '退出结算_重新挑战',
-			operator: [thisOperator[20]]
-		})) {
-			return true;
+		console.log('Func521: 开始执行庭院进入寮信息与招募功能');
+
+		const thisconf = thisScript.scheme.config['521'];
+		const maxRecruitTimes = parseInt(String(thisconf?.maxRecruitTimes || '100'));
+
+		// 初始化全局计数状态
+		const globalAny = thisScript.global as any;
+
+		if (!globalAny.recruitData) {
+			globalAny.recruitData = {
+				totalRecruitCount: 0, // 总招募次数
+				recruitRounds: 0,     // 招募轮次（用于统计）
+				lastOperationTime: Date.now() // 添加时间戳
+			};
 		}
-		if (thisScript.oper({
-			id: 2,
-			name: '体力不足',
-			operator: [thisOperator[19]]
-		})) {
-			if (thisconf && thisconf.no_sushi_switch_enabled) {
-				thisScript.rerun(thisconf.next_scheme);
-				sleep(3000);
-				return;
-			} else if (thisconf && !thisconf.no_sushi_switch_enabled) {
-				thisScript.doPush(thisScript, { text: '体力不够已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+
+		const recruitData = globalAny.recruitData;
+
+		// 检查是否已达到最大招募次数
+		if (recruitData.totalRecruitCount >= maxRecruitTimes) {
+			const toLog = `寮招募完成。总招募次数: ${recruitData.totalRecruitCount}次，总轮次: ${recruitData.recruitRounds}轮，已达到最大次数限制(${maxRecruitTimes}次)。执行方案: [${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]`;
+
+			thisScript.myToast(toLog);
+			// 只在招募完成时推送一次
+			thisScript.doPush(thisScript, {
+				text: toLog,
+				before() {
+					thisScript.myToast('正在上传招募数据');
+				}
+			});
+			sleep(2000);
+
+			console.log(toLog);
+
+			// 检查是否切换方案
+			if (thisconf.scheme_switch_enabled) {
+				const nextScheme = thisconf.next_scheme || '通用准备退出';
+				console.log(`切换到下一个方案: ${nextScheme}`);
+				thisScript.rerun(nextScheme);
+				return true;
+			} else {
 				thisScript.stop();
-				sleep(3000);
-				return;
+				return false;
 			}
 		}
-		if (thisconf && thisconf.fail && thisScript.oper({
-			id: 2,
-			name: '退出结算_失败停止',
-			operator: [thisOperator[9], thisOperator[10]]
+
+		// 首先检查是否在招募界面
+		console.log('检查是否在招募界面...');
+		if (thisScript.oper({
+			id: 521,
+			name: '检查招募界面',
+			operator: [thisOperator[8]]
 		})) {
-			thisScript.doPush(thisScript, { text: '战斗失败，已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-			thisScript.stop();
-			sleep(3000);
-			return true
+			console.log('检测到招募界面，开始自动招募流程');
+			recruitData.lastOperationTime = Date.now();
+
+			// 执行5个招募区域的操作
+			let successfulRecruits = 0;
+			for (let i = 9; i <= 13; i++) {
+				// 每次操作前检查是否达到上限
+				if (recruitData.totalRecruitCount >= maxRecruitTimes) {
+					break;
+				}
+
+				console.log(`检查招募区域 ${i-8}...`);
+				if (thisScript.oper({
+					id: 521,
+					name: `执行招募操作-区域${i - 8}`,
+					operator: [thisOperator[i]]
+				})) {
+					console.log(`招募区域${i - 8}操作完成`);
+					successfulRecruits++;
+
+					// 更新计数（使用全局状态）
+					recruitData.totalRecruitCount++;
+					recruitData.lastOperationTime = Date.now();
+
+					console.log(`当前轮次招募次数: ${successfulRecruits}，总招募次数: ${recruitData.totalRecruitCount}`);
+
+					// 检查是否达到最大招募次数
+					if (recruitData.totalRecruitCount >= maxRecruitTimes) {
+						const toLog = `寮招募完成。总招募次数: ${recruitData.totalRecruitCount}次，总轮次: ${recruitData.recruitRounds}轮，已达到最大次数限制(${maxRecruitTimes}次)。执行方案: [${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]`;
+
+						thisScript.myToast(toLog);
+						// 只在招募完成时推送一次
+						thisScript.doPush(thisScript, {
+							text: toLog,
+							before() {
+								thisScript.myToast('正在上传招募数据');
+							}
+						});
+						sleep(2000);
+
+						console.log(toLog);
+
+						// 检查是否切换方案
+						if (thisconf.scheme_switch_enabled) {
+							const nextScheme = thisconf.next_scheme || '通用准备退出';
+							console.log(`切换到下一个方案: ${nextScheme}`);
+							thisScript.rerun(nextScheme);
+							return true;
+						} else {
+							thisScript.stop();
+							return false;
+						}
+					}
+
+					sleep(300);
+				} else {
+					console.log(`招募区域${i - 8}操作失败，可能已被招募或条件不匹配`);
+				}
+			}
+
+			// 执行换一批操作
+			if (thisScript.oper({
+				id: 521,
+				name: '执行换一批操作',
+				operator: [thisOperator[14]]
+			})) {
+				recruitData.recruitRounds++;
+				recruitData.lastOperationTime = Date.now();
+				console.log(`换一批操作完成，本轮成功招募: ${successfulRecruits}个，总招募次数: ${recruitData.totalRecruitCount}，总轮次: ${recruitData.recruitRounds}轮`);
+
+				// 检查是否达到最大招募次数
+				if (recruitData.totalRecruitCount >= maxRecruitTimes) {
+					const toLog = `寮招募完成。总招募次数: ${recruitData.totalRecruitCount}次，总轮次: ${recruitData.recruitRounds}轮，已达到最大次数限制(${maxRecruitTimes}次)。执行方案: [${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]`;
+
+					thisScript.myToast(toLog);
+					// 只在招募完成时推送一次
+					thisScript.doPush(thisScript, {
+						text: toLog,
+						before() {
+							thisScript.myToast('正在上传招募数据');
+						}
+					});
+					sleep(2000);
+
+					console.log(toLog);
+
+					// 检查是否切换方案
+					if (thisconf.scheme_switch_enabled) {
+						const nextScheme = thisconf.next_scheme || '通用准备退出';
+						console.log(`切换到下一个方案: ${nextScheme}`);
+						thisScript.rerun(nextScheme);
+						return true;
+					} else {
+						thisScript.stop();
+						return false;
+					}
+				}
+
+				return true;
+			} else {
+				console.log('换一批操作失败，可能按钮不可用或已无次数');
+			}
+		} else {
+			console.log('未检测到招募界面，尝试从庭院进入寮信息流程');
 		}
-		return thisScript.oper({
-			id: 2,
-			name: '退出结算',
+
+		// 如果不在招募界面，执行原有的庭院进入寮信息流程
+		const result = thisScript.oper({
+			id: 521,
+			name: '庭院进入寮信息',
 			operator: [
-				thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[3],
-				thisOperator[4], thisOperator[5], thisOperator[6], thisOperator[7],
-				thisOperator[8], thisOperator[9], thisOperator[10], thisOperator[11],
-				thisOperator[12], thisOperator[13], thisOperator[14], thisOperator[15],
-				thisOperator[16], thisOperator[17], thisOperator[22], thisOperator[18], // 22要放18前面
-				thisOperator[21], thisOperator[23], thisOperator[24], thisOperator[25],
-				thisOperator[26], thisOperator[27],
+				thisOperator[0], // 庭院打开菜单
+				thisOperator[1], // 点击阴阳寮（第一种图标）
+				thisOperator[2], // 点击阴阳寮（第二种图标）
+				thisOperator[3], // 点击阴阳寮（第三种图标）
+				thisOperator[4], // 判断寮首页并点击寮信息
+				thisOperator[5], // 判断寮信息页面并点击上方寮信息
+				thisOperator[6], // 判断管理按钮并点击
+				thisOperator[7]  // 判断招募入口并点击
 			]
 		});
+
+		if (result) {
+			recruitData.lastOperationTime = Date.now();
+			console.log('庭院进入寮信息流程执行成功');
+		} else {
+			console.log('庭院进入寮信息流程执行失败，可能界面状态不正确');
+			// 添加延迟防止过快重试
+			sleep(1000);
+		}
+
+		return result;
 	}
 }
 
-export default new Func002();
+export default new Func521();
