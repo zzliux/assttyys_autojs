@@ -10,8 +10,8 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func514 implements IFuncOrigin {
-	id = 514;
+export class Func603 implements IFuncOrigin {
+	id = 603;
 	name = '狭间暗域';
 	config = [
 		{
@@ -201,7 +201,7 @@ export class Func514 implements IFuncOrigin {
 	];
 	// todo 打小蛇,僵尸寮全清
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		const thisconf = thisScript.scheme.config['514'];//	前面区域，后面小怪
+		const thisconf = thisScript.scheme.config['603'];//	前面区域，后面小怪
 		if (thisScript.global.narrow_time === 0) {// 用户自定义等待时间
 			thisScript.global.narrow_time = parseInt(thisconf.boss_time as string) * 1000;
 		}
