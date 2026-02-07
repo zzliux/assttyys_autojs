@@ -58,7 +58,9 @@ export class Script {
 	lastFunc: number; // 最后执行成功的funcId
 	global: globalRootType; // 每次启动重置为空对象，用于功能里面存变量
 	superGlobal: superGlobalRootType; // 切换方案不重置功能里面的变量
+
 	/**
+	 * @deprecated
 	 * @description 方案运行中参数
 	 */
 	runtimeParams: Record<string, unknown> | null;
@@ -537,14 +539,11 @@ export class Script {
 	 */
 	_run(job?: Job): void {
 		if (this.runThread) return;
-		this.job = job;
 		const self = this;
 		try {
 			this.initFuncList();
 			this.initMultiFindColors();
-			this.runDate = new Date();
 			this.currentDate = new Date();
-			this.runTimes = {};
 			if (this.isPause) {
 				myToast(`继续方案[${this.scheme.schemeName}]`);
 				console.log(`global: ${JSON.stringify(this.global, null, 2)}`);
@@ -694,6 +693,8 @@ export class Script {
 
 	/**
 	 * 重新运行，一般在运行过程中通过setCurrenScheme切换方案后调用，停止再运行
+	 * @param schemeName
+	 * @param params 已废弃，后续使用请不要传递该参数
 	 */
 	rerun(schemeName?: unknown, params?: Record<string, unknown>) {
 		if ('__停止脚本__' === schemeName) {
