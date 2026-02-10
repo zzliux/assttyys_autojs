@@ -5,8 +5,8 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func500 implements IFuncOrigin {
-	id = 500;
+export class Func600 implements IFuncOrigin {
+	id = 600;
 	name = '进入寮活动';
 	desc = '进入已开启寮活动(狩猎战、道馆、狭间暗域、首领退治、宴会、阴界之门)';
 	config = [{
@@ -310,7 +310,7 @@ export class Func500 implements IFuncOrigin {
 			]
 		}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		const thisconf = thisScript.scheme.config['500'];
+		const thisconf = thisScript.scheme.config['600'];
 		const nowHour = new Date().getHours();
 		const nowDay = new Date().getDay();
 		// 设置全局方案起始点
@@ -331,14 +331,14 @@ export class Func500 implements IFuncOrigin {
 		if (allFalse) {
 			thisScript.myToast('任务执行完毕!');
 			thisScript.superGlobal.next_scheme_name = null;
-			log('500_thisScript.superGlobal.next_scheme_name:' + thisScript.superGlobal.next_scheme_name);
+			log('600_thisScript.superGlobal.next_scheme_name:' + thisScript.superGlobal.next_scheme_name);
 			thisScript.rerun('返回庭院')
 			sleep(3000);
 			return true;
 		}
 		// 首次进入寮神社界面返回一次重新进，防止还有原来的缓存在里面
 		if (thisScript.global.liao_activity_page_flag == -1 && thisScript.oper({
-			id: 500,
+			id: 600,
 			name: '寮神社界面',
 			operator: [thisOperator[11]]
 		})) {
@@ -375,7 +375,7 @@ export class Func500 implements IFuncOrigin {
 		}
 		// 阴门判断(其他开关为关时)
 		if (thisScript.oper({
-			id: 500,
+			id: 600,
 			name: '寮神社界面',
 			operator: [{ desc: thisOperator[11].desc }]
 		})) {
@@ -461,7 +461,7 @@ export class Func500 implements IFuncOrigin {
 				return true;
 			}
 			if (thisScript.oper({
-				id: 500,
+				id: 600,
 				name: '检测_道馆', // 道馆地图界面,集结中
 				operator: [thisOperator[2]]// thisOperator[2]是用来全局找位置的条件
 			})) {
@@ -513,7 +513,7 @@ export class Func500 implements IFuncOrigin {
 			}
 		}
 		if (thisScript.oper({
-			id: 500,
+			id: 600,
 			name: '寮神社界面',
 			operator: [{ desc: thisOperator[11].desc }]
 		})) {
@@ -521,7 +521,7 @@ export class Func500 implements IFuncOrigin {
 			const r = random(28000, 32000);
 			if (thisScript.global.liao_activity_page_flag < (thisconf.count as number)) {
 				thisScript.oper({
-					id: 500,
+					id: 600,
 					name: '寮神社界面返回',
 					operator: [{ oper: thisOperator[11].oper }]
 				})

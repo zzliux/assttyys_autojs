@@ -233,6 +233,11 @@ export class Func503 implements IFuncOrigin {
 			desc: '44 宴会_料理筹备界面',
 			type: 'switch',
 			default: true,
+		}, {
+			name: 'oper_45',
+			desc: '45 招募界面',
+			type: 'switch',
+			default: true,
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{	// 0 探索地图
@@ -733,6 +738,22 @@ export class Func503 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 30, 41, 63, 71, 1000],
+		]
+	}, { // 45 寮招募界面
+		desc: [
+			1280, 720,
+			[
+				[center, 564, 33, 0xf7f2df],
+				[right, 595, 35, 0x23180f],
+				[right, 720, 39, 0x583716],
+				[center, 401, 619, 0xcaa97f],
+				[center, 405, 639, 0xbc9972],
+				[center, 417, 609, 0x4c403b],
+				[center, 424, 649, 0xe8e6e4]
+			]
+		],
+		oper: [
+			[center, 1280, 720, 29, 9, 65, 49, 1000],
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
