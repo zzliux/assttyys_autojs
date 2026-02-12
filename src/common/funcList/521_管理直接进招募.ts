@@ -14,15 +14,20 @@ export class Func521 implements IFuncOrigin {
 	config = [{
 		desc: '配置',
 		config: [{
-			name: 'pushAfterRecruit',
-			desc: '招募结束后推送通知',
+			name: 'maxRecruitTimes',
+			desc: '最大招募次数（默认100次）',
+			type: 'text',
+			default: '100',
+		}, {
+			name: 'scheme_switch_enabled',
+			desc: '招募结束后切换方案',
 			type: 'switch',
 			default: false,
 		}, {
-			name: 'maxRecruitTimes',
-			desc: '最大招募次数（默认50次）',
-			type: 'text',
-			default: '50',
+			name: 'next_scheme',
+			desc: '下一个方案',
+			type: 'scheme',
+			default: '通用准备退出',
 		}]
 	}];
 
@@ -30,7 +35,7 @@ export class Func521 implements IFuncOrigin {
 		// 0: 在庭院打开菜单
 		desc: '页面是否为庭院_菜单未展开_只支持默认庭院皮肤与默认装饰',
 		oper: [
-			[right, 1280, 720, 1168, 592, 1230, 690, 1200]	// 在首页打开菜单
+			[right, 1280, 720, 1168, 592, 1230, 690, 1200]    // 在首页打开菜单
 		]
 	}, {
 		// 1: 点击阴阳寮
@@ -42,19 +47,19 @@ export class Func521 implements IFuncOrigin {
 				[center, 590, 638, 0xb07970]]
 		],
 		oper: [
-			[center, 1280, 720, 544, 612, 594, 661, 1200]	// 点击阴阳寮
+			[center, 1280, 720, 544, 612, 594, 661, 1200]    // 点击阴阳寮
 		]
 	}, {
 		// 2: 点击阴阳寮，另外一种图标
 		desc: '页面是否为庭院_菜单已展开_另一种图标_御祝图标_只支持默认庭院皮肤与默认装饰',
 		oper: [
-			[center, 1280, 720, 544, 612, 594, 661, 1200]	// 点击阴阳寮
+			[center, 1280, 720, 544, 612, 594, 661, 1200]    // 点击阴阳寮
 		]
 	}, {
 		// 3: 庭院已打开菜单，另另外一种图标
 		desc: '庭院已打开菜单_另另外一种图标',
 		oper: [
-			[center, 1280, 720, 544, 612, 594, 661, 1200]	// 点击阴阳寮
+			[center, 1280, 720, 544, 612, 594, 661, 1200]    // 点击阴阳寮
 		]
 	}, {
 		// 4: 判断是否为寮首页
@@ -68,7 +73,7 @@ export class Func521 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[right, 1280, 720, 1172, 613, 1227, 668, 1200]	// 点击下方寮信息
+			[right, 1280, 720, 1172, 613, 1227, 668, 1200]    // 点击下方寮信息
 		],
 		retest: 1000
 	}, {
@@ -83,7 +88,7 @@ export class Func521 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[left, 1280, 720, 251, 75, 335, 133, 1200]	// 点击上方寮信息
+			[left, 1280, 720, 251, 75, 335, 133, 1200]    // 点击上方寮信息
 		],
 		retest: 1000
 	}, {
@@ -98,7 +103,7 @@ export class Func521 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[left, 1280, 720, 353, 612, 423, 649, 1200]	// 点击管理招募
+			[left, 1280, 720, 353, 612, 423, 649, 1200]    // 点击管理招募
 		]
 	}, {
 		// 7: 判断是否可进入招募
@@ -112,7 +117,7 @@ export class Func521 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[left, 1280, 720, 328, 371, 465, 411, 1200]	// 点击进入招募
+			[left, 1280, 720, 328, 371, 465, 411, 1200]    // 点击进入招募
 		]
 	}, {
 		// 8: 判断是否为招募界面
@@ -243,13 +248,15 @@ export class Func521 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[right, 1280, 720, 999, 615, 1104, 650, 30000] // 点击换一批区域，等待30秒
+			[right, 1280, 720, 999, 615, 1104, 650, 8000] // 点击换一批区域，等待8秒
 		]
 	}];
 
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
+		console.log('Func521: 开始执行庭院进入寮信息与招募功能');
+
 		const thisconf = thisScript.scheme.config['521'];
-		const maxRecruitTimes = parseInt(String(thisconf?.maxRecruitTimes || '50'));
+		const maxRecruitTimes = parseInt(String(thisconf?.maxRecruitTimes || '100'));
 
 		// 初始化全局计数状态
 		const globalAny = thisScript.global as any;
@@ -257,7 +264,8 @@ export class Func521 implements IFuncOrigin {
 		if (!globalAny.recruitData) {
 			globalAny.recruitData = {
 				totalRecruitCount: 0, // 总招募次数
-				recruitRounds: 0     // 招募轮次（用于统计）
+				recruitRounds: 0,     // 招募轮次（用于统计）
+				lastOperationTime: Date.now() // 添加时间戳
 			};
 		}
 
@@ -265,31 +273,41 @@ export class Func521 implements IFuncOrigin {
 
 		// 检查是否已达到最大招募次数
 		if (recruitData.totalRecruitCount >= maxRecruitTimes) {
-			const toLog = `寮招募完成。总招募次数: ${recruitData.totalRecruitCount}次，已达到最大次数限制(${maxRecruitTimes}次)，停止脚本`;
+			const toLog = `寮招募完成。总招募次数: ${recruitData.totalRecruitCount}次，已达到最大次数限制(${maxRecruitTimes}次)。执行方案: [${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]`;
 
 			thisScript.myToast(toLog);
-			if (thisconf.pushAfterRecruit) {
-				thisScript.doPush(thisScript, {
-					text: toLog,
-					before() {
-						thisScript.myToast('正在上传招募数据');
-					}
-				});
-				sleep(2000);
-			}
+			// 直接推送，不再检查开关
+			thisScript.doPush(thisScript, {
+				text: toLog,
+				before() {
+					thisScript.myToast('正在上传招募数据');
+				}
+			});
+			sleep(2000);
 
 			console.log(toLog);
-			thisScript.stop();
-			return false;
+
+			// 检查是否切换方案
+			if (thisconf.scheme_switch_enabled) {
+				const nextScheme = thisconf.next_scheme || '通用准备退出';
+				console.log(`切换到下一个方案: ${nextScheme}`);
+				thisScript.rerun(nextScheme);
+				return true;
+			} else {
+				thisScript.stop();
+				return false;
+			}
 		}
 
 		// 首先检查是否在招募界面
+		console.log('检查是否在招募界面...');
 		if (thisScript.oper({
 			id: 521,
 			name: '检查招募界面',
 			operator: [thisOperator[8]]
 		})) {
 			console.log('检测到招募界面，开始自动招募流程');
+			recruitData.lastOperationTime = Date.now();
 
 			// 执行5个招募区域的操作
 			let successfulRecruits = 0;
@@ -299,6 +317,7 @@ export class Func521 implements IFuncOrigin {
 					break;
 				}
 
+				console.log(`检查招募区域 ${i-8}...`);
 				if (thisScript.oper({
 					id: 521,
 					name: `执行招募操作-区域${i - 8}`,
@@ -309,29 +328,41 @@ export class Func521 implements IFuncOrigin {
 
 					// 更新计数（使用全局状态）
 					recruitData.totalRecruitCount++;
+					recruitData.lastOperationTime = Date.now();
 
 					console.log(`当前轮次招募次数: ${successfulRecruits}，总招募次数: ${recruitData.totalRecruitCount}`);
 
 					// 检查是否达到最大招募次数
 					if (recruitData.totalRecruitCount >= maxRecruitTimes) {
-						const toLog = `寮招募完成。总招募次数: ${recruitData.totalRecruitCount}次，已达到最大次数限制(${maxRecruitTimes}次)，停止脚本`;
+						const toLog = `寮招募完成。总招募次数: ${recruitData.totalRecruitCount}次，已达到最大次数限制(${maxRecruitTimes}次)。执行方案: [${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]`;
 
 						thisScript.myToast(toLog);
-						if (thisconf.pushAfterRecruit) {
-							thisScript.doPush(thisScript, {
-								text: toLog,
-								before() {
-									thisScript.myToast('正在上传招募数据');
-								}
-							});
-							sleep(2000);
-						}
+						// 直接推送，不再检查开关
+						thisScript.doPush(thisScript, {
+							text: toLog,
+							before() {
+								thisScript.myToast('正在上传招募数据');
+							}
+						});
+						sleep(2000);
 
-						thisScript.stop();
-						return false;
+						console.log(toLog);
+
+						// 检查是否切换方案
+						if (thisconf.scheme_switch_enabled) {
+							const nextScheme = thisconf.next_scheme || '通用准备退出';
+							console.log(`切换到下一个方案: ${nextScheme}`);
+							thisScript.rerun(nextScheme);
+							return true;
+						} else {
+							thisScript.stop();
+							return false;
+						}
 					}
 
 					sleep(300);
+				} else {
+					console.log(`招募区域${i - 8}操作失败，可能已被招募或条件不匹配`);
 				}
 			}
 
@@ -342,33 +373,47 @@ export class Func521 implements IFuncOrigin {
 				operator: [thisOperator[14]]
 			})) {
 				recruitData.recruitRounds++;
+				recruitData.lastOperationTime = Date.now();
 				console.log(`换一批操作完成，本轮成功招募: ${successfulRecruits}个，总招募次数: ${recruitData.totalRecruitCount}，总轮次: ${recruitData.recruitRounds}轮`);
 
 				// 检查是否达到最大招募次数
 				if (recruitData.totalRecruitCount >= maxRecruitTimes) {
-					const toLog = `寮招募完成。总招募次数: ${recruitData.totalRecruitCount}次，已达到最大次数限制(${maxRecruitTimes}次)，停止脚本`;
+					const toLog = `寮招募完成。总招募次数: ${recruitData.totalRecruitCount}次，已达到最大次数限制(${maxRecruitTimes}次)。执行方案: [${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]`;
 
 					thisScript.myToast(toLog);
-					if (thisconf.pushAfterRecruit) {
-						thisScript.doPush(thisScript, {
-							text: toLog,
-							before() {
-								thisScript.myToast('正在上传招募数据');
-							}
-						});
-						sleep(2000);
-					}
+					// 直接推送，不再检查开关
+					thisScript.doPush(thisScript, {
+						text: toLog,
+						before() {
+							thisScript.myToast('正在上传招募数据');
+						}
+					});
+					sleep(2000);
 
-					thisScript.stop();
-					return false;
+					console.log(toLog);
+
+					// 检查是否切换方案
+					if (thisconf.scheme_switch_enabled) {
+						const nextScheme = thisconf.next_scheme || '通用准备退出';
+						console.log(`切换到下一个方案: ${nextScheme}`);
+						thisScript.rerun(nextScheme);
+						return true;
+					} else {
+						thisScript.stop();
+						return false;
+					}
 				}
 
 				return true;
+			} else {
+				console.log('换一批操作失败，可能按钮不可用或已无次数');
 			}
+		} else {
+			console.log('未检测到招募界面，尝试从庭院进入寮信息流程');
 		}
 
 		// 如果不在招募界面，执行原有的庭院进入寮信息流程
-		return thisScript.oper({
+		const result = thisScript.oper({
 			id: 521,
 			name: '庭院进入寮信息',
 			operator: [
@@ -382,6 +427,17 @@ export class Func521 implements IFuncOrigin {
 				thisOperator[7]  // 判断招募入口并点击
 			]
 		});
+
+		if (result) {
+			recruitData.lastOperationTime = Date.now();
+			console.log('庭院进入寮信息流程执行成功');
+		} else {
+			console.log('庭院进入寮信息流程执行失败，可能界面状态不正确');
+			// 添加延迟防止过快重试
+			sleep(1000);
+		}
+
+		return result;
 	}
 }
 

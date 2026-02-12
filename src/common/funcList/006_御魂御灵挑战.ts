@@ -26,7 +26,7 @@ export class Func006 implements IFuncOrigin {
 		// 1 御灵
 		desc: [1280, 720,
 			[
-				[left, 37, 37, 0xc3cce1],
+				[left, 37, 37, 0xfff2bc],
 				[right, 1121, 47, 0xd7b389],
 				[right, 1230, 46, 0xd3ae83],
 				[right, 1106, 628, 0xe5d9c3],
