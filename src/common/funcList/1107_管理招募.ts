@@ -1,15 +1,14 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 
-// const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func521 implements IFuncOrigin {
-	id = 521;
-	name = '庭院进入寮信息与招募';
-	desc = '庭院进入寮信息判断与自动招募功能';
+export class Func1107 implements IFuncOrigin {
+	id = 1107;
+	name = '管理招募';
+	desc = '管理自动招募功能';
 
 	config = [{
 		desc: '配置',
@@ -28,6 +27,11 @@ export class Func521 implements IFuncOrigin {
 			desc: '下一个方案',
 			type: 'scheme',
 			default: '通用准备退出',
+		}, {
+			name: 'isViceLeader',
+			desc: '是否为副会长',
+			type: 'switch',
+			default: false,
 		}]
 	}];
 
@@ -110,14 +114,15 @@ export class Func521 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[left, 304, 443, 0x96392d],
-				[left, 309, 443, 0xeaa65a],
-				[center, 344, 468, 0x2d2822],
-				[center, 387, 464, 0x312b23]
+				[left, 82, 642, 0xdb626e],
+				[left, 86, 665, 0xbf314c],
+				[left, 135, 665, 0x283080],
+				[left, 130, 664, 0x438baa],
 			]
 		],
 		oper: [
-			[left, 1280, 720, 328, 371, 465, 411, 1200]    // 点击进入招募
+			[left, 1280, 720, 328, 371, 465, 411, 1200],
+			[left, 1280, 720, 316, 436, 480, 474, 1200]  // 点击进入招募（会长）
 		]
 	}, {
 		// 8: 判断是否为招募界面
@@ -253,9 +258,9 @@ export class Func521 implements IFuncOrigin {
 	}];
 
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		console.log('Func521: 开始执行庭院进入寮信息与招募功能');
+		console.log('开始执行庭院进入寮信息与招募功能');
 
-		const thisconf = thisScript.scheme.config['521'];
+		const thisconf = thisScript.scheme.config['1107'];
 		const maxRecruitTimes = parseInt(String(thisconf?.maxRecruitTimes || '100'));
 
 		// 初始化全局计数状态
@@ -302,7 +307,7 @@ export class Func521 implements IFuncOrigin {
 		// 首先检查是否在招募界面
 		console.log('检查是否在招募界面...');
 		if (thisScript.oper({
-			id: 521,
+			id: 1107,
 			name: '检查招募界面',
 			operator: [thisOperator[8]]
 		})) {
@@ -317,13 +322,13 @@ export class Func521 implements IFuncOrigin {
 					break;
 				}
 
-				console.log(`检查招募区域 ${i-8}...`);
+				console.log(`检查招募区域 ${i-9}...`);
 				if (thisScript.oper({
-					id: 521,
-					name: `执行招募操作-区域${i - 8}`,
+					id: 1107,
+					name: `执行招募操作-区域${i - 9}`,
 					operator: [thisOperator[i]]
 				})) {
-					console.log(`招募区域${i - 8}操作完成`);
+					console.log(`招募区域${i - 9}操作完成`);
 					successfulRecruits++;
 
 					// 更新计数（使用全局状态）
@@ -362,13 +367,13 @@ export class Func521 implements IFuncOrigin {
 
 					sleep(300);
 				} else {
-					console.log(`招募区域${i - 8}操作失败，可能已被招募或条件不匹配`);
+					console.log(`招募区域${i - 9}操作失败，可能已被招募或条件不匹配`);
 				}
 			}
 
 			// 执行换一批操作
 			if (thisScript.oper({
-				id: 521,
+				id: 1107,
 				name: '执行换一批操作',
 				operator: [thisOperator[14]]
 			})) {
@@ -413,8 +418,10 @@ export class Func521 implements IFuncOrigin {
 		}
 
 		// 如果不在招募界面，执行原有的庭院进入寮信息流程
+		const recruitEntryIndex = thisconf.isViceLeader ? 1 : 0; // 根据是否为副会长选择索引7中的点击坐标
+
 		const result = thisScript.oper({
-			id: 521,
+			id: 1107,
 			name: '庭院进入寮信息',
 			operator: [
 				thisOperator[0], // 庭院打开菜单
@@ -424,9 +431,13 @@ export class Func521 implements IFuncOrigin {
 				thisOperator[4], // 判断寮首页并点击寮信息
 				thisOperator[5], // 判断寮信息页面并点击上方寮信息
 				thisOperator[6], // 判断管理按钮并点击
-				thisOperator[7]  // 判断招募入口并点击
+				{
+					desc: thisOperator[7].desc,
+					oper: [thisOperator[7].oper[recruitEntryIndex]]  // 根据身份选择会长或副会长的招募入口
+				}
 			]
 		});
+
 
 		if (result) {
 			recruitData.lastOperationTime = Date.now();
@@ -441,4 +452,4 @@ export class Func521 implements IFuncOrigin {
 	}
 }
 
-export default new Func521();
+export default new Func1107();
