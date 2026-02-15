@@ -28,7 +28,7 @@ export class Func506 implements IFuncOrigin {
 			},
 			{
 				name: 'huntBoss_switch',
-				desc: '是否进入首领退治(用于会长副会长问题)',
+				desc: '是否下滑进入狭间',
 				type: 'switch',
 				default: true,
 				value: true,
@@ -78,7 +78,7 @@ export class Func506 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 896, 172, 1103, 321, 1200]	// 打开宴会
 			]
-		}, { // 3 已适配66 检查_是否为道馆地图页面
+		}, { // 3 已适配66 检测_是否为道馆地图页面
 			desc: [
 				1280, 720,
 				[
@@ -247,7 +247,27 @@ export class Func506 implements IFuncOrigin {
 					[left, 33, 592, 0x8a6137],
 				]
 			],
+		}, { // 16 滑动
+			desc: [1280, 720,
+				[
+					[left, 42, 31, 0xf4e4a4],
+					[right, 760, 255, 0xe2dfda],
+					[right, 820, 276, 0xdebce4],
+					[right, 702, 265, 0xe0bfe5],
+					[right, 755, 285, 0x4c4943],
+					[right, 857, 237, 0x2b1d15],
+					[right, 836, 240, 0x30221b],
+					[right, 767, 246, 0xb03a32],
+				]
+			],
+			oper: [
+				[right, 1280, 720, 548, 561, 767, 621, -1],  // 滑动开始位置
+				[right, 1280, 720, 548, 107, 767, 164, -1],  // 滑动结束位置
+			]
 		}];
+
+
+
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['506'];
 
@@ -398,8 +418,44 @@ export class Func506 implements IFuncOrigin {
 			return true;
 		}
 
-		// 兼容没设置该按钮的逻辑 undefined 当true处理
-		if (thisConf && thisConf.huntBoss_switch !== false) {
+		// 处理是否下滑进入狭间的逻辑
+		if (thisConf && thisConf.huntBoss_switch === true) {
+			// 如果开启了“下滑进入狭间”开关
+			// 初始化滑动计数器，使用方括号语法避免类型错误
+			if (!thisScript.global['liao_swipe_count']) {
+				thisScript.global['liao_swipe_count'] = 0;
+			}
+
+			// 只在首次执行滑动
+			if (thisScript.global['liao_swipe_count'] < 1) {
+				// 参考 511 文件，使用 regionBezierSwipe 方法
+				// thisOperator[16] 定义了滑动操作，oper[0]是起点，oper[1]是终点
+				thisScript.regionBezierSwipe(thisOperator[16].oper[0], thisOperator[16].oper[1], [1200, 1500], 1000);
+
+				// 增加滑动计数
+				thisScript.global['liao_swipe_count']++;
+			}
+
+			// 滑动后直接检测狭间暗域
+			if (thisScript.oper({
+				name: '检测_狭间暗域是否已开启',
+				operator: [{
+					desc: thisOperator[11].desc
+				}]
+			})) {
+				if (_liao_activity_state && _liao_activity_state.narrow) {
+					return true;
+				} else {
+					return thisScript.oper({
+						name: '检测_狭间暗域是否已开启',
+						operator: [{
+							oper: thisOperator[11].oper
+						}]
+					});
+				}
+			}
+		} else {
+			// 如果关闭了“下滑进入狭间”开关，则执行首领退治逻辑
 			if (thisScript.oper({
 				name: '检测_首领退治是否已开启',
 				operator: [{
@@ -418,6 +474,8 @@ export class Func506 implements IFuncOrigin {
 				}
 			}
 		}
+
+
 
 		if (thisScript.oper({
 			name: '检测_是否为首领退治页面',
@@ -600,3 +658,5 @@ export class Func506 implements IFuncOrigin {
 		}
 	}
 }
+
+export default new Func506();

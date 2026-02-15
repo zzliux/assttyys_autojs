@@ -32,7 +32,6 @@ export class Func517 implements IFuncOrigin {
 					[
 						[right, 1226, 47, 0xcda47a],
 						[right, 1157, 45, 0xb39671],
-						[center, 389, 65, 0xfbc573],
 						[right, 1207, 637, 0xdfd1cb],
 						[right, 1034, 448, 0xfff1be],
 						[right, 1084, 450, 0x241738],
@@ -211,7 +210,26 @@ export class Func517 implements IFuncOrigin {
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
+		// 优先检测是否已经在宠物小屋界面，解决直接在小屋启动脚本的问题
+		if (thisScript.oper({
+			id: 517,
+			name: '页面为宠物小屋',
+			operator: [thisOperator[3], thisOperator[5], thisOperator[6], thisOperator[7], thisOperator[8], thisOperator[10]]
+		})) {
+			return true;
+		}
 
+		// 其次检测是否已投食，如果是则返回庭院
+		if (thisScript.oper({
+			id: 517,
+			name: '检测_已投食',
+			operator: [thisOperator[9]]
+		})) {
+			const next_scheme = '返回庭院';
+			thisScript.rerun(next_scheme);
+		}
+
+		// 然后检测是否在庭院
 		if (thisScript.oper({
 			id: 517,
 			name: '页面是否为庭院且能识别宠物屋',
@@ -265,24 +283,7 @@ export class Func517 implements IFuncOrigin {
 			return true;
 		}
 
-
-		if (thisScript.oper({
-			id: 517,
-			name: '页面为宠物小屋',
-			operator: [thisOperator[3], thisOperator[5], thisOperator[6], thisOperator[7], thisOperator[8], thisOperator[10]]
-		})) {
-			return true;
-		}
-
-		if (thisScript.oper({
-			id: 517,
-			name: '检测_已投食',
-			operator: [thisOperator[9]]
-		})) {
-			const next_scheme = '返回庭院';
-			thisScript.rerun(next_scheme);
-		}
-
+		// 最后检测宠物后庭
 		if (thisScript.oper({
 			id: 517,
 			name: '检测_宠物后庭',
@@ -290,7 +291,6 @@ export class Func517 implements IFuncOrigin {
 				desc: thisOperator[4].desc
 			}]
 		})) {
-
 			// 做延时检测 防止登陆后的弹窗
 			if (thisScript.global.checked_yard_count >= 6) {
 				thisScript.global.checked_yard_count = 0;
@@ -316,5 +316,4 @@ export class Func517 implements IFuncOrigin {
 		return false;
 	}
 }
-
 export default new Func517();
