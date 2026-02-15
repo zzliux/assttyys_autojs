@@ -24,7 +24,7 @@ export class Func517 implements IFuncOrigin {
 					]
 				],
 			oper: [
-				[right, 1280, 720, 1022, 420, 1080, 464, 1200]  //  点击宠物屋
+				[right, 1280, 720, 1022, 420, 1080, 450, 1200]  //  点击宠物屋
 			]
 		}, {	// 页面是否为庭院且能识别宠物屋(菜单未展开) 只支持默认庭院皮肤与默认装饰
 			desc:
@@ -146,7 +146,6 @@ export class Func517 implements IFuncOrigin {
 						[right, 1149, 637, 0xc0bab4],
 						[left, 118, 648, 0x3d2c1c],
 						[left, 142, 97, 0x4c3120],
-						[left, 198, 95, 0xd4ccc7],
 					]
 				],
 			oper: [
@@ -164,9 +163,6 @@ export class Func517 implements IFuncOrigin {
 						[center, 954, 698, 0x6b4232],
 						[right, 1202, 682, 0x946241],
 						[left, 34, 666, 0xd4c4a3],
-						[left, 66, 42, 0xd5c3a1],
-						[center, 378, 548, 0xe57a52],
-						[center, 835, 386, 0x9c9c7a],
 					]
 				]
 		}, {    //  式神选择弹窗
@@ -198,7 +194,22 @@ export class Func517 implements IFuncOrigin {
 						[right, 1020, 448, 0x302552],
 					]
 				]
-		}];
+		}, {
+		//  师徒界面
+			desc: [1280, 720,
+				[
+					[left, 177, 540, 0x3f3333],
+					[left, 159, 581, 0x161313],
+					[center, 383, 600, 0x472918],
+					[center, 419, 135, 0x896955],
+					[center, 533, 128, 0x312724],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 21, 16, 67, 56, 1000],
+			]
+		}
+	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 
 		if (thisScript.oper({
@@ -214,14 +225,46 @@ export class Func517 implements IFuncOrigin {
 				desc: thisOperator[11].desc
 			}]
 		})) {
-			return thisScript.oper({
+			// 1. 执行点击宠物屋
+			thisScript.oper({
 				id: 517,
 				name: '点击宠物屋',
 				operator: [{
 					oper: thisOperator[0].oper
 				}]
 			});
+
+			// 2. 识别是否是师徒界面 (thisOperator[12] 是师徒界面的定义)
+			if (thisScript.oper({
+				id: 517,
+				name: '检测师徒界面',
+				operator: [{
+					desc: thisOperator[12].desc
+				}]
+			})) {
+				// 3. 如果是师徒界面，运行师徒的oper (通常是关闭师徒界面)
+				thisScript.oper({
+					id: 517,
+					name: '师徒界面操作',
+					operator: [{
+						oper: thisOperator[12].oper
+					}]
+				});
+
+				// 4. 师徒界面处理完后，再次点击宠物屋，进入后续流程
+				return thisScript.oper({
+					id: 517,
+					name: '再次点击宠物屋',
+					operator: [{
+						oper: thisOperator[0].oper
+					}]
+				});
+			}
+
+			// 5. 如果不是师徒界面，直接返回true，继续后续流程
+			return true;
 		}
+
 
 		if (thisScript.oper({
 			id: 517,

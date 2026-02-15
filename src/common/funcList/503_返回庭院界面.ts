@@ -238,7 +238,13 @@ export class Func503 implements IFuncOrigin {
 			desc: '45 招募界面',
 			type: 'switch',
 			default: true,
-		}]
+		}, 	{
+			name: 'oper_46',
+			desc: '46 师徒界面',
+			type: 'switch',
+			default: true,
+		}
+		]
 	}];
 	operator: IFuncOperatorOrigin[] = [{	// 0 探索地图
 		desc: '探索地图界面',
@@ -754,6 +760,20 @@ export class Func503 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 29, 9, 65, 49, 1000],
+		]
+	}, {
+		// 46 师徒界面
+		desc: [1280, 720,
+			[
+				[left, 177, 540, 0x3f3333],
+				[left, 159, 581, 0x161313],
+				[center, 383, 600, 0x472918],
+				[center, 419, 135, 0x896955],
+				[center, 533, 128, 0x312724],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 21, 16, 67, 56, 1000],
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
