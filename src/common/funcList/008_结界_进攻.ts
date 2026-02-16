@@ -20,22 +20,20 @@ export class Func008 implements IFuncOrigin {
 			default: '2',
 			value: null,
 		}, {
-			name: 'afterCountOper',
-			desc: '执行完成的操作',
-			type: 'list',
-			data: ['停止脚本', '关闭界面', '切换方案', '九退四_切换方案', '指定方案'],
-			default: '停止脚本',
-			value: null,
+			name: 'inv',
+			desc: '有邀请横幅则优先跳转历史运行方案',
+			type: 'switch',
+			default: false,
+		}, {
+			name: 'designated_scheme',
+			desc: '优先在历史运行方案中匹配所输入的字符并切换方案,使用逗号隔断多个关键字,留空则忽略)',
+			type: 'text',
+			default: ',',
 		}, {
 			name: 'next_scheme',
 			desc: '下一个方案',
 			type: 'scheme',
-			default: '通用准备退出',
-		}, {
-			name: 'designated_scheme',
-			desc: '所指定的方案(在历史运行方案中匹配所输入的字并切换过去,可用","隔断多个关键字)',
-			type: 'text',
-			default: ',',
+			default: '__停止脚本__',
 		}, {
 			name: 'type',
 			desc: '突破类型',
@@ -89,8 +87,53 @@ export class Func008 implements IFuncOrigin {
 				[right, 1182, 648, 0x696969],
 			]
 		]
+	}, { // 3 自动接受邀请
+		desc: [1280, 720,
+			[
+				[left, 20, 254, 0x7e6750],
+				[left, 45, 248, 0xdf6e5b],
+				[left, 138, 260, 0x57b260],
+				[left, 234, 251, 0xefc791],
+				[left, 247, 269, 0x59b462],
+				[left, 255, 276, 0x86705d],
+				[left, 192, 276, 0xeadece]]
+		]
+	}, { // 4 接受一次邀请
+		desc: [1280, 720,
+			[
+				[left, 128, 255, 0x58b361],
+				[left, 45, 257, 0xdd6a59],
+				[left, 79, 222, 0xe3d3c2],
+				[left, 14, 299, 0xf1be36],
+				[left, 176, 291, 0xefe5d6],
+				[center, 454, 207, 0xf79a6b],
+				[center, 515, 220, 0x9e3925]
+			]
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
+		const thisConf = thisScript.scheme.config['8'];
+		if (thisConf.inv && thisScript.scheme.config[0].jspd_enabled_2 == false) {
+			if (thisScript.oper({
+				id: 8,
+				name: '邀请切换横幅',
+				operator: [{ desc: thisOperator[3].desc }, { desc: thisOperator[4].desc }]
+			})) {
+				const designated_scheme = String(thisConf.designated_scheme ?? '')
+					.replace(/，/g, ',')     // 把中文逗号转成英文逗号
+					.split(',')
+					.map(s => s.trim())
+					.filter(Boolean);
+				const filtered = thisScript.schemeHistory.filter(item => designated_scheme.some(word => item.schemeName.includes(word)));
+				if (filtered.length >= 1) {
+					log('筛选方案' + filtered)
+					const oper = thisOperator[0].oper[1];
+					thisScript.regionClick([oper, oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
+					thisScript.rerun(filtered[filtered.length - 1].schemeName);
+				}
+				return true;
+			}
+		}
 		if (!thisScript.oper({
 			name: '突破界面_暗_判断',
 			operator: [{ desc: thisOperator[1].desc }]
@@ -100,7 +143,6 @@ export class Func008 implements IFuncOrigin {
 		}, 0)) {
 			return false;
 		}
-		const thisConf = thisScript.scheme.config['8'];
 		let count = +thisConf.count;
 		const defaultCount = count;
 		let point = null;
@@ -135,45 +177,47 @@ export class Func008 implements IFuncOrigin {
 			thisScript.keepScreen(true);
 			console.log('结界_进攻:', count);
 			if (--count === 0) {
-				if ('停止脚本' === thisConf.afterCountOper) {
-					const oper = thisOperator[0].oper[1];
-					thisScript.regionClick([oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
-					thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-					thisScript.stop();
-				} else if ('关闭界面' === thisConf.afterCountOper) {
-					const oper = thisOperator[0].oper[1];
-					thisScript.regionClick([oper, oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
-				} else if ('切换方案' === thisConf.afterCountOper) {
-					const oper = thisOperator[0].oper[1];
-					thisScript.regionClick([oper, oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
-					thisScript.rerun(thisConf.next_scheme);
-				} else if ('九退四_切换方案' === thisConf.afterCountOper) {
-					// 此选项需在"个突_9退4_退出"里的008选择,因为"个突_9退4"视为一个整体,只需在"个突_9退4_进攻"里选择需要切换的方案即可,
-					// 无需在"个突_9退4_退出"再次设置需要切换的方案,否者会在"退出"时跳出循环或卡主
-					thisScript.rerun(thisConf.next_scheme);
-					return true;
-				} else if ('指定方案' === thisConf.afterCountOper) {
-					const oper = thisOperator[0].oper[1];
-					thisScript.regionClick([oper, oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
-					const designated_scheme = String(thisConf.designated_scheme).split(',').map(s => s.trim()).filter(Boolean);
-					if (designated_scheme.length < 1) {
-						thisScript.myToast('格式定义错误，请检查');
+				// 历史版本遗留参数的适配
+				if (thisConf.afterCountOper != null) {
+					if ('停止脚本' === thisConf.afterCountOper) {
+						const oper = thisOperator[0].oper[1];
+						thisScript.regionClick([oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
 						thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 						thisScript.stop();
-					} else {
-						const filtered = thisScript.schemeHistory.filter(item => designated_scheme.some(word => item.schemeName.includes(word)));
-						if (filtered.length < 1) {
-							thisScript.myToast('未找到指定方案，已停止');
-							thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-							thisScript.stop();
-						} else {
-							log(filtered)
-							thisScript.rerun(filtered[filtered.length - 1].schemeName);
-						}
+					} else if ('关闭界面' === thisConf.afterCountOper) {
+						const oper = thisOperator[0].oper[1];
+						thisScript.regionClick([oper, oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
+					} else if ('切换方案' === thisConf.afterCountOper) {
+						const oper = thisOperator[0].oper[1];
+						thisScript.regionClick([oper, oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
+						thisScript.rerun(thisConf.next_scheme);
+					} else if ('九退四_切换方案' === thisConf.afterCountOper) {
+						// 此选项需在"个突_9退4_退出"里的008选择,因为"个突_9退4"视为一个整体,只需在"个突_9退4_进攻"里选择需要切换的方案即可,
+						// 无需在"个突_9退4_退出"再次设置需要切换的方案,否者会在"退出"时跳出循环或卡主
+						thisScript.rerun(thisConf.next_scheme);
+						return true;
 					}
-					return true;
+				} else {
+					// 新版本
+					const designated_scheme = String(thisConf.designated_scheme ?? '')
+						.replace(/，/g, ',')     // 把中文逗号转成英文逗号
+						.split(',')
+						.map(s => s.trim())
+						.filter(Boolean);
+					const filtered = thisScript.schemeHistory.filter(item => designated_scheme.some(word => item.schemeName.includes(word)));
+					if (filtered.length < 1) {
+						log('未找到指定方案，切换至"next_scheme"');
+						const oper = thisOperator[0].oper[1];
+						thisScript.regionClick([oper, oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
+						thisScript.rerun(thisConf.next_scheme);
+					} else {
+						log('筛选方案' + filtered)
+						const oper = thisOperator[0].oper[1];
+						thisScript.regionClick([oper, oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
+						thisScript.rerun(filtered[filtered.length - 1].schemeName);
+					}
+					break;
 				}
-				break;
 			}
 		}
 		if (count < defaultCount) {

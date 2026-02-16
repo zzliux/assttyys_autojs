@@ -80,7 +80,6 @@ export type globalRootType = {
 	qiling_shop: boolean; // 契灵商店购买
 	opened_buff: boolean; // 是否已执行开启buff
 	closed_buff: boolean; // 是否已执行关闭buff
-	daily_collection: 'friend' | 'store' | 'courtyard';   //  每日奖励领取
 	huahezhan: boolean;//    是否已领取花合战
 	shangyushe: boolean;//    是否已上过预设
 	d6Loop: number;//     椒图事件点击循环数
@@ -105,9 +104,6 @@ export type globalRootType = {
 	open_only_once: boolean, // 首次启动游戏
 	fight_switch_skill: boolean, // 三号位切换技能
 	flash_time: number, // 519刷新次数
-	HJosp: boolean, // 304 osp状态
-	HJmin: number, // 304 绘卷系统刷新CD
-	HJsec: number, // 304 绘卷系统刷新CD
 	fengNa: boolean, // 302奉纳
 	finght_time: number, // 320战斗时间
 	xxxskill: number, // 寻香行技能
@@ -128,6 +124,7 @@ export type globalRootType = {
 	account_num: number, // 账号计数
 	account_state: 'login' | 'function' | 'logout',
 	function_Swith: Record<string, boolean | number>, // 小号功能记录
+	loop_add: boolean, // 循环增加
 }
 
 export const globalRoot: globalRootType = {
@@ -208,7 +205,6 @@ export const globalRoot: globalRootType = {
 	qiling_last: null,
 	opened_buff: false,
 	closed_buff: false,
-	daily_collection: 'friend',
 	huahezhan: true,
 	shangyushe: true,
 	d6Loop: 0,
@@ -233,9 +229,6 @@ export const globalRoot: globalRootType = {
 	open_only_once: false,
 	fight_switch_skill: true,
 	flash_time: 0,
-	HJosp: null,
-	HJmin: null,
-	HJsec: null,
 	fengNa: false,
 	xsFilter: {},
 	finght_time: null,
@@ -260,6 +253,7 @@ export const globalRoot: globalRootType = {
 	account_num: 0,
 	account_state: 'login',
 	function_Swith: null,
+	loop_add: true,
 }
 export type superGlobalRootType = {
 	liao_activity_Swith: Record<string, boolean>, // 寮活动记录

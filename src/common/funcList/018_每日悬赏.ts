@@ -42,7 +42,7 @@ export class Func018 implements IFuncOrigin {
 			default: false,
 		}, {
 			name: 'next_scheme',
-			desc: '下一个方案',
+			desc: '先切换至返回庭院，再由返回庭院切换至配置的目标方案',
 			type: 'scheme',
 			default: '地鬼日常',
 		}]
@@ -435,7 +435,9 @@ export class Func018 implements IFuncOrigin {
 		})) {
 			thisScript.regionClick([[1164, 116, 1189, 143, 1000]]);
 			if (thisconf && thisconf.scheme_switch_enabled) {
-				thisScript.rerun(thisconf.next_scheme);
+				thisScript.superGlobal.next_scheme_name = thisScript?.scheme?.config['16']?.next_scheme as string;
+				thisScript.rerun('返回庭院');
+				return;
 			} else {
 				thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 				thisScript.stop();

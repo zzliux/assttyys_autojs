@@ -274,6 +274,8 @@ export class Func993 implements IFuncOrigin {
 					[center, 447, 465, 0xcbb59e],
 					[center, 582, 412, 0xdf6851],
 					[center, 782, 410, 0xf4b25f],
+					[right, 1153, 40, 0x594938], // 限制庭院背景
+					[right, 1220, 36, 0x574836], // 按理说只有重启游戏才有此选项
 				],
 			],
 			oper: [
@@ -509,7 +511,6 @@ export class Func993 implements IFuncOrigin {
 					}
 					if (thisConf.scheme_switch_enabled) {
 						thisScript.rerun(thisConf.next_scheme);
-						sleep(3000);
 						return true;
 					} else {
 						thisScript.global.open_only_once = true;
@@ -757,7 +758,7 @@ export class Func993 implements IFuncOrigin {
 
 			//	游戏区域状态不为空
 			if (thisScript.global.game_area) {
-				// 检测是否有皮肤广告	误触太多了，关了
+				// 检测是否有皮肤广告
 				const point = thisScript.findMultiColor('皮肤广告关闭按钮');
 				if (point) {
 					console.log('识别广告关闭按钮成功');

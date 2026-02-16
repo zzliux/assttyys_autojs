@@ -62,6 +62,19 @@ export class Func000 implements IFuncOrigin {
 			default: 20,
 		}]
 	}, {
+		desc: '循环次数判断,停止脚本',
+		config: [{
+			name: 'loop_enabled',
+			desc: '是否启用',
+			type: 'switch',
+			default: false,
+		}, {
+			name: 'loop_times',
+			desc: '执行次数',
+			type: 'integer',
+			default: 20,
+		}]
+	}, {
 		desc: '脚本停止后结束应用，需配置关联应用，本功能需root',
 		config: [{
 			name: 'stop_with_launched_app_exit',
@@ -165,6 +178,24 @@ export class Func000 implements IFuncOrigin {
 			if (thisScript.runTimes['2'] !== thisScript.global.currentRunTimes['2']) {
 				thisScript.global.currentRunTimes['2'] = thisScript.runTimes['2'];
 				thisScript.myToast(`退出结算已执行${thisScript.runTimes['2']}次, 继续执行${+thisconf.jspd_times_2 - thisScript.runTimes['2']}次后结束`);
+			}
+		}
+		if (thisconf.loop_enabled) {
+			if (thisScript.global.loop_add) {
+				const filtered = thisScript.schemeHistory.map(item => item.schemeName)
+				const last = filtered[filtered.length - 1];
+				let count = 0;
+				for (const item of filtered) {
+					if (item === last) count++;
+				}
+				if (count > (thisconf.loop_times as number)) {
+					thisScript.myToast(`循环${thisconf.loop_times}次后停止脚本`);
+					thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+					thisScript.stop();
+					return true;
+				}
+				thisScript.myToast(`已循环完成${--count}次, 继续执行${thisconf.loop_times as number - count}次后结束`);
+				thisScript.global.loop_add = false;
 			}
 		}
 		if (thisconf.pause_enabled) {
