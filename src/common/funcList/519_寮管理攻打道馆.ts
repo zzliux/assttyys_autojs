@@ -27,6 +27,11 @@ export class Func519 implements IFuncOrigin {
 			type: 'integer',
 			default: 0,
 		}, {
+			name: 'max_people',
+			desc: '忽略高于X的‘人数’',
+			type: 'integer',
+			default: 999,
+		}, {
 			name: 'day',
 			desc: '星期567不进入',
 			type: 'switch',
@@ -295,6 +300,9 @@ export class Func519 implements IFuncOrigin {
 						result[i] = 0;
 					}
 					if (result[i] < thisConf.people) {
+						result[i] = 0;
+					}
+					if (result[i] > thisConf.max_people) {
 						result[i] = 0;
 					}
 				}

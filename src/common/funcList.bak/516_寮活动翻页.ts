@@ -52,7 +52,6 @@ export class Func516 implements IFuncOrigin {
 			}
 			if (leftTimes == 0) {
 				thisScript.global.liao_activity_page_flag = 0;
-
 				if ('停止脚本' === thisConf.afterCountOper) {
 					thisScript.doPush(thisScript, { text: `寮活动翻页次数已达到限制次数${defaultCount}，脚本已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 					thisScript.stop();
@@ -62,6 +61,17 @@ export class Func516 implements IFuncOrigin {
 					thisScript.global.liao_activity_page_flag = defaultCount;
 					return false;
 				}
+			} else if (leftTimes == 1) {
+				thisScript.superGlobal.liao_activity_Swith = {
+					...thisScript.superGlobal.liao_activity_Swith,
+					'a_ctivity_dojo': false,
+					'a_ctivity_dojo_again': false,
+					'a_ctivity_hunt': false,
+					'a_ctivity_narrow': false,
+					'a_ctivity_banquet': false,
+					'a_ctivity_huntBoss': false,
+				};
+				return true
 			}
 
 			if (thisScript.global.liao_activity_page_flag % 2 === 1) {
@@ -72,7 +82,7 @@ export class Func516 implements IFuncOrigin {
 			} else {
 				// thisScript.regionBezierSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [1200, 1500], 1000);
 				// 由原来的上下滑动修改为返回上一级
-				const r = random(2000, 10000);
+				const r = random(8000, 10000);
 				thisScript.myToast(`未找到已开启寮活动，等待${Math.round(r / 1000)}秒后再次检测`);
 				thisScript.regionClick([thisOperator[0].oper[2]], 2000);
 				sleep(r);

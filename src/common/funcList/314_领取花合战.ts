@@ -60,7 +60,7 @@ export class Func314 implements IFuncOrigin {
 			1280, 720,
 			[
 				[center, 792, 616, 0xd9c0b7],
-				[center, 822, 606, 0xfc0101],
+				[center, 822, 606, 0xef1717],
 				[center, 800, 628, 0xb24343],
 				[center, 820, 645, 0xf4ecc7],
 				[center, 790, 648, 0xa8918c],

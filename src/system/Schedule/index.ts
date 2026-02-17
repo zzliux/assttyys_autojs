@@ -2,7 +2,6 @@ import type { RepeatModeType, StatusType } from './type';
 import { deepClone } from '@/common/tool';
 import { getNextByCron } from '@/common/toolCron';
 import { myToast } from '@/common/toolAuto';
-
 export class JobOptions {
 
 	id?: number;

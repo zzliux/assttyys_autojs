@@ -1495,6 +1495,9 @@ export const versionList = [{
 1106_每周两次真蛇: 优化退出逻辑,
 内置方案修复: "每周真蛇", 要用请删除旧方案后重新添加`,
 }, {
+	version: '20260127_01',
+	desc: '新增：522寮招募',
+}, {
 	version: '20260128_01',
 	desc: `合并kk_dev部分功能(
 002默认改为缩小区域
@@ -1505,5 +1508,9 @@ export const versionList = [{
 099只玩奖励次数
 302适配五星折叠
 304修复逻辑错误)`,
+}, {
+	version: '20260217_01',
+	desc: `新年好！
+修复: 401对弈竞猜庭院右侧活动不翻页问题，误识别体服问题`
 }];
 export default versionList[versionList.length - 1].version;

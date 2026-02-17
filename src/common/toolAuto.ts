@@ -406,8 +406,16 @@ export function doPush(thisScript: Script, options: {
 }): void {
 	const pushClient = getPushClient();
 	if (!pushClient) {
+		const uri = android.media.RingtoneManager.getDefaultUri(
+			android.media.RingtoneManager.TYPE_NOTIFICATION
+		);
+
+		if (uri) {
+			const ringtone = android.media.RingtoneManager.getRingtone(context, uri);
+			ringtone.play();
+		}
 		console.log('未配置推送类型，不推送');
-		thisScript.myNotification('Assttyys通知', options.text);
+		// thisScript.myNotification('Assttyys通知', options.text);
 		return;
 	}
 	console.log(`尝试使用${pushClient.name}推送`);

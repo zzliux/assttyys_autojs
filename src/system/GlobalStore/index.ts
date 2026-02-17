@@ -45,8 +45,14 @@ export type globalRootType = {
 	narrow_state: Record<string, boolean>,   //  狭间暗域状态
 	narrow_time: number, // 狭间暗域自定义3D人物走路时等待时间
 	narrow_mode: boolean,
+	recruitCount?: number, // 招募点击计数
+	recruitClickedY?: number[], // 招募已点击的Y坐标
+	lastRecruitFinishTime?: number | null, // 招募完成点击的时间戳
+	recruitHasScrolled?: boolean, // 是否已翻页
 	liao_activity_page_flag: number,   //  寮活动翻页标记
 	liao_activity_Swith: Record<string, boolean>, // 寮活动记录
+	liao_banquet_collect: boolean,   //  宴会筹备状态
+	liao_banquet_onGoing: boolean,   //  宴会进行状态
 	banquet_change_flag: boolean,   //  宴会轮换开关标识
 	gateOfHades_state: boolean,     //  阴门状态
 	team_up_lagTime: null | Date,    // 组队延时
@@ -117,7 +123,11 @@ export type globalRootType = {
 	zhenShe: number, // 真蛇
 	sneak_level_open: boolean, // 选择层数
 	day_chouKa: boolean, // 每日抽卡
-
+	shiHe_jingYan: boolean, // 食盒经验领取上限
+	xianShiFengMo: number,
+	account_num: number, // 账号计数
+	account_state: 'login' | 'function' | 'logout',
+	function_Swith: Record<string, boolean | number>, // 小号功能记录
 }
 
 export const globalRoot: globalRootType = {
@@ -167,6 +177,10 @@ export const globalRoot: globalRootType = {
 	narrow_state: undefined,
 	narrow_time: 0,
 	narrow_mode: false,
+	recruitCount: 0,
+	recruitClickedY: [],
+	lastRecruitFinishTime: null,
+	recruitHasScrolled: false,
 	liao_activity_page_flag: 0,
 	liao_activity_Swith: undefined,
 	banquet_change_flag: false,
@@ -239,6 +253,13 @@ export const globalRoot: globalRootType = {
 	sneak_level_open: true,
 	day_chouKa: true,
 	qiling_shop: false,
+	shiHe_jingYan: false,
+	liao_banquet_collect: false,
+	liao_banquet_onGoing: true,
+	xianShiFengMo: 0,
+	account_num: 0,
+	account_state: 'login',
+	function_Swith: null,
 }
 export type superGlobalRootType = {
 	liao_activity_Swith: Record<string, boolean>, // 寮活动记录

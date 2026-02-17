@@ -49,16 +49,16 @@ export const mergeScheduleList = (savedScheduleList, innerScheduleList) => {
 }
 
 function deepClone<T>(obj: T): T {
-    if (!obj && typeof obj !== "object") {
-        throw new Error("error arguments deepClone");
-    }
-    const targetObj = obj.constructor === Array ? [] : {};
-    Object.keys(obj).forEach(keys => {
-        if (obj[keys] && typeof obj[keys] === "object") {
-            targetObj[keys] = deepClone(obj[keys]);
-        } else {
-            targetObj[keys] = obj[keys];
-        }
-    });
-    return targetObj as T;
+	if (!obj && typeof obj !== "object") {
+		throw new Error("error arguments deepClone");
+	}
+	const targetObj = obj.constructor === Array ? [] : {};
+	Object.keys(obj).forEach(keys => {
+		if (obj[keys] && typeof obj[keys] === "object") {
+			targetObj[keys] = deepClone(obj[keys]);
+		} else {
+			targetObj[keys] = obj[keys];
+		}
+	});
+	return targetObj as T;
 }

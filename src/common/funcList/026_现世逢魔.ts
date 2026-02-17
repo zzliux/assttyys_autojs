@@ -13,8 +13,7 @@ export class Func026 implements IFuncOrigin {
 	id = 26;
 	name = '现世逢魔';
 	desc = '逢魔界面点击右下角的图标后点击右侧相关事件图标';
-	operator: IFuncOperatorOrigin[] = [{
-		// 现世逢魔首页
+	operator: IFuncOperatorOrigin[] = [{ // 0 现世逢魔首页
 		desc: [1280, 720,
 			[
 				[left, 19, 700, 0x3c3841],
@@ -27,10 +26,10 @@ export class Func026 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1157, 616, 1202, 666, 5000], // 发现
 		]
-	}, {
+	}, { // 1次逢魔
 		desc: [1280, 720,
-			// 4次逢魔
-			[[right, 1240, 505, 0x8ebaf3],
+			[
+				[right, 1240, 505, 0x8ebaf3],
 				[right, 1220, 430, 0x91bbf3],
 				[right, 1246, 371, 0x8cb9f3],
 				[right, 1226, 310, 0x8fbdf1],]
@@ -41,18 +40,19 @@ export class Func026 implements IFuncOrigin {
 			[right, 1280, 720, 1243, 360, 1256, 378, 3000],
 			[right, 1280, 720, 1219, 298, 1235, 315, 3000],
 		]
-	}, {
+	}, { // 2 最后一次奖励
 		desc: [1280, 720,
-			// 最后一次奖励
-			[[right, 1243, 264, 0x5c4a6f],
+			[
+				[right, 1243, 264, 0x5c4a6f],
 				[right, 1224, 262, 0x5e4c6c]]
 		],
 		oper: [
 			[right, 1280, 720, 1223, 208, 1246, 251, 1500]
 		]
-	}, { // 花钱的宝箱都不领
+	}, { // 3 花钱的宝箱都不领
 		desc: [1280, 720,
-			[[left, 45, 48, 0x655e44],
+			[
+				[left, 45, 48, 0x655e44],
 				[center, 436, 338, 0xcbb59e],
 				[center, 803, 342, 0xcbb59e],
 				[center, 578, 444, 0xf4b25f],
@@ -62,10 +62,10 @@ export class Func026 implements IFuncOrigin {
 		oper: [
 			[left, 1280, 720, 69, 171, 170, 452, 500]
 		]
-	}, {
-		// 神秘任务_不做
+	}, { // 4 神秘任务_不做
 		desc: [1280, 720,
-			[[left, 45, 48, 0x655e44],
+			[
+				[left, 45, 48, 0x4a4532],
 				[center, 650, 140, 0xcaa85d],
 				[center, 846, 132, 0xe8d4cf],
 				[center, 564, 339, 0x86201f],
@@ -74,8 +74,7 @@ export class Func026 implements IFuncOrigin {
 		oper: [
 			[left, 1280, 720, 69, 171, 170, 452, 500]
 		]
-	}, {
-		// 鬼王_挑战
+	}, { // 5 鬼王_挑战
 		desc: [
 			1280, 720,
 			[
@@ -94,7 +93,7 @@ export class Func026 implements IFuncOrigin {
 			[center, 1280, 720, 1075, 550, 1150, 631, 1000]
 		]
 	},
-	{	//	检测_逢魔界面 逢魔·极
+	{	//	6 检测_逢魔界面 逢魔·极
 		desc: [
 			1280, 720,
 			[
@@ -109,28 +108,43 @@ export class Func026 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 478, 554, 828, 620, 1200]	//	点击 空白处
 		]
+	}, { // 7 现世逢魔_四次位置
+		oper: [
+			[center, 1280, 720, 1227, 499, 1264, 523, 1000],
+			[center, 1280, 720, 1210, 427, 1235, 448, 1000],
+			[center, 1280, 720, 1240, 363, 1259, 384, 1000],
+			[center, 1280, 720, 1217, 304, 1241, 325, 1000],
+		]
+	}, { // 8 现世逢魔_发现
+		desc: [1280, 720,
+			[
+				[right, 1223, 303, 0x8db7f1],
+				[right, 1228, 299, 0x96bdf2],
+				[right, 1235, 307, 0xc7ddfd],
+				[right, 1226, 313, 0x8bbff0],
+				[right, 1227, 318, 0x88d0ed],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1165, 628, 1202, 670, 3000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-
+		if (thisScript.oper({
+			name: '发现',
+			operator: [thisOperator[8]]
+		})) {
+			return true;
+		}
 		if (thisScript.oper({
 			name: '现世逢魔_界面判断',
 			operator: [{ desc: thisOperator[0].desc }]
 		})) {
-			for (let i = 0; i < thisOperator[1].desc.length; i++) {
-				if (thisScript.oper({
-					name: `现世逢魔_第${i}次`,
-					operator: [{
-						desc: [thisOperator[1].desc[i] as [number, number, number, number]],
-						oper: [
-							thisOperator[0].oper[0],
-							thisOperator[1].oper[i]
-						]
-					}]
-				})) {
-					return true;
-				}
+			if (thisScript.global.xianShiFengMo < 4) {
+				thisScript.regionClick([thisOperator[7].oper[thisScript.global.xianShiFengMo]]);
+				thisScript.global.xianShiFengMo++;
+				return true;
 			}
-
 			if (!thisScript.oper({
 				name: '现世逢魔_最后一次奖励',
 				operator: [{

@@ -696,6 +696,22 @@ export class Func518 implements IFuncOrigin {
 					[right, 1160, 681, 0x831f1f],
 				]
 			],
+		}, { // 48 礼包屋-限时页签有三小选项
+			desc: [1280, 720,
+				[
+					[left, 30, 26, 0xf6e9ab],
+					[right, 1226, 130, 0xffe3b6],
+					[right, 1131, 687, 0xe9c160],
+					[right, 1148, 665, 0x842121],
+					[right, 1195, 675, 0xd2ab51],
+					[right, 1227, 220, 0xffeece],
+					[right, 1228, 297, 0xcdae8b],
+					[right, 1211, 384, 0xd2b699],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 1194, 459, 1229, 494, 1000],
+			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -887,6 +903,7 @@ export class Func518 implements IFuncOrigin {
 					thisOperator[45], //  拓展包关闭
 					thisOperator[31], //  检测_商店主页
 					thisOperator[34], //  检测_好友羁绊
+					thisOperator[48], //  检测_商店_礼包屋_热卖页签
 					thisOperator[35], //  检测_商店_礼包屋_热卖页签
 					thisOperator[37], //  检测_商店_热门推荐_另一种适配
 					thisOperator[38], //  检测是否为好友弹窗 页签处于最近

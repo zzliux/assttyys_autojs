@@ -109,6 +109,7 @@ export default function webviewSchedule() {
 				nextDate: new Date(job.nextDate),
 				runningCallback() {
 					updateJobStore(this);
+					script.isPause = false;
 					script.setCurrentScheme(job.config.scheme);
 					script.launchRelatedApp();
 					script.rerunWithJob(this);

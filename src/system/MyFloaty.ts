@@ -4,6 +4,7 @@ import schemeDialog from '@/system/schemeDialog';
 import script from '@/system/script';
 import { showScheduleDialog } from '@/system/Schedule/scheduleDialog';
 import { storeCommon } from '@/system/Store/store';
+// import { myToast } from '@/common/toolAuto';
 
 /**
  * 悬浮按钮，对大柒的悬浮按钮进行封装

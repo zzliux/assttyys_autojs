@@ -13,7 +13,7 @@ import { setCurrentScheme } from '@/common/tool';
 import { getWidthPixels, getHeightPixels } from '@auto.pro/core';
 import schemeDialog from './schemeDialog';
 import drawFloaty from '@/system/drawFloaty';
-import { myToast, doPush, questionSearch, search, myNotification } from '@/common/toolAuto';
+import { myToast, doPush, questionSearch, search } from '@/common/toolAuto';
 import { IFunc, IFuncOrigin } from '@/interface/IFunc';
 import { IScheme } from '@/interface/IScheme';
 import { IMultiDetectColors, IMultiFindColors } from '@/interface/IMultiColor';
@@ -61,9 +61,10 @@ export class Script {
 
 	/**
 	 * @deprecated
-	 * @description 方案运行中参数，已废弃，请使用superGlobal替代
+	 * @description 方案运行中参数
 	 */
 	runtimeParams: Record<string, unknown> | null;
+
 
 	// 设备信息
 	device: any;
@@ -85,17 +86,6 @@ export class Script {
 	 * @param {string}str
 	 */
 	myToast: (str: string, duration?: number) => void;
-
-	/**
-		 * @description 通知弹窗
-		 * @param {string}str
-		 */
-	myNotification: (
-		title: string,
-		text: string,
-		onClick?: () => void,
-		onLongClick?: () => void
-	) => void;
 
 	constructor() {
 		this.runThread = null;
@@ -125,7 +115,6 @@ export class Script {
 		this.storeCommon = storeCommon;
 		this.doPush = doPush;
 		this.myToast = myToast;
-		this.myNotification = myNotification;
 		this.schedule = schedule;
 	}
 
@@ -375,16 +364,15 @@ export class Script {
 	 * @param {Boolean} multiRegion 给true的话表示inRegion为region的数组
 	 * @returns
 	 */
-	findMultiColor(key: string, inRegion?: any, multiRegion?: boolean, openmisalignedMatch?: boolean, noLog?: boolean) {
+	findMultiColor(key: string, inRegion?: any, multiRegion?: boolean, noLog?: boolean) {
 		this.initRedList();
 		if (!multiRegion) {
 			const region = inRegion || this.multiFindColors[key].region;
 			const desc = this.multiFindColors[key].desc;
 			const similar = this.multiFindColors[key].similar || this.scheme.commonConfig.multiColorSimilar
-			const misalignedMatch = openmisalignedMatch !== undefined ? openmisalignedMatch : true;
 			for (let i = 0; i < desc.length; i++) {
 				const item = desc[i];
-				const point = this.helperBridge.helper.FindMultiColor(region[0], region[1], region[2], region[3], item, similar, misalignedMatch);
+				const point = this.helperBridge.helper.FindMultiColor(region[0], region[1], region[2], region[3], item, similar, true);
 				if (point.x !== -1) {
 					if (!noLog) {
 						console.log(`[${key}]第${i}个查找成功， 坐标为：(${point.x}, ${point.y})`);
@@ -440,7 +428,7 @@ export class Script {
 	* @param {Region} inRegion 多点找色区域
 	* @returns
 	*/
-	findMultiColorEx(key, inRegion?,): Point[] {
+	findMultiColorEx(key, inRegion?): Point[] {
 		this.initRedList();
 		const region = inRegion || this.multiFindColors[key].region;
 		const desc = this.multiFindColors[key].desc;
@@ -751,7 +739,7 @@ export class Script {
 				this.stop();
 				return true;
 			} else {
-				this.setCurrentScheme(schemeName as string, );
+				this.setCurrentScheme(schemeName as string, params);
 				this.myToast(`切换方案为[${schemeName}]`);
 			}
 		}
@@ -906,6 +894,7 @@ export class Script {
 		if (storeSettings.defaultLaunchAppList && storeSettings.defaultLaunchAppList.length) {
 			const packageName = storeSettings.defaultLaunchAppList[0]
 			console.log(`正在启动应用${packageName}`);
+			device.wakeUpIfNeeded()
 			app.launchPackage(packageName);
 		} else {
 			myToast('未配置关联应用，不启动');

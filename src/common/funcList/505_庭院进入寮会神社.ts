@@ -48,8 +48,9 @@ export class Func505 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 868, 627, 927, 684, 1200]	// 点击下方神社
-		]
-	},	{ // 判断是否为神社页面
+		],
+		retest: 1000
+	}, { // 判断是否为神社页面
 		desc: [
 			1280, 720,
 			[

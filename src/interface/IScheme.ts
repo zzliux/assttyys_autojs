@@ -13,7 +13,7 @@ export interface IScheme {
     list: number[];
     config?: {
         [key: number]: {
-            [key: string]: string | boolean | number
+            [key: string]: string | boolean | number | string[]
         }
     };
     commonConfig?: {

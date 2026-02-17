@@ -190,39 +190,6 @@ const SchemeList: IScheme[] = [
 		list: [3, 22],
 	},
 	{
-		id: 13,
-		groupNames: ['切换方案样例'],
-		schemeName: '例_个人探索30次_转个人突破',
-		star: true,
-		list: [0, 1, 2, 3, 13, 14],
-		config: {
-			'0': {
-				jspd_enabled_2: true,
-				jspd_times_2: 30,
-				after_operation: '切换方案',
-				next_scheme: '例_个人突破_结束后转寮突破',
-			},
-		},
-	},
-	{
-		id: 14,
-		groupNames: ['切换方案样例'],
-		schemeName: '例_个人突破_结束后转寮突破',
-		star: true,
-		list: [0, 1, 2, 3, 7, 10, 8, 9, 11, 25],
-		config: {
-			'8': {
-				count: '2',
-				afterCountOper: '切换方案',
-				type: '个人突破',
-				next_scheme: '寮突破',
-			},
-			'10': {
-				type: '个人突破',
-			},
-		},
-	},
-	{
 		id: 15,
 		schemeName: '组队_自动匹配流程',
 		star: true,
@@ -624,26 +591,6 @@ const SchemeList: IScheme[] = [
 		},
 	},
 	{
-		id: 57,
-		groupNames: ['组队循环示例'],
-		schemeName: '组队队长创建和邀请',
-		list: [0, 27, 306],
-		commonConfig: {
-			colorSimilar: 91,
-		},
-	},
-	{
-		id: 58,
-		groupNames: ['组队循环示例'],
-		schemeName: '组队队员接受邀请',
-		list: [4],
-		config: {
-			'4': {
-				exit: true,
-			},
-		},
-	},
-	{
 		id: 59,
 		schemeName: '强化御魂',
 		list: [0, 303, 309],
@@ -859,6 +806,18 @@ const SchemeList: IScheme[] = [
 		id: 77,
 		schemeName: '宴会筹备',
 		list: [0, 2, 520, 29],
+	}, {
+		id: 78,
+		schemeName: '每周资源领取',
+		list: [0, 24, 1100, 1101, 1102, 503],
+		config: {
+			0: {
+				jspd_times_longtime_nodo: '1',
+			},
+			'503': {
+				afterCountOper: '不进行任何操作',
+			}
+		}
 	},
 	{
 		id: 78,

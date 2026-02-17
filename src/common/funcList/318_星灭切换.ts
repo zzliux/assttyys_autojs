@@ -9,17 +9,17 @@ const right = 2;
 export class Func318 implements IFuncOrigin {
 	id = 318;
 	name = '星灭切换';
-	desc = '必须带普通的镇墓兽契灵，只有晴明会二三技能切换，其他阴阳师不会';
-	operator: IFuncOperatorOrigin[] = [{ // 0 契灵
+	desc = '';
+	operator: IFuncOperatorOrigin[] = [{ // 0 阴阳师行动
 		desc: [
 			1280, 720,
 			[
-				[right, 1146, 476, 0x231a23],
-				[right, 1162, 471, 0xfffffc],
-				[right, 1174, 472, 0x675f58],
-				[right, 1173, 487, 0xf2eadb],
-				[right, 1163, 495, 0x8a878e],
-				[right, 1189, 480, 0x6bffff],
+				[right, 1185, 644, 0xb17148],
+				[right, 1261, 644, 0xa6694d],
+				[right, 1216, 596, 0xfffbdf],
+				[right, 1235, 592, 0xfffade],
+				[right, 1207, 616, 0xffffe9],
+				[right, 1239, 616, 0xffffe5],
 			]
 		],
 		oper: [
@@ -47,12 +47,12 @@ export class Func318 implements IFuncOrigin {
 				[right, 965, 506, 0x1f214e],
 				[center, 928, 514, 0x383a91],
 				[center, 938, 504, 0xf4feff],
-				[center, 897, 445, 0xc79b56],
-				[right, 1250, 442, 0x9c6331],
-				[right, 1263, 445, 0xb18245],
-				[right, 1266, 454, 0xb48446],
-				[right, 1265, 555, 0xb3894c],
-				[center, 904, 546, 0xb58447],
+				[center, 897, 445, 0xc79a54],
+				[right, 1250, 442, 0xb38140],
+				[right, 1263, 445, 0xb5864a],
+				[right, 1266, 454, 0xac7f44],
+				[right, 1265, 555, 0xbd9250],
+				[center, 904, 546, 0xb18349],
 			]
 		]
 	}, { // 4 未弹起的技能框和 技能坐标
@@ -74,15 +74,26 @@ export class Func318 implements IFuncOrigin {
 			[center, 1280, 720, 1011, 481, 1051, 518, 1000], // 2技能
 			[center, 1280, 720, 1099, 482, 1145, 519, 1000], // 3技能
 		]
+	}, { // 5 非晴明阴阳师，并且单技能
+		desc: [1280, 720,
+			[
+				[right, 996, 448, 0xbc914f],
+				[right, 1267, 450, 0xb78347],
+				[right, 1266, 555, 0xb38245],
+				[right, 996, 546, 0xaa7743],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1201, 643, 1245, 682, 0],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
-			id: 318,
 			name: '战斗界面',
 			operator: [thisOperator[1]]
 		}) && thisScript.oper({
 			id: 318,
-			name: '契灵行动',
+			name: '阴阳师行动',
 			operator: [thisOperator[0]]
 		})) {
 			return true;
@@ -92,7 +103,7 @@ export class Func318 implements IFuncOrigin {
 			name: '技能框',
 			operator: [thisOperator[3]]
 		})) {
-			sleep(1000);
+			sleep(200);
 			if (thisScript.oper({
 				id: 318,
 				name: '锁定妖术二中,切换为妖术三',
@@ -102,6 +113,13 @@ export class Func318 implements IFuncOrigin {
 			} else {
 				thisScript.regionClick([thisOperator[4].oper[0]]);
 			}
+			return true;
+		}
+		if (thisScript.oper({
+			id: 318,
+			name: '单技能框',
+			operator: [thisOperator[5]]
+		})) {
 			return true;
 		}
 		if (thisScript.oper({

@@ -108,7 +108,6 @@ export class Func311 implements IFuncOrigin {
 		if (thisScript.global.redFlag) {
 			return false;
 		}
-
 		if (
 			thisScript.oper({
 				name: '红标-战斗界面检测',
@@ -142,7 +141,6 @@ export class Func311 implements IFuncOrigin {
 				];
 				sleep(1000);
 				console.log('[红标]--点击坐标为', toClick);
-
 				// 点一次 需要准备方案重置才能再次点击
 				thisScript.global.redFlag = true;
 				thisScript.regionClick([toClick]);
@@ -176,31 +174,81 @@ export class Func311 implements IFuncOrigin {
 					name: '红标-行动条检测',
 					operator: [thisOperator[4], thisOperator[5]],
 				})) {
-					const point = thisScript.findMultiColor('神荒')
+					let point = thisScript.findMultiColor('腐血', null, false, false)
+					if (point) {
+						console.log('开局查找到腐血');
+						const point_blood = thisScript.findMultiColorEx('红标_血条')
+						const operList = [];
+						for (const flagPoint of point_blood) {
+							if (point.x > flagPoint.x + 4 && point.x < flagPoint.x + 115) {
+								operList.push(flagPoint);
+							}
+						}
+						operList.sort((a, b) => b.y - a.y); // 从大到小排序
+						if (operList.length > 1 && point.y < operList[1].y) {
+							// 点击阴阳师位置
+							const oper = [
+								operList[1].x + 35,
+								operList[1].y + 42,
+								operList[1].x + 40,
+								operList[1].y + 45,
+								1000
+							];
+							log('点击阴阳师位置')
+							thisScript.regionClick([oper]);
+							thisScript.global.redFlag = true;
+						} else if (operList.length > 0) {
+							const oper = [
+								operList[0].x + 35,
+								operList[0].y + 60,
+								operList[0].x + 40,
+								operList[0].y + 80,
+								1000
+							];
+							log('点击式神位置')
+							thisScript.regionClick([oper]);
+							thisScript.global.redFlag = true;
+						}
+						return true;
+					}
+					point = thisScript.findMultiColor('神荒', null, false, false)
 					if (point) {
 						console.log('开局查找到神荒');
 						const point_blood = thisScript.findMultiColorEx('红标_血条')
 						const operList = [];
 						for (const flagPoint of point_blood) {
-							if (flagPoint.x < point.x + 60 && flagPoint.x > point.x - 60) {
+							if (point.x > flagPoint.x + 4 && point.x < flagPoint.x + 115) {
 								operList.push(flagPoint);
 							}
 						}
-						operList.sort((a, b) => b.y - a.y);
-						if (operList.length > 0) {
-							const firstFlagPoint = operList[0];
+						operList.sort((a, b) => b.y - a.y); // 从大到小排序
+						if (operList.length > 1 && point.y < operList[1].y) {
+							// 点击阴阳师位置
 							const oper = [
-								firstFlagPoint.x - 15,
-								firstFlagPoint.y + 60,
-								firstFlagPoint.x - 5,
-								firstFlagPoint.y + 80,
+								operList[1].x + 35,
+								operList[1].y + 42,
+								operList[1].x + 40,
+								operList[1].y + 45,
 								1000
 							];
+							log('点击阴阳师位置')
 							thisScript.regionClick([oper]);
+							thisScript.global.redFlag = true;
+						} else if (operList.length > 0) {
+							const oper = [
+								operList[0].x + 35,
+								operList[0].y + 60,
+								operList[0].x + 40,
+								operList[0].y + 80,
+								1000
+							];
+							log('点击式神位置')
+							thisScript.regionClick([oper]);
+							thisScript.global.redFlag = true;
 						}
-						thisScript.global.redFlag = true;
 						return true;
 					}
+					thisScript.global.redFlag = true;
 				}
 			}
 			return false;

@@ -105,7 +105,6 @@ export class Func001 implements IFuncOrigin {
 					oper: [thisOperator[1].oper[0]]
 				}))
 			}, 1000)) {
-
 				// 每点一次准备 重置一次红标状态
 				if (thisScript.global.redFlag) {
 					thisScript.global.redFlag = false;
