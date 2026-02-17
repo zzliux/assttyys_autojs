@@ -1512,5 +1512,8 @@ export const versionList = [{
 	version: '20260217_01',
 	desc: `新年好！
 修复: 401对弈竞猜庭院右侧活动不翻页问题，误识别体服问题`
+}, {
+  version: '20260217_02',
+  desc: '修复：每日一抽功能，添加寮活动自动翻页功能',
 }];
 export default versionList[versionList.length - 1].version;
