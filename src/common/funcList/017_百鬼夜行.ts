@@ -1,5 +1,7 @@
 import { Script } from '@/system/script';
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
+import drawFloaty from '@/system/drawFloaty';
+import { getBgyxDetector } from '../toolAuto';
 // const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -12,6 +14,13 @@ export class Func017 implements IFuncOrigin {
 	config = [{
 		desc: '',
 		config: [{
+			name: 'mode',
+			desc: '模式',
+			type: 'list',
+			data: ['普通模式', '调试模式'],
+			default: '普通模式',
+			value: null,
+		}, {
 			name: 'bossPosition',
 			desc: '选择第几个鬼王',
 			type: 'list',
@@ -189,30 +198,57 @@ export class Func017 implements IFuncOrigin {
 		})) {
 			return true;
 		}
-		if (thisScript.oper({
-			id: 17,
-			name: '百鬼夜行_随机散豆_拖10豆',
-			operator: [{
-				desc: thisOperator[0].desc
-			}]
-		})) {
-			thisScript.regionSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [100, 300], 200);
-			return true;
-		}
-		if (thisScript.oper({
-			id: 17,
-			name: '百鬼夜行_随机散豆',
-			operator: [{ desc: thisOperator[2].desc }]
-		})) {
-			const point = thisScript.findMultiColor('百鬼夜行_BUFF');
-			if (point) {
+		// if (thisScript.oper({
+		// 	id: 17,
+		// 	name: '百鬼夜行_随机散豆_拖10豆',
+		// 	operator: [{
+		// 		desc: thisOperator[0].desc
+		// 	}]
+		// })) {
+		// 	thisScript.regionSwipe(thisOperator[0].oper[0], thisOperator[0].oper[1], [100, 300], 200);
+		// 	return true;
+		// }
 
-				thisScript.global.xxxskill = 2;
-				thisScript.regionClick([[point.x, point.y, point.x + 15, point.y + 15, 500]]);
+		if ((thisconf && thisconf.mode === '普通模式') || !thisconf.mode) {
+			if (thisScript.oper({
+				id: 17,
+				name: '百鬼夜行_随机散豆',
+				operator: [{ desc: thisOperator[2].desc }]
+			})) {
+				const point = thisScript.findMultiColor('百鬼夜行_BUFF');
+				if (point) {
+					thisScript.global.xxxskill = 2;
+					thisScript.regionClick([[point.x, point.y, point.x + 15, point.y + 15, 500]]);
+					return true;
+				}
+				thisScript.regionClick(thisOperator[2].oper);
 				return true;
 			}
-			thisScript.regionClick(thisOperator[2].oper);
-			return true;
+		} else if (thisconf.mode === '调试模式') {
+			if (thisScript.oper({
+				id: 17,
+				name: '百鬼夜行_随机散豆_调试模式',
+				operator: [{ desc: thisOperator[2].desc }]
+			})) {
+				const bmpImage = thisScript.helperBridge.helper.GetBitmap();
+				const result = getBgyxDetector().detect(bmpImage);
+				if (drawFloaty.instacne) {
+					const toDraw = result.map(item => ({
+						region: [
+							item.location.left,
+							item.location.top,
+							item.location.right,
+							item.location.bottom
+						],
+						color: item.confidence > 0.15 ? 'green' : 'red',
+						text: `${item.rarity}_${item.characterName}: ${item.confidence}`
+					}));
+					drawFloaty.draw(toDraw, 900);
+					sleep(1000);
+				}
+				console.log(result);
+			}
+			return false;
 		}
 	}
 }

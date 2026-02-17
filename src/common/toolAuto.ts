@@ -110,70 +110,7 @@ export function myToast(str: string, duration: number = 1000): void {
 	ui.run(() => _toast(str, duration));
 	console.log(str);
 }
-export function myNotification(
-	title: string,
-	text: string,
-	onClick?: () => void,
-	onLongClick?: () => void
-): void {
-	ui.run(() => {
-		try {
-			const appContext = context.getApplicationContext();
 
-			const Notification = android.app.Notification;
-			const notificationManager = appContext.getSystemService(
-				android.content.Context.NOTIFICATION_SERVICE
-			) as any;
-
-			const channelId = 'my_channel_id';
-
-			// Android 8+ 创建渠道并设置声音
-			if (android.os.Build.VERSION.SDK_INT >= 26) {
-				const channel = new android.app.NotificationChannel(
-					channelId,
-					'Auto.js通知',
-					android.app.NotificationManager.IMPORTANCE_DEFAULT
-				);
-				const uri = android.media.RingtoneManager.getDefaultUri(android.media.RingtoneManager.TYPE_NOTIFICATION);
-				const audioAttributes = new android.media.AudioAttributes.Builder()
-					.setUsage(android.media.AudioAttributes.USAGE_NOTIFICATION)
-					.setContentType(android.media.AudioAttributes.CONTENT_TYPE_SONIFICATION)
-					.build();
-				channel.setSound(uri, audioAttributes);
-				notificationManager.createNotificationChannel(channel);
-			}
-
-			// 点击事件
-			const Intent = android.content.Intent;
-			const PendingIntent = android.app.PendingIntent;
-			const intent = new Intent(appContext, appContext.getClass());
-			const pendingIntent = PendingIntent.getActivity(appContext, 0, intent, 0);
-
-			// 构建通知
-			const builder = new Notification.Builder(appContext)
-				.setContentTitle(title)
-				.setContentText(text)
-				.setSmallIcon(android.R.drawable.ic_dialog_info)
-				.setContentIntent(pendingIntent)
-				.setAutoCancel(true);
-
-			// 低版本 Android 设置声音
-			if (android.os.Build.VERSION.SDK_INT < 26) {
-				const uri = android.media.RingtoneManager.getDefaultUri(android.media.RingtoneManager.TYPE_NOTIFICATION);
-				builder.setSound(uri);
-			}
-
-			notificationManager.notify(Math.floor(Math.random() * 10000), builder.build());
-
-			console.log(`[通知] ${title}: ${text}`);
-			if (onClick) onClick();
-			if (onLongClick) onLongClick();
-
-		} catch (e) {
-			console.error('发送通知失败:', e);
-		}
-	});
-}
 function parsePMFlags(options, def) {
 	if (!options) {
 		return def;
@@ -415,7 +352,6 @@ export function doPush(thisScript: Script, options: {
 			ringtone.play();
 		}
 		console.log('未配置推送类型，不推送');
-		// thisScript.myNotification('Assttyys通知', options.text);
 		return;
 	}
 	console.log(`尝试使用${pushClient.name}推送`);
@@ -662,4 +598,14 @@ export const setWebLoaded = (flag: boolean) => {
 
 export const getDeviceId = () => {
 	return device.getAndroidId();
+}
+
+
+let mBgyxDetector = null;
+export const getBgyxDetector = () => {
+	if (!mBgyxDetector) {
+		const plg = $plugins.load('cn.zzliux.assttyys.plugin');
+		mBgyxDetector = plg.BgyxDetector;
+	}
+	return mBgyxDetector;
 }
