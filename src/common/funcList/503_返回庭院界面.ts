@@ -530,7 +530,7 @@ export class Func503 implements IFuncOrigin {
 			[
 				[center, 811, 659, 0xc2baa2],
 				[right, 1173, 35, 0xd7af86],
-				[left, 40, 65, 0xf0f5fb],
+				[left, 45, 37, 0xf5e5a5],
 				[center, 621, 45, 0xfce5cd],
 				[right, 1094, 603, 0xfa812c],
 			]
@@ -804,15 +804,17 @@ export class Func503 implements IFuncOrigin {
 		}
 
 		// 作为保底，最低优先级
+		const { lastFuncDateTime, currentDate, runDate } = thisScript;
 		if (thisConf['oper_find_-1']) {
-			const backHomePoint = thisScript.findMultiColor('左上_返回庭院');
-			if (backHomePoint) {
-				thisScript.regionClick([[backHomePoint.x, backHomePoint.y, backHomePoint.x + 15, backHomePoint.y + 15, 1200]]);
-				thisScript.myToast('点击左上角返回庭院图标');
-				return true;
+			if (new Date().getTime() - Math.max(lastFuncDateTime?.getTime() || 0, currentDate?.getTime() || 0, runDate?.getTime() || 0) > 3000) {
+				const backHomePoint = thisScript.findMultiColor('左上_返回庭院');
+				if (backHomePoint) {
+					thisScript.regionClick([[backHomePoint.x, backHomePoint.y, backHomePoint.x + 15, backHomePoint.y + 15, 1200]]);
+					thisScript.myToast('点击左上角返回庭院图标');
+					return true;
+				}
 			}
 		}
-
 		// 查找返回图标
 		// const backPoint = thisScript.findMultiColor('返回图标');
 		// if (backPoint) {
@@ -832,19 +834,14 @@ export class Func503 implements IFuncOrigin {
 				desc: thisOperator[16].desc
 			}]
 		})) {
-
 			// 町中与庭院几乎一致。。。只能用牌子来做比较
 			if (thisScript.oper({
 				id: 503,
 				name: '旧版町中界面',
-				operator: [{
-					desc: thisOperator[4].desc,
-					oper: thisOperator[4].oper
-				}]
+				operator: [thisOperator[4]]
 			})) {
 				return true;
 			}
-
 			if (thisScript.oper({
 				name: '庭院界面',
 				operator: [{
@@ -882,11 +879,6 @@ export class Func503 implements IFuncOrigin {
 				}
 			}
 		}
-
-		// TODO 不认识的界面，尝试发送back()/esc键事件
-		// mumu模拟器不认识的界面可以通过按esc或back返回上一级，可以考虑从这上面去优化
-		// back();
-		// sleep(1000);
 		return false;
 	}
 }
