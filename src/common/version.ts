@@ -1508,5 +1508,8 @@ export const versionList = [{
 099只玩奖励次数
 302适配五星折叠
 304修复逻辑错误)`,
+}, {
+	version: '20260217_01',
+	desc: '修复：每日一抽功能，添加寮活动自动翻页功能',
 }];
 export default versionList[versionList.length - 1].version;
