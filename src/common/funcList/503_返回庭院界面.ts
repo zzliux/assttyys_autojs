@@ -238,7 +238,7 @@ export class Func503 implements IFuncOrigin {
 			desc: '45 招募界面',
 			type: 'switch',
 			default: true,
-		}, 	{
+		}, {
 			name: 'oper_46',
 			desc: '46 师徒界面',
 			type: 'switch',
@@ -846,7 +846,6 @@ export class Func503 implements IFuncOrigin {
 			}
 
 			if (thisScript.oper({
-				id: 503,
 				name: '庭院界面',
 				operator: [{
 					desc: thisOperator[12].desc
@@ -858,7 +857,9 @@ export class Func503 implements IFuncOrigin {
 					next_scheme = thisScript.superGlobal.next_scheme_name;
 					thisScript.superGlobal.next_scheme_name = null;
 				}
-				log('503_next_scheme:' + next_scheme);
+				if (next_scheme) {
+					log('id_503_next_scheme:' + next_scheme);
+				}
 				if (thisConf.scheme_switch_enabled) {
 					next_scheme = thisConf.next_scheme as string;
 				}

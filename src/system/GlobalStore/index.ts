@@ -125,6 +125,7 @@ export type globalRootType = {
 	account_state: 'login' | 'function' | 'logout',
 	function_Swith: Record<string, boolean | number>, // 小号功能记录
 	loop_add: boolean, // 循环增加
+	liao_cheak: number, // 寮活动判定
 }
 
 export const globalRoot: globalRootType = {
@@ -254,6 +255,7 @@ export const globalRoot: globalRootType = {
 	account_state: 'login',
 	function_Swith: null,
 	loop_add: true,
+	liao_cheak: -1,
 }
 export type superGlobalRootType = {
 	liao_activity_Swith: Record<string, boolean>, // 寮活动记录

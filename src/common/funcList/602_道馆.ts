@@ -276,11 +276,11 @@ export class Func0602 implements IFuncOrigin {
 			thisScript.global.daoGuan_exit = false;
 			return true;
 		}
-		if (thisScript.global.daoguan_team && thisScript.oper({
+		if ( (thisconf.switch_team_group !== '0') && thisScript.global.daoguan_team && thisScript.oper({
 			id: 602,
 			name: '检测_第一阵容',
 			operator: [thisOperator[10]]
-		}) && (thisconf.switch_team_group !== '0')) {
+		})) {
 			if (!thisScript.global.preset_once_team_groupNum) {
 				thisScript.global.preset_once_team_groupNum = Number(thisconf.switch_team_group) - 1;
 			}
@@ -329,7 +329,7 @@ export class Func0602 implements IFuncOrigin {
 			}
 			return true;
 		}
-		if (thisconf && thisScript.global.daoGuan_again && thisconf.exit_second && thisScript.oper({
+		if (thisScript.global.daoGuan_again && thisconf.exit_second && thisScript.oper({
 			id: 602,
 			name: '检测_第二阵容退出',
 			operator: [thisOperator[7]]

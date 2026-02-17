@@ -1212,15 +1212,6 @@ export class Func609 implements IFuncOrigin {
 				}
 			}
 			if (thisScript.global.function_Swith.agency) {
-				if (thisScript.oper({
-					id: 518,
-					name: '一键代办_完成',
-					operator: [thisOperator[40]]
-				})) {
-					thisScript.myToast('已达到一键代办');
-					thisScript.global.function_Swith.agency = false;
-					return true;
-				}
 				let curCnt = 0;
 				const maxCount = 2;
 				while (thisScript.oper({

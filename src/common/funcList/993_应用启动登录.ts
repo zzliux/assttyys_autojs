@@ -33,12 +33,6 @@ export class Func993 implements IFuncOrigin {
 					default: '式神寄养',
 				},
 				{
-					name: 'close_game',
-					desc: '长时间未识别也不重启游戏(关闭则会重启)',
-					type: 'switch',
-					default: false,
-				},
-				{
 					name: 'account_index',
 					desc: '账号序号(用于同区多账号，指从上往下数第N个账号，目前指适配三个账号的情况，账号序号优先级大于账号昵称！)',
 					type: 'text',
@@ -468,13 +462,12 @@ export class Func993 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 475, 483, 579, 523, 1000],
 			]
+		}, { // 28 战斗界面
+			desc: '战斗界面'
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['993'];
-		if (thisConf.close_game) {
-			thisScript.global.app_is_open_flag = false;
-		}
 		if (!thisScript.global.open_only_once) {
 			if (thisScript.oper({
 				id: 993,
@@ -530,10 +523,22 @@ export class Func993 implements IFuncOrigin {
 				thisScript.global.app_is_open_flag = false;
 				return true;
 			}
-
+			// 退出结算超过两次
+			if (thisScript.runTimes['2'] > 1) {
+				thisScript.global.open_only_once = true;
+				return true;
+			}
+			let Time = new Date().getTime()
+			if (thisScript.oper({
+				name: '战斗界面重置计时',
+				operator: [thisOperator[28]],
+			})) {
+				Time = new Date().getTime()
+				thisScript.global.app_is_open_flag = false;
+			}
 			// 10秒钟未执行过任何操作，杀应用重启
 			if (thisScript.global.app_is_open_flag &&
-				(new Date()).getTime() - Math.max(lastFuncDateTime?.getTime() || 0, currentDate?.getTime() || 0, runDate?.getTime() || 0) > 10000
+				Time - Math.max(lastFuncDateTime?.getTime() || 0, currentDate?.getTime() || 0, runDate?.getTime() || 0) > 10000
 			) {
 				thisScript.stopRelatedApp();
 				sleep(2000);

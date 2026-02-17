@@ -567,29 +567,29 @@ export class Func518 implements IFuncOrigin {
 		})) {
 			return true;
 		}
-		if (thisScript.oper({
-			id: 518,
-			name: '邮件',
-			operator: [thisOperator[15], thisOperator[9], thisOperator[11]]
-		})) {
-			return true;
-		}
 		if (thisScript.global.function_Swith.email) {
 			if (thisScript.oper({
 				id: 518,
 				name: '邮件',
-				operator: [thisOperator[8]]
+				operator: [thisOperator[8], thisOperator[10]]
 			})) {
 				return true;
 			}
 			if (thisScript.oper({
 				id: 518,
 				name: '邮件',
-				operator: [thisOperator[17], thisOperator[10]]
+				operator: [thisOperator[17]]
 			})) {
 				thisScript.global.function_Swith.email = false;
 				return true;
 			}
+		}
+		if (thisScript.oper({
+			id: 518,
+			name: '邮件',
+			operator: [thisOperator[9], thisOperator[11], thisOperator[15]]
+		})) {
+			return true;
 		}
 		if (thisScript.global.function_Swith.agency) {
 			if (thisScript.oper({

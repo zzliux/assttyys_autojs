@@ -12,7 +12,6 @@ export class Func601 implements IFuncOrigin {
 	operator: IFuncOperatorOrigin[] = [{ // 0 麒麟界面_未挑战
 		desc: [1280, 720,
 			[
-				[left, 35, 592, 0x8a6138],
 				[left, 112, 594, 0x664b30],
 				[left, 139, 590, 0x5b452c],
 				[left, 175, 603, 0x966f47],
@@ -27,7 +26,6 @@ export class Func601 implements IFuncOrigin {
 	}, { // 1 狩猎战_已挑战
 		desc: [1280, 720,
 			[
-				[left, 35, 592, 0x8a6138],
 				[left, 112, 594, 0x664b30],
 				[left, 139, 590, 0x5b452c],
 				[left, 175, 603, 0x966f47],

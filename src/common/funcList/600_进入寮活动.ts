@@ -337,88 +337,46 @@ export class Func600 implements IFuncOrigin {
 			return true;
 		}
 		// 首次进入寮神社界面返回一次重新进，防止还有原来的缓存在里面
-		if (thisScript.global.liao_activity_page_flag == -1 && thisScript.oper({
+		if (thisScript.global.liao_cheak == -1 && thisScript.oper({
 			id: 600,
 			name: '寮神社界面',
 			operator: [thisOperator[11]]
 		})) {
-			thisScript.global.liao_activity_page_flag++;
+			thisScript.global.liao_cheak++;
 			thisScript.myToast('首次进入寮神社界面，退出重进');
 			return true;
 		}
-		// 狩猎战判断(其他开关为关时)
-		if (thisScript.superGlobal.liao_activity_Swith['a_ctivity_hunt'] && Object.entries(thisScript.superGlobal.liao_activity_Swith).every(
-			([key, value]) => ['a_ctivity_gateOfHades', 'a_ctivity_hunt'].includes(key) || value === false
-		)) {
-			if ([1, 2, 3, 4].includes(nowDay) && nowHour >= 5 && nowHour < 23) { // 判断星期一二三四,是否在5-23点(5时为误差,有人5:55开启定时)
+		// 狭间活动判断 待做寮管理开启
+		if (thisScript.superGlobal.liao_activity_Swith['a_ctivity_narrow']) {
+			if (nowDay === 0 || nowDay === 5 || nowDay === 6) {// 判断星期几
 				if (thisScript.oper({
-					name: '检测_狩猎战',
-					operator: [thisOperator[3]],
+					name: '寮神社_下滑',
+					operator: [{ desc: thisOperator[14].desc }]
+				})) {
+					thisScript.regionBezierSwipe(thisOperator[14].oper[1], thisOperator[14].oper[0], [1200, 1500], 1000);
+					thisScript.keepScreen();
+				}
+				if (thisScript.oper({
+					name: '检测_狭间暗域是否已开启',
+					operator: [thisOperator[9]]
 				})) {
 					return true;
 				}
 				if (thisScript.oper({
-					name: '检测_是否在狩猎战界面',
-					operator: [thisOperator[4]],
+					name: '检测_是否为狭间暗域选择页',
+					operator: [thisOperator[10]]
 				})) {
-					const next_scheme = thisconf.a_ctivity_hunt_select;
-					// 关闭开关 传参 切换到狩猎战
-					thisScript.superGlobal.liao_activity_Swith['a_ctivity_hunt'] = false;
+					// 关闭开关 传参 切换到狭间
+					thisScript.superGlobal.liao_activity_Swith['a_ctivity_narrow'] = false;
+					thisScript.superGlobal.liao_activity_Swith['a_ctivity_dojo'] = false;
+					const next_scheme = thisconf.a_ctivity_narrow_select;
 					thisScript.rerun(next_scheme);
 					return true;
 				}
 			} else {
-				console.log('狩猎战 不在时间段内');
-				thisScript.superGlobal.liao_activity_Swith['a_ctivity_hunt'] = false;
-			}
-
-		}
-		// 阴门判断(其他开关为关时)
-		if (thisScript.oper({
-			id: 600,
-			name: '寮神社界面',
-			operator: [{ desc: thisOperator[11].desc }]
-		})) {
-			if (thisScript.superGlobal.liao_activity_Swith['a_ctivity_gateOfHades'] &&
-				Object.entries(thisScript.superGlobal.liao_activity_Swith).every(
-					([key, value]) => key === 'a_ctivity_gateOfHades' || value === false
-				)) {
-				if ((nowDay === 0 || nowDay === 5 || nowDay === 6) && nowHour >= 19 && nowHour < 23) {// 判断星期五六七是否在19-23点
-					// 关闭开关 切换到阴门
-					thisScript.superGlobal.liao_activity_Swith['a_ctivity_gateOfHades'] = false;
-					const next_scheme = thisconf.a_ctivity_gateOfHades_select;
-					thisScript.rerun(next_scheme);
-					return true;
-				} else {
-					// 非阴门活动时间,关闭阴门开关
-					console.log('阴门 不在时间段内');
-					thisScript.superGlobal.liao_activity_Swith['a_ctivity_gateOfHades'] = false;
-					return true;
-				}
-			}
-		}
-		// 周六首领退治活动
-		if (thisScript.superGlobal.liao_activity_Swith['a_ctivity_huntBoss']) {
-			if (nowHour >= 10 && nowHour < 23 && nowDay === 6) {// 判断是否在周六10-23点
-				if (thisScript.oper({
-					name: '检测_首领退治是否已开启',
-					operator: [thisOperator[0],]
-				})) {
-					return true;
-				}
-				if (thisScript.oper({
-					name: '检测_是否为首领退治页面',
-					operator: [thisOperator[7]]
-				})) {
-					// 关闭开关 传参 切换到退治
-					thisScript.superGlobal.liao_activity_Swith['a_ctivity_huntBoss'] = false;
-					const next_scheme = thisconf.a_ctivity_huntBoss_select;
-					thisScript.rerun(next_scheme);
-					return true;
-				}
-			} else {
-				console.log('退治 不在时间段');
-				thisScript.superGlobal.liao_activity_Swith['a_ctivity_huntBoss'] = false;
+				console.log('狭间 不在时间段');
+				// 关闭狭间开关
+				thisScript.superGlobal.liao_activity_Swith['a_ctivity_narrow'] = false;
 			}
 		}
 		// 道馆活动
@@ -479,70 +437,31 @@ export class Func600 implements IFuncOrigin {
 				return true;
 			}
 		}
-		// 狭间活动判断
-		if (thisScript.superGlobal.liao_activity_Swith['a_ctivity_narrow']) {
-			if (nowDay === 0 || nowDay === 5 || nowDay === 6) {// 判断星期几
+		// 周六首领退治活动 待做寮管理开启
+		if (thisScript.superGlobal.liao_activity_Swith['a_ctivity_huntBoss']) {
+			if (nowHour >= 10 && nowHour < 23 && nowDay === 6) {// 判断是否在周六10-23点
 				if (thisScript.oper({
-					name: '寮神社_下滑',
-					operator: [{ desc: thisOperator[14].desc }]
-				})) {
-					thisScript.regionBezierSwipe(thisOperator[14].oper[1], thisOperator[14].oper[0], [1200, 1500], 1000);
-					thisScript.keepScreen();
-				}
-				if (thisScript.oper({
-					name: '检测_狭间暗域是否已开启',
-					operator: [thisOperator[9]]
+					name: '检测_首领退治是否已开启',
+					operator: [thisOperator[0],]
 				})) {
 					return true;
 				}
 				if (thisScript.oper({
-					name: '检测_是否为狭间暗域选择页',
-					operator: [thisOperator[10]]
+					name: '检测_是否为首领退治页面',
+					operator: [thisOperator[7]]
 				})) {
-					// 关闭开关 传参 切换到狭间
-					thisScript.superGlobal.liao_activity_Swith['a_ctivity_narrow'] = false;
-					thisScript.superGlobal.liao_activity_Swith['a_ctivity_dojo'] = false;
-					const next_scheme = thisconf.a_ctivity_narrow_select;
+					// 关闭开关 传参 切换到退治
+					thisScript.superGlobal.liao_activity_Swith['a_ctivity_huntBoss'] = false;
+					const next_scheme = thisconf.a_ctivity_huntBoss_select;
 					thisScript.rerun(next_scheme);
 					return true;
 				}
 			} else {
-				console.log('狭间 不在时间段');
-				// 关闭狭间开关
-				thisScript.superGlobal.liao_activity_Swith['a_ctivity_narrow'] = false;
+				console.log('退治 不在时间段');
+				thisScript.superGlobal.liao_activity_Swith['a_ctivity_huntBoss'] = false;
 			}
 		}
-		if (thisScript.oper({
-			id: 600,
-			name: '寮神社界面',
-			operator: [{ desc: thisOperator[11].desc }]
-		})) {
-			thisScript.global.liao_activity_page_flag++;
-			const r = random(28000, 32000);
-			if (thisScript.global.liao_activity_page_flag < (thisconf.count as number)) {
-				thisScript.oper({
-					id: 600,
-					name: '寮神社界面返回',
-					operator: [{ oper: thisOperator[11].oper }]
-				})
-				thisScript.myToast(`未开启寮活动,等待${Math.round(r / 1000)}秒后再次检测,剩余${(thisconf.count as number) - thisScript.global.liao_activity_page_flag}次`);
-				log(thisScript.superGlobal.liao_activity_Swith);
-				sleep(r);
-				return true;
-			} else {
-				thisScript.myToast('执行次数完毕,检查狩猎战或阴界之门')
-				thisScript.superGlobal.liao_activity_Swith = {
-					...thisScript.superGlobal.liao_activity_Swith,
-					'a_ctivity_dojo': false,
-					'a_ctivity_dojo_again': false,
-					'a_ctivity_narrow': false,
-					'a_ctivity_banquet': false,
-					'a_ctivity_huntBoss': false,
-				};
-				return true;
-			}
-		}
-		// 宴会活动
+		// 宴会活动 待做寮管理开启
 		if (thisScript.superGlobal.liao_activity_Swith['a_ctivity_banquet']) {
 			let a_ctivity_banquet_time_one;// 判断星期几
 			let a_ctivity_banquet_time_two;// 判断星期几
@@ -617,6 +536,89 @@ export class Func600 implements IFuncOrigin {
 			} else {
 				console.log('宴会 不在时间段内');
 				thisScript.superGlobal.liao_activity_Swith['a_ctivity_banquet'] = false;
+			}
+		}
+		// 狩猎战判断
+		if (thisScript.superGlobal.liao_activity_Swith['a_ctivity_hunt']) {
+			// 星期一二三四, 是否在6 - 23点
+			if ([1, 2, 3, 4].includes(nowDay) && nowHour >= 6 && nowHour < 23) {
+				if (Object.entries(thisScript.superGlobal.liao_activity_Swith).every(
+					([key, value]) => ['a_ctivity_gateOfHades', 'a_ctivity_hunt'].includes(key) || value === false
+				)) { // 其他开关为关时
+					if (thisScript.oper({
+						name: '检测_狩猎战',
+						operator: [thisOperator[3]],
+					})) {
+						return true;
+					}
+					if (thisScript.oper({
+						name: '检测_是否在狩猎战界面',
+						operator: [thisOperator[4]],
+					})) {
+						const next_scheme = thisconf.a_ctivity_hunt_select;
+						// 关闭开关 传参 切换到狩猎战
+						thisScript.superGlobal.liao_activity_Swith['a_ctivity_hunt'] = false;
+						thisScript.rerun(next_scheme);
+						return true;
+					}
+				}
+			} else {
+				console.log('狩猎战 不在时间段内');
+				thisScript.superGlobal.liao_activity_Swith['a_ctivity_hunt'] = false;
+			}
+		}
+		// 阴门判断
+		if (thisScript.superGlobal.liao_activity_Swith['a_ctivity_gateOfHades']) {
+			// 判断星期五六七是否在17-23点
+			if ((nowDay === 0 || nowDay === 5 || nowDay === 6) && nowHour >= 17 && nowHour < 23) {
+				if (Object.entries(thisScript.superGlobal.liao_activity_Swith).every(
+					([key, value]) => key === 'a_ctivity_gateOfHades' || value === false
+				) && thisScript.oper({
+					id: 600,
+					name: '寮神社界面',
+					operator: [{ desc: thisOperator[11].desc }]
+				})) {// 其他开关为关时
+					// 关闭开关 切换到阴门
+					thisScript.superGlobal.liao_activity_Swith['a_ctivity_gateOfHades'] = false;
+					const next_scheme = thisconf.a_ctivity_gateOfHades_select;
+					thisScript.rerun(next_scheme);
+					return true;
+				}
+			} else {
+				// 非阴门活动时间,关闭阴门开关
+				console.log('阴门 不在时间段内');
+				thisScript.superGlobal.liao_activity_Swith['a_ctivity_gateOfHades'] = false;
+				return true;
+			}
+		}
+		if (thisScript.oper({
+			id: 600,
+			name: '寮神社界面',
+			operator: [{ desc: thisOperator[11].desc }]
+		})) {
+			thisScript.global.liao_cheak++;
+			const r = random(28000, 32000);
+			if (thisScript.global.liao_cheak < (thisconf.count as number)) {
+				thisScript.oper({
+					id: 600,
+					name: '寮神社界面返回',
+					operator: [{ oper: thisOperator[11].oper }]
+				})
+				thisScript.myToast(`未开启寮活动,等待${Math.round(r / 1000)}秒后再次检测,剩余${(thisconf.count as number) - thisScript.global.liao_cheak}次`);
+				log(thisScript.superGlobal.liao_activity_Swith);
+				sleep(r);
+				return true;
+			} else {
+				thisScript.myToast('执行次数完毕,检查狩猎战或阴界之门')
+				thisScript.superGlobal.liao_activity_Swith = {
+					...thisScript.superGlobal.liao_activity_Swith,
+					'a_ctivity_dojo': false,
+					'a_ctivity_dojo_again': false,
+					'a_ctivity_narrow': false,
+					'a_ctivity_banquet': false,
+					'a_ctivity_huntBoss': false,
+				};
+				return true;
 			}
 		}
 		return false;
