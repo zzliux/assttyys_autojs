@@ -41,7 +41,7 @@ export class Func401 implements IFuncOrigin {
 			[center, 1280, 720, 851, 580, 966, 627, 1000], // 三十万
 			[center, 1280, 720, 1007, 416, 1109, 494, 1000], // 押注
 			[center, 1280, 720, 682, 408, 832, 448, 1000], // 押注确认
-			[left, 1280, 720, 25, 9, 74, 55, 2000], // 完了之后返回上一级（庭院）
+			[left, 1280, 720, 6, 7, 60, 54, 2000], // 完了之后返回上一级（庭院）
 		]
 	}, { // 3 竞猜成功
 		desc: [
@@ -133,8 +133,10 @@ export class Func401 implements IFuncOrigin {
 			if (nextH.length === 1) nextH = '0' + nextH;
 			// @ts-expect-error d.ts文件问题
 			const str = http.get(rssUrl).body.string();
-			// 从最近的5个拿，避免拿到昨天的
-			const str2 = str.match(/<item[\s\S\n]+?<description>([\s\S\n]+?)<\/description>/g).slice(0, 5).join('');
+			const str2 = str.match(/<item[\s\S\n]+?<description>([\s\S\n]+?)<\/description>/g)
+				.filter((o: string) => !o.match(/体验服/)) // 过滤体服，避免拿到体服的
+				.slice(0, 5) // 从最近的5个拿，避免拿到昨天的
+				.join('');
 			console.log(str2);
 
 			// 该规则目前是面灵气喵的固定规则，其他的up还得再看看怎么搞

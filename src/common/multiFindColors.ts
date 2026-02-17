@@ -2264,7 +2264,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		]]
 	},
 	'右边侧栏下一页图标': {
-		region: [center, 1280, 720, 1150, 145, 1261, 513],
+		region: [center, 1280, 720, 1150, 145, 1261, 573],
 		desc: [[
 			1280, 720,
 			[
