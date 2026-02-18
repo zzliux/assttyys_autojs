@@ -67,7 +67,7 @@ export class Func702 implements IFuncOrigin {
 				[left, 1280, 720, 182, 182, 197, 195, 1200],		// 刷新的滑动起点
 				[left, 1280, 720, 175, 547, 195, 555, 1200],		// 刷新的滑动终点
 				[center, 1280, 720, 496, 536, 514, 555, 1000], // 滑动界面起点
-				[center, 1280, 720, 482, 122, 504, 142, 1000], // 滑动界面终点
+				[center, 1280, 720, 496, 319, 514, 342, 1000], // 滑动界面终点
 				[center, 1280, 720, 23, 33, 58, 63, 1000], // 点击 返回
 				[center, 1280, 720, 795, 538, 967, 591, 3000],    // 进入结界按钮
 			],
@@ -249,7 +249,6 @@ export class Func702 implements IFuncOrigin {
 			operator: [thisOperator[12]],
 		})) {
 			console.log('寄养完成');
-			thisScript.doPush(thisScript, { text: '寄养完成', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 			thisScript.rerun(thisconf.next_scheme)
 			sleep(3000);
 			return true;
@@ -331,7 +330,7 @@ export class Func702 implements IFuncOrigin {
 						return true;
 					}
 				} else {
-					thisScript.regionSwipe(thisOperator[2].oper[2], thisOperator[2].oper[3], [1000, 1100], 1000);
+					thisScript.regionSwipe(thisOperator[2].oper[2], thisOperator[2].oper[3], [350, 360], 1000);
 					return true;
 				}
 			}
