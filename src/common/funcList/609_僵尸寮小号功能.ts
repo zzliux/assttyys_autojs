@@ -1195,7 +1195,7 @@ export class Func609 implements IFuncOrigin {
 					if (thisScript.oper({
 						id: 609,
 						name: '返回',
-						operator: [thisOperator[30], thisOperator[31]]
+						operator: [thisOperator[26], thisOperator[30], thisOperator[31]]
 					})) {
 						return true;
 					}
