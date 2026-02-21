@@ -30,8 +30,8 @@ export class Func506 implements IFuncOrigin {
 				name: 'huntBoss_switch',
 				desc: '是否下滑进入狭间',
 				type: 'switch',
-				default: true,
-				value: true,
+				default: false,
+				value: false,
 			}]
 	}];
 	operator: IFuncOperatorOrigin[] = [
