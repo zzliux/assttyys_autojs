@@ -2383,11 +2383,13 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		desc: [
 			[1280, 720, // 腐血
 				[
-					[right, 751, 115, 0xffffff], [right, 755, 113, 0xffffff],
-					[right, 759, 112, 0xffffff], [right, 761, 110, 0xffffff],
-					[right, 763, 108, 0xffffff], [right, 763, 104, 0xaddeed],
-					[right, 763, 102, 0x56a1cb], [right, 759, 101, 0x1b4272],
-					[right, 758, 104, 0x153f74], [right, 753, 105, 0x1d4976],
+					[right, 953, 109, 0xf8fdfe],
+					[right, 961, 106, 0xffffff],
+					[right, 965, 108, 0xf4fafe],
+					[right, 966, 100, 0xffffff],
+					[right, 951, 96, 0x0f3d77],
+					[right, 950, 106, 0x174588],
+					[right, 960, 94, 0x113d6b],
 				]
 			]
 		],
@@ -2396,14 +2398,26 @@ const multiFindColors: IMultiFindColorsOrigin = {
 	'神荒': {
 		region: [center, 1280, 720, 0, 0, 1279, 719],
 		desc: [
-			[1280, 720, // 神荒
+			[1280, 720, // 神荒 像素点有三排
 				[
-					[center, 600, 131, 0xffffff], [center, 600, 124, 0xbad3e2],
-					[center, 600, 138, 0x91c1e0], [center, 593, 137, 0xffffff],
-					[center, 593, 131, 0xa5e1fc], [center, 609, 131, 0x80c3ea],
-					[center, 600, 140, 0x5ea2dd], [center, 597, 133, 0x77a8ce],
+					[right, 982, 94, 0xd0f7fd],
+					[right, 988, 94, 0xffffff],
+					[right, 988, 87, 0xe6f3f3],
+					[right, 995, 94, 0xcbe8f5],
+					[right, 988, 101, 0xb8e5f4],
+					[right, 981, 100, 0xffffff],
 				],
-			]
+			],
+			[1280, 720, // 神荒 像素点有两排
+				[
+					[right, 982, 94, 0xd0f7fd],
+					[right, 988, 94, 0xffffff],
+					[right, 988, 87, 0xe6f3f3],
+					[right, 995, 94, 0xcbe8f5],
+					[right, 988, 101, 0xb8e5f4],
+					[right, 981, 100, 0xffffff],
+				],
+			],
 		],
 		similar: 95,
 	},

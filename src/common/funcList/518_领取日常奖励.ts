@@ -568,11 +568,16 @@ export class Func518 implements IFuncOrigin {
 			return true;
 		}
 		if (thisScript.global.function_Swith.email) {
+			if (thisScript.global.email_yuHun >= 3) {
+				thisScript.global.function_Swith.email = false;
+				thisScript.doPush(thisScript, { text: '邮件里御魂已满', before() { thisScript.myToast('邮件里御魂已满'); } });
+			}
 			if (thisScript.oper({
 				id: 518,
 				name: '邮件',
 				operator: [thisOperator[8], thisOperator[10]]
 			})) {
+				thisScript.global.email_yuHun++;
 				return true;
 			}
 			if (thisScript.oper({
@@ -587,7 +592,7 @@ export class Func518 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 518,
 			name: '邮件',
-			operator: [thisOperator[9], thisOperator[11], thisOperator[15]]
+			operator: [thisOperator[15], thisOperator[11], thisOperator[9]]
 		})) {
 			return true;
 		}
