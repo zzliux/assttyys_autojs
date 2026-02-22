@@ -109,9 +109,7 @@ export class Func603 implements IFuncOrigin {
 			[center, 1280, 720, 1124, 598, 1196, 657, 700],
 		]
 	}, { // 3 战报页内
-		desc: [
-			1280,
-			720,
+		desc: [1280, 720,
 			[
 				[left, 285, 120, 0xd7c7b1],
 				[left, 192, 113, 0xe6e2db],
@@ -161,14 +159,39 @@ export class Func603 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1203, 471, 1247, 509, 1000],
+			[center, 1280, 720, 1203, 471, 1247, 509, 1500],
+		]
+	}, { // 6 战报页内_退出
+		desc: [1280, 720,
+			[
+				[left, 285, 120, 0xd7c7b1],
+				[left, 192, 113, 0xe6e2db],
+				[right, 1123, 135, 0xb9ac9e],
+				[left, 222, 650, 0xc6bdb1],
+				[center, 653, 157, 0xea6209],
+				[center, 819, 295, 0xf1cb7d],
+				[center, 507, 297, 0xf1cc7c],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1149, 100, 1186, 124, 1000],
 		]
 	}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['603'];
+		if (!thisScript.global.xiaJian) {
+			thisScript.global.xiaJian = {
+				'huanYuHun': false,
+				'fenZu': 0,
+				'zhenRong': 0,
+			};
+		}
 		// 记录当前2功能已运行次数
 		if (thisScript.global.runTime_2 === null) {
+			if (!thisScript.runTimes['2']) {
+				thisScript.runTimes['2'] = 0
+			}
 			thisScript.global.runTime_2 = thisScript.runTimes['2'];
 		}
 		// 获取狭间首领参数
@@ -241,17 +264,31 @@ export class Func603 implements IFuncOrigin {
 				presetStr = thisconf[`preset_pair_${type}`] as string
 			}
 		}
+		// 检测是否需要换御魂
 		if (presetStr) {
-			const [p, q] = (thisconf[`preset_pair_${presetStr}`] as string).split(/[,，]/);
+			// 读取参数位置
+			const [p, q] = presetStr.split(/[,，]/);
 			thisScript.global.preset_once_groupNum = parseInt(p?.trim(), 10);
 			thisScript.global.preset_once_defaultNum = parseInt(q?.trim(), 10);
 			thisScript.global.preset_once_team_groupNum = parseInt(p?.trim(), 10);
 			thisScript.global.preset_once_team_defaultNum = parseInt(q?.trim(), 10);
-			thisScript.global.shangyushe = true;
-			thisScript.global.change_shikigami_flag = true
+			if (thisScript.global.preset_once_groupNum > 0) {
+				if (thisScript.global.preset_once_groupNum === thisScript.global.xiaJian.fenZu &&
+					thisScript.global.preset_once_defaultNum === thisScript.global.xiaJian.zhenRong) {
+					log('重复判断');
+				} else {
+					thisScript.global.xiaJian.fenZu = thisScript.global.preset_once_groupNum
+					thisScript.global.xiaJian.zhenRong = thisScript.global.preset_once_defaultNum
+					thisScript.global.shangyushe = true;
+					thisScript.global.change_shikigami_state = 'flushed';
+				}
+			} else {
+				thisScript.global.shangyushe = false;
+				thisScript.global.change_shikigami_state = 'finish';
+			}
 		} else {
 			thisScript.global.shangyushe = false;
-			thisScript.global.change_shikigami_flag = false
+			thisScript.global.change_shikigami_state = 'finish';
 		}
 		// 开始比色
 		if (thisScript.oper({
@@ -263,11 +300,13 @@ export class Func603 implements IFuncOrigin {
 				operator: [{ oper: [thisOperator[0].oper[boss_select_one]] }]
 			});
 		}
-		if (thisScript.global.change_shikigami_flag && thisScript.oper({
-			name: '狭间_进入式神录',
-			operator: [thisOperator[5]]
-		})) {
-			thisScript.global.change_shikigami_flag = false;
+		if (!(thisScript.global.change_shikigami_state === 'finish')) {
+			if (thisScript.oper({
+				name: '狭间_进入式神录',
+				operator: [thisOperator[5], thisOperator[6]]
+			})) {
+				return true;
+			}
 		}
 		if (thisScript.oper({
 			name: '选择攻打',
@@ -291,12 +330,13 @@ export class Func603 implements IFuncOrigin {
 			}
 			thisScript.oper({
 				name: '选择进攻暗域',
-				operator: [{ oper: [thisOperator[3].oper[sort_0[Real + 6]]] }]
+				operator: [{ oper: [thisOperator[3].oper[sort_0[Real] + 6]] }]
 			})
 			thisScript.oper({
 				name: '选择进攻暗域',
 				operator: [{ oper: [thisOperator[3].oper[sort_1[Real]]] }]
 			})
+			log('准备攻打:' + (sort_0[Real]) + '区域,' + sort_1[Real] + '号怪')
 			curCnt++;
 			thisScript.keepScreen(false);
 			if (curCnt >= maxCount) {

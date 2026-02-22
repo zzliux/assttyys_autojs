@@ -1324,6 +1324,7 @@ export class Func609 implements IFuncOrigin {
 				thisScript.global.function_Swith = null;
 				thisScript.global.account_state = 'login';
 				thisScript.runTimes['2'] = 0;
+				thisScript.global.open_only_once = false;
 				return true;
 			}
 		}

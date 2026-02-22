@@ -102,7 +102,6 @@ export type globalRootType = {
 	daoguan_team: boolean, // 道馆是否切换队伍
 	first_create_team: boolean, // 首次创建队伍
 	open_only_once: boolean, // 首次启动游戏
-	fight_switch_skill: boolean, // 三号位切换技能
 	flash_time: number, // 519刷新次数
 	fengNa: boolean, // 302奉纳
 	finght_time: number, // 320战斗时间
@@ -127,7 +126,9 @@ export type globalRootType = {
 	loop_add: boolean, // 循环增加
 	liao_cheak: number, // 寮活动判定
 	email_yuHun: number, // 邮箱御魂已满计数
-	runTime_2: number,
+	runTime_2: number, // 留存2退出结算次数
+	fight_Swith: Record<string, boolean | number>, // 战斗内切换记录
+	xiaJian: Record<string, boolean | number>, // 战斗内切换记录
 }
 
 export const globalRoot: globalRootType = {
@@ -230,7 +231,6 @@ export const globalRoot: globalRootType = {
 	daoguan_team: true,
 	first_create_team: false,
 	open_only_once: false,
-	fight_switch_skill: true,
 	flash_time: 0,
 	fengNa: false,
 	xsFilter: {},
@@ -260,6 +260,8 @@ export const globalRoot: globalRootType = {
 	liao_cheak: -1,
 	email_yuHun: 0,
 	runTime_2: null,
+	fight_Swith: null,
+	xiaJian: null,
 }
 export type superGlobalRootType = {
 	liao_activity_Swith: Record<string, boolean>, // 寮活动记录

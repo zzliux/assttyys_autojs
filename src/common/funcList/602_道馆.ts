@@ -282,10 +282,10 @@ export class Func0602 implements IFuncOrigin {
 			operator: [thisOperator[10]]
 		})) {
 			if (!thisScript.global.preset_once_team_groupNum) {
-				thisScript.global.preset_once_team_groupNum = Number(thisconf.switch_team_group) - 1;
+				thisScript.global.preset_once_team_groupNum = Number(thisconf.switch_team_group);
 			}
 			if (!thisScript.global.preset_once_team_defaultNum) {
-				thisScript.global.preset_once_team_defaultNum = Number(thisconf.switch_team_default) - 1;
+				thisScript.global.preset_once_team_defaultNum = Number(thisconf.switch_team_default);
 			}
 			// 第一阵容切换预设完毕
 			thisScript.global.daoguan_team = false;
