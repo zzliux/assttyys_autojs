@@ -104,7 +104,6 @@ export type globalRootType = {
 	open_only_once: boolean, // 首次启动游戏
 	flash_time: number, // 519刷新次数
 	fengNa: boolean, // 302奉纳
-	finght_time: number, // 320战斗时间
 	xxxskill: number, // 寻香行技能
 	MT_share: 'start' | 'back' | 'end', // 每周分享
 	MT_liaoShop: 'start' | 'back' | 'end', // 寮商店购买
@@ -127,7 +126,7 @@ export type globalRootType = {
 	liao_cheak: number, // 寮活动判定
 	email_yuHun: number, // 邮箱御魂已满计数
 	runTime_2: number, // 留存2退出结算次数
-	fight_Swith: Record<string, boolean | number>, // 战斗内切换记录
+	fight_Swith: Record<string, boolean | number>, // 战斗内操作记录
 	xiaJian: Record<string, boolean | number>, // 战斗内切换记录
 }
 
@@ -234,7 +233,6 @@ export const globalRoot: globalRootType = {
 	flash_time: 0,
 	fengNa: false,
 	xsFilter: {},
-	finght_time: null,
 	xxxskill: 0,
 	MT_share: 'start',
 	MT_liaoShop: 'start',

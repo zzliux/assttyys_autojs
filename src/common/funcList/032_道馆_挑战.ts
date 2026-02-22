@@ -372,7 +372,6 @@ export class Func032 implements IFuncOrigin {
 			name: '检测_挑战结束',
 			operator: [thisOperator[1], thisOperator[3], thisOperator[4], thisOperator[14], thisOperator[15]]
 		})) {
-			thisScript.global.fight_switch_skill = true;
 			return true;
 		}
 		if (

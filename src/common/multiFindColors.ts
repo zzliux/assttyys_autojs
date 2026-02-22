@@ -2421,6 +2421,23 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		],
 		similar: 95,
 	},
+	'帝释天': {
+		region: [center, 1280, 720, 684, 632, 1169, 718],
+		desc: [
+			[1280, 720, // 奚落天穹
+				[
+					[right, 1009, 646, 0xfcf2e7],
+					[right, 1017, 646, 0xfcf8f5],
+					[right, 1031, 637, 0xfff9f1],
+					[right, 1031, 677, 0xd2a392],
+					[right, 1028, 672, 0xfaefeb],
+					[right, 1013, 688, 0x6867b5],
+					[right, 1045, 685, 0x7372b7],
+				],
+			]
+		],
+		similar: 95,
+	},
 	'宴会筹备': {
 		region: [center, 1280, 720, 239, 158, 1264, 646],
 		desc: [[
