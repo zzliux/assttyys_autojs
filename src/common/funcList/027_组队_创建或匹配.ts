@@ -230,6 +230,7 @@ export class Func027 implements IFuncOrigin {
 					break;
 			}
 			thisScript.global.first_create_team = true;
+			return true;
 		}
 
 		if (!thisScript.global.first_create_team && thisScript.oper({
@@ -260,8 +261,16 @@ export class Func027 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 27,
 			name: '组队_匹配',
+			operator: [thisOperator[0], thisOperator[10]]
+		})) {
+			thisScript.global.first_create_team = false;
+			return true;
+		}
+		if (thisScript.oper({
+			id: 27,
+			name: '组队_匹配',
 			operator: [
-				thisOperator[0], thisOperator[10], thisOperator[1], thisOperator[2],
+				thisOperator[1], thisOperator[2],
 				thisOperator[9], thisOperator[3], thisOperator[6]
 			]
 		})) {

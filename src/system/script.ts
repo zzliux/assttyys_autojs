@@ -554,6 +554,7 @@ export class Script {
 				this.job = job;
 				this.runDate = new Date(); // 全新启动需重之运行时间
 				myToast(`运行方案[${this.scheme.schemeName}]`);
+				this.schemeHistory.push(this.scheme);
 			}
 			this.isPause = false;
 			if (null === this.scheme) {
@@ -580,8 +581,6 @@ export class Script {
 		// img.saveTo('/sdcard/testimg.png');
 		// img.recycle();
 		// test end
-		myToast(`运行方案[${this.scheme.schemeName}]`);
-		this.schemeHistory.push(this.scheme);
 		globalThis.runThread = threads.start(function () {
 			try {
 				// eslint-disable-next-line no-constant-condition

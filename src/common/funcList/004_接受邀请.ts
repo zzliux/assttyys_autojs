@@ -13,16 +13,6 @@ export class Func004 implements IFuncOrigin {
 	config = [{
 		desc: '',
 		config: [{
-			name: 'exit',
-			desc: '对邀请提示不做动作并返回庭院，然后以下切换方案（用于当做判断条件）',
-			type: 'switch',
-			default: false,
-		}, {
-			name: 'designated_scheme',
-			desc: '所指定的方案(在历史运行方案中匹配所输入的字并切换过去,可用","隔断多个关键字)',
-			type: 'text',
-			default: ',',
-		}, {
 			name: 'teammate_exit',
 			desc: '队长退出后切换方案',
 			type: 'switch',
@@ -104,29 +94,6 @@ export class Func004 implements IFuncOrigin {
 		})) {
 			thisScript.rerun(thisConf.teammate_exit_next_scheme);
 			sleep(3000)
-			return true;
-		}
-		if (thisConf && thisConf.exit && thisScript.oper({
-			id: 4,
-			name: '邀请切换横幅',
-			operator: [{ desc: thisOperator[0].desc }, { desc: thisOperator[1].desc }]
-		})) {
-			const designated_scheme = String(thisConf.designated_scheme).split(',').map(s => s.trim()).filter(Boolean);
-			if (designated_scheme.length < 1) {
-				thisScript.myToast('格式定义错误，请检查');
-				thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-				thisScript.stop();
-			} else {
-				const filtered = thisScript.schemeHistory.filter(item => designated_scheme.some(word => item.schemeName.includes(word)));
-				if (filtered.length < 1) {
-					thisScript.myToast('未找到指定方案，已停止');
-					thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-					thisScript.stop();
-				} else {
-					log(filtered)
-					thisScript.rerun(filtered[filtered.length - 1].schemeName);
-				}
-			}
 			return true;
 		}
 		if (thisConf && thisConf.auto_team && thisScript.global.yaoqing_close) {

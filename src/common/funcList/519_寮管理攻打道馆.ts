@@ -60,7 +60,7 @@ export class Func519 implements IFuncOrigin {
 				[right, 1185, 658, 0x46a774],
 				[left, 88, 618, 0xc1b8aa],
 				[left, 189, 637, 0x777a83],
-				[left, 35, 52, 0xf0f5fb],
+				[left, 47, 37, 0xf5e2a3],
 			]
 		],
 		oper: [
@@ -145,8 +145,7 @@ export class Func519 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 260, 615, 311, 661, 1000],
-			[center, 1280, 720, 762, 414, 881, 457, 5000], // 建立道馆_确认
-			[center, 1280, 720, 1171, 106, 1224, 143, 1000], // 建立道馆_关闭详细
+			[center, 1280, 720, 762, 414, 881, 457, 1000], // 建立道馆_确认
 		]
 	}, { // 8 道馆中的0次机会
 		desc: [
@@ -171,6 +170,19 @@ export class Func519 implements IFuncOrigin {
 				[right, 689, 651, 0xeb8701],
 			]
 		],
+	}, { // 10 我的道馆界面
+		desc: [1280, 720,
+			[
+				[left, 113, 79, 0x563a2f],
+				[center, 340, 79, 0x51352b],
+				[right, 1195, 126, 0xe9d3ce],
+				[left, 152, 523, 0xf3b25e],
+				[left, 151, 605, 0xf3b25e],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1179, 110, 1216, 143, 1000],
+		]
 	}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -189,15 +201,14 @@ export class Func519 implements IFuncOrigin {
 			operator: [thisOperator[8], thisOperator[9]]
 		})) {
 			thisScript.myToast('两次机会用光');
-			thisScript.doPush(thisScript, { text: '两次机会用光', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-			thisScript.stop();
+			thisScript.rerun('返回庭院');
 			sleep(2000);
 			return true;
 		}
 		if (thisScript.oper({
 			id: 519,
 			name: '检测_寮活动神社',
-			operator: [thisOperator[0], thisOperator[7]]
+			operator: [thisOperator[0], thisOperator[7], thisOperator[10]]
 		})) {
 			return true;
 		}

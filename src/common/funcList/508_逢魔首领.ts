@@ -204,6 +204,21 @@ export class Func508 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 579, 303, 702, 407, 300], //	点击逢魔首领
 			],
+		},
+		{ // 11 没有极难度的逢魔(歌姬胧车)
+			desc: [1280, 720,
+				[
+					[right, 1182, 649, 0xffffff],
+					[right, 930, 671, 0xddd2c1],
+					[right, 1022, 670, 0xbc4440],
+					[right, 1022, 655, 0x802933],
+					[right, 940, 674, 0xdbd1c0],
+					[left, 62, 671, 0xc89a7e],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 1007, 660, 1036, 684, 1000],
+			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -338,14 +353,13 @@ export class Func508 implements IFuncOrigin {
 			})
 		) {
 			if (thisScript.global.fm_kiss_boss_flag) {
-				thisScript.rerun('返回庭院', {
-					next_scheme_name: thisConf.next_scheme
-				});
+				thisScript.superGlobal.next_scheme_name = thisScript?.scheme?.config['508']?.next_scheme as string;
+				thisScript.rerun('返回庭院');
 			} else {
 				let operatorIndex = thisConf && thisConf['switch_ji_enabled'] ? 9 : 0
 
 				// 多次寻找无果后放弃挑战逢魔·极，寻找普通逢魔
-				if (thisConf && thisConf['switch_ji_enabled'] && thisScript.global.fm_boss_btn_click_cnt >= (parseInt(thisConf.times_for_search_boss as string) || 20))  {
+				if (thisConf && thisConf['switch_ji_enabled'] && thisScript.global.fm_boss_btn_click_cnt >= (parseInt(thisConf.times_for_search_boss as string) || 20)) {
 					operatorIndex = 0;
 				}
 
@@ -385,7 +399,12 @@ export class Func508 implements IFuncOrigin {
 				}
 			}
 		}
-
+		if (thisScript.oper({
+			name: '歌姬胧车',
+			operator: [thisOperator[11]],
+		})) {
+			return true
+		}
 		return false;
 	}
 }

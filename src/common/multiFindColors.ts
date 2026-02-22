@@ -2383,10 +2383,13 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		desc: [
 			[1280, 720, // 腐血
 				[
-					[center, 604, 101, 0x157ddb], [center, 605, 101, 0x157dda],
-					[center, 606, 101, 0x127cd5], [center, 607, 101, 0x0e6ac1],
-					[center, 604, 102, 0x02315e], [center, 605, 102, 0x02315f],
-					[center, 606, 102, 0x053164], [center, 607, 102, 0x052c59]
+					[right, 953, 109, 0xf8fdfe],
+					[right, 961, 106, 0xffffff],
+					[right, 965, 108, 0xf4fafe],
+					[right, 966, 100, 0xffffff],
+					[right, 951, 96, 0x0f3d77],
+					[right, 950, 106, 0x174588],
+					[right, 960, 94, 0x113d6b],
 				]
 			]
 		],
@@ -2395,12 +2398,41 @@ const multiFindColors: IMultiFindColorsOrigin = {
 	'神荒': {
 		region: [center, 1280, 720, 0, 0, 1279, 719],
 		desc: [
-			[1280, 720, // 神荒
+			[1280, 720, // 神荒 像素点有三排
 				[
-					[center, 0, 0, 0x002050], [center, 1, 0, 0x002153],
-					[center, 2, 0, 0x003f86], [center, 3, 0, 0x6aaae4],
-					[center, 0, 1, 0x002050], [center, 1, 1, 0x002153],
-					[center, 2, 1, 0x003d82], [center, 3, 1, 0x5fa1dc]
+					[right, 982, 94, 0xd0f7fd],
+					[right, 988, 94, 0xffffff],
+					[right, 988, 87, 0xe6f3f3],
+					[right, 995, 94, 0xcbe8f5],
+					[right, 988, 101, 0xb8e5f4],
+					[right, 981, 100, 0xffffff],
+				],
+			],
+			[1280, 720, // 神荒 像素点有两排
+				[
+					[right, 982, 94, 0xd0f7fd],
+					[right, 988, 94, 0xffffff],
+					[right, 988, 87, 0xe6f3f3],
+					[right, 995, 94, 0xcbe8f5],
+					[right, 988, 101, 0xb8e5f4],
+					[right, 981, 100, 0xffffff],
+				],
+			],
+		],
+		similar: 95,
+	},
+	'帝释天': {
+		region: [center, 1280, 720, 684, 632, 1169, 718],
+		desc: [
+			[1280, 720, // 奚落天穹
+				[
+					[right, 1009, 646, 0xfcf2e7],
+					[right, 1017, 646, 0xfcf8f5],
+					[right, 1031, 637, 0xfff9f1],
+					[right, 1031, 677, 0xd2a392],
+					[right, 1028, 672, 0xfaefeb],
+					[right, 1013, 688, 0x6867b5],
+					[right, 1045, 685, 0x7372b7],
 				],
 			]
 		],
@@ -2775,12 +2807,11 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		desc: [[
 			1280, 720,
 			[
-				[right, 1190, 452, 0xc4a28f],
-				[right, 1224, 458, 0xaf9181],
-				[right, 1201, 466, 0x412c27],
-				[right, 1215, 465, 0x3d2925],
-				[right, 1207, 489, 0x3d2825],
-				[right, 1206, 476, 0x3e2926],
+				[right, 1239, 362, 0xff4439],
+				[right, 1247, 362, 0xff4539],
+				[right, 1243, 357, 0xff685c],
+				[right, 1243, 367, 0xfc271b],
+				[right, 1243, 362, 0xff483c],
 			]
 		]],
 	},

@@ -180,7 +180,7 @@ export class Func311 implements IFuncOrigin {
 						const point_blood = thisScript.findMultiColorEx('红标_血条')
 						const operList = [];
 						for (const flagPoint of point_blood) {
-							if (point.x > flagPoint.x + 4 && point.x < flagPoint.x + 115) {
+							if (point.x > flagPoint.x  && point.x < flagPoint.x + 100) {
 								operList.push(flagPoint);
 							}
 						}
@@ -217,7 +217,7 @@ export class Func311 implements IFuncOrigin {
 						const point_blood = thisScript.findMultiColorEx('红标_血条')
 						const operList = [];
 						for (const flagPoint of point_blood) {
-							if (point.x > flagPoint.x + 4 && point.x < flagPoint.x + 115) {
+							if (point.x >= flagPoint.x && point.x < flagPoint.x + 100) {
 								operList.push(flagPoint);
 							}
 						}

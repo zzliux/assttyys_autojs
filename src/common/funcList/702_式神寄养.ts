@@ -20,11 +20,6 @@ export class Func702 implements IFuncOrigin {
 			default: '太鼓6->太鼓5->太鼓4->太鼓3->斗鱼6->斗鱼5->斗鱼4',
 			value: null,
 		}, {
-			name: 'claimReward',
-			desc: '领取寄养奖励',
-			type: 'switch',
-			default: false,
-		}, {
 			name: 'next_scheme',
 			desc: '执行完成后的操作',
 			type: 'scheme',
@@ -72,7 +67,7 @@ export class Func702 implements IFuncOrigin {
 				[left, 1280, 720, 182, 182, 197, 195, 1200],		// 刷新的滑动起点
 				[left, 1280, 720, 175, 547, 195, 555, 1200],		// 刷新的滑动终点
 				[center, 1280, 720, 496, 536, 514, 555, 1000], // 滑动界面起点
-				[center, 1280, 720, 482, 122, 504, 142, 1000], // 滑动界面终点
+				[center, 1280, 720, 496, 319, 514, 342, 1000], // 滑动界面终点
 				[center, 1280, 720, 23, 33, 58, 63, 1000], // 点击 返回
 				[center, 1280, 720, 795, 538, 967, 591, 3000],    // 进入结界按钮
 			],
@@ -211,30 +206,10 @@ export class Func702 implements IFuncOrigin {
 				[center, 1280, 720, 24, 31, 59, 60, 1000],
 				[center, 1280, 720, 24, 31, 59, 60, 1000],
 			]
-		}, { // 13 领取寄养奖励
-			desc: [1280, 720,
-				[
-					[center, 612, 139, 0x12100c],
-					[center, 591, 167, 0xfecb0d],
-					[center, 610, 169, 0xffd607],
-					[center, 627, 168, 0xffd109],
-					[center, 613, 193, 0x12100c],
-				]
-			],
-			oper: [
-				[center, 1280, 720, 593, 146, 637, 188, 1000],
-			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['702'];
-		if (thisconf.claimReward && thisScript.oper({
-			id: 702,
-			name: '领取寄养奖励',
-			operator: [thisOperator[13]],
-		})) {
-			return true;
-		}
 		if (thisScript.oper({
 			id: 702,
 			name: '检测是否为式神寄养列表',
@@ -274,7 +249,6 @@ export class Func702 implements IFuncOrigin {
 			operator: [thisOperator[12]],
 		})) {
 			console.log('寄养完成');
-			thisScript.doPush(thisScript, { text: '寄养完成', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 			thisScript.rerun(thisconf.next_scheme)
 			sleep(3000);
 			return true;
@@ -356,7 +330,7 @@ export class Func702 implements IFuncOrigin {
 						return true;
 					}
 				} else {
-					thisScript.regionSwipe(thisOperator[2].oper[2], thisOperator[2].oper[3], [1000, 1100], 1000);
+					thisScript.regionSwipe(thisOperator[2].oper[2], thisOperator[2].oper[3], [350, 360], 1000);
 					return true;
 				}
 			}

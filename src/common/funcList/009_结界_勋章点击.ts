@@ -21,14 +21,9 @@ export class Func009 implements IFuncOrigin {
 			value: null,
 		}, {
 			name: 'scheme_switch_enabled',
-			desc: '识别到攻打第一排第一列结界则切换方案',
+			desc: '识别到攻打第一排第一列结界则退四',
 			type: 'switch',
 			default: false,
-		}, {
-			name: 'next_scheme',
-			desc: '下一个方案',
-			type: 'scheme',
-			default: '个突_9退4_退出',
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{
@@ -135,13 +130,24 @@ export class Func009 implements IFuncOrigin {
 					thisScript.regionClick(oper);
 					// 第一排第一列结界坐标
 					const fristFirstOper = thisOperator[1].oper[0] // [147, 146, 465, 265];
-					if (Number(oper[0][0]) > fristFirstOper[0] && Number(oper[0][1]) > fristFirstOper[1] && Number(oper[0][2]) < fristFirstOper[2] && Number(oper[0][3]) < fristFirstOper[3]) {
+					if (thisconf.scheme_switch_enabled && Number && Number(oper[0][0]) > fristFirstOper[0] && Number(oper[0][1]) > fristFirstOper[1] && Number(oper[0][2]) < fristFirstOper[2] && Number(oper[0][3]) < fristFirstOper[3]) {
 						console.log('检测点击范围在第一排第一列结界内');
-						if (thisconf && thisconf.scheme_switch_enabled) {
-							thisScript.rerun(thisconf.next_scheme);
-							sleep(3000);
-							return;
-						}
+						thisScript.scheme.config[0] = {
+							...thisScript.scheme.config[0],
+							jspd_enabled_2: true,
+							jspd_times_2: '4',
+							after_operation: '切换方案',
+							next_scheme: thisScript.schemeHistory[thisScript.schemeHistory.length - 1].schemeName,
+						};
+						thisScript.scheme.config[1] = {
+							...thisScript.scheme.config[1],
+							exitBeforeReady: true,
+						};
+						thisScript.scheme.config[2] = {
+							...thisScript.scheme.config[2],
+							rechallenge: true,
+						};
+						thisScript.runTimes['2'] = 0; // 重置挑战次数
 					}
 					console.log(key);
 					return true;

@@ -242,6 +242,7 @@ export class Func302 implements IFuncOrigin {
 				operator: [thisOperator[1], thisOperator[14]]
 			})) {
 				thisScript.regionClick([[...thisOperator[6].oper[0], 1000]]);
+				thisScript.regionClick(thisOperator[2].oper);
 				return true;
 			}
 

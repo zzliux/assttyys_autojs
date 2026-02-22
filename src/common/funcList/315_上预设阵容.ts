@@ -84,20 +84,20 @@ export class Func315 implements IFuncOrigin {
 			operator: [thisOperator[1]]
 		})) {
 			if (!thisScript.global.preset_once_team_groupNum) {
-				thisScript.global.preset_once_team_groupNum = Number(thisConf.groupNum) - 1;
+				thisScript.global.preset_once_team_groupNum = Number(thisConf.groupNum);
 			}
 			if (!thisScript.global.preset_once_team_defaultNum) {
-				thisScript.global.preset_once_team_defaultNum = Number(thisConf.defaultNum) - 1;
+				thisScript.global.preset_once_team_defaultNum = Number(thisConf.defaultNum);
 			}
 			const oper = [[
 				thisOperator[2].oper[0][0],
-				thisOperator[2].oper[0][1] + (thisOperator[2].oper[0][4] * thisScript.global.preset_once_team_groupNum),
+				thisOperator[2].oper[0][1] + (thisOperator[2].oper[0][4] * (thisScript.global.preset_once_team_groupNum - 1)),
 				thisOperator[2].oper[0][2],
-				thisOperator[2].oper[0][3] + (thisOperator[2].oper[0][4] * thisScript.global.preset_once_team_groupNum),
+				thisOperator[2].oper[0][3] + (thisOperator[2].oper[0][4] * (thisScript.global.preset_once_team_groupNum - 1)),
 				500
 			]];
 			thisScript.regionClick(oper);
-			const opertwo = thisOperator[3].oper[thisScript.global.preset_once_team_defaultNum];
+			const opertwo = thisOperator[3].oper[(thisScript.global.preset_once_team_defaultNum - 1)];
 			thisScript.regionClick([opertwo]);
 			thisScript.regionClick(thisOperator[4].oper);
 			thisScript.global.shangyushe = false;

@@ -6,8 +6,8 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func607 implements IFuncOrigin {
-	id = 607;
+export class Func606 implements IFuncOrigin {
+	id = 606;
 	name = '阴门之门';
 	operator: IFuncOperatorOrigin[] = [{	// 检测_是否为首领退治集结页
 		desc: //  检测_阴门
