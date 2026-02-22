@@ -83,9 +83,9 @@ export class Func008 implements IFuncOrigin {
 		// 逢魔的前提判断
 		desc: [1280, 720,
 			[
-				[left, 44, 50, 0x4c5059],
-				[left, 73, 43, 0x162539],
-				[center, 751, 39, 0x241709],
+				[left, 44, 47, 0x666047],
+				[left, 47, 15, 0x17100f],
+				[center, 751, 39, 0x251709],
 				[right, 1182, 648, 0x696969],
 			]
 		]
