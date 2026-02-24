@@ -84,7 +84,8 @@ export default function webviewFuncList() {
 			}));
 		} else if (defaultLaunchAppList.length === 1) {
 			done(null);
-			script.rerun();
+			script.stop();
+			script.run();
 			launchPackage(defaultLaunchAppList[0]);
 		} else {
 			const storeSettings = storeCommon.get('settings', {});
