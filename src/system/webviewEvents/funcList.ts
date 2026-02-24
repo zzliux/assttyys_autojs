@@ -75,7 +75,8 @@ export default function webviewFuncList() {
 		const defaultLaunchAppList = storeSettings.defaultLaunchAppList || [];
 		if (defaultLaunchAppList.length == 0) {
 			done(null);
-			script.rerun();
+			script.stop();
+			script.run();
 			context.startActivity(app.intent({
 				action: android.content.Intent.ACTION_MAIN,
 				category: android.content.Intent.CATEGORY_HOME,

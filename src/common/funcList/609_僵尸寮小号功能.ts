@@ -21,6 +21,11 @@ export class Func609 implements IFuncOrigin {
 			desc: '下划次数',
 			type: 'number',
 			default: '5',
+		}, {
+			name: 'next_scheme',
+			desc: '下一个方案',
+			type: 'scheme',
+			default: '通用准备退出',
 		}]
 	}, {
 		desc: '执行功能选择',
@@ -357,9 +362,9 @@ export class Func609 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 399, 193, 580, 217, 1000], // 层数上划起始
-			[center, 1280, 720, 401, 679, 573, 706, 1000], // 层数上划结束
-			[center, 1280, 720, 406, 262, 579, 310, 1000], // 选择一层
+			[center, 1280, 720, 550, 193, 580, 217, 1000], // 层数上划起始
+			[center, 1280, 720, 550, 679, 573, 706, 1000], // 层数上划结束
+			[center, 1280, 720, 550, 262, 579, 310, 1000], // 选择一层
 			[center, 1280, 720, 995, 608, 1149, 643, 1000], // 选择创建
 		]
 	}, { // 24 已集结_创建
@@ -928,7 +933,7 @@ export class Func609 implements IFuncOrigin {
 		}
 		if (thisScript.global.account_state === 'login') {
 			if (thisScript.global.account_num >= (thisconf.account_count as number)) {
-				thisScript.stop();
+				thisScript.rerun(thisconf.next_scheme);
 				return true;
 			}
 			if (thisScript.oper({
