@@ -243,6 +243,11 @@ export class Func503 implements IFuncOrigin {
 			desc: '46 师徒界面',
 			type: 'switch',
 			default: true,
+		}, {
+			name: 'oper_47',
+			desc: '47 御灵界面',
+			type: 'switch',
+			default: true,
 		}
 		]
 	}];
@@ -775,7 +780,21 @@ export class Func503 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 21, 16, 67, 56, 1000],
 		]
-	}];
+	},{
+		// 47 御灵界面
+	desc: [1280, 720,
+		[
+			[right, 911, 51, 0x2c1e1e],
+			[right, 1122, 46, 0xd7b189],
+			[right, 895, 43, 0x3a3a3a],
+			[right, 885, 42, 0xcdcdd1],
+			[right, 877, 27, 0x2d1e1f],
+		]
+	],
+	oper: [
+		[center, 1280, 720, 21, 16, 67, 56, 1000],
+	]
+}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['503'];
 		let enabledThisOperator = [];
