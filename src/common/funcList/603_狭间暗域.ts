@@ -176,6 +176,30 @@ export class Func603 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1149, 100, 1186, 124, 1000],
 		]
+	}, { // 7 集结中
+		desc: [1280, 720,
+			[
+				[center, 597, 72, 0xe5e1d2],
+				[center, 601, 80, 0xf3eedc],
+				[center, 631, 73, 0xf3eedd],
+				[center, 630, 81, 0xebe7d7],
+				[center, 616, 75, 0xdedacd],
+			]
+		],
+	}, { // 8 战报页覆盖了挑战界面
+		desc: [1280, 720,
+			[
+				[right, 1196, 591, 0x150c10],
+				[right, 1199, 622, 0x353031],
+				[right, 1201, 635, 0x363132],
+				[right, 1198, 665, 0x0d0709],
+				[right, 1230, 549, 0x210e0a],
+				[right, 1239, 549, 0x210e09],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1151, 94, 1186, 122, 1000],
+		]
 	}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -250,15 +274,20 @@ export class Func603 implements IFuncOrigin {
 		}
 		// Real:用结算次数获取当前已攻打第几个怪物
 		const Real = thisScript.runTimes['2'] - thisScript.global.runTime_2 - (thisconf.sneak as number)
+		if (Real >= 12) {
+			log('已完成狭间,返回庭院')
+			thisScript.rerun('返回庭院')
+			return true;
+		}
 		// 首次进入_判断换预设御魂
 		let presetStr: string | undefined
-		if (thisScript.runTimes['2'] === thisScript.global.runTime_2) {
+		if ((thisconf.sneak as number) > 0 && thisScript.runTimes['2'] === thisScript.global.runTime_2) {
 			presetStr = thisconf['preset_pair_小蛇'] as string;
 		} else {
 			// 攻打固定次数换预设御魂
 			const arr = thisconf.boss_order === '小到大'
-				? { 0: '精英', 6: '副将', 4: '首领' }
-				: { 0: '首领', 2: '副将', 4: '精英' };
+				? { 0: '精英', 6: '副将', 10: '首领' }
+				: { 0: '首领', 2: '副将', 6: '精英' };
 			const type = arr[Real];
 			if (type) {
 				presetStr = thisconf[`preset_pair_${type}`] as string
@@ -275,7 +304,7 @@ export class Func603 implements IFuncOrigin {
 			if (thisScript.global.preset_once_groupNum > 0) {
 				if (thisScript.global.preset_once_groupNum === thisScript.global.xiaJian.fenZu &&
 					thisScript.global.preset_once_defaultNum === thisScript.global.xiaJian.zhenRong) {
-					log('重复判断');
+					// 当分组和阵容都匹配时，无需更新数据，直接跳过
 				} else {
 					thisScript.global.xiaJian.fenZu = thisScript.global.preset_once_groupNum
 					thisScript.global.xiaJian.zhenRong = thisScript.global.preset_once_defaultNum
@@ -309,6 +338,13 @@ export class Func603 implements IFuncOrigin {
 			}
 		}
 		if (thisScript.oper({
+			name: '集结中',
+			operator: [{ desc: thisOperator[7].desc }],
+		})) {
+			sleep(1000);
+			return true;
+		}
+		if (thisScript.oper({
 			name: '选择攻打',
 			operator: [thisOperator[1], thisOperator[2]]
 		})) {
@@ -320,6 +356,12 @@ export class Func603 implements IFuncOrigin {
 			name: '检测_战报页内',
 			operator: [{ desc: thisOperator[3].desc }]
 		})) {
+			if (thisScript.oper({
+				name: '卡主',
+				operator: [thisOperator[8]]
+			})) {
+				return true;
+			}
 			if (thisScript.runTimes['2'] - thisScript.global.runTime_2 < (thisconf.sneak as number)) {
 				if (thisScript.oper({
 					name: '小蛇',

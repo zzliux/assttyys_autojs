@@ -104,14 +104,12 @@ export class Func002 implements IFuncOrigin {
 				[center, 1280, 720, 165, 60, 1263, 530, 400, 1],
 			]
 		],
-		notForCnt: true,
 	}, {
 		// 7 组队-胜利太鼓,斗技-胜利太鼓 - 适配
 		desc: '退出结算_斗技_胜利太鼓',
 		oper: [
 			[center, 1280, 720, 705, 601, 1026, 700, 400],
 		],
-		notForCnt: true,
 	}, {
 		// 8 组队-胜利太鼓,斗技-胜利太鼓
 		desc: '退出结算_组队_胜利太鼓',
@@ -122,7 +120,6 @@ export class Func002 implements IFuncOrigin {
 				[center, 1280, 720, 888, 359, 1204, 492, 400, 5],
 			]
 		],
-		notForCnt: true,
 	}, {
 		// 9 单人-失败太鼓
 		desc: '退出结算_单人_失败太鼓',
@@ -150,7 +147,6 @@ export class Func002 implements IFuncOrigin {
 				[left, 1280, 720, 600, 672, 1216, 712, 400, 5],
 			]
 		],
-		notForCnt: true,
 	}, {
 		// 12 秘闻的胜利，太鼓位置很高
 		desc: '退出结算_秘闻_胜利太鼓',

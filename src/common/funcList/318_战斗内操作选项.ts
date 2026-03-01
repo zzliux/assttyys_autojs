@@ -42,7 +42,7 @@ export class Func318 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1194, 636, 1252, 695, 0], // 晴明
+			[center, 1280, 720, 1194, 636, 1252, 695, 500], // 晴明
 		],
 		retest: 500
 	}, { // 1 开始战斗后的场景
@@ -90,8 +90,8 @@ export class Func318 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1011, 481, 1051, 518, 1000], // 2技能
-			[center, 1280, 720, 1099, 482, 1145, 519, 1000], // 3技能
+			[center, 1280, 720, 1011, 481, 1051, 518, 200], // 2技能
+			[center, 1280, 720, 1099, 482, 1145, 519, 200], // 3技能
 		]
 	}, { // 5 非晴明阴阳师，并且单技能
 		desc: [1280, 720,
@@ -103,7 +103,7 @@ export class Func318 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1201, 643, 1245, 682, 0],
+			[center, 1280, 720, 1201, 643, 1245, 682, 200],
 		]
 	}, { // 6 战字
 		desc: [
@@ -148,6 +148,37 @@ export class Func318 implements IFuncOrigin {
 
 			};
 		}
+		if (thisScript.oper({
+			id: 320,
+			name: '战字_初始流程',
+			operator: [{
+				desc: thisOperator[6].desc
+			}]
+		})) {
+			if (thisconf.time != '0') {
+				thisScript.global.fight_Swith.time = new Date().getTime() + Number(thisconf.time) * 1000;
+			}
+			if (thisScript.global.fight_Swith.xingMie) {
+				thisScript.regionClick([thisOperator[0].oper[0]]);
+				thisScript.regionClick([thisOperator[4].oper[1]]);
+			}
+			if (thisScript.global.fight_Swith.diSiTian) {
+				const point = thisScript.findMultiColor('帝释天', null, false, false)
+				if (point) {
+					console.log('开局查找到帝释天,锁二');
+					const oper = [[point.x, point.y, point.x + 10, point.y + 10, 500]];
+					thisScript.regionClick(oper);
+					if (point.x < 1090) {
+						const oper = [[point.x - 30, point.y - 130, point.x - 20, point.y - 120, 200]];
+						thisScript.regionClick(oper);
+					} else {
+						const oper = [[point.x - 80, point.y - 130, point.x - 70, point.y - 120, 200]];
+						thisScript.regionClick(oper);
+					}
+					return true;
+				}
+			}
+		}
 		if (thisconf.time != '0') {
 			if (!thisScript.global.fight_Swith.time && thisScript.oper({
 				name: '战斗界面',
@@ -164,15 +195,6 @@ export class Func318 implements IFuncOrigin {
 					name: '计时退出',
 					operator: [thisOperator[8]]
 				});
-			}
-			if (thisScript.oper({
-				id: 320,
-				name: '战字',
-				operator: [{
-					desc: thisOperator[6].desc
-				}]
-			})) {
-				thisScript.global.fight_Swith.time = new Date().getTime() + Number(thisconf.time) * 1000;
 			}
 		}
 		if (thisScript.global.fight_Swith.xingMie) {
@@ -222,32 +244,12 @@ export class Func318 implements IFuncOrigin {
 		if (thisScript.global.fight_Swith.diSiTian) {
 			if (thisScript.oper({
 				id: 318,
-				name: '战字',
-				operator: [{ desc: thisOperator[6].desc }]
-			})) {
-				const point = thisScript.findMultiColor('帝释天', null, false, false)
-				if (point) {
-					console.log('开局查找到帝释天,锁二');
-					const oper = [[point.x, point.y, point.x + 10, point.y + 10, 500]];
-					thisScript.regionClick(oper);
-					if (point.x < 1090) {
-						const oper = [[point.x - 30, point.y - 130, point.x - 20, point.y - 120, 200]];
-						thisScript.regionClick(oper);
-					} else {
-						const oper = [[point.x - 80, point.y - 130, point.x - 70, point.y - 120, 200]];
-						thisScript.regionClick(oper);
-					}
-					return true;
-				}
-			}
-			if (thisScript.oper({
-				id: 318,
 				name: '帝释天行动',
 				operator: [{ desc: thisOperator[7].desc }]
 			})) {
 				const point = thisScript.findMultiColor('帝释天', null, false, false)
 				if (point) {
-					console.log('开局查找到帝释天,锁普攻');
+					console.log('查找到帝释天,锁普攻');
 					sleep(2000);
 					const oper = [[point.x, point.y, point.x + 10, point.y + 10, 500]];
 					thisScript.regionClick(oper);

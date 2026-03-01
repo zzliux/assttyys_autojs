@@ -104,12 +104,13 @@ export class Func600 implements IFuncOrigin {
 				1280, 720,
 				[
 					[left, 42, 31, 0xf4e4a4],
-					[center, 736, 237, 0x8a7c67],
-					[center, 766, 235, 0xc24137],
-					[center, 760, 245, 0x653f37],
-					[right, 836, 222, 0x32221b],
-					[right, 850, 223, 0xb78d42],
-					[right, 841, 232, 0x2a1d18],
+					[right, 760, 255, 0xe2dfda],
+					[right, 820, 276, 0xdebce4],
+					[right, 702, 265, 0xe0bfe5],
+					[right, 755, 285, 0x4c4943],
+					[right, 857, 237, 0x2b1d15],
+					[right, 836, 240, 0x30221b],
+					[right, 767, 246, 0xb03a32],
 				]
 			],
 			oper: [
@@ -214,18 +215,17 @@ export class Func600 implements IFuncOrigin {
 					]
 				]
 		}, { //	9 检测_狭间暗域
-			desc:
+			desc: [1280, 720,
 				[
-					1280, 720,
-					[
-						[center, 848, 535, 0x422d1e],
-						[center, 826, 496, 0xcbb497],
-						[center, 687, 505, 0xcab596],
-						[center, 778, 560, 0x442f47],
-						[center, 684, 615, 0xb9a489],
-						[center, 861, 540, 0xd09f4a],
-					]
-				],
+					[right, 847, 537, 0x32231c],
+					[right, 870, 525, 0x271b15],
+					[right, 760, 555, 0x473049],
+					[right, 741, 553, 0x31282c],
+					[right, 684, 501, 0xc7b396],
+					[right, 859, 613, 0xb4a085],
+					[right, 715, 556, 0xbd727b],
+				]
+			],
 			oper: [
 				[center, 1280, 720, 702, 495, 848, 617, 1200]	//	点击狭间暗域
 			]
