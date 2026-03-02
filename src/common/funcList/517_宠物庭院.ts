@@ -94,14 +94,13 @@ export class Func517 implements IFuncOrigin {
 				[
 					1280, 720,
 					[
-						[center, 892, 268, 0x040306],
-						[center, 922, 450, 0x030206],
-						[center, 554, 454, 0x030205],
-						[center, 748, 364, 0x030305],
-						[center, 692, 326, 0x0f0b09],
-						[center, 604, 260, 0x030205],
-						[left, 65, 39, 0x575143],
-						[right, 1176, 685, 0x2a1a12],
+						[right, 892, 268, 0x48385a],
+						[right, 922, 450, 0x261f42],
+						[center, 554, 454, 0x262047],
+						[right, 692, 326, 0xdea27b],
+						[center, 604, 260, 0x261f44],
+						[left, 65, 39, 0xd6c7a6],
+						[right, 1176, 685, 0x65412e],
 					]
 				],
 			oper: [
