@@ -907,7 +907,7 @@ export class Func609 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 572, 611, 652, 649, 1000],
 		]
-	}, { // 65 地狱鬼王声望弹窗
+	}, { // 65 地域鬼王声望弹窗
 		desc: [1280, 720,
 			[
 				[left, 64, 372, 0x974636],
@@ -920,6 +920,20 @@ export class Func609 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 599, 612, 701, 673, 1000],
+		]
+	}, { // 66 地域鬼王_已完成返回
+		desc: [1280, 720,
+			[
+				[left, 63, 373, 0x944234],
+				[left, 34, 406, 0x94723d],
+				[left, 52, 501, 0x924747],
+				[left, 92, 517, 0x3d322e],
+				[left, 62, 667, 0x83423d],
+				[left, 94, 665, 0x753433],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 49, 152, 166, 261, 1000],
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -973,7 +987,6 @@ export class Func609 implements IFuncOrigin {
 				operator: [{ desc: thisOperator[4].desc }]
 			})) {
 				thisScript.regionClick([thisOperator[4].oper[thisScript.global.account_num % 2]]);
-				thisScript.global.account_state = 'function';
 				return true;
 			}
 			if (thisScript.oper({
@@ -982,7 +995,6 @@ export class Func609 implements IFuncOrigin {
 				operator: [{ desc: thisOperator[53].desc }]
 			})) {
 				thisScript.regionClick([thisOperator[53].oper[thisScript.global.account_num % 2]]);
-				thisScript.global.account_state = 'function';
 				return true;
 			}
 			if (thisScript.oper({
@@ -993,33 +1005,25 @@ export class Func609 implements IFuncOrigin {
 				thisScript.global.account_num++;
 				return true;
 			}
-			if (thisScript.oper({
+			// 做延时检测 防止登陆后的弹窗
+			let curCnt = 0;
+			const maxCount = 6;
+			while (thisScript.oper({
 				id: 609,
-				name: '庭院',
+				name: '是否为庭院',
 				operator: [{ desc: thisOperator[5].desc }]
 			})) {
-				thisScript.global.account_state = 'function';
-				return true;
+				curCnt++;
+				thisScript.keepScreen();
+				if (curCnt >= maxCount) {
+					sleep(500);
+					thisScript.global.account_state = 'function';
+					thisScript.global.open_only_once = true;
+					return true;
+				}
 			}
 		}
 		if (thisScript.global.account_state === 'function') {
-			if (thisScript.oper({
-				id: 609,
-				name: '选择平台',
-				operator: [{ desc: thisOperator[4].desc }]
-			})) {
-				thisScript.regionClick([thisOperator[4].oper[thisScript.global.account_num % 2]]);
-				return true;
-			}
-			if (thisScript.oper({
-				id: 609,
-				name: '选择平台(带有鸿蒙入口)',
-				operator: [{ desc: thisOperator[53].desc }]
-			})) {
-				thisScript.regionClick([thisOperator[53].oper[thisScript.global.account_num % 2]]);
-				thisScript.global.account_state = 'function';
-				return true;
-			}
 			if (!thisScript.global.function_Swith) {// 首次执行,读取按钮状况
 				thisScript.global.function_Swith = {
 					'juanGouYu': thisconf.juanGouYu as boolean,
@@ -1332,6 +1336,13 @@ export class Func609 implements IFuncOrigin {
 				thisScript.global.open_only_once = false;
 				return true;
 			}
+		}
+		if (thisScript.oper({
+			id: 609,
+			name: '地狱鬼王',
+			operator: [thisOperator[66]]
+		})) {
+			return true
 		}
 	}
 }
