@@ -190,7 +190,8 @@ export class Func008 implements IFuncOrigin {
 					} else if ('切换方案' === thisConf.afterCountOper) {
 						const oper = thisOperator[0].oper[1];
 						thisScript.regionClick([oper, oper], 500 + +thisScript.scheme.commonConfig.afterClickDelayRandom);
-						thisScript.rerun(thisConf.next_scheme);
+						sleep(500);
+						return thisScript.rerun(thisConf.next_scheme);
 					} else if ('九退四_切换方案' === thisConf.afterCountOper) {
 						// 此选项需在"个突_9退4_退出"里的008选择,因为"个突_9退4"视为一个整体,只需在"个突_9退4_进攻"里选择需要切换的方案即可,
 						// 无需在"个突_9退4_退出"再次设置需要切换的方案,否者会在"退出"时跳出循环或卡主
