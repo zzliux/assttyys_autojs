@@ -1527,5 +1527,8 @@ export const versionList = [{
 }, {
 	version: '20260228_01',
 	desc: '新增：返回庭院界面新增御灵界面'
+}, {
+	version: '20260304_01',
+	desc: '修复：008突破转换方案时相关bug'
 }];
 export default versionList[versionList.length - 1].version;
