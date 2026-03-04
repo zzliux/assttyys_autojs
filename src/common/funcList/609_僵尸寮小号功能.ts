@@ -938,6 +938,21 @@ export class Func609 implements IFuncOrigin {
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['609'];
+		if (!thisScript.global.function_Swith) {// 首次执行,读取按钮状况
+			thisScript.global.function_Swith = {
+				'login': true,
+				'juanGouYu': thisconf.juanGouYu as boolean,
+				'liaoSanshi': thisconf.liaoSanshi as boolean,
+				'liaoSanshi_tongXinDui_check': true,
+				'liaoSanshi_tongXinDui_fight': false,
+				'liaoSanshi_tongXinDui_yuCun': false,
+				'liaoSanshi_tongXinDui_back': false,
+				'agency': thisconf.agency as boolean,
+				'regionBoos': thisconf.regionBoos as boolean,
+				'regionBoos_num': 0,
+				'regionBoos_fight': false,
+			};
+		}
 		if (thisScript.oper({
 			id: 609,
 			name: '庭院偏移',
@@ -950,7 +965,7 @@ export class Func609 implements IFuncOrigin {
 				thisScript.rerun(thisconf.next_scheme);
 				return true;
 			}
-			if (thisScript.oper({
+			if (thisScript.global.function_Swith.login && thisScript.oper({
 				id: 609,
 				name: '退出账号',
 				operator: [thisOperator[0], thisOperator[1]]
@@ -987,6 +1002,7 @@ export class Func609 implements IFuncOrigin {
 				operator: [{ desc: thisOperator[4].desc }]
 			})) {
 				thisScript.regionClick([thisOperator[4].oper[thisScript.global.account_num % 2]]);
+				thisScript.global.function_Swith.login = false;
 				return true;
 			}
 			if (thisScript.oper({
@@ -995,6 +1011,7 @@ export class Func609 implements IFuncOrigin {
 				operator: [{ desc: thisOperator[53].desc }]
 			})) {
 				thisScript.regionClick([thisOperator[53].oper[thisScript.global.account_num % 2]]);
+				thisScript.global.function_Swith.login = false;
 				return true;
 			}
 			if (thisScript.oper({
@@ -1024,20 +1041,6 @@ export class Func609 implements IFuncOrigin {
 			}
 		}
 		if (thisScript.global.account_state === 'function') {
-			if (!thisScript.global.function_Swith) {// 首次执行,读取按钮状况
-				thisScript.global.function_Swith = {
-					'juanGouYu': thisconf.juanGouYu as boolean,
-					'liaoSanshi': thisconf.liaoSanshi as boolean,
-					'liaoSanshi_tongXinDui_check': true,
-					'liaoSanshi_tongXinDui_fight': false,
-					'liaoSanshi_tongXinDui_yuCun': false,
-					'liaoSanshi_tongXinDui_back': false,
-					'agency': thisconf.agency as boolean,
-					'regionBoos': thisconf.regionBoos as boolean,
-					'regionBoos_num': 0,
-					'regionBoos_fight': false,
-				};
-			}
 			if (thisScript.global.function_Swith.juanGouYu) {
 				if (thisScript.oper({
 					id: 609,
