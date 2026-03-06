@@ -154,7 +154,7 @@ export class MyFloaty {
 		self.fb.addItem('Pause')
 			.toCheckbox(mUtil => {
 				// 未选中样式
-				mUtil.icon1('@drawable/ic_pause_black_48dp').tint1('#FFFFFF').color1('#FF4800');
+				mUtil.icon1('@drawable/ic_pause_black_48dp').tint1('#FFFFFF').color1('#FF4800').rotation1(360);
 				// 选中样式
 				mUtil.icon2('@drawable/ic_eject_black_48dp').tint2('#FFFFFF').color2('#FF4800').rotation2(90);
 			})
