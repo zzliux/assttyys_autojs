@@ -8,6 +8,8 @@
  * @LastEditTime: 2021-04-19 16:44:52
  */
 /*eslint-disable */
+importClass(android.view.View);
+
 global.FloatButton = function () {
     require('./widget/RoundButton');
     let fbUtil = require('./js/init');
@@ -149,6 +151,16 @@ global.FloatButton = function () {
         });
         return viewUtil;
     }
+
+    FloatButton.prototype.hideItem = function (name) {
+        let item = mMenuViews.find(it => it.name === name);
+        ui.run(() => item.view.setVisibility(View.GONE));
+    };
+
+    FloatButton.prototype.showItem = function (name) {
+        let item = mMenuViews.find(it => it.name === name);
+        ui.run(() => item.view.setVisibility(View.VISIBLE));
+    };
 
     FloatButton.prototype.insertItem = function (name, index) {
         let viewUtil = new CreateRoundButtonView(name, mConfig);
