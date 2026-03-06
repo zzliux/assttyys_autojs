@@ -154,39 +154,23 @@ global.FloatButton = function () {
 
     FloatButton.prototype.hideItem = function (name) {
         let item = mMenuViews.find(it => it.name === name);
+        if (!item) {
+            console.warn("menu item not found:", name);
+            console.log("menuViews:", mMenuViews);
+            return;
+        }
         ui.run(() => item.view.setVisibility(View.GONE));
     };
 
     FloatButton.prototype.showItem = function (name) {
         let item = mMenuViews.find(it => it.name === name);
+        if (!item) {
+            console.warn("menu item not found:", name);
+            console.log("menuViews:", mMenuViews);
+            return;
+        }
         ui.run(() => item.view.setVisibility(View.VISIBLE));
     };
-
-    FloatButton.prototype.insertItem = function (name, index) {
-        let viewUtil = new CreateRoundButtonView(name, mConfig);
-        mViewUtils[name] = viewUtil;
-        mMenuViews.splice(index, 0, { name, view: viewUtil.getView() });
-        postAction(() => {
-            mWindows.menu.content.addView(viewUtil.getView(), index);
-            updateItemCoordinate();
-            updateMenuWindow();
-            mAnim.createAnim(mItemsXY, mMenuViews);
-        });
-        return viewUtil;
-    }
-
-    FloatButton.prototype.removeItem = function (name) {
-        let index = mMenuViews.findIndex(item => item.name === name);
-        if (index === -1) return;
-        postAction(() => {
-            mWindows.menu.content.removeView(mMenuViews[index].view);
-            mMenuViews.splice(index, 1);
-            delete mViewUtils[name];
-            updateItemCoordinate();
-            updateMenuWindow();
-            mAnim.createAnim(mItemsXY, mMenuViews);
-        });
-    }
 
     FloatButton.prototype.on = function (eventType, eventAction) {
         mConfig.eventActions[eventType] = eventAction;

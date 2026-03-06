@@ -45,7 +45,7 @@ export default function webviewFuncList() {
 	// 点击保存，设置当前方案
 	webview.on('setCurrentScheme').subscribe(([schemeName, done]) => {
 		script.isPause = false;
-		MyFloaty.fb.removeItem('Pause');
+		MyFloaty.fb.hideItem('Pause');
 		setCurrentScheme(schemeName, store);
 		done();
 	});
