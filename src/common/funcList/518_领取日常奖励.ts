@@ -548,6 +548,20 @@ export class Func518 implements IFuncOrigin {
 				[center, 1280, 720, 1168, 48, 1200, 64, 1000],
 				[center, 1280, 720, 1168, 48, 1200, 64, 1000],
 			]
+		}, { // 42 结界合成界面
+			desc: [1280, 720,
+				[
+					[right, 870, 152, 0x392010],
+					[right, 1033, 451, 0x331b0d],
+					[right, 713, 450, 0x331b0d],
+					[right, 1216, 213, 0x613f29],
+					[right, 1216, 338, 0x8d5322],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 1157, 94, 1200, 134, 1000],
+				[center, 1280, 720, 1156, 99, 1199, 131, 1000],
+			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -583,7 +597,7 @@ export class Func518 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 518,
 				name: '邮件',
-				operator: [thisOperator[17]]
+				operator: [thisOperator[17], thisOperator[42]]
 			})) {
 				thisScript.global.function_Swith.email = false;
 				return true;
