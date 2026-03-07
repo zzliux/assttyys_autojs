@@ -50,7 +50,7 @@ export class Func311 implements IFuncOrigin {
 				],
 			],
 			oper: [
-				[center, 1280, 720, 387, 15, 418, 54, 1200], //  点击 PVE顶部BOSS血条红标
+				[center, 1280, 720, 387, 15, 418, 54, 200], //  点击 PVE顶部BOSS血条红标
 			],
 		},
 		{

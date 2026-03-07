@@ -90,8 +90,8 @@ export class Func318 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1011, 481, 1051, 518, 200], // 2技能
-			[center, 1280, 720, 1099, 482, 1145, 519, 200], // 3技能
+			[center, 1280, 720, 1011, 481, 1051, 518, 250], // 2技能
+			[center, 1280, 720, 1099, 482, 1145, 519, 250], // 3技能
 		]
 	}, { // 5 非晴明阴阳师，并且单技能
 		desc: [1280, 720,
@@ -103,7 +103,7 @@ export class Func318 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1201, 643, 1245, 682, 200],
+			[center, 1280, 720, 1201, 643, 1245, 682, 250],
 		]
 	}, { // 6 战字
 		desc: [
@@ -134,7 +134,7 @@ export class Func318 implements IFuncOrigin {
 	}, { // 8 战斗退出
 		desc: '战斗界面',
 		oper: [
-			[left, 1280, 720, 22, 19, 52, 47, 1500], // 左上角返回
+			[left, 1280, 720, 22, 19, 52, 47, 1000], // 左上角返回
 			[center, 1280, 720, 683, 401, 795, 442, 500], // 确认
 		]
 	}];
@@ -145,7 +145,6 @@ export class Func318 implements IFuncOrigin {
 				'xingMie': thisconf.xingMie as boolean,
 				'diSiTian': thisconf.diSiTian as boolean,
 				'time': null,
-
 			};
 		}
 		if (thisScript.oper({
@@ -155,6 +154,12 @@ export class Func318 implements IFuncOrigin {
 				desc: thisOperator[6].desc
 			}]
 		})) {
+			// 战斗开始,再出初始化
+			thisScript.global.fight_Swith = {
+				'xingMie': thisconf.xingMie as boolean,
+				'diSiTian': thisconf.diSiTian as boolean,
+				'time': null,
+			};
 			if (thisconf.time != '0') {
 				thisScript.global.fight_Swith.time = new Date().getTime() + Number(thisconf.time) * 1000;
 			}
@@ -169,10 +174,10 @@ export class Func318 implements IFuncOrigin {
 					const oper = [[point.x, point.y, point.x + 10, point.y + 10, 500]];
 					thisScript.regionClick(oper);
 					if (point.x < 1090) {
-						const oper = [[point.x - 30, point.y - 130, point.x - 20, point.y - 120, 200]];
+						const oper = [[point.x - 30, point.y - 130, point.x - 20, point.y - 120, 250]];
 						thisScript.regionClick(oper);
 					} else {
-						const oper = [[point.x - 80, point.y - 130, point.x - 70, point.y - 120, 200]];
+						const oper = [[point.x - 80, point.y - 130, point.x - 70, point.y - 120, 250]];
 						thisScript.regionClick(oper);
 					}
 					return true;
@@ -189,12 +194,14 @@ export class Func318 implements IFuncOrigin {
 				thisScript.global.fight_Swith.time = new Date().getTime() + Number(thisconf.time) * 1000;
 			}
 			if (thisScript.global.fight_Swith.time && new Date().getTime() > (thisScript.global.fight_Swith.time as number)) {
-				thisScript.global.fight_Swith.time = null;
-				return thisScript.oper({
+				if (thisScript.oper({
 					id: 320,
 					name: '计时退出',
 					operator: [thisOperator[8]]
-				});
+				})) {
+					thisScript.global.fight_Swith.time = null;
+					return true;
+				}
 			}
 		}
 		if (thisScript.global.fight_Swith.xingMie) {
@@ -213,7 +220,7 @@ export class Func318 implements IFuncOrigin {
 				name: '技能框',
 				operator: [thisOperator[3]]
 			})) {
-				sleep(200);
+				sleep(250);
 				if (thisScript.oper({
 					id: 318,
 					name: '锁定妖术二中,切换为妖术三',
@@ -254,12 +261,13 @@ export class Func318 implements IFuncOrigin {
 					const oper = [[point.x, point.y, point.x + 10, point.y + 10, 500]];
 					thisScript.regionClick(oper);
 					if (point.x < 1090) {
-						const oper = [[point.x - 120, point.y - 130, point.x - 110, point.y - 120, 200]];
+						const oper = [[point.x - 120, point.y - 130, point.x - 110, point.y - 120, 250]];
 						thisScript.regionClick(oper);
 					} else {
-						const oper = [[point.x - 80, point.y - 170, point.x - 70, point.y - 160, 200]];
+						const oper = [[point.x - 170, point.y - 130, point.x - 160, point.y - 120, 250]];
 						thisScript.regionClick(oper);
 					}
+					thisScript.global.fight_Swith.diSiTian = false;
 					return true;
 				}
 			}
