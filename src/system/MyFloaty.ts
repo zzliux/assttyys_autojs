@@ -161,10 +161,8 @@ export class MyFloaty {
 			.onClick((_view, _name, state) => {
 				if (state) {
 					self.thisPause(); // 暂停也会调用的StopCallBack，下面两行不能执行
-					runStopItem.setChecked(false, true);
 				} else {
 					self.thisRun();
-					runStopItem.setChecked(true, true);
 				}
 				return false;
 			});

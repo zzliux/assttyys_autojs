@@ -9,8 +9,8 @@ const right = 2;
 export class Func606 implements IFuncOrigin {
 	id = 606;
 	name = '阴门之门';
-	operator: IFuncOperatorOrigin[] = [{	// 检测_是否为首领退治集结页
-		desc: //  检测_阴门
+	operator: IFuncOperatorOrigin[] = [{	// 0 检测_是否为首领退治集结页
+		desc:
 			[
 				1280, 720,
 				[
@@ -26,9 +26,8 @@ export class Func606 implements IFuncOrigin {
 			[right, 1280, 720, 1058, 601, 1268, 687, 1200],  // 点击挑战
 			[left, 1280, 720, 27, 15, 78, 61, 1200], //  点击退出
 		]
-	},
-	{
-		desc: //  检测_阴门挑战弹窗界面
+	}, { //  1 检测_阴门挑战弹窗界面
+		desc:
 			[
 				1280, 720,
 				[
@@ -45,9 +44,8 @@ export class Func606 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 342, 596, 443, 638, 1200] //  点击挑战
 		]
-	},
-	{
-		desc: //  检测_是否为36轮挑战弹窗
+	}, { //  2 检测_是否为36轮挑战弹窗
+		desc:
 			[
 				1280, 720,
 				[
@@ -62,9 +60,8 @@ export class Func606 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 699, 415, 816, 447, 1200]   //  点击确认
 		]
-	},
-	{
-		desc: // 检测_已完成挑战弹窗
+	}, { // 3 检测_已完成挑战弹窗
+		desc:
 			[
 				1280, 720,
 				[
@@ -81,7 +78,7 @@ export class Func606 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1168, 62, 1198, 88, 1200]  //  点击_关闭按钮
 		]
-	}, { // 阴界之门_寮神社未下滑位置
+	}, { // 4 阴界之门_寮神社未下滑位置
 		desc: [1280, 720,
 			[
 				[left, 191, 450, 0xc2ae92],
@@ -94,7 +91,7 @@ export class Func606 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 176, 441, 351, 553, 1000],
 		]
-	}, { // 阴界之门_寮神社已下滑位置
+	}, { // 5 阴界之门_寮神社已下滑位置
 		desc: [1280, 720,
 			[
 				[left, 220, 307, 0xcd94e5],

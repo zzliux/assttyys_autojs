@@ -317,8 +317,8 @@ export class Func0602 implements IFuncOrigin {
 			thisScript.global.daoguan_team = true;
 			thisScript.global.shangyushe = true;
 			if (thisScript.superGlobal.daoguan_lose) {
-				if (thisScript.superGlobal.liao_activity_Swith) {
-					thisScript.superGlobal.liao_activity_Swith['a_ctivity_dojo_again'] = true;
+				if (thisScript.superGlobal.liao_activity_Switch) {
+					thisScript.superGlobal.liao_activity_Switch['a_ctivity_dojo_again'] = true;
 				}
 				thisScript.superGlobal.daoguan_lose = false;
 			}

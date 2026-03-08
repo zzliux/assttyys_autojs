@@ -62,8 +62,8 @@ export class Func516 implements IFuncOrigin {
 					return false;
 				}
 			} else if (leftTimes == 1) {
-				thisScript.superGlobal.liao_activity_Swith = {
-					...thisScript.superGlobal.liao_activity_Swith,
+				thisScript.superGlobal.liao_activity_Switch = {
+					...thisScript.superGlobal.liao_activity_Switch,
 					'a_ctivity_dojo': false,
 					'a_ctivity_dojo_again': false,
 					'a_ctivity_hunt': false,

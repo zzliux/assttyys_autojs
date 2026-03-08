@@ -938,8 +938,8 @@ export class Func609 implements IFuncOrigin {
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['609'];
-		if (!thisScript.global.function_Swith) {// 首次执行,读取按钮状况
-			thisScript.global.function_Swith = {
+		if (!thisScript.global.function_Switch) {// 首次执行,读取按钮状况
+			thisScript.global.function_Switch = {
 				'login': true,
 				'juanGouYu': thisconf.juanGouYu as boolean,
 				'liaoSanshi': thisconf.liaoSanshi as boolean,
@@ -965,7 +965,7 @@ export class Func609 implements IFuncOrigin {
 				thisScript.rerun(thisconf.next_scheme);
 				return true;
 			}
-			if (thisScript.global.function_Swith.login && thisScript.oper({
+			if (thisScript.global.function_Switch.login && thisScript.oper({
 				id: 609,
 				name: '退出账号',
 				operator: [thisOperator[0], thisOperator[1]]
@@ -1002,7 +1002,7 @@ export class Func609 implements IFuncOrigin {
 				operator: [{ desc: thisOperator[4].desc }]
 			})) {
 				thisScript.regionClick([thisOperator[4].oper[thisScript.global.account_num % 2]]);
-				thisScript.global.function_Swith.login = false;
+				thisScript.global.function_Switch.login = false;
 				return true;
 			}
 			if (thisScript.oper({
@@ -1011,7 +1011,7 @@ export class Func609 implements IFuncOrigin {
 				operator: [{ desc: thisOperator[53].desc }]
 			})) {
 				thisScript.regionClick([thisOperator[53].oper[thisScript.global.account_num % 2]]);
-				thisScript.global.function_Swith.login = false;
+				thisScript.global.function_Switch.login = false;
 				return true;
 			}
 			if (thisScript.oper({
@@ -1041,7 +1041,7 @@ export class Func609 implements IFuncOrigin {
 			}
 		}
 		if (thisScript.global.account_state === 'function') {
-			if (thisScript.global.function_Swith.juanGouYu) {
+			if (thisScript.global.function_Switch.juanGouYu) {
 				if (thisScript.oper({
 					id: 609,
 					name: '进入阴阳寮信息',
@@ -1060,7 +1060,7 @@ export class Func609 implements IFuncOrigin {
 					thisScript.keepScreen(false);
 					if (curCnt >= maxCount) {
 						thisScript.myToast('已达到捐赠上限');
-						thisScript.global.function_Swith.juanGouYu = false;
+						thisScript.global.function_Switch.juanGouYu = false;
 						return true;
 					}
 					sleep(500)
@@ -1070,12 +1070,12 @@ export class Func609 implements IFuncOrigin {
 					name: '捐赠',
 					operator: [thisOperator[10]]
 				})) {
-					thisScript.global.function_Swith.juanGouYu = false;
+					thisScript.global.function_Switch.juanGouYu = false;
 					return true;
 				}
 			}
-			if (thisScript.global.function_Swith.liaoSanshi) {
-				if (thisScript.global.function_Swith.liaoSanshi_tongXinDui_check) {
+			if (thisScript.global.function_Switch.liaoSanshi) {
+				if (thisScript.global.function_Switch.liaoSanshi_tongXinDui_check) {
 					if (thisScript.oper({
 						id: 609,
 						name: '进入集体任务界面',
@@ -1094,20 +1094,20 @@ export class Func609 implements IFuncOrigin {
 							name: '任务完成三十次',
 							operator: [{ desc: thisOperator[13].desc }]
 						})) {
-							thisScript.global.function_Swith.liaoSanshi_tongXinDui_yuCun = true;
+							thisScript.global.function_Switch.liaoSanshi_tongXinDui_yuCun = true;
 						} else {
-							thisScript.global.function_Swith.liaoSanshi_tongXinDui_fight = true;
+							thisScript.global.function_Switch.liaoSanshi_tongXinDui_fight = true;
 						}
-						thisScript.global.function_Swith.liaoSanshi_tongXinDui_check = false;
+						thisScript.global.function_Switch.liaoSanshi_tongXinDui_check = false;
 						thisScript.regionClick([thisOperator[12].oper[0]]);
 						return true;
 					}
 				}
-				if (thisScript.global.function_Swith.liaoSanshi_tongXinDui_fight) {
+				if (thisScript.global.function_Switch.liaoSanshi_tongXinDui_fight) {
 					if (thisScript.runTimes['2'] >= 30) {
 						thisScript.myToast('已完成三十次组队,跳转预存体力');
-						thisScript.global.function_Swith.liaoSanshi_tongXinDui_fight = false;
-						thisScript.global.function_Swith.liaoSanshi_tongXinDui_yuCun = true;
+						thisScript.global.function_Switch.liaoSanshi_tongXinDui_fight = false;
+						thisScript.global.function_Switch.liaoSanshi_tongXinDui_yuCun = true;
 						return true;
 					}
 					if (thisScript.oper({
@@ -1146,8 +1146,8 @@ export class Func609 implements IFuncOrigin {
 									const num = Number(item?.label);
 									if (Number.isNaN(num) || num < 120) {
 										console.log('队友体力小于120,跳过');
-										thisScript.global.function_Swith.liaoSanshi_tongXinDui_fight = false;
-										thisScript.global.function_Swith.liaoSanshi_tongXinDui_yuCun = true;
+										thisScript.global.function_Switch.liaoSanshi_tongXinDui_fight = false;
+										thisScript.global.function_Switch.liaoSanshi_tongXinDui_yuCun = true;
 										return true;
 									}
 								}
@@ -1156,8 +1156,8 @@ export class Func609 implements IFuncOrigin {
 								return true;
 							} else {
 								console.log('OCR 没识别到字符,跳过');
-								thisScript.global.function_Swith.liaoSanshi_tongXinDui_fight = false;
-								thisScript.global.function_Swith.liaoSanshi_tongXinDui_yuCun = true;
+								thisScript.global.function_Switch.liaoSanshi_tongXinDui_fight = false;
+								thisScript.global.function_Switch.liaoSanshi_tongXinDui_yuCun = true;
 								return true;
 							}
 						} else {
@@ -1184,7 +1184,7 @@ export class Func609 implements IFuncOrigin {
 						return true;
 					}
 				}
-				if (thisScript.global.function_Swith.liaoSanshi_tongXinDui_yuCun) {
+				if (thisScript.global.function_Switch.liaoSanshi_tongXinDui_yuCun) {
 					if (thisScript.oper({
 						id: 609,
 						name: '队员列表',
@@ -1198,12 +1198,12 @@ export class Func609 implements IFuncOrigin {
 						name: '一键预存',
 						operator: [thisOperator[29]]
 					})) {
-						thisScript.global.function_Swith.liaoSanshi_tongXinDui_yuCun = false;
-						thisScript.global.function_Swith.liaoSanshi_tongXinDui_back = true;
+						thisScript.global.function_Switch.liaoSanshi_tongXinDui_yuCun = false;
+						thisScript.global.function_Switch.liaoSanshi_tongXinDui_back = true;
 						return true;
 					}
 				}
-				if (thisScript.global.function_Swith.liaoSanshi_tongXinDui_back) {
+				if (thisScript.global.function_Switch.liaoSanshi_tongXinDui_back) {
 					if (thisScript.oper({
 						id: 609,
 						name: '返回',
@@ -1217,13 +1217,13 @@ export class Func609 implements IFuncOrigin {
 						operator: [{ desc: thisOperator[5].desc }]
 
 					})) {
-						thisScript.global.function_Swith.liaoSanshi_tongXinDui_back = false;
-						thisScript.global.function_Swith.liaoSanshi = false;
+						thisScript.global.function_Switch.liaoSanshi_tongXinDui_back = false;
+						thisScript.global.function_Switch.liaoSanshi = false;
 						return true;
 					}
 				}
 			}
-			if (thisScript.global.function_Swith.agency) {
+			if (thisScript.global.function_Switch.agency) {
 				let curCnt = 0;
 				const maxCount = 2;
 				while (thisScript.oper({
@@ -1235,7 +1235,7 @@ export class Func609 implements IFuncOrigin {
 					thisScript.keepScreen(false);
 					if (curCnt >= maxCount) {
 						thisScript.myToast('已达到一键代办');
-						thisScript.global.function_Swith.agency = false;
+						thisScript.global.function_Switch.agency = false;
 						return true;
 					}
 					sleep(1000);
@@ -1251,16 +1251,16 @@ export class Func609 implements IFuncOrigin {
 					return true;
 				}
 			}
-			if (thisScript.global.function_Swith.regionBoos) {
-				if (thisScript.global.function_Swith.regionBoos_fight && thisScript.oper({
+			if (thisScript.global.function_Switch.regionBoos) {
+				if (thisScript.global.function_Switch.regionBoos_fight && thisScript.oper({
 					id: 609,
 					name: '地域鬼王_战斗后关闭',
 					operator: [thisOperator[52]]
 				})) {
-					thisScript.global.function_Swith.regionBoos_fight = false;
-					thisScript.global.function_Swith.regionBoos_num = (thisScript.global.function_Swith.regionBoos_num as number) + 1;
-					if (thisScript.global.function_Swith.regionBoos_num as number >= 3) {
-						thisScript.global.function_Swith.regionBoos = false;
+					thisScript.global.function_Switch.regionBoos_fight = false;
+					thisScript.global.function_Switch.regionBoos_num = (thisScript.global.function_Switch.regionBoos_num as number) + 1;
+					if (thisScript.global.function_Switch.regionBoos_num as number >= 3) {
+						thisScript.global.function_Switch.regionBoos = false;
 					}
 					return true;
 				}
@@ -1279,7 +1279,7 @@ export class Func609 implements IFuncOrigin {
 					name: '点挑战',
 					operator: [thisOperator[51]]
 				})) {
-					thisScript.global.function_Swith.regionBoos_fight = true;
+					thisScript.global.function_Switch.regionBoos_fight = true;
 					curCnt++;
 					thisScript.keepScreen(false);
 					if (curCnt >= maxCount) {
@@ -1295,21 +1295,21 @@ export class Func609 implements IFuncOrigin {
 					if (thisScript.oper({
 						id: 609,
 						name: '选鬼王',
-						operator: [thisOperator[48 + (thisScript.global.function_Swith.regionBoos_num as number)]]
+						operator: [thisOperator[48 + (thisScript.global.function_Switch.regionBoos_num as number)]]
 					})) {
 						return true;
 					} else {
-						thisScript.global.function_Swith.regionBoos_num = (thisScript.global.function_Swith.regionBoos_num as number) + 1;
-						if (thisScript.global.function_Swith.regionBoos_num as number >= 3) {
-							thisScript.global.function_Swith.regionBoos = false;
+						thisScript.global.function_Switch.regionBoos_num = (thisScript.global.function_Switch.regionBoos_num as number) + 1;
+						if (thisScript.global.function_Switch.regionBoos_num as number >= 3) {
+							thisScript.global.function_Switch.regionBoos = false;
 						}
 						thisScript.regionClick(thisOperator[57].oper)
 						return true;
 					}
 				}
 			}
-			if (!thisScript.global.function_Swith.juanGouYu && !thisScript.global.function_Swith.liaoSanshi &&
-				!thisScript.global.function_Swith.agency && !thisScript.global.function_Swith.regionBoos &&
+			if (!thisScript.global.function_Switch.juanGouYu && !thisScript.global.function_Switch.liaoSanshi &&
+				!thisScript.global.function_Switch.agency && !thisScript.global.function_Switch.regionBoos &&
 				thisScript.oper({
 					id: 609,
 					name: '庭院',
@@ -1333,7 +1333,7 @@ export class Func609 implements IFuncOrigin {
 				operator: [{ desc: thisOperator[1].desc }]
 			})) {
 				thisScript.global.account_num += 1;
-				thisScript.global.function_Swith = null;
+				thisScript.global.function_Switch = null;
 				thisScript.global.account_state = 'login';
 				thisScript.runTimes['2'] = 0;
 				thisScript.global.open_only_once = false;

@@ -140,8 +140,8 @@ export class Func318 implements IFuncOrigin {
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['318'];
-		if (!thisScript.global.fight_Swith) {
-			thisScript.global.fight_Swith = {
+		if (!thisScript.global.fight_Switch) {
+			thisScript.global.fight_Switch = {
 				'xingMie': thisconf.xingMie as boolean,
 				'diSiTian': thisconf.diSiTian as boolean,
 				'time': null,
@@ -155,19 +155,19 @@ export class Func318 implements IFuncOrigin {
 			}]
 		})) {
 			// 战斗开始,再出初始化
-			thisScript.global.fight_Swith = {
+			thisScript.global.fight_Switch = {
 				'xingMie': thisconf.xingMie as boolean,
 				'diSiTian': thisconf.diSiTian as boolean,
 				'time': null,
 			};
 			if (thisconf.time != '0') {
-				thisScript.global.fight_Swith.time = new Date().getTime() + Number(thisconf.time) * 1000;
+				thisScript.global.fight_Switch.time = new Date().getTime() + Number(thisconf.time) * 1000;
 			}
-			if (thisScript.global.fight_Swith.xingMie) {
+			if (thisScript.global.fight_Switch.xingMie) {
 				thisScript.regionClick([thisOperator[0].oper[0]]);
 				thisScript.regionClick([thisOperator[4].oper[1]]);
 			}
-			if (thisScript.global.fight_Swith.diSiTian) {
+			if (thisScript.global.fight_Switch.diSiTian) {
 				const point = thisScript.findMultiColor('帝释天', null, false, false)
 				if (point) {
 					console.log('开局查找到帝释天,锁二');
@@ -185,26 +185,26 @@ export class Func318 implements IFuncOrigin {
 			}
 		}
 		if (thisconf.time != '0') {
-			if (!thisScript.global.fight_Swith.time && thisScript.oper({
+			if (!thisScript.global.fight_Switch.time && thisScript.oper({
 				name: '战斗界面',
 				operator: [{
 					desc: thisOperator[8].desc
 				}]
 			})) {
-				thisScript.global.fight_Swith.time = new Date().getTime() + Number(thisconf.time) * 1000;
+				thisScript.global.fight_Switch.time = new Date().getTime() + Number(thisconf.time) * 1000;
 			}
-			if (thisScript.global.fight_Swith.time && new Date().getTime() > (thisScript.global.fight_Swith.time as number)) {
+			if (thisScript.global.fight_Switch.time && new Date().getTime() > (thisScript.global.fight_Switch.time as number)) {
 				if (thisScript.oper({
 					id: 320,
 					name: '计时退出',
 					operator: [thisOperator[8]]
 				})) {
-					thisScript.global.fight_Swith.time = null;
+					thisScript.global.fight_Switch.time = null;
 					return true;
 				}
 			}
 		}
-		if (thisScript.global.fight_Swith.xingMie) {
+		if (thisScript.global.fight_Switch.xingMie) {
 			if (thisScript.oper({
 				name: '战斗界面',
 				operator: [thisOperator[1]]
@@ -248,7 +248,7 @@ export class Func318 implements IFuncOrigin {
 				thisScript.keepScreen();
 			}
 		}
-		if (thisScript.global.fight_Swith.diSiTian) {
+		if (thisScript.global.fight_Switch.diSiTian) {
 			if (thisScript.oper({
 				id: 318,
 				name: '帝释天行动',
@@ -267,7 +267,7 @@ export class Func318 implements IFuncOrigin {
 						const oper = [[point.x - 170, point.y - 130, point.x - 160, point.y - 120, 250]];
 						thisScript.regionClick(oper);
 					}
-					thisScript.global.fight_Swith.diSiTian = false;
+					thisScript.global.fight_Switch.diSiTian = false;
 					return true;
 				}
 			}

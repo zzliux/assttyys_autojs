@@ -565,8 +565,8 @@ export class Func518 implements IFuncOrigin {
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		if (!thisScript.global.function_Swith) {// 首次执行,读取按钮状况
-			thisScript.global.function_Swith = {
+		if (!thisScript.global.function_Switch) {// 首次执行,读取按钮状况
+			thisScript.global.function_Switch = {
 				'agency': true,
 				'shop': true,
 				'friend': true,
@@ -581,9 +581,9 @@ export class Func518 implements IFuncOrigin {
 		})) {
 			return true;
 		}
-		if (thisScript.global.function_Swith.email) {
+		if (thisScript.global.function_Switch.email) {
 			if (thisScript.global.email_yuHun >= 3) {
-				thisScript.global.function_Swith.email = false;
+				thisScript.global.function_Switch.email = false;
 				thisScript.doPush(thisScript, { text: '邮件里御魂已满', before() { thisScript.myToast('邮件里御魂已满'); } });
 			}
 			if (thisScript.oper({
@@ -599,7 +599,7 @@ export class Func518 implements IFuncOrigin {
 				name: '邮件',
 				operator: [thisOperator[17], thisOperator[42]]
 			})) {
-				thisScript.global.function_Swith.email = false;
+				thisScript.global.function_Switch.email = false;
 				return true;
 			}
 		}
@@ -610,14 +610,14 @@ export class Func518 implements IFuncOrigin {
 		})) {
 			return true;
 		}
-		if (thisScript.global.function_Swith.agency) {
+		if (thisScript.global.function_Switch.agency) {
 			if (thisScript.oper({
 				id: 518,
 				name: '一键代办_完成',
 				operator: [thisOperator[40]]
 			})) {
 				thisScript.myToast('已达到一键代办');
-				thisScript.global.function_Swith.agency = false;
+				thisScript.global.function_Switch.agency = false;
 				return true;
 			}
 			let curCnt = 0;
@@ -631,7 +631,7 @@ export class Func518 implements IFuncOrigin {
 				thisScript.keepScreen(false);
 				if (curCnt >= maxCount) {
 					thisScript.myToast('已达到一键代办');
-					thisScript.global.function_Swith.agency = false;
+					thisScript.global.function_Switch.agency = false;
 					return true;
 				}
 				sleep(1000);
@@ -645,7 +645,7 @@ export class Func518 implements IFuncOrigin {
 				return true;
 			}
 		}
-		if (thisScript.global.function_Swith.shop) {
+		if (thisScript.global.function_Switch.shop) {
 			if (thisScript.oper({
 				id: 518,
 				name: '商店_杂项',
@@ -669,7 +669,7 @@ export class Func518 implements IFuncOrigin {
 					operator: [thisOperator[23]]
 				})) {
 					thisScript.regionClick(thisOperator[22].oper)
-					thisScript.global.function_Swith.shop = false;
+					thisScript.global.function_Switch.shop = false;
 					return true;
 				}
 				const point = thisScript.findMultiColor('商店_日常');
@@ -681,13 +681,13 @@ export class Func518 implements IFuncOrigin {
 					thisScript.myToast(`连续差查找${maxCount}次未找到，跳过领取`);
 					thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 					thisScript.regionClick(thisOperator[22].oper)
-					thisScript.global.function_Swith.shop = false;
+					thisScript.global.function_Switch.shop = false;
 					return true;
 				}
 				sleep(500);
 			}
 		}
-		if (thisScript.global.function_Swith.friend) {
+		if (thisScript.global.function_Switch.friend) {
 			if (thisScript.oper({
 				id: 518,
 				name: '吉闻',
@@ -706,7 +706,7 @@ export class Func518 implements IFuncOrigin {
 				thisScript.keepScreen(false);
 				if (curCnt >= maxCount) {
 					thisScript.doPush(thisScript, { text: '无祝福语言,自行输入', before() { thisScript.myToast('无祝福语言,自行输入'); } });
-					thisScript.global.function_Swith.friend = false;
+					thisScript.global.function_Switch.friend = false;
 					return true;
 				}
 				sleep(1000);
@@ -716,11 +716,11 @@ export class Func518 implements IFuncOrigin {
 				name: '吉闻结束',
 				operator: [thisOperator[28]]
 			})) {
-				thisScript.global.function_Swith.friend = false;
+				thisScript.global.function_Switch.friend = false;
 				return true;
 			}
 		}
-		if (thisScript.global.function_Swith.flower) {
+		if (thisScript.global.function_Switch.flower) {
 			if (thisScript.oper({
 				id: 518,
 				name: '花合战',
@@ -741,7 +741,7 @@ export class Func518 implements IFuncOrigin {
 				} else {
 					// 退出
 					thisScript.regionClick(thisOperator[38].oper);
-					thisScript.global.function_Swith.flower = false;
+					thisScript.global.function_Switch.flower = false;
 					return true;
 				}
 			}

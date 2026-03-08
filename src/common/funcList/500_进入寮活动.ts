@@ -294,8 +294,8 @@ export class Func500 implements IFuncOrigin {
 		}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['500'];
-		if (!thisScript.global.liao_activity_Swith) {// 首次执行,读取按钮状况
-			thisScript.global.liao_activity_Swith = {
+		if (!thisScript.global.liao_activity_Switch) {// 首次执行,读取按钮状况
+			thisScript.global.liao_activity_Switch = {
 				'a_ctivity_gateOfHades': thisconf.a_ctivity_gateOfHades as boolean,
 				'a_ctivity_dojo': thisconf.a_ctivity_dojo as boolean,
 				'a_ctivity_hunt': thisconf.a_ctivity_hunt as boolean,
@@ -305,7 +305,7 @@ export class Func500 implements IFuncOrigin {
 			}
 		}
 		// 判断用户是否有选择选项,全部选项为假则退出任务
-		const allFalse = Object.values(thisScript.global.liao_activity_Swith).every(value => value === false);
+		const allFalse = Object.values(thisScript.global.liao_activity_Switch).every(value => value === false);
 		if (allFalse) {
 			thisScript.myToast('未选择任务或任务执行完毕!');
 			const next_scheme = '返回庭院';// 选择为空,返回庭院
@@ -328,8 +328,8 @@ export class Func500 implements IFuncOrigin {
 				const nowDateDay = new Date().getDay();
 				if (nowDateDay === 0 || nowDateDay === 5 || nowDateDay === 6) {// 判断星期几
 					thisconf.a_ctivity_hunt = false;
-					if (thisScript.global.liao_activity_Swith && Object.prototype.hasOwnProperty.call(thisScript.global.liao_activity_Swith, 'a_ctivity_hunt')) {
-						thisScript.global.liao_activity_Swith['a_ctivity_hunt'] = false;
+					if (thisScript.global.liao_activity_Switch && Object.prototype.hasOwnProperty.call(thisScript.global.liao_activity_Switch, 'a_ctivity_hunt')) {
+						thisScript.global.liao_activity_Switch['a_ctivity_hunt'] = false;
 					}
 					if (thisScript.oper({
 						name: '检测_是否为阴门页面、',
@@ -345,8 +345,8 @@ export class Func500 implements IFuncOrigin {
 					thisconf.a_ctivity_gateOfHades = false;
 					const targetKeys = ['a_ctivity_narrow', 'a_ctivity_gateOfHades'];
 					targetKeys.forEach(key => {
-						if (thisScript.global.liao_activity_Swith && Object.prototype.hasOwnProperty.call(thisScript.global.liao_activity_Swith, key)) {
-							thisScript.global.liao_activity_Swith[key] = false;
+						if (thisScript.global.liao_activity_Switch && Object.prototype.hasOwnProperty.call(thisScript.global.liao_activity_Switch, key)) {
+							thisScript.global.liao_activity_Switch[key] = false;
 						}
 					});
 					if (thisconf.a_ctivity_hunt && thisScript.oper({
@@ -371,8 +371,8 @@ export class Func500 implements IFuncOrigin {
 				thisconf.a_ctivity_gateOfHades = false;
 				const targetKeys = ['a_ctivity_hunt', 'a_ctivity_gateOfHades'];
 				targetKeys.forEach(key => {
-					if (thisScript.global.liao_activity_Swith && Object.prototype.hasOwnProperty.call(thisScript.global.liao_activity_Swith, key)) {
-						thisScript.global.liao_activity_Swith[key] = false;
+					if (thisScript.global.liao_activity_Switch && Object.prototype.hasOwnProperty.call(thisScript.global.liao_activity_Switch, key)) {
+						thisScript.global.liao_activity_Switch[key] = false;
 					}
 				});
 			}
@@ -384,8 +384,8 @@ export class Func500 implements IFuncOrigin {
 			if (nowDateDay === 0 || nowDateDay === 5 || nowDateDay === 6) {// 判断星期几
 				if (currentHour >= 19 && currentHour < 23) {// 判断是否在19-23点
 					thisconf.a_ctivity_hunt = false;
-					if (thisScript.global.liao_activity_Swith && Object.prototype.hasOwnProperty.call(thisScript.global.liao_activity_Swith, 'a_ctivity_hunt')) {
-						thisScript.global.liao_activity_Swith['a_ctivity_hunt'] = false;
+					if (thisScript.global.liao_activity_Switch && Object.prototype.hasOwnProperty.call(thisScript.global.liao_activity_Switch, 'a_ctivity_hunt')) {
+						thisScript.global.liao_activity_Switch['a_ctivity_hunt'] = false;
 					}
 					if (thisScript.oper({
 						name: '检测_是否为阴门页面',
@@ -405,8 +405,8 @@ export class Func500 implements IFuncOrigin {
 					thisconf.a_ctivity_gateOfHades = false;
 					const targetKeys = ['a_ctivity_narrow', 'a_ctivity_gateOfHades'];
 					targetKeys.forEach(key => {
-						if (thisScript.global.liao_activity_Swith && Object.prototype.hasOwnProperty.call(thisScript.global.liao_activity_Swith, key)) {
-							thisScript.global.liao_activity_Swith[key] = false;
+						if (thisScript.global.liao_activity_Switch && Object.prototype.hasOwnProperty.call(thisScript.global.liao_activity_Switch, key)) {
+							thisScript.global.liao_activity_Switch[key] = false;
 						}
 					});
 					if (thisconf.a_ctivity_hunt && thisScript.oper({
@@ -434,8 +434,8 @@ export class Func500 implements IFuncOrigin {
 				thisconf.a_ctivity_gateOfHades = false;
 				const targetKeys = ['a_ctivity_hunt', 'a_ctivity_gateOfHades'];
 				targetKeys.forEach(key => {
-					if (thisScript.global.liao_activity_Swith && Object.prototype.hasOwnProperty.call(thisScript.global.liao_activity_Swith, key)) {
-						thisScript.global.liao_activity_Swith[key] = false;
+					if (thisScript.global.liao_activity_Switch && Object.prototype.hasOwnProperty.call(thisScript.global.liao_activity_Switch, key)) {
+						thisScript.global.liao_activity_Switch[key] = false;
 					}
 				});
 
@@ -463,8 +463,8 @@ export class Func500 implements IFuncOrigin {
 			} else {
 				console.log('不在狭间时间段');
 				thisconf.a_ctivity_narrow = false;
-				if (thisScript.global.liao_activity_Swith && Object.prototype.hasOwnProperty.call(thisScript.global.liao_activity_Swith, 'a_ctivity_narrow')) {
-					thisScript.global.liao_activity_Swith['a_ctivity_narrow'] = false;
+				if (thisScript.global.liao_activity_Switch && Object.prototype.hasOwnProperty.call(thisScript.global.liao_activity_Switch, 'a_ctivity_narrow')) {
+					thisScript.global.liao_activity_Switch['a_ctivity_narrow'] = false;
 				}
 			}
 		}
@@ -510,8 +510,8 @@ export class Func500 implements IFuncOrigin {
 			} else {
 				console.log('不在退治时间段');
 				thisconf.a_ctivity_huntBoss = false;
-				if (thisScript.global.liao_activity_Swith && Object.prototype.hasOwnProperty.call(thisScript.global.liao_activity_Swith, 'a_ctivity_huntBoss')) {
-					thisScript.global.liao_activity_Swith['a_ctivity_huntBoss'] = false;
+				if (thisScript.global.liao_activity_Switch && Object.prototype.hasOwnProperty.call(thisScript.global.liao_activity_Switch, 'a_ctivity_huntBoss')) {
+					thisScript.global.liao_activity_Switch['a_ctivity_huntBoss'] = false;
 				}
 			}
 		}
