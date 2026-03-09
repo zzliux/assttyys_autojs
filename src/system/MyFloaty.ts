@@ -151,13 +151,13 @@ export class MyFloaty {
 					showScheduleDialog();
 				});
 		}
-		self.fb.addItem('Pause')
-			.toCheckbox(mUtil => {
-				// 未选中样式
-				mUtil.icon1('@drawable/ic_pause_black_48dp').tint1('#FFFFFF').color1('#FF4800').rotation1(360);
-				// 选中样式
-				mUtil.icon2('@drawable/ic_eject_black_48dp').tint2('#FFFFFF').color2('#FF4800').rotation2(90);
-			})
+		const pause = this.fb.addItem('Pause');
+		pause.toCheckbox(mUtil => {
+			// 未选中样式
+			mUtil.icon1('@drawable/ic_pause_black_48dp').tint1('#FFFFFF').color1('#FF4800').rotation1(360);
+			// 选中样式
+			mUtil.icon2('@drawable/ic_eject_black_48dp').tint2('#FFFFFF').color2('#FF4800').rotation2(90);
+		})
 			.onClick((_view, _name, state) => {
 				if (state) {
 					self.thisPause(); // 暂停也会调用的StopCallBack，下面两行不能执行
@@ -179,6 +179,7 @@ export class MyFloaty {
 		script.setRunCallback(function () {
 			setTimeout(() => {
 				runStopItem.setChecked(true, true);
+				pause.setChecked(false, true);
 				self.fb.showItem('Pause');
 			}, 100);
 			ui.run(function () {
@@ -189,6 +190,7 @@ export class MyFloaty {
 		script.setStopCallback(function () {
 			setTimeout(() => {
 				runStopItem.setChecked(false, true);
+				pause.setChecked(true, true);
 				if (!script.isPause) self.fb.hideItem('Pause');
 			}, 100);
 			ui.run(function () {
