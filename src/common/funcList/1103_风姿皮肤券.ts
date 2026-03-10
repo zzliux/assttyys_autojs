@@ -163,7 +163,7 @@ export class Func1103 implements IFuncOrigin {
 				name: '风姿皮肤券_杂项',
 				operator: [thisOperator[2]]
 			})) {
-				thisScript.regionSwipe(thisOperator[3].oper[0], thisOperator[3].oper[1], [100, 300], 1000);
+				thisScript.regionSwipe(thisOperator[3].oper[0], thisOperator[3].oper[1], [200, 300], 1500);
 				thisScript.regionClick([thisOperator[3].oper[0]]);
 				return true;
 			}

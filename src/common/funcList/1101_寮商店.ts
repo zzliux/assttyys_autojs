@@ -339,6 +339,9 @@ export class Func1101 implements IFuncOrigin {
 			}
 			if (thisScript.global.MT_liaoShopList === null) {
 				thisScript.global.MT_liaoShopList = Object.keys(thisConf).filter(keyName => /^oper_.+/.test(keyName) && thisConf[keyName]).map(keyName => keyName.split('_')[1]);
+				if (thisScript.global.MT_liaoShopList.includes('风')) {
+					thisScript.global.MT_liaoShopList.push('风');
+				}
 				log(`寮商店购买-初始化未购买列表：${thisScript.global.MT_liaoShopList.join(',')}`);
 			}
 			if (thisScript.global.MT_liaoShopList.length === 0) {

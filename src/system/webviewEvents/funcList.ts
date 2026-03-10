@@ -74,6 +74,7 @@ export default function webviewFuncList() {
 		if (defaultLaunchAppList.length == 0) {
 			done(null);
 			script.stop();
+			sleep(200);
 			script.run();
 			context.startActivity(app.intent({
 				action: android.content.Intent.ACTION_MAIN,

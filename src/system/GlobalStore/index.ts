@@ -246,7 +246,7 @@ export const globalRoot: globalRootType = {
 	zhenShe: 2,
 	sneak_level_open: true,
 	day_chouKa: true,
-	qiling_shop: false,
+	qiling_shop: true,
 	shiHe_jingYan: false,
 	liao_banquet_collect: false,
 	liao_banquet_onGoing: true,
