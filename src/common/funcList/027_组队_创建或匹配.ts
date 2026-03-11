@@ -155,6 +155,7 @@ export class Func027 implements IFuncOrigin {
 			[center, 1280, 720, 422, 442, 563, 489, 700], // 魂王
 			[center, 1280, 720, 427, 511, 563, 554, 700], // 魂十三
 			[center, 1280, 720, 239, 131, 268, 142, 1000], // 经验或金币妖怪
+			[center, 1280, 720, 164, 130, 346, 173, 1000], // 点击全部
 		]
 	}, { // 13 第二栏的全部字样
 		desc: [1280, 720,
@@ -182,6 +183,7 @@ export class Func027 implements IFuncOrigin {
 			})) {
 				thisScript.regionBezierSwipe(thisOperator[13].oper[0], thisOperator[13].oper[1], [2000, 2050], 500);
 			}
+			thisScript.regionClick([thisOperator[12].oper[10]]);
 			switch (thisConf.mission) {
 				case '御魂':
 					thisScript.regionClick([thisOperator[12].oper[0]]);
