@@ -499,17 +499,18 @@ export class Func998 implements IFuncOrigin {
 				],
 			})
 		) {
-			if (thisScript.global.jy_change_shikigami === 'get_reward') {
-				return thisScript.oper({
-					id: 998,
-					name: '退出式神寄养列表',
-					operator: [
-						{
-							oper: [thisOperator[7].oper[0]],
-						},
-					],
-				});
-			}
+			// 功能弃用，已同步到阴阳师一键获取，暂时注释掉了
+			// if (thisScript.global.jy_change_shikigami === 'get_reward') {
+			// 	return thisScript.oper({
+			// 		id: 998,
+			// 		name: '退出式神寄养列表',
+			// 		operator: [
+			// 			{
+			// 				oper: [thisOperator[7].oper[0]],
+			// 			},
+			// 		],
+			// 	});
+			// }
 
 			console.log('检测式神育成是否不为空');
 			const fullLevelPoint = thisScript.findMultiColorEx('寄养狗粮_满级标识');
@@ -574,9 +575,28 @@ export class Func998 implements IFuncOrigin {
 				return true;
 			} else {
 				console.log('没有空位了');
-				console.log('状态为：获取奖励');
-				thisScript.global.jy_change_shikigami = 'get_reward';
+				// 功能弃用，已同步到阴阳师一键获取，暂时注释掉了
+				// console.log('状态为：获取奖励');
+				// thisScript.global.jy_change_shikigami = 'get_reward';
+				// 获取寄养奖励是获取奖励的最后一步，获取成功后则开始更换结界卡逻辑
+				if (thisconf && thisconf.change_enchantment_switch) {
+					thisScript.global.jy_change_shikigami = 'change_enchantment';
+					console.log('状态为：更换结界卡');
+				} else {
+					thisScript.global.jy_change_shikigami = 'jy_flag';
+					console.log('状态为：开始寄养');
+				}
 			}
+
+			return thisScript.oper({
+				id: 998,
+				name: '退出式神寄养列表',
+				operator: [
+					{
+						oper: [thisOperator[7].oper[0]],
+					},
+				],
+			});
 		}
 
 		if (
@@ -589,97 +609,97 @@ export class Func998 implements IFuncOrigin {
 			thisScript.global.jy_change_shikigami = 'change';
 			return true;
 		}
+		// 功能弃用，已同步到阴阳师一键获取，暂时注释掉了
+		// if (thisScript.global.jy_change_shikigami === 'get_reward') {
+		// 	if (
+		// 		thisScript.oper({
+		// 			id: 998,
+		// 			name: '获取体力奖励',
+		// 			operator: [
+		// 				thisOperator[0], //	0 检测_是否有体力
+		// 				thisOperator[2], //	2 检测_体力弹窗
+		// 			],
+		// 		})
+		// 	) {
+		// 		return true;
+		// 	} else {
+		// 		if (thisScript.global.jy_experience_wine_pot_count < 3) {
+		// 			if (
+		// 				thisScript.oper({
+		// 					id: 998,
+		// 					name: '检测_是否有经验酒壶',
+		// 					operator: [thisOperator[1]],
+		// 				})
+		// 			) {
+		// 				return true;
+		// 			}
+		// 		}
 
-		if (thisScript.global.jy_change_shikigami === 'get_reward') {
-			if (
-				thisScript.oper({
-					id: 998,
-					name: '获取体力奖励',
-					operator: [
-						thisOperator[0], //	0 检测_是否有体力
-						thisOperator[2], //	2 检测_体力弹窗
-					],
-				})
-			) {
-				return true;
-			} else {
-				if (thisScript.global.jy_experience_wine_pot_count < 3) {
-					if (
-						thisScript.oper({
-							id: 998,
-							name: '检测_是否有经验酒壶',
-							operator: [thisOperator[1]],
-						})
-					) {
-						return true;
-					}
-				}
+		// 		if (
+		// 			thisScript.oper({
+		// 				id: 998,
+		// 				name: '检测_经验酒壶弹窗',
+		// 				operator: [
+		// 					{
+		// 						desc: thisOperator[19].desc,
+		// 						oper: thisOperator[2].oper,
+		// 					},
+		// 				],
+		// 			})
+		// 		) {
+		// 			// 提取经验酒壶次数 + 1
+		// 			thisScript.global.jy_experience_wine_pot_count += 1;
+		// 			return true;
+		// 		}
 
-				if (
-					thisScript.oper({
-						id: 998,
-						name: '检测_经验酒壶弹窗',
-						operator: [
-							{
-								desc: thisOperator[19].desc,
-								oper: thisOperator[2].oper,
-							},
-						],
-					})
-				) {
-					// 提取经验酒壶次数 + 1
-					thisScript.global.jy_experience_wine_pot_count += 1;
-					return true;
-				}
+		// 		if (thisScript.global.jy_enchantment_experience_count < 1) {
+		// 			if (
+		// 				thisScript.oper({
+		// 					id: 998,
+		// 					name: '判断_是否有结界卡奖励',
+		// 					operator: [thisOperator[11]],
+		// 				})
+		// 			) {
+		// 				thisScript.global.jy_enchantment_experience_count += 1;
+		// 				return true;
+		// 			}
+		// 		}
 
-				if (thisScript.global.jy_enchantment_experience_count < 1) {
-					if (
-						thisScript.oper({
-							id: 998,
-							name: '判断_是否有结界卡奖励',
-							operator: [thisOperator[11]],
-						})
-					) {
-						thisScript.global.jy_enchantment_experience_count += 1;
-						return true;
-					}
-				}
+		// 		if (
+		// 			thisScript.oper({
+		// 				id: 998,
+		// 				name: '检测_寄养奖励',
+		// 				operator: [thisOperator[3]],
+		// 			})
+		// 		) {
+		// 			return true;
+		// 		}
 
-				if (
-					thisScript.oper({
-						id: 998,
-						name: '检测_寄养奖励',
-						operator: [thisOperator[3]],
-					})
-				) {
-					return true;
-				}
+		// 		//	做延时识别
+		// 		if (thisScript.global.checked_yard_count > 30) {
+		// 			thisScript.global.checked_yard_count = 0;
 
-				//	做延时识别
-				if (thisScript.global.checked_yard_count > 30) {
-					thisScript.global.checked_yard_count = 0;
+		// 			// 获取寄养奖励是获取奖励的最后一步，获取成功后则开始更换结界卡逻辑
+		// 			if (thisconf && thisconf.change_enchantment_switch) {
+		// 				thisScript.global.jy_change_shikigami = 'change_enchantment';
+		// 				console.log('状态为：更换结界卡');
+		// 			} else {
+		// 				thisScript.global.jy_change_shikigami = 'jy_flag';
+		// 				console.log('状态为：开始寄养');
+		// 			}
 
-					// 获取寄养奖励是获取奖励的最后一步，获取成功后则开始更换结界卡逻辑
-					if (thisconf && thisconf.change_enchantment_switch) {
-						thisScript.global.jy_change_shikigami = 'change_enchantment';
-						console.log('状态为：更换结界卡');
-					} else {
-						thisScript.global.jy_change_shikigami = 'jy_flag';
-						console.log('状态为：开始寄养');
-					}
-
-					return true;
-				} else {
-					sleep(500);
-					if (!thisScript.global.checked_yard_count) {
-						thisScript.global.checked_yard_count = 1;
-					} else {
-						thisScript.global.checked_yard_count += 1;
-					}
-					return true;
-				}
-			}
-		}
+		// 			return true;
+		// 		} else {
+		// 			sleep(500);
+		// 			if (!thisScript.global.checked_yard_count) {
+		// 				thisScript.global.checked_yard_count = 1;
+		// 			} else {
+		// 				thisScript.global.checked_yard_count += 1;
+		// 			}
+		// 			return true;
+		// 		}
+		// 	}
+		// }
 
 		if (thisScript.global.jy_change_shikigami === 'change_enchantment') {
 			if (

@@ -133,6 +133,7 @@ export class Func999 implements IFuncOrigin {
 					thisOperator[0],
 					thisOperator[1],
 					thisOperator[2],
+					thisOperator[3],
 					thisOperator[4],
 					thisOperator[5],
 					thisOperator[6],
@@ -143,61 +144,63 @@ export class Func999 implements IFuncOrigin {
 		) {
 			return true;
 		}
-		// 点击10都点不中就直接跳过不点了
-		if (thisScript.global.checked_yard_count_999 > 10) {
-			thisScript.global.checked_yard_count_999 = 0;
-			return thisScript.oper({
-				id: 999,
-				name: '点击阴阳寮',
-				operator: [
-					{
-						desc: thisOperator[3].desc,
-						oper: thisOperator[3].oper,
-					},
-				],
-			});
-		} else {
-			sleep(1500);
-			if (!thisScript.global.checked_yard_count_999) {
-				thisScript.global.checked_yard_count_999 = 1;
-			} else {
-				thisScript.global.checked_yard_count_999 += 1;
-			}
-		}
+		// 功能弃用，不需要获取奖励了，直接进入阴阳寮，暂时注释掉了
+		// // 点击10都点不中就直接跳过不点了
+		// if (thisScript.global.checked_yard_count_999 > 10) {
+		// 	thisScript.global.checked_yard_count_999 = 0;
+		// 	return thisScript.oper({
+		// 		id: 999,
+		// 		name: '点击阴阳寮',
+		// 		operator: [
+		// 			{
+		// 				desc: thisOperator[3].desc,
+		// 				oper: thisOperator[3].oper,
+		// 			},
+		// 		],
+		// 	});
+		// } else {
+		// 	sleep(1500);
+		// 	if (!thisScript.global.checked_yard_count_999) {
+		// 		thisScript.global.checked_yard_count_999 = 1;
+		// 	} else {
+		// 		thisScript.global.checked_yard_count_999 += 1;
+		// 	}
+		// }
 
-		if (
-			thisScript.oper({
-				id: 999,
-				name: '检测_阴阳寮主页',
-				operator: [
-					{
-						desc: thisOperator[3].desc,
-					},
-				],
-			})
-		) {
-			const point = thisScript.findMultiColor('阴阳寮_奖励体力');
+		// 功能弃用，已同步到阴阳师一键获取，暂时注释掉了
+		// if (
+		// 	thisScript.oper({
+		// 		id: 999,
+		// 		name: '检测_阴阳寮主页',
+		// 		operator: [
+		// 			{
+		// 				desc: thisOperator[3].desc,
+		// 			},
+		// 		],
+		// 	})
+		// ) {
+		// 	const point = thisScript.findMultiColor('阴阳寮_奖励体力');
 
-			if (point) {
-				console.log('查找阴阳寮_奖励体力成功');
-				const oper = [
-					[point.x - 5, point.y - 5, point.x + 5, point.y + 5, 1200],
-				];
-				thisScript.regionClick(oper);
-				return true;
-			}
+		// 	if (point) {
+		// 		console.log('查找阴阳寮_奖励体力成功');
+		// 		const oper = [
+		// 			[point.x - 5, point.y - 5, point.x + 5, point.y + 5, 1200],
+		// 		];
+		// 		thisScript.regionClick(oper);
+		// 		return true;
+		// 	}
 
-			const point1 = thisScript.findMultiColor('阴阳寮_奖励金币');
+		// 	const point1 = thisScript.findMultiColor('阴阳寮_奖励金币');
 
-			if (point1) {
-				console.log('查找阴阳寮_奖励金币成功');
-				const oper = [
-					[point1.x - 5, point1.y - 5, point1.x + 5, point1.y + 5, 1200],
-				];
-				thisScript.regionClick(oper);
-				return true;
-			}
-		}
+		// 	if (point1) {
+		// 		console.log('查找阴阳寮_奖励金币成功');
+		// 		const oper = [
+		// 			[point1.x - 5, point1.y - 5, point1.x + 5, point1.y + 5, 1200],
+		// 		];
+		// 		thisScript.regionClick(oper);
+		// 		return true;
+		// 	}
+		// }
 
 		return false;
 	}
