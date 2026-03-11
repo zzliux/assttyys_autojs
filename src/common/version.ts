@@ -1530,5 +1530,8 @@ export const versionList = [{
 }, {
 	version: '20260304_01',
 	desc: '修复：008突破转换方案时相关bug'
+}, {
+	version: '20260311_01',
+	desc: '修复：优化993启动时逻辑，优化寄养逻辑，去除获取奖励等动作，修复首领退治功能'
 }];
 export default versionList[versionList.length - 1].version;

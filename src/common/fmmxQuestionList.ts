@@ -630,7 +630,7 @@ export default [
 	{ question: '满足什么条件后就能够将式神放置于庭院内', ans: '解锁传记一至三|传记全解锁' },
 	{ question: '火车连续两次长鸣表示', ans: '倒退' },
 	{ question: '火车连续发出两声长鸣这表示', ans: '倒退' },
-	{ question: '烬天玉藻前施放焚天九尾进行多少次攻击', ans: '9' },
+	{ question: '烬天玉藻前施放焚天九尾进行多少次攻击', ans: '12' },
 	{ question: '犬神觉醒前背后的房子上写的是', ans: '犬屋敷' },
 	{ question: '狐影守吸收伤害总量与白藏主的哪个属性有关', ans: '生命上限' },
 	{ question: '独眼小僧是化成的妖怪', ans: '木鱼' },
@@ -941,7 +941,11 @@ export default [
 	{ question: '挑战御魂副本可以获得', ans: '御魂' },
 	{ question: '御魂是用来', ans: '提升式神能力' },
 	{ question: '式神觉醒需要什么材料', ans: '觉醒材料' },
-
+	{ question: '吸血姬的乳名叫什么', ans: '幸子' },
+	{ question: '吸血姬讨厌下列哪些东西', ans: '阳光' },
+	{ question: '吸血姬最喜欢的美食是', ans: '紫苏牛肉' },
+	{ question: '蝙蝠是什么种类的动物', ans: '哺乳动物' },
+	{ question: '蝙蝠依靠什么在飞行时定位', ans: '超声波' },
 
 	// { question: '', ans: '' },
 ];

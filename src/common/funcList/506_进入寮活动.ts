@@ -162,14 +162,12 @@ export class Func506 implements IFuncOrigin {
 				[
 					1280, 720,
 					[
-						[left, 182, 37, 0xd5c4a3],
-						[left, 108, 26, 0xd7c5a2],
-						[left, 47, 28, 0xd7c5a2],
-						[left, 232, 139, 0x583716],
-						[left, 76, 550, 0x322219],
-						[right, 1039, 648, 0xd3c3bd],
-						[center, 872, 606, 0x493a38],
-						[center, 727, 611, 0xdfc7ac],
+						[left, 47, 33, 0xd6c4a1],
+						[left, 173, 24, 0xd6c4a1],
+						[center, 542, 30, 0x9a8458],
+						[right, 1007, 612, 0xeeeceb],
+						[right, 760, 586, 0x170b2a],
+						[right, 884, 613, 0xcb424f],
 					]
 				]
 		}, { // 10 检测_阴门
@@ -474,8 +472,6 @@ export class Func506 implements IFuncOrigin {
 				}
 			}
 		}
-
-
 
 		if (thisScript.oper({
 			name: '检测_是否为首领退治页面',
