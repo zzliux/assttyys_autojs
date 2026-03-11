@@ -523,11 +523,12 @@ export class Func993 implements IFuncOrigin {
 				thisScript.global.app_is_open_flag = false;
 				return true;
 			}
-			// 退出结算超过两次
-			if (thisScript.runTimes['2'] > 1) {
-				thisScript.global.open_only_once = true;
-				return true;
-			}
+			// TODO：KK 这段代码会导致993卡住，需要优化，暂时注释掉了
+			// // 退出结算超过两次
+			// if (thisScript.runTimes['2'] > 1) {
+			// 	thisScript.global.open_only_once = true;
+			// 	return true;
+			// }
 			let Time = new Date().getTime()
 			if (thisScript.oper({
 				name: '战斗界面重置计时',
