@@ -464,6 +464,15 @@ export class Func993 implements IFuncOrigin {
 			]
 		}, { // 28 战斗界面
 			desc: '战斗界面'
+		}, { // 29 组队界面
+			desc: [1280, 720,
+				[
+					[left, 43, 37, 0xf5e6a8],
+					[left, 60, 39, 0x84582f],
+					[left, 19, 47, 0x281717],
+					[center, 830, 58, 0xfee0c8],
+				]
+			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -532,7 +541,7 @@ export class Func993 implements IFuncOrigin {
 			let Time = new Date().getTime()
 			if (thisScript.oper({
 				name: '战斗界面重置计时',
-				operator: [thisOperator[28]],
+				operator: [thisOperator[28], thisOperator[29]],
 			})) {
 				Time = new Date().getTime()
 				thisScript.global.app_is_open_flag = false;
@@ -773,17 +782,8 @@ export class Func993 implements IFuncOrigin {
 					return true;
 				}
 			}
-
 			return false;
 		} else {
-			if (thisScript.oper({
-				id: 993,
-				name: '被顶号或断开连接',
-				operator: [thisOperator[3]]
-			})) {
-				thisScript.global.open_only_once = false;
-				return true;
-			}
 			return false;
 		}
 	}
