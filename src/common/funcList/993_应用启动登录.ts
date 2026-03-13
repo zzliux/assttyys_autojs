@@ -538,13 +538,14 @@ export class Func993 implements IFuncOrigin {
 			// 	thisScript.global.open_only_once = true;
 			// 	return true;
 			// }
-			let Time = new Date().getTime()
+			const Time = new Date().getTime()
+			console.log('战斗界面重置计时', Time);
 			if (thisScript.oper({
 				name: '战斗界面重置计时',
 				operator: [thisOperator[28], thisOperator[29]],
 			})) {
-				Time = new Date().getTime()
-				thisScript.global.app_is_open_flag = false;
+				sleep(1000);
+				return true;
 			}
 			// 10秒钟未执行过任何操作，杀应用重启
 			if (thisScript.global.app_is_open_flag &&
@@ -598,8 +599,6 @@ export class Func993 implements IFuncOrigin {
 						console.log('识别游戏区域失败，识别结果为:', resultArea);
 						return false;
 					}
-				} else {
-					thisScript.global.game_area = 'findMultiColor_皮肤广告关闭按钮';
 				}
 				return thisScript.oper({
 					name: '点击开始游戏',
@@ -608,7 +607,7 @@ export class Func993 implements IFuncOrigin {
 					}],
 				});
 			}
-			if (thisScript.global.game_area == 'findMultiColor_皮肤广告关闭按钮' && thisScript.oper({
+			if (thisScript.global.game_area == '' && thisScript.oper({
 				name: '切换区域',
 				operator: [{ desc: thisOperator[4].desc }],
 			})) {
