@@ -31,17 +31,22 @@ export class Func993 implements IFuncOrigin {
 					desc: '下一个方案',
 					type: 'scheme',
 					default: '式神寄养',
+				}, {
+					name: 'close_game_new',
+					desc: '长时间未识别时重启游戏',
+					type: 'switch',
+					default: true,
 				},
 				{
 					name: 'account_index',
-					desc: '账号序号(用于同区多账号，指从上往下数第N个账号，目前指适配三个账号的情况，账号序号优先级大于账号昵称！)',
+					desc: '账号序号(用于同区多账号，目前指适配三个账号的情况，账号序号优先级大于账号昵称！)',
 					type: 'text',
 					default: 0,
 					value: 0,
 				},
 				{
 					name: 'account_name',
-					desc: '账号昵称(用于同区多账号，建议只填容易识别的字眼(OCR识别容易识别失败，字数越少容错率越高)，程序会包含识别)',
+					desc: '账号昵称(用于同区多账号，建议只填容易识别的字眼(OCR识别容易识别失败，字数越少容错率越高))',
 					type: 'text',
 					default: '',
 					value: '',
@@ -61,10 +66,6 @@ export class Func993 implements IFuncOrigin {
 					[center, 630, 601, 0xfdfdfd],
 					[center, 590, 611, 0xffffff],
 					[center, 588, 592, 0xfefdfd],
-					// 左下角适龄提示
-					// [left, 40, 574, 0x67c13a],
-					// [left, 55, 603, 0x67c13a],
-					// [left, 65, 574, 0xffffff],
 					// 左上角阴阳师毛笔字
 					[left, 86, 53, 0xfdfddb],
 					[left, 88, 182, 0xfbdfae],
@@ -75,22 +76,19 @@ export class Func993 implements IFuncOrigin {
 				[center, 1280, 720, 425, 456, 686, 575, 1000], // 游戏区区域
 			],
 		},
-		{
-			// 1 是否为公告页(23年公告)
-			desc: [
-				1280,
-				720,
+		{ // 1 游戏公告页(26年3月更新)
+			desc: [1280, 720,
 				[
-					[left, 60, 56, 0x5d4248],
-					[right, 1208, 96, 0xf0e3d6],
-					[right, 1200, 48, 0xfff0e1],
-					[center, 501, 74, 0xa07b66],
-					[right, 1145, 104, 0xe4d4c8],
-				],
+					[center, 405, 395, 0xeddccc],
+					[center, 869, 419, 0xeddccc],
+					[center, 714, 556, 0xf4b25f],
+					[center, 915, 131, 0x65333b],
+					[right, 1224, 50, 0x54422f],
+				]
 			],
 			oper: [
-				[right, 1280, 720, 1184, 34, 1212, 55, 1200], // 点击关闭公告
-			],
+				[center, 1280, 720, 894, 119, 941, 175, 1000],
+			]
 		},
 		{
 			// 2 是否为切换账号页
@@ -99,9 +97,9 @@ export class Func993 implements IFuncOrigin {
 				720,
 				[
 					[left, 210, 580, 0x284d16],
-					[center, 376, 190, 0xcec6bc],
-					[center, 658, 440, 0xffffff],
-					[center, 450, 446, 0x361d0d],
+					[center, 376, 190, 0xf8f9fc],
+					[center, 462, 446, 0xfb4f4f],
+					[right, 826, 454, 0xfb4f4f],
 				],
 			],
 			oper: [
@@ -186,7 +184,7 @@ export class Func993 implements IFuncOrigin {
 			desc: '页面是否为庭院_菜单已展开_只支持默认庭院皮肤与默认装饰',
 		},
 		{
-			// 9 登陆后是否有皮肤广告弹窗
+			// 9 登陆后是否有皮肤广告弹窗 //大概率废弃
 			desc: [
 				1280,
 				720,
@@ -277,7 +275,7 @@ export class Func993 implements IFuncOrigin {
 			],
 		},
 		{
-			// 15 是否为公告页(22年公告)
+			// 15 是否为公告页(22年公告) // 废弃
 			desc: [
 				1280,
 				720,
@@ -378,7 +376,6 @@ export class Func993 implements IFuncOrigin {
 					[center, 577, 315, 0xede2d0],
 					[right, 1153, 37, 0x987e61],
 					[right, 1220, 35, 0x967b5c],
-					[right, 1207, 638, 0x9e9390],
 					[right, 1055, 428, 0x77746a],
 				]
 			],
@@ -403,16 +400,15 @@ export class Func993 implements IFuncOrigin {
 		}, { // 23 开屏的zen动画
 			desc: [1280, 720,
 				[
-					[left, 156, 611, 0xfffeff],
-					[right, 1034, 139, 0xfffeff],
-					[right, 1087, 579, 0xfffeff],
-					[right, 783, 332, 0x010001],
-					[right, 696, 335, 0x010001],
-					[right, 641, 350, 0x010001],
+					[left, 139, 147, 0x353435],
+					[left, 150, 568, 0x363537],
+					[right, 1146, 105, 0x353435],
+					[right, 1135, 560, 0x353435],
+					[right, 641, 575, 0x353435],
 				]
 			],
 			oper: [
-				[center, 1280, 720, 637, 574, 834, 660, 1000],
+				[center, 1280, 720, 1030, 310, 1155, 507, 1000],
 			]
 		}, { // 24 加载进度条
 			desc: [
@@ -464,19 +460,13 @@ export class Func993 implements IFuncOrigin {
 			]
 		}, { // 28 战斗界面
 			desc: '战斗界面'
-		}, { // 29 组队界面
-			desc: [1280, 720,
-				[
-					[left, 43, 37, 0xf5e6a8],
-					[left, 60, 39, 0x84582f],
-					[left, 19, 47, 0x281717],
-					[center, 830, 58, 0xfee0c8],
-				]
-			]
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['993'];
+		if (!thisConf.close_game_new) {
+			thisScript.global.app_is_open_flag = false;
+		}
 		if (!thisScript.global.open_only_once) {
 			if (thisScript.oper({
 				id: 993,
@@ -507,10 +497,6 @@ export class Func993 implements IFuncOrigin {
 				thisScript.keepScreen();
 				if (curCnt >= maxCount) {
 					thisScript.global.checked_yard_count = 0;
-					// 后面新增的配置，如果未定义的话默认值给true
-					if (typeof thisConf.scheme_switch_enabled === 'undefined') {
-						thisConf.scheme_switch_enabled = true;
-					}
 					if (thisConf.scheme_switch_enabled) {
 						thisScript.rerun(thisConf.next_scheme);
 						return true;
@@ -532,24 +518,16 @@ export class Func993 implements IFuncOrigin {
 				thisScript.global.app_is_open_flag = false;
 				return true;
 			}
-			// TODO：KK 这段代码会导致993卡住，需要优化，暂时注释掉了
-			// // 退出结算超过两次
-			// if (thisScript.runTimes['2'] > 1) {
-			// 	thisScript.global.open_only_once = true;
-			// 	return true;
-			// }
-			const Time = new Date().getTime()
-			console.log('战斗界面重置计时', Time);
+			let Time
 			if (thisScript.oper({
 				name: '战斗界面重置计时',
-				operator: [thisOperator[28], thisOperator[29]],
+				operator: [thisOperator[28]],
 			})) {
-				sleep(1000);
-				return true;
+				Time = new Date().getTime()
 			}
 			// 10秒钟未执行过任何操作，杀应用重启
 			if (thisScript.global.app_is_open_flag &&
-				Time - Math.max(lastFuncDateTime?.getTime() || 0, currentDate?.getTime() || 0, runDate?.getTime() || 0) > 10000
+				new Date().getTime() - Math.max(Time || 0, lastFuncDateTime?.getTime() || 0, currentDate?.getTime() || 0, runDate?.getTime() || 0) > 10000
 			) {
 				thisScript.stopRelatedApp();
 				sleep(2000);
@@ -599,6 +577,8 @@ export class Func993 implements IFuncOrigin {
 						console.log('识别游戏区域失败，识别结果为:', resultArea);
 						return false;
 					}
+				} else {
+					thisScript.global.game_area = 'findMultiColor_皮肤广告关闭按钮';
 				}
 				return thisScript.oper({
 					name: '点击开始游戏',
@@ -607,7 +587,7 @@ export class Func993 implements IFuncOrigin {
 					}],
 				});
 			}
-			if (thisScript.global.game_area == '' && thisScript.oper({
+			if (thisScript.global.game_area == 'findMultiColor_皮肤广告关闭按钮' && thisScript.oper({
 				name: '切换区域',
 				operator: [{ desc: thisOperator[4].desc }],
 			})) {
@@ -781,6 +761,7 @@ export class Func993 implements IFuncOrigin {
 					return true;
 				}
 			}
+
 			return false;
 		} else {
 			return false;
