@@ -518,16 +518,15 @@ export class Func993 implements IFuncOrigin {
 				thisScript.global.app_is_open_flag = false;
 				return true;
 			}
-			let Time
-			if (thisScript.oper({
+			if (!thisScript.oper({
 				name: '战斗界面重置计时',
-				operator: [thisOperator[28]],
+				operator: [thisOperator[28]]
 			})) {
-				Time = new Date().getTime()
+				thisScript.global.timestamp = new Date().getTime();
 			}
 			// 10秒钟未执行过任何操作，杀应用重启
 			if (thisScript.global.app_is_open_flag &&
-				new Date().getTime() - Math.max(Time || 0, lastFuncDateTime?.getTime() || 0, currentDate?.getTime() || 0, runDate?.getTime() || 0) > 10000
+				new Date().getTime() - Math.max(thisScript.global.timestamp, lastFuncDateTime?.getTime() || 0, currentDate?.getTime() || 0, runDate?.getTime() || 0) > 10000
 			) {
 				thisScript.stopRelatedApp();
 				sleep(2000);

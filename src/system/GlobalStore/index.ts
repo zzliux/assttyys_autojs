@@ -128,6 +128,7 @@ export type globalRootType = {
 	runTime_2: number, // 留存2退出结算次数
 	fight_Switch: Record<string, boolean | number>, // 战斗内操作记录
 	xiaJian: Record<string, boolean | number>, // 战斗内切换记录
+	timestamp: number, // 全局时间戳
 }
 
 export const globalRoot: globalRootType = {
@@ -260,6 +261,7 @@ export const globalRoot: globalRootType = {
 	runTime_2: null,
 	fight_Switch: null,
 	xiaJian: null,
+	timestamp: 0,
 }
 export type superGlobalRootType = {
 	liao_activity_Switch: Record<string, boolean>, // 寮活动记录
