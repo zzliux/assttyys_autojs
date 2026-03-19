@@ -935,6 +935,20 @@ export class Func609 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 49, 152, 166, 261, 1000],
 		]
+	}, { // 67 邮件领取窗口空白
+		desc: [1280, 720,
+			[
+				[center, 472, 561, 0xdd6951],
+				[center, 468, 590, 0xdd6951],
+				[center, 712, 561, 0xf3b25e],
+				[center, 835, 581, 0xf3b25e],
+				[left, 307, 173, 0xd6c9b9],
+				[center, 940, 170, 0xd6c9b9],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 454, 552, 591, 593, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['609'];
@@ -1244,8 +1258,8 @@ export class Func609 implements IFuncOrigin {
 					id: 609,
 					name: '一键代办',
 					operator: [thisOperator[36], thisOperator[37], thisOperator[38], thisOperator[39]
-						, thisOperator[40], thisOperator[41], thisOperator[42], thisOperator[43]
-						, thisOperator[32], thisOperator[34], thisOperator[35], thisOperator[54]
+						, thisOperator[40], thisOperator[41], thisOperator[42]
+						, thisOperator[32], thisOperator[34], thisOperator[54]
 						, thisOperator[55], thisOperator[56], thisOperator[58]]
 				})) {
 					return true;
@@ -1342,8 +1356,8 @@ export class Func609 implements IFuncOrigin {
 		}
 		if (thisScript.oper({
 			id: 609,
-			name: '地狱鬼王',
-			operator: [thisOperator[66]]
+			name: '关闭',
+			operator: [thisOperator[35], thisOperator[43], thisOperator[66], thisOperator[67]]
 		})) {
 			return true
 		}

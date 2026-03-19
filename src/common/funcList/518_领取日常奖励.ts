@@ -606,7 +606,7 @@ export class Func518 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 518,
 			name: '邮件',
-			operator: [thisOperator[15], thisOperator[11], thisOperator[9]]
+			operator: [thisOperator[15], thisOperator[11], thisOperator[17], thisOperator[9]]
 		})) {
 			return true;
 		}
