@@ -900,6 +900,10 @@ export class Func609 implements IFuncOrigin {
 				[center, 469, 67, 0x593616],
 			]
 		],
+		oper: [
+			[center, 1280, 720, 24, 20, 55, 56, 1000],
+		]
+
 	}, { // 64 小白提示框
 		desc: [1280, 720,
 			[
@@ -1114,12 +1118,24 @@ export class Func609 implements IFuncOrigin {
 				'card_stage': true,
 			};
 		}
+		if (thisconf.card === '关闭') {
+			thisScript.global.function_Switch.card = false;
+		}
 		if (thisScript.oper({
 			id: 609,
 			name: '庭院偏移',
 			operator: [thisOperator[59], thisOperator[61], thisOperator[64]]
 		})) {
 			return true
+		}
+		if (thisScript.oper({
+			id: 609,
+			name: '一键代办',
+			operator: [thisOperator[63]]
+		})) {
+			thisScript.myToast('已达到一键代办');
+			thisScript.global.function_Switch.agency = false;
+			return true;
 		}
 		if (thisScript.global.account_state === 'login') {
 			if (thisScript.global.account_num >= (thisconf.account_count as number)) {
@@ -1404,15 +1420,6 @@ export class Func609 implements IFuncOrigin {
 				if (thisScript.oper({
 					id: 609,
 					name: '一键代办',
-					operator: [thisOperator[63]]
-				})) {
-					thisScript.myToast('已达到一键代办');
-					thisScript.global.function_Switch.agency = false;
-					return true;
-				}
-				if (thisScript.oper({
-					id: 609,
-					name: '一键代办',
 					operator: [thisOperator[36], thisOperator[67], thisOperator[37], thisOperator[38], thisOperator[39]
 						, thisOperator[40], thisOperator[41], thisOperator[42]
 						, thisOperator[32], thisOperator[34], thisOperator[54]
@@ -1538,16 +1545,18 @@ export class Func609 implements IFuncOrigin {
 						}
 					}
 				}
-				if (!thisScript.global.function_Switch.juanGouYu && !thisScript.global.function_Switch.liaoSanshi &&
-					!thisScript.global.function_Switch.agency && !thisScript.global.function_Switch.regionBoos &&
-					thisScript.oper({
-						id: 609,
-						name: '庭院',
-						operator: [{ desc: thisOperator[5].desc }]
-					})) {
-					thisScript.global.account_state = 'logout';
-					return true;
-				}
+
+			}
+			if (!thisScript.global.function_Switch.juanGouYu && !thisScript.global.function_Switch.liaoSanshi &&
+				!thisScript.global.function_Switch.agency && !thisScript.global.function_Switch.regionBoos &&
+				!thisScript.global.function_Switch.card &&
+				thisScript.oper({
+					id: 609,
+					name: '庭院',
+					operator: [{ desc: thisOperator[5].desc }]
+				})) {
+				thisScript.global.account_state = 'logout';
+				return true;
 			}
 		}
 		if (thisScript.global.account_state === 'logout') {

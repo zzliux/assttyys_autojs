@@ -100,9 +100,7 @@ export class Func603 implements IFuncOrigin {
 				[right, 1113, 593, 0x4d2c37],
 				[right, 1159, 605, 0xdbc6c9],
 				[right, 1202, 596, 0x502f3c],
-				[right, 1120, 672, 0x381f28],
 				[right, 1158, 661, 0xdbc6ca],
-				[right, 1195, 670, 0x321823],
 			]
 		],
 		oper: [
@@ -189,12 +187,11 @@ export class Func603 implements IFuncOrigin {
 	}, { // 8 战报页覆盖了挑战界面
 		desc: [1280, 720,
 			[
-				[right, 1196, 591, 0x150c10],
-				[right, 1199, 622, 0x353031],
 				[right, 1201, 635, 0x363132],
-				[right, 1198, 665, 0x0d0709],
-				[right, 1230, 549, 0x210e0a],
-				[right, 1239, 549, 0x210e09],
+				[right, 1219, 626, 0x1b0e11],
+				[right, 1200, 622, 0x342e30],
+				[right, 1211, 639, 0x1a0d10],
+				[left, 293, 171, 0xf5e8c5],
 			]
 		],
 		oper: [
