@@ -1404,6 +1404,15 @@ export class Func609 implements IFuncOrigin {
 				if (thisScript.oper({
 					id: 609,
 					name: '一键代办',
+					operator: [thisOperator[63]]
+				})) {
+					thisScript.myToast('已达到一键代办');
+					thisScript.global.function_Switch.agency = false;
+					return true;
+				}
+				if (thisScript.oper({
+					id: 609,
+					name: '一键代办',
 					operator: [thisOperator[36], thisOperator[67], thisOperator[37], thisOperator[38], thisOperator[39]
 						, thisOperator[40], thisOperator[41], thisOperator[42]
 						, thisOperator[32], thisOperator[34], thisOperator[54]
