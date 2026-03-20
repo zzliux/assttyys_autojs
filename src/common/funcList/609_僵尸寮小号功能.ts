@@ -49,6 +49,12 @@ export class Func609 implements IFuncOrigin {
 			desc: '地域鬼王',
 			type: 'switch',
 			default: false,
+		}, {
+			name: 'card',
+			desc: '上结界卡',
+			type: 'list',
+			data: ['关闭', '斗鱼', '太鼓'],
+			default: '关闭',
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{ // 0 用户中心
@@ -942,14 +948,153 @@ export class Func609 implements IFuncOrigin {
 				[center, 468, 590, 0xdd6951],
 				[center, 712, 561, 0xf3b25e],
 				[center, 835, 581, 0xf3b25e],
-				[left, 307, 173, 0xd6c9b9],
-				[center, 940, 170, 0xd6c9b9],
+				[center, 368, 162, 0xa9967f],
+				[right, 916, 157, 0xa9967f],
 			]
 		],
 		oper: [
 			[center, 1280, 720, 454, 552, 591, 593, 1000],
 		]
-	}];
+	}, { // 68 点击结界
+		desc: [
+			1280, 720,
+			[
+				[right, 1096, 630, 0xb1251f],
+				[right, 1105, 662, 0xdbe3f1],
+				[left, 45, 39, 0xf4e4a3],
+				[center, 886, 644, 0xe0cbaa],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1067, 624, 1129, 689, 2500]
+		]
+	}, { // 69 判断_奖励弹窗
+		desc:
+			[
+				1280, 720,
+				[
+					[center, 365, 240, 0x38281c],
+					[center, 916, 254, 0x3f2d21],
+					[center, 930, 404, 0x76542e],
+					[center, 852, 400, 0xc3ab93],
+					[center, 438, 398, 0xcab49b],
+					[center, 702, 208, 0xffefcd],
+				]
+			],
+		oper: [
+			[center, 1280, 720, 370, 516, 930, 674, 600]
+		]
+	}, { // 70 进结界卡
+		desc: [1280, 720,
+			[
+				[right, 899, 305, 0xe3cec2],
+				[right, 919, 304, 0xe4cec3],
+				[left, 304, 307, 0xe3cec2],
+				[center, 604, 302, 0xe3cec3],
+				[right, 910, 590, 0x322828],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 905, 305, 920, 390, 1000],
+		]
+	}, { // 71 结界卡界面
+		desc: [1280, 720,
+			[
+				[left, 117, 52, 0x3f3d43],
+				[center, 563, 15, 0x524f58],
+				[right, 747, 17, 0x525058],
+				[right, 1124, 50, 0x3d3b41],
+				[left, 89, 179, 0xd389a6],
+				[right, 1222, 210, 0xa95f1a],
+			]
+		],
+	}, { // 72 有结界卡
+		desc: [1280, 720,
+			[
+				[right, 965, 340, 0xcec6bc],
+				[right, 1004, 341, 0xcec6bc],
+				[right, 981, 361, 0xccc4b9],
+				[right, 912, 606, 0xc6a57b],
+				[right, 953, 605, 0xc6a579],
+				[right, 1107, 626, 0xe5c15c],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1155, 95, 1199, 134, 1000], // 关闭
+		]
+	}, { // 73 结界卡类型界面
+		desc: [1280, 720,
+			[
+				[center, 346, 170, 0x9d603a],
+				[center, 534, 170, 0x9d5f3d],
+				[center, 352, 566, 0x7a5943],
+				[center, 526, 565, 0x7b5a44],
+				[center, 491, 190, 0xd6c9b9],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 373, 251, 515, 289, 1000], // 太鼓
+			[center, 1280, 720, 377, 318, 516, 352, 1000], // 斗鱼
+		]
+	}, { // 74 打开全部
+		desc: [1280, 720,
+			[
+				[right, 709, 281, 0x3d2616],
+				[right, 711, 343, 0x402818],
+				[right, 1006, 293, 0x3d2617],
+				[right, 1008, 348, 0x3d2616],
+				[right, 813, 300, 0x442e21],
+				[right, 901, 350, 0x442e21],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 362, 104, 516, 139, 1000],
+		]
+	}, { // 75 选第一个结界卡
+		desc: [1280, 720,
+			[
+				[right, 706, 291, 0x3e2617],
+				[right, 848, 316, 0x442e21],
+				[right, 1018, 292, 0x362115],
+				[right, 879, 362, 0x422d20],
+				[right, 1059, 590, 0xd7d7d7],
+				[right, 1133, 629, 0xbdbdbd],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 316, 200, 478, 261, 1000],
+		]
+	}, { // 76 激活
+		desc: [1280, 720,
+			[
+				[right, 1054, 571, 0xf5e6a1],
+				[right, 1089, 607, 0xe9cc72],
+				[right, 1136, 625, 0xe3be5a],
+				[right, 1131, 643, 0xdeb345],
+				[right, 1085, 641, 0x3c2a18],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1063, 588, 1141, 637, 1000],
+			[center, 1280, 720, 1157, 96, 1190, 130, 1000],
+		]
+	}, { // 77 领取结界卡奖励
+		desc: [1280, 720,
+			[
+				[right, 916, 149, 0x12100c],
+				[right, 914, 163, 0xcfa118],
+				[right, 910, 182, 0xb08223],
+				[right, 909, 200, 0x12100c],
+				[right, 947, 178, 0x110f0b],
+				[right, 935, 180, 0x5d3e16],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 899, 158, 942, 202, 1000],
+			[center, 1280, 720, 898, 301, 915, 361, 1000],
+		]
+	},
+	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['609'];
 		if (!thisScript.global.function_Switch) {// 首次执行,读取按钮状况
@@ -965,6 +1110,8 @@ export class Func609 implements IFuncOrigin {
 				'regionBoos': thisconf.regionBoos as boolean,
 				'regionBoos_num': 0,
 				'regionBoos_fight': false,
+				'card': thisconf.card as boolean,
+				'card_stage': true,
 			};
 		}
 		if (thisScript.oper({
@@ -1257,7 +1404,7 @@ export class Func609 implements IFuncOrigin {
 				if (thisScript.oper({
 					id: 609,
 					name: '一键代办',
-					operator: [thisOperator[36], thisOperator[37], thisOperator[38], thisOperator[39]
+					operator: [thisOperator[36], thisOperator[67], thisOperator[37], thisOperator[38], thisOperator[39]
 						, thisOperator[40], thisOperator[41], thisOperator[42]
 						, thisOperator[32], thisOperator[34], thisOperator[54]
 						, thisOperator[55], thisOperator[56], thisOperator[58]]
@@ -1322,15 +1469,76 @@ export class Func609 implements IFuncOrigin {
 					}
 				}
 			}
-			if (!thisScript.global.function_Switch.juanGouYu && !thisScript.global.function_Switch.liaoSanshi &&
-				!thisScript.global.function_Switch.agency && !thisScript.global.function_Switch.regionBoos &&
-				thisScript.oper({
+			if (thisScript.global.function_Switch.card) {
+				if (thisScript.oper({
 					id: 609,
-					name: '庭院',
-					operator: [{ desc: thisOperator[5].desc }]
+					name: '进入阴阳寮',
+					operator: [thisOperator[7], thisOperator[77], thisOperator[68], thisOperator[69], thisOperator[70],]
 				})) {
-				thisScript.global.account_state = 'logout';
-				return true;
+					return true;
+				}
+				if (thisScript.oper({
+					id: 609,
+					name: '结界卡',
+					operator: [{ desc: thisOperator[71].desc }]
+				})) {
+					if (thisScript.oper({
+						id: 609,
+						name: '有卡',
+						operator: [thisOperator[72]]
+					})) {
+						thisScript.global.function_Switch.card = false;
+						return true
+					}
+					if (thisScript.global.function_Switch.card_stage) {
+						if (thisScript.oper({
+							id: 609,
+							name: '选卡',
+							operator: [{ desc: thisOperator[73].desc }]
+						})) {
+							if (thisconf.card === '太鼓') {
+								thisScript.regionClick([thisOperator[73].oper[0]])
+							} else {
+								thisScript.regionClick([thisOperator[73].oper[1]])
+							}
+							thisScript.global.function_Switch.card_stage = false;
+							return true
+						}
+						if (thisScript.oper({
+							id: 609,
+							name: '选卡',
+							operator: [thisOperator[74]]
+						})) {
+							return true;
+						}
+					} else {
+						if (thisScript.oper({
+							id: 609,
+							name: '选卡',
+							operator: [thisOperator[75]]
+						})) {
+							return true;
+						}
+						if (thisScript.oper({
+							id: 609,
+							name: '选卡',
+							operator: [thisOperator[76]]
+						})) {
+							thisScript.global.function_Switch.card = false;
+							return true
+						}
+					}
+				}
+				if (!thisScript.global.function_Switch.juanGouYu && !thisScript.global.function_Switch.liaoSanshi &&
+					!thisScript.global.function_Switch.agency && !thisScript.global.function_Switch.regionBoos &&
+					thisScript.oper({
+						id: 609,
+						name: '庭院',
+						operator: [{ desc: thisOperator[5].desc }]
+					})) {
+					thisScript.global.account_state = 'logout';
+					return true;
+				}
 			}
 		}
 		if (thisScript.global.account_state === 'logout') {
@@ -1357,7 +1565,7 @@ export class Func609 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 609,
 			name: '关闭',
-			operator: [thisOperator[35], thisOperator[43], thisOperator[66], thisOperator[67]]
+			operator: [thisOperator[35], thisOperator[43], thisOperator[66]]
 		})) {
 			return true
 		}
