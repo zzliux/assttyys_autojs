@@ -16,7 +16,7 @@ export class Func515 implements IFuncOrigin {
 				[
 					[right, 1165, 597, 0xd5bfc2],
 					[right, 1155, 659, 0xd9c3c5],
-					[right, 1168, 491, 0xddd3c4],
+					[right, 1157, 443, 0xddd3c4],
 					[center, 476, 412, 0x53170f],
 					[right, 1016, 111, 0xe8d4cf],
 					[center, 547, 582, 0x840517],
@@ -34,7 +34,7 @@ export class Func515 implements IFuncOrigin {
 				[
 					[right, 1165, 597, 0xd5bfc2],
 					[right, 1155, 659, 0xd9c3c5],
-					[right, 1168, 491, 0xddd3c4],
+					[right, 1157, 443, 0xddd3c4],
 					[center, 476, 412, 0x53170f],
 					[right, 1016, 111, 0xe8d4cf],
 					[center, 547, 582, 0x840517],
