@@ -1536,5 +1536,8 @@ export const versionList = [{
 }, {
 	version: '20260313_01',
 	desc: '修复：修复993不自动重启问题'
+}, {
+	version: '20260314_01',
+	desc: '修复：自动邀请识别不了问题'
 }];
 export default versionList[versionList.length - 1].version;
