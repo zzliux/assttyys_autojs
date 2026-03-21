@@ -192,11 +192,8 @@ export class Func600 implements IFuncOrigin {
 				[
 					1280, 720,
 					[
-						[left, 182, 37, 0xd5c4a3],
 						[left, 108, 26, 0xd7c5a2],
 						[left, 47, 28, 0xd7c5a2],
-						[left, 232, 139, 0x583716],
-						[left, 76, 550, 0x322219],
 						[right, 1039, 648, 0xd3c3bd],
 						[center, 872, 606, 0x493a38],
 						[center, 727, 611, 0xdfc7ac],
@@ -283,6 +280,30 @@ export class Func600 implements IFuncOrigin {
 				[center, 1280, 720, 526, 500, 863, 505, -1],     //  寮活动 滑动下位置
 				[left, 1280, 720, 25, 10, 75, 54, 1000],     //  寮活动 返回区域
 			]
+		}, { // 14 在庭院打开菜单
+			desc: '页面是否为庭院_菜单未展开_只支持默认庭院皮肤与默认装饰',
+			oper: [
+				[right, 1280, 720, 1168, 592, 1230, 690, 1200]	// 在首页打开菜单
+			]
+		}, { // 15 点击阴阳寮
+			desc: '页面是否为庭院_菜单已展开_只支持默认庭院皮肤与默认装饰',
+			oper: [
+				[center, 1280, 720, 544, 612, 594, 661, 1200]	// 点击阴阳寮
+			]
+		}, { // 16 判断是否为寮首页
+			desc: [
+				1280, 720,
+				[
+					[right, 1096, 630, 0xb1251f],
+					[right, 1105, 662, 0xdbe3f1],
+					[left, 45, 39, 0xf4e4a3],
+					[center, 886, 644, 0xe0cbaa],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 868, 627, 927, 684, 1200]	// 点击下方神社
+			],
+			retest: 1000
 		}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['600'];
@@ -306,9 +327,16 @@ export class Func600 implements IFuncOrigin {
 		if (allFalse) {
 			thisScript.myToast('任务执行完毕!');
 			thisScript.superGlobal.next_scheme_name = null;
-			log('600_thisScript.superGlobal.next_scheme_name:' + thisScript.superGlobal.next_scheme_name);
-			thisScript.rerun('返回庭院')
-			sleep(3000);
+			thisScript.doPush(thisScript, { text: '已结束，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+			thisScript.stop()
+			sleep(1000);
+			return true;
+		}
+		if (thisScript.oper({
+			id: 600,
+			name: '进入寮神社界面',
+			operator: [thisOperator[14], thisOperator[15], thisOperator[16]]
+		})) {
 			return true;
 		}
 		// 首次进入寮神社界面返回一次重新进，防止还有原来的缓存在里面

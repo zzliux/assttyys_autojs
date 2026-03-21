@@ -197,7 +197,16 @@ export class Func603 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1151, 94, 1186, 122, 1000],
 		]
-	}
+	}, { // 9 阴阳寮
+		desc: [1280, 720,
+			[
+				[right, 1096, 630, 0xb1251f],
+				[right, 1105, 662, 0xdbe3f1],
+				[left, 45, 39, 0xf4e4a3],
+				[center, 886, 644, 0xe0cbaa],
+			]
+		],
+	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['603'];
@@ -271,9 +280,13 @@ export class Func603 implements IFuncOrigin {
 		}
 		// Real:用结算次数获取当前已攻打第几个怪物
 		const Real = thisScript.runTimes['2'] - thisScript.global.runTime_2 - (thisconf.sneak as number)
-		if (Real >= 12) {
-			log('已完成狭间,返回庭院')
+		if (Real >= 12 && thisScript.oper({
+			name: '阴阳寮界面',
+			operator: [{ desc: thisOperator[9].desc }],
+		})) {
+			log('已完成狭间')
 			thisScript.rerun('返回庭院')
+			sleep(1000)
 			return true;
 		}
 		// 首次进入_判断换预设御魂

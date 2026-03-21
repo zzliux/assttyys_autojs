@@ -24,7 +24,6 @@ export class Func606 implements IFuncOrigin {
 			],
 		oper: [
 			[right, 1280, 720, 1058, 601, 1268, 687, 1200],  // 点击挑战
-			[left, 1280, 720, 27, 15, 78, 61, 1200], //  点击退出
 		]
 	}, { //  1 检测_阴门挑战弹窗界面
 		desc:

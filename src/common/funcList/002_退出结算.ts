@@ -125,7 +125,7 @@ export class Func002 implements IFuncOrigin {
 		desc: '退出结算_单人_失败太鼓',
 		operStepRandom: [
 			[
-				[left, 1280, 720, 69, 171, 170, 452, 2000, 2],
+				[left, 1280, 720, 69, 171, 170, 320, 2000, 2],
 				[right, 1280, 720, 1104, 72, 1200, 528, 2000, 5],
 			]
 		],
@@ -134,7 +134,7 @@ export class Func002 implements IFuncOrigin {
 		desc: '退出结算_组队_失败太鼓',
 		operStepRandom: [
 			[
-				[left, 1280, 720, 69, 171, 170, 452, 2000, 2],
+				[left, 1280, 720, 69, 171, 170, 320, 2000, 2],
 				[right, 1280, 720, 1104, 72, 1200, 528, 2000, 5],
 			]
 		],
