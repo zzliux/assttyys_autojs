@@ -22,6 +22,11 @@ export class Func699 implements IFuncOrigin {
 			type: 'text',
 			default: '@163.com',
 		}, {
+			name: 'apple',
+			desc: '是否为苹果账号',
+			type: 'switch',
+			default: false,
+		}, {
 			name: 'area',
 			desc: '游戏区服',
 			type: 'text',
@@ -154,20 +159,19 @@ export class Func699 implements IFuncOrigin {
 		],
 	}, { // 8
 		desc: '页面是否为庭院_菜单已展开_只支持默认庭院皮肤与默认装饰',
-	}, { // 9 登陆后是否有皮肤广告弹窗 //大概率废弃
-		desc: [
-			1280,
-			720,
+	}, { // 9 用户中心
+		desc: [1280, 720,
 			[
-				[right, 1191, 97, 0xe79292],
-				[right, 1195, 87, 0xe9d2ce],
-				[right, 1195, 87, 0xe9d2ce],
-				[right, 1198, 104, 0xefcacd],
-			],
+				[right, 1225, 255, 0xd0c3ac],
+				[right, 1229, 245, 0xc8bca4],
+				[right, 1222, 245, 0xddcdb7],
+				[right, 1227, 233, 0x816c56],
+				[right, 1238, 240, 0x806c5a],
+			]
 		],
 		oper: [
-			[right, 1280, 720, 1166, 72, 1209, 110, 1200], // 关闭按钮
-		],
+			[center, 1280, 720, 1208, 228, 1236, 254, 1000],
+		]
 	}, { // 10 网络连接出错弹窗(适配 mumu6)
 		desc: [
 			1280,
@@ -197,22 +201,18 @@ export class Func699 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1155, 91, 1204, 138, 1200], // 关闭按钮
 		],
-	}, { // 12 检测_无响应窗口(适配 雷电) // 废弃
-		desc: [
-			1280,
-			720,
+	}, { // 12 切换账号
+		desc: [1280, 720,
 			[
-				[center, 328, 271, 0xffffff],
-				[center, 875, 273, 0xffffff],
-				[center, 333, 486, 0xffffff],
-				[center, 951, 481, 0xffffff],
-				[center, 532, 381, 0xffffff],
-				[center, 484, 458, 0xffffff],
-			],
+				[left, 294, 332, 0x5e6266],
+				[center, 336, 333, 0x5e6266],
+				[center, 531, 311, 0x5e6266],
+				[left, 315, 483, 0x5e6266],
+			]
 		],
 		oper: [
-			[center, 1280, 720, 425, 436, 484, 464, 1200], //	点击等待
-		],
+			[center, 1280, 720, 947, 195, 1066, 224, 1000],
+		]
 	}, { // 13
 		desc: '页面是否为庭院_菜单已展开_另一种图标_御祝图标_只支持默认庭院皮肤与默认装饰',
 	}, { // 14 继续战斗弹窗
@@ -233,20 +233,23 @@ export class Func699 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 492, 405, 590, 440, 1200], //	点击取消
 		],
-	}, { // 15 是否为公告页(22年公告) // 废弃
-		desc: [
-			1280,
-			720,
+	}, { // 15  选择账号界面_账号选择框未打开
+		desc: [1280, 720,
 			[
-				[center, 648, 37, 0x676060],
-				[right, 1214, 142, 0x59242c],
-				[left, 204, 53, 0x555351],
-				[right, 1155, 498, 0xe7d9cb],
-			],
+				[center, 540, 214, 0xe50113],
+				[center, 575, 210, 0xe50517],
+				[center, 626, 216, 0x3d3a3a],
+				[center, 655, 218, 0x413e3e],
+				[center, 705, 216, 0x3e3b3b],
+				[center, 735, 223, 0x3c3939],
+				[center, 451, 445, 0xfb4f4f],
+				[center, 837, 445, 0xfb4f4f],
+			]
 		],
 		oper: [
-			[right, 1280, 720, 1190, 135, 1242, 186, 1200], // 点击关闭公告
-		],
+			[center, 1280, 720, 596, 415, 678, 469, 1000], // 登录
+			[center, 1280, 720, 580, 297, 703, 364, 1000], // 打开账号选择框
+		]
 	}, { // 16
 		desc: '庭院已打开菜单_另另外一种图标',
 	}, { // 17 客户端更新窗口关闭
@@ -282,22 +285,23 @@ export class Func699 implements IFuncOrigin {
 			[left, 1280, 720, 126, 272, 264, 307, 1200], //  第二个账号坐标
 			[left, 1280, 720, 126, 377, 289, 409, 1200], //  第三个账号坐标(瞎猜的，没有三个账号同区的场景)
 		],
-	}, { // 19 看CG确认窗口点取消 // 大概率废弃
-		desc: [
-			1280, 720,
+	}, { // 19 选择账号界面_账号选择框已打开
+		desc: [1280, 720,
 			[
-				[center, 498, 416, 0xdf6851],
-				[center, 646, 420, 0xcbb59c],
-				[center, 716, 421, 0xf3b25e],
-				[center, 438, 236, 0x634233],
-				[center, 764, 329, 0xcbb59c],
-				[center, 856, 376, 0xcbb59c],
-				[center, 656, 465, 0xc3ad93],
-				[center, 423, 485, 0x674536],
+				[center, 540, 214, 0xe50113],
+				[center, 575, 210, 0xe50517],
+				[center, 626, 216, 0x3d3a3a],
+				[center, 655, 218, 0x413e3e],
+				[center, 705, 216, 0x3e3b3b],
+				[center, 735, 223, 0x3c3939],
+				[right, 900, 399, 0xf0f0f0],
+				[right, 900, 490, 0xf0f0f0],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 471, 395, 595, 455, 1000],
+			[center, 1280, 720, 844, 580, 877, 590, 1000], // 上拉起始
+			[center, 1280, 720, 839, 250, 868, 260, 1000], // 上拉结束
+			[center, 1280, 720, 453, 283, 894, 599, 1000], // ocr位置
 		]
 	}, { // 20 网络连接出错弹窗(适配 雷电)
 		desc: [
@@ -329,20 +333,18 @@ export class Func699 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 814, 470, 960, 613, 1200], // 点击空白处
 		]
-	}, { // 22 应用宝公告关闭 // 大概率废弃
-		desc: [
-			1280, 720,
+	}, { // 22 选择安卓或苹果平台
+		desc: [1280, 720,
 			[
-				[center, 428, 564, 0x7f7f7f],
-				[center, 861, 563, 0x7f7f7f],
-				[center, 431, 198, 0xffffff],
-				[center, 856, 211, 0xffffff],
-				[center, 856, 157, 0x9e9e9e],
-				[center, 860, 153, 0xaeaeae],
+				[center, 532, 383, 0x1a1a1a],
+				[center, 696, 383, 0x8ec220],
+				[center, 530, 424, 0x1a1a1a],
+				[center, 693, 422, 0x8ec220],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 844, 144, 872, 173, 1000],
+			[center, 1280, 720, 687, 377, 746, 430, 1000], // 安卓
+			[center, 1280, 720, 527, 376, 586, 433, 1000], // 苹果
 		]
 	}, { // 23 开屏的zen动画
 		desc: [1280, 720,
@@ -417,9 +419,58 @@ export class Func699 implements IFuncOrigin {
 		if (thisScript.global.email_switch_enabled === null) {
 			thisScript.global.email_switch_enabled = thisConf.email_switch_enabled as boolean;
 		}
-		// if (thisScript.global.email_switch_enabled) {
-
-		// }
+		if (thisScript.global.email_switch_enabled) {
+			if (thisScript.oper({
+				id: 699,
+				name: '用户中心',
+				operator: [thisOperator[9], thisOperator[12]],
+			})) {
+				return true;
+			}
+			if (thisScript.oper({
+				id: 699,
+				name: '用户中心',
+				operator: [{ desc: thisOperator[15].desc }],
+			})) {
+				thisScript.regionClick([thisOperator[15].oper[1]]);
+				return true;
+			}
+			while (thisScript.oper({
+				id: 609,
+				name: '选取最后一个账号',
+				operator: [{ desc: thisOperator[19].desc }]
+			})) {
+				const result = thisScript.findText('.+', 0, thisOperator[19].oper[2], '包含');
+				const findName = thisScript.findTextByOcrResult(thisConf.next_email as string, result, '包含')
+				if (findName.length) {
+					const toClickRegion = [
+						findName[0].points[0].x + 10,
+						findName[0].points[0].y,
+						findName[0].points[0].x + 50,
+						findName[0].points[0].y + 65,
+						1000,
+					]
+					thisScript.regionClick([toClickRegion]);
+					thisScript.regionClick([thisOperator[15].oper[0]]);
+					thisScript.global.email_switch_enabled = false;
+				} else {
+					thisScript.regionSwipe(thisOperator[19].oper[0], thisOperator[19].oper[1], [1500, 1700], 1000);
+				}
+				return true;
+			}
+		}
+		if (thisScript.oper({
+			id: 609,
+			name: '选择平台',
+			operator: [{ desc: thisOperator[22].desc }]
+		})) {
+			if (thisConf.apple) {
+				thisScript.regionClick([thisOperator[22].oper[1]]);
+			} else {
+				thisScript.regionClick([thisOperator[22].oper[0]]);
+			}
+			return true;
+		}
 		if (!thisScript.global.open_only_once) {
 			if (thisScript.oper({
 				id: 699,

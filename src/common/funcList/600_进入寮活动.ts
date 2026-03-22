@@ -21,6 +21,11 @@ export class Func600 implements IFuncOrigin {
 			desc: '寮管理主动开启道馆,宴会',
 			type: 'switch',
 			default: false,
+		}, {
+			name: 'next_scheme',
+			desc: '下一个方案',
+			type: 'scheme',
+			default: '返回庭院',
 		}]
 	}, {
 		desc: '识别到后的操作(切换方案)',
@@ -328,7 +333,7 @@ export class Func600 implements IFuncOrigin {
 			thisScript.myToast('任务执行完毕!');
 			thisScript.superGlobal.next_scheme_name = null;
 			thisScript.doPush(thisScript, { text: '已结束，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-			thisScript.stop()
+			thisScript.rerun(thisconf.next_scheme);
 			sleep(1000);
 			return true;
 		}
