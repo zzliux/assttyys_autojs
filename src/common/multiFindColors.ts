@@ -2841,6 +2841,18 @@ const multiFindColors: IMultiFindColorsOrigin = {
 			]
 		]],
 	},
+	'红手指': {
+		region: [left, 1280, 720, 0, 0, 1280, 720],
+		desc: [[1280, 720,
+			[
+				[right, 887, 255, 0xeca9a1],
+				[right, 897, 273, 0xedb9a9],
+				[right, 907, 287, 0xf0d0b9],
+				[right, 926, 303, 0x8c1b29],
+				[right, 940, 322, 0x9d1e2b],
+			]
+		]]
+	}
 	// '': {
 	// 	region: [left, 1280, 720, 0, 0, 1280, 720],
 	// 	desc: [[

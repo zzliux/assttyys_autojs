@@ -813,8 +813,8 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 				[left, 42, 38, 0xf7e5a7],
 				[right, 1194, 34, 0xd6c7a5],
 				[left, 48, 490, 0x3e2822],
-				[left, 49, 603, 0x952d30],
-				[left, 108, 597, 0xa3a3b1],
+				[right, 1252, 632, 0x4a3024],
+				[right, 1221, 667, 0x3c221f],
 			]
 		]
 	},

@@ -498,15 +498,15 @@ export class Func316 implements IFuncOrigin {
 	}, { // 31 进入六道之门
 		desc: [1280, 720,
 			[
-				[right, 949, 642, 0x9bc0ee],
-				[right, 986, 637, 0x808986],
-				[right, 982, 666, 0x444e69],
-				[right, 946, 662, 0x57668e],
-				[right, 988, 678, 0xa9975b],
+				[right, 851, 637, 0x8eadd1],
+				[right, 885, 644, 0x607699],
+				[right, 893, 670, 0xc8b163],
+				[right, 869, 686, 0xa08a58],
+				[right, 866, 658, 0x142f8f],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 943, 641, 986, 685, 1000],
+			[center, 1280, 720, 839, 640, 894, 683, 1000],
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {

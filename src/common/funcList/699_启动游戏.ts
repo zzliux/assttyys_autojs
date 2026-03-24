@@ -409,7 +409,34 @@ export class Func699 implements IFuncOrigin {
 		]
 	}, { // 28 战斗界面
 		desc: '战斗界面'
-	}
+	}, { // 29 三个号,已沉底
+		desc: [1280, 720,
+			[
+				[center, 443, 570, 0xfd7272],
+				[center, 450, 570, 0xfd7272],
+				[center, 458, 570, 0xfd5d5d],
+				[right, 713, 570, 0xbebebe],
+				[right, 716, 570, 0xb6b6b6],
+				[right, 728, 570, 0xb6b6b6],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1007, 336, 1120, 464, 1000],
+		]
+	}, { // 30 两个号,已沉底
+		desc: [1280, 720,
+			[
+				[center, 443, 532, 0xfd7272],
+				[center, 450, 532, 0xfd7272],
+				[center, 458, 532, 0xfd5d5d],
+				[right, 712, 532, 0xbbbbbb],
+				[right, 728, 532, 0xb6b6b6],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1020, 396, 1161, 550, 1000],
+		]
+	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['699'];
@@ -440,6 +467,13 @@ export class Func699 implements IFuncOrigin {
 				name: '选取最后一个账号',
 				operator: [{ desc: thisOperator[19].desc }]
 			})) {
+				if (thisScript.oper({
+					id: 699,
+					name: '已沉底',
+					operator: [thisOperator[29], thisOperator[30]],
+				})) {
+					return true;
+				}
 				const result = thisScript.findText('.+', 0, thisOperator[19].oper[2], '包含');
 				const findName = thisScript.findTextByOcrResult(thisConf.next_email as string, result, '包含')
 				if (findName.length) {
@@ -493,7 +527,7 @@ export class Func699 implements IFuncOrigin {
 					thisScript.global.checked_yard_count = 0;
 					if (thisConf.scheme_switch_enabled) {
 						thisScript.rerun(thisConf.next_scheme);
-						return true;
+						break;
 					} else {
 						thisScript.global.open_only_once = true;
 						return true;
@@ -587,7 +621,7 @@ export class Func699 implements IFuncOrigin {
 					],
 				});
 			}
-			if (thisScript.oper({
+			if (thisConf.name && thisScript.oper({
 				id: 699,
 				name: '识别昵称',
 				operator: [{ desc: thisOperator[4].desc }],

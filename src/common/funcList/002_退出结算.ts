@@ -326,6 +326,19 @@ export class Func002 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1112, 113, 1238, 595, 1000],
 		]
+	}, { // 29 小白提示框
+		desc: [1280, 720,
+			[
+				[center, 483, 195, 0x464342],
+				[right, 808, 201, 0x423e3d],
+				[left, 296, 383, 0xcb2e43],
+				[right, 905, 406, 0x624a3a],
+				[center, 427, 528, 0x645346],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 528, 606, 699, 660, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['2'];
@@ -372,7 +385,7 @@ export class Func002 implements IFuncOrigin {
 				thisOperator[12], thisOperator[13], thisOperator[14], thisOperator[15],
 				thisOperator[16], thisOperator[17], thisOperator[22], thisOperator[18], // 22要放18前面
 				thisOperator[21], thisOperator[23], thisOperator[24], thisOperator[25],
-				thisOperator[26], thisOperator[27], thisOperator[28],
+				thisOperator[26], thisOperator[27], thisOperator[28], thisOperator[29],
 			]
 		});
 	}
