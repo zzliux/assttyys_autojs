@@ -131,6 +131,8 @@ export type globalRootType = {
 	timestamp: number, // 全局时间戳
 	paiMing: number, // 排名
 	email_switch_enabled: boolean, // 邮箱切换
+	tuDi: Record<string, boolean | number>, // 徒弟
+	newAccount: Record<string, boolean | number>, // 新号
 }
 
 export const globalRoot: globalRootType = {
@@ -266,6 +268,8 @@ export const globalRoot: globalRootType = {
 	timestamp: 0,
 	paiMing: 0,
 	email_switch_enabled: null,
+	tuDi: null,
+	newAccount: null,
 }
 export type superGlobalRootType = {
 	liao_activity_Switch: Record<string, boolean>, // 寮活动记录

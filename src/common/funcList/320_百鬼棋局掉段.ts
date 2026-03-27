@@ -60,6 +60,19 @@ export class Func320 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1072, 648, 1234, 690, 1000],
 		]
-	}
+	}, { // 4 返回大厅
+		desc: [1280, 720,
+			[
+				[center, 569, 636, 0xffc879],
+				[center, 573, 656, 0xfdc36e],
+				[right, 717, 635, 0xffcd83],
+				[right, 712, 662, 0xffdfaf],
+				[right, 699, 650, 0xffdfab],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 568, 634, 716, 666, 1000],
+		]
+	},
 	]
 }

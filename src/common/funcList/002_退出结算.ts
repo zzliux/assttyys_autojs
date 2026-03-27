@@ -29,7 +29,7 @@ export class Func002 implements IFuncOrigin {
 			default: '关闭BUFF',
 		}, {
 			name: 'fail',
-			desc: '失败后停止脚本',
+			desc: '失败后切换方案',
 			type: 'switch',
 			default: false,
 		}]
@@ -338,7 +338,8 @@ export class Func002 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 528, 606, 699, 660, 1000],
-		]
+		],
+		notForCnt: true, // 点击确认不统计退出结算的次数
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['2'];
@@ -358,20 +359,20 @@ export class Func002 implements IFuncOrigin {
 				thisScript.rerun(thisconf.next_scheme);
 				sleep(3000);
 				return;
-			} else if (thisconf && !thisconf.no_sushi_switch_enabled) {
+			} else if (!thisconf.no_sushi_switch_enabled) {
 				thisScript.doPush(thisScript, { text: '体力不够已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 				thisScript.stop();
 				sleep(3000);
 				return;
 			}
 		}
-		if (thisconf && thisconf.fail && thisScript.oper({
+		if (thisconf.fail && thisScript.oper({
 			id: 2,
 			name: '退出结算_失败停止',
 			operator: [thisOperator[9], thisOperator[10]]
 		})) {
 			thisScript.doPush(thisScript, { text: '战斗失败，已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-			thisScript.stop();
+			thisScript.rerun(thisconf.next_scheme);
 			sleep(3000);
 			return true
 		}

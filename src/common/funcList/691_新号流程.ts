@@ -5,14 +5,11 @@ import { Script } from '@/system/script';
 const left = 0;
 const center = 1;
 const right = 2;
-let create = false; // true
-let apply = false; // false
-let jingYan = false; // false
-let getBird = true; // true
 
-export class Func697 implements IFuncOrigin {
-	id = 697;
-	name = '师徒号流程';
+
+export class Func691 implements IFuncOrigin {
+	id = 691;
+	name = '新号流程';
 	desc = '';
 	config = [{
 		desc: '',
@@ -27,37 +24,10 @@ export class Func697 implements IFuncOrigin {
 			type: 'text',
 			default: '师傅',
 		}, {
-			name: 'apple',
-			desc: '是否为苹果账号',
-			type: 'switch',
-			default: false,
-		}, {
-			name: 'area',
-			desc: '游戏区服',
-			type: 'text',
-			default: '',
-			value: '',
-		}, {
-			name: 'scheme_switch_enabled',
-			desc: '是否切换方案(不切换则只运行一次)',
-			type: 'switch',
-			default: true,
-		}, {
 			name: 'next_scheme',
 			desc: '下一个方案',
 			type: 'scheme',
-			default: '式神寄养',
-		}, {
-			name: 'close_game_new',
-			desc: '长时间未识别时重启游戏',
-			type: 'switch',
-			default: true,
-		}, {
-			name: 'account_index',
-			desc: '账号序号(用于同区多账号，账号序号优先级大于账号昵称)',
-			type: 'text',
-			default: 0,
-			value: 0,
+			default: '经验妖怪',
 		}]
 	}];
 
@@ -71,9 +41,10 @@ export class Func697 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 777, 238, 839, 289, 1000], // 选区
-			[center, 1280, 720, 577, 585, 704, 611, 1000], // 进入游戏
-
+			[center, 1280, 720, 777, 238, 839, 289, 1000], // 选新区
+			[center, 1280, 720, 256, 570, 997, 615, 1000], // ocr昵称区域
+			[center, 1280, 720, 286, 506, 324, 539, 1000], // 选区确认
+			[center, 1280, 720, 562, 574, 722, 617, 1200], // 点击开始游戏
 		],
 	}, { // 1 点击输入
 		desc: [1280, 720,
@@ -474,12 +445,9 @@ export class Func697 implements IFuncOrigin {
 				[left, 22, 26, 0x382215],
 				[left, 310, 57, 0x3d3031],
 				[left, 58, 60, 0xfcede0],
-				[right, 1186, 665, 0xd5c4c2],
-				[right, 1219, 624, 0xdeb473],
+				[left, 199, 611, 0xec8342],
+				[left, 267, 610, 0xd36c34],
 			]
-		],
-		oper: [
-			[center, 1280, 720, 1181, 640, 1209, 670, 1000],
 		]
 	}, { // 32 残废组队
 		desc: [1280, 720,
@@ -583,14 +551,22 @@ export class Func697 implements IFuncOrigin {
 	}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		const thisconf = thisScript.scheme.config['697'];
-		if (create) {
+		const thisconf = thisScript.scheme.config['691'];
+		if (!thisScript.global.newAccount) {
+			thisScript.global.newAccount = {
+				'create': true,
+				'apply': false,
+				'jingYan': false,
+				'getBird': true,
+			};
+		}
+		if (thisScript.global.newAccount.create) {
 			if (thisScript.oper({
-				id: 697,
+				id: 691,
 				name: '选区',
 				operator: [thisOperator[1]],
 			})) {
-				apply = true;
+				thisScript.global.newAccount.apply = true;
 				const prefix = thisconf.name;
 				const time = Date.now().toString(36); // 压缩时间戳
 				const input = className('android.widget.EditText').findOne(1000);
@@ -605,21 +581,41 @@ export class Func697 implements IFuncOrigin {
 				return true;
 			}
 			if (thisScript.oper({
-				id: 697,
+				id: 691,
 				name: '起号',
-				operator: [thisOperator[0], thisOperator[2]],
+				operator: [{ desc: thisOperator[0].desc }],
+			})) {
+				const name = thisScript.findText(String(thisconf.name), 0, thisOperator[0].oper[1], '包含');
+				if (name.length > 0) {
+					const toClickRegion = [
+						name[0].points[0].x, name[0].points[0].y,
+						name[0].points[0].x + 40, name[0].points[0].y + 20, 1000,
+					]
+					thisScript.regionClick([toClickRegion]);
+					thisScript.regionClick([thisOperator[0].oper[2]]);
+				} else {
+					thisScript.regionClick([thisOperator[0].oper[0]]);
+				}
+				thisScript.regionClick([thisOperator[0].oper[3]]);
+				thisScript.global.game_area = 'findMultiColor_皮肤广告关闭按钮';
+				return true;
+			}
+			if (thisScript.oper({
+				id: 691,
+				name: '起号',
+				operator: [thisOperator[2]],
 			})) {
 				return true;
 			}
 			if (thisScript.oper({
-				id: 697,
+				id: 691,
 				name: '剧情',
 				operator: thisOperator.slice(3, 11)
 			})) {
 				return true;
 			}
 			if (thisScript.oper({
-				id: 697,
+				id: 691,
 				name: '剧情',
 				operator: [{ desc: thisOperator[19].desc }]
 			})) {
@@ -627,17 +623,17 @@ export class Func697 implements IFuncOrigin {
 				return true;
 			}
 			if (thisScript.oper({
-				id: 697,
+				id: 691,
 				name: '守护||庭院',
-				operator: [thisOperator[22], thisOperator[31]],
+				operator: [thisOperator[22]],
 			})) {
-				create = false;
+				thisScript.global.newAccount.create = false;
 				return true;
 			}
 		}
-		if (apply) {
+		if (thisScript.global.newAccount.apply) {
 			if (thisScript.oper({
-				id: 697,
+				id: 691,
 				name: '输入',
 				operator: [thisOperator[24]],
 			})) {
@@ -655,68 +651,60 @@ export class Func697 implements IFuncOrigin {
 				return true;
 			}
 			if (thisScript.oper({
-				id: 697,
+				id: 691,
 				name: '申请',
 				operator: [thisOperator[22], thisOperator[23], thisOperator[26], thisOperator[27]],
 			})) {
 				return true;
 			}
 			if (thisScript.oper({
-				id: 697,
+				id: 691,
 				name: '申请',
 				operator: [thisOperator[28]],
 			})) {
-				apply = false;
+				thisScript.global.newAccount.apply = false;
 				return true;
 			}
 		}
 		if (thisScript.oper({
-			id: 697,
+			id: 691,
 			name: '守护完成',
-			operator: [thisOperator[29], thisOperator[30], thisOperator[31]]
+			operator: [thisOperator[29], thisOperator[30]]
 		})) {
 			return true;
 		}
 		if (thisScript.oper({
-			id: 697,
+			id: 691,
 			name: '残废组队',
 			operator: [thisOperator[32]]
 		})) {
-			jingYan = true;
+			thisScript.global.newAccount.jingYan = true;
 			return true;
 		}
-		if (jingYan) {
-			if (getBird) {
+		if (thisScript.global.newAccount.jingYan) {
+			if (thisScript.global.newAccount.getBird) {
 				if (thisScript.oper({
-					id: 697,
+					id: 691,
 					name: '残废组队',
 					operator: [thisOperator[38]]
 				})) {
 					return true;
 				}
 				if (thisScript.oper({
-					id: 697,
+					id: 691,
 					name: '残废组队',
 					operator: [thisOperator[39]]
 				})) {
-					getBird = false;
+					thisScript.global.newAccount.getBird = false;
 					return true;
 				}
 			}
 			if (thisScript.oper({
-				id: 697,
+				id: 691,
 				name: '残废组队',
 				operator: [thisOperator[33], thisOperator[34], thisOperator[35], thisOperator[36]
 					, thisOperator[37]]
 			})) {
-				return true;
-			}
-			if (thisScript.oper({
-				id: 697,
-				name: '残废组队',
-				operator: [thisOperator[40]]
-			})) {
-				jingYan = false;
 				return true;
 			}
 			const point = thisScript.findMultiColor('皮肤广告关闭按钮');
@@ -728,7 +716,16 @@ export class Func697 implements IFuncOrigin {
 			}
 		}
 		if (thisScript.oper({
-			id: 697,
+			id: 691,
+			name: '残废组队',
+			operator: [thisOperator[40]]
+		})) {
+			thisScript.rerun(thisconf.next_scheme);
+			sleep(3000);
+			return true;
+		}
+		if (thisScript.oper({
+			id: 691,
 			name: '杂项',
 			operator: [thisOperator[10]]
 		})) {

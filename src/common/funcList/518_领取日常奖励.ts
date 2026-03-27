@@ -562,7 +562,33 @@ export class Func518 implements IFuncOrigin {
 				[center, 1280, 720, 1157, 94, 1200, 134, 1000],
 				[center, 1280, 720, 1156, 99, 1199, 131, 1000],
 			]
-		}
+		}, { // 43 一键代办_猫咪图标入口
+			desc: [1280, 720,
+				[
+					[right, 790, 453, 0xfff2af],
+					[right, 789, 459, 0xfff2af],
+					[right, 794, 465, 0xfaedb9],
+					[right, 794, 471, 0xf6e8b5],
+					[right, 803, 472, 0xffeebb],
+					[right, 804, 453, 0xf6e7b0],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 787, 451, 806, 469, 1000],
+			]
+		}, { // 44 神秘商人弹窗(首次进入商店)
+			desc: [1280, 720,
+				[
+					[left, 312, 543, 0x4e0c19],
+					[left, 316, 558, 0x580c19],
+					[center, 435, 546, 0x98081a],
+					[center, 447, 556, 0x810515],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 482, 323, 571, 383, 1000],
+			]
+		},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (!thisScript.global.function_Switch) {// 首次执行,读取按钮状况
@@ -582,6 +608,13 @@ export class Func518 implements IFuncOrigin {
 			return true;
 		}
 		if (thisScript.global.function_Switch.email) {
+			if (thisScript.oper({
+				id: 518,
+				name: '邮件',
+				operator: [thisOperator[12], thisOperator[13], thisOperator[14],]
+			})) {
+				return true;
+			}
 			if (thisScript.global.email_yuHun >= 3) {
 				thisScript.global.function_Switch.email = false;
 				thisScript.doPush(thisScript, { text: '邮件里御魂已满', before() { thisScript.myToast('邮件里御魂已满'); } });
@@ -639,7 +672,7 @@ export class Func518 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 518,
 				name: '一键代办',
-				operator: [thisOperator[1], thisOperator[3], thisOperator[4], thisOperator[5]
+				operator: [thisOperator[1], thisOperator[43], thisOperator[3], thisOperator[5]
 					, thisOperator[6], thisOperator[7],]
 			})) {
 				return true;
@@ -749,8 +782,8 @@ export class Func518 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 518,
 			name: '退出',
-			operator: [thisOperator[30], thisOperator[31], thisOperator[32], thisOperator[33]
-				, thisOperator[34], thisOperator[38]]
+			operator: [thisOperator[4], thisOperator[30], thisOperator[31], thisOperator[32], thisOperator[33]
+				, thisOperator[34], thisOperator[38], thisOperator[44]]
 		})) {
 			return true;
 		}

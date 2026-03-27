@@ -5,8 +5,8 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func699 implements IFuncOrigin {
-	id = 699;
+export class Func690 implements IFuncOrigin {
+	id = 690;
 	name = '启动游戏';
 	desc = '启动游戏';
 	config = [{
@@ -133,7 +133,7 @@ export class Func699 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 706, 507, 770, 539, 1200], // 切换按钮 区域
-			[center, 1280, 720, 539, 656, 691, 701, 1000], // 关闭选择区域
+			[center, 1280, 720, 539, 656, 691, 701, 1000], // 关闭选择区域 废弃
 			[center, 1280, 720, 256, 570, 997, 615, 1000], // ocr昵称区域
 			[center, 1280, 720, 286, 506, 324, 539, 1000], // 选区确认
 		],
@@ -164,9 +164,9 @@ export class Func699 implements IFuncOrigin {
 			[
 				[right, 1225, 255, 0xd0c3ac],
 				[right, 1229, 245, 0xc8bca4],
-				[right, 1222, 245, 0xddcdb7],
 				[right, 1227, 233, 0x816c56],
 				[right, 1238, 240, 0x806c5a],
+				[right, 1222, 246, 0xc6bda8],
 			]
 		],
 		oper: [
@@ -294,8 +294,8 @@ export class Func699 implements IFuncOrigin {
 				[center, 655, 218, 0x413e3e],
 				[center, 705, 216, 0x3e3b3b],
 				[center, 735, 223, 0x3c3939],
-				[right, 900, 399, 0xf0f0f0],
-				[right, 900, 490, 0xf0f0f0],
+				[center, 379, 325, 0xf0f0f0],
+				[center, 379, 483, 0xf0f0f0],
 			]
 		],
 		oper: [
@@ -439,7 +439,7 @@ export class Func699 implements IFuncOrigin {
 	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		const thisConf = thisScript.scheme.config['699'];
+		const thisConf = thisScript.scheme.config['690'];
 		if (!thisConf.close_game_new) {
 			thisScript.global.app_is_open_flag = false;
 		}
@@ -448,14 +448,14 @@ export class Func699 implements IFuncOrigin {
 		}
 		if (thisScript.global.email_switch_enabled) {
 			if (thisScript.oper({
-				id: 699,
+				id: 690,
 				name: '用户中心',
 				operator: [thisOperator[9], thisOperator[12]],
 			})) {
 				return true;
 			}
 			if (thisScript.oper({
-				id: 699,
+				id: 690,
 				name: '用户中心',
 				operator: [{ desc: thisOperator[15].desc }],
 			})) {
@@ -468,7 +468,7 @@ export class Func699 implements IFuncOrigin {
 				operator: [{ desc: thisOperator[19].desc }]
 			})) {
 				if (thisScript.oper({
-					id: 699,
+					id: 690,
 					name: '已沉底',
 					operator: [thisOperator[29], thisOperator[30]],
 				})) {
@@ -507,7 +507,7 @@ export class Func699 implements IFuncOrigin {
 		}
 		if (!thisScript.global.open_only_once) {
 			if (thisScript.oper({
-				id: 699,
+				id: 690,
 				name: '是否为庭院(未展开菜单)',
 				operator: [thisOperator[7]],
 			})) {
@@ -517,7 +517,7 @@ export class Func699 implements IFuncOrigin {
 			let curCnt = 0;
 			const maxCount = 6;
 			while (thisScript.oper({
-				id: 699,
+				id: 690,
 				name: '是否为庭院',
 				operator: [thisOperator[8], thisOperator[13], thisOperator[16]],
 			})) {
@@ -562,7 +562,7 @@ export class Func699 implements IFuncOrigin {
 				return true;
 			}
 			if (thisScript.oper({
-				id: 699,
+				id: 690,
 				name: '是否为登录页',
 				operator: [{ desc: thisOperator[0].desc }],
 			})) {
@@ -601,14 +601,8 @@ export class Func699 implements IFuncOrigin {
 					operator: [{ oper: [thisOperator[0].oper[0]] }],
 				});
 			}
-			if (thisScript.global.game_area == 'findMultiColor_皮肤广告关闭按钮' && thisScript.oper({
-				name: '切换区域',
-				operator: [{ desc: thisOperator[4].desc }],
-			})) {
-				return true;
-			}
 			if (thisConf.account_index && thisScript.oper({
-				id: 699,
+				id: 690,
 				name: '是否为同区多账号',
 				operator: [{
 					desc: thisOperator[18].desc,
@@ -622,7 +616,7 @@ export class Func699 implements IFuncOrigin {
 				});
 			}
 			if (thisConf.name && thisScript.oper({
-				id: 699,
+				id: 690,
 				name: '识别昵称',
 				operator: [{ desc: thisOperator[4].desc }],
 			})) {
@@ -634,12 +628,13 @@ export class Func699 implements IFuncOrigin {
 					]
 					thisScript.regionClick([toClickRegion]);
 					thisScript.regionClick([thisOperator[4].oper[3]]);
+					thisScript.regionClick([thisOperator[0].oper[0]]);
 					thisScript.global.game_area = 'findMultiColor_皮肤广告关闭按钮';
 					return true;
-				}
+				} // 识别不到必须不做动作以衔接师徒号流程
 			}
 			if (thisScript.oper({
-				id: 699,
+				id: 690,
 				name: '登陆后是否有弹窗',
 				operator: [
 					thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[6],
