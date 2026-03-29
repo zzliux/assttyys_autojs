@@ -195,9 +195,11 @@ export class Func691 implements IFuncOrigin {
 			[center, 1280, 720, 1098, 643, 1150, 694, 1000],
 			[center, 1280, 720, 463, 344, 498, 398, 1000],
 		]
-	}, { // 12 小白三点对话
+	}, { // 12 小白三点对话 // 可废弃
 		desc: [1280, 720,
 			[
+				[center, 480, 228, 0xdac8c7],
+				[center, 480, 232, 0xdcd4cd],
 				[center, 448, 310, 0xe9b295],
 				[center, 454, 320, 0xedb9a9],
 				[center, 464, 334, 0xf0d0b9],
@@ -220,7 +222,7 @@ export class Func691 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1140, 36, 1187, 80, 1000],
 		]
-	}, { // 14 神乐三点对话
+	}, { // 14 神乐三点对话 // 废弃
 		desc: [1280, 720,
 			[
 				[center, 480, 228, 0xdac8c7],
@@ -234,61 +236,54 @@ export class Func691 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 476, 222, 509, 245, 1000],
 		]
-	}, { // 15 犬神三点对话
-		desc: [1280, 720,
-			[
-				[right, 1056, 406, 0xd7c5c3],
-				[right, 1056, 410, 0xdad2cb],
-				[right, 1069, 410, 0xdbd0cb],
-				[right, 1069, 406, 0xdbd1cb],
-				[right, 1082, 406, 0xdcd4ce],
-				[right, 1082, 410, 0xe0d1d1],
-			]
-		],
+	}, { // 15 打开菜单
+		desc: '页面是否为庭院_菜单未展开_只支持默认庭院皮肤与默认装饰',
 		oper: [
-			[center, 1280, 720, 1053, 393, 1086, 427, 1000],
+			[right, 1280, 720, 1168, 592, 1230, 690, 1200]
 		]
-	}, { // 16 小白三点对话
+	}, { // 16 关联手机
 		desc: [1280, 720,
 			[
-				[left, 268, 312, 0xdbc9c7],
-				[left, 268, 316, 0xdbd3cc],
-				[left, 281, 316, 0xdad2cb],
-				[left, 281, 312, 0xdbd1c9],
-				[left, 294, 316, 0xdfd0d0],
-				[left, 294, 312, 0xdad2cb],
+				[right, 997, 451, 0xe7cfb1],
+				[right, 1058, 491, 0xdec2a3],
+				[right, 1020, 536, 0xd7b17b],
+				[right, 876, 204, 0xe8e0d4],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 266, 299, 296, 330, 1000],
+			[center, 1280, 720, 968, 463, 1036, 522, 1000],
+			[center, 1280, 720, 475, 483, 579, 523, 1000],
 		]
-	}, { // 17 犬神三点对话(错过了)
+	}, { // 17 已拜师
 		desc: [1280, 720,
 			[
-				[left, 268, 312, 0xdbc9c7],
-				[left, 268, 316, 0xdbd3cc],
-				[left, 281, 316, 0xdad2cb],
-				[left, 281, 312, 0xdbd1c9],
-				[left, 294, 316, 0xdfd0d0],
-				[left, 294, 312, 0xdad2cb],
+				[center, 573, 661, 0x2a2a2a],
+				[center, 598, 642, 0x343434],
+				[center, 578, 634, 0xdddddd],
+				[center, 595, 667, 0xc8c8c8],
+				[center, 601, 660, 0xcecece],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 266, 299, 296, 330, 1000],
+			[center, 1280, 720, 23, 26, 58, 58, 1000],
 		]
-	}, { // 18 神乐三点对话(错过了)
+	}, { // 18 改普攻 // 废弃
 		desc: [1280, 720,
 			[
-				[center, 480, 228, 0xdac8c7],
-				[center, 480, 232, 0xdcd4cd],
-				[center, 493, 232, 0xddd4cd],
-				[center, 493, 228, 0xdcd2ca],
-				[center, 506, 228, 0xddd5cd],
-				[center, 506, 232, 0xe3d4d2],
+				[center, 573, 661, 0x2a2a2a],
+				[center, 598, 642, 0x343434],
+				[right, 1204, 703, 0xb4a59a],
+				[right, 1214, 703, 0xcdbcb0],
+				[right, 1233, 701, 0xddcabe],
+				[right, 1233, 709, 0xc1b1a5],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 476, 222, 509, 245, 1000],
+			[center, 1280, 720, 805, 653, 845, 682, 1000],
+			[center, 1280, 720, 912, 651, 947, 688, 1000],
+			[center, 1280, 720, 1012, 662, 1048, 689, 1000],
+			[center, 1280, 720, 1110, 656, 1143, 688, 1000],
+			[center, 1280, 720, 1200, 660, 1240, 686, 1000],
 		]
 	}, { // 19 画蓝符
 		desc: [1280, 720,
@@ -524,7 +519,7 @@ export class Func691 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 248, 323, 284, 353, 1000],
+			[center, 1280, 720, 245, 325, 282, 354, 1000],
 		]
 	}, { // 39 上阵完成
 		desc: [1280, 720,
@@ -537,7 +532,7 @@ export class Func691 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 21, 18, 61, 55, 1000],
+			[center, 1280, 720, 54, 97, 146, 117, 1000],
 		]
 	}, { // 40 出现珍旅居
 		desc: [1280, 720,
@@ -548,13 +543,54 @@ export class Func691 implements IFuncOrigin {
 				[left, 239, 652, 0xf17866],
 			]
 		],
-	}
+	}, { // 41 第一天奖励
+		desc: [1280, 720,
+			[
+				[left, 251, 315, 0xe5aa6a],
+				[left, 257, 398, 0xfdcfa4],
+				[left, 250, 520, 0xfec892],
+				[left, 257, 638, 0xfece9e],
+				[center, 363, 633, 0xfdc479],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 265, 364, 350, 410, 1000],
+		]
+	}, { // 42 领取完成
+		desc: [1280, 720,
+			[
+				[left, 258, 377, 0x998d82],
+				[center, 356, 390, 0x97897a],
+				[center, 361, 643, 0x988977],
+				[left, 262, 645, 0x988977],
+				[left, 307, 518, 0x98887c],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 26, 19, 52, 52, 1000],
+		]
+	}, { // 43 错误的进入到了式神升星
+		desc: [1280, 720,
+			[
+				[center, 457, 581, 0xd3424c],
+				[right, 1061, 664, 0xf3e1ca],
+				[right, 946, 631, 0xf3e1ca],
+				[center, 550, 582, 0xf5e4e0],
+				[center, 466, 549, 0xa26d58],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 37, 23, 66, 52, 1000],
+			[center, 1280, 720, 34, 21, 67, 56, 1000],
+		],
+		retest: 1000,
+	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['691'];
 		if (!thisScript.global.newAccount) {
 			thisScript.global.newAccount = {
-				'create': true,
+				'create': false,
 				'apply': false,
 				'jingYan': false,
 				'getBird': true,
@@ -568,7 +604,7 @@ export class Func691 implements IFuncOrigin {
 			})) {
 				thisScript.global.newAccount.apply = true;
 				const prefix = thisconf.name;
-				const time = Date.now().toString(36); // 压缩时间戳
+				const time = Math.floor(Date.now() / 432000000).toString(36); // 压缩时间戳
 				const input = className('android.widget.EditText').findOne(1000);
 				if (input) {
 					input.setText(prefix as string + time);
@@ -603,14 +639,14 @@ export class Func691 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 691,
 				name: '起号',
-				operator: [thisOperator[2]],
+				operator: [thisOperator[2], thisOperator[7]],
 			})) {
 				return true;
 			}
 			if (thisScript.oper({
 				id: 691,
 				name: '剧情',
-				operator: thisOperator.slice(3, 11)
+				operator: thisOperator.slice(3, 19)
 			})) {
 				return true;
 			}
@@ -624,14 +660,33 @@ export class Func691 implements IFuncOrigin {
 			}
 			if (thisScript.oper({
 				id: 691,
+				name: '剧情',
+				operator: [thisOperator[19], thisOperator[20]],
+			})) {
+				return true;
+			}
+			const point = thisScript.findMultiColor('剧情三点');
+			if (point) {
+				thisScript.regionClick([[point.x, point.y, point.x + 3, point.y + 3, 1000]])
+				return true;
+			}
+			if (thisScript.oper({
+				id: 691,
 				name: '守护||庭院',
-				operator: [thisOperator[22]],
+				operator: [thisOperator[21], thisOperator[22]],
 			})) {
 				thisScript.global.newAccount.create = false;
 				return true;
 			}
 		}
 		if (thisScript.global.newAccount.apply) {
+			if (thisScript.oper({
+				id: 691,
+				name: '申请',
+				operator: [thisOperator[23]],
+			})) {
+				return true;
+			}
 			if (thisScript.oper({
 				id: 691,
 				name: '输入',
@@ -653,7 +708,7 @@ export class Func691 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 691,
 				name: '申请',
-				operator: [thisOperator[22], thisOperator[23], thisOperator[26], thisOperator[27]],
+				operator: [thisOperator[22], thisOperator[26], thisOperator[27]],
 			})) {
 				return true;
 			}
@@ -663,47 +718,59 @@ export class Func691 implements IFuncOrigin {
 				operator: [thisOperator[28]],
 			})) {
 				thisScript.global.newAccount.apply = false;
+				thisScript.global.newAccount.getBird = true;
+				return true;
+			}
+			if (thisScript.oper({
+				id: 691,
+				name: '申请',
+				operator: [thisOperator[17]],
+			})) {
+				thisScript.global.newAccount.apply = false;
+				thisScript.global.newAccount.jingYan = true;
 				return true;
 			}
 		}
-		if (thisScript.oper({
-			id: 691,
-			name: '守护完成',
-			operator: [thisOperator[29], thisOperator[30]]
-		})) {
-			return true;
-		}
-		if (thisScript.oper({
-			id: 691,
-			name: '残废组队',
-			operator: [thisOperator[32]]
-		})) {
-			thisScript.global.newAccount.jingYan = true;
-			return true;
+		if (thisScript.global.newAccount.getBird) {
+			if (thisScript.oper({
+				id: 691,
+				name: '守护完成',
+				operator: [thisOperator[29], thisOperator[30]]
+			})) {
+				return true;
+			}
+			if (thisScript.oper({
+				id: 691,
+				name: '新手奖励',
+				operator: [thisOperator[38], thisOperator[39], thisOperator[41]]
+			})) {
+				return true;
+			}
+			if (thisScript.oper({
+				id: 691,
+				name: '领取完成',
+				operator: [thisOperator[42]]
+			})) {
+				thisScript.global.newAccount.getBird = false;
+				thisScript.global.newAccount.jingYan = true;
+				return true;
+			}
 		}
 		if (thisScript.global.newAccount.jingYan) {
-			if (thisScript.global.newAccount.getBird) {
-				if (thisScript.oper({
-					id: 691,
-					name: '残废组队',
-					operator: [thisOperator[38]]
-				})) {
-					return true;
-				}
-				if (thisScript.oper({
-					id: 691,
-					name: '残废组队',
-					operator: [thisOperator[39]]
-				})) {
-					thisScript.global.newAccount.getBird = false;
-					return true;
-				}
+			if (thisScript.oper({
+				id: 691,
+				name: '打过一次经验妖怪',
+				operator: [thisOperator[16]]
+			})) {
+				thisScript.rerun(thisconf.next_scheme);
+				sleep(3000);
+				return true;
 			}
 			if (thisScript.oper({
 				id: 691,
 				name: '残废组队',
-				operator: [thisOperator[33], thisOperator[34], thisOperator[35], thisOperator[36]
-					, thisOperator[37]]
+				operator: [thisOperator[32], thisOperator[33], thisOperator[34], thisOperator[35], thisOperator[36]
+					, thisOperator[37], thisOperator[18]]
 			})) {
 				return true;
 			}
@@ -717,7 +784,7 @@ export class Func691 implements IFuncOrigin {
 		}
 		if (thisScript.oper({
 			id: 691,
-			name: '残废组队',
+			name: '绑定手机',
 			operator: [thisOperator[40]]
 		})) {
 			thisScript.rerun(thisconf.next_scheme);
@@ -727,7 +794,7 @@ export class Func691 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 691,
 			name: '杂项',
-			operator: [thisOperator[10]]
+			operator: [thisOperator[10], thisOperator[16], thisOperator[15], thisOperator[43]]
 		})) {
 			return true;
 		}

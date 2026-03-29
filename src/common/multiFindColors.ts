@@ -2852,7 +2852,25 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				[right, 940, 322, 0x9d1e2b],
 			]
 		]]
-	}
+	},
+	'剧情三点': {
+		region: [left, 1280, 720, 0, 0, 1280, 720],
+		desc: [[
+			1280, 720,
+			[
+				[right, 826, 175, 0xffffff],
+				[right, 831, 174, 0xffffff],
+				[right, 840, 174, 0xffffff],
+				[right, 854, 181, 0xffffff],
+				[right, 819, 219, 0xffffff],
+				[right, 825, 224, 0xffffff],
+				[right, 834, 226, 0xffffff],
+				[right, 847, 223, 0xffffff],
+				[right, 837, 200, 0xdcd2ca],
+				[right, 824, 200, 0xdbd1c9],
+			]
+		]],
+	},
 	// '': {
 	// 	region: [left, 1280, 720, 0, 0, 1280, 720],
 	// 	desc: [[

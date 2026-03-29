@@ -40,17 +40,18 @@ export class Func692 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 882, 625, 930, 662, 1000],
 		]
-	}, { // 1 残废好友
+	}, { // 1 自动战斗说明
 		desc: [1280, 720,
 			[
-				[right, 860, 638, 0xf0b5b2],
-				[right, 898, 638, 0xddc3be],
-				[right, 894, 613, 0x312d45],
-				[right, 876, 656, 0xd93e5f],
+				[left, 231, 94, 0x3d1116],
+				[center, 402, 94, 0x4d171d],
+				[left, 228, 255, 0x8d7245],
+				[left, 313, 632, 0x5d4837],
+				[right, 1041, 630, 0xa48a6e],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 858, 623, 904, 662, 1000],
+			[center, 1280, 720, 1043, 145, 1071, 186, 1000],
 		]
 	}, { // 2 协战
 		desc: [1280, 720,
@@ -602,6 +603,62 @@ export class Func692 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 566, 416, 712, 445, 1000],
 		]
+	}, { // 49 暗色二十五章
+		desc: [1280, 720,
+			[
+				[right, 1060, 203, 0x2e211c],
+				[right, 1061, 221, 0x2e211c],
+				[right, 1243, 203, 0x2e211c],
+				[right, 1249, 229, 0x543a15],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1066, 202, 1246, 228, 1000],
+		]
+	}, { // 50 暗色契约碎片
+		desc: [1280, 720,
+			[
+				[right, 651, 162, 0x1d212e],
+				[right, 1092, 161, 0x362a1f],
+				[right, 722, 635, 0x30374b],
+				[right, 1111, 632, 0x554634],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 368, 18, 413, 54, 1000],
+		]
+	}, { // 51 暗色协战
+		desc: [1280, 720,
+			[
+				[right, 1208, 213, 0x6d4019],
+				[right, 1214, 329, 0x492f1f],
+				[right, 1212, 449, 0x462e1f],
+				[right, 1210, 583, 0x452c1d],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1208, 534, 1237, 619, 1000],
+		]
+	}, { // 52 购买体力
+		desc: [1280, 720,
+			[
+				[center, 363, 205, 0xcec4bb],
+				[right, 875, 219, 0xd2c9c3],
+				[center, 336, 496, 0xa3999e],
+				[right, 919, 473, 0xcfc6be],
+				[center, 586, 475, 0xf3b25e],
+				[right, 701, 476, 0xf3b25e],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 568, 454, 712, 485, 2000],
+			[center, 1280, 720, 581, 672, 724, 699, 1000],
+		]
+	}, { // 53 打开菜单
+		desc: '页面是否为庭院_菜单未展开_只支持默认庭院皮肤与默认装饰',
+		oper: [
+			[right, 1280, 720, 1168, 592, 1230, 690, 1200]
+		]
 	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -621,14 +678,14 @@ export class Func692 implements IFuncOrigin {
 		}
 		if (thisScript.global.tuDi.cheak) {
 			if (thisScript.oper({
-				id: 691,
+				id: 692,
 				name: 'cheak',
 				operator: [thisOperator[14]]
 			})) {
 				return true;
 			}
 			if (thisScript.oper({
-				id: 691,
+				id: 692,
 				name: 'cheak',
 				operator: [thisOperator[15]]
 			})) {
@@ -638,7 +695,7 @@ export class Func692 implements IFuncOrigin {
 				return true;
 			}
 			if (thisScript.oper({
-				id: 691,
+				id: 692,
 				name: 'cheak',
 				operator: [thisOperator[27]]
 			})) {
@@ -649,7 +706,7 @@ export class Func692 implements IFuncOrigin {
 		}
 		if (thisScript.global.tuDi.five) {
 			if (thisScript.oper({
-				id: 691,
+				id: 692,
 				name: 'five',
 				operator: [thisOperator[25]]
 			})) {
@@ -659,22 +716,22 @@ export class Func692 implements IFuncOrigin {
 				return true;
 			}
 			if (thisScript.oper({
-				id: 691,
+				id: 692,
 				name: 'five',
-				operator: [thisOperator[16], thisOperator[17], thisOperator[18], thisOperator[19]
-					, thisOperator[21], thisOperator[22], thisOperator[26]]
+				operator: [thisOperator[1], thisOperator[16], thisOperator[17], thisOperator[18], thisOperator[49], thisOperator[19]
+					, thisOperator[21], thisOperator[22], thisOperator[26], thisOperator[50]]
 			})) {
 				return true;
 			}
 			if (thisScript.oper({
-				id: 691,
+				id: 692,
 				name: 'five',
 				operator: [thisOperator[23]]
 			})) {
 				thisScript.keepScreen();
 				for (let i = 0; i < 15; i++) {
 					if (!thisScript.oper({
-						id: 691,
+						id: 692,
 						name: 'five',
 						operator: [{ desc: thisOperator[24].desc }]
 					})) {
@@ -686,7 +743,7 @@ export class Func692 implements IFuncOrigin {
 				return true
 			}
 			if (thisScript.oper({
-				id: 691,
+				id: 692,
 				name: 'five',
 				operator: [{ desc: thisOperator[20].desc }]
 			})) {
@@ -696,14 +753,14 @@ export class Func692 implements IFuncOrigin {
 		}
 		if (thisScript.global.tuDi.join) {
 			if (thisScript.oper({
-				id: 691,
+				id: 692,
 				name: 'join',
-				operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[3]]
+				operator: [thisOperator[0], thisOperator[2], thisOperator[3], thisOperator[51]]
 			})) {
 				return true;
 			}
 			if (thisScript.oper({
-				id: 691,
+				id: 692,
 				name: 'join',
 				operator: [thisOperator[4]]
 			})) {
@@ -715,7 +772,7 @@ export class Func692 implements IFuncOrigin {
 		}
 		if (thisScript.global.tuDi.frist) {
 			if (thisScript.oper({
-				id: 691,
+				id: 692,
 				name: 'frist',
 				operator: [{ desc: thisOperator[11].desc }]
 			})) {
@@ -727,7 +784,7 @@ export class Func692 implements IFuncOrigin {
 				return true;
 			}
 			if (thisScript.oper({
-				id: 691,
+				id: 692,
 				name: 'frist',
 				operator: [thisOperator[10]]
 			})) {
@@ -736,10 +793,10 @@ export class Func692 implements IFuncOrigin {
 		}
 		if (thisScript.global.tuDi.fight) {
 			if (thisScript.oper({
-				id: 691,
+				id: 692,
 				name: 'fight',
 				operator: [thisOperator[3], thisOperator[4], thisOperator[5], thisOperator[6], thisOperator[7]
-					, thisOperator[12], thisOperator[13], thisOperator[26]]
+					, thisOperator[12], thisOperator[13], thisOperator[26], thisOperator[52]]
 			})) {
 				return true;
 			}
@@ -766,7 +823,7 @@ export class Func692 implements IFuncOrigin {
 				if (curCnt >= maxCount) {
 					thisScript.global.tuDi.fight = false;
 					return thisScript.oper({
-						id: 691,
+						id: 692,
 						name: 'fight',
 						operator: [thisOperator[9]]
 					})
@@ -775,7 +832,7 @@ export class Func692 implements IFuncOrigin {
 		}
 		if (thisScript.global.tuDi.over) {
 			if (thisScript.oper({
-				id: 691,
+				id: 692,
 				name: 'over',
 				operator: [thisOperator[28], thisOperator[29], thisOperator[7], thisOperator[30]
 					, thisOperator[31], thisOperator[32]]
@@ -783,7 +840,7 @@ export class Func692 implements IFuncOrigin {
 				return true;
 			}
 			if (thisScript.oper({
-				id: 691,
+				id: 692,
 				name: 'over',
 				operator: [thisOperator[33]]
 			})) {
@@ -794,14 +851,14 @@ export class Func692 implements IFuncOrigin {
 		}
 		if (thisScript.global.tuDi.finish) {
 			if (thisScript.oper({
-				id: 691,
+				id: 692,
 				name: '师徒',
 				operator: [thisOperator[34], thisOperator[35], thisOperator[36]]
 			})) {
 				return true;
 			}
 			if (thisScript.oper({
-				id: 691,
+				id: 692,
 				name: '师徒',
 				operator: [thisOperator[37]]
 			})) {
@@ -815,14 +872,14 @@ export class Func692 implements IFuncOrigin {
 		}
 		if (thisScript.global.tuDi.clean) {
 			if (thisScript.oper({
-				id: 691,
+				id: 692,
 				name: 'over',
 				operator: [thisOperator[38], thisOperator[39], thisOperator[40], thisOperator[41], thisOperator[45]]
 			})) {
 				return true;
 			}
 			if (thisScript.oper({
-				id: 691,
+				id: 692,
 				name: 'over',
 				operator: [thisOperator[42]]
 			})) {
@@ -838,7 +895,7 @@ export class Func692 implements IFuncOrigin {
 				return true;
 			}
 			if (thisScript.oper({
-				id: 691,
+				id: 692,
 				name: 'over',
 				operator: [thisOperator[43]]
 			})) {
@@ -852,14 +909,14 @@ export class Func692 implements IFuncOrigin {
 					return false;
 				}
 				thisScript.oper({
-					id: 691,
+					id: 692,
 					name: 'over',
 					operator: [thisOperator[44]]
 				})
 				return true;
 			}
 			if (thisScript.oper({
-				id: 691,
+				id: 692,
 				name: 'over',
 				operator: [thisOperator[46]]
 			})) {
@@ -873,20 +930,27 @@ export class Func692 implements IFuncOrigin {
 					return false;
 				}
 				thisScript.oper({
-					id: 691,
+					id: 692,
 					name: '师徒',
 					operator: [thisOperator[47]]
 				})
 				return true;
 			}
 			if (thisScript.oper({
-				id: 691,
+				id: 692,
 				name: 'over',
 				operator: [thisOperator[48]]
 			})) {
 				thisScript.rerun('__关闭应用__')
 				return true;
 			}
+		}
+		if (thisScript.oper({
+			id: 692,
+			name: '杂项',
+			operator: [thisOperator[53]]
+		})) {
+			return true;
 		}
 		return false;
 	}

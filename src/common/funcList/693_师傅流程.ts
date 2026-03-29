@@ -3,9 +3,10 @@ import { Script } from '@/system/script';
 // const normal = -1; //定义常量
 const left = 0;
 const center = 1;
+const right = 2;
 
-export class Func692 implements IFuncOrigin {
-	id = 692;
+export class Func693 implements IFuncOrigin {
+	id = 693;
 	name = '师傅流程';
 	config = [{
 		desc: '用于战斗前进入式神录进行御魂装配，需启用510功能，逗号分隔，0,0表示不切换预设，5,1表示第5个分组第1组预设',
@@ -20,7 +21,7 @@ export class Func692 implements IFuncOrigin {
 			type: 'text',
 			default: '0,0',
 		}, {
-			name: 'preset_pair_守护',
+			name: 'preset_pair_历练',
 			desc: '守护历练',
 			type: 'text',
 			default: '0,0',
@@ -37,6 +38,14 @@ export class Func692 implements IFuncOrigin {
 			desc: '经验妖怪',
 			type: 'text',
 			default: '90',
+		}]
+	}, {
+		desc: '',
+		config: [{
+			name: 'name',
+			desc: '徒弟昵称',
+			type: 'text',
+			default: '徒弟',
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{ // 0 庭院进入探索
@@ -131,12 +140,64 @@ export class Func692 implements IFuncOrigin {
 			[left, 1280, 720, 22, 19, 52, 47, 1000], // 左上角返回
 			[center, 1280, 720, 683, 401, 795, 442, 500], // 确认
 		]
+	}, { // 8 有信
+		desc: [1280, 720,
+			[
+				[right, 1084, 396, 0xe9d3a4],
+				[right, 1084, 410, 0xe3cc9e],
+				[right, 1069, 401, 0xe3cb9b],
+				[right, 1098, 402, 0xe6d2a2],
+				[right, 1154, 39, 0xd8b389],
+				[right, 1223, 36, 0xd4ae84],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1070, 386, 1098, 413, 2000],
+		]
+	}, {  // 9 有申请
+		desc: [1280, 720,
+			[
+				[right, 1176, 168, 0xde6c59],
+				[right, 1186, 178, 0xe07360],
+				[right, 1230, 173, 0x52ad5c],
+				[right, 1245, 170, 0x57b361],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 847, 120, 1026, 153, 1000],
+		]
+	}, { // 10 守护关系完成
+		desc: [1280, 720,
+			[
+				[center, 475, 155, 0xf3dd90],
+				[center, 601, 166, 0xf2d985],
+				[right, 753, 156, 0xf9e78e],
+				[right, 817, 172, 0xefd184],
+				[right, 876, 141, 0xf3db8e],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 961, 203, 989, 233, 1000],
+		]
+	}, { // 11 已是守护关系
+		desc: [1280, 720,
+			[
+				[left, 99, 627, 0xf5e7d4],
+				[center, 577, 629, 0xbf6ade],
+				[left, 232, 635, 0xacc6d1],
+				[center, 463, 640, 0xf5d4bf],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 766, 27, 851, 60, 1000],
+			[center, 1280, 720, 27, 26, 55, 52, 1000],
+		]
 	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		const thisconf = thisScript.scheme.config['692'];
+		const thisconf = thisScript.scheme.config['693'];
 		if (thisScript.oper({
-			id: 692,
+			id: 693,
 			name: '师傅流程',
 			operator: [thisOperator[5], thisOperator[6], thisOperator[7]]
 		})) {
@@ -145,9 +206,35 @@ export class Func692 implements IFuncOrigin {
 			thisScript.global.change_shikigami_state = 'flushed'
 			return true;
 		}
+		if (thisScript.oper({
+			id: 693,
+			name: '收徒',
+			operator: [thisOperator[8], thisOperator[10], thisOperator[11]]
+		})) {
+			return true;
+		}
+		if (thisScript.oper({
+			id: 693,
+			name: '收徒',
+			operator: [{ desc: thisOperator[9].desc }]
+		})) {
+			const result = thisScript.findText('.+', 0, thisOperator[9].oper[0], '包含');
+			const findName = thisScript.findTextByOcrResult(thisconf.name as string, result, '包含')
+			if (findName.length) {
+				const toClickRegion = [
+					findName[0].points[0].x + 375,
+					findName[0].points[0].y + 40,
+					findName[0].points[0].x + 380,
+					findName[0].points[0].y + 45,
+					1000,
+				]
+				thisScript.regionClick([toClickRegion]);
+			}
+			return true;
+		}
 		if (thisScript.global.change_shikigami_state === 'finish') {
 			if (thisScript.oper({
-				id: 692,
+				id: 693,
 				name: '师傅流程',
 				operator: [thisOperator[4]]
 			})) {
@@ -167,8 +254,8 @@ export class Func692 implements IFuncOrigin {
 			} else if (result[0].label.includes('经验')) {
 				presetStr = thisconf['preset_pair_经验'] as string
 				thisScript.global.timestamp = thisconf.exp as number
-			} else if (result[0].label.includes('守护')) {
-				presetStr = thisconf['preset_pair_守护'] as string
+			} else if (result[0].label.includes('历练')) {
+				presetStr = thisconf['preset_pair_历练'] as string
 			} else {
 				presetStr = '0, 0'
 			}

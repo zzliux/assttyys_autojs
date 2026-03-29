@@ -79,15 +79,16 @@ export class Func993 implements IFuncOrigin {
 		{ // 1 游戏公告页(26年3月更新)
 			desc: [1280, 720,
 				[
-					[center, 405, 395, 0xeddccc],
-					[center, 869, 419, 0xeddccc],
-					[center, 714, 556, 0xf4b25f],
-					[center, 915, 131, 0x65333b],
-					[right, 1224, 50, 0x54422f],
+					[left, 67, 122, 0xdfc4bb],
+					[left, 66, 358, 0x987c76],
+					[left, 112, 74, 0xe4d7bc],
+					[left, 206, 63, 0xd8c2a3],
+					[left, 243, 62, 0xd8bc9d],
+					[right, 1217, 88, 0xe8d4cf],
 				]
 			],
 			oper: [
-				[center, 1280, 720, 894, 119, 941, 175, 1000],
+				[center, 1280, 720, 1203, 77, 1235, 102, 1000],
 			]
 		},
 		{

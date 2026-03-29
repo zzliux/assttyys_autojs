@@ -517,8 +517,8 @@ export class Func518 implements IFuncOrigin {
 				]
 			],
 			oper: [
-				[center, 1280, 720, 1167, 50, 1190, 66, 1000],
-				[center, 1280, 720, 1167, 50, 1190, 66, 1000],
+				[center, 1280, 720, 1167, 50, 1190, 66, 2000],
+				[center, 1280, 720, 1167, 50, 1190, 66, 3000],
 				[center, 1280, 720, 1167, 50, 1190, 66, 1000],
 			]
 		}, { // 40 代办_红字(已完成)
@@ -588,6 +588,18 @@ export class Func518 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 482, 323, 571, 383, 1000],
 			]
+		}, { // 45 暗色每日代办
+			desc: [1280, 720,
+				[
+					[center, 547, 24, 0x897865],
+					[center, 547, 60, 0x9c8872],
+					[left, 266, 14, 0x995a41],
+					[left, 265, 45, 0x954328],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 609, 692, 750, 718, 1000],
+			]
 		},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -603,7 +615,7 @@ export class Func518 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 518,
 			name: '杂项',
-			operator: [thisOperator[0], thisOperator[16], thisOperator[24], thisOperator[41]]
+			operator: [thisOperator[0], thisOperator[16], thisOperator[24], thisOperator[41], thisOperator[45]]
 		})) {
 			return true;
 		}

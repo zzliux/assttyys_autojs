@@ -122,18 +122,18 @@ export class Func1100 implements IFuncOrigin {
 			[center, 1280, 720, 510, 426, 570, 458, 1000],
 		]
 	}, { // 8 MuMu分享_微信
-		desc: [
-			1280, 720,
+		desc: [1280, 720,
 			[
-				[center, 429, 666, 0x2e693d],
-				[center, 446, 666, 0xffffff],
-				[center, 472, 650, 0x2e693d],
-				[center, 466, 680, 0xffffff],
-				[center, 443, 684, 0x2e693d],
+				[center, 364, 643, 0x2d693c],
+				[center, 383, 656, 0x2e693d],
+				[center, 342, 680, 0x2d673c],
+				[center, 359, 684, 0x2e693d],
+				[center, 374, 680, 0xffffff],
+				[center, 375, 665, 0xffffff],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 436, 644, 473, 684, 5000],
+			[center, 1280, 720, 345, 649, 381, 686, 1000],
 		]
 	}, { // 9 微信_微信关闭
 		desc: [

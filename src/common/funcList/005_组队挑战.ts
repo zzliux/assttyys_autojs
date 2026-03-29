@@ -73,7 +73,7 @@ export class Func005 implements IFuncOrigin {
 	}, { // 6 金币/经验妖怪界面_有人进入
 		desc: [1280, 720,
 			[
-				[center, 421, 294, 0xfffffe],
+				[center, 420, 310, 0xfffefc],
 			]
 		],
 	}, { // 7 金币/经验妖怪界面_10秒无人进入_退出

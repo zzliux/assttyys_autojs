@@ -100,16 +100,38 @@ export class Func1099 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 658, 127, 697, 170, 1000],
 		]
-	}
+	}, { // 8 关闭
+		oper: [
+			[center, 1280, 720, 608, 680, 734, 711, 1000],
+		]
+	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.global.qiling_shop) {
 			if (thisScript.oper({
 				id: 1099,
 				name: '契灵兑换',
-				operator: [thisOperator[0], thisOperator[1], thisOperator[3], thisOperator[6], thisOperator[7]]
+				operator: [thisOperator[0], thisOperator[1], thisOperator[6], thisOperator[7]]
 			})) {
 				return true;
+			}
+			let curCnt = 0;
+			const maxCount = 2;
+			while (thisScript.oper({
+				name: '御魂兑换',
+				operator: [thisOperator[3]]
+			})) {
+				curCnt++;
+				thisScript.keepScreen(false);
+				if (curCnt >= maxCount) {
+					thisScript.myToast('领取完毕');
+					thisScript.oper({
+						name: '御魂关闭',
+						operator: [thisOperator[8]]
+					})
+					return true;
+				}
+				sleep(1000);
 			}
 			if (thisScript.oper({
 				id: 1099,
