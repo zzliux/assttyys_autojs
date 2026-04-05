@@ -8,7 +8,7 @@ const right = 2;
 export class Func518 implements IFuncOrigin {
 	id = 518;
 	name = '领取日常奖励';
-	desc = '一键代办,商店黑蛋,发送吉闻,花合战';
+	desc = '一键代办,商店黑蛋,发送吉闻,花合战,大神每日(需安装)';
 	operator: IFuncOperatorOrigin[] = [
 		{
 			// 0 页面是否为庭院(菜单未展开) 只支持默认庭院皮肤与默认装饰
@@ -610,7 +610,37 @@ export class Func518 implements IFuncOrigin {
 				'friend': true,
 				'flower': true,
 				'email': true,
+				'godlike': true,
 			};
+		}
+		if (thisScript.global.function_Switch.godlike) {
+			const packageName = currentPackage();
+			if (app.getAppName('com.netease.gl') && packageName !== 'com.netease.gl') {
+				sleep(1000);
+				console.log('正在启动应用:com.netease.gl');
+				device.wakeUpIfNeeded()
+				app.launchPackage('com.netease.gl');
+				return true;
+			} else if (packageName === 'com.netease.gl') {
+				if (text('福利中心').findOnce()) {
+					log('点击福利中心')
+					const oper = [
+						text('福利中心').findOnce().bounds().centerX(),
+						text('福利中心').findOnce().bounds().centerY(),
+						text('福利中心').findOnce().bounds().centerX() + 5,
+						text('福利中心').findOnce().bounds().centerY() + 5,
+						5000
+					]
+					thisScript.regionClick([oper]);
+					thisScript.stopRelatedApp('com.netease.gl');
+					thisScript.launchRelatedApp();
+					thisScript.global.function_Switch.godlike = false;
+					return true;
+				}
+			} else {
+				thisScript.myToast('未安装大神,不领取大神奖励');
+				thisScript.global.function_Switch.godlike = false;
+			}
 		}
 		if (thisScript.oper({
 			id: 518,

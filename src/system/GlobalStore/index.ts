@@ -120,6 +120,7 @@ export type globalRootType = {
 	shiHe_jingYan: boolean, // 食盒经验领取上限
 	xianShiFengMo: number,
 	account_num: number, // 账号计数
+	account_double: boolean, // 安卓苹果双登录模式
 	account_state: 'login' | 'function' | 'logout',
 	function_Switch: Record<string, boolean | number>, // 小号功能记录
 	loop_add: boolean, // 循环增加
@@ -257,6 +258,7 @@ export const globalRoot: globalRootType = {
 	liao_banquet_onGoing: true,
 	xianShiFengMo: 0,
 	account_num: 0,
+	account_double: null,
 	account_state: 'login',
 	function_Switch: null,
 	loop_add: true,

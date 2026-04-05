@@ -62,7 +62,6 @@ export class Func609 implements IFuncOrigin {
 			[
 				[right, 1225, 255, 0xd0c3ac],
 				[right, 1229, 245, 0xc8bca4],
-				[right, 1222, 245, 0xddcdb7],
 				[right, 1227, 233, 0x816c56],
 				[right, 1238, 240, 0x806c5a],
 			]
@@ -73,10 +72,10 @@ export class Func609 implements IFuncOrigin {
 	}, { // 1 切换账号
 		desc: [1280, 720,
 			[
-				[left, 294, 332, 0x5e6266],
-				[center, 336, 333, 0x5e6266],
-				[center, 531, 311, 0x5e6266],
-				[left, 315, 483, 0x5e6266],
+				[right, 937, 201, 0xf97373],
+				[right, 1010, 180, 0xf97879],
+				[right, 1071, 208, 0xf97879],
+				[right, 1001, 237, 0xf97879],
 			]
 		],
 		oper: [
@@ -85,12 +84,10 @@ export class Func609 implements IFuncOrigin {
 	}, { // 2 选择账号界面_账号选择框未打开
 		desc: [1280, 720,
 			[
-				[center, 540, 214, 0xe50113],
-				[center, 575, 210, 0xe50517],
-				[center, 626, 216, 0x3d3a3a],
-				[center, 655, 218, 0x413e3e],
-				[center, 705, 216, 0x3e3b3b],
-				[center, 735, 223, 0x3c3939],
+				[center, 541, 213, 0xe71021],
+				[center, 546, 213, 0xe92d3c],
+				[center, 560, 213, 0xe61021],
+				[center, 568, 213, 0xe71324],
 				[center, 451, 445, 0xfb4f4f],
 				[center, 837, 445, 0xfb4f4f],
 			]
@@ -102,14 +99,12 @@ export class Func609 implements IFuncOrigin {
 	}, { // 3 选择账号界面_账号选择框已打开
 		desc: [1280, 720,
 			[
-				[center, 540, 214, 0xe50113],
-				[center, 575, 210, 0xe50517],
-				[center, 626, 216, 0x3d3a3a],
-				[center, 655, 218, 0x413e3e],
-				[center, 705, 216, 0x3e3b3b],
-				[center, 735, 223, 0x3c3939],
-				[center, 473, 463, 0xd8d8d8],
-				[center, 473, 572, 0xd8d8d8],
+				[center, 541, 213, 0xe71021],
+				[center, 546, 213, 0xe92d3c],
+				[center, 560, 213, 0xe61021],
+				[center, 568, 213, 0xe71324],
+				[center, 379, 325, 0xf0f0f0],
+				[center, 379, 483, 0xf0f0f0],
 			]
 		],
 		oper: [
@@ -1018,7 +1013,6 @@ export class Func609 implements IFuncOrigin {
 				[right, 965, 340, 0xcec6bc],
 				[right, 1004, 341, 0xcec6bc],
 				[right, 981, 361, 0xccc4b9],
-				[right, 912, 606, 0xc6a57b],
 				[right, 953, 605, 0xc6a579],
 				[right, 1107, 626, 0xe5c15c],
 			]
@@ -1154,11 +1148,36 @@ export class Func609 implements IFuncOrigin {
 				name: '第一个号直接登录.否者打开账号选择框',
 				operator: [{ desc: thisOperator[2].desc }]
 			})) {
-				if (thisScript.global.account_num === 0 || thisScript.global.account_num % 2 === 1) {
+				if (thisScript.global.account_num === 0) {
 					thisScript.regionClick([thisOperator[2].oper[0]]);
-				} else {
+				} else if (!thisScript.global.account_double) {
 					thisScript.regionClick([thisOperator[2].oper[1]]);
+				} else {
+					if (thisScript.global.account_num % 2 === 1) {
+						thisScript.regionClick([thisOperator[2].oper[0]]);
+					} else {
+						thisScript.regionClick([thisOperator[2].oper[1]]);
+					}
 				}
+				thisScript.global.function_Switch.login = false;
+				return true;
+			}
+			if (thisScript.oper({
+				id: 609,
+				name: '选择平台',
+				operator: [{ desc: thisOperator[4].desc }]
+			})) {
+				thisScript.regionClick([thisOperator[4].oper[thisScript.global.account_num % 2]]);
+				thisScript.global.account_double = true;
+				return true;
+			}
+			if (thisScript.oper({
+				id: 609,
+				name: '选择平台(带有鸿蒙入口)',
+				operator: [{ desc: thisOperator[53].desc }]
+			})) {
+				thisScript.regionClick([thisOperator[53].oper[thisScript.global.account_num % 2]]);
+				thisScript.global.account_double = true;
 				return true;
 			}
 			if (thisScript.oper({
@@ -1171,24 +1190,6 @@ export class Func609 implements IFuncOrigin {
 				}
 				thisScript.regionClick([thisOperator[3].oper[2]]);
 				thisScript.regionClick([thisOperator[2].oper[0]]);
-				return true;
-			}
-			if (thisScript.oper({
-				id: 609,
-				name: '选择平台',
-				operator: [{ desc: thisOperator[4].desc }]
-			})) {
-				thisScript.regionClick([thisOperator[4].oper[thisScript.global.account_num % 2]]);
-				thisScript.global.function_Switch.login = false;
-				return true;
-			}
-			if (thisScript.oper({
-				id: 609,
-				name: '选择平台(带有鸿蒙入口)',
-				operator: [{ desc: thisOperator[53].desc }]
-			})) {
-				thisScript.regionClick([thisOperator[53].oper[thisScript.global.account_num % 2]]);
-				thisScript.global.function_Switch.login = false;
 				return true;
 			}
 			if (thisScript.oper({

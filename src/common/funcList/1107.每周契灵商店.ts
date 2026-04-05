@@ -1,16 +1,12 @@
-import {
-	IFuncOrigin,
-	IFuncOperatorOrigin,
-	IFuncOperator,
-} from '@/interface/IFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 // const normal = -1; //定义常量
 const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func1099 implements IFuncOrigin {
-	id = 1099;
+export class Func1107 implements IFuncOrigin {
+	id = 1107;
 	name = '每周契灵商店';
 	operator: IFuncOperatorOrigin[] = [{ // 0 契灵_商店
 		desc: [
@@ -109,7 +105,7 @@ export class Func1099 implements IFuncOrigin {
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.global.qiling_shop) {
 			if (thisScript.oper({
-				id: 1099,
+				id: 1107,
 				name: '契灵兑换',
 				operator: [thisOperator[0], thisOperator[1], thisOperator[6], thisOperator[7]]
 			})) {
@@ -124,17 +120,18 @@ export class Func1099 implements IFuncOrigin {
 				curCnt++;
 				thisScript.keepScreen(false);
 				if (curCnt >= maxCount) {
-					thisScript.myToast('领取完毕');
+					thisScript.doPush(thisScript, { text: '没有足够的契忆兑换', before() { thisScript.myToast('没有足够的契忆兑换'); } });
 					thisScript.oper({
 						name: '御魂关闭',
 						operator: [thisOperator[8]]
 					})
+					thisScript.global.qiling_shop = false;
 					return true;
 				}
 				sleep(1000);
 			}
 			if (thisScript.oper({
-				id: 1099,
+				id: 1107,
 				name: '契灵兑换完成',
 				operator: [thisOperator[2], thisOperator[4], thisOperator[5]]
 			})) {

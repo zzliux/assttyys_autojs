@@ -659,6 +659,19 @@ export class Func692 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1168, 592, 1230, 690, 1200]
 		]
+	}, { // 54 确认输入框
+		desc: [1280, 720,
+			[
+				[right, 1040, 30, 0xd6d7d7],
+				[right, 1119, 37, 0xd6d7d7],
+				[right, 1179, 33, 0xd6d7d7],
+				[right, 1248, 34, 0xd6d7d7],
+				[right, 998, 47, 0x009688],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1033, 19, 1128, 53, 1000],
+		]
 	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -886,7 +899,12 @@ export class Func692 implements IFuncOrigin {
 				const input = className('android.widget.EditText').findOne(1000);
 				if (input) {
 					input.setText(String(thisconf.name));
-					KeyCode(66); // Enter键
+					thisScript.keepScreen(false);
+					thisScript.oper({
+						id: 692,
+						name: 'over',
+						operator: [thisOperator[54]]
+					})
 					sleep(300);
 				} else {
 					log('未找到输入框', 'error');
@@ -902,17 +920,18 @@ export class Func692 implements IFuncOrigin {
 				const input = className('android.widget.EditText').findOne(1000);
 				if (input) {
 					input.setText(String(thisconf.number));
-					KeyCode(66); // Enter键
+					thisScript.keepScreen(false);
+					thisScript.oper({
+						id: 692,
+						name: 'over',
+						operator: [thisOperator[54]]
+					})
 					sleep(300);
 				} else {
 					log('未找到输入框', 'error');
 					return false;
 				}
-				thisScript.oper({
-					id: 692,
-					name: 'over',
-					operator: [thisOperator[44]]
-				})
+				thisScript.regionClick(thisOperator[44].oper);
 				return true;
 			}
 			if (thisScript.oper({
@@ -923,17 +942,18 @@ export class Func692 implements IFuncOrigin {
 				const input = className('android.widget.EditText').findOne(1000);
 				if (input) {
 					input.setText('我确定注销本角色');
-					KeyCode(66); // Enter键
+					thisScript.keepScreen(false);
+					thisScript.oper({
+						id: 692,
+						name: 'over',
+						operator: [thisOperator[54]]
+					})
 					sleep(300);
 				} else {
 					log('未找到输入框', 'error');
 					return false;
 				}
-				thisScript.oper({
-					id: 692,
-					name: '师徒',
-					operator: [thisOperator[47]]
-				})
+				thisScript.regionClick(thisOperator[47].oper);
 				return true;
 			}
 			if (thisScript.oper({

@@ -42,7 +42,7 @@ export class Func690 implements IFuncOrigin {
 			name: 'scheme_switch_enabled',
 			desc: '是否切换方案(不切换则只运行一次)',
 			type: 'switch',
-			default: true,
+			default: false,
 		}, {
 			name: 'next_scheme',
 			desc: '下一个方案',
@@ -134,9 +134,7 @@ export class Func690 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 706, 507, 770, 539, 1200], // 切换按钮 区域
-			[center, 1280, 720, 539, 656, 691, 701, 1000], // 关闭选择区域 废弃
 			[center, 1280, 720, 256, 570, 997, 615, 1000], // ocr昵称区域
-			[center, 1280, 720, 286, 506, 324, 539, 1000], // 选区确认
 		],
 	}, { // 5
 	}, { // 6 登陆后是否有下载插画弹窗
@@ -205,10 +203,10 @@ export class Func690 implements IFuncOrigin {
 	}, { // 12 切换账号
 		desc: [1280, 720,
 			[
-				[left, 294, 332, 0x5e6266],
-				[center, 336, 333, 0x5e6266],
-				[center, 531, 311, 0x5e6266],
-				[left, 315, 483, 0x5e6266],
+				[right, 937, 201, 0xf97373],
+				[right, 1010, 180, 0xf97879],
+				[right, 1071, 208, 0xf97879],
+				[right, 1001, 237, 0xf97879],
 			]
 		],
 		oper: [
@@ -237,12 +235,10 @@ export class Func690 implements IFuncOrigin {
 	}, { // 15  选择账号界面_账号选择框未打开
 		desc: [1280, 720,
 			[
-				[center, 540, 214, 0xe50113],
-				[center, 575, 210, 0xe50517],
-				[center, 626, 216, 0x3d3a3a],
-				[center, 655, 218, 0x413e3e],
-				[center, 705, 216, 0x3e3b3b],
-				[center, 735, 223, 0x3c3939],
+				[center, 541, 213, 0xe71021],
+				[center, 546, 213, 0xe92d3c],
+				[center, 560, 213, 0xe61021],
+				[center, 568, 213, 0xe71324],
 				[center, 451, 445, 0xfb4f4f],
 				[center, 837, 445, 0xfb4f4f],
 			]
@@ -289,12 +285,10 @@ export class Func690 implements IFuncOrigin {
 	}, { // 19 选择账号界面_账号选择框已打开
 		desc: [1280, 720,
 			[
-				[center, 540, 214, 0xe50113],
-				[center, 575, 210, 0xe50517],
-				[center, 626, 216, 0x3d3a3a],
-				[center, 655, 218, 0x413e3e],
-				[center, 705, 216, 0x3e3b3b],
-				[center, 735, 223, 0x3c3939],
+				[center, 541, 213, 0xe71021],
+				[center, 546, 213, 0xe92d3c],
+				[center, 560, 213, 0xe61021],
+				[center, 568, 213, 0xe71324],
 				[center, 379, 325, 0xf0f0f0],
 				[center, 379, 483, 0xf0f0f0],
 			]
@@ -413,8 +407,8 @@ export class Func690 implements IFuncOrigin {
 	}, { // 29 三个号,已沉底
 		desc: [1280, 720,
 			[
-				[center, 443, 570, 0xfd7272],
-				[center, 450, 570, 0xfd7272],
+				[center, 447, 568, 0xfd6969],
+				[center, 447, 574, 0xfd6969],
 				[center, 458, 570, 0xfd5d5d],
 				[right, 713, 570, 0xbebebe],
 				[right, 716, 570, 0xb6b6b6],
@@ -424,7 +418,7 @@ export class Func690 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1007, 336, 1120, 464, 1000],
 		]
-	}, { // 30 两个号,已沉底
+	}, { // 30 两个号,已沉底  //虚拟机里有色差,不想管了
 		desc: [1280, 720,
 			[
 				[center, 443, 532, 0xfd7272],
@@ -628,14 +622,18 @@ export class Func690 implements IFuncOrigin {
 				name: '识别昵称',
 				operator: [{ desc: thisOperator[4].desc }],
 			})) {
-				const name = thisScript.findText(String(thisConf.name), 0, thisOperator[4].oper[2], '包含');
+				const name = thisScript.findText(String(thisConf.name), 0, thisOperator[4].oper[1], '包含');
 				if (name.length > 0) {
-					const toClickRegion = [
-						name[0].points[0].x, name[0].points[0].y,
+					let toClickRegion = [
+						name[0].points[0].x + 5, name[0].points[0].y,
 						name[0].points[0].x + 40, name[0].points[0].y + 20, 1000,
 					]
 					thisScript.regionClick([toClickRegion]);
-					thisScript.regionClick([thisOperator[4].oper[3]]);
+					toClickRegion = [
+						name[0].points[0].x + 10, name[0].points[0].y - 80,
+						name[0].points[0].x + 40, name[0].points[0].y - 60, 1000,
+					]
+					thisScript.regionClick([toClickRegion]);
 					thisScript.regionClick([thisOperator[0].oper[0]]);
 					thisScript.global.game_area = 'findMultiColor_皮肤广告关闭按钮';
 					return true;

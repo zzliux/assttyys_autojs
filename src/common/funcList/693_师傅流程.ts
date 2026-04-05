@@ -64,7 +64,6 @@ export class Func693 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 310, 253, 444, 289, 1000],
-			[center, 1280, 720, 1102, 622, 1153, 659, 1000],
 		]
 	}, { // 2 战字
 		desc: [
@@ -192,6 +191,20 @@ export class Func693 implements IFuncOrigin {
 			[center, 1280, 720, 766, 27, 851, 60, 1000],
 			[center, 1280, 720, 27, 26, 55, 52, 1000],
 		]
+	}, {  // 12 庭院_式神录
+		desc: [
+			1280, 720,
+			[
+				[right, 1217, 620, 0xcca56e],
+				[right, 1222, 641, 0xddcdc7],
+				[right, 1221, 663, 0xdac9c4],
+				[right, 1219, 695, 0xb14c43],
+				[right, 1222, 706, 0x432118],
+			]
+		],
+		oper: [
+			[right, 1280, 720, 1106, 623, 1153, 653, 1200]	// 点击式神录
+		]
 	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -263,7 +276,11 @@ export class Func693 implements IFuncOrigin {
 			thisScript.global.preset_once_groupNum = parseInt(p?.trim(), 10);
 			thisScript.global.preset_once_defaultNum = parseInt(q?.trim(), 10);
 			if (thisScript.global.preset_once_groupNum > 0) {
-				thisScript.regionClick([thisOperator[1].oper[1]]);
+				thisScript.oper({
+					id: 693,
+					name: '换御魂',
+					operator: [thisOperator[12]]
+				})
 				thisScript.global.change_shikigami_state = 'flushed';
 			} else {
 				thisScript.global.change_shikigami_state = 'finish';

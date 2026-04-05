@@ -584,16 +584,94 @@ export class Func691 implements IFuncOrigin {
 			[center, 1280, 720, 34, 21, 67, 56, 1000],
 		],
 		retest: 1000,
+	}, { // 44 确认输入框
+		desc: [1280, 720,
+			[
+				[right, 1040, 30, 0xd6d7d7],
+				[right, 1119, 37, 0xd6d7d7],
+				[right, 1179, 33, 0xd6d7d7],
+				[right, 1248, 34, 0xd6d7d7],
+				[right, 998, 47, 0x009688],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1033, 19, 1128, 53, 1000],
+		]
+	}, { // 45 图鉴
+		desc: [1280, 720,
+			[
+				[left, 104, 618, 0x859bc2],
+				[left, 154, 632, 0xdccdcc],
+				[left, 137, 646, 0x6784b5],
+				[left, 136, 626, 0x8da3c8],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 110, 614, 150, 642, 1000],
+		]
+	}, { // 46 装饰
+		desc: [1280, 720,
+			[
+				[center, 454, 44, 0x0a0705],
+				[right, 786, 56, 0x070403],
+				[right, 924, 362, 0x76614d],
+				[left, 120, 686, 0x22130e],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 678, 652, 725, 692, 1000],
+		]
+	}, { // 47 界面装扮
+		desc: [1280, 720,
+			[
+				[left, 110, 302, 0x735d40],
+				[left, 120, 361, 0x312418],
+				[left, 125, 409, 0x2f2619],
+				[left, 117, 487, 0x2e241c],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 129, 396, 249, 431, 1000],
+		]
+	}, { // 48 试用限时按钮
+		desc: [1280, 720,
+			[
+				[left, 117, 299, 0x745d41],
+				[left, 127, 362, 0x665239],
+				[left, 123, 410, 0x483723],
+				[right, 933, 629, 0x836b4f],
+				[right, 1159, 626, 0xe69838],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1151, 621, 1187, 642, 1000],
+		]
+	}, { // 49 试用限时按钮已关闭
+		desc: [1280, 720,
+			[
+				[right, 1156, 625, 0xaaa686],
+				[right, 1161, 632, 0xa4a182],
+				[right, 1151, 633, 0xa2a080],
+				[right, 1182, 627, 0x836b50],
+				[right, 1180, 636, 0x836b50],
+				[left, 112, 302, 0x745f40],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 23, 24, 60, 56, 1000],
+			[center, 1280, 720, 23, 24, 60, 56, 1000],
+		]
 	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['691'];
 		if (!thisScript.global.newAccount) {
 			thisScript.global.newAccount = {
-				'create': false,
+				'create': true,
 				'apply': false,
 				'jingYan': false,
-				'getBird': true,
+				'closePB': false, // 关闭皮肤试用
+				'getBird': false,
 			};
 		}
 		if (thisScript.global.newAccount.create) {
@@ -604,11 +682,18 @@ export class Func691 implements IFuncOrigin {
 			})) {
 				thisScript.global.newAccount.apply = true;
 				const prefix = thisconf.name;
-				const time = Math.floor(Date.now() / 432000000).toString(36); // 压缩时间戳
+				const timestamp = Date.now(); // 当前时间戳
+				const compressedTimestamp = timestamp.toString(36); // 转换为36进制
+				const shortened = compressedTimestamp.slice(-5); // 取后5个字符
 				const input = className('android.widget.EditText').findOne(1000);
 				if (input) {
-					input.setText(prefix as string + time);
-					KeyCode(66); // Enter键
+					input.setText(prefix as string + shortened);
+					thisScript.keepScreen(false);
+					thisScript.oper({
+						id: 692,
+						name: 'over',
+						operator: [thisOperator[44]]
+					})
 					sleep(300);
 				} else {
 					log('未找到输入框', 'error');
@@ -623,9 +708,14 @@ export class Func691 implements IFuncOrigin {
 			})) {
 				const name = thisScript.findText(String(thisconf.name), 0, thisOperator[0].oper[1], '包含');
 				if (name.length > 0) {
-					const toClickRegion = [
-						name[0].points[0].x, name[0].points[0].y,
+					let toClickRegion = [
+						name[0].points[0].x + 5, name[0].points[0].y,
 						name[0].points[0].x + 40, name[0].points[0].y + 20, 1000,
+					]
+					thisScript.regionClick([toClickRegion]);
+					toClickRegion = [
+						name[0].points[0].x + 10, name[0].points[0].y - 80,
+						name[0].points[0].x + 40, name[0].points[0].y - 60, 1000,
 					]
 					thisScript.regionClick([toClickRegion]);
 					thisScript.regionClick([thisOperator[0].oper[2]]);
@@ -696,8 +786,13 @@ export class Func691 implements IFuncOrigin {
 				const input = className('android.widget.EditText').findOne(1000);
 				if (input) {
 					input.setText(prefix as string);
-					KeyCode(66); // Enter键
-					sleep(1000);
+					thisScript.keepScreen(false);
+					thisScript.oper({
+						id: 692,
+						name: 'over',
+						operator: [thisOperator[44]]
+					})
+					sleep(4000);
 					thisScript.regionClick(thisOperator[25].oper);
 				} else {
 					log('未找到输入框', 'error');
@@ -718,7 +813,7 @@ export class Func691 implements IFuncOrigin {
 				operator: [thisOperator[28]],
 			})) {
 				thisScript.global.newAccount.apply = false;
-				thisScript.global.newAccount.getBird = true;
+				thisScript.global.newAccount.closePB = true;
 				return true;
 			}
 			if (thisScript.oper({
@@ -728,6 +823,25 @@ export class Func691 implements IFuncOrigin {
 			})) {
 				thisScript.global.newAccount.apply = false;
 				thisScript.global.newAccount.jingYan = true;
+				return true;
+			}
+		}
+		if (thisScript.global.newAccount.closePB) {
+			if (thisScript.oper({
+				id: 691,
+				name: '关闭PB',
+				operator: [thisOperator[45], thisOperator[46], thisOperator[47], thisOperator[48]
+					, thisOperator[35]]
+			})) {
+				return true;
+			}
+			if (thisScript.oper({
+				id: 691,
+				name: '关闭PB',
+				operator: [thisOperator[49]]
+			})) {
+				thisScript.global.newAccount.closePB = false;
+				thisScript.global.newAccount.getBird = true;
 				return true;
 			}
 		}
@@ -759,15 +873,6 @@ export class Func691 implements IFuncOrigin {
 		if (thisScript.global.newAccount.jingYan) {
 			if (thisScript.oper({
 				id: 691,
-				name: '打过一次经验妖怪',
-				operator: [thisOperator[16]]
-			})) {
-				thisScript.rerun(thisconf.next_scheme);
-				sleep(3000);
-				return true;
-			}
-			if (thisScript.oper({
-				id: 691,
 				name: '残废组队',
 				operator: [thisOperator[32], thisOperator[33], thisOperator[34], thisOperator[35], thisOperator[36]
 					, thisOperator[37], thisOperator[18]]
@@ -784,7 +889,7 @@ export class Func691 implements IFuncOrigin {
 		}
 		if (thisScript.oper({
 			id: 691,
-			name: '绑定手机',
+			name: '已有珍旅居',
 			operator: [thisOperator[40]]
 		})) {
 			thisScript.rerun(thisconf.next_scheme);

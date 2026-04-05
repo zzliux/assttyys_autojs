@@ -5,10 +5,10 @@ const left = 0;
 const center = 1;
 const right = 2;
 
-export class Func521 implements IFuncOrigin {
-	id = 521;
-	name = '每日抽卡';
-	desc = '抽取免费一抽';
+export class Func1108 implements IFuncOrigin {
+	id = 1108;
+	name = '档期式神领取蓝票';
+	desc = '集结时领取六张蓝票,式神上线后购买祈愿福礼(推荐星期二运行)';
 	operator: IFuncOperatorOrigin[] = [{ // 0 召唤
 		desc: [
 			1280, 720,
@@ -100,86 +100,133 @@ export class Func521 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 28, 17, 68, 56, 1000],
 		]
-	}, { // 6 免费1/1
-		desc: [
-			1280, 720,
-			[
-				[center, 588, 696, 0xe3decd],
-				[center, 592, 698, 0xf4efdc],
-				[center, 612, 696, 0xefead8],
-				[center, 616, 693, 0xe7e2d0],
-				[center, 643, 696, 0xf6f1de],
-				[center, 654, 695, 0xdcd7c6],
-				[center, 664, 696, 0xf5f0dd],
-			]
-		],
-		oper: [
-			[center, 1280, 720, 604, 616, 654, 655, 1000],
-		]
-	}, { // 7 抽卡滑动
-		desc: [
-			1280, 720,
-			[
-				[center, 435, 608, 0x87ccee],
-				[center, 603, 662, 0xcfcdcb],
-				[center, 633, 659, 0xecebeb],
-				[center, 679, 663, 0xdad9d7],
-				[center, 691, 663, 0xc6c3c1],
-				[center, 704, 663, 0xe1e0df],
-				[center, 852, 625, 0x80c3e7],
-			]
-		],
-		oper: [
-			[center, 1280, 720, 458, 431, 505, 474, 1000],
-			[center, 1280, 720, 781, 148, 825, 189, 1000],
-		]
-	}, { // 8 抽卡确认
-		desc: [
-			1280, 720,
-			[
-				[center, 430, 628, 0xf3b25e],
-				[center, 570, 628, 0xf3b25e],
-				[center, 572, 660, 0xf3b25e],
-				[center, 435, 658, 0xf3b25e],
-			]
-		],
-		oper: [
-			[center, 1280, 720, 426, 625, 584, 672, 1000],
-		]
-	}, { // 9 抽卡头像框弹窗关闭
-		desc: [
-			1280, 720,
-			[
-				[left, 60, 19, 0x625539],
-				[left, 48, 31, 0x665f44],
-				[left, 138, 17, 0x493823],
-				[left, 177, 37, 0x493823],
-				[left, 223, 32, 0x251709],
-			]
-		],
-		oper: [
-			[center, 1280, 720, 311, 12, 397, 57, 1000],
-		]
-	}, { // 10 页面是否为庭院(菜单未展开) 只支持默认庭院皮肤与默认装饰
+	}, { // 6 页面是否为庭院(菜单未展开) 只支持默认庭院皮肤与默认装饰
 		desc: '页面是否为庭院_菜单未展开_只支持默认庭院皮肤与默认装饰',
 		oper: [
 			[right, 1280, 720, 1168, 592, 1230, 690, 1200]
 		]
 
-	}, { // 11 页面是否为庭院(菜单已展开) 只支持默认庭院皮肤与默认装饰
+	}, { // 7 页面是否为庭院(菜单已展开) 只支持默认庭院皮肤与默认装饰
 		desc: '页面是否为庭院_菜单已展开_只支持默认庭院皮肤与默认装饰',
 		oper: [
 			[center, 1280, 720, 1080, 184, 1133, 234, 1000], //  庭院点击召唤
 		],
-	},];
+	}, { // 8 完成弹窗
+		desc: [1280, 720,
+			[
+				[right, 1047, 160, 0xe8d3cf],
+				[right, 1062, 162, 0xe8d4cf],
+				[right, 1054, 168, 0xe8d3cf],
+				[right, 1050, 174, 0xecd0cd],
+				[right, 1063, 177, 0xe8d6d1],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1038, 155, 1072, 182, 1000],
+		]
+	}, { // 9 祈愿福礼
+		desc: [1280, 720,
+			[
+				[left, 36, 320, 0x893c35],
+				[left, 60, 318, 0x893c35],
+				[left, 89, 290, 0xb70f0f],
+				[left, 83, 350, 0x893c35],
+				[left, 81, 390, 0x762f29],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 44, 297, 74, 400, 1000],
+		]
+	}, { // 10 祈愿福礼免费
+		desc: [1280, 720,
+			[
+				[left, 298, 337, 0xddc7b4],
+				[center, 500, 341, 0xd6bda8],
+				[center, 325, 491, 0xc2b6ad],
+				[center, 395, 495, 0xc4b9b1],
+				[center, 438, 611, 0xf3b25e],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 344, 599, 460, 627, 1000],
+		]
+	}, { // 11 第一天
+		desc: [1280, 720,
+			[
+				[left, 308, 517, 0xc9a88b],
+				[left, 319, 518, 0xeb3c26],
+				[center, 335, 501, 0xe7c677],
+				[center, 342, 507, 0xebd5ac],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 303, 498, 342, 531, 1000],
+		]
+	}, { // 12 第二天
+		desc: [1280, 720,
+			[
+				[center, 383, 517, 0xcdad90],
+				[center, 396, 520, 0xe93218],
+				[center, 399, 517, 0xed4e36],
+				[center, 418, 507, 0xebd5ad],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 380, 498, 413, 533, 1000],
+		]
+	}, { // 13 第三天
+		desc: [1280, 720,
+			[
+				[center, 454, 518, 0xc6a78b],
+				[center, 466, 520, 0xe92b15],
+				[center, 471, 515, 0xef5340],
+				[center, 482, 502, 0x88b7cf],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 455, 495, 493, 536, 1000],
+		]
+	}, { // 14 购买确认
+		desc: [1280, 720,
+			[
+				[center, 434, 129, 0x93501f],
+				[right, 907, 135, 0x914820],
+				[center, 433, 533, 0xd3bba1],
+				[center, 587, 536, 0xf3b25e],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 569, 524, 712, 553, 1000],
+		]
+	}, { // 15 购买完成
+		desc: [1280, 720,
+			[
+				[left, 293, 508, 0xecba53],
+				[center, 368, 508, 0xf3bf55],
+				[center, 443, 509, 0xeebb54],
+				[left, 42, 38, 0xf6e9ab],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 30, 22, 70, 53, 1000],
+		]
+	},
+	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.global.day_chouKa) {
 			if (thisScript.oper({
 				id: 518,
 				name: '检测_抽卡',
 				operator: [thisOperator[2], thisOperator[3], thisOperator[4], thisOperator[5]
-					, thisOperator[6], thisOperator[8], thisOperator[9], thisOperator[10]
-					, thisOperator[11]],
+					, thisOperator[6], thisOperator[7], thisOperator[8]],
+			})) {
+				return true;
+			}
+			if (thisScript.oper({
+				id: 518,
+				name: '检测_祈愿福礼',
+				operator: [thisOperator[9], thisOperator[10], thisOperator[11], thisOperator[12]
+					, thisOperator[13], thisOperator[14], thisOperator[15]]
 			})) {
 				return true;
 			}
@@ -208,14 +255,6 @@ export class Func521 implements IFuncOrigin {
 					});
 				}
 				sleep(2000);
-			}
-			if (thisScript.oper({
-				id: 518,
-				name: '检测_抽卡滑动',
-				operator: [{ desc: thisOperator[7].desc }],
-			})) {
-				thisScript.regionSwipe(thisOperator[7].oper[0], thisOperator[7].oper[1], [1000, 1300], 200);
-				return true;
 			}
 		}
 		return false;

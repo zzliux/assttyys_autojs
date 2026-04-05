@@ -900,7 +900,7 @@ export class Script {
 		}
 	}
 
-	stopRelatedApp() {
+	stopRelatedApp(getPackageName?: string) {
 		const storeSettings = storeCommon.get('settings', {});
 		if (storeSettings.defaultLaunchAppList && storeSettings.defaultLaunchAppList.length) {
 			let am = null;
@@ -920,18 +920,28 @@ export class Script {
 				// 目标进程就变成后台了，就可以通过杀后台进程实现杀应用
 				am = context.getSystemService(context.ACTIVITY_SERVICE);
 			}
-
 			const ret = [];
-			storeSettings.defaultLaunchAppList.forEach(packageName => {
+			if (getPackageName) {
 				if (am) {
-					am.killBackgroundProcesses(packageName);
+					am.killBackgroundProcesses(getPackageName);
 				} else {
-					$shell(`am force-stop ${packageName}`, true);
+					$shell(`am force-stop ${getPackageName}`, true);
 				}
-				myToast(`杀应用${packageName}`);
-				ret.push(packageName);
+				myToast(`杀应用${getPackageName}`);
+				ret.push(getPackageName);
 				sleep(100);
-			});
+			} else {
+				storeSettings.defaultLaunchAppList.forEach(packageName => {
+					if (am) {
+						am.killBackgroundProcesses(packageName);
+					} else {
+						$shell(`am force-stop ${packageName}`, true);
+					}
+					myToast(`杀应用${packageName}`);
+					ret.push(packageName);
+					sleep(100);
+				});
+			}
 			sleep(500);
 			return ret;
 		} else {

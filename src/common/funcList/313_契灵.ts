@@ -18,6 +18,11 @@ export class Func313 implements IFuncOrigin {
 			data: ['镇墓兽', '火灵', '茨球', '小黑', '针女', '薙魂', '月魔兔', '狐火'],
 			default: '镇墓兽'
 		}, {
+			name: 'buy',
+			desc: '是否购买石头',
+			type: 'switch',
+			default: false
+		}, {
 			name: 'team',
 			desc: '是否组队并且为组队队长（队员只需开启《组队乘客》方案）',
 			type: 'switch',
@@ -205,9 +210,34 @@ export class Func313 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 372, 548, 846, 687, 1000],
 		]
-	}]
+	}, { // 13 石头购买
+		desc: [1280, 720,
+			[
+				[center, 513, 90, 0x8c4e1b],
+				[right, 772, 94, 0x914820],
+				[right, 785, 468, 0xffdda4],
+				[right, 784, 484, 0xffdda5],
+				[right, 703, 581, 0xf3b25e],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 762, 464, 806, 501, 1000],
+			[center, 1280, 720, 568, 559, 718, 599, 2000],
+			[center, 1280, 720, 568, 559, 718, 599, 1000],
+		]
+	},
+	]
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['313'];
+		if (thisconf.buy) {
+			if (thisScript.oper({
+				id: 313,
+				name: '石头购买',
+				operator: [thisOperator[13]]
+			})) {
+				return true;
+			}
+		}
 		if (['镇墓兽', '火灵', '茨球', '小黑'].includes(thisconf.type as string)) {
 			if (thisScript.oper({
 				id: 313,
