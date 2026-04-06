@@ -137,7 +137,20 @@ export class Func318 implements IFuncOrigin {
 			[left, 1280, 720, 22, 19, 52, 47, 1000], // 左上角返回
 			[center, 1280, 720, 683, 401, 795, 442, 500], // 确认
 		]
-	}];
+	}, { // 9 一回目
+		desc: [
+			1280, 720,
+			[
+				[center, 528, 311, 0xe2ceba],
+				[center, 590, 363, 0x272420],
+				[center, 550, 365, 0x282420],
+				[center, 749, 297, 0xe4d0b6],
+				[center, 569, 523, 0x8e2214],
+				[center, 709, 524, 0x881509],
+				[center, 638, 472, 0xf3daaa],
+			]
+		]
+	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['318'];
 		if (!thisScript.global.fight_Switch) {
@@ -150,11 +163,9 @@ export class Func318 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 320,
 			name: '战字_初始流程',
-			operator: [{
-				desc: thisOperator[6].desc
-			}]
+			operator: [{ desc: thisOperator[6].desc }, { desc: thisOperator[9].desc }]
 		})) {
-			// 战斗开始,再出初始化
+			// 战斗开始,再初始化
 			thisScript.global.fight_Switch = {
 				'xingMie': thisconf.xingMie as boolean,
 				'diSiTian': thisconf.diSiTian as boolean,

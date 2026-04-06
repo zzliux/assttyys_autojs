@@ -134,6 +134,7 @@ export type globalRootType = {
 	email_switch_enabled: boolean, // 邮箱切换
 	tuDi: Record<string, boolean | number>, // 徒弟
 	newAccount: Record<string, boolean | number>, // 新号
+	frist: boolean, // 上阵式神
 }
 
 export const globalRoot: globalRootType = {
@@ -272,6 +273,7 @@ export const globalRoot: globalRootType = {
 	email_switch_enabled: null,
 	tuDi: null,
 	newAccount: null,
+	frist: true,
 }
 export type superGlobalRootType = {
 	liao_activity_Switch: Record<string, boolean>, // 寮活动记录
