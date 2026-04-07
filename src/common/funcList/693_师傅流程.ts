@@ -233,7 +233,7 @@ export class Func693 implements IFuncOrigin {
 		})) {
 			const result = thisScript.findText('.+', 0, thisOperator[9].oper[0], '包含');
 			const findName = thisScript.findTextByOcrResult(thisconf.name as string, result, '包含')
-			if (findName.length) {
+			if (findName.length > 0) {
 				const toClickRegion = [
 					findName[0].points[0].x + 375,
 					findName[0].points[0].y + 40,

@@ -731,7 +731,7 @@ export class Func692 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 692,
 				name: 'five',
-				operator: [thisOperator[1], thisOperator[16], thisOperator[17], thisOperator[18], thisOperator[49], thisOperator[19]
+				operator: [thisOperator[1],  thisOperator[17], thisOperator[18], thisOperator[49], thisOperator[19]
 					, thisOperator[21], thisOperator[22], thisOperator[26], thisOperator[50]]
 			})) {
 				return true;
@@ -808,7 +808,7 @@ export class Func692 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 692,
 				name: 'fight',
-				operator: [thisOperator[3], thisOperator[4], thisOperator[5], thisOperator[6], thisOperator[7]
+				operator: [thisOperator[3], thisOperator[4],  thisOperator[6], thisOperator[7]
 					, thisOperator[12], thisOperator[13], thisOperator[26], thisOperator[52]]
 			})) {
 				return true;

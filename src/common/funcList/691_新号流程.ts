@@ -428,7 +428,6 @@ export class Func691 implements IFuncOrigin {
 				[left, 112, 314, 0xb96c63],
 				[left, 122, 306, 0xb76e64],
 				[center, 472, 320, 0x434e6d],
-				[center, 483, 305, 0x414762],
 			]
 		],
 		oper: [
@@ -813,7 +812,7 @@ export class Func691 implements IFuncOrigin {
 				operator: [thisOperator[28]],
 			})) {
 				thisScript.global.newAccount.apply = false;
-				thisScript.global.newAccount.closePB = true;
+				thisScript.global.newAccount.getBird = true;
 				return true;
 			}
 			if (thisScript.oper({
@@ -823,25 +822,6 @@ export class Func691 implements IFuncOrigin {
 			})) {
 				thisScript.global.newAccount.apply = false;
 				thisScript.global.newAccount.jingYan = true;
-				return true;
-			}
-		}
-		if (thisScript.global.newAccount.closePB) {
-			if (thisScript.oper({
-				id: 691,
-				name: '关闭PB',
-				operator: [thisOperator[45], thisOperator[46], thisOperator[47], thisOperator[48]
-					, thisOperator[35]]
-			})) {
-				return true;
-			}
-			if (thisScript.oper({
-				id: 691,
-				name: '关闭PB',
-				operator: [thisOperator[49]]
-			})) {
-				thisScript.global.newAccount.closePB = false;
-				thisScript.global.newAccount.getBird = true;
 				return true;
 			}
 		}
@@ -866,6 +846,25 @@ export class Func691 implements IFuncOrigin {
 				operator: [thisOperator[42]]
 			})) {
 				thisScript.global.newAccount.getBird = false;
+				thisScript.global.newAccount.closePB = true;
+				return true;
+			}
+		}
+		if (thisScript.global.newAccount.closePB) {
+			if (thisScript.oper({
+				id: 691,
+				name: '关闭PB',
+				operator: [thisOperator[45], thisOperator[46], thisOperator[47], thisOperator[48]
+					, thisOperator[35]]
+			})) {
+				return true;
+			}
+			if (thisScript.oper({
+				id: 691,
+				name: '关闭PB',
+				operator: [thisOperator[49]]
+			})) {
+				thisScript.global.newAccount.closePB = false;
 				thisScript.global.newAccount.jingYan = true;
 				return true;
 			}
@@ -882,7 +881,7 @@ export class Func691 implements IFuncOrigin {
 			const point = thisScript.findMultiColor('皮肤广告关闭按钮');
 			if (point) {
 				console.log('识别广告关闭按钮成功');
-				const oper = [[point.x - 10, point.y - 10, point.x, point.y, 3000]];
+				const oper = [[point.x - 10, point.y - 10, point.x, point.y, 1000]];
 				thisScript.regionClick(oper);
 				return true;
 			}

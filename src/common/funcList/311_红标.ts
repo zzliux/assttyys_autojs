@@ -247,6 +247,13 @@ export class Func311 implements IFuncOrigin {
 							thisScript.global.redFlag = true;
 						}
 						return true;
+					} else if (thisScript.findMultiColorEx('红标_血条').length > 5) {
+						const now = new Date().getTime();
+						const ajImg = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(thisScript.helperBridge.helper.GetBitmap());
+						const path = `/sdcard//Pictures/批量截图/${now}.png`;
+						files.ensureDir(path);
+						ajImg.saveTo(path);
+						ajImg.recycle();
 					}
 					thisScript.global.redFlag = true;
 				}

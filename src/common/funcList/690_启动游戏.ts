@@ -348,7 +348,7 @@ export class Func690 implements IFuncOrigin {
 				[left, 150, 568, 0x363537],
 				[right, 1146, 105, 0x353435],
 				[right, 1135, 560, 0x353435],
-				[right, 641, 575, 0x353435],
+				[right, 908, 296, 0x343334],
 			]
 		],
 		oper: [
@@ -657,7 +657,7 @@ export class Func690 implements IFuncOrigin {
 				const point = thisScript.findMultiColor('皮肤广告关闭按钮');
 				if (point) {
 					console.log('识别广告关闭按钮成功');
-					const oper = [[point.x - 10, point.y - 10, point.x, point.y, 3000]];
+					const oper = [[point.x - 10, point.y - 10, point.x, point.y, 1000]];
 					thisScript.regionClick(oper);
 					return true;
 				}
