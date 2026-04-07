@@ -174,13 +174,13 @@ export class Func311 implements IFuncOrigin {
 					name: '红标-行动条检测',
 					operator: [thisOperator[4], thisOperator[5]],
 				})) {
-					let point = thisScript.findMultiColor('腐血', null, false, false)
+					let point = thisScript.findMultiColor('腐血', null, false, false, false)
 					if (point) {
 						console.log('开局查找到腐血');
 						const point_blood = thisScript.findMultiColorEx('红标_血条')
 						const operList = [];
 						for (const flagPoint of point_blood) {
-							if (point.x > flagPoint.x  && point.x < flagPoint.x + 100) {
+							if (point.x > flagPoint.x && point.x < flagPoint.x + 100) {
 								operList.push(flagPoint);
 							}
 						}
@@ -211,13 +211,13 @@ export class Func311 implements IFuncOrigin {
 						}
 						return true;
 					}
-					point = thisScript.findMultiColor('神荒', null, false, false)
+					point = thisScript.findMultiColor('神荒', null, false, false, false)
 					if (point) {
 						console.log('开局查找到神荒');
 						const point_blood = thisScript.findMultiColorEx('红标_血条')
 						const operList = [];
 						for (const flagPoint of point_blood) {
-							if (point.x >= flagPoint.x && point.x < flagPoint.x + 100) {
+							if (point.x >= flagPoint.x - 2 && point.x < flagPoint.x + 100) {
 								operList.push(flagPoint);
 							}
 						}
