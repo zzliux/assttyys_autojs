@@ -261,12 +261,29 @@ export class Func702 implements IFuncOrigin {
 			doPush(thisScript, { text: '寄养的N卡已满级' });
 			return true;
 		}
-		if (thisScript.oper({
+		let curCnt = 0;
+		const maxCount = 3;
+		while (thisScript.oper({
 			id: 702,
 			name: '寄养N卡',
 			operator: [thisOperator[8], thisOperator[9], thisOperator[10]],
 		})) {
-			return true;
+			curCnt++;
+			thisScript.keepScreen(false);
+			if (thisScript.oper({
+				id: 702,
+				name: '完成退出',
+				operator: [thisOperator[12]],
+			})) {
+				console.log('寄养完成');
+				thisScript.rerun(thisconf.next_scheme)
+				sleep(3000);
+				return true;
+			}
+			if (curCnt >= maxCount) {
+				thisScript.regionClick(thisOperator[12].oper); // 已被占用,返回
+				return true;
+			}
 		}
 		if (thisScript.oper({
 			id: 702,

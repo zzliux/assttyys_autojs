@@ -280,14 +280,17 @@ export class Func603 implements IFuncOrigin {
 		}
 		// Real:用结算次数获取当前已攻打第几个怪物
 		const Real = thisScript.runTimes['2'] - thisScript.global.runTime_2 - (thisconf.sneak as number)
-		if (Real >= 12 && thisScript.oper({
-			name: '阴阳寮界面',
-			operator: [{ desc: thisOperator[9].desc }],
-		})) {
-			log('已完成狭间')
-			thisScript.rerun('返回庭院')
-			sleep(1000)
-			return true;
+		if (Real >= 12) {
+			if (thisScript.oper({
+				name: '阴阳寮界面',
+				operator: [{ desc: thisOperator[9].desc }],
+			})) {
+				log('已完成狭间')
+				thisScript.rerun('返回庭院')
+				sleep(1000)
+				return true;
+			}
+			return false;
 		}
 		// 首次进入_判断换预设御魂
 		let presetStr: string | undefined

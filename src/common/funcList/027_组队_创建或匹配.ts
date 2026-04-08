@@ -17,7 +17,7 @@ export class Func027 implements IFuncOrigin {
 				name: 'mission',
 				desc: '选择副本',
 				type: 'list',
-				data: ['御魂', '探索（困难）', '永生之海', '经验妖怪', '金币妖怪', '特殊活动', '妖气封印', '日轮之陨'],
+				data: ['御魂', '探索（困难）', '永生之海', '经验妖怪', '金币妖怪', '石距', '特殊活动', '妖气封印', '日轮之陨'],
 				default: '御魂',
 			},
 			{
@@ -85,7 +85,6 @@ export class Func027 implements IFuncOrigin {
 	}, { // 6 组队大厅_创建队伍（不带选择副本类型）
 		desc: '组队大厅_创建队伍',
 		oper: [
-			[center, 1280, 720, 408, 294, 430, 313, 1000], // 经验妖怪界面_公开
 			[center, 1280, 720, 536, 490, 739, 534, 1000], // 经验妖怪界面_创建
 		]
 	}, { // 7 创建队伍
@@ -156,6 +155,7 @@ export class Func027 implements IFuncOrigin {
 			[center, 1280, 720, 427, 511, 563, 554, 700], // 魂十三
 			[center, 1280, 720, 239, 131, 268, 142, 1000], // 经验或金币妖怪
 			[center, 1280, 720, 164, 130, 346, 173, 1000], // 点击全部
+			[center, 1280, 720, 201, 240, 322, 281, 1000], // 石距
 		]
 	}, { // 13 第二栏的全部字样
 		desc: [1280, 720,
@@ -170,7 +170,34 @@ export class Func027 implements IFuncOrigin {
 			[center, 1280, 720, 255, 230, 260, 235, 1000], // 副本上划起始
 			[center, 1280, 720, 255, 155, 260, 160, 1000], // 副本上划结束
 		]
-	}]
+	}, { // 14 石距_创建队伍
+		desc: [1280, 720,
+			[
+				[right, 1156, 610, 0x221d1a],
+				[right, 1155, 643, 0x211c19],
+				[right, 1040, 643, 0x221d1a],
+				[right, 1032, 607, 0x231e1b],
+				[right, 905, 606, 0xf3b25e],
+				[right, 902, 644, 0xf3b25e],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 805, 613, 954, 641, 1000],
+		]
+	}, { // 15 残废组队
+		desc: [1280, 720,
+			[
+				[center, 353, 643, 0xab5fcd],
+				[center, 367, 630, 0xe7e5e3],
+				[center, 394, 647, 0x7d3fb4],
+				[center, 401, 642, 0xaca09d],
+				[center, 370, 654, 0xbfb6b3],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 361, 633, 397, 662, 1000],
+		]
+	},]
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['27'];
 		if (!thisScript.global.first_create_team && thisScript.oper({
@@ -224,6 +251,10 @@ export class Func027 implements IFuncOrigin {
 					thisScript.regionBezierSwipe(thisOperator[11].oper[1], thisOperator[11].oper[0], [200, 250], 1500);
 					thisScript.regionClick([thisOperator[12].oper[9]]);
 					break;
+				case '石距':
+					thisScript.regionBezierSwipe(thisOperator[11].oper[1], thisOperator[11].oper[0], [200, 250], 1500);
+					thisScript.regionClick([thisOperator[12].oper[11]]);
+					break;
 				case '妖气封印':
 					thisScript.oper({
 						name: '自动匹配',
@@ -246,7 +277,7 @@ export class Func027 implements IFuncOrigin {
 		const maxCount = 3;
 		while (thisScript.oper({
 			name: '组队_创建',
-			operator: [thisOperator[4], thisOperator[7]]
+			operator: [thisOperator[14], thisOperator[4], thisOperator[7]]
 		})) {
 			thisScript.global.team_up_Frist = true;
 			curCnt++;
@@ -272,7 +303,7 @@ export class Func027 implements IFuncOrigin {
 			id: 27,
 			name: '组队_匹配',
 			operator: [
-				thisOperator[1], thisOperator[2],
+				thisOperator[15], thisOperator[1], thisOperator[2],
 				thisOperator[9], thisOperator[3], thisOperator[6]
 			]
 		})) {

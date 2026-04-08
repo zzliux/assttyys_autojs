@@ -29,7 +29,7 @@ export class Func002 implements IFuncOrigin {
 			default: '关闭BUFF',
 		}, {
 			name: 'fail',
-			desc: '失败后停止脚本',
+			desc: '失败后切换方案',
 			type: 'switch',
 			default: false,
 		}]
@@ -213,10 +213,7 @@ export class Func002 implements IFuncOrigin {
 			[center, 1280, 720, 436, 405, 606, 459, 200],
 		]
 	}, { // 19 体力不足
-		desc: '退出结算_体力不足',
-		oper: [
-			[center, 1280, 720, 916, 179, 951, 211, 2000]
-		]
+		desc: '退出结算_体力不足'
 	}, {
 		// 20 单人-失败太鼓,重新挑战
 		desc: '退出结算_单人_失败太鼓',
@@ -326,6 +323,46 @@ export class Func002 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1112, 113, 1238, 595, 1000],
 		]
+	}, { // 29 小白提示框
+		desc: [1280, 720,
+			[
+				[center, 483, 195, 0x464342],
+				[right, 808, 201, 0x423e3d],
+				[left, 296, 383, 0xcb2e43],
+				[right, 905, 406, 0x624a3a],
+				[center, 427, 528, 0x645346],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 528, 606, 699, 660, 1000],
+		],
+		notForCnt: true, // 点击确认不统计退出结算的次数
+	}, { // 30 关联手机
+		desc: [1280, 720,
+			[
+				[right, 997, 451, 0xe7cfb1],
+				[right, 1058, 491, 0xdec2a3],
+				[right, 1020, 536, 0xd7b17b],
+				[right, 876, 204, 0xe8e0d4],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 968, 463, 1036, 522, 1000],
+		]
+	}, { // 31 关联手机确认框
+		desc: [1280, 720,
+			[
+				[center, 480, 488, 0xdf6851],
+				[center, 565, 515, 0xdf6851],
+				[right, 710, 488, 0xf3b25e],
+				[right, 692, 393, 0xf3b25e],
+				[right, 834, 429, 0xf3b25e],
+				[right, 802, 520, 0xf4b35d],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 475, 483, 579, 523, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['2'];
@@ -345,20 +382,17 @@ export class Func002 implements IFuncOrigin {
 				thisScript.rerun(thisconf.next_scheme);
 				sleep(3000);
 				return;
-			} else if (thisconf && !thisconf.no_sushi_switch_enabled) {
-				thisScript.doPush(thisScript, { text: '体力不够已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-				thisScript.stop();
-				sleep(3000);
-				return;
+			} else if (!thisconf.no_sushi_switch_enabled) {
+				return false;
 			}
 		}
-		if (thisconf && thisconf.fail && thisScript.oper({
+		if (thisconf.fail && thisScript.oper({
 			id: 2,
 			name: '退出结算_失败停止',
 			operator: [thisOperator[9], thisOperator[10]]
 		})) {
 			thisScript.doPush(thisScript, { text: '战斗失败，已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-			thisScript.stop();
+			thisScript.rerun(thisconf.next_scheme);
 			sleep(3000);
 			return true
 		}
@@ -372,7 +406,8 @@ export class Func002 implements IFuncOrigin {
 				thisOperator[12], thisOperator[13], thisOperator[14], thisOperator[15],
 				thisOperator[16], thisOperator[17], thisOperator[22], thisOperator[18], // 22要放18前面
 				thisOperator[21], thisOperator[23], thisOperator[24], thisOperator[25],
-				thisOperator[26], thisOperator[27], thisOperator[28],
+				thisOperator[26], thisOperator[27], thisOperator[28], thisOperator[29],
+				thisOperator[30], thisOperator[31],
 			]
 		});
 	}

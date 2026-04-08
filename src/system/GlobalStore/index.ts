@@ -120,6 +120,7 @@ export type globalRootType = {
 	shiHe_jingYan: boolean, // 食盒经验领取上限
 	xianShiFengMo: number,
 	account_num: number, // 账号计数
+	account_double: boolean, // 安卓苹果双登录模式
 	account_state: 'login' | 'function' | 'logout',
 	function_Switch: Record<string, boolean | number>, // 小号功能记录
 	loop_add: boolean, // 循环增加
@@ -131,6 +132,9 @@ export type globalRootType = {
 	timestamp: number, // 全局时间戳
 	paiMing: number, // 排名
 	email_switch_enabled: boolean, // 邮箱切换
+	tuDi: Record<string, boolean | number>, // 徒弟
+	newAccount: Record<string, boolean | number>, // 新号
+	frist: boolean, // 上阵式神
 }
 
 export const globalRoot: globalRootType = {
@@ -255,6 +259,7 @@ export const globalRoot: globalRootType = {
 	liao_banquet_onGoing: true,
 	xianShiFengMo: 0,
 	account_num: 0,
+	account_double: null,
 	account_state: 'login',
 	function_Switch: null,
 	loop_add: true,
@@ -266,6 +271,9 @@ export const globalRoot: globalRootType = {
 	timestamp: 0,
 	paiMing: 0,
 	email_switch_enabled: null,
+	tuDi: null,
+	newAccount: null,
+	frist: true,
 }
 export type superGlobalRootType = {
 	liao_activity_Switch: Record<string, boolean>, // 寮活动记录

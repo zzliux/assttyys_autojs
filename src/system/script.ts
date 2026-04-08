@@ -362,17 +362,19 @@ export class Script {
 	 * @param {String} key src\common\multiColors.js的key
 	 * @param {Region} inRegion 多点找色区域
 	 * @param {Boolean} multiRegion 给true的话表示inRegion为region的数组
+	 * @param {Boolean} openmisalignedMatch 给true的话表示开启错位匹配(非错误匹配比较苛刻)
 	 * @returns
 	 */
-	findMultiColor(key: string, inRegion?: any, multiRegion?: boolean, noLog?: boolean) {
+	findMultiColor(key: string, inRegion?: any, multiRegion?: boolean, noLog?: boolean, openmisalignedMatch?: boolean) {
 		this.initRedList();
 		if (!multiRegion) {
 			const region = inRegion || this.multiFindColors[key].region;
 			const desc = this.multiFindColors[key].desc;
 			const similar = this.multiFindColors[key].similar || this.scheme.commonConfig.multiColorSimilar
+			const misalignedMatch = openmisalignedMatch !== undefined ? openmisalignedMatch : true;
 			for (let i = 0; i < desc.length; i++) {
 				const item = desc[i];
-				const point = this.helperBridge.helper.FindMultiColor(region[0], region[1], region[2], region[3], item, similar, true);
+				const point = this.helperBridge.helper.FindMultiColor(region[0], region[1], region[2], region[3], item, similar, misalignedMatch);
 				if (point.x !== -1) {
 					if (!noLog) {
 						console.log(`[${key}]第${i}个查找成功， 坐标为：(${point.x}, ${point.y})`);
@@ -900,7 +902,7 @@ export class Script {
 		}
 	}
 
-	stopRelatedApp() {
+	stopRelatedApp(getPackageName?: string) {
 		const storeSettings = storeCommon.get('settings', {});
 		if (storeSettings.defaultLaunchAppList && storeSettings.defaultLaunchAppList.length) {
 			let am = null;
@@ -920,18 +922,28 @@ export class Script {
 				// 目标进程就变成后台了，就可以通过杀后台进程实现杀应用
 				am = context.getSystemService(context.ACTIVITY_SERVICE);
 			}
-
 			const ret = [];
-			storeSettings.defaultLaunchAppList.forEach(packageName => {
+			if (getPackageName) {
 				if (am) {
-					am.killBackgroundProcesses(packageName);
+					am.killBackgroundProcesses(getPackageName);
 				} else {
-					$shell(`am force-stop ${packageName}`, true);
+					$shell(`am force-stop ${getPackageName}`, true);
 				}
-				myToast(`杀应用${packageName}`);
-				ret.push(packageName);
+				myToast(`杀应用${getPackageName}`);
+				ret.push(getPackageName);
 				sleep(100);
-			});
+			} else {
+				storeSettings.defaultLaunchAppList.forEach(packageName => {
+					if (am) {
+						am.killBackgroundProcesses(packageName);
+					} else {
+						$shell(`am force-stop ${packageName}`, true);
+					}
+					myToast(`杀应用${packageName}`);
+					ret.push(packageName);
+					sleep(100);
+				});
+			}
 			sleep(500);
 			return ret;
 		} else {

@@ -28,16 +28,12 @@ export class Func604 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1157, 577, 1232, 646, 1200], // 点击挑战
 		],
-	}, { // 1 阴阳寮
-		desc: [1280, 720,
-			[
-				[right, 1096, 630, 0xb1251f],
-				[right, 1105, 662, 0xdbe3f1],
-				[left, 45, 39, 0xf4e4a3],
-				[center, 886, 644, 0xe0cbaa],
-			]
-		],
-	}];
+	}, { // 1 寮信息界面返回
+		desc: '寮信息界面',
+		oper: [
+			[left, 1280, 720, 25, 10, 75, 54, 1000],     //  寮活动 返回区域
+		]
+	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: '检测_首领退治',

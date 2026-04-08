@@ -65,6 +65,7 @@ export class Func008 implements IFuncOrigin {
 			[center, 1280, 720, 313, 349, 1131, 696, -1], // 个人突破找色范围
 			[center, 1280, 720, 578, 119, 751, 699, -1], // 寮突破找色范围1
 			[center, 1280, 720, 921, 119, 1093, 698, -1], // 寮突破找色范围2
+			[center, 1280, 720, 0, 0, 1179, 719, -1], // 逢魔找色范围
 		]
 	}, {
 		// 个人突破与寮突破的前提判断
@@ -147,6 +148,12 @@ export class Func008 implements IFuncOrigin {
 		const defaultCount = count;
 		let point = null;
 		let region = [thisOperator[0].oper[2]];
+		if (thisScript.oper({
+			name: '逢魔之时_暗_判断',
+			operator: [{ desc: thisOperator[2].desc }]
+		})) {
+			region = [thisOperator[0].oper[5]];
+		}
 		if ('寮突破' === thisConf.type) {
 			region = [thisOperator[0].oper[3], thisOperator[0].oper[4]];
 			if (thisScript.findMultiColor('结界_进攻_灰', region, true)) {

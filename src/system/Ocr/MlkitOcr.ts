@@ -33,6 +33,7 @@ export class MlkitOcrDetector implements IOcrDetector {
 				y: item.bounds.bottom
 			}]);
 		});
+		console.log(JSON.stringify(result.map(i => i.label)));
 		console.log(JSON.stringify(result));
 		return result;
 	}
@@ -48,8 +49,8 @@ class MlkitOcr implements IOcr {
 	}
 
 	/**
-     * 获取ocr是否安装
-     */
+	 * 获取ocr是否安装
+	 */
 	isInstalled(): boolean {
 		try {
 			$plugins.load('org.autojs.autojspro.plugin.mlkit.ocr');
@@ -61,8 +62,8 @@ class MlkitOcr implements IOcr {
 	}
 
 	/**
-     * 安装
-     */
+	 * 安装
+	 */
 	install(option: { failCallback: Function, successCallback: Function }): void {
 		if (app.autojs.versionCode < '9121400') {
 			toastLog('软件版本过低，当前版本不支持ocr请安装新版');
@@ -130,7 +131,7 @@ class MlkitOcr implements IOcr {
 		}
 	}
 
-	findTextByOcrResult (text: string, ocrResult: Array<OcrResult>, textMatchMode: string, similarityRatio?: number): Array<OcrResult> {
+	findTextByOcrResult(text: string, ocrResult: Array<OcrResult>, textMatchMode: string, similarityRatio?: number): Array<OcrResult> {
 		let res = [];
 		let toDraw = [];
 		if (textMatchMode === '包含') {
@@ -141,7 +142,7 @@ class MlkitOcr implements IOcr {
 				color: reg.test(item.label) ? 'green' : 'red',
 				text: item.label + ':' + item.confidence
 			}));
-		} else /* if (textMatchMode === '模糊') */{
+		} else /* if (textMatchMode === '模糊') */ {
 			res = ocrResult.filter(item => {
 				item.similar = nlpSimilarity(item.label, text);
 				return (item.similar as number) >= (similarityRatio || .7)
@@ -155,7 +156,7 @@ class MlkitOcr implements IOcr {
 		}
 		// 开了绘制有可能绘制内容也被ocr给识别了
 		if (drawFloaty.instacne) {
-			drawFloaty.draw(toDraw, 200);
+			drawFloaty.draw(toDraw, 100);
 		}
 		return res;
 	}

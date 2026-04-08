@@ -257,7 +257,7 @@ export class Func605 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 658, 127, 697, 170, 1000],
 		]
-	}, { // 10 探索地图进入秘闻
+	}, { // 19 探索地图进入秘闻
 		desc: '探索地图界面',
 		oper: [
 			[center, 1280, 720, 544, 636, 602, 701, 1000],
@@ -349,7 +349,7 @@ export class Func605 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 181, 297, 428, 346, 1000],
+			[center, 1280, 720, 522, 289, 782, 352, 1000],
 		]
 	}
 	];
@@ -461,20 +461,31 @@ export class Func605 implements IFuncOrigin {
 				})) {
 					return true;
 				}
-				if (thisScript.oper({
+				let curCnt = 0;
+				const maxCount = 3;
+				while (thisScript.oper({
 					name: '宴会__宴会筹备界面',
 					operator: [thisOperator[5]],
 				})) {
+					curCnt++;
+					thisScript.keepScreen(false);
 					if (thisScript.oper({
 						name: '宴会__宴会筹备完成',
 						operator: [thisOperator[6]],
 					})) {
-						return true;
+						// 点击开启宴会
 					} else {
 						thisScript.global.liao_banquet_collect = true;
 						thisScript.global.liao_banquet_onGoing = false;
 						return true;
 					}
+					if (curCnt >= maxCount) {
+						thisScript.doPush(thisScript, { text: '开启超时,请查看', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+						thisScript.stop();
+						sleep(2000);
+						return false;
+					}
+					sleep(1000);
 				}
 			}
 			if (thisScript.oper({

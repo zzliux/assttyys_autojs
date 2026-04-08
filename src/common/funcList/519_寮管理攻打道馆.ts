@@ -183,7 +183,22 @@ export class Func519 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1179, 110, 1216, 143, 1000],
 		]
-	}
+	}, { // 11 今日挑战成功
+		desc: [
+			1280, 720,
+			[
+				[center, 518, 653, 0xddd9c8],
+				[center, 533, 650, 0xdedac9],
+				[center, 558, 649, 0xe8e4d2],
+				[center, 577, 653, 0xc1beaf],
+				[center, 599, 650, 0xbdbbad],
+				[center, 622, 648, 0xe2decd],
+				[center, 644, 649, 0x9d9c91],
+				[center, 666, 649, 0xbab8aa],
+				[center, 690, 648, 0xb8b6a7],
+			]
+		]
+	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const now = new Date();
@@ -198,7 +213,7 @@ export class Func519 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 519,
 			name: '当日机会为0',
-			operator: [thisOperator[8], thisOperator[9]]
+			operator: [thisOperator[8], thisOperator[9], thisOperator[11]]
 		})) {
 			thisScript.myToast('两次机会用光');
 			thisScript.rerun('返回庭院');
