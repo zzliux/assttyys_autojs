@@ -646,8 +646,8 @@ export class Func690 implements IFuncOrigin {
 					thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[6],
 					thisOperator[9], thisOperator[10], thisOperator[11], thisOperator[14],
 					thisOperator[17], thisOperator[20], thisOperator[21], thisOperator[26],
-					thisOperator[27]
-				],
+					thisOperator[27], { desc: thisOperator[15].desc, oper: [thisOperator[15].oper[0]] }
+				]
 			})) {
 				return true;
 			}
