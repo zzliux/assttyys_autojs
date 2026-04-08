@@ -100,7 +100,19 @@ export class Func311 implements IFuncOrigin {
 					[right, 1243, 513, 0xf9f18f],
 				]
 			]
-		}
+		}, { // 6 上阵截图
+			desc: [1280, 720,
+				[
+					[center, 443, 262, 0x2e4547],
+					[center, 460, 462, 0x40645e],
+					[right, 761, 521, 0x496c6a],
+					[right, 831, 291, 0x31474a],
+					[center, 606, 442, 0xf3f0dc],
+					[right, 675, 446, 0xf6f2e5],
+				]
+			],
+			retest: 1000,
+		},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['311'];
@@ -108,16 +120,14 @@ export class Func311 implements IFuncOrigin {
 		if (thisScript.global.redFlag) {
 			return false;
 		}
-		if (
-			thisScript.oper({
-				name: '红标-战斗界面检测',
-				operator: [
-					{
-						desc: '战斗界面',
-					},
-				],
-			})
-		) {
+		if (thisScript.oper({
+			name: '红标-战斗界面检测',
+			operator: [
+				{
+					desc: '战斗界面',
+				},
+			],
+		})) {
 			// 开启红标
 			let toClick = null;
 			if (thisconf.redType === '自定义坐标') {
@@ -259,6 +269,18 @@ export class Func311 implements IFuncOrigin {
 				}
 			}
 			return false;
+		}
+		if (thisScript.oper({
+			name: '红标-战斗界面检测',
+			operator: [thisOperator[6]],
+		})) {
+			const now = new Date().getTime();
+			const ajImg = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(thisScript.helperBridge.helper.GetBitmap());
+			const path = `/sdcard//Pictures/批量截图/${now}.png`;
+			files.ensureDir(path);
+			ajImg.saveTo(path);
+			ajImg.recycle();
+			sleep(3000);
 		}
 	}
 }

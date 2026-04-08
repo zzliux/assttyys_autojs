@@ -546,7 +546,7 @@ export class Func690 implements IFuncOrigin {
 				thisScript.global.app_is_open_flag = false;
 				return true;
 			}
-			if (!thisScript.oper({
+			if (thisScript.oper({
 				name: '战斗界面重置计时',
 				operator: [thisOperator[28]]
 			})) {
