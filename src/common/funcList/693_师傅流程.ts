@@ -264,10 +264,10 @@ export class Func693 implements IFuncOrigin {
 			if (result[0].label.includes('币')) {
 				presetStr = thisconf['preset_pair_金币'] as string
 				thisScript.global.timestamp = thisconf.coin as number
-			} else if (result[0].label.includes('经验')) {
+			} else if (result[0].label.includes('经')) {
 				presetStr = thisconf['preset_pair_经验'] as string
 				thisScript.global.timestamp = thisconf.exp as number
-			} else if (result[0].label.includes('历练')) {
+			} else if (result[0].label.includes('历')) {
 				presetStr = thisconf['preset_pair_历练'] as string
 			} else {
 				presetStr = '0, 0'

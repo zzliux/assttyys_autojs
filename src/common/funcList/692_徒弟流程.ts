@@ -672,6 +672,21 @@ export class Func692 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1033, 19, 1128, 53, 1000],
 		]
+	}, { // 55 从御魂退出
+		desc: [1280, 720,
+			[
+				[left, 68, 174, 0x8a78a6],
+				[left, 94, 208, 0x8d7caa],
+				[left, 77, 254, 0x7a6b9a],
+				[left, 85, 202, 0x9480ac],
+				[left, 44, 36, 0xf7eaac],
+				[left, 127, 25, 0xf9eeb7],
+				[left, 119, 29, 0xf7eab4],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 109, 23, 142, 53, 1000],
+		]
 	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -693,7 +708,7 @@ export class Func692 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 692,
 				name: 'cheak',
-				operator: [thisOperator[14]]
+				operator: [thisOperator[14], thisOperator[55]]
 			})) {
 				return true;
 			}
@@ -723,15 +738,14 @@ export class Func692 implements IFuncOrigin {
 				name: 'five',
 				operator: [thisOperator[25]]
 			})) {
-				thisScript.global.tuDi.five = false;
-				thisScript.global.tuDi.join = true;
-				log('结束守护,执行备战')
+				log('结束守护')
+				thisScript.rerun(thisconf.next_scheme);
 				return true;
 			}
 			if (thisScript.oper({
 				id: 692,
 				name: 'five',
-				operator: [thisOperator[1],  thisOperator[17], thisOperator[18], thisOperator[49], thisOperator[19]
+				operator: [thisOperator[16], thisOperator[17], thisOperator[18], thisOperator[49], thisOperator[19]
 					, thisOperator[21], thisOperator[22], thisOperator[26], thisOperator[50]]
 			})) {
 				return true;
@@ -764,85 +778,86 @@ export class Func692 implements IFuncOrigin {
 				return true;
 			}
 		}
-		if (thisScript.global.tuDi.join) {
-			if (thisScript.oper({
-				id: 692,
-				name: 'join',
-				operator: [thisOperator[0], thisOperator[2], thisOperator[3], thisOperator[51]]
-			})) {
-				return true;
-			}
-			if (thisScript.oper({
-				id: 692,
-				name: 'join',
-				operator: [thisOperator[4]]
-			})) {
-				thisScript.global.tuDi.join = false;
-				thisScript.global.tuDi.fight = true;
-				log('结束备战,执行上阵')
-				return true;
-			}
-		}
-		if (thisScript.global.tuDi.frist) {
-			if (thisScript.oper({
-				id: 692,
-				name: 'frist',
-				operator: [{ desc: thisOperator[11].desc }]
-			})) {
-				thisScript.regionSwipe(thisOperator[11].oper[0], thisOperator[11].oper[1], [800, 1000], 1000);
-				thisScript.regionClick([thisOperator[11].oper[2]]);
-				thisScript.global.tuDi.frist = false;
-				thisScript.global.tuDi.fight = true;
-				log('结束上阵,执行协战')
-				return true;
-			}
-			if (thisScript.oper({
-				id: 692,
-				name: 'frist',
-				operator: [thisOperator[10]]
-			})) {
-				return true;
-			}
-		}
-		if (thisScript.global.tuDi.fight) {
-			if (thisScript.oper({
-				id: 692,
-				name: 'fight',
-				operator: [thisOperator[3], thisOperator[4],  thisOperator[6], thisOperator[7]
-					, thisOperator[12], thisOperator[13], thisOperator[26], thisOperator[52]]
-			})) {
-				return true;
-			}
-			if (thisScript.global.tuDi.count == null) {
-				if (thisScript.runTimes['2'] == null) {
-					thisScript.global.tuDi.count = 0;
-					thisScript.runTimes['2'] = 0;
-				} else {
-					thisScript.global.tuDi.count = thisScript.runTimes['2'];
-				}
-			}
-			if (thisScript.runTimes['2'] - Number(thisScript.global.tuDi.count) >= 15) {
-				thisScript.rerun(thisconf.next_scheme);
-				return true;
-			}
-			let curCnt = 0;
-			const maxCount = 3;
-			while (thisScript.oper({
-				name: 'fight',
-				operator: [thisOperator[8]]
-			})) {
-				curCnt++;
-				thisScript.keepScreen(false);
-				if (curCnt >= maxCount) {
-					thisScript.global.tuDi.fight = false;
-					return thisScript.oper({
-						id: 692,
-						name: 'fight',
-						operator: [thisOperator[9]]
-					})
-				}
-			}
-		}
+		// 0 2 3 4 10 51
+		// if (thisScript.global.tuDi.join) {
+		// 	if (thisScript.oper({
+		// 		id: 692,
+		// 		name: 'join',
+		// 		operator: [thisOperator[0], thisOperator[2], thisOperator[3], thisOperator[51]]
+		// 	})) {
+		// 		return true;
+		// 	}
+		// 	if (thisScript.oper({
+		// 		id: 692,
+		// 		name: 'join',
+		// 		operator: [thisOperator[4]]
+		// 	})) {
+		// 		thisScript.global.tuDi.join = false;
+		// 		thisScript.global.tuDi.fight = true;
+		// 		log('结束备战,执行上阵')
+		// 		return true;
+		// 	}
+		// }
+		// if (thisScript.global.tuDi.frist) {
+		// 	if (thisScript.oper({
+		// 		id: 692,
+		// 		name: 'frist',
+		// 		operator: [{ desc: thisOperator[11].desc }]
+		// 	})) {
+		// 		thisScript.regionSwipe(thisOperator[11].oper[0], thisOperator[11].oper[1], [800, 1000], 1000);
+		// 		thisScript.regionClick([thisOperator[11].oper[2]]);
+		// 		thisScript.global.tuDi.frist = false;
+		// 		thisScript.global.tuDi.fight = true;
+		// 		log('结束上阵,执行协战')
+		// 		return true;
+		// 	}
+		// 	if (thisScript.oper({
+		// 		id: 692,
+		// 		name: 'frist',
+		// 		operator: [thisOperator[10]]
+		// 	})) {
+		// 		return true;
+		// 	}
+		// }
+		// if (thisScript.global.tuDi.fight) {
+		// 	if (thisScript.oper({
+		// 		id: 692,
+		// 		name: 'fight',
+		// 		operator: [thisOperator[3], thisOperator[4],  thisOperator[6], thisOperator[7]
+		// 			, thisOperator[12], thisOperator[13], thisOperator[26], thisOperator[52]]
+		// 	})) {
+		// 		return true;
+		// 	}
+		// 	if (thisScript.global.tuDi.count == null) {
+		// 		if (thisScript.runTimes['2'] == null) {
+		// 			thisScript.global.tuDi.count = 0;
+		// 			thisScript.runTimes['2'] = 0;
+		// 		} else {
+		// 			thisScript.global.tuDi.count = thisScript.runTimes['2'];
+		// 		}
+		// 	}
+		// 	if (thisScript.runTimes['2'] - Number(thisScript.global.tuDi.count) >= 15) {
+		// 		thisScript.rerun(thisconf.next_scheme);
+		// 		return true;
+		// 	}
+		// 	let curCnt = 0;
+		// 	const maxCount = 3;
+		// 	while (thisScript.oper({
+		// 		name: 'fight',
+		// 		operator: [thisOperator[8]]
+		// 	})) {
+		// 		curCnt++;
+		// 		thisScript.keepScreen(false);
+		// 		if (curCnt >= maxCount) {
+		// 			thisScript.global.tuDi.fight = false;
+		// 			return thisScript.oper({
+		// 				id: 692,
+		// 				name: 'fight',
+		// 				operator: [thisOperator[9]]
+		// 			})
+		// 		}
+		// 	}
+		// }
 		if (thisScript.global.tuDi.over) {
 			if (thisScript.oper({
 				id: 692,

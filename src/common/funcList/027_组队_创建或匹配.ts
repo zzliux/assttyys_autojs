@@ -284,7 +284,6 @@ export class Func027 implements IFuncOrigin {
 			thisScript.keepScreen();
 			if (curCnt >= maxCount) {
 				thisScript.regionClick([thisOperator[8].oper[0]]);
-				thisScript.doPush(thisScript, { text: '次数已用尽', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 				thisScript.superGlobal.next_scheme_name = thisConf.next_scheme as string;
 				thisScript.rerun('关闭BUFF');
 				sleep(2000);

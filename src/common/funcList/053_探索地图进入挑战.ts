@@ -7,7 +7,7 @@ const right = 2;
 export class Func053 implements IFuncOrigin {
 	id = 53;
 	name = '探索地图进入挑战';
-	desc = '从探索地图进入御魂、御灵等个人挑战界面，注意，仅进入挑战界面，挑战层数请自行';
+	desc = '从探索地图进入御魂、御灵等个人挑战界面，注意，仅进入挑战界面，挑战层数请自选';
 	config = [{
 		desc: '配置',
 		config: [{
@@ -16,12 +16,6 @@ export class Func053 implements IFuncOrigin {
 			type: 'list',
 			data: ['御魂-八岐大蛇', '御魂-业原火', '御魂-日轮之陨', '御魂-永生之海', '御灵', '觉醒-火麒麟', '觉醒-风麒麟', '觉醒-水麒麟', '觉醒-雷麒麟'],
 			default: '御魂-八岐大蛇',
-		}, {
-			name: 'sneak_level',
-			desc: '御魂层数',
-			type: 'list',
-			data: ['魂十', '魂土', '魂王', '魂十三'],
-			default: '魂十',
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{
@@ -179,29 +173,29 @@ export class Func053 implements IFuncOrigin {
 				desc: thisOperator[1].desc,
 				oper: [thisOperator[1].oper[0]]
 			}]
-			if (thisScript.global.sneak_level_open && thisScript.oper({
-				id: 52,
-				name: '八岐大蛇_滑动',
-				operator: [{ desc: thisOperator[8].desc }]
-			})) {
-				thisScript.regionBezierSwipe(thisOperator[8].oper[0], thisOperator[8].oper[1], [400, 500], 1500);
-				switch (thisconf.sneak_level) {
-					case '魂王':
-						thisScript.regionClick([thisOperator[8].oper[2]]);
-						break;
-					case '魂土':
-						thisScript.regionClick([thisOperator[8].oper[3]]);
-						break;
-					case '魂十':
-						thisScript.regionClick([thisOperator[8].oper[4]]);
-						break;
-					case '魂十三':
-						thisScript.regionClick([thisOperator[8].oper[5]]);
-						break;
-				}
-				thisScript.global.sneak_level_open = false;
-				return true;
-			}
+			// if (thisScript.global.sneak_level_open && thisScript.oper({
+			// 	id: 52,
+			// 	name: '八岐大蛇_滑动',
+			// 	operator: [{ desc: thisOperator[8].desc }]
+			// })) {
+			// 	thisScript.regionBezierSwipe(thisOperator[8].oper[0], thisOperator[8].oper[1], [400, 500], 1500);
+			// 	switch (thisconf.sneak_level) {
+			// 		case '魂王':
+			// 			thisScript.regionClick([thisOperator[8].oper[2]]);
+			// 			break;
+			// 		case '魂土':
+			// 			thisScript.regionClick([thisOperator[8].oper[3]]);
+			// 			break;
+			// 		case '魂十':
+			// 			thisScript.regionClick([thisOperator[8].oper[4]]);
+			// 			break;
+			// 		case '魂十三':
+			// 			thisScript.regionClick([thisOperator[8].oper[5]]);
+			// 			break;
+			// 	}
+			// 	thisScript.global.sneak_level_open = false;
+			// 	return true;
+			// }
 		} else if ('御魂-业原火' === thisconf.challenge_type) {
 			operator = [{
 				desc: thisOperator[0].desc,

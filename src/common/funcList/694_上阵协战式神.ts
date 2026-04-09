@@ -16,7 +16,7 @@ export class Func694 implements IFuncOrigin {
 				[center, 610, 536, 0xeba1ae],
 				[center, 608, 619, 0xf95e89],
 				[right, 714, 601, 0xf95e89],
-				[right, 714, 547, 0xf45c86],
+				[right, 706, 674, 0xfa5c8a],
 			]
 		],
 		oper: [
@@ -43,6 +43,48 @@ export class Func694 implements IFuncOrigin {
 			[center, 1280, 720, 23, 19, 49, 45, 1000],
 			[center, 1280, 720, 680, 397, 802, 448, 1000],
 			[center, 1280, 720, 680, 397, 802, 448, 1000],
+		]
+	}, { // 3 上阵
+		desc: [1280, 720,
+			[
+				[left, 266, 658, 0xf95e89],
+				[center, 334, 675, 0xf95e89],
+				[center, 372, 643, 0xee5a83],
+				[left, 297, 512, 0xfa5c88],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 297, 561, 337, 601, 1000],
+			[center, 1280, 720, 387, 285, 429, 321, 1000],
+			[center, 1280, 720, 1135, 557, 1217, 611, 1000],
+		]
+	}, { // 4 御魂九层
+		desc: [1280, 720,
+			[
+				[left, 220, 443, 0xcfb88e],
+				[center, 424, 443, 0xcfb88e],
+				[left, 277, 490, 0xbaa887],
+				[center, 387, 480, 0xccb489],
+				[right, 1002, 608, 0xdfd3bc],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 215, 335, 435, 372, 1000],
+		]
+	}, { // 5 购买体力
+		desc: [1280, 720,
+			[
+				[center, 363, 205, 0xcec4bb],
+				[right, 875, 219, 0xd2c9c3],
+				[center, 336, 496, 0xa3999e],
+				[right, 919, 473, 0xcfc6be],
+				[center, 586, 475, 0xf3b25e],
+				[right, 701, 476, 0xf3b25e],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 568, 454, 712, 485, 2000],
+			[center, 1280, 720, 581, 672, 724, 699, 1000],
 		]
 	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -80,10 +122,27 @@ export class Func694 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 692,
 				name: 'frist',
+				operator: [{ desc: thisOperator[3].desc }]
+			})) {
+				thisScript.regionSwipe(thisOperator[3].oper[0], thisOperator[3].oper[1], [800, 1000], 1000);
+				thisScript.regionClick([thisOperator[3].oper[2]]);
+				thisScript.global.frist = false;
+				return true;
+			}
+			if (thisScript.oper({
+				id: 692,
+				name: 'frist',
 				operator: [thisOperator[1]]
 			})) {
 				return true;
 			}
+		}
+		if (thisScript.oper({
+			id: 692,
+			name: '特殊操作',
+			operator: [thisOperator[4], thisOperator[5]]
+		})) {
+			return true;
 		}
 		return false;
 	}

@@ -660,6 +660,69 @@ export class Func691 implements IFuncOrigin {
 			[center, 1280, 720, 23, 24, 60, 56, 1000],
 			[center, 1280, 720, 23, 24, 60, 56, 1000],
 		]
+	}, { // 50 好友
+		desc: [1280, 720,
+			[
+				[right, 878, 618, 0xef98a3],
+				[right, 928, 632, 0xdcb8a9],
+				[right, 889, 655, 0x6e3089],
+				[right, 920, 650, 0x9eddf3],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 882, 625, 930, 662, 1000],
+		]
+	}, { // 51 协战
+		desc: [1280, 720,
+			[
+				[right, 1218, 208, 0xb9661a],
+				[right, 1208, 331, 0x5e3d29],
+				[right, 1210, 455, 0x5c3b27],
+				[right, 1207, 579, 0x5e3d29],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1210, 540, 1236, 615, 1000],
+		]
+	}, { // 52 出战
+		desc: [1280, 720,
+			[
+				[center, 495, 388, 0xb49778],
+				[right, 647, 391, 0xb59779],
+				[center, 503, 481, 0xa98d6e],
+				[center, 623, 488, 0xa68a6b],
+				[right, 658, 475, 0xcab793],
+				[center, 486, 197, 0x4a302d],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 505, 384, 636, 464, 1000],
+		]
+	}, { // 53 暗色协战
+		desc: [1280, 720,
+			[
+				[right, 1208, 213, 0x6d4019],
+				[right, 1214, 329, 0x492f1f],
+				[right, 1212, 449, 0x462e1f],
+				[right, 1210, 583, 0x452c1d],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1208, 534, 1237, 619, 1000],
+		]
+	}, { // 54 关闭好友
+		desc: [1280, 720,
+			[
+				[center, 497, 389, 0xb49779],
+				[right, 648, 394, 0xb39678],
+				[center, 611, 374, 0x0181a7],
+				[center, 619, 378, 0xfffcf5],
+				[center, 613, 488, 0xa38868],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1158, 94, 1196, 132, 1000],
+		]
 	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -671,6 +734,7 @@ export class Func691 implements IFuncOrigin {
 				'jingYan': false,
 				'closePB': false, // 关闭皮肤试用
 				'getBird': false,
+				'join': false,
 			};
 		}
 		if (thisScript.global.newAccount.create) {
@@ -717,7 +781,6 @@ export class Func691 implements IFuncOrigin {
 						name[0].points[0].x + 40, name[0].points[0].y - 60, 1000,
 					]
 					thisScript.regionClick([toClickRegion]);
-					thisScript.regionClick([thisOperator[0].oper[2]]);
 				} else {
 					thisScript.regionClick([thisOperator[0].oper[0]]);
 				}
@@ -886,13 +949,30 @@ export class Func691 implements IFuncOrigin {
 				return true;
 			}
 		}
+		if (thisScript.global.newAccount.join) {
+			if (thisScript.oper({
+				id: 691,
+				name: '残废组队',
+				operator: [thisOperator[50], thisOperator[51], thisOperator[52], thisOperator[53]]
+			})) {
+				return true;
+			}
+			if (thisScript.oper({
+				id: 692,
+				name: 'join',
+				operator: [thisOperator[54]]
+			})) {
+				thisScript.rerun(thisconf.next_scheme);
+				sleep(1000);
+				return true;
+			}
+		}
 		if (thisScript.oper({
 			id: 691,
 			name: '已有珍旅居',
 			operator: [thisOperator[40]]
 		})) {
-			thisScript.rerun(thisconf.next_scheme);
-			sleep(3000);
+			thisScript.global.newAccount.join = true;
 			return true;
 		}
 		if (thisScript.oper({
