@@ -969,6 +969,14 @@ export class Script {
 		randomSleep = randomSleep || this.scheme.commonConfig.afterClickDelayRandom || 0
 		this.helperBridge.regionBezierSwipe(operSrc, operDest, duration, baseSleep, randomSleep, type)
 	}
+
+	parseName(input: string): string[] {
+		if (!input) return [];
+		return input
+			.split(/[,，]/)
+			.map(name => name.trim())
+			.filter(Boolean);
+	}
 }
 
 export const script = new Script();

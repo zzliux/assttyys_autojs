@@ -979,7 +979,7 @@ export class Func1102 implements IFuncOrigin {
 					for (let i = 0; i < thisScript.global.shop_find.length; i++) {
 						point = thisScript.findMultiColor(thisScript.global.shop_find[i]);
 						if (point) {
-							thisScript.regionClick([[point.x - 15, point.y - 15, point.x + 15, point.y + 15, 200]]);
+							thisScript.regionClick([[point.x - 15, point.y - 15, point.x + 15, point.y + 15, 1000]]);
 							thisScript.global.shop_find.splice(i, 1);
 							i--;
 							return true;

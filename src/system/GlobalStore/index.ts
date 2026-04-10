@@ -115,7 +115,11 @@ export type globalRootType = {
 	zhenLvJu: boolean, // 珍旅居
 	shenKan: boolean, // 神龛
 	zhenShe: number, // 真蛇
-	sneak_level_open: boolean, // 选择层数
+	miWenshare: boolean, // 秘闻分享
+	diGuishare: boolean, // 地鬼分享
+	shopShare: boolean, // 神秘商店分享
+	shopSharenName: string[] | null, // 商店分享昵称
+	// sneak_level_open: boolean, // 选择层数
 	day_chouKa: boolean, // 每日抽卡
 	shiHe_jingYan: boolean, // 食盒经验领取上限
 	xianShiFengMo: number,
@@ -251,7 +255,11 @@ export const globalRoot: globalRootType = {
 	zhenLvJu: true,
 	shenKan: true,
 	zhenShe: 2,
-	sneak_level_open: true,
+	miWenshare: true,
+	diGuishare: false,
+	shopShare: null,
+	shopSharenName: null,
+	// sneak_level_open: true,
 	day_chouKa: true,
 	qiling_shop: true,
 	shiHe_jingYan: false,

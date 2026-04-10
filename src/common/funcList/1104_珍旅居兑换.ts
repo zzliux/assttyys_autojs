@@ -211,7 +211,7 @@ export class Func1104 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[left, 305, 450, 0x939c9c],
+				[center, 332, 481, 0x414454],
 				[left, 283, 425, 0xb5b6b4],
 				[left, 305, 431, 0xf3e2c1],
 				[left, 287, 480, 0xf17e28],
