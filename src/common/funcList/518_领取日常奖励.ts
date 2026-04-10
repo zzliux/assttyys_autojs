@@ -605,35 +605,6 @@ export class Func518 implements IFuncOrigin {
 				'godlike': true,
 			};
 		}
-		if (thisScript.global.function_Switch.godlike) {
-			const packageName = currentPackage();
-			if (app.getAppName('com.netease.gl') && packageName !== 'com.netease.gl') {
-				sleep(1000);
-				console.log('正在启动应用:com.netease.gl');
-				device.wakeUpIfNeeded()
-				app.launchPackage('com.netease.gl');
-				return true;
-			} else if (packageName === 'com.netease.gl') {
-				if (text('福利中心').findOnce()) {
-					log('点击福利中心')
-					const oper = [
-						text('福利中心').findOnce().bounds().centerX(),
-						text('福利中心').findOnce().bounds().centerY(),
-						text('福利中心').findOnce().bounds().centerX() + 5,
-						text('福利中心').findOnce().bounds().centerY() + 5,
-						5000
-					]
-					thisScript.regionClick([oper]);
-					thisScript.stopRelatedApp('com.netease.gl');
-					thisScript.launchRelatedApp();
-					thisScript.global.function_Switch.godlike = false;
-					return true;
-				}
-			} else {
-				thisScript.myToast('未安装大神,不领取大神奖励');
-				thisScript.global.function_Switch.godlike = false;
-			}
-		}
 		if (thisScript.oper({
 			id: 518,
 			name: '杂项',
@@ -811,6 +782,38 @@ export class Func518 implements IFuncOrigin {
 					thisScript.global.function_Switch.flower = false;
 					return true;
 				}
+			}
+		}
+		if (thisScript.global.function_Switch.godlike === true &&
+			Object.keys(thisScript.global.function_Switch)
+				.filter(k => k !== 'godlike')
+				.every(k => thisScript.global.function_Switch[k] === false)) {
+			const packageName = currentPackage();
+			if (app.getAppName('com.netease.gl') && packageName !== 'com.netease.gl') {
+				sleep(1000);
+				console.log('正在启动应用:com.netease.gl');
+				device.wakeUpIfNeeded()
+				app.launchPackage('com.netease.gl');
+				return true;
+			} else if (packageName === 'com.netease.gl') {
+				if (text('福利中心').findOnce()) {
+					log('点击福利中心')
+					const oper = [
+						text('福利中心').findOnce().bounds().centerX(),
+						text('福利中心').findOnce().bounds().centerY(),
+						text('福利中心').findOnce().bounds().centerX() + 5,
+						text('福利中心').findOnce().bounds().centerY() + 5,
+						5000
+					]
+					thisScript.regionClick([oper]);
+					thisScript.stopRelatedApp('com.netease.gl');
+					thisScript.launchRelatedApp();
+					thisScript.global.function_Switch.godlike = false;
+					return true;
+				}
+			} else {
+				thisScript.myToast('未安装大神,不领取大神奖励');
+				thisScript.global.function_Switch.godlike = false;
 			}
 		}
 		if (thisScript.oper({
