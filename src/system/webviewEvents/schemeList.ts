@@ -48,8 +48,11 @@ export default function webviewSchemeList() {
 			scheme.groupNames.forEach(groupName => {
 				if (!toSaveMap[groupName]) {
 					toSaveMap[groupName] = {
-						groupName, hidden: false, schemeNames: []
+						groupName, hidden: scheme.hidden || false, schemeNames: []
 					};
+				} else if (scheme.hidden) {
+					// 如果已有分组且当前 scheme 要求隐藏，更新为隐藏
+					toSaveMap[groupName].hidden = true;
 				}
 				if (!toSaveMap[groupName].schemeNames.includes(scheme.schemeName)) {
 					toSaveMap[groupName].schemeNames.push(scheme.schemeName);
@@ -337,7 +340,7 @@ const updateGroupSchemeNamesBySchemeUpdate = (option: {
 			const groupSchemeName = groupSchemeNames.find(groupSchemeName => groupSchemeName.groupName === groupName);
 			if (!groupSchemeName) {
 				groupSchemeNames.push({
-					groupName, hidden: false, schemeNames: [newScheme.schemeName]
+					groupName, hidden: newScheme.hidden || false, schemeNames: [newScheme.schemeName]
 				});
 			} else {
 				groupSchemeName.schemeNames.push(newScheme.schemeName);
@@ -353,7 +356,7 @@ const updateGroupSchemeNamesBySchemeUpdate = (option: {
 			const groupSchemeName = groupSchemeNames.find(groupSchemeName => groupSchemeName.groupName === groupName);
 			if (!groupSchemeName) {
 				groupSchemeNames.push({
-					groupName, hidden: false, schemeNames: [newScheme.schemeName]
+					groupName, hidden: newScheme.hidden || false, schemeNames: [newScheme.schemeName]
 				});
 			} else {
 				groupSchemeName.schemeNames.push(newScheme.schemeName);
