@@ -2947,6 +2947,73 @@ const multiFindColors: IMultiFindColorsOrigin = {
 			]
 		]],
 	},
+	'百鬼棋局_荐': {
+		region: [left, 1280, 720, 347, 57, 1268, 112],
+		desc: [[
+			1280, 720,
+			[
+				[right, 674, 76, 0xffbe59],
+				[right, 691, 85, 0xf8bd53],
+				[right, 691, 73, 0xffc05b],
+				[right, 673, 71, 0xffbd5a],
+			]
+		], [1280, 720,
+			[
+				[right, 1234, 72, 0xffb952],
+				[right, 1233, 77, 0xffba52],
+				[right, 1249, 86, 0xf7b24a],
+				[right, 1250, 74, 0xffbd52],
+				[right, 1252, 70, 0xffba52],
+			]
+		],],
+	},
+	'百鬼棋局_御魂': {
+		region: [left, 1280, 720, 184, 647, 717, 719],
+		desc: [[
+			1280, 720,
+			[
+				[left, 202, 667, 0xd6cfc6],
+				[left, 213, 687, 0xf4f3ec],
+				[left, 228, 687, 0xf4f3ec],
+				[left, 251, 687, 0xeff3ec],
+				[left, 267, 687, 0xf4f3ec],
+				[left, 203, 675, 0xd6cfc6],
+			]
+		]]
+	},
+	'百鬼棋局_一星': {
+		region: [left, 1280, 720, 209, 543, 1141, 602],
+		desc: [[
+			1280, 720,
+			[
+				[center, 323, 559, 0xd58b68],
+				[left, 318, 564, 0x311810],
+				[left, 318, 558, 0x2e1510],
+				[center, 329, 563, 0x341b19],
+				[left, 313, 550, 0x0d0c05],
+			]
+		]]
+	},
+	'百鬼棋局_手牌荐': {
+		region: [left, 1280, 720, 0, 0, 0, 0],
+		desc: [[
+			1280, 720,
+			[
+				[center, 386, 587, 0xfbb650],
+				[center, 401, 587, 0xfdb951],
+				[center, 401, 600, 0xe8ae45],
+				[center, 386, 592, 0xfab650],
+			]
+		], [1280, 720,
+			[
+				[right, 1234, 72, 0xffb952],
+				[right, 1233, 77, 0xffba52],
+				[right, 1249, 86, 0xf7b24a],
+				[right, 1250, 74, 0xffbd52],
+				[right, 1252, 70, 0xffba52],
+			]
+		],],
+	},
 	// '': {
 	// 	region: [left, 1280, 720, 0, 0, 1280, 720],
 	// 	desc: [[
@@ -2954,7 +3021,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
 	// 		[
 	//
 	// 		]
-	// 	]],
+	// 	],]
 	// },
 }
 export default multiFindColors;

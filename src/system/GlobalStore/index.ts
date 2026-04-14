@@ -119,7 +119,7 @@ export type globalRootType = {
 	diGuishare: boolean, // 地鬼分享
 	shopShare: boolean, // 神秘商店分享
 	shopSharenName: string[] | null, // 商店分享昵称
-	// sneak_level_open: boolean, // 选择层数
+	sneak_level_open: boolean, // 选择层数
 	day_chouKa: boolean, // 每日抽卡
 	shiHe_jingYan: boolean, // 食盒经验领取上限
 	xianShiFengMo: number,
@@ -139,6 +139,8 @@ export type globalRootType = {
 	tuDi: Record<string, boolean | number>, // 徒弟
 	newAccount: Record<string, boolean | number>, // 新号
 	frist: boolean, // 上阵式神
+	chess: Record<string, boolean | number>,  // 下棋局数判定
+	chessShop: boolean, // 下棋商店
 }
 
 export const globalRoot: globalRootType = {
@@ -259,7 +261,7 @@ export const globalRoot: globalRootType = {
 	diGuishare: false,
 	shopShare: null,
 	shopSharenName: null,
-	// sneak_level_open: true,
+	sneak_level_open: true,
 	day_chouKa: true,
 	qiling_shop: true,
 	shiHe_jingYan: false,
@@ -282,6 +284,8 @@ export const globalRoot: globalRootType = {
 	tuDi: null,
 	newAccount: null,
 	frist: true,
+	chess: null,
+	chessShop: true,
 }
 export type superGlobalRootType = {
 	liao_activity_Switch: Record<string, boolean>, // 寮活动记录

@@ -2,6 +2,7 @@ import { Script } from '@/system/script';
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 // const normal = -1; //定义常量
 const left = 0;
+const center = 1;
 const right = 2;
 
 export class Func006 implements IFuncOrigin {
@@ -53,14 +54,28 @@ export class Func006 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1108, 593, 1204, 688, 2000]
 		]
-	}];
+	}, { // 3 麒麟
+		desc: [1280, 720,
+			[
+				[right, 1174, 43, 0xd6b289],
+				[right, 1234, 42, 0xd3ae84],
+				[right, 990, 604, 0xe0d2b9],
+				[right, 1153, 602, 0xe7dbc3],
+				[right, 1154, 603, 0xe7dbc4],
+				[right, 1180, 648, 0xe2d6c1],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1108, 601, 1206, 674, 1000],
+		]
+	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		let curCnt = 0;
 		const maxCount = 3;
 		while (thisScript.oper({
 			id: 6,
 			name: '御魂/御灵挑战',
-			operator: [thisOperator[0], thisOperator[1], thisOperator[2]]
+			operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[3]]
 		}, 0)) {
 			curCnt++;
 			thisScript.keepScreen(false);

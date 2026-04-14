@@ -24,21 +24,22 @@ export class Func313 implements IFuncOrigin {
 			default: false
 		}, {
 			name: 'team',
-			desc: '是否组队并且为组队队长（队员只需开启《组队乘客》方案）',
-			type: 'switch',
-			default: false
+			desc: '选择攻打方式',
+			type: 'list',
+			data: ['单人', '队长', '队员'],
+			default: '单人'
 		}]
 	}]
 
 	operator: IFuncOperatorOrigin[] = [{ // 0 探索地图进入契灵之境
 		desc: '探索地图界面',
 		oper: [
-			[center, 1280, 720, 940, 648, 996, 683, 1000],
+			[center, 1280, 720, 940, 648, 996, 683, 3000],
 		]
 	}, { // 1 探索地图界面_含时空秘境进入契灵之境
 		desc: '探索地图界面_含时空秘境',
 		oper: [
-			[left, 1280, 720, 1132, 641, 1198, 696, 1000],
+			[left, 1280, 720, 1132, 641, 1198, 696, 3000],
 		]
 	}, { // 2 逢魔之原切换平安京
 		desc: [1280, 720,
@@ -255,58 +256,60 @@ export class Func313 implements IFuncOrigin {
 				return true;
 			}
 		}
-		switch ((thisconf.type as string)) {
-			case '镇墓兽':
-			case '针女':
-				if (thisScript.oper({
-					id: 313,
-					name: '镇墓兽||针女',
-					operator: [{ desc: thisOperator[3].desc, oper: [thisOperator[3].oper[0]] }]
-				})) {
-					return true;
-				}
-				break;
-			case '火灵':
-			case '薙魂':
-				if (thisScript.oper({
-					id: 313,
-					name: '火灵||薙魂',
-					operator: [{ desc: thisOperator[3].desc, oper: [thisOperator[3].oper[1]] }]
-				})) {
-					return true;
-				}
-				break;
-			case '茨球':
-			case '月魔兔':
-				if (thisScript.oper({
-					id: 313,
-					name: '茨球||月魔兔',
-					operator: [{ desc: thisOperator[3].desc, oper: [thisOperator[3].oper[2]] }]
-				})) {
-					return true;
-				}
-				break;
-			case '小黑':
-			case '狐火':
-				if (thisScript.oper({
-					id: 313,
-					name: '小黑||狐火',
-					operator: [{ desc: thisOperator[3].desc, oper: [thisOperator[3].oper[3]] }]
-				})) {
-					return true;
-				}
-				break;
+		if (thisconf.team !== '队员') {
+			switch ((thisconf.type as string)) {
+				case '镇墓兽':
+				case '针女':
+					if (thisScript.oper({
+						id: 313,
+						name: '镇墓兽||针女',
+						operator: [{ desc: thisOperator[3].desc, oper: [thisOperator[3].oper[0]] }]
+					})) {
+						return true;
+					}
+					break;
+				case '火灵':
+				case '薙魂':
+					if (thisScript.oper({
+						id: 313,
+						name: '火灵||薙魂',
+						operator: [{ desc: thisOperator[3].desc, oper: [thisOperator[3].oper[1]] }]
+					})) {
+						return true;
+					}
+					break;
+				case '茨球':
+				case '月魔兔':
+					if (thisScript.oper({
+						id: 313,
+						name: '茨球||月魔兔',
+						operator: [{ desc: thisOperator[3].desc, oper: [thisOperator[3].oper[2]] }]
+					})) {
+						return true;
+					}
+					break;
+				case '小黑':
+				case '狐火':
+					if (thisScript.oper({
+						id: 313,
+						name: '小黑||狐火',
+						operator: [{ desc: thisOperator[3].desc, oper: [thisOperator[3].oper[3]] }]
+					})) {
+						return true;
+					}
+					break;
+			}
 		}
 		if (thisScript.oper({
 			id: 313,
 			name: '组队/单人',
 			operator: [{ desc: thisOperator[5].desc }]
 		})) {
-			if (thisconf.team) {
+			if (thisconf.team === '队长') {
 				thisScript.regionClick([thisOperator[5].oper[1]]);
 				thisScript.global.team_up_Frist = true;
 				return true;
-			} else {
+			} else if (thisconf.team === '单人') {
 				thisScript.regionClick([thisOperator[5].oper[0]]);
 				return true;
 			}

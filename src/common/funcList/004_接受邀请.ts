@@ -84,9 +84,29 @@ export class Func004 implements IFuncOrigin {
 		oper: [
 
 		]
-	}];
+	}, { // 4 组队有探索奖励
+		desc: [1280, 720,
+			[
+				[left, 11, 132, 0x49352f],
+				[left, 61, 132, 0x49352f],
+				[left, 119, 132, 0x49352f],
+				[left, 19, 159, 0xe8d8bc],
+			]
+		],
+	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['4'];
+		if (thisScript.oper({
+			name: '组队界面奖励检测',
+			operator: [{ desc: thisOperator[4].desc }]
+		})) {
+			const point = thisScript.findMultiColor('探索_宝箱');
+			if (point) {
+				const oper = [[point.x, point.y, point.x + thisOperator[2].oper[0][2], point.y + thisOperator[2].oper[0][3], thisOperator[2].oper[0][4]]];
+				thisScript.regionClick(oper);
+				return true;
+			}
+		}
 		if (thisConf && thisConf.teammate_exit && thisScript.oper({
 			id: 4,
 			name: '队长退出',

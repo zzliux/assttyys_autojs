@@ -281,7 +281,7 @@ export class Func002 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1110, 362, 1222, 493, 1000],
+			[center, 1280, 720, 830, 638, 1044, 701, 1000],
 		]
 	}, { // 26 斗技退出失败 阴阳师皮肤遮挡
 		desc: [1280, 720,
@@ -294,7 +294,7 @@ export class Func002 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1110, 362, 1222, 493, 1000],
+			[center, 1280, 720, 830, 638, 1044, 701, 1000],
 		]
 	}, { // 27  左下统计图标
 		desc: [1280, 720,

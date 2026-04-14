@@ -33,7 +33,7 @@ export class Func603 implements IFuncOrigin {
 				name: 'sneak',
 				desc: '蛇',
 				type: 'number',
-				default: '10',
+				default: '0',
 			}],
 		},
 		{

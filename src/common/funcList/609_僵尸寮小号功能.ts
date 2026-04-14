@@ -142,7 +142,7 @@ export class Func609 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 236, 478, 264, 492, 1000],
+			[center, 1280, 720, 248, 490, 253, 495, 1000],
 		]
 	}, { // 7 进入阴阳寮
 		desc: '页面是否为庭院_菜单已展开_只支持默认庭院皮肤与默认装饰',
@@ -1079,17 +1079,29 @@ export class Func609 implements IFuncOrigin {
 	}, { // 77 领取结界卡奖励
 		desc: [1280, 720,
 			[
-				[right, 916, 149, 0x12100c],
-				[right, 914, 163, 0xcfa118],
-				[right, 910, 182, 0xb08223],
-				[right, 909, 200, 0x12100c],
-				[right, 947, 178, 0x110f0b],
-				[right, 935, 180, 0x5d3e16],
+				[right, 883, 177, 0x685336],
+				[right, 888, 177, 0x120f0a],
+				[right, 916, 147, 0x13100c],
+				[right, 953, 180, 0x4e3a28],
+				[right, 948, 178, 0x100f0a],
 			]
 		],
 		oper: [
 			[center, 1280, 720, 899, 158, 942, 202, 1000],
 			[center, 1280, 720, 898, 301, 915, 361, 1000],
+		]
+	}, { // 78 拓展包关闭
+		desc: [1280, 720,
+			[
+				[left, 164, 100, 0x948670],
+				[center, 533, 583, 0xf4b25d],
+				[right, 743, 591, 0xf4b25d],
+				[right, 1095, 95, 0x8f8068],
+				[right, 1183, 82, 0xe7d6ce],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1168, 72, 1203, 95, 1000],
 		]
 	},
 	];
@@ -1118,7 +1130,7 @@ export class Func609 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 609,
 			name: '庭院偏移',
-			operator: [thisOperator[59], thisOperator[61], thisOperator[64]]
+			operator: [thisOperator[59], thisOperator[61], thisOperator[64], thisOperator[78]]
 		})) {
 			return true
 		}
@@ -1584,7 +1596,7 @@ export class Func609 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 609,
 			name: '关闭',
-			operator: [thisOperator[35], thisOperator[43], thisOperator[66]]
+			operator: [thisOperator[35], thisOperator[43], thisOperator[66], thisOperator[72]]
 		})) {
 			return true
 		}

@@ -9,7 +9,7 @@ const right = 2;
 export class Func306 implements IFuncOrigin {
 	id = 306;
 	name = '组队内邀请好友';
-	desc = '组队界面邀请好友'
+	desc = '组队界面邀请好友(排在‘005挑战’前面)'
 	config = [{
 		desc: '',
 		config: [{
@@ -153,22 +153,20 @@ export class Func306 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 473, 90, 564, 137, 1000],
+			[center, 1280, 720, 364, 104, 447, 135, 1000],
 			[center, 1280, 720, 592, 90, 680, 136, 1000],
 		]
 	}, { // 9 队友详细
-		desc: [
-			1280, 720,
+		desc: [1280, 720,
 			[
-				[center, 859, 561, 0xea7d67],
-				[center, 688, 566, 0xdd705d],
-				[right, 1059, 622, 0x48322e],
-				[right, 1041, 213, 0x412d25],
-				[right, 1044, 278, 0xc6b4a3],
+				[right, 1144, 564, 0x3c312d],
+				[right, 1152, 572, 0xcaac85],
+				[right, 1153, 583, 0xbda079],
+				[right, 1140, 584, 0xbea07a],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 347, 544, 471, 612, 1000],
+			[center, 1280, 720, 1188, 186, 1260, 287, 1000],
 		]
 	}, { // 10 永生之海
 		desc: [
@@ -232,6 +230,19 @@ export class Func306 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 396, 278, 447, 317, 1000],
+		]
+	}, { // 15 真蛇
+		desc: [1280, 720,
+			[
+				[center, 392, 110, 0x272420],
+				[center, 533, 109, 0x272420],
+				[right, 892, 124, 0x272420],
+				[right, 731, 119, 0x272420],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 598, 96, 683, 132, 1000],
+			[center, 1280, 720, 483, 97, 560, 131, 1000],
 		]
 	},
 	]
@@ -349,15 +360,13 @@ export class Func306 implements IFuncOrigin {
 				}) && thisConf.selectArea == '跨区') {
 					thisScript.regionClick(thisOperator[6].oper);
 					thisScript.keepScreen();
-				}
-				if (thisScript.oper({
+				} else if (thisScript.oper({
 					name: '组队类型_御魂',
 					operator: [{ desc: thisOperator[7].desc }]
 				}) && thisConf.selectArea == '跨区') {
 					thisScript.regionClick([thisOperator[7].oper[0]]);
 					thisScript.keepScreen();
-				}
-				if (thisScript.oper({
+				} else if (thisScript.oper({
 					name: '组队类型_探索',
 					operator: [{ desc: thisOperator[8].desc }]
 				})) {
@@ -366,6 +375,18 @@ export class Func306 implements IFuncOrigin {
 					} else {
 						thisScript.regionClick([thisOperator[8].oper[1]]);
 					}
+					thisScript.keepScreen();
+				} else if (thisScript.oper({
+					name: '组队类型_真蛇',
+					operator: [{ desc: thisOperator[15].desc }]
+				}) && thisConf.selectArea == '跨区') {
+					thisScript.regionClick([thisOperator[15].oper[0]]);
+					thisScript.keepScreen();
+				} else if (thisScript.oper({
+					name: '组队类型_真蛇',
+					operator: [{ desc: thisOperator[15].desc }]
+				}) && thisConf.selectArea == '好友') {
+					thisScript.regionClick([thisOperator[15].oper[1]]);
 					thisScript.keepScreen();
 				}
 			}
