@@ -363,7 +363,22 @@ export class Func002 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 475, 483, 579, 523, 1000],
 		]
-	}];
+	}, { // 32 自动接受邀请_确认弹窗
+		desc: [1280, 720,
+			[
+				[center, 615, 224, 0x6b4939],
+				[right, 857, 224, 0x6a4838],
+				[center, 587, 296, 0xa83005],
+				[center, 587, 364, 0x725f4d],
+				[center, 572, 455, 0xe16a52],
+				[right, 738, 454, 0xf4b660],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 578, 356, 600, 381, 1000],
+			[center, 1280, 720, 688, 409, 836, 455, 1000],
+		]
+	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['2'];
 		if (thisconf && thisconf.rechallenge && thisScript.oper({
@@ -400,6 +415,7 @@ export class Func002 implements IFuncOrigin {
 			id: 2,
 			name: '退出结算',
 			operator: [
+				thisOperator[32],
 				thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[3],
 				thisOperator[4], thisOperator[5], thisOperator[6], thisOperator[7],
 				thisOperator[8], thisOperator[9], thisOperator[10], thisOperator[11],
@@ -407,8 +423,7 @@ export class Func002 implements IFuncOrigin {
 				thisOperator[16], thisOperator[17], thisOperator[22], thisOperator[18], // 22要放18前面
 				thisOperator[21], thisOperator[23], thisOperator[24], thisOperator[25],
 				thisOperator[26], thisOperator[27], thisOperator[28], thisOperator[29],
-				thisOperator[30], thisOperator[31],
-			]
+				thisOperator[30], thisOperator[31],]
 		});
 	}
 }
