@@ -31,13 +31,11 @@ export class Func690 implements IFuncOrigin {
 			desc: '游戏区服',
 			type: 'text',
 			default: '',
-			value: '',
 		}, {
 			name: 'name',
 			desc: '游戏昵称',
 			type: 'text',
-			default: '',
-			value: '',
+			default: '60',
 		}, {
 			name: 'scheme_switch_enabled',
 			desc: '是否切换方案(不切换则只运行一次)',
@@ -58,7 +56,6 @@ export class Func690 implements IFuncOrigin {
 			desc: '账号序号(用于同区多账号，账号序号优先级大于账号昵称)',
 			type: 'text',
 			default: 0,
-			value: 0,
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{
@@ -630,7 +627,7 @@ export class Func690 implements IFuncOrigin {
 					]
 					thisScript.regionClick([toClickRegion]);
 					toClickRegion = [
-						name[0].points[0].x + 10, name[0].points[0].y - 80,
+						name[0].points[0].x + 15, name[0].points[0].y - 80,
 						name[0].points[0].x + 40, name[0].points[0].y - 60, 1000,
 					]
 					thisScript.regionClick([toClickRegion]);

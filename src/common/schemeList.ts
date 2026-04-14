@@ -228,21 +228,6 @@ const SchemeList: IScheme[] = [
 			},
 		},
 	},
-	{
-		id: 79,
-		schemeName: '协战十五',
-		groupNames: ['日常'],
-		list: [690, 318, 694, 0, 1, 2, 3, 6, 53, 29, 503],
-		config: {
-			'0': {
-				jspd_enabled_2: true,
-				jspd_times_2: 15,
-				stop_with_launched_app_exit: true,
-			},
-			'53': { challenge_type: '御魂-业原火' },
-			'318': { time: '0.1' },
-		},
-	},
 	// ========== 寮活动 ==========
 	{
 		id: 33,
@@ -558,6 +543,41 @@ const SchemeList: IScheme[] = [
 				'oper_27': false
 			},
 		}
+	},
+	// ========== 小号部分 ==========
+	{
+		id: 111,
+		schemeName: '僵尸寮日常任务',
+		star: true,
+		list: [0, 1, 2, 3, 24, 609, 690, 503],
+		groupNames: ['小号部分'],
+		hidden: true,
+		config: {
+			'0': {
+				jspd_times_longtime_nodo: '1',
+			},
+			'609': {
+				next_scheme: '__关闭应用__'
+			},
+			'690': {
+				scheme_switch_enabled: true,
+				next_scheme: '__不做动作__'
+			}
+		}
+	},
+	{
+		id: 79,
+		schemeName: '协战十五',
+		groupNames: ['小号部分'],
+		list: [690, 694, 0, 1, 2, 3, 6, 53, 29, 503],
+		config: {
+			'0': {
+				jspd_enabled_2: true,
+				jspd_times_2: 15,
+				stop_with_launched_app_exit: true,
+			},
+			'53': { challenge_type: '御魂-觉醒火麒麟' },
+		},
 	},
 	// 	list: [1, 2, 3, 503, 993],
 	// 	config: {
