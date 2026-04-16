@@ -9,7 +9,7 @@ export class Func509 implements IFuncOrigin {
 	id = 509;
 	name = '进入式神录';
 	desc = '从不同页面进入式神录';
-	operator: IFuncOperatorOrigin[] = [{   // 庭院_式神录
+	operator: IFuncOperatorOrigin[] = [{   // 0 庭院_式神录
 		desc: [
 			1280, 720,
 			[
@@ -23,20 +23,17 @@ export class Func509 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1106, 623, 1153, 653, 1200]	// 点击式神录
 		]
-	}, {
-		// 庭院_式神录，另外一种图标
+	}, { // 1 庭院_式神录，另外一种图标
 		desc: '页面是否为庭院_菜单已展开_另一种图标_御祝图标_只支持默认庭院皮肤与默认装饰',
 		oper: [
 			[right, 1280, 720, 1106, 623, 1153, 653, 1200]	// 点击式神录
 		]
-	}, {
-		// 庭院已打开菜单，另另外一种图标
+	}, { // 2 庭院已打开菜单，另另外一种图标
 		desc: '庭院已打开菜单_另另外一种图标',
 		oper: [
 			[right, 1280, 720, 1106, 623, 1153, 653, 1200]	// 点击式神录
 		]
-	},
-	{   // 检测是否为式神录
+	}, { // 3 检测是否为式神录
 		desc: [
 			1280, 720,
 			[
@@ -51,9 +48,8 @@ export class Func509 implements IFuncOrigin {
 				[left, 29, 673, 0x413028],
 			]
 		]
-	},
-	{
-		desc:	//	道馆
+	}, { // 4 道馆
+		desc:
 			[
 				1280, 720,
 				[
@@ -67,9 +63,8 @@ export class Func509 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 995, 601, 1056, 663, 1200]	//	点击_式神
 		]
-	},
-	{
-		desc: //	狩猎
+	}, { //	5 狩猎
+		desc:
 			[
 				1280, 720,
 				[
@@ -82,9 +77,8 @@ export class Func509 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1031, 633, 1080, 685, 1000],	//	点击_式神
 		]
-	},
-	{
-		desc:	//	检测_阴门
+	}, { // 6 检测_阴门
+		desc:
 			[
 				1280, 720,
 				[
@@ -101,9 +95,8 @@ export class Func509 implements IFuncOrigin {
 		oper: [
 			[left, 1280, 720, 145, 601, 190, 646, 1200]	//	点击式神按钮
 		]
-	},
-	{
-		desc: //    检测_狭间
+	}, { // 7 检测_狭间
+		desc:
 			[
 				1280, 720,
 				[
@@ -118,8 +111,7 @@ export class Func509 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1135, 456, 1182, 498, 1200]    //  点击式神按钮
 		]
-	},
-	{	//	检测_首领
+	}, { // 8 检测_首领
 		desc:
 			[
 				1280, 720,
@@ -136,12 +128,12 @@ export class Func509 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1008, 600, 1081, 671, 1200]	//	点击式神按钮
 		]
-	}, { // 庭院未打开菜单
+	}, { // 9 庭院未打开菜单
 		desc: '页面是否为庭院_菜单未展开_只支持默认庭院皮肤与默认装饰',
 		oper: [
 			[right, 1280, 720, 1168, 592, 1230, 690, 1000]
 		]
-	}, { // 突破界面
+	}, { // 10 突破界面
 		desc: '突破界面',
 		oper: [
 			// [right, 1280, 720, 1207, 617, 1245, 649, 1200]	//	点击式神按钮
@@ -206,7 +198,7 @@ export class Func509 implements IFuncOrigin {
 				name: '庭院进入式神录',
 				operator: [
 					thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[4],
-					thisOperator[5], thisOperator[6], thisOperator[7], thisOperator[9],
+					thisOperator[5], thisOperator[6], thisOperator[7], thisOperator[8], thisOperator[9],
 					thisOperator[11], thisOperator[12], thisOperator[13], thisOperator[14]]
 			})) {
 				sleep(1000);

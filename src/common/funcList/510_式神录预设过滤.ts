@@ -126,8 +126,7 @@ export class Func510 implements IFuncOrigin {
 		}, {  // 4 式神拓展包弹窗
 			desc: '式神拓展包弹窗',
 			oper: [
-				[center, 1280, 720, 417, 413, 439, 436, 1200],    //  30天不提示,
-				[center, 1280, 720, 910, 136, 944, 165, 1200],    //  关闭
+				[center, 1280, 720, 425, 450, 544, 489, 1000], // 关闭
 			]
 		}, {  // 5 检测_提示下载式神模型
 			desc:
@@ -173,13 +172,39 @@ export class Func510 implements IFuncOrigin {
 				[right, 1280, 720, 978, 454, 1004, 482, 500], // 预设第三
 				[right, 1280, 720, 978, 606, 1001, 625, 500], // 预设第四
 			]
-		}];
+		}, { // 9 不用滑动
+			desc: [1280, 720,
+				[
+					[right, 1126, 154, 0x32251f],
+					[right, 1135, 224, 0x352720],
+					[right, 1122, 294, 0x322621],
+					[right, 1127, 363, 0x312722],
+					[right, 1126, 433, 0x312622],
+					[right, 1125, 503, 0x31241c],
+				]
+			],
+		}, { // 10 式神音频包
+			desc: [1280, 720,
+				[
+					[center, 371, 141, 0x6b4539],
+					[right, 909, 143, 0x624031],
+					[center, 533, 504, 0xde6952],
+					[right, 754, 509, 0xf4b25d],
+					[center, 361, 570, 0x634531],
+					[right, 926, 571, 0x634131],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 423, 407, 446, 430, 1000],
+				[center, 1280, 720, 430, 492, 543, 533, 1000],
+			]
+		},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['510'];
 		if (thisScript.oper({
 			id: 510,
 			name: '检测_弹窗',
-			operator: [thisOperator[3], thisOperator[4], thisOperator[5], thisOperator[6]]
+			operator: [thisOperator[3], thisOperator[4], thisOperator[5], thisOperator[6], thisOperator[10]]
 		})) {
 			return true;
 		}
@@ -206,8 +231,16 @@ export class Func510 implements IFuncOrigin {
 			})) {
 				if (thisConf && thisConf.fastMode) {
 					if (thisScript.global.change_shikigami_state === 'flushed') {
-						thisScript.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [500, 700], 800, 100);
-						thisScript.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [500, 700], 800, 100);
+						if (!thisScript.oper({
+							name: '式神录已最顶',
+							operator: [{
+								desc: thisOperator[9].desc
+							}]
+						})) {
+							thisScript.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [500, 700], 800, 100);
+							thisScript.regionBezierSwipe(thisOperator[2].oper[0], thisOperator[2].oper[1], [500, 700], 800, 100);
+
+						}
 						let tureGroupNum = null;
 						if (!thisScript.global.preset_once_groupNum) {
 							tureGroupNum = Number(thisConf.groupNum) - 1

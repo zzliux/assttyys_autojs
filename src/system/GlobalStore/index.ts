@@ -50,7 +50,7 @@ export type globalRootType = {
 	lastRecruitFinishTime?: number | null, // 招募完成点击的时间戳
 	recruitHasScrolled?: boolean, // 是否已翻页
 	liao_activity_page_flag: number,   //  寮活动翻页标记
-	liao_activity_Swith: Record<string, boolean>, // 寮活动记录
+	liao_activity_Switch: Record<string, boolean>, // 寮活动记录
 	liao_banquet_collect: boolean,   //  宴会筹备状态
 	liao_banquet_onGoing: boolean,   //  宴会进行状态
 	banquet_change_flag: boolean,   //  宴会轮换开关标识
@@ -120,14 +120,21 @@ export type globalRootType = {
 	shiHe_jingYan: boolean, // 食盒经验领取上限
 	xianShiFengMo: number,
 	account_num: number, // 账号计数
+	account_double: boolean, // 安卓苹果双登录模式
 	account_state: 'login' | 'function' | 'logout',
-	function_Swith: Record<string, boolean | number>, // 小号功能记录
+	function_Switch: Record<string, boolean | number>, // 小号功能记录
 	loop_add: boolean, // 循环增加
 	liao_cheak: number, // 寮活动判定
 	email_yuHun: number, // 邮箱御魂已满计数
 	runTime_2: number, // 留存2退出结算次数
-	fight_Swith: Record<string, boolean | number>, // 战斗内操作记录
+	fight_Switch: Record<string, boolean | number>, // 战斗内操作记录
 	xiaJian: Record<string, boolean | number>, // 战斗内切换记录
+	timestamp: number, // 全局时间戳
+	paiMing: number, // 排名
+	email_switch_enabled: boolean, // 邮箱切换
+	tuDi: Record<string, boolean | number>, // 徒弟
+	newAccount: Record<string, boolean | number>, // 新号
+	frist: boolean, // 上阵式神
 }
 
 export const globalRoot: globalRootType = {
@@ -182,7 +189,7 @@ export const globalRoot: globalRootType = {
 	lastRecruitFinishTime: null,
 	recruitHasScrolled: false,
 	liao_activity_page_flag: 0,
-	liao_activity_Swith: undefined,
+	liao_activity_Switch: undefined,
 	banquet_change_flag: false,
 	gateOfHades_state: false,
 	team_up_lagTime: null,
@@ -246,30 +253,37 @@ export const globalRoot: globalRootType = {
 	zhenShe: 2,
 	sneak_level_open: true,
 	day_chouKa: true,
-	qiling_shop: false,
+	qiling_shop: true,
 	shiHe_jingYan: false,
 	liao_banquet_collect: false,
 	liao_banquet_onGoing: true,
 	xianShiFengMo: 0,
 	account_num: 0,
+	account_double: null,
 	account_state: 'login',
-	function_Swith: null,
+	function_Switch: null,
 	loop_add: true,
 	liao_cheak: -1,
 	email_yuHun: 0,
 	runTime_2: null,
-	fight_Swith: null,
+	fight_Switch: null,
 	xiaJian: null,
+	timestamp: 0,
+	paiMing: 0,
+	email_switch_enabled: null,
+	tuDi: null,
+	newAccount: null,
+	frist: true,
 }
 export type superGlobalRootType = {
-	liao_activity_Swith: Record<string, boolean>, // 寮活动记录
+	liao_activity_Switch: Record<string, boolean>, // 寮活动记录
 	next_scheme_name: string, // 中转后的下个方案
 	daoguan_lose: boolean, // 记录道馆第一次失败
 	runTime: number, // 记录结界卡时间
 }
 
 export const superGlobalRoot: superGlobalRootType = {
-	liao_activity_Swith: undefined,
+	liao_activity_Switch: undefined,
 	next_scheme_name: null,
 	daoguan_lose: true,
 	runTime: 0,

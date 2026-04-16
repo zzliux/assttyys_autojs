@@ -92,7 +92,6 @@ export default {
 						if (!schemeName) return;
 						script.isPause = false;
 						const storeSettings = storeCommon.get('settings', {});
-						myfloaty.fb.removeItem('Pause');
 						script.setCurrentScheme(schemeName);
 						if (storeSettings.floaty_scheme_direct_run) {
 							// myfloaty.fy.start();

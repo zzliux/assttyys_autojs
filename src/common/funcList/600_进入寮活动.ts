@@ -21,6 +21,11 @@ export class Func600 implements IFuncOrigin {
 			desc: '寮管理主动开启道馆,宴会',
 			type: 'switch',
 			default: false,
+		}, {
+			name: 'next_scheme',
+			desc: '下一个方案',
+			type: 'scheme',
+			default: '返回庭院',
 		}]
 	}, {
 		desc: '识别到后的操作(切换方案)',
@@ -104,12 +109,14 @@ export class Func600 implements IFuncOrigin {
 				1280, 720,
 				[
 					[left, 42, 31, 0xf4e4a4],
-					[center, 736, 237, 0x8a7c67],
-					[center, 766, 235, 0xc24137],
-					[center, 760, 245, 0x653f37],
-					[right, 836, 222, 0x32221b],
-					[right, 850, 223, 0xb78d42],
-					[right, 841, 232, 0x2a1d18],
+					[right, 760, 255, 0xe2dfda],
+					[right, 820, 276, 0xdebce4],
+					[right, 702, 265, 0xe0bfe5],
+					[right, 755, 285, 0x4c4943],
+					[right, 857, 237, 0x2b1d15],
+					[right, 836, 240, 0x30221b],
+					[right, 767, 246, 0xb03a32],
+					[right, 841, 214, 0xe6b653],
 				]
 			],
 			oper: [
@@ -190,11 +197,8 @@ export class Func600 implements IFuncOrigin {
 				[
 					1280, 720,
 					[
-						[left, 182, 37, 0xd5c4a3],
 						[left, 108, 26, 0xd7c5a2],
 						[left, 47, 28, 0xd7c5a2],
-						[left, 232, 139, 0x583716],
-						[left, 76, 550, 0x322219],
 						[right, 1039, 648, 0xd3c3bd],
 						[center, 872, 606, 0x493a38],
 						[center, 727, 611, 0xdfc7ac],
@@ -214,18 +218,17 @@ export class Func600 implements IFuncOrigin {
 					]
 				]
 		}, { //	9 检测_狭间暗域
-			desc:
+			desc: [1280, 720,
 				[
-					1280, 720,
-					[
-						[center, 848, 535, 0x422d1e],
-						[center, 826, 496, 0xcbb497],
-						[center, 687, 505, 0xcab596],
-						[center, 778, 560, 0x442f47],
-						[center, 684, 615, 0xb9a489],
-						[center, 861, 540, 0xd09f4a],
-					]
-				],
+					[right, 847, 537, 0x32231c],
+					[right, 870, 525, 0x271b15],
+					[right, 760, 555, 0x473049],
+					[right, 741, 553, 0x31282c],
+					[right, 684, 501, 0xc7b396],
+					[right, 859, 613, 0xb4a085],
+					[right, 715, 556, 0xbd727b],
+				]
+			],
 			oper: [
 				[center, 1280, 720, 702, 495, 848, 617, 1200]	//	点击狭间暗域
 			]
@@ -282,6 +285,30 @@ export class Func600 implements IFuncOrigin {
 				[center, 1280, 720, 526, 500, 863, 505, -1],     //  寮活动 滑动下位置
 				[left, 1280, 720, 25, 10, 75, 54, 1000],     //  寮活动 返回区域
 			]
+		}, { // 14 在庭院打开菜单
+			desc: '页面是否为庭院_菜单未展开_只支持默认庭院皮肤与默认装饰',
+			oper: [
+				[right, 1280, 720, 1168, 592, 1230, 690, 1200]	// 在首页打开菜单
+			]
+		}, { // 15 点击阴阳寮
+			desc: '页面是否为庭院_菜单已展开_只支持默认庭院皮肤与默认装饰',
+			oper: [
+				[center, 1280, 720, 544, 612, 594, 661, 1200]	// 点击阴阳寮
+			]
+		}, { // 16 判断是否为寮首页
+			desc: [
+				1280, 720,
+				[
+					[right, 1096, 630, 0xb1251f],
+					[right, 1105, 662, 0xdbe3f1],
+					[left, 45, 39, 0xf4e4a3],
+					[center, 886, 644, 0xe0cbaa],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 868, 627, 927, 684, 1200]	// 点击下方神社
+			],
+			retest: 1000
 		}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['600'];
@@ -289,8 +316,8 @@ export class Func600 implements IFuncOrigin {
 		const nowDay = new Date().getDay();
 		// 设置全局方案起始点
 		thisScript.superGlobal.next_scheme_name = thisScript.scheme.schemeName;
-		if (!thisScript.superGlobal.liao_activity_Swith) {// 首次执行,读取按钮状况
-			thisScript.superGlobal.liao_activity_Swith = {
+		if (!thisScript.superGlobal.liao_activity_Switch) {// 首次执行,读取按钮状况
+			thisScript.superGlobal.liao_activity_Switch = {
 				'a_ctivity_gateOfHades': thisconf.a_ctivity_gateOfHades as boolean,
 				'a_ctivity_dojo': thisconf.a_ctivity_dojo as boolean,
 				'a_ctivity_dojo_again': false,
@@ -301,13 +328,20 @@ export class Func600 implements IFuncOrigin {
 			};
 		}
 		// 判断用户是否有选择选项,全部选项为假则退出任务
-		const allFalse = Object.values(thisScript.superGlobal.liao_activity_Swith).every(value => value === false);
+		const allFalse = Object.values(thisScript.superGlobal.liao_activity_Switch).every(value => value === false);
 		if (allFalse) {
 			thisScript.myToast('任务执行完毕!');
 			thisScript.superGlobal.next_scheme_name = null;
-			log('600_thisScript.superGlobal.next_scheme_name:' + thisScript.superGlobal.next_scheme_name);
-			thisScript.rerun('返回庭院')
-			sleep(3000);
+			thisScript.doPush(thisScript, { text: '已结束，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+			thisScript.rerun(thisconf.next_scheme);
+			sleep(1000);
+			return true;
+		}
+		if (thisScript.oper({
+			id: 600,
+			name: '进入寮神社界面',
+			operator: [thisOperator[14], thisOperator[15], thisOperator[16]]
+		})) {
 			return true;
 		}
 		// 首次进入寮神社界面返回一次重新进，防止还有原来的缓存在里面
@@ -321,7 +355,7 @@ export class Func600 implements IFuncOrigin {
 			return true;
 		}
 		// 道馆活动
-		if (thisScript.superGlobal.liao_activity_Swith['a_ctivity_dojo'] || thisScript.superGlobal.liao_activity_Swith['a_ctivity_dojo_again']) {
+		if (thisScript.superGlobal.liao_activity_Switch['a_ctivity_dojo'] || thisScript.superGlobal.liao_activity_Switch['a_ctivity_dojo_again']) {
 			if ((nowDay >= 1 && nowDay <= 4) ||
 				((nowDay === 5 || nowDay === 6 || nowDay === 0) && !thisconf.a_ctivity_narrow)
 			) {
@@ -330,9 +364,9 @@ export class Func600 implements IFuncOrigin {
 					name: '寮神社界面',
 					operator: [{ desc: thisOperator[11].desc }]
 				})) {
-					thisScript.superGlobal.liao_activity_Swith['a_ctivity_dojo'] = false;
-					thisScript.superGlobal.liao_activity_Swith['a_ctivity_dojo_again'] = false;
-					thisScript.superGlobal.liao_activity_Swith['a_ctivity_narrow'] = false;
+					thisScript.superGlobal.liao_activity_Switch['a_ctivity_dojo'] = false;
+					thisScript.superGlobal.liao_activity_Switch['a_ctivity_dojo_again'] = false;
+					thisScript.superGlobal.liao_activity_Switch['a_ctivity_narrow'] = false;
 					const next_scheme = thisconf.a_ctivity_dojo_select;
 					thisScript.rerun(next_scheme);
 					return true;
@@ -349,9 +383,9 @@ export class Func600 implements IFuncOrigin {
 						desc: thisOperator[6].desc
 					}]
 				})) {
-					thisScript.superGlobal.liao_activity_Swith['a_ctivity_dojo'] = false;
-					thisScript.superGlobal.liao_activity_Swith['a_ctivity_dojo_again'] = false;
-					thisScript.superGlobal.liao_activity_Swith['a_ctivity_narrow'] = false;
+					thisScript.superGlobal.liao_activity_Switch['a_ctivity_dojo'] = false;
+					thisScript.superGlobal.liao_activity_Switch['a_ctivity_dojo_again'] = false;
+					thisScript.superGlobal.liao_activity_Switch['a_ctivity_narrow'] = false;
 					const next_scheme = thisconf.a_ctivity_dojo_select;
 					thisScript.rerun(next_scheme);
 					return true;
@@ -376,12 +410,12 @@ export class Func600 implements IFuncOrigin {
 				}
 			} else {
 				console.log('星期五六日执行狭间');
-				thisScript.superGlobal.liao_activity_Swith['a_ctivity_dojo'] = false;
-				thisScript.superGlobal.liao_activity_Swith['a_ctivity_dojo_again'] = false;
+				thisScript.superGlobal.liao_activity_Switch['a_ctivity_dojo'] = false;
+				thisScript.superGlobal.liao_activity_Switch['a_ctivity_dojo_again'] = false;
 			}
 		}
 		// 周六首领退治活动
-		if (thisScript.superGlobal.liao_activity_Swith['a_ctivity_huntBoss']) {
+		if (thisScript.superGlobal.liao_activity_Switch['a_ctivity_huntBoss']) {
 			if (nowHour >= 10 && nowHour < 23 && nowDay === 6) {// 判断是否在周六10-23点
 				if (thisScript.oper({
 					name: '检测_首领退治是否已开启',
@@ -394,18 +428,18 @@ export class Func600 implements IFuncOrigin {
 					operator: [thisOperator[7]]
 				})) {
 					// 关闭开关 传参 切换到退治
-					thisScript.superGlobal.liao_activity_Swith['a_ctivity_huntBoss'] = false;
+					thisScript.superGlobal.liao_activity_Switch['a_ctivity_huntBoss'] = false;
 					const next_scheme = thisconf.a_ctivity_huntBoss_select;
 					thisScript.rerun(next_scheme);
 					return true;
 				}
 			} else {
 				console.log('退治 不在时间段');
-				thisScript.superGlobal.liao_activity_Swith['a_ctivity_huntBoss'] = false;
+				thisScript.superGlobal.liao_activity_Switch['a_ctivity_huntBoss'] = false;
 			}
 		}
 		// 宴会活动
-		if (thisScript.superGlobal.liao_activity_Swith['a_ctivity_banquet']) {
+		if (thisScript.superGlobal.liao_activity_Switch['a_ctivity_banquet']) {
 			let a_ctivity_banquet_time_one;// 判断星期几
 			let a_ctivity_banquet_time_two;// 判断星期几
 			switch (thisconf.a_ctivity_banquet_time[0]) {
@@ -461,30 +495,37 @@ export class Func600 implements IFuncOrigin {
 					break;
 			}
 			if (a_ctivity_banquet_time_one === nowDay || a_ctivity_banquet_time_two === nowDay) {// 判断是否符合
-				if (thisconf.admin && Object.entries(thisScript.superGlobal.liao_activity_Swith).every(
-					([key, value]) => ['a_ctivity_gateOfHades', 'a_ctivity_hunt'].includes(key) || value === false
+				if (thisconf.admin && Object.entries(thisScript.superGlobal.liao_activity_Switch).every(
+					([key, value]) => ['a_ctivity_gateOfHades', 'a_ctivity_hunt', 'a_ctivity_banquet'].includes(key) || value === false
 				)) { // 其他开关为关时
-					thisScript.superGlobal.liao_activity_Swith['a_ctivity_banquet'] = false;
-					const next_scheme = thisconf.a_ctivity_banquet_select;
-					thisScript.rerun(next_scheme);
+					if (thisconf.admin && thisScript.oper({
+						id: 600,
+						name: '寮神社界面',
+						operator: [{ desc: thisOperator[11].desc }]
+					})) {
+						thisScript.superGlobal.liao_activity_Switch['a_ctivity_banquet'] = false;
+						const next_scheme = thisconf.a_ctivity_banquet_select;
+						thisScript.rerun(next_scheme);
+						return true;
+					}
 				}
 				if (thisScript.oper({
 					name: '检查_宴会是否已开启',
 					operator: [thisOperator[1]]
 				})) {
 					// 关闭开关 传参 切换到宴会
-					thisScript.superGlobal.liao_activity_Swith['a_ctivity_banquet'] = false;
+					thisScript.superGlobal.liao_activity_Switch['a_ctivity_banquet'] = false;
 					const next_scheme = thisconf.a_ctivity_banquet_select;
 					thisScript.rerun(next_scheme);
 					return true;
 				}
 			} else {
 				console.log('宴会 不在时间段内');
-				thisScript.superGlobal.liao_activity_Swith['a_ctivity_banquet'] = false;
+				thisScript.superGlobal.liao_activity_Switch['a_ctivity_banquet'] = false;
 			}
 		}
 		// 狭间活动
-		if (thisScript.superGlobal.liao_activity_Swith['a_ctivity_narrow']) {
+		if (thisScript.superGlobal.liao_activity_Switch['a_ctivity_narrow']) {
 			if (nowDay === 0 || nowDay === 5 || nowDay === 6) {// 判断星期几
 				if (thisScript.oper({
 					name: '寮神社_下滑',
@@ -504,8 +545,8 @@ export class Func600 implements IFuncOrigin {
 					operator: [thisOperator[10]]
 				})) {
 					// 关闭开关 传参 切换到狭间
-					thisScript.superGlobal.liao_activity_Swith['a_ctivity_narrow'] = false;
-					thisScript.superGlobal.liao_activity_Swith['a_ctivity_dojo'] = false;
+					thisScript.superGlobal.liao_activity_Switch['a_ctivity_narrow'] = false;
+					thisScript.superGlobal.liao_activity_Switch['a_ctivity_dojo'] = false;
 					const next_scheme = thisconf.a_ctivity_narrow_select;
 					thisScript.rerun(next_scheme);
 					return true;
@@ -513,14 +554,14 @@ export class Func600 implements IFuncOrigin {
 			} else {
 				console.log('狭间 不在时间段');
 				// 关闭狭间开关
-				thisScript.superGlobal.liao_activity_Swith['a_ctivity_narrow'] = false;
+				thisScript.superGlobal.liao_activity_Switch['a_ctivity_narrow'] = false;
 			}
 		}
 		// 狩猎战活动
-		if (thisScript.superGlobal.liao_activity_Swith['a_ctivity_hunt']) {
+		if (thisScript.superGlobal.liao_activity_Switch['a_ctivity_hunt']) {
 			// 星期一二三四, 是否在6 - 23点
 			if ([1, 2, 3, 4].includes(nowDay) && nowHour >= 6 && nowHour < 23) {
-				if (Object.entries(thisScript.superGlobal.liao_activity_Swith).every(
+				if (Object.entries(thisScript.superGlobal.liao_activity_Switch).every(
 					([key, value]) => ['a_ctivity_gateOfHades', 'a_ctivity_hunt'].includes(key) || value === false
 				)) { // 其他开关为关时
 					if (thisScript.oper({
@@ -535,21 +576,21 @@ export class Func600 implements IFuncOrigin {
 					})) {
 						const next_scheme = thisconf.a_ctivity_hunt_select;
 						// 关闭开关 传参 切换到狩猎战
-						thisScript.superGlobal.liao_activity_Swith['a_ctivity_hunt'] = false;
+						thisScript.superGlobal.liao_activity_Switch['a_ctivity_hunt'] = false;
 						thisScript.rerun(next_scheme);
 						return true;
 					}
 				}
 			} else {
 				console.log('狩猎战 不在时间段内');
-				thisScript.superGlobal.liao_activity_Swith['a_ctivity_hunt'] = false;
+				thisScript.superGlobal.liao_activity_Switch['a_ctivity_hunt'] = false;
 			}
 		}
 		// 阴门活动
-		if (thisScript.superGlobal.liao_activity_Swith['a_ctivity_gateOfHades']) {
+		if (thisScript.superGlobal.liao_activity_Switch['a_ctivity_gateOfHades']) {
 			// 判断星期五六七是否在17-23点
 			if ((nowDay === 0 || nowDay === 5 || nowDay === 6) && nowHour >= 17 && nowHour < 23) {
-				if (Object.entries(thisScript.superGlobal.liao_activity_Swith).every(
+				if (Object.entries(thisScript.superGlobal.liao_activity_Switch).every(
 					([key, value]) => key === 'a_ctivity_gateOfHades' || value === false
 				) && thisScript.oper({
 					id: 600,
@@ -557,7 +598,7 @@ export class Func600 implements IFuncOrigin {
 					operator: [{ desc: thisOperator[11].desc }]
 				})) {// 其他开关为关时
 					// 关闭开关 切换到阴门
-					thisScript.superGlobal.liao_activity_Swith['a_ctivity_gateOfHades'] = false;
+					thisScript.superGlobal.liao_activity_Switch['a_ctivity_gateOfHades'] = false;
 					const next_scheme = thisconf.a_ctivity_gateOfHades_select;
 					thisScript.rerun(next_scheme);
 					return true;
@@ -565,7 +606,7 @@ export class Func600 implements IFuncOrigin {
 			} else {
 				// 非阴门活动时间,关闭阴门开关
 				console.log('阴门 不在时间段内');
-				thisScript.superGlobal.liao_activity_Swith['a_ctivity_gateOfHades'] = false;
+				thisScript.superGlobal.liao_activity_Switch['a_ctivity_gateOfHades'] = false;
 				return true;
 			}
 		}
@@ -583,14 +624,14 @@ export class Func600 implements IFuncOrigin {
 			})
 			if (thisScript.global.liao_cheak < (thisconf.count as number)) {
 				thisScript.myToast(`未开启寮活动,等待${Math.round(r / 1000)}秒后再次检测,剩余${(thisconf.count as number) - thisScript.global.liao_cheak}次`);
-				log(thisScript.superGlobal.liao_activity_Swith);
+				log(thisScript.superGlobal.liao_activity_Switch);
 				sleep(r);
 				return true;
 			} else if (thisScript.global.liao_cheak < (thisconf.count as number) + 1) {
 				thisScript.myToast('执行次数完毕,检查狩猎战或阴界之门或宴会')
 				if (thisconf.admin) {
-					thisScript.superGlobal.liao_activity_Swith = {
-						...thisScript.superGlobal.liao_activity_Swith,
+					thisScript.superGlobal.liao_activity_Switch = {
+						...thisScript.superGlobal.liao_activity_Switch,
 						'a_ctivity_dojo': false,
 						'a_ctivity_dojo_again': false,
 						'a_ctivity_narrow': false,
@@ -598,8 +639,8 @@ export class Func600 implements IFuncOrigin {
 					};
 					return true;
 				} else {
-					thisScript.superGlobal.liao_activity_Swith = {
-						...thisScript.superGlobal.liao_activity_Swith,
+					thisScript.superGlobal.liao_activity_Switch = {
+						...thisScript.superGlobal.liao_activity_Switch,
 						'a_ctivity_dojo': false,
 						'a_ctivity_dojo_again': false,
 						'a_ctivity_narrow': false,

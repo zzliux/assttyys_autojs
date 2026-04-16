@@ -332,8 +332,8 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 			[
 				[center, 460, 258, 0xcbb59e],
 				[center, 799, 268, 0xcbb59e],
-				[center, 467, 429, 0xdf6851],
-				[center, 700, 431, 0xf4b25f],
+				[center, 457, 433, 0xdf6851],
+				[right, 693, 430, 0xf3b25e],
 				[center, 641, 429, 0xcbb59e],
 				[center, 560, 356, 0x725f4d]
 			]
@@ -798,11 +798,12 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 		desc: [
 			1280, 720,
 			[
-				[center, 366, 191, 0xc8b29a],
-				[center, 909, 211, 0xcbb59e],
-				[center, 494, 290, 0x46322a],
-				[center, 600, 485, 0xf4b25f],
-				[center, 896, 516, 0xcbb59e],
+				[center, 435, 457, 0xde6952],
+				[center, 530, 484, 0xde6952],
+				[right, 747, 451, 0xf4b25d],
+				[right, 841, 483, 0xf4b25d],
+				[center, 378, 174, 0x6b4539],
+				[right, 913, 535, 0x634131],
 			]
 		]
 	},
@@ -811,10 +812,9 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 			1280, 720,
 			[
 				[left, 42, 38, 0xf7e5a7],
-				[right, 1194, 34, 0xd6c7a5],
 				[left, 48, 490, 0x3e2822],
-				[left, 49, 603, 0x952d30],
-				[left, 108, 597, 0xa3a3b1],
+				[right, 1252, 632, 0x4a3024],
+				[right, 1221, 667, 0x3c221f],
 			]
 		]
 	},

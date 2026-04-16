@@ -147,7 +147,6 @@ export class Func304 implements IFuncOrigin {
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['304'];
 		const emaki = Number(thisconf.choiceEmaki) - 1;
-		let paiMing = 999;
 		const realTimeBmp = thisScript.findTextWithCompareColor(
 			'.+', 0, thisOperator[7].oper[emaki], '包含',
 			{
@@ -158,7 +157,7 @@ export class Func304 implements IFuncOrigin {
 				}]
 			})
 		if (realTimeBmp.length != 0) {
-			paiMing = Number(realTimeBmp[0].label.match(/\d+/)?.[0]);
+			thisScript.global.paiMing = Number(realTimeBmp[0].label.match(/\d+/)?.[0]);
 			thisScript.regionClick([thisOperator[0].oper[emaki]])
 			return true
 		}
@@ -195,7 +194,7 @@ export class Func304 implements IFuncOrigin {
 					}
 				}
 			}
-			if (paiMing > (thisconf.rankOpen as number)) {
+			if (thisScript.global.paiMing > (thisconf.rankOpen as number)) {
 				log('开始捐分');
 				let tap = 1;
 				if (thisScript.oper({
@@ -227,6 +226,8 @@ export class Func304 implements IFuncOrigin {
 					thisScript.regionClick([thisOperator[1].oper[0]]);
 					console.log('已捐赠一次')
 				}
+			} else {
+				thisScript.regionClick([thisOperator[1].oper[0]]);
 			}
 			sleep(61000)
 			return true;

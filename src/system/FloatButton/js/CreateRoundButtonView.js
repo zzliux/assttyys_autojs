@@ -23,9 +23,15 @@ function CreateRoundButtonView(name, mGlobal) {
             view.setPadding(mGlobal.padding, mGlobal.padding, mGlobal.padding, mGlobal.padding);
             viewClickEvent = (notTrigger) => {
                 if (state != null) {
-                    if (mGlobal.state.anim) return;
-                    mGlobal.anim.stateChanged(state, items, view);
-                    state = !state;
+                    const flipState = () => {
+                        if (!mGlobal.state.anim) { // 动画锁解除
+                            mGlobal.anim.stateChanged(state, items, view); // 播放动画
+                            state = !state; // 翻转状态
+                        } else {
+                            setTimeout(flipState, 20); // 动画还在，20ms 后重试
+                        }
+                    };
+                    flipState();
                 }
                 if (!notTrigger) {
                     if (mEventAction == null) {

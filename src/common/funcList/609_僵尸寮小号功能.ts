@@ -21,6 +21,11 @@ export class Func609 implements IFuncOrigin {
 			desc: '下划次数',
 			type: 'number',
 			default: '5',
+		}, {
+			name: 'next_scheme',
+			desc: '下一个方案',
+			type: 'scheme',
+			default: '通用准备退出',
 		}]
 	}, {
 		desc: '执行功能选择',
@@ -44,6 +49,12 @@ export class Func609 implements IFuncOrigin {
 			desc: '地域鬼王',
 			type: 'switch',
 			default: false,
+		}, {
+			name: 'card',
+			desc: '上结界卡',
+			type: 'list',
+			data: ['关闭', '斗鱼', '太鼓'],
+			default: '关闭',
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{ // 0 用户中心
@@ -51,7 +62,6 @@ export class Func609 implements IFuncOrigin {
 			[
 				[right, 1225, 255, 0xd0c3ac],
 				[right, 1229, 245, 0xc8bca4],
-				[right, 1222, 245, 0xddcdb7],
 				[right, 1227, 233, 0x816c56],
 				[right, 1238, 240, 0x806c5a],
 			]
@@ -62,10 +72,10 @@ export class Func609 implements IFuncOrigin {
 	}, { // 1 切换账号
 		desc: [1280, 720,
 			[
-				[left, 294, 332, 0x5e6266],
-				[center, 336, 333, 0x5e6266],
-				[center, 531, 311, 0x5e6266],
-				[left, 315, 483, 0x5e6266],
+				[right, 937, 201, 0xf97373],
+				[right, 1010, 180, 0xf97879],
+				[right, 1071, 208, 0xf97879],
+				[right, 1001, 237, 0xf97879],
 			]
 		],
 		oper: [
@@ -74,12 +84,10 @@ export class Func609 implements IFuncOrigin {
 	}, { // 2 选择账号界面_账号选择框未打开
 		desc: [1280, 720,
 			[
-				[center, 540, 214, 0xe50113],
-				[center, 575, 210, 0xe50517],
-				[center, 626, 216, 0x3d3a3a],
-				[center, 655, 218, 0x413e3e],
-				[center, 705, 216, 0x3e3b3b],
-				[center, 735, 223, 0x3c3939],
+				[center, 541, 213, 0xe71021],
+				[center, 546, 213, 0xe92d3c],
+				[center, 560, 213, 0xe61021],
+				[center, 568, 213, 0xe71324],
 				[center, 451, 445, 0xfb4f4f],
 				[center, 837, 445, 0xfb4f4f],
 			]
@@ -91,14 +99,12 @@ export class Func609 implements IFuncOrigin {
 	}, { // 3 选择账号界面_账号选择框已打开
 		desc: [1280, 720,
 			[
-				[center, 540, 214, 0xe50113],
-				[center, 575, 210, 0xe50517],
-				[center, 626, 216, 0x3d3a3a],
-				[center, 655, 218, 0x413e3e],
-				[center, 705, 216, 0x3e3b3b],
-				[center, 735, 223, 0x3c3939],
-				[center, 473, 463, 0xd8d8d8],
-				[center, 473, 572, 0xd8d8d8],
+				[center, 541, 213, 0xe71021],
+				[center, 546, 213, 0xe92d3c],
+				[center, 560, 213, 0xe61021],
+				[center, 568, 213, 0xe71324],
+				[center, 379, 325, 0xf0f0f0],
+				[center, 379, 483, 0xf0f0f0],
 			]
 		],
 		oper: [
@@ -190,8 +196,8 @@ export class Func609 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			// [center, 1280, 720, 45, 166, 186, 210, 1000], // 第一格 进入集体任务
-			[center, 1280, 720, 59, 261, 171, 301, 1000], // 第二格 进入集体任务
+			[center, 1280, 720, 45, 166, 186, 210, 1000], // 第一格 进入集体任务
+			// [center, 1280, 720, 59, 261, 171, 301, 1000], // 第二格 进入集体任务
 		]
 	}, { // 12 集体任务界面
 		desc: [1280, 720,
@@ -357,9 +363,9 @@ export class Func609 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 399, 193, 580, 217, 1000], // 层数上划起始
-			[center, 1280, 720, 401, 679, 573, 706, 1000], // 层数上划结束
-			[center, 1280, 720, 406, 262, 579, 310, 1000], // 选择一层
+			[center, 1280, 720, 550, 193, 580, 217, 1000], // 层数上划起始
+			[center, 1280, 720, 550, 679, 573, 706, 1000], // 层数上划结束
+			[center, 1280, 720, 550, 262, 579, 310, 1000], // 选择一层
 			[center, 1280, 720, 995, 608, 1149, 643, 1000], // 选择创建
 		]
 	}, { // 24 已集结_创建
@@ -889,6 +895,10 @@ export class Func609 implements IFuncOrigin {
 				[center, 469, 67, 0x593616],
 			]
 		],
+		oper: [
+			[center, 1280, 720, 24, 20, 55, 56, 1000],
+		]
+
 	}, { // 64 小白提示框
 		desc: [1280, 720,
 			[
@@ -902,7 +912,7 @@ export class Func609 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 572, 611, 652, 649, 1000],
 		]
-	}, { // 65 地狱鬼王声望弹窗
+	}, { // 65 地域鬼王声望弹窗
 		desc: [1280, 720,
 			[
 				[left, 64, 372, 0x974636],
@@ -916,9 +926,195 @@ export class Func609 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 599, 612, 701, 673, 1000],
 		]
-	}];
+	}, { // 66 地域鬼王_已完成返回
+		desc: [1280, 720,
+			[
+				[left, 63, 373, 0x944234],
+				[left, 34, 406, 0x94723d],
+				[left, 52, 501, 0x924747],
+				[left, 92, 517, 0x3d322e],
+				[left, 62, 667, 0x83423d],
+				[left, 94, 665, 0x753433],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 49, 152, 166, 261, 1000],
+		]
+	}, { // 67 邮件领取窗口空白
+		desc: [1280, 720,
+			[
+				[center, 472, 561, 0xdd6951],
+				[center, 468, 590, 0xdd6951],
+				[center, 712, 561, 0xf3b25e],
+				[center, 835, 581, 0xf3b25e],
+				[center, 368, 162, 0xa9967f],
+				[right, 916, 157, 0xa9967f],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 454, 552, 591, 593, 1000],
+		]
+	}, { // 68 点击结界
+		desc: [
+			1280, 720,
+			[
+				[right, 1096, 630, 0xb1251f],
+				[right, 1105, 662, 0xdbe3f1],
+				[left, 45, 39, 0xf4e4a3],
+				[center, 886, 644, 0xe0cbaa],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1067, 624, 1129, 689, 2500]
+		]
+	}, { // 69 判断_奖励弹窗
+		desc:
+			[
+				1280, 720,
+				[
+					[center, 365, 240, 0x38281c],
+					[center, 916, 254, 0x3f2d21],
+					[center, 930, 404, 0x76542e],
+					[center, 852, 400, 0xc3ab93],
+					[center, 438, 398, 0xcab49b],
+					[center, 702, 208, 0xffefcd],
+				]
+			],
+		oper: [
+			[center, 1280, 720, 370, 516, 930, 674, 600]
+		]
+	}, { // 70 进结界卡
+		desc: [1280, 720,
+			[
+				[right, 899, 305, 0xe3cec2],
+				[right, 919, 304, 0xe4cec3],
+				[left, 304, 307, 0xe3cec2],
+				[center, 604, 302, 0xe3cec3],
+				[right, 910, 590, 0x322828],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 905, 305, 920, 390, 1000],
+		]
+	}, { // 71 结界卡界面
+		desc: [1280, 720,
+			[
+				[left, 117, 52, 0x3f3d43],
+				[center, 563, 15, 0x524f58],
+				[right, 747, 17, 0x525058],
+				[right, 1124, 50, 0x3d3b41],
+				[left, 89, 179, 0xd389a6],
+				[right, 1222, 210, 0xa95f1a],
+			]
+		],
+	}, { // 72 有结界卡
+		desc: [1280, 720,
+			[
+				[right, 965, 340, 0xcec6bc],
+				[right, 1004, 341, 0xcec6bc],
+				[right, 981, 361, 0xccc4b9],
+				[right, 953, 605, 0xc6a579],
+				[right, 1107, 626, 0xe5c15c],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1155, 95, 1199, 134, 1000], // 关闭
+		]
+	}, { // 73 结界卡类型界面
+		desc: [1280, 720,
+			[
+				[center, 346, 170, 0x9d603a],
+				[center, 534, 170, 0x9d5f3d],
+				[center, 352, 566, 0x7a5943],
+				[center, 526, 565, 0x7b5a44],
+				[center, 491, 190, 0xd6c9b9],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 373, 251, 515, 289, 1000], // 太鼓
+			[center, 1280, 720, 377, 318, 516, 352, 1000], // 斗鱼
+		]
+	}, { // 74 打开全部
+		desc: [1280, 720,
+			[
+				[right, 709, 281, 0x3d2616],
+				[right, 711, 343, 0x402818],
+				[right, 1006, 293, 0x3d2617],
+				[right, 1008, 348, 0x3d2616],
+				[right, 813, 300, 0x442e21],
+				[right, 901, 350, 0x442e21],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 362, 104, 516, 139, 1000],
+		]
+	}, { // 75 选第一个结界卡
+		desc: [1280, 720,
+			[
+				[right, 706, 291, 0x3e2617],
+				[right, 848, 316, 0x442e21],
+				[right, 1018, 292, 0x362115],
+				[right, 879, 362, 0x422d20],
+				[right, 1059, 590, 0xd7d7d7],
+				[right, 1133, 629, 0xbdbdbd],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 316, 200, 478, 261, 1000],
+		]
+	}, { // 76 激活
+		desc: [1280, 720,
+			[
+				[right, 1054, 571, 0xf5e6a1],
+				[right, 1089, 607, 0xe9cc72],
+				[right, 1136, 625, 0xe3be5a],
+				[right, 1131, 643, 0xdeb345],
+				[right, 1085, 641, 0x3c2a18],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1063, 588, 1141, 637, 1000],
+			[center, 1280, 720, 1157, 96, 1190, 130, 1000],
+		]
+	}, { // 77 领取结界卡奖励
+		desc: [1280, 720,
+			[
+				[right, 916, 149, 0x12100c],
+				[right, 914, 163, 0xcfa118],
+				[right, 910, 182, 0xb08223],
+				[right, 909, 200, 0x12100c],
+				[right, 947, 178, 0x110f0b],
+				[right, 935, 180, 0x5d3e16],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 899, 158, 942, 202, 1000],
+			[center, 1280, 720, 898, 301, 915, 361, 1000],
+		]
+	},
+	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['609'];
+		if (!thisScript.global.function_Switch) {// 首次执行,读取按钮状况
+			thisScript.global.function_Switch = {
+				'login': true,
+				'juanGouYu': thisconf.juanGouYu as boolean,
+				'liaoSanshi': thisconf.liaoSanshi as boolean,
+				'liaoSanshi_tongXinDui_check': true,
+				'liaoSanshi_tongXinDui_fight': false,
+				'liaoSanshi_tongXinDui_yuCun': false,
+				'liaoSanshi_tongXinDui_back': false,
+				'agency': thisconf.agency as boolean,
+				'regionBoos': thisconf.regionBoos as boolean,
+				'regionBoos_num': 0,
+				'regionBoos_fight': false,
+				'card': thisconf.card as boolean,
+				'card_stage': true,
+			};
+		}
+		if (thisconf.card === '关闭') {
+			thisScript.global.function_Switch.card = false;
+		}
 		if (thisScript.oper({
 			id: 609,
 			name: '庭院偏移',
@@ -926,12 +1122,21 @@ export class Func609 implements IFuncOrigin {
 		})) {
 			return true
 		}
+		if (thisScript.oper({
+			id: 609,
+			name: '一键代办',
+			operator: [thisOperator[63]]
+		})) {
+			thisScript.myToast('已达到一键代办');
+			thisScript.global.function_Switch.agency = false;
+			return true;
+		}
 		if (thisScript.global.account_state === 'login') {
 			if (thisScript.global.account_num >= (thisconf.account_count as number)) {
-				thisScript.stop();
+				thisScript.rerun(thisconf.next_scheme);
 				return true;
 			}
-			if (thisScript.oper({
+			if (thisScript.global.function_Switch.login && thisScript.oper({
 				id: 609,
 				name: '退出账号',
 				operator: [thisOperator[0], thisOperator[1]]
@@ -943,11 +1148,36 @@ export class Func609 implements IFuncOrigin {
 				name: '第一个号直接登录.否者打开账号选择框',
 				operator: [{ desc: thisOperator[2].desc }]
 			})) {
-				if (thisScript.global.account_num === 0 || thisScript.global.account_num % 2 === 1) {
+				if (thisScript.global.account_num === 0) {
 					thisScript.regionClick([thisOperator[2].oper[0]]);
-				} else {
+				} else if (!thisScript.global.account_double) {
 					thisScript.regionClick([thisOperator[2].oper[1]]);
+				} else {
+					if (thisScript.global.account_num % 2 === 1) {
+						thisScript.regionClick([thisOperator[2].oper[0]]);
+					} else {
+						thisScript.regionClick([thisOperator[2].oper[1]]);
+					}
 				}
+				thisScript.global.function_Switch.login = false;
+				return true;
+			}
+			if (thisScript.oper({
+				id: 609,
+				name: '选择平台',
+				operator: [{ desc: thisOperator[4].desc }]
+			})) {
+				thisScript.regionClick([thisOperator[4].oper[thisScript.global.account_num % 2]]);
+				thisScript.global.account_double = true;
+				return true;
+			}
+			if (thisScript.oper({
+				id: 609,
+				name: '选择平台(带有鸿蒙入口)',
+				operator: [{ desc: thisOperator[53].desc }]
+			})) {
+				thisScript.regionClick([thisOperator[53].oper[thisScript.global.account_num % 2]]);
+				thisScript.global.account_double = true;
 				return true;
 			}
 			if (thisScript.oper({
@@ -964,72 +1194,32 @@ export class Func609 implements IFuncOrigin {
 			}
 			if (thisScript.oper({
 				id: 609,
-				name: '选择平台',
-				operator: [{ desc: thisOperator[4].desc }]
-			})) {
-				thisScript.regionClick([thisOperator[4].oper[thisScript.global.account_num % 2]]);
-				thisScript.global.account_state = 'function';
-				return true;
-			}
-			if (thisScript.oper({
-				id: 609,
-				name: '选择平台(带有鸿蒙入口)',
-				operator: [{ desc: thisOperator[53].desc }]
-			})) {
-				thisScript.regionClick([thisOperator[53].oper[thisScript.global.account_num % 2]]);
-				thisScript.global.account_state = 'function';
-				return true;
-			}
-			if (thisScript.oper({
-				id: 609,
 				name: '未创建角色',
 				operator: [thisOperator[62]]
 			})) {
 				thisScript.global.account_num++;
 				return true;
 			}
-			if (thisScript.oper({
+			// 做延时检测 防止登陆后的弹窗
+			let curCnt = 0;
+			const maxCount = 6;
+			while (thisScript.oper({
 				id: 609,
-				name: '庭院',
+				name: '是否为庭院',
 				operator: [{ desc: thisOperator[5].desc }]
 			})) {
-				thisScript.global.account_state = 'function';
-				return true;
+				curCnt++;
+				thisScript.keepScreen();
+				if (curCnt >= maxCount) {
+					sleep(500);
+					thisScript.global.account_state = 'function';
+					thisScript.global.open_only_once = true;
+					return true;
+				}
 			}
 		}
 		if (thisScript.global.account_state === 'function') {
-			if (thisScript.oper({
-				id: 609,
-				name: '选择平台',
-				operator: [{ desc: thisOperator[4].desc }]
-			})) {
-				thisScript.regionClick([thisOperator[4].oper[thisScript.global.account_num % 2]]);
-				return true;
-			}
-			if (thisScript.oper({
-				id: 609,
-				name: '选择平台(带有鸿蒙入口)',
-				operator: [{ desc: thisOperator[53].desc }]
-			})) {
-				thisScript.regionClick([thisOperator[53].oper[thisScript.global.account_num % 2]]);
-				thisScript.global.account_state = 'function';
-				return true;
-			}
-			if (!thisScript.global.function_Swith) {// 首次执行,读取按钮状况
-				thisScript.global.function_Swith = {
-					'juanGouYu': thisconf.juanGouYu as boolean,
-					'liaoSanshi': thisconf.liaoSanshi as boolean,
-					'liaoSanshi_tongXinDui_check': true,
-					'liaoSanshi_tongXinDui_fight': false,
-					'liaoSanshi_tongXinDui_yuCun': false,
-					'liaoSanshi_tongXinDui_back': false,
-					'agency': thisconf.agency as boolean,
-					'regionBoos': thisconf.regionBoos as boolean,
-					'regionBoos_num': 0,
-					'regionBoos_fight': false,
-				};
-			}
-			if (thisScript.global.function_Swith.juanGouYu) {
+			if (thisScript.global.function_Switch.juanGouYu) {
 				if (thisScript.oper({
 					id: 609,
 					name: '进入阴阳寮信息',
@@ -1048,7 +1238,7 @@ export class Func609 implements IFuncOrigin {
 					thisScript.keepScreen(false);
 					if (curCnt >= maxCount) {
 						thisScript.myToast('已达到捐赠上限');
-						thisScript.global.function_Swith.juanGouYu = false;
+						thisScript.global.function_Switch.juanGouYu = false;
 						return true;
 					}
 					sleep(500)
@@ -1058,12 +1248,12 @@ export class Func609 implements IFuncOrigin {
 					name: '捐赠',
 					operator: [thisOperator[10]]
 				})) {
-					thisScript.global.function_Swith.juanGouYu = false;
+					thisScript.global.function_Switch.juanGouYu = false;
 					return true;
 				}
 			}
-			if (thisScript.global.function_Swith.liaoSanshi) {
-				if (thisScript.global.function_Swith.liaoSanshi_tongXinDui_check) {
+			if (thisScript.global.function_Switch.liaoSanshi) {
+				if (thisScript.global.function_Switch.liaoSanshi_tongXinDui_check) {
 					if (thisScript.oper({
 						id: 609,
 						name: '进入集体任务界面',
@@ -1082,20 +1272,20 @@ export class Func609 implements IFuncOrigin {
 							name: '任务完成三十次',
 							operator: [{ desc: thisOperator[13].desc }]
 						})) {
-							thisScript.global.function_Swith.liaoSanshi_tongXinDui_yuCun = true;
+							thisScript.global.function_Switch.liaoSanshi_tongXinDui_yuCun = true;
 						} else {
-							thisScript.global.function_Swith.liaoSanshi_tongXinDui_fight = true;
+							thisScript.global.function_Switch.liaoSanshi_tongXinDui_fight = true;
 						}
-						thisScript.global.function_Swith.liaoSanshi_tongXinDui_check = false;
+						thisScript.global.function_Switch.liaoSanshi_tongXinDui_check = false;
 						thisScript.regionClick([thisOperator[12].oper[0]]);
 						return true;
 					}
 				}
-				if (thisScript.global.function_Swith.liaoSanshi_tongXinDui_fight) {
+				if (thisScript.global.function_Switch.liaoSanshi_tongXinDui_fight) {
 					if (thisScript.runTimes['2'] >= 30) {
 						thisScript.myToast('已完成三十次组队,跳转预存体力');
-						thisScript.global.function_Swith.liaoSanshi_tongXinDui_fight = false;
-						thisScript.global.function_Swith.liaoSanshi_tongXinDui_yuCun = true;
+						thisScript.global.function_Switch.liaoSanshi_tongXinDui_fight = false;
+						thisScript.global.function_Switch.liaoSanshi_tongXinDui_yuCun = true;
 						return true;
 					}
 					if (thisScript.oper({
@@ -1134,8 +1324,8 @@ export class Func609 implements IFuncOrigin {
 									const num = Number(item?.label);
 									if (Number.isNaN(num) || num < 120) {
 										console.log('队友体力小于120,跳过');
-										thisScript.global.function_Swith.liaoSanshi_tongXinDui_fight = false;
-										thisScript.global.function_Swith.liaoSanshi_tongXinDui_yuCun = true;
+										thisScript.global.function_Switch.liaoSanshi_tongXinDui_fight = false;
+										thisScript.global.function_Switch.liaoSanshi_tongXinDui_yuCun = true;
 										return true;
 									}
 								}
@@ -1144,8 +1334,8 @@ export class Func609 implements IFuncOrigin {
 								return true;
 							} else {
 								console.log('OCR 没识别到字符,跳过');
-								thisScript.global.function_Swith.liaoSanshi_tongXinDui_fight = false;
-								thisScript.global.function_Swith.liaoSanshi_tongXinDui_yuCun = true;
+								thisScript.global.function_Switch.liaoSanshi_tongXinDui_fight = false;
+								thisScript.global.function_Switch.liaoSanshi_tongXinDui_yuCun = true;
 								return true;
 							}
 						} else {
@@ -1172,7 +1362,7 @@ export class Func609 implements IFuncOrigin {
 						return true;
 					}
 				}
-				if (thisScript.global.function_Swith.liaoSanshi_tongXinDui_yuCun) {
+				if (thisScript.global.function_Switch.liaoSanshi_tongXinDui_yuCun) {
 					if (thisScript.oper({
 						id: 609,
 						name: '队员列表',
@@ -1186,12 +1376,12 @@ export class Func609 implements IFuncOrigin {
 						name: '一键预存',
 						operator: [thisOperator[29]]
 					})) {
-						thisScript.global.function_Swith.liaoSanshi_tongXinDui_yuCun = false;
-						thisScript.global.function_Swith.liaoSanshi_tongXinDui_back = true;
+						thisScript.global.function_Switch.liaoSanshi_tongXinDui_yuCun = false;
+						thisScript.global.function_Switch.liaoSanshi_tongXinDui_back = true;
 						return true;
 					}
 				}
-				if (thisScript.global.function_Swith.liaoSanshi_tongXinDui_back) {
+				if (thisScript.global.function_Switch.liaoSanshi_tongXinDui_back) {
 					if (thisScript.oper({
 						id: 609,
 						name: '返回',
@@ -1205,13 +1395,13 @@ export class Func609 implements IFuncOrigin {
 						operator: [{ desc: thisOperator[5].desc }]
 
 					})) {
-						thisScript.global.function_Swith.liaoSanshi_tongXinDui_back = false;
-						thisScript.global.function_Swith.liaoSanshi = false;
+						thisScript.global.function_Switch.liaoSanshi_tongXinDui_back = false;
+						thisScript.global.function_Switch.liaoSanshi = false;
 						return true;
 					}
 				}
 			}
-			if (thisScript.global.function_Swith.agency) {
+			if (thisScript.global.function_Switch.agency) {
 				let curCnt = 0;
 				const maxCount = 2;
 				while (thisScript.oper({
@@ -1223,7 +1413,7 @@ export class Func609 implements IFuncOrigin {
 					thisScript.keepScreen(false);
 					if (curCnt >= maxCount) {
 						thisScript.myToast('已达到一键代办');
-						thisScript.global.function_Swith.agency = false;
+						thisScript.global.function_Switch.agency = false;
 						return true;
 					}
 					sleep(1000);
@@ -1231,24 +1421,24 @@ export class Func609 implements IFuncOrigin {
 				if (thisScript.oper({
 					id: 609,
 					name: '一键代办',
-					operator: [thisOperator[36], thisOperator[37], thisOperator[38], thisOperator[39]
-						, thisOperator[40], thisOperator[41], thisOperator[42], thisOperator[43]
-						, thisOperator[32], thisOperator[34], thisOperator[35], thisOperator[54]
+					operator: [thisOperator[36], thisOperator[67], thisOperator[37], thisOperator[38], thisOperator[39]
+						, thisOperator[40], thisOperator[41], thisOperator[42]
+						, thisOperator[32], thisOperator[34], thisOperator[54]
 						, thisOperator[55], thisOperator[56], thisOperator[58]]
 				})) {
 					return true;
 				}
 			}
-			if (thisScript.global.function_Swith.regionBoos) {
-				if (thisScript.global.function_Swith.regionBoos_fight && thisScript.oper({
+			if (thisScript.global.function_Switch.regionBoos) {
+				if (thisScript.global.function_Switch.regionBoos_fight && thisScript.oper({
 					id: 609,
 					name: '地域鬼王_战斗后关闭',
 					operator: [thisOperator[52]]
 				})) {
-					thisScript.global.function_Swith.regionBoos_fight = false;
-					thisScript.global.function_Swith.regionBoos_num = (thisScript.global.function_Swith.regionBoos_num as number) + 1;
-					if (thisScript.global.function_Swith.regionBoos_num as number >= 3) {
-						thisScript.global.function_Swith.regionBoos = false;
+					thisScript.global.function_Switch.regionBoos_fight = false;
+					thisScript.global.function_Switch.regionBoos_num = (thisScript.global.function_Switch.regionBoos_num as number) + 1;
+					if (thisScript.global.function_Switch.regionBoos_num as number >= 3) {
+						thisScript.global.function_Switch.regionBoos = false;
 					}
 					return true;
 				}
@@ -1267,7 +1457,7 @@ export class Func609 implements IFuncOrigin {
 					name: '点挑战',
 					operator: [thisOperator[51]]
 				})) {
-					thisScript.global.function_Swith.regionBoos_fight = true;
+					thisScript.global.function_Switch.regionBoos_fight = true;
 					curCnt++;
 					thisScript.keepScreen(false);
 					if (curCnt >= maxCount) {
@@ -1283,21 +1473,84 @@ export class Func609 implements IFuncOrigin {
 					if (thisScript.oper({
 						id: 609,
 						name: '选鬼王',
-						operator: [thisOperator[48 + (thisScript.global.function_Swith.regionBoos_num as number)]]
+						operator: [thisOperator[48 + (thisScript.global.function_Switch.regionBoos_num as number)]]
 					})) {
 						return true;
 					} else {
-						thisScript.global.function_Swith.regionBoos_num = (thisScript.global.function_Swith.regionBoos_num as number) + 1;
-						if (thisScript.global.function_Swith.regionBoos_num as number >= 3) {
-							thisScript.global.function_Swith.regionBoos = false;
+						thisScript.global.function_Switch.regionBoos_num = (thisScript.global.function_Switch.regionBoos_num as number) + 1;
+						if (thisScript.global.function_Switch.regionBoos_num as number >= 3) {
+							thisScript.global.function_Switch.regionBoos = false;
 						}
 						thisScript.regionClick(thisOperator[57].oper)
 						return true;
 					}
 				}
 			}
-			if (!thisScript.global.function_Swith.juanGouYu && !thisScript.global.function_Swith.liaoSanshi &&
-				!thisScript.global.function_Swith.agency && !thisScript.global.function_Swith.regionBoos &&
+			if (thisScript.global.function_Switch.card) {
+				if (thisScript.oper({
+					id: 609,
+					name: '进入阴阳寮',
+					operator: [thisOperator[7], thisOperator[77], thisOperator[68], thisOperator[69], thisOperator[70],]
+				})) {
+					return true;
+				}
+				if (thisScript.oper({
+					id: 609,
+					name: '结界卡',
+					operator: [{ desc: thisOperator[71].desc }]
+				})) {
+					if (thisScript.oper({
+						id: 609,
+						name: '有卡',
+						operator: [thisOperator[72]]
+					})) {
+						thisScript.global.function_Switch.card = false;
+						return true
+					}
+					if (thisScript.global.function_Switch.card_stage) {
+						if (thisScript.oper({
+							id: 609,
+							name: '选卡',
+							operator: [{ desc: thisOperator[73].desc }]
+						})) {
+							if (thisconf.card === '太鼓') {
+								thisScript.regionClick([thisOperator[73].oper[0]])
+							} else {
+								thisScript.regionClick([thisOperator[73].oper[1]])
+							}
+							thisScript.global.function_Switch.card_stage = false;
+							return true
+						}
+						if (thisScript.oper({
+							id: 609,
+							name: '选卡',
+							operator: [thisOperator[74]]
+						})) {
+							return true;
+						}
+					} else {
+						if (thisScript.oper({
+							id: 609,
+							name: '选卡',
+							operator: [thisOperator[75]]
+						})) {
+							return true;
+						}
+						if (thisScript.oper({
+							id: 609,
+							name: '选卡',
+							operator: [thisOperator[76]]
+						})) {
+							thisScript.global.function_Switch.card = false;
+							return true
+						}
+					}
+				}
+
+			}
+			if (!thisScript.global.function_Switch.juanGouYu && !thisScript.global.function_Switch.liaoSanshi &&
+				!thisScript.global.function_Switch.agency && !thisScript.global.function_Switch.regionBoos &&
+				!thisScript.global.function_Switch.card &&
 				thisScript.oper({
 					id: 609,
 					name: '庭院',
@@ -1321,12 +1574,19 @@ export class Func609 implements IFuncOrigin {
 				operator: [{ desc: thisOperator[1].desc }]
 			})) {
 				thisScript.global.account_num += 1;
-				thisScript.global.function_Swith = null;
+				thisScript.global.function_Switch = null;
 				thisScript.global.account_state = 'login';
 				thisScript.runTimes['2'] = 0;
 				thisScript.global.open_only_once = false;
 				return true;
 			}
+		}
+		if (thisScript.oper({
+			id: 609,
+			name: '关闭',
+			operator: [thisOperator[35], thisOperator[43], thisOperator[66]]
+		})) {
+			return true
 		}
 	}
 }

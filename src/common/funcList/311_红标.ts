@@ -50,7 +50,7 @@ export class Func311 implements IFuncOrigin {
 				],
 			],
 			oper: [
-				[center, 1280, 720, 387, 15, 418, 54, 1200], //  点击 PVE顶部BOSS血条红标
+				[center, 1280, 720, 387, 15, 418, 54, 200], //  点击 PVE顶部BOSS血条红标
 			],
 		},
 		{
@@ -100,7 +100,19 @@ export class Func311 implements IFuncOrigin {
 					[right, 1243, 513, 0xf9f18f],
 				]
 			]
-		}
+		}, { // 6 上阵截图
+			desc: [1280, 720,
+				[
+					[center, 443, 262, 0x2e4547],
+					[center, 460, 462, 0x40645e],
+					[right, 761, 521, 0x496c6a],
+					[right, 831, 291, 0x31474a],
+					[center, 606, 442, 0xf3f0dc],
+					[right, 675, 446, 0xf6f2e5],
+				]
+			],
+			retest: 1000,
+		},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['311'];
@@ -108,16 +120,14 @@ export class Func311 implements IFuncOrigin {
 		if (thisScript.global.redFlag) {
 			return false;
 		}
-		if (
-			thisScript.oper({
-				name: '红标-战斗界面检测',
-				operator: [
-					{
-						desc: '战斗界面',
-					},
-				],
-			})
-		) {
+		if (thisScript.oper({
+			name: '红标-战斗界面检测',
+			operator: [
+				{
+					desc: '战斗界面',
+				},
+			],
+		})) {
 			// 开启红标
 			let toClick = null;
 			if (thisconf.redType === '自定义坐标') {
@@ -174,13 +184,13 @@ export class Func311 implements IFuncOrigin {
 					name: '红标-行动条检测',
 					operator: [thisOperator[4], thisOperator[5]],
 				})) {
-					let point = thisScript.findMultiColor('腐血', null, false, false)
+					let point = thisScript.findMultiColor('腐血', null, false, false, false)
 					if (point) {
 						console.log('开局查找到腐血');
 						const point_blood = thisScript.findMultiColorEx('红标_血条')
 						const operList = [];
 						for (const flagPoint of point_blood) {
-							if (point.x > flagPoint.x  && point.x < flagPoint.x + 100) {
+							if (point.x > flagPoint.x && point.x < flagPoint.x + 100) {
 								operList.push(flagPoint);
 							}
 						}
@@ -211,13 +221,13 @@ export class Func311 implements IFuncOrigin {
 						}
 						return true;
 					}
-					point = thisScript.findMultiColor('神荒', null, false, false)
+					point = thisScript.findMultiColor('神荒', null, false, false, false)
 					if (point) {
 						console.log('开局查找到神荒');
 						const point_blood = thisScript.findMultiColorEx('红标_血条')
 						const operList = [];
 						for (const flagPoint of point_blood) {
-							if (point.x >= flagPoint.x && point.x < flagPoint.x + 100) {
+							if (point.x >= flagPoint.x - 2 && point.x < flagPoint.x + 100) {
 								operList.push(flagPoint);
 							}
 						}
@@ -247,11 +257,30 @@ export class Func311 implements IFuncOrigin {
 							thisScript.global.redFlag = true;
 						}
 						return true;
+					} else if (thisScript.findMultiColorEx('红标_血条').length > 5) {
+						const now = new Date().getTime();
+						const ajImg = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(thisScript.helperBridge.helper.GetBitmap());
+						const path = `/sdcard//Pictures/批量截图/${now}.png`;
+						files.ensureDir(path);
+						ajImg.saveTo(path);
+						ajImg.recycle();
 					}
 					thisScript.global.redFlag = true;
 				}
 			}
 			return false;
+		}
+		if (thisScript.oper({
+			name: '红标-战斗界面检测',
+			operator: [thisOperator[6]],
+		})) {
+			const now = new Date().getTime();
+			const ajImg = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(thisScript.helperBridge.helper.GetBitmap());
+			const path = `/sdcard//Pictures/批量截图/${now}.png`;
+			files.ensureDir(path);
+			ajImg.saveTo(path);
+			ajImg.recycle();
+			sleep(3000);
 		}
 	}
 }

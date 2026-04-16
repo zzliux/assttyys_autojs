@@ -8,7 +8,7 @@ const right = 2;
 export class Func518 implements IFuncOrigin {
 	id = 518;
 	name = '领取日常奖励';
-	desc = '一键代办,商店黑蛋,发送吉闻,花合战';
+	desc = '一键代办,商店黑蛋,发送吉闻,花合战,大神每日(需安装)';
 	operator: IFuncOperatorOrigin[] = [
 		{
 			// 0 页面是否为庭院(菜单未展开) 只支持默认庭院皮肤与默认装饰
@@ -23,8 +23,8 @@ export class Func518 implements IFuncOrigin {
 					[right, 796, 426, 0xf8ebb7],
 					[right, 796, 432, 0xefefaf],
 					[right, 796, 439, 0xfde7b1],
-					[left, 260, 41, 0x4d3738],
-					[center, 328, 46, 0x775928],
+					[center, 325, 12, 0x4d3c31],
+					[left, 142, 15, 0xf7ce81],
 				]
 			],
 			oper: [
@@ -264,17 +264,9 @@ export class Func518 implements IFuncOrigin {
 				[center, 1280, 720, 660, 626, 697, 664, 1200], //  庭院点击商店
 			],
 		}, { // 20 拓展包关闭
-			desc: [
-				1280, 720,
-				[
-					[left, 319, 382, 0xd6c8a8],
-					[center, 440, 165, 0x6b4837],
-					[center, 591, 478, 0xf3b25e],
-					[center, 926, 156, 0xe8d4cf],
-				]
-			],
+			desc: '式神拓展包弹窗',
 			oper: [
-				[center, 1280, 720, 905, 142, 945, 173, 1000],
+				[center, 1280, 720, 425, 450, 544, 489, 1000], // 关闭
 			]
 		}, { // 21 礼包屋
 			desc: [1280, 720,
@@ -517,8 +509,8 @@ export class Func518 implements IFuncOrigin {
 				]
 			],
 			oper: [
-				[center, 1280, 720, 1167, 50, 1190, 66, 1000],
-				[center, 1280, 720, 1167, 50, 1190, 66, 1000],
+				[center, 1280, 720, 1167, 50, 1190, 66, 2000],
+				[center, 1280, 720, 1167, 50, 1190, 66, 3000],
 				[center, 1280, 720, 1167, 50, 1190, 66, 1000],
 			]
 		}, { // 40 代办_红字(已完成)
@@ -548,28 +540,117 @@ export class Func518 implements IFuncOrigin {
 				[center, 1280, 720, 1168, 48, 1200, 64, 1000],
 				[center, 1280, 720, 1168, 48, 1200, 64, 1000],
 			]
-		}
+		}, { // 42 结界合成界面
+			desc: [1280, 720,
+				[
+					[right, 870, 152, 0x392010],
+					[right, 1033, 451, 0x331b0d],
+					[right, 713, 450, 0x331b0d],
+					[right, 1216, 213, 0x613f29],
+					[right, 1216, 338, 0x8d5322],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 1157, 94, 1200, 134, 1000],
+				[center, 1280, 720, 1156, 99, 1199, 131, 1000],
+			]
+		}, { // 43 一键代办_猫咪图标入口
+			desc: [1280, 720,
+				[
+					[right, 790, 453, 0xfff2af],
+					[right, 789, 459, 0xfff2af],
+					[right, 794, 465, 0xfaedb9],
+					[right, 794, 471, 0xf6e8b5],
+					[right, 803, 472, 0xffeebb],
+					[right, 804, 453, 0xf6e7b0],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 787, 451, 806, 469, 1000],
+			]
+		}, { // 44 神秘商人弹窗(首次进入商店)
+			desc: [1280, 720,
+				[
+					[left, 312, 543, 0x4e0c19],
+					[left, 316, 558, 0x580c19],
+					[center, 435, 546, 0x98081a],
+					[center, 447, 556, 0x810515],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 482, 323, 571, 383, 1000],
+			]
+		}, { // 45 暗色每日代办
+			desc: [1280, 720,
+				[
+					[center, 547, 24, 0x897865],
+					[center, 547, 60, 0x9c8872],
+					[left, 266, 14, 0x995a41],
+					[left, 265, 45, 0x954328],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 609, 692, 750, 718, 1000],
+			]
+		},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		if (!thisScript.global.function_Swith) {// 首次执行,读取按钮状况
-			thisScript.global.function_Swith = {
+		if (!thisScript.global.function_Switch) {// 首次执行,读取按钮状况
+			thisScript.global.function_Switch = {
 				'agency': true,
 				'shop': true,
 				'friend': true,
 				'flower': true,
 				'email': true,
+				'godlike': true,
 			};
+		}
+		if (thisScript.global.function_Switch.godlike) {
+			const packageName = currentPackage();
+			if (app.getAppName('com.netease.gl') && packageName !== 'com.netease.gl') {
+				sleep(1000);
+				console.log('正在启动应用:com.netease.gl');
+				device.wakeUpIfNeeded()
+				app.launchPackage('com.netease.gl');
+				return true;
+			} else if (packageName === 'com.netease.gl') {
+				if (text('福利中心').findOnce()) {
+					log('点击福利中心')
+					const oper = [
+						text('福利中心').findOnce().bounds().centerX(),
+						text('福利中心').findOnce().bounds().centerY(),
+						text('福利中心').findOnce().bounds().centerX() + 5,
+						text('福利中心').findOnce().bounds().centerY() + 5,
+						5000
+					]
+					thisScript.regionClick([oper]);
+					thisScript.stopRelatedApp('com.netease.gl');
+					thisScript.launchRelatedApp();
+					thisScript.global.function_Switch.godlike = false;
+					return true;
+				}
+			} else {
+				thisScript.myToast('未安装大神,不领取大神奖励');
+				thisScript.global.function_Switch.godlike = false;
+			}
 		}
 		if (thisScript.oper({
 			id: 518,
 			name: '杂项',
-			operator: [thisOperator[0], thisOperator[16], thisOperator[24], thisOperator[41]]
+			operator: [thisOperator[0], thisOperator[16], thisOperator[24], thisOperator[41], thisOperator[45]]
 		})) {
 			return true;
 		}
-		if (thisScript.global.function_Swith.email) {
+		if (thisScript.global.function_Switch.email) {
+			if (thisScript.oper({
+				id: 518,
+				name: '邮件',
+				operator: [thisOperator[12], thisOperator[13], thisOperator[14],]
+			})) {
+				return true;
+			}
 			if (thisScript.global.email_yuHun >= 3) {
-				thisScript.global.function_Swith.email = false;
+				thisScript.global.function_Switch.email = false;
 				thisScript.doPush(thisScript, { text: '邮件里御魂已满', before() { thisScript.myToast('邮件里御魂已满'); } });
 			}
 			if (thisScript.oper({
@@ -583,27 +664,27 @@ export class Func518 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 518,
 				name: '邮件',
-				operator: [thisOperator[17]]
+				operator: [thisOperator[17], thisOperator[42]]
 			})) {
-				thisScript.global.function_Swith.email = false;
+				thisScript.global.function_Switch.email = false;
 				return true;
 			}
 		}
 		if (thisScript.oper({
 			id: 518,
 			name: '邮件',
-			operator: [thisOperator[15], thisOperator[11], thisOperator[9]]
+			operator: [thisOperator[15], thisOperator[11], thisOperator[17], thisOperator[9]]
 		})) {
 			return true;
 		}
-		if (thisScript.global.function_Swith.agency) {
+		if (thisScript.global.function_Switch.agency) {
 			if (thisScript.oper({
 				id: 518,
 				name: '一键代办_完成',
 				operator: [thisOperator[40]]
 			})) {
 				thisScript.myToast('已达到一键代办');
-				thisScript.global.function_Swith.agency = false;
+				thisScript.global.function_Switch.agency = false;
 				return true;
 			}
 			let curCnt = 0;
@@ -617,7 +698,7 @@ export class Func518 implements IFuncOrigin {
 				thisScript.keepScreen(false);
 				if (curCnt >= maxCount) {
 					thisScript.myToast('已达到一键代办');
-					thisScript.global.function_Swith.agency = false;
+					thisScript.global.function_Switch.agency = false;
 					return true;
 				}
 				sleep(1000);
@@ -625,13 +706,13 @@ export class Func518 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 518,
 				name: '一键代办',
-				operator: [thisOperator[1], thisOperator[3], thisOperator[4], thisOperator[5]
+				operator: [thisOperator[1], thisOperator[43], thisOperator[3], thisOperator[5]
 					, thisOperator[6], thisOperator[7],]
 			})) {
 				return true;
 			}
 		}
-		if (thisScript.global.function_Swith.shop) {
+		if (thisScript.global.function_Switch.shop) {
 			if (thisScript.oper({
 				id: 518,
 				name: '商店_杂项',
@@ -655,7 +736,7 @@ export class Func518 implements IFuncOrigin {
 					operator: [thisOperator[23]]
 				})) {
 					thisScript.regionClick(thisOperator[22].oper)
-					thisScript.global.function_Swith.shop = false;
+					thisScript.global.function_Switch.shop = false;
 					return true;
 				}
 				const point = thisScript.findMultiColor('商店_日常');
@@ -667,13 +748,13 @@ export class Func518 implements IFuncOrigin {
 					thisScript.myToast(`连续差查找${maxCount}次未找到，跳过领取`);
 					thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 					thisScript.regionClick(thisOperator[22].oper)
-					thisScript.global.function_Swith.shop = false;
+					thisScript.global.function_Switch.shop = false;
 					return true;
 				}
 				sleep(500);
 			}
 		}
-		if (thisScript.global.function_Swith.friend) {
+		if (thisScript.global.function_Switch.friend) {
 			if (thisScript.oper({
 				id: 518,
 				name: '吉闻',
@@ -692,7 +773,7 @@ export class Func518 implements IFuncOrigin {
 				thisScript.keepScreen(false);
 				if (curCnt >= maxCount) {
 					thisScript.doPush(thisScript, { text: '无祝福语言,自行输入', before() { thisScript.myToast('无祝福语言,自行输入'); } });
-					thisScript.global.function_Swith.friend = false;
+					thisScript.global.function_Switch.friend = false;
 					return true;
 				}
 				sleep(1000);
@@ -702,11 +783,11 @@ export class Func518 implements IFuncOrigin {
 				name: '吉闻结束',
 				operator: [thisOperator[28]]
 			})) {
-				thisScript.global.function_Swith.friend = false;
+				thisScript.global.function_Switch.friend = false;
 				return true;
 			}
 		}
-		if (thisScript.global.function_Swith.flower) {
+		if (thisScript.global.function_Switch.flower) {
 			if (thisScript.oper({
 				id: 518,
 				name: '花合战',
@@ -727,7 +808,7 @@ export class Func518 implements IFuncOrigin {
 				} else {
 					// 退出
 					thisScript.regionClick(thisOperator[38].oper);
-					thisScript.global.function_Swith.flower = false;
+					thisScript.global.function_Switch.flower = false;
 					return true;
 				}
 			}
@@ -735,8 +816,8 @@ export class Func518 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 518,
 			name: '退出',
-			operator: [thisOperator[30], thisOperator[31], thisOperator[32], thisOperator[33]
-				, thisOperator[34], thisOperator[38]]
+			operator: [thisOperator[4], thisOperator[30], thisOperator[31], thisOperator[32], thisOperator[33]
+				, thisOperator[34], thisOperator[38], thisOperator[44]]
 		})) {
 			return true;
 		}

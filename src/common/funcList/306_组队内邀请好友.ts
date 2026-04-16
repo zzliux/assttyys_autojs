@@ -220,7 +220,21 @@ export class Func306 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 0, 609, 107, 719, 1000],
 		]
-	}]
+	}, { // 14 经验/金币组队
+		desc: [1280, 720,
+			[
+				[center, 402, 293, 0xfefefe],
+				[center, 440, 293, 0xfefefe],
+				[center, 420, 285, 0xfffefb],
+				[center, 421, 314, 0xfefefb],
+				[center, 556, 9, 0x12181d],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 396, 278, 447, 317, 1000],
+		]
+	},
+	]
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['306'];
 		const team_up_Frist = thisScript.global.team_up_Frist;
@@ -293,6 +307,20 @@ export class Func306 implements IFuncOrigin {
 					name: '判断是否邀请',
 					operator: [thisOperator[12]]
 				});
+				thisScript.global.team_up_Frist = false;
+				thisScript.global.team_up_lagTime = new Date();
+				thisScript.global.team_up_Time++;
+				if (team_up_Time < thisScript.global.team_up_Time) {
+					thisScript.doPush(thisScript, { text: '多次邀请未响应，或多次未识别到昵称，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+					thisScript.stop();
+					sleep(3000);
+					return;
+				}
+				return true;
+			} else if (thisScript.oper({ // 金币/经验组队
+				name: '判断是否邀请',
+				operator: [thisOperator[14]]
+			})) {
 				thisScript.global.team_up_Frist = false;
 				thisScript.global.team_up_lagTime = new Date();
 				thisScript.global.team_up_Time++;

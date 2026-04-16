@@ -198,7 +198,7 @@ export class Func1104 implements IFuncOrigin {
 			1280, 720,
 			[
 				[right, 939, 433, 0x0b4696],
-				[right, 1023, 434, 0x0b4695],
+				[right, 1023, 438, 0x0a4599],
 				[right, 1023, 512, 0x0a4697],
 				[right, 939, 511, 0x0b4697],
 				[right, 914, 544, 0xaa2b11],

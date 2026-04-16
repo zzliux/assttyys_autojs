@@ -2068,61 +2068,6 @@ const multiFindColors: IMultiFindColorsOrigin = {
 			],
 		]
 	},
-	'契灵_火灵': {
-		region: [center, 1280, 720, 40, 444, 1138, 611],
-		desc: [[
-			1280, 720,
-			[
-				[right, 1047, 502, 0xfbfbec],
-				[right, 1053, 502, 0xa0c8bc],
-				[right, 1059, 504, 0xfbfbec],
-				[right, 1044, 510, 0xa0c8bc],
-				[right, 1053, 512, 0xa0c8bc],
-				[right, 1058, 511, 0xa0c8bc],
-			]
-		]]
-	},
-	'契灵_小黑': {
-		region: [center, 1280, 720, 40, 444, 1138, 611],
-		desc: [[
-			1280, 720,
-			[
-				[center, 424, 499, 0xfd8131],
-				[center, 430, 498, 0x9f2902],
-				[center, 437, 500, 0xfd8131],
-				[center, 422, 508, 0x9f2902],
-				[center, 428, 508, 0x9f2902],
-				[center, 436, 509, 0x9f2902],
-			]
-		]]
-	},
-	'契灵_镇墓兽': {
-		region: [center, 1280, 720, 40, 444, 1138, 611],
-		desc: [[
-			1280, 720,
-			[
-				[left, 247, 544, 0xfbfbec],
-				[left, 253, 545, 0xc9ab49],
-				[left, 259, 544, 0xfbfbec],
-				[left, 242, 552, 0xc9ab49],
-				[left, 252, 553, 0xc9ab49],
-				[left, 262, 554, 0xc8af4f],
-			]
-		]]
-	},
-	'契灵_茨球': {
-		region: [center, 1280, 720, 40, 444, 1138, 611],
-		desc: [[1280, 720,
-			[
-				[center, 713, 520, 0xffffff],
-				[center, 718, 520, 0xf1e7c8],
-				[center, 724, 521, 0xffffff],
-				[center, 709, 528, 0xf1e7c8],
-				[center, 718, 528, 0xf1e7c8],
-				[center, 723, 529, 0xf1e7c8],
-			]
-		]]
-	},
 	'右下角锁定阵容': {
 		region: [center, 1280, 720, 734, 530, 1279, 719],
 		desc: [
@@ -2381,45 +2326,79 @@ const multiFindColors: IMultiFindColorsOrigin = {
 	'腐血': {
 		region: [center, 1280, 720, 0, 0, 1279, 719],
 		desc: [
-			[1280, 720, // 腐血
+			[1280, 720,
 				[
-					[right, 953, 109, 0xf8fdfe],
-					[right, 961, 106, 0xffffff],
-					[right, 965, 108, 0xf4fafe],
-					[right, 966, 100, 0xffffff],
-					[right, 951, 96, 0x0f3d77],
-					[right, 950, 106, 0x174588],
-					[right, 960, 94, 0x113d6b],
+					[right, 659, 133, 0x78c4ef],
+					[right, 660, 133, 0x89cbf3],
+					[right, 661, 133, 0x88caf3],
+					[right, 661, 132, 0xffffff],
+					[right, 660, 132, 0xffffff],
+					[right, 659, 132, 0xffffff],
+					[right, 656, 132, 0xb9edff],
+					[right, 655, 132, 0x86c8e7],
+					[right, 654, 132, 0x72bbe2],
+				]
+			],
+			[1280, 720,
+				[
+					[center, 634, 59, 0x54a0dc],
+					[center, 635, 59, 0x56a3de],
+					[center, 636, 59, 0x509bd8],
+					[center, 636, 58, 0xf6fbff],
+					[center, 635, 58, 0xf7fcff],
+					[center, 634, 58, 0xf6fcff],
+					[center, 631, 58, 0xa5e3fb],
+					[center, 630, 58, 0x77c4ea],
+					[center, 629, 58, 0x52a3d6],
 				]
 			]
 		],
-		similar: 95,
+		similar: 90,
 	},
 	'神荒': {
 		region: [center, 1280, 720, 0, 0, 1279, 719],
 		desc: [
-			[1280, 720, // 神荒 像素点有三排
+			[1280, 720,
 				[
-					[right, 982, 94, 0xd0f7fd],
-					[right, 988, 94, 0xffffff],
-					[right, 988, 87, 0xe6f3f3],
-					[right, 995, 94, 0xcbe8f5],
-					[right, 988, 101, 0xb8e5f4],
-					[right, 981, 100, 0xffffff],
+					[right, 779, 87, 0x89bbe1],
+					[right, 780, 87, 0xd9ecf9],
+					[right, 781, 87, 0xb9dcf3],
+					[right, 781, 88, 0xaed7f2],
+					[right, 780, 88, 0xffffff],
+					[right, 779, 88, 0xc7e3f6],
+					[right, 779, 89, 0x4986d1],
+					[right, 780, 89, 0x9dceef],
+					[right, 781, 89, 0xd5eaf8],
 				],
 			],
-			[1280, 720, // 神荒 像素点有两排
+			[1280, 720,
 				[
-					[right, 982, 94, 0xd0f7fd],
-					[right, 988, 94, 0xffffff],
-					[right, 988, 87, 0xe6f3f3],
-					[right, 995, 94, 0xcbe8f5],
-					[right, 988, 101, 0xb8e5f4],
-					[right, 981, 100, 0xffffff],
+					[center, 371, 90, 0x2d6bad],
+					[center, 372, 90, 0x9acdee],
+					[center, 373, 90, 0xfbfdfe],
+					[center, 373, 91, 0xf7fbfe],
+					[center, 372, 91, 0xffffff],
+					[center, 371, 91, 0x8dc6ec],
+					[center, 371, 92, 0x2f88cf],
+					[center, 372, 92, 0xc0dcf5],
+					[center, 373, 92, 0xe4f2fb],
 				],
 			],
+			[1280, 720,
+				[
+					[right, 750, 87, 0xbadbf3],
+					[right, 751, 87, 0xe7f3fb],
+					[right, 752, 87, 0x89c5ec],
+					[right, 752, 88, 0x78bce9],
+					[right, 751, 88, 0xffffff],
+					[right, 750, 88, 0xf1f8fd],
+					[right, 750, 89, 0x6098e3],
+					[right, 751, 89, 0xa9d4f1],
+					[right, 752, 89, 0xe5f2fb],
+				]
+			]
 		],
-		similar: 95,
+		similar: 90
 	},
 	'帝释天': {
 		region: [center, 1280, 720, 684, 632, 1169, 718],
@@ -2893,6 +2872,36 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				[left, 278, 440, 0x697374],
 				[left, 209, 408, 0x343238],
 				[left, 281, 408, 0x37343a],
+			]
+		]],
+	},
+	'红手指': {
+		region: [left, 1280, 720, 0, 0, 1280, 720],
+		desc: [[1280, 720,
+			[
+				[right, 887, 255, 0xeca9a1],
+				[right, 897, 273, 0xedb9a9],
+				[right, 907, 287, 0xf0d0b9],
+				[right, 926, 303, 0x8c1b29],
+				[right, 940, 322, 0x9d1e2b],
+			]
+		]]
+	},
+	'剧情三点': {
+		region: [left, 1280, 720, 0, 0, 1280, 720],
+		desc: [[
+			1280, 720,
+			[
+				[right, 826, 175, 0xffffff],
+				[right, 831, 174, 0xffffff],
+				[right, 840, 174, 0xffffff],
+				[right, 854, 181, 0xffffff],
+				[right, 819, 219, 0xffffff],
+				[right, 825, 224, 0xffffff],
+				[right, 834, 226, 0xffffff],
+				[right, 847, 223, 0xffffff],
+				[right, 837, 200, 0xdcd2ca],
+				[right, 824, 200, 0xdbd1c9],
 			]
 		]],
 	},
