@@ -156,18 +156,34 @@ export default function webviewSchedule() {
 		}
 
 		function updateJobStore(job: JobOptions) {
+			// 更新 scheduleList
 			const sl = store.get('scheduleList', ScheduleDefaultList);
 			for (const storedJob of sl) {
 				if (storedJob.name === job.name) {
 					storedJob.nextDate = job.nextDate;
 					storedJob.lastRunTime = job.lastRunTime;
 					storedJob.lastStopTime = job.lastStopTime;
-
 					store.put('scheduleList', sl);
-					return true;
+					break;
 				}
 			}
-			return false;
+
+			// 同时更新当前配置中的任务
+			const currentConfigName = store.get('currentScheduleConfigName');
+			if (currentConfigName) {
+				const configs = store.get('scheduleConfigs') || {};
+				if (configs[currentConfigName]) {
+					for (const configJob of configs[currentConfigName]) {
+						if (configJob.name === job.name) {
+							configJob.nextDate = job.nextDate;
+							configJob.lastRunTime = job.lastRunTime;
+							configJob.lastStopTime = job.lastStopTime;
+							store.put('scheduleConfigs', configs);
+							break;
+						}
+					}
+				}
+			}
 		}
 	}
 
