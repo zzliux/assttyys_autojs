@@ -241,14 +241,12 @@ export default function webviewSchedule() {
 			done({ error: 1, message: '配置不存在' });
 			return;
 		}
-		log('加载配置', schedule);
 		// 清空调度器中的所有现有任务（先复制任务名列表，避免遍历中修改数组）
 		const currentJobList = schedule.getJobList();
 		const jobNames = currentJobList.map(job => job.name);
 		for (const jobName of jobNames) {
 			schedule.remove(jobName);
 		}
-		log('清空配置', schedule);
 		// 将新配置的任务加入调度器（cron 模式检查 nextDate 是否过期）
 		for (const job of jobs) {
 			if (job.checked === true) {
@@ -262,7 +260,6 @@ export default function webviewSchedule() {
 				jobToSchedule(job);
 			}
 		}
-		log('新配置', schedule);
 		// 保存当前配置名称和任务列表
 		store.put('currentScheduleConfigName', name);
 		store.put('scheduleList', jobs);

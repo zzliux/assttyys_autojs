@@ -206,14 +206,39 @@ export class Func702 implements IFuncOrigin {
 				[center, 1280, 720, 24, 31, 59, 60, 1000],
 				[center, 1280, 720, 24, 31, 59, 60, 1000],
 			]
-		}
+		}, { // 13 desc:式神育成页
+			desc: [1280, 720,
+				[
+					[right, 1084, 83, 0xa7371d],
+					[right, 1184, 203, 0x525252],
+					[right, 968, 204, 0x505150],
+					[right, 1127, 715, 0x3e2d1c],
+					[right, 1185, 152, 0x414141],
+				],
+			]
+		},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['702'];
 		if (thisScript.oper({
 			id: 702,
+			name: '寄养界面中',
+			operator: [thisOperator[13]],
+		})) {
+			if (!thisScript.oper({
+				id: 702,
+				name: '开始寄养',
+				operator: [thisOperator[1]],
+			})) {
+				console.log('寄养时间未到,等待5秒')
+				sleep(5000);
+			}
+			return true;
+		}
+		if (thisScript.oper({
+			id: 702,
 			name: '检测是否为式神寄养列表',
-			operator: [thisOperator[0], thisOperator[1]],
+			operator: [thisOperator[0]],
 		})) {
 			return true;
 		}
@@ -253,14 +278,6 @@ export class Func702 implements IFuncOrigin {
 			sleep(3000);
 			return true;
 		}
-		if (thisScript.oper({
-			id: 702,
-			name: 'N卡已满级',
-			operator: [thisOperator[11]],
-		})) {
-			doPush(thisScript, { text: '寄养的N卡已满级' });
-			return true;
-		}
 		let curCnt = 0;
 		const maxCount = 3;
 		while (thisScript.oper({
@@ -281,8 +298,14 @@ export class Func702 implements IFuncOrigin {
 				return true;
 			}
 			if (curCnt >= maxCount) {
-				thisScript.regionClick(thisOperator[12].oper); // 已被占用,返回
-				return true;
+				if (thisScript.oper({
+					id: 702,
+					name: 'N卡已满级',
+					operator: [thisOperator[11]],
+				})) {
+					doPush(thisScript, { text: '寄养的N卡已满级' });
+					return true;
+				}
 			}
 		}
 		if (thisScript.oper({
