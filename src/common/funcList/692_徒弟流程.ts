@@ -726,7 +726,7 @@ export class Func692 implements IFuncOrigin {
 		if (thisScript.global.tuDi.flower) {
 			if (thisScript.oper({
 				id: 692,
-				name: 'flower',
+				name: '花合战',
 				operator: [thisOperator[0], thisOperator[1], thisOperator[4], thisOperator[5]
 					, thisOperator[6]]
 			})) {
@@ -734,13 +734,21 @@ export class Func692 implements IFuncOrigin {
 			}
 			if (thisScript.oper({
 				id: 692,
-				name: 'flower',
-				operator: [thisOperator[2]]
+				name: '花合战_任务界面',
+				operator: [{ desc: thisOperator[3].desc }]
 			})) {
-				thisScript.global.tuDi.flower = false;
-				thisScript.global.tuDi.cheak = true;
-				log('结束检查,执行守护')
-				return true;
+				if (thisScript.oper({
+					id: 692,
+					name: '花合战_领取奖励',
+					operator: [thisOperator[2]]
+				})) {
+					return true;
+				} else {
+					thisScript.global.tuDi.flower = false;
+					thisScript.global.tuDi.cheak = true;
+					log('结束检查,执行守护')
+					return true;
+				}
 			}
 		}
 		if (thisScript.global.tuDi.cheak) {

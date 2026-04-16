@@ -124,7 +124,8 @@ export type globalRootType = {
 	day_chouKa: boolean, // 每日抽卡
 	shiHe_jingYan: boolean, // 食盒经验领取上限
 	xianShiFengMo: number,
-	account_num: number, // 账号计数
+	account_num: number, // 账号计数（用于点击位置）
+	valid_account_num: number, // 有效账号计数（实际完成功能的账号数）
 	account_double: boolean, // 安卓苹果双登录模式
 	account_state: 'login' | 'function' | 'logout',
 	function_Switch: Record<string, boolean | number>, // 小号功能记录
@@ -271,6 +272,7 @@ export const globalRoot: globalRootType = {
 	liao_banquet_onGoing: true,
 	xianShiFengMo: 0,
 	account_num: 0,
+	valid_account_num: 0,
 	account_double: null,
 	account_state: 'login',
 	function_Switch: null,

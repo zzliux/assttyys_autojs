@@ -13,12 +13,12 @@ export class Func609 implements IFuncOrigin {
 		desc: '',
 		config: [{
 			name: 'account_count',
-			desc: '账号数量',
+			desc: '账号数量(非邮箱数量)',
 			type: 'number',
 			default: '10',
 		}, {
 			name: 'swip_count',
-			desc: '下划次数',
+			desc: '账号界面下划次数',
 			type: 'number',
 			default: '5',
 		}, {
@@ -610,7 +610,6 @@ export class Func609 implements IFuncOrigin {
 			1280, 720,
 			[
 				[center, 530, 65, 0xfaf4ce],
-				[center, 610, 71, 0xfefdd5],
 				[center, 682, 74, 0xf2e8c1],
 				[center, 732, 77, 0xebe0b7],
 				[center, 550, 100, 0xae9562],
@@ -1144,7 +1143,8 @@ export class Func609 implements IFuncOrigin {
 			return true;
 		}
 		if (thisScript.global.account_state === 'login') {
-			if (thisScript.global.account_num >= (thisconf.account_count as number)) {
+			// 使用 valid_account_num 判断实际完成功能的账号数
+			if (thisScript.global.valid_account_num >= (thisconf.account_count as number)) {
 				thisScript.rerun(thisconf.next_scheme);
 				return true;
 			}
@@ -1209,6 +1209,7 @@ export class Func609 implements IFuncOrigin {
 				name: '未创建角色',
 				operator: [thisOperator[62]]
 			})) {
+				// 未创建角色的账号：增加 account_num 保持点击位置，但不增加有效计数
 				thisScript.global.account_num++;
 				return true;
 			}
@@ -1586,6 +1587,8 @@ export class Func609 implements IFuncOrigin {
 				operator: [{ desc: thisOperator[1].desc }]
 			})) {
 				thisScript.global.account_num += 1;
+				// 完成一个有效账号的功能，增加有效计数
+				thisScript.global.valid_account_num = thisScript.global.valid_account_num + 1;
 				thisScript.global.function_Switch = null;
 				thisScript.global.account_state = 'login';
 				thisScript.runTimes['2'] = 0;

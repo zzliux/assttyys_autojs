@@ -15,12 +15,12 @@ export class Func691 implements IFuncOrigin {
 		desc: '',
 		config: [{
 			name: 'name',
-			desc: '昵称前缀',
+			desc: '昵称前缀(不超过三个字)',
 			type: 'text',
 			default: '徒弟',
 		}, {
 			name: 'shiFu_name',
-			desc: '师傅昵称',
+			desc: '师傅昵称(必须全名)',
 			type: 'text',
 			default: '师傅',
 		}, {

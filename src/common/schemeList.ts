@@ -65,10 +65,6 @@ const SchemeList: IScheme[] = [
 			'7': {
 				switch_nineWin: true,
 			},
-			'8': {
-				inv: true,
-				designated_scheme: '循环',
-			},
 			'9': {
 				scheme_switch_enabled: true,
 			},
@@ -475,7 +471,7 @@ const SchemeList: IScheme[] = [
 				'jspd_enabled_2': true,
 				'jspd_times_2': '80',
 				'after_operation': '切换方案',
-				'next_scheme': '个人突破_打9退4'
+				'next_scheme': '循环_突破打9退4'
 			},
 			'27': { 'level': '魂十' },
 			'503': { 'oper_26': false },
@@ -492,7 +488,7 @@ const SchemeList: IScheme[] = [
 				jspd_enabled_2: true,
 				jspd_times_2: '80',
 				after_operation: '切换方案',
-				next_scheme: '个人突破_打9退4'
+				next_scheme: '循环_突破打9退4'
 			},
 			'50': {
 				buff_type: '御魂',
@@ -515,7 +511,7 @@ const SchemeList: IScheme[] = [
 				'jspd_enabled_2': true,
 				'jspd_times_2': '80',
 				'after_operation': '切换方案',
-				'next_scheme': '个人突破_打9退4'
+				'next_scheme': '循环_突破打9退4'
 			},
 			'27': { 'level': '探索（困难）' },
 			'503': { 'oper_26': false, 'oper_27': false },
@@ -532,7 +528,7 @@ const SchemeList: IScheme[] = [
 				jspd_enabled_2: true,
 				jspd_times_2: '80',
 				after_operation: '切换方案',
-				next_scheme: '个人突破_打9退4'
+				next_scheme: '循环_突破打9退4'
 			},
 			'50': {
 				buff_type: '经验',
@@ -543,6 +539,29 @@ const SchemeList: IScheme[] = [
 				'oper_27': false
 			},
 		}
+	},
+	{
+		id: 3,
+		schemeName: '循环_突破打9退4',
+		groupNames: ['循环任务'],
+		star: true,
+		list: [690, 51, 0, 1, 2, 3, 7, 8, 9, 10, 29, 503],
+		config: {
+			'7': {
+				switch_nineWin: true,
+			},
+			'8': {
+				inv: true,
+				designated_scheme: '循环',
+			},
+			'9': {
+				scheme_switch_enabled: true,
+			},
+			'51': {
+				greenType: '自定义坐标',
+				'preSearch': true,
+			},
+		},
 	},
 	// ========== 小号部分 ==========
 	{
@@ -579,28 +598,106 @@ const SchemeList: IScheme[] = [
 			'53': { challenge_type: '御魂-觉醒火麒麟' },
 		},
 	},
-	// 	list: [1, 2, 3, 503, 993],
-	// 	config: {
-	// 		'993': {
-	// 			area: '',
-	// 			is_shutdown_the_game_before: true,
-	// 			next_scheme: '对弈竞猜',
-	// 		},
-	// 		'503': {
-	// 			afterCountOper: '不进行任何操作',
-	// 		},
-	// 	},
-	// }, {
-	// 	id: 101,
-	// 	schemeName: '对弈竞猜',
-	// 	list: [0, 2, 401],
-	// 	config: {
-	// 		'0': {
-	// 			jspd_times_longtime_nodo: '1',
-	// 		}
-	// 	},
-	// }
-	//
+	// ========== 师徒部分 ==========
+	{
+		id: 79,
+		schemeName: '师徒_师傅战斗',
+		groupNames: ['师徒部分'],
+		hidden: true,
+		list: [690, 510, 0, 1, 2, 3, 693, 503],
+		config: {
+			'0': {
+				stop_with_launched_app_exit: true,
+			}
+		},
+	},
+	{
+		id: 79,
+		schemeName: '师徒_徒弟登录',
+		groupNames: ['师徒部分'],
+		list: [690, 0, 1, 2, 3, 5, 24, 691, 503],
+		config: {
+			'691': {
+				next_scheme: '师徒_徒弟领体力',
+			},
+			'690': {
+				area: '徒弟',
+				name: '',
+			}
+		},
+	},
+	{
+		id: 79,
+		schemeName: '师徒_徒弟领体力',
+		groupNames: ['师徒部分'],
+		list: [690, 0, 1, 2, 3, 518, 503],
+		config: {
+			'0': {
+				jspd_times_longtime_nodo: '0.5',
+				after_operation: '切换方案',
+				next_scheme: '师徒_徒弟金币'
+			}
+		},
+	},
+	{
+		id: 79,
+		schemeName: '师徒_徒弟金币',
+		groupNames: ['师徒部分'],
+		list: [0, 1, 2, 3, 27, 306, 5],
+		config: {
+			'27': {
+				mission: '金币妖怪',
+				next_scheme: '师徒_徒弟经验'
+			}
+		},
+	},
+	{
+		id: 79,
+		schemeName: '师徒_徒弟经验',
+		groupNames: ['师徒部分'],
+		list: [0, 1, 2, 3, 27, 306, 5],
+		config: {
+			'27': {
+				mission: '经验妖怪',
+				next_scheme: '师徒_徒弟石距'
+			}
+		},
+	}, {
+		id: 79,
+		schemeName: '师徒_徒弟石距',
+		groupNames: ['师徒部分'],
+		list: [0, 1, 2, 3, 27, 306, 5],
+		config: {
+			'27': {
+				mission: '石距',
+				next_scheme: '师徒_徒弟协战'
+			}
+		},
+	}, {
+		id: 79,
+		schemeName: '师徒_徒弟协战',
+		groupNames: ['师徒部分'],
+		list: [690, 694, 0, 1, 2, 3, 53, 6, 29, 503],
+		config: {
+			'0': {
+				jspd_enabled_2: true,
+				jspd_times_2: 15,
+				after_operation: '切换方案',
+				next_scheme: '师徒_徒弟守护'
+			},
+		},
+	},
+	{
+		id: 79,
+		schemeName: '师徒_徒弟守护',
+		groupNames: ['师徒部分'],
+		list: [690, 0, 1, 2, 3, 306, 5, 692, 503],
+		config: {
+			'692': {
+				next_scheme: '__关闭应用__'
+			}
+		},
+	},
 	// 完整demo
 	// , {
 	//     id: 2,

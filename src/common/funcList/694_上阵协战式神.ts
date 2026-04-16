@@ -55,7 +55,7 @@ export class Func694 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 297, 561, 337, 601, 1000],
-			[center, 1280, 720, 387, 285, 429, 321, 1000],
+			[center, 1280, 720, 604, 244, 634, 275, 1000],
 			[center, 1280, 720, 1135, 557, 1217, 611, 1000],
 		]
 	}, { // 4 御魂九层
@@ -85,6 +85,33 @@ export class Func694 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 568, 454, 712, 485, 2000],
 			[center, 1280, 720, 581, 672, 724, 699, 1000],
+		]
+	}, { // 6 解锁阵容
+		desc: [1280, 720,
+			[
+				[center, 558, 579, 0xa69dd5],
+				[center, 586, 578, 0xa598c6],
+				[center, 566, 577, 0x7f6747],
+				[center, 577, 590, 0x6b5842],
+				[center, 567, 587, 0x6d563f],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 562, 572, 583, 589, 1000],
+		]
+	}, { // 7 解锁阵容(五倍券)
+		desc: [1280, 720,
+			[
+				[center, 568, 572, 0xada6f7],
+				[center, 598, 572, 0xbdaeef],
+				[center, 578, 568, 0x876c4b],
+				[center, 579, 578, 0x846644],
+				[center, 590, 581, 0x7b5d42],
+				[center, 588, 569, 0x846d4a],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 571, 561, 593, 582, 1000],
 		]
 	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -132,7 +159,7 @@ export class Func694 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 692,
 				name: 'frist',
-				operator: [thisOperator[1]]
+				operator: [thisOperator[1], thisOperator[6]]
 			})) {
 				return true;
 			}
@@ -140,7 +167,7 @@ export class Func694 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 692,
 			name: '特殊操作',
-			operator: [thisOperator[4], thisOperator[5]]
+			operator: [thisOperator[4], thisOperator[5], thisOperator[7]]
 		})) {
 			return true;
 		}
