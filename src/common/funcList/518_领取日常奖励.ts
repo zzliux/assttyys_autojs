@@ -596,11 +596,11 @@ export class Func518 implements IFuncOrigin {
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (!thisScript.global.function_Switch) {// 首次执行,读取按钮状况
 			thisScript.global.function_Switch = {
-				'agency': true,
-				'shop': true,
-				'friend': true,
-				'flower': true,
-				'email': true,
+				'agency': false,
+				'shop': false,
+				'friend': false,
+				'flower': false,
+				'email': false,
 				'godlike': true,
 			};
 		}
@@ -795,6 +795,30 @@ export class Func518 implements IFuncOrigin {
 				app.launchPackage('com.netease.gl');
 				return true;
 			} else if (packageName === 'com.netease.gl') {
+				if (text('忽略').findOnce()) {
+					log('点击忽略')
+					const oper = [
+						text('忽略').findOnce().bounds().centerX(),
+						text('忽略').findOnce().bounds().centerY(),
+						text('忽略').findOnce().bounds().centerX() + 5,
+						text('忽略').findOnce().bounds().centerY() + 5,
+						1000
+					]
+					thisScript.regionClick([oper]);
+					return true;
+				}
+				if (text('圈子').findOnce()) {
+					log('点击圈子')
+					const oper = [
+						text('圈子').findOnce().bounds().centerX(),
+						text('圈子').findOnce().bounds().centerY(),
+						text('圈子').findOnce().bounds().centerX() + 5,
+						text('圈子').findOnce().bounds().centerY() + 5,
+						1000
+					]
+					thisScript.regionClick([oper]);
+					return true;
+				}
 				if (text('福利中心').findOnce()) {
 					log('点击福利中心')
 					const oper = [
