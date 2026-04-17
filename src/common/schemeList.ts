@@ -595,7 +595,7 @@ const SchemeList: IScheme[] = [
 				jspd_times_2: 15,
 				stop_with_launched_app_exit: true,
 			},
-			'53': { challenge_type: '御魂-觉醒火麒麟' },
+			'53': { challenge_type: '觉醒-火麒麟' },
 		},
 	},
 	// ========== 师徒部分 ==========
@@ -685,13 +685,16 @@ const SchemeList: IScheme[] = [
 				after_operation: '切换方案',
 				next_scheme: '师徒_徒弟守护'
 			},
+			'6': {
+				next_scheme: '师徒_徒弟守护'
+			}
 		},
 	},
 	{
 		id: 79,
 		schemeName: '师徒_徒弟守护',
 		groupNames: ['师徒部分'],
-		list: [690, 0, 1, 2, 3, 306, 5, 692, 503],
+		list: [690, 0, 1, 2, 3, 5, 692, 29, 503],
 		config: {
 			'692': {
 				next_scheme: '__关闭应用__'

@@ -591,16 +591,40 @@ export class Func518 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 609, 692, 750, 718, 1000],
 			]
+		}, { // 46 花合战开启
+			desc: [1280, 720,
+				[
+					[center, 432, 700, 0x44496b],
+					[center, 476, 701, 0x4a4f6f],
+					[right, 728, 699, 0x68658f],
+					[right, 911, 689, 0x79729c],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 789, 666, 884, 706, 1000],
+			]
+		}, { // 47 花合战花札购买
+			desc: [1280, 720,
+				[
+					[left, 242, 707, 0x56597e],
+					[center, 344, 708, 0x65638a],
+					[center, 473, 700, 0x6c668f],
+					[center, 566, 708, 0x504b6e],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 787, 673, 897, 707, 1000],
+			]
 		},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (!thisScript.global.function_Switch) {// 首次执行,读取按钮状况
 			thisScript.global.function_Switch = {
-				'agency': false,
-				'shop': false,
-				'friend': false,
-				'flower': false,
-				'email': false,
+				'agency': true,
+				'shop': true,
+				'friend': true,
+				'flower': true,
+				'email': true,
 				'godlike': true,
 			};
 		}
@@ -676,8 +700,7 @@ export class Func518 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 518,
 				name: '一键代办',
-				operator: [thisOperator[1], thisOperator[43], thisOperator[3], thisOperator[5]
-					, thisOperator[6], thisOperator[7],]
+				operator: [thisOperator[1], thisOperator[43], thisOperator[3], thisOperator[5]]
 			})) {
 				return true;
 			}
@@ -686,8 +709,7 @@ export class Func518 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 518,
 				name: '商店_杂项',
-				operator: [thisOperator[19], thisOperator[20], thisOperator[21], thisOperator[5]
-					, thisOperator[6], thisOperator[7],]
+				operator: [thisOperator[19], thisOperator[20], thisOperator[21], thisOperator[5]]
 			})) {
 				return true;
 			}
@@ -761,7 +783,8 @@ export class Func518 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 518,
 				name: '花合战',
-				operator: [thisOperator[35], thisOperator[36], thisOperator[39]]
+				operator: [thisOperator[35], thisOperator[36], thisOperator[39], thisOperator[46]
+					, thisOperator[47]]
 			})) {
 				return true;
 			}
@@ -842,7 +865,7 @@ export class Func518 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 518,
 			name: '退出',
-			operator: [thisOperator[4], thisOperator[30], thisOperator[31], thisOperator[32], thisOperator[33]
+			operator: [thisOperator[4], thisOperator[6], thisOperator[7], thisOperator[30], thisOperator[31], thisOperator[32], thisOperator[33]
 				, thisOperator[34], thisOperator[38], thisOperator[44]]
 		})) {
 			return true;

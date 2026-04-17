@@ -439,8 +439,8 @@ export class Func691 implements IFuncOrigin {
 				[left, 22, 26, 0x382215],
 				[left, 310, 57, 0x3d3031],
 				[left, 58, 60, 0xfcede0],
-				[left, 199, 611, 0xec8342],
-				[left, 267, 610, 0xd36c34],
+				[left, 263, 610, 0x7a2721],
+				[center, 357, 629, 0xe5e3e1],
 			]
 		]
 	}, { // 32 残废组队
@@ -723,17 +723,44 @@ export class Func691 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1158, 94, 1196, 132, 1000],
 		]
+	}, { // 55 探索返回
+		desc: [1280, 720,
+			[
+				[left, 123, 25, 0xf9edb7],
+				[left, 134, 49, 0xf3e18e],
+				[left, 52, 43, 0xefda98],
+				[left, 67, 654, 0xc955c8],
+				[left, 176, 648, 0xbd9418],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 30, 20, 72, 53, 1000],
+		]
+	}, { // 56 组队界面_挑战亮
+		desc: [1280, 720,
+			[
+				[left, 42, 38, 0xf7eaac],
+				[right, 1177, 667, 0xd8b871],
+				[right, 1187, 679, 0xcda35d],
+				[right, 1188, 609, 0xf1e096],
+				[left, 60, 39, 0x84582f],
+				[left, 19, 47, 0x281717]
+			]
+		],
+		oper: [
+			[right, 1280, 720, 1192, 613, 1251, 677, 2000]
+		]
 	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['691'];
 		if (!thisScript.global.newAccount) {
 			thisScript.global.newAccount = {
-				'create': true,
+				'create': false,
 				'apply': false,
 				'jingYan': false,
 				'closePB': false, // 关闭皮肤试用
-				'getBird': false,
+				'getBird': true,
 				'join': false,
 			};
 		}
@@ -934,10 +961,23 @@ export class Func691 implements IFuncOrigin {
 		}
 		if (thisScript.global.newAccount.jingYan) {
 			if (thisScript.oper({
+				name: '庭院判断',
+				operator: [{ desc: thisOperator[31].desc }]
+			})) {
+				const point = thisScript.findMultiColor('庭院_町中竖牌');
+				if (point) {
+					const oper = [
+						[point.x, point.y, point.x + 10, point.y + 10, 1000]
+					];
+					thisScript.regionClick(oper);
+					return true;
+				}
+			}
+			if (thisScript.oper({
 				id: 691,
 				name: '残废组队',
 				operator: [thisOperator[32], thisOperator[33], thisOperator[34], thisOperator[35], thisOperator[36]
-					, thisOperator[37], thisOperator[18]]
+					, thisOperator[37], thisOperator[18], thisOperator[55], thisOperator[56]]
 			})) {
 				return true;
 			}
@@ -946,7 +986,7 @@ export class Func691 implements IFuncOrigin {
 				console.log('识别广告关闭按钮成功');
 				const oper = [[point.x - 10, point.y - 10, point.x, point.y, 1000]];
 				thisScript.regionClick(oper);
-				return true;
+				// return true;
 			}
 		}
 		if (thisScript.global.newAccount.join) {
@@ -972,6 +1012,7 @@ export class Func691 implements IFuncOrigin {
 			name: '已有珍旅居',
 			operator: [thisOperator[40]]
 		})) {
+			thisScript.global.newAccount.jingYan = false;
 			thisScript.global.newAccount.join = true;
 			return true;
 		}

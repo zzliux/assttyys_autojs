@@ -173,12 +173,12 @@ export class Func027 implements IFuncOrigin {
 	}, { // 14 石距_创建队伍
 		desc: [1280, 720,
 			[
-				[right, 1156, 610, 0x221d1a],
-				[right, 1155, 643, 0x211c19],
-				[right, 1040, 643, 0x221d1a],
-				[right, 1032, 607, 0x231e1b],
-				[right, 905, 606, 0xf3b25e],
-				[right, 902, 644, 0xf3b25e],
+				[right, 1154, 608, 0x221d1a],
+				[right, 1156, 642, 0x211c19],
+				[right, 884, 647, 0xf3b25e],
+				[right, 886, 609, 0xf3b25e],
+				[center, 625, 614, 0xf3b25e],
+				[center, 486, 148, 0x680707],
 			]
 		],
 		oper: [

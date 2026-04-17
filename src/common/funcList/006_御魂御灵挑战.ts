@@ -9,6 +9,15 @@ export class Func006 implements IFuncOrigin {
 	id = 6;
 	name = '御魂/御灵挑战';
 	desc = '在御魂或者御灵的挑战界面时，点击挑战按钮，连续点击3次后未开始将自动停止脚本';
+	config = [{
+		desc: '',
+		config: [{
+			name: 'next_scheme',
+			desc: '下一个方案',
+			type: 'scheme',
+			default: '__停止脚本__',
+		}]
+	}];
 	operator: IFuncOperatorOrigin[] = [{
 		// 0 三类御魂
 		desc: [1280, 720,
@@ -70,6 +79,7 @@ export class Func006 implements IFuncOrigin {
 		]
 	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
+		const thisconf = thisScript.scheme.config['6'];
 		let curCnt = 0;
 		const maxCount = 3;
 		while (thisScript.oper({
@@ -81,7 +91,7 @@ export class Func006 implements IFuncOrigin {
 			thisScript.keepScreen(false);
 			if (curCnt >= maxCount) {
 				thisScript.myToast(`连续执行${maxCount}次挑战后未开始，脚本自动停止`);
-				thisScript.stop();
+				thisScript.rerun(thisconf.next_scheme);
 				sleep(2000);
 				return false;
 			}
