@@ -71,7 +71,7 @@ export class Func016 implements IFuncOrigin {
 			[
 				[left, 202, 388, 0x161211], // 第0个没打
 				[left, 308, 386, 0x161211], // 第1个没打
-				[left, 426, 388, 0x161211], // 第2个没打
+				[left, 425, 388, 0x161211], // 第2个没打 20260418 由426,388修改为425,388；原426,388 0x161211在第三个位置以津真天时93相似度刚好能匹配成功
 			]
 		],
 		oper: [
@@ -160,6 +160,7 @@ export class Func016 implements IFuncOrigin {
 			thisScript.global.dgCurNum = -1;
 			for (let i = 0; i < thisOperator[2].desc.length; i++) {
 				if (thisScript.oper({
+					id: 16,
 					name: `地鬼_检测第${i}个未打`,
 					operator: [{
 						desc: [thisOperator[2].desc[i] as [number, number, number, number]]
