@@ -731,6 +731,10 @@ export class Script {
 			return;
 		} else if ('__不做动作__' === schemeName) {
 			return false;
+		} else if ('__暂停__' === schemeName) {
+			this.pause();
+			sleep(3000);
+			return;
 		} else if (schemeName) {
 			const schemeList = store.get('schemeList');
 			if (!schemeList.some(item => item.schemeName.includes(schemeName))) {
