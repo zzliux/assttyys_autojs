@@ -22,7 +22,7 @@ export class Func030 implements IFuncOrigin {
 			default: false,
 		}, {
 			name: 'banList',
-			desc: '式神被ban时退出，输入单字简称，现仅支持“面龙辉犬狐”',
+			desc: '式神被ban时退出，输入单字简称，现仅支持“面龙辉犬狐,言追桃平驴”',
 			type: 'text',
 			default: '',
 		}, {
@@ -97,13 +97,13 @@ export class Func030 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[left, 29, 23, 0xd6c4a1],
-				[center, 610, 63, 0x1b0e0b],
-				[left, 80, 406, 0x533628],
-				[right, 1202, 409, 0x533628],
-				[right, 1132, 568, 0x000000],
-				[right, 1181, 601, 0x000000],
-				[right, 1168, 619, 0xe8ca96],
+				[right, 1159, 607, 0x381e0d],
+				[right, 1152, 588, 0x381e0d],
+				[right, 1163, 589, 0x381e0d],
+				[right, 1198, 598, 0x381e0d],
+				[right, 1200, 617, 0x381e0d],
+				[right, 1175, 613, 0xdecb9c],
+				[right, 1173, 588, 0xd9c49c],
 			]
 		],
 		oper: [
@@ -133,12 +133,12 @@ export class Func030 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[center, 623, 8, 0x261812],
-				[center, 657, 10, 0x281813],
-				[center, 622, 44, 0xe3c7ab],
-				[center, 654, 48, 0xe3cc9c],
-				[center, 626, 73, 0xb38a67],
-				[center, 656, 78, 0xa57c5b],
+				[center, 625, 15, 0x342c27],
+				[right, 661, 15, 0x352c26],
+				[right, 646, 37, 0x312114],
+				[right, 641, 99, 0x291f17],
+				[center, 601, 67, 0x8a7b5a],
+				[right, 680, 66, 0x8a795a],
 			]
 		],
 		oper: [
@@ -201,7 +201,7 @@ export class Func030 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 26, 8, 59, 44, 1000],
 		]
-	}];
+	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['30'];
 		if (thisconf.ledgeProPvP) {
@@ -232,11 +232,7 @@ export class Func030 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 30,
 				name: '斗技_杂项_名仕',
-				operator: [
-					thisOperator[5],
-					thisOperator[6],
-					thisOperator[10],
-				],
+				operator: [thisOperator[5], thisOperator[10],]
 			})) {
 				return true;
 			}

@@ -192,18 +192,17 @@ export class Func002 implements IFuncOrigin {
 			[center, 1280, 720, 404, 609, 578, 644, 1000]	//	放弃结契 总不能有人想选再次结契吧
 		]
 	}, { // 17 自选120关闭
-		desc: [
-			1280, 720,
+		desc: [1280, 720,
 			[
-				[center, 508, 124, 0xf4d38b],
-				[center, 664, 127, 0xf7e4b3],
-				[center, 753, 135, 0xf4e1b8],
-				[center, 853, 106, 0xeece86],
-				[right, 1001, 494, 0x433325],
+				[center, 532, 136, 0xfbe9a8],
+				[center, 602, 120, 0xf4d676],
+				[right, 793, 129, 0xf6db88],
+				[right, 919, 123, 0xf6da7f],
+				[right, 1016, 205, 0xfef6d7],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1045, 125, 1078, 154, 1000],
+			[center, 1280, 720, 1113, 130, 1147, 165, 1000],
 		]
 	}, {
 		// 18 结界卡超上限提示
@@ -348,7 +347,8 @@ export class Func002 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 968, 463, 1036, 522, 1000],
-		]
+		],
+		notForCnt: true,
 	}, { // 31 关联手机确认框
 		desc: [1280, 720,
 			[
@@ -362,7 +362,8 @@ export class Func002 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 475, 483, 579, 523, 1000],
-		]
+		],
+		notForCnt: true,
 	}, { // 32 自动接受邀请_确认弹窗
 		desc: [1280, 720,
 			[
@@ -377,7 +378,38 @@ export class Func002 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 578, 356, 600, 381, 1000],
 			[center, 1280, 720, 688, 409, 836, 455, 1000],
-		]
+		],
+		notForCnt: true,
+	}, { // 33 断线期间结束
+		desc: [1280, 720,
+			[
+				[center, 473, 221, 0x6b4939],
+				[right, 833, 221, 0x664536],
+				[right, 793, 493, 0x6b4939],
+				[center, 469, 493, 0x6b4939],
+				[center, 590, 408, 0xf4b25d],
+				[right, 686, 436, 0xf4b25d],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 592, 401, 692, 444, 1000],
+		],
+		notForCnt: true,
+	}, { // 34 寮樱花树木提升
+		desc: [1280, 720,
+			[
+				[center, 489, 582, 0xedd2c2],
+				[center, 476, 610, 0xb7a296],
+				[right, 779, 580, 0xf1e3d7],
+				[right, 826, 569, 0xb8a59a],
+				[right, 781, 109, 0x8e684a],
+				[right, 794, 110, 0xe4cb91],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 779, 95, 808, 124, 1000],
+		],
+		notForCnt: true,
 	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['2'];
@@ -423,7 +455,7 @@ export class Func002 implements IFuncOrigin {
 				thisOperator[16], thisOperator[17], thisOperator[22], thisOperator[18], // 22要放18前面
 				thisOperator[21], thisOperator[23], thisOperator[24], thisOperator[25],
 				thisOperator[26], thisOperator[27], thisOperator[28], thisOperator[29],
-				thisOperator[30], thisOperator[31],]
+				thisOperator[30], thisOperator[31], thisOperator[33], thisOperator[34],]
 		});
 	}
 }

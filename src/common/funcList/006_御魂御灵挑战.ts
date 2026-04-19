@@ -48,22 +48,7 @@ export class Func006 implements IFuncOrigin {
 			[right, 1280, 720, 1104, 595, 1196, 681, 2000]
 		],
 		retest: 500
-	}, {
-		// 2 觉醒
-		desc: [1280, 720,
-			[
-				[left, 45, 45, 0xc2cbe3],
-				[left, 250, 44, 0x583716],
-				[right, 1230, 41, 0xd3ae84],
-				[right, 1163, 602, 0xddd2b9],
-				[left, 333, 62, 0xfbdfc5],
-				[right, 1200, 675, 0x382015],
-			]
-		],
-		oper: [
-			[right, 1280, 720, 1108, 593, 1204, 688, 2000]
-		]
-	}, { // 3 麒麟
+	}, { // 2 觉醒
 		desc: [1280, 720,
 			[
 				[right, 1174, 43, 0xd6b289],
@@ -85,7 +70,7 @@ export class Func006 implements IFuncOrigin {
 		while (thisScript.oper({
 			id: 6,
 			name: '御魂/御灵挑战',
-			operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[3]]
+			operator: [thisOperator[0], thisOperator[1], thisOperator[2]]
 		}, 0)) {
 			curCnt++;
 			thisScript.keepScreen(false);

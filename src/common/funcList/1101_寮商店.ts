@@ -46,6 +46,11 @@ export class Func1101 implements IFuncOrigin {
 			desc: '黑碎',
 			type: 'switch',
 			default: true,
+		}, {
+			name: 'oper_花',
+			desc: '花瓣(限时任务)',
+			type: 'switch',
+			default: false,
 		}]
 	}]
 	operator: IFuncOperatorOrigin[] = [{ // 0 庭院_阴阳寮

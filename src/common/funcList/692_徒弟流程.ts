@@ -139,7 +139,7 @@ export class Func692 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 85, 117, 325, 503, 500], // 御魂-八岐大蛇
 		]
-	}, { // 8 三类御魂
+	}, { // 8 三类御魂 废弃
 		desc: [1280, 720,
 			[
 				[left, 41, 36, 0xf9eeb3],
@@ -152,7 +152,7 @@ export class Func692 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1116, 602, 1197, 683, 2000]
 		]
-	}, { // 9 御魂九层
+	}, { // 9 御魂九层 废弃
 		desc: [1280, 720,
 			[
 				[left, 220, 443, 0xcfb88e],
@@ -165,12 +165,12 @@ export class Func692 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 215, 335, 435, 372, 1000],
 		]
-	}, { // 10 未准备
+	}, { // 10 未准备 废弃
 		desc: '准备界面_未准备',
 		oper: [
 			[center, 1280, 720, 528, 527, 678, 597, 1000],
 		]
-	}, { // 11 上阵
+	}, { // 11 上阵 废弃
 		desc: [1280, 720,
 			[
 				[left, 266, 658, 0xf95e89],
@@ -184,7 +184,7 @@ export class Func692 implements IFuncOrigin {
 			[center, 1280, 720, 387, 285, 429, 321, 1000],
 			[center, 1280, 720, 1135, 557, 1217, 611, 1000],
 		]
-	}, { // 12 自选御魂
+	}, { // 12 自选御魂 废弃
 		desc: [1280, 720,
 			[
 				[center, 532, 136, 0xfbe9a8],
@@ -197,7 +197,7 @@ export class Func692 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1113, 130, 1147, 165, 1000],
 		]
-	}, { // 13 准备
+	}, { // 13 准备 废弃
 		desc: '准备界面_未准备',
 		oper: [
 			[right, 1280, 720, 1137, 542, 1228, 632, 1000], // 准备

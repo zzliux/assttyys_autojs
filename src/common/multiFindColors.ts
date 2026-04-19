@@ -2572,6 +2572,76 @@ const multiFindColors: IMultiFindColorsOrigin = {
 			]
 		]]
 	},
+	'斗技ban选_言': {
+		region: [center, 1280, 720, 1145, 352, 1246, 447],
+		desc: [[
+			1280, 720,
+			[
+				[right, 1181, 387, 0xcfcdc4],
+				[right, 1191, 378, 0xcdcdc5],
+				[right, 1193, 396, 0x6c5841],
+				[right, 1206, 410, 0xacb1ac],
+				[right, 1197, 419, 0xc9331e],
+				[right, 1187, 406, 0x5f4b37],
+			]
+		]]
+	},
+	'斗技ban选_驴': {
+		region: [center, 1280, 720, 1145, 352, 1246, 447],
+		desc: [[
+			1280, 720,
+			[
+				[right, 1192, 392, 0xfffcf2],
+				[right, 1174, 391, 0x533628],
+				[right, 1177, 382, 0x23232d],
+				[right, 1189, 412, 0xfdfdf9],
+				[right, 1203, 400, 0xe7b96a],
+				[right, 1172, 398, 0xd9a15a],
+			]
+		]]
+	},
+	'斗技ban选_桃': {
+		region: [center, 1280, 720, 1145, 352, 1246, 447],
+		desc: [[
+			1280, 720,
+			[
+				[right, 1174, 404, 0x533628],
+				[right, 1193, 397, 0xfffdfd],
+				[right, 1201, 407, 0xfde5ea],
+				[right, 1201, 416, 0xfffbfc],
+				[right, 1212, 407, 0xf7e6e6],
+				[right, 1194, 377, 0x4f3c3f],
+			]
+		]]
+	},
+	'斗技ban选_追': {
+		region: [center, 1280, 720, 1145, 352, 1246, 447],
+		desc: [[
+			1280, 720,
+			[
+				[right, 1201, 386, 0xa7aaaa],
+				[right, 1194, 396, 0xfdf3ee],
+				[right, 1191, 419, 0xfffefc],
+				[right, 1176, 406, 0xfff87d],
+				[right, 1214, 399, 0x482c17],
+				[right, 1176, 387, 0x8e9292],
+			]
+		]]
+	},
+	'斗技ban选_平': {
+		region: [center, 1280, 720, 1145, 352, 1246, 447],
+		desc: [[
+			1280, 720,
+			[
+				[right, 1188, 389, 0xfffcf7],
+				[right, 1195, 375, 0xf6ece1],
+				[right, 1211, 397, 0xbca393],
+				[right, 1173, 390, 0x593a2a],
+				[right, 1173, 406, 0xe2d5d3],
+				[right, 1211, 406, 0xc8ac9b],
+			]
+		]]
+	},
 	'超鬼王_低星': {
 		region: [center, 1280, 720, 277, 275, 995, 430],
 		desc: [[ // 2星
@@ -3013,6 +3083,19 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				[right, 1252, 70, 0xffba52],
 			]
 		],],
+	},
+	'寮横幅_限时': {
+		region: [left, 1280, 720, 118, 140, 253, 478],
+		desc: [[
+			1280, 720,
+			[
+				[left, 191, 340, 0x8f3138],
+				[left, 212, 349, 0x8d3438],
+				[left, 227, 368, 0x8f3138],
+				[left, 203, 349, 0xf0eee0],
+				[left, 213, 353, 0xebe6da],
+			]
+		]],
 	},
 	// '': {
 	// 	region: [left, 1280, 720, 0, 0, 1280, 720],
