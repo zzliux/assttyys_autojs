@@ -61,10 +61,10 @@ export class Func1109 implements IFuncOrigin {
 	}, { // 6 秘闻排行
 		desc: [1280, 720,
 			[
-				[right, 1026, 593, 0xe8c896],
-				[right, 1038, 588, 0xcbaa7b],
-				[right, 1055, 587, 0xe7cb94],
-				[right, 1038, 607, 0x94715e],
+				[right, 1024, 594, 0xe6c693],
+				[right, 1031, 587, 0xc7a578],
+				[right, 1038, 592, 0xcba97b],
+				[right, 1049, 593, 0xe6c796],
 			]
 		],
 	}, { // 7 秘闻分享
