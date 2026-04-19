@@ -55,6 +55,11 @@ export class Func609 implements IFuncOrigin {
 			type: 'list',
 			data: ['关闭', '斗鱼', '太鼓'],
 			default: '关闭',
+		}, {
+			name: 'xuanShang',
+			desc: '查询悬赏是否有勾协',
+			type: 'switch',
+			default: false,
 		}]
 	}, {
 		desc: '寮约任务相关(樱花树捐花瓣活动)',
@@ -1353,6 +1358,23 @@ export class Func609 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1023, 75, 1049, 110, 1000],
 		]
+	}, { // 95 悬赏关闭
+		desc: [
+			1280, 720,
+			[
+				[center, 1175, 121, 0x65343d],
+				[center, 546, 84, 0x58402f],
+				[center, 714, 81, 0x5c3a1a],
+				[center, 844, 67, 0x3e3c42],
+				[center, 1117, 615, 0x3c2a18],
+				[center, 1142, 653, 0xddb03f],
+				[center, 1098, 596, 0xf3e39e],
+				[center, 1169, 610, 0xefd787],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1105, 583, 1181, 660, 1000],
+		]
 	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -1376,6 +1398,7 @@ export class Func609 implements IFuncOrigin {
 				'yuHun_Fifty': thisconf.yuHun_Fifty as boolean,
 				'buy_Petal': thisconf.buy_Petal as boolean,
 				'add_Petal': thisconf.add_Petal as boolean,
+				'xuanShang': thisconf.xuanShang as boolean,
 			};
 		}
 		if (thisconf.card === '关闭') {
@@ -1925,6 +1948,36 @@ export class Func609 implements IFuncOrigin {
 						return false;
 					}
 					sleep(1000);
+				}
+			}
+			if (thisScript.global.function_Switch.xuanShang) {
+				if (thisScript.oper({
+					name: '悬赏_庭院界面',
+					operator: [{ desc: thisOperator[7].desc }]
+				})) {
+					const point = thisScript.findMultiColor('悬赏_庭院检测悬赏图标') || null;
+					if (point) {
+						thisScript.regionClick([[point.x, point.y, point.x + 20, point.y + 20, 1000]]);
+						return true
+					}
+				}
+				if (thisScript.oper({
+					name: '悬赏_庭院界面',
+					operator: [{ desc: thisOperator[95].desc }]
+				})) {
+					if (thisScript.findMultiColor('悬赏_勾玉协作')) {
+						thisScript.doPush(thisScript, { text: '发现有勾玉协作，及时邀请。' });
+						const now = new Date().getTime();
+						const ajImg = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(thisScript.helperBridge.helper.GetBitmap());
+						const croppedBitmap = ajImg.getBitmap().createBitmap(0, 0, 320, 55);
+						const path = `/sdcard/Pictures/批量截图/${now}.png`;
+						files.ensureDir(path);
+						croppedBitmap.saveTo(path);
+						croppedBitmap.recycle();
+						ajImg.recycle();
+					}
+					thisScript.regionClick(thisOperator[95].oper);
+					thisScript.global.function_Switch.xuanShang = false;
 				}
 			}
 			if (!thisScript.global.function_Switch.juanGouYu && !thisScript.global.function_Switch.liaoSanshi &&

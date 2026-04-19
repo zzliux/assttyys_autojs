@@ -197,6 +197,20 @@ export class Func027 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 361, 633, 397, 662, 1000],
 		]
+	}, { // 16 暗色组队
+		desc: [1280, 720,
+			[
+				[left, 314, 71, 0x2b2121],
+				[center, 338, 73, 0x58421f],
+				[right, 1153, 39, 0xa18567],
+				[right, 1220, 36, 0x9f8263],
+				[center, 437, 644, 0xa09d9b],
+				[center, 452, 625, 0xb2b1af],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 440, 624, 473, 664, 1000],
+		]
 	},]
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['27'];
@@ -302,7 +316,7 @@ export class Func027 implements IFuncOrigin {
 			id: 27,
 			name: '组队_匹配',
 			operator: [
-				thisOperator[15], thisOperator[1], thisOperator[2],
+				thisOperator[15], thisOperator[1], thisOperator[2], thisOperator[16],
 				thisOperator[9], thisOperator[3], thisOperator[6]
 			]
 		})) {
