@@ -1373,7 +1373,7 @@ export class Func609 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1105, 583, 1181, 660, 1000],
+			[center, 1280, 720, 1159, 117, 1196, 149, 1000],
 		]
 	},
 	];
