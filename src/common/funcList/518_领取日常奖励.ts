@@ -738,7 +738,7 @@ export class Func518 implements IFuncOrigin {
 				}
 				if (curCnt >= maxCount) {
 					thisScript.myToast(`连续差查找${maxCount}次未找到，跳过领取`);
-					thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+					thisScript.doPush(thisScript, { text: `连续差查找${maxCount}次未找到，跳过领取`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 					thisScript.regionClick(thisOperator[22].oper)
 					thisScript.global.function_Switch.shop = false;
 					return true;

@@ -229,6 +229,69 @@ export class Func320 implements IFuncOrigin {
 				[left, 175, 671, 0xd57e06],
 			]
 		],
+	}, { // 20 一阶段 不动
+		desc: [1280, 720,
+			[
+				[left, 137, 696, 0xdccdbe],
+				[left, 147, 695, 0xe4dbd0],
+				[left, 156, 696, 0xd8c7b6],
+				[left, 166, 699, 0xe7e0d7],
+			]
+		],
+	}, { // 21 二阶段 不动
+		desc: [1280, 720,
+			[
+				[left, 140, 691, 0xded1c3],
+				[left, 146, 690, 0xded1c2],
+				[left, 149, 699, 0xe0d5c8],
+				[left, 136, 700, 0xeee9e3],
+				[left, 156, 696, 0xd8c7b6],
+				[left, 166, 699, 0xe7e0d7],
+			]
+		],
+	}, { // 22 下阵
+		desc: [1280, 720,
+			[
+				[left, 139, 691, 0xe7dfd6],
+				[left, 146, 690, 0xdfd3c5],
+				[left, 145, 695, 0xd4c2af],
+				[left, 149, 700, 0xefebe6],
+				[left, 138, 701, 0xf1eee9],
+				[left, 156, 696, 0xd8c7b6],
+				[left, 166, 699, 0xe7e0d7],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 903, 634, 927, 656, 1000],
+		]
+	}, { // 23  发现御魂
+		desc: [1280, 720,
+			[
+				[left, 299, 558, 0x6fabc8],
+				[center, 367, 561, 0x70abc9],
+				[center, 370, 672, 0xd5cfc5],
+				[left, 294, 671, 0xd5cec5],
+				[center, 330, 666, 0xded8ce],
+				[center, 338, 687, 0xeceff2],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 312, 255, 354, 287, 1000],
+		]
+	}, { // 24 选择御魂
+		desc: [1280, 720,
+			[
+				[center, 376, 336, 0x3a271f],
+				[center, 460, 355, 0x3c2921],
+				[center, 597, 337, 0x3f2920],
+				[right, 681, 354, 0x3b2921],
+				[right, 821, 336, 0x3a2920],
+				[center, 596, 427, 0x413826],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 367, 330, 483, 357, 1000],
+		]
 	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -261,7 +324,7 @@ export class Func320 implements IFuncOrigin {
 		if (thisScript.oper({
 			name: '杂项',
 			operator: [thisOperator[4], thisOperator[5], thisOperator[15], thisOperator[8], thisOperator[9]
-				, thisOperator[10]]
+				, thisOperator[10], thisOperator[24]]
 		})) {
 			return true;
 		}
@@ -317,23 +380,51 @@ export class Func320 implements IFuncOrigin {
 			}
 			sleep(200);
 		}
-		if (thisScript.global.chess.cheak as number > 0 && thisScript.oper({
+		if (!thisScript.global.chess.ini && thisScript.global.chess.cheak as number > 0 && thisScript.oper({
 			name: '杂项',
 			operator: [{ desc: thisOperator[17].desc }]
 		})) {
-			let point = thisScript.findMultiColor('百鬼棋局_御魂');
+			if (thisScript.oper({
+				name: '一二阶',
+				operator: [thisOperator[20], thisOperator[21]]
+			})) {
+				thisScript.global.chess.cheak = 0;
+				return true;
+			}
+			let point = thisScript.findMultiColor('百鬼棋局_发现御魂');
+			if (point) {
+				thisScript.regionSwipe([point.x, point.y, point.x + 20, point.y + 20, 1000], thisOperator[23].oper[0], [700, 800], 500);
+				return true
+			}
+			point = thisScript.findMultiColor('百鬼棋局_御魂');
 			if (point) {
 				thisScript.regionSwipe([point.x, point.y, point.x + 20, point.y + 20, 1000], thisOperator[17].oper[0], [700, 800], 500);
 				return true
 			}
-			point = thisScript.findMultiColor('百鬼棋局_一星');
+			if (thisScript.oper({
+				name: '三阶',
+				operator: [{ desc: thisOperator[22].desc }]
+			})) {
+				point = thisScript.findMultiColorEx('百鬼棋局_棋盘一星');
+				if (point) {
+					for (let i = 0; i < point.length; i++) {
+						const ponit_del = [point[i].x + 30, point[i].y + 50, point[i].x + 5, point[i].y + 55]
+						thisScript.regionSwipe(ponit_del, thisOperator[22].oper[0], [700, 800], 500);
+					}
+				}
+				thisScript.keepScreen(false);
+			}
+			point = thisScript.findMultiColorEx('百鬼棋局_一星');
 			if (point) {
-				const ponit_del = [point.x, point.y, point.x + 5, point.y + 5]
-				const region = [point.x - 20, point.y, point.x + 20, point.y + 50,]
-				point = thisScript.findMultiColor('百鬼棋局_手牌荐', region);
-				if (!point) {
-					thisScript.global.chess.cheak = 5;
-					thisScript.regionSwipe(ponit_del, thisOperator[17].oper[0], [700, 800], 500);
+				for (let i = 0; i < point.length; i++) {
+					const ponit_del = [point[i].x, point[i].y, point[i].x + 5, point[i].y + 5]
+					const region = [point[i].x - 20, point[i].y, point[i].x + 20, point[i].y + 50,]
+					const pointCheak = thisScript.findMultiColor('百鬼棋局_手牌荐', region);
+					if (!pointCheak) {
+						thisScript.global.chess.cheak = 5;
+						thisScript.regionSwipe(ponit_del, thisOperator[17].oper[0], [700, 800], 500);
+						break;
+					}
 				}
 			}
 			thisScript.global.chess.cheak = thisScript.global.chess.cheak as number - 1;

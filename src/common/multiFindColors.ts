@@ -3084,6 +3084,34 @@ const multiFindColors: IMultiFindColorsOrigin = {
 			]
 		],],
 	},
+	'百鬼棋局_棋盘一星': {
+		region: [left, 1280, 720, 657, 292, 1031, 518],
+		desc: [[
+			1280, 720,
+			[
+				[right, 842, 321, 0xd18a66],
+				[right, 835, 323, 0x301812],
+				[right, 849, 323, 0x321715],
+				[right, 848, 328, 0x321a14],
+				[right, 841, 327, 0xf0a27c],
+				[right, 842, 319, 0xd88c6a],
+			]
+		]]
+	},
+	'百鬼棋局_发现御魂': {
+		region: [left, 1280, 720, 209, 543, 1141, 602],
+		desc: [[
+			1280, 720,
+			[
+				[left, 299, 558, 0x6fabc8],
+				[center, 367, 561, 0x70abc9],
+				[center, 370, 672, 0xd5cfc5],
+				[left, 294, 671, 0xd5cec5],
+				[center, 330, 666, 0xded8ce],
+				[center, 338, 687, 0xeceff2],
+			]
+		]]
+	},
 	'寮横幅_限时': {
 		region: [left, 1280, 720, 118, 140, 253, 478],
 		desc: [[

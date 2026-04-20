@@ -406,7 +406,7 @@ const SchemeList: IScheme[] = [
 		id: 78,
 		schemeName: '百鬼棋局',
 		groupNames: ['每周活动'],
-		list: [690, 0, 1, 2, 3, 24, 320, 503],
+		list: [0, 1, 2, 3, 24, 320],
 		config: {
 			0: {
 				jspd_times_longtime_nodo: '5',

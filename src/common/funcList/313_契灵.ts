@@ -28,6 +28,11 @@ export class Func313 implements IFuncOrigin {
 			type: 'list',
 			data: ['单人', '队长', '队员'],
 			default: '单人'
+		}, {
+			name: 'next_scheme',
+			desc: '无盘子后下一个方案',
+			type: 'scheme',
+			default: '__停止脚本__',
 		}]
 	}]
 
@@ -341,8 +346,8 @@ export class Func313 implements IFuncOrigin {
 			if (curCnt >= maxCount) {
 				thisScript.regionClick([thisOperator[9].oper[1]]);
 				thisScript.doPush(thisScript, { text: '无盘子', before() { thisScript.myToast('无盘子'); } });
-				thisScript.rerun('返回庭院');
-				sleep(3000);
+				thisScript.rerun(thisconf.next_scheme);
+				sleep(2000);
 				return true;
 			}
 			sleep(1000);
