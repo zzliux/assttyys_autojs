@@ -1966,13 +1966,19 @@ export class Func609 implements IFuncOrigin {
 					operator: [{ desc: thisOperator[95].desc }]
 				})) {
 					if (thisScript.findMultiColor('悬赏_勾玉协作')) {
-						thisScript.doPush(thisScript, { text: '发现有勾玉协作，及时邀请。' });
-						const now = new Date().getTime();
+						const nowDate = new Date();
+						const day = nowDate.getDate(); // 日
+						const weekArr = ['日', '一', '二', '三', '四', '五', '六'];
+						const week = weekArr[nowDate.getDay()];
+						const now = `${day}号_周${week}`;
 						const ajImg = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(thisScript.helperBridge.helper.GetBitmap());
-						const croppedBitmap = ajImg.getBitmap().createBitmap(0, 0, 320, 55);
-						const path = `/sdcard/Pictures/批量截图/${now}.png`;
+						const bitmap = ajImg.getBitmap();
+						const croppedBitmap = android.graphics.Bitmap.createBitmap(bitmap, 0, 0, 320, 55);
+						const path = `/sdcard/assttyys/勾协悬赏账号/${now}.png`;
 						files.ensureDir(path);
-						croppedBitmap.saveTo(path);
+						const img = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(croppedBitmap);
+						img.saveTo(path);
+						img.recycle();
 						croppedBitmap.recycle();
 						ajImg.recycle();
 					}
