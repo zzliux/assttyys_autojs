@@ -255,6 +255,7 @@ export class Func320 implements IFuncOrigin {
 			} else {
 				thisScript.regionClick(thisOperator[6].oper)
 			}
+			thisScript.global.chess = null
 			return true;
 		}
 		if (thisScript.oper({
@@ -287,7 +288,7 @@ export class Func320 implements IFuncOrigin {
 			return true;
 		}
 		let curCnt = 0;
-		const maxCount = 4;
+		const maxCount = 8;
 		while (thisScript.oper({
 			name: '买式神',
 			operator: [{ desc: thisOperator[14].desc }]
@@ -313,7 +314,6 @@ export class Func320 implements IFuncOrigin {
 			const point = thisScript.findMultiColor('百鬼棋局_荐');
 			if (point) {
 				thisScript.regionClick([[point.x, point.y, point.x + 20, point.y + 20, 1000]]);
-				return true
 			}
 			sleep(200);
 		}
