@@ -334,7 +334,7 @@ const SchemeList: IScheme[] = [
 		schemeName: '六道椒图',
 		groupNames: ['每周活动'],
 		star: true,
-		list: [690, 509, 501, 0, 1, 316, 2, 3, 24, 503],
+		list: [690, 509, 510, 0, 1, 316, 2, 3, 24, 29, 503],
 		config: {
 			'316': {
 				overTimes: '2'
@@ -372,8 +372,11 @@ const SchemeList: IScheme[] = [
 		groupNames: ['每周活动'],
 		list: [690, 509, 510, 0, 1, 2, 3, 306, 5, 313, 29],
 		config: {
-			'306': {
+			'313': {
 				team: '队长'
+			},
+			'503': {
+				oper_35: false
 			}
 		}
 	},
@@ -383,7 +386,7 @@ const SchemeList: IScheme[] = [
 		groupNames: ['每周活动'],
 		list: [690, 509, 510, 0, 1, 2, 3, 4, 313, 29],
 		config: {
-			'306': {
+			'313': {
 				team: '队员'
 			}
 		}

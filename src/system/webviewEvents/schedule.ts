@@ -126,9 +126,11 @@ export default function webviewSchedule() {
 
 	function jobToSchedule(job: JobOptions) {
 		if (job.checked === true) {
-			// cron 模式下，如果 nextDate 不存在或已过期，重新计算
+			// cron 模式下，如果 nextDate 不存在或过期超过2分钟，重新计算
+			// 2分钟内的容错时间用于调度器捕获并执行过期任务
 			let nextDate = job.nextDate ? new Date(job.nextDate) : null;
-			if (job.repeatMode === 3 && (!nextDate || nextDate.getTime() <= Date.now())) {
+			const twoMinutesAgo = Date.now() - 2 * 60 * 1000;
+			if (job.repeatMode === 3 && (!nextDate || nextDate.getTime() <= twoMinutesAgo)) {
 				const calculatedNextDate = getNextByCron(job.interval);
 				if (calculatedNextDate) {
 					nextDate = mergeOffsetTime(calculatedNextDate, job.nextOffset);

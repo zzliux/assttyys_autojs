@@ -208,7 +208,7 @@ const ScheduleDefaultList: JobOptions[] = [
 		lastRunTime: null,
 		nextDate: new Date('2026-04-15T16:00:00.000Z'),
 		repeatMode: 3,
-		interval: '0 59 11 * * 3',
+		interval: '0 59 11 * * 2',
 		nextOffset: '',
 		level: '10',
 		config: {
