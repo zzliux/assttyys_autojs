@@ -1737,7 +1737,7 @@ export class Func609 implements IFuncOrigin {
 				if (thisScript.oper({
 					id: 609,
 					name: '地域鬼王',
-					operator: [thisOperator[44], thisOperator[45], thisOperator[46], thisOperator[47]
+					operator: [thisOperator[44],thisOperator[46], thisOperator[47]
 						, thisOperator[65]]
 				})) {
 					return true;
