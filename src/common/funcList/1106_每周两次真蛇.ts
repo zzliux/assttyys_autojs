@@ -214,13 +214,6 @@ export class Func1106 implements IFuncOrigin {
 				thisScript.global.zhenShe--;
 				return true;
 			}
-			if (thisScript.oper({
-				id: 1106,
-				name: '每周两次真蛇_杂项',
-				operator: [thisOperator[2]]
-			})) {
-				return true;
-			}
 			return false;
 		} else if (thisScript.global.zhenShe == 0) {
 			if (thisScript.oper({
@@ -238,7 +231,7 @@ export class Func1106 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 1106,
 			name: '每周两次真蛇_弹窗',
-			operator: [thisOperator[8]]
+			operator: [thisOperator[2], thisOperator[4], thisOperator[8], thisOperator[10]]
 		})) {
 			return true;
 		}
