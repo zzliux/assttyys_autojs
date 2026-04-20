@@ -157,7 +157,21 @@ export class Func1106 implements IFuncOrigin {
 		]
 	}, { // 9 探索地图界面
 		desc: '探索地图界面',
-	}];
+	}, { // 10 通关弹窗
+		desc: [1280, 720,
+			[
+				[left, 273, 127, 0xe5c87a],
+				[center, 346, 200, 0xd7a855],
+				[center, 345, 321, 0xb77a35],
+				[center, 333, 386, 0xaf7430],
+				[right, 1220, 53, 0xe8d4cf],
+				[right, 1224, 612, 0xead890],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1206, 40, 1238, 68, 1000],
+		]
+	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['1106'];
 		if (thisScript.global.zhenShe > 0) { // 未完成
@@ -179,7 +193,6 @@ export class Func1106 implements IFuncOrigin {
 				name: '每周两次真蛇',
 				operator: [thisOperator[4]]
 			})) {
-				thisScript.global.zhenShe--;
 				thisScript.global.change_shikigami_flag = true; // 进入式神录
 				thisScript.global.change_shikigami_state = 'flushed';// 再次更换御魂
 				thisScript.global.preset_once_groupNum = thisScript.scheme.config?.['510']?.groupNum as number;
@@ -196,20 +209,20 @@ export class Func1106 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 1106,
 				name: '每周两次真蛇_杂项',
-				operator: [thisOperator[1], thisOperator[2]
-					, thisOperator[8]]
+				operator: [thisOperator[1]]
+			})) {
+				thisScript.global.zhenShe--;
+				return true;
+			}
+			if (thisScript.oper({
+				id: 1106,
+				name: '每周两次真蛇_杂项',
+				operator: [thisOperator[2]]
 			})) {
 				return true;
 			}
 			return false;
 		} else if (thisScript.global.zhenShe == 0) {
-			if (thisScript.oper({
-				id: 1106,
-				name: '每周两次真蛇_最后一次',
-				operator: [thisOperator[8]]
-			})) {
-				return true;
-			}
 			if (thisScript.oper({
 				id: 1106,
 				name: '每周两次真蛇_探索界面',
@@ -221,6 +234,13 @@ export class Func1106 implements IFuncOrigin {
 			}
 		} else if (thisScript.global.zhenShe == -1) {
 			return thisScript.rerun(thisConf.next_scheme);
+		}
+		if (thisScript.oper({
+			id: 1106,
+			name: '每周两次真蛇_弹窗',
+			operator: [thisOperator[8]]
+		})) {
+			return true;
 		}
 	}
 }

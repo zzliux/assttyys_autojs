@@ -351,7 +351,7 @@ const SchemeList: IScheme[] = [
 		id: 102,
 		schemeName: '每周真蛇_队员',
 		groupNames: ['每周活动'],
-		list: [690, 509, 510, 0, 1, 2, 3, 24, 1106, 503],
+		list: [690, 509, 510, 0, 1, 2, 3, 4, 24, 1106, 503],
 		config: {
 			'0': {
 				jspd_enabled_2: true,
