@@ -10,6 +10,15 @@ export class Func309 implements IFuncOrigin {
 	id = 309;
 	name = '强化御魂';
 	desc = '在批量强化界面强化御魂,逻辑在群公告的手册里';
+	config = [{
+		desc: '',
+		config: [{
+			name: 'speed',
+			desc: '强化速度胚子',
+			type: 'switch',
+			default: false,
+		}],
+	}];
 	operator: IFuncOperatorOrigin[] = [{ // 0  长按选取
 		desc: [
 			1280, 720,
@@ -159,9 +168,129 @@ export class Func309 implements IFuncOrigin {
 				[center, 332, 508, 0xaa4b32],
 			]
 		]
-	}
+	}, { // 10 速度胚子_退出
+		desc: [1280, 720,
+			[
+				[right, 1186, 405, 0x8c8c8c],
+				[right, 1221, 418, 0x8b8b8b],
+				[right, 1193, 495, 0xbbbbbb],
+				[right, 1211, 508, 0xbcbcbc],
+				[right, 1197, 600, 0xefd79c],
+				[right, 1232, 635, 0xefc98e],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 34, 19, 65, 57, 1000],
+		]
+	}, { // 11 速度胚子_强化
+		desc: [1280, 720,
+			[
+				[right, 1186, 405, 0xfe5d52],
+				[right, 1211, 508, 0xbdcd63],
+				[right, 1225, 514, 0xc6d76b],
+				[right, 1198, 603, 0xefcc94],
+				[right, 1232, 634, 0xefcf95],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1178, 603, 1232, 646, 1000],
+		]
+	}, { // 12 属性标识
+		desc: [1280, 720,
+			[
+				[right, 1239, 58, 0x382923],
+				[right, 1253, 58, 0x342821],
+				[right, 1241, 50, 0xc6b69c],
+				[right, 1249, 50, 0xc6b59c],
+				[right, 1132, 44, 0x322621],
+				[right, 1255, 61, 0x342821],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1138, 42, 1263, 64, 1000],
+		]
+	}, { // 13 三小词条改速度
+		desc: [1280, 720,
+			[
+				[right, 1140, 181, 0xffd07b],
+				[right, 1247, 206, 0xffd17f],
+				[right, 1240, 184, 0xffd07b],
+				[right, 1145, 205, 0xffd07b],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1138, 90, 1251, 113, 1000],
+			[center, 1280, 720, 1144, 183, 1255, 204, 1000],
+			[center, 1280, 720, 1146, 271, 1252, 295, 1000],
+			[center, 1280, 720, 1150, 363, 1247, 386, 1000],
+			[center, 1280, 720, 1138, 42, 1263, 64, 1000],
+		]
+	}, { // 14 速度改三小词条
+		desc: [1280, 720,
+			[
+				[right, 1140, 362, 0xffd07b],
+				[right, 1144, 382, 0xffd07b],
+				[right, 1253, 365, 0xffd180],
+				[right, 1251, 387, 0xffdfa4],
+				[right, 1195, 359, 0xffcf7b],
+				[right, 1197, 390, 0xffd68e],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1138, 90, 1251, 113, 1000],
+			[center, 1280, 720, 1144, 183, 1255, 204, 1000],
+			[center, 1280, 720, 1146, 271, 1252, 295, 1000],
+			[center, 1280, 720, 1150, 363, 1247, 386, 1000],
+			[center, 1280, 720, 1138, 42, 1263, 64, 1000],
+		]
+	},
 	]
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
+		const thisconf = thisScript.scheme.config['309'];
+		if (thisScript.global.upYuHunIni) {
+			if (thisScript.oper({
+				id: 309,
+				name: '初始化',
+				operator: [thisOperator[12]]
+			})) {
+				return true;
+			}
+			if (thisconf.speed) {
+				if (thisScript.oper({
+					id: 309,
+					name: '速度词条',
+					operator: [thisOperator[13]]
+				})) {
+					thisScript.global.upYuHunIni = false;
+					return true;
+				}
+				if (thisScript.oper({
+					id: 309,
+					name: '速度词条',
+					operator: [{ desc: thisOperator[14].desc, oper: [thisOperator[14].oper[4]] }]
+				})) {
+					thisScript.global.upYuHunIni = false;
+					return true;
+				}
+			} else {
+				if (thisScript.oper({
+					id: 309,
+					name: '初始化',
+					operator: [thisOperator[14]]
+				})) {
+					thisScript.global.upYuHunIni = false;
+					return true;
+				}
+				if (thisScript.oper({
+					id: 309,
+					name: '速度词条',
+					operator: [{ desc: thisOperator[13].desc, oper: [thisOperator[13].oper[4]] }]
+				})) {
+					thisScript.global.upYuHunIni = false;
+					return true;
+				}
+			}
+		}
 		if (thisScript.oper({
 			id: 309,
 			name: '强化御魂',
@@ -179,17 +308,26 @@ export class Func309 implements IFuncOrigin {
 			thisScript.global.upYuHun = true;
 			return true;
 		}
-		if (thisScript.oper({
-			id: 309,
-			name: '强化御魂',
-			operator: [thisOperator[7], thisOperator[1], thisOperator[3]
-				, thisOperator[4]
-			]
-		})) {
-			thisScript.global.upYuHun = false;
-			return true;
+		if (thisconf.speed) {
+			if (thisScript.oper({
+				id: 309,
+				name: '强化御魂',
+				operator: [thisOperator[7], thisOperator[1], thisOperator[10], thisOperator[11]]
+			})) {
+				thisScript.global.upYuHun = false;
+				return true;
+			}
+		} else {
+			if (thisScript.oper({
+				id: 309,
+				name: '强化御魂',
+				operator: [thisOperator[7], thisOperator[1], thisOperator[3]
+					, thisOperator[4]]
+			})) {
+				thisScript.global.upYuHun = false;
+				return true;
+			}
 		}
-
 		if (thisScript.global.upYuHun && thisScript.oper({
 			id: 309,
 			name: '强化御魂_金币不足',

@@ -731,6 +731,10 @@ export class Script {
 			return;
 		} else if ('__不做动作__' === schemeName) {
 			return false;
+		} else if ('__暂停__' === schemeName) {
+			this.pause();
+			sleep(3000);
+			return;
 		} else if (schemeName) {
 			const schemeList = store.get('schemeList');
 			if (!schemeList.some(item => item.schemeName.includes(schemeName))) {
@@ -968,6 +972,14 @@ export class Script {
 		baseSleep = baseSleep || this.scheme.commonConfig.afterClickDelayBase || 0;
 		randomSleep = randomSleep || this.scheme.commonConfig.afterClickDelayRandom || 0
 		this.helperBridge.regionBezierSwipe(operSrc, operDest, duration, baseSleep, randomSleep, type)
+	}
+
+	parseName(input: string): string[] {
+		if (!input) return [];
+		return input
+			.split(/[,，]/)
+			.map(name => name.trim())
+			.filter(Boolean);
 	}
 }
 

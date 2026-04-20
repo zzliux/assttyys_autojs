@@ -28,79 +28,101 @@ export class Func692 implements IFuncOrigin {
 			default: '返回庭院',
 		}]
 	}];
-	operator: IFuncOperatorOrigin[] = [{ // 好友
-		desc: [1280, 720,
+	// 5 6 8 9 10 11 12 51 52  为废弃
+	operator: IFuncOperatorOrigin[] = [{ // 0 庭院_花合战
+		desc: [
+			1280, 720,
 			[
-				[right, 878, 618, 0xef98a3],
-				[right, 928, 632, 0xdcb8a9],
-				[right, 889, 655, 0x6e3089],
-				[right, 920, 650, 0x9eddf3],
+				[center, 792, 616, 0xd9c0b7],
+				[center, 822, 606, 0xef1717],
+				[center, 800, 628, 0xb24343],
+				[center, 820, 645, 0xf4ecc7],
+				[center, 790, 648, 0xa8918c],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 882, 625, 930, 662, 1000],
+			[center, 1280, 720, 773, 621, 821, 660, 1000],
 		]
-	}, { // 1 自动战斗说明
-		desc: [1280, 720,
+	}, { // 1 花合战首页_奖励页签
+		desc: [
+			1280, 720,
 			[
-				[left, 231, 94, 0x3d1116],
-				[center, 402, 94, 0x4d171d],
-				[left, 228, 255, 0x8d7245],
-				[left, 313, 632, 0x5d4837],
-				[right, 1041, 630, 0xa48a6e],
+				[left, 39, 36, 0xf6f2cf],
+				[left, 234, 35, 0xe4e5e7],
+				[right, 1237, 345, 0x333259],
+				[right, 1196, 390, 0x3a3b62],
+				[right, 1220, 343, 0x8993b6],
+				[right, 1215, 374, 0x8993b6],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1043, 145, 1071, 186, 1000],
+			[center, 1280, 720, 1202, 329, 1232, 409, 1000],	//	点击 任务页签
 		]
-	}, { // 2 协战
-		desc: [1280, 720,
+	}, { // 2 花合战首页-任务页签且右下角含有全部领取
+		desc: [
+			1280, 720,
 			[
-				[right, 1218, 208, 0xb9661a],
-				[right, 1208, 331, 0x5e3d29],
-				[right, 1210, 455, 0x5c3b27],
-				[right, 1207, 579, 0x5e3d29],
+				[right, 1231, 228, 0x35345e],
+				[right, 1228, 361, 0xdae1d9],
+				[center, 950, 600, 0xfdd27e],
+				[center, 938, 631, 0xfdd27d],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1210, 540, 1236, 615, 1000],
+			[center, 1280, 720, 911, 611, 965, 655, 1500],	//	点击 全部领取
+			[center, 1280, 720, 911, 611, 965, 655, 1500],	//	奖励提示框
 		]
-	}, { // 3 出战
-		desc: [1280, 720,
+	}, { // 3  花合战界面退出
+		desc: [
+			1280, 720,
 			[
-				[center, 495, 388, 0xb49778],
-				[right, 647, 391, 0xb59779],
-				[center, 503, 481, 0xa98d6e],
-				[center, 623, 488, 0xa68a6b],
-				[right, 658, 475, 0xcab793],
-				[center, 486, 197, 0x4a302d],
+				[left, 39, 37, 0xf6f2d0],
+				[left, 234, 37, 0xe6e7e8],
+				[right, 1211, 216, 0x8993b6],
+				[right, 1220, 349, 0x5f597c],
+				[right, 1212, 362, 0xd3dae1],
+				[right, 1211, 401, 0xdce4d5],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 505, 384, 636, 464, 1000],
+			[center, 1280, 720, 24, 20, 60, 55, 1000],
 		]
-	}, { // 4 关闭好友
+	}, { // 4  花合战上新
 		desc: [1280, 720,
 			[
-				[center, 497, 389, 0xb49779],
-				[right, 648, 394, 0xb39678],
-				[center, 611, 374, 0x0181a7],
-				[center, 619, 378, 0xfffcf5],
-				[center, 613, 488, 0xa38868],
+				[right, 1130, 58, 0x4a33df],
+				[right, 1154, 71, 0x242dbf],
+				[right, 1194, 54, 0x1d55a9],
+				[right, 1211, 54, 0x1c449f],
+				[right, 1187, 49, 0xf8ffff],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1158, 94, 1196, 132, 1000],
+			[center, 1280, 720, 1167, 50, 1190, 66, 2000],
 		]
-	}, { // 5 庭院进入探索
-		desc: '页面是否为庭院_菜单已展开_只支持默认庭院皮肤与默认装饰',
+	}, { // 5 花合战开启
+		desc: [1280, 720,
+			[
+				[center, 432, 700, 0x44496b],
+				[center, 476, 701, 0x4a4f6f],
+				[right, 728, 699, 0x68658f],
+				[right, 911, 689, 0x79729c],
+			]
+		],
 		oper: [
-			[center, 1280, 720, 658, 127, 697, 170, 1000],
+			[center, 1280, 720, 789, 666, 884, 706, 1000],
 		]
-	}, { // 6 探索地图界面
-		desc: '探索地图界面',
+	}, { // 6 花合战花札购买
+		desc: [1280, 720,
+			[
+				[left, 242, 707, 0x56597e],
+				[center, 344, 708, 0x65638a],
+				[center, 473, 700, 0x6c668f],
+				[center, 566, 708, 0x504b6e],
+			]
+		],
 		oper: [
-			[left, 1280, 720, 155, 640, 211, 694, 1000], // 御魂
+			[center, 1280, 720, 787, 673, 897, 707, 1000],
 		]
 	}, { // 7 御魂选类型的界面
 		desc: [
@@ -117,7 +139,7 @@ export class Func692 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 85, 117, 325, 503, 500], // 御魂-八岐大蛇
 		]
-	}, { // 8 三类御魂
+	}, { // 8 三类御魂 废弃
 		desc: [1280, 720,
 			[
 				[left, 41, 36, 0xf9eeb3],
@@ -130,7 +152,7 @@ export class Func692 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1116, 602, 1197, 683, 2000]
 		]
-	}, { // 9 御魂九层
+	}, { // 9 御魂九层 废弃
 		desc: [1280, 720,
 			[
 				[left, 220, 443, 0xcfb88e],
@@ -143,12 +165,12 @@ export class Func692 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 215, 335, 435, 372, 1000],
 		]
-	}, { // 10 未准备
+	}, { // 10 未准备 废弃
 		desc: '准备界面_未准备',
 		oper: [
 			[center, 1280, 720, 528, 527, 678, 597, 1000],
 		]
-	}, { // 11 上阵
+	}, { // 11 上阵 废弃
 		desc: [1280, 720,
 			[
 				[left, 266, 658, 0xf95e89],
@@ -162,7 +184,7 @@ export class Func692 implements IFuncOrigin {
 			[center, 1280, 720, 387, 285, 429, 321, 1000],
 			[center, 1280, 720, 1135, 557, 1217, 611, 1000],
 		]
-	}, { // 12 自选御魂
+	}, { // 12 自选御魂 废弃
 		desc: [1280, 720,
 			[
 				[center, 532, 136, 0xfbe9a8],
@@ -175,7 +197,7 @@ export class Func692 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1113, 130, 1147, 165, 1000],
 		]
-	}, { // 13 准备
+	}, { // 13 准备 废弃
 		desc: '准备界面_未准备',
 		oper: [
 			[right, 1280, 720, 1137, 542, 1228, 632, 1000], // 准备
@@ -192,7 +214,6 @@ export class Func692 implements IFuncOrigin {
 				[center, 598, 641, 0x353535],
 				[center, 578, 633, 0xdddddd],
 				[center, 589, 660, 0xc4c4c4],
-				[left, 110, 636, 0xf26a6a],
 			]
 		],
 		oper: [
@@ -672,28 +693,69 @@ export class Func692 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1033, 19, 1128, 53, 1000],
 		]
+	}, { // 55 从御魂退出
+		desc: [1280, 720,
+			[
+				[left, 68, 174, 0x8a78a6],
+				[left, 94, 208, 0x8d7caa],
+				[left, 77, 254, 0x7a6b9a],
+				[left, 85, 202, 0x9480ac],
+				[left, 44, 36, 0xf7eaac],
+				[left, 127, 25, 0xf9eeb7],
+				[left, 119, 29, 0xf7eab4],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 109, 23, 142, 53, 1000],
+		]
 	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['692'];
 		if (!thisScript.global.tuDi) {
 			thisScript.global.tuDi = {
-				'cheak': true,
+				'flower': true,
+				'cheak': false,
 				'five': false,
 				'join': false,
-				'frist': true,
-				'fight': false,
-				'count': null,
 				'over': false,
 				'finish': false,
 				'clean': false,
 			};
 		}
+		if (thisScript.global.tuDi.flower) {
+			if (thisScript.oper({
+				id: 692,
+				name: '花合战',
+				operator: [thisOperator[0], thisOperator[1], thisOperator[4], thisOperator[5]
+					, thisOperator[6], thisOperator[55]]
+			})) {
+				return true;
+			}
+			if (thisScript.oper({
+				id: 692,
+				name: '花合战_任务界面',
+				operator: [{ desc: thisOperator[3].desc }]
+			})) {
+				if (thisScript.oper({
+					id: 692,
+					name: '花合战_领取奖励',
+					operator: [thisOperator[2]]
+				})) {
+					return true;
+				} else {
+					thisScript.global.tuDi.flower = false;
+					thisScript.global.tuDi.cheak = true;
+					log('结束检查,执行守护')
+					return true;
+				}
+			}
+		}
 		if (thisScript.global.tuDi.cheak) {
 			if (thisScript.oper({
 				id: 692,
 				name: 'cheak',
-				operator: [thisOperator[14]]
+				operator: [thisOperator[3], thisOperator[14]]
 			})) {
 				return true;
 			}
@@ -723,15 +785,14 @@ export class Func692 implements IFuncOrigin {
 				name: 'five',
 				operator: [thisOperator[25]]
 			})) {
-				thisScript.global.tuDi.five = false;
-				thisScript.global.tuDi.join = true;
-				log('结束守护,执行备战')
+				log('结束守护')
+				thisScript.rerun(thisconf.next_scheme);
 				return true;
 			}
 			if (thisScript.oper({
 				id: 692,
 				name: 'five',
-				operator: [thisOperator[1],  thisOperator[17], thisOperator[18], thisOperator[49], thisOperator[19]
+				operator: [thisOperator[16], thisOperator[17], thisOperator[18], thisOperator[49], thisOperator[19]
 					, thisOperator[21], thisOperator[22], thisOperator[26], thisOperator[50]]
 			})) {
 				return true;
@@ -762,85 +823,6 @@ export class Func692 implements IFuncOrigin {
 			})) {
 				thisScript.regionBezierSwipe(thisOperator[20].oper[0], thisOperator[20].oper[1], [300, 400], 1000);
 				return true;
-			}
-		}
-		if (thisScript.global.tuDi.join) {
-			if (thisScript.oper({
-				id: 692,
-				name: 'join',
-				operator: [thisOperator[0], thisOperator[2], thisOperator[3], thisOperator[51]]
-			})) {
-				return true;
-			}
-			if (thisScript.oper({
-				id: 692,
-				name: 'join',
-				operator: [thisOperator[4]]
-			})) {
-				thisScript.global.tuDi.join = false;
-				thisScript.global.tuDi.fight = true;
-				log('结束备战,执行上阵')
-				return true;
-			}
-		}
-		if (thisScript.global.tuDi.frist) {
-			if (thisScript.oper({
-				id: 692,
-				name: 'frist',
-				operator: [{ desc: thisOperator[11].desc }]
-			})) {
-				thisScript.regionSwipe(thisOperator[11].oper[0], thisOperator[11].oper[1], [800, 1000], 1000);
-				thisScript.regionClick([thisOperator[11].oper[2]]);
-				thisScript.global.tuDi.frist = false;
-				thisScript.global.tuDi.fight = true;
-				log('结束上阵,执行协战')
-				return true;
-			}
-			if (thisScript.oper({
-				id: 692,
-				name: 'frist',
-				operator: [thisOperator[10]]
-			})) {
-				return true;
-			}
-		}
-		if (thisScript.global.tuDi.fight) {
-			if (thisScript.oper({
-				id: 692,
-				name: 'fight',
-				operator: [thisOperator[3], thisOperator[4],  thisOperator[6], thisOperator[7]
-					, thisOperator[12], thisOperator[13], thisOperator[26], thisOperator[52]]
-			})) {
-				return true;
-			}
-			if (thisScript.global.tuDi.count == null) {
-				if (thisScript.runTimes['2'] == null) {
-					thisScript.global.tuDi.count = 0;
-					thisScript.runTimes['2'] = 0;
-				} else {
-					thisScript.global.tuDi.count = thisScript.runTimes['2'];
-				}
-			}
-			if (thisScript.runTimes['2'] - Number(thisScript.global.tuDi.count) >= 15) {
-				thisScript.rerun(thisconf.next_scheme);
-				return true;
-			}
-			let curCnt = 0;
-			const maxCount = 3;
-			while (thisScript.oper({
-				name: 'fight',
-				operator: [thisOperator[8]]
-			})) {
-				curCnt++;
-				thisScript.keepScreen(false);
-				if (curCnt >= maxCount) {
-					thisScript.global.tuDi.fight = false;
-					return thisScript.oper({
-						id: 692,
-						name: 'fight',
-						operator: [thisOperator[9]]
-					})
-				}
 			}
 		}
 		if (thisScript.global.tuDi.over) {

@@ -13,12 +13,12 @@ export class Func609 implements IFuncOrigin {
 		desc: '',
 		config: [{
 			name: 'account_count',
-			desc: '账号数量',
+			desc: '账号数量(非邮箱数量)',
 			type: 'number',
 			default: '10',
 		}, {
 			name: 'swip_count',
-			desc: '下划次数',
+			desc: '账号界面下划次数',
 			type: 'number',
 			default: '5',
 		}, {
@@ -55,6 +55,34 @@ export class Func609 implements IFuncOrigin {
 			type: 'list',
 			data: ['关闭', '斗鱼', '太鼓'],
 			default: '关闭',
+		}, {
+			name: 'xuanShang',
+			desc: '查询悬赏是否有勾协',
+			type: 'switch',
+			default: false,
+		}]
+	}, {
+		desc: '寮约任务相关(樱花树捐花瓣活动)',
+		config: [{
+			name: 'qiLin_Fifty',
+			desc: '麒麟_五十次',
+			type: 'switch',
+			default: false,
+		}, {
+			name: 'yuHun_Fifty',
+			desc: '御魂_五十次',
+			type: 'switch',
+			default: false,
+		}, {
+			name: 'buy_Petal',
+			desc: '买花瓣',
+			type: 'switch',
+			default: false,
+		}, {
+			name: 'add_Petal',
+			desc: '捐花瓣',
+			type: 'switch',
+			default: false,
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{ // 0 用户中心
@@ -142,7 +170,7 @@ export class Func609 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 236, 478, 264, 492, 1000],
+			[center, 1280, 720, 248, 490, 253, 495, 1000],
 		]
 	}, { // 7 进入阴阳寮
 		desc: '页面是否为庭院_菜单已展开_只支持默认庭院皮肤与默认装饰',
@@ -610,7 +638,6 @@ export class Func609 implements IFuncOrigin {
 			1280, 720,
 			[
 				[center, 530, 65, 0xfaf4ce],
-				[center, 610, 71, 0xfefdd5],
 				[center, 682, 74, 0xf2e8c1],
 				[center, 732, 77, 0xebe0b7],
 				[center, 550, 100, 0xae9562],
@@ -652,7 +679,10 @@ export class Func609 implements IFuncOrigin {
 	}, { // 45 探索地图界面
 		desc: '探索地图界面',
 		oper: [
-			[center, 1280, 720, 641, 633, 701, 698, 1000],
+			[center, 1280, 720, 641, 633, 701, 698, 1000], // 地域鬼王
+			[center, 1280, 720, 64, 639, 108, 677, 1000], // 麒麟
+			[center, 1280, 720, 162, 645, 208, 681, 1000], // 御魂
+
 		]
 	}, { // 46 筛选
 		desc: [1280, 720,
@@ -1079,17 +1109,271 @@ export class Func609 implements IFuncOrigin {
 	}, { // 77 领取结界卡奖励
 		desc: [1280, 720,
 			[
-				[right, 916, 149, 0x12100c],
-				[right, 914, 163, 0xcfa118],
-				[right, 910, 182, 0xb08223],
-				[right, 909, 200, 0x12100c],
-				[right, 947, 178, 0x110f0b],
-				[right, 935, 180, 0x5d3e16],
+				[right, 883, 177, 0x685336],
+				[right, 888, 177, 0x120f0a],
+				[right, 916, 147, 0x13100c],
+				[right, 953, 180, 0x4e3a28],
+				[right, 948, 178, 0x100f0a],
 			]
 		],
 		oper: [
 			[center, 1280, 720, 899, 158, 942, 202, 1000],
 			[center, 1280, 720, 898, 301, 915, 361, 1000],
+		]
+	}, { // 78 拓展包关闭
+		desc: [1280, 720,
+			[
+				[left, 164, 100, 0x948670],
+				[center, 533, 583, 0xf4b25d],
+				[right, 743, 591, 0xf4b25d],
+				[right, 1095, 95, 0x8f8068],
+				[right, 1183, 82, 0xe7d6ce],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1168, 72, 1203, 95, 1000],
+		]
+	}, { // 79 觉醒-火麒麟
+		desc: [
+			1280, 720,
+			[
+				[left, 44, 47, 0xf7ebad],
+				[left, 125, 39, 0xf7efb5],
+				[left, 234, 641, 0x603e44],
+				[center, 516, 646, 0x4a4932],
+				[right, 823, 649, 0x455066],
+				[right, 1134, 652, 0x4a384a],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 86, 131, 299, 557, 500],
+		]
+	}, { // 80 御魂挑战
+		desc: [1280, 720,
+			[
+				[left, 41, 36, 0xf9eeb3],
+				[right, 1124, 47, 0xd8b188],
+				[right, 1237, 47, 0xd3af84],
+				[right, 1161, 608, 0xded2bb],
+				[right, 1207, 671, 0x372015]
+			]
+		],
+		oper: [
+			[right, 1280, 720, 1116, 602, 1197, 683, 2000]
+		]
+	}, { // 81 觉醒挑战
+		desc: [1280, 720,
+			[
+				[right, 1174, 43, 0xd6b289],
+				[right, 1234, 42, 0xd3ae84],
+				[right, 990, 604, 0xe0d2b9],
+				[right, 1153, 602, 0xe7dbc3],
+				[right, 1154, 603, 0xe7dbc4],
+				[right, 1180, 648, 0xe2d6c1],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1108, 601, 1206, 674, 1000],
+		]
+	}, { // 82 八岐大蛇
+		desc: [1280, 720,
+			[
+				[left, 45, 37, 0xf5e5a5],
+				[right, 1232, 43, 0xcaa274],
+				[left, 182, 141, 0x323045],
+				[center, 547, 133, 0x5b3232],
+				[right, 889, 147, 0x555534],
+				[right, 1240, 181, 0x344158],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 111, 188, 308, 249, 1000],
+		]
+	}, { // 83 阴阳寮_寮信息
+		desc: [1280, 720,
+			[
+				[center, 908, 667, 0xc76b41],
+				[right, 985, 657, 0xead5b6],
+				[right, 1090, 656, 0xfbfcfd],
+				[right, 1171, 646, 0xc4b4a5],
+				[right, 1212, 642, 0xfefcf8],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1175, 621, 1225, 669, 1000]
+		]
+	}, { // 84 寮信息_寮神社
+		desc: [
+			1280, 720,
+			[
+				[right, 1180, 166, 0xc47f50],
+				[right, 1205, 170, 0xd07b46],
+				[right, 1180, 415, 0x83553f],
+				[right, 1213, 410, 0x774c38],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1180, 378, 1215, 440, 1000],
+		]
+	}, { // 85 寮神社_功勋商店
+		desc: [
+			1280, 720,
+			[
+				[right, 1181, 411, 0xc78350],
+				[right, 1207, 413, 0xd17b47],
+				[right, 713, 530, 0x644979],
+				[right, 755, 512, 0xbe4032],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 707, 473, 789, 528, 1000],
+		]
+	}, { // 86 功勋商店
+		desc: [
+			1280, 720,
+			[
+				[center, 448, 70, 0x684222],
+				[center, 545, 65, 0xe2bf62],
+				[center, 607, 69, 0xdcb351],
+				[center, 650, 73, 0xd1aa41],
+				[center, 693, 71, 0xd8af49],
+				[right, 982, 84, 0x483121],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1035, 130, 1078, 166, 1000],
+		]
+	}, { // 87 商店第一格
+		desc: [1280, 720,
+			[
+				[left, 312, 192, 0xddc8b3],
+				[center, 460, 193, 0xdfc7b2],
+				[center, 325, 341, 0xe1ceba],
+				[center, 450, 350, 0xe2cfbb],
+				[center, 381, 167, 0xd7c0aa],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 318, 308, 445, 346, 1000],
+		]
+	}, { // 88 购买确认_二行字
+		desc: [
+			1280, 720,
+			[
+				[center, 566, 550, 0xf3b25e],
+				[center, 562, 581, 0xf3b25e],
+				[center, 713, 582, 0xf1af5d],
+				[center, 712, 545, 0xf4b35e],
+				[center, 772, 467, 0x462b22],
+				[right, 795, 453, 0x3e2c2a],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 763, 448, 799, 488, 1000],
+			[center, 1280, 720, 561, 543, 714, 584, 1000],
+			[center, 1280, 720, 1042, 176, 1187, 585, 500],
+		]
+	}, { // 89 商店第一格红蛋
+		desc: [1280, 720,
+			[
+				[center, 376, 229, 0xff7662],
+				[center, 354, 274, 0xd64f47],
+				[center, 397, 277, 0xed725b],
+				[center, 394, 245, 0xf4f0f4],
+				[center, 365, 244, 0xf6f2ee],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1034, 133, 1077, 167, 1000],
+		]
+	}, { // 90 培育树木
+		desc: [1280, 720,
+			[
+				[right, 1161, 622, 0xfdeab4],
+				[right, 1189, 645, 0xfcdc8f],
+				[right, 1221, 638, 0xfcdb8f],
+				[right, 1217, 671, 0xfae7b4],
+				[right, 1182, 673, 0xfbe09d],
+				[right, 796, 655, 0xe1c297],
+				[right, 818, 656, 0x312222],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1172, 633, 1225, 665, 1000],
+		]
+	}, { // 91 堆肥
+		desc: [1280, 720,
+			[
+				[right, 1184, 626, 0xfbe3a5],
+				[right, 1200, 654, 0x673f24],
+				[right, 1221, 637, 0xfbda90],
+				[right, 1218, 669, 0xf8e5b9],
+				[right, 1060, 666, 0x888486],
+				[right, 1067, 680, 0x7c4f3c],
+				[right, 1064, 628, 0xf6d78c],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1046, 619, 1100, 675, 1000],
+		]
+	}, { // 92 捐赠完成
+		desc: [1280, 720,
+			[
+				[center, 553, 520, 0xf4cd7d],
+				[right, 714, 545, 0xf6c464],
+				[center, 626, 544, 0xf5c362],
+				[right, 717, 515, 0xf4ce80],
+				[center, 627, 513, 0xf4ce7f],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 552, 515, 728, 546, 1000],
+		]
+	}, { // 93 退出大树
+		desc: [1280, 720,
+			[
+				[left, 39, 25, 0x9a6c4d],
+				[left, 57, 26, 0xebc78d],
+				[left, 43, 39, 0xf5e6b0],
+				[left, 55, 47, 0xeed292],
+				[left, 60, 37, 0xb97d4a],
+				[left, 71, 642, 0xee4f34],
+				[left, 93, 638, 0xf0eee4],
+				[left, 201, 653, 0xf4d4ae],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 33, 25, 71, 52, 1000],
+		]
+	}, { // 94 无花瓣
+		desc: [1280, 720,
+			[
+				[left, 256, 86, 0xe3a82c],
+				[center, 519, 61, 0xa8714d],
+				[right, 893, 103, 0xf6e6ca],
+				[right, 1036, 92, 0xe3cf92],
+				[right, 1035, 78, 0x8a6145],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1023, 75, 1049, 110, 1000],
+		]
+	}, { // 95 悬赏关闭
+		desc: [
+			1280, 720,
+			[
+				[center, 1175, 121, 0x65343d],
+				[center, 546, 84, 0x58402f],
+				[center, 714, 81, 0x5c3a1a],
+				[center, 844, 67, 0x3e3c42],
+				[center, 1117, 615, 0x3c2a18],
+				[center, 1142, 653, 0xddb03f],
+				[center, 1098, 596, 0xf3e39e],
+				[center, 1169, 610, 0xefd787],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1105, 583, 1181, 660, 1000],
 		]
 	},
 	];
@@ -1110,6 +1394,11 @@ export class Func609 implements IFuncOrigin {
 				'regionBoos_fight': false,
 				'card': thisconf.card as boolean,
 				'card_stage': true,
+				'qiLin_Fifty': thisconf.qiLin_Fifty as boolean,
+				'yuHun_Fifty': thisconf.yuHun_Fifty as boolean,
+				'buy_Petal': thisconf.buy_Petal as boolean,
+				'add_Petal': thisconf.add_Petal as boolean,
+				'xuanShang': thisconf.xuanShang as boolean,
 			};
 		}
 		if (thisconf.card === '关闭') {
@@ -1118,7 +1407,7 @@ export class Func609 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 609,
 			name: '庭院偏移',
-			operator: [thisOperator[59], thisOperator[61], thisOperator[64]]
+			operator: [thisOperator[59], thisOperator[61], thisOperator[64], thisOperator[78]]
 		})) {
 			return true
 		}
@@ -1132,7 +1421,8 @@ export class Func609 implements IFuncOrigin {
 			return true;
 		}
 		if (thisScript.global.account_state === 'login') {
-			if (thisScript.global.account_num >= (thisconf.account_count as number)) {
+			// 使用 valid_account_num 判断实际完成功能的账号数
+			if (thisScript.global.valid_account_num >= (thisconf.account_count as number)) {
 				thisScript.rerun(thisconf.next_scheme);
 				return true;
 			}
@@ -1197,6 +1487,7 @@ export class Func609 implements IFuncOrigin {
 				name: '未创建角色',
 				operator: [thisOperator[62]]
 			})) {
+				// 未创建角色的账号：增加 account_num 保持点击位置，但不增加有效计数
 				thisScript.global.account_num++;
 				return true;
 			}
@@ -1286,6 +1577,7 @@ export class Func609 implements IFuncOrigin {
 						thisScript.myToast('已完成三十次组队,跳转预存体力');
 						thisScript.global.function_Switch.liaoSanshi_tongXinDui_fight = false;
 						thisScript.global.function_Switch.liaoSanshi_tongXinDui_yuCun = true;
+						thisScript.runTimes['2'] = 0;
 						return true;
 					}
 					if (thisScript.oper({
@@ -1445,8 +1737,15 @@ export class Func609 implements IFuncOrigin {
 				if (thisScript.oper({
 					id: 609,
 					name: '地域鬼王',
-					operator: [thisOperator[44], thisOperator[45], thisOperator[46], thisOperator[47]
+					operator: [thisOperator[44], thisOperator[46], thisOperator[47]
 						, thisOperator[65]]
+				})) {
+					return true;
+				}
+				if (thisScript.oper({
+					id: 609,
+					name: '地域鬼王',
+					operator: [{ desc: thisOperator[45].desc, oper: [thisOperator[45].oper[0]] }]
 				})) {
 					return true;
 				}
@@ -1548,9 +1847,144 @@ export class Func609 implements IFuncOrigin {
 				}
 
 			}
+			if (thisScript.global.function_Switch.qiLin_Fifty) {
+				if (thisScript.runTimes['2'] >= 50) {
+					thisScript.myToast('已完成五十次麒麟');
+					thisScript.global.function_Switch.qiLin_Fifty = false;
+					thisScript.runTimes['2'] = 0;
+					return true;
+				}
+				if (thisScript.oper({
+					id: 609,
+					name: '进入麒麟',
+					operator: [thisOperator[44], thisOperator[79], thisOperator[81]]
+				})) {
+					return true;
+				}
+				if (thisScript.oper({
+					id: 609,
+					name: '进入麒麟',
+					operator: [{ desc: thisOperator[45].desc, oper: [thisOperator[45].oper[1]] }]
+				})) {
+					thisScript.runTimes['2'] = 0;
+					return true;
+				}
+			}
+			if (thisScript.global.function_Switch.yuHun_Fifty) {
+				if (thisScript.runTimes['2'] >= 50) {
+					thisScript.myToast('已完成五十次御魂');
+					thisScript.global.function_Switch.yuHun_Fifty = false;
+					thisScript.runTimes['2'] = 0;
+					return true;
+				}
+				if (thisScript.oper({
+					id: 609,
+					name: '进入御魂',
+					operator: [thisOperator[44], thisOperator[82], thisOperator[80]]
+				})) {
+					return true;
+				}
+				if (thisScript.oper({
+					id: 609,
+					name: '进入御魂',
+					operator: [{ desc: thisOperator[45].desc, oper: [thisOperator[45].oper[2]] }]
+				})) {
+					thisScript.runTimes['2'] = 0;
+					return true;
+				}
+			}
+			if (thisScript.global.function_Switch.buy_Petal) {
+				if (thisScript.oper({
+					id: 609,
+					name: '进入功勋商店',
+					operator: [thisOperator[7], thisOperator[83], thisOperator[84], thisOperator[85]
+						, thisOperator[87]]
+				})) {
+					return true;
+				}
+				if (thisScript.oper({
+					id: 609,
+					name: '进入功勋商店',
+					operator: [thisOperator[88], thisOperator[89]]
+				})) {
+					thisScript.global.function_Switch.buy_Petal = false;
+					return true;
+				}
+			}
+			if (thisScript.global.function_Switch.add_Petal) {
+				if (thisScript.oper({
+					id: 609,
+					name: '进入捐赠',
+					operator: [thisOperator[7], thisOperator[90], thisOperator[91]]
+				})) {
+					return true;
+				}
+				if (thisScript.oper({
+					id: 609,
+					name: '完成捐赠',
+					operator: [thisOperator[92], thisOperator[94]]
+				})) {
+					thisScript.global.function_Switch.add_Petal = false;
+					return true;
+				}
+				let curCnt = 0;
+				const maxCount = 3;
+				while (thisScript.oper({
+					id: 609,
+					name: '进入捐赠',
+					operator: [{ desc: thisOperator[83].desc }]
+				})) {
+					curCnt++;
+					thisScript.keepScreen(false);
+					const point = thisScript.findMultiColor('寮横幅_限时');
+					if (point) {
+						const oper = [[point.x, point.y, point.x + 5, point.y + 10, 5000]];
+						thisScript.regionClick(oper);
+						return true;
+					}
+					if (curCnt >= maxCount) {
+						thisScript.myToast('未找到,撤退!');
+						thisScript.global.function_Switch.add_Petal = false;
+						return false;
+					}
+					sleep(1000);
+				}
+			}
+			if (thisScript.global.function_Switch.xuanShang) {
+				if (thisScript.oper({
+					name: '悬赏_庭院界面',
+					operator: [{ desc: thisOperator[7].desc }]
+				})) {
+					const point = thisScript.findMultiColor('悬赏_庭院检测悬赏图标') || null;
+					if (point) {
+						thisScript.regionClick([[point.x, point.y, point.x + 20, point.y + 20, 1000]]);
+						return true
+					}
+				}
+				if (thisScript.oper({
+					name: '悬赏_庭院界面',
+					operator: [{ desc: thisOperator[95].desc }]
+				})) {
+					if (thisScript.findMultiColor('悬赏_勾玉协作')) {
+						thisScript.doPush(thisScript, { text: '发现有勾玉协作，及时邀请。' });
+						const now = new Date().getTime();
+						const ajImg = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(thisScript.helperBridge.helper.GetBitmap());
+						const croppedBitmap = ajImg.getBitmap().createBitmap(0, 0, 320, 55);
+						const path = `/sdcard/Pictures/批量截图/${now}.png`;
+						files.ensureDir(path);
+						croppedBitmap.saveTo(path);
+						croppedBitmap.recycle();
+						ajImg.recycle();
+					}
+					thisScript.regionClick(thisOperator[95].oper);
+					thisScript.global.function_Switch.xuanShang = false;
+				}
+			}
 			if (!thisScript.global.function_Switch.juanGouYu && !thisScript.global.function_Switch.liaoSanshi &&
 				!thisScript.global.function_Switch.agency && !thisScript.global.function_Switch.regionBoos &&
-				!thisScript.global.function_Switch.card &&
+				!thisScript.global.function_Switch.card && !thisScript.global.function_Switch.qiLin_Fifty &&
+				!thisScript.global.function_Switch.yuHun_Fifty && !thisScript.global.function_Switch.buy_Petal &&
+				!thisScript.global.function_Switch.add_Petal &&
 				thisScript.oper({
 					id: 609,
 					name: '庭院',
@@ -1574,6 +2008,8 @@ export class Func609 implements IFuncOrigin {
 				operator: [{ desc: thisOperator[1].desc }]
 			})) {
 				thisScript.global.account_num += 1;
+				// 完成一个有效账号的功能，增加有效计数
+				thisScript.global.valid_account_num = thisScript.global.valid_account_num + 1;
 				thisScript.global.function_Switch = null;
 				thisScript.global.account_state = 'login';
 				thisScript.runTimes['2'] = 0;
@@ -1584,7 +2020,8 @@ export class Func609 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 609,
 			name: '关闭',
-			operator: [thisOperator[35], thisOperator[43], thisOperator[66]]
+			operator: [thisOperator[35], thisOperator[43], thisOperator[66], thisOperator[72], thisOperator[86]
+				, thisOperator[93]]
 		})) {
 			return true
 		}

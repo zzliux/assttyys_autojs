@@ -2,12 +2,22 @@ import { Script } from '@/system/script';
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 // const normal = -1; //定义常量
 const left = 0;
+const center = 1;
 const right = 2;
 
 export class Func006 implements IFuncOrigin {
 	id = 6;
 	name = '御魂/御灵挑战';
 	desc = '在御魂或者御灵的挑战界面时，点击挑战按钮，连续点击3次后未开始将自动停止脚本';
+	config = [{
+		desc: '',
+		config: [{
+			name: 'next_scheme',
+			desc: '下一个方案',
+			type: 'scheme',
+			default: '__停止脚本__',
+		}]
+	}];
 	operator: IFuncOperatorOrigin[] = [{
 		// 0 三类御魂
 		desc: [1280, 720,
@@ -38,23 +48,23 @@ export class Func006 implements IFuncOrigin {
 			[right, 1280, 720, 1104, 595, 1196, 681, 2000]
 		],
 		retest: 500
-	}, {
-		// 2 觉醒
+	}, { // 2 觉醒
 		desc: [1280, 720,
 			[
-				[left, 45, 45, 0xc2cbe3],
-				[left, 250, 44, 0x583716],
-				[right, 1230, 41, 0xd3ae84],
-				[right, 1163, 602, 0xddd2b9],
-				[left, 333, 62, 0xfbdfc5],
-				[right, 1200, 675, 0x382015],
+				[right, 1174, 43, 0xd6b289],
+				[right, 1234, 42, 0xd3ae84],
+				[right, 990, 604, 0xe0d2b9],
+				[right, 1153, 602, 0xe7dbc3],
+				[right, 1154, 603, 0xe7dbc4],
+				[right, 1180, 648, 0xe2d6c1],
 			]
 		],
 		oper: [
-			[right, 1280, 720, 1108, 593, 1204, 688, 2000]
+			[center, 1280, 720, 1108, 601, 1206, 674, 1000],
 		]
-	}];
+	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
+		const thisconf = thisScript.scheme.config['6'];
 		let curCnt = 0;
 		const maxCount = 3;
 		while (thisScript.oper({
@@ -66,8 +76,7 @@ export class Func006 implements IFuncOrigin {
 			thisScript.keepScreen(false);
 			if (curCnt >= maxCount) {
 				thisScript.myToast(`连续执行${maxCount}次挑战后未开始，脚本自动停止`);
-				thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-				thisScript.stop();
+				thisScript.rerun(thisconf.next_scheme);
 				sleep(2000);
 				return false;
 			}

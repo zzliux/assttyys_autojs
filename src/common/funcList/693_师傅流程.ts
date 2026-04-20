@@ -9,6 +9,14 @@ export class Func693 implements IFuncOrigin {
 	id = 693;
 	name = '师傅流程';
 	config = [{
+		desc: '',
+		config: [{
+			name: 'name',
+			desc: '徒弟昵称关键字',
+			type: 'text',
+			default: '徒弟',
+		}]
+	}, {
 		desc: '用于战斗前进入式神录进行御魂装配，需启用510功能，逗号分隔，0,0表示不切换预设，5,1表示第5个分组第1组预设',
 		config: [{
 			name: 'preset_pair_金币',
@@ -39,15 +47,7 @@ export class Func693 implements IFuncOrigin {
 			type: 'text',
 			default: '90',
 		}]
-	}, {
-		desc: '',
-		config: [{
-			name: 'name',
-			desc: '徒弟昵称',
-			type: 'text',
-			default: '徒弟',
-		}]
-	}];
+	},];
 	operator: IFuncOperatorOrigin[] = [{ // 0 庭院进入探索
 		desc: '页面是否为庭院_菜单已展开_只支持默认庭院皮肤与默认装饰',
 		oper: [
@@ -261,13 +261,13 @@ export class Func693 implements IFuncOrigin {
 		})) {
 			const result = thisScript.findText('.+', 0, thisOperator[1].oper[0], '包含');
 			let presetStr;
-			if (result[0].label.includes('币')) {
+			if (['币', '全', '金'].some(k => result[0].label.includes(k))) {
 				presetStr = thisconf['preset_pair_金币'] as string
 				thisScript.global.timestamp = thisconf.coin as number
-			} else if (result[0].label.includes('经验')) {
+			} else if (['经', '验'].some(k => result[0].label.includes(k))) {
 				presetStr = thisconf['preset_pair_经验'] as string
 				thisScript.global.timestamp = thisconf.exp as number
-			} else if (result[0].label.includes('历练')) {
+			} else if (result[0].label.includes('历')) {
 				presetStr = thisconf['preset_pair_历练'] as string
 			} else {
 				presetStr = '0, 0'

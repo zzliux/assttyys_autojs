@@ -6,6 +6,7 @@ export interface IScheme {
     groupNames?: string[];
     inner?: boolean;
     star?: boolean;
+    hidden?: boolean;
 
     /**
      * 功能id的清单

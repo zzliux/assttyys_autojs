@@ -20,8 +20,8 @@ export class Func053 implements IFuncOrigin {
 			name: 'sneak_level',
 			desc: '御魂层数',
 			type: 'list',
-			data: ['魂十', '魂土', '魂王', '魂十三'],
-			default: '魂十',
+			data: ['默认', '魂十', '魂土', '魂王', '魂十三'],
+			default: '默认',
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{
@@ -56,14 +56,12 @@ export class Func053 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[left, 44, 36, 0xf7eaac],
-				[left, 250, 42, 0x583716],
-				[right, 1178, 44, 0xd7b38a],
-				[right, 1240, 42, 0xd3af83],
-				[left, 195, 561, 0x6d444d],
-				[center, 528, 545, 0x9b9e7a],
-				[center, 817, 552, 0x6d7f9a],
-				[right, 1095, 553, 0x927ca2],
+				[left, 44, 47, 0xf7ebad],
+				[left, 125, 39, 0xf7efb5],
+				[left, 234, 641, 0x603e44],
+				[center, 516, 646, 0x4a4932],
+				[right, 823, 649, 0x455066],
+				[right, 1134, 652, 0x4a384a],
 			]
 		],
 		oper: [
@@ -197,6 +195,8 @@ export class Func053 implements IFuncOrigin {
 						break;
 					case '魂十三':
 						thisScript.regionClick([thisOperator[8].oper[5]]);
+						break;
+					case '默认':
 						break;
 				}
 				thisScript.global.sneak_level_open = false;

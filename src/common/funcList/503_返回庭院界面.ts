@@ -22,12 +22,6 @@ export class Func503 implements IFuncOrigin {
 			desc: '下一个方案',
 			type: 'scheme',
 			default: '通用准备退出',
-		}, {
-			name: 'afterCountOper',
-			desc: '不开启切换方案	则',
-			type: 'list',
-			data: ['停止脚本', '关闭应用', '不进行任何操作'],
-			default: '停止脚本',
 		}]
 	}, {
 
@@ -142,7 +136,7 @@ export class Func503 implements IFuncOrigin {
 			name: 'oper_26',
 			desc: '26 组队界面',
 			type: 'switch',
-			default: true,
+			default: false,
 		}, {
 			name: 'oper_27',
 			desc: '27 探索里面',
@@ -497,12 +491,18 @@ export class Func503 implements IFuncOrigin {
 			[center, 1280, 720, 1180, 110, 1230, 153, 1000],
 		]
 	}, {
-		// 22 战斗场景等待
-		desc: '战斗界面',
-		// oper: [
-		// 	[center, 1280, 720, 16, 12, 60, 56, 1000],
-		// 	[center, 1280, 720, 678, 396, 806, 450, 3000],
-		// ]
+		// 22 战斗场景等待 废弃(desc取色乱取的)
+		desc: [1280, 720,
+			[
+				[left, 230, 112, 0x171519],
+				[right, 726, 224, 0x0b090a],
+				[center, 571, 478, 0x57474d],
+				[right, 1016, 187, 0x182873],
+				[center, 540, 181, 0xa854e7],
+				[center, 343, 242, 0xaa57ed],
+				[center, 385, 362, 0x23251c],
+			]
+		],
 		oper: [
 			[center, 1280, 720, -1, -1, -1, -1, 0]
 		]
@@ -900,19 +900,7 @@ export class Func503 implements IFuncOrigin {
 				if (thisConf.scheme_switch_enabled) {
 					next_scheme = thisConf.next_scheme as string;
 				}
-				if (!next_scheme) {
-					if ('停止脚本' === thisConf.afterCountOper || !thisConf.afterCountOper) {
-						thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-						thisScript.stop();
-					} else if ('关闭应用' === thisConf.afterCountOper) {
-						sleep(1000);
-						const packageNames = thisScript.stopRelatedApp();
-						thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，应用[${packageNames}]已杀，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-						sleep(2000);
-						thisScript.stop();
-						return true;
-					}
-				} else {
+				if (next_scheme) {
 					thisScript.rerun(next_scheme);
 					sleep(3000);
 					return true;

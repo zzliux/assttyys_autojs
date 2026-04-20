@@ -2572,6 +2572,76 @@ const multiFindColors: IMultiFindColorsOrigin = {
 			]
 		]]
 	},
+	'斗技ban选_言': {
+		region: [center, 1280, 720, 1145, 352, 1246, 447],
+		desc: [[
+			1280, 720,
+			[
+				[right, 1181, 387, 0xcfcdc4],
+				[right, 1191, 378, 0xcdcdc5],
+				[right, 1193, 396, 0x6c5841],
+				[right, 1206, 410, 0xacb1ac],
+				[right, 1197, 419, 0xc9331e],
+				[right, 1187, 406, 0x5f4b37],
+			]
+		]]
+	},
+	'斗技ban选_驴': {
+		region: [center, 1280, 720, 1145, 352, 1246, 447],
+		desc: [[
+			1280, 720,
+			[
+				[right, 1192, 392, 0xfffcf2],
+				[right, 1174, 391, 0x533628],
+				[right, 1177, 382, 0x23232d],
+				[right, 1189, 412, 0xfdfdf9],
+				[right, 1203, 400, 0xe7b96a],
+				[right, 1172, 398, 0xd9a15a],
+			]
+		]]
+	},
+	'斗技ban选_桃': {
+		region: [center, 1280, 720, 1145, 352, 1246, 447],
+		desc: [[
+			1280, 720,
+			[
+				[right, 1174, 404, 0x533628],
+				[right, 1193, 397, 0xfffdfd],
+				[right, 1201, 407, 0xfde5ea],
+				[right, 1201, 416, 0xfffbfc],
+				[right, 1212, 407, 0xf7e6e6],
+				[right, 1194, 377, 0x4f3c3f],
+			]
+		]]
+	},
+	'斗技ban选_追': {
+		region: [center, 1280, 720, 1145, 352, 1246, 447],
+		desc: [[
+			1280, 720,
+			[
+				[right, 1201, 386, 0xa7aaaa],
+				[right, 1194, 396, 0xfdf3ee],
+				[right, 1191, 419, 0xfffefc],
+				[right, 1176, 406, 0xfff87d],
+				[right, 1214, 399, 0x482c17],
+				[right, 1176, 387, 0x8e9292],
+			]
+		]]
+	},
+	'斗技ban选_平': {
+		region: [center, 1280, 720, 1145, 352, 1246, 447],
+		desc: [[
+			1280, 720,
+			[
+				[right, 1188, 389, 0xfffcf7],
+				[right, 1195, 375, 0xf6ece1],
+				[right, 1211, 397, 0xbca393],
+				[right, 1173, 390, 0x593a2a],
+				[right, 1173, 406, 0xe2d5d3],
+				[right, 1211, 406, 0xc8ac9b],
+			]
+		]]
+	},
 	'超鬼王_低星': {
 		region: [center, 1280, 720, 277, 275, 995, 430],
 		desc: [[ // 2星
@@ -2905,6 +2975,128 @@ const multiFindColors: IMultiFindColorsOrigin = {
 			]
 		]],
 	},
+	'神秘商店_蓝票': {
+		region: [left, 1280, 720, 150, 75, 1025, 578],
+		desc: [[
+			1280, 720,
+			[
+				[right, 912, 149, 0x84b4cd],
+				[right, 898, 194, 0x4a91b6],
+				[right, 914, 194, 0x4793ba],
+				[right, 926, 148, 0x8bb8d0],
+				[right, 870, 117, 0xed8aa2],
+			]
+		]],
+	},
+	'神秘商店_黑碎': {
+		region: [left, 1280, 720, 150, 75, 1025, 578],
+		desc: [[
+			1280, 720,
+			[
+				[left, 246, 401, 0xfdddca],
+				[left, 232, 406, 0xffffff],
+				[left, 259, 403, 0x3b3230],
+				[left, 222, 439, 0x535150],
+				[left, 233, 441, 0xbb934e],
+				[left, 243, 439, 0xb99253],
+				[left, 305, 372, 0x89181b],
+				[left, 303, 403, 0x5a090b],
+			]
+		]],
+	},
+	'神秘商店_勾玉': {
+		region: [left, 1280, 720, 150, 75, 1025, 578],
+		desc: [[
+			1280, 720,
+			[
+				[left, 228, 511, 0xd7b497],
+				[left, 242, 508, 0xea432f],
+				[left, 229, 500, 0xbb130f],
+				[left, 246, 506, 0xf7562f],
+				[left, 243, 515, 0xf1350b],
+			]
+		]],
+	},
+	'百鬼棋局_荐': {
+		region: [left, 1280, 720, 347, 57, 1268, 112],
+		desc: [[
+			1280, 720,
+			[
+				[right, 674, 76, 0xffbe59],
+				[right, 691, 85, 0xf8bd53],
+				[right, 691, 73, 0xffc05b],
+				[right, 673, 71, 0xffbd5a],
+			]
+		], [1280, 720,
+			[
+				[right, 1234, 72, 0xffb952],
+				[right, 1233, 77, 0xffba52],
+				[right, 1249, 86, 0xf7b24a],
+				[right, 1250, 74, 0xffbd52],
+				[right, 1252, 70, 0xffba52],
+			]
+		],],
+	},
+	'百鬼棋局_御魂': {
+		region: [left, 1280, 720, 184, 647, 717, 719],
+		desc: [[
+			1280, 720,
+			[
+				[left, 202, 667, 0xd6cfc6],
+				[left, 213, 687, 0xf4f3ec],
+				[left, 228, 687, 0xf4f3ec],
+				[left, 251, 687, 0xeff3ec],
+				[left, 267, 687, 0xf4f3ec],
+				[left, 203, 675, 0xd6cfc6],
+			]
+		]]
+	},
+	'百鬼棋局_一星': {
+		region: [left, 1280, 720, 209, 543, 1141, 602],
+		desc: [[
+			1280, 720,
+			[
+				[center, 323, 559, 0xd58b68],
+				[left, 318, 564, 0x311810],
+				[left, 318, 558, 0x2e1510],
+				[center, 329, 563, 0x341b19],
+				[left, 313, 550, 0x0d0c05],
+			]
+		]]
+	},
+	'百鬼棋局_手牌荐': {
+		region: [left, 1280, 720, 0, 0, 0, 0],
+		desc: [[
+			1280, 720,
+			[
+				[center, 386, 587, 0xfbb650],
+				[center, 401, 587, 0xfdb951],
+				[center, 401, 600, 0xe8ae45],
+				[center, 386, 592, 0xfab650],
+			]
+		], [1280, 720,
+			[
+				[right, 1234, 72, 0xffb952],
+				[right, 1233, 77, 0xffba52],
+				[right, 1249, 86, 0xf7b24a],
+				[right, 1250, 74, 0xffbd52],
+				[right, 1252, 70, 0xffba52],
+			]
+		],],
+	},
+	'寮横幅_限时': {
+		region: [left, 1280, 720, 118, 140, 253, 478],
+		desc: [[
+			1280, 720,
+			[
+				[left, 191, 340, 0x8f3138],
+				[left, 212, 349, 0x8d3438],
+				[left, 227, 368, 0x8f3138],
+				[left, 203, 349, 0xf0eee0],
+				[left, 213, 353, 0xebe6da],
+			]
+		]],
+	},
 	// '': {
 	// 	region: [left, 1280, 720, 0, 0, 1280, 720],
 	// 	desc: [[
@@ -2912,7 +3104,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
 	// 		[
 	//
 	// 		]
-	// 	]],
+	// 	],]
 	// },
 }
 export default multiFindColors;

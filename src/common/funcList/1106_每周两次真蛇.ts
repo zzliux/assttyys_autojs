@@ -8,7 +8,7 @@ const right = 2;
 export class Func1106 implements IFuncOrigin {
 	id = 1106;
 	name = '每周两次真蛇';
-	desc = '需排序在"001准备"之前';
+	desc = '使用刷出真蛇功能需排序在"006挑战"之前';
 	config = [{
 		desc: '切换御魂(需要打开509+510快速坐标模式)',
 		config: [{
@@ -182,8 +182,8 @@ export class Func1106 implements IFuncOrigin {
 				thisScript.global.zhenShe--;
 				thisScript.global.change_shikigami_flag = true; // 进入式神录
 				thisScript.global.change_shikigami_state = 'flushed';// 再次更换御魂
-				thisScript.global.preset_once_groupNum = thisScript.scheme.config?.['510'].groupNum as number;
-				thisScript.global.preset_once_defaultNum = thisScript.scheme.config?.['510'].defaultNum as number;
+				thisScript.global.preset_once_groupNum = thisScript.scheme.config?.['510']?.groupNum as number;
+				thisScript.global.preset_once_defaultNum = thisScript.scheme.config?.['510']?.defaultNum as number;
 				return true;
 			}
 			if (thisScript.oper({
@@ -196,8 +196,8 @@ export class Func1106 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 1106,
 				name: '每周两次真蛇_杂项',
-				operator: [thisOperator[1], thisOperator[2], thisOperator[3]
-					, thisOperator[7], thisOperator[8]]
+				operator: [thisOperator[1], thisOperator[2]
+					, thisOperator[8]]
 			})) {
 				return true;
 			}
@@ -206,7 +206,7 @@ export class Func1106 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 1106,
 				name: '每周两次真蛇_最后一次',
-				operator: [thisOperator[7], thisOperator[8]]
+				operator: [thisOperator[8]]
 			})) {
 				return true;
 			}

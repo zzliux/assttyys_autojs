@@ -1539,8 +1539,5 @@ export const versionList = [{
 }, {
 	version: '20260314_01',
 	desc: '修复：自动邀请识别不了问题'
-}, {
-	version: '20260314_09',
-	desc: '修复：518页面01一键代办重新取点，修复名字太长识别不到问题'
 }];
 export default versionList[versionList.length - 1].version;

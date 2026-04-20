@@ -654,15 +654,14 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 		desc: [
 			1280, 720,
 			[
-				[left, 36, 24, 0xf7eaab],
-				[center, 685, 356, 0x06295c],
-				[right, 1228, 621, 0xd6c095],
-				[right, 1203, 602, 0x3b1e0d],
-				[center, 798, 40, 0x593615],
-				[right, 1210, 80, 0x7b654f],
-				[left, 212, 624, 0xe67a59],
+				[left, 35, 37, 0xf7e3a5],
+				[left, 115, 26, 0xf7eeb5],
+				[center, 576, 316, 0x1f509d],
+				[right, 674, 313, 0x1b57a4],
+				[center, 559, 403, 0x1861b5],
+				[right, 701, 401, 0x0d3a83],
 			]
-		]
+		],
 	},
 	'巅峰斗技主界面': {
 		desc: [1280, 720,

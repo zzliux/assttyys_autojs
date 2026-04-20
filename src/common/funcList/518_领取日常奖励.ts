@@ -23,8 +23,8 @@ export class Func518 implements IFuncOrigin {
 					[right, 796, 426, 0xf8ebb7],
 					[right, 796, 432, 0xefefaf],
 					[right, 796, 439, 0xfde7b1],
-					[center, 325, 12, 0x4d3c31],
-					[left, 142, 15, 0xf7ce81],
+					[left, 260, 41, 0x4d3738],
+					[center, 328, 46, 0x775928],
 				]
 			],
 			oper: [
@@ -190,7 +190,6 @@ export class Func518 implements IFuncOrigin {
 				1280, 720,
 				[
 					[center, 530, 65, 0xfaf4ce],
-					[center, 610, 71, 0xfefdd5],
 					[center, 682, 74, 0xf2e8c1],
 					[center, 732, 77, 0xebe0b7],
 					[center, 550, 100, 0xae9562],
@@ -592,6 +591,30 @@ export class Func518 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 609, 692, 750, 718, 1000],
 			]
+		}, { // 46 花合战开启
+			desc: [1280, 720,
+				[
+					[center, 432, 700, 0x44496b],
+					[center, 476, 701, 0x4a4f6f],
+					[right, 728, 699, 0x68658f],
+					[right, 911, 689, 0x79729c],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 789, 666, 884, 706, 1000],
+			]
+		}, { // 47 花合战花札购买
+			desc: [1280, 720,
+				[
+					[left, 242, 707, 0x56597e],
+					[center, 344, 708, 0x65638a],
+					[center, 473, 700, 0x6c668f],
+					[center, 566, 708, 0x504b6e],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 787, 673, 897, 707, 1000],
+			]
 		},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -604,35 +627,6 @@ export class Func518 implements IFuncOrigin {
 				'email': true,
 				'godlike': true,
 			};
-		}
-		if (thisScript.global.function_Switch.godlike) {
-			const packageName = currentPackage();
-			if (app.getAppName('com.netease.gl') && packageName !== 'com.netease.gl') {
-				sleep(1000);
-				console.log('正在启动应用:com.netease.gl');
-				device.wakeUpIfNeeded()
-				app.launchPackage('com.netease.gl');
-				return true;
-			} else if (packageName === 'com.netease.gl') {
-				if (text('福利中心').findOnce()) {
-					log('点击福利中心')
-					const oper = [
-						text('福利中心').findOnce().bounds().centerX(),
-						text('福利中心').findOnce().bounds().centerY(),
-						text('福利中心').findOnce().bounds().centerX() + 5,
-						text('福利中心').findOnce().bounds().centerY() + 5,
-						5000
-					]
-					thisScript.regionClick([oper]);
-					thisScript.stopRelatedApp('com.netease.gl');
-					thisScript.launchRelatedApp();
-					thisScript.global.function_Switch.godlike = false;
-					return true;
-				}
-			} else {
-				thisScript.myToast('未安装大神,不领取大神奖励');
-				thisScript.global.function_Switch.godlike = false;
-			}
 		}
 		if (thisScript.oper({
 			id: 518,
@@ -706,8 +700,7 @@ export class Func518 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 518,
 				name: '一键代办',
-				operator: [thisOperator[1], thisOperator[43], thisOperator[3], thisOperator[5]
-					, thisOperator[6], thisOperator[7],]
+				operator: [thisOperator[1], thisOperator[43], thisOperator[3], thisOperator[5]]
 			})) {
 				return true;
 			}
@@ -716,8 +709,7 @@ export class Func518 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 518,
 				name: '商店_杂项',
-				operator: [thisOperator[19], thisOperator[20], thisOperator[21], thisOperator[5]
-					, thisOperator[6], thisOperator[7],]
+				operator: [thisOperator[19], thisOperator[20], thisOperator[21], thisOperator[5]]
 			})) {
 				return true;
 			}
@@ -791,7 +783,8 @@ export class Func518 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 518,
 				name: '花合战',
-				operator: [thisOperator[35], thisOperator[36], thisOperator[39]]
+				operator: [thisOperator[35], thisOperator[36], thisOperator[39], thisOperator[46]
+					, thisOperator[47]]
 			})) {
 				return true;
 			}
@@ -813,10 +806,66 @@ export class Func518 implements IFuncOrigin {
 				}
 			}
 		}
+		if (thisScript.global.function_Switch.godlike === true &&
+			Object.keys(thisScript.global.function_Switch)
+				.filter(k => k !== 'godlike')
+				.every(k => thisScript.global.function_Switch[k] === false)) {
+			const packageName = currentPackage();
+			if (app.getAppName('com.netease.gl') && packageName !== 'com.netease.gl') {
+				sleep(1000);
+				console.log('正在启动应用:com.netease.gl');
+				device.wakeUpIfNeeded()
+				app.launchPackage('com.netease.gl');
+				return true;
+			} else if (packageName === 'com.netease.gl') {
+				if (textContains('自动下载').findOnce()) {
+					log('关闭自动下载')
+					if (id('iv_close').findOnce()) {
+						id('iv_close').findOnce().click();
+						return true;
+					}
+				}
+				if (text('忽略').findOnce()) {
+					log('点击忽略')
+					text('忽略').findOnce().click()
+					return true;
+				}
+				if (text('圈子').findOnce()) {
+					log('点击圈子')
+					const oper = [
+						text('圈子').findOnce().bounds().centerX(),
+						text('圈子').findOnce().bounds().centerY(),
+						text('圈子').findOnce().bounds().centerX() + 5,
+						text('圈子').findOnce().bounds().centerY() + 5,
+						1000
+					]
+					thisScript.regionClick([oper]);
+					return true;
+				}
+				if (text('福利中心').findOnce()) {
+					log('点击福利中心')
+					const oper = [
+						text('福利中心').findOnce().bounds().centerX(),
+						text('福利中心').findOnce().bounds().centerY(),
+						text('福利中心').findOnce().bounds().centerX() + 5,
+						text('福利中心').findOnce().bounds().centerY() + 5,
+						5000
+					]
+					thisScript.regionClick([oper]);
+					thisScript.stopRelatedApp('com.netease.gl');
+					thisScript.launchRelatedApp();
+					thisScript.global.function_Switch.godlike = false;
+					return true;
+				}
+			} else {
+				thisScript.myToast('未安装大神,不领取大神奖励');
+				thisScript.global.function_Switch.godlike = false;
+			}
+		}
 		if (thisScript.oper({
 			id: 518,
 			name: '退出',
-			operator: [thisOperator[4], thisOperator[30], thisOperator[31], thisOperator[32], thisOperator[33]
+			operator: [thisOperator[4], thisOperator[6], thisOperator[7], thisOperator[30], thisOperator[31], thisOperator[32], thisOperator[33]
 				, thisOperator[34], thisOperator[38], thisOperator[44]]
 		})) {
 			return true;

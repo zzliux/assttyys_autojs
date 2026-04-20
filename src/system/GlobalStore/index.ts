@@ -85,6 +85,7 @@ export type globalRootType = {
 	d6Loop: number;//     椒图事件点击循环数
 	d6RouFeng: number;//     椒图柔风实时buff数
 	upYuHun: boolean;//      强化御魂记录界面次数
+	upYuHunIni: boolean;//      强化御魂初设置
 	bgyxLastCapture: number; // 上次截图的时间戳
 	waitFight: boolean;//      等待分享鬼王被击杀
 	faXian_NumOT: number, // 点击发现鬼王计数
@@ -115,11 +116,16 @@ export type globalRootType = {
 	zhenLvJu: boolean, // 珍旅居
 	shenKan: boolean, // 神龛
 	zhenShe: number, // 真蛇
+	miWenshare: boolean, // 秘闻分享
+	diGuishare: boolean, // 地鬼分享
+	shopShare: boolean, // 神秘商店分享
+	shopSharenName: string[] | null, // 商店分享昵称
 	sneak_level_open: boolean, // 选择层数
 	day_chouKa: boolean, // 每日抽卡
 	shiHe_jingYan: boolean, // 食盒经验领取上限
 	xianShiFengMo: number,
-	account_num: number, // 账号计数
+	account_num: number, // 账号计数（用于点击位置）
+	valid_account_num: number, // 有效账号计数（实际完成功能的账号数）
 	account_double: boolean, // 安卓苹果双登录模式
 	account_state: 'login' | 'function' | 'logout',
 	function_Switch: Record<string, boolean | number>, // 小号功能记录
@@ -135,6 +141,8 @@ export type globalRootType = {
 	tuDi: Record<string, boolean | number>, // 徒弟
 	newAccount: Record<string, boolean | number>, // 新号
 	frist: boolean, // 上阵式神
+	chess: Record<string, boolean | number>,  // 下棋局数判定
+	chessShop: boolean, // 下棋商店
 }
 
 export const globalRoot: globalRootType = {
@@ -220,6 +228,7 @@ export const globalRoot: globalRootType = {
 	d6Loop: 0,
 	d6RouFeng: 1,
 	upYuHun: false,
+	upYuHunIni: true,
 	bgyxLastCapture: undefined,
 	waitFight: true,
 	faXian_NumOT: 0,
@@ -251,6 +260,10 @@ export const globalRoot: globalRootType = {
 	zhenLvJu: true,
 	shenKan: true,
 	zhenShe: 2,
+	miWenshare: true,
+	diGuishare: false,
+	shopShare: null,
+	shopSharenName: null,
 	sneak_level_open: true,
 	day_chouKa: true,
 	qiling_shop: true,
@@ -259,6 +272,7 @@ export const globalRoot: globalRootType = {
 	liao_banquet_onGoing: true,
 	xianShiFengMo: 0,
 	account_num: 0,
+	valid_account_num: 0,
 	account_double: null,
 	account_state: 'login',
 	function_Switch: null,
@@ -274,6 +288,8 @@ export const globalRoot: globalRootType = {
 	tuDi: null,
 	newAccount: null,
 	frist: true,
+	chess: null,
+	chessShop: true,
 }
 export type superGlobalRootType = {
 	liao_activity_Switch: Record<string, boolean>, // 寮活动记录
