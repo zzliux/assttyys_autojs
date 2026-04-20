@@ -100,6 +100,19 @@ const SchemeList: IScheme[] = [
 		},
 	},
 	{
+		id: 23,
+		schemeName: '寄养',
+		groupNames: ['日常'],
+		star: true,
+		list: [690, 0, 1, 2, 3, 700, 702, 503],
+	}, {
+		id: 23,
+		schemeName: '结界卡',
+		groupNames: ['日常'],
+		star: true,
+		list: [690, 0, 1, 2, 3, 700, 701, 503],
+	},
+	{
 		id: 6,
 		schemeName: '个人探索',
 		groupNames: ['战斗'],
