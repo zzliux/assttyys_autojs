@@ -610,12 +610,13 @@ export class Func503 implements IFuncOrigin {
 	}, { // 35 六道之门
 		desc: [1280, 720,
 			[
-				[left, 24, 22, 0x454570],
 				[left, 40, 25, 0xd4d6e9],
 				[left, 58, 39, 0x515e7a],
-				[left, 47, 41, 0x727b97],
 				[left, 36, 50, 0xe0e1f2],
 				[left, 23, 41, 0xeff0f9],
+				[left, 316, 18, 0xefcf8c],
+				[center, 343, 30, 0x31386b],
+				[left, 253, 39, 0x5a3716],
 			]
 		],
 		oper: [
@@ -798,22 +799,7 @@ export class Func503 implements IFuncOrigin {
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['503'];
 		let enabledThisOperator = [];
-		if (typeof thisConf.oper_0 === 'undefined') {
-			// 升级兼容配置为空的情况，这一块代码暂时保留，以后有新增要处理的界面只新增配置，不修改这一块代码
-			enabledThisOperator = [
-				thisOperator[0], thisOperator[1], thisOperator[2],
-				thisOperator[3], thisOperator[5], thisOperator[6],
-				thisOperator[7], thisOperator[10], thisOperator[11],
-				thisOperator[14], thisOperator[15], thisOperator[17],
-				thisOperator[18], thisOperator[19], thisOperator[20],
-				thisOperator[21], thisOperator[22], thisOperator[24],
-				thisOperator[25], thisOperator[27], thisOperator[28],
-				thisOperator[29], thisOperator[30], thisOperator[31],
-				thisOperator[33],
-			]
-		} else {
-			enabledThisOperator = Object.keys(thisConf).filter(keyName => /oper_\d+/.test(keyName) && thisConf[keyName]).map(keyName => thisOperator[parseInt(keyName.split('_')[1])]);
-		}
+		enabledThisOperator = Object.keys(thisConf).filter(keyName => /oper_\d+/.test(keyName) && thisConf[keyName]).map(keyName => thisOperator[parseInt(keyName.split('_')[1])]);
 		if (thisScript.oper({
 			id: 503,
 			name: '返回庭院',

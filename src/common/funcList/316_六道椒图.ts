@@ -491,8 +491,6 @@ export class Func316 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 141, 640, 141, 641, 1000],
-			[center, 1280, 720, 1130, 610, 1130, 611, 1000],
 			[center, 1280, 720, 354, 173, 371, 256, 1000],
 		]
 	}, { // 31 进入六道之门
@@ -508,7 +506,21 @@ export class Func316 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 839, 640, 894, 683, 1000],
 		]
-	}];
+	}, { // 32 继续
+		desc: [1280, 720,
+			[
+				[right, 1125, 601, 0xfff3bd],
+				[right, 1142, 608, 0xffefad],
+				[right, 1147, 658, 0x8ba1b4],
+				[right, 1165, 632, 0x425163],
+				[right, 1175, 647, 0xffefb5],
+				[right, 1197, 651, 0xffe9ad],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1133, 601, 1207, 653, 1000],
+		]
+	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 
 		if (thisScript.oper({
@@ -631,7 +643,7 @@ export class Func316 implements IFuncOrigin {
 				thisOperator[9], thisOperator[10], thisOperator[12], thisOperator[13],
 				thisOperator[14], thisOperator[19], thisOperator[20], thisOperator[21],
 				thisOperator[22], thisOperator[26], thisOperator[27], thisOperator[28],
-				thisOperator[29], thisOperator[30], thisOperator[31],
+				thisOperator[29], thisOperator[30], thisOperator[31], thisOperator[32],
 			]
 		})) {
 			return true;
