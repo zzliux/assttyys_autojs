@@ -156,7 +156,7 @@ export class Func1105 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 1105,
 				name: '每两周神龛兑换黑蛋_退出',
-				operator: [thisOperator[2], thisOperator[3]]
+				operator: [thisOperator[2]]
 			})) {
 				return true;
 			}

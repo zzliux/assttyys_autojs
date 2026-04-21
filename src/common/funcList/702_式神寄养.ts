@@ -206,14 +206,15 @@ export class Func702 implements IFuncOrigin {
 				[center, 1280, 720, 24, 31, 59, 60, 1000],
 				[center, 1280, 720, 24, 31, 59, 60, 1000],
 			]
-		}, { // 13 desc:式神育成页
+		}, { // 13 式神育成页
 			desc: [1280, 720,
 				[
-					[right, 1084, 83, 0xa7371d],
-					[right, 1184, 203, 0x525252],
-					[right, 968, 204, 0x505150],
-					[right, 1127, 715, 0x3e2d1c],
-					[right, 1185, 152, 0x414141],
+					[right, 1147, 529, 0x31180c],
+					[right, 1191, 532, 0x32190c],
+					[right, 1173, 552, 0x271309],
+					[right, 1169, 530, 0x361a0d],
+					[right, 1171, 602, 0xead8b2],
+					[right, 1080, 84, 0xa8371f],
 				],
 			]
 		},
@@ -230,8 +231,9 @@ export class Func702 implements IFuncOrigin {
 				name: '开始寄养',
 				operator: [thisOperator[1]],
 			})) {
-				console.log('寄养时间未到,等待5秒')
-				sleep(5000);
+				console.log('寄养时间未到,等待10秒')
+				sleep(10000);
+				thisScript.regionClick([thisOperator[12].oper[0]])
 			}
 			return true;
 		}

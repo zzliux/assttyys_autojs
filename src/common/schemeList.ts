@@ -299,16 +299,16 @@ const SchemeList: IScheme[] = [
 		id: 22,
 		schemeName: '秘闻前五层',
 		groupNames: ['每周活动'],
-		list: [690, 509, 501, 315, 0, 50, 1, 2, 3, 34, 308, 29, 503],
+		list: [690, 509, 510, 315, 0, 50, 1, 2, 3, 34, 308, 29, 503],
 		star: true,
 		config: {
 			'0': {
-				jspd_enabled_1: true,
-				jspd_times_1: 5,
+				jspd_enabled_2: true,
+				jspd_times_2: 5,
 				after_operation: '切换方案',
 				next_scheme: '秘闻后五层'
 			},
-			'51': {
+			'50': {
 				buff_type: '金币',
 				ready_once_buff: true
 			}
@@ -318,14 +318,17 @@ const SchemeList: IScheme[] = [
 		id: 22,
 		schemeName: '秘闻后五层',
 		groupNames: ['每周活动'],
-		list: [690, 509, 501, 315, 0, 40, 1, 2, 3, 34, 308, 503],
+		list: [509, 510, 315, 0, 40, 1, 2, 3, 34, 308],
 		star: true,
 		config: {
 			'0': {
-				jspd_enabled_1: true,
-				jspd_times_1: 5,
+				jspd_enabled_2: true,
+				jspd_times_2: 5,
 				after_operation: '切换方案',
 				next_scheme: '返回庭院'
+			},
+			'40': {
+				ready_once_buff: true
 			}
 		},
 	},
