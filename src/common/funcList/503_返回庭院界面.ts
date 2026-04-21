@@ -242,6 +242,11 @@ export class Func503 implements IFuncOrigin {
 			desc: '47 御灵界面',
 			type: 'switch',
 			default: true,
+		}, {
+			name: 'oper_48',
+			desc: '48 设置界面',
+			type: 'switch',
+			default: true,
 		}
 		]
 	}];
@@ -793,6 +798,22 @@ export class Func503 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 21, 16, 67, 56, 1000],
+		]
+	}, { // 48 庭院点击头像的设置界面
+		desc: [1280, 720,
+			[
+				[left, 96, 83, 0xe8c797],
+				[center, 638, 32, 0x5f5647],
+				[center, 813, 32, 0x5f5647],
+				[right, 993, 32, 0x5f5647],
+				[right, 1108, 98, 0xe7d7ce],
+				[left, 140, 224, 0xdba060],
+				[left, 130, 632, 0xdfddd0],
+				[left, 146, 655, 0xe4d8cb],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1090, 77, 1124, 119, 1000],
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
