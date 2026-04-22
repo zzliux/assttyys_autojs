@@ -23,7 +23,7 @@ export class Func501 implements IFuncOrigin {
 		// 0 探索地图打开buff界面
 		desc: '探索地图界面',
 		oper: [
-			[center, 1280, 720, 428, 24, 453, 65, 1500],
+			[center, 1280, 720, 412, 32, 441, 62, 1500],
 		]
 	}, {
 		// 1 庭院

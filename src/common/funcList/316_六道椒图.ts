@@ -494,17 +494,9 @@ export class Func316 implements IFuncOrigin {
 			[center, 1280, 720, 354, 173, 371, 256, 1000],
 		]
 	}, { // 31 进入六道之门
-		desc: [1280, 720,
-			[
-				[right, 851, 637, 0x8eadd1],
-				[right, 885, 644, 0x607699],
-				[right, 893, 670, 0xc8b163],
-				[right, 869, 686, 0xa08a58],
-				[right, 866, 658, 0x142f8f],
-			]
-		],
+		desc: '探索地图界面',
 		oper: [
-			[center, 1280, 720, 839, 640, 894, 683, 1000],
+			[center, 1280, 720, 936, 649, 977, 683, 1000],
 		]
 	}, { // 32 继续
 		desc: [1280, 720,
@@ -528,10 +520,6 @@ export class Func316 implements IFuncOrigin {
 			name: '六道椒图_选事件',
 			operator: [{ desc: thisOperator[0].desc }, { desc: thisOperator[2].desc }]
 		}, 200)) {
-			// thisScript.regionClick([thisOperator[1].oper[thisScript.global.d6Loop]]);
-			// if (++thisScript.global.d6Loop > 2) {
-			// 	thisScript.global.d6Loop = 0;
-			// }
 			const p = thisScript.findMultiColor('六道椒图_事件');
 			if (p) {
 				thisScript.regionClick([[p.x - 40, p.y + 20, p.x + 40, p.y + 80, 200]])

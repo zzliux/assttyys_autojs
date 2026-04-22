@@ -9,7 +9,7 @@ const right = 2;
 export class Func503 implements IFuncOrigin {
 	id = 503;
 	name = '返回庭院界面';
-	desc = '支持从探索地图退出至庭院界面';
+	desc = '从各个地方返回到庭院界面';
 	config = [{
 		desc: '结束后切换方案',
 		config: [{
@@ -253,7 +253,7 @@ export class Func503 implements IFuncOrigin {
 	operator: IFuncOperatorOrigin[] = [{	// 0 探索地图
 		desc: '探索地图界面',
 		oper: [
-			[center, 1280, 720, 32, 34, 76, 81, 1000],
+			[center, 1280, 720, 21, 24, 62, 57, 1000],
 		]
 	}, { 	// 1 阴阳寮神社首页
 		desc: [1280, 720,
@@ -425,7 +425,7 @@ export class Func503 implements IFuncOrigin {
 		desc: '突破界面',
 		oper: [
 			[center, 1280, 720, 1187, 112, 1228, 150, 1000],
-			[center, 1280, 720, 31, 37, 79, 76, 1000],
+			[center, 1280, 720, 21, 24, 62, 57, 1000],
 		]
 	}, {
 		// 18 客户端更新窗口关闭
@@ -716,7 +716,6 @@ export class Func503 implements IFuncOrigin {
 	}, { // 42 秘闻_红叉退出
 		desc: [1280, 720,
 			[
-				[left, 106, 64, 0x414046],
 				[center, 432, 65, 0x3c3a3f],
 				[right, 844, 60, 0x403f45],
 				[right, 1141, 66, 0x3c3a40],
@@ -727,7 +726,7 @@ export class Func503 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1153, 98, 1197, 137, 1000],
 		]
-	}, { // 43 秘闻_蓝箭头退出
+	}, { // 43 秘闻_竞速蓝箭头退出
 		desc: [1280, 720,
 			[
 				[left, 50, 35, 0xc2cbe1],

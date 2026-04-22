@@ -60,7 +60,7 @@ const SchemeList: IScheme[] = [
 		schemeName: '个人突破_打9退4',
 		groupNames: ['战斗'],
 		star: true,
-		list: [690, 51, 0, 1, 2, 3, 7, 8, 9, 10, 29, 503],
+		list: [690, 51, 0, 1, 2, 3, 7, 8, 9, 29, 503],
 		config: {
 			'7': {
 				switch_nineWin: true,
@@ -78,7 +78,7 @@ const SchemeList: IScheme[] = [
 		id: 4,
 		schemeName: '个人突破_降级',
 		groupNames: ['战斗'],
-		list: [0, 1, 2, 3, 8, 9, 10, 11],
+		list: [0, 1, 2, 3, 8, 9, 11],
 		config: {
 			'0': {
 				jspd_enabled_1: true,
@@ -94,12 +94,9 @@ const SchemeList: IScheme[] = [
 		schemeName: '寮突破',
 		groupNames: ['战斗'],
 		star: true,
-		list: [0, 1, 2, 3, 8, 9, 10, 12, 29],
+		list: [0, 1, 2, 3, 8, 9, 12, 29],
 		config: {
 			'8': {
-				type: '寮突破',
-			},
-			'10': {
 				type: '寮突破',
 			},
 		},
@@ -293,7 +290,7 @@ const SchemeList: IScheme[] = [
 		id: 17,
 		schemeName: '斗技',
 		groupNames: ['每周活动'],
-		list: [690, 509, 510, 0, 1, 2, 3, 30, 307, 503],
+		list: [690, 509, 510, 0, 1, 2, 3, 30, 503],
 	},
 	{
 		id: 22,
@@ -551,7 +548,7 @@ const SchemeList: IScheme[] = [
 		schemeName: '循环_突破打9退4',
 		groupNames: ['循环任务'],
 		star: true,
-		list: [690, 51, 0, 1, 2, 3, 7, 8, 9, 10, 29, 503],
+		list: [690, 51, 0, 1, 2, 3, 7, 8, 9, 29, 503],
 		config: {
 			'7': {
 				switch_nineWin: true,
