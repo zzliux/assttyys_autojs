@@ -528,28 +528,14 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 	'探索地图界面': {
 		desc: [1280, 720,
 			[
-				[right, 1168, 146, 0xd5cec1],
-				[right, 1124, 32, 0xd7b18b],
-				[right, 1226, 30, 0xd3af84],
-				[left, 18, 705, 0x754830],
-				[left, 210, 711, 0x72452f],
-				[left, 45, 36, 0xf5e5a6],
+				[left, 36, 36, 0xf7e3a5],
+				[left, 117, 26, 0xf7efb5],
+				[center, 410, 48, 0xf9ddc8],
+				[right, 1173, 37, 0xd6b289],
+				[left, 103, 666, 0x976f42],
+				[left, 191, 664, 0xdec329],
 			]
 		]
-	},
-	'探索地图界面_含时空秘境': {
-		desc: [1280, 720,
-			[
-				[left, 45, 36, 0xf5e5a6],
-				[right, 1168, 146, 0xd5cec1],
-				[right, 1124, 32, 0xd7b18b],
-				[right, 1226, 30, 0xd3af84],
-				[left, 18, 705, 0x794c31],
-				[left, 206, 710, 0x72452f],
-				[left, 251, 674, 0x1d140f],
-				[left, 287, 654, 0xffffff],
-			]
-		],
 	},
 	'探索章节_挑战': {
 		desc: [
