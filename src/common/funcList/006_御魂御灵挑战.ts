@@ -1,7 +1,7 @@
 import { Script } from '@/system/script';
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 // const normal = -1; //定义常量
-const left = 0;
+// const left = 0;
 const center = 1;
 const right = 2;
 
@@ -19,48 +19,18 @@ export class Func006 implements IFuncOrigin {
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{
-		// 0 三类御魂
 		desc: [1280, 720,
 			[
-				[left, 41, 36, 0xf9eeb3],
-				[right, 1124, 47, 0xd8b188],
-				[right, 1237, 47, 0xd3af84],
-				[right, 1161, 608, 0xded2bb],
-				[right, 1207, 671, 0x372015]
+				[right, 1011, 595, 0xe3d7c2],
+				[right, 1012, 668, 0xe7dac3],
+				[right, 964, 591, 0x543825],
+				[right, 1149, 585, 0x5b3d2d],
+				[right, 1188, 588, 0xe2d5c1],
+				[right, 1153, 679, 0x392418],
 			]
 		],
 		oper: [
-			[right, 1280, 720, 1116, 602, 1197, 683, 2000]
-		]
-	}, {
-		// 1 御灵
-		desc: [1280, 720,
-			[
-				[left, 37, 37, 0xfff2bc],
-				[right, 1121, 47, 0xd7b389],
-				[right, 1230, 46, 0xd3ae83],
-				[right, 1106, 628, 0xe5d9c3],
-				[right, 1188, 679, 0x371f16],
-				[right, 1091, 663, 0x472c1f]
-			]
-		],
-		oper: [
-			[right, 1280, 720, 1104, 595, 1196, 681, 2000]
-		],
-		retest: 500
-	}, { // 2 觉醒
-		desc: [1280, 720,
-			[
-				[right, 1174, 43, 0xd6b289],
-				[right, 1234, 42, 0xd3ae84],
-				[right, 990, 604, 0xe0d2b9],
-				[right, 1153, 602, 0xe7dbc3],
-				[right, 1154, 603, 0xe7dbc4],
-				[right, 1180, 648, 0xe2d6c1],
-			]
-		],
-		oper: [
-			[center, 1280, 720, 1108, 601, 1206, 674, 1000],
+			[center, 1280, 720, 1148, 602, 1235, 663, 1000],
 		]
 	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -70,7 +40,7 @@ export class Func006 implements IFuncOrigin {
 		while (thisScript.oper({
 			id: 6,
 			name: '御魂/御灵挑战',
-			operator: [thisOperator[0], thisOperator[1], thisOperator[2]]
+			operator: [thisOperator[0]]
 		}, 0)) {
 			curCnt++;
 			thisScript.keepScreen(false);
