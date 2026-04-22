@@ -373,7 +373,7 @@ const SchemeList: IScheme[] = [
 		star: true,
 		config: {
 			'503': {
-				oper_35: false
+				oper_40: false
 			}
 		}
 	},
@@ -387,7 +387,7 @@ const SchemeList: IScheme[] = [
 				team: '队长'
 			},
 			'503': {
-				oper_35: false
+				oper_40: false
 			}
 		}
 	},
@@ -401,7 +401,7 @@ const SchemeList: IScheme[] = [
 				team: '队员'
 			},
 			'503': {
-				oper_35: false
+				oper_40: false
 			}
 		}
 	},
