@@ -127,6 +127,7 @@ export class Func690 implements IFuncOrigin {
 			]
 		],
 		oper: [
+			[center, 1280, 720, 706, 507, 770, 539, 1200], // 切换按钮 区域
 			[center, 1280, 720, 502, 133, 1056, 622, 1000],
 		]
 	}, { // 5
@@ -615,7 +616,7 @@ export class Func690 implements IFuncOrigin {
 				name: '识别昵称',
 				operator: [{ desc: thisOperator[4].desc }],
 			})) {
-				const name = thisScript.findText(String(thisConf.area), 0, thisOperator[4].oper[0], '包含');
+				const name = thisScript.findText(String(thisConf.area), 0, thisOperator[4].oper[1], '包含');
 				if (name.length > 0) {
 					const toClickRegion = [
 						name[0].points[0].x + 5, name[0].points[0].y,
