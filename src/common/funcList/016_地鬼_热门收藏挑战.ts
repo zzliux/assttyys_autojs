@@ -82,7 +82,7 @@ export class Func016 implements IFuncOrigin {
 		// 3 探索地图界面
 		desc: '探索地图界面',
 		oper: [
-			[center, 1280, 720, 644, 646, 686, 681, 1000],
+			[center, 1280, 720, 641, 633, 701, 698, 1000],
 		]
 	}, {
 		// 4 地鬼_挑战页面_极

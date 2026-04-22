@@ -111,13 +111,7 @@ export class Func008 implements IFuncOrigin {
 				[center, 515, 220, 0x9e3925]
 			]
 		]
-	}, { // 5 进入结界
-		desc: '探索地图界面',
-		oper: [
-			[center, 1280, 720, 264, 647, 301, 678, 1000],
-			[center, 1280, 720, 1210, 405, 1254, 509, 1500]
-		]
-	},];
+	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['8'];
 		if (thisConf.inv && thisScript.scheme.config[0].jspd_enabled_2 == false) {
@@ -236,20 +230,6 @@ export class Func008 implements IFuncOrigin {
 		}
 		if (count < defaultCount) {
 			return true;
-		}
-		if ('个人突破' === thisConf.type) {
-			return thisScript.oper({
-				name: '地图进入个人突破',
-				operator: [{
-					desc: thisOperator[5].desc,
-					oper: [thisOperator[5].oper[0]]
-				}]
-			});
-		} else if ('寮突破' === thisConf.type) {
-			return thisScript.oper({
-				name: '地图进入寮突破',
-				operator: [thisOperator[5]]
-			});
 		}
 		return false;
 	}
