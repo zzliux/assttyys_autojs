@@ -1539,5 +1539,8 @@ export const versionList = [{
 }, {
 	version: '20260314_01',
 	desc: '修复：自动邀请识别不了问题'
+}, {
+	version: '20260423_01',
+	desc: '修复：32，道馆打第二次、500，进入寮活动重新取色'
 }];
 export default versionList[versionList.length - 1].version;
