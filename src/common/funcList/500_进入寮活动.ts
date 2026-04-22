@@ -253,11 +253,11 @@ export class Func500 implements IFuncOrigin {
 			desc: [1280, 720,
 				[
 					[left, 42, 31, 0xf4e4a4],
-					[center, 736, 237, 0x403d38],
-					[center, 766, 235, 0xaf3a31],
-					[center, 760, 245, 0xe3e0da],
-					[center, 612, 211, 0x261b15],
-					[center, 595, 193, 0xfff970],
+					[right, 1098, 646, 0x2d170b],
+					[center, 605, 332, 0xb29e83],
+					[center, 532, 268, 0xd6d0bc],
+					[center, 508, 292, 0xa87d41],
+					[center, 610, 227, 0x251b14],
 				]
 			],
 			/** desc: [
@@ -275,7 +275,7 @@ export class Func500 implements IFuncOrigin {
 				]
 			]*/
 			oper: [
-				[center, 1280, 720, 407, 169, 608, 322, 1200]	// 打开道馆
+				[center, 1280, 720, 411, 192, 609, 339, 1200]	// 打开道馆
 			]
 		}, { // 13 检测_是否为道馆集结界面
 			desc:
