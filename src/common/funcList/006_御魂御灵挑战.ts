@@ -32,19 +32,6 @@ export class Func006 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1148, 602, 1235, 663, 1000],
 		]
-	}, { // 1 御灵
-		desc: [1280, 720,
-			[
-				[right, 1059, 583, 0x5d402e],
-				[right, 1095, 592, 0xe1d6c0],
-				[right, 1140, 586, 0x553b2c],
-				[right, 1056, 673, 0x392318],
-				[right, 1100, 676, 0xe3d9c2],
-			]
-		],
-		oper: [
-			[center, 1280, 720, 1055, 595, 1143, 669, 1000],
-		]
 	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['6'];
@@ -53,7 +40,7 @@ export class Func006 implements IFuncOrigin {
 		while (thisScript.oper({
 			id: 6,
 			name: '御魂/御灵挑战',
-			operator: [thisOperator[0], thisOperator[1]]
+			operator: [thisOperator[0]]
 		}, 0)) {
 			curCnt++;
 			thisScript.keepScreen(false);
