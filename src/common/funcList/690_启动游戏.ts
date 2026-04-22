@@ -32,11 +32,6 @@ export class Func690 implements IFuncOrigin {
 			type: 'text',
 			default: '',
 		}, {
-			name: 'name',
-			desc: '游戏昵称',
-			type: 'text',
-			default: '60',
-		}, {
 			name: 'scheme_switch_enabled',
 			desc: '是否切换方案(不切换则只运行一次)',
 			type: 'switch',
@@ -121,18 +116,19 @@ export class Func690 implements IFuncOrigin {
 			[center, 1280, 720, 578, 373, 704, 432, 1200], // 点击确认
 		],
 	}, { // 4 是否为选择游戏区域
-		desc: [
-			1280, 720,
+		desc: [1280, 720,
 			[
-				[left, 162, 149, 0xd9a756],
-				[center, 643, 74, 0xe1bf80],
-				[right, 1050, 592, 0xffe1bd],
+				[center, 488, 85, 0x9c8363],
+				[center, 564, 61, 0xe7c78c],
+				[center, 619, 56, 0xe9d29a],
+				[right, 668, 66, 0xe1c182],
+				[right, 724, 54, 0xefd39c],
+				[right, 1085, 111, 0xe7d4ce],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 706, 507, 770, 539, 1200], // 切换按钮 区域
-			[center, 1280, 720, 256, 570, 997, 615, 1000], // ocr昵称区域
-		],
+			[center, 1280, 720, 502, 133, 1056, 622, 1000],
+		]
 	}, { // 5
 	}, { // 6 登陆后是否有下载插画弹窗
 		desc: [
@@ -614,27 +610,22 @@ export class Func690 implements IFuncOrigin {
 					],
 				});
 			}
-			if (thisConf.name && thisScript.oper({
+			if (thisScript.oper({
 				id: 690,
 				name: '识别昵称',
 				operator: [{ desc: thisOperator[4].desc }],
 			})) {
-				const name = thisScript.findText(String(thisConf.name), 0, thisOperator[4].oper[1], '包含');
+				const name = thisScript.findText(String(thisConf.area), 0, thisOperator[4].oper[0], '包含');
 				if (name.length > 0) {
-					let toClickRegion = [
+					const toClickRegion = [
 						name[0].points[0].x + 5, name[0].points[0].y,
 						name[0].points[0].x + 40, name[0].points[0].y + 20, 1000,
-					]
-					thisScript.regionClick([toClickRegion]);
-					toClickRegion = [
-						name[0].points[0].x + 15, name[0].points[0].y - 80,
-						name[0].points[0].x + 40, name[0].points[0].y - 60, 1000,
 					]
 					thisScript.regionClick([toClickRegion]);
 					thisScript.regionClick([thisOperator[0].oper[0]]);
 					thisScript.global.game_area = 'findMultiColor_皮肤广告关闭按钮';
 					return true;
-				} // 识别不到必须不做动作以衔接师徒号流程
+				}// 识别不到必须不做动作以衔接师徒号流程(理论上这里要加个多次判定和推送然后停止,但识别率很高可以不用做)
 			}
 			if (thisScript.oper({
 				id: 690,

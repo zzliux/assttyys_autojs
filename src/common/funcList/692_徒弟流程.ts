@@ -503,13 +503,16 @@ export class Func692 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[left, 162, 149, 0xd9a756],
-				[center, 643, 74, 0xe1bf80],
-				[right, 1050, 592, 0xffe1bd],
+				[center, 488, 85, 0x9c8363],
+				[center, 564, 61, 0xe7c78c],
+				[center, 619, 56, 0xe9d29a],
+				[right, 668, 66, 0xe1c182],
+				[right, 724, 54, 0xefd39c],
+				[right, 1085, 111, 0xe7d4ce],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1172, 571, 1209, 607, 1000],
+			[center, 1280, 720, 1114, 555, 1159, 596, 1000],
 		],
 	}, { // 40 确认注销
 		desc: [1280, 720,

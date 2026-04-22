@@ -35,15 +35,18 @@ export class Func691 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[left, 162, 149, 0xd9a756],
-				[center, 643, 74, 0xe1bf80],
-				[right, 1050, 592, 0xffe1bd],
+				[center, 488, 85, 0x9c8363],
+				[center, 564, 61, 0xe7c78c],
+				[center, 619, 56, 0xe9d29a],
+				[right, 668, 66, 0xe1c182],
+				[right, 724, 54, 0xefd39c],
+				[right, 1085, 111, 0xe7d4ce],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 777, 238, 839, 289, 1000], // 选新区
+			[center, 1280, 720, 226, 212, 375, 252, 1000], // 全平台
 			[center, 1280, 720, 256, 570, 997, 615, 1000], // ocr昵称区域
-			[center, 1280, 720, 286, 506, 324, 539, 1000], // 选区确认
+			[center, 1280, 720, 434, 142, 603, 198, 1000], // 选区
 			[center, 1280, 720, 562, 574, 722, 617, 1200], // 点击开始游戏
 		],
 	}, { // 1 点击输入
@@ -798,18 +801,14 @@ export class Func691 implements IFuncOrigin {
 			})) {
 				const name = thisScript.findText(String(thisconf.name), 0, thisOperator[0].oper[1], '包含');
 				if (name.length > 0) {
-					let toClickRegion = [
+					const toClickRegion = [
 						name[0].points[0].x + 5, name[0].points[0].y,
 						name[0].points[0].x + 40, name[0].points[0].y + 20, 1000,
 					]
 					thisScript.regionClick([toClickRegion]);
-					toClickRegion = [
-						name[0].points[0].x + 10, name[0].points[0].y - 80,
-						name[0].points[0].x + 40, name[0].points[0].y - 60, 1000,
-					]
-					thisScript.regionClick([toClickRegion]);
 				} else {
 					thisScript.regionClick([thisOperator[0].oper[0]]);
+					thisScript.regionClick([thisOperator[0].oper[2]]);
 				}
 				thisScript.regionClick([thisOperator[0].oper[3]]);
 				thisScript.global.game_area = 'findMultiColor_皮肤广告关闭按钮';
