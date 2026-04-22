@@ -136,7 +136,7 @@ export class Func509 implements IFuncOrigin {
 	}, { // 10 突破界面
 		desc: '突破界面',
 		oper: [
-			// [right, 1280, 720, 1207, 617, 1245, 649, 1200]	//	点击式神按钮
+			[right, 1280, 720, 1207, 617, 1245, 649, 1200]	//	点击式神按钮
 		]
 	}, { // 11 误触_情报界面
 		desc: [
@@ -154,7 +154,7 @@ export class Func509 implements IFuncOrigin {
 	}, { // 12 探索地图
 		desc: '探索地图界面',
 		oper: [
-			[center, 1280, 720, 32, 34, 76, 81, 1000],
+			[center, 1280, 720, 22, 22, 62, 54, 1000],
 		]
 	}, { // 13 秘闻
 		desc: [1280, 720,
