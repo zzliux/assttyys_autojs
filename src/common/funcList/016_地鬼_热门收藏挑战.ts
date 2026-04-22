@@ -116,12 +116,18 @@ export class Func016 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 158, 118, 821, 626, 1000],
 		]
+	}, {
+		// 6 探索地图界面_含时空秘境
+		desc: '探索地图界面_含时空秘境',
+		oper: [
+			[center, 1280, 720, 737, 639, 801, 697, 1000],
+		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			id: 16,
 			name: '探索界面',
-			operator: [thisOperator[3]]
+			operator: [thisOperator[6], thisOperator[3]]
 		})) {
 			return true;
 		}

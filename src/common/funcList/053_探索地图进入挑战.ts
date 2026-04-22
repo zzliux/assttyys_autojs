@@ -137,7 +137,15 @@ export class Func053 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 993, 149, 1169, 616, 500],
 		]
-	}, { // 7 御魂层数滑动
+	}, {
+		// 7 探索地图界面_含时空秘境
+		desc: '探索地图界面_含时空秘境',
+		oper: [
+			[left, 1280, 720, 155, 640, 211, 694, 1000], // 御魂
+			[left, 1280, 720, 444, 638, 507, 701, 1000], // 御灵
+			[left, 1280, 720, 56, 639, 111, 699, 1000], // 觉醒
+		]
+	}, { // 8 御魂层数滑动
 		desc: [
 			1280, 720,
 			[
@@ -172,21 +180,21 @@ export class Func053 implements IFuncOrigin {
 			if (thisScript.global.sneak_level_open && thisScript.oper({
 				id: 52,
 				name: '八岐大蛇_滑动',
-				operator: [{ desc: thisOperator[7].desc }]
+				operator: [{ desc: thisOperator[8].desc }]
 			})) {
-				thisScript.regionBezierSwipe(thisOperator[7].oper[0], thisOperator[7].oper[1], [400, 500], 1500);
+				thisScript.regionBezierSwipe(thisOperator[8].oper[0], thisOperator[8].oper[1], [400, 500], 1500);
 				switch (thisconf.sneak_level) {
 					case '魂王':
-						thisScript.regionClick([thisOperator[7].oper[2]]);
+						thisScript.regionClick([thisOperator[8].oper[2]]);
 						break;
 					case '魂土':
-						thisScript.regionClick([thisOperator[7].oper[3]]);
+						thisScript.regionClick([thisOperator[8].oper[3]]);
 						break;
 					case '魂十':
-						thisScript.regionClick([thisOperator[7].oper[4]]);
+						thisScript.regionClick([thisOperator[8].oper[4]]);
 						break;
 					case '魂十三':
-						thisScript.regionClick([thisOperator[7].oper[5]]);
+						thisScript.regionClick([thisOperator[8].oper[5]]);
 						break;
 					case '默认':
 						break;
@@ -222,6 +230,9 @@ export class Func053 implements IFuncOrigin {
 		// '御灵', '觉醒-火麒麟', '觉醒-风麒麟', '觉醒-水麒麟', '觉醒-雷麒麟'
 		else if ('御灵' === thisconf.challenge_type) {
 			operator = [{
+				desc: thisOperator[7].desc,
+				oper: [thisOperator[7].oper[1]]
+			}, {
 				desc: thisOperator[0].desc,
 				oper: [thisOperator[0].oper[1]]
 			}, thisOperator[3], thisOperator[4], thisOperator[5], thisOperator[6]]

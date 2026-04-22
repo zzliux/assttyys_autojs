@@ -14,7 +14,8 @@ export class Func1109 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 658, 127, 697, 170, 1000],
 		]
-	}, { // 1 体服 探索地图界面_含时空秘境 废弃
+	}, { // 1 体服 探索地图界面_含时空秘境
+		desc: '探索地图界面_含时空秘境',
 		oper: [
 			[center, 1280, 720, 641, 638, 706, 694, 1000],
 		]
@@ -229,7 +230,7 @@ export class Func1109 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 1109,
 				name: '进入秘闻',
-				operator: [thisOperator[0], thisOperator[2], thisOperator[3]
+				operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[3]
 					, thisOperator[4], thisOperator[5], thisOperator[8]]
 			})) {
 				return true;

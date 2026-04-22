@@ -299,7 +299,7 @@ const SchemeList: IScheme[] = [
 		id: 22,
 		schemeName: '秘闻前五层',
 		groupNames: ['每周活动'],
-		list: [690, 509, 510, 315, 0, 50, 1, 2, 3, 34, 29, 503],
+		list: [690, 509, 510, 315, 0, 50, 1, 2, 3, 34, 308, 29, 503],
 		star: true,
 		config: {
 			'0': {
@@ -318,7 +318,7 @@ const SchemeList: IScheme[] = [
 		id: 22,
 		schemeName: '秘闻后五层',
 		groupNames: ['每周活动'],
-		list: [509, 510, 315, 0, 40, 1, 2, 3, 34],
+		list: [509, 510, 315, 0, 40, 1, 2, 3, 34, 308],
 		star: true,
 		config: {
 			'0': {
