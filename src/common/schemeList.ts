@@ -341,6 +341,9 @@ const SchemeList: IScheme[] = [
 		config: {
 			'316': {
 				overTimes: '2'
+			},
+			'503': {
+				oper_35: false
 			}
 		}
 	},
@@ -366,14 +369,19 @@ const SchemeList: IScheme[] = [
 		id: 66,
 		schemeName: '契灵_单人',
 		groupNames: ['每周活动'],
-		list: [690, 509, 510, 0, 1, 2, 3, 313, 29],
+		list: [690, 509, 510, 0, 1, 2, 3, 313, 29, 503],
 		star: true,
+		config: {
+			'503': {
+				oper_35: false
+			}
+		}
 	},
 	{
 		id: 66,
 		schemeName: '契灵_队长',
 		groupNames: ['每周活动'],
-		list: [690, 509, 510, 0, 1, 2, 3, 306, 5, 313, 29],
+		list: [690, 509, 510, 0, 1, 2, 3, 306, 5, 313, 29, 503],
 		config: {
 			'313': {
 				team: '队长'
@@ -387,10 +395,13 @@ const SchemeList: IScheme[] = [
 		id: 66,
 		schemeName: '契灵_队员',
 		groupNames: ['每周活动'],
-		list: [690, 509, 510, 0, 1, 2, 3, 4, 313, 29],
+		list: [690, 509, 510, 0, 1, 2, 3, 4, 313, 29, 503],
 		config: {
 			'313': {
 				team: '队员'
+			},
+			'503': {
+				oper_35: false
 			}
 		}
 	},
@@ -700,7 +711,7 @@ const SchemeList: IScheme[] = [
 		id: 79,
 		schemeName: '师徒_徒弟守护',
 		groupNames: ['师徒部分'],
-		list: [690, 0, 1, 2, 3, 5, 692, 29, 503],
+		list: [690, 0, 1, 2, 3, 306, 5, 692, 29, 503],
 		config: {
 			'692': {
 				next_scheme: '__关闭应用__'
