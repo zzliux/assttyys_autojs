@@ -73,7 +73,17 @@ export class Func040 implements IFuncOrigin {
 					sleep(3000);
 				}
 				if (!next_scheme) {
-					return false;
+					if ('停止脚本' === thisconf.afterCountOper || !thisconf.afterCountOper) {
+						thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+						thisScript.stop();
+					} else if ('关闭应用' === thisconf.afterCountOper) {
+						sleep(1000);
+						const packageNames = thisScript.stopRelatedApp();
+						thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，应用[${packageNames}]已杀，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+						sleep(2000);
+						thisScript.stop();
+					}
+					return true;
 				} else {
 					sleep(1000);
 					thisScript.rerun(next_scheme, {
