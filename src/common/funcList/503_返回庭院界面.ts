@@ -887,7 +887,7 @@ export class Func503 implements IFuncOrigin {
 					next_scheme = thisConf.next_scheme as string;
 				}
 				if (!next_scheme) {
-					if ('停止脚本' === thisConf.afterCountOper || !thisConf.afterCountOper) {
+					if ('停止脚本' === thisConf.afterCountOper) {
 						thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 						thisScript.stop();
 					} else if ('关闭应用' === thisConf.afterCountOper) {

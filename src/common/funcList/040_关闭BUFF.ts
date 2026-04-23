@@ -73,7 +73,7 @@ export class Func040 implements IFuncOrigin {
 					sleep(3000);
 				}
 				if (!next_scheme) {
-					if ('停止脚本' === thisconf.afterCountOper || !thisconf.afterCountOper) {
+					if ('停止脚本' === thisconf.afterCountOper) {
 						thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 						thisScript.stop();
 					} else if ('关闭应用' === thisconf.afterCountOper) {
