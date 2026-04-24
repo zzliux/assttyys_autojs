@@ -222,8 +222,8 @@ export class Func500 implements IFuncOrigin {
 						[right, 1126, 625, 0x180a28],
 						[right, 1161, 618, 0x84a5bd],
 						[right, 1262, 650, 0x698bad],
-						[left, 72, 62, 0xb9c2da],
 						[center, 713, 25, 0xe3d698],
+						[left, 47, 35, 0xf5e2a3],
 					]
 				]
 		}, { //	9 检测_狭间暗域是否已开启
@@ -335,6 +335,22 @@ export class Func500 implements IFuncOrigin {
 			oper: [
 				[left, 1280, 720, 27, 28, 56, 65, 1200]	//	跑路
 			]
+		}, { // 17 检查_阴门是否开启
+			desc: [1280, 720,
+				[
+					[left, 171, 549, 0xb5a186],
+					[left, 242, 414, 0xc9b18f],
+					[center, 346, 555, 0xb29e83],
+					[left, 241, 510, 0xe0c4e5],
+					[left, 254, 477, 0xb8583c],
+					[left, 282, 516, 0xe0c5e6],
+					[left, 262, 544, 0xe788c6],
+					[left, 232, 475, 0x841212],
+				]
+			],
+			oper: [
+				[left, 1280, 720, 155, 417, 365, 574, 1000]     //  寮活动 阴门
+			]
 		}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['500'];
@@ -433,7 +449,7 @@ export class Func500 implements IFuncOrigin {
 					}
 					if (thisScript.oper({
 						name: '检测_是否为阴门页面',
-						operator: [thisOperator[8]]
+						operator: [thisOperator[8], thisOperator[17]]
 					})) {
 						sleep(2000);
 						thisScript.global.liao_activity_page_flag = 0;
