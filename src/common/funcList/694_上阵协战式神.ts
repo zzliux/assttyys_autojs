@@ -61,15 +61,15 @@ export class Func694 implements IFuncOrigin {
 	}, { // 4 御魂九层
 		desc: [1280, 720,
 			[
-				[left, 220, 443, 0xcfb88e],
-				[center, 424, 443, 0xcfb88e],
-				[left, 277, 490, 0xbaa887],
-				[center, 387, 480, 0xccb489],
-				[right, 1002, 608, 0xdfd3bc],
+				[left, 130, 523, 0x9f3f21],
+				[left, 206, 534, 0x80281d],
+				[left, 196, 543, 0x832e1c],
+				[left, 159, 532, 0x943318],
+				[left, 129, 543, 0x942c18],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 215, 335, 435, 372, 1000],
+			[center, 1280, 720, 99, 421, 183, 441, 1000],
 		]
 	}, { // 5 购买体力
 		desc: [1280, 720,
@@ -86,7 +86,7 @@ export class Func694 implements IFuncOrigin {
 			[center, 1280, 720, 568, 454, 712, 485, 2000],
 			[center, 1280, 720, 581, 672, 724, 699, 1000],
 		]
-	}, { // 6 解锁阵容
+	}, { // 6 解锁阵容 待改
 		desc: [1280, 720,
 			[
 				[center, 558, 579, 0xa69dd5],
@@ -102,16 +102,15 @@ export class Func694 implements IFuncOrigin {
 	}, { // 7 解锁阵容(五倍券)
 		desc: [1280, 720,
 			[
-				[center, 568, 572, 0xada6f7],
-				[center, 598, 572, 0xbdaeef],
-				[center, 578, 568, 0x876c4b],
-				[center, 579, 578, 0x846644],
-				[center, 590, 581, 0x7b5d42],
-				[center, 588, 569, 0x846d4a],
+				[right, 648, 671, 0xb4aaf3],
+				[right, 648, 669, 0xb0a6ed],
+				[right, 674, 669, 0xbbacec],
+				[right, 674, 672, 0xc4b8f5],
+				[right, 657, 672, 0x856949],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 571, 561, 593, 582, 1000],
+			[center, 1280, 720, 652, 665, 669, 680, 1000],
 		]
 	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {

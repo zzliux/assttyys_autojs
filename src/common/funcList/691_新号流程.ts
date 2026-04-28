@@ -726,7 +726,7 @@ export class Func691 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1158, 94, 1196, 132, 1000],
 		]
-	}, { // 55 探索返回
+	}, { // 55 探索返回 待改
 		desc: [1280, 720,
 			[
 				[left, 123, 25, 0xf9edb7],

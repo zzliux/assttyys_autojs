@@ -28,7 +28,7 @@ export class Func692 implements IFuncOrigin {
 			default: '返回庭院',
 		}]
 	}];
-	// 5 6 8 9 10 11 12 51 52  为废弃
+	// 8 9 10 11 12 51 52  为废弃
 	operator: IFuncOperatorOrigin[] = [{ // 0 庭院_花合战
 		desc: [
 			1280, 720,
@@ -227,16 +227,17 @@ export class Func692 implements IFuncOrigin {
 	}, { // 17 点击契约碎片
 		desc: [1280, 720,
 			[
-				[center, 559, 233, 0xa1321c],
-				[center, 574, 234, 0xa1321c],
-				[center, 560, 330, 0x912514],
-				[center, 573, 344, 0x8c2212],
+				[right, 752, 636, 0xef8899],
+				[right, 759, 640, 0xde8894],
+				[right, 760, 645, 0xf7e7de],
+				[right, 760, 651, 0xb3534c],
+				[right, 777, 671, 0x78dbc9],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 590, 555, 649, 590, 2000],
+			[center, 1280, 720, 739, 640, 780, 681, 2000],
 		]
-	}, { // 18 点击二十五章
+	}, { // 18 点击二十五章 废弃
 		desc: [1280, 720,
 			[
 				[left, 45, 36, 0xf5e5a6],
@@ -249,7 +250,7 @@ export class Func692 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1066, 204, 1242, 228, 1000],
 		]
-	}, { // 19 关闭二十五章
+	}, { // 19 关闭二十五章 废弃
 		desc: [1280, 720,
 			[
 				[center, 339, 191, 0x451854],
@@ -261,7 +262,7 @@ export class Func692 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1031, 130, 1061, 164, 1000],
 		]
-	}, { // 20 约碎片滑动
+	}, { // 20 约碎片滑动 废弃
 		desc: [1280, 720,
 			[
 				[center, 591, 167, 0x2c334a],
@@ -277,16 +278,15 @@ export class Func692 implements IFuncOrigin {
 	}, { // 21 守护历练
 		desc: [1280, 720,
 			[
-				[right, 976, 186, 0xdddbce],
-				[right, 1206, 172, 0x584247],
-				[right, 1188, 240, 0x6d5058],
-				[right, 1196, 354, 0x6f525b],
-				[right, 964, 546, 0x6e4d5a],
-				[right, 1170, 630, 0x7f5a68],
+				[right, 931, 250, 0x6c5564],
+				[right, 1145, 254, 0x534a5f],
+				[right, 1030, 215, 0xefdba5],
+				[right, 1152, 231, 0xeecf94],
+				[right, 1190, 362, 0x5d5870],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1098, 261, 1204, 370, 1000],
+			[center, 1280, 720, 1013, 203, 1156, 255, 1000],
 		]
 	}, { // 22 守护历练(邀请师傅)
 		desc: [1280, 720,
@@ -627,7 +627,7 @@ export class Func692 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 566, 416, 712, 445, 1000],
 		]
-	}, { // 49 暗色二十五章
+	}, { // 49 暗色二十五章 废弃
 		desc: [1280, 720,
 			[
 				[right, 1060, 203, 0x2e211c],
@@ -639,17 +639,18 @@ export class Func692 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1066, 202, 1246, 228, 1000],
 		]
-	}, { // 50 暗色契约碎片
+	}, { // 50 战斗退出
 		desc: [1280, 720,
 			[
-				[right, 651, 162, 0x1d212e],
-				[right, 1092, 161, 0x362a1f],
-				[right, 722, 635, 0x30374b],
-				[right, 1111, 632, 0x554634],
+				[left, 30, 23, 0xdbb68f],
+				[left, 108, 23, 0xcea87b],
+				[left, 178, 24, 0xd4af85],
+				[left, 255, 32, 0xceaa7b],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 368, 18, 413, 54, 1000],
+			[center, 1280, 720, 25, 18, 49, 47, 1000],
+			[center, 1280, 720, 691, 401, 796, 444, 1000],
 		]
 	}, { // 51 暗色协战
 		desc: [1280, 720,
@@ -699,17 +700,16 @@ export class Func692 implements IFuncOrigin {
 	}, { // 55 从御魂退出
 		desc: [1280, 720,
 			[
-				[left, 68, 174, 0x8a78a6],
-				[left, 94, 208, 0x8d7caa],
-				[left, 77, 254, 0x7a6b9a],
-				[left, 85, 202, 0x9480ac],
-				[left, 44, 36, 0xf7eaac],
-				[left, 127, 25, 0xf9eeb7],
-				[left, 119, 29, 0xf7eab4],
+				[left, 30, 128, 0xc6b36e],
+				[left, 64, 183, 0xc5b373],
+				[left, 29, 283, 0x736d5d],
+				[left, 61, 349, 0x736c5d],
+				[left, 112, 26, 0xfaecb5],
+				[left, 123, 49, 0xf4e391],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 109, 23, 142, 53, 1000],
+			[center, 1280, 720, 101, 23, 131, 52, 1000],
 		]
 	},
 	];
@@ -783,20 +783,26 @@ export class Func692 implements IFuncOrigin {
 			}
 		}
 		if (thisScript.global.tuDi.five) {
-			if (thisScript.oper({
-				id: 692,
-				name: 'five',
-				operator: [thisOperator[25]]
+			let curCnt = 0;
+			const maxCount = 3;
+			while (thisScript.oper({
+				name: '挑战',
+				operator: [thisOperator[21]]
 			})) {
-				log('结束守护')
-				thisScript.rerun(thisconf.next_scheme);
-				return true;
+				curCnt++;
+				thisScript.keepScreen(false);
+				if (curCnt >= maxCount) {
+					thisScript.myToast(`连续执行${maxCount}次挑战后未开始`);
+					thisScript.rerun(thisconf.next_scheme);
+					sleep(2000);
+					return false;
+				}
 			}
 			if (thisScript.oper({
 				id: 692,
 				name: 'five',
-				operator: [thisOperator[16], thisOperator[17], thisOperator[18], thisOperator[49], thisOperator[19]
-					, thisOperator[21], thisOperator[22], thisOperator[26], thisOperator[50]]
+				operator: [thisOperator[16], thisOperator[17]
+					, thisOperator[22], thisOperator[26]]
 			})) {
 				return true;
 			}
@@ -818,14 +824,6 @@ export class Func692 implements IFuncOrigin {
 					sleep(1000);
 				}
 				return true
-			}
-			if (thisScript.oper({
-				id: 692,
-				name: 'five',
-				operator: [{ desc: thisOperator[20].desc }]
-			})) {
-				thisScript.regionBezierSwipe(thisOperator[20].oper[0], thisOperator[20].oper[1], [300, 400], 1000);
-				return true;
 			}
 		}
 		if (thisScript.global.tuDi.over) {
@@ -851,7 +849,7 @@ export class Func692 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 692,
 				name: '师徒',
-				operator: [thisOperator[34], thisOperator[35], thisOperator[36]]
+				operator: [thisOperator[34], thisOperator[35], thisOperator[36], thisOperator[50],]
 			})) {
 				return true;
 			}
