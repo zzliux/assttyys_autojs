@@ -311,6 +311,10 @@ const SchemeList: IScheme[] = [
 			'50': {
 				buff_type: '金币',
 				ready_once_buff: true
+			},
+			'503': {
+				oper_42: false,
+				oper_43: false,
 			}
 		},
 	},
@@ -329,6 +333,10 @@ const SchemeList: IScheme[] = [
 			},
 			'40': {
 				ready_once_buff: true
+			},
+			'503': {
+				oper_42: false,
+				oper_43: false,
 			}
 		},
 	},
@@ -411,7 +419,7 @@ const SchemeList: IScheme[] = [
 		groupNames: ['每周活动'],
 		list: [690, 0, 1, 2, 3, 24, 1110, 503],
 		config: {
-			0: {
+			'0': {
 				jspd_times_longtime_nodo: '1',
 			},
 		},
@@ -422,7 +430,7 @@ const SchemeList: IScheme[] = [
 		groupNames: ['每周活动'],
 		list: [0, 1, 2, 3, 24, 320],
 		config: {
-			0: {
+			'0': {
 				jspd_times_longtime_nodo: '5',
 			},
 		},
@@ -433,9 +441,49 @@ const SchemeList: IScheme[] = [
 		groupNames: ['每周活动'],
 		list: [690, 0, 1, 2, 3, 24, 1100, 1101, 1102, 1103, 1104, 1105, 1107, 1108, 1109, 1111, 503],
 		config: {
-			0: {
+			'0': {
 				jspd_times_longtime_nodo: '1',
 			},
+		},
+	},
+	{
+		id: 78,
+		schemeName: '魂海_队员',
+		groupNames: ['每周活动'],
+		star: true,
+		list: [690, 509, 510, 0, 1, 2, 3, 4, 503],
+		config: {
+			'0': {
+				jspd_enabled_2: true,
+				jspd_times_2: '30',
+				stop_with_launched_app_exit: true
+			},
+			'503': {
+				oper_34: false
+			},
+		}
+	},
+	{
+		id: 78,
+		schemeName: '魂海_队长',
+		star: false,
+		groupNames: ['每周活动'],
+		list: [690, 0, 1, 2, 3, 306, 5, 5, 27, 503, 306],
+		config: {
+			'0': {
+				jspd_enabled_2: true,
+				jspd_times_2: 30,
+				after_operation: '切换方案',
+				next_scheme: '__关闭应用__'
+			},
+			'27': {
+				mission: '永生之海',
+				next_scheme: '__关闭应用__'
+			},
+			'503': {
+				afterCountOper: '不进行任何操作',
+				oper_34: false
+			}
 		},
 	},
 	// ========== 罕见活动 ==========

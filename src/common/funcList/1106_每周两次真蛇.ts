@@ -206,13 +206,26 @@ export class Func1106 implements IFuncOrigin {
 			})) {
 				thisScript.global.zhenShe = 1;
 			}
-			if (thisScript.oper({
+			// 用循环来保证多次点击只计数一次
+			let curCnt = 0;
+			const maxCount = 10;
+			while (thisScript.oper({
 				id: 1106,
 				name: '每周两次真蛇_杂项',
 				operator: [thisOperator[1]]
 			})) {
-				thisScript.global.zhenShe--;
-				return true;
+				curCnt++;
+				thisScript.keepScreen();
+				if (curCnt >= maxCount) {
+					thisScript.myToast(`连续执行${maxCount}次挑战后未开始，脚本自动停止`);
+					thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+					thisScript.stop();
+					sleep(2000);
+					return false;
+				}
+				if (curCnt === 1) {
+					thisScript.global.zhenShe--;
+				}
 			}
 			return false;
 		} else if (thisScript.global.zhenShe == 0) {
