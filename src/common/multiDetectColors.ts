@@ -537,6 +537,19 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 			]
 		]
 	},
+	'探索地图界面_新版': {
+		desc: [1280, 720,
+			[
+				[right, 1252, 129, 0xd6b68b],
+				[right, 1105, 49, 0xcca273],
+				[right, 1046, 32, 0xd6c4a2],
+				[left, 34, 37, 0xf5e5a6],
+				[left, 88, 653, 0xf7dbb6],
+				[left, 195, 661, 0xffffd6],
+				[left, 291, 677, 0xcec7be],
+			]
+		],
+	},
 	'探索地图界面_含时空秘境': {
 		desc: [1280, 720,
 			[

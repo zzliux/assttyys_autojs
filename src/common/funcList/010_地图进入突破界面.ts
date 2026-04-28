@@ -20,13 +20,13 @@ export class Func010 implements IFuncOrigin {
 			value: null,
 		}]
 	}];
-	operator: IFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{  // 0
 		desc: '探索地图界面',
 		oper: [
 			[left, 1280, 720, 244, 641, 310, 704, 1500],
 			[center, 1280, 720, 1210, 405, 1254, 509, 1500]
 		]
-	}, {
+	}, { // 1
 		desc: [1280, 720,
 			[
 				[center, 276, 129, 0x493624],
@@ -40,11 +40,16 @@ export class Func010 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1036, 133, 1065, 158, 500]
 		]
-	}, {
+	}, { // 2
 		desc: '探索地图界面_含时空秘境',
 		oper: [
 			[left, 1280, 720, 343, 645, 413, 703, 1500],
 			[center, 1280, 720, 1210, 366, 1254, 453, 1500]
+		]
+	}, { // 3 探索地图界面_新版
+		desc: '探索地图界面_新版',
+		oper: [
+			[center, 1280, 720, 261, 650, 296, 688, 500]
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -58,7 +63,7 @@ export class Func010 implements IFuncOrigin {
 				}, {
 					desc: thisOperator[0].desc,
 					oper: [thisOperator[0].oper[0]]
-				}, thisOperator[1]]
+				}, thisOperator[1], thisOperator[3]]
 			});
 		} else if ('寮突破' === thisconf.type) {
 			return thisScript.oper({
