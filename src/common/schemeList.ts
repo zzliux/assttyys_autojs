@@ -70,7 +70,7 @@ const SchemeList: IScheme[] = [
 			},
 			'51': {
 				greenType: '自定义坐标',
-				'preSearch': true,
+				preSearch: true,
 			},
 		},
 	},
@@ -576,7 +576,7 @@ const SchemeList: IScheme[] = [
 				'jspd_enabled_2': true,
 				'jspd_times_2': '80',
 				'after_operation': '切换方案',
-				'next_scheme': '循环_突破打9退4'
+				'next_scheme': '突破打9退4'
 			},
 			'27': { 'level': '探索（困难）' },
 			'503': { 'oper_26': false, 'oper_27': false },
@@ -586,14 +586,14 @@ const SchemeList: IScheme[] = [
 		id: 111,
 		schemeName: '循环_探索队员',
 		star: true,
-		list: [690, 50, 0, 1, 2, 3, 4, 25, 503],
+		list: [690, 509, 510, 50, 0, 1, 2, 3, 4, 25, 503],
 		groupNames: ['循环任务'],
 		config: {
 			'0': {
 				jspd_enabled_2: true,
 				jspd_times_2: '80',
 				after_operation: '切换方案',
-				next_scheme: '循环_突破打9退4'
+				next_scheme: '突破打9退4'
 			},
 			'50': {
 				buff_type: '经验',
@@ -607,7 +607,7 @@ const SchemeList: IScheme[] = [
 	},
 	{
 		id: 3,
-		schemeName: '循环_突破打9退4',
+		schemeName: '突破打9退4',
 		groupNames: ['循环任务'],
 		star: true,
 		list: [690, 51, 0, 1, 2, 3, 7, 8, 9, 10, 29, 503],
@@ -624,7 +624,10 @@ const SchemeList: IScheme[] = [
 			},
 			'51': {
 				greenType: '自定义坐标',
-				'preSearch': true,
+				preSearch: true,
+			},
+			'503': {
+				oper_26: true,
 			},
 		},
 	},
