@@ -1375,6 +1375,18 @@ export class Func609 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1159, 117, 1196, 149, 1000],
 		]
+	}, { // 96 旧版探索 暗屏
+		desc: [1280, 720,
+			[
+				[left, 37, 24, 0x744f2b],
+				[left, 56, 27, 0xb39e6c],
+				[left, 66, 38, 0x79522c],
+				[left, 57, 48, 0xb39e6a],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 36, 19, 70, 55, 1000],
+		]
 	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -2027,7 +2039,7 @@ export class Func609 implements IFuncOrigin {
 			id: 609,
 			name: '关闭',
 			operator: [thisOperator[35], thisOperator[43], thisOperator[66], thisOperator[72], thisOperator[86]
-				, thisOperator[93]]
+				, thisOperator[93], thisOperator[96]]
 		})) {
 			return true
 		}

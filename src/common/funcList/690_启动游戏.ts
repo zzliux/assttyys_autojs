@@ -425,6 +425,31 @@ export class Func690 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1020, 396, 1161, 550, 1000],
 		]
+	}, { // 31 优惠券一键领取
+		desc: [1280, 720,
+			[
+				[right, 710, 446, 0xffe293],
+				[right, 710, 472, 0xffedba],
+				[right, 861, 445, 0xffe498],
+				[right, 860, 469, 0xfeecb9],
+				[right, 787, 474, 0xfeedbd],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 705, 440, 867, 472, 1000],
+		]
+	}, { // 32 奇世绘影
+		desc: [1280, 720,
+			[
+				[left, 47, 25, 0xefd38f],
+				[left, 29, 36, 0xfcf6c1],
+				[left, 36, 36, 0xf5e6a7],
+				[left, 46, 48, 0xefd591],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 24, 22, 62, 52, 1000],
+		]
 	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -635,7 +660,9 @@ export class Func690 implements IFuncOrigin {
 					thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[6],
 					thisOperator[9], thisOperator[10], thisOperator[11], thisOperator[14],
 					thisOperator[17], thisOperator[20], thisOperator[21], thisOperator[26],
-					thisOperator[27], { desc: thisOperator[15].desc, oper: [thisOperator[15].oper[0]] }
+					thisOperator[27], {
+						desc: thisOperator[15].desc, oper: [thisOperator[15].oper[0]]
+					}, thisOperator[31], thisOperator[32],
 				]
 			})) {
 				return true;

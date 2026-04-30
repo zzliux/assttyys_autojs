@@ -610,11 +610,8 @@ const SchemeList: IScheme[] = [
 		schemeName: '突破打9退4',
 		groupNames: ['循环任务'],
 		star: true,
-		list: [690, 51, 0, 1, 2, 3, 7, 8, 9, 10, 29, 503],
+		list: [690, 51, 0, 1, 2, 3, 8, 9, 10, 11, 29, 503],
 		config: {
-			'7': {
-				switch_nineWin: true,
-			},
 			'8': {
 				inv: true,
 				designated_scheme: '循环',
