@@ -188,7 +188,7 @@ export class Func700 implements IFuncOrigin {
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: '进入式神寄养结界',
-			operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[4], thisOperator[5]]
+			operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[4], thisOperator[5], thisOperator[6]]
 		})) {
 			return true;
 		}

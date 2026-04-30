@@ -205,6 +205,20 @@ export class Func693 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1106, 623, 1153, 653, 1200]	// 点击式神录
 		]
+	}, { // 13 过期申请
+		desc: [1280, 720,
+			[
+				[right, 1197, 120, 0xaa371e],
+				[right, 1237, 120, 0xa7371e],
+				[right, 1260, 119, 0xa7371e],
+				[right, 1207, 175, 0x9b8f7e],
+				[right, 1239, 173, 0xd86f5e],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1228, 162, 1251, 185, 1000],
+			[left, 1280, 720, 22, 19, 52, 47, 1000],
+		]
 	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
