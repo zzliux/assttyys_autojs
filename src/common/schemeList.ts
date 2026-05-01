@@ -573,13 +573,13 @@ const SchemeList: IScheme[] = [
 		groupNames: ['循环任务'],
 		config: {
 			'0': {
-				'jspd_enabled_2': true,
-				'jspd_times_2': '80',
-				'after_operation': '切换方案',
-				'next_scheme': '突破打9退4'
+				jspd_enabled_2: true,
+				jspd_times_2: 80,
+				after_operation: '切换方案',
+				next_scheme: '突破打9退4'
 			},
-			'27': { 'level': '探索（困难）' },
-			'503': { 'oper_26': false, 'oper_27': false },
+			'27': { mission: '探索（困难）' },
+			'503': { oper_26: false, oper_27: false },
 		}
 	},
 	{
@@ -610,7 +610,7 @@ const SchemeList: IScheme[] = [
 		schemeName: '突破打9退4',
 		groupNames: ['循环任务'],
 		star: true,
-		list: [690, 51, 0, 1, 2, 3, 8, 9, 10, 11, 29, 503],
+		list: [690, 501, 40, 51, 0, 1, 2, 3, 8, 9, 10, 11, 29, 503],
 		config: {
 			'8': {
 				inv: true,
@@ -622,6 +622,9 @@ const SchemeList: IScheme[] = [
 			'51': {
 				greenType: '自定义坐标',
 				preSearch: true,
+			},
+			'501': {
+				once: true
 			},
 			'503': {
 				oper_26: true,
