@@ -85,7 +85,7 @@ export const mergeOffsetTime = function (date: Date, offsetStr: string) {
 	if (date && offsetStr) {
 		const parts = offsetStr?.split(',');
 		if (parts.length === 2) {
-			const [ offsetMinuteLow, offsetMinuteHigh ] = parts.map(item => parseInt(item));
+			const [offsetMinuteLow, offsetMinuteHigh] = parts.map(item => parseInt(item));
 			if (Number.isInteger(offsetMinuteLow) && Number.isInteger(offsetMinuteHigh)) {
 				offsetTime = random(offsetMinuteLow * 60 * 1000, offsetMinuteHigh * 60 * 1000);
 			}
@@ -172,7 +172,7 @@ export class Job extends JobOptions {
 }
 class Schedule {
 
-	timer: ReturnType<typeof setTimeout> | null = null;
+	timer: NodeJS.Timeout;
 	timeout: number = 5000;
 	jobList: Job[] = [];
 	jobStopCallback: Function;
@@ -193,28 +193,7 @@ class Schedule {
 	jobQueue: Job[] = [];
 
 	constructor() {
-		this.startTimer();
-	}
-
-	private timerCallbackWrapper = () => {
-		try {
-			this.timerCallback2();
-		} catch (error) {
-			console.error('[scheduler] timerCallback2 异常:', error);
-		}
-		this.startTimer();
-	}
-
-	private startTimer() {
-		this.clearTimer();
-		this.timer = setTimeout(this.timerCallbackWrapper, this.timeout);
-	}
-
-	private clearTimer() {
-		if (this.timer !== null) {
-			clearTimeout(this.timer);
-			this.timer = null;
-		}
+		this.timer = setInterval(this.timerCallback2.bind(this), this.timeout);
 	}
 
 	add(job: Job): boolean {
@@ -321,6 +300,7 @@ class Schedule {
 	 * @returns
 	 */
 	timerCallback2() {
+
 		// 遍历所有的job，把到达执行时间的任务加入待执行队列
 		for (let i = 0; i < this.jobList.length; i++) {
 			const thisJob = this.jobList[i];
