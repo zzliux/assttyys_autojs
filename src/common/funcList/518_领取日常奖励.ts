@@ -620,11 +620,11 @@ export class Func518 implements IFuncOrigin {
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (!thisScript.global.function_Switch) {// 首次执行,读取按钮状况
 			thisScript.global.function_Switch = {
-				'agency': true,
-				'shop': true,
-				'friend': true,
-				'flower': true,
-				'email': true,
+				// 'agency': true,
+				// 'shop': true,
+				// 'friend': true,
+				// 'flower': true,
+				// 'email': true,
 				'godlike': true,
 			};
 		}
@@ -830,6 +830,11 @@ export class Func518 implements IFuncOrigin {
 					text('忽略').findOnce().click()
 					return true;
 				}
+				if (text('一键登录').findOnce()) {
+					log('点击一键登录')
+					text('一键登录').findOnce().click()
+					return true;
+				}
 				if (text('圈子').findOnce()) {
 					log('点击圈子')
 					const oper = [
@@ -856,6 +861,13 @@ export class Func518 implements IFuncOrigin {
 					thisScript.launchRelatedApp();
 					thisScript.global.function_Switch.godlike = false;
 					return true;
+				}
+				const { lastFuncDateTime, currentDate, runDate } = thisScript;
+				if (new Date().getTime() - Math.max(lastFuncDateTime?.getTime() || 0, currentDate?.getTime() || 0, runDate?.getTime() || 0) > 10000) {
+					if (id('iv_close').findOnce()) {
+						id('iv_close').findOnce().click();
+						return true;
+					}
 				}
 			} else {
 				thisScript.myToast('未安装大神,不领取大神奖励');
