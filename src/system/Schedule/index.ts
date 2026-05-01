@@ -196,16 +196,18 @@ class Schedule {
 		this.startTimer();
 	}
 
+	private timerCallbackWrapper = () => {
+		try {
+			this.timerCallback2();
+		} catch (error) {
+			console.error('[scheduler] timerCallback2 异常:', error);
+		}
+		this.startTimer();
+	}
+
 	private startTimer() {
 		this.clearTimer();
-		this.timer = setTimeout(() => {
-			try {
-				this.timerCallback2();
-			} catch (error) {
-				console.error('[scheduler] timerCallback2 异常:', error);
-			}
-			this.startTimer();
-		}, this.timeout);
+		this.timer = setTimeout(this.timerCallbackWrapper, this.timeout);
 	}
 
 	private clearTimer() {
