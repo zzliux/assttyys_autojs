@@ -620,11 +620,11 @@ export class Func518 implements IFuncOrigin {
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (!thisScript.global.function_Switch) {// 首次执行,读取按钮状况
 			thisScript.global.function_Switch = {
-				// 'agency': true,
-				// 'shop': true,
-				// 'friend': true,
-				// 'flower': true,
-				// 'email': true,
+				'agency': true,
+				'shop': true,
+				'friend': true,
+				'flower': true,
+				'email': true,
 				'godlike': true,
 			};
 		}
