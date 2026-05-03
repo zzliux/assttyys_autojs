@@ -450,6 +450,21 @@ export class Func690 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 24, 22, 62, 52, 1000],
 		]
+	}, { // 33 选择安卓或苹果平台_带有鸿蒙入口
+		desc: [1280, 720,
+			[
+				[right, 801, 373, 0x000000],
+				[right, 804, 437, 0x000000],
+				[center, 632, 375, 0x8ec220],
+				[center, 639, 438, 0x8ec220],
+				[center, 462, 376, 0x1a1a1a],
+				[center, 472, 408, 0xf9f9fb],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 606, 378, 665, 434, 1000],
+			[center, 1280, 720, 441, 375, 500, 432, 1000],
+		]
 	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -523,6 +538,18 @@ export class Func690 implements IFuncOrigin {
 				thisScript.regionClick([thisOperator[22].oper[1]]);
 			} else {
 				thisScript.regionClick([thisOperator[22].oper[0]]);
+			}
+			return true;
+		}
+		if (thisScript.oper({
+			id: 609,
+			name: '选择平台',
+			operator: [{ desc: thisOperator[33].desc }]
+		})) {
+			if (thisConf.apple) {
+				thisScript.regionClick([thisOperator[33].oper[1]]);
+			} else {
+				thisScript.regionClick([thisOperator[33].oper[0]]);
 			}
 			return true;
 		}
