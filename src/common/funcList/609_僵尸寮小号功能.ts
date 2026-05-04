@@ -17,11 +17,6 @@ export class Func609 implements IFuncOrigin {
 			type: 'number',
 			default: '10',
 		}, {
-			name: 'swip_count',
-			desc: '账号界面下划次数',
-			type: 'number',
-			default: '5',
-		}, {
 			name: 'next_scheme',
 			desc: '下一个方案',
 			type: 'scheme',
@@ -1387,6 +1382,20 @@ export class Func609 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 36, 19, 70, 55, 1000],
 		]
+	}, { // 97 三个号,已沉底
+		desc: [1280, 720,
+			[
+				[center, 447, 568, 0xfd6969],
+				[center, 447, 574, 0xfd6969],
+				[center, 458, 570, 0xfd5d5d],
+				[right, 713, 570, 0xbebebe],
+				[right, 716, 570, 0xb6b6b6],
+				[right, 728, 570, 0xb6b6b6],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1007, 336, 1120, 464, 1000],
+		]
 	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -1487,11 +1496,16 @@ export class Func609 implements IFuncOrigin {
 				name: '选取最后一个账号',
 				operator: [{ desc: thisOperator[3].desc }]
 			})) {
-				for (let i = 0; i < (thisconf.swip_count as number); i++) {
-					thisScript.regionSwipe(thisOperator[3].oper[0], thisOperator[3].oper[1], [500, 700], 1000);
+				if (!thisScript.oper({
+					id: 609,
+					name: '没到最后一栏',
+					operator: [{ desc: thisOperator[97].desc }]
+				})) {
+					thisScript.regionSwipe(thisOperator[3].oper[0], thisOperator[3].oper[1], [500, 700], 500);
+				} else {
+					thisScript.regionClick([thisOperator[3].oper[2]]);
+					thisScript.regionClick([thisOperator[2].oper[0]]);
 				}
-				thisScript.regionClick([thisOperator[3].oper[2]]);
-				thisScript.regionClick([thisOperator[2].oper[0]]);
 				return true;
 			}
 			if (thisScript.oper({
@@ -1501,6 +1515,7 @@ export class Func609 implements IFuncOrigin {
 			})) {
 				// 未创建角色的账号：增加 account_num 保持点击位置，但不增加有效计数
 				thisScript.global.account_num++;
+				thisScript.global.function_Switch.login = true;
 				return true;
 			}
 			// 做延时检测 防止登陆后的弹窗
