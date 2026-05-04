@@ -191,7 +191,7 @@ export class Func000 implements IFuncOrigin {
 				if (count > (thisconf.loop_times as number)) {
 					thisScript.myToast(`循环${thisconf.loop_times}次后停止脚本`);
 					thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-					thisScript.superGlobal.next_scheme_name = thisconf.next_scheme as string;
+					thisScript.superGlobal.next_scheme_name = '返回庭院';
 					thisScript.rerun('关闭BUFF')
 					return true;
 				}
