@@ -203,14 +203,12 @@ export class Func500 implements IFuncOrigin {
 				[
 					1280, 720,
 					[
-						[left, 182, 37, 0xd5c4a3],
-						[left, 108, 26, 0xd7c5a2],
-						[left, 47, 28, 0xd7c5a2],
-						[left, 232, 139, 0x583716],
-						[left, 76, 550, 0x322219],
-						[right, 1039, 648, 0xd3c3bd],
-						[center, 872, 606, 0x493a38],
-						[center, 727, 611, 0xdfc7ac],
+						[left, 47, 33, 0xd6c4a1],
+						[left, 173, 24, 0xd6c4a1],
+						[center, 542, 30, 0x9a8458],
+						[right, 1007, 612, 0xeeeceb],
+						[right, 760, 586, 0x170b2a],
+						[right, 884, 613, 0xcb424f],
 					]
 				]
 		}, { // 8 检测_阴门
@@ -351,6 +349,19 @@ export class Func500 implements IFuncOrigin {
 			oper: [
 				[left, 1280, 720, 155, 417, 365, 574, 1000]     //  寮活动 阴门
 			]
+		}, { // 18退治已打完，
+			desc: [1280, 720,
+				[
+					[left, 42, 31, 0xf4e4a4],
+					[right, 760, 255, 0xe2dfda],
+					[right, 820, 276, 0xdebce4],
+					[right, 702, 265, 0xe0bfe5],
+					[right, 755, 285, 0x4c4943],
+					[right, 767, 246, 0xb03a32],
+					[right, 850, 187, 0xf01b1b],
+					[right, 857, 187, 0xf21c1c],
+				]
+			],
 		}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['500'];
@@ -553,7 +564,7 @@ export class Func500 implements IFuncOrigin {
 			if (currenthuntBossHour >= 10 && currenthuntBossHour < 23 && nowDayhuntBoss === 6) {// 判断是否在周六10-23点
 				if (thisScript.oper({
 					name: '检测_首领退治是否已开启',
-					operator: [thisOperator[0],]
+					operator: [thisOperator[0]]
 				})) {
 					return true;
 				}
@@ -565,6 +576,15 @@ export class Func500 implements IFuncOrigin {
 					thisScript.global.liao_activity_page_flag = 0;
 					const next_scheme = thisconf.a_ctivity_huntBoss_select;
 					thisScript.rerun(next_scheme, {});
+					return true;
+				}
+				if (thisScript.oper({
+					name: '检测_首领退治是否打完',
+					operator: [thisOperator[18]]
+				})) {
+					thisScript.myToast('首领退治已打完');
+					const next_scheme = '返回庭院';
+					thisScript.rerun(next_scheme, {})
 					return true;
 				}
 			} else {
