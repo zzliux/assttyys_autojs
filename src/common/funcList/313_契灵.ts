@@ -23,6 +23,11 @@ export class Func313 implements IFuncOrigin {
 			type: 'switch',
 			default: false
 		}, {
+			name: 'buy_ball',
+			desc: '是否购买初级契灵球',
+			type: 'switch',
+			default: false
+		}, {
 			name: 'team',
 			desc: '选择攻打方式',
 			type: 'list',
@@ -240,6 +245,36 @@ export class Func313 implements IFuncOrigin {
 			[center, 1280, 720, 568, 559, 718, 599, 2000],
 			[center, 1280, 720, 568, 559, 718, 599, 1000],
 		]
+	}, { // 14 购买初级契灵球
+		desc: [1280, 720,
+			[
+				[left, 43, 39, 0xf7ebad],
+				[left, 281, 42, 0x593716],
+				[right, 1245, 32, 0xd7c3a2],
+				[right, 661, 32, 0xd7c3a2],
+				[left, 153, 584, 0x9c6d36],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 653, 25, 671, 42, 1000],
+		]
+	}, { // 15 购买确认_三行字
+		desc: [
+			1280, 720,
+			[
+				[center, 570, 562, 0xf3b25e],
+				[center, 571, 590, 0xf3b25e],
+				[right, 708, 564, 0xf3b25e],
+				[right, 709, 588, 0xf3b25e],
+				[right, 784, 469, 0xfddba2],
+				[right, 800, 467, 0x402e2c],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 761, 462, 800, 498, 1000],
+			[center, 1280, 720, 560, 556, 715, 598, 1000],
+			[center, 1280, 720, 1042, 176, 1187, 585, 500],
+		]
 	},
 	]
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -250,6 +285,16 @@ export class Func313 implements IFuncOrigin {
 				name: '石头购买',
 				operator: [thisOperator[13]]
 			})) {
+				return true;
+			}
+		}
+		if (thisconf.buy_ball && thisScript.global.qiling_ball < 3) {
+			if (thisScript.oper({
+				id: 313,
+				name: '石头购买',
+				operator: [thisOperator[14]]
+			})) {
+				thisScript.global.qiling_ball++;
 				return true;
 			}
 		}
@@ -365,7 +410,7 @@ export class Func313 implements IFuncOrigin {
 			id: 313,
 			name: '契灵杂项',
 			operator: [thisOperator[0], thisOperator[1], thisOperator[4], thisOperator[6]
-				, thisOperator[7], thisOperator[10], thisOperator[12]]
+				, thisOperator[7], thisOperator[10], thisOperator[12], thisOperator[15]]
 		})) {
 			return true;
 		}
