@@ -536,7 +536,7 @@ const SchemeList: IScheme[] = [
 				'jspd_enabled_2': true,
 				'jspd_times_2': '80',
 				'after_operation': '切换方案',
-				'next_scheme': '循环_突破打9退4'
+				'next_scheme': '突破打9退4'
 			},
 			'27': { 'level': '魂十' },
 			'503': { 'oper_26': false },
@@ -553,7 +553,7 @@ const SchemeList: IScheme[] = [
 				jspd_enabled_2: true,
 				jspd_times_2: '80',
 				after_operation: '切换方案',
-				next_scheme: '循环_突破打9退4'
+				next_scheme: '突破打9退4'
 			},
 			'50': {
 				buff_type: '御魂',
