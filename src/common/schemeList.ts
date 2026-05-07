@@ -14,7 +14,7 @@ const SchemeList: IScheme[] = [
 	{
 		id: 26,
 		schemeName: '关闭BUFF',
-		list: [502, 0, 1, 2, 3, 501, 29, 40],
+		list: [0, 1, 2, 3, 501, 29, 40, 503],
 	},
 	{
 		id: 29,
