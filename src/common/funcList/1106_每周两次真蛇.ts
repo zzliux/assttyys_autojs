@@ -31,18 +31,17 @@ export class Func1106 implements IFuncOrigin {
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{ // 0 探索_真蛇
-		desc: [
-			1280, 720,
+		desc: [1280, 720,
 			[
-				[left, 56, 203, 0x215543],
-				[left, 101, 203, 0x271f1b],
-				[left, 72, 230, 0x809074],
-				[left, 89, 227, 0x18f7c2],
-				[left, 45, 233, 0x231716],
+				[left, 52, 141, 0x0b422c],
+				[left, 51, 171, 0x08412e],
+				[left, 62, 162, 0x687d68],
+				[left, 72, 151, 0x08412d],
+				[left, 57, 140, 0x2c352d],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 33, 187, 109, 245, 1000],
+			[center, 1280, 720, 35, 135, 77, 170, 1000],
 		]
 	}, { // 1 真八岐大蛇界面
 		desc: [
@@ -103,18 +102,16 @@ export class Func1106 implements IFuncOrigin {
 		],
 		retest: 1000,
 	}, { // 5 真蛇出现
-		desc: [
-			1280, 720,
+		desc: [1280, 720,
 			[
-				[left, 169, 636, 0x151919],
-				[left, 237, 637, 0x1f4133],
-				[left, 240, 655, 0x164b36],
-				[left, 244, 694, 0x25654a],
-				[left, 116, 701, 0x123d2b],
+				[left, 283, 671, 0xadb98e],
+				[center, 356, 692, 0x151f1b],
+				[center, 372, 707, 0x103425],
+				[center, 460, 700, 0x205e43],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 115, 646, 203, 683, 1000],
+			[center, 1280, 720, 325, 667, 448, 704, 1000],
 		]
 	}, { // 6 真蛇_剩余一次
 		desc: [
