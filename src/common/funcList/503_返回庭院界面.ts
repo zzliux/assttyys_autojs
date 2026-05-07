@@ -538,7 +538,6 @@ export class Func503 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[center, 811, 659, 0xc2baa2],
 				[right, 1173, 35, 0xd7af86],
 				[left, 45, 37, 0xf5e5a5],
 				[center, 621, 45, 0xfce5cd],
@@ -885,7 +884,19 @@ export class Func503 implements IFuncOrigin {
 				if (thisConf.scheme_switch_enabled) {
 					next_scheme = thisConf.next_scheme as string;
 				}
-				if (next_scheme) {
+				if (!next_scheme) {
+					if ('停止脚本' === thisConf.afterCountOper) {
+						thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+						thisScript.stop();
+					} else if ('关闭应用' === thisConf.afterCountOper) {
+						sleep(1000);
+						const packageNames = thisScript.stopRelatedApp();
+						thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，应用[${packageNames}]已杀，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+						sleep(2000);
+						thisScript.stop();
+						return true;
+					}
+				} else {
 					thisScript.rerun(next_scheme);
 					sleep(3000);
 					return true;

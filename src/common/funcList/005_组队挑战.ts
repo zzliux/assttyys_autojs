@@ -108,7 +108,7 @@ export class Func005 implements IFuncOrigin {
 		})) {
 			const point = thisScript.findMultiColor('探索_宝箱');
 			if (point) {
-				const oper = [[point.x, point.y, point.x + thisOperator[2].oper[0][2], point.y + thisOperator[2].oper[0][3], thisOperator[2].oper[0][4]]];
+				const oper = [[point.x, point.y, point.x + 5, point.y + 5, 500]];
 				thisScript.regionClick(oper);
 				return true;
 			}

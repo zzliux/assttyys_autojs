@@ -127,6 +127,7 @@ export class Func690 implements IFuncOrigin {
 			]
 		],
 		oper: [
+			[center, 1280, 720, 706, 507, 770, 539, 1200], // 切换按钮 区域
 			[center, 1280, 720, 502, 133, 1056, 622, 1000],
 		]
 	}, { // 5
@@ -424,6 +425,46 @@ export class Func690 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1020, 396, 1161, 550, 1000],
 		]
+	}, { // 31 优惠券一键领取
+		desc: [1280, 720,
+			[
+				[right, 710, 446, 0xffe293],
+				[right, 710, 472, 0xffedba],
+				[right, 861, 445, 0xffe498],
+				[right, 860, 469, 0xfeecb9],
+				[right, 787, 474, 0xfeedbd],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 705, 440, 867, 472, 1000],
+		]
+	}, { // 32 奇世绘影
+		desc: [1280, 720,
+			[
+				[left, 47, 25, 0xefd38f],
+				[left, 29, 36, 0xfcf6c1],
+				[left, 36, 36, 0xf5e6a7],
+				[left, 46, 48, 0xefd591],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 24, 22, 62, 52, 1000],
+		]
+	}, { // 33 选择安卓或苹果平台_带有鸿蒙入口
+		desc: [1280, 720,
+			[
+				[right, 801, 373, 0x000000],
+				[right, 804, 437, 0x000000],
+				[center, 632, 375, 0x8ec220],
+				[center, 639, 438, 0x8ec220],
+				[center, 462, 376, 0x1a1a1a],
+				[center, 472, 408, 0xf9f9fb],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 606, 378, 665, 434, 1000],
+			[center, 1280, 720, 441, 375, 500, 432, 1000],
+		]
 	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -497,6 +538,18 @@ export class Func690 implements IFuncOrigin {
 				thisScript.regionClick([thisOperator[22].oper[1]]);
 			} else {
 				thisScript.regionClick([thisOperator[22].oper[0]]);
+			}
+			return true;
+		}
+		if (thisScript.oper({
+			id: 609,
+			name: '选择平台',
+			operator: [{ desc: thisOperator[33].desc }]
+		})) {
+			if (thisConf.apple) {
+				thisScript.regionClick([thisOperator[33].oper[1]]);
+			} else {
+				thisScript.regionClick([thisOperator[33].oper[0]]);
 			}
 			return true;
 		}
@@ -615,7 +668,7 @@ export class Func690 implements IFuncOrigin {
 				name: '识别昵称',
 				operator: [{ desc: thisOperator[4].desc }],
 			})) {
-				const name = thisScript.findText(String(thisConf.area), 0, thisOperator[4].oper[0], '包含');
+				const name = thisScript.findText(String(thisConf.area), 0, thisOperator[4].oper[1], '包含');
 				if (name.length > 0) {
 					const toClickRegion = [
 						name[0].points[0].x + 5, name[0].points[0].y,
@@ -634,7 +687,9 @@ export class Func690 implements IFuncOrigin {
 					thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[6],
 					thisOperator[9], thisOperator[10], thisOperator[11], thisOperator[14],
 					thisOperator[17], thisOperator[20], thisOperator[21], thisOperator[26],
-					thisOperator[27], { desc: thisOperator[15].desc, oper: [thisOperator[15].oper[0]] }
+					thisOperator[27], {
+						desc: thisOperator[15].desc, oper: [thisOperator[15].oper[0]]
+					}, thisOperator[31], thisOperator[32],
 				]
 			})) {
 				return true;

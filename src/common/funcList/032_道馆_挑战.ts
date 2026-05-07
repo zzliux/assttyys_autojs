@@ -265,18 +265,22 @@ export class Func032 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1055, 235, 1137, 328, 800], // 放弃突破
 		]
-	}, { //	13 检测_是否为道馆突破选择道馆页面
+	}, { //	13 检测_是否为道馆突破选择道馆页面===次数还有一次
 		desc: [
 			1280, 720,
 			[
 				[left, 141, 77, 0xc8a98c],
-				[left, 33, 52, 0xeff5fb],
-				[left, 245, 50, 0x583716],
+				[left, 40, 37, 0xfcf1b9],
+				[left, 321, 45, 0xc6c39c],
 				[left, 203, 650, 0x5b3e2b],
 				[left, 89, 618, 0xc1b9a9],
 				[right, 1113, 650, 0xdfdbcf],
 				[right, 1103, 62, 0xddd3c0],
 				[right, 1251, 125, 0xc4b4a0],
+				[right, 669, 643, 0xf98f01],
+				[right, 669, 648, 0xeb8803],
+				[right, 669, 651, 0xef8a02],
+				[right, 687, 648, 0xf08a01],
 			]
 		],
 		oper: [
@@ -417,11 +421,11 @@ export class Func032 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 32,
 			name: '检测_挑战结束',
-			operator: [thisOperator[2], thisOperator[6], thisOperator[9], { desc: thisOperator[13].desc }] // 13投票后，倒计时结束会返回到小地图（补充：道馆突破成功倒计时会返回到庭院）
+			operator: [thisOperator[2], thisOperator[6], thisOperator[9], thisOperator[13]] // 13投票后，倒计时结束会返回到小地图（补充：道馆突破成功倒计时会返回到庭院）
 		})) {
 			thisScript.global.daoguan_team = true;
 			thisScript.global.shangyushe = true;
-			if (thisconf.manage && thisScript.oper({ name: '检测_小地图选道馆', operator: [{ desc: thisOperator[13].desc }] })) {// 寮管理不切换方案
+			if (thisconf.manage && thisScript.oper({ name: '检测_小地图选道馆', operator: [thisOperator[13]] })) {// 寮管理不切换方案
 				return false;
 			} else {
 				thisScript.oper({
@@ -431,16 +435,9 @@ export class Func032 implements IFuncOrigin {
 				})
 			}
 			if (thisconf.fight_second) {
-				if (thisScript.runtimeParams && thisScript.runtimeParams.liao_activity_state) {
-					if (thisScript.runtimeParams.liao_activity_state['dojo']) { // true表示执行过一次了
-						const next_scheme = '返回庭院';
-						thisScript.rerun(next_scheme);
-					} else {
-						thisScript.runtimeParams.liao_activity_state['dojo'] = true;
-						const next_scheme = thisconf.fight_second_select;
-						thisScript.rerun(next_scheme, { ...thisScript.runtimeParams, });
-					}
-				}
+				thisScript.runtimeParams.liao_activity_state['dojo'] = true;
+				const next_scheme = thisconf.fight_second_select;
+				thisScript.rerun(next_scheme, { ...thisScript.runtimeParams, });
 			} else { // 没勾选，直接返回庭院，结束任务
 				const next_scheme = '返回庭院';
 				thisScript.rerun(next_scheme);

@@ -2,19 +2,29 @@ import { AbstractStorages, IStore } from './AbstractStorages';
 
 
 const WebDavRequest = (method: string, url: string, authStr: string, body?: string) => {
-	const options: any = {};
-	options.method = method;
-	if (body) {
-		options.body = body.toString();
-	}
-	options.headers = {
-		Authorization: `Basic ${authStr}`
-	}
-	// @ts-expect-error d.ts文件问题
-	const r = http.request(url, options) as { statusCode: number, headers: Record<string, string>, body: any };
-	const retBody = r.body.string() as string;
-	const ret = { body: retBody, statusCode: r.statusCode, headers: r.headers };
-	return ret;
+	let result: { body: string, statusCode: number, headers: Record<string, string> };
+	let error: Error;
+	const thread = threads.start(() => {
+		try {
+			const options: any = {};
+			options.method = method;
+			if (body) {
+				options.body = body.toString();
+			}
+			options.headers = {
+				Authorization: `Basic ${authStr}`
+			}
+			// @ts-expect-error d.ts文件问题
+			const r = http.request(url, options) as { statusCode: number, headers: Record<string, string>, body: any };
+			const retBody = r.body.string() as string;
+			result = { body: retBody, statusCode: r.statusCode, headers: r.headers };
+		} catch (e) {
+			error = e as Error;
+		}
+	});
+	thread.join();
+	if (error!) throw error!;
+	return result!;
 }
 
 export default class WebDAVStorage extends AbstractStorages {

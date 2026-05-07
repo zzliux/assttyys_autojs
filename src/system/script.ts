@@ -583,7 +583,7 @@ export class Script {
 		// img.saveTo('/sdcard/testimg.png');
 		// img.recycle();
 		// test end
-		globalThis.runThread = threads.start(function () {
+		const runThread = threads.start(function () {
 			try {
 				// eslint-disable-next-line no-constant-condition
 				while (true) {
@@ -609,6 +609,7 @@ export class Script {
 				}
 			}
 		});
+		this.runThread = runThread;
 		if (typeof this.runCallback === 'function') {
 			this.runCallback();
 		}
@@ -676,7 +677,7 @@ export class Script {
 	 * 停止脚本，内部接口
 	 */
 	_stop(flag?: boolean) {
-		if (null !== globalThis.runThread) {
+		if (null !== this.runThread) {
 			if (typeof this.stopCallback === 'function') {
 				this.stopCallback();
 			}
@@ -687,9 +688,9 @@ export class Script {
 			if (!flag && this.job && !this.isPause) {
 				this.job.doDone();
 			}
-			globalThis.runThread && globalThis.runThread.interrupt();
+			this.runThread && this.runThread.interrupt();
 		}
-		globalThis.runThread = null;
+		this.runThread = null;
 	}
 
 	/**

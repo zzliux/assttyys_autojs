@@ -408,6 +408,8 @@ export class Func518 implements IFuncOrigin {
 					[right, 1194, 116, 0x713150],
 					[right, 1175, 96, 0x59292e],
 					[right, 1179, 131, 0x743642],
+					[right, 1221, 207, 0xbe691a],
+					[right, 1229, 331, 0x583721],
 				]
 			],
 			oper: [
@@ -615,6 +617,21 @@ export class Func518 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 787, 673, 897, 707, 1000],
 			]
+		}, { // 48 结界卡退出
+			desc: [1280, 720,
+				[
+					[right, 1164, 116, 0x733539],
+					[right, 1194, 116, 0x713150],
+					[right, 1175, 96, 0x59292e],
+					[right, 1179, 131, 0x743642],
+					[right, 1233, 207, 0x5a3b26],
+					[right, 1233, 336, 0xc36b18],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 1159, 97, 1196, 131, 1000],
+				[center, 1280, 720, 1155, 97, 1194, 129, 1000],
+			]
 		},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -667,7 +684,7 @@ export class Func518 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 518,
 			name: '邮件',
-			operator: [thisOperator[15], thisOperator[11], thisOperator[17], thisOperator[9]]
+			operator: [thisOperator[15], thisOperator[11], thisOperator[17], thisOperator[9], thisOperator[48]]
 		})) {
 			return true;
 		}
@@ -830,6 +847,11 @@ export class Func518 implements IFuncOrigin {
 					text('忽略').findOnce().click()
 					return true;
 				}
+				if (text('一键登录').findOnce()) {
+					log('点击一键登录')
+					text('一键登录').findOnce().click()
+					return true;
+				}
 				if (text('圈子').findOnce()) {
 					log('点击圈子')
 					const oper = [
@@ -856,6 +878,13 @@ export class Func518 implements IFuncOrigin {
 					thisScript.launchRelatedApp();
 					thisScript.global.function_Switch.godlike = false;
 					return true;
+				}
+				const { lastFuncDateTime, currentDate, runDate } = thisScript;
+				if (new Date().getTime() - Math.max(lastFuncDateTime?.getTime() || 0, currentDate?.getTime() || 0, runDate?.getTime() || 0) > 10000) {
+					if (id('iv_close').findOnce()) {
+						id('iv_close').findOnce().click();
+						return true;
+					}
 				}
 			} else {
 				thisScript.myToast('未安装大神,不领取大神奖励');

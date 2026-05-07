@@ -79,22 +79,35 @@ export class Func500 implements IFuncOrigin {
 				type: 'scheme',
 				default: '首领退治',
 			}]
+	}, {
+		desc: '活动未开(切换方案)',
+		config: [
+			{
+				name: 'a_ctivity_off',
+				desc: '活动未开(切换方案)',
+				type: 'switch',
+				default: false,
+				value: false,
+			}, {
+				name: 'a_ctivity_off_select',
+				desc: '返回庭院',
+				type: 'scheme',
+				default: '返回庭院',
+			}
+		]
 	}];
 	operator: IFuncOperatorOrigin[] = [
 		{ // 0 检查_首领退治是否已开启
-			desc: [
-				1280, 720,
+			desc: [1280, 720,
 				[
 					[left, 42, 31, 0xf4e4a4],
-					[center, 744, 39, 0x593716],
-					[center, 736, 237, 0x403d38],
-					[center, 766, 235, 0xaf3a31],
-					[center, 760, 245, 0xe3e0da],
-					[center, 842, 198, 0xffdd66],
-					[center, 837, 216, 0x3c291d],
-					[center, 857, 232, 0x352117],
-					[center, 851, 197, 0x453022],
-					[center, 854, 193, 0x4c3422],
+					[right, 760, 255, 0xe2dfda],
+					[right, 820, 276, 0xdebce4],
+					[right, 702, 265, 0xe0bfe5],
+					[right, 755, 285, 0x4c4943],
+					[right, 857, 237, 0x2b1d15],
+					[right, 836, 240, 0x30221b],
+					[right, 767, 246, 0xb03a32],
 				]
 			],
 			oper: [
@@ -102,14 +115,13 @@ export class Func500 implements IFuncOrigin {
 			]
 
 		}, { // 1 检查_宴会是否已开启
-			desc: [
-				1280, 720,
+			desc: [1280, 720,
 				[
 					[right, 1099, 212, 0x4a3627],
-					[right, 1036, 265, 0x7e1818],
-					[right, 1043, 291, 0xf6b2b2],
-					[right, 988, 286, 0x93211f],
-					[center, 946, 228, 0x3f2c19],
+					[right, 935, 231, 0x96ac94],
+					[right, 996, 280, 0xb23736],
+					[right, 1035, 293, 0xfda7a7],
+					[right, 1071, 248, 0x8e2020],
 				]
 			],
 			oper: [
@@ -134,12 +146,12 @@ export class Func500 implements IFuncOrigin {
 		}, { // 3 检查_狩猎战是否开启
 			desc: [1280, 720,
 				[
-					[left, 244, 469, 0xc47f7e],
-					[left, 273, 485, 0xc95757],
-					[left, 260, 519, 0x735162],
-					[center, 362, 420, 0xfc0c0c],
-					[center, 355, 419, 0xfe1515],
-					[center, 346, 483, 0xc2ac91]
+					[left, 244, 469, 0xbda88d],
+					[center, 346, 483, 0xbeab91],
+					[center, 360, 435, 0xe80000],
+					[left, 260, 491, 0xffbda6],
+					[left, 232, 511, 0xca808b],
+					[left, 267, 581, 0xb3a085],
 				]
 			],
 			oper: [
@@ -191,14 +203,12 @@ export class Func500 implements IFuncOrigin {
 				[
 					1280, 720,
 					[
-						[left, 182, 37, 0xd5c4a3],
-						[left, 108, 26, 0xd7c5a2],
-						[left, 47, 28, 0xd7c5a2],
-						[left, 232, 139, 0x583716],
-						[left, 76, 550, 0x322219],
-						[right, 1039, 648, 0xd3c3bd],
-						[center, 872, 606, 0x493a38],
-						[center, 727, 611, 0xdfc7ac],
+						[left, 47, 33, 0xd6c4a1],
+						[left, 173, 24, 0xd6c4a1],
+						[center, 542, 30, 0x9a8458],
+						[right, 1007, 612, 0xeeeceb],
+						[right, 760, 586, 0x170b2a],
+						[right, 884, 613, 0xcb424f],
 					]
 				]
 		}, { // 8 检测_阴门
@@ -210,21 +220,21 @@ export class Func500 implements IFuncOrigin {
 						[right, 1126, 625, 0x180a28],
 						[right, 1161, 618, 0x84a5bd],
 						[right, 1262, 650, 0x698bad],
-						[left, 72, 62, 0xb9c2da],
 						[center, 713, 25, 0xe3d698],
+						[left, 47, 35, 0xf5e2a3],
 					]
 				]
-		}, { //	9 检测_狭间暗域
+		}, { //	9 检测_狭间暗域是否已开启
 			desc:
-				[
-					1280, 720,
+				[1280, 720,
 					[
-						[center, 848, 535, 0x422d1e],
-						[center, 826, 496, 0xcbb497],
-						[center, 687, 505, 0xcab596],
-						[center, 778, 560, 0x442f47],
-						[center, 684, 615, 0xb9a489],
-						[center, 866, 573, 0x734e25],
+						[right, 847, 537, 0x32231c],
+						[right, 870, 525, 0x271b15],
+						[right, 760, 555, 0x473049],
+						[right, 741, 553, 0x31282c],
+						[right, 684, 501, 0xc7b396],
+						[right, 859, 613, 0xb4a085],
+						[right, 715, 556, 0xbd727b],
 					]
 				],
 			oper: [
@@ -253,44 +263,105 @@ export class Func500 implements IFuncOrigin {
 			desc: [1280, 720,
 				[
 					[left, 42, 31, 0xf4e4a4],
-					[center, 736, 237, 0x403d38],
-					[center, 766, 235, 0xaf3a31],
-					[center, 760, 245, 0xe3e0da],
-					[center, 612, 211, 0x261b15],
-					[center, 595, 193, 0xfff970],
+					[right, 1098, 646, 0x2d170b],
+					[center, 605, 332, 0xb29e83],
+					[center, 532, 268, 0xd6d0bc],
+					[center, 508, 292, 0xa87d41],
+					[center, 610, 227, 0x251b14],
 				]
 			],
-			/** desc: [
-				1280, 720,
-				[
-					[left, 42, 31, 0xf4e4a4],
-					[center, 744, 39, 0x593716],
-					[center, 736, 237, 0x403d38],
-					[center, 766, 235, 0xaf3a31],
-					[center, 760, 245, 0xe3e0da],
-					[center, 591, 187, 0x593e25],
-					[center, 612, 211, 0x261b15],
-					[center, 595, 193, 0xfff970],
-					[center, 601, 250, 0x462e1c],
-				]
-			]*/
 			oper: [
-				[center, 1280, 720, 407, 169, 608, 322, 1200]	// 打开道馆
+				[center, 1280, 720, 411, 192, 609, 339, 1200]	// 打开道馆
 			]
 		}, { // 13 检测_是否为道馆集结界面
 			desc:
-				[
-					1280, 720,
+				[1280, 720,
 					[
-						[center, 879, 611, 0xc7414e],
-						[center, 913, 644, 0x493a38],
-						[center, 609, 651, 0x583a28],
-						[left, 62, 532, 0x882349],
-						[left, 48, 26, 0xd7c5a2],
-						[left, 109, 23, 0xd7c5a2],
-						[left, 175, 22, 0xd4c4a3],
+						[left, 44, 25, 0xd6c4a1],
+						[center, 552, 629, 0xebe8e5],
+						[right, 706, 649, 0x573a28],
+						[right, 929, 621, 0xcf4a55],
+						[right, 1014, 607, 0x473a39],
+						[left, 163, 109, 0xd2c7b9],
 					]
 				],
+		}, { // 14 已适配66 检测_是否为道馆地图页面
+			desc: [
+				1280, 720,
+				[
+					[left, 91, 614, 0xc1b8aa],
+					[left, 205, 651, 0x573b28],
+					[left, 45, 35, 0xf7e9aa],
+				]
+			],
+			oper: [
+				[left, 1280, 720, 17, 140, 1244, 583, -1],  // 道馆出现方位
+			]
+		}, { // 15 道馆今日挑战成功无次数
+			desc: [
+				1280, 720,
+				[
+					[center, 518, 653, 0xddd9c8],
+					[center, 533, 650, 0xdedac9],
+					[center, 558, 649, 0xe8e4d2],
+					[center, 577, 653, 0xc1beaf],
+					[center, 599, 650, 0xbdbbad],
+					[center, 622, 648, 0xe2decd],
+					[center, 644, 649, 0x9d9c91],
+					[center, 666, 649, 0xbab8aa],
+					[center, 690, 648, 0xb8b6a7],
+				]
+			]
+		}, { //	16 检测_是否为道馆突破选择道馆页面===次数还有一次
+			desc: [
+				1280, 720,
+				[
+					[left, 141, 77, 0xc8a98c],
+					[left, 40, 37, 0xfcf1b9],
+					[left, 321, 45, 0xc6c39c],
+					[left, 203, 650, 0x5b3e2b],
+					[left, 89, 618, 0xc1b9a9],
+					[right, 1113, 650, 0xdfdbcf],
+					[right, 1103, 62, 0xddd3c0],
+					[right, 1251, 125, 0xc4b4a0],
+					[right, 669, 643, 0xf98f01],
+					[right, 669, 648, 0xeb8803],
+					[right, 669, 651, 0xef8a02],
+					[right, 687, 648, 0xf08a01],
+				]
+			],
+			oper: [
+				[left, 1280, 720, 27, 28, 56, 65, 1200]	//	跑路
+			]
+		}, { // 17 检查_阴门是否开启
+			desc: [1280, 720,
+				[
+					[left, 171, 549, 0xb5a186],
+					[left, 242, 414, 0xc9b18f],
+					[center, 346, 555, 0xb29e83],
+					[left, 241, 510, 0xe0c4e5],
+					[left, 254, 477, 0xb8583c],
+					[left, 282, 516, 0xe0c5e6],
+					[left, 262, 544, 0xe788c6],
+					[left, 232, 475, 0x841212],
+				]
+			],
+			oper: [
+				[left, 1280, 720, 155, 417, 365, 574, 1000]     //  寮活动 阴门
+			]
+		}, { // 18退治已打完，
+			desc: [1280, 720,
+				[
+					[left, 42, 31, 0xf4e4a4],
+					[right, 760, 255, 0xe2dfda],
+					[right, 820, 276, 0xdebce4],
+					[right, 702, 265, 0xe0bfe5],
+					[right, 755, 285, 0x4c4943],
+					[right, 767, 246, 0xb03a32],
+					[right, 850, 187, 0xf01b1b],
+					[right, 857, 187, 0xf21c1c],
+				]
+			],
 		}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['500'];
@@ -328,8 +399,8 @@ export class Func500 implements IFuncOrigin {
 				const nowDateDay = new Date().getDay();
 				if (nowDateDay === 0 || nowDateDay === 5 || nowDateDay === 6) {// 判断星期几
 					thisconf.a_ctivity_hunt = false;
-					if (thisScript.global.liao_activity_Switch && Object.prototype.hasOwnProperty.call(thisScript.global.liao_activity_Switch, 'a_ctivity_hunt')) {
-						thisScript.global.liao_activity_Switch['a_ctivity_hunt'] = false;
+					if (thisScript.global.liao_activity_Swith && Object.prototype.hasOwnProperty.call(thisScript.global.liao_activity_Swith, 'a_ctivity_hunt')) {
+						thisScript.global.liao_activity_Swith['a_ctivity_hunt'] = false;
 					}
 					if (thisScript.oper({
 						name: '检测_是否为阴门页面、',
@@ -345,8 +416,8 @@ export class Func500 implements IFuncOrigin {
 					thisconf.a_ctivity_gateOfHades = false;
 					const targetKeys = ['a_ctivity_narrow', 'a_ctivity_gateOfHades'];
 					targetKeys.forEach(key => {
-						if (thisScript.global.liao_activity_Switch && Object.prototype.hasOwnProperty.call(thisScript.global.liao_activity_Switch, key)) {
-							thisScript.global.liao_activity_Switch[key] = false;
+						if (thisScript.global.liao_activity_Swith && Object.prototype.hasOwnProperty.call(thisScript.global.liao_activity_Swith, key)) {
+							thisScript.global.liao_activity_Swith[key] = false;
 						}
 					});
 					if (thisconf.a_ctivity_hunt && thisScript.oper({
@@ -371,8 +442,8 @@ export class Func500 implements IFuncOrigin {
 				thisconf.a_ctivity_gateOfHades = false;
 				const targetKeys = ['a_ctivity_hunt', 'a_ctivity_gateOfHades'];
 				targetKeys.forEach(key => {
-					if (thisScript.global.liao_activity_Switch && Object.prototype.hasOwnProperty.call(thisScript.global.liao_activity_Switch, key)) {
-						thisScript.global.liao_activity_Switch[key] = false;
+					if (thisScript.global.liao_activity_Swith && Object.prototype.hasOwnProperty.call(thisScript.global.liao_activity_Swith, key)) {
+						thisScript.global.liao_activity_Swith[key] = false;
 					}
 				});
 			}
@@ -382,14 +453,14 @@ export class Func500 implements IFuncOrigin {
 			const nowDateDay = new Date().getDay();
 			let exitLHD = false
 			if (nowDateDay === 0 || nowDateDay === 5 || nowDateDay === 6) {// 判断星期几
-				if (currentHour >= 19 && currentHour < 23) {// 判断是否在19-23点
+				if (currentHour >= 17 && currentHour < 23) {// 判断是否在17-23点
 					thisconf.a_ctivity_hunt = false;
 					if (thisScript.global.liao_activity_Switch && Object.prototype.hasOwnProperty.call(thisScript.global.liao_activity_Switch, 'a_ctivity_hunt')) {
 						thisScript.global.liao_activity_Switch['a_ctivity_hunt'] = false;
 					}
 					if (thisScript.oper({
 						name: '检测_是否为阴门页面',
-						operator: [thisOperator[8]]
+						operator: [thisOperator[8], thisOperator[17]]
 					})) {
 						sleep(2000);
 						thisScript.global.liao_activity_page_flag = 0;
@@ -400,7 +471,7 @@ export class Func500 implements IFuncOrigin {
 					exitLHD = true
 				}
 			} else {
-				if (currentHour >= 19 && currentHour < 21) {// 判断是否在19-21点
+				if (currentHour >= 6 && currentHour < 23) {// 判断是否在6-23点
 					thisconf.a_ctivity_narrow = false;
 					thisconf.a_ctivity_gateOfHades = false;
 					const targetKeys = ['a_ctivity_narrow', 'a_ctivity_gateOfHades'];
@@ -493,7 +564,7 @@ export class Func500 implements IFuncOrigin {
 			if (currenthuntBossHour >= 10 && currenthuntBossHour < 23 && nowDayhuntBoss === 6) {// 判断是否在周六10-23点
 				if (thisScript.oper({
 					name: '检测_首领退治是否已开启',
-					operator: [thisOperator[0],]
+					operator: [thisOperator[0]]
 				})) {
 					return true;
 				}
@@ -507,6 +578,15 @@ export class Func500 implements IFuncOrigin {
 					thisScript.rerun(next_scheme, {});
 					return true;
 				}
+				if (thisScript.oper({
+					name: '检测_首领退治是否打完',
+					operator: [thisOperator[18]]
+				})) {
+					thisScript.myToast('首领退治已打完');
+					const next_scheme = '返回庭院';
+					thisScript.rerun(next_scheme, {})
+					return true;
+				}
 			} else {
 				console.log('不在退治时间段');
 				thisconf.a_ctivity_huntBoss = false;
@@ -517,20 +597,72 @@ export class Func500 implements IFuncOrigin {
 		}
 		// 道馆活动
 		if (thisconf.a_ctivity_dojo) {
+			if (thisconf.a_ctivity_off) {
+				if (thisScript.oper({
+					id: 500,
+					name: '检测_道馆次数剩余1次还没开活动', // 道馆还没开
+					operator: [thisOperator[16]] // 15，道馆挑战成功，无次数
+				})) {
+					const next_scheme = thisconf.a_ctivity_off_select;
+					thisScript.rerun(next_scheme);
+				}
+			}
 			if (thisScript.oper({
+				id: 500,
 				name: '检测_寮界面道馆是否已开启',
 				operator: [thisOperator[12]]
 			})) {
 				return true;
 			}
 			if (thisScript.oper({
+				id: 500,
 				name: '检测_点击道馆后是否选择寮界面', // 道馆还没开
-				operator: [thisOperator[6],]
+				operator: [thisOperator[6], thisOperator[15]] // 15，道馆挑战成功，无次数
 			})) {
 				const next_scheme = '返回庭院';
 				thisScript.rerun(next_scheme);
 			}
 			if (thisScript.oper({
+				id: 500,
+				name: '检测_道馆地图场景',
+				operator: [{
+					desc: thisOperator[14].desc
+				}]
+			})) {
+				const toDetectAreaBmp = thisScript.helperBridge.helper.GetBitmap(...thisOperator[14].oper[0].slice(0, 4))
+				console.time('ocr.detect.area');
+				const resultArea = thisScript.getOcrDetector().loadImage(toDetectAreaBmp);
+				console.timeEnd('ocr.detect.area');
+				toDetectAreaBmp.recycle();
+
+				if (Array.isArray(resultArea) && resultArea.length > 0 && resultArea[0].label) {
+					console.log('识别成功，识别结果为:', resultArea);
+					const resultAreaTarget = resultArea[0];
+
+					if (resultAreaTarget && resultAreaTarget.label) {
+						console.log('当前区域为' + resultAreaTarget.label, '坐标为' + resultAreaTarget.points[0].x, resultAreaTarget.points[0].y, resultAreaTarget.points[3].x, resultAreaTarget.points[3].y);
+
+						const p = {
+							x: ((resultAreaTarget.points[0].x + resultAreaTarget.points[1].x) / 2),
+							y: ((resultAreaTarget.points[0].y + resultAreaTarget.points[3].y + 150) / 2),
+						}
+
+						const lx = p.x - 25;
+						const ly = p.y - 8;
+						const rx = p.x + 25;
+						const ry = p.y + 8;
+
+						const toClick = [lx, ly, rx, ry, 1200];
+
+						console.log('识别成功, 点击坐标为', toClick);
+
+						thisScript.regionClick([toClick]);
+						return true;
+					}
+				}
+			}
+			if (thisScript.oper({
+				id: 500,
 				name: '检测_是否道馆集结页',
 				operator: [{
 					desc: thisOperator[13].desc
@@ -545,7 +677,7 @@ export class Func500 implements IFuncOrigin {
 				}
 				return true;
 			}
-			if (thisScript.oper({
+			/** if (thisScript.oper({
 				id: 500,
 				name: '检测_道馆', // 道馆地图界面,集结中
 				operator: [thisOperator[2]]// thisOperator[2]是用来全局找位置的条件
@@ -563,7 +695,7 @@ export class Func500 implements IFuncOrigin {
 				}
 				thisScript.global.redFlag = true;
 				return true;
-			}
+			} **/
 		}
 		//	做延时识别
 		if (thisScript.global.checked_yard_count > 5) {

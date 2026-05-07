@@ -64,7 +64,8 @@ export class Func027 implements IFuncOrigin {
 	}, { // 2 庭院已打开菜单
 		desc: '页面是否为庭院_菜单已展开_只支持默认庭院皮肤与默认装饰',
 		oper: [
-			[left, 1280, 720, 427, 619, 486, 683, 1000]
+			[left, 1280, 720, 427, 619, 486, 683, 1000],
+			[center, 1280, 720, 63, 353, 90, 380, 1000],
 		]
 	}, {
 		// 3 庭院已打开菜单，另外一种图标
@@ -154,7 +155,6 @@ export class Func027 implements IFuncOrigin {
 			[center, 1280, 720, 422, 442, 563, 489, 700], // 魂王
 			[center, 1280, 720, 427, 511, 563, 554, 700], // 魂十三
 			[center, 1280, 720, 239, 131, 268, 142, 1000], // 经验或金币妖怪
-			[center, 1280, 720, 164, 130, 346, 173, 1000], // 点击全部
 			[center, 1280, 720, 201, 240, 322, 281, 1000], // 石距
 		]
 	}, { // 13 第二栏的全部字样
@@ -224,7 +224,6 @@ export class Func027 implements IFuncOrigin {
 			})) {
 				thisScript.regionBezierSwipe(thisOperator[13].oper[0], thisOperator[13].oper[1], [2000, 2050], 500);
 			}
-			thisScript.regionClick([thisOperator[12].oper[10]]);
 			switch (thisConf.mission) {
 				case '御魂':
 					thisScript.regionClick([thisOperator[12].oper[0]]);
@@ -267,7 +266,7 @@ export class Func027 implements IFuncOrigin {
 					break;
 				case '石距':
 					thisScript.regionBezierSwipe(thisOperator[11].oper[1], thisOperator[11].oper[0], [200, 250], 1500);
-					thisScript.regionClick([thisOperator[12].oper[11]]);
+					thisScript.regionClick([thisOperator[12].oper[10]]);
 					break;
 				case '妖气封印':
 					thisScript.oper({

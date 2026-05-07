@@ -36,7 +36,7 @@ export class Func025 implements IFuncOrigin {
 				[right, 1174, 33, 0xd7b287],
 			]
 		]
-	}, { // 确认退出探索，该色组取点不太好，但考虑上面一步已执行过，暂时不修改，待后续慢设备反馈再考虑重新取点
+	}, { // 2确认退出探索，该色组取点不太好，但考虑上面一步已执行过，暂时不修改，待后续慢设备反馈再考虑重新取点
 		desc: [1280, 720,
 			[
 				[center, 340, 261, 0x472b18],
@@ -48,6 +48,36 @@ export class Func025 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 700, 386, 848, 420, 1000]
+		]
+	}, { // 3探索界面点击退出后确认窗口
+		desc: [1280, 720,
+			[
+				[left, 45, 35, 0x666046],
+				[left, 124, 29, 0x66624b],
+				[right, 1046, 28, 0x585043],
+				[right, 1105, 45, 0x544330],
+				[center, 555, 405, 0xf4b25d],
+				[right, 827, 405, 0xf4b25d],
+				[right, 812, 660, 0x534d41]
+			]
+		],
+		oper: [
+			[center, 1280, 720, 713, 392, 836, 419, 500]
+		]
+	}, { // 4 新版_点击章节后界面
+		desc: [1280, 720,
+			[
+				[left, 35, 30, 0xf7e5a7],
+				[left, 111, 21, 0xf8edb5],
+				[right, 848, 29, 0xd6c4a2],
+				[right, 1105, 47, 0xcca273],
+				[left, 304, 128, 0xa5361e],
+				[left, 291, 144, 0x9e331b],
+				[center, 323, 145, 0x9c3018],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 25, 19, 56, 46, 500]
 		]
 	}]
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -62,6 +92,12 @@ export class Func025 implements IFuncOrigin {
 				thisScript.regionClick(thisOperator[0].oper)
 				return true;
 			}
+		}
+		if (thisScript.oper({
+			name: '探索_章节里退出到探索地图', // 有时会卡住没点到
+			operator: [thisOperator[3], thisOperator[4]]
+		})) {
+			return true;
 		}
 	}
 }

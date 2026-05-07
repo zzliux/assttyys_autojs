@@ -68,8 +68,7 @@ export class Func053 implements IFuncOrigin {
 			[center, 1280, 720, 744, 347, 911, 411, 1000], // 觉醒-水麒麟
 			[center, 1280, 720, 1053, 290, 1206, 346, 1000], // 觉醒-雷麒麟
 		]
-	}, {
-		// 3 御灵-暗神龙
+	}, { // 3 御灵-暗神龙
 		desc: [
 			1280, 720,
 			[
@@ -84,54 +83,7 @@ export class Func053 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 126, 136, 300, 621, 500],
 		]
-	}, { // 4 御灵-暗白藏主
-		desc: [1280, 720,
-			[
-				[center, 498, 290, 0xe07361],
-				[center, 500, 362, 0xbd5b59],
-				[center, 547, 132, 0x913844],
-				[center, 600, 117, 0xc2a772],
-				[center, 594, 292, 0xf2dbaa],
-			]
-		],
-		oper: [
-			[center, 1280, 720, 453, 326, 599, 400, 1000],
-		]
-	}, {
-		// 5 御灵-暗黑豹
-		desc: [
-			1280, 720,
-			[
-				[left, 44, 36, 0xf7eaac],
-				[right, 1240, 40, 0xd3af84],
-				[right, 1174, 41, 0xd7b389],
-				[center, 802, 168, 0x23232b],
-				[center, 760, 190, 0x909193],
-				[center, 867, 419, 0xf9f9f9],
-				[center, 841, 401, 0x421f1d],
-			]
-		],
-		oper: [
-			[center, 1280, 720, 706, 148, 886, 610, 500],
-		]
-	}, {
-		// 6 御灵-暗孔雀
-		desc: [
-			1280, 720,
-			[
-				[left, 44, 36, 0xf7eaac],
-				[right, 1240, 40, 0xd3af84],
-				[right, 1174, 41, 0xd7b389],
-				[center, 1121, 254, 0x50a3b2],
-				[center, 1021, 333, 0x565466],
-				[center, 1080, 497, 0x8293a2],
-				[center, 1055, 450, 0x8384bc],
-			]
-		],
-		oper: [
-			[center, 1280, 720, 993, 149, 1169, 616, 500],
-		]
-	}, { // 7 御魂层数滑动
+	}, { // 4 御魂层数滑动
 		desc: [
 			1280, 720,
 			[
@@ -166,21 +118,21 @@ export class Func053 implements IFuncOrigin {
 			if (thisScript.global.sneak_level_open && thisScript.oper({
 				id: 52,
 				name: '八岐大蛇_滑动',
-				operator: [{ desc: thisOperator[7].desc }]
+				operator: [{ desc: thisOperator[4].desc }]
 			})) {
-				thisScript.regionBezierSwipe(thisOperator[7].oper[0], thisOperator[7].oper[1], [400, 500], 1500);
+				thisScript.regionBezierSwipe(thisOperator[4].oper[0], thisOperator[4].oper[1], [400, 500], 1500);
 				switch (thisconf.sneak_level) {
 					case '倒数第四':
-						thisScript.regionClick([thisOperator[7].oper[2]]);
+						thisScript.regionClick([thisOperator[4].oper[2]]);
 						break;
 					case '倒数第三':
-						thisScript.regionClick([thisOperator[7].oper[3]]);
+						thisScript.regionClick([thisOperator[4].oper[3]]);
 						break;
 					case '倒数第二':
-						thisScript.regionClick([thisOperator[7].oper[4]]);
+						thisScript.regionClick([thisOperator[4].oper[4]]);
 						break;
 					case '倒数第一':
-						thisScript.regionClick([thisOperator[7].oper[5]]);
+						thisScript.regionClick([thisOperator[4].oper[5]]);
 						break;
 					case '默认':
 						break;
@@ -218,7 +170,7 @@ export class Func053 implements IFuncOrigin {
 			operator = [{
 				desc: thisOperator[0].desc,
 				oper: [thisOperator[0].oper[1]]
-			}, thisOperator[3], thisOperator[4], thisOperator[5], thisOperator[6]]
+			}, thisOperator[3]]
 		} else if ('觉醒-火麒麟' === thisconf.challenge_type) {
 			operator = [{
 				desc: thisOperator[0].desc,

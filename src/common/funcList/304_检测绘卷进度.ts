@@ -9,7 +9,7 @@ const right = 2;
 export class Func304 implements IFuncOrigin {
 	id = 304;
 	name = '检测绘卷进度';
-	desc = ''
+	desc = '先自行投分至期望排名,只想检测进度也需投入一次分数触发界面'
 	config = [{
 		desc: '检测绘卷进度设置',
 		config: [{
@@ -143,7 +143,33 @@ export class Func304 implements IFuncOrigin {
 			[center, 1280, 720, 608, 558, 724, 595, 1000],
 			[center, 1280, 720, 933, 559, 1040, 594, 1000],
 		]
-	}]
+	}, { // 8 活动
+		desc: [1280, 720,
+			[
+				[right, 1184, 157, 0x442616],
+				[right, 1219, 163, 0xf7eb9d],
+				[right, 1217, 152, 0xece1a3],
+				[right, 1217, 145, 0xfcf4ba],
+				[right, 1195, 167, 0xe9de8e],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1188, 147, 1220, 181, 1000],
+		]
+	}, { // 9 追忆绘卷
+		desc: [1280, 720,
+			[
+				[left, 22, 291, 0xdecfb7],
+				[left, 28, 302, 0x213e5b],
+				[left, 37, 310, 0x6a7581],
+				[left, 42, 308, 0xfbf9f2],
+				[left, 173, 33, 0xf8f3e0],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 24, 288, 150, 313, 1000],
+		]
+	},]
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['304'];
 		const emaki = Number(thisconf.choiceEmaki) - 1;
@@ -230,6 +256,12 @@ export class Func304 implements IFuncOrigin {
 				thisScript.regionClick([thisOperator[1].oper[0]]);
 			}
 			sleep(61000)
+			return true;
+		}
+		if (thisScript.oper({
+			name: '进入绘卷',
+			operator: [thisOperator[8], thisOperator[9]]
+		})) {
 			return true;
 		}
 		return false;
