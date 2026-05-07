@@ -68,14 +68,16 @@ export class Func509 implements IFuncOrigin {
 			[
 				1280, 720,
 				[
-					[right, 1060, 650, 0xfff3f3],
-					[center, 885, 661, 0xfff4f5],
-					[left, 259, 35, 0x2a2937],
-					[left, 175, 589, 0x684b2c],
+					[left, 112, 594, 0x664b30],
+					[left, 139, 590, 0x5b452c],
+					[left, 175, 603, 0x966f47],
+					[right, 1178, 593, 0xe5dac3],
+					[right, 1178, 657, 0xe0d5be],
+					[right, 1187, 626, 0x482d20],
 				]
 			],
 		oper: [
-			[center, 1280, 720, 1031, 633, 1080, 685, 1000],	//	点击_式神
+			[center, 1280, 720, 1035, 644, 1071, 675, 1000],	//	点击_式神
 		]
 	}, { // 6 检测_阴门
 		desc:
