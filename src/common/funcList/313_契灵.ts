@@ -46,17 +46,7 @@ export class Func313 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 940, 648, 996, 683, 3000],
 		]
-	}, { // 1 术印
-		desc: [1280, 720,
-			[
-				[right, 1162, 60, 0xe9d3d3],
-				[right, 1180, 60, 0xe8d3ce],
-				[right, 1166, 74, 0xe8d3cf],
-				[right, 1179, 77, 0xead4cf],
-				[center, 517, 125, 0xf3e09c],
-				[right, 777, 128, 0xefdc92],
-			]
-		],
+	}, { // 1 探索地图界面_含时空秘境进入契灵之境 废弃
 		oper: [
 			[center, 1280, 720, 1153, 62, 1193, 82, 1000],
 		]
@@ -409,8 +399,8 @@ export class Func313 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 313,
 			name: '契灵杂项',
-			operator: [thisOperator[0], thisOperator[1], thisOperator[4], thisOperator[6]
-				, thisOperator[7], thisOperator[10], thisOperator[12], thisOperator[15]]
+			operator: [thisOperator[0], thisOperator[4], thisOperator[6]
+				, thisOperator[7], thisOperator[10], thisOperator[12]]
 		})) {
 			return true;
 		}
