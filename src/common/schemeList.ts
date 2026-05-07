@@ -113,7 +113,7 @@ const SchemeList: IScheme[] = [
 		schemeName: '个人探索',
 		groupNames: ['战斗'],
 		star: true,
-		list: [0, 1, 2, 3, 13, 14, 29],
+		list: [0, 1, 2, 3, 14, 29],
 	},
 	{
 		id: 12,

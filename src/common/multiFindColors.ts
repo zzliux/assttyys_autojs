@@ -772,6 +772,21 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		]
 	},
 	'探索_宝箱': {
+		region: [left, 1280, 720, 17, 603, 861, 685],
+		desc: [
+			[1280, 720,
+				[
+					[left, 39, 636, 0xb02d19],
+					[left, 58, 640, 0xb63a1a],
+					[left, 57, 650, 0x9b2115],
+					[left, 35, 646, 0xa12014],
+					[left, 60, 659, 0xdc9d22],
+					[left, 37, 654, 0xd48f1b],
+				]
+			]
+		]
+	},
+	'组队探索_宝箱': {
 		region: [left, 1280, 720, 0, 121, 148, 577],
 		desc: [
 			[1280, 720,

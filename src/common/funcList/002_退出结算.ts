@@ -410,6 +410,21 @@ export class Func002 implements IFuncOrigin {
 			[center, 1280, 720, 779, 95, 808, 124, 1000],
 		],
 		notForCnt: true,
+	}, { // 35 结算保底页面  //字体存白容易误触,加了聊天框弹出的点防止误触
+		desc: [1280, 720,
+			[
+				[center, 597, 693, 0xfefefe],
+				[right, 657, 693, 0xefeff0],
+				[right, 686, 692, 0xf7f8f8],
+				[right, 713, 697, 0xf5f5f6],
+				[center, 569, 691, 0xeeeef0],
+				[right, 1055, 2, 0x4c3a2b],
+				[right, 1055, 40, 0x4c3a2b],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 77, 668, 256, 706, 1000],
+		]
 	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['2'];
@@ -455,7 +470,8 @@ export class Func002 implements IFuncOrigin {
 				thisOperator[16], thisOperator[17], thisOperator[22], thisOperator[18], // 22要放18前面
 				thisOperator[21], thisOperator[23], thisOperator[24], thisOperator[25],
 				thisOperator[26], thisOperator[27], thisOperator[28], thisOperator[29],
-				thisOperator[30], thisOperator[31], thisOperator[33], thisOperator[34],]
+				thisOperator[30], thisOperator[31], thisOperator[33], thisOperator[34],
+				thisOperator[35],]
 		});
 	}
 }

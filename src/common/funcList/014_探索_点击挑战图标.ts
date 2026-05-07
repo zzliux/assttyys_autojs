@@ -17,15 +17,13 @@ export class Func014 implements IFuncOrigin {
 			desc: '挑战类型',
 			type: 'list',
 			data: ['无差别', '打经验', '打掉落'],
-			default: '打经验',
-			value: null,
+			default: '无差别',
 		}, {
 			name: 'swipeTime',
 			desc: '划屏次数',
 			type: 'list',
-			data: ['2', '3', '4', '5', '6', '7', '8', '9', '10'],
+			data: ['2', '3', '4', '5'],
 			default: '4',
-			value: null,
 		}, {
 			name: 'swipeSpeed',
 			desc: '划屏速度（滑不动可适当调整划屏速度）',
@@ -34,7 +32,7 @@ export class Func014 implements IFuncOrigin {
 			default: '慢',
 		}]
 	}];
-	operator: IFuncOperatorOrigin[] = [{
+	operator: IFuncOperatorOrigin[] = [{ // 0 探索找怪界面
 		desc: [1280, 720,
 			[
 				[left, 36, 570, 0x983254],
@@ -49,24 +47,18 @@ export class Func014 implements IFuncOrigin {
 			[left, 1280, 720, 0, 0, 42, 51, 1000],
 			[right, 1280, 720, 1121, 117, 1224, 209, 1000],
 			[left, 1280, 720, 46, 215, 162, 525, 1000],
-			[left, 1280, 720, 30, 47, 71, 85, 1000],
+			[center, 1280, 720, 32, 20, 69, 51, 1000],
 			[center, 1280, 720, 702, 388, 846, 421, 1000],
 			[left, 1280, 720, 0, 0, 16, 16, 1000],
 			[right, 1280, 720, 0, 0, 1275, 715, 1000],
 		]
-	}, {
-		// 自动轮换
-		desc: [1280, 720,
-			[[left, 132, 666, 0x646464],
-				[left, 66, 658, 0xedede5],
-				[left, 42, 67, 0xe8f2fb],
-				[right, 1120, 36, 0xd7b389],
-				[right, 1233, 34, 0xd3af83]]
-		],
+	}, { // 1 探索地图界面
+		desc: '探索地图界面',
 		oper: [
-			[left, 1280, 720, 122, 660, 245, 682, 500]
-		]
-	}, { // 首领出现
+			[center, 1280, 720, 1079, 468, 1255, 539, 1000],
+		],
+		retest: 1000
+	}, { // 2 首领出现
 		desc: [1280, 720,
 			[
 				[center, 512, 344, 0xffffde],
@@ -79,16 +71,47 @@ export class Func014 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 613, 248, 668, 297, 1000]
 		]
-	}];
+	}, { // 3 困难界面进探索
+		desc: [1280, 720,
+			[
+				[right, 898, 583, 0x523428],
+				[right, 942, 589, 0xe4dac3],
+				[right, 978, 625, 0xe1d6c0],
+				[right, 1133, 659, 0xe2d7c1],
+				[right, 1132, 596, 0xe7dbc4],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1090, 588, 1178, 663, 1000],
+		]
+	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
+		const thisconf = thisScript.scheme.config['14'];
+		if (thisScript.oper({
+			name: '探索界面_杂项',
+			operator: [thisOperator[1]],
+		})) {
+			return true;
+		}
+		if (thisScript.oper({
+			name: '困难界面进探索',
+			operator: [{ desc: thisOperator[3].desc }]
+		})) {
+			const point = thisScript.findMultiColor('探索_宝箱');
+			if (point) {
+				const oper = [[point.x, point.y, point.x + 10, point.y + 10, 500]];
+				thisScript.regionClick(oper);
+			} else {
+				thisScript.regionClick([thisOperator[3].oper[0]]);
+			}
+			return true;
+		}
 		while (thisScript.oper({
 			name: '探索界面_判断',
 			operator: [{ desc: thisOperator[0].desc, retest: 500 }],
 		})) {
-			const thisconf = thisScript.scheme.config['14'];
 			if (thisScript.global.tsAttackSwhipeNum === undefined) {
 				thisScript.global.tsAttackSwhipeNum = parseInt(String(thisconf.swipeTime), 10);
-				// sleep(3000); // 从地图进来，先休息一下再进行判断
 			}
 			if (thisScript.oper({
 				name: '首领出现',
@@ -160,7 +183,7 @@ export class Func014 implements IFuncOrigin {
 				if (--thisScript.global.tsAttackSwhipeNum <= 0) {
 					if (thisScript.oper({
 						name: '探索界面_判断',
-						operator: [{ desc: thisOperator[0].desc, retest: 2500 }],
+						operator: [{ desc: thisOperator[0].desc }],
 					})) {
 						thisScript.regionClick([thisOperator[0].oper[3], thisOperator[0].oper[4]]);
 						thisScript.global.tsAttackSwhipeNum = undefined;
@@ -177,7 +200,6 @@ export class Func014 implements IFuncOrigin {
 						'中': [500, 700],
 						'慢': [800, 1200],
 					}[String(thisconf.swipeSpeed) || '慢'], 200);
-					sleep(500);
 					thisScript.keepScreen(true);
 				} else {
 					return false;
