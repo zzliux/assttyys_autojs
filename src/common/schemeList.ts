@@ -60,7 +60,7 @@ const SchemeList: IScheme[] = [
 		schemeName: '个人突破_打9退4',
 		groupNames: ['战斗'],
 		star: true,
-		list: [690, 51, 0, 1, 2, 3, 7, 8, 9, 29, 503],
+		list: [690, 509, 510, 51, 0, 1, 2, 3, 7, 8, 9, 29, 503],
 		config: {
 			'7': {
 				switch_nineWin: true,
@@ -140,14 +140,14 @@ const SchemeList: IScheme[] = [
 		schemeName: '悬赏',
 		groupNames: ['日常'],
 		star: true,
-		list: [690, 0, 1, 2, 3, 18, 29, 503],
+		list: [690, 509, 510, 1, 2, 3, 18, 29, 503],
 	},
 	{
 		id: 9,
 		schemeName: '地鬼日常',
 		groupNames: ['日常'],
 		star: true,
-		list: [690, 0, 1, 2, 3, 16, 29, 503],
+		list: [690, 509, 510, 0, 1, 2, 3, 16, 29, 503],
 		config: {
 			'16': {
 				next_scheme: '逢魔日常'
@@ -543,7 +543,7 @@ const SchemeList: IScheme[] = [
 		id: 111,
 		schemeName: '循环_御魂队员',
 		star: true,
-		list: [690, 50, 0, 1, 2, 3, 4, 503],
+		list: [690, 509, 510, 50, 0, 1, 2, 3, 4, 503],
 		groupNames: ['循环任务'],
 		config: {
 			'0': {

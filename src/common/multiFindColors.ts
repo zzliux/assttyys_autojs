@@ -861,7 +861,8 @@ const multiFindColors: IMultiFindColorsOrigin = {
 					[center, 598, 266, 0x913420]
 				]
 			]
-		]
+		],
+		similar: 95
 	},
 	'悬赏_秘闻字样': {
 		region: [left, 1280, 720, 512, 160, 1256, 500],
@@ -903,17 +904,6 @@ const multiFindColors: IMultiFindColorsOrigin = {
 					[center, 602, 336, 0x3571ab]
 				]
 			],
-			// 旧
-			[1280, 720,
-				[
-					[center, 541, 319, 0x3070aa],
-					[center, 601, 319, 0x3070aa],
-					[center, 541, 333, 0x3070aa],
-					[center, 597, 333, 0x3070aa],
-					[center, 555, 317, 0xcae1da],
-					[center, 591, 334, 0xdeefde]
-				]
-			],
 			[1280, 720,
 				[
 					[center, 541, 247, 0x3072ab],
@@ -942,86 +932,65 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		]
 	},
 	'悬赏_宝箱': {
-		region: [left, 1280, 720, 0, 92, 155, 557],
+		region: [left, 1280, 720, 0, 112, 105, 500],
 		desc: [
 			[
 				1280, 720,
 				[
-					[left, 53, 347, 0xb02a18],
-					[left, 84, 349, 0x4e0306],
-					[left, 83, 358, 0x4c0605],
-					[left, 73, 349, 0xb7381a],
-					[left, 72, 365, 0xc78521],
+					[left, 42, 146, 0xaf2b17],
+					[left, 60, 147, 0xb93b19],
+					[left, 46, 138, 0xc44919],
+					[left, 43, 154, 0x941816],
+					[left, 61, 156, 0xa12116],
 				]
 			]
 		]
 	},
 	'悬赏_已追踪任务': {
-		region: [left, 1280, 720, 0, 112, 153, 555],
+		region: [left, 1280, 720, 0, 112, 105, 500],
 		desc: [
 			[
 				1280, 720,
 				[
-					[left, 24, 160, 0xe9dabf],
-					[left, 129, 273, 0x28303d],
-					[left, 113, 215, 0x3c2826],
-					[left, 124, 203, 0xddcba9],
-					[left, 122, 237, 0xe2d2b2],
-					[left, 121, 249, 0xe4d4b4],
-					[left, 120, 262, 0xe4d4b5],
-					[left, 107, 231, 0x2a1c1b],
-					[left, 128, 276, 0x28303c],
-					[left, 128, 269, 0x262d3b],
-					[left, 120, 276, 0x272f3b],
+					[left, 26, 272, 0x896a4a],
+					[left, 86, 277, 0x5a4231],
+					[left, 38, 253, 0x997957],
+					[left, 74, 253, 0x887051],
+					[left, 56, 247, 0xa78b65],
+					[left, 28, 334, 0xbbb39d],
 				]
 			]
 		]
 	},
-	'悬赏_挑战弹窗界面': {
-		region: [left, 1280, 720, 718, 420, 1122, 629],
+	'悬赏_协作任务': {
+		region: [left, 1280, 720, 0, 112, 105, 500],
 		desc: [
-			[1280, 720,
+			[
+				1280, 720,
 				[
-					[right, 989, 517, 0xf4b25f],
-					[right, 991, 542, 0xf4b25f],
-					[right, 909, 518, 0xf4b25f],
-					[right, 910, 540, 0xf4b25f],
-					[right, 1009, 506, 0x993333],
-					[right, 1013, 548, 0x933e2d],
-					[right, 1003, 555, 0x903b2a],
-					[right, 1011, 527, 0xf6b462],
-					[right, 981, 541, 0x332c24]
+					[left, 25, 150, 0x8c704b],
+					[left, 39, 128, 0x5a4834],
+					[left, 89, 138, 0xf25a3f],
+					[left, 86, 150, 0x5a4231],
+					[left, 89, 122, 0xfab73c],
 				]
 			]
 		]
 	},
-	'悬赏_识别秘闻界面': {
-		region: [left, 1280, 720, 929, 23, 1230, 689],
+	'悬赏_协作完成': {
+		region: [center, 1280, 720, 144, 398, 1155, 599],
 		desc: [
-			[1280, 720,
+			[
+				1280, 720,
 				[
-					[right, 1178, 102, 0x67333c],
-					[right, 1176, 212, 0x754420],
-					[right, 1169, 270, 0xe0be58],
-					[right, 1180, 427, 0xe7d6b2],
-					[right, 1105, 611, 0xe1d8c0],
-					[right, 1192, 328, 0xfef2c2]
+					[center, 370, 522, 0xa6917d],
+					[left, 148, 374, 0xbc2925],
+					[left, 167, 394, 0xb4302b],
+					[left, 176, 440, 0xec3b46],
+					[center, 387, 438, 0xffbe30],
+					[center, 387, 443, 0xffc130],
 				]
-			],
-			// 旧
-			[1280, 720,
-				[
-					[right, 1178, 102, 0x67333c],
-					[right, 1176, 212, 0x754420],
-					[right, 1169, 270, 0xe0be58],
-					[right, 1180, 427, 0xe7d6b2],
-					// [right, 1103, 556, 0xb1937b],
-					[right, 1105, 611, 0xe1d8c0],
-					// [right, 1088, 620, 0xf48a37],
-					[right, 1153, 79, 0x533b23],
-					[right, 1192, 328, 0xfef2c2]
-				]
-			],
+			]
 		]
 	},
 	'悬赏_金币协作': {
