@@ -13,7 +13,7 @@ export class Func605 implements IFuncOrigin {
 		desc: '',
 		config: [{
 			name: 'admin',
-			desc: '寮管理主动开启并筹备',
+			desc: '寮管理主动开启并筹备(只支持三种极品料理)',
 			type: 'switch',
 			default: false,
 		}]
@@ -168,88 +168,85 @@ export class Func605 implements IFuncOrigin {
 	}, { // 11 探索地图界面
 		desc: '探索地图界面',
 		oper: [
-			[center, 1280, 720, 1145, 212, 1163, 227, 1000],
-			[center, 1280, 720, 1144, 500, 1160, 510, 1000],
-			[center, 1280, 720, 890, 518, 1000, 558, 1000],
+			[center, 1280, 720, 1149, 252, 1168, 266, 1000],
+			[center, 1280, 720, 1149, 543, 1175, 556, 1000],
 		]
-	}, { // 12 挑战
-		desc: [
-			1280, 720,
+	}, { // 12 式神碎片
+		desc: [1280, 720,
 			[
-				[center, 347, 127, 0x493625],
-				[center, 892, 140, 0x473524],
-				[right, 1080, 288, 0x925520],
-				[right, 1080, 422, 0x5f3d28],
+				[right, 872, 286, 0x5e2920],
+				[right, 871, 303, 0x602b22],
+				[right, 872, 425, 0x69332a],
+				[right, 872, 440, 0x6b362c],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1078, 379, 1113, 457, 1000],
+			[center, 1280, 720, 42, 443, 182, 464, 1000],
 		]
 	}, { // 13 狸猫挑战
-		desc: [
-			1280, 720,
+		desc: [1280, 720,
 			[
-				[left, 274, 511, 0x774f31],
-				[left, 293, 514, 0xfae9ad],
-				[left, 284, 533, 0x824018],
-				[left, 282, 520, 0xc48a4e],
-				[left, 302, 522, 0xf5f5dd],
+				[right, 890, 222, 0x7f5537],
+				[right, 912, 224, 0xe7ad6d],
+				[right, 899, 234, 0xe9b67b],
+				[right, 901, 239, 0xe4a25c],
+				[right, 916, 260, 0x33231d],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 892, 521, 998, 554, 1000],
+			[center, 1280, 720, 963, 220, 1183, 258, 1000],
+			[center, 1280, 720, 1083, 582, 1172, 664, 1000],
 		]
 	}, { // 14 饿鬼挑战
-		desc: [
-			1280, 720,
+		desc: [1280, 720,
 			[
-				[left, 280, 504, 0xf8dc67],
-				[left, 276, 510, 0xf8df7d],
-				[left, 289, 515, 0x655b5c],
-				[left, 300, 528, 0xf9f9f3],
-				[left, 300, 551, 0x5078a9],
-				[left, 313, 537, 0xd5cbce],
+				[right, 888, 222, 0xf5d767],
+				[right, 919, 222, 0x716768],
+				[right, 909, 239, 0xfcfcfc],
+				[right, 910, 257, 0x4f79aa],
+				[right, 901, 256, 0x3cd4d4],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 890, 518, 1000, 558, 1000],
+			[center, 1280, 720, 963, 215, 1156, 261, 1000],
+			[center, 1280, 720, 1092, 594, 1172, 668, 1000],
 		]
 	}, { // 15 河童挑战
-		desc: [
-			1280, 720,
+		desc: [1280, 720,
 			[
-				[left, 272, 508, 0x446a7d],
-				[left, 302, 510, 0x5cb297],
-				[left, 292, 524, 0xae9745],
-				[left, 285, 544, 0x2c203e],
-				[left, 300, 548, 0x5156a5],
+				[right, 892, 312, 0x5ba09f],
+				[right, 921, 315, 0x59aeaa],
+				[right, 899, 336, 0x463143],
+				[right, 921, 336, 0x463243],
+				[right, 912, 349, 0x5055aa],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 888, 517, 998, 561, 1000],
+			[center, 1280, 720, 954, 303, 1171, 353, 1000],
+			[center, 1280, 720, 1090, 585, 1168, 665, 1000],
 		]
 	}, { // 16 返回
-		desc: [
-			1280, 720,
+		desc: [1280, 720,
 			[
-				[left, 192, 94, 0x644628],
-				[right, 1054, 146, 0xe4b6b7],
-				[right, 1086, 420, 0x8d5321],
-				[right, 1095, 547, 0x3b2313],
+				[right, 1131, 584, 0xe0d5bf],
+				[right, 1094, 637, 0xdfd3be],
+				[right, 1163, 640, 0xe0d4bd],
+				[left, 25, 452, 0xa13e20],
+				[left, 41, 24, 0xf1dc99],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1030, 125, 1070, 157, 1000],
+			[center, 1280, 720, 28, 19, 56, 47, 1000],
 		]
 	}, { // 17 第一章
 		desc: [
 			1280, 720,
 			[
-				[right, 1141, 214, 0xf8f3e0],
-				[right, 1159, 213, 0xf8f3e0],
-				[right, 1173, 206, 0xf7f2df],
-				[right, 1115, 225, 0xe7e1cf],
-				[right, 1150, 340, 0xf8f3e0],
+				[right, 1092, 227, 0xede2c3],
+				[right, 1098, 226, 0xebe0c2],
+				[right, 1107, 226, 0xe0d6b9],
+				[right, 1120, 233, 0xeadfc0],
+				[right, 1079, 229, 0xeadfc1],
 			]
 		]
 	}, { // 18 庭院进入探索
@@ -389,27 +386,36 @@ export class Func605 implements IFuncOrigin {
 					thisScript.regionClick(oper);
 					return true;
 				} else {
-					thisScript.regionSwipe(thisOperator[11].oper[0], thisOperator[11].oper[1], [1000, 1050], 200);
+					thisScript.regionSwipe(thisOperator[11].oper[0], thisOperator[11].oper[1], [2000, 2050], 200);
 				}
 				return true;
 			}
-			if (thisScript.oper({
-				name: '打怪确认',
-				operator: [thisOperator[12], thisOperator[18]]
-			})) {
-				return true;
+			if (thisScript.runTimes['2'] === undefined || thisScript.runTimes['2'] < 1) {
+				if (thisScript.oper({
+					name: '狸猫',
+					operator: [thisOperator[13]]
+				})) {
+					return true;
+				}
+			} else if (thisScript.runTimes['2'] < 2) {
+				if (thisScript.oper({
+					name: '饿鬼',
+					operator: [thisOperator[14]]
+				})) {
+					return true;
+				}
+			} else if (thisScript.runTimes['2'] < 3) {
+				if (thisScript.oper({
+					name: '河童',
+					operator: [thisOperator[15]]
+				})) {
+					return true;
+				}
 			}
 			if (thisScript.oper({
-				name: '偏移返回',
-				operator: [thisOperator[16]]
+				name: '杂项',
+				operator: [thisOperator[12], thisOperator[16], thisOperator[18]]
 			})) {
-				return true;
-			}
-			const pointA = thisScript.findMultiColor('宴会筹备');
-			if (pointA) {
-				const oper = [[pointA.x, pointA.y, pointA.x + 10, pointA.y + 10, 1000]];
-				thisScript.regionClick(oper);
-				thisScript.regionClick([thisOperator[11].oper[2]]);
 				return true;
 			}
 			if (thisScript.oper({

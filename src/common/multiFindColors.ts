@@ -2348,43 +2348,43 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		]],
 	},
 	'宴会筹备_狸猫': {
-		region: [center, 1280, 720, 1038, 187, 1248, 618],
+		region: [center, 1280, 720, 1050, 197, 1271, 558],
 		desc: [[
 			1280, 720,
 			[
-				[right, 1172, 398, 0xe9b36f],
-				[right, 1177, 401, 0xe7a962],
-				[right, 1163, 390, 0x764e30],
-				[right, 1183, 389, 0xe7b26e],
-				[right, 1177, 383, 0xb9b73b],
+				[right, 1139, 359, 0x754e33],
+				[right, 1149, 370, 0xe9b67b],
+				[right, 1162, 370, 0xfcf2db],
+				[right, 1149, 391, 0x291b18],
+				[right, 1156, 395, 0xbcb624],
 			]
 		]],
 		similar: 93,
 	},
 	'宴会筹备_饿鬼': {
-		region: [center, 1280, 720, 1038, 187, 1248, 618],
+		region: [center, 1280, 720, 1050, 197, 1271, 558],
 		desc: [[
 			1280, 720,
 			[
-				[right, 1168, 392, 0xfae695],
-				[right, 1166, 398, 0xffe177],
-				[right, 1169, 408, 0x3b2e2c],
-				[right, 1182, 407, 0xfcfcfc],
-				[right, 1180, 418, 0x4d72a3],
+				[right, 1139, 389, 0xf9db64],
+				[right, 1159, 403, 0xfdfefb],
+				[right, 1158, 420, 0x4d74a3],
+				[right, 1162, 411, 0x385076],
+				[right, 1155, 427, 0x2bccd8],
 			]
 		]],
 		similar: 93,
 	},
 	'宴会筹备_河童': {
-		region: [center, 1280, 720, 1038, 187, 1248, 618],
+		region: [center, 1280, 720, 1050, 197, 1271, 558],
 		desc: [[
 			1280, 720,
 			[
-				[right, 1197, 372, 0x5ba3a0],
-				[right, 1218, 374, 0x5eafa9],
-				[right, 1189, 401, 0x5764bd],
-				[right, 1228, 400, 0x73d4d3],
-				[right, 1211, 385, 0x8b6d73],
+				[right, 1201, 318, 0x5daaa3],
+				[right, 1226, 318, 0x5caca6],
+				[right, 1237, 328, 0xfefdfd],
+				[right, 1205, 335, 0x3c293f],
+				[right, 1224, 338, 0x503b48],
 			]
 		]],
 		similar: 93,
