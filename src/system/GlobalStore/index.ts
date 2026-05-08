@@ -58,7 +58,7 @@ export type globalRootType = {
 	team_up_lagTime: null | Date,    // 组队延时
 	team_up_Frist: boolean,  // 首次组队
 	xsOpened: boolean, // 是否打开过悬赏
-	xsFilter: Record<number, number>,
+	xsXieZuo: boolean, // 开始协作
 	intensify_lagTime: null | Date, // 强化延时
 	intensify_NumOT: number, // 强化计数
 	create_NumOT: number, // 创建队伍计数
@@ -78,7 +78,7 @@ export type globalRootType = {
 	qiling_Position: number[] | null;   //  契灵的地图位置
 	qiling_last: number | null;     //  契灵的上次类型
 	qiling_shop: boolean; // 契灵商店购买
-	qiling_ball: number ; // 已购买的契灵球次数
+	qiling_ball: number; // 已购买的契灵球次数
 	opened_buff: boolean; // 是否已执行开启buff
 	closed_buff: boolean; // 是否已执行关闭buff
 	huahezhan: boolean;//    是否已领取花合战
@@ -206,6 +206,7 @@ export const globalRoot: globalRootType = {
 	team_up_lagTime: null,
 	team_up_Frist: true,
 	xsOpened: false,
+	xsXieZuo: false,
 	intensify_lagTime: null,
 	intensify_NumOT: 0,
 	create_NumOT: 0,
@@ -252,7 +253,6 @@ export const globalRoot: globalRootType = {
 	open_only_once: false,
 	flash_time: 0,
 	fengNa: false,
-	xsFilter: {},
 	xxxskill: 0,
 	MT_share: 'start',
 	MT_share_type: 'mumu',

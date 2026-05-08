@@ -95,7 +95,7 @@ export class Func509 implements IFuncOrigin {
 				]
 			],
 		oper: [
-			[left, 1280, 720, 145, 601, 190, 646, 1200]	//	点击式神按钮
+			[center, 1280, 720, 225, 602, 264, 637, 1000],	//	点击式神按钮
 		]
 	}, { // 7 检测_狭间
 		desc:

@@ -376,7 +376,7 @@ export class Func1104 implements IFuncOrigin {
 					break;
 				}
 				thisScript.keepScreen(false);
-				sleep(500);
+				sleep(1000);
 			}
 			while (thisScript.oper({
 				id: 1104,

@@ -5,7 +5,6 @@ const left = 0;
 const center = 1;
 const right = 2;
 let allPoint;
-
 export class Func018 implements IFuncOrigin {
 	id = 18;
 	name = '每日悬赏';
@@ -145,11 +144,15 @@ export class Func018 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 24, 15, 57, 51, 1000],
 		]
-	}, { // 9 废弃
-		desc: '探索章节_挑战2',
-		oper: [
-			[center, 1280, 720, 1032, 120, 1082, 166, 1000],
-		]
+	}, { // 9 庭院协作_发现地点弹窗
+		desc: [1280, 720,
+			[
+				[center, 384, 164, 0x957464],
+				[right, 1002, 165, 0x927161],
+				[center, 590, 195, 0x8a3131],
+				[left, 270, 555, 0x8f7164],
+			]
+		],
 	}, { // 10
 		desc: '探索地图界面',
 		retest: 500,
@@ -348,6 +351,7 @@ export class Func018 implements IFuncOrigin {
 	},]
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['18'];
+		let enabledThisOperator = [{ desc: thisOperator[6].desc }];
 		// 打开和追踪悬赏
 		if (!thisScript.global.xsOpened && thisScript.oper({
 			name: '悬赏_庭院界面',
@@ -360,7 +364,7 @@ export class Func018 implements IFuncOrigin {
 				}]
 			})) {
 				let point = null;
-				allPoint = []
+				allPoint = [];
 				if (thisconf.jinBi) {
 					point = thisScript.findMultiColor('悬赏_金币协作') || null;
 				}
@@ -403,6 +407,82 @@ export class Func018 implements IFuncOrigin {
 				return false
 			}
 		}
+		// 开始打协作
+		if (thisScript.global.xsXieZuo) {
+			let fightPoint = null;
+			let region = null;
+			enabledThisOperator = [{ desc: thisOperator[9].desc }];
+			if (thisScript.oper({
+				name: '悬赏_追踪悬赏',
+				operator: [{ desc: thisOperator[1].desc }]
+			})) {
+				if (!thisconf.jinBi) {
+					fightPoint = thisScript.findMultiColor('悬赏_金币协作') || null;
+					if (fightPoint) {
+						region = [fightPoint.x - 10, fightPoint.y - 10, fightPoint.x + 10, fightPoint.y + 10]
+						const finishPoint = thisScript.findMultiColor('悬赏_协作完成', region);
+						if (!finishPoint) {
+							thisScript.regionClick([[fightPoint.x, fightPoint.y, fightPoint.x + 10, fightPoint.y + 10, 1000]]);
+							return true;
+						} else {
+							fightPoint = null;
+						}
+					}
+				}
+				if (!thisconf.gouLiang) {
+					fightPoint = thisScript.findMultiColor('悬赏_狗粮协作') || null;
+					if (fightPoint) {
+						region = [fightPoint.x - 10, fightPoint.y - 10, fightPoint.x + 10, fightPoint.y + 10]
+						const finishPoint = thisScript.findMultiColor('悬赏_协作完成', region);
+						if (!finishPoint) {
+							thisScript.regionClick([[fightPoint.x, fightPoint.y, fightPoint.x + 10, fightPoint.y + 10, 1000]]);
+							return true;
+						} else {
+							fightPoint = null;
+						}
+					}
+				}
+				if (!thisconf.tiLi) {
+					fightPoint = thisScript.findMultiColor('悬赏_体力协作') || null;
+					if (fightPoint) {
+						region = [fightPoint.x - 10, fightPoint.y - 10, fightPoint.x + 10, fightPoint.y + 10]
+						const finishPoint = thisScript.findMultiColor('悬赏_协作完成', region);
+						if (!finishPoint) {
+							thisScript.regionClick([[fightPoint.x, fightPoint.y, fightPoint.x + 10, fightPoint.y + 10, 1000]]);
+							return true;
+						} else {
+							fightPoint = null;
+						}
+					}
+				}
+				fightPoint = thisScript.findMultiColor('悬赏_勾玉协作')
+				if (fightPoint) {
+					region = [fightPoint.x - 10, fightPoint.y - 10, fightPoint.x + 10, fightPoint.y + 10]
+					const finishPoint = thisScript.findMultiColor('悬赏_协作完成', region);
+					if (!finishPoint) {
+						thisScript.regionClick([[fightPoint.x, fightPoint.y, fightPoint.x + 10, fightPoint.y + 10, 1000]]);
+						return true;
+					}
+				}
+				thisScript.regionClick(thisOperator[1].oper);
+				if (thisconf.scheme_switch_enabled) {
+					thisScript.superGlobal.next_scheme_name = thisScript?.scheme?.config['16']?.next_scheme as string;
+					thisScript.rerun('返回庭院');
+					sleep(1000);
+					return true;
+				} else {
+					thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+					thisScript.stop();
+					sleep(1000);
+					return true;
+				}
+			}
+			const point = thisScript.findMultiColor('悬赏_庭院检测悬赏图标') || null;
+			if (point !== null) {
+				thisScript.regionClick([[point.x, point.y, point.x + 20, point.y + 20, 1000]]);
+				return true
+			}
+		}
 		// 筛选悬赏
 		if (thisScript.oper({
 			name: '悬赏_筛选悬赏',
@@ -416,6 +496,7 @@ export class Func018 implements IFuncOrigin {
 				allPoint.pop();
 			} else {
 				// 筛选完毕_关闭悬赏
+
 				return thisScript.oper({
 					name: '悬赏_已追踪悬赏',
 					operator: [thisOperator[1]]
@@ -430,6 +511,8 @@ export class Func018 implements IFuncOrigin {
 			thisScript.myToast('遇到神秘妖怪,请手动攻打');
 			thisScript.doPush(thisScript, { text: '遇到神秘妖怪,请手动攻打' });
 			thisScript.stop();
+			sleep(1000);
+			return true;
 		}
 		// 悬赏已完成
 		if (thisScript.oper({
@@ -442,16 +525,19 @@ export class Func018 implements IFuncOrigin {
 			if (thisconf && thisconf.scheme_switch_enabled) {
 				thisScript.superGlobal.next_scheme_name = thisScript?.scheme?.config['16']?.next_scheme as string;
 				thisScript.rerun('返回庭院');
-				return;
+				sleep(1000);
+				return true;
 			} else {
 				thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 				thisScript.stop();
+				sleep(1000);
+				return true;
 			}
 		}
 		// 确认挑战副本
 		if (thisScript.oper({
 			name: '悬赏_发现地点弹窗',
-			operator: [{ desc: thisOperator[6].desc }]
+			operator: enabledThisOperator
 		})) {
 			let challengeArr;
 			const unknownStory = thisScript.findMultiColor('悬赏_挑战字样') || null;
@@ -530,17 +616,17 @@ export class Func018 implements IFuncOrigin {
 				const pointXZ = thisScript.findMultiColor('悬赏_协作任务')
 				if (pointXZ) {
 					thisScript.regionClick(thisOperator[11].oper);
-					thisScript.global.xsOpened = false;
+					thisScript.global.xsXieZuo = true;
 					return true;
 				}
 				if (thisconf.scheme_switch_enabled) {
 					thisScript.rerun(thisconf.next_scheme);
-					sleep(3000);
+					sleep(1000);
 					return;
 				} else {
 					thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
 					thisScript.stop();
-					sleep(3000);
+					sleep(1000);
 					return;
 				}
 			}
