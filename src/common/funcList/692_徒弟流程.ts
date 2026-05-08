@@ -227,15 +227,15 @@ export class Func692 implements IFuncOrigin {
 	}, { // 17 点击契约碎片
 		desc: [1280, 720,
 			[
-				[right, 752, 636, 0xef8899],
-				[right, 759, 640, 0xde8894],
-				[right, 760, 645, 0xf7e7de],
-				[right, 760, 651, 0xb3534c],
-				[right, 777, 671, 0x78dbc9],
+				[left, 271, 644, 0xeb9091],
+				[left, 280, 656, 0xc05142],
+				[left, 281, 639, 0xda7f89],
+				[left, 298, 671, 0x78dbc9],
+				[left, 280, 684, 0x4aa0a2],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 739, 640, 780, 681, 2000],
+			[center, 1280, 720, 262, 639, 301, 676, 1000],
 		]
 	}, { // 18 点击二十五章 废弃
 		desc: [1280, 720,
@@ -278,11 +278,11 @@ export class Func692 implements IFuncOrigin {
 	}, { // 21 守护历练
 		desc: [1280, 720,
 			[
-				[right, 931, 250, 0x6c5564],
-				[right, 1145, 254, 0x534a5f],
-				[right, 1030, 215, 0xefdba5],
-				[right, 1152, 231, 0xeecf94],
-				[right, 1190, 362, 0x5d5870],
+				[right, 933, 247, 0x6c5564],
+				[right, 1030, 217, 0xefdba5],
+				[right, 1119, 220, 0xf0e0a7],
+				[right, 1152, 230, 0xeecf94],
+				[right, 1208, 265, 0x5a526a],
 			]
 		],
 		oper: [
@@ -812,7 +812,7 @@ export class Func692 implements IFuncOrigin {
 				operator: [thisOperator[23]]
 			})) {
 				thisScript.keepScreen();
-				for (let i = 0; i < 15; i++) {
+				for (let i = 0; i < 13; i++) {
 					if (!thisScript.oper({
 						id: 692,
 						name: 'five',

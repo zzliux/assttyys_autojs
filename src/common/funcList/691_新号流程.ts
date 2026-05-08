@@ -32,8 +32,7 @@ export class Func691 implements IFuncOrigin {
 	}];
 
 	operator: IFuncOperatorOrigin[] = [{ // 0 选最新区
-		desc: [
-			1280, 720,
+		desc: [1280, 720,
 			[
 				[center, 488, 85, 0x9c8363],
 				[center, 564, 61, 0xe7c78c],
@@ -45,7 +44,7 @@ export class Func691 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 226, 212, 375, 252, 1000], // 全平台
-			[center, 1280, 720, 256, 570, 997, 615, 1000], // ocr昵称区域
+			[center, 1280, 720, 502, 133, 1056, 622, 1000], // ocr昵称区域
 			[center, 1280, 720, 434, 142, 603, 198, 1000], // 选区
 			[center, 1280, 720, 562, 574, 722, 617, 1200], // 点击开始游戏
 		],
@@ -87,7 +86,7 @@ export class Func691 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 855, 245, 896, 281, 1000],
+			[center, 1280, 720, 855, 245, 896, 281, 200],
 		]
 	}, { // 4 小白说明
 		desc: [1280, 720,
@@ -397,7 +396,7 @@ export class Func691 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 137, 160, 291, 194, 1000],
+			[center, 1280, 720, 143, 237, 283, 275, 1000],
 		]
 	}, { // 28 申请确认
 		desc: [1280, 720,
@@ -667,7 +666,7 @@ export class Func691 implements IFuncOrigin {
 		desc: [1280, 720,
 			[
 				[right, 878, 618, 0xef98a3],
-				[right, 928, 632, 0xdcb8a9],
+				[right, 926, 636, 0xe7cbc6],
 				[right, 889, 655, 0x6e3089],
 				[right, 920, 650, 0x9eddf3],
 			]
@@ -694,7 +693,7 @@ export class Func691 implements IFuncOrigin {
 				[right, 647, 391, 0xb59779],
 				[center, 503, 481, 0xa98d6e],
 				[center, 623, 488, 0xa68a6b],
-				[right, 658, 475, 0xcab793],
+				[right, 658, 475, 0xdec39c],
 				[center, 486, 197, 0x4a302d],
 			]
 		],
@@ -753,17 +752,31 @@ export class Func691 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1192, 613, 1251, 677, 2000]
 		]
+	}, { // 57 组队界面_退出
+		desc: [1280, 720,
+			[
+				[left, 53, 29, 0xefcf8c],
+				[left, 41, 38, 0xf7ebad],
+				[left, 55, 51, 0xefd394],
+				[right, 1003, 615, 0xf4b25d],
+				[right, 716, 622, 0xf4b25d],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 33, 23, 63, 56, 1000],
+			[center, 1280, 720, 1021, 243, 1086, 290, 1000],
+		]
 	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['691'];
 		if (!thisScript.global.newAccount) {
 			thisScript.global.newAccount = {
-				'create': false,
+				'create': true,
 				'apply': false,
 				'jingYan': false,
 				'closePB': false, // 关闭皮肤试用
-				'getBird': true,
+				'getBird': false,
 				'join': false,
 			};
 		}
@@ -773,7 +786,6 @@ export class Func691 implements IFuncOrigin {
 				name: '选区',
 				operator: [thisOperator[1]],
 			})) {
-				thisScript.global.newAccount.apply = true;
 				const prefix = thisconf.name;
 				const timestamp = Date.now(); // 当前时间戳
 				const compressedTimestamp = timestamp.toString(36); // 转换为36进制
@@ -854,6 +866,7 @@ export class Func691 implements IFuncOrigin {
 				operator: [thisOperator[21], thisOperator[22]],
 			})) {
 				thisScript.global.newAccount.create = false;
+				thisScript.global.newAccount.apply = true;
 				return true;
 			}
 		}
@@ -980,18 +993,35 @@ export class Func691 implements IFuncOrigin {
 			})) {
 				return true;
 			}
+			let curCnt = 0;
+			const maxCount = 4;
+			while (thisScript.oper({
+				name: '创建队伍',
+				operator: [thisOperator[36]]
+			})) {
+				curCnt++;
+				thisScript.keepScreen();
+				if (curCnt >= maxCount) {
+					if (thisScript.oper({
+						id: 691,
+						name: '残废组队',
+						operator: [thisOperator[57]]
+					})) {
+						return true;
+					}
+				}
+			}
 			const point = thisScript.findMultiColor('皮肤广告关闭按钮');
 			if (point) {
 				console.log('识别广告关闭按钮成功');
 				const oper = [[point.x - 10, point.y - 10, point.x, point.y, 1000]];
 				thisScript.regionClick(oper);
-				// return true;
 			}
 		}
 		if (thisScript.global.newAccount.join) {
 			if (thisScript.oper({
 				id: 691,
-				name: '残废组队',
+				name: '好友加协战',
 				operator: [thisOperator[50], thisOperator[51], thisOperator[52], thisOperator[53]]
 			})) {
 				return true;

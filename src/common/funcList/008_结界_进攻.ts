@@ -141,6 +141,24 @@ export class Func008 implements IFuncOrigin {
 				return true;
 			}
 		}
+		if ('个人突破' === thisConf.type) {
+			if (thisScript.oper({
+				name: '地图进入个人突破',
+				operator: [{
+					desc: thisOperator[5].desc,
+					oper: [thisOperator[5].oper[0]]
+				}]
+			})) {
+				return true;
+			}
+		} else if ('寮突破' === thisConf.type) {
+			if (thisScript.oper({
+				name: '地图进入寮突破',
+				operator: [thisOperator[5]]
+			})) {
+				return true;
+			}
+		}
 		if (!thisScript.oper({
 			name: '突破界面_暗_判断',
 			operator: [{ desc: thisOperator[1].desc }]
@@ -236,20 +254,6 @@ export class Func008 implements IFuncOrigin {
 		}
 		if (count < defaultCount) {
 			return true;
-		}
-		if ('个人突破' === thisConf.type) {
-			return thisScript.oper({
-				name: '地图进入个人突破',
-				operator: [{
-					desc: thisOperator[5].desc,
-					oper: [thisOperator[5].oper[0]]
-				}]
-			});
-		} else if ('寮突破' === thisConf.type) {
-			return thisScript.oper({
-				name: '地图进入寮突破',
-				operator: [thisOperator[5]]
-			});
 		}
 		return false;
 	}

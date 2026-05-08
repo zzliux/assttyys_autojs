@@ -256,6 +256,15 @@ export class Func693 implements IFuncOrigin {
 					1000,
 				]
 				thisScript.regionClick([toClickRegion]);
+			} else {
+				const toClickRegion = [
+					result[0].points[0].x + 305,
+					result[0].points[0].y + 40,
+					result[0].points[0].x + 310,
+					result[0].points[0].y + 45,
+					1000,
+				]
+				thisScript.regionClick([toClickRegion]);
 			}
 			return true;
 		}

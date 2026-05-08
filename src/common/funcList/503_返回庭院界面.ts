@@ -183,11 +183,6 @@ export class Func503 implements IFuncOrigin {
 			type: 'switch',
 			default: true,
 		}, {
-			name: 'oper_36',
-			desc: '36 商店界面',
-			type: 'switch',
-			default: true,
-		}, {
 			name: 'oper_37',
 			desc: '37 杂货铺界面',
 			type: 'switch',
