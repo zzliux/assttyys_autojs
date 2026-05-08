@@ -283,7 +283,7 @@ export class Func030 implements IFuncOrigin {
 			const point = thisScript.findMultiColor('庭院_町中竖牌');
 			if (point) {
 				const oper = [
-					[point.x, point.y, point.x + thisOperator[0].oper[0][2], point.y + thisOperator[0].oper[0][3], thisOperator[0].oper[0][4]]
+					[point.x, point.y, point.x + 5, point.y + 5, 1000]
 				];
 				thisScript.regionClick(oper);
 				sleep(2000);
