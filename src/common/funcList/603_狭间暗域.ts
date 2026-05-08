@@ -279,8 +279,20 @@ export class Func603 implements IFuncOrigin {
 			sort_1 = ['0', '0', '2', '1', '2', '1', '3', '4', '5', '3', '4', '5']
 		}
 		// Real:用结算次数获取当前已攻打第几个怪物
-		const Real = thisScript.runTimes['2'] - thisScript.global.runTime_2 - (thisconf.sneak as number)
-		if (Real >= 12) {
+		let Real = thisScript.runTimes['2'] - thisScript.global.runTime_2 - (thisconf.sneak as number)
+		if (thisconf.boss_order === '大到小' && Real >= 12) {
+			if (thisScript.oper({
+				name: '阴阳寮界面',
+				operator: [{ desc: thisOperator[9].desc }],
+			})) {
+				log('已完成狭间')
+				thisScript.rerun('返回庭院')
+				sleep(1000)
+				return true;
+			}
+			return false;
+		}
+		if (Real >= 14) {
 			if (thisScript.oper({
 				name: '阴阳寮界面',
 				operator: [{ desc: thisOperator[9].desc }],
@@ -362,6 +374,12 @@ export class Func603 implements IFuncOrigin {
 			operator: [thisOperator[1], thisOperator[2]]
 		})) {
 			return true;
+		}
+		if (Real === 12) {
+			Real = 11;
+		}
+		if (Real === 13) {
+			Real = 10;
 		}
 		let curCnt = 0;
 		const maxCount = 3;
