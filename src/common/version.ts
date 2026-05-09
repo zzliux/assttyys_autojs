@@ -1542,5 +1542,8 @@ export const versionList = [{
 }, {
 	version: '20260423_01',
 	desc: '修复：32，道馆打第二次、500，进入寮活动重新取色'
+}, {
+	version: '20260409_01',
+	desc: '修复：515狭间不挑战问题'
 }];
 export default versionList[versionList.length - 1].version;
