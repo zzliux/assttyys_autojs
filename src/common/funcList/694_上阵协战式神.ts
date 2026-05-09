@@ -47,11 +47,10 @@ export class Func694 implements IFuncOrigin {
 	}, { // 3 上阵
 		desc: [1280, 720,
 			[
-				[left, 266, 658, 0xf95e89],
-				[center, 334, 675, 0xf7758c],
-				[center, 372, 643, 0xee5a83],
-				[left, 297, 512, 0xfa5c88],
-
+				[left, 266, 555, 0xf95e89],
+				[left, 266, 654, 0xf95e89],
+				[center, 371, 667, 0xf95e89],
+				[center, 371, 627, 0xf95e89],
 			]
 		],
 		oper: [
