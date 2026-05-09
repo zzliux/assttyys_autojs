@@ -39,7 +39,7 @@ const SchemeList: IScheme[] = [
 		schemeName: '通用活动',
 		groupNames: ['战斗'],
 		star: true,
-		list: [0, 1, 2, 3, 312],
+		list: [0, 1, 2, 3, 24, 312],
 	},
 	{
 		id: 3,
@@ -245,7 +245,7 @@ const SchemeList: IScheme[] = [
 		id: 44,
 		schemeName: '狭间暗域',
 		groupNames: ['寮活动'],
-		list: [318, 311, 315, 510, 0, 1, 2, 3, 603],
+		list: [318, 311, 315, 510, 0, 1, 2, 3, 24, 603],
 	},
 	{
 		id: 25,

@@ -55,11 +55,10 @@ export class Func053 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[left, 278, 147, 0xdbbc78],
-				[center, 598, 144, 0xd8be85],
-				[right, 891, 162, 0xe2c78c],
-				[right, 1206, 153, 0xa78b65],
-				[right, 1156, 230, 0x9854b9],
+				[left, 260, 366, 0xef6658],
+				[center, 581, 298, 0x7fc079],
+				[right, 888, 360, 0x2ebad7],
+				[right, 1187, 297, 0x784cab],
 			]
 		],
 		oper: [
