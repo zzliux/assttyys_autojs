@@ -600,19 +600,15 @@ export class Func018 implements IFuncOrigin {
 			}
 		}
 		// 确认追踪悬赏
-		if (thisScript.oper({
+		let curCnt = 0;
+		const maxCount = 5;
+		while (thisScript.oper({
 			name: '悬赏_探索界面',
 			operator: [thisOperator[10]]
 		})) {
-
-			const point = thisScript.findMultiColor('悬赏_已追踪任务') || null;
-			if (point != null) {
-				const oper = [
-					[point.x + 30, point.y, point.x + 35, point.y + 5, 1000]
-				];
-				thisScript.regionClick(oper);
-				return true;
-			} else {
+			curCnt++;
+			thisScript.keepScreen(false);
+			if (curCnt >= maxCount) {
 				const pointXZ = thisScript.findMultiColor('悬赏_协作任务')
 				if (pointXZ) {
 					thisScript.regionClick(thisOperator[11].oper);
@@ -630,6 +626,15 @@ export class Func018 implements IFuncOrigin {
 					return;
 				}
 			}
+			const point = thisScript.findMultiColor('悬赏_已追踪任务') || null;
+			if (point != null) {
+				const oper = [
+					[point.x + 30, point.y, point.x + 35, point.y + 5, 1000]
+				];
+				thisScript.regionClick(oper);
+				return true;
+			}
+			sleep(500);
 		}
 		// 杂项
 		if (thisScript.oper({

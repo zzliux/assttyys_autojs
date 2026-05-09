@@ -961,7 +961,8 @@ const multiFindColors: IMultiFindColorsOrigin = {
 					[left, 28, 334, 0xbbb39d],
 				]
 			]
-		]
+		],
+		similar: 93
 	},
 	'悬赏_协作任务': {
 		region: [left, 1280, 720, 0, 112, 105, 500],
@@ -976,7 +977,8 @@ const multiFindColors: IMultiFindColorsOrigin = {
 					[left, 89, 122, 0xfab73c],
 				]
 			]
-		]
+		],
+		similar: 93
 	},
 	'悬赏_协作完成': {
 		region: [center, 1280, 720, 144, 398, 1155, 599],

@@ -660,7 +660,7 @@ export class Func518 implements IFuncOrigin {
 			})) {
 				return true;
 			}
-			if (thisScript.global.email_yuHun >= 3) {
+			if (thisScript.global.email_yuHun >= 8) {
 				thisScript.global.function_Switch.email = false;
 				thisScript.doPush(thisScript, { text: '邮件里御魂已满', before() { thisScript.myToast('邮件里御魂已满'); } });
 			}
