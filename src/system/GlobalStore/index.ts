@@ -145,7 +145,7 @@ export type globalRootType = {
 	frist: boolean, // 上阵式神
 	chess: Record<string, boolean | number>,  // 下棋局数判定
 	chessShop: boolean, // 下棋商店
-
+	chessShopNum: number, // 下棋商店购买次数
 }
 
 export const globalRoot: globalRootType = {
@@ -295,6 +295,7 @@ export const globalRoot: globalRootType = {
 	frist: true,
 	chess: null,
 	chessShop: true,
+	chessShopNum: 0,
 }
 export type superGlobalRootType = {
 	liao_activity_Switch: Record<string, boolean>, // 寮活动记录

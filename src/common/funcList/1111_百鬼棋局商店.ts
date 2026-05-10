@@ -106,8 +106,19 @@ export class Func1111 implements IFuncOrigin {
 			}
 			if (thisScript.oper({
 				name: '杂项',
-				operator: [thisOperator[4], thisOperator[5], thisOperator[6], thisOperator[7]]
+				operator: [thisOperator[4], thisOperator[5], thisOperator[6]]
 			})) {
+				return true;
+			}
+			if (thisScript.oper({
+				name: '次数',
+				operator: [thisOperator[7]]
+			})) {
+				thisScript.global.chessShopNum++;
+				if (thisScript.global.chessShopNum > 5) {
+					thisScript.global.chessShop = false;
+					return true;
+				}
 				return true;
 			}
 		}
