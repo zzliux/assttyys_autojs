@@ -126,10 +126,10 @@ export class Func1109 implements IFuncOrigin {
 	}, { // 12 第一个地鬼
 		desc: [1280, 720,
 			[
-				[left, 165, 351, 0xf2b88b],
-				[center, 388, 351, 0xbb926c],
-				[center, 388, 445, 0xc09671],
-				[left, 164, 445, 0xdda479],
+				[left, 164, 396, 0x3c2827],
+				[left, 241, 396, 0x432e2a],
+				[left, 274, 394, 0x3f2b29],
+				[center, 348, 394, 0x462f2d],
 			]
 		],
 		oper: [
