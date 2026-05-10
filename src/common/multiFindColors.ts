@@ -987,11 +987,24 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				1280, 720,
 				[
 					[center, 370, 522, 0xa6917d],
-					[left, 148, 374, 0xbc2925],
-					[left, 167, 394, 0xb4302b],
 					[left, 176, 440, 0xec3b46],
 					[center, 387, 438, 0xffbe30],
 					[center, 387, 443, 0xffc130],
+				]
+			]
+		]
+	},
+	'悬赏_已接受协作': {
+		region: [center, 1280, 720, 144, 398, 1155, 599],
+		desc: [
+			[
+				1280, 720,
+				[
+					[center, 370, 522, 0xa6917d],
+					[center, 412, 368, 0xbd7d21],
+					[center, 412, 398, 0xaf762a],
+					[left, 172, 539, 0xa28b78],
+					[center, 409, 134, 0xf62626],
 				]
 			]
 		]

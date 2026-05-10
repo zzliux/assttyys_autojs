@@ -474,7 +474,6 @@ export class Func605 implements IFuncOrigin {
 					operator: [thisOperator[5]],
 				})) {
 					curCnt++;
-					thisScript.keepScreen(false);
 					if (thisScript.oper({
 						name: '宴会__宴会筹备完成',
 						operator: [thisOperator[6]],
@@ -492,6 +491,7 @@ export class Func605 implements IFuncOrigin {
 						return false;
 					}
 					sleep(1000);
+					thisScript.keepScreen(false);
 				}
 			}
 			if (thisScript.oper({

@@ -188,6 +188,49 @@ export class Func302 implements IFuncOrigin {
 				[left, 139, 263, 0xfda637],
 			]
 		],
+	}, { // 15 庭院未打开菜单
+		desc: '页面是否为庭院_菜单未展开_只支持默认庭院皮肤与默认装饰',
+		oper: [
+			[right, 1280, 720, 1168, 592, 1230, 690, 1200]
+		]
+	}, {   // 16 庭院_式神录
+		desc: '页面是否为庭院_菜单已展开_只支持默认庭院皮肤与默认装饰',
+		oper: [
+			[right, 1280, 720, 1106, 623, 1153, 653, 1200]	// 点击式神录
+		]
+	}, { // 17 右侧详细
+		desc: [1280, 720, [
+			[left, 114, 15, 0xaf8c56],
+			[left, 183, 35, 0xaf8c56],
+			[left, 63, 657, 0xfbf2e0],
+			[center, 635, 666, 0x2c1f1b],
+		]
+		],
+		oper: [
+			[center, 1280, 720, 1192, 320, 1246, 397, 1000]
+		]
+	}, {
+		// 18 御魂灯笼
+		desc: [1280, 720, [
+			[left, 114, 15, 0xaf8c56],
+			[left, 183, 35, 0xaf8c56],
+			[right, 1230, 249, 0xded1bf],
+			[right, 1226, 281, 0xe7dfce]]
+		],
+		oper: [
+			[center, 1280, 720, 1182, 235, 1231, 293, 1000]
+		]
+	}, {
+		// 19 更换
+		desc: [1280, 720, [
+			[left, 114, 15, 0xaf8c56],
+			[left, 183, 35, 0xaf8c56],
+			[right, 1204, 268, 0xFFF9F2],
+			[right, 907, 187, 0xC7723D]]
+		],
+		oper: [
+			[center, 1280, 720, 867, 179, 933, 255, 1000]
+		]
 	}
 	];
 
@@ -265,6 +308,13 @@ export class Func302 implements IFuncOrigin {
 					return;
 				}
 			}
+		}
+		if (thisScript.oper({
+			name: '进入奉纳',
+			operator: [thisOperator[15], thisOperator[16], thisOperator[17], thisOperator[18]
+				, thisOperator[19]]
+		})) {
+			return true;
 		}
 		return false;
 	}

@@ -462,6 +462,19 @@ export class Func018 implements IFuncOrigin {
 					if (!finishPoint) {
 						thisScript.regionClick([[fightPoint.x, fightPoint.y, fightPoint.x + 10, fightPoint.y + 10, 1000]]);
 						return true;
+					} else {
+						fightPoint = null;
+					}
+				}
+				fightPoint = thisScript.findMultiColor('悬赏_已接受协作')
+				if (fightPoint) {
+					region = [fightPoint.x - 10, fightPoint.y - 10, fightPoint.x + 10, fightPoint.y + 10]
+					const finishPoint = thisScript.findMultiColor('悬赏_协作完成', region);
+					if (!finishPoint) {
+						thisScript.regionClick([[fightPoint.x, fightPoint.y, fightPoint.x + 10, fightPoint.y + 10, 1000]]);
+						return true;
+					} else {
+						fightPoint = null;
 					}
 				}
 				thisScript.regionClick(thisOperator[1].oper);
