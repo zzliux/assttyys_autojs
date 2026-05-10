@@ -1397,6 +1397,21 @@ export class Func609 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1007, 336, 1120, 464, 1000],
 		]
+	}, { // 98 取消下载式神动画
+		desc: [1280, 720,
+			[
+				[center, 385, 207, 0xd7b49c],
+				[center, 468, 206, 0x785542],
+				[right, 808, 207, 0x785642],
+				[right, 923, 206, 0xdcb9a2],
+				[center, 443, 445, 0xdf6851],
+				[right, 745, 443, 0xf3b25e],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 431, 424, 551, 466, 3000],
+			[center, 1280, 720, 1148, 82, 1192, 113, 1000],
+		]
 	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -2055,7 +2070,7 @@ export class Func609 implements IFuncOrigin {
 			id: 609,
 			name: '关闭',
 			operator: [thisOperator[35], thisOperator[43], thisOperator[66], thisOperator[72], thisOperator[86]
-				, thisOperator[93], thisOperator[96]]
+				, thisOperator[93], thisOperator[96], thisOperator[97]]
 		})) {
 			return true
 		}
