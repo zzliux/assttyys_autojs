@@ -577,17 +577,15 @@ export class Func503 implements IFuncOrigin {
 			[left, 1280, 720, 110, 15, 152, 57, 2000] // 修改为返回庭院按钮
 		]
 	}, { // 33 狭间暗域4个区域通用
-		desc: [
-			1280,
-			720,
+		desc: [1280, 720,
 			[
-				[left, 38, 60, 0xeff7f8],
-				[left, 216, 68, 0xd3a578],
 				[center, 737, 31, 0x5a3718],
 				[center, 897, 74, 0xf8dca7],
 				[right, 1209, 305, 0xc5b593],
 				[right, 1226, 395, 0xcdb694],
-				[right, 1218, 486, 0xcebe9c]
+				[right, 1218, 486, 0xcebe9c],
+				[left, 35, 56, 0xf7e3a5],
+				[left, 114, 48, 0xf7efb5],
 			]
 		],
 		oper: [

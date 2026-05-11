@@ -69,6 +69,9 @@ export class Func004 implements IFuncOrigin {
 				[left, 60, 39, 0x84582f],
 				[left, 19, 47, 0x281717]
 			]
+		],
+		oper: [
+			[left, 1280, 720, 34, 29, 63, 56, 600]
 		]
 	}, { // 3	挑战_暗
 		desc: [
@@ -82,7 +85,7 @@ export class Func004 implements IFuncOrigin {
 			]
 		],
 		oper: [
-
+			[left, 1280, 720, 34, 29, 63, 56, 600]
 		]
 	}, { // 4 组队有探索奖励
 		desc: [1280, 720,
