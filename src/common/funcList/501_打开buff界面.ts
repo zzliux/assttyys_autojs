@@ -51,7 +51,7 @@ export class Func501 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 799, 38, 828, 76, 1500]
+			[left, 1280, 720, 35, 27, 62, 55, 600] // [center, 1280, 720, 799, 38, 828, 76, 1500] 不管是队长还是队员，先退队伍在关闭buff
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
