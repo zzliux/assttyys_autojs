@@ -879,6 +879,18 @@ export class Func518 implements IFuncOrigin {
 					thisScript.global.function_Switch.godlike = false;
 					return true;
 				}
+				if (text('玩必备').findOnce()) {
+					log('玩必备')
+					const oper = [
+						text('玩必备').findOnce().bounds().centerX(),
+						text('玩必备').findOnce().bounds().centerY(),
+						text('玩必备').findOnce().bounds().centerX() + 5,
+						text('玩必备').findOnce().bounds().centerY() + 5,
+						1000
+					]
+					thisScript.regionClick([oper]);
+					return true;
+				}
 				const { lastFuncDateTime, currentDate, runDate } = thisScript;
 				if (new Date().getTime() - Math.max(lastFuncDateTime?.getTime() || 0, currentDate?.getTime() || 0, runDate?.getTime() || 0) > 10000) {
 					if (id('iv_close').findOnce()) {

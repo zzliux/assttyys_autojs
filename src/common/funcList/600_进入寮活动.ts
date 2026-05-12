@@ -162,12 +162,10 @@ export class Func600 implements IFuncOrigin {
 		}, { // 4 检测_狩猎战内
 			desc: [1280, 720,
 				[
-					[left, 35, 592, 0x8a6138],
 					[left, 112, 594, 0x664b30],
 					[left, 139, 590, 0x5b452c],
 					[left, 175, 603, 0x966f47],
-					[right, 884, 661, 0xfff3f6],
-					[right, 1061, 650, 0xfff2f2],
+					[left, 187, 593, 0x7a5836],
 				]
 			],
 		}, { // 5 检测_是否为狩猎战挑战奉献榜场景_待开始（弃用）

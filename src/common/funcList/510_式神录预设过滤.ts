@@ -247,6 +247,11 @@ export class Func510 implements IFuncOrigin {
 						} else {
 							tureGroupNum = Number(thisScript.global.preset_once_groupNum) - 1
 						}
+						if (tureGroupNum < 0) {
+							thisScript.myToast('预设参数为0,跳过');
+							thisScript.global.change_shikigami_state = 'finish';
+							return false;
+						}
 						const oper = [[
 							thisOperator[7].oper[0][0],
 							thisOperator[7].oper[0][1] + (thisOperator[7].oper[0][4] * tureGroupNum),

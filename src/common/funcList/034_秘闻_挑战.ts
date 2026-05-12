@@ -1,4 +1,5 @@
-import { IFuncOrigin, IFuncOperatorOrigin } from '@/interface/IFunc';
+import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
+import { Script } from '@/system/script';
 // const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -8,8 +9,64 @@ export class Func034 implements IFuncOrigin {
 	id = 34;
 	name = '秘闻_挑战';
 	desc = '每周竞速或百战挑战';
-	operator: IFuncOperatorOrigin[] = [{
-		// 镰鼬百战
+	config = [{
+		desc: '竞速分组一',
+		config: [{
+			name: 'weekMode_A',
+			desc: '竞速模式',
+			type: 'lists',
+			data: ['红叶', '雨女', '镰鼬', '妖刀', '河童', '荒川', '姑获鸟', '山兔', '小鹿男', '青行灯'],
+			default: [],
+		}, {
+			name: 'preset_pair_A',
+			desc: '预设分组',
+			type: 'text',
+			default: '0,0',
+		}]
+	}, {
+		desc: '竞速分组二',
+		config: [{
+			name: 'weekMode_B',
+			desc: '竞速模式',
+			type: 'lists',
+			data: ['红叶', '雨女', '镰鼬', '妖刀', '河童', '荒川', '姑获鸟', '山兔', '小鹿男', '青行灯'],
+			default: [],
+		}, {
+			name: 'preset_pair_B',
+			desc: '预设分组',
+			type: 'text',
+			default: '0,0',
+		}]
+	}, {
+		desc: '竞速分组三',
+		config: [{
+			name: 'weekMode_C',
+			desc: '竞速模式',
+			type: 'lists',
+			data: ['红叶', '雨女', '镰鼬', '妖刀', '河童', '荒川', '姑获鸟', '山兔', '小鹿男', '青行灯'],
+			default: [],
+		}, {
+			name: 'preset_pair_C',
+			desc: '预设分组',
+			type: 'text',
+			default: '0,0',
+		}]
+	}, {
+		desc: '竞速分组四',
+		config: [{
+			name: 'weekMode_D',
+			desc: '竞速模式',
+			type: 'lists',
+			data: ['红叶', '雨女', '镰鼬', '妖刀', '河童', '荒川', '姑获鸟', '山兔', '小鹿男', '青行灯'],
+			default: [],
+		}, {
+			name: 'preset_pair_D',
+			desc: '预设分组',
+			type: 'text',
+			default: '0,0',
+		}]
+	}];
+	operator: IFuncOperatorOrigin[] = [{ // 0 镰鼬百战
 		desc: [1280, 720,
 			[
 				[right, 1194, 606, 0xe3d7c0],
@@ -22,8 +79,7 @@ export class Func034 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1120, 555, 1206, 646, 1000]
 		]
-	}, {
-		// 妖刀姬竞速
+	}, { // 1 妖刀姬竞速
 		desc: [1280, 720,
 			[
 				[left, 78, 575, 0x3d4d6e],
@@ -36,8 +92,7 @@ export class Func034 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1120, 555, 1206, 646, 1000]
 		]
-	}, {
-		// 小路男竞速
+	}, { // 2 小路男竞速
 		desc: [1280, 720,
 			[
 				[center, 829, 249, 0xd7beae],
@@ -50,8 +105,7 @@ export class Func034 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1120, 555, 1206, 646, 1000]
 		]
-	}, {
-		// 青行灯竞速
+	}, { // 3 青行灯竞速
 		desc: [1280, 720,
 			[
 				[right, 1050, 152, 0x0c0d15],
@@ -65,12 +119,12 @@ export class Func034 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1120, 555, 1206, 646, 1000]
 		]
-	}, {  // 0 20230524正式服，探索地图进入秘闻
+	}, { // 4 探索地图进入秘闻
 		desc: '探索地图界面',
 		oper: [
 			[center, 1280, 720, 544, 636, 602, 701, 1000],
 		]
-	}, { // 1 每周挑战秘闻弹窗，暗
+	}, { // 5 每周挑战秘闻弹窗，暗
 		desc: [
 			1280, 720,
 			[
@@ -85,7 +139,7 @@ export class Func034 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1020, 112, 1230, 371, 1000]
 		]
-	}, { // 3 每周挑战秘闻选择并进入
+	}, { // 6 每周挑战秘闻选择并进入
 		desc: [1280, 720,
 			[
 				[left, 50, 598, 0x2c2e3c],
@@ -99,10 +153,74 @@ export class Func034 implements IFuncOrigin {
 			[center, 1280, 720, 134, 150, 450, 246, 500],
 			[center, 1280, 720, 1142, 598, 1239, 688, 500],
 		]
-	}, { // 4
+	}, { // 7 秘闻挑战开启提示
 		desc: '秘闻挑战开启',
 		oper: [
 			[left, 1280, 720, 452, 605, 870, 683, 2000],
 		]
-	}]
+	}, { // 8 红叶
+		desc: [1280, 720,
+			[
+				[right, 804, 361, 0xf9f7f6],
+				[right, 797, 436, 0xedeae8],
+				[right, 980, 431, 0xf4f2f0],
+				[right, 903, 157, 0x817e8c],
+				[right, 875, 379, 0x9f240f],
+			]
+		],
+	},];
+	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
+		const thisconf = thisScript.scheme.config['34'];
+		if (!thisScript.global.miWenChange) {
+			let i = 8;
+			for (; i < 9; i++) {
+				if (thisScript.oper({
+					id: 34,
+					name: '秘闻_识别竞速',
+					operator: [thisOperator[i]]
+				})) {
+					break;
+				}
+			}
+			const weekMode = ['红叶', '雨女', '镰鼬', '妖刀', '河童', '荒川', '姑获鸟', '山兔', '小鹿男', '青行灯'];
+			if (i != 9) {
+				log(thisconf.weekMode_A)
+				if ((thisconf.weekMode_A as string[]).includes(weekMode[i - 8])) {
+					change(thisconf.preset_pair_A as string);
+				} else if ((thisconf.weekMode_B as string[]).includes(weekMode[i - 8])) {
+					change(thisconf.preset_pair_B as string);
+				} else if ((thisconf.weekMode_C as string[]).includes(weekMode[i - 8])) {
+					change(thisconf.preset_pair_C as string);
+				} else if ((thisconf.weekMode_D as string[]).includes(weekMode[i - 8])) {
+					change(thisconf.preset_pair_D as string);
+				}
+				return true;
+			}
+		}
+		if (thisScript.oper({
+			name: '秘闻_杂项',
+			operator: thisOperator.slice(0, 8)
+		})) {
+			return true;
+		}
+		return false;
+		function change(presetStr) {
+			// 读取参数位置
+			const [p, q] = presetStr.split(/[,，]/);
+			thisScript.global.miWenChange = true;
+			thisScript.global.preset_once_groupNum = parseInt(p?.trim(), 10);
+			thisScript.global.preset_once_defaultNum = parseInt(q?.trim(), 10);
+			thisScript.global.preset_once_team_groupNum = parseInt(p?.trim(), 10);
+			thisScript.global.preset_once_team_defaultNum = parseInt(q?.trim(), 10);
+			if (thisScript.global.preset_once_groupNum > 0) {
+				thisScript.global.shangyushe = true;
+				thisScript.global.change_shikigami_state = 'flushed';
+				thisScript.global.change_shikigami_flag = true;
+				log(thisScript.global.preset_once_groupNum)
+			} else {
+				thisScript.global.shangyushe = false;
+				thisScript.global.change_shikigami_state = 'finish';
+			}
+		}
+	}
 }

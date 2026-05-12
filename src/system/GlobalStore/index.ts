@@ -136,7 +136,7 @@ export type globalRootType = {
 	email_yuHun: number, // 邮箱御魂已满计数
 	runTime_2: number, // 留存2退出结算次数
 	fight_Switch: Record<string, boolean | number>, // 战斗内操作记录
-	xiaJian: Record<string, boolean | number>, // 战斗内切换记录
+	xiaJian: Record<string, boolean | number>, // 狭间换御魂判断
 	timestamp: number, // 全局时间戳
 	paiMing: number, // 排名
 	email_switch_enabled: boolean, // 邮箱切换
@@ -146,6 +146,7 @@ export type globalRootType = {
 	chess: Record<string, boolean | number>,  // 下棋局数判定
 	chessShop: boolean, // 下棋商店
 	chessShopNum: number, // 下棋商店购买次数
+	miWenChange: boolean, // 秘闻是否更换过式神
 }
 
 export const globalRoot: globalRootType = {
@@ -296,6 +297,7 @@ export const globalRoot: globalRootType = {
 	chess: null,
 	chessShop: true,
 	chessShopNum: 0,
+	miWenChange: false,
 }
 export type superGlobalRootType = {
 	liao_activity_Switch: Record<string, boolean>, // 寮活动记录

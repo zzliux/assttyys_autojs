@@ -212,7 +212,6 @@ export class Func1106 implements IFuncOrigin {
 				operator: [thisOperator[1]]
 			})) {
 				curCnt++;
-				thisScript.keepScreen();
 				if (curCnt >= maxCount) {
 					thisScript.myToast(`连续执行${maxCount}次挑战后未开始，脚本自动停止`);
 					thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
@@ -223,8 +222,9 @@ export class Func1106 implements IFuncOrigin {
 				if (curCnt === 1) {
 					thisScript.global.zhenShe--;
 				}
+				sleep(500);
+				thisScript.keepScreen();
 			}
-			return false;
 		} else if (thisScript.global.zhenShe == 0) {
 			if (thisScript.oper({
 				id: 1106,
