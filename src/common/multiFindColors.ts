@@ -3037,6 +3037,20 @@ const multiFindColors: IMultiFindColorsOrigin = {
 			]
 		]],
 	},
+	'大神_福利中心': {
+		region: [left, 1280, 720, 0, 0, 1280, 720],
+		desc: [[
+			1280, 720,
+			[
+				[center, 450, 97, 0x0e99b7],
+				[center, 562, 98, 0x52b3c8],
+				[center, 557, 131, 0x7ec4d4],
+				[center, 452, 134, 0x45aec5],
+				[center, 455, 124, 0xffffff],
+				[center, 490, 119, 0xffffff],
+			]
+		]],
+	},
 	// '': {
 	// 	region: [left, 1280, 720, 0, 0, 1280, 720],
 	// 	desc: [[

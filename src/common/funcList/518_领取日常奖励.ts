@@ -835,6 +835,20 @@ export class Func518 implements IFuncOrigin {
 				app.launchPackage('com.netease.gl');
 				return true;
 			} else if (packageName === 'com.netease.gl') {
+				const point = thisScript.findMultiColor('大神_福利中心')
+				if (point) {
+					const scale = 720 / 1280
+					const offsetX = (1280 - 720 * scale) / 2
+					const x = (point.x - offsetX) / scale
+					const y = point.y / scale
+					log('找色_福利中心');
+					const oper = [[x, y, x + 5, y + 5, 2000]];
+					thisScript.regionClick(oper);
+					thisScript.stopRelatedApp('com.netease.gl');
+					thisScript.launchRelatedApp();
+					thisScript.global.function_Switch.godlike = false;
+					return true;
+				}
 				if (textContains('自动下载').findOnce()) {
 					log('关闭自动下载')
 					if (id('iv_close').findOnce()) {
@@ -850,45 +864,6 @@ export class Func518 implements IFuncOrigin {
 				if (text('一键登录').findOnce()) {
 					log('点击一键登录')
 					text('一键登录').findOnce().click()
-					return true;
-				}
-				if (text('圈子').findOnce()) {
-					log('点击圈子')
-					const oper = [
-						text('圈子').findOnce().bounds().centerX(),
-						text('圈子').findOnce().bounds().centerY(),
-						text('圈子').findOnce().bounds().centerX() + 5,
-						text('圈子').findOnce().bounds().centerY() + 5,
-						1000
-					]
-					thisScript.regionClick([oper]);
-					return true;
-				}
-				if (text('福利中心').findOnce()) {
-					log('点击福利中心')
-					const oper = [
-						text('福利中心').findOnce().bounds().centerX(),
-						text('福利中心').findOnce().bounds().centerY(),
-						text('福利中心').findOnce().bounds().centerX() + 5,
-						text('福利中心').findOnce().bounds().centerY() + 5,
-						5000
-					]
-					thisScript.regionClick([oper]);
-					thisScript.stopRelatedApp('com.netease.gl');
-					thisScript.launchRelatedApp();
-					thisScript.global.function_Switch.godlike = false;
-					return true;
-				}
-				if (text('玩必备').findOnce()) {
-					log('玩必备')
-					const oper = [
-						text('玩必备').findOnce().bounds().centerX(),
-						text('玩必备').findOnce().bounds().centerY(),
-						text('玩必备').findOnce().bounds().centerX() + 5,
-						text('玩必备').findOnce().bounds().centerY() + 5,
-						1000
-					]
-					thisScript.regionClick([oper]);
 					return true;
 				}
 				const { lastFuncDateTime, currentDate, runDate } = thisScript;
