@@ -304,6 +304,19 @@ export class Func320 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1154, 42, 1220, 59, 1000],
 		]
+	}, { // 26 分享关闭
+		desc: [1280, 720,
+			[
+				[right, 1204, 49, 0x8b3149],
+				[right, 1216, 50, 0xe9d1ce],
+				[right, 1229, 48, 0xe8d3d0],
+				[right, 1220, 55, 0xe7d3cf],
+				[right, 1216, 61, 0xe9d2ce],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1203, 39, 1249, 70, 1000],
+		]
 	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -336,7 +349,7 @@ export class Func320 implements IFuncOrigin {
 		if (thisScript.oper({
 			name: '杂项',
 			operator: [thisOperator[4], thisOperator[5], thisOperator[15], thisOperator[8], thisOperator[9]
-				, thisOperator[10], thisOperator[24], thisOperator[25]]
+				, thisOperator[10], thisOperator[24], thisOperator[25], thisOperator[26]]
 		})) {
 			return true;
 		}
