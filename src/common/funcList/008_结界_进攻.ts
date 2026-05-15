@@ -115,7 +115,19 @@ export class Func008 implements IFuncOrigin {
 		desc: '探索地图界面',
 		oper: [
 			[center, 1280, 720, 264, 647, 301, 678, 1000],
-			[center, 1280, 720, 1210, 405, 1254, 509, 1500]
+		]
+	}, { // 6 进入寮突破
+		desc: [1280, 720,
+			[
+				[right, 1214, 293, 0x6a4222],
+				[right, 1240, 337, 0xa75e1c],
+				[right, 1230, 374, 0x744622],
+				[right, 1213, 424, 0x5d3d26],
+				[right, 1246, 476, 0x553623],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1216, 414, 1244, 500, 1000],
 		]
 	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -141,23 +153,17 @@ export class Func008 implements IFuncOrigin {
 				return true;
 			}
 		}
-		if ('个人突破' === thisConf.type) {
-			if (thisScript.oper({
-				name: '地图进入个人突破',
-				operator: [{
-					desc: thisOperator[5].desc,
-					oper: [thisOperator[5].oper[0]]
-				}]
-			})) {
-				return true;
-			}
-		} else if ('寮突破' === thisConf.type) {
-			if (thisScript.oper({
-				name: '地图进入寮突破',
-				operator: [thisOperator[5]]
-			})) {
-				return true;
-			}
+		if (thisScript.oper({
+			name: '地图进入个人突破',
+			operator: [thisOperator[5]]
+		})) {
+			return true;
+		}
+		if ('寮突破' === thisConf.type && thisScript.oper({
+			name: '地图进入寮突破',
+			operator: [thisOperator[6]]
+		})) {
+			return true;
 		}
 		if (!thisScript.oper({
 			name: '突破界面_暗_判断',
