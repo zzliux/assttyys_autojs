@@ -187,6 +187,15 @@ export class Func509 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 843, 534, 894, 570, 1000],
 		]
+	},
+	{
+		// 15 检测_斗技主界面
+		desc: '斗技主界面',
+		oper: [[center, 1280, 720, 1042, 616, 1091, 662, 1000]],
+	},
+	{ // 16 名仕斗技界面
+		desc: '斗技主界面_名士',
+		oper: [[center, 1280, 720, 1042, 616, 1091, 662, 1000]],
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.global.change_shikigami_flag) {
@@ -201,7 +210,7 @@ export class Func509 implements IFuncOrigin {
 				operator: [
 					thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[4],
 					thisOperator[5], thisOperator[6], thisOperator[7], thisOperator[8], thisOperator[9],
-					thisOperator[11], thisOperator[12], thisOperator[13], thisOperator[14]]
+					thisOperator[11], thisOperator[12], thisOperator[13], thisOperator[14], thisOperator[15], thisOperator[16]]
 			})) {
 				sleep(1000);
 				return true;
