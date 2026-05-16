@@ -43,7 +43,7 @@ export class Func690 implements IFuncOrigin {
 			default: '式神寄养',
 		}, {
 			name: 'close_game_new',
-			desc: '长时间未识别时重启游戏',
+			desc: '长时间未识别时重启游戏(30秒)',
 			type: 'switch',
 			default: true,
 		}, {
@@ -598,9 +598,9 @@ export class Func690 implements IFuncOrigin {
 			})) {
 				thisScript.global.timestamp = new Date().getTime();
 			}
-			// 10秒钟未执行过任何操作，杀应用重启
+			// 30秒钟未执行过任何操作，杀应用重启
 			if (thisScript.global.app_is_open_flag &&
-				new Date().getTime() - Math.max(thisScript.global.timestamp, lastFuncDateTime?.getTime() || 0, currentDate?.getTime() || 0, runDate?.getTime() || 0) > 10000
+				new Date().getTime() - Math.max(thisScript.global.timestamp, lastFuncDateTime?.getTime() || 0, currentDate?.getTime() || 0, runDate?.getTime() || 0) > 30000
 			) {
 				thisScript.stopRelatedApp();
 				sleep(2000);

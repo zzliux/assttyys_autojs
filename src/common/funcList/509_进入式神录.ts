@@ -98,20 +98,17 @@ export class Func509 implements IFuncOrigin {
 			[center, 1280, 720, 225, 602, 264, 637, 1000],	//	点击式神按钮
 		]
 	}, { // 7 检测_狭间
-		desc:
+		desc: [1280, 720,
 			[
-				1280, 720,
-				[
-					[right, 1165, 597, 0xd5bfc2],
-					[right, 1155, 659, 0xd9c3c5],
-					[right, 1168, 491, 0xddd3c4],
-					[center, 476, 412, 0x53170f],
-					[right, 1016, 111, 0xe8d4cf],
-					[center, 547, 582, 0x840517],
-				]
-			],
+				[center, 522, 23, 0xd3b9a0],
+				[center, 524, 40, 0xd9ccb5],
+				[right, 884, 44, 0xfaae68],
+				[right, 1224, 484, 0xe1d4ba],
+				[right, 737, 30, 0x583616],
+			]
+		],
 		oper: [
-			[right, 1280, 720, 1135, 456, 1182, 498, 1200]    //  点击式神按钮
+			[center, 1280, 720, 1203, 467, 1244, 511, 1000],
 		]
 	}, { // 8 检测_首领
 		desc:

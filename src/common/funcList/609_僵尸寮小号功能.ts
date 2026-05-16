@@ -1412,6 +1412,18 @@ export class Func609 implements IFuncOrigin {
 			[center, 1280, 720, 431, 424, 551, 466, 3000],
 			[center, 1280, 720, 1148, 82, 1192, 113, 1000],
 		]
+	}, { // 99 被封禁
+		desc: [1280, 720,
+			[
+				[center, 426, 224, 0x6c4938],
+				[right, 859, 224, 0x684735],
+				[right, 850, 494, 0x624232],
+				[center, 419, 495, 0x664535],
+				[center, 447, 434, 0xdf6851],
+				[right, 685, 431, 0xf3b25e],
+				[center, 621, 313, 0xcbb59c],
+			]
+		],
 	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -1440,6 +1452,19 @@ export class Func609 implements IFuncOrigin {
 		}
 		if (thisconf.card === '关闭') {
 			thisScript.global.function_Switch.card = false;
+		}
+		if (thisScript.oper({
+			id: 609,
+			name: '被封禁',
+			operator: [thisOperator[99]]
+		})) {
+			thisScript.stopRelatedApp();
+			sleep(2000);
+			thisScript.launchRelatedApp();
+			thisScript.global.valid_account_num = thisScript.global.valid_account_num + 1;
+			thisScript.global.account_num += 1;
+			thisScript.global.function_Switch.login = true;
+			return true
 		}
 		if (thisScript.oper({
 			id: 609,

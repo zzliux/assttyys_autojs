@@ -810,92 +810,89 @@ export class Func503 implements IFuncOrigin {
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['503'];
-		let enabledThisOperator = [];
-		enabledThisOperator = Object.keys(thisConf).filter(keyName => /oper_\d+/.test(keyName) && thisConf[keyName]).map(keyName => thisOperator[parseInt(keyName.split('_')[1])]);
-		if (thisScript.oper({
-			id: 503,
-			name: '返回庭院',
-			operator: enabledThisOperator
-		})) {
-			return true;
-		}
-
-		// 作为保底，最低优先级
-		const { lastFuncDateTime, currentDate, runDate } = thisScript;
-		if (thisConf['oper_find_-1']) {
-			if (new Date().getTime() - Math.max(lastFuncDateTime?.getTime() || 0, currentDate?.getTime() || 0, runDate?.getTime() || 0) > 3000) {
-				const backHomePoint = thisScript.findMultiColor('左上_返回庭院');
-				if (backHomePoint) {
-					thisScript.regionClick([[backHomePoint.x, backHomePoint.y, backHomePoint.x + 15, backHomePoint.y + 15, 1200]]);
-					thisScript.myToast('点击左上角返回庭院图标');
-					return true;
-				}
-			}
-		}
-		// 查找返回图标
-		// const backPoint = thisScript.findMultiColor('返回图标');
-		// if (backPoint) {
-		// 	thisScript.regionClick([[backPoint.x, backPoint.y, backPoint.x + 20, backPoint.y + 20, 1200]]);
-		// 	return true;
-		// }
-
-		if (thisScript.oper({
-			name: '是否为庭院',
-			operator: [{
-				desc: thisOperator[8].desc
-			}, {
-				desc: thisOperator[9].desc
-			}, {
-				desc: thisOperator[13].desc
-			}, {
-				desc: thisOperator[16].desc
-			}]
-		})) {
-			// 町中与庭院几乎一致。。。只能用牌子来做比较
+		// 检测只运行一次的开关状态判断是否不再运行
+		if (!thisScript.global.open_only_once) {
+			let enabledThisOperator = [];
+			enabledThisOperator = Object.keys(thisConf).filter(keyName => /oper_\d+/.test(keyName) && thisConf[keyName]).map(keyName => thisOperator[parseInt(keyName.split('_')[1])]);
 			if (thisScript.oper({
 				id: 503,
-				name: '旧版町中界面',
-				operator: [thisOperator[4]]
+				name: '返回庭院',
+				operator: enabledThisOperator
 			})) {
 				return true;
 			}
-			if (thisScript.oper({
-				name: '庭院界面',
-				operator: [{
-					desc: thisOperator[12].desc
-				}]
-			})) {
-				// 返回方案起始点,并重置起始点?必要性存疑
-				let next_scheme = thisScript.runtimeParams && thisScript.runtimeParams.next_scheme_name;
-				if (!next_scheme) {
-					next_scheme = thisScript.superGlobal.next_scheme_name;
-					thisScript.superGlobal.next_scheme_name = null;
-				}
-				if (next_scheme) {
-					log('id_503_next_scheme:' + next_scheme);
-				}
-				if (thisConf.scheme_switch_enabled) {
-					next_scheme = thisConf.next_scheme as string;
-				}
-				if (!next_scheme) {
-					if ('停止脚本' === thisConf.afterCountOper) {
-						thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-						thisScript.stop();
-					} else if ('关闭应用' === thisConf.afterCountOper) {
-						sleep(1000);
-						const packageNames = thisScript.stopRelatedApp();
-						thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，应用[${packageNames}]已杀，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-						sleep(2000);
-						thisScript.stop();
+
+			// 作为保底，最低优先级
+			const { lastFuncDateTime, currentDate, runDate } = thisScript;
+			if (thisConf['oper_find_-1']) {
+				if (new Date().getTime() - Math.max(lastFuncDateTime?.getTime() || 0, currentDate?.getTime() || 0, runDate?.getTime() || 0) > 3000) {
+					const backHomePoint = thisScript.findMultiColor('左上_返回庭院');
+					if (backHomePoint) {
+						thisScript.regionClick([[backHomePoint.x, backHomePoint.y, backHomePoint.x + 15, backHomePoint.y + 15, 1200]]);
+						thisScript.myToast('点击左上角返回庭院图标');
 						return true;
 					}
-				} else {
-					thisScript.rerun(next_scheme);
-					sleep(3000);
-					return true;
 				}
 			}
+
+			if (thisScript.oper({
+				name: '是否为庭院',
+				operator: [{
+					desc: thisOperator[8].desc
+				}, {
+					desc: thisOperator[9].desc
+				}, {
+					desc: thisOperator[13].desc
+				}, {
+					desc: thisOperator[16].desc
+				}]
+			})) {
+				// 町中与庭院几乎一致。。。只能用牌子来做比较
+				if (thisScript.oper({
+					id: 503,
+					name: '旧版町中界面',
+					operator: [thisOperator[4]]
+				})) {
+					return true;
+				}
+				if (thisScript.oper({
+					name: '庭院界面',
+					operator: [{
+						desc: thisOperator[12].desc
+					}]
+				})) {
+					// 返回方案起始点,并重置起始点?必要性存疑
+					let next_scheme = thisScript.runtimeParams && thisScript.runtimeParams.next_scheme_name;
+					if (!next_scheme) {
+						next_scheme = thisScript.superGlobal.next_scheme_name;
+						thisScript.superGlobal.next_scheme_name = null;
+					}
+					if (next_scheme) {
+						log('id_503_next_scheme:' + next_scheme);
+					}
+					if (thisConf.scheme_switch_enabled) {
+						next_scheme = thisConf.next_scheme as string;
+					}
+					if (!next_scheme) {
+						if ('停止脚本' === thisConf.afterCountOper) {
+							thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+							thisScript.stop();
+						} else if ('关闭应用' === thisConf.afterCountOper) {
+							sleep(1000);
+							const packageNames = thisScript.stopRelatedApp();
+							thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，应用[${packageNames}]已杀，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+							sleep(2000);
+							thisScript.stop();
+							return true;
+						}
+					} else {
+						thisScript.rerun(next_scheme);
+						sleep(3000);
+						return true;
+					}
+				}
+			}
+			return false;
 		}
-		return false;
 	}
 }

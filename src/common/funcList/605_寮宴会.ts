@@ -348,7 +348,12 @@ export class Func605 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 522, 289, 782, 352, 1000],
 		]
-	}
+	}, { // 26 秘闻挑战开启提示
+		desc: '秘闻挑战开启',
+		oper: [
+			[left, 1280, 720, 452, 605, 870, 683, 2000],
+		]
+	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconfig = thisScript.scheme.config['605'];
@@ -420,7 +425,7 @@ export class Func605 implements IFuncOrigin {
 			}
 			if (thisScript.oper({
 				name: '进入荒川秘闻',
-				operator: [thisOperator[21], thisOperator[22], thisOperator[25]]
+				operator: [thisOperator[21], thisOperator[22], thisOperator[25], thisOperator[26]]
 			})) {
 				return true;
 			}
