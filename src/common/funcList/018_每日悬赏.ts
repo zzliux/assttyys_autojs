@@ -348,10 +348,31 @@ export class Func018 implements IFuncOrigin {
 				[center, 334, 327, 0x282624],
 			]
 		],
+	}, { // 25 悬赏卡主无任务
+		desc: [1280, 720,
+			[
+				[left, 166, 70, 0x413d42],
+				[right, 1083, 68, 0x3c3b45],
+				[left, 215, 314, 0x5a423c],
+				[right, 1132, 312, 0x503a37],
+				[center, 546, 324, 0x5a413a],
+				[right, 717, 327, 0x5a433e],
+				[right, 1176, 133, 0xe7d3ce],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1156, 114, 1204, 154, 1000],
+		]
 	},]
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['18'];
 		let enabledThisOperator = [{ desc: thisOperator[6].desc }];
+		if (thisScript.oper({
+			name: '悬赏_卡主无任务',
+			operator: [thisOperator[25]]
+		})) {
+			return true
+		}
 		// 打开和追踪悬赏
 		if (!thisScript.global.xsOpened && thisScript.oper({
 			name: '悬赏_庭院界面',

@@ -322,10 +322,14 @@ export class Func603 implements IFuncOrigin {
 		if (presetStr) {
 			// 读取参数位置
 			const [p, q] = presetStr.split(/[,，]/);
-			thisScript.global.preset_once_groupNum = parseInt(p?.trim(), 10);
-			thisScript.global.preset_once_defaultNum = parseInt(q?.trim(), 10);
-			thisScript.global.preset_once_team_groupNum = parseInt(p?.trim(), 10);
-			thisScript.global.preset_once_team_defaultNum = parseInt(q?.trim(), 10);
+			const pNum = parseInt(p?.trim(), 10);
+			const qNum = parseInt(q?.trim(), 10);
+			if (pNum !== 0 && qNum !== 0) {
+				thisScript.global.preset_once_groupNum = pNum;
+				thisScript.global.preset_once_defaultNum = qNum;
+				thisScript.global.preset_once_team_groupNum = pNum;
+				thisScript.global.preset_once_team_defaultNum = qNum;
+			}
 			if (thisScript.global.preset_once_groupNum > 0) {
 				if (thisScript.global.preset_once_groupNum === thisScript.global.xiaJian.fenZu &&
 					thisScript.global.preset_once_defaultNum === thisScript.global.xiaJian.zhenRong) {
