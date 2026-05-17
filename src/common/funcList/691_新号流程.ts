@@ -836,7 +836,7 @@ export class Func691 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 691,
 				name: '剧情',
-				operator: thisOperator.slice(3, 19)
+				operator: thisOperator.slice(3, 17)
 			})) {
 				return true;
 			}
@@ -867,6 +867,15 @@ export class Func691 implements IFuncOrigin {
 			})) {
 				thisScript.global.newAccount.create = false;
 				thisScript.global.newAccount.apply = true;
+				return true;
+			}
+			if (thisScript.oper({
+				id: 691,
+				name: '申请',
+				operator: [thisOperator[17]],
+			})) {
+				thisScript.global.newAccount.create = false;
+				thisScript.global.newAccount.getBird = true;
 				return true;
 			}
 		}

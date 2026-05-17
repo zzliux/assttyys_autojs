@@ -124,33 +124,33 @@ export class Func692 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 787, 673, 897, 707, 1000],
 		]
-	}, { // 7 御魂选类型的界面
+	}, { // 7 选 八岐大蛇
 		desc: [
 			1280, 720,
 			[
-				[left, 45, 37, 0xf5e5a5],
-				[right, 1232, 43, 0xcaa274],
-				[left, 182, 141, 0x323045],
-				[center, 547, 133, 0x5b3232],
-				[right, 889, 147, 0x555534],
-				[right, 1240, 181, 0x344158],
+				[left, 266, 131, 0xbd975a],
+				[center, 589, 114, 0xd4bd8b],
+				[right, 921, 132, 0x67522e],
+				[right, 1193, 90, 0xa28c5a],
+				[right, 1190, 647, 0x3f3226],
+				[right, 1220, 659, 0xefe3c3],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 85, 117, 325, 503, 500], // 御魂-八岐大蛇
+			[center, 1280, 720, 129, 319, 294, 386, 1000], // 御魂-八岐大蛇
 		]
-	}, { // 8 三类御魂 废弃
+	}, { // 8 选择 魂八组队
 		desc: [1280, 720,
 			[
-				[left, 41, 36, 0xf9eeb3],
-				[right, 1124, 47, 0xd8b188],
-				[right, 1237, 47, 0xd3af84],
-				[right, 1161, 608, 0xded2bb],
-				[right, 1207, 671, 0x372015]
+				[left, 111, 511, 0xa24623],
+				[left, 208, 521, 0x7f241b],
+				[left, 133, 536, 0x902b14],
+				[right, 1009, 597, 0xe5d9c4],
+				[right, 1011, 665, 0xe7d9c2],
 			]
 		],
 		oper: [
-			[right, 1280, 720, 1116, 602, 1197, 683, 2000]
+			[center, 1280, 720, 970, 594, 1055, 675, 1000],
 		]
 	}, { // 9 御魂九层 废弃
 		desc: [1280, 720,
@@ -613,7 +613,7 @@ export class Func692 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 723, 461, 826, 504, 1000],
 		]
-	}, { // 48 完成注销
+	}, { // 48 完成注销 废弃
 		desc: [1280, 720,
 			[
 				[center, 425, 223, 0x664535],
@@ -792,7 +792,7 @@ export class Func692 implements IFuncOrigin {
 				curCnt++;
 				thisScript.keepScreen(false);
 				if (curCnt >= maxCount) {
-					thisScript.myToast(`连续执行${maxCount}次挑战后未开始`);
+					thisScript.myToast(`连续点击${maxCount}次未进入`);
 					thisScript.rerun(thisconf.next_scheme);
 					sleep(2000);
 					return false;
@@ -801,8 +801,7 @@ export class Func692 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 692,
 				name: 'five',
-				operator: [thisOperator[16], thisOperator[17]
-					, thisOperator[22], thisOperator[26]]
+				operator: [thisOperator[16], thisOperator[17], thisOperator[22], thisOperator[26]]
 			})) {
 				return true;
 			}
@@ -830,7 +829,7 @@ export class Func692 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 692,
 				name: 'over',
-				operator: [thisOperator[28], thisOperator[29], thisOperator[7], thisOperator[30]
+				operator: [thisOperator[28], thisOperator[29], thisOperator[7], thisOperator[8], thisOperator[30]
 					, thisOperator[31], thisOperator[32]]
 			})) {
 				return true;
@@ -937,14 +936,7 @@ export class Func692 implements IFuncOrigin {
 					return false;
 				}
 				thisScript.regionClick(thisOperator[47].oper);
-				return true;
-			}
-			if (thisScript.oper({
-				id: 692,
-				name: 'over',
-				operator: [thisOperator[48]]
-			})) {
-				thisScript.rerun('__关闭应用__')
+				thisScript.rerun(thisconf.next_scheme);
 				return true;
 			}
 		}

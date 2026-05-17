@@ -1424,6 +1424,27 @@ export class Func609 implements IFuncOrigin {
 				[center, 621, 313, 0xcbb59c],
 			]
 		],
+	}, { // 100 是否为登录页
+		desc: [1280, 720,
+			[
+				[center, 704, 602, 0xffffff],
+				[center, 713, 611, 0xffffff],
+				[center, 623, 597, 0xfffefe],
+				[center, 630, 601, 0xfdfdfd],
+				[center, 590, 611, 0xffffff],
+				[center, 588, 592, 0xfefdfd],
+				[left, 86, 53, 0xfdfddb],
+				[left, 88, 182, 0xfbdfae],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 562, 574, 722, 617, 1200], // 点击开始游戏
+		],
+	}, { // 101 庭院未打开菜单
+		desc: '页面是否为庭院_菜单未展开_只支持默认庭院皮肤与默认装饰',
+		oper: [
+			[right, 1280, 720, 1168, 592, 1230, 690, 1200]
+		]
 	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -1572,9 +1593,22 @@ export class Func609 implements IFuncOrigin {
 				if (curCnt >= maxCount) {
 					sleep(500);
 					thisScript.global.account_state = 'function';
-					thisScript.global.open_only_once = true;
 					return true;
 				}
+			}
+			const point = thisScript.findMultiColor('皮肤广告关闭按钮');
+			if (point) {
+				console.log('识别广告关闭按钮成功');
+				const oper = [[point.x - 10, point.y - 10, point.x, point.y, 1000]];
+				thisScript.regionClick(oper);
+				return true;
+			}
+			if (thisScript.oper({
+				id: 609,
+				name: '点击登录',
+				operator: [thisOperator[100], thisOperator[101]]
+			})) {
+				return true
 			}
 		}
 		if (thisScript.global.account_state === 'function') {
@@ -2087,7 +2121,6 @@ export class Func609 implements IFuncOrigin {
 				thisScript.global.function_Switch = null;
 				thisScript.global.account_state = 'login';
 				thisScript.runTimes['2'] = 0;
-				thisScript.global.open_only_once = false;
 				return true;
 			}
 		}

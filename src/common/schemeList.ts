@@ -632,7 +632,7 @@ const SchemeList: IScheme[] = [
 		id: 111,
 		schemeName: '僵尸寮日常任务',
 		star: true,
-		list: [0, 1, 2, 3, 24, 609, 690, 503],
+		list: [0, 1, 2, 3, 24, 609, 503],
 		groupNames: ['小号部分'],
 		config: {
 			'0': {
@@ -756,7 +756,7 @@ const SchemeList: IScheme[] = [
 		id: 79,
 		schemeName: '师徒_徒弟守护',
 		groupNames: ['师徒部分'],
-		list: [690, 0, 1, 2, 3, 306, 5, 692, 29, 503],
+		list: [0, 1, 2, 3, 306, 5, 692, 29, 503],
 		config: {
 			'692': {
 				next_scheme: '__关闭应用__'
