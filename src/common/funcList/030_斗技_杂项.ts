@@ -223,7 +223,17 @@ export class Func030 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 757, 149, 799, 198, 1200]	//	点击斗技灯笼
 		]
-	}];
+	}, { // 19 淘汰赛
+		desc: [1280, 720,
+			[
+				[center, 619, 540, 0xefc784],
+				[right, 640, 537, 0xefc384],
+				[right, 677, 541, 0xefc784],
+				[right, 717, 539, 0x843c29],
+				[right, 771, 592, 0x5f3827],
+			]
+		]
+	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['30'];
 		if (thisconf.ledgeProPvP) {
@@ -252,8 +262,21 @@ export class Func030 implements IFuncOrigin {
 		if (thisconf.isKnowledgePvP) {
 			if (thisScript.oper({
 				id: 30,
+				name: '斗技_淘汰赛',
+				operator: [thisOperator[19]]
+			})) {
+				const point = thisScript.findMultiColorEx('淘汰赛_败')
+				if (point?.length > 1) {
+					thisScript.doPush(thisScript, { text: '已二败，停止斗技。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+					thisScript.stop();
+					sleep(3000);
+					return true;
+				}
+			}
+			if (thisScript.oper({
+				id: 30,
 				name: '斗技_杂项_名仕',
-				operator: [thisOperator[5], thisOperator[10],]
+				operator: [thisOperator[5], thisOperator[10]]
 			})) {
 				return true;
 			}

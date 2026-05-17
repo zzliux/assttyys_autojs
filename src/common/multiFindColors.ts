@@ -3051,6 +3051,19 @@ const multiFindColors: IMultiFindColorsOrigin = {
 			]
 		]],
 	},
+	'淘汰赛_败': {
+		region: [left, 1280, 720, 444, 569, 745, 636],
+		desc: [[
+			1280, 720,
+			[
+				[center, 496, 591, 0x94a1a1],
+				[center, 507, 594, 0x979da4],
+				[center, 505, 605, 0x949fa1],
+				[center, 489, 600, 0x90949b],
+				[center, 511, 610, 0x929eaa],
+			]
+		],]
+	},
 	// '': {
 	// 	region: [left, 1280, 720, 0, 0, 1280, 720],
 	// 	desc: [[
