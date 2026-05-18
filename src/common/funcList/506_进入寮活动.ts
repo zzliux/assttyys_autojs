@@ -239,7 +239,7 @@ export class Func506 implements IFuncOrigin {
 				1280, 720,
 				[
 					[right, 1060, 650, 0xfff3f3],
-					[center, 885, 661, 0xfff4f5],
+					[center, 883, 650, 0xfbeae8],
 					[left, 259, 35, 0x2a2937],
 					[left, 175, 589, 0x684b2c],
 					[left, 33, 592, 0x8a6137],
