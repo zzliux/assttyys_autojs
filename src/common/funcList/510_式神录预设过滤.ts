@@ -198,7 +198,7 @@ export class Func510 implements IFuncOrigin {
 				[center, 1280, 720, 423, 407, 446, 430, 1000],
 				[center, 1280, 720, 430, 492, 543, 533, 1000],
 			]
-		},];
+		}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['510'];
 		if (thisScript.oper({
