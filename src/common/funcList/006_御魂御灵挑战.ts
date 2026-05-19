@@ -7,8 +7,8 @@ const right = 2;
 
 export class Func006 implements IFuncOrigin {
 	id = 6;
-	name = '御魂/御灵挑战';
-	desc = '在御魂或者御灵的挑战界面时，点击挑战按钮，连续点击3次后未开始将自动停止脚本';
+	name = '御魂/御灵/秘闻挑战';
+	desc = '点击挑战按钮，连续点击3次后未开始将自动停止脚本';
 	config = [{
 		desc: '',
 		config: [{
@@ -45,6 +45,19 @@ export class Func006 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1055, 595, 1143, 669, 1000],
 		]
+	}, { // 2 普通秘闻
+		desc: [1280, 720,
+			[
+				[right, 1056, 566, 0x533522],
+				[right, 1144, 564, 0x59392a],
+				[right, 1064, 606, 0xe3d7c2],
+				[right, 1142, 605, 0xe5d9c4],
+				[right, 1059, 651, 0x392418],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1052, 568, 1153, 648, 1000],
+		]
 	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['6'];
@@ -53,7 +66,7 @@ export class Func006 implements IFuncOrigin {
 		while (thisScript.oper({
 			id: 6,
 			name: '御魂/御灵挑战',
-			operator: [thisOperator[0], thisOperator[1]]
+			operator: [thisOperator[0], thisOperator[1], thisOperator[2]]
 		}, 0)) {
 			curCnt++;
 			thisScript.keepScreen(false);
