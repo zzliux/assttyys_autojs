@@ -194,6 +194,7 @@ export class Func1106 implements IFuncOrigin {
 				thisScript.global.change_shikigami_state = 'flushed';// 再次更换御魂
 				thisScript.global.preset_once_groupNum = thisScript.scheme.config?.['510']?.groupNum as number;
 				thisScript.global.preset_once_defaultNum = thisScript.scheme.config?.['510']?.defaultNum as number;
+				thisScript.global.zhenShe--;
 				return true;
 			}
 			if (thisScript.oper({
@@ -202,41 +203,28 @@ export class Func1106 implements IFuncOrigin {
 				operator: [thisOperator[6]]
 			})) {
 				thisScript.global.zhenShe = 1;
+				thisScript.myToast('检测到只剩一次')
 			}
-			// 用循环来保证多次点击只计数一次
-			let curCnt = 0;
-			const maxCount = 10;
-			while (thisScript.oper({
+			// 不进行次数判定,只用1/2来识别次数
+			if (thisScript.oper({
 				id: 1106,
 				name: '每周两次真蛇_杂项',
 				operator: [thisOperator[1]]
 			})) {
-				curCnt++;
-				if (curCnt >= maxCount) {
-					thisScript.myToast(`连续执行${maxCount}次挑战后未开始，脚本自动停止`);
-					thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-					thisScript.stop();
-					sleep(2000);
-					return false;
-				}
-				if (curCnt === 1) {
-					thisScript.global.zhenShe--;
-				}
-				sleep(500);
-				thisScript.keepScreen();
+				return true
 			}
 		} else if (thisScript.global.zhenShe == 0) {
+			thisScript.global.change_shikigami_flag = false;
 			if (thisScript.oper({
 				id: 1106,
 				name: '每周两次真蛇_探索界面',
 				operator: [thisOperator[9]]
 			})) {
 				thisScript.doPush(thisScript, { text: '已完成两次真蛇，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
-				thisScript.global.zhenShe = -1; // 已完成
-				return true
+				thisScript.rerun(thisConf.next_scheme);
+				sleep(2000);
+				return true;
 			}
-		} else if (thisScript.global.zhenShe == -1) {
-			return thisScript.rerun(thisConf.next_scheme);
 		}
 		if (thisScript.oper({
 			id: 1106,
