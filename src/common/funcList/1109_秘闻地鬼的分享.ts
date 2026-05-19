@@ -8,7 +8,7 @@ const right = 2;
 export class Func1109 implements IFuncOrigin {
 	id = 1109;
 	name = '每周秘闻地鬼的分享';
-	desc = '请保证已经攻打过秘闻和地鬼';
+	desc = '请保证已经攻打过秘闻和地鬼(非mumu版本时依赖大神分享,并且无地鬼分享)';
 	operator: IFuncOperatorOrigin[] = [{ // 0 庭院进入探索
 		desc: '页面是否为庭院_菜单已展开_只支持默认庭院皮肤与默认装饰',
 		oper: [
@@ -214,12 +214,70 @@ export class Func1109 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1197, 30, 1222, 58, 1000],
 		]
+	}, { // 19 大神分享
+		desc: [1280, 720,
+			[
+				[right, 1007, 627, 0xfefcfc],
+				[right, 998, 641, 0x1b1f3c],
+				[right, 1027, 643, 0x222239],
+				[right, 1027, 648, 0x17233e],
+				[right, 1021, 655, 0xfefcfc],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 993, 631, 1031, 663, 5000],
+		]
 	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.global.miWenshare) {
+			let curCnt = 0;
+			const maxCount = 3;
+			while (thisScript.global.MT_share_type === 'mumu' && thisScript.oper({
+				name: '秘闻分享_多次点击',
+				operator: [thisOperator[8]]
+			})) {
+				curCnt++;
+				if (curCnt >= maxCount) {
+					thisScript.myToast('点击微信失败,尝试大神');
+					thisScript.global.MT_share_type = 'phone';
+					sleep(1000);
+					return false;
+				}
+				sleep(1000);
+				thisScript.keepScreen(false);
+			}
+			while (thisScript.global.MT_share_type === 'phone' && thisScript.oper({
+				name: '秘闻分享_多次点击',
+				operator: [thisOperator[19]]
+			})) {
+				curCnt++;
+				if (curCnt >= maxCount) {
+					thisScript.myToast('点击微博失败,停止分享');
+					thisScript.global.miWenshare = false;
+					thisScript.global.diGuishare = true;
+					sleep(1000);
+					return false;
+				}
+				sleep(1000);
+				thisScript.keepScreen(false);
+			}
+			if (thisScript.global.MT_share_type === 'phone') {
+				if (text('发布').findOnce()) {
+					log('点击发布')
+					text('发布').findOnce().click()
+					return true;
+				}
+				if (id('tv_request_share_app_name').findOnce()) {
+					log('点击返回')
+					id('tv_request_share_app_name').findOnce().click()
+					thisScript.global.miWenshare = false;
+					sleep(1000);
+					return true;
+				}
+			}
 			if (thisScript.oper({
 				id: 1109,
-				name: '秘闻分享完毕',
+				name: '秘闻微信分享完毕',
 				operator: [thisOperator[9]]
 			})) {
 				thisScript.global.miWenshare = false;
@@ -254,7 +312,7 @@ export class Func1109 implements IFuncOrigin {
 			}
 
 		}
-		if (thisScript.global.diGuishare) {
+		if (!thisScript.global.diGuishare) {
 			if (thisScript.oper({
 				id: 1109,
 				name: '地鬼分享完毕',
@@ -272,12 +330,19 @@ export class Func1109 implements IFuncOrigin {
 				return true;
 			}
 		}
-		if (!thisScript.global.diGuishare && thisScript.oper({
+		if (thisScript.global.diGuishare && thisScript.oper({
 			id: 1109,
-			name: '地鬼分享返回',
-			operator: [thisOperator[17], thisOperator[18]]
+			name: '分享完成_返回',
+			operator: [thisOperator[10], thisOperator[17], thisOperator[18]]
 		})) {
 			return true;
+		}
+		const { lastFuncDateTime, currentDate, runDate } = thisScript;
+		if (new Date().getTime() - Math.max(lastFuncDateTime?.getTime() || 0, currentDate?.getTime() || 0, runDate?.getTime() || 0) > 10000) {
+			if (id('iv_close').findOnce()) {
+				id('iv_close').findOnce().click();
+				return true;
+			}
 		}
 		return false;
 	}
