@@ -109,15 +109,16 @@ export class Func320 implements IFuncOrigin {
 	}, { // 10 返回大厅
 		desc: [1280, 720,
 			[
-				[center, 569, 636, 0xffc879],
-				[center, 573, 656, 0xfdc36e],
-				[right, 717, 635, 0xffcd83],
-				[right, 712, 662, 0xffdfaf],
-				[right, 699, 650, 0xffdfab],
+				[center, 571, 603, 0xffc774],
+				[center, 569, 626, 0xfcc068],
+				[right, 708, 603, 0xffcf84],
+				[right, 711, 631, 0xffe3bc],
+				[center, 637, 631, 0xffdca6],
+				[center, 638, 600, 0xffd089],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 568, 634, 716, 666, 1000],
+			[center, 1280, 720, 564, 600, 719, 633, 1000],
 		]
 	}, { // 11 阵容
 		desc: [1280, 720,
