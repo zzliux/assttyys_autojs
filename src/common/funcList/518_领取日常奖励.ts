@@ -8,7 +8,7 @@ const right = 2;
 export class Func518 implements IFuncOrigin {
 	id = 518;
 	name = '领取日常奖励';
-	desc = '一键代办,商店黑蛋,发送吉闻,花合战,大神每日(需安装)';
+	desc = '一键代办,商店黑蛋,发送吉闻,花合战,大神每日(需安装),注:不会领每日六星御魂';
 	operator: IFuncOperatorOrigin[] = [
 		{
 			// 0 页面是否为庭院(菜单未展开) 只支持默认庭院皮肤与默认装饰
