@@ -8,7 +8,7 @@ const right = 2;
 export class Func320 implements IFuncOrigin {
 	id = 320;
 	name = '百鬼棋局挂机';
-	desc = '';
+	desc = '自行配置一套阵容置顶';
 	config = [{
 		desc: '配置',
 		config: [{
