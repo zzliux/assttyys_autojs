@@ -953,11 +953,10 @@ const multiFindColors: IMultiFindColorsOrigin = {
 			[
 				1280, 720,
 				[
-					[left, 26, 272, 0x896a4a],
-					[left, 86, 277, 0x5a4231],
-					[left, 38, 253, 0x997957],
-					[left, 74, 253, 0x887051],
-					[left, 56, 247, 0xa78b65],
+					[left, 21, 278, 0x7a6046],
+					[left, 91, 283, 0x7f6140],
+					[left, 85, 257, 0x9a8059],
+					[left, 31, 253, 0x8a7251],
 					[left, 28, 334, 0xbbb39d],
 				]
 			]
@@ -970,11 +969,11 @@ const multiFindColors: IMultiFindColorsOrigin = {
 			[
 				1280, 720,
 				[
-					[left, 25, 150, 0x8c704b],
-					[left, 39, 128, 0x5a4834],
-					[left, 89, 138, 0xf25a3f],
-					[left, 86, 150, 0x5a4231],
-					[left, 89, 122, 0xfab73c],
+					[left, 21, 152, 0x7b6046],
+					[left, 91, 152, 0x6f573d],
+					[left, 33, 125, 0x8e6f51],
+					[left, 79, 122, 0xeaad38],
+					[left, 89, 122, 0xf3b032],
 				]
 			]
 		],
@@ -1001,10 +1000,9 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				1280, 720,
 				[
 					[center, 370, 522, 0xa6917d],
-					[center, 412, 368, 0xbd7d21],
-					[center, 412, 398, 0xaf762a],
 					[left, 172, 539, 0xa28b78],
-					[center, 409, 134, 0xf62626],
+					[center, 404, 135, 0xef1818],
+					[center, 414, 135, 0xf31a19],
 				]
 			]
 		]
@@ -1016,9 +1014,6 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				1280, 720,
 				[
 					[center, 370, 522, 0xa6917d],
-					[left, 148, 374, 0xbc2925],
-					[left, 167, 394, 0xb4302b],
-					[left, 227, 541, 0xf9f2df],
 					[left, 233, 550, 0xf7f3df],
 					[left, 257, 522, 0xf9e8cb],
 					[left, 247, 525, 0xf3dbbd],
@@ -1035,9 +1030,6 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				1280, 720,
 				[
 					[center, 370, 522, 0xa6917d],
-					[left, 148, 374, 0xbc2925],
-					[left, 167, 394, 0xb4302b],
-					[left, 227, 541, 0xf9f2df],
 					[left, 233, 550, 0xf7f3df],
 					[left, 257, 522, 0xf9e8cb],
 					[left, 247, 525, 0xf3dbbd],
@@ -1054,8 +1046,6 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				1280, 720,
 				[
 					[center, 370, 522, 0xa6917d],
-					[left, 148, 374, 0xbc2925],
-					[left, 167, 394, 0xb4302b],
 					[left, 308, 544, 0xe3c873],
 					[center, 340, 541, 0xedd7b1],
 					[left, 218, 580, 0xf29530],
@@ -1072,10 +1062,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				1280, 720,
 				[
 					[center, 370, 522, 0xa6917d],
-					[left, 145, 374, 0xbc2925],
-					[left, 166, 391, 0xb52e2a],
 					[left, 233, 550, 0xf7f3df],
-					[left, 227, 541, 0xfef5e1],
 					[center, 321, 553, 0xc8a98b],
 					[center, 338, 548, 0xe9361d],
 				]
