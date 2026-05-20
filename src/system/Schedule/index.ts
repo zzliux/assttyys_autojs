@@ -311,6 +311,22 @@ class Schedule {
 			}
 		}
 
+		const now = new Date();
+		// 星期几
+		const day = now.getDay();
+		// 小时和分钟
+		const hour = now.getHours();
+		const minute = now.getMinutes();
+		// 转成分钟比较
+		const currentMinutes = hour * 60 + minute;
+		// 6:30
+		const start = 15 * 60;
+		// 9:00
+		const end = 15 * 60 +5;
+		if (day === 3 && currentMinutes >= start && currentMinutes < end) {
+			return true;
+		}
+
 		// 检查当前任务的状态
 		if (this.currentRunningJob) {
 			if (this.currentRunningJob.status !== 'running') {
