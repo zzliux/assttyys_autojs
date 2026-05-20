@@ -155,11 +155,10 @@ export class Func690 implements IFuncOrigin {
 	}, { // 9 用户中心
 		desc: [1280, 720,
 			[
-				[right, 1225, 255, 0xd0c3ac],
-				[right, 1229, 245, 0xc8bca4],
-				[right, 1227, 233, 0x816c56],
-				[right, 1238, 240, 0x806c5a],
-				[right, 1222, 246, 0xc6bda8],
+				[right, 1232, 230, 0x846c5f],
+				[right, 1237, 237, 0x846a5b],
+				[right, 1230, 243, 0xd2c4b0],
+				[right, 1225, 250, 0xcabcac],
 			]
 		],
 		oper: [
