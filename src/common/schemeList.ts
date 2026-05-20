@@ -779,7 +779,7 @@ const SchemeList: IScheme[] = [
 		id: 79,
 		schemeName: '师徒_徒弟守护',
 		groupNames: ['师徒部分'],
-		list: [0, 1, 2, 3, 306, 5, 692, 29, 503],
+		list: [0, 1, 2, 3, 306, 692, 29],
 		config: {
 			'692': {
 				next_scheme: '__关闭应用__'

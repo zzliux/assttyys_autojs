@@ -35,6 +35,11 @@ export class Func609 implements IFuncOrigin {
 			type: 'switch',
 			default: false,
 		}, {
+			name: 'shouLieZhan',
+			desc: '狩猎战(开启后寮三十只打二十次)',
+			type: 'switch',
+			default: false,
+		}, {
 			name: 'agency',
 			desc: '一键代办',
 			type: 'switch',
@@ -1445,6 +1450,63 @@ export class Func609 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 1168, 592, 1230, 690, 1200]
 		]
+	}, { // 102 麒麟界面_未挑战
+		desc: [1280, 720,
+			[
+				[left, 112, 594, 0x664b30],
+				[left, 139, 590, 0x5b452c],
+				[left, 175, 603, 0x966f47],
+				[right, 1178, 593, 0xe5dac3],
+				[right, 1178, 657, 0xe0d5be],
+				[right, 1187, 626, 0x482d20],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1139, 584, 1228, 666, 1000],
+		]
+	}, { // 103 狩猎战_已挑战
+		desc: [1280, 720,
+			[
+				[left, 112, 594, 0x664b30],
+				[left, 139, 590, 0x5b452c],
+				[left, 175, 603, 0x966f47],
+				[right, 1178, 587, 0xdadada],
+				[right, 1175, 662, 0xd5d5d5],
+				[right, 1148, 627, 0xd3d3d3],
+				[right, 1193, 610, 0xd7d7d7],
+				[right, 1147, 675, 0x292929],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 18, 19, 64, 56, 1000],
+		]
+	}, { // 104 判断是否为寮首页
+		desc: [
+			1280, 720,
+			[
+				[right, 1096, 630, 0xb1251f],
+				[right, 1105, 662, 0xdbe3f1],
+				[left, 45, 39, 0xf4e4a3],
+				[center, 886, 644, 0xe0cbaa],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 868, 627, 927, 684, 1200]	// 点击下方神社
+		],
+		retest: 1000
+	}, { // 105 进入_狩猎战
+		desc: [1280, 720,
+			[
+				[left, 242, 487, 0xf99184],
+				[left, 262, 487, 0xf9ad9b],
+				[left, 287, 486, 0xfcfaf7],
+				[left, 288, 510, 0xbe6c77],
+				[left, 237, 515, 0xcf838e],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 203, 449, 343, 554, 1000],
+		]
 	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -1469,6 +1531,7 @@ export class Func609 implements IFuncOrigin {
 				'buy_Petal': thisconf.buy_Petal as boolean,
 				'add_Petal': thisconf.add_Petal as boolean,
 				'xuanShang': thisconf.xuanShang as boolean,
+				'shouLieZhan': thisconf.shouLieZhan as boolean,
 			};
 		}
 		if (thisconf.card === '关闭') {
@@ -1645,6 +1708,24 @@ export class Func609 implements IFuncOrigin {
 					return true;
 				}
 			}
+			if (thisScript.global.function_Switch.shouLieZhan) {
+				if (!([1, 2, 3, 4].includes(new Date().getDay()) && new Date().getHours() >= 6 && new Date().getHours() < 23)) {
+					thisScript.global.function_Switch.shouLieZhan = false;
+				}
+				if (thisScript.oper({
+					name: '麒麟界面_未挑战',
+					operator: [thisOperator[102], thisOperator[7], thisOperator[104], thisOperator[105]]
+				})) {
+					return true;
+				}
+				if (thisScript.oper({
+					name: '狩猎战_已挑战',
+					operator: [thisOperator[103]]
+				})) {
+					thisScript.global.function_Switch.shouLieZhan = false;
+					return true;
+				}
+			}
 			if (thisScript.global.function_Switch.liaoSanshi) {
 				if (thisScript.global.function_Switch.liaoSanshi_tongXinDui_check) {
 					if (thisScript.oper({
@@ -1675,7 +1756,11 @@ export class Func609 implements IFuncOrigin {
 					}
 				}
 				if (thisScript.global.function_Switch.liaoSanshi_tongXinDui_fight) {
-					if (thisScript.runTimes['2'] >= 30) {
+					let timer = 30;
+					if (thisconf.shouLieZhan) {
+						timer = 20;
+					}
+					if (thisScript.runTimes['2'] >= timer) {
 						thisScript.myToast('已完成三十次组队,跳转预存体力');
 						thisScript.global.function_Switch.liaoSanshi_tongXinDui_fight = false;
 						thisScript.global.function_Switch.liaoSanshi_tongXinDui_yuCun = true;

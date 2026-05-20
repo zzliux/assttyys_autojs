@@ -711,7 +711,12 @@ export class Func692 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 101, 23, 131, 52, 1000],
 		]
-	},
+	}, { // 56 探索返回
+		desc: '探索地图界面',
+		oper: [
+			[center, 1280, 720, 23, 20, 60, 54, 1000],
+		]
+	}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['692'];
@@ -801,7 +806,8 @@ export class Func692 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 692,
 				name: 'five',
-				operator: [thisOperator[16], thisOperator[17], thisOperator[22], thisOperator[26]]
+				operator: [thisOperator[16], thisOperator[17], thisOperator[22], thisOperator[26]
+					, thisOperator[33]]
 			})) {
 				return true;
 			}
@@ -819,8 +825,8 @@ export class Func692 implements IFuncOrigin {
 					})) {
 						break;
 					}
-					thisScript.keepScreen()
 					sleep(1000);
+					thisScript.keepScreen()
 				}
 				return true
 			}
@@ -848,7 +854,8 @@ export class Func692 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 692,
 				name: '师徒',
-				operator: [thisOperator[34], thisOperator[35], thisOperator[36], thisOperator[50],]
+				operator: [thisOperator[33], thisOperator[34], thisOperator[35], thisOperator[36], thisOperator[50]
+					, thisOperator[56],]
 			})) {
 				return true;
 			}
