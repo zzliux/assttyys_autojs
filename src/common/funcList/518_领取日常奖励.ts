@@ -248,6 +248,7 @@ export class Func518 implements IFuncOrigin {
 					[left, 195, 174, 0xf1dcb2],
 					[center, 458, 178, 0x643c25],
 					[center, 475, 217, 0xc8d3f4],
+					[left, 143, 120, 0xcbcff9],
 					[center, 567, 608, 0xc8b08a],
 					[center, 567, 635, 0xba9e7e],
 				]
@@ -834,20 +835,6 @@ export class Func518 implements IFuncOrigin {
 				app.launchPackage('com.netease.gl');
 				return true;
 			} else if (packageName === 'com.netease.gl') {
-				const point = thisScript.findMultiColor('大神_福利中心')
-				if (point) {
-					const scale = 720 / 1280
-					const offsetX = (1280 - 720 * scale) / 2
-					const x = (point.x - offsetX) / scale
-					const y = point.y / scale
-					log('找色_福利中心');
-					const oper = [[x, y, x + 5, y + 5, 2000]];
-					thisScript.regionClick(oper);
-					thisScript.stopRelatedApp('com.netease.gl');
-					thisScript.launchRelatedApp();
-					thisScript.global.function_Switch.godlike = false;
-					return true;
-				}
 				if (textContains('自动下载').findOnce()) {
 					log('关闭自动下载')
 					if (id('iv_close').findOnce()) {
@@ -860,9 +847,47 @@ export class Func518 implements IFuncOrigin {
 					text('忽略').findOnce().click()
 					return true;
 				}
-				if (text('一键登录').findOnce()) {
-					log('点击一键登录')
-					text('一键登录').findOnce().click()
+				if (text('明天继续签到').findOnce() || text('登录游戏').findOnce()) {
+					log('签到完成')
+					thisScript.stopRelatedApp('com.netease.gl');
+					thisScript.launchRelatedApp();
+					thisScript.global.function_Switch.godlike = false;
+					return true;
+				}
+				if (text('立即领取').findOnce()) {
+					log('点击立即领取')
+					text('立即领取').findOnce().click()
+					return true;
+				}
+				// 选择登录
+				const cheack1 = text('登录').findOnce()
+				if (cheack1) {
+					log('点击登录')
+					text('登录').findOnce().click()
+					return true;
+				}
+				if (text('立即登录').findOnce()) {
+					log('点击立即登录')
+					text('立即登录').findOnce().click()
+					return true;
+				}
+				if (text('重新登录').findOnce()) {
+					log('点击重新登录')
+					text('重新登录').findOnce().clickCenter()
+					return true;
+				}
+				// 打开我的
+				const cheack = text('我的').findOnce();
+				if (cheack) {
+					log('点击我的')
+					const oper = [
+						cheack.bounds().centerX(),
+						cheack.bounds().centerY(),
+						cheack.bounds().centerX() + 5,
+						cheack.bounds().centerY() + 5,
+						1000
+					]
+					thisScript.regionClick([oper]);
 					return true;
 				}
 				const { lastFuncDateTime, currentDate, runDate } = thisScript;
