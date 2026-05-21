@@ -63,8 +63,7 @@ export class Func990 implements IFuncOrigin {
 				[right, 1003, 488, 0xc6a621],
 				[right, 1002, 506, 0xdec742],
 				[right, 1002, 529, 0xffe77b],
-				[right, 990, 532, 0xf2ed80],
-				[right, 1016, 512, 0xe9dd6f],
+				[right, 991, 533, 0xf5f27b],
 			]
 		],
 		oper: [
@@ -74,22 +73,21 @@ export class Func990 implements IFuncOrigin {
 	}, { // 5 失败
 		desc: [1280, 720,
 			[
-				[center, 470, 77, 0x534d61],
-				[center, 508, 121, 0x63556b],
-				[right, 730, 101, 0xbdb7a6],
-				[right, 914, 116, 0xaca493],
-				[right, 840, 148, 0x8a7f6e],
-				[center, 498, 77, 0xaa9580],
+				[center, 472, 74, 0x52495a],
+				[center, 453, 117, 0x564e60],
+				[center, 504, 124, 0x615469],
+				[center, 439, 150, 0x6b5d73],
+				[center, 425, 175, 0x6a5339],
 			]
 		],
 	}, { // 6 胜利
 		desc: [1280, 720,
 			[
-				[center, 481, 97, 0x7f1a10],
-				[center, 453, 135, 0x9c1c13],
-				[center, 503, 133, 0x9d1c11],
-				[right, 755, 124, 0xbca579],
-				[right, 920, 126, 0xc0a876],
+				[center, 478, 91, 0x811810],
+				[center, 512, 136, 0x9f1c13],
+				[center, 460, 138, 0xa11b13],
+				[center, 436, 170, 0xd9ceb8],
+				[center, 427, 197, 0x2d0c14],
 			]
 		],
 	},];
