@@ -35,7 +35,6 @@ export class Func014 implements IFuncOrigin {
 	operator: IFuncOperatorOrigin[] = [{ // 0 探索找怪界面
 		desc: [1280, 720,
 			[
-				[left, 36, 570, 0x983254],
 				[left, 29, 672, 0x615a77],
 				[right, 1227, 30, 0xd3af84],
 				[right, 1174, 33, 0xd7b287],

@@ -14,7 +14,6 @@ export class Func025 implements IFuncOrigin {
 		desc: [1280, 720, // 0 组队匹配上了的话就不做任何操作
 			[
 				[left, 46, 36, 0xf7e3a5],
-				[left, 36, 570, 0x983254],
 				[left, 29, 672, 0x615a77],
 				[right, 1227, 30, 0xd3af84],
 				[right, 1174, 33, 0xd7b287],
@@ -30,7 +29,6 @@ export class Func025 implements IFuncOrigin {
 		desc: [1280, 720,
 			[
 				[left, 46, 36, 0xf7e3a5],
-				[left, 36, 570, 0x983254],
 				[left, 29, 672, 0x615a77],
 				[right, 1227, 30, 0xd3af84],
 				[right, 1174, 33, 0xd7b287],
