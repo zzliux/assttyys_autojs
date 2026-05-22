@@ -1014,6 +1014,9 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				1280, 720,
 				[
 					[center, 370, 522, 0xa6917d],
+					[left, 148, 374, 0xbc2925],
+					[left, 167, 394, 0xb4302b],
+					[left, 227, 541, 0xf9f2df],
 					[left, 233, 550, 0xf7f3df],
 					[left, 257, 522, 0xf9e8cb],
 					[left, 247, 525, 0xf3dbbd],

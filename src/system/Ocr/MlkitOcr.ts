@@ -145,6 +145,7 @@ class MlkitOcr implements IOcr {
 		} else /* if (textMatchMode === '模糊') */ {
 			res = ocrResult.filter(item => {
 				item.similar = nlpSimilarity(item.label, text);
+				log('真实相似度' + item.similar)
 				return (item.similar as number) >= (similarityRatio || .7)
 			});
 			res.sort((a, b) => (b.similar || 0) - (a.similar || 0));

@@ -5,7 +5,7 @@ import {
 } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 // const normal = -1; //定义常量
-// const left = 0;
+const left = 0;
 const center = 1;
 const right = 2;
 
@@ -21,14 +21,18 @@ export class Func311 implements IFuncOrigin {
 					name: 'redType',
 					desc: '红标类型',
 					type: 'list',
-					data: ['PVE顶部BOSS血条固定红标', '自定义坐标', '神荒'],
+					data: ['PVE顶部BOSS血条固定红标', '自定义坐标', '神荒', '斗技式神'],
 					default: 'PVE顶部BOSS血条固定红标',
-				},
-				{
+				}, {
 					name: 'redPosition',
 					desc: '红标坐标，仅红标类型为自定义坐标时生效，(格式x(横轴),y(纵轴)左上角为0,0)，实际点击时xy坐标会在±20内随机点击，如625,220',
 					type: 'text',
 					default: '625,220',
+				}, {
+					name: 'name',
+					desc: '斗技中使用ocr识别敌对式神名(输入关键字,可多名,逗号分开)',
+					type: 'text',
+					default: '式神名',
 				}
 			],
 		},
@@ -99,19 +103,36 @@ export class Func311 implements IFuncOrigin {
 					[right, 1243, 447, 0xeac45b],
 					[right, 1243, 513, 0xf9f18f],
 				]
+			],
+		}, { // 6 敌对ocr区域
+			oper: [
+				[center, 1280, 720, 292, 64, 997, 392, 1000],
+				[center, 1280, 720, 38, 641, 83, 683, 1000],
 			]
-		}, { // 6 上阵截图
+		}, { // 7 式神显示名字
 			desc: [1280, 720,
 				[
-					[center, 443, 262, 0x2e4547],
-					[center, 460, 462, 0x40645e],
-					[right, 761, 521, 0x496c6a],
-					[right, 831, 291, 0x31474a],
-					[center, 606, 442, 0xf3f0dc],
-					[right, 675, 446, 0xf6f2e5],
+					[left, 315, 18, 0xcda374],
+					[left, 319, 18, 0xce9e70],
+					[left, 319, 45, 0xd9b48c],
+					[left, 310, 45, 0xd6b088],
 				]
 			],
-			retest: 1000,
+			oper: [
+				[center, 1280, 720, 305, 18, 330, 47, 1000],
+			]
+		}, { // 8 CD过长
+			desc: [1280, 720,
+				[
+					[left, 315, 18, 0x856a4b],
+					[left, 319, 18, 0xce9e70],
+					[center, 321, 45, 0xd9b48c],
+					[left, 308, 45, 0x8b7359],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 40, 641, 85, 683, 1000],
+			]
 		},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -260,20 +281,49 @@ export class Func311 implements IFuncOrigin {
 					}
 					thisScript.global.redFlag = true;
 				}
+			} else if (thisconf.redType === '斗技式神') {
+				if (thisScript.oper({
+					name: '红标-行动条检测',
+					operator: [thisOperator[5]],
+				})) {
+					if (thisScript.oper({
+						name: '红标-显示名字',
+						operator: [thisOperator[7]],
+					})) {
+						sleep(2500);
+						thisScript.keepScreen();
+					}
+					const name = thisScript.parseName(String(thisconf.name));
+					const result = thisScript.findText('.+', 0, thisOperator[6].oper[0], '包含');
+					for (let i = 0; i < name.length; i++) {
+						const findName = thisScript.findTextByOcrResult(name[i], result, '模糊')
+						if (findName.length === 0) {
+							console.log('未识别到' + name[i]);
+						} else {
+							const oper = [
+								findName[0].points[0].x + 35,
+								findName[0].points[0].y + 85,
+								findName[0].points[0].x + 40,
+								findName[0].points[0].y + 90,
+								1000,
+							]
+							thisScript.regionClick([thisOperator[6].oper[1]])
+							thisScript.regionClick([oper])
+							thisScript.global.redFlag = true;
+							return true;
+						}
+					}
+				}
+				if (thisScript.oper({
+					name: '红标-取消识别',
+					operator: [thisOperator[8]],
+				})) {
+					thisScript.global.redFlag = true;
+					return true;
+				}
+				return true;
 			}
 			return false;
-		}
-		if (thisScript.oper({
-			name: '红标-战斗界面检测',
-			operator: [thisOperator[6]],
-		})) {
-			const now = new Date().getTime();
-			const ajImg = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(thisScript.helperBridge.helper.GetBitmap());
-			const path = `/sdcard//Pictures/批量截图/${now}.png`;
-			files.ensureDir(path);
-			ajImg.saveTo(path);
-			ajImg.recycle();
-			sleep(3000);
 		}
 	}
 }

@@ -251,8 +251,18 @@ export class Func030 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 30,
 			name: '斗技_杂项',
+			operator: [thisOperator[4]]
+		})) {
+			if (thisScript.global.redFlag) {
+				thisScript.global.redFlag = false;
+			}
+			return true;
+		}
+		if (thisScript.oper({
+			id: 30,
+			name: '斗技_杂项',
 			operator: [
-				thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[4],
+				thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[3],
 				thisOperator[6], thisOperator[7], thisOperator[8], thisOperator[9],
 				thisOperator[12], thisOperator[13],
 			]

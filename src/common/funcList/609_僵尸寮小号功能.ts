@@ -1507,6 +1507,30 @@ export class Func609 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 203, 449, 343, 554, 1000],
 		]
+	}, { // 106 勾选一位
+		desc: [1280, 720,
+			[
+				[right, 659, 258, 0x3c2d10],
+				[right, 659, 267, 0x3c2c10],
+				[right, 654, 263, 0x3a2a0f],
+				[right, 664, 263, 0x3c2c0f],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 655, 259, 663, 267, 1000],
+		]
+	}, { // 107 一位完成
+		desc: [1280, 720,
+			[
+				[right, 658, 259, 0x4859df],
+				[right, 664, 266, 0x4456d2],
+				[center, 575, 91, 0xa32f2a],
+				[right, 917, 91, 0xe8d3cf],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 516, 481, 761, 525, 1000],
+		]
 	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -1828,7 +1852,8 @@ export class Func609 implements IFuncOrigin {
 					if (thisScript.oper({
 						id: 609,
 						name: '进入组队',
-						operator: [thisOperator[18], thisOperator[19], thisOperator[20], thisOperator[21]]
+						operator: [thisOperator[18], thisOperator[19], thisOperator[20], thisOperator[21]
+							, thisOperator[106], thisOperator[107]]
 					})) {
 						return true;
 					}
