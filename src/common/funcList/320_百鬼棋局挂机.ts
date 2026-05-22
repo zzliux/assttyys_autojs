@@ -332,6 +332,17 @@ export class Func320 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 396, 605, 555, 629, 1000],
 		]
+	}, { // 28 开活动后的600币
+		desc: [1280, 720,
+			[
+				[center, 399, 671, 0xed8d03],
+				[center, 406, 674, 0xd57e06],
+				[center, 410, 670, 0xea8a03],
+				[center, 418, 671, 0xce7a08],
+				[center, 421, 671, 0xf79201],
+				[center, 429, 671, 0xf69101],
+			]
+		],
 	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -350,7 +361,7 @@ export class Func320 implements IFuncOrigin {
 		})) {
 			if (thisScript.oper({
 				name: '杂项',
-				operator: [{ desc: thisOperator[19].desc }]
+				operator: [{ desc: thisOperator[28].desc }, { desc: thisOperator[19].desc }]
 			})) {
 				thisScript.rerun(thisconf.next_scheme);
 				sleep(1000);
