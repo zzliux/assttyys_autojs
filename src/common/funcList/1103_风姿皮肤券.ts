@@ -26,15 +26,15 @@ export class Func1103 implements IFuncOrigin {
 	}, { // 1 风姿
 		desc: [1280, 720,
 			[
-				[left, 316, 667, 0xae8e51],
-				[left, 320, 661, 0xdfcc96],
-				[center, 332, 661, 0xe4cfa6],
-				[center, 344, 652, 0xffedaa],
-				[center, 364, 664, 0xdcbe8a],
+				[center, 493, 674, 0xdfca8c],
+				[center, 505, 657, 0xb4965a],
+				[center, 524, 654, 0xffeeaa],
+				[center, 544, 664, 0xe2c690],
+				[center, 523, 656, 0xfee9a9],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 315, 655, 364, 688, 1000],
+			[center, 1280, 720, 501, 654, 542, 691, 1000],
 		]
 	}, { // 2 兑换
 		desc: [

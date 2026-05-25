@@ -86,6 +86,19 @@ export class Func1111 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1126, 79, 1161, 105, 1000],
 		]
+	}, { // 9 有活动的商店
+		desc: [1280, 720,
+			[
+				[center, 323, 635, 0xfef3b9],
+				[left, 319, 673, 0xeacd9b],
+				[center, 341, 697, 0xf7efd1],
+				[left, 302, 668, 0xedd59e],
+				[center, 341, 645, 0xfff4b9],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 305, 638, 344, 684, 1000],
+		]
 	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -106,7 +119,7 @@ export class Func1111 implements IFuncOrigin {
 			}
 			if (thisScript.oper({
 				name: '杂项',
-				operator: [thisOperator[4], thisOperator[5], thisOperator[6]]
+				operator: [thisOperator[4], thisOperator[5], thisOperator[6], thisOperator[9]]
 			})) {
 				return true;
 			}

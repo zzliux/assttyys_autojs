@@ -114,15 +114,12 @@ export class Func1108 implements IFuncOrigin {
 	}, { // 8 完成弹窗
 		desc: [1280, 720,
 			[
-				[right, 1047, 160, 0xe8d3cf],
-				[right, 1062, 162, 0xe8d4cf],
-				[right, 1054, 168, 0xe8d3cf],
-				[right, 1050, 174, 0xecd0cd],
-				[right, 1063, 177, 0xe8d6d1],
+				[right, 1167, 667, 0x400f0a],
+				[right, 1175, 660, 0x46392a],
+				[right, 1181, 656, 0x41110c],
+				[right, 1178, 650, 0x3e0d09],
+				[right, 1179, 667, 0x42100c],
 			]
-		],
-		oper: [
-			[center, 1280, 720, 1038, 155, 1072, 182, 1000],
 		]
 	}, { // 9 祈愿福礼
 		desc: [1280, 720,
@@ -218,9 +215,23 @@ export class Func1108 implements IFuncOrigin {
 				id: 518,
 				name: '检测_抽卡',
 				operator: [thisOperator[2], thisOperator[3], thisOperator[4], thisOperator[5]
-					, thisOperator[6], thisOperator[7], thisOperator[8]],
+					, thisOperator[6], thisOperator[7]],
 			})) {
 				return true;
+			}
+			if (thisScript.oper({
+				id: 518,
+				name: '检测_抽卡',
+				operator: [thisOperator[8]],
+			})) {
+				const region = [928, 99, 1225, 342]
+				const point = thisScript.findMultiColor('皮肤广告关闭按钮', region);
+				if (point) {
+					console.log('识别广告关闭按钮成功');
+					const oper = [[point.x - 10, point.y - 10, point.x, point.y, 1000]];
+					thisScript.regionClick(oper);
+					return true;
+				}
 			}
 			if (thisScript.oper({
 				id: 518,
