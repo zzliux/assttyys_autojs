@@ -507,20 +507,11 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		desc: [
 			[1280, 720,
 				[
-					[left, 946, 516, 0x9d2120],
-					[left, 947, 516, 0x921f1d],
-					[left, 948, 516, 0x8d1e1c],
-					// [left,949,516,0x881e1c],
-					[left, 946, 517, 0x9b2120],
-					[left, 947, 517, 0x95201e],
-					[left, 948, 517, 0x901f1d],
-					// [left,949,517,0x8b1e1c],
-					[left, 946, 518, 0x9a2121],
-					[left, 947, 518, 0x98201f],
-					[left, 948, 518, 0x931f1e],
-					[left, 946, 519, 0x972221],
-					[left, 947, 519, 0x9a2221],
-					[left, 948, 519, 0x95201f],
+					[right, 730, 387, 0x286674],
+					[right, 730, 398, 0x8d1a1a],
+					[right, 730, 404, 0x88181a],
+					[right, 738, 404, 0x7b1e1a],
+					[right, 740, 416, 0xb89560],
 				]
 			]
 		]
@@ -1033,6 +1024,9 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				1280, 720,
 				[
 					[center, 370, 522, 0xa6917d],
+					[left, 148, 374, 0xbc2925],
+					[left, 167, 394, 0xb4302b],
+					[left, 227, 541, 0xf9f2df],
 					[left, 233, 550, 0xf7f3df],
 					[left, 257, 522, 0xf9e8cb],
 					[left, 247, 525, 0xf3dbbd],
@@ -1068,6 +1062,9 @@ const multiFindColors: IMultiFindColorsOrigin = {
 					[left, 233, 550, 0xf7f3df],
 					[center, 321, 553, 0xc8a98b],
 					[center, 338, 548, 0xe9361d],
+					[left, 145, 374, 0xbc2925],
+					[left, 166, 391, 0xb52e2a],
+					[left, 227, 541, 0xfef5e1],
 				]
 			]
 		]
@@ -3054,6 +3051,89 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				[center, 511, 610, 0x929eaa],
 			]
 		],]
+	},
+	'剧情三点_普': {
+		region: [left, 1280, 720, 0, 0, 1280, 720],
+		desc: [[
+			1280, 720,
+			[
+				[right, 1105, 234, 0xdbd1ca],
+				[right, 1119, 234, 0xdfd1cc],
+				[right, 1131, 234, 0xe0d3cf],
+				[right, 1118, 207, 0x7b5238],
+				[right, 1093, 229, 0x784e32],
+				[right, 1145, 238, 0x6d4a31],
+				[right, 1118, 261, 0x3d3229],
+			]
+		], [1280, 720,
+			[
+				[right, 1026, 307, 0xd7d2cf],
+				[right, 1039, 307, 0xd8d3d0],
+				[right, 1052, 307, 0xdbd3d5],
+				[right, 1013, 307, 0x624b3f],
+				[right, 1039, 280, 0x725345],
+				[right, 1066, 308, 0x61483e],
+				[right, 1040, 335, 0x2d2b2d],
+			]
+		], [1280, 720,
+			[
+				[left, 287, 364, 0xe3d3d2],
+				[left, 300, 364, 0xe4d7d4],
+				[left, 313, 364, 0xe9d7da],
+				[left, 274, 363, 0x814e42],
+				[left, 301, 338, 0x8d534d],
+				[center, 327, 364, 0x87554b],
+			]
+		],],
+		similar: 90
+	},
+	'剧情三点_战': {
+		region: [left, 1280, 720, 0, 0, 1280, 720],
+		desc: [[
+			1280, 720,
+			[
+				[center, 509, 322, 0x434e7f],
+				[center, 532, 318, 0xdee2f7],
+				[center, 508, 351, 0xee9ea6],
+				[center, 532, 343, 0x212453],
+				[center, 514, 301, 0xf2a2b0],
+			]
+		],]
+	},
+	'剧情黄眼': {
+		region: [left, 1280, 720, 0, 0, 1280, 720],
+		desc: [[
+			1280, 720,
+			[
+				[center, 637, 137, 0xf3f1f3],
+				[center, 578, 154, 0xe9cb18],
+				[right, 701, 152, 0xf2d218],
+				[center, 617, 213, 0xdab807],
+				[right, 672, 208, 0xd8a903],
+			]
+		],]
+	},
+	'剧情问号': {
+		region: [left, 1280, 720, 0, 0, 1280, 720],
+		desc: [[
+			1280, 720,
+			[
+				[right, 1027, 286, 0xd9cec8],
+				[right, 1034, 295, 0xdacdcb],
+				[right, 1033, 306, 0xddcfcb],
+				[right, 1008, 288, 0x6c4a30],
+				[right, 1007, 298, 0x553926],
+			]
+		], [1280, 720,
+			[
+				[right, 1115, 270, 0xdcd2ce],
+				[right, 1121, 279, 0xe2d4d5],
+				[right, 1121, 290, 0xe1d5d2],
+				[right, 1095, 278, 0x6a523e],
+				[right, 1148, 278, 0x6f5742],
+			]
+		],],
+		similar: 93
 	},
 	// '': {
 	// 	region: [left, 1280, 720, 0, 0, 1280, 720],

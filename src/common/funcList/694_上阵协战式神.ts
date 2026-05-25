@@ -47,7 +47,7 @@ export class Func694 implements IFuncOrigin {
 	}, { // 3 上阵
 		desc: [1280, 720,
 			[
-				[left, 266, 555, 0xf95e89],
+				[left, 266, 613, 0xf75d8c],
 				[left, 266, 654, 0xf95e89],
 				[center, 371, 667, 0xf95e89],
 				[center, 371, 627, 0xf95e89],
@@ -112,6 +112,21 @@ export class Func694 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 652, 665, 669, 680, 1000],
 		]
+	}, { // 8 师徒界面
+		desc: [1280, 720,
+			[
+				[left, 44, 27, 0xefd38c],
+				[left, 34, 36, 0xf7e7ac],
+				[left, 44, 46, 0xefd697],
+				[left, 174, 46, 0xf8f3e0],
+				[left, 225, 30, 0xf8f3e0],
+				[left, 271, 35, 0x573614],
+				[left, 284, 36, 0x5a3716],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 21, 16, 67, 56, 1000],
+		]
 	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['0'];
@@ -166,7 +181,7 @@ export class Func694 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 692,
 			name: '特殊操作',
-			operator: [thisOperator[4], thisOperator[5], thisOperator[7]]
+			operator: [thisOperator[4], thisOperator[5], thisOperator[7], thisOperator[8]]
 		})) {
 			return true;
 		}

@@ -357,7 +357,6 @@ export class Func609 implements IFuncOrigin {
 				[left, 80, 381, 0xf3e2b6],
 				[left, 112, 436, 0xe7c799],
 				[left, 297, 301, 0x5f697f],
-				[right, 860, 302, 0x616a7d],
 			]
 		],
 		oper: [
@@ -1781,7 +1780,8 @@ export class Func609 implements IFuncOrigin {
 				}
 				if (thisScript.global.function_Switch.liaoSanshi_tongXinDui_fight) {
 					let timer = 30;
-					if (thisconf.shouLieZhan) {
+					if (!([1, 2, 3, 4].includes(new Date().getDay()) && new Date().getHours() >= 6 && new Date().getHours() < 23)
+						&& thisconf.shouLieZhan) {
 						timer = 20;
 					}
 					if (thisScript.runTimes['2'] >= timer) {
@@ -2202,7 +2202,7 @@ export class Func609 implements IFuncOrigin {
 				!thisScript.global.function_Switch.agency && !thisScript.global.function_Switch.regionBoos &&
 				!thisScript.global.function_Switch.card && !thisScript.global.function_Switch.qiLin_Fifty &&
 				!thisScript.global.function_Switch.yuHun_Fifty && !thisScript.global.function_Switch.buy_Petal &&
-				!thisScript.global.function_Switch.add_Petal &&
+				!thisScript.global.function_Switch.add_Petal && !thisScript.global.function_Switch.shouLieZhan &&
 				thisScript.oper({
 					id: 609,
 					name: '庭院',

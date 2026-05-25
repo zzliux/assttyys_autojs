@@ -27,7 +27,12 @@ export class Func691 implements IFuncOrigin {
 			name: 'next_scheme',
 			desc: '下一个方案',
 			type: 'scheme',
-			default: '经验妖怪',
+			default: '师徒_徒弟领体力',
+		}, {
+			name: 'levelUP_scheme',
+			desc: '切换升级方案',
+			type: 'scheme',
+			default: '个人探索',
 		}]
 	}];
 
@@ -132,15 +137,15 @@ export class Func691 implements IFuncOrigin {
 	}, { // 7 蓝色跳过
 		desc: [1280, 720,
 			[
-				[right, 840, 533, 0x7156e3],
-				[right, 910, 536, 0x1950ac],
-				[right, 851, 557, 0x5c5add],
-				[right, 875, 526, 0x2531b7],
-				[right, 881, 551, 0x3b64d9],
+				[right, 844, 535, 0x664bdf],
+				[right, 845, 541, 0x5539de],
+				[right, 845, 550, 0x5c4ee0],
+				[right, 871, 553, 0x2932c1],
+				[right, 903, 540, 0x2345b3],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 847, 528, 904, 551, 1000],
+			[center, 1280, 720, 847, 528, 904, 551, 700],
 		]
 	}, { // 8 犬神说明
 		desc: [1280, 720,
@@ -766,13 +771,371 @@ export class Func691 implements IFuncOrigin {
 			[center, 1280, 720, 33, 23, 63, 56, 1000],
 			[center, 1280, 720, 1021, 243, 1086, 290, 1000],
 		]
+	}, { // 58 晴明普攻
+		desc: [1280, 720,
+			[
+				[right, 1013, 643, 0x293473],
+				[right, 1020, 659, 0xe7ffff],
+				[right, 1027, 664, 0xdefbff],
+				[right, 1038, 662, 0xd5ffff],
+				[right, 1032, 672, 0xe9fcff],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 616, 191, 644, 219, 100], // 鬼青左右中
+			[center, 1280, 720, 823, 174, 849, 199, 100],
+			[center, 1280, 720, 941, 262, 966, 287, 100],
+			[center, 1280, 720, 1200, 651, 1250, 687, 1000],
+		]
+	}, { // 59 暗色提示
+		desc: [1280, 720,
+			[
+				[left, 33, 8, 0x1d1413],
+				[left, 33, 23, 0x5a4b3c],
+				[left, 47, 31, 0x59493a],
+				[left, 34, 41, 0x55432f],
+				[left, 12, 32, 0x36281b],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 138, 174, 181, 215, 1000],
+		]
+	}, { // 60 雪女二技能
+		desc: [1280, 720,
+			[
+				[right, 1103, 647, 0xffffff],
+				[right, 1125, 664, 0xf4ffff],
+				[right, 1137, 644, 0x32baff],
+				[right, 1148, 673, 0x1c35bb],
+				[right, 1097, 670, 0xffffff],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1103, 643, 1146, 695, 1000],
+		]
+	}, { // 61 草人普攻
+		desc: [1280, 720,
+			[
+				[right, 1013, 652, 0xfcffff],
+				[right, 1007, 672, 0xf2fedf],
+				[right, 1001, 683, 0xe8f9cb],
+				[right, 1040, 663, 0x103c18],
+				[right, 1047, 671, 0x63ba29],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 616, 191, 644, 219, 100], // 鬼青左右中
+			[center, 1280, 720, 823, 174, 849, 199, 100],
+			[center, 1280, 720, 941, 262, 966, 287, 100],
+		]
+	}, { // 62 火狐普攻
+		desc: [1280, 720,
+			[
+				[right, 1005, 660, 0x950410],
+				[right, 1043, 650, 0xc10057],
+				[right, 1048, 664, 0x8c003c],
+				[right, 1038, 671, 0xd11139],
+				[right, 1047, 649, 0xad004a],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 616, 191, 644, 219, 100], // 鬼青左右中
+			[center, 1280, 720, 823, 174, 849, 199, 100],
+			[center, 1280, 720, 941, 262, 966, 287, 100],
+		]
+	}, { // 63 犬神三技能
+		desc: [1280, 720,
+			[
+				[right, 1227, 643, 0x10284a],
+				[right, 1244, 660, 0xe7cf8c],
+				[right, 1246, 674, 0xffea83],
+				[right, 1246, 682, 0xffd35a],
+				[right, 1224, 658, 0x274473],
+				[right, 1226, 667, 0xf4ebba],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1203, 645, 1245, 689, 1000],
+		]
+	}, { // 64 犬神普攻
+		desc: [1280, 720,
+			[
+				[right, 1029, 644, 0xe2b842],
+				[right, 1045, 668, 0xffffff],
+				[right, 995, 654, 0x091523],
+				[right, 1006, 661, 0x314970],
+				[right, 1056, 678, 0x1f3d66],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 610, 210, 644, 235, 100],
+			[center, 1280, 720, 482, 260, 510, 288, 100],
+			[center, 1280, 720, 705, 212, 723, 240, 100],
+		]
+	}, { // 65 雪女二技能无高亮
+		desc: [1280, 720,
+			[
+				[right, 1103, 647, 0xfafeff],
+				[right, 1125, 664, 0xd8fdff],
+				[right, 1137, 644, 0x159eff],
+				[right, 1148, 673, 0x0019ab],
+				[right, 1097, 670, 0xecfbfc],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1103, 643, 1146, 695, 1000],
+		]
+	}, { // 66 音频包
+		desc: [1280, 720,
+			[
+				[center, 385, 165, 0x6a4838],
+				[right, 867, 165, 0x6a4838],
+				[right, 923, 163, 0xe7d3ce],
+				[right, 898, 555, 0x634131],
+				[center, 381, 554, 0x634531],
+				[right, 677, 490, 0xf4b25d],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 914, 147, 942, 171, 1000],
+		]
+	}, { // 67 鬼使白
+		desc: [1280, 720,
+			[
+				[center, 625, 238, 0xdccccf],
+				[center, 638, 238, 0xdacece],
+				[right, 651, 238, 0xe7d7c6],
+				[center, 389, 57, 0xfbd3a1],
+				[right, 1223, 647, 0xe0cdc8],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 620, 223, 656, 254, 1000],
+		]
+	}, { // 68 剧情内?
+		desc: [1280, 720,
+			[
+				[left, 33, 31, 0xd6c4a2],
+				[left, 50, 33, 0xd6c3a5],
+				[left, 51, 46, 0xd6c5a4],
+				[left, 36, 50, 0xd6c5a2],
+				[left, 46, 50, 0xd6c3a5],
+			]
+		],
+	}, { // 69 鬼使白二技能_开自动
+		desc: [1280, 720,
+			[
+				[right, 1202, 662, 0xd21151],
+				[right, 1218, 650, 0xefc0c8],
+				[right, 1231, 653, 0xdb0c43],
+				[right, 1233, 659, 0xec0b47],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 110, 602, 141, 627, 1000],
+			[center, 1280, 720, 45, 648, 81, 679, 1000],
+		]
+	}, { // 70 走一步
+		oper: [
+			[center, 1280, 720, 651, 438, 667, 455, 1000],
+		]
+	}, { // 71 战斗界面
+		desc: '战斗界面',
+	}, { // 72 再次进入剧情_鬼使白
+		desc: [1280, 720,
+			[
+				[right, 868, 262, 0xe4e4df],
+				[right, 864, 238, 0xdccdd3],
+				[right, 876, 238, 0xdccfd1],
+				[right, 890, 238, 0xd7ced3],
+				[right, 876, 209, 0xe7e5dc],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 861, 225, 893, 252, 1000],
+		]
+	}, { // 73 八百比
+		desc: [1280, 720,
+			[
+				[right, 1014, 460, 0xf5f3f4],
+				[right, 1055, 505, 0x74201d],
+				[right, 1046, 564, 0x732021],
+				[right, 977, 579, 0xad2829],
+				[right, 979, 463, 0x21c6d0],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 453, 318, 526, 396, 1000],
+		]
+	}, { // 74 神乐获取
+		desc: [1280, 720,
+			[
+				[center, 432, 110, 0xa7371e],
+				[right, 742, 341, 0xca2448],
+				[right, 737, 502, 0xfcdbcb],
+				[right, 649, 511, 0xffd4c6],
+				[center, 609, 362, 0xa9c1c6],
+				[right, 1166, 94, 0xe9d2cf],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1152, 81, 1182, 107, 1000],
+		]
+	}, { // 75 再次进入剧情_鬼使黑
+		desc: [1280, 720,
+			[
+				[right, 861, 255, 0xddcdd1],
+				[right, 874, 255, 0xddd0d1],
+				[right, 888, 255, 0xd8cfd3],
+				[right, 862, 229, 0xeae7d4],
+				[right, 887, 277, 0xe5e5d5],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 857, 237, 892, 269, 1000],
+		]
+	}, { // 76 青蛙瓷器
+		desc: [1280, 720,
+			[
+				[right, 684, 185, 0xffffff],
+				[right, 722, 292, 0xffffff],
+				[right, 693, 412, 0xffffff],
+				[right, 743, 489, 0xffffff],
+				[right, 979, 252, 0x84b218],
+				[right, 1017, 427, 0x425476],
+				[right, 920, 515, 0xfcfcfc],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 465, 297, 559, 385, 1000],
+		]
+	}, { // 77 LV.9
+		desc: [1280, 720,
+			[
+				[right, 846, 260, 0xffffff],
+				[right, 860, 259, 0xc6a896],
+				[right, 869, 258, 0xd0b19f],
+				[right, 878, 258, 0xc1a291],
+				[right, 888, 254, 0xd0b19f],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 249, 327, 285, 356, 1000],
+		]
+	}, { // 78 组队未解锁
+		desc: [1280, 720,
+			[
+				[left, 121, 623, 0x748bb9],
+				[left, 170, 632, 0xdccbcc],
+				[center, 415, 632, 0xb9b8af],
+				[center, 433, 635, 0xfffde4],
+				[center, 564, 630, 0xc3a491],
+				[right, 727, 631, 0xded0ce],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 126, 612, 168, 645, 1000],
+		]
+	}, { // 79 暗色妖气探索
+		desc: [1280, 720,
+			[
+				[right, 789, 221, 0x5e3d40],
+				[right, 1186, 254, 0x433d4c],
+				[right, 1189, 592, 0x585a38],
+				[right, 770, 483, 0x4e5457],
+				[center, 368, 533, 0x72623a],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 102, 21, 132, 52, 1000],
+		]
+	}, { // 80 判断经验妖怪
+		desc: [1280, 720,
+			[
+				[center, 419, 175, 0xcbb59c],
+				[right, 871, 179, 0xcbb59c],
+				[center, 357, 361, 0xf4e2cb],
+				[right, 822, 452, 0xf4e2cb],
+				[right, 863, 385, 0xd23646],
+				[center, 569, 512, 0xf4b25d],
+				[right, 707, 516, 0xf4b25d],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 547, 497, 738, 533, 1000],
+		]
+	}, { // 81 无亲友
+		desc: [1280, 720,
+			[
+				[center, 485, 204, 0x4c4842],
+				[center, 589, 415, 0xb9b4af],
+				[center, 626, 451, 0x8b8580],
+				[right, 1222, 575, 0xbe6a18],
+				[right, 719, 400, 0xa19b97],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1159, 101, 1201, 133, 1000],
+		]
+	}, { // 82 已进入剧情
+		desc: [1280, 720,
+			[
+				[center, 589, 129, 0x392c1b],
+				[right, 655, 71, 0x3c331b],
+				[right, 721, 293, 0x945529],
+				[right, 825, 296, 0x4e2c1d],
+				[right, 882, 396, 0x573b2c],
+			]
+		],
+	}, { // 83 雪女二技能暗
+		desc: [1280, 720,
+			[
+				[right, 1103, 647, 0x626464],
+				[right, 1125, 664, 0x556364],
+				[right, 1137, 644, 0x083e64],
+				[right, 1148, 673, 0x000a43],
+				[right, 1097, 670, 0x5d6263],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1002, 651, 1049, 687, 1000],
+			[center, 1280, 720, 622, 208, 642, 236, 1000],
+			[center, 1280, 720, 489, 260, 514, 294, 1000],
+			[center, 1280, 720, 677, 327, 704, 351, 1000],
+			[center, 1280, 720, 698, 225, 722, 254, 1000],
+		]
+	}, { // 84 过场暂停(防止雨女卡主)
+		desc: [1280, 720,
+			[
+				[center, 444, 69, 0x9f8566],
+				[right, 827, 62, 0x9c866b],
+				[right, 835, 124, 0xaa9c84],
+				[right, 841, 202, 0x273940],
+				[center, 471, 194, 0x2a3943],
+			]
+		],
+	}, { // 85 图鉴御魂切换到外观
+		desc: [1280, 720,
+			[
+				[left, 178, 103, 0xb0adb5],
+				[left, 220, 40, 0x8ad3c6],
+				[right, 648, 600, 0x218ebc],
+				[right, 1149, 97, 0x633238],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1134, 92, 1172, 132, 1000],
+			[center, 1280, 720, 857, 657, 905, 697, 1000],
+		]
 	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['691'];
 		if (!thisScript.global.newAccount) {
 			thisScript.global.newAccount = {
-				'create': true,
+				'create': !true,
+				'createNoob': !false,
+				'timer': 0,
 				'apply': false,
 				'jingYan': false,
 				'closePB': false, // 关闭皮肤试用
@@ -829,7 +1192,7 @@ export class Func691 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 691,
 				name: '起号',
-				operator: [thisOperator[2], thisOperator[7]],
+				operator: [thisOperator[2]],
 			})) {
 				return true;
 			}
@@ -876,6 +1239,90 @@ export class Func691 implements IFuncOrigin {
 			})) {
 				thisScript.global.newAccount.create = false;
 				thisScript.global.newAccount.getBird = true;
+				return true;
+			}
+			if (thisScript.oper({
+				id: 691,
+				name: '申请',
+				operator: [thisOperator[82]],
+			})) {
+				thisScript.global.newAccount.create = false;
+				thisScript.global.newAccount.createNoob = true;
+				return true;
+			}
+		}
+		if (thisScript.global.newAccount.createNoob) {
+			if (thisScript.oper({
+				id: 691,
+				name: 'createNoob',
+				operator: [thisOperator[84]]
+			})) {
+				sleep(5000);
+				return true;
+			}
+			if (thisScript.oper({
+				id: 691,
+				name: 'createNoob',
+				operator: [thisOperator[58], thisOperator[59], thisOperator[60], thisOperator[61]
+					, thisOperator[62], thisOperator[63], thisOperator[64], thisOperator[65]
+					, thisOperator[13], thisOperator[66], thisOperator[67], thisOperator[69]
+					, thisOperator[72], thisOperator[35], thisOperator[73], thisOperator[74]
+					, thisOperator[75], thisOperator[76], thisOperator[83]]
+			})) {
+				return true;
+			}
+			if (thisScript.oper({
+				id: 691,
+				name: 'createNoob',
+				operator: [thisOperator[77]]
+			})) {
+				thisScript.global.newAccount.createNoob = false;
+				thisScript.global.newAccount.getBird = true;
+				return true;
+			}
+			if (thisScript.oper({
+				id: 691,
+				name: 'createNoob',
+				operator: [thisOperator[68]],
+			}) && !thisScript.oper({
+				id: 691,
+				name: 'createNoob',
+				operator: [thisOperator[71]],
+			})) {
+				let point = thisScript.findMultiColor('剧情三点_普', null, false, false, false);
+				if (point) {
+					thisScript.regionClick([[point.x, point.y, point.x + 3, point.y + 3, 700]])
+					return true;
+				}
+				point = thisScript.findMultiColor('剧情三点_战', null, false, false, false);
+				if (point) {
+					thisScript.regionClick([[point.x, point.y, point.x + 3, point.y + 3, 700]])
+					return true;
+				}
+				point = thisScript.findMultiColor('剧情黄眼', null, false, false, false);
+				if (point) {
+					thisScript.regionClick([[point.x, point.y, point.x + 3, point.y + 3, 700]])
+					return true;
+				}
+				point = thisScript.findMultiColor('剧情问号', null, false, false, false);
+				if (point) {
+					thisScript.regionClick([[point.x, point.y, point.x + 3, point.y + 3, 700]])
+					return true;
+				} else {
+					thisScript.global.newAccount.timer = Number(thisScript.global.newAccount.timer) + 1
+					if (thisScript.global.newAccount.timer > 4) {
+						thisScript.global.newAccount.timer = 0;
+						return thisScript.oper({
+							id: 691,
+							name: 'createNoob',
+							operator: [thisOperator[70]],
+						})
+					}
+				}
+			}
+			const point = thisScript.findMultiColor('皮肤广告关闭按钮', null, false, false, false);
+			if (point) {
+				thisScript.regionClick([[point.x, point.y, point.x + 3, point.y + 3, 700]])
 				return true;
 			}
 		}
@@ -966,7 +1413,7 @@ export class Func691 implements IFuncOrigin {
 				id: 691,
 				name: '关闭PB',
 				operator: [thisOperator[45], thisOperator[46], thisOperator[47], thisOperator[48]
-					, thisOperator[35]]
+					, thisOperator[35], thisOperator[78], thisOperator[85]]
 			})) {
 				return true;
 			}
@@ -981,6 +1428,15 @@ export class Func691 implements IFuncOrigin {
 			}
 		}
 		if (thisScript.global.newAccount.jingYan) {
+			if (thisScript.oper({
+				id: 691,
+				name: '关闭PB',
+				operator: [{ desc: thisOperator[78].desc }]
+			})) {
+				thisScript.rerun(thisconf.levelUP_scheme);
+				sleep(1000);
+				return true;
+			}
 			if (thisScript.oper({
 				name: '庭院判断',
 				operator: [{ desc: thisOperator[31].desc }]
@@ -1057,8 +1513,43 @@ export class Func691 implements IFuncOrigin {
 		if (thisScript.oper({
 			id: 691,
 			name: '杂项',
-			operator: [thisOperator[10], thisOperator[16], thisOperator[15], thisOperator[43]]
+			operator: [thisOperator[7], thisOperator[10], thisOperator[16], thisOperator[15]
+				, thisOperator[43], thisOperator[79]]
 		})) {
+			return true;
+		}
+		if (thisScript.oper({
+			id: 691,
+			name: '杂项',
+			operator: [thisOperator[80]]
+		})) {
+			thisScript.global.newAccount = {
+				'create': false,
+				'createNoob': false,
+				'timer': 0,
+				'apply': false,
+				'jingYan': true,
+				'closePB': false, // 关闭皮肤试用
+				'getBird': false,
+				'join': false,
+			};
+			return true;
+		}
+		if (thisScript.oper({
+			id: 691,
+			name: '杂项',
+			operator: [thisOperator[81]]
+		})) {
+			thisScript.global.newAccount = {
+				'create': false,
+				'createNoob': false,
+				'timer': 0,
+				'apply': true,
+				'jingYan': false,
+				'closePB': false, // 关闭皮肤试用
+				'getBird': false,
+				'join': false,
+			};
 			return true;
 		}
 		const point = thisScript.findMultiColor('红手指');

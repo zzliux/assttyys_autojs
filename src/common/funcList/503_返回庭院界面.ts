@@ -242,6 +242,11 @@ export class Func503 implements IFuncOrigin {
 			desc: '48 设置界面',
 			type: 'switch',
 			default: true,
+		}, {
+			name: 'oper_49',
+			desc: '48 探索确认',
+			type: 'switch',
+			default: true,
 		}
 		]
 	}];
@@ -807,7 +812,21 @@ export class Func503 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1090, 77, 1124, 119, 1000],
 		]
-	}];
+	}, { // 49 探索确认
+		desc: [1280, 720,
+			[
+				[center, 442, 392, 0xf4b25d],
+				[center, 554, 415, 0xf4b25d],
+				[right, 714, 397, 0xf4b25d],
+				[right, 833, 416, 0xf4b25d],
+				[center, 525, 325, 0xcbb59c],
+				[right, 749, 328, 0xcbb59c],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 712, 391, 843, 420, 1000],
+		]
+	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['503'];
 		// 检测只运行一次的开关状态判断是否不再运行

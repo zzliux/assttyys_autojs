@@ -425,13 +425,53 @@ export class Func002 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 77, 668, 256, 706, 1000],
 		]
+	}, { // 36 秘闻对话
+		desc: [1280, 720,
+			[
+				[center, 452, 60, 0x2c2b33],
+				[right, 643, 30, 0x34313a],
+				[right, 873, 62, 0x2d2b32],
+				[center, 563, 719, 0x000000],
+				[right, 727, 719, 0x000000],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 638, 363, 673, 392, 200],
+		],
+		notForCnt: true,
+	}, { // 37 秘闻对话左
+		desc: [1280, 720,
+			[
+				[left, 305, 546, 0x4c0d19],
+				[left, 313, 546, 0x4e0c18],
+				[left, 313, 560, 0x510c18],
+				[left, 307, 560, 0x4e0c18],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 624, 329, 666, 369, 200],
+		],
+		notForCnt: true,
+	}, { // 38 秘闻对话右
+		desc: [1280, 720,
+			[
+				[right, 817, 545, 0x500d19],
+				[right, 828, 545, 0x4f0c18],
+				[right, 828, 560, 0x550b18],
+				[right, 818, 560, 0x4d0c18],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 624, 316, 665, 356, 200],
+		],
+		notForCnt: true,
 	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['2'];
 		if (thisconf && thisconf.rechallenge && thisScript.oper({
 			id: 2,
 			name: '退出结算_重新挑战',
-			operator: [thisOperator[20]]
+			operator: [thisOperator[20], thisOperator[22],]
 		})) {
 			return true;
 		}
@@ -445,7 +485,10 @@ export class Func002 implements IFuncOrigin {
 				sleep(3000);
 				return;
 			} else if (!thisconf.no_sushi_switch_enabled) {
-				return false;
+				thisScript.doPush(thisScript, { text: '体力不够已停止，请查看。', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+				thisScript.stop();
+				sleep(3000);
+				return;
 			}
 		}
 		if (thisconf.fail && thisScript.oper({
@@ -467,11 +510,11 @@ export class Func002 implements IFuncOrigin {
 				thisOperator[4], thisOperator[5], thisOperator[6], thisOperator[7],
 				thisOperator[8], thisOperator[9], thisOperator[10], thisOperator[21],
 				thisOperator[12], thisOperator[13], thisOperator[14], thisOperator[15],
-				thisOperator[16], thisOperator[17], thisOperator[22], thisOperator[18], // 22要放18前面
+				thisOperator[16], thisOperator[17], thisOperator[18], // 22要放18前面
 				thisOperator[11], thisOperator[23], thisOperator[24], thisOperator[25],
 				thisOperator[26], thisOperator[27], thisOperator[28], thisOperator[29],
 				thisOperator[30], thisOperator[31], thisOperator[33], thisOperator[34],
-				thisOperator[35],]
+				thisOperator[35], thisOperator[36], thisOperator[37], thisOperator[38],]
 		});
 	}
 }

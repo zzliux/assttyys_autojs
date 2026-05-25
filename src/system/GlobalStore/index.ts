@@ -148,6 +148,8 @@ export type globalRootType = {
 	chessShopNum: number, // 下棋商店购买次数
 	miWenChange: boolean, // 秘闻是否更换过式神
 	shaoTiao: boolean, // 烧条
+	miWenClear: 'borrow' | 'fight' | 'end', // 秘闻挑战清理状态
+	miWenClearTimer: number, // 秘闻挑战清理状态次数
 }
 
 export const globalRoot: globalRootType = {
@@ -300,6 +302,8 @@ export const globalRoot: globalRootType = {
 	chessShopNum: 0,
 	miWenChange: false,
 	shaoTiao: false,
+	miWenClear: 'borrow',
+	miWenClearTimer: 0,
 }
 export type superGlobalRootType = {
 	liao_activity_Switch: Record<string, boolean>, // 寮活动记录

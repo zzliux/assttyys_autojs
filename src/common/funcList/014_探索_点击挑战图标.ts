@@ -13,6 +13,11 @@ export class Func014 implements IFuncOrigin {
 	config = [{
 		desc: '',
 		config: [{
+			name: 'xy',
+			desc: '探索点击章节(格式为x,y)',
+			type: 'text',
+			default: '1156,501',
+		}, {
 			name: 'type',
 			desc: '挑战类型',
 			type: 'list',
@@ -53,9 +58,6 @@ export class Func014 implements IFuncOrigin {
 		]
 	}, { // 1 探索地图界面
 		desc: '探索地图界面',
-		oper: [
-			[center, 1280, 720, 1079, 468, 1255, 539, 1000],
-		],
 		retest: 1000
 	}, { // 2 首领出现
 		desc: [1280, 720,
@@ -83,13 +85,63 @@ export class Func014 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1090, 588, 1178, 663, 1000],
 		]
+	}, { // 4 无困难界面
+		desc: [1280, 720,
+			[
+				[right, 995, 580, 0x5e3e2f],
+				[right, 1081, 581, 0x583826],
+				[right, 1041, 601, 0xe1d5c0],
+				[right, 1047, 659, 0xe6dac5],
+				[right, 1003, 676, 0x3b2118],
+				[right, 1076, 672, 0x351f18],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 995, 590, 1086, 668, 1000],
+		]
+	}, { // 5 红手指遮挡
+		desc: [1280, 720,
+			[
+				[left, 58, 657, 0xffffff],
+				[left, 76, 682, 0xefaa9c],
+				[left, 136, 717, 0x3c1115],
+				[left, 27, 668, 0x9b9599],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 45, 650, 88, 693, 1000],
+			[center, 1280, 720, 1153, 64, 1189, 89, 1000],
+		]
 	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['14'];
 		if (thisScript.oper({
 			name: '探索界面_杂项',
-			operator: [thisOperator[1]],
+			operator: [{ desc: thisOperator[1].desc }],
 		})) {
+			const xy = thisScript.parseName(String(thisconf.xy));
+			const inX1 = parseInt(xy[0]);
+			const inY1 = parseInt(xy[1]);
+			thisScript.regionClick([[inX1 - 10, inY1 - 10, inX1 + 10, inY1 + 10, 1000]]);
+			return true;
+		}
+		if (thisScript.oper({
+			name: '探索界面_杂项',
+			operator: [thisOperator[5]],
+		})) {
+			return true;
+		}
+		if (thisScript.oper({
+			name: '普通界面进探索',
+			operator: [{ desc: thisOperator[4].desc }]
+		})) {
+			const point = thisScript.findMultiColor('探索_宝箱');
+			if (point) {
+				const oper = [[point.x, point.y, point.x + 10, point.y + 10, 500]];
+				thisScript.regionClick(oper);
+			} else {
+				thisScript.regionClick([thisOperator[4].oper[0]]);
+			}
 			return true;
 		}
 		if (thisScript.oper({

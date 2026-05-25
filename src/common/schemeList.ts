@@ -702,14 +702,33 @@ const SchemeList: IScheme[] = [
 		groupNames: ['师徒部分'],
 		list: [690, 0, 1, 2, 3, 5, 24, 691, 503],
 		config: {
+			'0': {
+				jspd_times_longtime_nodo: '1',
+				after_operation: '切换方案',
+				next_scheme: '个人探索'
+			},
 			'691': {
 				next_scheme: '师徒_徒弟领体力',
+				levelUP_scheme: '师徒_徒弟升级'
 			},
 			'690': {
 				area: '徒弟',
-				name: '',
 			}
 		},
+	},
+	{
+		id: 79,
+		schemeName: '师徒_徒弟升级',
+		groupNames: ['师徒部分'],
+		list: [694, 0, 1, 2, 3, 29, 14],
+		config: {
+			'0': {
+				jspd_enabled_2: true,
+				jspd_times_2: 14,
+				after_operation: '切换方案',
+				next_scheme: '__返回上个方案__'
+			},
+		}
 	},
 	{
 		id: 79,

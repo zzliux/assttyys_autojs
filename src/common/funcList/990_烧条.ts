@@ -90,12 +90,23 @@ export class Func990 implements IFuncOrigin {
 				[center, 427, 197, 0x2d0c14],
 			]
 		],
+	}, { // 7 浪川皮肤3
+		desc: [1280, 720,
+			[
+				[right, 1210, 479, 0xef5252],
+				[right, 1277, 479, 0xee3535],
+				[right, 1243, 481, 0xbdc8cf],
+				[right, 1247, 474, 0xdee3e7],
+				[right, 1251, 505, 0xdfe0e3],
+				[right, 1230, 499, 0xe1e2e4],
+			]
+		],
 	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
 			name: '浪川皮肤',
 			operator: [
-				thisOperator[0], thisOperator[1], thisOperator[2],]
+				thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[7]]
 		})) {
 			thisScript.global.shaoTiao = true;
 			sleep(1000);
