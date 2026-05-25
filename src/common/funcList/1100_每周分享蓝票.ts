@@ -173,55 +173,70 @@ export class Func1100 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 1100,
 				name: '每周分享蓝票_杂项',
-				operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[3], thisOperator[11]]
+				operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[11]]
 			})) {
 				return true;
 			}
 			let curCnt = 0;
-			const maxCount = 5;
+			const maxCount = 6;
 			while (thisScript.global.MT_share_type === 'mumu' && thisScript.oper({
 				name: '每周分享蓝票_多次点击',
-				operator: [thisOperator[4]]
+				operator: [thisOperator[3], thisOperator[4]]
 			})) {
 				curCnt++;
 				if (curCnt >= maxCount) {
 					thisScript.myToast('点击微信失败,尝试大神');
-					thisScript.global.MT_share_type = 'phone';
+					thisScript.global.MT_share = 'back';
 					sleep(1000);
 					return false;
 				}
 				thisScript.keepScreen(false);
 				sleep(1000);
 			}
-			while (thisScript.global.MT_share_type === 'phone' && thisScript.oper({
-				name: '每周分享蓝票_多次点击',
-				operator: [thisOperator[5]]
-			})) {
-				curCnt++;
-				if (curCnt >= maxCount) {
-					thisScript.myToast('点击大神失败,停止分享');
-					thisScript.global.MT_share = 'back';
-					sleep(1000);
-					return false;
-				}
-				sleep(1000);
-				thisScript.keepScreen(false);
-			}
-			const packageName = currentPackage();
-			if (thisScript.global.MT_share_type === 'phone' && packageName === 'com.netease.gl') {
-				if (text('发布').findOnce()) {
-					log('点击发布')
-					text('发布').findOnce().click()
-					return true;
-				}
-				if (id('tv_request_share_app_name').findOnce()) {
-					log('点击返回')
-					id('tv_request_share_app_name').findOnce().click()
-					thisScript.global.MT_share = 'back';
-					sleep(1000);
-					return true;
-				}
-			}
+			// while (thisScript.global.MT_share_type === 'phone' && thisScript.oper({
+			// 	name: '每周分享蓝票_多次点击',
+			// 	operator: [thisOperator[3], thisOperator[5]]
+			// })) {
+			// 	curCnt++;
+			// 	if (curCnt >= maxCount) {
+			// 		thisScript.myToast('点击大神失败,停止分享');
+			// 		thisScript.global.MT_share = 'back';
+			// 		sleep(1000);
+			// 		return false;
+			// 	}
+			// 	sleep(1000);
+			// 	thisScript.keepScreen(false);
+			// }
+			// const packageName = currentPackage();
+			// if (thisScript.global.MT_share_type === 'phone' && packageName === 'com.netease.gl') {
+			// 	const cheack1 = text('登录').findOnce()
+			// 	if (cheack1) {
+			// 		log('点击登录')
+			// 		text('登录').findOnce().click()
+			// 		sleep(2000);
+			// 		thisScript.launchRelatedApp();
+			// 		return true;
+			// 	}
+			// 	if (text('发布').findOnce()) {
+			// 		log('点击发布')
+			// 		text('发布').findOnce().click()
+			// 		return true;
+			// 	}
+			// 	if (id('tv_request_share_app_name').findOnce()) {
+			// 		log('点击返回')
+			// 		id('tv_request_share_app_name').findOnce().click()
+			// 		thisScript.global.MT_share = 'back';
+			// 		sleep(1000);
+			// 		return true;
+			// 	}
+			// 	const { lastFuncDateTime, currentDate, runDate } = thisScript;
+			// 	if (new Date().getTime() - Math.max(lastFuncDateTime?.getTime() || 0, currentDate?.getTime() || 0, runDate?.getTime() || 0) > 10000) {
+			// 		if (id('iv_close').findOnce()) {
+			// 			id('iv_close').findOnce().click();
+			// 			return true;
+			// 		}
+			// 	}
+			// } 失败,不想研究了,虚拟机里拉起大神后不会分享,模拟器只需要mumu即可
 		} else if (thisScript.global.MT_share === 'back') { // 完成
 			if (thisScript.oper({
 				id: 1100,

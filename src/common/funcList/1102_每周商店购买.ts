@@ -785,6 +785,7 @@ export class Func1102 implements IFuncOrigin {
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['1102'];
+		thisScript.global.back = true;
 		if (thisScript.global.MT_shop === 'zhiBo') { // 直播魅力值
 			if (!thisConf.meiLi_lanPiao && !thisConf.meiLi_heiSui) {
 				thisScript.global.MT_shop = 'jiShouWu';
@@ -907,7 +908,7 @@ export class Func1102 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 1102,
 				name: '杂货铺_特殊',
-				operator: [thisOperator[10], thisOperator[12]]
+				operator: [thisOperator[12]]
 			})) {
 				return true;
 			}
@@ -947,8 +948,8 @@ export class Func1102 implements IFuncOrigin {
 					break;
 				}
 				thisScript.regionSwipe(thisOperator[11].oper[0], thisOperator[11].oper[1], [1500, 1550], 500);
-				thisScript.keepScreen(false);
 				sleep(500);
+				thisScript.keepScreen(false);
 			}
 		}
 		if (thisScript.global.MT_shop === 'zaHuoPu_rongYu') { // 杂货铺买荣誉

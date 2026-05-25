@@ -238,43 +238,44 @@ export class Func1109 implements IFuncOrigin {
 			})) {
 				curCnt++;
 				if (curCnt >= maxCount) {
-					thisScript.myToast('点击微信失败,尝试大神');
-					thisScript.global.MT_share_type = 'phone';
+					thisScript.myToast('点击微信失败');
+					thisScript.global.miWenshare = false;
+					thisScript.global.diGuishare = false;
 					sleep(1000);
 					return false;
 				}
 				sleep(1000);
 				thisScript.keepScreen(false);
 			}
-			while (thisScript.global.MT_share_type === 'phone' && thisScript.oper({
-				name: '秘闻分享_多次点击',
-				operator: [thisOperator[19]]
-			})) {
-				curCnt++;
-				if (curCnt >= maxCount) {
-					thisScript.myToast('点击微博失败,停止分享');
-					thisScript.global.miWenshare = false;
-					thisScript.global.diGuishare = true;
-					sleep(1000);
-					return false;
-				}
-				sleep(1000);
-				thisScript.keepScreen(false);
-			}
-			if (thisScript.global.MT_share_type === 'phone') {
-				if (text('发布').findOnce()) {
-					log('点击发布')
-					text('发布').findOnce().click()
-					return true;
-				}
-				if (id('tv_request_share_app_name').findOnce()) {
-					log('点击返回')
-					id('tv_request_share_app_name').findOnce().click()
-					thisScript.global.miWenshare = false;
-					sleep(1000);
-					return true;
-				}
-			}
+			// while (thisScript.global.MT_share_type === 'phone' && thisScript.oper({
+			// 	name: '秘闻分享_多次点击',
+			// 	operator: [thisOperator[19]]
+			// })) {
+			// 	curCnt++;
+			// 	if (curCnt >= maxCount) {
+			// 		thisScript.myToast('点击微博失败,停止分享');
+			// 		thisScript.global.miWenshare = false;
+			// 		thisScript.global.diGuishare = true;
+			// 		sleep(1000);
+			// 		return false;
+			// 	}
+			// 	sleep(1000);
+			// 	thisScript.keepScreen(false);
+			// } 失败,不想研究了,虚拟机里拉起大神后不会分享,模拟器只需要mumu即可
+			// if (thisScript.global.MT_share_type === 'phone') {
+			// 	if (text('发布').findOnce()) {
+			// 		log('点击发布')
+			// 		text('发布').findOnce().click()
+			// 		return true;
+			// 	}
+			// 	if (id('tv_request_share_app_name').findOnce()) {
+			// 		log('点击返回')
+			// 		id('tv_request_share_app_name').findOnce().click()
+			// 		thisScript.global.miWenshare = false;
+			// 		sleep(1000);
+			// 		return true;
+			// 	}
+			// }
 			if (thisScript.oper({
 				id: 1109,
 				name: '秘闻微信分享完毕',
@@ -310,9 +311,8 @@ export class Func1109 implements IFuncOrigin {
 				}
 				return true;
 			}
-
 		}
-		if (!thisScript.global.diGuishare) {
+		if (thisScript.global.diGuishare) {
 			if (thisScript.oper({
 				id: 1109,
 				name: '地鬼分享完毕',
@@ -330,7 +330,7 @@ export class Func1109 implements IFuncOrigin {
 				return true;
 			}
 		}
-		if (thisScript.global.diGuishare && thisScript.oper({
+		if (thisScript.oper({
 			id: 1109,
 			name: '分享完成_返回',
 			operator: [thisOperator[10], thisOperator[17], thisOperator[18]]
