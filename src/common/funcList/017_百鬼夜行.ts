@@ -18,6 +18,11 @@ export class Func017 implements IFuncOrigin {
 			data: ['1', '2', '3', '随机'],
 			default: '随机',
 			value: null,
+		}, {
+			name: 'Inv',
+			desc: '邀请好友',
+			type: 'switch',
+			default: true,
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{ // 0
@@ -74,7 +79,8 @@ export class Func017 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 152, 578, 190, 623, 1500]
+			[center, 1280, 720, 152, 578, 190, 623, 1500],
+			[center, 1280, 720, 1072, 577, 1139, 630, 1000],
 		]
 	}, { // 4 邀请好友
 		desc: [1280, 720,
@@ -160,14 +166,41 @@ export class Func017 implements IFuncOrigin {
 			[center, 1280, 720, 468, 233, 624, 550, 500],
 			[center, 1280, 720, 731, 229, 890, 563, 500],
 		]
-	},];
+	}, { // 10 町中
+		desc:
+			[
+				1280, 720,
+				[
+					[right, 1053, 441, 0x8c8888],
+					[right, 1096, 229, 0xa8a196],
+					[right, 1040, 239, 0xb6b0bb],
+					[right, 1220, 48, 0xcba375],
+					[right, 1155, 38, 0xd7b28a],
+				]
+			],
+		oper: [
+			[center, 1280, 720, 890, 176, 920, 220, 1000],
+		]
+	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['17'];
 		if (thisScript.oper({
 			id: 17,
 			name: '百鬼夜行_杂项_前',
-			operator: [thisOperator[8], thisOperator[3]]
+			operator: [thisOperator[8], thisOperator[10]]
 		})) {
+			return true
+		}
+		if (thisScript.oper({
+			id: 17,
+			name: '百鬼夜行_杂项_前',
+			operator: [{ desc: thisOperator[3].desc }]
+		})) {
+			if (thisconf.Inv) {
+				thisScript.regionClick([thisOperator[3].oper[0]]);
+			} else {
+				thisScript.regionClick([thisOperator[3].oper[1]]);
+			}
 			return true
 		}
 		if (thisScript.oper({
