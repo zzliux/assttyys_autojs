@@ -1133,8 +1133,8 @@ export class Func691 implements IFuncOrigin {
 		const thisconf = thisScript.scheme.config['691'];
 		if (!thisScript.global.newAccount) {
 			thisScript.global.newAccount = {
-				'create': !true,
-				'createNoob': !false,
+				'create': true,
+				'createNoob': false,
 				'timer': 0,
 				'apply': false,
 				'jingYan': false,

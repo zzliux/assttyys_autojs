@@ -978,8 +978,8 @@ export class Script {
 	parseName(input: string): string[] {
 		if (!input) return [];
 		return input
+			.replace(/\s+/g, '')
 			.split(/[,，]/)
-			.map(name => name.trim())
 			.filter(Boolean);
 	}
 }
