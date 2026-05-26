@@ -10,7 +10,7 @@ export type globalRootType = {
 	runningTime: number,
 	pauseTime: number,
 	notifyTime: number,
-	back: boolean, // 返回庭院的开关,如果需要一直运行可改为true
+	back: boolean, // 返回庭院的开关,true为开启,false为关闭.默认为:true(开启)
 	tp_swipe_times: number,
 	tsAttackSwhipeNum: number,
 	dgCurNum: number,
@@ -305,7 +305,7 @@ export const globalRoot: globalRootType = {
 	shaoTiao: false,
 	miWenClear: 'borrow',
 	miWenClearTimer: 0,
-	back: false,
+	back: true,
 }
 export type superGlobalRootType = {
 	liao_activity_Switch: Record<string, boolean>, // 寮活动记录
