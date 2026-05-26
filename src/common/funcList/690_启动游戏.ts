@@ -577,6 +577,8 @@ export class Func690 implements IFuncOrigin {
 						break;
 					} else {
 						thisScript.global.open_only_once = true;
+						// 当503在结尾时同时停止运行他,如需运行,得在其他需要的功能里改为true
+						thisScript.global.back = false;
 						return true;
 					}
 				}
