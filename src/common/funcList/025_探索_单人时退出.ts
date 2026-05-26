@@ -34,7 +34,7 @@ export class Func025 implements IFuncOrigin {
 				[right, 1174, 33, 0xd7b287],
 			]
 		]
-	}, { // 确认退出探索，该色组取点不太好，但考虑上面一步已执行过，暂时不修改，待后续慢设备反馈再考虑重新取点
+	}, { // 2 确认退出探索，该色组取点不太好，但考虑上面一步已执行过，暂时不修改，待后续慢设备反馈再考虑重新取点
 		desc: [1280, 720,
 			[
 				[center, 340, 261, 0x472b18],
@@ -46,6 +46,19 @@ export class Func025 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 700, 386, 848, 420, 1000]
+		]
+	}, { // 3 探索入口界面
+		desc: [1280, 720,
+			[
+				[left, 114, 21, 0xf7eeb5],
+				[left, 33, 32, 0xf7efb0],
+				[left, 201, 494, 0x31110a],
+				[left, 201, 219, 0x2c0f0a],
+				[right, 1238, 31, 0xd3ae84],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 20, 10, 64, 52, 1000],
 		]
 	}]
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -60,6 +73,13 @@ export class Func025 implements IFuncOrigin {
 				thisScript.regionClick(thisOperator[0].oper)
 				return true;
 			}
+		}
+		if (thisScript.oper({
+			name: '探索入口界面',
+			operator: [{ desc: thisOperator[3].desc }]
+		})) {
+			thisScript.regionClick(thisOperator[3].oper);
+			return true;
 		}
 	}
 }
