@@ -703,9 +703,7 @@ const SchemeList: IScheme[] = [
 		list: [690, 0, 1, 2, 3, 5, 24, 691, 503],
 		config: {
 			'0': {
-				jspd_times_longtime_nodo: '1',
-				after_operation: '切换方案',
-				next_scheme: '个人探索'
+				jspd_times_longtime_nodo: '3',
 			},
 			'691': {
 				next_scheme: '师徒_徒弟领体力',

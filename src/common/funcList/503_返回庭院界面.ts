@@ -830,7 +830,7 @@ export class Func503 implements IFuncOrigin {
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['503'];
 		// 检测只运行一次的开关状态判断是否不再运行
-		if (!thisScript.global.open_only_once || thisScript.global.back) {
+		if (!thisScript.global.open_only_once || !thisScript.global.back) {
 			let enabledThisOperator = [];
 			enabledThisOperator = Object.keys(thisConf).filter(keyName => /oper_\d+/.test(keyName) && thisConf[keyName]).map(keyName => thisOperator[parseInt(keyName.split('_')[1])]);
 			if (thisScript.oper({

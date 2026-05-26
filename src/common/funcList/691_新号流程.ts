@@ -32,10 +32,9 @@ export class Func691 implements IFuncOrigin {
 			name: 'levelUP_scheme',
 			desc: '切换升级方案',
 			type: 'scheme',
-			default: '个人探索',
+			default: '师徒_徒弟升级',
 		}]
 	}];
-
 	operator: IFuncOperatorOrigin[] = [{ // 0 选最新区
 		desc: [1280, 720,
 			[
@@ -897,7 +896,7 @@ export class Func691 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 914, 147, 942, 171, 1000],
+			[center, 1280, 720, 914, 147, 942, 171, 5000],
 		]
 	}, { // 67 鬼使白
 		desc: [1280, 720,
@@ -1127,6 +1126,20 @@ export class Func691 implements IFuncOrigin {
 			[center, 1280, 720, 1134, 92, 1172, 132, 1000],
 			[center, 1280, 720, 857, 657, 905, 697, 1000],
 		]
+	}, { // 86 判断_是否为庭院中的'町中'立牌
+		desc: [1280, 720,
+			[
+				[right, 1067, 221, 0xb5aaad],
+				[right, 1054, 321, 0x989694],
+				[right, 1054, 344, 0x969592],
+				[right, 1052, 352, 0x999595],
+				[right, 1056, 413, 0x938f8f],
+				[right, 1054, 433, 0x8e8b8a]
+			]
+		],
+		oper: [
+			[right, 1280, 720, 1012, 228, 1093, 298, 1000],
+		]
 	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -1330,7 +1343,7 @@ export class Func691 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 691,
 				name: '申请',
-				operator: [thisOperator[23]],
+				operator: [thisOperator[23], thisOperator[86]],
 			})) {
 				return true;
 			}

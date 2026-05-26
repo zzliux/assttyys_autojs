@@ -112,6 +112,19 @@ export class Func014 implements IFuncOrigin {
 			[center, 1280, 720, 45, 650, 88, 693, 1000],
 			[center, 1280, 720, 1153, 64, 1189, 89, 1000],
 		]
+	}, { // 6 选择困难
+		desc: [1280, 720,
+			[
+				[left, 56, 325, 0x9d8f7c],
+				[left, 95, 328, 0x9f9c95],
+				[left, 109, 332, 0xa6a39c],
+				[left, 122, 334, 0x9e9b95],
+				[left, 127, 338, 0xa3a099],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 44, 323, 137, 342, 1000],
+		]
 	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['14'];
@@ -127,7 +140,7 @@ export class Func014 implements IFuncOrigin {
 		}
 		if (thisScript.oper({
 			name: '探索界面_杂项',
-			operator: [thisOperator[5]],
+			operator: [thisOperator[5], thisOperator[6]],
 		})) {
 			return true;
 		}
