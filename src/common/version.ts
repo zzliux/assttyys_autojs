@@ -1548,5 +1548,8 @@ export const versionList = [{
 }, {
 	version: '20260516_01',
 	desc: '修复：修复更换预设问题'
+}, {
+	version: '20260527_01',
+	desc: '修复：002增加姑获鸟皮肤点击确定、014探索界面重新取色适配体服、025重新取色适配体服、029关闭突破界面'
 }];
 export default versionList[versionList.length - 1].version;

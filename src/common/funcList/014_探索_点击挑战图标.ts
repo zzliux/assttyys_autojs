@@ -41,10 +41,10 @@ export class Func014 implements IFuncOrigin {
 		desc: [1280, 720,
 			[
 				[left, 29, 672, 0x615a77],
-				[right, 1227, 30, 0xd3af84],
 				[right, 1174, 33, 0xd7b287],
 				[left, 54, 60, 0xdec38c],
 				[left, 124, 26, 0xf7eeb5],
+				[right, 1102, 32, 0xd6ae84],
 			]
 		],
 		oper: [
