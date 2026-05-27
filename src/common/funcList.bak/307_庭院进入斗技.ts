@@ -3,7 +3,7 @@ import { Script } from '@/system/script';
 // const normal = -1; //定义常量
 const left = 0;
 const center = 1;
-const right = 2;
+// const right = 2;
 
 export class Func307 implements IFuncOrigin {
 	id = 307;
@@ -33,17 +33,7 @@ export class Func307 implements IFuncOrigin {
 			]
 		},
 		{	// 检测_町中
-			desc:
-				[
-					1280, 720,
-					[
-						[right, 1053, 441, 0x8c8888],
-						[right, 1096, 229, 0xa8a196],
-						[right, 1040, 239, 0xb6b0bb],
-						[right, 1220, 48, 0xcba375],
-						[right, 1155, 38, 0xd7b28a],
-					]
-				],
+			desc: '町中',
 			oper: [
 				[center, 1280, 720, 757, 149, 799, 198, 1200]	//	点击斗技灯笼
 			]

@@ -167,17 +167,7 @@ export class Func017 implements IFuncOrigin {
 			[center, 1280, 720, 731, 229, 890, 563, 500],
 		]
 	}, { // 10 町中
-		desc:
-			[
-				1280, 720,
-				[
-					[right, 1053, 441, 0x8c8888],
-					[right, 1096, 229, 0xa8a196],
-					[right, 1040, 239, 0xb6b0bb],
-					[right, 1220, 48, 0xcba375],
-					[right, 1155, 38, 0xd7b28a],
-				]
-			],
+		desc: '町中',
 		oper: [
 			[center, 1280, 720, 890, 176, 920, 220, 1000],
 		]
