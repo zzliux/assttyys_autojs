@@ -40,11 +40,12 @@ export class Func014 implements IFuncOrigin {
 	operator: IFuncOperatorOrigin[] = [{ // 0 探索找怪界面
 		desc: [1280, 720,
 			[
-				[left, 29, 672, 0x615a77],
-				[left, 54, 60, 0xdec38c],
-				[left, 124, 26, 0xf7eeb5],
-				[right, 1163, 22, 0xd7b288],
-				[right, 1223, 21, 0xd4ae84],
+				[left, 36, 569, 0x913157],
+				[left, 47, 580, 0x85304f],
+				[left, 62, 653, 0xefefe9],
+				[left, 18, 634, 0x645c79],
+				[right, 814, 658, 0xd7c8ab],
+				[right, 732, 660, 0xd5c4a5],
 			]
 		],
 		oper: [
