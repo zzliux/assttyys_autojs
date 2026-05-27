@@ -465,6 +465,20 @@ export class Func002 implements IFuncOrigin {
 			[center, 1280, 720, 624, 316, 665, 356, 200],
 		],
 		notForCnt: true,
+	}, { // 39 姑获鸟皮肤确定弹窗(羡煞旁人)
+		desc: [1280, 720,
+			[
+				[center, 636, 221, 0xcec3b5],
+				[center, 482, 367, 0xd6cdbd],
+				[right, 803, 366, 0xd6cdbd],
+				[center, 597, 472, 0xf4b25d],
+				[center, 631, 320, 0xd6cdbd],
+				[center, 630, 532, 0xb84f3f],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 595, 454, 685, 494, 1000],
+		]
 	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['2'];
@@ -514,7 +528,8 @@ export class Func002 implements IFuncOrigin {
 				thisOperator[11], thisOperator[23], thisOperator[24], thisOperator[25],
 				thisOperator[26], thisOperator[27], thisOperator[28], thisOperator[29],
 				thisOperator[30], thisOperator[31], thisOperator[33], thisOperator[34],
-				thisOperator[35], thisOperator[36], thisOperator[37], thisOperator[38],]
+				thisOperator[35], thisOperator[36], thisOperator[37], thisOperator[38],
+				thisOperator[39],]
 		});
 	}
 }
