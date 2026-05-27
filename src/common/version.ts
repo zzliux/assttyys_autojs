@@ -1551,5 +1551,8 @@ export const versionList = [{
 }, {
 	version: '20260527_01',
 	desc: '修复：修复25单人探索时探索入口界面不返回问题'
+}, {
+	version: '20260527_02',
+	desc: '修复：探索找怪界面'
 }];
 export default versionList[versionList.length - 1].version;

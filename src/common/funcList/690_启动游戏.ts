@@ -474,6 +474,20 @@ export class Func690 implements IFuncOrigin {
 			[center, 1280, 720, 606, 378, 665, 434, 1000],
 			[center, 1280, 720, 441, 375, 500, 432, 1000],
 		]
+	}, { // 34 5/27 抵用卷广告
+		desc: [1280, 720,
+			[
+				[right, 734, 543, 0xbd9263],
+				[right, 839, 543, 0xc39563],
+				[right, 726, 577, 0xffe394],
+				[right, 857, 575, 0xffdf95],
+				[right, 870, 555, 0xe7b473],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 725, 542, 874, 572, 1000],
+			[center, 1280, 720, 601, 665, 745, 708, 1000],
+		]
 	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -700,7 +714,7 @@ export class Func690 implements IFuncOrigin {
 					thisOperator[17], thisOperator[20], thisOperator[21], thisOperator[26],
 					thisOperator[27], {
 						desc: thisOperator[15].desc, oper: [thisOperator[15].oper[0]]
-					}, thisOperator[31], thisOperator[32],
+					}, thisOperator[31], thisOperator[32], thisOperator[34]
 				]
 			})) {
 				return true;

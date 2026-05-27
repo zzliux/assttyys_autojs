@@ -1530,6 +1530,20 @@ export class Func609 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 516, 481, 761, 525, 1000],
 		]
+	}, { // 108 5/27 抵用卷广告
+		desc: [1280, 720,
+			[
+				[right, 734, 543, 0xbd9263],
+				[right, 839, 543, 0xc39563],
+				[right, 726, 577, 0xffe394],
+				[right, 857, 575, 0xffdf95],
+				[right, 870, 555, 0xe7b473],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 725, 542, 874, 572, 1000],
+			[center, 1280, 720, 601, 665, 745, 708, 1000],
+		]
 	},
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -1692,7 +1706,7 @@ export class Func609 implements IFuncOrigin {
 			if (thisScript.oper({
 				id: 609,
 				name: '点击登录',
-				operator: [thisOperator[100], thisOperator[101]]
+				operator: [thisOperator[100], thisOperator[101], thisOperator[108]]
 			})) {
 				return true
 			}
