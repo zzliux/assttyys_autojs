@@ -28,13 +28,15 @@ export class Func025 implements IFuncOrigin {
 	}, { // 1 探索界面
 		desc: [1280, 720,
 			[
-				[left, 46, 36, 0xf7e3a5],
-				[left, 29, 672, 0x615a77],
-				[right, 1227, 30, 0xd3af84],
-				[right, 1174, 33, 0xd7b287],
+				[left, 36, 569, 0x913157],
+				[left, 47, 580, 0x85304f],
+				[left, 62, 653, 0xefefe9],
+				[left, 18, 634, 0x645c79],
+				[right, 814, 658, 0xd7c8ab],
+				[right, 732, 660, 0xd5c4a5],
 			]
 		]
-	}, { // 2 确认退出探索，该色组取点不太好，但考虑上面一步已执行过，暂时不修改，待后续慢设备反馈再考虑重新取点
+	}, { // 2确认退出探索，该色组取点不太好，但考虑上面一步已执行过，暂时不修改，待后续慢设备反馈再考虑重新取点
 		desc: [1280, 720,
 			[
 				[center, 340, 261, 0x472b18],
@@ -47,18 +49,35 @@ export class Func025 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 700, 386, 848, 420, 1000]
 		]
-	}, { // 3 探索入口界面
+	}, { // 3探索界面点击退出后确认窗口
 		desc: [1280, 720,
 			[
-				[left, 114, 21, 0xf7eeb5],
-				[left, 33, 32, 0xf7efb0],
-				[left, 201, 494, 0x31110a],
-				[left, 201, 219, 0x2c0f0a],
-				[right, 1238, 31, 0xd3ae84],
+				[left, 45, 35, 0x666046],
+				[left, 124, 29, 0x66624b],
+				[right, 1046, 28, 0x585043],
+				[right, 1105, 45, 0x544330],
+				[center, 555, 405, 0xf4b25d],
+				[right, 827, 405, 0xf4b25d],
+				[right, 812, 660, 0x534d41]
 			]
 		],
 		oper: [
-			[center, 1280, 720, 20, 10, 64, 52, 1000],
+			[center, 1280, 720, 713, 392, 836, 419, 500]
+		]
+	}, { // 4 新版_点击章节后界面
+		desc: [1280, 720,
+			[
+				[right, 942, 592, 0xe5dac3],
+				[right, 945, 659, 0xe2d7c0],
+				[right, 944, 628, 0x3c2b26],
+				[right, 1135, 656, 0xe3d7c2],
+				[right, 1132, 587, 0xe1d6c0],
+				[right, 1100, 477, 0xdfac48],
+				[right, 1035, 485, 0x3afefe],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 25, 19, 56, 46, 500]
 		]
 	}]
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -75,10 +94,9 @@ export class Func025 implements IFuncOrigin {
 			}
 		}
 		if (thisScript.oper({
-			name: '探索入口界面',
-			operator: [{ desc: thisOperator[3].desc }]
+			name: '探索_章节里退出到探索地图', // 有时会卡住没点到
+			operator: [thisOperator[3], thisOperator[4]]
 		})) {
-			thisScript.regionClick(thisOperator[3].oper);
 			return true;
 		}
 	}
