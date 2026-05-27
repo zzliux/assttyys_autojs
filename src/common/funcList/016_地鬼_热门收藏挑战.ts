@@ -71,7 +71,7 @@ export class Func016 implements IFuncOrigin {
 			[
 				[left, 202, 388, 0x161211], // 第0个没打
 				[left, 308, 386, 0x161211], // 第1个没打
-				[left, 426, 388, 0x161211], // 第2个没打
+				[center, 425, 391, 0x161211], // 第2个没打
 			]
 		],
 		oper: [
@@ -90,7 +90,6 @@ export class Func016 implements IFuncOrigin {
 			[
 				[center, 447, 138, 0x994a4e],
 				[center, 475, 94, 0xd9d1c9],
-				[right, 1208, 400, 0xc86a42],
 				[right, 1155, 581, 0xefd2a2],
 				[left, 191, 612, 0xdcd5cd],
 				[right, 1209, 44, 0xe8d4cf],

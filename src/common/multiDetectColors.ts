@@ -819,6 +819,19 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 				[left, -1, -1, 0x000000],
 			]
 		]
+	},
+	'町中': {
+		desc: [
+			1280, 720,
+			[
+				[right, 1053, 441, 0x8c8888],
+				[right, 1096, 229, 0xa8a196],
+				[right, 1155, 38, 0xd7b28a],
+				[right, 1153, 27, 0xd9b489],
+				[right, 1216, 26, 0xd4ae84],
+			]
+		]
+
 	}
 };
 
