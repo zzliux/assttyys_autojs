@@ -9,7 +9,16 @@ const right = 2;
 export class Func695 implements IFuncOrigin {
 	id = 695;
 	name = '秘闻前四层';
-	desc = '选择式神后清理前四层秘闻三十次(需满三十级并且珍旅居只借用了SP姑获鸟)';
+	desc = '选择式神后清理前四层秘闻三十次';
+	config = [{
+		desc: '',
+		config: [{
+			name: 'fifty',
+			desc: '第二层提前结束',
+			type: 'switch',
+			default: false,
+		}]
+	}];
 	operator: IFuncOperatorOrigin[] = [{ // 0 珍旅居
 		desc: [1280, 720,
 			[
@@ -120,7 +129,8 @@ export class Func695 implements IFuncOrigin {
 		],
 		oper: [
 			[center, 1280, 720, 1157, 103, 1200, 138, 1000],
-		]
+		],
+		retest: 500
 	}, { // 9 翻页
 		oper: [
 			[center, 1280, 720, 463, 580, 477, 591, 1000],
@@ -163,19 +173,18 @@ export class Func695 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1157, 102, 1197, 135, 1000],
 		]
-	}, { // 13 苍风跳过
+	}, { // 13 金鱼跳过
 		desc: [1280, 720,
 			[
-				[right, 910, 268, 0xc6c4c8],
-				[right, 940, 336, 0xcdc5c8],
-				[right, 949, 293, 0xd0c5c9],
-				[right, 882, 449, 0x2c2f34],
-				[right, 802, 373, 0xc9c4d1],
-				[right, 749, 385, 0x9a6f42],
+				[right, 824, 249, 0x0b133c],
+				[right, 886, 184, 0x0d183f],
+				[right, 961, 187, 0x5a7cc3],
+				[right, 953, 400, 0x7ba2e7],
+				[right, 906, 379, 0xd82932],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1159, 102, 1197, 136, 1000],
+			[center, 1280, 720, 1163, 98, 1194, 140, 1000],
 		]
 	}, { // 14 青蛙跳过
 		desc: [1280, 720,
@@ -190,70 +199,68 @@ export class Func695 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1159, 99, 1195, 134, 1000],
 		]
+	}, { // 15 50勾
+		desc: [1280, 720,
+			[
+				[center, 349, 203, 0xfada68],
+				[center, 368, 198, 0xf7eb7b],
+				[center, 390, 198, 0xffeb7b],
+				[center, 390, 226, 0xffffff],
+				[center, 381, 216, 0xa51a14],
+				[center, 381, 222, 0xffffff],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1157, 103, 1200, 138, 1000],
+		]
 	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
-		if (thisScript.global.miWenClear === 'borrow') {
+		const thisConf = thisScript.scheme.config['695'];
+		if (thisConf.fifty) {
 			if (thisScript.oper({
 				id: 692,
 				name: '借用式神',
-				operator: [thisOperator[0], thisOperator[1], thisOperator[2]],
-			})) {
-				return true;
-			}
-			if (thisScript.oper({
-				id: 692,
-				name: '借用式神',
-				operator: [thisOperator[3]],
-			})) {
-				thisScript.global.miWenClear = 'fight'
-				return true;
-			}
-			if (thisScript.oper({
-				id: 692,
-				name: '借用式神',
-				operator: [{ desc: thisOperator[7].desc }],
-			})) {
-				thisScript.global.miWenClear = 'fight';
-			}
-		}
-		if (thisScript.global.miWenClear === 'fight') {
-			if (thisScript.oper({
-				id: 692,
-				name: '借用式神',
-				operator: [thisOperator[8], thisOperator[12], thisOperator[13], thisOperator[14]],
+				operator: [thisOperator[15]],
 			})) {
 				thisScript.global.miWenClearTimer++;
 				return true;
 			}
+		}
+		if (thisScript.oper({
+			id: 692,
+			name: '借用式神',
+			operator: [thisOperator[8], thisOperator[12], thisOperator[13], thisOperator[14]],
+		})) {
+			thisScript.global.miWenClearTimer++;
+			return true;
+		}
+		if (thisScript.oper({
+			id: 692,
+			name: '借用式神',
+			operator: [thisOperator[4], thisOperator[5], thisOperator[6], thisOperator[11]],
+		})) {
+			return true;
+		}
+		if (thisScript.oper({
+			id: 692,
+			name: '借用式神',
+			operator: [{ desc: thisOperator[7].desc }],
+		})) {
+			let realTimer = thisScript.global.miWenClearTimer;
 			if (thisScript.oper({
 				id: 692,
 				name: '借用式神',
-				operator: [thisOperator[4], thisOperator[5], thisOperator[6], thisOperator[11]
-					, thisOperator[12]],
+				operator: [{ desc: thisOperator[10].desc }],
 			})) {
-				return true;
-			}
-			if (thisScript.oper({
-				id: 692,
-				name: '借用式神',
-				operator: [{ desc: thisOperator[7].desc }],
-			})) {
-				let realTimer = thisScript.global.miWenClearTimer;
-				if (thisScript.oper({
-					id: 692,
-					name: '借用式神',
-					operator: [{ desc: thisOperator[10].desc }],
-				})) {
-					while (realTimer >= 8) {
-						realTimer = realTimer - 8;
-						thisScript.regionSwipe(thisOperator[9].oper[0], thisOperator[9].oper[1], [2000, 2300], 500)
-					}
+				while (realTimer >= 8) {
+					realTimer = realTimer - 8;
+					thisScript.regionSwipe(thisOperator[9].oper[0], thisOperator[9].oper[1], [2000, 2300], 500)
 				}
-				realTimer = thisScript.global.miWenClearTimer % 8;
-				thisScript.regionClick([thisOperator[7].oper[realTimer]])
-				thisScript.regionClick([thisOperator[7].oper[8]])
-				return true;
 			}
+			realTimer = thisScript.global.miWenClearTimer % 8;
+			thisScript.regionClick([thisOperator[7].oper[realTimer]])
+			thisScript.regionClick([thisOperator[7].oper[8]])
+			return true;
 		}
 	}
 }

@@ -728,7 +728,6 @@ const multiFindColors: IMultiFindColorsOrigin = {
 					[center, 679, 198, 0xffffde],
 				]
 			],
-
 			// 亮着的
 			[
 				1280, 720,
@@ -758,6 +757,17 @@ const multiFindColors: IMultiFindColorsOrigin = {
 					[center, 891, 138, 0xffffe6],
 					[center, 897, 178, 0xffffee],
 					[center, 879, 158, 0x5b5b5b],
+				]
+			],
+			[1280, 720, // 新
+				[
+					[right, 657, 124, 0xf5cc9e],
+					[right, 710, 125, 0xe7c29c],
+					[right, 659, 156, 0xfff3bd],
+					[right, 701, 163, 0xfce6ba],
+					[right, 670, 113, 0x3f413f],
+					[right, 677, 144, 0x3f413f],
+					[right, 678, 164, 0x3f413f],
 				]
 			],
 		]
