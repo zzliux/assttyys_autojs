@@ -759,7 +759,7 @@ const multiFindColors: IMultiFindColorsOrigin = {
 					[center, 879, 158, 0x5b5b5b],
 				]
 			],
-			[1280, 720, // 新
+			[1280, 720, // 样式一
 				[
 					[right, 657, 124, 0xf5cc9e],
 					[right, 710, 125, 0xe7c29c],
@@ -768,6 +768,17 @@ const multiFindColors: IMultiFindColorsOrigin = {
 					[right, 670, 113, 0x3f413f],
 					[right, 677, 144, 0x3f413f],
 					[right, 678, 164, 0x3f413f],
+				]
+			],
+			[1280, 720, // 样式二
+				[
+					[right, 657, 124, 0xf5cc9e],
+					[right, 710, 125, 0xe7c29c],
+					[right, 659, 156, 0xfff3bd],
+					[right, 701, 163, 0xfce6ba],
+					[right, 668, 116, 0x40423f],
+					[right, 675, 146, 0x545043],
+					[right, 676, 166, 0x6f6248],
 				]
 			],
 		]
