@@ -694,7 +694,72 @@ const multiFindColors: IMultiFindColorsOrigin = {
 	'庭院_探索灯笼': {
 		region: [center, 1280, 720, 0, 83, 1006, 284],
 		desc: [
-			[1280, 720, // 普通
+			[1280, 720,
+				[
+					[center, 658, 109, 0xd2a580],
+					[center, 670, 120, 0x020100],
+					[center, 681, 120, 0x020101],
+					[center, 681, 134, 0xfee4a5],
+					[center, 676, 145, 0x100b03],
+					[center, 688, 144, 0xfff6b2],
+					[center, 688, 156, 0xffffc2]
+				]
+			],
+			[1280, 720,
+				[
+					[right, 1112, 107, 0xd0a786],
+					[center, 1120, 113, 0x010100],
+					[center, 1133, 120, 0x010101],
+					[center, 1136, 132, 0xfadd9d],
+					[center, 1126, 133, 0xf9de9f],
+					[center, 1130, 143, 0x0e0903],
+					[center, 1126, 158, 0x1e1405],
+					[center, 1126, 175, 0xffffc7]
+				]
+			],
+			[   //  低画质适配
+				1280, 720,
+				[
+					[center, 658, 109, 0xd2a580],
+					[center, 670, 120, 0x020100],
+					[center, 681, 120, 0x020101],
+					[center, 680, 123, 0x020201],
+					[center, 712, 128, 0xcda281],
+					[center, 679, 198, 0xffffde],
+				]
+			],
+			// 亮着的
+			[
+				1280, 720,
+				[
+					[center, 670, 121, 0x3d393d],
+					[center, 662, 146, 0xfffffd],
+					[center, 678, 159, 0x606060],
+					[center, 681, 173, 0xffffff],
+					[center, 699, 141, 0xffffc9],
+				]
+			],
+			[
+				1280, 720,
+				[
+					[center, 487, 111, 0x2f2f2f],
+					[center, 486, 136, 0xffffeb],
+					[center, 492, 148, 0x595959],
+					[center, 512, 155, 0xffffff],
+					[center, 523, 169, 0xffffe5],
+				]
+			],
+			[
+				1280, 720,
+				[
+					[center, 874, 115, 0x333334],
+					[center, 886, 122, 0x3a3a3b],
+					[center, 891, 138, 0xffffe6],
+					[center, 897, 178, 0xffffee],
+					[center, 879, 158, 0x5b5b5b],
+				]
+			],
+			[1280, 720, // 新
 				[
 					[right, 657, 124, 0xf5cc9e],
 					[right, 710, 125, 0xe7c29c],
@@ -703,17 +768,6 @@ const multiFindColors: IMultiFindColorsOrigin = {
 					[right, 670, 113, 0x3f413f],
 					[right, 677, 144, 0x3f413f],
 					[right, 678, 164, 0x3f413f],
-				]
-			],
-			[1280, 720, // 右上角有新
-				[
-					[right, 657, 124, 0xf5cc9e],
-					[right, 710, 125, 0xe7c29c],
-					[right, 659, 156, 0xfff3bd],
-					[right, 701, 163, 0xfce6ba],
-					[right, 668, 116, 0x40423f],
-					[right, 675, 146, 0x545043],
-					[right, 676, 166, 0x6f6248],
 				]
 			],
 		]

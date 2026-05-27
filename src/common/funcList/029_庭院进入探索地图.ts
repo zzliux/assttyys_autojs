@@ -1,8 +1,8 @@
 import { Script } from '@/system/script';
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 // const normal = -1; //定义常量
-const left = 0;
-const center = 1;
+// const left = 0;
+// const center = 1;
 const right = 2;
 
 export class Func029 implements IFuncOrigin {
@@ -15,22 +15,8 @@ export class Func029 implements IFuncOrigin {
 		oper: [
 			[right, 1280, 720, 0, 0, 32, 63, 1200]
 		]
-	}, { // 1庭院已打开菜单
+	}, { // 庭院已打开菜单
 		desc: '页面是否为庭院_菜单已展开_只支持默认庭院皮肤与默认装饰'
-	}, { // 2突破界面，关闭突破界面
-		desc: [1280, 720,
-			[
-				[left, 77, 171, 0xd6b89e],
-				[left, 86, 274, 0xceb69c],
-				[left, 137, 658, 0xd3c7bb],
-				[right, 1231, 629, 0xe4d4b0],
-				[right, 1206, 133, 0xe7d7cf],
-				[center, 590, 669, 0x1e1918]
-			]
-		],
-		oper: [
-			[center, 1280, 720, 1190, 114, 1226, 150, 500]
-		]
 	}]
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
@@ -51,12 +37,6 @@ export class Func029 implements IFuncOrigin {
 			} else {
 				return false
 			}
-		}
-		if (thisScript.oper({
-			name: '探索_地图在突破界面',
-			operator: [thisOperator[2]]
-		})) {
-			return true;
 		}
 		return false;
 	}
