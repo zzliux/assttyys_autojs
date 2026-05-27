@@ -28,12 +28,13 @@ export class Func025 implements IFuncOrigin {
 	}, { // 1 探索界面
 		desc: [1280, 720,
 			[
-				[left, 46, 36, 0xf7e3a5],
 				[left, 29, 672, 0x615a77],
-				[right, 1227, 30, 0xd3af84],
-				[right, 1174, 33, 0xd7b287],
+				[left, 54, 60, 0xdec38c],
+				[left, 124, 26, 0xf7eeb5],
+				[right, 1163, 22, 0xd7b288],
+				[right, 1223, 21, 0xd4ae84],
 			]
-		]
+		],
 	}, { // 2 确认退出探索，该色组取点不太好，但考虑上面一步已执行过，暂时不修改，待后续慢设备反馈再考虑重新取点
 		desc: [1280, 720,
 			[
@@ -76,9 +77,8 @@ export class Func025 implements IFuncOrigin {
 		}
 		if (thisScript.oper({
 			name: '探索入口界面',
-			operator: [{ desc: thisOperator[3].desc }]
+			operator: [thisOperator[3]]
 		})) {
-			thisScript.regionClick(thisOperator[3].oper);
 			return true;
 		}
 	}

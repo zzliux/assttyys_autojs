@@ -2,7 +2,7 @@ import { Script } from '@/system/script';
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 // const normal = -1; //定义常量
 // const left = 0;
-// const center = 1;
+const center = 1;
 const right = 2;
 
 export class Func029 implements IFuncOrigin {
@@ -17,6 +17,11 @@ export class Func029 implements IFuncOrigin {
 		]
 	}, { // 庭院已打开菜单
 		desc: '页面是否为庭院_菜单已展开_只支持默认庭院皮肤与默认装饰'
+	}, { // 2突破界面，关闭突破界面
+		desc: '突破界面',
+		oper: [
+			[center, 1280, 720, 1187, 112, 1228, 150, 1000],
+		]
 	}]
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		if (thisScript.oper({
@@ -37,6 +42,12 @@ export class Func029 implements IFuncOrigin {
 			} else {
 				return false
 			}
+		}
+		if (thisScript.oper({
+			name: '突破界面',
+			operator: [thisOperator[2]]
+		})) {
+			return true;
 		}
 		return false;
 	}
