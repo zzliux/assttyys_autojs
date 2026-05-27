@@ -102,7 +102,6 @@ export class Func026 implements IFuncOrigin {
 				[center, 810, 656, 0x5a5650],
 				[center, 921, 677, 0x521c18],
 				[right, 1024, 656, 0x331215],
-				[left, 42, 48, 0x50545d],
 			]
 		],
 		oper: [
