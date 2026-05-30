@@ -772,11 +772,12 @@ export class Func503 implements IFuncOrigin {
 		// 46 师徒界面
 		desc: [1280, 720,
 			[
-				[left, 177, 540, 0x3f3333],
-				[left, 159, 581, 0x161313],
-				[center, 383, 600, 0x472918],
-				[center, 419, 135, 0x896955],
-				[center, 533, 128, 0x312724],
+				[left, 45, 26, 0xefcf8c],
+				[left, 33, 37, 0xf7e7ad],
+				[left, 46, 48, 0xefd394],
+				[left, 269, 36, 0x5a3818],
+				[left, 54, 123, 0x7f6649],
+				[left, 49, 200, 0x7e654a],
 			]
 		],
 		oper: [

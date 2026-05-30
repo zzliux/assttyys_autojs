@@ -425,47 +425,7 @@ export class Func002 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 77, 668, 256, 706, 1000],
 		]
-	}, { // 36 秘闻对话
-		desc: [1280, 720,
-			[
-				[center, 452, 60, 0x2c2b33],
-				[right, 643, 30, 0x34313a],
-				[right, 873, 62, 0x2d2b32],
-				[center, 563, 719, 0x000000],
-				[right, 727, 719, 0x000000],
-			]
-		],
-		oper: [
-			[center, 1280, 720, 638, 363, 673, 392, 200],
-		],
-		notForCnt: true,
-	}, { // 37 秘闻对话左
-		desc: [1280, 720,
-			[
-				[left, 305, 546, 0x4c0d19],
-				[left, 313, 546, 0x4e0c18],
-				[left, 313, 560, 0x510c18],
-				[left, 307, 560, 0x4e0c18],
-			]
-		],
-		oper: [
-			[center, 1280, 720, 624, 329, 666, 369, 200],
-		],
-		notForCnt: true,
-	}, { // 38 秘闻对话右
-		desc: [1280, 720,
-			[
-				[right, 817, 545, 0x500d19],
-				[right, 828, 545, 0x4f0c18],
-				[right, 828, 560, 0x550b18],
-				[right, 818, 560, 0x4d0c18],
-			]
-		],
-		oper: [
-			[center, 1280, 720, 624, 316, 665, 356, 200],
-		],
-		notForCnt: true,
-	}, { // 39 姑获鸟皮肤确定弹窗(羡煞旁人)
+	}, { // 36 姑获鸟皮肤确定弹窗(羡煞旁人)
 		desc: [1280, 720,
 			[
 				[center, 636, 221, 0xcec3b5],
@@ -528,8 +488,7 @@ export class Func002 implements IFuncOrigin {
 				thisOperator[11], thisOperator[23], thisOperator[24], thisOperator[25],
 				thisOperator[26], thisOperator[27], thisOperator[28], thisOperator[29],
 				thisOperator[30], thisOperator[31], thisOperator[33], thisOperator[34],
-				thisOperator[35], thisOperator[36], thisOperator[37], thisOperator[38],
-				thisOperator[39],]
+				thisOperator[35], thisOperator[36]]
 		});
 	}
 }

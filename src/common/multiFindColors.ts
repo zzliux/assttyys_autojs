@@ -2866,15 +2866,15 @@ const multiFindColors: IMultiFindColorsOrigin = {
 			]
 		]],
 	},
-	'红手指': {
+	'晴明扇子': {
 		region: [left, 1280, 720, 0, 0, 1280, 720],
 		desc: [[1280, 720,
 			[
-				[right, 887, 255, 0xeca9a1],
-				[right, 897, 273, 0xedb9a9],
-				[right, 907, 287, 0xf0d0b9],
-				[right, 926, 303, 0x8c1b29],
-				[right, 940, 322, 0x9d1e2b],
+				[right, 867, 261, 0xffefb1],
+				[right, 876, 257, 0xffe78c],
+				[right, 873, 263, 0x4c5a9e],
+				[right, 874, 273, 0x4e5798],
+				[right, 882, 270, 0x4a5594],
 			]
 		]]
 	},
@@ -3136,7 +3136,15 @@ const multiFindColors: IMultiFindColorsOrigin = {
 	},
 	'剧情问号': {
 		region: [left, 1280, 720, 0, 0, 1280, 720],
-		desc: [[
+		desc: [[1280, 720,
+			[
+				[right, 1115, 270, 0xdcd2ce],
+				[right, 1121, 279, 0xe2d4d5],
+				[right, 1121, 290, 0xe1d5d2],
+				[right, 1095, 278, 0x6a523e],
+				[right, 1148, 278, 0x6f5742],
+			]
+		], [
 			1280, 720,
 			[
 				[right, 1027, 286, 0xd9cec8],
@@ -3144,14 +3152,6 @@ const multiFindColors: IMultiFindColorsOrigin = {
 				[right, 1033, 306, 0xddcfcb],
 				[right, 1008, 288, 0x6c4a30],
 				[right, 1007, 298, 0x553926],
-			]
-		], [1280, 720,
-			[
-				[right, 1115, 270, 0xdcd2ce],
-				[right, 1121, 279, 0xe2d4d5],
-				[right, 1121, 290, 0xe1d5d2],
-				[right, 1095, 278, 0x6a523e],
-				[right, 1148, 278, 0x6f5742],
 			]
 		],],
 		similar: 93
