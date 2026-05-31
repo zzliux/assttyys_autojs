@@ -831,6 +831,12 @@ export class Func503 implements IFuncOrigin {
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['503'];
 		// 增加全局开关
+		if (thisScript.global.back_time > 10) {
+			thisScript.doPush(thisScript, { text: '返回庭院次数过多,强行停止', before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+			sleep(2000);
+			thisScript.stop();
+			return true;
+		}
 		if (thisScript.global.back) {
 			let enabledThisOperator = [];
 			enabledThisOperator = Object.keys(thisConf).filter(keyName => /oper_\d+/.test(keyName) && thisConf[keyName]).map(keyName => thisOperator[parseInt(keyName.split('_')[1])]);
@@ -839,6 +845,7 @@ export class Func503 implements IFuncOrigin {
 				name: '返回庭院',
 				operator: enabledThisOperator
 			})) {
+				thisScript.global.back_time++;
 				return true;
 			}
 
@@ -849,6 +856,7 @@ export class Func503 implements IFuncOrigin {
 					const backHomePoint = thisScript.findMultiColor('左上_返回庭院');
 					if (backHomePoint) {
 						thisScript.regionClick([[backHomePoint.x, backHomePoint.y, backHomePoint.x + 15, backHomePoint.y + 15, 1200]]);
+						thisScript.global.back_time++;
 						thisScript.myToast('点击左上角返回庭院图标');
 						return true;
 					}
