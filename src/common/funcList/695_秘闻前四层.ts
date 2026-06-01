@@ -44,58 +44,69 @@ export class Func695 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1050, 272, 1072, 401, 1000],
 		]
-	}, { // 2 烬天玉藻前
+	}, { // 2 秘闻关卡
 		desc: [1280, 720,
 			[
-				[center, 486, 218, 0x9c6521],
-				[center, 498, 245, 0xc6aa7b],
-				[center, 513, 222, 0x885d2d],
-				[center, 512, 269, 0xac7939],
-				[center, 490, 272, 0x946531],
+				[center, 405, 61, 0x3f3e47],
+				[center, 558, 29, 0x4c4a52],
+				[right, 750, 35, 0x4f4e57],
+				[right, 883, 59, 0x3e3b45],
+				[right, 977, 47, 0xffe7ce],
 			]
 		],
-		oper: [
-			[center, 1280, 720, 809, 443, 870, 503, 1000],
-		]
-	}, { // 3 已借用
+		retest: 500,
+	}, { // 3 秘闻对话
 		desc: [1280, 720,
 			[
-				[center, 491, 225, 0xebe2e4],
-				[center, 507, 226, 0x4a3431],
-				[center, 498, 223, 0xa596e7],
-				[center, 501, 237, 0xece3e4],
-				[center, 506, 261, 0xfffbf9],
+				[center, 452, 60, 0x2c2b33],
+				[right, 643, 30, 0x34313a],
+				[right, 873, 62, 0x2d2b32],
+				[center, 563, 719, 0x000000],
+				[right, 727, 719, 0x000000],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 22, 20, 58, 53, 1000],
-			[center, 1280, 720, 22, 20, 58, 53, 1000],
-		]
-	}, { // 4 探索地图进入秘闻
-		desc: '探索地图界面',
-		oper: [
-			[center, 1280, 720, 547, 637, 594, 677, 1000],
-		]
-	}, { // 5 每周挑战秘闻弹窗，暗
-		desc: [
-			1280, 720,
+			[center, 1280, 720, 712, 446, 841, 474, 200],
+		],
+		notForCnt: true,
+	}, { // 4 秘闻对话左
+		desc: [1280, 720,
 			[
-				[left, 110, 42, 0x44423d],
-				[left, 211, 38, 0x44423e],
-				[left, 31, 634, 0x211719],
-				[right, 1255, 706, 0x2b2326],
-				[right, 1264, 364, 0x110b0b],
-				[center, 886, 24, 0x4b290d]
+				[left, 305, 546, 0x4c0d19],
+				[left, 313, 546, 0x4e0c18],
+				[left, 313, 560, 0x510c18],
+				[left, 307, 560, 0x4e0c18],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1020, 112, 1230, 371, 1000]
-		]
-	}, { // 6 秘闻挑战开启提示
-		desc: '秘闻挑战开启',
+			[center, 1280, 720, 624, 329, 666, 369, 200],
+		],
+		notForCnt: true,
+	}, { // 5 秘闻对话右
+		desc: [1280, 720,
+			[
+				[right, 817, 545, 0x500d19],
+				[right, 828, 545, 0x4f0c18],
+				[right, 828, 560, 0x550b18],
+				[right, 818, 560, 0x4d0c18],
+			]
+		],
 		oper: [
-			[left, 1280, 720, 452, 605, 870, 683, 2000],
-		]
+			[center, 1280, 720, 624, 316, 665, 356, 200],
+		],
+		notForCnt: true,
+	}, { // 6 秘闻对话 黑
+		desc: [1280, 720,
+			[
+				[right, 1067, 3, 0x453f30],
+				[right, 1067, 38, 0x37342b],
+				[center, 369, 713, 0x000000],
+				[right, 781, 709, 0x000000],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 624, 316, 665, 356, 200],
+		],
 	}, { // 7 秘闻界面
 		desc: [1280, 720,
 			[
@@ -106,15 +117,15 @@ export class Func695 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 272, 187, 338, 219, 1000],
-			[center, 1280, 720, 618, 185, 695, 219, 1000],
-			[center, 1280, 720, 268, 307, 341, 342, 1000],
-			[center, 1280, 720, 627, 306, 696, 341, 1000],
-			[center, 1280, 720, 276, 439, 333, 465, 1000],
-			[center, 1280, 720, 637, 436, 703, 472, 1000],
-			[center, 1280, 720, 275, 561, 343, 591, 1000],
-			[center, 1280, 720, 636, 568, 692, 600, 1000],
-			[center, 1280, 720, 1164, 620, 1226, 667, 1000],
+			[center, 1280, 720, 272, 187, 338, 219, 300],
+			[center, 1280, 720, 618, 185, 695, 219, 300],
+			[center, 1280, 720, 268, 307, 341, 342, 300],
+			[center, 1280, 720, 627, 306, 696, 341, 300],
+			[center, 1280, 720, 276, 439, 333, 465, 300],
+			[center, 1280, 720, 637, 436, 703, 472, 300],
+			[center, 1280, 720, 275, 561, 343, 591, 300],
+			[center, 1280, 720, 636, 568, 692, 600, 300],
+			[center, 1280, 720, 1164, 620, 1226, 667, 300],
 		]
 	}, { // 8 100勾
 		desc: [1280, 720,
@@ -124,13 +135,12 @@ export class Func695 implements IFuncOrigin {
 				[center, 390, 198, 0xffeb7b],
 				[center, 376, 221, 0xfdfdfd],
 				[center, 390, 226, 0xffffff],
-				[center, 381, 216, 0xa51a14],
+				[center, 379, 216, 0xca4637],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1157, 103, 1200, 138, 1000],
-		],
-		retest: 500
+			[center, 1280, 720, 1157, 103, 1200, 138, 500],
+		]
 	}, { // 9 翻页
 		oper: [
 			[center, 1280, 720, 463, 580, 477, 591, 1000],
@@ -199,45 +209,79 @@ export class Func695 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1159, 99, 1195, 134, 1000],
 		]
-	}, { // 15 50勾
+	}, { // 15 50勾 样式一
 		desc: [1280, 720,
 			[
 				[center, 349, 203, 0xfada68],
 				[center, 368, 198, 0xf7eb7b],
 				[center, 390, 198, 0xffeb7b],
 				[center, 390, 226, 0xffffff],
-				[center, 381, 216, 0xa51a14],
+				[center, 375, 220, 0xd3170f],
 				[center, 381, 222, 0xffffff],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1157, 103, 1200, 138, 1000],
+			[center, 1280, 720, 1157, 103, 1200, 138, 500],
+		]
+	}, { // 16 50勾 样式二
+		desc: [1280, 720,
+			[
+				[center, 349, 203, 0xfada68],
+				[center, 368, 198, 0xf7eb7b],
+				[center, 390, 198, 0xffeb7b],
+				[center, 390, 226, 0xffffff],
+				[center, 375, 220, 0xe11e30],
+				[center, 381, 222, 0xffffff],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1157, 103, 1200, 138, 500],
 		]
 	},];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['695'];
-		if (thisConf.fifty) {
+		if (thisScript.oper({
+			id: 692,
+			name: '借用式神',
+			operator: [thisOperator[2]],
+		})) {
+			if (thisConf.fifty) {
+				if (thisScript.oper({
+					id: 692,
+					name: '借用式神',
+					operator: [thisOperator[15], thisOperator[16]],
+				})) {
+					thisScript.global.miWenClearTimer++;
+					return true;
+				} else {
+					const now = new Date().getTime();
+					const ajImg = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(thisScript.helperBridge.helper.GetBitmap());
+					const path = `/sdcard/assttyys/bgyxImg/${now}.png`;
+					files.ensureDir(path);
+					ajImg.saveTo(path);
+					ajImg.recycle();
+				}
+			}
 			if (thisScript.oper({
 				id: 692,
 				name: '借用式神',
-				operator: [thisOperator[15]],
+				operator: [thisOperator[8], thisOperator[12], thisOperator[13], thisOperator[14]],
 			})) {
 				thisScript.global.miWenClearTimer++;
 				return true;
+			} else {
+				const now = new Date().getTime();
+				const ajImg = com.stardust.autojs.core.image.ImageWrapper.ofBitmap(thisScript.helperBridge.helper.GetBitmap());
+				const path = `/sdcard/assttyys/bgyxImg/${now}.png`;
+				files.ensureDir(path);
+				ajImg.saveTo(path);
+				ajImg.recycle();
 			}
 		}
 		if (thisScript.oper({
 			id: 692,
 			name: '借用式神',
-			operator: [thisOperator[8], thisOperator[12], thisOperator[13], thisOperator[14]],
-		})) {
-			thisScript.global.miWenClearTimer++;
-			return true;
-		}
-		if (thisScript.oper({
-			id: 692,
-			name: '借用式神',
-			operator: [thisOperator[4], thisOperator[5], thisOperator[6], thisOperator[11]],
+			operator: [thisOperator[11], thisOperator[3], thisOperator[4], thisOperator[5], thisOperator[6]],
 		})) {
 			return true;
 		}
@@ -256,6 +300,8 @@ export class Func695 implements IFuncOrigin {
 					realTimer = realTimer - 8;
 					thisScript.regionSwipe(thisOperator[9].oper[0], thisOperator[9].oper[1], [2000, 2300], 500)
 				}
+			} else if ([16, 24, 32, 40].includes(thisScript.global.miWenClearTimer)) {
+				thisScript.regionSwipe(thisOperator[9].oper[0], thisOperator[9].oper[1], [2000, 2300], 500)
 			}
 			realTimer = thisScript.global.miWenClearTimer % 8;
 			thisScript.regionClick([thisOperator[7].oper[realTimer]])
