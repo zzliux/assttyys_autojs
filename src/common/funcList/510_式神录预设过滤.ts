@@ -309,6 +309,7 @@ export class Func510 implements IFuncOrigin {
 						thisScript.global.preset_once_groupNum = null;
 						thisScript.global.preset_once_defaultNum = null;
 						return thisScript.oper({
+							id: 510,
 							name: '退出式神录',
 							operator: [{
 								oper: [thisOperator[2].oper[4]]
@@ -434,9 +435,12 @@ export class Func510 implements IFuncOrigin {
 							}
 
 							thisScript.regionClick(oper);
+						} else {
+							console.log('式神录_当前选中队伍预设 未找到');
 						}
 					} else if (thisScript.global.change_shikigami_state === 'finish') {
 						return thisScript.oper({
+							id: 510,
 							name: '退出式神录',
 							operator: [{
 								oper: [thisOperator[2].oper[4]]
