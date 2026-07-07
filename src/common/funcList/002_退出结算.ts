@@ -482,10 +482,10 @@ export class Func002 implements IFuncOrigin {
 				thisOperator[32],
 				thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[3],
 				thisOperator[4], thisOperator[5], thisOperator[6], thisOperator[7],
-				thisOperator[8], thisOperator[9], thisOperator[10], thisOperator[21],
+				thisOperator[8], thisOperator[9], thisOperator[25], thisOperator[10], thisOperator[21],
 				thisOperator[12], thisOperator[13], thisOperator[14], thisOperator[15],
 				thisOperator[16], thisOperator[17], thisOperator[18], // 22要放18前面
-				thisOperator[11], thisOperator[23], thisOperator[24], thisOperator[25],
+				thisOperator[11], thisOperator[23], thisOperator[24],
 				thisOperator[26], thisOperator[27], thisOperator[28], thisOperator[29],
 				thisOperator[30], thisOperator[31], thisOperator[33], thisOperator[34],
 				thisOperator[35], thisOperator[36]]
