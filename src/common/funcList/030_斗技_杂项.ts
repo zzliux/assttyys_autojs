@@ -223,7 +223,21 @@ export class Func030 implements IFuncOrigin {
 				[right, 771, 592, 0x5f3827],
 			]
 		]
-	},];
+	}, {
+		// 20 寻龙逐英斗技主界面
+		desc: [1280, 720,
+			[
+				[right, 1232, 617, 0xd3bc8d],
+				[right, 1189, 627, 0x3a1d0d],
+				[right, 708, 19, 0x253834],
+				[left, 36, 37, 0xf5e2a3],
+				[right, 1204, 66, 0x745844],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1167, 590, 1243, 659, 1000],
+		]
+	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['30'];
 		if (thisconf.ledgeProPvP) {
@@ -254,7 +268,7 @@ export class Func030 implements IFuncOrigin {
 			operator: [
 				thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[3],
 				thisOperator[6], thisOperator[7], thisOperator[8], thisOperator[9],
-				thisOperator[12], thisOperator[13],
+				thisOperator[12], thisOperator[13], thisOperator[20],
 			]
 		})) {
 			return true;

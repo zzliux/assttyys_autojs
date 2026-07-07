@@ -1557,5 +1557,8 @@ export const versionList = [{
 }, {
 	version: '20260527_03',
 	desc: '修复：探索找怪界面'
+}, {
+	version: '20260707_01',
+	desc: '修复：兼容新版本斗技主界面'
 }];
 export default versionList[versionList.length - 1].version;
