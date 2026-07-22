@@ -59,7 +59,7 @@ export class Func016 implements IFuncOrigin {
 				[right, 1209, 43, 0xe8d4cf],
 				[right, 1204, 530, 0xded3bd],
 				[right, 1087, 624, 0xebe5ce],
-				[right, 1205, 437, 0xa05437],
+				[right, 1206, 500, 0x954d34],
 			]
 		],
 		oper: [

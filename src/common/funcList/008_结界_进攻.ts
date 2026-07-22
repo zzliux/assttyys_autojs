@@ -119,17 +119,18 @@ export class Func008 implements IFuncOrigin {
 	}, { // 6 进入寮突破
 		desc: [1280, 720,
 			[
-				[right, 1214, 293, 0x6a4222],
-				[right, 1240, 337, 0xa75e1c],
-				[right, 1230, 374, 0x744622],
-				[right, 1213, 424, 0x5d3d26],
-				[right, 1246, 476, 0x553623],
+				[right, 1212, 290, 0x854e20],
+				[right, 1245, 338, 0x653d20],
+				[right, 1213, 424, 0x5f3e26],
+				[right, 1247, 473, 0x563622],
+				[right, 1233, 304, 0xc16a19],
+				[right, 1235, 440, 0x583924],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1216, 414, 1244, 500, 1000],
+			[center, 1280, 720, 1208, 384, 1253, 479, 1000],
 		]
-	},];
+	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisConf = thisScript.scheme.config['8'];
 		if (thisConf.inv && thisScript.scheme.config[0].jspd_enabled_2 == false) {
@@ -154,12 +155,14 @@ export class Func008 implements IFuncOrigin {
 			}
 		}
 		if (thisScript.oper({
+			id: 8,
 			name: '地图进入个人突破',
 			operator: [thisOperator[5]]
 		})) {
 			return true;
 		}
 		if ('寮突破' === thisConf.type && thisScript.oper({
+			id: 8,
 			name: '地图进入寮突破',
 			operator: [thisOperator[6]]
 		})) {

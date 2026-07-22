@@ -2039,10 +2039,10 @@ assert@2.0.0:
     object-is "^1.0.1"
     util "^0.12.0"
 
-assttyys_ui@^1.0.11:
-  version "1.0.11"
-  resolved "https://registry.npmmirror.com/assttyys_ui/-/assttyys_ui-1.0.11.tgz"
-  integrity sha512-CcKcNudZJ7iaOvBc4ck1O3hoSgiVCJHf6EgYImyNroj00TWUPdoHypCCRzpORwwrHm3HUDT7z+AzAd+KFzeQXg==
+assttyys_ui@^1.0.13:
+  version "1.0.13"
+  resolved "https://registry.npmmirror.com/assttyys_ui/-/assttyys_ui-1.0.13.tgz"
+  integrity sha512-ILT61ZzGwqWp3/Uo6ND/mBx+JKKOH/tPuT5oVZj6SYg3gjwOJVG8aKVrFzNHo9tyCSpkha4xdayd2gX8wb53xQ==
   dependencies:
     "@element-plus/icons-vue" "^2.3.1"
     "@marshallswain/vuedraggable" "^4.2.0"

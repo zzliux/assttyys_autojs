@@ -1560,5 +1560,8 @@ export const versionList = [{
 }, {
 	version: '20260707_01',
 	desc: '修复：兼容新版本斗技主界面'
+}, {
+	version: '20260723_01',
+	desc: '修复：008类型为寮突破时不切换寮突破；016地鬼打完一个不返回；508逢魔首领界面不点击挑战'
 }];
 export default versionList[versionList.length - 1].version;
