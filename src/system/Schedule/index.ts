@@ -191,6 +191,7 @@ export class Job extends JobOptions {
 		// 定时任务启动时执行推送
 		if (this.pushOption?.enable && this.pushOption?.start) {
 			console.log(`[scheduler]定时任务启动时推送：${JSON.stringify(this, null, 4)}`);
+			thisScript.keepScreen();
 			// 发送推送通知
 			doPush(thisScript, {
 				text: `[定时任务][${this.name}]启动运行，当前时间：${formatCurrentTime()}`,
