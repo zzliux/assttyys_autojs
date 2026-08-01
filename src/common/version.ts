@@ -1563,5 +1563,8 @@ export const versionList = [{
 }, {
 	version: '20260723_01',
 	desc: '修复：008类型为寮突破时不切换寮突破；016地鬼打完一个不返回；508逢魔首领界面不点击挑战'
+}, {
+	version: '20260801_01',
+	desc: '新增：定时任务增加推送配置，可在启动时推送、每间隔一段时间进行推送'
 }];
 export default versionList[versionList.length - 1].version;
