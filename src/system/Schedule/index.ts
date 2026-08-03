@@ -1,7 +1,7 @@
 import type { RepeatModeType, StatusType } from './type';
 import { deepClone } from '@/common/tool';
 import { getNextByCron } from '@/common/toolCron';
-import { myToast, doPush } from '@/common/toolAuto';
+import { myToast, doPush, formatRunTime, formatTime } from '@/common/toolAuto';
 import thisScript from '@/system/script'
 export class JobOptions {
 
@@ -89,44 +89,7 @@ export const sharedData = {
 	runTime: 0
 };
 
-/**
- * 格式化运行时长，美化可读性
- * 规则：
- * - 不足1分钟：显示"X秒"
- * - 超过1分钟且不足1小时：显示"X分Y秒"，整分钟时不显示秒
- * - 超过1小时：显示"X小时Y分Z秒"，整分钟/整小时时省略对应单位
- * @param seconds 秒数
- */
-export const formatRunTime = (seconds: number) => {
-	const totalSeconds = Math.floor(seconds);
-	if (totalSeconds < 60) {
-		return `${totalSeconds}秒`;
-	}
-	const hours = Math.floor(totalSeconds / 3600);
-	const minutes = Math.floor((totalSeconds % 3600) / 60);
-	const secs = totalSeconds % 60;
-	let result = '';
-	if (hours > 0) {
-		result += `${hours}小时`;
-	}
-	if (minutes > 0) {
-		result += `${minutes}分`;
-	}
-	if (secs > 0) {
-		result += `${secs}秒`;
-	}
-	return result;
-};
 
-/**
- * 格式化当前时间为本地时区时间字符串
- * 格式：YYYY-MM-DD HH:mm:ss
- * 使用 getFullYear/getMonth/getDate 等本地时区方法，避免 toLocaleString 显示 UTC 时间加时区偏移
- */
-export const formatCurrentTime = (date: Date = new Date()) => {
-	const pad = (n: number) => String(n).padStart(2, '0');
-	return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
-};
 
 export const mergeOffsetTime = function (date: Date, offsetStr: string) {
 
@@ -194,7 +157,7 @@ export class Job extends JobOptions {
 			thisScript.keepScreen();
 			// 发送推送通知
 			doPush(thisScript, {
-				text: `[定时任务][${this.name}]启动运行，当前时间：${formatCurrentTime()}`,
+				text: `[定时任务][${this.name}]启动运行，当前时间：${formatTime(new Date())}`,
 				before() { }
 			});
 
@@ -209,7 +172,7 @@ export class Job extends JobOptions {
 				console.log(`[scheduler]定时任务运行中推送：${JSON.stringify(this, null, 4)}`);
 				const runSeconds = Math.floor((Date.now() - this.lastRunTime.getTime()) / 1000);
 				doPush(thisScript, {
-					text: `[定时任务][${this.name}]运行中，已运行：${formatRunTime(runSeconds)}，当前时间：${formatCurrentTime()}`,
+					text: `[定时任务][${this.name}]运行中，已运行：${formatRunTime(runSeconds)}，当前时间：${formatTime(new Date())}`,
 					before() { }
 				});
 

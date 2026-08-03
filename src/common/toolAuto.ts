@@ -599,3 +599,43 @@ export const setWebLoaded = (flag: boolean) => {
 export const getDeviceId = () => {
 	return device.getAndroidId();
 }
+
+/**
+ * 格式化运行时长，美化可读性
+ * 规则：
+ * - 不足1分钟：显示"X秒"
+ * - 超过1分钟且不足1小时：显示"X分Y秒"，整分钟时不显示秒
+ * - 超过1小时：显示"X小时Y分Z秒"，整分钟/整小时时省略对应单位
+ * @param seconds 秒数
+ */
+export const formatRunTime = (seconds: number) => {
+	const totalSeconds = Math.floor(seconds);
+	if (totalSeconds < 60) {
+		return `${totalSeconds}秒`;
+	}
+	const hours = Math.floor(totalSeconds / 3600);
+	const minutes = Math.floor((totalSeconds % 3600) / 60);
+	const secs = totalSeconds % 60;
+	let result = '';
+	if (hours > 0) {
+		result += `${hours}小时`;
+	}
+	if (minutes > 0) {
+		result += `${minutes}分`;
+	}
+	if (secs > 0) {
+		result += `${secs}秒`;
+	}
+	return result;
+};
+
+
+/**
+ * 格式化当前时间为本地时区时间字符串
+ * 格式：YYYY-MM-DD HH:mm:ss
+ * 使用 getFullYear/getMonth/getDate 等本地时区方法，避免 toLocaleString 显示 UTC 时间加时区偏移
+ */
+export const formatTime = (date: Date) => {
+	const pad = (n: number) => String(n).padStart(2, '0');
+	return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+};

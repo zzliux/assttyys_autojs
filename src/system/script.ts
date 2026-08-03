@@ -13,7 +13,7 @@ import { setCurrentScheme } from '@/common/tool';
 import { getWidthPixels, getHeightPixels } from '@auto.pro/core';
 import schemeDialog from './schemeDialog';
 import drawFloaty from '@/system/drawFloaty';
-import { myToast, doPush, questionSearch, search } from '@/common/toolAuto';
+import { myToast, doPush, questionSearch, search, formatTime, formatRunTime } from '@/common/toolAuto';
 import { IFunc, IFuncOrigin } from '@/interface/IFunc';
 import { IScheme } from '@/interface/IScheme';
 import { IMultiDetectColors, IMultiFindColors } from '@/interface/IMultiColor';
@@ -39,7 +39,8 @@ export class Script {
 	multiFindColors: IMultiFindColors; // 多点找色用的，提前初始化，减轻运行中计算量
 	multiDetectColors: IMultiDetectColors; // 多点比色用的，提前初始化，减轻运行中的计算量
 	hasRedList: boolean; // KeepScreen(true)时会初始化redList，如果没有初始化的话这个值为false，方便在有需要的时候初始化redlist且不重复初始化
-	runDate: Date; // 运行启动时间
+	runDate: Date; // 当前方案启动的运行时间，切换方案后该时间重置
+	runFDate: Date; // 总启动时间，切换方案不重置
 	currentDate: Date; // 最近一次功能执行时间
 	lastFuncDateTime: Date; // 上次功能执行时间
 	ocrDetector: IOcrDetector; // yunxi的ocr
@@ -98,6 +99,7 @@ export class Script {
 		this.multiFindColors = null;
 		this.hasRedList = false;
 		this.runDate = null;
+		this.runFDate = null;
 		this.currentDate = null;
 		this.lastFuncDateTime = null;
 		this.ocrDetector = null;
@@ -113,7 +115,12 @@ export class Script {
 		};
 		this.helperBridge = helperBridge;
 		this.storeCommon = storeCommon;
-		this.doPush = doPush;
+		this.doPush = (thisScript, options) => {
+			if (this.runFDate) {
+				options.text = `${options.text} \n\n启动时间：${formatTime(this.runFDate)}，当前时间：${formatTime(new Date())}，运行时间：${formatRunTime(((new Date()).getTime() - this.runFDate.getTime()) / 1000)}`;
+			}
+			doPush(thisScript, options)
+		};
 		this.myToast = myToast;
 		this.schedule = schedule;
 	}
@@ -554,7 +561,10 @@ export class Script {
 				this.runTimes = {}; // 全新启动需重置该参数
 				this.global = merge({}, globalRoot); // 全新启动需重置该参数
 				this.job = job;
-				this.runDate = new Date(); // 全新启动需重之运行时间
+				this.runDate = new Date(); // 全新启动需重置运行时间
+				if (!this.runFDate) { // 总启动时间只有在停止后重置，如果不为空时说明为切换方案至此，则不置空
+					this.runFDate = new Date();
+				}
 				myToast(`运行方案[${this.scheme.schemeName}]`);
 				this.schemeHistory.push(this.scheme);
 			}
@@ -683,6 +693,7 @@ export class Script {
 			}
 			if (!flag && !script.isPause) {
 				this.schemeHistory = [];
+				this.runFDate = null; // 停止后重置总启动时间
 			}
 			console.log('job:' + this.job?.name);
 			if (!flag && this.job && !this.isPause) {
