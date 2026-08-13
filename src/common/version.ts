@@ -1566,5 +1566,8 @@ export const versionList = [{
 }, {
 	version: '20260801_01',
 	desc: '新增：定时任务增加推送配置，可在启动时推送、每间隔一段时间进行推送'
+}, {
+	version: '20260813_01',
+	desc: '修复：武道大会搜寻时点击切换门票的问题'
 }];
 export default versionList[versionList.length - 1].version;

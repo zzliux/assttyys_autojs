@@ -50,7 +50,7 @@ export class Func703 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[right, 1280, 720, 1099, 537, 1191, 645, 2000], // 点击 右侧探索按钮
+			[right, 1280, 720, 1091, 580, 1195, 679, 2000], // 点击 右侧探索按钮
 		]
 	}];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
