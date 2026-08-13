@@ -40,13 +40,14 @@ export class Func703 implements IFuncOrigin {
 		// 2 探索界面_未探索 → 点击右侧探索按钮
 		desc: [1280, 720,
 			[
-				[right, 894, 40, 0xc889a5],
-				[right, 896, 19, 0xf7e3d1],
-				[right, 1099, 22, 0xf9edbf],
-				[right, 1094, 44, 0xfcf0b8],
-				[right, 1144, 588, 0xd8ccb5],
-				[right, 1130, 637, 0x27231f],
-				[right, 1158, 656, 0xd8ceb8],
+				[left, 41, 32, 0xf7e4a6],
+				[left, 121, 25, 0xf7eeb5],
+				[right, 999, 646, 0xf8efc6],
+				[right, 1126, 599, 0xe3d9c2],
+				[right, 1157, 652, 0xdcd0bb],
+				[right, 1185, 665, 0x372015],
+				[right, 887, 35, 0xffeac3],
+				[right, 1090, 35, 0xfff3c7],
 			]
 		],
 		oper: [
