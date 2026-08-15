@@ -1572,5 +1572,8 @@ export const versionList = [{
 }, {
 	version: '20260813_02',
 	desc: '修复：703武道大会部分设备不识别场景的问题'
+}, {
+	version: '20260815_01',
+	desc: '优化：703武道大会增加自动停止机制：连选点击搜寻5次后自动停止'
 }];
 export default versionList[versionList.length - 1].version;

@@ -375,10 +375,12 @@ export class Func018 implements IFuncOrigin {
 		}
 		// 打开和追踪悬赏
 		if (!thisScript.global.xsOpened && thisScript.oper({
+			id: 18,
 			name: '悬赏_庭院界面',
 			operator: [{ desc: thisOperator[1].desc }, { desc: thisOperator[3].desc }, { desc: thisOperator[4].desc }, { desc: thisOperator[5].desc }]
 		})) {
 			if (thisScript.oper({
+				id: 18,
 				name: '悬赏_追踪悬赏',
 				operator: [thisOperator[0], {
 					desc: thisOperator[1].desc
@@ -434,6 +436,7 @@ export class Func018 implements IFuncOrigin {
 			let region = null;
 			enabledThisOperator = [{ desc: thisOperator[9].desc }];
 			if (thisScript.oper({
+				id: 18,
 				name: '悬赏_追踪悬赏',
 				operator: [{ desc: thisOperator[1].desc }]
 			})) {
@@ -519,6 +522,7 @@ export class Func018 implements IFuncOrigin {
 		}
 		// 筛选悬赏
 		if (thisScript.oper({
+			id: 18,
 			name: '悬赏_筛选悬赏',
 			operator: [{ desc: thisOperator[1].desc }]
 		})) {
@@ -532,6 +536,7 @@ export class Func018 implements IFuncOrigin {
 				// 筛选完毕_关闭悬赏
 
 				return thisScript.oper({
+					id: 18,
 					name: '悬赏_已追踪悬赏',
 					operator: [thisOperator[1]]
 				})
@@ -539,6 +544,7 @@ export class Func018 implements IFuncOrigin {
 		}
 		// 神秘妖怪
 		if (thisScript.oper({
+			id: 18,
 			name: '悬赏_神秘妖怪',
 			operator: [thisOperator[24]]
 		})) {
@@ -550,6 +556,7 @@ export class Func018 implements IFuncOrigin {
 		}
 		// 悬赏已完成
 		if (thisScript.oper({
+			id: 18,
 			name: '悬赏_关闭悬赏封印弹窗',
 			operator: [{
 				desc: thisOperator[2].desc
@@ -570,6 +577,7 @@ export class Func018 implements IFuncOrigin {
 		}
 		// 确认挑战副本
 		if (thisScript.oper({
+			id: 18,
 			name: '悬赏_发现地点弹窗',
 			operator: enabledThisOperator
 		})) {
@@ -614,6 +622,7 @@ export class Func018 implements IFuncOrigin {
 		}
 		// 关闭弹窗
 		if (thisScript.oper({
+			id: 18,
 			name: '悬赏_关闭弹窗',
 			operator: [thisOperator[8]]
 		})) {
@@ -621,6 +630,7 @@ export class Func018 implements IFuncOrigin {
 		}
 		// 领取奖励
 		if (thisScript.oper({
+			id: 18,
 			name: '悬赏_探索界面',
 			operator: [thisOperator[10]]
 		})) {
@@ -637,11 +647,12 @@ export class Func018 implements IFuncOrigin {
 		let curCnt = 0;
 		const maxCount = 5;
 		while (thisScript.oper({
+			id: 18,
 			name: '悬赏_探索界面',
 			operator: [thisOperator[10]]
 		})) {
 			curCnt++;
-			thisScript.keepScreen(false);
+			thisScript.keepScreen(true);
 			if (curCnt >= maxCount) {
 				const pointXZ = thisScript.findMultiColor('悬赏_协作任务')
 				if (pointXZ) {
@@ -672,6 +683,7 @@ export class Func018 implements IFuncOrigin {
 		}
 		// 杂项
 		if (thisScript.oper({
+			id: 18,
 			name: '悬赏_杂项',
 			operator: thisOperator.slice(13)
 		})) {

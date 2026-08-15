@@ -71,12 +71,26 @@ export class Func703 implements IFuncOrigin {
 		})) {
 			return true;
 		}
+
+		let curCnt = 0;
+		const maxCount = 5;
 		// 未探索：点击右侧探索按钮，探索后游戏会自动进入御灵挑战界面
-		if (thisScript.oper({
+		while (thisScript.oper({
 			id: 703,
 			name: '武道大会_点击探索',
 			operator: [thisOperator[2]]
 		})) {
+			curCnt++;
+			thisScript.keepScreen(false);
+			if (curCnt >= maxCount) {
+				thisScript.myToast(`连续执行${maxCount}次挑战后未开始，脚本自动停止`);
+				thisScript.doPush(thisScript, { text: `[${thisScript.schemeHistory.map(item => item.schemeName).join('、')}]已停止，请查看。`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+				thisScript.stop();
+				sleep(2000);
+				return false;
+			}
+		}
+		if (curCnt) {
 			return true;
 		}
 		return false;
