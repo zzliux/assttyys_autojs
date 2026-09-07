@@ -468,6 +468,27 @@ export class Func993 implements IFuncOrigin {
 			oper: [
 				[center, 1280, 720, 475, 483, 579, 523, 1000],
 			]
+		}, { // 28 十周登录页(布局同旧版,仅配色变化)
+			desc: [1280, 720,
+				[
+					// 8+适龄提示区域
+					[left, 72, 574, 0x67c13a],
+					[left, 87, 574, 0x67c13a],
+					[left, 76, 591, 0xffffff],
+					[left, 75, 630, 0x4e4e4e],
+					[left, 99, 628, 0x363636],
+					// 进入游戏按钮区域
+					[center, 633, 553, 0xdd9579],
+					[right, 667, 553, 0xd28e7a],
+					[right, 648, 603, 0xfffff9],
+					[right, 643, 645, 0xf5ced1],
+					[center, 631, 626, 0xa59583],
+					[right, 663, 626, 0x524634],
+				]
+			],
+			oper: [
+				[center, 1280, 720, 582, 536, 707, 660, 1200], // 点击进入游戏(与operator[0].oper[0]中心点基本一致)
+			],
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -591,6 +612,18 @@ export class Func993 implements IFuncOrigin {
 					operator: [{
 						oper: [thisOperator[0].oper[0]],
 					}],
+				});
+			}
+			// 十周登录页(区服名为竖排文字无法OCR,跳过区服校验直接点击进入游戏)
+			if (thisScript.oper({
+				id: 993,
+				name: '是否为十周登录页',
+				operator: [{ desc: thisOperator[28].desc }],
+			})) {
+				thisScript.global.game_area = 'findMultiColor_皮肤广告关闭按钮';
+				return thisScript.oper({
+					name: '点击开始游戏',
+					operator: [{ oper: [thisOperator[28].oper[0]] }],
 				});
 			}
 			if (thisScript.global.game_area == 'findMultiColor_皮肤广告关闭按钮' && thisScript.oper({
