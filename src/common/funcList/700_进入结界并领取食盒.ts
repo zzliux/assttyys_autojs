@@ -125,11 +125,11 @@ export class Func700 implements IFuncOrigin {
 		}, { //	10 判断_是否为己方结界
 			desc: [1280, 720,
 				[
-					[center, 611, 300, 0x0c0804],
 					[center, 913, 305, 0x0c0804],
 					[left, 318, 305, 0x0c0804],
-					[center, 613, 294, 0xe1cf6b],
 					[left, 202, 462, 0x10100c],
+					[center, 595, 299, 0xc0994c],
+					[center, 618, 339, 0x0b0703],
 				],
 			],
 			oper: [
