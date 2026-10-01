@@ -31,11 +31,11 @@ export class Func702 implements IFuncOrigin {
 		{ //	0 判断_是否为己方结界
 			desc: [1280, 720,
 				[
-					[center, 611, 300, 0x0c0804],
-					[center, 913, 305, 0x0c0804],
-					[left, 318, 305, 0x0c0804],
-					[center, 613, 294, 0xe1cf6b],
-					[left, 202, 462, 0x10100c],
+					[left, 309, 328, 0xddc9bb],
+					[left, 192, 465, 0x13100d],
+					[center, 604, 323, 0xddc9bb],
+					[right, 912, 329, 0xddc5b3],
+					[right, 1233, 689, 0x6e274c],
 				],
 			],
 			oper: [
