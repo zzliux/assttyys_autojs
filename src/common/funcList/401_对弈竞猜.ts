@@ -16,7 +16,7 @@ export class Func401 implements IFuncOrigin {
 			name: 'follow_whose',
 			desc: '跟押哪位大佬',
 			type: 'list',
-			data: ['面灵气喵'],
+			data: ['面灵气喵', '查查尔', '槐下30'],
 			default: '面灵气喵',
 		}],
 	}]
@@ -27,12 +27,11 @@ export class Func401 implements IFuncOrigin {
 	}, { // 2 选边
 		desc: [1280, 720,
 			[
-				[right, 690, 51, 0xf1e9b7],
-				[right, 1123, 349, 0x272420],
-				[left, 39, 33, 0xf3e1a0],
-				[center, 363, 633, 0x4a2f18],
-				[right, 1057, 651, 0x6f3a24],
-				[right, 1194, 659, 0xe0cdb2],
+				[center, 325, 301, 0xc69f73],
+				[center, 365, 361, 0x262421],
+				[right, 1121, 337, 0x282521],
+				[right, 1141, 343, 0xb0805a],
+				[right, 1060, 648, 0x6e3824],
 			]
 		],
 		oper: [
@@ -47,11 +46,11 @@ export class Func401 implements IFuncOrigin {
 		desc: [
 			1280, 720,
 			[
-				[right, 727, 411, 0x3f2f5c],
-				[right, 726, 421, 0xe0b346],
-				[right, 732, 420, 0xb36f99],
-				[right, 750, 422, 0xffda55],
-				[center, 771, 431, 0x583a6f],
+				[right, 728, 294, 0xedce97],
+				[center, 386, 349, 0xac7d56],
+				[right, 1164, 406, 0xb48459],
+				[right, 795, 498, 0x43241f],
+				[right, 700, 506, 0x3f231e],
 			]
 		],
 		oper: [
@@ -60,11 +59,11 @@ export class Func401 implements IFuncOrigin {
 	}, { // 4 竞猜下一把
 		desc: [1280, 720,
 			[
-				[right, 783, 496, 0xd09e5b],
-				[right, 791, 497, 0xefd5a1],
-				[right, 800, 509, 0xb58a61],
-				[right, 812, 503, 0xe4bc6b],
-				[right, 795, 520, 0x321f1e],
+				[center, 360, 412, 0xb4885c],
+				[right, 700, 506, 0x8e6958],
+				[right, 793, 522, 0x321e1e],
+				[right, 1136, 406, 0xb07f55],
+				[right, 736, 388, 0x926bc4],
 			]
 		],
 		oper: [
@@ -121,8 +120,8 @@ export class Func401 implements IFuncOrigin {
 			const thisconf = thisScript.scheme.config['401'];
 			const rssUrl = {
 				'面灵气喵': 'https://rsshub.zzliux.cn/163/ds/462382f1127b46c5add1185d88f0ea40',
-				'姝酱': 'https://rsshub.zzliux.cn/163/ds/6f3189e218fb4f6492b99efcbbd79119',
-				'嘤嘤井': 'https://rsshub.zzliux.cn/163/ds/e7107cd3010e418da26672669d8eeb5e',
+				'查查尔': 'https://rsshub.zzliux.cn/163/ds/d9dc2a75497c4a91b2db1e909a36544d',
+				'槐下30': 'https://rsshub.zzliux.cn/163/ds/a9724e98c1cb4a4e931ebc3f467ea73d',
 			}[thisconf.follow_whose as string || '面灵气喵'];
 
 			// 获取下次下注场次时间

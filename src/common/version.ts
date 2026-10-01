@@ -1575,5 +1575,9 @@ export const versionList = [{
 }, {
 	version: '20260815_01',
 	desc: '优化：703武道大会增加自动停止机制：连选点击搜寻5次后自动停止'
-}];
+}, {
+	version: '20261001_01',
+	desc: '修复：700进入结界，702寄养，401对弈竞猜不同设备识别不到'
+}
+];
 export default versionList[versionList.length - 1].version;
