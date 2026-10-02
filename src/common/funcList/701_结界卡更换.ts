@@ -30,11 +30,11 @@ export class Func701 implements IFuncOrigin {
 		{ //	0 判断_是否为己方结界
 			desc: [1280, 720,
 				[
-					[center, 611, 300, 0x0c0804],
-					[center, 913, 305, 0x0c0804],
-					[left, 318, 305, 0x0c0804],
-					[center, 613, 294, 0xe1cf6b],
-					[left, 202, 462, 0x10100c],
+					[left, 309, 328, 0xddc9bb],
+					[left, 192, 465, 0x13100d],
+					[center, 604, 323, 0xddc9bb],
+					[right, 912, 329, 0xddc5b3],
+					[right, 1233, 689, 0x6e274c],
 				],
 			],
 			oper: [
@@ -44,11 +44,14 @@ export class Func701 implements IFuncOrigin {
 		}, { // 1 判断_是否有结界卡奖励
 			desc: [1280, 720,
 				[
-					[center, 909, 304, 0xdecdc3],
-					[center, 908, 150, 0x10100c],
-					[center, 623, 308, 0xe4ccc1],
+					[right, 1086, 649, 0x8b3358],
+					[left, 308, 329, 0xddc9bb],
+					[center, 604, 323, 0xddc9bb],
+					[right, 899, 330, 0xddc3b3],
+					[right, 918, 206, 0x13100d],
 				],
 			],
+
 			oper: [
 				[center, 1280, 720, 904, 171, 939, 197, 1000], //  点击 结界卡奖励
 			],
