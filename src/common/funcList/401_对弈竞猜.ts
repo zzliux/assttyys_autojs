@@ -89,7 +89,7 @@ export class Func401 implements IFuncOrigin {
 	];
 
 	operatorFunc = (thisScript: Script, thisOperator: IFuncOperator[]): boolean => {
-		console.log('[Func401] ===== operatorFunc 开始 =====');
+
 		try {
 			if (thisScript.oper({ id: 401, name: '对弈竞猜_杂项', operator: [thisOperator[4], thisOperator[3]] })) {
 				return true;
@@ -204,9 +204,10 @@ export class Func401 implements IFuncOrigin {
 				thisScript.regionClick([thisOperator[2].oper[4]]);
 				// 推送的时候更新截图
 				thisScript.keepScreen();
-				thisScript.regionClick([thisOperator[2].oper[5]]); // 更新截图后返回庭院
 				thisScript.myToast(`根据${followWhose}选择押${r[1]}`);
 				thisScript.doPush(thisScript, { text: `根据${followWhose}选择押${r[1]}`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+				sleep(60000);
+				thisScript.regionClick([thisOperator[2].oper[5]]); // 更新截图后返回庭院
 				thisScript.stop();
 				sleep(3000);
 			} else {
@@ -386,6 +387,10 @@ export class Func401 implements IFuncOrigin {
 				thisScript.regionClick([thisOperator[2].oper[3]]);
 				thisScript.regionClick([thisOperator[2].oper[4]]);
 				thisScript.keepScreen();
+				thisScript.myToast('全部模式押注完成');
+				thisScript.doPush(thisScript, { text: `全部模式押注完成(红${redCount}/蓝${blueCount})`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+				console.log('[Func401][API] 推送完成，sleep 60000');
+				sleep(60000);
 				thisScript.regionClick([thisOperator[2].oper[5]]);
 				return true;
 			}
@@ -405,6 +410,10 @@ export class Func401 implements IFuncOrigin {
 			thisScript.regionClick([thisOperator[2].oper[3]]);
 			thisScript.regionClick([thisOperator[2].oper[4]]);
 			thisScript.keepScreen();
+			thisScript.myToast('押 ' + actualBoss + ' → ' + (target.predict_winner === 'red' ? '红' : '蓝'));
+			thisScript.doPush(thisScript, { text: `押 ${actualBoss} → ${target.predict_winner === 'red' ? '红' : '蓝'}`, before() { thisScript.myToast('脚本即将停止，正在上传数据'); } });
+			console.log('[Func401][API] 推送完成，sleep 60000');
+			sleep(60000);
 			thisScript.regionClick([thisOperator[2].oper[5]]);
 			return true;
 		}

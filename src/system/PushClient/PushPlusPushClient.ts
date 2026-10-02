@@ -28,7 +28,7 @@ export default class PushPlusPushClient extends AbstractPushClient {
 			token: pushplus_token,
 			title: `${msgPush_prefix} ${firstText}`,
 			content: data.map(item => {
-				if (item.type === 'text') return `<p>${item.data}</p>`;
+				if (item.type === 'text') return `<p>${item.data.replace(/[\r\n]+/g, '<br>')}</p>`;
 				else if (item.type === 'image')
 					return `<img src="data:image/png;base64,${bmpToBase64(scaleBmp(item.data, 0.05))}" />`;
 				return '';
