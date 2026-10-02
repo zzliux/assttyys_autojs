@@ -1,3 +1,5 @@
+import { version } from 'vue';
+
 export const versionList = [{
 	version: '20210210_01_test',
 	desc: '第一个带版本号的版本, 完善个人突破, 料理屋挑战可配置点击连续挑战x次后结束脚本。\n为确保正常使用, 请在设置中重置方案及功能',
@@ -1578,6 +1580,10 @@ export const versionList = [{
 }, {
 	version: '20261001_01',
 	desc: '修复：700进入结界，702寄养，401对弈竞猜不同设备识别不到'
+}, {
+	version: '20261002_01',
+	desc: '新增：401适配更多博主，并且可以统计所有博主来进行选择，701结界卡更换修复识别'
 }
+
 ];
 export default versionList[versionList.length - 1].version;
