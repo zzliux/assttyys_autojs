@@ -109,15 +109,11 @@ export class Func510 implements IFuncOrigin {
 				[
 					1280, 720,
 					[
-						[center, 550, 360, 0xcbb59c],
-						[center, 570, 360, 0xcbb59c],
-						[center, 550, 373, 0xcbb59c],
-						[center, 570, 373, 0xcbb59c],
-						[center, 456, 249, 0xcbb59e],
-						[center, 835, 257, 0xcbb59e],
-						[center, 853, 420, 0xcbb59e],
-						[center, 805, 420, 0xf4b25f],
-						[center, 572, 428, 0xdf6851],
+						[center, 805, 420, 0xe9b15d],
+						[center, 572, 428, 0xdb634a],
+						[center, 425, 442, 0xd6c3ad],
+						[right, 641, 439, 0xd8c4ad],
+						[right, 855, 440, 0xd3bba2],
 					]
 				],
 			oper: [
