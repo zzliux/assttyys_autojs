@@ -3167,6 +3167,21 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		],],
 		similar: 93
 	},
+	'活动右下角式神录': {
+		region: [center, 1280, 720, 950, 500, 1279, 719],
+		desc: [
+			[1280, 720,
+				[
+					[right, 1035, 562, 0x251f14],
+					[right, 1027, 577, 0xebe7b2],
+					[right, 1042, 578, 0xeeeac2],
+					[right, 1015, 593, 0x6a4f2a],
+					[right, 1057, 583, 0x574326],
+					[right, 1027, 604, 0xa17538],
+				]
+			]
+		]
+	}
 	// '': {
 	// 	region: [left, 1280, 720, 0, 0, 1280, 720],
 	// 	desc: [[
