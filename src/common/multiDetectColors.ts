@@ -467,12 +467,12 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 	'退出结算_经验金币buff_第一个掉落': {
 		desc: [1280, 720,
 			[
-				[left, 172, 657, 0x97bae0],
-				[left, 187, 668, 0xf7e624],
-				[left, 339, 668, 0xf7e525],
-				[center, 268, 177, 0x52422c],
-				[center, 363, 177, 0x5e492c],
-				[center, 270, 269, 0x604938]
+				[left, 187, 668, 0xf7e721],
+				[left, 339, 668, 0xf7e322],
+				[left, 277, 659, 0x5d5141],
+				[center, 425, 659, 0x5f5544],
+				[left, 256, 140, 0xcb943d],
+				[center, 380, 184, 0xd69d3b],
 			]
 		]
 	},
