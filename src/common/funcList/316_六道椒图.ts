@@ -94,7 +94,7 @@ export class Func316 implements IFuncOrigin {
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1034, 578, 1137, 621, 500], // 万相之赐
+			[center, 1280, 720, 1034, 578, 1137, 621, 1000], // 万相之赐
 		]
 	}, { // 5 已适配66 混沌_宝箱
 		desc: [
