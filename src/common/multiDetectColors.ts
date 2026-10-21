@@ -464,17 +464,17 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 			]
 		]
 	},
-	'退出结算_经验金币buff_第一个掉落': {
+	'退出结算_经验金币buff_掉落物金框': {
 		desc: [1280, 720,
 			[
-				[left, 187, 668, 0xf7e721],
-				[left, 339, 668, 0xf7e322],
-				[left, 277, 659, 0x5d5141],
-				[center, 425, 659, 0x5f5544],
-				[left, 256, 140, 0xcb943d],
-				[center, 380, 184, 0xd69d3b],
+				[left, 187, 652, 0x92b7e4],
+				[left, 186, 667, 0xf6e42b],
+				[left, 315, 658, 0xf1eed2],
+				[left, 339, 666, 0xf7e82e],
+				[center, 429, 104, 0xfe9843],
+				[center, 449, 210, 0xffa840],
 			]
-		]
+		],
 	},
 	'退出结算_体力不足': {
 		desc: [1280, 720,
