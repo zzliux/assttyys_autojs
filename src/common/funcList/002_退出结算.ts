@@ -440,8 +440,7 @@ export class Func002 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 595, 454, 685, 494, 1000],
 		]
-	},
-	{ // 37 通用获得奖励弹窗
+	}, { // 37 通用获得奖励弹窗
 		desc: [1280, 720,
 			[
 				[center, 387, 328, 0xd9c5b0],
@@ -456,8 +455,23 @@ export class Func002 implements IFuncOrigin {
 			[center, 1280, 720, 1042, 176, 1187, 585, 1000],
 		],
 		notForCnt: true,
-	},
-	{ // 38 雪御前boss
+	}, { // 38 新的获得奖励弹窗，能显示到三排半
+		desc: [1280, 720,
+			[
+				[center, 387, 328, 0xd9c5b0],
+				[center, 504, 293, 0xd9c5b0],
+				[right, 687, 292, 0xd9c5b0],
+				[right, 893, 303, 0xd9c5b0],
+				[center, 481, 167, 0x412e24],
+				[right, 841, 166, 0x432f25],
+				[center, 555, 155, 0xf1d984],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1042, 176, 1187, 585, 1000],
+		],
+		notForCnt: true,
+	}, { // 39 雪御前boss
 		desc: [1280, 720, [
 			[center, 1220, 38, 0xe8d3d0],
 			[center, 1212, 31, 0xe9d4d1],
@@ -518,6 +532,7 @@ export class Func002 implements IFuncOrigin {
 				thisOperator[26], thisOperator[27], thisOperator[28], thisOperator[29],
 				thisOperator[30], thisOperator[31], thisOperator[33], thisOperator[34],
 				thisOperator[35], thisOperator[36], thisOperator[37], thisOperator[38],
+				thisOperator[39],
 			]
 		});
 	}

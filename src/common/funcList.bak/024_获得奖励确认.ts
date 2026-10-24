@@ -62,6 +62,21 @@ export class Func024 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 1042, 176, 1187, 585, 1000],
 		]
+	}, { // 新的获得奖励弹窗，能显示到三排半
+		desc: [1280, 720,
+			[
+				[center, 387, 328, 0xd9c5b0],
+				[center, 504, 293, 0xd9c5b0],
+				[right, 687, 292, 0xd9c5b0],
+				[right, 893, 303, 0xd9c5b0],
+				[center, 481, 167, 0x412e24],
+				[right, 841, 166, 0x432f25],
+				[center, 555, 155, 0xf1d984],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 1042, 176, 1187, 585, 1000],
+		]
 	}, { // 雪御前boss
 		desc: [1280, 720,
 			[
