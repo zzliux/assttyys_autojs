@@ -832,7 +832,19 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 			]
 		]
 
-	}
+	},
+	'悬赏界面': {
+		desc: [1280, 720,
+			[
+				[left, 45, 51, 0x6b4b33],
+				[left, 281, 47, 0x080c08],
+				[right, 1048, 43, 0x0d0c0d],
+				[right, 1270, 47, 0x715635],
+				[right, 1182, 641, 0x3b2e22],
+				[right, 1170, 610, 0xefe7ad],
+			]
+		]
+	},
 };
 
 

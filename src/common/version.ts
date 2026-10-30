@@ -1584,6 +1584,9 @@ export const versionList = [{
 }, {
 	version: '20261014_14',
 	desc: '024内置到002，修复新版本活动'
+}, {
+	version: '20261030_01',
+	desc: '适配新悬赏'
 }
 
 ];

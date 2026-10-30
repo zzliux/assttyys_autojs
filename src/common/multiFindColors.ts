@@ -839,106 +839,33 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		]
 	},
 	'悬赏_挑战字样': {
-		region: [left, 1280, 720, 513, 205, 642, 558],
+		region: [left, 1280, 720, 513, 205, 730, 620],
 		desc: [
 			[1280, 720,
 				[
-					[center, 544, 316, 0x883322],
-					[center, 595, 317, 0x923220],
-					[center, 597, 331, 0x963321],
-					[center, 541, 331, 0x883322],
-					[center, 571, 322, 0x8a3420]
+					[right, 645, 295, 0x883522],
+					[right, 645, 294, 0x883522],
+					[right, 744, 293, 0x93321e],
+					[right, 745, 310, 0x933320],
+					[right, 643, 312, 0x893522],
+					[right, 1070, 292, 0x6b4729],
+					[right, 1137, 316, 0x6d4826],
 				]
 			],
-			[1280, 720,
-				[
-					[center, 540, 243, 0x893723],
-					[center, 572, 245, 0x8b3421],
-					[center, 595, 247, 0x933320],
-					[center, 552, 265, 0xf3e8d6],
-					[center, 569, 265, 0xc8a394],
-					[center, 593, 266, 0xe3c9b2],
-					[center, 570, 253, 0x8a3421]
-				]
-			],
-			// 旧
-			[1280, 720,
-				[
-					[center, 537, 240, 0xbb9182],
-					[center, 569, 241, 0xc19386],
-					[center, 600, 241, 0xd5c3b7],
-					[center, 542, 259, 0x893522],
-					[center, 562, 257, 0xe5c9b9],
-					[center, 575, 257, 0xc89f91],
-					[center, 598, 266, 0x913420]
-				]
-			]
 		],
 		similar: 95
 	},
 	'悬赏_秘闻字样': {
-		region: [left, 1280, 720, 512, 160, 1256, 500],
+		region: [left, 1280, 720, 513, 205, 730, 620],
 		desc: [
 			[1280, 720,
 				[
-					[center, 534, 238, 0x457ab0],
-					[center, 568, 238, 0x3674ab],
-					[center, 597, 238, 0x3872ab],
-					[center, 537, 251, 0x8ba5bb],
-					[center, 564, 254, 0xbcd1d2],
-					[center, 582, 254, 0x9fbfcc],
-					[center, 591, 254, 0xe7eedd],
-					[center, 552, 264, 0x9dbbc9],
-					[center, 590, 264, 0xf4f7e0]
-				]
-			],
-			[1280, 720,
-				[
-					[center, 537, 311, 0xb2bac1],
-					[center, 570, 311, 0x90a6b9],
-					[center, 600, 312, 0xa7b2bf],
-					[center, 548, 325, 0xd4e1db],
-					[center, 590, 324, 0xaec8ce],
-					[center, 573, 325, 0x3171ab],
-					[center, 562, 337, 0x3171ab],
-					[center, 581, 335, 0x3071aa]
-				]
-			],
-			[1280, 720,
-				[
-					[center, 542, 314, 0x3171ab],
-					[center, 600, 316, 0x3071aa],
-					[center, 541, 333, 0x3171ab],
-					[center, 564, 325, 0xadc8cf],
-					[center, 582, 324, 0xc0d6d4],
-					[center, 590, 332, 0xbacfd1],
-					[center, 561, 330, 0xecf1e0],
-					[center, 602, 336, 0x3571ab]
-				]
-			],
-			[1280, 720,
-				[
-					[center, 541, 247, 0x3072ab],
-					[center, 598, 247, 0x2f72a5],
-					[center, 599, 264, 0x3070aa],
-					[center, 541, 267, 0x3070aa],
-					[center, 555, 249, 0xdff0df],
-					[center, 553, 266, 0xd6e7de],
-					[center, 548, 263, 0xd9ebdc],
-					[center, 565, 249, 0xa4b6b7],
-					[center, 577, 250, 0x3477aa],
-					[center, 579, 249, 0xbfd8e0],
-					[center, 591, 265, 0xdeefde]
-				]
-			],
-			[1280, 720,
-				[
-					[center, 541, 384, 0x3272a9],
-					[center, 601, 385, 0x2d71a4],
-					[center, 600, 405, 0x3070aa],
-					[center, 542, 405, 0x3070aa],
-					[center, 564, 393, 0xe8f4f4],
-					[center, 579, 387, 0x70a0c2]
+					[right, 645, 372, 0x3171ab],
+					[right, 700, 375, 0x3171ab],
+					[right, 699, 385, 0x3171ab],
+					[right, 645, 387, 0x3171ab],
+					[right, 1072, 366, 0x6b4729],
+					[right, 1133, 382, 0x755324],
 				]
 			]
 		],
@@ -962,62 +889,73 @@ const multiFindColors: IMultiFindColorsOrigin = {
 	'悬赏_已追踪任务': {
 		region: [left, 1280, 720, 0, 112, 105, 500],
 		desc: [
-			// 取色不太好，更新颜色后临时加一组，看后续反馈
 			[
 				1280, 720,
 				[
-					[left, 21, 278, 0x7a6046],
-					[left, 91, 283, 0x7f6140],
-					[left, 85, 257, 0x9a8059],
-					[left, 31, 253, 0x8a7251],
-					[left, 28, 334, 0xbbb39d],
+					[left, 34, 124, 0xb09b6d],
+					[left, 78, 124, 0xb8a36f],
+					[left, 23, 209, 0xb7af9a],
+					[left, 45, 215, 0xccc4ae],
+					[left, 63, 207, 0xd6cfb7],
+					[left, 92, 209, 0xc7bfa8],
 				]
-			],
+			]
+		],
+		similar: 93
+	},
+	'悬赏_神秘妖怪': {
+		region: [left, 1280, 720, 3, 105, 144, 492],
+		desc: [
 			[
 				1280, 720,
 				[
-					[left, 21, 278, 0x9c8f64],
-					[left, 91, 283, 0x937854],
-					[left, 85, 257, 0xbf9a73],
-					[left, 31, 253, 0xaf9565],
-					[left, 28, 334, 0xbbb29d],
+					[left, 43, 140, 0x0c0b09],
+					[left, 48, 145, 0xf5f1d1],
+					[left, 56, 145, 0x0c0a0a],
+					[left, 64, 145, 0xf6f2d0],
+					[left, 56, 168, 0xf7f2d1],
+					[left, 55, 156, 0xf9f2d3],
+					[left, 66, 163, 0x0e0c0a],
+					[left, 35, 159, 0x453b34],
 				]
 			]
 		],
 		similar: 93
 	},
 	'悬赏_协作任务': {
-		region: [left, 1280, 720, 0, 112, 105, 500],
+		region: [left, 1280, 720, 55, 100, 107, 269],
 		desc: [
 			[
 				1280, 720,
 				[
-					[left, 21, 152, 0x7b6046],
-					[left, 91, 152, 0x6f573d],
-					[left, 33, 125, 0x8e6f51],
-					[left, 79, 122, 0xeaad38],
-					[left, 89, 122, 0xf3b032],
+					[left, 79, 121, 0xedb337],
+					[left, 88, 121, 0xedb033],
+					[left, 89, 137, 0xed6543],
+					[left, 71, 139, 0xdf4d42],
+					[left, 86, 132, 0x1a0101],
 				]
 			]
 		],
 		similar: 93
 	},
 	'悬赏_协作完成': {
-		region: [center, 1280, 720, 144, 398, 1155, 599],
+		region: [center, 1280, 720, 77, 91, 1218, 685],
 		desc: [
 			[
 				1280, 720,
 				[
-					[center, 370, 522, 0xa6917d],
-					[left, 176, 440, 0xec3b46],
-					[center, 387, 438, 0xffbe30],
-					[center, 387, 443, 0xffc130],
+					[left, 107, 450, 0xd5c6b4],
+					[left, 124, 469, 0xde9600],
+					[left, 158, 469, 0xe79a08],
+					[left, 290, 469, 0xf7db6b],
+					[center, 324, 469, 0xfae57e],
+					[center, 342, 135, 0x934335],
 				]
 			]
 		]
 	},
 	'悬赏_已接受协作': {
-		region: [center, 1280, 720, 144, 398, 1155, 599],
+		region: [center, 1280, 720, 77, 91, 1218, 685],
 		desc: [
 			[
 				1280, 720,
@@ -1031,45 +969,42 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		]
 	},
 	'悬赏_金币协作': {
-		region: [center, 1280, 720, 144, 398, 1155, 599],
+		region: [center, 1280, 720, 77, 91, 1218, 685],
 		desc: [
 			[
 				1280, 720,
 				[
-					[center, 370, 522, 0xa6917d],
-					[left, 148, 374, 0xbc2925],
-					[left, 167, 394, 0xb4302b],
-					[left, 227, 541, 0xf9f2df],
-					[left, 233, 550, 0xf7f3df],
-					[left, 257, 522, 0xf9e8cb],
-					[left, 247, 525, 0xf3dbbd],
-					[left, 308, 544, 0xe3c873],
-					[center, 340, 541, 0xedd7b1],
+					[left, 107, 450, 0xd5c6b4],
+					[left, 246, 561, 0xdeb64d],
+					[left, 248, 578, 0xaf5c29],
+					[left, 282, 578, 0xdca451],
+					[left, 272, 548, 0xdebf68],
+					[left, 268, 580, 0xc49a62],
+					[center, 342, 135, 0x934335],
 				]
 			]
 		]
 	},
 	'悬赏_体力协作': {
-		region: [center, 1280, 720, 144, 398, 1155, 599],
+		region: [center, 1280, 720, 77, 91, 1218, 685],
 		desc: [
 			[
 				1280, 720,
 				[
-					[center, 370, 522, 0xa6917d],
-					[left, 148, 374, 0xbc2925],
-					[left, 167, 394, 0xb4302b],
-					[left, 227, 541, 0xf9f2df],
-					[left, 233, 550, 0xf7f3df],
-					[left, 257, 522, 0xf9e8cb],
-					[left, 247, 525, 0xf3dbbd],
-					[left, 311, 553, 0x0b0c0a],
-					[center, 328, 543, 0xff9932],
+					[left, 107, 450, 0xd5c6b4],
+					[left, 251, 574, 0x060a06],
+					[left, 263, 548, 0xe77829],
+					[left, 277, 572, 0xff6129],
+					[left, 273, 560, 0xfc8131],
+					[left, 263, 567, 0xed5c2b],
+					[left, 281, 584, 0x1e251c],
+					[center, 342, 135, 0x934335],
 				]
 			]
 		]
 	},
-	'悬赏_狗粮协作': {
-		region: [center, 1280, 720, 144, 398, 1155, 599],
+	'悬赏_狗粮协作': {  // 无图适配,仍需更改
+		region: [center, 1280, 720, 77, 91, 1218, 685],
 		desc: [
 			[
 				1280, 720,
@@ -1085,36 +1020,36 @@ const multiFindColors: IMultiFindColorsOrigin = {
 		]
 	},
 	'悬赏_勾玉协作': {
-		region: [center, 1280, 720, 144, 398, 1155, 599],
+		region: [center, 1280, 720, 77, 91, 1218, 685],
 		desc: [
 			[
 				1280, 720,
 				[
-					[center, 370, 522, 0xa6917d],
-					[left, 233, 550, 0xf7f3df],
-					[center, 321, 553, 0xc8a98b],
-					[center, 338, 548, 0xe9361d],
-					[left, 145, 374, 0xbc2925],
-					[left, 166, 391, 0xb52e2a],
-					[left, 227, 541, 0xfef5e1],
+					[left, 107, 450, 0xd5c6b4],
+					[left, 263, 577, 0xc5a98a],
+					[left, 273, 568, 0xee5641],
+					[left, 282, 565, 0xf2543c],
+					[left, 274, 548, 0xc6140d],
+					[left, 275, 555, 0xd9180c],
+					[left, 279, 577, 0xee310d],
+					[center, 342, 135, 0x934335],
 				]
 			]
 		]
 	},
 	'悬赏_胧车燃料': {
-		region: [center, 1280, 720, 144, 398, 1155, 599],
+		region: [center, 1280, 720, 77, 91, 1218, 685],
 		desc: [
 			[
 				1280, 720,
 				[
-					[left, 184, 491, 0xa8937e],
-					[left, 264, 537, 0x78b0a3],
-					[left, 275, 531, 0x6d969f],
-					[left, 286, 544, 0x89beb0],
-					[left, 261, 565, 0xffffe7],
-					[left, 296, 561, 0x6ba7a1],
-					[left, 308, 520, 0x715939],
-					[left, 252, 518, 0x6d5439],
+					[center, 397, 464, 0xd2c5b1],
+					[center, 495, 556, 0xa2ccba],
+					[center, 503, 588, 0xbdebdd],
+					[center, 520, 580, 0x78adae],
+					[center, 514, 561, 0x637d94],
+					[center, 510, 569, 0x8dc1af],
+
 				]
 			]
 		]
