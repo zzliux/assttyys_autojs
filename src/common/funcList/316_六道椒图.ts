@@ -293,14 +293,14 @@ export class Func316 implements IFuncOrigin {
 			[
 				[right, 1211, 657, 0xbbab7f],
 				[right, 1225, 633, 0xb8a67d],
-				[right, 1201, 32, 0xb6b1a4],
-				[right, 1201, 37, 0xb5b0a4],
-				[right, 1207, 41, 0xaba59a],
-				[right, 1200, 44, 0xb2aca0],
+				[right, 1201, 32, 0x45413c],
+				[right, 1201, 37, 0x878279],
+				[right, 1207, 41, 0x282422],
+				[right, 1200, 44, 0x8a857d],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1191, 621, 1243, 676, 800],
+			[center, 1280, 720, 1191, 621, 1243, 676, 2000],
 		]
 	}, { // 18 十位数的0
 		desc: [
@@ -308,15 +308,14 @@ export class Func316 implements IFuncOrigin {
 			[
 				[right, 1211, 657, 0xbbab7f],
 				[right, 1225, 633, 0xb8a67d],
-				[right, 1201, 32, 0xb1ab9f],
-				[right, 1207, 32, 0xaea89d],
-				[right, 1200, 38, 0xa19c91],
-				[right, 1208, 38, 0xb3aea2],
-				[right, 1203, 45, 0x979288],
+				[right, 1197, 35, 0xa49e94],
+				[right, 1205, 36, 0x948e85],
+				[right, 1201, 45, 0x7e7972],
+				[right, 1201, 37, 0x1f191d],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1191, 621, 1243, 676, 800],
+			[center, 1280, 720, 1191, 621, 1243, 676, 2000],
 		]
 	}, { // 19 boss_挑战
 		desc: [
@@ -575,7 +574,7 @@ export class Func316 implements IFuncOrigin {
 					]];
 					thisScript.regionClick(oper);
 					thisScript.global.d6RouFeng++;
-					log('当前柔风数量:' + thisScript.global.d6RouFeng);
+					console.log('当前柔风数量:' + thisScript.global.d6RouFeng);
 					return true;
 				}
 				else if (thisScript.oper({
@@ -583,14 +582,17 @@ export class Func316 implements IFuncOrigin {
 					name: '六道椒图_低级buff',
 					operator: [thisOperator[25]]
 				})) {//  有低级buff_选择跳过
+					console.log('有低级buff');
 					thisScript.regionClick([thisOperator[4].oper[0]]);
 					return true;
 				} else if (thisScript.oper({ // 无升级按钮_选择刷新
 					name: '六道椒图_刷新buff',
 					operator: [thisOperator[17], thisOperator[18]]
 				})) {
+					console.log('无升级按钮_选择刷新');
 					return true;
 				} else { // 无升级按钮无刷新_选择跳过
+					console.log('无升级按钮无刷新_选择跳过');
 					thisScript.regionClick([thisOperator[4].oper[0]]);
 					return true;
 				}
