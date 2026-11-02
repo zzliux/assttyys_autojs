@@ -72,10 +72,13 @@ export class Func302 implements IFuncOrigin {
 		]
 	}, {  // 4,神赐二排
 		desc: [1280, 720, [
-			[center, 602, 209, 0xc39a47],
-			[center, 678, 203, 0xc09a45],
-			[center, 368, 371, 0x906b41],
-			[center, 922, 366, 0x89683e]]
+			[center, 627, 205, 0xb68f43],
+			[right, 650, 207, 0xb58743],
+			[right, 702, 212, 0x412f25],
+			[center, 593, 210, 0x402c23],
+			[center, 386, 300, 0xd9c4ad],
+			[right, 671, 509, 0x3f3026],
+		]
 		],
 		oper: [
 			[center, 1280, 720, 580, 604, 702, 668, 1000]
@@ -231,7 +234,22 @@ export class Func302 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 867, 179, 933, 255, 1000]
 		]
-	}
+	}, { // 20 神赐3排
+		desc: [1280, 720,
+			[
+				[center, 602, 152, 0xb98e41],
+				[center, 628, 154, 0xb68e44],
+				[right, 688, 161, 0xba843e],
+				[right, 705, 162, 0x493329],
+				[center, 588, 163, 0x473228],
+				[center, 386, 324, 0xd9c5ae],
+				[center, 550, 552, 0x46362b],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 574, 613, 722, 665, 1000],
+		]
+	},
 	];
 
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {

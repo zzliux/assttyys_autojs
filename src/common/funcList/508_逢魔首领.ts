@@ -60,12 +60,12 @@ export class Func508 implements IFuncOrigin {
 			desc: [1280, 720,
 				[
 					[center, 694, 400, 0x810517],
-					[center, 615, 399, 0x500c19],
 					[center, 693, 401, 0x830417],
 					[left, 41, 48, 0xfaefb4],
 					[right, 771, 39, 0x593716],
 					[center, 769, 38, 0x593716],
 					[left, 44, 677, 0xc89a7e],
+					[center, 624, 397, 0x600b17],
 				]
 			],
 			oper: [
