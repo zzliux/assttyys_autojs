@@ -481,6 +481,19 @@ export class Func002 implements IFuncOrigin {
 		]],
 		oper: [[center, 1280, 720, 1215, 32, 1230, 50, 1000]],
 		notForCnt: true,
+	}, { // 40 逢魔获得奖励弹窗（竖卷轴，金色轴杆+米黄纸面）
+		desc: [1280, 720, [
+			[center, 387, 328, 0xd9c5ae],
+			[right, 893, 303, 0xd9c5ae],
+			[center, 420, 482, 0xd9c5ae],
+			[center, 372, 300, 0xf3c683],
+			[right, 905, 300, 0xf3c683],
+			[center, 500, 239, 0xc1a361],
+			[right, 700, 482, 0xc9ab74],
+			[center, 638, 508, 0x413228],
+		]],
+		oper: [[center, 1280, 720, 1042, 176, 1187, 585, 1000]],
+		notForCnt: true,
 	}]
 
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -532,7 +545,7 @@ export class Func002 implements IFuncOrigin {
 				thisOperator[26], thisOperator[27], thisOperator[28], thisOperator[29],
 				thisOperator[30], thisOperator[31], thisOperator[33], thisOperator[34],
 				thisOperator[35], thisOperator[36], thisOperator[37], thisOperator[38],
-				thisOperator[39],
+				thisOperator[39], thisOperator[40],
 			]
 		});
 	}
