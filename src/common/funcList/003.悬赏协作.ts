@@ -49,6 +49,7 @@ export class Func003 implements IFuncOrigin {
 			[center, 1280, 720, 791, 81, 816, 109, 1000], // 关闭
 			[center, 1280, 720, 863, 480, 912, 514, 1000], // 接受
 			[center, 1280, 720, 859, 571, 906, 604, 1000], // 拒绝
+			[center, 1280, 720, 520, 45, 570, 90, 1000], // OCR识别悬赏协作标题
 		]
 	}, {
 		desc: [1280, 720,
@@ -155,13 +156,14 @@ export class Func003 implements IFuncOrigin {
 			sleep(3000);
 			return true;
 		}
-		if (thisconf.switch && thisconf.type === '接受' && thisScript.oper({
-			id: 3,
-			name: '悬赏协作',
-			operator: [{
-				desc: [thisOperator[0].desc[0] as [number, number, number, number]]
-			}]
-		})) {
+		let coopInviteChecked: boolean | undefined;
+		const isCoopInvite = () => {
+			if (coopInviteChecked === undefined) {
+				coopInviteChecked = thisScript.findText('协', 0, thisOperator[0].oper[3], '包含').length > 0;
+			}
+			return coopInviteChecked;
+		};
+		if (thisconf.switch && thisconf.type === '接受' && isCoopInvite()) {
 			if (thisScript.findMultiColor('勾协判定')) {
 				thisScript.oper({
 					id: 3,
@@ -175,25 +177,26 @@ export class Func003 implements IFuncOrigin {
 			} else if (thisScript.oper({
 				name: '悬赏协作_' + thisconf.type + '_非勾协关闭',
 				operator: [{
-					desc: thisOperator[0].desc,
 					oper: [thisOperator[0].oper[0]]
 				}]
 			}, 0)) {
 				return true;
 			}
 		} else {
+			if (isCoopInvite()) {
+				return thisScript.oper({
+					id: 3,
+					name: '悬赏协作_' + thisconf.type,
+					operator: [{
+						oper: [thisOperator[0].oper[{
+							'关闭': 0,
+							'接受': 1,
+							'拒绝': 2
+						}[thisconf.type as string]]]
+					}]
+				});
+			}
 			return thisScript.oper({
-				id: 3,
-				name: '悬赏协作_' + thisconf.type,
-				operator: [{
-					desc: thisOperator[0].desc,
-					oper: [thisOperator[0].oper[{
-						'关闭': 0,
-						'接受': 1,
-						'拒绝': 2
-					}[thisconf.type as string]]]
-				}]
-			}) || thisScript.oper({
 				id: 3,
 				name: '邀约协作_' + (thisconf.yytype || '关闭'),
 				operator: [{
