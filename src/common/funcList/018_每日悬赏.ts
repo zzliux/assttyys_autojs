@@ -5,6 +5,12 @@ const left = 0;
 const center = 1;
 const right = 2;
 let allPoint;
+// 防止「庭院悬赏图标」误匹配导致同一坐标无限点击（2026-11-06 卡死修复）
+let xsIconLastKey = '';
+let xsIconSameCount = 0;
+const xsIconMaxSameClick = 3;
+// 本次打开悬赏面板后是否已经点过「一键追踪/取消追踪」按钮（避免反复点把追踪点掉）
+let xsTrackClicked = false;
 export class Func018 implements IFuncOrigin {
 	id = 18;
 	name = '每日悬赏';
@@ -46,7 +52,7 @@ export class Func018 implements IFuncOrigin {
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [{ // 0 悬赏内一键
-		desc: '悬赏界面',
+		desc: '悬赏封印面板_新版',
 		oper: [
 			[center, 1280, 720, 1152, 612, 1219, 676, 1000],
 		]
@@ -366,8 +372,10 @@ export class Func018 implements IFuncOrigin {
 			let region = null;
 			if (thisScript.oper({
 				name: '悬赏_追踪悬赏',
-				operator: [{ desc: thisOperator[15].desc }]
+				operator: [{ desc: '悬赏封印面板_新版' }]
 			})) {
+				xsIconLastKey = '';
+				xsIconSameCount = 0;
 				if (!thisconf.jinBi) {
 					fightPoint = thisScript.findMultiColor('悬赏_金币协作') || null;
 					if (fightPoint) {
@@ -437,9 +445,31 @@ export class Func018 implements IFuncOrigin {
 			}
 			const point = thisScript.findMultiColor('悬赏_庭院检测悬赏图标') || null;
 			if (point !== null) {
+				const key = `${point.x},${point.y}`;
+				if (key === xsIconLastKey) {
+					xsIconSameCount++;
+				} else {
+					xsIconLastKey = key;
+					xsIconSameCount = 1;
+				}
+				if (xsIconSameCount > xsIconMaxSameClick) {
+					// 同一坐标连点多次画面没有任何变化，说明这个点是误匹配（例如悬赏面板上的金色印章/卡框）
+					console.log(`悬赏图标连续${xsIconSameCount}次命中同一坐标(${point.x},${point.y})且无效果，按悬赏面板已打开处理`);
+					thisScript.myToast('悬赏图标识别异常，结束本次协作处理');
+					xsIconLastKey = '';
+					xsIconSameCount = 0;
+					thisScript.regionClick(thisOperator[1].oper);
+					thisScript.superGlobal.next_scheme_name = thisconf.next_scheme as string;
+					thisScript.rerun('返回庭院');
+					sleep(1000);
+					return true;
+				}
 				thisScript.regionClick([[point.x, point.y, point.x + 20, point.y + 20, 1000]]);
 				return true
 			}
+			// 没找到图标：清空计数，避免旧坐标影响下一次判断
+			xsIconLastKey = '';
+			xsIconSameCount = 0;
 		}
 		// 打开悬赏
 		if (!thisScript.global.xsOpened && thisScript.oper({
@@ -448,21 +478,23 @@ export class Func018 implements IFuncOrigin {
 		})) {
 			const point = thisScript.findMultiColor('悬赏_庭院检测悬赏图标') || null;
 			if (point !== null) {
+				xsTrackClicked = false;
 				thisScript.regionClick([[point.x, point.y, point.x + 20, point.y + 20, 3000]]);
 				return true
 			} else {
 				return false
 			}
 		}
-		if (!thisScript.global.xsOpened && thisScript.oper({
+		if (!thisScript.global.xsOpened && !xsTrackClicked && thisScript.oper({
 			name: '悬赏_一键追踪',
 			operator: [thisOperator[0]]
 		})) {
+			xsTrackClicked = true;
 			return true;
 		}
 		if (!thisScript.global.xsOpened && thisScript.oper({
 			name: '悬赏_关闭悬赏封印弹窗',
-			operator: [{ desc: thisOperator[1].desc }]
+			operator: [{ desc: '悬赏封印面板_新版' }]
 		})) {
 			let point = null;
 			allPoint = [];
@@ -503,7 +535,7 @@ export class Func018 implements IFuncOrigin {
 		// 筛选悬赏
 		if (thisScript.oper({
 			name: '悬赏_界面',
-			operator: [{ desc: thisOperator[15].desc }]
+			operator: [{ desc: '悬赏封印面板_新版' }]
 		})) {
 			if (allPoint.length > 0) {
 				const oper = [
