@@ -36,19 +36,19 @@ export class Func003 implements IFuncOrigin {
 	operator: IFuncOperatorOrigin[] = [{
 		desc: [1280, 720,
 			[
-				[center, 531, 63, 0xfff3ad],
-				[center, 593, 86, 0xf3e888],
-				[right, 670, 86, 0xf3e5a1],
-				[right, 747, 77, 0xe7cf8f],
-				[center, 504, 107, 0x362519],
-				[right, 768, 601, 0x372c26],
-				[center, 528, 594, 0xd9c8b0],
+				[center, 533, 64, 0xe7c383],
+				[right, 810, 89, 0xd1bfb9],
+				[right, 684, 440, 0xd1c5b0],
+				[center, 540, 555, 0xd7c8b1],
+				[center, 517, 118, 0xbfa992],
+				[right, 889, 488, 0x73eba6],
+				[right, 874, 585, 0xf67246],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 791, 81, 816, 109, 1000], // 关闭
-			[center, 1280, 720, 863, 480, 912, 514, 1000], // 接受
-			[center, 1280, 720, 859, 571, 906, 604, 1000], // 拒绝
+			[center, 1280, 720, 790, 71, 834, 111, 1000], // 关闭
+			[center, 1280, 720, 848, 475, 902, 526, 1000], // 接受
+			[center, 1280, 720, 846, 568, 898, 616, 1000], // 拒绝
 		]
 	}, {
 		desc: [1280, 720,
