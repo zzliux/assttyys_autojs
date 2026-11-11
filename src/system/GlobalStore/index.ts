@@ -92,6 +92,7 @@ export type globalRootType = {
 	bgyxLastCapture: number; // 上次截图的时间戳
 	waitFight: boolean;//      等待分享鬼王被击杀
 	faXian_NumOT: number, // 点击发现鬼王计数
+	cgwDetailCnt: number, // 超鬼王鬼王详情页连点挑战计数
 	youjiequyuan_ten: boolean;//      缘结趣游是否十抽
 	dengluNumOT: number, // 登录账号计数
 	dengluState: boolean, // 登录账号状态
@@ -242,6 +243,7 @@ export const globalRoot: globalRootType = {
 	bgyxLastCapture: undefined,
 	waitFight: true,
 	faXian_NumOT: 0,
+	cgwDetailCnt: 0,
 	youjiequyuan_ten: true,
 	dengluNumOT: 0,
 	dengluState: true,
