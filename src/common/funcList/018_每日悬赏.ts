@@ -53,18 +53,26 @@ export class Func018 implements IFuncOrigin {
 	}, { // 1 关闭悬赏
 		desc: [1280, 720,
 			[
-				[right, 1159, 600, 0xfbf3ba],
-				[right, 1217, 619, 0xead99e],
-				[right, 1212, 667, 0xd7ba61],
-				[right, 1174, 681, 0xcba645],
-				[right, 1183, 594, 0x413123],
-				[right, 1181, 640, 0x3e3123],
+				// 悬赏界面 begin, same with multiDetectColors-悬赏界面（不含一键追踪点）
+				[center, 308, 96, 0x2c2020],
+				[center, 892, 87, 0x2c2016],
+				[left, 80, 301, 0x232121],
+				[right, 1191, 303, 0x1b1a1d],
+				[left, 292, 642, 0xd7c4a3],
+				[right, 1092, 655, 0xc5ba97],
+				[center, 1212, 108, 0xebd7cf],
+				// 悬赏界面 end
+				// 下面从取消追踪取点
+				[center, 1151, 643, 0x3a2b1e],
+				[center, 1170, 622, 0xefe3a6],
+				[center, 1182, 625, 0xebdb9a],
+				[center, 1186, 686, 0xcba645],
 			]
 		],
 		oper: [
-			[center, 1280, 720, 1209, 66, 1260, 113, 1000],
+			[center, 1280, 720, 1192, 87, 1237, 133, 1000],
 		]
-	}, { // 2 找怪
+	}, { // 2 找怪，下面逻辑被注释了暂未使用
 		desc: [1280, 720,
 			[
 				[left, 83, 207, 0x3b2f1f],
@@ -80,7 +88,7 @@ export class Func018 implements IFuncOrigin {
 		desc: [1280, 720,
 			[
 				[right, 1165, 576, 0xf3e7ab],
-				[right, 1224, 585, 0xf0dfa6],
+				[right, 1224, 585, 0xe7d799],
 				[right, 1147, 607, 0x382a1d],
 				[right, 1189, 561, 0x413123],
 				[right, 1234, 608, 0x3f3224],
@@ -242,14 +250,16 @@ export class Func018 implements IFuncOrigin {
 		oper: [
 			[center, 1280, 720, 24, 15, 57, 51, 1000],
 		]
-	}, { // 15 悬赏内_取消追踪
+	}, { // 15 悬赏内_取消追踪 为悬赏界面，不通配已追踪和未追踪
 		desc: [1280, 720,
 			[
-				[left, 45, 51, 0x6b4b33],
-				[left, 281, 47, 0x080c08],
-				[right, 1048, 43, 0x0d0c0d],
-				[right, 1270, 47, 0x715635],
-				[right, 1233, 91, 0xe9d5cf],
+				[center, 308, 96, 0x2c2020],
+				[center, 892, 87, 0x2c2016],
+				[left, 80, 301, 0x232121],
+				[right, 1191, 303, 0x1b1a1d],
+				[left, 292, 642, 0xd7c4a3],
+				[right, 1092, 655, 0xc5ba97],
+				[center, 1212, 108, 0xebd7cf],
 			]
 		]
 	}, { // 16 庭院内
@@ -368,6 +378,7 @@ export class Func018 implements IFuncOrigin {
 				name: '悬赏_追踪悬赏',
 				operator: [{ desc: thisOperator[15].desc }]
 			})) {
+				// TODO 这一坨协作的多点找色需要重新取点
 				if (!thisconf.jinBi) {
 					fightPoint = thisScript.findMultiColor('悬赏_金币协作') || null;
 					if (fightPoint) {

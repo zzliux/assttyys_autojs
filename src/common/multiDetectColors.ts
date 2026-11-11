@@ -532,7 +532,7 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 				[left, 117, 26, 0xf7efb5],
 				[right, 1164, 25, 0xd6b289],
 				[right, 1223, 23, 0xd6ad86],
-				[center, 508, 35, 0x731c10],
+				[center, 314, 35, 0x731c10], // 超鬼王期间多了个门票，把挑战券位置左移了，结束后这个还得改回来508, 35
 			]
 		]
 	},
@@ -836,12 +836,19 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 	'悬赏界面': {
 		desc: [1280, 720,
 			[
-				[left, 45, 51, 0x6b4b33],
-				[left, 281, 47, 0x080c08],
-				[right, 1048, 43, 0x0d0c0d],
-				[right, 1270, 47, 0x715635],
-				[right, 1182, 641, 0x3b2e22],
-				[right, 1170, 610, 0xefe7ad],
+				[center, 308, 96, 0x2c2020],
+				[center, 892, 87, 0x2c2016],
+				[left, 80, 301, 0x232121],
+				[right, 1191, 303, 0x1b1a1d],
+				[left, 292, 642, 0xd7c4a3],
+				[right, 1092, 655, 0xc5ba97],
+				[center, 1212, 108, 0xebd7cf],
+				// 下面是一键追踪的点
+				[center, 1168, 640, 0x3c2d20],
+				[center, 1156, 619, 0xf0e4a4],
+				[center, 1221, 628, 0xe7d396],
+				[center, 1185, 670, 0xdbbe68],
+				[center, 1225, 637, 0xe3cf92],
 			]
 		]
 	},
