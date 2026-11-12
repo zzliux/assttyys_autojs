@@ -4,7 +4,7 @@ import { Script } from '@/system/script';
 // const normal = -1; //定义常量
 const left = 0;
 const center = 1;
-const right = 2;
+// const right = 2;
 
 export class Func501 implements IFuncOrigin {
 	id = 501;
@@ -23,19 +23,11 @@ export class Func501 implements IFuncOrigin {
 		// 0 探索地图打开buff界面
 		desc: '探索地图界面',
 		oper: [
-			[center, 1280, 720, 412, 32, 441, 62, 1500],
+			[center, 1280, 720, 239, 25, 275, 67, 1500], // 超鬼王期间多了个门票，把挑战券位置左移了，结束后这个还得改回来 412, 32, 441, 62,
 		]
 	}, {
 		// 1 庭院
-		desc: [1280, 720,
-			[
-				[left, 327, 45, 0x7a5825],
-				[right, 1156, 37, 0xd7b28a],
-				[right, 1229, 48, 0xcfa676],
-				[right, 1228, 650, 0xd6c6c3],
-				[center, 337, 72, 0x765828]
-			]
-		],
+		desc: '页面是否为庭院_菜单已展开_只支持默认庭院皮肤与默认装饰',
 		oper: [
 			[center, 1280, 720, 359, 45, 396, 74, 1500]
 		]
@@ -60,6 +52,7 @@ export class Func501 implements IFuncOrigin {
 			return false;
 		} else {
 			if (thisScript.oper({
+				id: 501,
 				name: '打开buff界面',
 				operator: thisOperator.slice(0)
 			})) {

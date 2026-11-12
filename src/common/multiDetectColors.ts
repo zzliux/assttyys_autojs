@@ -532,7 +532,7 @@ const multiDetectColors: IMultiDetectColorsOrigin = {
 				[left, 117, 26, 0xf7efb5],
 				[right, 1164, 25, 0xd6b289],
 				[right, 1223, 23, 0xd6ad86],
-				[center, 314, 35, 0x731c10], // 超鬼王期间多了个门票，把挑战券位置左移了，结束后这个还得改回来508, 35
+				[center, 314, 35, 0x731c10], // // 功能501也需要同步修复， 超鬼王期间多了个门票，把挑战券位置左移了，结束后这个还得改回来508, 35
 			]
 		]
 	},
