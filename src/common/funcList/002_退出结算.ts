@@ -494,6 +494,24 @@ export class Func002 implements IFuncOrigin {
 		]],
 		oper: [[center, 1280, 720, 1042, 176, 1187, 585, 1000]],
 		notForCnt: true,
+	}, {
+		// 41 契灵组队结束的太鼓界面，右下角有观战队友挑战中的字样
+		// 暂时没找到原来是哪里管点的，先加一个，后面如果找到的话再把原来那个修复
+		desc: [1280, 720,
+			[
+				[center, 476, 120, 0x7e1910],
+				[center, 459, 160, 0x9e1b11],
+				[center, 508, 155, 0x9c1c12],
+				[center, 483, 145, 0xd0bfab],
+				[center, 444, 134, 0xc9b7a2],
+				[center, 514, 124, 0xc6b59f],
+				[center, 493, 207, 0xd7c9b0],
+				[right, 897, 158, 0xceb07b],
+			]
+		],
+		oper: [
+			[center, 1280, 720, 64, 197, 362, 488, 1000],
+		]
 	}]
 
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
@@ -545,7 +563,7 @@ export class Func002 implements IFuncOrigin {
 				thisOperator[26], thisOperator[27], thisOperator[28], thisOperator[29],
 				thisOperator[30], thisOperator[31], thisOperator[33], thisOperator[34],
 				thisOperator[35], thisOperator[36], thisOperator[37], thisOperator[38],
-				thisOperator[39], thisOperator[40],
+				thisOperator[39], thisOperator[40], thisOperator[41],
 			]
 		});
 	}
