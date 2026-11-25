@@ -1,5 +1,6 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
+import { AUTO_SKIN, ENCHANTMENT_SKIN_OPTIONS, enchantmentAnchorKeys } from '../enchantmentSkin';
 
 // const normal = -1; //定义常量
 const left = 0;
@@ -22,6 +23,16 @@ export class Func503 implements IFuncOrigin {
 			desc: '下一个方案',
 			type: 'scheme',
 			default: '通用准备退出',
+		}]
+	}, {
+		desc: '结界皮肤',
+		config: [{
+			name: 'enchantment_skin',
+			desc: '结界界面用哪套皮肤判定。选「自动」会逐套尝试，不用配置但略慢',
+			type: 'list',
+			data: ENCHANTMENT_SKIN_OPTIONS,
+			default: AUTO_SKIN,
+			value: AUTO_SKIN,
 		}]
 	}, {
 
@@ -842,6 +853,15 @@ export class Func503 implements IFuncOrigin {
 		if (thisScript.global.back) {
 			let enabledThisOperator = [];
 			enabledThisOperator = Object.keys(thisConf).filter(keyName => /oper_\d+/.test(keyName) && thisConf[keyName]).map(keyName => thisOperator[parseInt(keyName.split('_')[1])]);
+			// 11 号是「阴阳寮_寄养_己方结界」，锚点随结界皮肤变化，按皮肤就地替换成多套判定
+			const skinOpIndex = enabledThisOperator.indexOf(thisOperator[11]);
+			if (skinOpIndex >= 0) {
+				const skinOps = enchantmentAnchorKeys(thisConf.enchantment_skin).map(key => ({
+					desc: key,
+					oper: thisOperator[11].oper,
+				}));
+				enabledThisOperator.splice(skinOpIndex, 1, ...skinOps);
+			}
 			if (thisScript.oper({
 				id: 503,
 				name: '返回庭院',

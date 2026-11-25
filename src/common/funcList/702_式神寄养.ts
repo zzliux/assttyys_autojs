@@ -1,6 +1,7 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
 import { doPush } from '../toolAuto';
+import { AUTO_SKIN, enchantmentAnchorKeys, rememberEnchantmentKey } from '../enchantmentSkin';
 // const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -221,6 +222,17 @@ export class Func702 implements IFuncOrigin {
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['702'];
+		// 这里进的是好友的结界，好友用什么皮肤无法预知，所以逐套尝试
+		const skinKeys = enchantmentAnchorKeys(AUTO_SKIN);
+		const friendEnchantmentKey = () => {
+			const hit = skinKeys.find(key => thisScript.oper({
+				id: 702,
+				name: `好友结界主界面(${key})`,
+				operator: [{ desc: key, notForCnt: true }],
+			}));
+			rememberEnchantmentKey(hit);
+			return hit;
+		};
 		if (thisScript.oper({
 			id: 702,
 			name: '寄养界面中',
@@ -237,12 +249,13 @@ export class Func702 implements IFuncOrigin {
 			}
 			return true;
 		}
-		if (thisScript.oper({
-			id: 702,
-			name: '检测是否为式神寄养列表',
-			operator: [thisOperator[0]],
-		})) {
-			return true;
+		if (friendEnchantmentKey()) {
+			// 好友结界主界面：点击「式神育成」牌位（等价于原 operator[0]）
+			return thisScript.oper({
+				id: 702,
+				name: '点击式神育成',
+				operator: [{ oper: [thisOperator[0].oper[0]] }],
+			});
 		}
 		if (!thisScript.global.jy_enchantment_index) {
 			if (thisScript.oper({

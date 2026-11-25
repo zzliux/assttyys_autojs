@@ -1,5 +1,6 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
+import { AUTO_SKIN, ENCHANTMENT_SKIN_OPTIONS, enchantmentAnchorKeys, rememberEnchantmentKey } from '../enchantmentSkin';
 // const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -9,6 +10,17 @@ export class Func700 implements IFuncOrigin {
 	id = 700;
 	name = '进入结界并领取食盒';
 	desc = '';
+	config = [{
+		desc: '结界皮肤',
+		config: [{
+			name: 'enchantment_skin',
+			desc: '游戏里正在使用的结界皮肤。选「自动」会逐套尝试，不用配置但略慢',
+			type: 'list',
+			data: ENCHANTMENT_SKIN_OPTIONS,
+			default: AUTO_SKIN,
+			value: AUTO_SKIN,
+		}]
+	}];
 	operator: IFuncOperatorOrigin[] = [
 		{ // 0 在首页打开菜单
 			desc: '页面是否为庭院_菜单未展开_只支持默认庭院皮肤与默认装饰',
@@ -186,6 +198,19 @@ export class Func700 implements IFuncOrigin {
 		}
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
+		const thisconf = (thisScript.scheme.config && thisScript.scheme.config['700']) || {};
+		const skinKeys = enchantmentAnchorKeys(thisconf.enchantment_skin);
+		// 结界皮肤是整套重绘的，牌位锚点每套皮肤都不同，这里按配置的皮肤（或逐套尝试）判定
+		const ownEnchantmentKey = () => {
+			const hit = skinKeys.find(key => thisScript.oper({
+				id: 700,
+				name: `是否为己方结界(${key})`,
+				operator: [{ desc: key, notForCnt: true }],
+			}));
+			rememberEnchantmentKey(hit);
+			return hit;
+		};
+
 		if (thisScript.oper({
 			name: '进入式神寄养结界',
 			operator: [thisOperator[0], thisOperator[1], thisOperator[2], thisOperator[4], thisOperator[5], thisOperator[6]]
@@ -236,11 +261,7 @@ export class Func700 implements IFuncOrigin {
 			}
 			sleep(500);
 		}
-		if (thisScript.oper({
-			id: 700,
-			name: '是否为己方结界',
-			operator: [{ desc: thisOperator[10].desc }],
-		})) {
+		if (ownEnchantmentKey()) {
 			if (thisScript.oper({
 				id: 700,
 				name: '获取体力奖励',
@@ -267,10 +288,16 @@ export class Func700 implements IFuncOrigin {
 			const maxCount = 10;
 			for (; ;) {
 				thisScript.keepScreen();
+				if (ownEnchantmentKey()) {
+					// 等价于原 operator[10] 命中：在己方结界主界面点击「式神育成」牌位
+					thisScript.regionClick([thisOperator[10].oper[0]]);
+					curCnt = 0;
+					continue;
+				}
 				if (thisScript.oper({
 					id: 700,
 					name: '进入式神育成',
-					operator: [thisOperator[10], thisOperator[11], thisOperator[12]]
+					operator: [thisOperator[11], thisOperator[12]]
 				})) {
 					curCnt = 0;
 					continue;

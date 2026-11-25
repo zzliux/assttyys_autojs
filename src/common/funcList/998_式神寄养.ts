@@ -4,6 +4,7 @@ import {
 	IFuncOperator,
 } from '@/interface/IFunc';
 import { Script } from '@/system/script';
+import { AUTO_SKIN, ENCHANTMENT_SKIN_OPTIONS, enchantmentAnchorKeys, rememberEnchantmentKey } from '../enchantmentSkin';
 // const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -31,6 +32,14 @@ export class Func998 implements IFuncOrigin {
 					data: ['太鼓', '斗鱼'],
 					default: '太鼓',
 					value: '太鼓',
+				},
+				{
+					name: 'enchantment_skin',
+					desc: '结界皮肤。选「自动」会逐套尝试，不用配置但略慢',
+					type: 'list',
+					data: ENCHANTMENT_SKIN_OPTIONS,
+					default: AUTO_SKIN,
+					value: AUTO_SKIN,
 				},
 			],
 		},
@@ -448,6 +457,17 @@ export class Func998 implements IFuncOrigin {
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['998'];
+		const skinKeys = enchantmentAnchorKeys(thisconf && thisconf.enchantment_skin);
+		// 结界皮肤整套重绘，牌位锚点每套都不同；按配置的皮肤（或逐套尝试）判定是否在己方结界主界面
+		const ownEnchantmentKey = () => {
+			const hit = skinKeys.find(key => thisScript.oper({
+				id: 998,
+				name: `是否为己方结界(${key})`,
+				operator: [{ desc: key, notForCnt: true }],
+			}));
+			rememberEnchantmentKey(hit);
+			return hit;
+		};
 
 		if (
 			thisScript.oper({
@@ -466,15 +486,7 @@ export class Func998 implements IFuncOrigin {
 
 		if (
 			thisScript.global.jy_change_shikigami === 'change' &&
-			thisScript.oper({
-				id: 998,
-				name: '判断_是否为己方结界_点击式神育成',
-				operator: [
-					{
-						desc: thisOperator[10].desc,
-					},
-				],
-			})
+			ownEnchantmentKey()
 		) {
 			return thisScript.oper({
 				id: 998,
@@ -702,19 +714,16 @@ export class Func998 implements IFuncOrigin {
 		// }
 
 		if (thisScript.global.jy_change_shikigami === 'change_enchantment') {
-			if (
-				thisScript.oper({
+			if (ownEnchantmentKey()) {
+				return thisScript.oper({
 					id: 998,
 					name: '更换结界卡',
 					operator: [
 						{
-							desc: thisOperator[10].desc,
 							oper: [thisOperator[10].oper[1]],
 						},
 					],
-				})
-			) {
-				return true;
+				});
 			}
 
 			if (
@@ -806,15 +815,22 @@ export class Func998 implements IFuncOrigin {
 		}
 
 		if (thisScript.global.jy_change_shikigami === 'jy_flag') {
+			if (ownEnchantmentKey()) {
+				return thisScript.oper({
+					id: 998,
+					name: '点击式神育成',
+					operator: [
+						{
+							oper: [thisOperator[10].oper[0]],
+						},
+					],
+				});
+			}
 			if (
 				thisScript.oper({
 					id: 998,
 					name: '检测是否为式神寄养列表',
 					operator: [
-						{
-							desc: thisOperator[10].desc,
-							oper: [thisOperator[10].oper[0]],
-						},
 						thisOperator[5],
 						thisOperator[6],
 					],

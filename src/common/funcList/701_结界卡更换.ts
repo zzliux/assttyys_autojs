@@ -1,5 +1,6 @@
 import { IFuncOrigin, IFuncOperatorOrigin, IFuncOperator } from '@/interface/IFunc';
 import { Script } from '@/system/script';
+import { AUTO_SKIN, ENCHANTMENT_SKIN_OPTIONS, enchantmentAnchorKeys, rememberEnchantmentKey } from '../enchantmentSkin';
 // const normal = -1; //定义常量
 const left = 0;
 const center = 1;
@@ -24,6 +25,13 @@ export class Func701 implements IFuncOrigin {
 			type: 'scheme',
 			default: '返回庭院',
 			value: '返回庭院',
+		}, {
+			name: 'enchantment_skin',
+			desc: '结界皮肤。选「自动」会逐套尝试，不用配置但略慢',
+			type: 'list',
+			data: ENCHANTMENT_SKIN_OPTIONS,
+			default: AUTO_SKIN,
+			value: AUTO_SKIN,
 		}]
 	}];
 	operator: IFuncOperatorOrigin[] = [
@@ -256,6 +264,17 @@ export class Func701 implements IFuncOrigin {
 	];
 	operatorFunc(thisScript: Script, thisOperator: IFuncOperator[]): boolean {
 		const thisconf = thisScript.scheme.config['701'];
+		const skinKeys = enchantmentAnchorKeys(thisconf && thisconf.enchantment_skin);
+		// 结界皮肤整套重绘，牌位锚点每套都不同；按配置的皮肤（或逐套尝试）判定是否在己方结界主界面
+		const ownEnchantmentKey = () => {
+			const hit = skinKeys.find(key => thisScript.oper({
+				id: 701,
+				name: `是否为己方结界(${key})`,
+				operator: [{ desc: key, notForCnt: true }],
+			}));
+			rememberEnchantmentKey(hit);
+			return hit;
+		};
 		if (thisScript.oper({
 			id: 701,
 			name: '还剩余几分钟到期',
@@ -265,11 +284,7 @@ export class Func701 implements IFuncOrigin {
 			sleep(60000); // 等待1分钟再操作
 			return true;
 		}
-		if (thisScript.oper({
-			id: 701,
-			name: '结界界面',
-			operator: [{ desc: thisOperator[0].desc }],
-		})) {
+		if (ownEnchantmentKey()) {
 			if (thisScript.oper({
 				id: 701,
 				name: '领取结界卡奖励',
@@ -350,10 +365,16 @@ export class Func701 implements IFuncOrigin {
 			const maxCount = 10;
 			for (; ;) {
 				thisScript.keepScreen();
+				if (ownEnchantmentKey()) {
+					// 等价于原 operator[12] 命中：在己方结界主界面点击「式神育成」牌位
+					thisScript.regionClick([thisOperator[12].oper[0]]);
+					curCnt = 0;
+					continue;
+				}
 				if (thisScript.oper({
 					id: 701,
 					name: '进入式神育成',
-					operator: [thisOperator[12], thisOperator[13], thisOperator[14]]
+					operator: [thisOperator[13], thisOperator[14]]
 				})) {
 					curCnt = 0;
 					continue;
